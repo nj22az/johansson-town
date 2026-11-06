@@ -1,0 +1,105 @@
+{
+  "clock": "{\"coordinates\":\"x/z in metres; y is height; interiors use local coordinates\",\"room\":null,\"home\":null,\"calendar\":null,\"discoveries\":null,\"minutes\":6260.000000001295,\"cargoBerth\":{\"visible\":false,\"moored\":false,\"phase\":\"at sea\",\"progress\":0,\"loaded\":false,\"position\":[0,0,0]},\"player\":[4.9,0.04000000000000001,8.4],\"seat\":null,\"customers\":[],\"island\":{\"location\":\"town\",\"cinematic\":false,\"ferry\":{\"berth\":\"town\",\"destination\":null,\"progress\":null,\"departing\":null,\"next\":{\"sailing\":{\"id\":\"out-0\",\"from\":\"town\",\"to\":\"airport\",\"departs\":525,\"arrives\":547,\"why\":\"Back across with the island’s passengers and cars.\"},\"at\":6285,\"wait\":24.99999999870488}},\"crossing\":null,\"ticket\":null,\"checked\":false,\"projects\":[],\"treasury\":90000},\"arrival\":{\"active\":false,\"id\":null,\"seconds\":0,\"action\":null,\"bird\":false,\"reason\":null,\"shot\":null,\"establishing\":false,\"holding\":false}}",
+  "people": [
+    {
+      "name": "Nhung",
+      "position": [
+        11,
+        0.04,
+        61.3
+      ],
+      "visible": false,
+      "place": "home",
+      "indoors": "home",
+      "activity": "getting ready for the day at home"
+    },
+    {
+      "name": "Chin",
+      "position": [
+        8,
+        0.0430000014603138,
+        -38
+      ],
+      "visible": false,
+      "place": "ferry",
+      "activity": "motorman aboard the Minato Maru"
+    },
+    {
+      "name": "Mrs Sato",
+      "position": [
+        37,
+        0.04,
+        57.7
+      ],
+      "visible": false,
+      "place": "home",
+      "indoors": "home",
+      "activity": "getting ready for the day at home"
+    },
+    {
+      "name": "Harbour master",
+      "position": [
+        13.3,
+        0.03999999910593033,
+        -37.55
+      ],
+      "visible": false,
+      "place": "work",
+      "indoors": "work",
+      "activity": "on duty at the harbour office: the berth radio and the freight book"
+    },
+    {
+      "name": "Tetsuo",
+      "position": [
+        9.11,
+        0.07999999821186066,
+        7.82
+      ],
+      "visible": true,
+      "place": "kissa-higa",
+      "seat": {
+        "key": "kissa-stool-2",
+        "from": [
+          8.57,
+          7.82
+        ]
+      },
+      "activity": "morning set at Kissa Higa"
+    },
+    {
+      "name": "Officer Mori",
+      "position": [
+        5.05,
+        0.04000000000000001,
+        20.3
+      ],
+      "visible": false,
+      "place": "home",
+      "indoors": "home",
+      "activity": "having tea at home"
+    },
+    {
+      "name": "Thao",
+      "position": [
+        24,
+        0.04,
+        57.7
+      ],
+      "visible": false,
+      "place": "home",
+      "indoors": "home",
+      "activity": "sleeping at home"
+    },
+    {
+      "name": "Thuan",
+      "position": [
+        -4,
+        -0.10999999999999999,
+        -25.5
+      ],
+      "visible": false,
+      "place": "away",
+      "activity": "at home on Kitano-jima"
+    }
+  ]
+}

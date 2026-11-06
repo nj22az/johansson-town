@@ -1,0 +1,8 @@
+{
+  "previous_main": "93519733462cd7b88c43f7639bae4124ca3ff8f6",
+  "hashed_runtime_files_preserved": 62,
+  "restored_after_candidate_rebuild": 41,
+  "unused_candidate_files_pruned": 0,
+  "verification": "all previous production JS bytes retained; current manifest and source hash unchanged",
+  "source_runtime_identical_to_earlier_base": "83783c93448d1be251a61c213959448e1d21c971"
+}

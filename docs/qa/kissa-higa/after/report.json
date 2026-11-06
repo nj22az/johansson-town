@@ -1,0 +1,11 @@
+{
+  "phase": "after",
+  "viewport": [
+    900,
+    600
+  ],
+  "physicalDevice": false,
+  "meshyModels": true,
+  "scope": "Kissa Higa; static createTown scene with cel and ink passes; no simulation and no residents; the Meshy models placed directly",
+  "errors": []
+}

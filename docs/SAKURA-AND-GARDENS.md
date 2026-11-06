@@ -1,0 +1,9 @@
+# Sakura shop and residential gardens
+
+The active town roster and housing are reduced from 22 to 10. Five pairs of street-facing homes retain the main residential route; the empty plots become low gardens and bamboo screens. Varied house heights, existing porch lamps and window boxes, and quieter warm-grey residential paving soften the long view. Evening supper selection uses the active roster so removed residents do not reappear indoors. Existing profile identities and saved data are retained.
+
+Sakura follows the supplied cream-and-red shop reference: two drinks fridges, a central merchandise rack, checkout with till and bun display, ATM and window seating. The rear partition contains an open 1.5 m passage into a walkable stockroom with steel shelving, cartons, coloured crates, freezer, sink, mop and delivery trolley. Shared layout constants keep Thuan behind the checkout on entry and during schedule updates. All eight catalogue items retain purchasing interactions; cooler doors, till, seating and catalogue remain interactive.
+
+Repeated floor tiles, stock and furniture parts use instanced geometry and shared materials. Product purchase anchors decrease from 96 to 8. The furnished store adds one hemisphere light, without per-product point lights or shadow maps. The earlier deferred room loading and Thuan bedroom spawn fix remain in place. No measured device loading-time or frame-rate claim is made.
+
+Validation: 19 shop, grid and living-town tests; targeted world construction, home and route checks; production build. The shop tests cover player clearance through the stockroom entrance, solid partition walls, checkout access, finite transforms and a draw-count budget. Browser/iPad visual validation is unavailable in this environment; a final on-device visual review remains advisable.

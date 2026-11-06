@@ -1,0 +1,65 @@
+✔ locked ferry shot follows translation, yaw, pitch and roll; ordinary lens restores on exit (3.472532ms)
+✔ automatic cuts have hysteresis and held movement keeps its direction until release (1.070677ms)
+✔ representative walking positions keep head and feet framed on desktop and portrait screens (3.019486ms)
+✔ ordinary play enables CAD headroom, deck stack, service openings and fixed lenses (263.956504ms)
+✔ H1 access uses the relocated side door and full top landing, then returns to the car deck (1826.249632ms)
+✔ the shipped Blender GLB keeps CAD units, source bounds and finite normals within two surface groups (116.271903ms)
+✔ raised-deck boarding meets the pier and the forward crew station remains on its actual floor (1343.020058ms)
+✔ one timetable from the Harbour Line: three calls at Minato, the first boat out and the last boat back, overnight at Minato (2.318194ms)
+✔ ashore, she sails at her time: the gangway closes at 08:45 and nothing asks him (23905.25841ms)
+✔ two minutes before: the horn, the 出港 sign and the Go ashore / Stay aboard prompt; Go ashore lands him on the quay and she leaves without him (13204.581807ms)
+✔ Stay aboard: he crosses on his own feet, lands at the advertised time at Kitano-jima, and goes ashore down her ramp (26925.606919ms)
+✔ on the gangway as it closes, he is walked to the nearer end (pier) before it moves; she does not wait for him (5478.194131ms)
+✔ on the gangway as it closes, he is walked to the nearer end (deck) before it moves; she does not wait for him (6260.056037ms)
+✔ a passenger on the bow ramp clears to the nearer deck before it is raised (6446.291157ms)
+✔ a passenger on the bow flap clears to the nearer pier before it is raised (5347.137982ms)
+✔ the chief’s watch: Mac’s while Johansson is ashore or off duty, Johansson’s aboard in working hours, and the ship never waits for him (7251.091805ms)
+✔ an old save holding a requested or held crossing comes back on the timetable (466.554256ms)
+✔ alongside at Minato: up the gangway from the pier, through the gate, the passage and the foyer, out of the stair door onto the car deck (812.949846ms)
+✔ her bulwark, her casings and the gangway's rails keep you aboard (436.940222ms)
+✔ down the bow ramp onto the quay's landing plate, and back up (403.894781ms)
+✔ under way her decks are still walked (he sails aboard), but the gangway and the ramp are in: no way on or off (24775.133539ms)
+✔ at Kitano-jima: up the ramp from the pier (295.502966ms)
+✔ every floor lies where the model draws it (1832.795299ms)
+✔ up stair P to the lobby, through the carpet room and the saloon, out and up the ladder to the wheelhouse (319.633881ms)
+✔ from the lobby out onto the open deck and up a ladder to the bridge deck's aft platform (263.70785ms)
+✔ the walls keep you in: no walking through the house's side, into the toilets, over the stair well, or off the wing (344.345262ms)
+✔ down into the engine room: the casing P door, the ladder through the car deck, round the engines to the control booth (237.861709ms)
+✔ the crew house: in from the bridge deck's aft platform, along the corridor, into a cabin, the mess and the wheelhouse (215.824379ms)
+✔ below: from the engine room through the watertight door to the aux room, through the door at Fr 38 to the workshop and round the partition into the store (6q-1) (776.473191ms)
+✔ the ferry lies alongside the pier for each sailing, boarded from the pier by its gangway (1077.278957ms)
+✔ it comes in round the breakwater, never through it, and keeps every part of the hull off the pier and the quay (3596.782088ms)
+✔ the ferry has a solid hull only while it is alongside (264.33958ms)
+✔ on the island the stop is the ferry terminal and the game can start off the ferry (0.933377ms)
+✔ the ferry keeps real time: in slowly, fifteen minutes alongside, five to clear the port, then away (587.198958ms)
+✖ she rides the water: rolls at her period, a little alongside and more at sea, and her ramp and gangway stay on their landings (316.233841ms)
+✔ her lights, engines and whistle: lit under way after dark, quiet on shore power at night, signals as she leaves and passes the breakwater (23668.439292ms)
+✔ both berths have four working lines whose returned eyes continue through the fairlead to visible coils aboard (22278.973569ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 36
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 96328.918863
+
+✖ failing tests:
+
+test at tests/ferry.test.mjs:111:1
+✖ she rides the water: rolls at her period, a little alongside and more at sea, and her ramp and gangway stay on their landings (316.233841ms)
+  AssertionError [ERR_ASSERTION]: the gangway rests on the pier
+      at TestContext.<anonymous> (file:///workspace/scratch/d916a0d6443b/ferry-main-release/johansson-town/tests/ferry.test.mjs:128:107)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

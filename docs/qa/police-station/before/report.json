@@ -1,0 +1,181 @@
+{
+  "phase": "before",
+  "baseline": "bb006df",
+  "viewport": [
+    390,
+    844
+  ],
+  "physicalDevice": false,
+  "scope": "Static createTown scene with cel and ink passes; station sun shadows; no simulation or streamed detail models",
+  "errors": [],
+  "shots": [
+    {
+      "name": "street",
+      "pos": [
+        -7,
+        3.8,
+        24
+      ],
+      "at": [
+        8,
+        3.2,
+        19
+      ],
+      "minutes": 570,
+      "rain": false,
+      "renderCalls": 274,
+      "renderTriangles": 351888,
+      "station": {
+        "batches": 21,
+        "drawCalls": 66,
+        "triangles": 8300
+      },
+      "futon": false,
+      "patrolCard": false
+    },
+    {
+      "name": "south",
+      "pos": [
+        5,
+        3.8,
+        38
+      ],
+      "at": [
+        9,
+        3.2,
+        20
+      ],
+      "minutes": 570,
+      "rain": false,
+      "renderCalls": 583,
+      "renderTriangles": 453367,
+      "station": {
+        "batches": 21,
+        "drawCalls": 66,
+        "triangles": 8300
+      },
+      "futon": false,
+      "patrolCard": false
+    },
+    {
+      "name": "north",
+      "pos": [
+        4,
+        3.8,
+        -1
+      ],
+      "at": [
+        9,
+        3.2,
+        18
+      ],
+      "minutes": 570,
+      "rain": false,
+      "renderCalls": 337,
+      "renderTriangles": 438247,
+      "station": {
+        "batches": 21,
+        "drawCalls": 66,
+        "triangles": 8300
+      },
+      "futon": false,
+      "patrolCard": false
+    },
+    {
+      "name": "back",
+      "pos": [
+        28,
+        4,
+        18
+      ],
+      "at": [
+        10,
+        3.5,
+        18
+      ],
+      "minutes": 570,
+      "rain": false,
+      "renderCalls": 291,
+      "renderTriangles": 390684,
+      "station": {
+        "batches": 21,
+        "drawCalls": 66,
+        "triangles": 8300
+      },
+      "futon": false,
+      "patrolCard": false
+    },
+    {
+      "name": "dusk",
+      "pos": [
+        -7,
+        3.8,
+        24
+      ],
+      "at": [
+        8,
+        3.2,
+        19
+      ],
+      "minutes": 1110,
+      "rain": false,
+      "renderCalls": 283,
+      "renderTriangles": 352498,
+      "station": {
+        "batches": 21,
+        "drawCalls": 66,
+        "triangles": 8300
+      },
+      "futon": false,
+      "patrolCard": false
+    },
+    {
+      "name": "rainy-morning",
+      "pos": [
+        5,
+        3.8,
+        38
+      ],
+      "at": [
+        9,
+        3.2,
+        20
+      ],
+      "minutes": 570,
+      "rain": true,
+      "renderCalls": 585,
+      "renderTriangles": 453395,
+      "station": {
+        "batches": 21,
+        "drawCalls": 66,
+        "triangles": 8300
+      },
+      "futon": false,
+      "patrolCard": false
+    },
+    {
+      "name": "patrol",
+      "pos": [
+        -7,
+        3.8,
+        24
+      ],
+      "at": [
+        8,
+        3.2,
+        19
+      ],
+      "minutes": 1275,
+      "rain": false,
+      "renderCalls": 282,
+      "renderTriangles": 352114,
+      "station": {
+        "batches": 21,
+        "drawCalls": 66,
+        "triangles": 8300
+      },
+      "futon": false,
+      "patrolCard": false
+    }
+  ]
+}

@@ -1,0 +1,328 @@
+{
+  "title": "Johansson Town adapted road database",
+  "license": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "source": "tomonoura.json",
+  "note": "Residential circuit adapts ways 118267079 and 461555200. Other routes are fictional connectors/original game geometry. Coordinates are game metres in X/Z, not a historical georeferenced reconstruction.",
+  "routes": [
+    {
+      "id": "shotengai",
+      "width": 14,
+      "surface": "asphalt",
+      "points": [
+        [
+          0,
+          58
+        ],
+        [
+          0,
+          -52
+        ]
+      ]
+    },
+    {
+      "id": "quay",
+      "width": 12,
+      "surface": "stone",
+      "points": [
+        [
+          -17,
+          -58
+        ],
+        [
+          17,
+          -58
+        ]
+      ]
+    },
+    {
+      "id": "outer-pier",
+      "width": 8.2,
+      "surface": "wood",
+      "points": [
+        [
+          0,
+          -58
+        ],
+        [
+          0,
+          -79
+        ]
+      ]
+    },
+    {
+      "id": "east-alley",
+      "width": 5.5,
+      "surface": "asphalt",
+      "points": [
+        [
+          0,
+          18
+        ],
+        [
+          29,
+          18
+        ],
+        [
+          36,
+          30
+        ],
+        [
+          42,
+          62
+        ],
+        [
+          25,
+          84
+        ],
+        [
+          0,
+          84
+        ],
+        [
+          0,
+          56
+        ]
+      ]
+    },
+    {
+      "id": "west-alley",
+      "width": 5.5,
+      "surface": "stone",
+      "points": [
+        [
+          0,
+          50
+        ],
+        [
+          -29,
+          50
+        ],
+        [
+          -40,
+          31
+        ],
+        [
+          -42,
+          -5
+        ],
+        [
+          -30,
+          -11
+        ],
+        [
+          0,
+          -11
+        ]
+      ]
+    },
+    {
+      "id": "residential",
+      "osmWays": [
+        118267079,
+        461555200
+      ],
+      "width": 6,
+      "surface": "asphalt",
+      "points": [
+        [
+          36,
+          30
+        ],
+        [
+          38,
+          45
+        ],
+        [
+          34.84,
+          29.28
+        ],
+        [
+          65.44,
+          25.05
+        ],
+        [
+          74.68,
+          23.77
+        ],
+        [
+          74.73,
+          17.67
+        ],
+        [
+          78.59,
+          9.28
+        ],
+        [
+          89.61,
+          0.17
+        ],
+        [
+          100.09,
+          13.07
+        ],
+        [
+          110.15,
+          26.5
+        ],
+        [
+          118.6,
+          47.57
+        ],
+        [
+          122.14,
+          59.1
+        ],
+        [
+          124.76,
+          69.77
+        ],
+        [
+          42,
+          62
+        ]
+      ]
+    },
+    {
+      "id": "river-walk",
+      "width": 4,
+      "surface": "stone",
+      "points": [
+        [
+          -42,
+          -5
+        ],
+        [
+          -64,
+          -14
+        ],
+        [
+          -71,
+          -37
+        ],
+        [
+          -58,
+          -56
+        ],
+        [
+          -17,
+          -58
+        ]
+      ]
+    },
+    {
+      "id": "second-pier",
+      "width": 4.6,
+      "surface": "wood",
+      "points": [
+        [
+          -58,
+          -56
+        ],
+        [
+          -58,
+          -80
+        ],
+        [
+          -42,
+          -80
+        ]
+      ]
+    },
+    {
+      "id": "home-door",
+      "width": 4,
+      "surface": "stone",
+      "points": [
+        [
+          42,
+          62
+        ],
+        [
+          46,
+          62
+        ]
+      ]
+    },
+    {
+      "id": "ramen-door",
+      "width": 4,
+      "surface": "stone",
+      "points": [
+        [
+          24,
+          18
+        ],
+        [
+          24,
+          14
+        ]
+      ]
+    },
+    {
+      "id": "bus-door",
+      "width": 4,
+      "surface": "stone",
+      "points": [
+        [
+          -26,
+          50
+        ],
+        [
+          -26,
+          46
+        ]
+      ]
+    },
+    {
+      "id": "school-route",
+      "width": 6,
+      "surface": "asphalt",
+      "points": [
+        [
+          65.44,
+          25.05
+        ],
+        [
+          73,
+          36
+        ],
+        [
+          73,
+          48
+        ],
+        [
+          67,
+          48
+        ],
+        [
+          67,
+          64.35
+        ]
+      ]
+    },
+    {
+      "id": "shrine-slope",
+      "width": 5,
+      "surface": "stone",
+      "points": [
+        [
+          25,
+          84
+        ],
+        [
+          43,
+          97
+        ],
+        [
+          63,
+          104
+        ],
+        [
+          72,
+          113
+        ]
+      ]
+    }
+  ]
+}

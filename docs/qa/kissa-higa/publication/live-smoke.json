@@ -1,0 +1,34 @@
+{
+  "url": "http://127.0.0.1:8799/johansson-town/?audit&visual-audit&release=1c4d6c33d5f0447676cb4edcb22a25480e6e1adc",
+  "expectedRelease": "1c4d6c33d5f0447676cb4edcb22a25480e6e1adc",
+  "viewport": [
+    960,
+    640
+  ],
+  "physicalDevice": false,
+  "renderer": "Chromium 153, SwiftShader",
+  "scope": "Browser rendering of a verified public-byte loopback mirror: each requested file fetched from Pages with inherited TLS verification, then compared with the release; cafe open and fish counter hours. Direct public-browser connection not completed; no repeat of full resident route audit",
+  "cafe": {
+    "shutterVisible": false,
+    "shutterMinY": 1000,
+    "doorMinY": 1000,
+    "models": [
+      "Kissa Higa record-player",
+      "Kissa Higa hand-grinder",
+      "Kissa Higa bentwood-chair",
+      "Kissa Higa bentwood-chair"
+    ],
+    "clock": "{\"coordinates\":\"x/z in metres; y is height; interiors use local coordinates\",\"room\":null,\"home\":null,\"calendar\":null,\"discoveries\":null,\"minutes\":6222.041666666721,\"cargoBerth\":{\"visible\":false,\"moored\":false,\"phase\":\"at sea\",\"progress\":0,\"loaded\":false,\"position\":[0,0,0]},\"player\":[4.9,0.04000000000000001,8.4],\"seat\":null,\"customers\":[],\"island\":{\"location\":\"town\",\"cinematic\":false,\"ferry\":{\"berth\":\"airport\",\"destination\":null,\"progress\":null,\"departing\":null,\"next\":{\"sailing\":{\"id\":\"in-0\",\"from\":\"airport\",\"to\":\"town\",\"departs\":488,\"arrives\":510,\"why\":\"The commuter boat in, alongside at Minato at 08:30 (the Harbour Line).\"},\"at\":6248,\"wait\":25.95833333327937}},\"crossing\":null,\"ticket\":null,\"checked\":false,\"projects\":[],\"treasury\":90000},\"arrival\":{\"active\":false,\"id\":null,\"seconds\":0,\"action\":null,\"bird\":false,\"reason\":null,\"shot\":null,\"establishing\":false,\"holding\":false}}"
+  },
+  "market": {
+    "open": true,
+    "children": 7,
+    "clock": "{\"coordinates\":\"x/z in metres; y is height; interiors use local coordinates\",\"room\":null,\"home\":null,\"calendar\":null,\"discoveries\":null,\"minutes\":6220.016666666688,\"cargoBerth\":{\"visible\":false,\"moored\":false,\"phase\":\"at sea\",\"progress\":0,\"loaded\":false,\"position\":[0,0,0]},\"player\":[22.911561259751416,0.019999999552965164,-37.61777600348411],\"seat\":null,\"customers\":[],\"island\":{\"location\":\"town\",\"cinematic\":false,\"ferry\":{\"berth\":\"airport\",\"destination\":null,\"progress\":null,\"departing\":null,\"next\":{\"sailing\":{\"id\":\"in-0\",\"from\":\"airport\",\"to\":\"town\",\"departs\":488,\"arrives\":510,\"why\":\"The commuter boat in, alongside at Minato at 08:30 (the Harbour Line).\"},\"at\":6248,\"wait\":27.983333333311748}},\"crossing\":null,\"ticket\":null,\"checked\":false,\"projects\":[],\"treasury\":90000},\"arrival\":{\"active\":false,\"id\":null,\"seconds\":0,\"action\":null,\"bird\":false,\"reason\":null,\"shot\":null,\"establishing\":false,\"holding\":false}}"
+  },
+  "marketClosed": true,
+  "boots": [
+    "http://127.0.0.1:8799/johansson-town/runtime/boot-DfkZ-ZpG.js"
+  ],
+  "errors": [],
+  "failedResponses": []
+}

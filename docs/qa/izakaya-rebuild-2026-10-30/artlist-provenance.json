@@ -1,0 +1,21 @@
+{
+  "generationId": "01a18d9e-0c79-7415-821d-734177991b1e",
+  "provider": "Artlist",
+  "model": "Seedream 4.5",
+  "date": "2026-10-30",
+  "settings": {
+    "aspect_ratio": "3:4",
+    "resolution": "2k",
+    "num_images": 1
+  },
+  "owner": "Thao",
+  "purpose": "Original fictional Sango Quay awamori campaign for Minato; Sakura Trading supplies the house stock",
+  "file": "assets/graphics/izakaya/sango-quay-artlist.webp",
+  "sha256": "47592fbda9d5f950f3e1f2176599244cbf6d3fd0d2eb58c2ef43e97f73e3b77d",
+  "gameSize": [
+    768,
+    1024
+  ],
+  "placement": "Existing sake-poster slot on the Sato east wall; no extra poster or overlapping backing",
+  "promptSummary": "Original late-1990s Okinawan harbour print, calm teal water, ferry, cream moon, orange lantern, SANGO QUAY / MINATO ISLAND AWAMORI; no real brands"
+}

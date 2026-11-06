@@ -1,0 +1,990 @@
+/* ==== Town guide page (landing.css) ==== */
+/* The entry board shares LINE's green, white surfaces and system typography.
+   Reference: awesome-design-md-jp/design-md/line/DESIGN.md. */
+:root {
+  --harbour-navy: #06c755;
+  --harbour-navy-deep: #05b34c;
+  --ink: #111111;
+  --ink-muted: #666666;
+  --paper: #ffffff;
+  --paper-warm: #f7f8f9;
+  --surface: #f7f8f9;
+  --line: #e5e5e5;
+  --sakura: #eee0e9;
+  --matcha: #d6e2db;
+  --vermillion: #d93025;
+  --sp-1: .25rem;
+  --sp-2: .5rem;
+  --sp-3: 1rem;
+  --sp-4: 1.5rem;
+  --sp-5: 2.5rem;
+  --sp-6: 4rem;
+  --rd-s: 8px;
+  --rd-m: 12px;
+  --rd-l: 12px;
+  --rd-pill: 1.5rem;
+  --gothic: -apple-system, BlinkMacSystemFont, "SF Pro Text", SFPro, Arial, "Noto Sans JP", "Noto Sans KR", sans-serif;
+  --mincho: var(--gothic);
+  --aui-grey-900: var(--ink);
+  --aui-grey-700: #444444;
+  --aui-grey-536: var(--ink-muted);
+  --aui-grey-420: #999999;
+  --aui-grey-200: var(--line);
+  --aui-grey-100: var(--surface);
+  --aui-grey-50: var(--paper-warm);
+  --aui-white: var(--paper);
+  --aui-blue-1200: var(--harbour-navy-deep);
+  --aui-blue-1000: var(--harbour-navy-deep);
+  --aui-blue-900: var(--harbour-navy);
+  --aui-blue-50: var(--matcha);
+  --aui-yellow-300: #e8d48b;
+  --aui-red-1000: var(--vermillion);
+  --aui-green-1000: #3a7c4f;
+}
+
+
+#start {
+  position: fixed;
+  inset: 0;
+  display: block;
+  place-items: unset;
+  padding: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  background: var(--paper-warm);
+  color: var(--ink);
+  font-family: var(--gothic);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: normal;
+  font-feature-settings: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-user-select: text;
+  user-select: text;
+  z-index: 30;
+}
+#start.hidden { display: none !important; }
+
+/* One focus treatment for everything: a yellow ring inside a black one reads on both
+   the white cards and the grey page. */
+#start :is(a, button, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--paper), 0 0 0 5px var(--harbour-navy);
+  border-radius: 2px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+#start a.sr-only:focus {
+  position: fixed; top: var(--sp-2); left: var(--sp-2); width: auto; height: auto;
+  clip: auto; margin: 0; padding: var(--sp-2) var(--sp-3); z-index: 5;
+  background: var(--aui-white); color: var(--aui-blue-900); border-radius: var(--rd-m);
+}
+
+.board-wrap { padding: var(--sp-3) var(--sp-3) var(--sp-6); }
+.board-frame {
+  max-width: 68rem;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+}
+/* The printed board's crop marks belong to the old treatment. */
+.crop-marks { display: none; }
+
+/* ---------- Header ---------- */
+.board-frame > header { padding: var(--sp-4) var(--sp-3) var(--sp-3); }
+.board-kicker {
+  display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-3);
+  font-size: .75rem; font-weight: 700; letter-spacing: .02rem;
+  color: var(--aui-grey-536); line-height: 1.5;
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--aui-grey-100);
+}
+.board-kicker .red { color: var(--aui-red-1000); }
+.board-tiny {
+  font-size: .75rem; font-weight: 700; letter-spacing: .02rem;
+  color: var(--aui-grey-536); margin: 0 0 var(--sp-1);
+}
+/* On a phone the point of this page is the button. The seal and edition block is
+   decoration that repeats the kicker, so it waits until there is room for it. */
+.board-foot-line { display: block; margin-top: var(--sp-1); font-size: .6875rem; letter-spacing: .16em; }
+
+/* ---------- Admission: the reason the page exists ---------- */
+#enter {
+  display: inline-flex; align-items: center; justify-content: space-between; gap: var(--sp-3);
+  min-height: 3rem; min-width: min(100%, 18rem); width: 100%; max-width: 22rem;
+  padding: .65rem 1.25rem;
+  border: 2px solid var(--harbour-navy); border-radius: var(--rd-pill);
+  background: var(--harbour-navy); color: var(--paper);
+  font-family: var(--gothic); font-size: .9375rem; font-weight: 700; letter-spacing: normal;
+  cursor: pointer; box-shadow: none;
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+#enter:hover { background: var(--harbour-navy-deep); border-color: var(--harbour-navy-deep); text-decoration: none; }
+#enter:active { background: var(--ink); border-color: var(--ink); }
+#enter:disabled { background: var(--line); border-color: var(--line); color: var(--ink-muted); cursor: progress; }
+#enter small { display: block; font-size: .7rem; font-weight: 400; opacity: .9; letter-spacing: .12em; font-family: var(--mincho); }
+#enter b { display: block; font-size: 1rem; letter-spacing: .04em; }
+#enter .arrow { font-size: 1.25rem; }
+#bootStatus {
+  margin-top: var(--sp-2);
+  font-size: .8125rem; font-weight: 700; letter-spacing: normal;
+  color: var(--harbour-navy);
+}
+
+/* ---------- Status strip ---------- */
+.board-status {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: 0; overflow: hidden;
+}
+.board-status > div { background: var(--aui-white); padding: var(--sp-3); }
+.board-status span {
+  display: block; font-size: .75rem; font-weight: 700; letter-spacing: .02rem;
+  color: var(--aui-grey-536);
+}
+.board-status b { display: block; font-size: 1.125rem; font-weight: 700; line-height: 1.6; }
+.board-status b.alert { color: var(--aui-red-1000); }
+
+/* ---------- Panels ---------- */
+.board-split { display: grid; gap: var(--sp-3); padding: 0 var(--sp-3) var(--sp-3); }
+.clock-panel, .controls-panel {
+  border: 1px solid var(--line); border-radius: 0;
+  padding: var(--sp-3); background: var(--paper);
+}
+.clock-head { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--sp-3); }
+.clock-head h2 { margin: 0; font-family: var(--mincho); font-size: 1.35rem; font-weight: 400; letter-spacing: normal; }
+.clock-head p { margin: 0; text-align: right; font-size: .75rem; color: var(--aui-grey-536); }
+.clock-head small { display: block; font-weight: 700; color: var(--aui-green-1000); letter-spacing: .02rem; }
+.clock-body { display: grid; gap: var(--sp-3); justify-items: center; margin-top: var(--sp-3); }
+.clock-face { width: min(220px, 60vw); color: var(--aui-grey-900); }
+.clock-face svg { width: 100%; height: auto; }
+.hand-second { color: var(--vermillion); }
+
+.clock-modes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-2); margin-top: var(--sp-3); }
+.clock-modes button {
+  min-height: 3rem; padding: var(--sp-2);
+  border: 1px solid var(--aui-grey-420); border-radius: var(--rd-m);
+  background: var(--aui-white); color: var(--aui-grey-900);
+  font-family: inherit; cursor: pointer; text-align: center;
+}
+.clock-speeds { display: grid; grid-template-columns: auto repeat(3, minmax(0, 1fr)); gap: var(--sp-2); margin-top: var(--sp-2); align-items: center; }
+.clock-speeds button {
+  min-height: 3rem; padding: var(--sp-2);
+  border: 1px solid var(--aui-grey-420); border-radius: var(--rd-m);
+  background: var(--aui-white); color: var(--aui-grey-900);
+  font-family: inherit; cursor: pointer; text-align: center;
+}
+.clock-speeds button b { display: block; font-size: .9375rem; font-weight: 700; color: inherit; }
+.clock-speeds button span { display: block; font-size: .6875rem; color: var(--aui-grey-536); }
+.clock-speeds button[aria-pressed="true"] { background: var(--harbour-navy-deep); border-color: var(--harbour-navy-deep); color: #fff; }
+.clock-speeds button[aria-pressed="true"] span { color: rgba(255, 255, 255, .85); }
+.clock-speeds.locked button { opacity: .45; cursor: not-allowed; }
+.clock-choice-note { margin: var(--sp-2) 0 0; font-size: .75rem; color: var(--ink-muted); }
+@media (max-width: 560px) { .clock-speeds { grid-template-columns: repeat(3, minmax(0, 1fr)); } .clock-speeds .board-tiny { grid-column: 1 / -1; } }
+.clock-modes button:hover { background: var(--aui-grey-50); text-decoration: underline; }
+.clock-modes button b { display: block; font-size: .9375rem; font-weight: 700; }
+.clock-modes button span { display: block; font-size: .6875rem; color: var(--aui-grey-536); }
+.clock-modes button[aria-pressed="true"] {
+  background: var(--harbour-navy); border-color: var(--harbour-navy); color: var(--paper);
+}
+.clock-modes button[aria-pressed="true"] span { color: rgba(255, 255, 255, .85); }
+
+.controls-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-2); }
+.controls-grid li { display: flex; align-items: baseline; gap: var(--sp-2); font-size: .875rem; }
+.controls-grid kbd {
+  flex: 0 0 auto; font-family: inherit; font-size: .75rem; font-weight: 700;
+  padding: 2px var(--sp-2); border: 1px solid var(--aui-grey-420); border-radius: var(--rd-s);
+  background: var(--aui-grey-50); color: var(--aui-grey-900);
+}
+.controls-grid span { color: var(--aui-grey-700); }
+
+/* ---------- Sections ---------- */
+.board-frame > section { padding: 0 var(--sp-3) var(--sp-4); }
+.section-bar {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: var(--sp-3);
+  padding: var(--sp-3) 0 var(--sp-2);
+  border-bottom: 2px solid var(--harbour-navy);
+  margin-bottom: var(--sp-3);
+}
+.section-bar h2 { margin: 0; font-size: 1.375rem; font-weight: 700; letter-spacing: .02rem; }
+.section-bar p { margin: 0; }
+.section-bar .board-tiny { margin: 0; }
+
+.hours-table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+.hours-table th, .hours-table td {
+  text-align: left; padding: var(--sp-2); border-bottom: 1px solid var(--aui-grey-100);
+  vertical-align: top;
+}
+.hours-table th {
+  font-size: .75rem; font-weight: 700; letter-spacing: .02rem;
+  color: var(--aui-grey-536); border-bottom: 1px solid var(--aui-grey-420);
+}
+.hours-table .muted { color: var(--aui-grey-536); font-size: .8125rem; }
+.tag-open, .tag-closed {
+  display: inline-block; padding: 2px var(--sp-2); border-radius: var(--rd-s);
+  font-size: .6875rem; font-weight: 700; letter-spacing: .02rem;
+}
+.tag-open { background: var(--aui-green-1000); color: var(--aui-white); }
+.tag-closed { background: var(--aui-grey-100); color: var(--aui-grey-700); }
+
+.place-grid, .roll-grid, .notice-grid, .poster-wall {
+  display: grid; gap: var(--sp-3);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+}
+.place-card, .roll-card, .notice-card, .poster-card {
+  border: 1px solid var(--aui-grey-420); border-radius: var(--rd-m);
+  padding: var(--sp-3); background: var(--aui-white); margin: 0;
+}
+.place-card h3, .roll-card b, .notice-card h3, .poster-card h3 {
+  display: block; margin: 0 0 var(--sp-1);
+  font-size: 1.125rem; font-weight: 700; line-height: 1.6; letter-spacing: .02rem;
+}
+.place-card p, .notice-card p, .poster-card p { margin: 0; font-size: .875rem; color: var(--aui-grey-700); }
+.muted { color: var(--aui-grey-536); }
+.roll-card .duty { display: flex; align-items: center; gap: var(--sp-2); margin: 0 0 var(--sp-2); font-size: .8125rem; color: var(--aui-grey-536); }
+/* The script writes ON DUTY or OFF into .flag, so the word is the signal and it is
+   styled like the OPEN and CLOSED tags on the hours board. A dot beside it would be
+   the same thing said twice. */
+.roll-card .flag {
+  flex: 0 0 auto; padding: 2px var(--sp-2); border-radius: var(--rd-s);
+  background: var(--aui-grey-100); color: var(--aui-grey-700);
+  font-size: .6875rem; font-weight: 700; letter-spacing: .02rem; line-height: 1.6;
+}
+.roll-card .duty.on .flag { background: var(--aui-green-1000); color: var(--aui-white); }
+.roll-card .muted { font-size: .8125rem; }
+.notice-no { font-size: .75rem; font-weight: 700; color: var(--aui-grey-536); margin: 0 0 var(--sp-1); }
+.poster-card img { width: 100%; height: auto; border-radius: var(--rd-s); display: block; margin-bottom: var(--sp-2); }
+.poster-card figcaption > * { margin-top: 0; }
+
+/* Thuan's Storage: one wide card linking out to the stockroom side story */
+.stockroom-card {
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: var(--sp-3);
+  border: 1px solid var(--aui-grey-420); border-radius: var(--rd-m);
+  padding: var(--sp-3); background: var(--aui-white); color: inherit; text-decoration: none;
+}
+.stockroom-card img { width: 100%; height: auto; border-radius: var(--rd-s); display: block; }
+.stockroom-text { display: flex; flex-direction: column; gap: var(--sp-1); align-self: center; }
+.stockroom-text b { font-size: 1.125rem; line-height: 1.6; letter-spacing: .02rem; }
+.stockroom-text > span:not(.notice-no):not(.stockroom-go) { font-size: .875rem; color: var(--aui-grey-700); }
+.stockroom-go { margin-top: var(--sp-2); font-size: .875rem; font-weight: 700; color: var(--aui-red-1000); }
+.stockroom-card:hover .stockroom-go, .stockroom-card:focus-visible .stockroom-go { text-decoration: underline; }
+@media (max-width: 640px) { .stockroom-card { grid-template-columns: 1fr; } }
+
+/* Clock read-out beside the face */
+.clock-digits {
+  margin: 0; font-size: clamp(1.75rem, 8vw, 2.25rem); font-weight: 700;
+  line-height: 1.4; letter-spacing: .01rem; font-variant-numeric: tabular-nums;
+}
+.clock-period { margin: var(--sp-1) 0 0; font-size: .875rem; font-weight: 700; letter-spacing: .02rem; color: var(--aui-grey-536); }
+.clock-period.alert { color: var(--aui-red-1000); }
+.clock-line { margin: var(--sp-2) 0 0; font-size: .875rem; color: var(--aui-grey-700); }
+.clock-shops { margin: var(--sp-1) 0 0; font-size: .75rem; letter-spacing: .02rem; color: var(--aui-grey-536); }
+.hours-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+/* The heading rule already separates these sections; the old paper fill is not needed. */
+.section-bar.paper { background: none; }
+
+.board-foot {
+  padding: var(--sp-5) var(--sp-3);
+  background: var(--harbour-navy);
+  border-top: none;
+  color: var(--paper);
+  font-size: .875rem;
+}
+.board-foot p { margin: 0 0 var(--sp-2); }
+.board-foot .jp { font-family: var(--mincho); color: rgba(255,255,255,.78); }
+.board-foot a { color: var(--paper); }
+
+/* Small or short screens: the button has to be reachable without scrolling, so the
+   framing tightens rather than the content going away. */
+@media (max-width: 26rem), (max-height: 44rem) {
+  .board-wrap { padding: var(--sp-2) var(--sp-2) var(--sp-5); }
+  .board-frame > header { padding: var(--sp-3) var(--sp-3) var(--sp-2); }
+  .board-kicker { gap: 0 var(--sp-2); padding-bottom: var(--sp-2); line-height: 1.4; }
+}
+
+@media (min-width: 48rem) {
+  .board-wrap { padding: var(--sp-5) var(--sp-4) var(--sp-6); }
+  .board-frame > header { padding: var(--sp-5) var(--sp-4) var(--sp-4); }
+  .board-frame > section { padding: 0 var(--sp-4) var(--sp-5); }
+  .board-split { grid-template-columns: 1fr 1fr; padding: 0 var(--sp-4) var(--sp-4); }
+  .board-status { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .clock-body { grid-template-columns: auto 1fr; align-items: center; justify-items: start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #enter { transition: none; }
+  .hand-second { display: none; }
+}
+
+/* Responsive polish — Toraya harbour board */
+@media (max-width: 26rem) {
+  .board-wrap {
+    padding:
+      max(var(--sp-2), env(safe-area-inset-top))
+      max(var(--sp-2), env(safe-area-inset-right))
+      max(var(--sp-5), env(safe-area-inset-bottom))
+      max(var(--sp-2), env(safe-area-inset-left));
+  }
+  #enter { max-width: none; }
+}
+@media (min-width: 48rem) {
+  .board-status { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .board-split { grid-template-columns: 1.1fr .9fr; }
+}
+
+/* A real street view introduces the town before the detailed visitor board. */.resident-preview { margin:0; min-width:0; }.resident-preview figcaption { padding:.65rem 0 0; font-size:.75rem; line-height:1.5; color:#4d6058; }
+.resident-preview { padding:0 1.5rem 1.5rem; }
+.resident-preview img { display:block; width:100%; height:auto; background:#eee9df; }
+@media(max-width:599px) { .resident-preview { padding:0 1rem 1rem; } }
+
+/* Visitor brochure: a town cover, an unhurried day, and the people who live here. */
+.board-frame { border:0; background:#fffdf8; }
+.board-kicker { justify-content:space-between; border-bottom:1px solid #ded8ca; color:#6d766e; font-size:.6875rem; letter-spacing:.09em; }
+#enter { background:#2c514b; border-color:#2c514b; }
+#enter:hover { background:#213f39; border-color:#213f39; }
+.section-bar.paper { background:transparent; border:0; color:#243f3d; padding-top:2rem; }
+.section-bar h2 { font-family:var(--mincho); font-weight:400; font-size:clamp(1.5rem,3vw,2rem); line-height:1.3; letter-spacing:0; }
+.section-bar .board-tiny { color:#a55340; letter-spacing:.1em; font-size:.625rem; margin-bottom:.65rem; }
+.brochure-itinerary { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.75rem; }
+.brochure-itinerary article { border-top:1px solid #cdd5cc; padding-top:1rem; }
+.brochure-number { font:italic 2rem var(--mincho); color:#9baea0; }
+.brochure-itinerary h3 { font:400 1.3rem/1.35 var(--mincho); color:#243f3d; margin:.65rem 0; }
+.brochure-itinerary p,.brochure-intro { font-size:.9375rem; line-height:1.8; color:#52645c; }
+.brochure-stop { display:block; margin-top:1.5rem; color:#a55340; font-size:.625rem; line-height:1.8; letter-spacing:.06em; }
+.brochure-intro { margin:0 1.5rem 1.5rem; max-width:48rem; }
+.resident-preview img { background:#eee9df; }
+.place-grid,.roll-grid { gap:1rem; }
+.place-card,.roll-card { border-color:#ded8ca; background:#fffdf8; }
+.visit-planning { margin:1rem 1.5rem 2rem; border-top:1px solid #cdd5cc; border-bottom:1px solid #cdd5cc; }
+.visit-planning > summary { cursor:pointer; list-style:none; display:grid; grid-template-columns:1fr auto; gap:.4rem 1rem; padding:1.5rem 0; color:#243f3d; }
+.visit-planning > summary::-webkit-details-marker { display:none; }
+.visit-planning > summary > span { font:400 1.6rem var(--mincho); }
+.visit-planning > summary small { grid-column:1; font-size:.8125rem; color:#65726a; }
+.visit-planning > summary b { grid-column:2; grid-row:1/3; align-self:center; font-weight:400; font-size:1.5rem; }
+.visit-planning[open] > summary b { transform:rotate(45deg); }
+.planning-content > .board-status { margin-bottom:1.5rem; }
+.planning-content > section { padding:0 1rem 1.5rem; }
+.board-foot { background:#e8ede6; color:#52645c; border:0; }
+.board-foot p { line-height:1.8; }
+@media(min-width:768px) { .brochure-day { padding:0 1.5rem 1.5rem; } }
+@media(max-width:767px) {
+ .board-frame > header { padding:1rem; }
+ .brochure-day { padding:0 1rem 1rem; }
+ .brochure-itinerary { grid-template-columns:1fr; gap:1.5rem; }
+ .brochure-itinerary article { display:grid; grid-template-columns:2.25rem 1fr; gap:0 .75rem; }
+ .brochure-number { grid-row:1/4; }
+ .brochure-itinerary h3 { margin:0 0 .5rem; }
+ .brochure-itinerary p { margin:0; }
+ .brochure-stop { grid-column:2; margin-top:.75rem; }
+ .brochure-intro { margin:0 1rem 1rem; }
+ .visit-planning { margin:1rem; }
+}
+
+/* ==== Title screen (title-screen.css) ==== */
+/* Johansson Town title screen — a console-style boot: the Johansson Co. mark drops in,
+   then the game logo bounces into place over the harbour sky and waits for START.
+   The start page is only this screen. The visitor's guide is a menu page behind
+   TOWN GUIDE, like an options screen, and BACK returns to the title. */
+#start {
+  --ts-navy: #06c755;
+  --ts-ink: #000000;
+  --ts-sun: #ffd54a;
+  --ts-orange: #ff9f1c;
+  --ts-red: #d7263d;
+  --ts-cream: #ffffff;
+  --ts-pop: var(--gothic);
+  --ts-pixel: var(--gothic);
+  overflow: hidden;
+}
+#start:not(.guide-open) .board-wrap { display: none; }
+#start.guide-open { overflow: auto; }
+#start.guide-open .title-screen { display: none; }
+
+/* ---------- Company splash ---------- */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  background: #fffdf8;
+  cursor: pointer;
+  animation: splash-out .45s ease-in 2.5s forwards;
+}
+.splash.done { display: none; }
+.splash-mark {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  color: var(--ts-navy);
+  animation: splash-drop 1.15s cubic-bezier(.3, 0, .3, 1) both;
+}
+.splash-seal {
+  display: grid;
+  place-items: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border: 3px solid var(--ts-red);
+  border-radius: .7rem;
+  color: var(--ts-red);
+  font: 700 2rem/1 var(--mincho);
+  transform: rotate(-6deg);
+}
+.splash-word {
+  position: relative;
+  overflow: hidden;
+  font: 400 clamp(2rem, 8vw, 3.4rem)/1.1 var(--ts-pop);
+  letter-spacing: .01em;
+}
+.splash-word em { font-style: normal; color: var(--ts-red); margin-left: .12em; }
+/* A single glint passes over the name once it lands. */
+.splash-word::after {
+  content: "";
+  position: absolute;
+  inset: -20% auto -20% -40%;
+  width: 30%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .9), transparent);
+  transform: skewX(-18deg);
+  animation: splash-glint .6s ease-out 1.35s both;
+}
+@keyframes splash-drop { 0% { transform: translateY(-60vh); } 100% { transform: translateY(0); } }
+@keyframes splash-glint { from { left: -40%; } to { left: 120%; } }
+@keyframes splash-out { to { opacity: 0; visibility: hidden; } }
+
+/* ---------- Title screen ---------- */
+.title-screen {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(180deg, #2f8fdc 0%, #6bbcf0 45%, #bfe5fa 100%);
+  transition: background .6s ease;
+  color: var(--ts-cream);
+  text-align: center;
+  font-family: var(--ts-pop);
+}
+.title-sky { position: absolute; inset: 0; z-index: -2; pointer-events: none; }
+.title-sun {
+  position: absolute;
+  right: 12%;
+  top: 9%;
+  width: clamp(4rem, 12vw, 8rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 38%, #fff6c9, #ffd54a 60%, #ffb347);
+  box-shadow: 0 0 0 1rem rgba(255, 230, 150, .25), 0 0 0 2.2rem rgba(255, 230, 150, .12);
+}
+.title-cloud {
+  position: absolute;
+  height: 2.2rem;
+  border-radius: 2rem;
+  background: #fff;
+  opacity: .92;
+  animation: cloud-drift linear infinite;
+}
+.title-cloud::before, .title-cloud::after {
+  content: "";
+  position: absolute;
+  bottom: 40%;
+  border-radius: 50%;
+  background: inherit;
+}
+.title-cloud::before { left: 18%; width: 38%; aspect-ratio: 1; }
+.title-cloud::after { left: 46%; width: 30%; aspect-ratio: 1; }
+.title-cloud.c1 { top: 12%; width: 9rem; animation-duration: 70s; animation-delay: -20s; }
+.title-cloud.c2 { top: 26%; width: 6rem; animation-duration: 95s; animation-delay: -60s; opacity: .8; }
+.title-cloud.c3 { top: 6%; width: 12rem; animation-duration: 120s; animation-delay: -95s; opacity: .7; }
+@keyframes cloud-drift { from { transform: translateX(-16rem); } to { transform: translateX(110vw); } }
+.title-spark {
+  position: absolute;
+  color: #fff;
+  font-size: 1.1rem;
+  animation: twinkle 2.4s ease-in-out infinite;
+  text-shadow: 0 0 .6rem rgba(255, 255, 255, .9);
+}
+.title-spark.s1 { left: 14%; top: 22%; }
+.title-spark.s2 { left: 80%; top: 36%; animation-delay: .8s; font-size: .8rem; }
+.title-spark.s3 { left: 24%; top: 48%; animation-delay: 1.4s; font-size: .7rem; }
+.title-spark.s4 { left: 68%; top: 16%; animation-delay: 2s; }
+@keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
+
+/* The street, cut into a gentle hill at the bottom of the screen. */
+.title-town {
+  position: absolute;
+  inset: auto -10% 0;
+  height: 42%;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: 50% 50% 0 0 / 22% 22% 0 0;
+  border-top: 6px solid var(--ts-navy);
+  box-shadow: 0 -10px 0 rgba(255, 255, 255, .35);
+}
+.title-town img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  filter: saturate(1.15);
+}
+.title-town::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(28, 51, 68, 0) 30%, rgba(16, 32, 43, .55));
+}
+
+.title-center {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(2.5rem, 8vh, 5rem) 16px 1rem;
+}
+.title-presents {
+  margin: 0 0 .9rem;
+  font: .625rem/1.6 var(--ts-pixel);
+  letter-spacing: .12em;
+  color: var(--ts-navy);
+  opacity: .8;
+  animation: fade-in .6s ease-out .3s both;
+}
+
+.title-logo {
+  margin: 0;
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: logo-bob 3.2s ease-in-out 2s infinite;
+}
+.logo-jp {
+  display: inline-block;
+  padding: .3rem .9rem .35rem;
+  border: 3px solid var(--ts-navy);
+  border-radius: 2rem;
+  background: var(--ts-cream);
+  color: var(--ts-red);
+  font: 700 clamp(.85rem, 2.6vw, 1.15rem)/1.2 var(--ts-pop);
+  letter-spacing: .3em;
+  text-indent: .3em;
+  box-shadow: 0 4px 0 var(--ts-navy);
+  animation: pop-flat .5s cubic-bezier(.2, 1.6, .4, 1) .2s both;
+}
+.logo-main, .logo-town { display: flex; justify-content: center; }
+.logo-main span, .logo-town span {
+  display: inline-block;
+  animation: letter-drop .7s cubic-bezier(.25, 1.5, .45, 1) calc(.35s + var(--i) * .06s) both;
+}
+.logo-main {
+  margin-top: .35rem;
+  font: 400 clamp(2rem, 10.4vw, 7.5rem)/1.05 var(--ts-pop);
+  letter-spacing: .01em;
+}
+/* Outline and extrusion are stacked shadows, so the yellow fill stays whole. */
+.logo-main span {
+  color: var(--ts-sun);
+  text-shadow:
+    .035em 0 0 var(--ts-navy), -.035em 0 0 var(--ts-navy), 0 .035em 0 var(--ts-navy), 0 -.035em 0 var(--ts-navy),
+    .025em .025em 0 var(--ts-navy), -.025em .025em 0 var(--ts-navy), .025em -.025em 0 var(--ts-navy), -.025em -.025em 0 var(--ts-navy),
+    0 .06em 0 var(--ts-navy), 0 .085em 0 var(--ts-navy), .02em .1em 0 var(--ts-navy),
+    0 .14em .12em rgba(16, 32, 43, .35);
+}
+.logo-main span:nth-child(odd) { color: #ffe066; }
+.logo-main span:nth-child(3n) { color: var(--ts-orange); }
+.logo-town {
+  position: relative;
+  margin-top: -.1em;
+  padding: .12em .5em .2em;
+  font: 400 clamp(1.6rem, 6.5vw, 3.6rem)/1 var(--ts-pop);
+  letter-spacing: .18em;
+  text-indent: .18em;
+  color: #fff;
+  background: var(--ts-red);
+  border: 4px solid var(--ts-navy);
+  border-radius: .45em;
+  box-shadow: 0 6px 0 var(--ts-navy);
+  transform: rotate(-3deg);
+  animation: pop-in .5s cubic-bezier(.2, 1.6, .4, 1) 1s both;
+}
+.logo-town span { text-shadow: 0 .05em 0 var(--ts-navy); animation-delay: calc(.5s + var(--i) * .06s); }
+@keyframes letter-drop { 0% { transform: translateY(-120%) scale(.6); opacity: 0; } 60% { opacity: 1; } 100% { transform: none; opacity: 1; } }
+@keyframes pop-in { 0% { transform: scale(0) rotate(-3deg); } 100% { transform: scale(1) rotate(-3deg); } }
+@keyframes pop-flat { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+@keyframes logo-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* The game is not finished (the creator, 2026-10-12): a stamp under the tag line says so on every visit. */
+.title-wip {
+  display: inline-block;
+  margin: .55rem auto 0;
+  padding: .28rem .8rem .24rem;
+  border: 2px solid var(--ts-navy);
+  border-radius: .3rem;
+  font: 700 clamp(.62rem, 1.8vw, .74rem)/1 var(--ts-pop);
+  letter-spacing: .2em;
+  color: var(--ts-navy);
+  transform: rotate(-2.5deg);
+  opacity: .9;
+  animation: fade-in .6s ease-out 1.6s both;
+}
+.title-tag {
+  margin: 1.1rem 0 0;
+  font: 400 clamp(.85rem, 2.4vw, 1rem)/1.4 var(--ts-pop);
+  color: var(--ts-navy);
+  animation: fade-in .6s ease-out 1.4s both;
+}
+
+/* ---------- Menu ---------- */
+.title-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .55rem;
+  margin-top: clamp(1.5rem, 6vh, 3rem);
+  padding: 1rem 1.6rem 1.1rem;
+  border: 4px solid var(--ts-navy);
+  border-radius: 1rem;
+  background: rgba(16, 32, 43, .82);
+  box-shadow: 0 6px 0 var(--ts-navy), inset 0 0 0 2px rgba(255, 255, 255, .18);
+  animation: fade-in .5s ease-out 1.6s both;
+}
+#start .title-menu #enter,
+#start .title-guide {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  width: auto;
+  max-width: none;
+  min-height: 2.75rem;
+  margin: 0;
+  padding: .5rem .9rem .5rem 2rem;
+  border: 0;
+  border-radius: .4rem;
+  background: transparent;
+  box-shadow: none;
+  color: var(--ts-cream);
+  font: .8rem/1.6 var(--ts-pixel);
+  letter-spacing: .08em;
+  text-decoration: none;
+  text-shadow: 0 3px 0 #000;
+  cursor: pointer;
+}
+#start .title-menu #enter { font-size: clamp(.85rem, 3.2vw, 1.05rem); color: #fff3a8; }
+#start .title-menu #enter b { font: inherit; letter-spacing: inherit; animation: blink 1.1s steps(1, end) infinite; }
+.title-cursor {
+  position: absolute;
+  left: .4rem;
+  color: var(--ts-red);
+  text-shadow: 0 2px 0 #000;
+  opacity: 0;
+}
+#start .title-menu #enter:is(:hover, :focus-visible) .title-cursor,
+#start .title-guide:is(:hover, :focus-visible) .title-cursor,
+#start .title-menu:not(:focus-within):not(:hover) #enter .title-cursor { opacity: 1; animation: cursor-nudge .6s ease-in-out infinite alternate; }
+/* The ▶ cursor is the focus mark, as in a game menu. */
+#start .title-menu #enter:focus-visible,
+#start .title-guide:focus-visible { box-shadow: none; outline: none; }
+#start .title-guide:is(:hover, :focus-visible) { color: #fff3a8; }
+#start .title-menu #enter:hover,
+#start .title-menu #enter:active,
+#start .title-guide:hover { background: rgba(255, 255, 255, .08); }
+@keyframes blink { 0%, 60% { opacity: 1; } 61%, 100% { opacity: .15; } }
+@keyframes cursor-nudge { from { transform: translateX(-2px); } to { transform: translateX(3px); } }
+
+/* ---------- Loading, after START ---------- */
+.title-loading { display: none; margin-top: clamp(1.5rem, 6vh, 3rem); width: min(20rem, 100%); }
+#start.booting .title-menu { display: none; }
+#start.booting .title-loading { display: block; }
+.title-bar {
+  height: 1.1rem;
+  padding: 3px;
+  border: 4px solid var(--ts-navy);
+  border-radius: .6rem;
+  background: var(--ts-cream);
+  box-shadow: 0 4px 0 var(--ts-navy);
+  overflow: hidden;
+}
+.title-bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: .3rem;
+  background: repeating-linear-gradient(-45deg, var(--ts-red) 0 8px, #ef5a6b 8px 16px);
+  animation: none;
+  transform: none;
+}
+
+#start .title-loading #bootStatus {
+  margin-top: 1rem;
+  padding: .4rem .6rem;
+  border: 0;
+  border-radius: .4rem;
+  background: rgba(16, 32, 43, .82);
+  color: #fff3a8;
+  font: .65rem/1.6 var(--ts-pixel);
+  letter-spacing: .08em;
+  text-align: center;
+}
+
+/* ---------- Footer ---------- */
+.title-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .5rem 1rem;
+  padding: .9rem max(16px, env(safe-area-inset-right)) max(.9rem, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  color: var(--ts-cream);
+  font: .55rem/1.6 var(--ts-pixel);
+  letter-spacing: .1em;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, .6);
+}
+@media (max-width: 30rem) { .title-foot { justify-content: center; } .title-hint { display: none; } }
+
+/* ---------- Guide page ---------- */
+.board-back { margin: 0 0 var(--sp-3); }
+.board-back a {
+  display: inline-block;
+  padding: .55rem .9rem;
+  border: 3px solid var(--ts-navy);
+  border-radius: .5rem;
+  background: var(--ts-navy);
+  color: var(--ts-cream);
+  font: .65rem/1.6 var(--ts-pixel);
+  letter-spacing: .08em;
+  text-decoration: none;
+  box-shadow: 0 4px 0 var(--ts-ink);
+}
+
+@media (max-height: 34rem) {
+  .title-screen { height: auto; min-height: 100dvh; }
+  #start:not(.guide-open) { overflow: auto; }
+  .title-center { padding-top: 1.25rem; }
+  .title-menu, .title-loading { margin-top: 1rem; }
+  .title-tag { display: none; }
+  .title-wip { margin-top: .35rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash { display: none; }
+  .title-screen *, .title-screen *::before, .title-screen *::after { animation: none !important; }
+  .title-cursor { opacity: 1; }
+  .title-bar span { opacity: .7; }
+}
+
+/* ==== Sakura shop ledger (sakura-ledger.css) ==== */
+#activity.sakura-records{width:min(1060px,96vw);max-height:88dvh;background:#f5efdf;color:#302d27}
+.sakura-ledger{font:14px/1.5 system-ui,sans-serif;min-width:0}
+.sakura-ledger-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:8px 0 16px}.sakura-ledger-summary div{padding:10px;border:1px solid #c8bca1;background:#fffaf0}.sakura-ledger-summary dt{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#615849}.sakura-ledger-summary dd{font-size:21px;font-weight:700;margin:3px 0 0;font-variant-numeric:tabular-nums}.sakura-ledger-loss{border-color:#b4705f;background:#fdf1ec}.sakura-ledger-loss dd{color:#9d3a28}
+.sakura-ledger-tabs{display:flex;gap:8px;margin-bottom:10px}.sakura-ledger-tabs button[aria-pressed=true]{background:#39574d;color:#fffaf0}.sakura-ledger-tabs button{padding:10px 14px;border:1px solid #a99b81;background:#eae1cb;color:#302d27;border-radius:4px;cursor:pointer}
+.sakura-ledger-scroll{overflow:auto;max-height:45dvh;border:1px solid #acaa97;background:#fffdf7;overscroll-behavior:contain}.sakura-ledger table{border-collapse:separate;border-spacing:0;min-width:780px;width:100%;font-variant-numeric:tabular-nums}.sakura-ledger caption{text-align:left;padding:10px;font-weight:700;background:#e6eadc;color:#304339}.sakura-ledger th,.sakura-ledger td{padding:8px 10px;border-right:1px solid #d9ddcd;border-bottom:1px solid #d9ddcd;white-space:nowrap;text-align:left}.sakura-ledger th{position:sticky;top:0;background:#dfe7d5;color:#304339;z-index:1}.sakura-ledger tbody tr:nth-child(even){background:#f0f3e9}.sakura-ledger-note{font-size:12px;line-height:1.6;color:#605746;margin:12px 0 0}
+@media(max-width:600px){.sakura-ledger-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.sakura-ledger-summary dd{font-size:18px}.sakura-ledger-scroll{max-height:38dvh}#activity.sakura-records{padding:18px}}
+
+/* Town information page and individual resident records. */
+#start .guide-nav { display:flex; flex-wrap:wrap; align-items:center; gap:.75rem 1.25rem; margin:0 0 1.5rem; }
+#start .guide-nav a { color:var(--harbour-navy); font-size:.875rem; text-decoration-thickness:1px; text-underline-offset:.25em; }
+#start .guide-nav button { font:700 1rem/1.4 var(--gothic); padding:.7rem 1.15rem; border:0; border-radius:0; background:var(--harbour-navy); color:white; cursor:pointer; min-height:44px; }
+#start .guide-nav button:hover { background:var(--harbour-navy-deep); }
+.guide-heading { max-width:44rem; padding:1.75rem 0 .25rem; }
+.guide-heading h1 { font:400 clamp(2.25rem,7vw,4rem)/1.15 var(--mincho); color:var(--harbour-navy); margin:.4rem 0 1rem; }
+.guide-heading > p:last-child { font-size:1.125rem; line-height:1.65; margin:0; color:#444; }
+.board-frame :is(h2,details[id]) { scroll-margin-top:1.5rem; }
+.roll-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem; }
+.roll-card { padding:0; overflow:hidden; border:1px solid #d2d7da; background:white; min-width:0; }
+.resident-portrait { display:block; width:100%; height:auto; aspect-ratio:1; object-fit:contain; background:#e9eff2; }
+.resident-copy { padding:1.25rem; }
+.roll-card h3 { margin:.3rem 0; font:400 1.65rem/1.25 var(--mincho); color:var(--harbour-navy); }
+.resident-role { margin:0; font-size:.875rem; color:#535d63; }
+.resident-place { margin:0 0 1rem; font-size:.875rem; color:#535d63; }
+.resident-bio,.resident-story p { font-size:1rem; line-height:1.7; color:#343d43; margin:0; }
+.resident-story { border-top:1px solid #d2d7da; margin-top:1.25rem; }
+.resident-story summary { font-size:.9375rem; font-weight:700; color:var(--harbour-navy); cursor:pointer; padding:.8rem 0; min-height:24px; }
+.resident-story p { padding-bottom:.75rem; }
+.roll-card .duty { margin:.75rem 0 0; }
+.roll-card .flag { font-size:.75rem; }
+.brochure-intro { margin:0 0 1.5rem; font-size:1rem; }
+.brochure-itinerary p,.place-card p,.poster-card p { font-size:1rem; }
+.board-kicker,.section-bar .board-tiny,.brochure-stop { font-size:.75rem; }
+@media(max-width:960px) { .roll-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:560px) { .roll-grid { grid-template-columns:1fr; } .resident-copy { padding:1rem; } .resident-portrait { max-height:20rem; } .guide-heading { padding-top:1.25rem; } }
+/* Visitor brochure and the live resident model sheets. */
+.island-brochure-hero{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;padding:28px 0;border-bottom:1px solid #b7aa89;margin-bottom:20px;align-items:center}.island-brochure-hero>img{width:100%;height:280px;object-fit:cover;border:8px solid #f7f0de;box-shadow:0 3px 12px #493b2926}.island-brochure-hero h2{font-size:clamp(28px,4vw,46px);line-height:1.05;font-family:Georgia,serif;margin:10px 0}.island-brochure-hero p{line-height:1.7}.island-brochure-hero button{padding:12px 20px;border:1px solid #435c50;background:#435c50;color:#fff9e9;border-radius:4px;cursor:pointer}.island-brochure-hero a{display:inline-block;margin:12px;color:#435c50}.catalogue-search{display:flex;align-items:center;gap:12px;margin:18px 0;font-family:Georgia,serif}.catalogue-search input{flex:1;min-width:0;padding:12px;border:1px solid #a79d80;background:#fffcf2;border-radius:4px;font:inherit}.roll-card[hidden]{display:none}.resident-model-sheet{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:16px 0}.resident-model-sheet figure{margin:0;min-width:0}.resident-model-sheet img{width:100%;height:auto;aspect-ratio:1;object-fit:contain;background:#faf7ef;border-radius:4px}.resident-model-sheet figcaption{font-size:11px;text-align:center;color:#67614f}.resident-facts{display:grid;grid-template-columns:90px 1fr;gap:8px;font-size:12px}.resident-facts dt{font-weight:bold}.resident-facts dd{margin:0}.resident-story>p{line-height:1.7}.resident-story small{display:block;color:#756d58;margin-top:12px}.resident-story h4{font-family:Georgia,serif;font-size:17px;margin:18px 0 8px}.resident-story[open]{grid-column:1/-1}.resident-story summary{cursor:pointer;color:#3d5c50}.resident-copy{min-width:0}
+@media(max-width:650px){.island-brochure-hero{grid-template-columns:1fr}.island-brochure-hero>img{height:210px}.catalogue-search{display:block}.catalogue-search input{display:block;width:100%;box-sizing:border-box;margin-top:8px}}
+@media(min-width:760px){.roll-card:has(.resident-story[open]){grid-column:1/-1;display:grid;grid-template-columns:minmax(260px,32%) 1fr;align-items:start}.roll-card:has(.resident-story[open])>.resident-portrait{position:sticky;top:16px;max-height:520px}.roll-card:has(.resident-story[open]) .resident-model-sheet{max-width:510px}.roll-card:has(.resident-story[open]) .resident-copy{padding:24px}}
+
+.title-action-icon{width:24px;height:24px;flex:0 0 24px}.title-center .title-menu :is(button,a){display:flex!important;align-items:center;justify-content:center;gap:12px}.title-center{padding-top:clamp(2rem,8vh,5rem)}
+
+#installTown{display:inline-flex;align-items:center;gap:8px;min-height:44px}
+
+.resident-personality{margin:20px 0;padding:20px;border:1px solid #e4cba0;border-radius:18px;background:#fff4d8}.resident-personality h4{margin:5px 0 12px;font-size:24px}.resident-traits{display:flex;flex-wrap:wrap;gap:7px}.resident-traits span{padding:6px 10px;border-radius:999px;background:#fffdf4;border:1px solid #ead5ad;font-size:12px}.resident-personality blockquote{margin:16px 0;padding-left:14px;border-left:3px solid #c28a4a;font-family:Georgia,serif;line-height:1.6}.resident-moments{display:grid;gap:12px;margin-top:16px}.resident-moments section{display:grid;grid-template-columns:30px 1fr;gap:3px 10px}.resident-moments section>span{grid-row:1/3;font-size:26px;color:#866339}.resident-moments h5{margin:0;font-size:13px;color:#695a3b}.resident-moments p{font-size:14px;line-height:1.5}.resident-story>p{margin-bottom:12px}
+
+/* Guide navigation stays below iOS chrome, with one clear play action. */
+#start.guide-open .board-wrap { padding-top:calc(env(safe-area-inset-top, 0px) + 18px); }
+#start .guide-nav { position:sticky; top:env(safe-area-inset-top,0px); z-index:3; flex-wrap:nowrap; justify-content:space-between; gap:8px; padding:10px; background:#fffdf8; border:1px solid #ded4bf; border-radius:16px; }
+#start .guide-nav :is(a,button) { display:flex; align-items:center; justify-content:center; width:48px; height:48px; min-width:44px; padding:0; border-radius:12px; text-decoration:none; }
+#start .guide-nav a:hover { background:#eee8d9; }
+#start .guide-nav svg { width:25px; height:25px; }
+#start .guide-nav :is(a,button):focus-visible { outline:3px solid #e9aa48; outline-offset:3px; }
+
+/* The illustrated sky remains the fallback when WebGL is unavailable. */
+.title-sky.has-3d-sky > .title-sun,
+.title-sky.has-3d-sky > .title-cloud { display: none; }
+.title-sky canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* A short postcard while the 3D world gets ready. */
+#start .title-loading { width: min(28rem, 100%); margin-top: 1.2rem; }
+.island-fact { position: relative; padding: 1rem 1.2rem 1.2rem; margin-bottom: 1.2rem;
+  border: 3px solid var(--ts-navy); border-radius: 1rem; background: var(--ts-cream);
+  box-shadow: 0 5px 0 rgba(16,32,43,.25); color: var(--ts-navy); text-align: center; }
+.island-fact-icon { display: block; color: #c64b57; font-size: 1.7rem; line-height: 1; }
+.island-fact-label { margin: .5rem 0 .65rem; font: .6rem/1.6 var(--ts-pixel); letter-spacing: .08em; }
+#loadingFact { margin: 0; font: 600 clamp(.95rem, 2.5vw, 1.1rem)/1.55 system-ui, sans-serif; min-height: 4.65em; }
+@media (max-height: 620px) { #start.booting .title-tag, #start.booting .title-foot { display: none; }
+  #start.booting .title-center { padding-top: .75rem; padding-bottom: .75rem; }
+  #start.booting .logo-main { font-size: clamp(1.6rem, 9vh, 3rem); }
+  #start.booting .logo-town { font-size: clamp(1.2rem, 6vh, 2rem); }
+  .island-fact { padding: .65rem 1rem; margin-bottom: .75rem; }
+  #start .title-loading { margin-top: .75rem; }
+}
+@media (prefers-reduced-motion: reduce) { .title-bar span { animation: none; opacity: .65; } }
+
+/* LINE entry and guide controls, including title/loading and player slots. */
+#start{font-family:var(--gothic);font-size:20px;background:#f7f8f9;color:#000}
+#start .title-screen{font-family:var(--gothic);background:linear-gradient(180deg,#2f8fdc 0%,#6bbcf0 45%,#bfe5fa 100%);color:#000}
+#start :is(button,input,select,a){font-family:var(--gothic);letter-spacing:normal;text-shadow:none;box-sizing:border-box}
+#start :is(button,.title-guide,.board-back a,.board-cta a,.guide-nav a){min-height:44px;padding:12px 16px;border:1px solid #e5e5e5;border-radius:8px;background:#fff;color:#000;font-size:16px;font-weight:700;line-height:1.4;box-shadow:none;text-decoration:none}
+#start :is(button,.title-guide,.board-back a,.board-cta a,.guide-nav a):focus-visible{outline:2px solid #06c755;outline-offset:3px;box-shadow:none}
+#start :is(input,select){min-height:48px;padding:12px 16px;border:1px solid #e5e5e5;border-radius:8px;font-size:16px;background:#fff;color:#000}
+#start .title-menu{gap:8px;padding:24px;border:1px solid #e5e5e5;border-radius:12px;background:#fff;box-shadow:0 2px 8px #00000014;width:min(360px,calc(100vw - 32px));box-sizing:border-box}
+#start .title-menu :is(#enter,.title-guide){width:100%;padding:12px 24px;color:#000;background:#f7f8f9;border:1px solid #e5e5e5;border-radius:8px;font:700 16px/1.4 var(--gothic);text-shadow:none;letter-spacing:normal;box-shadow:none}
+#start .title-menu #enter{background:#06c755;color:#fff;border-color:#06c755}
+#start .title-menu #enter:hover{background:#05b34c}
+#start .title-menu #enter b{animation:none}
+#start .title-cursor{display:none}
+#start .logo-small{color:#666;font:700 16px/1.4 var(--gothic);letter-spacing:normal;text-shadow:none}
+#start .logo-main{font:700 clamp(32px,7vw,70px)/1.15 var(--gothic);letter-spacing:normal}
+#start .logo-main span,#start .logo-main span:nth-child(n){color:#000;text-shadow:none}
+#start .logo-town{font:700 clamp(24px,4vw,40px)/1.2 var(--gothic);letter-spacing:normal;text-indent:0;color:#06c755;background:transparent;border:0;border-radius:0;box-shadow:none;transform:none}
+#start .logo-town span{text-shadow:none}
+#start .title-tag{font:400 20px/1.5 var(--gothic);color:#666}
+#start .title-foot{font:400 14px/1.5 var(--gothic);letter-spacing:normal;text-shadow:none;color:#000;background:#fff;border-top:1px solid #e5e5e5}
+#start .title-loading #bootStatus{font:400 16px/1.5 var(--gothic);letter-spacing:normal;background:#fff;color:#666;text-shadow:none}
+#start .title-bar{border:1px solid #e5e5e5;box-shadow:none;background:#fff;border-radius:8px}
+#start .title-bar span{background:#06c755}
+#start :is(.board-frame,.paper,.roll-card,.player-card,.clock-setup){border-color:#e5e5e5;border-radius:12px;background:#fff;box-shadow:0 2px 8px #00000014}
+#start :is(h1,h2,h3,h4){font-family:var(--gothic);font-weight:700;letter-spacing:normal}
+#start :is(.board-back a,.board-cta a,.clock-speeds button[aria-pressed=true],.clock-modes button[aria-pressed=true],.guide-nav button){background:#06c755;color:#fff;border-color:#06c755;box-shadow:none;border-radius:8px}
+#start .board-foot{background:#06c755}
+@media(max-width:767px){#start{font-size:16px}#start .title-tag{font-size:16px}#start .title-menu{padding:16px}#start .title-foot{font-size:12px}}
+
+#start .title-menu :is(#enter,.title-guide){justify-content:center!important;gap:12px}
+#start :is(.guide-nav,.board-kicker,.section-bar,.paper,.directory-row,.island-brochure-hero){border-color:#e5e5e5}
+#start :is(.hero-image,.island-brochure-hero>img){border-color:#fff;box-shadow:0 2px 8px #00000014}
+#start :is(.board-head,.board-intro,.section-bar,.resident-personality){background:#f7f8f9;border-color:#e5e5e5;border-radius:12px}
+#start :is(.resident-traits span,.clock-setup){border-color:#e5e5e5;background:#f7f8f9;color:#000}
+
+/* Title weather: a blue day by default; the button by the sky changes it (title-sky.js). */
+#start .title-screen[data-weather="cloudy"] { background: linear-gradient(180deg, #7f98ad 0%, #a9bccb 50%, #d3dee6 100%); }
+#start .title-screen[data-weather="rain"] { background: linear-gradient(180deg, #4f5f6e 0%, #6f8090 50%, #9aa8b4 100%); }
+#start .title-screen:not([data-weather="sunny"]) :is(.title-sun, .title-spark) { display: none; }
+#start .title-weather { position: absolute; z-index: 2; top: calc(env(safe-area-inset-top, 0px) + 14px); left: 14px; display: grid; place-items: center; width: 46px; height: 46px; padding: 0; border: 1px solid rgba(255,255,255,.45); border-radius: 50%; background: rgba(20,32,44,.38); color: #fff; cursor: pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+#start .title-weather svg { width: 26px; height: 26px; }
+#start .title-weather:not(.title-dice) g { display: none; }
+#start .title-dice { left: 70px; }
+#start .title-screen[data-weather-mode="random"] .title-dice { color: #06c755; }
+#start .title-screen[data-weather="sunny"] .title-weather g[data-icon="sunny"],
+#start .title-screen[data-weather="cloudy"] .title-weather g[data-icon="cloudy"],
+#start .title-screen[data-weather="rain"] .title-weather g[data-icon="rain"] { display: inline; }
+#start .title-weather:focus-visible { outline: 3px solid #e9aa48; outline-offset: 3px; }
+/* Resident profiles as magazine articles, illustrated by the photo studio. */
+#start .article-card figure{margin:0}
+#start .article-lead{position:relative;background:#f7f8f9}
+#start .article-lead img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:50% 30%}
+#start .article-lead figcaption{position:absolute;left:12px;right:12px;bottom:12px;padding:6px 10px;border-radius:8px;background:#ffffffe6;font-size:12px;line-height:1.5;color:#111}
+#start .article-card .resident-role{font-size:12px;font-weight:700;color:#06c755;letter-spacing:normal}
+#start .article-card h3{font:700 1.3rem/1.35 var(--line-font,system-ui,sans-serif);color:#111;margin:.4rem 0 .6rem}
+#start .article-card .resident-bio{font-size:.9375rem;color:#555}
+#start .article-body p{font-size:1rem;line-height:1.8;color:#222;padding:0 0 1rem;margin:0}
+#start .article-quote{margin:.5rem 0 1.25rem;padding:0 0 0 14px;border-left:3px solid #06c755;font:700 1.15rem/1.6 var(--line-font,system-ui,sans-serif);color:#111}
+#start .article-inline{float:right;width:min(42%,300px);margin:0 0 1rem 1.25rem}
+#start .article-inline img{display:block;width:100%;height:auto;border-radius:8px}
+#start .article-inline figcaption{font-size:12px;line-height:1.5;color:#777;margin-top:6px}
+#start .article-card .resident-facts{clear:both;border-top:1px solid #e5e5e5;padding-top:12px;font-size:13px;grid-template-columns:110px 1fr}
+#start .article-card .resident-facts dt{color:#777;font-weight:400}
+@media(min-width:760px){#start .article-card:has(.resident-story[open]){grid-template-columns:minmax(260px,34%) 1fr}#start .article-card:has(.resident-story[open])>.article-lead{position:sticky;top:16px}#start .article-card:has(.resident-story[open]) .article-body{max-width:68ch}}
+@media(max-width:560px){#start .article-inline{float:none;width:100%;margin:0 0 1rem}#start .article-lead img{aspect-ratio:4/5}}
+/* Town feed: the storyteller's daily posts, LINE style. */
+#start .town-feed .feed-list{display:grid;gap:16px;max-width:620px;margin:0 auto}
+#start .feed-day{display:grid;gap:16px}
+#start .feed-date{margin:8px 0 0;font-size:12px;font-weight:700;color:#777;text-align:center}
+#start .feed-post{background:#fff;border:1px solid #e5e5e5;border-radius:12px;box-shadow:0 2px 8px #00000014;padding:16px;min-width:0}
+#start .feed-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+#start .feed-head>div{flex:1;min-width:0;display:grid;line-height:1.35}
+#start .feed-head b{font-size:15px;color:#111}
+#start .feed-head span{font-size:12px;color:#777;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#start .feed-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:50% 18%;background:#f7f8f9;flex:none}
+#start .feed-kind{flex:none;font-size:11px;font-weight:700;color:#06c755;background:#e6f9ee;border-radius:999px;padding:4px 10px}
+#start .feed-post h3{font:700 1.15rem/1.4 var(--line-font,system-ui,sans-serif);color:#111;margin:0 0 10px}
+#start .feed-comic{margin:0;border-radius:8px;overflow:hidden;background:#f7f8f9}
+#start .feed-comic img{display:block;width:100%;height:auto;min-height:240px;opacity:0;transition:opacity .3s}
+#start .feed-comic.drawn img{min-height:0;opacity:1}
+#start .feed-meta{margin:-4px 0 10px;font-size:13px;color:#777}
+#start .feed-recipe{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:16px}
+#start .feed-recipe h4{margin:0 0 6px;font-size:13px;color:#06c755}
+#start .feed-recipe :is(ul,ol),#start .feed-lessons{margin:0;padding-left:1.2em;font-size:14px;line-height:1.7;color:#222}
+#start .feed-lessons{list-style:none;padding:0;display:grid;gap:8px}
+#start .feed-lessons li{background:#f7f8f9;border-radius:8px;padding:10px 12px;font-size:14px;line-height:1.6}
+#start .feed-lessons li span{display:block;font-size:11px;font-weight:700;color:#06c755}
+#start .feed-tip{margin:12px 0 0;padding:10px 12px;border-left:3px solid #06c755;background:#f7f8f9;border-radius:0 8px 8px 0;font-size:14px;line-height:1.6;color:#333}
+#start .feed-more{display:block;margin:16px auto 0;min-height:44px;padding:0 20px;border:1px solid #e5e5e5;border-radius:8px;background:#f7f8f9;color:#111;font-weight:700;cursor:pointer}
+@media(max-width:560px){#start .feed-recipe{grid-template-columns:1fr}#start .feed-post{padding:12px}}
+
+/* Start page: icons sit in the middle of their buttons, and the footer is centred. */
+#start .guide-nav :is(a,button){display:grid!important;place-items:center;padding:0!important;width:48px;height:48px;line-height:0}
+#start .guide-nav svg{display:block;width:24px;height:24px;margin:0}
+#start :is(.title-guide,#enter,#installTown,#openStudio,.weather-button,.title-dice) svg{display:block;flex:none;margin:0}
+#start .title-foot{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;text-align:center}
+
+/* Johansson World title menu (2026-10-07): the save line, two modes side by side, then Load / New game / Guide.
+   LINE look: green #06c755 for the main choice, white cards, 8px buttons, 12px cards. */
+#start .title-menu{width:min(440px,calc(100vw - 32px))}
+#start .title-save{margin:0 0 4px;font:400 14px/1.45 var(--gothic);color:#555;text-align:center;overflow-wrap:anywhere}
+#start .title-modes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#start .title-modes>.title-mode:only-child{grid-column:1/-1}
+#start .title-menu .title-mode{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:96px;padding:12px;border-radius:8px;font:700 16px/1.3 var(--gothic);letter-spacing:.02em}
+#start .title-menu .title-mode small{display:block;font:400 12px/1.35 var(--gothic);letter-spacing:normal;opacity:.92;font-family:var(--gothic)}
+#start .title-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+#start .title-row .title-guide{padding:10px 8px!important;font-size:14px!important;gap:6px!important}
+#start .title-row .title-action-icon{width:18px;height:18px;flex-basis:18px}
+@media (max-width:380px){#start .title-modes{grid-template-columns:1fr}#start .title-menu .title-mode{min-height:72px}}
+#start .title-slots{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:16px;background:#0006}
+#start .title-slots.hidden{display:none}
+#start .title-slots-card{width:min(480px,100%);max-height:calc(100dvh - 32px);overflow:auto;padding:24px;border-radius:12px;background:#fff;color:#000;box-shadow:0 4px 16px #0003;box-sizing:border-box;font-family:var(--gothic)}
+#start .title-slots-card h2{margin:0 0 6px;font:700 20px/1.3 var(--gothic)}
+#start .title-slots-note{margin:0 0 14px;font:400 13px/1.5 var(--gothic);color:#666}
+#start #titleSlotList{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:8px}
+#start #titleSlotList button{width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;background:#f7f8f9}
+#start #titleSlotList button span{font:400 13px/1.4 var(--gothic);color:#555}
+#start #titleSlotList button:hover{border-color:#06c755}
+#start .title-new{display:flex;flex-direction:column;gap:8px;margin:0 0 12px}
+#start .title-new.hidden{display:none}
+#start .title-new label{font:700 14px/1.4 var(--gothic)}
+#start .title-new button{background:#06c755;color:#fff;border-color:#06c755}
+#start .title-slots-foot{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+
+/* Sister app: Johansson Studio (characters, scenes, comics). Same weight as Install, never louder than the modes. */
+#openStudio{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid #e5e5e5;border-radius:12px;background:#fff;color:#000;font:700 15px/1 var(--line-font,inherit);text-decoration:none;-webkit-tap-highlight-color:transparent}
+#openStudio:active{transform:scale(.97);background:#f7f8f9}
+#openStudio:focus-visible{outline:3px solid #06c755;outline-offset:2px}

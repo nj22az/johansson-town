@@ -1,0 +1,17 @@
+✔ ordinary exploration has no automatic shots, no bob and a constant ship-local eye through heave and roll (10.447178ms)
+✔ eight views require manual selection and inspection returns the exact walking pose; ordinary lens restores (7.711352ms)
+✔ inspection sweeps cannot tunnel through a bulkhead even after a large input (290.813494ms)
+✔ every representative room has a body-clear measured route to the lower ladder landing (94.216804ms)
+✔ the aft booth pocket cannot be offered a walking route through its chair (1.030193ms)
+✔ enclosed-room rendering removes street work only for the draw and restores it on failure (0.860348ms)
+✔ inspection also respects the transparent control-booth glazing (0.688028ms)
+✔ guidance never invents a floor-level shortcut from halfway up the ladder or inside equipment (0.262816ms)
+✔ a real visible Blender machinery surface resolves to inspection data at phone, iPad and desktop aspect ratios (87.887327ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 666.598561

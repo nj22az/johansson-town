@@ -1,0 +1,321 @@
+{
+  "date": "2026-10-17",
+  "status": "passed; assets frozen for publication",
+  "sourceCommit": "641eef57f472732850ff96690e451f7e0a4111db",
+  "sourceSha256": "0b4d3a0f1c07024c380feecc017b281600e4d31ab1253c86f6854d4c4fabda19",
+  "scope": {
+    "savedFeedIds": [
+      "garden",
+      "rainflower"
+    ],
+    "assetFilesChanged": 19,
+    "otherFeedFilesUnchanged": 126,
+    "otherCachedViewLocationsUnchanged": 14,
+    "totalChangedAssetBytes": 1213599
+  },
+  "capture": {
+    "tool": "tools/render-feed-backdrops.mjs",
+    "mode": "--source; actual current game rendered with Chromium/ANGLE SwiftShader",
+    "commands": [
+      "node tools/render-feed-backdrops.mjs --source garden rainflower",
+      "node tools/render-feed-backdrops.mjs --source garden"
+    ],
+    "gardenRecaptureReason": "Move the camera to the clear quay approach so two actors occupy dry foreground with the pond behind them.",
+    "mainImageSize": [
+      960,
+      720
+    ],
+    "colourVariantSize": [
+      1600,
+      1200
+    ],
+    "depthVariantSize": [
+      800,
+      600
+    ],
+    "variants": [
+      "wide",
+      "push",
+      "low",
+      "high"
+    ],
+    "depthFormat": "Lossless WebP; linear view-axis metres / 60 encoded as 16-bit red and green.",
+    "firstMainCaptureSeconds": 120.7,
+    "correctedGardenMainCaptureSeconds": 113.9,
+    "visualInspection": "Both main images and all eight colour variants inspected."
+  },
+  "standingMarkValidation": {
+    "world": "Constructed current town and its rendered walking surface",
+    "colliders": 1175,
+    "bodyRadiusMetres": 0.32,
+    "bodyHeightMetres": 1.82,
+    "checks": [
+      "routeAt accepts the whole body",
+      "pond exclusion includes body radius",
+      "standingHitsRect rejects real obstacles using the actual floor height",
+      "captured floor point agrees within 0.12 m",
+      "foot support varies no more than 0.06 m at offsets of 0.14 m"
+    ],
+    "gardenMarksRemoved": 65,
+    "floristMarksRemoved": 37,
+    "comicCheck": "Actual blocking() call for two people, followed by physical clearance, camera projection and scenery ray checks at head, chest and knee heights."
+  },
+  "pairAlignmentValidation": {
+    "method": "Reproject every retained measured floor point through the stored camera and compare its view-axis distance with decoded depth at the corresponding pixel.",
+    "allEightPairsPassed": true,
+    "allDepthFilesLossless": true,
+    "allImageDimensionsMatched": true,
+    "cameraQuaternionsAndMatricesFinite": true,
+    "singlePixelEdgeNote": {
+      "view": "rainflower/wide",
+      "floorPoint": [
+        5.193,
+        -0.012,
+        -14.342
+      ],
+      "singlePixelErrorMetres": 0.794946,
+      "nearestAdjacentPixelErrorMetres": 0.008496,
+      "interpretation": "One sample falls on a rasterized surface edge; the adjacent pixel matches the measured point. Camera reprojection remains below 0.1 depth pixels and the 95th-percentile depth error remains below 0.047 m across all views."
+    }
+  },
+  "locations": {
+    "garden": {
+      "name": "Harbour Park pond",
+      "publicApproach": [
+        26,
+        -34.2
+      ],
+      "visualInspection": "Dry near-bank approach, current pond bench, pond, bathhouse and shoreline; removed Aoba courtyard absent.",
+      "standingMarks": {
+        "wide": {
+          "before": 101,
+          "retained": 94,
+          "removed": 7
+        },
+        "push": {
+          "before": 73,
+          "retained": 55,
+          "removed": 18
+        },
+        "low": {
+          "before": 38,
+          "retained": 18,
+          "removed": 20
+        },
+        "high": {
+          "before": 134,
+          "retained": 114,
+          "removed": 20
+        }
+      },
+      "twoPersonPlacement": {
+        "positions": [
+          [
+            23.594,
+            0.04,
+            -34.661
+          ],
+          [
+            22.459,
+            0.04,
+            -33.56
+          ]
+        ],
+        "separationMetres": 1.581274,
+        "sameDefaultFallbackPositions": true,
+        "visibleHeadKneesFeetViews": [
+          "wide",
+          "push",
+          "high"
+        ],
+        "lowView": "The existing comic view-selection safeguard falls back to an unobstructed view for this two-person placement."
+      },
+      "wideCameraOnClearGround": true,
+      "views": {
+        "wide": {
+          "cameraPosition": [
+            20.3,
+            2.4,
+            -38
+          ],
+          "retainedStandingSamples": 94,
+          "maxReprojectionErrorDepthPixels": 0.098211,
+          "depthMedianErrorMetres": 0.013629,
+          "depthP95ErrorMetres": 0.026859,
+          "depthMaxSinglePixelErrorMetres": 0.065543
+        },
+        "push": {
+          "cameraPosition": [
+            21.184,
+            2.4,
+            -36.9144
+          ],
+          "retainedStandingSamples": 55,
+          "maxReprojectionErrorDepthPixels": 0.066855,
+          "depthMedianErrorMetres": 0.012935,
+          "depthP95ErrorMetres": 0.026246,
+          "depthMaxSinglePixelErrorMetres": 0.029677
+        },
+        "low": {
+          "cameraPosition": [
+            20.6789,
+            1.3,
+            -37.5347
+          ],
+          "retainedStandingSamples": 18,
+          "maxReprojectionErrorDepthPixels": 0.049759,
+          "depthMedianErrorMetres": 0.028282,
+          "depthP95ErrorMetres": 0.03846,
+          "depthMaxSinglePixelErrorMetres": 0.040235
+        },
+        "high": {
+          "cameraPosition": [
+            20.1737,
+            3.3,
+            -38.1551
+          ],
+          "retainedStandingSamples": 114,
+          "maxReprojectionErrorDepthPixels": 0.086685,
+          "depthMedianErrorMetres": 0.010035,
+          "depthP95ErrorMetres": 0.017357,
+          "depthMaxSinglePixelErrorMetres": 0.019735
+        }
+      }
+    },
+    "rainflower": {
+      "name": "Rainflower Florist",
+      "publicApproach": [
+        5,
+        -16.7
+      ],
+      "visualInspection": "Current compact florist pavilion, open counter and flowers beside Harbour Park; removed shopping lane absent.",
+      "standingMarks": {
+        "wide": {
+          "before": 88,
+          "retained": 79,
+          "removed": 9
+        },
+        "push": {
+          "before": 61,
+          "retained": 48,
+          "removed": 13
+        },
+        "low": {
+          "before": 25,
+          "retained": 23,
+          "removed": 2
+        },
+        "high": {
+          "before": 106,
+          "retained": 93,
+          "removed": 13
+        }
+      },
+      "twoPersonPlacement": {
+        "positions": [
+          [
+            6.178,
+            0.06,
+            -17.045
+          ],
+          [
+            5.681,
+            0.02,
+            -15.72
+          ]
+        ],
+        "separationMetres": 1.415145,
+        "sameDefaultFallbackPositions": true,
+        "visibleHeadKneesFeetViews": [
+          "wide",
+          "push",
+          "high"
+        ],
+        "lowView": "The existing comic view-selection safeguard falls back to an unobstructed view for this two-person placement."
+      },
+      "wideCameraOnClearGround": true,
+      "views": {
+        "wide": {
+          "cameraPosition": [
+            1.6,
+            2.2,
+            -17.9
+          ],
+          "retainedStandingSamples": 79,
+          "maxReprojectionErrorDepthPixels": 0.067075,
+          "depthMedianErrorMetres": 0.013247,
+          "depthP95ErrorMetres": 0.029167,
+          "depthMaxSinglePixelErrorMetres": 0.794946
+        },
+        "push": {
+          "cameraPosition": [
+            2.9785,
+            2.2,
+            -17.6554
+          ],
+          "retainedStandingSamples": 48,
+          "maxReprojectionErrorDepthPixels": 0.073944,
+          "depthMedianErrorMetres": 0.01292,
+          "depthP95ErrorMetres": 0.028171,
+          "depthMaxSinglePixelErrorMetres": 0.042336
+        },
+        "low": {
+          "cameraPosition": [
+            2.1908,
+            1.1,
+            -17.7952
+          ],
+          "retainedStandingSamples": 23,
+          "maxReprojectionErrorDepthPixels": 0.064193,
+          "depthMedianErrorMetres": 0.023951,
+          "depthP95ErrorMetres": 0.046965,
+          "depthMaxSinglePixelErrorMetres": 0.08624
+        },
+        "high": {
+          "cameraPosition": [
+            1.4031,
+            3.1,
+            -17.9349
+          ],
+          "retainedStandingSamples": 93,
+          "maxReprojectionErrorDepthPixels": 0.074508,
+          "depthMedianErrorMetres": 0.008519,
+          "depthP95ErrorMetres": 0.018118,
+          "depthMaxSinglePixelErrorMetres": 0.019191
+        }
+      }
+    }
+  },
+  "regressions": {
+    "command": "node --test --test-concurrency=4 --test-timeout=900000 tests/feed-storyteller.test.mjs tests/feed-seating.test.mjs",
+    "tests": 11,
+    "passed": 11,
+    "failed": 0,
+    "skipped": 0,
+    "exitCode": 0,
+    "durationSeconds": 0.622537,
+    "diffCheck": "passed"
+  },
+  "changedAssetFiles": [
+    "assets/images/feed/garden-high-depth.webp",
+    "assets/images/feed/garden-high.webp",
+    "assets/images/feed/garden-low-depth.webp",
+    "assets/images/feed/garden-low.webp",
+    "assets/images/feed/garden-push-depth.webp",
+    "assets/images/feed/garden-push.webp",
+    "assets/images/feed/garden-wide-depth.webp",
+    "assets/images/feed/garden-wide.webp",
+    "assets/images/feed/garden.webp",
+    "assets/images/feed/rainflower-high-depth.webp",
+    "assets/images/feed/rainflower-high.webp",
+    "assets/images/feed/rainflower-low-depth.webp",
+    "assets/images/feed/rainflower-low.webp",
+    "assets/images/feed/rainflower-push-depth.webp",
+    "assets/images/feed/rainflower-push.webp",
+    "assets/images/feed/rainflower-wide-depth.webp",
+    "assets/images/feed/rainflower-wide.webp",
+    "assets/images/feed/rainflower.webp",
+    "assets/images/feed/views.json"
+  ],
+  "unchangedScopeVerification": "SHA-256 comparison of all 145 pre-existing feed files and structural equality of the other 14 views.json location records."
+}

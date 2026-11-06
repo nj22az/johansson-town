@@ -1,0 +1,11 @@
+import test from 'node:test';import assert from 'node:assert/strict';import * as THREE from '../vendor/three.module.js';
+import {gradientMap} from '../src/render/cel.js';import {withLookMaterials} from '../src/render/look-materials.js';
+test('Cartoon scopes two-band ramps and photograph flattening, including thrown and nested renders',()=>{
+ const scene=new THREE.Scene(),m=new THREE.MeshToonMaterial({gradientMap:gradientMap('soft3')}),mesh=new THREE.Mesh(new THREE.BoxGeometry(),m),ramp=m.gradientMap;m.userData.flatten={value:.42};scene.add(mesh);
+ assert.throws(()=>withLookMaterials(scene,'flat',()=>{assert.equal(m.gradientMap,gradientMap(2));assert.equal(m.userData.flatten.value,0);withLookMaterials(scene,'flat',()=>assert.equal(m.gradientMap,gradientMap(2)));throw Error('draw failed');}));assert.equal(m.gradientMap,ramp);assert.equal(m.userData.flatten.value,.42);
+ withLookMaterials(scene,'none',()=>assert.equal(m.gradientMap,ramp));mesh.geometry.dispose();m.dispose();
+});
+
+test('surface pencil hooks are not falsely inherited by material clones',()=>{const scene=new THREE.Scene(),m=new THREE.MeshToonMaterial(),mesh=new THREE.Mesh(new THREE.BoxGeometry(),m);scene.add(mesh);withLookMaterials(scene,'crayon',()=>assert.equal(m.userData.illustrationPencil.value,1));assert.equal(m.userData.illustrationPencil.value,0);const clone=m.clone();assert.equal(clone.userData.illustrationPencil,undefined);mesh.material=clone;withLookMaterials(scene,'crayon',()=>assert.equal(clone.userData.illustrationPencil.value,1));assert.equal(clone.userData.illustrationPencil.value,0);mesh.geometry.dispose();m.dispose();clone.dispose();});
+
+test('Sketchbook scopes surface pencil without flattening its colour materials',()=>{const scene=new THREE.Scene(),m=new THREE.MeshToonMaterial({gradientMap:gradientMap('soft3')}),mesh=new THREE.Mesh(new THREE.BoxGeometry(),m),original=m.gradientMap;m.userData.flatten={value:.42};scene.add(mesh);withLookMaterials(scene,'sketchbook',()=>{assert.equal(m.gradientMap,original);assert.equal(m.userData.flatten.value,.42);assert.equal(m.userData.illustrationPencil.value,1);});assert.equal(m.gradientMap,original);assert.equal(m.userData.flatten.value,.42);assert.equal(m.userData.illustrationPencil.value,0);mesh.geometry.dispose();m.dispose();});

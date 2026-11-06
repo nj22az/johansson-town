@@ -1,0 +1,11 @@
+{
+  "file": "sakura-current-119667983af8.webp",
+  "sha256": "119667983af80d566880cebfdc1d31437961b73b0816d48a39a85141a398d316",
+  "width": 1600,
+  "height": 1000,
+  "source": "/assets/world/sakura-current.webp",
+  "sourceEvidence": "/assets/world/sakura-current.json",
+  "description": "Exact copy of the current published-game Sakura capture used on the World page; no image generation, retouching or reconstructed shop. Night tint is CSS presentation, not a separate night capture.",
+  "architecture": "Retained upstairs office, tiled eaves and current shopfront.",
+  "updated": "2026-10-26"
+}

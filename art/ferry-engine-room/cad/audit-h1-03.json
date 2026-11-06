@@ -1,0 +1,69 @@
+{
+  "revision": "H1-03/04/05/06",
+  "sheets": [
+    "H1-03",
+    "H1-04",
+    "H1-05",
+    "H1-06"
+  ],
+  "camera_count": 8,
+  "units": "mm",
+  "pdf_mm": [
+    594,
+    420
+  ],
+  "plan_scale": 25,
+  "dxf_errors": 0,
+  "dxf_fixes": 0,
+  "rail_gap_mm": 800,
+  "door_height_mm": 2100,
+  "working_clear_mm": 2400,
+  "maximum_inward_bevel_mm": 6.0,
+  "luminaire_centres": [
+    [
+      9.5,
+      0
+    ],
+    [
+      12.5,
+      0
+    ],
+    [
+      9.6,
+      -3.1
+    ],
+    [
+      15.5,
+      0
+    ],
+    [
+      18,
+      0
+    ],
+    [
+      21,
+      1.7
+    ],
+    [
+      21.3,
+      -2.2
+    ],
+    [
+      24.4,
+      -1
+    ],
+    [
+      24.4,
+      1.6
+    ]
+  ],
+  "holds": [
+    "structure",
+    "stability",
+    "berth",
+    "complete pipe routing",
+    "fire volume",
+    "emergency escape",
+    "OEM removal procedure"
+  ]
+}

@@ -1,0 +1,992 @@
+[
+  {
+    "file": "JS127-EL-001.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-EL-002.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-EL-F01.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-EL-F02.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-EL-F03.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-ER-000.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-ER-100.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 594.0,
+        "paperHeight": 420.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-ER-101.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 594.0,
+        "paperHeight": 420.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-ER-102.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 594.0,
+        "paperHeight": 420.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-ER-103.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 594.0,
+        "paperHeight": 420.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-ER-104.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 594.0,
+        "paperHeight": 420.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-ER-105.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 594.0,
+        "paperHeight": 420.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-ER-106.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 594.0,
+        "paperHeight": 420.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-ER-107.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 594.0,
+        "paperHeight": 420.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-ER-108.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 594.0,
+        "paperHeight": 420.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-ER-900.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-ME-001.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-01-L1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-01-N1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-01.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-02-L1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-02-L2.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-02-N1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-02-N2.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-02.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-03-L1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-03-N1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-03.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-04-L1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-04-N1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-04-N2.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-04.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-05-L1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-05-N1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-05-N2.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-05.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-06-L1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-06-N1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-06-N2.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-06.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-07-L1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-07-N1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-07.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-08-L1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-08-N1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-08.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-09-L1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-09-N1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-09.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-10-L1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-10-N1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-10.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-11-L1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-11-N1.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  },
+  {
+    "file": "JS127-PID-11.dxf",
+    "units": 4,
+    "errors": 0,
+    "fixes": 0,
+    "layouts": [
+      {
+        "name": "Layout1",
+        "paperWidth": 420.0,
+        "paperHeight": 297.0,
+        "paperUnits": 1,
+        "viewports": 1,
+        "lockedFlags": [
+          16384
+        ]
+      }
+    ]
+  }
+]

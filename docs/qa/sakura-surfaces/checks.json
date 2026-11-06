@@ -1,0 +1,57 @@
+[
+ {
+  "check": "shop: no two faces within 2 mm of one plane",
+  "ok": true,
+  "detail": "0 pairs (before: 239)"
+ },
+ {
+  "check": "shop: no floor layer within 10 mm of another",
+  "ok": true,
+  "detail": "0 pairs (before: 1)"
+ },
+ {
+  "check": "office: no two faces within 2 mm of one plane",
+  "ok": true,
+  "detail": "0 pairs (before: 1)"
+ },
+ {
+  "check": "office: no floor layer within 10 mm of another",
+  "ok": true,
+  "detail": "0 pairs (before: 1)"
+ },
+ {
+  "check": "sakura-floor at floor level",
+  "ok": true,
+  "detail": "{\"name\": \"sakura-floor\", \"level\": 0, \"x\": [-6.86, 6.86], \"z\": [-3.99, 3.91], \"drawn\": \"solid\"}"
+ },
+ {
+  "check": "Sakura till floor at floor level",
+  "ok": true,
+  "detail": "{\"name\": \"Sakura till floor\", \"level\": 0, \"x\": [3.05, 6.67], \"z\": [0, 3.56], \"drawn\": \"solid\"}"
+ },
+ {
+  "check": "Restroom mosaic floor at floor level",
+  "ok": true,
+  "detail": "{\"name\": \"Restroom mosaic floor\", \"level\": 0, \"x\": [-6.82, -4.09], \"z\": [-3.95, -2.58], \"drawn\": \"solid\"}"
+ },
+ {
+  "check": "the sheen is a glaze (writes no depth)",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "Sakura welcome mat is a decal",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "Sakura till sticker is a decal",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "DXF reopens with no audit errors",
+  "ok": true,
+  "detail": "0 errors, 0 fixes"
+ }
+]

@@ -1,0 +1,138 @@
+{
+  "title": "Thuan's Konbini house brands",
+  "year": 1986,
+  "era": "Showa 61 catalog photography",
+  "load": "assetURL('graphics/konbini/thuan-labels/' + file)",
+  "items": [
+    {
+      "id": "thuan-wave",
+      "file": "thuan-wave.webp",
+      "sku": "water",
+      "name": "Thuan Wave",
+      "jp": "ツアンウェーブ",
+      "kind": "bottle",
+      "cost": 120
+    },
+    {
+      "id": "melon-cream",
+      "file": "melon-cream.webp",
+      "sku": "cola",
+      "name": "Melon Cream",
+      "jp": "メロンクリーム",
+      "kind": "can",
+      "cost": 110
+    },
+    {
+      "id": "marble-pop",
+      "file": "marble-pop.webp",
+      "sku": "soda",
+      "name": "Marble Pop",
+      "jp": "マーブルポップ",
+      "kind": "bottle",
+      "cost": 100
+    },
+    {
+      "id": "night-shift",
+      "file": "night-shift.webp",
+      "sku": "coffee",
+      "name": "Night Shift",
+      "jp": "ナイトシフト",
+      "kind": "can",
+      "cost": 110
+    },
+    {
+      "id": "milk-fizz",
+      "file": "milk-fizz.webp",
+      "sku": "yogurt",
+      "name": "Milk Fizz",
+      "jp": "ミルクフィズ",
+      "kind": "bottle",
+      "cost": 130
+    },
+    {
+      "id": "golden-tea",
+      "file": "golden-tea.webp",
+      "sku": "tea",
+      "name": "Golden Milk Tea",
+      "jp": "ゴールデンミルクティー",
+      "kind": "can",
+      "cost": 120
+    },
+    {
+      "id": "stick-bites",
+      "file": "stick-bites.webp",
+      "sku": "biscuit",
+      "name": "Stick Bites",
+      "jp": "スティックバイツ",
+      "kind": "box",
+      "cost": 150
+    },
+    {
+      "id": "starlight-chips",
+      "file": "starlight-chips.webp",
+      "sku": "chips",
+      "name": "Starlight Chips",
+      "jp": "スターライトチップス",
+      "kind": "bag",
+      "cost": 120
+    },
+    {
+      "id": "lucky-choco",
+      "file": "lucky-choco.webp",
+      "sku": "chocolate",
+      "name": "Lucky Choco",
+      "jp": "ラッキーチョコ",
+      "kind": "bar",
+      "cost": 100
+    },
+    {
+      "id": "neon-ice",
+      "file": "neon-ice.webp",
+      "sku": null,
+      "name": "Neon Ice",
+      "jp": "ネオンアイス",
+      "kind": "ice",
+      "cost": 80
+    },
+    {
+      "id": "midnight-cup",
+      "file": "midnight-cup.webp",
+      "sku": "noodles",
+      "name": "Midnight Cup",
+      "jp": "ミッドナイトカップ",
+      "kind": "cup",
+      "cost": 180
+    },
+    {
+      "id": "umami-musubi",
+      "file": "umami-musubi.webp",
+      "sku": "rice",
+      "name": "Umami Musubi",
+      "jp": "うまみむすび",
+      "kind": "onigiri",
+      "cost": 130
+    },
+    {
+      "id": "egg-toast",
+      "file": "egg-toast.webp",
+      "sku": "bread",
+      "name": "Egg Toast",
+      "jp": "エッグトースト",
+      "kind": "sandwich",
+      "cost": 180
+    },
+    {
+      "id": "melon-pan",
+      "file": "melon-pan.webp",
+      "sku": "buns",
+      "name": "Melon Pan",
+      "jp": "メロンパン",
+      "kind": "bread",
+      "cost": 130
+    }
+  ],
+  "store": [
+    { "id": "storefront", "file": "storefront.webp", "note": "Night fascia, 1986" },
+    { "id": "aisle", "file": "aisle.webp", "note": "Fluorescent interior aisle" }
+  ]
+}

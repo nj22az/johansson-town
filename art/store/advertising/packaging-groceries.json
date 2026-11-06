@@ -1,0 +1,29 @@
+{
+  "purpose": "Sixteen additional fictional grocery brands for Sakura Shōten",
+  "date": "2026-09-13",
+  "generator": "Built-in image generation",
+  "asset": "../../../assets/graphics/konbini/packaging-groceries.webp",
+  "layout": {
+    "columns": 4,
+    "rows": 4
+  },
+  "prompt": "Use case: product-mockup. Create a production texture atlas for the fictional 1988 Japanese convenience store Sakura Shoten. A single flat 2:1 landscape image, exactly FOUR columns by FOUR rows, sixteen equal rectangular cells filling the entire canvas. Each cell is one professionally designed printed package FRONT LABEL, not a 3D object, not a poster, no perspective, no cast shadows, no margins between cells. These will be UV-mapped onto small boxes, tins, bags and bottles in a game. Make them feel like convincing everyday Japanese supermarket brands: bold highly legible large Latin brand name, compact Japanese product description, appetising product illustration, practical pack-weight badge, disciplined commercial typography, distinct limited colours. Slightly warm 1980s offset print, clean enough to read small, no artificial ageing. All lettering upright. Keep important text inside central 85% of each cell. No real-company logos. Exact order LEFT TO RIGHT, TOP TO BOTTOM: Row1 cell1 'KOGANE' potato crisps, golden chips and red/cream potato-bag graphics; cell2 'HAMABE' rice crackers, navy cream and toasted round crackers; cell3 'TSUKINO' milk chocolate, burgundy gold silver foil and chocolate squares; cell4 'MARUAME' fruit sweets, cheerful amber yellow citrus and wrapped candies. Row2 cell1 'HINODE' curry roux, appetising plate of curry rice, mustard red carton; cell2 'KAMEJIRUSHI' soy sauce, white red black traditional turtle-seal emblem and shoyu bowl; cell3 'MISATO' miso soup sachets, cream rust-red bowl and steam; cell4 'MOMOSATO' peaches in syrup, ivory peach pink and green leaf with sliced peaches. Row3 cell1 'SHIOHAMA' canned tuna, teal silver and fish silhouette; cell2 'SUZUKAZE' laundry powder, clean white royal blue orange geometric carton; cell3 'KOMACHI' facial tissues, mint cream coral florals; cell4 'HAKUSEN' toothpaste, white blue red crisp striped tube label. Row4 cell1 'MIKANBI' orange juice, bright orange cream green with cut orange; cell2 'AOZORA' ramune soda, white sky blue with fizzy marble emblem; cell3 'ASAMORI' plain yogurt, white blue foil-pot label with cows and meadow; cell4 'KOMUGI' sliced milk bread, cream brown warm yellow and illustrated fluffy bread slices. No heading, no frame around the whole atlas, no extra cells, no bottle or box mockups.",
+  "ids": [
+    "chips",
+    "crackers",
+    "chocolate",
+    "candy",
+    "curry",
+    "soy",
+    "soup",
+    "peaches",
+    "tuna",
+    "detergent",
+    "tissues",
+    "toothpaste",
+    "orange",
+    "soda",
+    "yogurt",
+    "bread"
+  ]
+}

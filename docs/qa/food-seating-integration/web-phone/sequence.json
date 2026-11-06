@@ -1,0 +1,8233 @@
+[
+  {
+    "seconds": 0.1,
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "rack",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -1.06,
+      0,
+      -2.16
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 1.0999999999999999,
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "rack",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -1.06,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 2.1000000000000005,
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -1.06,
+      0,
+      -2.02
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 3.1000000000000014,
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -1.0420000000000003,
+      0,
+      -2.16
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 4.100000000000001,
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.52,
+      0,
+      -2.16
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 5.099999999999998,
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.52,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 6.099999999999994,
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.52,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 7.099999999999991,
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.52,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 8.099999999999987,
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.52,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 9.099999999999984,
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.52,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 10.09999999999998,
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.52,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 11.099999999999977,
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.52,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 12.099999999999973,
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "pick",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.52,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 13.09999999999997,
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.52,
+      0,
+      -2.16
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 14.099999999999966,
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.2291707942909762,
+      0,
+      -2.191218954285149
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 15.099999999999962,
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      0.6656883001983278,
+      0,
+      -2.287277275162532
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 16.09999999999996,
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.25,
+      0,
+      -2.35
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 17.099999999999973,
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.25,
+      0,
+      -1.9675
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 18.099999999999987,
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.25,
+      0,
+      -1.0675000000000059
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 19.1,
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.25,
+      0,
+      -0.16750000000000553
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 20.100000000000016,
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.25,
+      0,
+      0.7125689606641594
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 21.10000000000003,
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.1820000000000004,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 22.100000000000044,
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      0.32750000000000024,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 23.10000000000006,
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.5725000000000002,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 24.100000000000072,
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -1.4724999999999975,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 25.100000000000087,
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -2.372499999999997,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 26.1000000000001,
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.1,
+      0,
+      0.7700000000000001
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 27.100000000000115,
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.1,
+      0,
+      0.27000000000000035
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 28.10000000000013,
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.1,
+      0,
+      -0.22999999999999962
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 28.500000000000135,
+    "work": {
+      "kind": "draft",
+      "phase": "placing",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.1,
+      0,
+      -0.42
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 28.600000000000136,
+    "work": {
+      "kind": "draft",
+      "phase": "placing",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.1,
+      0,
+      -0.42
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "ordered",
+        "held": null,
+        "activity": "waiting for beer"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": false,
+            "paid": false,
+            "sipped": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 29.000000000000142,
+    "work": {
+      "kind": "draft",
+      "phase": "bowing",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.1,
+      0,
+      -0.42
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": "beer",
+        "activity": "drinking beer at Minato"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 0.24999999999999997,
+            "drunk": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 29.100000000000144,
+    "work": {
+      "kind": "draft",
+      "phase": "bowing",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.1,
+      0,
+      -0.42
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": "beer",
+        "activity": "drinking beer at Minato"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 0.35,
+            "drunk": 0
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 30.100000000000158,
+    "work": {
+      "kind": "draft",
+      "phase": "leaving",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.1,
+      0,
+      -0.19499999999999948
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": "beer",
+        "activity": "drinking beer at Minato"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 1.35,
+            "drunk": 0.24997809492511514
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 31.100000000000172,
+    "work": {
+      "kind": "draft",
+      "phase": "leaving",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.1,
+      0,
+      0.30500000000000055
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": "beer",
+        "activity": "drinking beer at Minato"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 2.3499999999999965,
+            "drunk": 0.25
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 32.100000000000186,
+    "work": {
+      "kind": "draft",
+      "phase": "leaving",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.1,
+      0,
+      0.805
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 3.349999999999993,
+            "drunk": 0.25
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 33.1000000000002,
+    "work": {
+      "kind": "draft",
+      "phase": "returning",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -2.9620000000000006,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 4.34999999999999,
+            "drunk": 0.25
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 34.100000000000215,
+    "work": {
+      "kind": "draft",
+      "phase": "returning",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -2.072499999999994,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 5.349999999999986,
+            "drunk": 0.25
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 35.10000000000023,
+    "work": {
+      "kind": "draft",
+      "phase": "returning",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -1.172499999999999,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 6.349999999999983,
+            "drunk": 0.25
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 36.10000000000024,
+    "work": {
+      "kind": "draft",
+      "phase": "returning",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.2724999999999994,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 7.349999999999979,
+            "drunk": 0.25
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 37.10000000000026,
+    "work": {
+      "kind": "draft",
+      "phase": "returning",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      0.6275000000000011,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 8.349999999999994,
+            "drunk": 0.25
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 38.10000000000027,
+    "work": {
+      "kind": "draft",
+      "phase": "returning",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.25,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 9.350000000000044,
+            "drunk": 0.25
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 39.100000000000286,
+    "work": {
+      "kind": "draft",
+      "phase": "returning",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.25,
+      0,
+      0.43750000000000044
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 10.350000000000094,
+            "drunk": 0.25
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 40.1000000000003,
+    "work": {
+      "kind": "draft",
+      "phase": "returning",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.25,
+      0,
+      -0.4625000000000001
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 11.350000000000144,
+            "drunk": 0.25
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 41.100000000000314,
+    "work": {
+      "kind": "draft",
+      "phase": "returning",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.25,
+      0,
+      -1.362499999999998
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": "beer",
+        "activity": "drinking beer at Minato"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 12.350000000000193,
+            "drunk": 0.25
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 42.10000000000033,
+    "work": {
+      "kind": "draft",
+      "phase": "returning",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.25,
+      0,
+      -2.2425689606641592
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": "beer",
+        "activity": "drinking beer at Minato"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 13.350000000000243,
+            "drunk": 0.49997809492511847
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 43.10000000000034,
+    "work": {
+      "kind": "draft",
+      "phase": "returning",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.1820000000000004,
+      0,
+      -2.35
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": "beer",
+        "activity": "drinking beer at Minato"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 14.350000000000293,
+            "drunk": 0.5
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 44.10000000000036,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "utensil",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      0.9470000000000001,
+      0,
+      -2.35
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 15.350000000000342,
+            "drunk": 0.5
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 45.10000000000037,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "utensil",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      0.22250000000000014,
+      0,
+      -2.35
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 16.350000000000353,
+            "drunk": 0.5
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 46.100000000000385,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "utensil",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.6775000000000003,
+      0,
+      -2.35
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 17.350000000000296,
+            "drunk": 0.5
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 47.1000000000004,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "utensil",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -1.5774999999999968,
+      0,
+      -2.35
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 18.35000000000024,
+            "drunk": 0.5
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 48.10000000000041,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "utensil",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -2.3,
+      0,
+      -2.35
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 19.350000000000183,
+            "drunk": 0.5
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 49.10000000000043,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "utensil",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -2.3,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 20.350000000000126,
+            "drunk": 0.5
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 50.10000000000044,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "utensil",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -2.3,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 21.35000000000007,
+            "drunk": 0.5
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 51.100000000000456,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "station",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -2.3,
+      0,
+      -2.211666666666666
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 22.350000000000012,
+            "drunk": 0.5
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 52.10000000000047,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "station",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -2.289547169963354,
+      0,
+      -2.3509941550306594
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 23.349999999999955,
+            "drunk": 0.5
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 53.100000000000485,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "station",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -1.5309703615895938,
+      0,
+      -2.4231414058270766
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": "beer",
+        "activity": "drinking beer at Minato"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 24.3499999999999,
+            "drunk": 0.5
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 54.1000000000005,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "station",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.6350135013056253,
+      0,
+      -2.5083546941693022
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": "beer",
+        "activity": "drinking beer at Minato"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 25.34999999999984,
+            "drunk": 0.749978094925113
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 55.10000000000051,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "station",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      0.2609433589783424,
+      0,
+      -2.5935679825115274
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": "beer",
+        "activity": "drinking beer at Minato"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 26.349999999999785,
+            "drunk": 0.75
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 56.10000000000053,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "station",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.1569002192623108,
+      0,
+      -2.6787812708537526
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 27.349999999999728,
+            "drunk": 0.75
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 57.10000000000054,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "station",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.38,
+      0,
+      -2.8749999999999996
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 28.34999999999967,
+            "drunk": 0.75
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 58.100000000000556,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "station",
+      "player": false,
+      "close": true
+    },
+    "activity": "preparing a bowl of rice at the range",
+    "thao": [
+      1.38,
+      0,
+      -2.9583333333333326
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 29.349999999999614,
+            "drunk": 0.75
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 59.10000000000057,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "station",
+      "player": false,
+      "close": true
+    },
+    "activity": "preparing a bowl of rice at the range",
+    "thao": [
+      1.38,
+      0,
+      -2.9583333333333326
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 30.349999999999557,
+            "drunk": 0.75
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 60.100000000000584,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "station",
+      "player": false,
+      "close": true
+    },
+    "activity": "preparing a bowl of rice at the range",
+    "thao": [
+      1.38,
+      0,
+      -2.9583333333333326
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 31.3499999999995,
+            "drunk": 0.75
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 61.1000000000006,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "plate",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.38,
+      0,
+      -2.7
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 32.34999999999945,
+            "drunk": 0.75
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 62.10000000000061,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "plate",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      0.9992183343793133,
+      0,
+      -2.6637843524545546
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 33.34999999999939,
+            "drunk": 0.75
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 63.10000000000063,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "plate",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      0.10326147409534506,
+      0,
+      -2.578571064112329
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 34.34999999999933,
+            "drunk": 0.75
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 64.10000000000063,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "plate",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.7926953861886229,
+      0,
+      -2.4933577757701038
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 35.34999999999928,
+            "drunk": 0.75
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 65.10000000000058,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "plate",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -1.6886522464725913,
+      0,
+      -2.4081444874278786
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": "beer",
+        "activity": "drinking beer at Minato"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 36.34999999999922,
+            "drunk": 0.75
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 66.10000000000052,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "plate",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -2.3,
+      0,
+      -2.35
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": "beer",
+        "activity": "drinking beer at Minato"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 37.34999999999916,
+            "drunk": 0.9999780949251034
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 67.10000000000046,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "plate",
+      "player": false,
+      "close": true
+    },
+    "activity": "plating a bowl of rice",
+    "thao": [
+      -2.3,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": "beer",
+        "activity": "drinking beer at Minato"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 38.349999999999106,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 68.1000000000004,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "plate",
+      "player": false,
+      "close": true
+    },
+    "activity": "plating a bowl of rice",
+    "thao": [
+      -2.3,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 39.34999999999905,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 69.10000000000035,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "put-tool",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -2.3,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 40.34999999999899,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 70.10000000000029,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "collect",
+      "player": false,
+      "close": true
+    },
+    "activity": "collecting a bowl of rice",
+    "thao": [
+      -2.3,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 41.349999999998936,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 71.10000000000024,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "collect",
+      "player": false,
+      "close": true
+    },
+    "activity": "collecting a bowl of rice",
+    "thao": [
+      -2.3,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 42.34999999999888,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 72.10000000000018,
+    "work": {
+      "kind": "rice",
+      "phase": "cooking",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -2.3,
+      0,
+      -2.269999999999999
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 43.34999999999882,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 73.10000000000012,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -2.24,
+      0,
+      -2.35
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 44.349999999998765,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 74.10000000000007,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -1.3925000000000038,
+      0,
+      -2.35
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 45.34999999999871,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 75.10000000000001,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.49250000000000593,
+      0,
+      -2.35
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 46.34999999999865,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 76.09999999999995,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      0.4074999999999946,
+      0,
+      -2.35
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 47.349999999998595,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 77.0999999999999,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.2398496296631907,
+      0,
+      -2.35
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 48.34999999999854,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 78.09999999999984,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.25,
+      0,
+      -2.1875000000000004
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 49.34999999999848,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 79.09999999999978,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.25,
+      0,
+      -1.2925000000000044
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 50.349999999998424,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 80.09999999999972,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.25,
+      0,
+      -0.39250000000000573
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 51.34999999999837,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 81.09999999999967,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.25,
+      0,
+      0.5074999999999947
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 52.34999999999831,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 82.09999999999961,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      1.2495,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 53.34999999999825,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 83.09999999999955,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      0.5525000000000004,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 54.3499999999982,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 84.0999999999995,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -0.3475000000000001,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 55.34999999999814,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 85.09999999999944,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -1.247499999999999,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 56.34999999999808,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 86.09999999999938,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -2.147499999999995,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 57.349999999998026,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 87.09999999999933,
+    "work": {
+      "kind": "rice",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.0475000000000025,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 58.34999999999797,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 88.09999999999927,
+    "work": {
+      "kind": "rice",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.756951151116219,
+      0,
+      0.7536967124298958
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 59.34999999999791,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 89.09999999999921,
+    "work": {
+      "kind": "rice",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.809084784487873,
+      0,
+      0.25642205565411447
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 60.349999999997856,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 90.09999999999916,
+    "work": {
+      "kind": "rice",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.889523695650571,
+      0,
+      -0.22291534390606763
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 61.3499999999978,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 91.0999999999991,
+    "work": {
+      "kind": "rice",
+      "phase": "placing",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.88,
+      0,
+      -0.42
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "waiting-food",
+        "held": null,
+        "activity": "waiting for rice"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false,
+            "foodDelivered": false,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 62.34999999999774,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  },
+  {
+    "seconds": 91.59999999999907,
+    "work": {
+      "kind": "rice",
+      "phase": "bowing",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "activity": "izakaya owner",
+    "thao": [
+      -3.88,
+      0,
+      -0.42
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "meal": "eating",
+        "held": null,
+        "activity": "enjoying supper"
+      }
+    ],
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2070,
+        "purchases": [
+          {
+            "id": "izakaya-meal",
+            "item": "rice + beer",
+            "cost": 330
+          }
+        ],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": true,
+            "eaten": 0.19999999999999998,
+            "finished": false,
+            "foodDelivered": true,
+            "drinkDelivered": true,
+            "paid": true,
+            "sipped": 63.0499999999977,
+            "drunk": 1
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    }
+  }
+]

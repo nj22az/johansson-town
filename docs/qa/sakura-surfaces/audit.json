@@ -1,0 +1,148 @@
+{
+ "rules": {
+  "tolerance": 0.002,
+  "minArea": 0.0004,
+  "floorTolerance": 0.01,
+  "floorMinArea": 0.01,
+  "floorTop": 0.015
+ },
+ "shop": {
+  "surfaces": [],
+  "floors": [],
+  "finishes": [
+   {
+    "name": "Restroom mosaic floor",
+    "level": 0,
+    "x": [
+     -6.82,
+     -4.09
+    ],
+    "z": [
+     -3.95,
+     -2.58
+    ],
+    "drawn": "solid"
+   },
+   {
+    "name": "Sakura till floor",
+    "level": 0,
+    "x": [
+     3.05,
+     6.67
+    ],
+    "z": [
+     0,
+     3.56
+    ],
+    "drawn": "solid"
+   },
+   {
+    "name": "sakura-floor",
+    "level": 0,
+    "x": [
+     -6.86,
+     6.86
+    ],
+    "z": [
+     -3.99,
+     3.91
+    ],
+    "drawn": "solid"
+   },
+   {
+    "name": "sakura-floor back room",
+    "level": 0.001,
+    "x": [
+     -5.76,
+     5.76
+    ],
+    "z": [
+     -6.86,
+     -3.99
+    ],
+    "drawn": "solid"
+   },
+   {
+    "name": "Sakura floor sheen",
+    "level": 0.004,
+    "x": [
+     -6.86,
+     6.86
+    ],
+    "z": [
+     -3.99,
+     3.91
+    ],
+    "drawn": "glaze (no depth)"
+   },
+   {
+    "name": "Sakura floor sticker",
+    "level": 0.007,
+    "x": [
+     0.8815,
+     3.8185
+    ],
+    "z": [
+     0.9115,
+     2.8385
+    ],
+    "drawn": "glaze (no depth)"
+   },
+   {
+    "name": "Sakura till sticker",
+    "level": 0.007,
+    "x": [
+     3.855,
+     4.045
+    ],
+    "z": [
+     0.6,
+     1.1
+    ],
+    "drawn": "decal (offset -2/-4)"
+   },
+   {
+    "name": "Sakura welcome mat",
+    "level": 0.01,
+    "x": [
+     -0.75,
+     0.75
+    ],
+    "z": [
+     2.975,
+     3.725
+    ],
+    "drawn": "decal (offset -2/-4)"
+   }
+  ]
+ },
+ "office": {
+  "surfaces": [],
+  "floors": [],
+  "finishes": []
+ },
+ "strictRules": {
+  "tolerance": 0.002,
+  "minArea": 0.00001,
+  "wideTolerance": 0.01,
+  "wideMinArea": 0.05
+ },
+ "zones": {
+  "stockroom": {
+   "close": [],
+   "wide": []
+  },
+  "stair foot": {
+   "close": [],
+   "wide": []
+  },
+  "stair head": {
+   "close": [],
+   "wide": []
+  },
+  "upper stores": {
+   "close": [],
+   "wide": []
+  }
+ }
+}

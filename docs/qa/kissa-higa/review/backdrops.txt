@@ -1,0 +1,8 @@
+View: kissa-higa wide stand 29 seats 1 counter 5
+View: kissa-higa push stand 5 seats 0 counter 11
+View: kissa-higa low stand 15 seats 0 counter 0
+View: kissa-higa high stand 34 seats 1 counter 4
+View: higa-liquor wide stand 37 seats 2 counter 1
+View: higa-liquor push stand 10 seats 1 counter 1
+View: higa-liquor low stand 11 seats 2 counter 0
+View: higa-liquor high stand 55 seats 2 counter 0

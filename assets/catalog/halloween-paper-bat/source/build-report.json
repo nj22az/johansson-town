@@ -1,0 +1,83 @@
+{
+ "name": "Paper bat",
+ "detail": "phone",
+ "real": {
+  "card": "black card, about 1 mm (300 g/m2 board)",
+  "span": "24.5 cm flat, 24 cm with the wings turned forward",
+  "fold": "one crease down the middle; each wing turned 14 degrees forward",
+  "eyes": "white paper dots 13 mm across (a hole punch), a black marker pupil 5.6 mm, set low and in",
+  "fixing": "a cotton thread through a pinhole at the top of the crease, tied to the lantern string"
+ },
+ "colours": {
+  "card": "#24222a",
+  "paper": "#f8f5ee"
+ },
+ "parts": [
+  {
+   "name": "Paper bat card",
+   "material": "card",
+   "role": "decoration",
+   "triangles": 496,
+   "note": "the black card, cut and creased down the middle"
+  },
+  {
+   "name": "Paper bat eyes",
+   "material": "paper",
+   "role": "decoration",
+   "triangles": 128,
+   "note": "two white paper dots glued on"
+  },
+  {
+   "name": "Paper bat pupils",
+   "material": "card",
+   "role": "decoration",
+   "triangles": 128,
+   "note": "the pupils, drawn on the dots in black marker"
+  }
+ ],
+ "back": "z = 0 (min z)",
+ "size": [
+  0.2382,
+  0.0985,
+  0.0306
+ ],
+ "min": [
+  -0.1191,
+  0.0,
+  0.0
+ ],
+ "max": [
+  0.1191,
+  0.0985,
+  0.0306
+ ],
+ "triangles": 752,
+ "materials": 2,
+ "anchors": {
+  "hang": [
+   0.0,
+   0.068,
+   0.0
+  ],
+  "balance": [
+   0.0,
+   0.0455,
+   0.0123
+  ],
+  "eyes": [
+   0.0,
+   0.045,
+   0.0013
+  ],
+  "wing-tip-left": [
+   0.1191,
+   0.06,
+   0.0297
+  ],
+  "wing-tip-right": [
+   -0.1191,
+   0.06,
+   0.0297
+  ]
+ }
+}

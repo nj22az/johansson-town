@@ -1,0 +1,56 @@
+{
+  "baseline": false,
+  "physicalDevice": false,
+  "steps": [
+    {
+      "name": "page loaded",
+      "seconds": 0.5
+    },
+    {
+      "name": "island ready",
+      "seconds": 20.9
+    },
+    {
+      "name": "playing at harbour board",
+      "seconds": 36.7
+    },
+    {
+      "name": "woodland-board-after-desktop",
+      "seconds": 52.2
+    },
+    {
+      "name": "Look opened the 3D viewer",
+      "seconds": 71.8
+    },
+    {
+      "name": "woodland-board-after-phone",
+      "seconds": 106.9
+    },
+    {
+      "name": "woodland-return-to-world-phone",
+      "seconds": 122.3
+    },
+    {
+      "name": "all entry and return checks passed",
+      "seconds": 122.3
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "model is not requested at World startup",
+    "board menu still does not request model",
+    "Thuan flyer remains readable",
+    "Look loads the real model",
+    "exactly one viewer is mounted",
+    "hidden World stops rendering",
+    "Escape removes the iframe",
+    "return retains player position",
+    "browser Back closes without leaving World",
+    "replacing the modal destroys the viewer",
+    "phone has no horizontal overflow",
+    "embedded viewer fits the phone",
+    "Close returns to World and removes iframe",
+    "no page errors"
+  ],
+  "modelRequests": 4
+}

@@ -1,0 +1,1438 @@
+{
+ "version": 1,
+ "pxPerMeter": 40,
+ "pxPerBox": 36.4,
+ "grid": {
+  "show": true,
+  "snap": true,
+  "size": 0.91
+ },
+ "showDims": false,
+ "units": "m",
+ "defaultWallThickness": 0.12,
+ "projectName": "Johansson Town · Minato Police Box",
+ "view": {
+  "x": 60,
+  "y": 80,
+  "zoom": 1
+ },
+ "objects": [
+  {
+   "id": 1,
+   "label": "Movement domain (not net walkable area)",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 0
+    },
+    {
+     "x": 6.6,
+     "y": 0
+    },
+    {
+     "x": 6.6,
+     "y": 6
+    },
+    {
+     "x": 0,
+     "y": 6
+    }
+   ],
+   "fill": "#f1eee5",
+   "stroke": "#f1eee5"
+  },
+  {
+   "id": 2,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 0
+    },
+    {
+     "x": 6.6,
+     "y": 0
+    },
+    {
+     "x": 6.6,
+     "y": 0.2
+    },
+    {
+     "x": 0,
+     "y": 0.2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 3,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 0.2
+    },
+    {
+     "x": 6.6,
+     "y": 0.2
+    },
+    {
+     "x": 6.6,
+     "y": 0.4
+    },
+    {
+     "x": 0,
+     "y": 0.4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 4,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 0.4
+    },
+    {
+     "x": 6.6,
+     "y": 0.4
+    },
+    {
+     "x": 6.6,
+     "y": 0.6
+    },
+    {
+     "x": 0,
+     "y": 0.6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 5,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 0.6
+    },
+    {
+     "x": 6.6,
+     "y": 0.6
+    },
+    {
+     "x": 6.6,
+     "y": 0.8
+    },
+    {
+     "x": 0,
+     "y": 0.8
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 6,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 0.8
+    },
+    {
+     "x": 6.6,
+     "y": 0.8
+    },
+    {
+     "x": 6.6,
+     "y": 1
+    },
+    {
+     "x": 0,
+     "y": 1
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 7,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 1
+    },
+    {
+     "x": 6.6,
+     "y": 1
+    },
+    {
+     "x": 6.6,
+     "y": 1.2
+    },
+    {
+     "x": 0,
+     "y": 1.2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 8,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 1.2
+    },
+    {
+     "x": 6.6,
+     "y": 1.2
+    },
+    {
+     "x": 6.6,
+     "y": 1.4
+    },
+    {
+     "x": 0,
+     "y": 1.4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 9,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 1.4
+    },
+    {
+     "x": 6.6,
+     "y": 1.4
+    },
+    {
+     "x": 6.6,
+     "y": 1.6
+    },
+    {
+     "x": 0,
+     "y": 1.6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 10,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 1.6
+    },
+    {
+     "x": 6.6,
+     "y": 1.6
+    },
+    {
+     "x": 6.6,
+     "y": 1.8
+    },
+    {
+     "x": 0,
+     "y": 1.8
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 11,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 1.8
+    },
+    {
+     "x": 6.6,
+     "y": 1.8
+    },
+    {
+     "x": 6.6,
+     "y": 2
+    },
+    {
+     "x": 0,
+     "y": 2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 12,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 2
+    },
+    {
+     "x": 6.6,
+     "y": 2
+    },
+    {
+     "x": 6.6,
+     "y": 2.2
+    },
+    {
+     "x": 0,
+     "y": 2.2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 13,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 2.2
+    },
+    {
+     "x": 6.6,
+     "y": 2.2
+    },
+    {
+     "x": 6.6,
+     "y": 2.4
+    },
+    {
+     "x": 0,
+     "y": 2.4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 14,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 2.4
+    },
+    {
+     "x": 6.6,
+     "y": 2.4
+    },
+    {
+     "x": 6.6,
+     "y": 2.6
+    },
+    {
+     "x": 0,
+     "y": 2.6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 15,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 2.6
+    },
+    {
+     "x": 6.6,
+     "y": 2.6
+    },
+    {
+     "x": 6.6,
+     "y": 2.8
+    },
+    {
+     "x": 0,
+     "y": 2.8
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 16,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 2.8
+    },
+    {
+     "x": 6.6,
+     "y": 2.8
+    },
+    {
+     "x": 6.6,
+     "y": 3
+    },
+    {
+     "x": 0,
+     "y": 3
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 17,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 3
+    },
+    {
+     "x": 6.6,
+     "y": 3
+    },
+    {
+     "x": 6.6,
+     "y": 3.2
+    },
+    {
+     "x": 0,
+     "y": 3.2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 18,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 3.2
+    },
+    {
+     "x": 6.6,
+     "y": 3.2
+    },
+    {
+     "x": 6.6,
+     "y": 3.4
+    },
+    {
+     "x": 0,
+     "y": 3.4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 19,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 3.4
+    },
+    {
+     "x": 6.6,
+     "y": 3.4
+    },
+    {
+     "x": 6.6,
+     "y": 3.6
+    },
+    {
+     "x": 0,
+     "y": 3.6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 20,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 3.6
+    },
+    {
+     "x": 6.6,
+     "y": 3.6
+    },
+    {
+     "x": 6.6,
+     "y": 3.8
+    },
+    {
+     "x": 0,
+     "y": 3.8
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 21,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 3.8
+    },
+    {
+     "x": 6.6,
+     "y": 3.8
+    },
+    {
+     "x": 6.6,
+     "y": 4
+    },
+    {
+     "x": 0,
+     "y": 4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 22,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 4
+    },
+    {
+     "x": 6.6,
+     "y": 4
+    },
+    {
+     "x": 6.6,
+     "y": 4.2
+    },
+    {
+     "x": 0,
+     "y": 4.2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 23,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 4.2
+    },
+    {
+     "x": 6.6,
+     "y": 4.2
+    },
+    {
+     "x": 6.6,
+     "y": 4.4
+    },
+    {
+     "x": 0,
+     "y": 4.4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 24,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 4.4
+    },
+    {
+     "x": 6.6,
+     "y": 4.4
+    },
+    {
+     "x": 6.6,
+     "y": 4.6
+    },
+    {
+     "x": 0,
+     "y": 4.6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 25,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 4.6
+    },
+    {
+     "x": 6.6,
+     "y": 4.6
+    },
+    {
+     "x": 6.6,
+     "y": 4.8
+    },
+    {
+     "x": 0,
+     "y": 4.8
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 26,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 4.8
+    },
+    {
+     "x": 6.6,
+     "y": 4.8
+    },
+    {
+     "x": 6.6,
+     "y": 5
+    },
+    {
+     "x": 0,
+     "y": 5
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 27,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 5
+    },
+    {
+     "x": 6.6,
+     "y": 5
+    },
+    {
+     "x": 6.6,
+     "y": 5.2
+    },
+    {
+     "x": 0,
+     "y": 5.2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 28,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 5.2
+    },
+    {
+     "x": 6.6,
+     "y": 5.2
+    },
+    {
+     "x": 6.6,
+     "y": 5.4
+    },
+    {
+     "x": 0,
+     "y": 5.4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 29,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 5.4
+    },
+    {
+     "x": 6.6,
+     "y": 5.4
+    },
+    {
+     "x": 6.6,
+     "y": 5.6
+    },
+    {
+     "x": 0,
+     "y": 5.6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 30,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 5.6
+    },
+    {
+     "x": 6.6,
+     "y": 5.6
+    },
+    {
+     "x": 6.6,
+     "y": 5.8
+    },
+    {
+     "x": 0,
+     "y": 5.8
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 31,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 5.8
+    },
+    {
+     "x": 6.6,
+     "y": 5.8
+    },
+    {
+     "x": 6.6,
+     "y": 6
+    },
+    {
+     "x": 0,
+     "y": 6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 32,
+   "label": "Partition",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 3.75
+    },
+    {
+     "x": 4.9,
+     "y": 3.75
+    },
+    {
+     "x": 4.9,
+     "y": 3.85
+    },
+    {
+     "x": 0,
+     "y": 3.85
+    }
+   ],
+   "fill": "#554940",
+   "stroke": "#554940"
+  },
+  {
+   "id": 33,
+   "label": "Partition",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 6.2,
+     "y": 3.75
+    },
+    {
+     "x": 6.6,
+     "y": 3.75
+    },
+    {
+     "x": 6.6,
+     "y": 3.85
+    },
+    {
+     "x": 6.2,
+     "y": 3.85
+    }
+   ],
+   "fill": "#554940",
+   "stroke": "#554940"
+  },
+  {
+   "id": 34,
+   "label": "Partition",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 2.56,
+     "y": 5
+    },
+    {
+     "x": 2.64,
+     "y": 5
+    },
+    {
+     "x": 2.64,
+     "y": 6
+    },
+    {
+     "x": 2.56,
+     "y": 6
+    }
+   ],
+   "fill": "#554940",
+   "stroke": "#554940"
+  },
+  {
+   "id": 35,
+   "label": "Partition",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 3.36,
+     "y": 5
+    },
+    {
+     "x": 3.44,
+     "y": 5
+    },
+    {
+     "x": 3.44,
+     "y": 6
+    },
+    {
+     "x": 3.36,
+     "y": 6
+    }
+   ],
+   "fill": "#554940",
+   "stroke": "#554940"
+  },
+  {
+   "id": 36,
+   "label": "Partition",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 2.6,
+     "y": 4.96
+    },
+    {
+     "x": 2.7,
+     "y": 4.96
+    },
+    {
+     "x": 2.7,
+     "y": 5.04
+    },
+    {
+     "x": 2.6,
+     "y": 5.04
+    }
+   ],
+   "fill": "#554940",
+   "stroke": "#554940"
+  },
+  {
+   "id": 37,
+   "label": "Partition",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 3.3,
+     "y": 4.96
+    },
+    {
+     "x": 3.4,
+     "y": 4.96
+    },
+    {
+     "x": 3.4,
+     "y": 5.04
+    },
+    {
+     "x": 3.3,
+     "y": 5.04
+    }
+   ],
+   "fill": "#554940",
+   "stroke": "#554940"
+  },
+  {
+   "id": 38,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 3.75
+    },
+    {
+     "x": 4.9,
+     "y": 3.75
+    },
+    {
+     "x": 4.9,
+     "y": 3.85
+    },
+    {
+     "x": 0,
+     "y": 3.85
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 39,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 6.2,
+     "y": 3.75
+    },
+    {
+     "x": 6.6,
+     "y": 3.75
+    },
+    {
+     "x": 6.6,
+     "y": 3.85
+    },
+    {
+     "x": 6.2,
+     "y": 3.85
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 40,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 2.225,
+     "y": 2.05
+    },
+    {
+     "x": 2.675,
+     "y": 2.05
+    },
+    {
+     "x": 2.675,
+     "y": 2.75
+    },
+    {
+     "x": 2.225,
+     "y": 2.75
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 41,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 1.15,
+     "y": 2.025
+    },
+    {
+     "x": 2.65,
+     "y": 2.025
+    },
+    {
+     "x": 2.65,
+     "y": 2.775
+    },
+    {
+     "x": 1.15,
+     "y": 2.775
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 42,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 1.71,
+     "y": 1.26
+    },
+    {
+     "x": 2.09,
+     "y": 1.26
+    },
+    {
+     "x": 2.09,
+     "y": 1.64
+    },
+    {
+     "x": 1.71,
+     "y": 1.64
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 43,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 6.25,
+     "y": 0.7
+    },
+    {
+     "x": 6.6,
+     "y": 0.7
+    },
+    {
+     "x": 6.6,
+     "y": 2.3
+    },
+    {
+     "x": 6.25,
+     "y": 2.3
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 44,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 3.2,
+     "y": 3.3
+    },
+    {
+     "x": 4,
+     "y": 3.3
+    },
+    {
+     "x": 4,
+     "y": 3.7
+    },
+    {
+     "x": 3.2,
+     "y": 3.7
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 45,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0.45,
+     "y": 3.855
+    },
+    {
+     "x": 1.55,
+     "y": 3.855
+    },
+    {
+     "x": 1.55,
+     "y": 6
+    },
+    {
+     "x": 0.45,
+     "y": 6
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 46,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 4.3,
+     "y": 4.5
+    },
+    {
+     "x": 5,
+     "y": 4.5
+    },
+    {
+     "x": 5,
+     "y": 5
+    },
+    {
+     "x": 4.3,
+     "y": 5
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 47,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 5.95,
+     "y": 5.525
+    },
+    {
+     "x": 6.6,
+     "y": 5.525
+    },
+    {
+     "x": 6.6,
+     "y": 5.975
+    },
+    {
+     "x": 5.95,
+     "y": 5.975
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 48,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 2.54,
+     "y": 4.98
+    },
+    {
+     "x": 2.66,
+     "y": 4.98
+    },
+    {
+     "x": 2.66,
+     "y": 6
+    },
+    {
+     "x": 2.54,
+     "y": 6
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 49,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 3.34,
+     "y": 4.98
+    },
+    {
+     "x": 3.46,
+     "y": 4.98
+    },
+    {
+     "x": 3.46,
+     "y": 6
+    },
+    {
+     "x": 3.34,
+     "y": 6
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 50,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 2.58,
+     "y": 4.94
+    },
+    {
+     "x": 2.72,
+     "y": 4.94
+    },
+    {
+     "x": 2.72,
+     "y": 5.06
+    },
+    {
+     "x": 2.58,
+     "y": 5.06
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 51,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 3.28,
+     "y": 4.94
+    },
+    {
+     "x": 3.42,
+     "y": 4.94
+    },
+    {
+     "x": 3.42,
+     "y": 5.06
+    },
+    {
+     "x": 3.28,
+     "y": 5.06
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 52,
+   "label": "Solid fitting",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 2.69,
+     "y": 5.38
+    },
+    {
+     "x": 3.31,
+     "y": 5.38
+    },
+    {
+     "x": 3.31,
+     "y": 5.98
+    },
+    {
+     "x": 2.69,
+     "y": 5.98
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 53,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "text",
+   "x": 0,
+   "y": -0.7,
+   "text": "Minato Police Box · movement domain 6.6 × 6 m · 39.6 m²",
+   "size": 16,
+   "fill": "#1c2433",
+   "stroke": "#1c2433"
+  }
+ ],
+ "nextId": 54
+}

@@ -1,0 +1,1105 @@
+[
+  {
+    "viewport": "desktop",
+    "gradient": "linear-gradient(rgb(95, 180, 230) 0%, rgb(159, 214, 240) 42%, rgb(255, 227, 184) 78%, rgb(255, 209, 153) 100%)",
+    "lenses": [
+      {
+        "room": "resident-home-aya",
+        "turn": 0,
+        "position": [
+          0.6811421151899106,
+          2.123220923125075,
+          -0.0639792517992939
+        ],
+        "rotation": [
+          -1.1271975708007813,
+          1.8233666660773729,
+          0
+        ],
+        "distance": 0.38,
+        "ceiling": 2.280000000447034,
+        "blocked": false
+      },
+      {
+        "room": "resident-home-aya",
+        "turn": 1,
+        "position": [
+          0.019626570692262146,
+          1.78,
+          0.10674573442845758
+        ],
+        "rotation": [
+          -1.1271975708007813,
+          3.394162924622294,
+          0
+        ],
+        "distance": 0,
+        "ceiling": 1.78,
+        "blocked": false
+      },
+      {
+        "room": "resident-home-aya",
+        "turn": 2,
+        "position": [
+          0.6430076488974373,
+          1.8389353521325675,
+          0.4830019106940261
+        ],
+        "rotation": [
+          -1.1271975708007813,
+          4.964959183167215,
+          0
+        ],
+        "distance": 0.024507345687985245,
+        "ceiling": 2.280000000447034,
+        "blocked": false
+      },
+      {
+        "room": "resident-home-aya",
+        "turn": 3,
+        "position": [
+          1.0319074820243497,
+          1.859643128668719,
+          -0.1334797930788814
+        ],
+        "rotation": [
+          -1.1271975708007813,
+          6.535755441712136,
+          0
+        ],
+        "distance": 0.04743413876367994,
+        "ceiling": 2.280000000447034,
+        "blocked": false
+      },
+      {
+        "room": "resident-home-thuan",
+        "turn": 0,
+        "position": [
+          0.24103398215027252,
+          2.3406635142435355,
+          1.9377935863982216
+        ],
+        "rotation": [
+          -1.1271975708007815,
+          1.8233665334583309,
+          0
+        ],
+        "distance": 0.58,
+        "ceiling": 2.4800000004470344,
+        "blocked": false
+      },
+      {
+        "room": "resident-home-thuan",
+        "turn": 1,
+        "position": [
+          -0.5658031483986834,
+          2.3406635142435355,
+          1.8889349859494446
+        ],
+        "rotation": [
+          -1.1271975708007815,
+          3.394162792003252,
+          0
+        ],
+        "distance": 0.58,
+        "ceiling": 2.480000000447035,
+        "blocked": false
+      },
+      {
+        "room": "resident-home-thuan",
+        "turn": 2,
+        "position": [
+          0.013607701113450707,
+          2.0696996275658446,
+          2.5336274266629886
+        ],
+        "rotation": [
+          -1.1271975708007815,
+          4.964959050548173,
+          0
+        ],
+        "distance": 0.28,
+        "ceiling": 2.4800000004470344,
+        "blocked": false
+      },
+      {
+        "room": "resident-home-thuan",
+        "turn": 3,
+        "position": [
+          0.5357025358575968,
+          2.08717490556524,
+          1.9944328572239205
+        ],
+        "rotation": [
+          -1.1271975708007815,
+          6.535755309093094,
+          0
+        ],
+        "distance": 0.2993479044905147,
+        "ceiling": 2.4800000004470344,
+        "blocked": false
+      },
+      {
+        "room": "market",
+        "turn": 0,
+        "position": [
+          0.5979788558888837,
+          2.611627400921226,
+          2.235737804125961
+        ],
+        "rotation": [
+          -1.1271975708007818,
+          0.25257007404439236,
+          0
+        ],
+        "distance": 0.8799999999999999,
+        "ceiling": 2.760000019073486,
+        "blocked": false
+      },
+      {
+        "room": "market",
+        "turn": 1,
+        "position": [
+          0.15262267437055058,
+          2.4309848098027658,
+          1.4234716309538438
+        ],
+        "rotation": [
+          -1.1271975708007818,
+          1.8233663325893144,
+          0
+        ],
+        "distance": 0.6799999999999999,
+        "ceiling": 2.5999999332427977,
+        "blocked": false
+      },
+      {
+        "room": "market",
+        "turn": 2,
+        "position": [
+          -0.5779117637952099,
+          2.4426349951356956,
+          1.8420169382474791
+        ],
+        "rotation": [
+          -1.1271975708007818,
+          3.3941625911342355,
+          0
+        ],
+        "distance": 0.6928986029936763,
+        "ceiling": 2.760000019073486,
+        "blocked": false
+      },
+      {
+        "room": "market",
+        "turn": 3,
+        "position": [
+          -0.15262275306664327,
+          2.4309848098027658,
+          2.5765283482131633
+        ],
+        "rotation": [
+          -1.1271975708007818,
+          4.964958849679157,
+          0
+        ],
+        "distance": 0.6799999999999999,
+        "ceiling": 2.5999999332427977,
+        "blocked": false
+      },
+      {
+        "room": "izakaya",
+        "turn": 0,
+        "position": [
+          0.6623302208362993,
+          3.153555174276608,
+          4.6850833992739345
+        ],
+        "rotation": [
+          -1.127197570800782,
+          0.2525699414253513,
+          0
+        ],
+        "distance": 1.4800000000000004,
+        "ceiling": 3.5800000017881386,
+        "blocked": false
+      },
+      {
+        "room": "izakaya",
+        "turn": 1,
+        "position": [
+          0.4931239666624124,
+          3.1710304522760033,
+          3.5355947050398697
+        ],
+        "rotation": [
+          -1.127197570800782,
+          1.8233661999702733,
+          0
+        ],
+        "distance": 1.4993479044905151,
+        "ceiling": 3.540000079870224,
+        "blocked": false
+      },
+      {
+        "room": "izakaya",
+        "turn": 2,
+        "position": [
+          -0.6663465381001243,
+          3.187378696909807,
+          3.6993540231925897
+        ],
+        "rotation": [
+          -1.127197570800782,
+          3.3941624585151944,
+          0
+        ],
+        "distance": 1.5174480042871163,
+        "ceiling": 3.5800000017881386,
+        "blocked": false
+      },
+      {
+        "room": "izakaya",
+        "turn": 3,
+        "position": [
+          -0.4850835348859879,
+          3.153555174276608,
+          4.8623301215154955
+        ],
+        "rotation": [
+          -1.127197570800782,
+          4.9649587170601155,
+          0
+        ],
+        "distance": 1.4800000000000004,
+        "ceiling": 3.280000089406967,
+        "blocked": false
+      },
+      {
+        "room": "onsen",
+        "turn": 0,
+        "position": [
+          -0.5765283389812931,
+          2.4309848098027658,
+          2.84737721206022
+        ],
+        "rotation": [
+          -1.1271975708007822,
+          3.394162462396103,
+          0
+        ],
+        "distance": 0.6799999999999999,
+        "ceiling": 2.58,
+        "blocked": false
+      },
+      {
+        "room": "onsen",
+        "turn": 1,
+        "position": [
+          -0.1110652391593594,
+          2.3406635142435355,
+          3.5658031042106315
+        ],
+        "rotation": [
+          -1.1271975708007822,
+          4.964958720941024,
+          0
+        ],
+        "distance": 0.58,
+        "ceiling": 2.4799999992549417,
+        "blocked": false
+      },
+      {
+        "room": "onsen",
+        "turn": 2,
+        "position": [
+          0.5664947985023204,
+          2.3464886069100004,
+          3.1137454519758347
+        ],
+        "rotation": [
+          -1.1271975708007822,
+          6.5357549794859455,
+          0
+        ],
+        "distance": 0.5864493014968382,
+        "ceiling": 2.5799999999999996,
+        "blocked": false
+      },
+      {
+        "room": "onsen",
+        "turn": 3,
+        "position": [
+          0.11625281236885665,
+          2.351938021787935,
+          2.432858117499217
+        ],
+        "rotation": [
+          -1.1271975708007822,
+          8.106551238030866,
+          0
+        ],
+        "distance": 0.5924826680957052,
+        "ceiling": 2.5799999999999996,
+        "blocked": false
+      }
+    ],
+    "routine": [
+      {
+        "position": [
+          1.2,
+          0.28,
+          -0.95
+        ],
+        "parent": "",
+        "visible": true,
+        "place": "resident-home-thuan",
+        "activity": "sleeping",
+        "sleeping": true,
+        "waking": false,
+        "inHome": true,
+        "pose": "Sleep"
+      },
+      {
+        "position": [
+          1.2,
+          0.28,
+          -0.95
+        ],
+        "parent": "",
+        "visible": true,
+        "place": "resident-home-thuan",
+        "activity": "waking up and stretching",
+        "sleeping": false,
+        "waking": true,
+        "inHome": true,
+        "pose": "Wake"
+      },
+      {
+        "position": [
+          1.4892013482152202,
+          0,
+          1.7551067236977174
+        ],
+        "parent": "",
+        "visible": true,
+        "place": "resident-home-thuan",
+        "activity": "having breakfast",
+        "sleeping": false,
+        "waking": false,
+        "inHome": true,
+        "pose": "Eat",
+        "held": "rice"
+      },
+      {
+        "position": [
+          24.64407010089973,
+          -0.36000000000000004,
+          64.9999999999998
+        ],
+        "parent": "",
+        "visible": true,
+        "place": "market",
+        "activity": "walking to work before opening"
+      },
+      {
+        "position": [
+          5.5,
+          0,
+          0.85
+        ],
+        "parent": "Sakura Shōten continuous shop",
+        "visible": true,
+        "place": "market",
+        "activity": "Sakura shopkeeper",
+        "inMarket": true,
+        "pose": "CounterIdle"
+      },
+      {
+        "position": [
+          8.5,
+          0,
+          -1.42
+        ],
+        "parent": "Inakaya continuous dining",
+        "visible": true,
+        "place": "ramen",
+        "activity": "blowing on the noodles",
+        "inRamen": true,
+        "pose": "Sit",
+        "held": null,
+        "meal": {
+          "day": 0,
+          "yen": 2100,
+          "purchases": [
+            {
+              "id": "ramen-meal",
+              "item": "ramen + mugicha",
+              "cost": 300
+            }
+          ],
+          "activities": [],
+          "meals": {
+            "ramen": {
+              "item": "ramen",
+              "drink": "mugicha",
+              "delivered": true,
+              "eaten": 55.016666666664825,
+              "finished": false
+            }
+          }
+        }
+      },
+      {
+        "position": [
+          -3.8,
+          0,
+          -1.42
+        ],
+        "parent": "",
+        "visible": true,
+        "place": "izakaya",
+        "activity": "enjoying supper",
+        "inIzakaya": true,
+        "pose": "Sit",
+        "held": null,
+        "meal": {
+          "day": 0,
+          "yen": 1770,
+          "purchases": [
+            {
+              "id": "ramen-meal",
+              "item": "ramen + mugicha",
+              "cost": 300
+            },
+            {
+              "id": "izakaya-meal",
+              "item": "rice + beer",
+              "cost": 330
+            }
+          ],
+          "activities": [],
+          "meals": {
+            "ramen": {
+              "item": "ramen",
+              "drink": "mugicha",
+              "delivered": true,
+              "eaten": 55.016666666664825,
+              "finished": false
+            },
+            "izakaya": {
+              "item": "rice",
+              "drink": "beer",
+              "delivered": true,
+              "eaten": 27.18333333333307,
+              "finished": false,
+              "drunk": 0.75
+            }
+          }
+        }
+      },
+      {
+        "position": [
+          36.7743631403722,
+          -0.36000000000000004,
+          64.99999999999996
+        ],
+        "parent": "",
+        "visible": false,
+        "place": "home",
+        "activity": "reading at home",
+        "meal": {
+          "day": 0,
+          "yen": 1770,
+          "purchases": [
+            {
+              "id": "ramen-meal",
+              "item": "ramen + mugicha",
+              "cost": 300
+            },
+            {
+              "id": "izakaya-meal",
+              "item": "rice + beer",
+              "cost": 330
+            }
+          ],
+          "activities": [],
+          "meals": {
+            "ramen": {
+              "item": "ramen",
+              "drink": "mugicha",
+              "delivered": true,
+              "eaten": 55.016666666664825,
+              "finished": false
+            },
+            "izakaya": {
+              "item": "rice",
+              "drink": "beer",
+              "delivered": true,
+              "eaten": 27.18333333333307,
+              "finished": false,
+              "drunk": 0.75
+            }
+          }
+        }
+      }
+    ],
+    "duplicates": 1,
+    "applicationErrors": [],
+    "environmentNotes": [
+      {
+        "type": "request",
+        "message": "http://127.0.0.1:43311/johansson-town/assets/figurines/thuan/thuan-display.glb net::ERR_ABORTED"
+      }
+    ]
+  },
+  {
+    "viewport": "phone",
+    "gradient": "linear-gradient(rgb(95, 180, 230) 0%, rgb(159, 214, 240) 42%, rgb(255, 227, 184) 78%, rgb(255, 209, 153) 100%)",
+    "lenses": [
+      {
+        "room": "resident-home-aya",
+        "turn": 0,
+        "position": [
+          0.6811421166202493,
+          2.123220923125075,
+          -0.06397924625709926
+        ],
+        "rotation": [
+          -1.1271975708007813,
+          1.823366630982158,
+          0
+        ],
+        "distance": 0.38,
+        "ceiling": 2.280000000447034,
+        "blocked": false
+      },
+      {
+        "room": "resident-home-aya",
+        "turn": 1,
+        "position": [
+          0.019626575253553824,
+          1.78,
+          0.10674575210229303
+        ],
+        "rotation": [
+          -1.1271975708007813,
+          3.3941629597175087,
+          0
+        ],
+        "distance": 0,
+        "ceiling": 1.78,
+        "blocked": false
+      },
+      {
+        "room": "resident-home-aya",
+        "turn": 2,
+        "position": [
+          0.6483680497170234,
+          2.007285166799637,
+          0.4816184909307666
+        ],
+        "rotation": [
+          -1.1271975708007813,
+          4.964959288452859,
+          0
+        ],
+        "distance": 0.011608742694308801,
+        "ceiling": 2.280000000447034,
+        "blocked": false
+      },
+      {
+        "room": "resident-home-aya",
+        "turn": 3,
+        "position": [
+          1.0292298684516052,
+          2.0170941135799194,
+          -0.1438548724053344
+        ],
+        "rotation": [
+          -1.1271975708007813,
+          6.53575561718821,
+          0
+        ],
+        "distance": 0.02246880257226945,
+        "ceiling": 2.280000000447034,
+        "blocked": false
+      },
+      {
+        "room": "resident-home-thuan",
+        "turn": 0,
+        "position": [
+          0.15791881160054308,
+          2.340020923125075,
+          1.9592440572205267
+        ],
+        "rotation": [
+          -1.1271975708007815,
+          1.8233666387439749,
+          0
+        ],
+        "distance": 0.38,
+        "ceiling": 2.480000000447035,
+        "blocked": false
+      },
+      {
+        "room": "resident-home-thuan",
+        "turn": 1,
+        "position": [
+          -0.5443526715269235,
+          2.340020923125075,
+          1.9720502491930234
+        ],
+        "rotation": [
+          -1.1271975708007815,
+          3.3941629674793257,
+          0
+        ],
+        "distance": 0.38,
+        "ceiling": 2.4800000004470344,
+        "blocked": false
+      },
+      {
+        "room": "resident-home-thuan",
+        "turn": 2,
+        "position": [
+          0.01360783220783418,
+          2.2496996275658447,
+          2.5336274233200156
+        ],
+        "rotation": [
+          -1.1271975708007815,
+          4.964959296214676,
+          0
+        ],
+        "distance": 0.28,
+        "ceiling": 2.4800000004470344,
+        "blocked": false
+      },
+      {
+        "room": "resident-home-thuan",
+        "turn": 3,
+        "position": [
+          0.534319126895457,
+          2.2555247202323097,
+          1.9890723405106443
+        ],
+        "rotation": [
+          -1.1271975708007815,
+          6.535755624950027,
+          0
+        ],
+        "distance": 0.2864493014968382,
+        "ceiling": 2.480000000447035,
+        "blocked": false
+      },
+      {
+        "room": "market",
+        "turn": 0,
+        "position": [
+          0.5765284169569,
+          2.6109848098027655,
+          2.152622493388788
+        ],
+        "rotation": [
+          -1.1271975708007818,
+          0.2525703197108954,
+          0
+        ],
+        "distance": 0.6799999999999999,
+        "ceiling": 2.760000019073486,
+        "blocked": false
+      },
+      {
+        "room": "market",
+        "turn": 1,
+        "position": [
+          0.06950732847789354,
+          2.4303422186843053,
+          1.4449220797530713
+        ],
+        "rotation": [
+          -1.1271975708007818,
+          1.823366648446247,
+          0
+        ],
+        "distance": 0.48,
+        "ceiling": 2.5999999332427977,
+        "blocked": false
+      },
+      {
+        "room": "market",
+        "turn": 2,
+        "position": [
+          -0.5564613276167013,
+          2.4419924040172356,
+          1.9251323250993462
+        ],
+        "rotation": [
+          -1.1271975708007818,
+          3.3941629771815975,
+          0
+        ],
+        "distance": 0.49289860299367644,
+        "ceiling": 2.760000019073486,
+        "blocked": false
+      },
+      {
+        "room": "market",
+        "turn": 3,
+        "position": [
+          -0.06950732632368722,
+          2.4303422186843053,
+          2.55507792051668
+        ],
+        "rotation": [
+          -1.1271975708007818,
+          4.964959305916948,
+          0
+        ],
+        "distance": 0.48,
+        "ceiling": 2.5999999332427977,
+        "blocked": false
+      },
+      {
+        "room": "izakaya",
+        "turn": 0,
+        "position": [
+          0.6516051593564306,
+          3.2432338787173776,
+          4.643525561749416
+        ],
+        "rotation": [
+          -1.127197570800782,
+          0.25257032747271335,
+          0
+        ],
+        "distance": 1.3800000000000003,
+        "ceiling": 3.280000089406967,
+        "blocked": false
+      },
+      {
+        "room": "izakaya",
+        "turn": 1,
+        "position": [
+          0.4488859079768154,
+          3.254884064050308,
+          3.5470114325168267
+        ],
+        "rotation": [
+          -1.127197570800782,
+          1.823366656208065,
+          0
+        ],
+        "distance": 1.392898602993677,
+        "ceiling": 3.5400000798702234,
+        "blocked": false
+      },
+      {
+        "room": "izakaya",
+        "turn": 2,
+        "position": [
+          -0.6542827555245285,
+          3.2657828938061773,
+          3.7460994507720056
+        ],
+        "rotation": [
+          -1.127197570800782,
+          3.3941629849434163,
+          0
+        ],
+        "distance": 1.4049653361914112,
+        "ceiling": 3.540000079870224,
+        "blocked": false
+      },
+      {
+        "room": "izakaya",
+        "turn": 3,
+        "position": [
+          -0.4019679761849727,
+          3.1529125831581473,
+          4.840879912951446
+        ],
+        "rotation": [
+          -1.127197570800782,
+          4.964959313678767,
+          0
+        ],
+        "distance": 1.2800000000000002,
+        "ceiling": 3.280000089406967,
+        "blocked": false
+      },
+      {
+        "room": "onsen",
+        "turn": 0,
+        "position": [
+          -0.5550779211910591,
+          2.4303422186843053,
+          2.930492679061831
+        ],
+        "rotation": [
+          -1.1271975708007822,
+          3.3941629888243248,
+          0
+        ],
+        "distance": 0.48,
+        "ceiling": 2.5799999999999996,
+        "blocked": false
+      },
+      {
+        "room": "onsen",
+        "turn": 1,
+        "position": [
+          -0.02794973813147722,
+          2.340020923125075,
+          3.544352672177746
+        ],
+        "rotation": [
+          -1.1271975708007822,
+          4.964959317559676,
+          0
+        ],
+        "distance": 0.38,
+        "ceiling": 2.4799999992549417,
+        "blocked": false
+      },
+      {
+        "room": "onsen",
+        "turn": 2,
+        "position": [
+          0.5450443758910356,
+          2.34584601579154,
+          3.0306299108143797
+        ],
+        "rotation": [
+          -1.1271975708007822,
+          6.535755646295026,
+          0
+        ],
+        "distance": 0.3864493014968382,
+        "ceiling": 2.58,
+        "blocked": false
+      },
+      {
+        "room": "onsen",
+        "turn": 3,
+        "position": [
+          0.03313723100960442,
+          2.3512954306694747,
+          2.4543085304400454
+        ],
+        "rotation": [
+          -1.1271975708007822,
+          8.106551975030378,
+          0
+        ],
+        "distance": 0.3924826680957052,
+        "ceiling": 2.58,
+        "blocked": false
+      }
+    ],
+    "routine": [
+      {
+        "position": [
+          1.2,
+          0.28,
+          -0.95
+        ],
+        "parent": "",
+        "visible": true,
+        "place": "resident-home-thuan",
+        "activity": "sleeping",
+        "sleeping": true,
+        "waking": false,
+        "inHome": true,
+        "pose": "Sleep"
+      },
+      {
+        "position": [
+          1.2,
+          0.28,
+          -0.95
+        ],
+        "parent": "",
+        "visible": true,
+        "place": "resident-home-thuan",
+        "activity": "waking up and stretching",
+        "sleeping": false,
+        "waking": true,
+        "inHome": true,
+        "pose": "Wake"
+      },
+      {
+        "position": [
+          1.4892013482152202,
+          0,
+          1.7551067236977174
+        ],
+        "parent": "",
+        "visible": true,
+        "place": "resident-home-thuan",
+        "activity": "having breakfast",
+        "sleeping": false,
+        "waking": false,
+        "inHome": true,
+        "pose": "Eat",
+        "held": "rice"
+      },
+      {
+        "position": [
+          24.64407010089973,
+          -0.36000000000000004,
+          64.9999999999998
+        ],
+        "parent": "",
+        "visible": true,
+        "place": "market",
+        "activity": "walking to work before opening"
+      },
+      {
+        "position": [
+          5.5,
+          0,
+          0.85
+        ],
+        "parent": "Sakura Shōten continuous shop",
+        "visible": true,
+        "place": "market",
+        "activity": "Sakura shopkeeper",
+        "inMarket": true,
+        "pose": "CounterIdle"
+      },
+      {
+        "position": [
+          8.5,
+          0,
+          -1.42
+        ],
+        "parent": "Inakaya continuous dining",
+        "visible": true,
+        "place": "ramen",
+        "activity": "blowing on the noodles",
+        "inRamen": true,
+        "pose": "Sit",
+        "held": null,
+        "meal": {
+          "day": 0,
+          "yen": 2100,
+          "purchases": [
+            {
+              "id": "ramen-meal",
+              "item": "ramen + mugicha",
+              "cost": 300
+            }
+          ],
+          "activities": [],
+          "meals": {
+            "ramen": {
+              "item": "ramen",
+              "drink": "mugicha",
+              "delivered": true,
+              "eaten": 55.016666666664825,
+              "finished": false
+            }
+          }
+        }
+      },
+      {
+        "position": [
+          -3.8,
+          0,
+          -1.42
+        ],
+        "parent": "",
+        "visible": true,
+        "place": "izakaya",
+        "activity": "enjoying supper",
+        "inIzakaya": true,
+        "pose": "Sit",
+        "held": null,
+        "meal": {
+          "day": 0,
+          "yen": 1770,
+          "purchases": [
+            {
+              "id": "ramen-meal",
+              "item": "ramen + mugicha",
+              "cost": 300
+            },
+            {
+              "id": "izakaya-meal",
+              "item": "rice + beer",
+              "cost": 330
+            }
+          ],
+          "activities": [],
+          "meals": {
+            "ramen": {
+              "item": "ramen",
+              "drink": "mugicha",
+              "delivered": true,
+              "eaten": 55.016666666664825,
+              "finished": false
+            },
+            "izakaya": {
+              "item": "rice",
+              "drink": "beer",
+              "delivered": true,
+              "eaten": 27.18333333333307,
+              "finished": false,
+              "drunk": 0.75
+            }
+          }
+        }
+      },
+      {
+        "position": [
+          36.7743631403722,
+          -0.36000000000000004,
+          64.99999999999996
+        ],
+        "parent": "",
+        "visible": false,
+        "place": "home",
+        "activity": "reading at home",
+        "meal": {
+          "day": 0,
+          "yen": 1770,
+          "purchases": [
+            {
+              "id": "ramen-meal",
+              "item": "ramen + mugicha",
+              "cost": 300
+            },
+            {
+              "id": "izakaya-meal",
+              "item": "rice + beer",
+              "cost": 330
+            }
+          ],
+          "activities": [],
+          "meals": {
+            "ramen": {
+              "item": "ramen",
+              "drink": "mugicha",
+              "delivered": true,
+              "eaten": 55.016666666664825,
+              "finished": false
+            },
+            "izakaya": {
+              "item": "rice",
+              "drink": "beer",
+              "delivered": true,
+              "eaten": 27.18333333333307,
+              "finished": false,
+              "drunk": 0.75
+            }
+          }
+        }
+      }
+    ],
+    "duplicates": 1,
+    "applicationErrors": [],
+    "environmentNotes": []
+  }
+]

@@ -1,0 +1,176 @@
+{
+  "engine": "Linux WebKit",
+  "physicalDevice": false,
+  "views": [
+    {
+      "label": "office-day",
+      "minutes": 720,
+      "mean": 194.14640324473962,
+      "player": {
+        "position": [
+          -0.7999999999999943,
+          4.01,
+          -2.500000000000014
+        ],
+        "yaw": -2.872425160804093,
+        "room": "market"
+      },
+      "fixtures": [
+        {
+          "visible": true,
+          "toneMapped": false
+        },
+        {
+          "visible": true,
+          "toneMapped": false
+        }
+      ],
+      "ink": true,
+      "gpuError": 0
+    },
+    {
+      "label": "office-midnight",
+      "minutes": 30,
+      "mean": 130.58684439365328,
+      "player": {
+        "position": [
+          -0.7999999999999943,
+          4.01,
+          -2.500000000000014
+        ],
+        "yaw": -2.872425160804093,
+        "room": "market"
+      },
+      "fixtures": [
+        {
+          "visible": true,
+          "toneMapped": false
+        },
+        {
+          "visible": true,
+          "toneMapped": false
+        }
+      ],
+      "ink": true,
+      "gpuError": 0
+    },
+    {
+      "label": "office-overview-midnight",
+      "minutes": 30,
+      "mean": 140.3110238561109,
+      "player": {
+        "position": [
+          -0.7999999999999943,
+          4.01,
+          -2.500000000000014
+        ],
+        "yaw": -2.872425160804093,
+        "room": "market"
+      },
+      "fixtures": [
+        {
+          "visible": true,
+          "toneMapped": false
+        },
+        {
+          "visible": true,
+          "toneMapped": false
+        }
+      ],
+      "ink": true,
+      "gpuError": 0
+    },
+    {
+      "label": "stairs-midnight",
+      "minutes": 30,
+      "mean": 133.74088276534616,
+      "player": {
+        "position": [
+          3.7999999999999945,
+          0,
+          -3.299999999999986
+        ],
+        "yaw": 3.141592653589793,
+        "room": "market"
+      },
+      "fixtures": [
+        {
+          "visible": true,
+          "toneMapped": false
+        },
+        {
+          "visible": true,
+          "toneMapped": false
+        }
+      ],
+      "ink": true,
+      "gpuError": 0
+    }
+  ],
+  "up": {
+    "player": {
+      "position": [
+        -0.7999999999999943,
+        4.01,
+        -2.500000000000014
+      ],
+      "yaw": -2.872425160804093,
+      "room": "market"
+    },
+    "replay": {
+      "recording": false,
+      "steps": 0,
+      "playing": null,
+      "last": {
+        "mode": "inputs",
+        "steps": 419,
+        "played": 419,
+        "done": true,
+        "drift": {
+          "worst": 0,
+          "at": 418,
+          "last": 0
+        }
+      },
+      "note": "played to the end"
+    }
+  },
+  "down": {
+    "player": {
+      "position": [
+        3.7999999999999945,
+        0,
+        -3.299999999999986
+      ],
+      "yaw": 3.141592653589793,
+      "room": "market"
+    },
+    "replay": {
+      "recording": false,
+      "steps": 0,
+      "playing": null,
+      "last": {
+        "mode": "inputs",
+        "steps": 419,
+        "played": 419,
+        "done": true,
+        "drift": {
+          "worst": 0,
+          "at": 179,
+          "last": 0
+        }
+      },
+      "note": "played to the end"
+    }
+  },
+  "outsideEntry": {
+    "position": [
+      0,
+      4.01,
+      -5.15
+    ],
+    "yaw": -2.356194490192345,
+    "room": "market",
+    "floor": true
+  }
+}

@@ -1,0 +1,19 @@
+# Checks: Higa Liquor closes into Sakura
+
+Evaluator: the full `tests/*.test.mjs` run on this branch against the same run on the doctor branch (`0ef8e9c`, the
+baseline: 2,102 tests, 52 failing; both on this machine, node 22, `--test-concurrency=3`), then `npm run build:runtime`
+once and `node tools/ci-guard.mjs` alone.
+
+| Requirement | Verdict | Evidence | Correction |
+|---|---|---|---|
+| Higa Liquor is shut for good: no hours, no card, no counter, nobody keeps it | pass | `higa-liquor-laundry` (the removed exports are gone; no resident's canonical day is ever `higa-liquor`, a week at half-hour steps; PLACES closed, no keepers) | |
+| The building stands shut with a notice on it, no new geometry | pass | `higa-liquor-laundry` (shutter down, doors shut, lights off at 10:00, 14:00, 18:30 and 22:00; the notice 6 mm in front of the shutter's face, inside it); `no-z-fighting` (the shut front with its notice shares no plane); the before/after photographs | The notice's lines spaced after the first photograph; its title in English |
+| Sakura sells all the alcohol | pass | `higa-liquor-laundry` (the till's bottles: the Higas' three, at their prices); the cans stay in the cold cabinet (products.json `beer`, supplier `sakura`); `town-economy` (no Higa business; Sakura keeps every drink in stock) | |
+| Sakura Trading supplies it | pass | `sakura-merchandising` (no Higa supplier or accounts; Sakura's record lists the drink; the round's four customers, and nobody else, take drink on account); `products-move` (each Higa account's lines are the same Sakura account's `alcohol`, line for line); `studio-apply` (the beer cannot go back to the Higas); `studio-mcp` (the beer's references show Sato Ramen ordering it from Sakura) | `tools/studio/references.mjs` reads `alcohol` lines, so a retire of the beer still sees the bars |
+| Kōji's round is Sakura Trading's | pass | `higa-liquor-laundry` (his weeks ashore only, Tuesdays and Fridays, from the depot's point, the drops, the empties; the Coral Bay Bar's ice boxes wait at the Port Terminal for the next boat out, which the account names); `sakura-small-office` (the cork-board note and the calendar's round days) | The ice boxes went to "the late-morning ferry", which does not exist |
+| Grandmother Higa keeps only the bathhouse | pass | `higa-liquor-laundry`, `okinawa-quarters` (verandah at nine, the bandai from ten), `island-guide`, the guide's article | |
+| Texts and generated files agree | pass | `island-guide`, `resident-guide`, `fujita-day`, `paperwork`, `english-language`, `feed-storyteller` | Found by the review: the bath's guide entry, the resident guide, Mr Fujita's van, Saturday's bench bottle, the bicycle |
+| No test weakened | pass | Every rewritten test states the new arrangement (progress.md) | |
+| Full suite no worse than the baseline | pass | The full `tests/*.test.mjs` after the review's fixes: 2,102 tests, 54 failing against the baseline's 52, the two new ones the runtime (rebuilt next) and `east-lawn`'s reach of the east side, which found the shut shop's floor out of reach behind its shutter; every other failure fails on the baseline too | `east-lawn` sets the shut shop-house's own floor aside, with the reason, and asserts that it is out of reach; every other cell is checked as before |
+| CI guard no worse than baseline; runtime rebuilt last | pass | `npm run build:runtime` once, from the doctor branch's committed runtime (it keeps that build's chunks and prunes main's older ones: merge #362 first); `node tools/ci-guard.mjs` alone: 333 of 334, the one `no-z-fighting` out of memory on this container's Node 22 heap as on the baseline; with `--max-old-space-size=10240` its 13 tests pass; `boot` and `runtime-package` pass | |
+| Separate review of the diff | pass | A code-reviewer agent's report (progress.md, "Separate review") | Its findings fixed in the second commit, two reported and left with reasons |

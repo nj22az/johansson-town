@@ -1,0 +1,21 @@
+✔ the auction lays the fish nobody bid for, a kind to a box, each with the boat that landed it (5.21154ms)
+✔ the lots, the counter and Kōji’s stack share the floor without touching, and the catch’s collider covers every box (0.550201ms)
+✔ every new solid stands inside the shed, off the columns, the board and each other (2.568822ms)
+✔ Kōji stands to sort behind the counter, clear of everything solid (0.344462ms)
+✔ the walk from the lawn gate to the ice plant, between the shed and the parapet, stays open (0.331523ms)
+✔ the counter keeps Kōji’s hours: 07:00 to 09:00 while he is ashore and at the auction (3.952206ms)
+✔ the counter sells by the kilo at the morning’s auction prices, and its wares are out only while it is open (6.943252ms)
+✔ every piece says who it is for, why it is there and where (0.222674ms)
+✔ the market is light enough for a phone: under 56,000 vertices for the floor, the counter, the roof’s water and the quay edge (44.877609ms)
+✔ published runtime matches the current source rather than an older build (292.431727ms)
+✔ published page uses one compiled audio/boot graph with local hashed dependencies (101.636683ms)
+✔ every stylesheet link carries a hash of the file it points at (31.840403ms)
+✔ delivered chunks contain no retired combat handlers, menus, damage simulation or rewards (108.40789ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3675.506181

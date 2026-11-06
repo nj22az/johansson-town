@@ -1,0 +1,47 @@
+[
+ {
+  "check": "B1 paper inside its board with a margin",
+  "ok": true,
+  "detail": "[1400, 1980] on 1440 x 2020"
+ },
+ {
+  "check": "B-series proportions (1 : 1.414)",
+  "ok": true,
+  "detail": "[1400, 1980]"
+ },
+ {
+  "check": "board 300 clear of the window",
+  "ok": true,
+  "detail": "750 mm"
+ },
+ {
+  "check": "board 300 clear of the back corner",
+  "ok": true,
+  "detail": "760 mm"
+ },
+ {
+  "check": "board under the first floor with 300 to spare",
+  "ok": true,
+  "detail": "top 2790"
+ },
+ {
+  "check": "poster bottom above the planter and passers-by (600)",
+  "ok": true,
+  "detail": "bottom 770"
+ },
+ {
+  "check": "nothing of the built town 3..400 out from the wall within 300 of the board",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "on the shop's side wall, away from its front, door and flag (open Nakamura audit)",
+  "ok": true,
+  "detail": "5500 mm from the front"
+ },
+ {
+  "check": "DXF reopens with no audit errors",
+  "ok": true,
+  "detail": ""
+ }
+]

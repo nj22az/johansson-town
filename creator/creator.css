@@ -1,0 +1,5 @@
+/* The shared maker has no game HUD or base stylesheet. */
+html,body{margin:0;height:100%}
+noscript{display:block;padding:24px;font-family:var(--line-font,system-ui,sans-serif)}
+.creator-page>.shm .icon-control{display:inline-flex}
+.creator-page .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}

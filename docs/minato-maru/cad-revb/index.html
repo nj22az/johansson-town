@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Minato Maru engine-room drawings, Revision B: CAD sheets, engineering review, schedules and reference models for Johansson World. For design review; construction not approved.">
+<title>Minato Maru — Engine-room drawings, Rev B</title>
+<style>
+:root{--navy:#15313e;--teal:#236b75;--ink:#243d48;--muted:#596e76;--line:#d5e0e2;--paper:#f5f7f7;--white:#fff;--red:#883d37;--redbg:#fcf4f1}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}a{color:var(--teal);text-decoration-thickness:1px;text-underline-offset:3px}a:hover{color:var(--navy)}a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #cf9907;outline-offset:4px}.skip{position:absolute;top:8px;left:16px;background:white;padding:8px 16px;z-index:10;transform:translateY(-180%)}.skip:focus{transform:none}header{background:var(--navy);color:white}header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:20px;padding-bottom:20px}.wrap{max-width:1180px;margin:auto;padding:0 32px}.brand{display:flex;align-items:center;gap:12px;line-height:1.2}.hull-number{border:1px solid #94afb6;border-radius:4px;padding:7px 10px;font:600 14px/1.2 ui-monospace,SFMono-Regular,Consolas,monospace}.brand strong{font-size:14px;letter-spacing:.09em}.brand small{display:block;font-size:12px;color:#c2d7dc;letter-spacing:.03em;margin-top:4px}.header-link{color:#e0eff0;font-size:14px;white-space:nowrap}main{padding-top:40px;padding-bottom:60px}.eyebrow{margin:0 0 10px;font-size:12px;font-weight:650;color:var(--teal);letter-spacing:.14em;text-transform:uppercase}h1{margin:0;max-width:800px;font-size:clamp(30px,4vw,48px);font-weight:650;line-height:1.16;letter-spacing:-.025em}h1 span{display:block;font-weight:400;font-size:.65em;margin-top:9px;letter-spacing:-.015em}.intro{max-width:770px;margin:22px 0 0;color:var(--muted);font-size:17px}.status{margin-top:27px;border:1px solid #e5c9c1;border-left:4px solid var(--red);background:var(--redbg);padding:16px 20px}.status strong{display:block;color:var(--red);font-size:17px}.status p{margin:5px 0 0;max-width:1000px;font-size:14px}.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:28px 0 0;padding:18px 0;gap:20px}.facts dt{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}.facts dd{font-size:20px;font-weight:600;margin:4px 0 0;color:var(--navy)}section{margin-top:42px;scroll-margin-top:20px}.section-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:16px}h2{margin:0;font-size:24px;line-height:1.3;font-weight:600;letter-spacing:-.015em}.section-note{margin:0;color:var(--muted);font-size:14px}.download-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:14px}.download-card{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:23px;display:flex;flex-direction:column;align-items:flex-start}.download-card.primary{background:var(--navy);color:white;border-color:var(--navy)}.download-card h3{font-size:19px;font-weight:600;margin:0 0 8px}.download-card p{font-size:14px;color:var(--muted);margin:0 0 18px}.download-card.primary p{color:#c8dcdf}.download-card a{margin-top:auto;font-size:14px;font-weight:650}.download-card.primary a{color:white}.file-kind{font-size:12px;letter-spacing:.07em;text-transform:uppercase;opacity:.75;margin-bottom:12px}.utility-links{display:flex;gap:12px 24px;flex-wrap:wrap;margin-top:18px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px}.preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.preview{margin:0;background:white;border:1px solid var(--line);border-radius:6px;overflow:hidden}.preview a{display:block;padding:8px;background:#eef2f2}.preview img{width:100%;height:auto;display:block;aspect-ratio:1.414;object-fit:contain}.preview figcaption{padding:14px 16px;font-size:14px}.preview figcaption strong{display:block;font-size:15px;font-weight:600;margin-bottom:4px}.preview figcaption span{color:var(--muted)}.drawing-tools{background:white;border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;grid-template-columns:2fr 1fr auto;align-items:end;gap:16px;margin-top:18px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}input,select{font:inherit;font-size:15px;color:var(--ink);background:white;border:1px solid #a6bac0;border-radius:4px;width:100%;min-height:44px;padding:9px 11px}input::placeholder{color:#6c828b}.sheet-count{margin:0 0 11px;white-space:nowrap;font-size:13px;color:var(--muted)}.list-head,.drawing-row{display:grid;grid-template-columns:48px minmax(0,1fr) 95px 150px;align-items:center;gap:18px}.list-head{padding:15px 18px 10px;font-size:11px;font-weight:650;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}.drawing-list{margin:0;padding:0;list-style:none;border:1px solid var(--line);background:white;border-radius:6px;overflow:hidden}.drawing-row{padding:16px 18px;border-bottom:1px solid var(--line)}.drawing-row:last-child{border-bottom:0}.drawing-row:nth-child(even){background:#f9fbfb}.drawing-row[hidden]{display:none}.page-number{font:13px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted)}.drawing-id{font:12px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--teal);display:block;margin-bottom:4px}.drawing-name h3{font-size:15px;line-height:1.4;font-weight:550;margin:0}.drawing-scale{font-size:14px}.paper{display:block;font-size:12px;color:var(--muted)}.drawing-actions{display:flex;gap:17px;justify-content:flex-end;white-space:nowrap;font-size:13px}.mobile-label{display:none}.empty-state{padding:24px;margin:0;border:1px solid var(--line);background:white;font-size:15px;color:var(--muted)}.technical-note{background:#eaf1f2;padding:20px 24px;border:1px solid #cfdee1;border-radius:6px;margin-top:22px}.technical-note h3{font-size:16px;font-weight:600;margin:0 0 10px}.technical-note p{font-size:14px;margin:8px 0 0}.footer{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font-size:13px}.footer p{margin:4px 0}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:850px){.download-grid{grid-template-columns:1fr 1fr}.download-card.primary{grid-column:1/-1}.drawing-tools{grid-template-columns:1.5fr 1fr}.sheet-count{grid-column:1/-1;margin:0}.list-head,.drawing-row{grid-template-columns:35px minmax(0,1fr) 65px 125px;gap:12px}.drawing-actions{gap:12px}.section-top{display:block}.section-note{margin-top:6px}}
+@media(max-width:600px){.wrap{padding-left:20px;padding-right:20px}header .wrap{gap:15px}.brand strong{font-size:11px;letter-spacing:.07em}.brand small{font-size:11px}.header-link{font-size:12px}.hull-number{padding:7px;font-size:12px}main{padding-top:28px;padding-bottom:40px}.intro{font-size:15px}.status{padding:14px 16px}.status strong{font-size:16px}.facts{grid-template-columns:1fr 1fr;gap:18px}.facts dd{font-size:18px}section{margin-top:32px}.download-grid,.preview-grid{grid-template-columns:1fr}.download-card.primary{grid-column:auto}.download-card{padding:20px}.preview-grid{gap:14px}.preview figcaption{padding:13px 16px}.drawing-tools{grid-template-columns:1fr;padding:16px;gap:13px}.sheet-count{grid-column:auto}.list-head{display:none}.drawing-list{margin-top:14px}.drawing-row{grid-template-columns:1fr auto;align-items:start;gap:9px 12px;padding:17px 16px}.page-number{grid-column:1;grid-row:1;font-size:11px}.drawing-scale{grid-column:2;grid-row:1;font-size:12px;text-align:right}.paper{display:inline;margin-left:8px}.drawing-name{grid-column:1/-1;grid-row:2}.drawing-name h3{font-size:15px}.drawing-actions{grid-column:1/-1;grid-row:3;justify-content:flex-start;gap:24px;margin-top:4px}.drawing-actions a{padding:3px 0;font-size:14px}.mobile-label{display:inline}.technical-note{padding:18px}.utility-links{gap:13px 20px}.footer{font-size:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{header,.drawing-tools,.drawing-actions,.skip{display:none}.wrap{max-width:none;padding:0}.download-grid{grid-template-columns:1fr 1fr 1fr}body{background:white;font-size:10pt}.drawing-row{break-inside:avoid}section{margin-top:24px}.status{border:1px solid var(--red)}.preview-grid{break-inside:avoid}a{color:inherit}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to drawings</a>
+<header><div class="wrap"><div class="brand"><span class="hull-number" aria-hidden="true">127</span><div><strong>JOHANSSON SHIPYARD</strong><small>Johansson World · Minato Maru</small></div></div><a class="header-link" href="../../../">Johansson World</a></div></header>
+<main class="wrap" id="main">
+<p class="eyebrow">Drawing archive · Revision B · 13 October 2026</p>
+<h1>Minato Maru<span>Engine-room drawings</span></h1>
+<p class="intro">The coordinated machinery-space drawing package for the ferry in Johansson World. Current source geometry, manufacturer references and proposed reservations are identified separately in the drawings.</p>
+<div class="status" role="note" aria-label="Drawing issue status"><strong>For design review — construction not approved</strong><p>The review records corrections and unresolved engineering work. It provides no certification, class or flag approval, and is not released for construction of a real vessel.</p></div>
+<dl class="facts"><div><dt>Length overall</dt><dd>34.5 m</dd></div><div><dt>Breadth</dt><dd>8.4 m</dd></div><div><dt>Drawing book</dt><dd>55 sheets</dd></div><div><dt>CAD units</dt><dd>Millimetres</dd></div></dl>
+<section id="downloads" aria-labelledby="download-title"><div class="section-top"><h2 id="download-title">Download the package</h2><p class="section-note">Original reviewed archive and individual documents.</p></div>
+<div class="download-grid">
+<article class="download-card primary"><span class="file-kind">ZIP · 1.2 MB</span><h3>Complete reviewed package</h3><p>Drawing book, engineering review, editable DXFs, reference models, schedules, source data and validation records.</p><a href="Minato_Maru_Engine_Room_CAD_Reviewed_RevB.zip" download>Download Revision B ZIP</a></article>
+<article class="download-card"><span class="file-kind">PDF · 55 pages</span><h3>CAD drawing book</h3><p>A2 and A3 sheets with drawing numbers, datums, dimensions, revision information and review qualifications.</p><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf">Open drawing book</a></article>
+<article class="download-card"><span class="file-kind">PDF · Engineering review</span><h3>Review and remaining work</h3><p>Assessment of geometry, machinery, electrical systems, piping and the evidence still needed for construction release.</p><a href="Minato_Maru_RevB/Minato_Maru_Engineering_Review_RevB.pdf">Open engineering review</a></article>
+</div>
+<nav class="utility-links" aria-label="Registers and supporting information"><a href="Minato_Maru_RevB/drawing_register.csv" download>Drawing register · CSV</a><a href="Minato_Maru_RevB/construction_work_register.csv" download>Construction work register · CSV</a><a href="Minato_Maru_RevB/README.md">Package notes</a><a href="Minato_Maru_RevB/Game_Integration.md">Game integration notes</a><a href="Minato_Maru_RevB/SHA256SUMS.txt">File checksums</a><a href="PUBLICATION.md">Publication record</a></nav>
+</section>
+<section id="preview" aria-labelledby="preview-title"><div class="section-top"><h2 id="preview-title">Drawing previews</h2><p class="section-note">Open a preview at full resolution. Use the PDF for dimensions and printing.</p></div>
+<div class="preview-grid">
+<figure class="preview"><a href="Minato_Maru_RevB/previews/Machinery_arrangement.png"><img src="Minato_Maru_RevB/previews/Machinery_arrangement.png" width="2105" height="1489" loading="lazy" alt="Revision B machinery-space arrangement drawing with source equipment envelopes and dimensions."></a><figcaption><strong>Machinery arrangement</strong><span>JS127-ER-101 · Book page 4 · 1:50</span></figcaption></figure>
+<figure class="preview"><a href="Minato_Maru_RevB/previews/Double_bottom_tank_allocation.png"><img src="Minato_Maru_RevB/previews/Double_bottom_tank_allocation.png" width="2105" height="1489" loading="lazy" alt="Conformal double-bottom tank allocation drawing showing fluid and ballast planning reservations."></a><figcaption><strong>Double-bottom tank allocation</strong><span>JS127-ER-108 · Book page 8 · 1:50</span></figcaption></figure>
+<figure class="preview"><a href="Minato_Maru_RevB/previews/Electrical_one_line.png"><img src="Minato_Maru_RevB/previews/Electrical_one_line.png" width="1489" height="1053" loading="lazy" alt="Corrected electrical one-line drawing with separate transformer primary and secondary ratings."></a><figcaption><strong>Electrical distribution</strong><span>JS127-EL-001 · Book page 50 · NTS</span></figcaption></figure>
+</div></section>
+<section id="drawings" aria-labelledby="drawing-title"><div class="section-top"><h2 id="drawing-title">Individual CAD sheets</h2><p class="section-note">Editable DXF files; page numbers refer to the drawing book.</p></div>
+<form class="drawing-tools" role="search" aria-label="Find an individual drawing" onsubmit="return false">
+<div class="field"><label for="drawing-search">Find a drawing</label><input id="drawing-search" type="search" autocomplete="off" placeholder="Drawing number or title"></div>
+<div class="field"><label for="drawing-discipline">Discipline</label><select id="drawing-discipline"><option value="all">All disciplines</option><option value="arrangement">Arrangement and machinery</option><option value="systems">Piping and system schematics</option><option value="electrical">Electrical</option></select></div>
+<p class="sheet-count" id="sheet-count" role="status" aria-live="polite">55 of 55 sheets</p>
+</form>
+<noscript><p class="section-note">All 55 sheets are listed below. Browser Find can locate a drawing number or title.</p></noscript>
+<div class="list-head" aria-hidden="true"><span>Page</span><span>Drawing number and title</span><span>Scale / paper</span><span>Files</span></div>
+<ol class="drawing-list" id="drawing-list"><li class="drawing-row" data-group="arrangement" data-search="js127-er-000 drawing register and engineering basis nts">
+ <span class="page-number"><span class="mobile-label">Page </span>01</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-ER-000</span><h3>Drawing register and engineering basis</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-ER-000.dxf" download>DXF<span class="sr-only">: JS127-ER-000</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=1">PDF page<span class="sr-only"> 1: JS127-ER-000</span></a></div>
+</li>
+<li class="drawing-row" data-group="arrangement" data-search="js127-er-100 machinery spaces in vessel context 1:100">
+ <span class="page-number"><span class="mobile-label">Page </span>02</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-ER-100</span><h3>Machinery spaces in vessel context</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>1:100<span class="paper">A2</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-ER-100.dxf" download>DXF<span class="sr-only">: JS127-ER-100</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=2">PDF page<span class="sr-only"> 2: JS127-ER-100</span></a></div>
+</li>
+<li class="drawing-row" data-group="arrangement" data-search="js127-me-001 main machinery and propulsion particulars nts">
+ <span class="page-number"><span class="mobile-label">Page </span>03</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-ME-001</span><h3>Main machinery and propulsion particulars</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-ME-001.dxf" download>DXF<span class="sr-only">: JS127-ME-001</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=3">PDF page<span class="sr-only"> 3: JS127-ME-001</span></a></div>
+</li>
+<li class="drawing-row" data-group="arrangement" data-search="js127-er-101 machinery spaces - corrected source arrangement 1:50">
+ <span class="page-number"><span class="mobile-label">Page </span>04</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-ER-101</span><h3>Machinery spaces - corrected source arrangement</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>1:50<span class="paper">A2</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-ER-101.dxf" download>DXF<span class="sr-only">: JS127-ER-101</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=4">PDF page<span class="sr-only"> 4: JS127-ER-101</span></a></div>
+</li>
+<li class="drawing-row" data-group="arrangement" data-search="js127-er-102 machinery spaces - longitudinal and transverse sections 1:50">
+ <span class="page-number"><span class="mobile-label">Page </span>05</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-ER-102</span><h3>Machinery spaces - longitudinal and transverse sections</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>1:50<span class="paper">A2</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-ER-102.dxf" download>DXF<span class="sr-only">: JS127-ER-102</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=5">PDF page<span class="sr-only"> 5: JS127-ER-102</span></a></div>
+</li>
+<li class="drawing-row" data-group="arrangement" data-search="js127-er-103 corrected machinery reservation and maintenance strategy 1:50">
+ <span class="page-number"><span class="mobile-label">Page </span>06</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-ER-103</span><h3>Corrected machinery reservation and maintenance strategy</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>1:50<span class="paper">A2</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-ER-103.dxf" download>DXF<span class="sr-only">: JS127-ER-103</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=6">PDF page<span class="sr-only"> 6: JS127-ER-103</span></a></div>
+</li>
+<li class="drawing-row" data-group="arrangement" data-search="js127-er-104 access, escape and compartment interfaces 1:50">
+ <span class="page-number"><span class="mobile-label">Page </span>07</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-ER-104</span><h3>Access, escape and compartment interfaces</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>1:50<span class="paper">A2</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-ER-104.dxf" download>DXF<span class="sr-only">: JS127-ER-104</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=7">PDF page<span class="sr-only"> 7: JS127-ER-104</span></a></div>
+</li>
+<li class="drawing-row" data-group="arrangement" data-search="js127-er-108 double-bottom tank allocation and conformal boundaries 1:50">
+ <span class="page-number"><span class="mobile-label">Page </span>08</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-ER-108</span><h3>Double-bottom tank allocation and conformal boundaries</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>1:50<span class="paper">A2</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-ER-108.dxf" download>DXF<span class="sr-only">: JS127-ER-108</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=8">PDF page<span class="sr-only"> 8: JS127-ER-108</span></a></div>
+</li>
+<li class="drawing-row" data-group="arrangement" data-search="js127-er-105 physical pipe routes - fuel and lubricating oil 1:50">
+ <span class="page-number"><span class="mobile-label">Page </span>09</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-ER-105</span><h3>Physical pipe routes - fuel and lubricating oil</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>1:50<span class="paper">A2</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-ER-105.dxf" download>DXF<span class="sr-only">: JS127-ER-105</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=9">PDF page<span class="sr-only"> 9: JS127-ER-105</span></a></div>
+</li>
+<li class="drawing-row" data-group="arrangement" data-search="js127-er-106 physical pipe routes - cooling and water 1:50">
+ <span class="page-number"><span class="mobile-label">Page </span>10</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-ER-106</span><h3>Physical pipe routes - cooling and water</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>1:50<span class="paper">A2</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-ER-106.dxf" download>DXF<span class="sr-only">: JS127-ER-106</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=10">PDF page<span class="sr-only"> 10: JS127-ER-106</span></a></div>
+</li>
+<li class="drawing-row" data-group="arrangement" data-search="js127-er-107 physical pipe routes - bilge, fire, air and sanitary 1:50">
+ <span class="page-number"><span class="mobile-label">Page </span>11</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-ER-107</span><h3>Physical pipe routes - bilge, fire, air and sanitary</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>1:50<span class="paper">A2</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-ER-107.dxf" download>DXF<span class="sr-only">: JS127-ER-107</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=11">PDF page<span class="sr-only"> 11: JS127-ER-107</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-01 fuel oil - system connection schematic nts">
+ <span class="page-number"><span class="mobile-label">Page </span>12</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-01</span><h3>Fuel oil - system connection schematic</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-01.dxf" download>DXF<span class="sr-only">: JS127-PID-01</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=12">PDF page<span class="sr-only"> 12: JS127-PID-01</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-01-n1 fuel oil - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>13</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-01-N1</span><h3>Fuel oil - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-01-N1.dxf" download>DXF<span class="sr-only">: JS127-PID-01-N1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=13">PDF page<span class="sr-only"> 13: JS127-PID-01-N1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-01-l1 fuel oil - line connection schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>14</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-01-L1</span><h3>Fuel oil - line connection schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-01-L1.dxf" download>DXF<span class="sr-only">: JS127-PID-01-L1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=14">PDF page<span class="sr-only"> 14: JS127-PID-01-L1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-02 lubricating oil - system connection schematic nts">
+ <span class="page-number"><span class="mobile-label">Page </span>15</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-02</span><h3>Lubricating oil - system connection schematic</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-02.dxf" download>DXF<span class="sr-only">: JS127-PID-02</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=15">PDF page<span class="sr-only"> 15: JS127-PID-02</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-02-n1 lubricating oil - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>16</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-02-N1</span><h3>Lubricating oil - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-02-N1.dxf" download>DXF<span class="sr-only">: JS127-PID-02-N1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=16">PDF page<span class="sr-only"> 16: JS127-PID-02-N1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-02-n2 lubricating oil - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>17</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-02-N2</span><h3>Lubricating oil - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-02-N2.dxf" download>DXF<span class="sr-only">: JS127-PID-02-N2</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=17">PDF page<span class="sr-only"> 17: JS127-PID-02-N2</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-02-l1 lubricating oil - line connection schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>18</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-02-L1</span><h3>Lubricating oil - line connection schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-02-L1.dxf" download>DXF<span class="sr-only">: JS127-PID-02-L1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=18">PDF page<span class="sr-only"> 18: JS127-PID-02-L1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-02-l2 lubricating oil - line connection schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>19</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-02-L2</span><h3>Lubricating oil - line connection schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-02-L2.dxf" download>DXF<span class="sr-only">: JS127-PID-02-L2</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=19">PDF page<span class="sr-only"> 19: JS127-PID-02-L2</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-03 sea-water cooling - system connection schematic nts">
+ <span class="page-number"><span class="mobile-label">Page </span>20</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-03</span><h3>Sea-water cooling - system connection schematic</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-03.dxf" download>DXF<span class="sr-only">: JS127-PID-03</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=20">PDF page<span class="sr-only"> 20: JS127-PID-03</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-03-n1 sea-water cooling - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>21</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-03-N1</span><h3>Sea-water cooling - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-03-N1.dxf" download>DXF<span class="sr-only">: JS127-PID-03-N1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=21">PDF page<span class="sr-only"> 21: JS127-PID-03-N1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-03-l1 sea-water cooling - line connection schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>22</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-03-L1</span><h3>Sea-water cooling - line connection schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-03-L1.dxf" download>DXF<span class="sr-only">: JS127-PID-03-L1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=22">PDF page<span class="sr-only"> 22: JS127-PID-03-L1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-04 jacket water - system connection schematic nts">
+ <span class="page-number"><span class="mobile-label">Page </span>23</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-04</span><h3>Jacket water - system connection schematic</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-04.dxf" download>DXF<span class="sr-only">: JS127-PID-04</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=23">PDF page<span class="sr-only"> 23: JS127-PID-04</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-04-n1 jacket water - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>24</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-04-N1</span><h3>Jacket water - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-04-N1.dxf" download>DXF<span class="sr-only">: JS127-PID-04-N1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=24">PDF page<span class="sr-only"> 24: JS127-PID-04-N1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-04-n2 jacket water - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>25</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-04-N2</span><h3>Jacket water - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-04-N2.dxf" download>DXF<span class="sr-only">: JS127-PID-04-N2</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=25">PDF page<span class="sr-only"> 25: JS127-PID-04-N2</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-04-l1 jacket water - line connection schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>26</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-04-L1</span><h3>Jacket water - line connection schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-04-L1.dxf" download>DXF<span class="sr-only">: JS127-PID-04-L1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=26">PDF page<span class="sr-only"> 26: JS127-PID-04-L1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-05 bilge and ballast - system connection schematic nts">
+ <span class="page-number"><span class="mobile-label">Page </span>27</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-05</span><h3>Bilge and ballast - system connection schematic</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-05.dxf" download>DXF<span class="sr-only">: JS127-PID-05</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=27">PDF page<span class="sr-only"> 27: JS127-PID-05</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-05-n1 bilge and ballast - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>28</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-05-N1</span><h3>Bilge and ballast - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-05-N1.dxf" download>DXF<span class="sr-only">: JS127-PID-05-N1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=28">PDF page<span class="sr-only"> 28: JS127-PID-05-N1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-05-n2 bilge and ballast - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>29</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-05-N2</span><h3>Bilge and ballast - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-05-N2.dxf" download>DXF<span class="sr-only">: JS127-PID-05-N2</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=29">PDF page<span class="sr-only"> 29: JS127-PID-05-N2</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-05-l1 bilge and ballast - line connection schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>30</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-05-L1</span><h3>Bilge and ballast - line connection schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-05-L1.dxf" download>DXF<span class="sr-only">: JS127-PID-05-L1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=30">PDF page<span class="sr-only"> 30: JS127-PID-05-L1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-06 fire main and co₂ - system connection schematic nts">
+ <span class="page-number"><span class="mobile-label">Page </span>31</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-06</span><h3>Fire main and CO₂ - system connection schematic</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-06.dxf" download>DXF<span class="sr-only">: JS127-PID-06</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=31">PDF page<span class="sr-only"> 31: JS127-PID-06</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-06-n1 fire main and co₂ - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>32</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-06-N1</span><h3>Fire main and CO₂ - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-06-N1.dxf" download>DXF<span class="sr-only">: JS127-PID-06-N1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=32">PDF page<span class="sr-only"> 32: JS127-PID-06-N1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-06-n2 fire main and co₂ - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>33</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-06-N2</span><h3>Fire main and CO₂ - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-06-N2.dxf" download>DXF<span class="sr-only">: JS127-PID-06-N2</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=33">PDF page<span class="sr-only"> 33: JS127-PID-06-N2</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-06-l1 fire main and co₂ - line connection schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>34</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-06-L1</span><h3>Fire main and CO₂ - line connection schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-06-L1.dxf" download>DXF<span class="sr-only">: JS127-PID-06-L1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=34">PDF page<span class="sr-only"> 34: JS127-PID-06-L1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-07 starting and service air - system connection schematic nts">
+ <span class="page-number"><span class="mobile-label">Page </span>35</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-07</span><h3>Starting and service air - system connection schematic</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-07.dxf" download>DXF<span class="sr-only">: JS127-PID-07</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=35">PDF page<span class="sr-only"> 35: JS127-PID-07</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-07-n1 starting and service air - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>36</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-07-N1</span><h3>Starting and service air - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-07-N1.dxf" download>DXF<span class="sr-only">: JS127-PID-07-N1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=36">PDF page<span class="sr-only"> 36: JS127-PID-07-N1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-07-l1 starting and service air - line connection schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>37</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-07-L1</span><h3>Starting and service air - line connection schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-07-L1.dxf" download>DXF<span class="sr-only">: JS127-PID-07-L1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=37">PDF page<span class="sr-only"> 37: JS127-PID-07-L1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-08 fresh water - system connection schematic nts">
+ <span class="page-number"><span class="mobile-label">Page </span>38</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-08</span><h3>Fresh water - system connection schematic</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-08.dxf" download>DXF<span class="sr-only">: JS127-PID-08</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=38">PDF page<span class="sr-only"> 38: JS127-PID-08</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-08-n1 fresh water - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>39</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-08-N1</span><h3>Fresh water - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-08-N1.dxf" download>DXF<span class="sr-only">: JS127-PID-08-N1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=39">PDF page<span class="sr-only"> 39: JS127-PID-08-N1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-08-l1 fresh water - line connection schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>40</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-08-L1</span><h3>Fresh water - line connection schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-08-L1.dxf" download>DXF<span class="sr-only">: JS127-PID-08-L1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=40">PDF page<span class="sr-only"> 40: JS127-PID-08-L1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-09 sanitary water and sewage - system connection schematic nts">
+ <span class="page-number"><span class="mobile-label">Page </span>41</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-09</span><h3>Sanitary water and sewage - system connection schematic</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-09.dxf" download>DXF<span class="sr-only">: JS127-PID-09</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=41">PDF page<span class="sr-only"> 41: JS127-PID-09</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-09-n1 sanitary water and sewage - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>42</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-09-N1</span><h3>Sanitary water and sewage - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-09-N1.dxf" download>DXF<span class="sr-only">: JS127-PID-09-N1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=42">PDF page<span class="sr-only"> 42: JS127-PID-09-N1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-09-l1 sanitary water and sewage - line connection schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>43</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-09-L1</span><h3>Sanitary water and sewage - line connection schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-09-L1.dxf" download>DXF<span class="sr-only">: JS127-PID-09-L1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=43">PDF page<span class="sr-only"> 43: JS127-PID-09-L1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-10 exhaust gas - system connection schematic nts">
+ <span class="page-number"><span class="mobile-label">Page </span>44</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-10</span><h3>Exhaust gas - system connection schematic</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-10.dxf" download>DXF<span class="sr-only">: JS127-PID-10</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=44">PDF page<span class="sr-only"> 44: JS127-PID-10</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-10-n1 exhaust gas - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>45</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-10-N1</span><h3>Exhaust gas - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-10-N1.dxf" download>DXF<span class="sr-only">: JS127-PID-10-N1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=45">PDF page<span class="sr-only"> 45: JS127-PID-10-N1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-10-l1 exhaust gas - line connection schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>46</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-10-L1</span><h3>Exhaust gas - line connection schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-10-L1.dxf" download>DXF<span class="sr-only">: JS127-PID-10-L1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=46">PDF page<span class="sr-only"> 46: JS127-PID-10-L1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-11 hydraulics: steering and ramp - system connection schematic nts">
+ <span class="page-number"><span class="mobile-label">Page </span>47</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-11</span><h3>Hydraulics: steering and ramp - system connection schematic</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-11.dxf" download>DXF<span class="sr-only">: JS127-PID-11</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=47">PDF page<span class="sr-only"> 47: JS127-PID-11</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-11-n1 hydraulics: steering and ramp - equipment and node schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>48</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-11-N1</span><h3>Hydraulics: steering and ramp - equipment and node schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-11-N1.dxf" download>DXF<span class="sr-only">: JS127-PID-11-N1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=48">PDF page<span class="sr-only"> 48: JS127-PID-11-N1</span></a></div>
+</li>
+<li class="drawing-row" data-group="systems" data-search="js127-pid-11-l1 hydraulics: steering and ramp - line connection schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>49</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-PID-11-L1</span><h3>Hydraulics: steering and ramp - line connection schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-PID-11-L1.dxf" download>DXF<span class="sr-only">: JS127-PID-11-L1</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=49">PDF page<span class="sr-only"> 49: JS127-PID-11-L1</span></a></div>
+</li>
+<li class="drawing-row" data-group="electrical" data-search="js127-el-001 electrical distribution - corrected one-line nts">
+ <span class="page-number"><span class="mobile-label">Page </span>50</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-EL-001</span><h3>Electrical distribution - corrected one-line</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-EL-001.dxf" download>DXF<span class="sr-only">: JS127-EL-001</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=50">PDF page<span class="sr-only"> 50: JS127-EL-001</span></a></div>
+</li>
+<li class="drawing-row" data-group="electrical" data-search="js127-el-002 sources and transformer side schedule nts">
+ <span class="page-number"><span class="mobile-label">Page </span>51</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-EL-002</span><h3>Sources and transformer side schedule</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-EL-002.dxf" download>DXF<span class="sr-only">: JS127-EL-002</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=51">PDF page<span class="sr-only"> 51: JS127-EL-002</span></a></div>
+</li>
+<li class="drawing-row" data-group="electrical" data-search="js127-el-f01 feeder and cable schedule - 1 nts">
+ <span class="page-number"><span class="mobile-label">Page </span>52</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-EL-F01</span><h3>Feeder and cable schedule - 1</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-EL-F01.dxf" download>DXF<span class="sr-only">: JS127-EL-F01</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=52">PDF page<span class="sr-only"> 52: JS127-EL-F01</span></a></div>
+</li>
+<li class="drawing-row" data-group="electrical" data-search="js127-el-f02 feeder and cable schedule - 2 nts">
+ <span class="page-number"><span class="mobile-label">Page </span>53</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-EL-F02</span><h3>Feeder and cable schedule - 2</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-EL-F02.dxf" download>DXF<span class="sr-only">: JS127-EL-F02</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=53">PDF page<span class="sr-only"> 53: JS127-EL-F02</span></a></div>
+</li>
+<li class="drawing-row" data-group="electrical" data-search="js127-el-f03 feeder and cable schedule - 3 nts">
+ <span class="page-number"><span class="mobile-label">Page </span>54</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-EL-F03</span><h3>Feeder and cable schedule - 3</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-EL-F03.dxf" download>DXF<span class="sr-only">: JS127-EL-F03</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=54">PDF page<span class="sr-only"> 54: JS127-EL-F03</span></a></div>
+</li>
+<li class="drawing-row" data-group="arrangement" data-search="js127-er-900 drawing production and validation record nts">
+ <span class="page-number"><span class="mobile-label">Page </span>55</span>
+ <div class="drawing-name"><span class="drawing-id">JS127-ER-900</span><h3>Drawing production and validation record</h3></div>
+ <span class="drawing-scale"><span class="mobile-label">Scale </span>NTS<span class="paper">A3</span></span>
+ <div class="drawing-actions"><a href="Minato_Maru_RevB/dxf/JS127-ER-900.dxf" download>DXF<span class="sr-only">: JS127-ER-900</span></a><a href="Minato_Maru_RevB/Minato_Maru_Engine_Room_CAD_RevB.pdf#page=55">PDF page<span class="sr-only"> 55: JS127-ER-900</span></a></div>
+</li></ol>
+<p class="empty-state" id="no-results" hidden>No drawings match the current search. Clear the search or select another discipline.</p>
+<div class="technical-note"><h3>Units, scale and design status</h3><p>Physical CAD geometry is at 1:1 in millimetres. PDF physical views are at 1:50 or 1:100 as stated on each sheet; system and electrical diagrams are not to scale (NTS). Print PDFs at 100% and check the scale bar before measuring.</p><p>CAD X is forward from the transom, Y is to port from the centreline, and Z is upward from the baseline. Manufacturer comparison data and proposed machinery, maintenance, removal and tank reservations do not establish an approved installation.</p><p>The archive is preserved as issued. Its game integration notes describe the issue-time status; subsequent runtime and publication status are recorded separately in the publication record.</p><p>Remaining work includes weight and stability reconciliation, structural design, supplier interfaces, physical piping, overhaul and lifting, protected escape, ventilation and electrical starting and protection studies. The <a href="Minato_Maru_RevB/construction_work_register.csv" download>construction work register</a> identifies the required evidence.</p></div>
+</section>
+</main>
+<footer class="footer"><div class="wrap"><p>Minato Maru · Johansson World · Hull 127 · Revision B · Issued 13 October 2026</p><p>Drawing issue: for design review. Construction approval: none.</p></div></footer>
+<script>
+(()=>{'use strict';const search=document.getElementById('drawing-search'),discipline=document.getElementById('drawing-discipline'),rows=Array.from(document.querySelectorAll('.drawing-row')),count=document.getElementById('sheet-count'),empty=document.getElementById('no-results');function filter(){const terms=search.value.toLocaleLowerCase('en').trim().split(/\s+/).filter(Boolean),group=discipline.value;let visible=0;for(const row of rows){const match=(group==='all'||row.dataset.group===group)&&terms.every(term=>row.dataset.search.includes(term));row.hidden=!match;if(match)visible++;}count.textContent=visible+' of '+rows.length+' sheets';empty.hidden=visible!==0;}search.addEventListener('input',filter);discipline.addEventListener('change',filter);})();
+</script>
+</body></html>

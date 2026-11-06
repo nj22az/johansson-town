@@ -1,0 +1,46 @@
+✔ she comes in and goes out like a ship: speed and heading continuous, turns and acceleration within reason (17.147959ms)
+✔ every part of her hull keeps off the pier, the walls, the boats and the ferry, and lies on her fenders alongside (5122.486534ms)
+✔ her calls keep to the board and stay out of the ferry's way (23.368885ms)
+✔ Mr Fujita gets through 24 to 49 bottles a day, and the days differ (2.06398ms)
+✔ the empties pile up all day, go with the morning van, and every bottle is accounted for (164.773321ms)
+✔ he empties a glass before he pours the next, and pours without a dry bottle (52.02209ms)
+✔ he flips channels, the ballgame only in the afternoon, the set off at night (172.372564ms)
+✔ he laughs now and then, never at a dark set (4002.175916ms)
+✔ Mr Fujita walks to his sofa at 23:30 and returns at six without beer or a tilted walking body (1235.856281ms)
+✔ night boot is on the sofa with the same resident (243.9652ms)
+✔ pier, gangway and every walking segment are clear (209.896108ms)
+✔ clock reversal reverses the current walk continuously (236.57009ms)
+✔ cargo calls never overlap the houseboat or gangway (281.275636ms)
+✔ the open cabin approach clears a standing player beside the freshwater tank (379.18291ms)
+✔ extended cabin has a sofa and stored futon, with furniture beside the clear aisle (415.197553ms)
+✔ standing player clearance follows Fujita through the gangway and cabin in both directions (151.231149ms)
+✔ the actual sleeping head rests on the pillow, which rests on the sofa (165.163332ms)
+✔ the folded bedding is the first visible surface through the cupboard opening from the aisle (70.010612ms)
+✔ roof fittings cut away with the roof and cabin camera bounds exclude the exterior (192.752975ms)
+✔ actual home ceilings keep the camera and its near plane below the roof (76.950532ms)
+✔ sloping roofs and multiple floors use local height and the player floor (1.936082ms)
+✔ the lens stops at an awning seen from below and at shop glass, not at people or the pavement (62.451248ms)
+✔ a hidden section is not in the way (17.380969ms)
+✔ the television picture is clear through its open bezel (633.813879ms)
+✔ Mr Fujita’s shed: channels flipping, a glass in his hand, the empties round him, the pier left open (367.018978ms)
+✔ Fujita has connected visible calves and planted shoes while holding and sipping (460.09813ms)
+✔ sustained overload reduces detail within bounds and sustained headroom restores it (6.519141ms)
+✔ loading and hidden intervals do not lower quality; brief spikes do not cause pumping (11.967427ms)
+✔ published runtime matches the current source rather than an older build (1369.700509ms)
+✔ published page uses one compiled audio/boot graph with local hashed dependencies (454.475427ms)
+✔ every stylesheet link carries a hash of the file it points at (75.666653ms)
+✔ a process killed while entering the town selects recovery on the next launch (1.963581ms)
+✔ normal reloads and settled starts do not trigger recovery (0.493297ms)
+✔ old attempts and unavailable storage do not block launch; explicit recovery persists (4.882555ms)
+✔ lean graphics profiles avoid MSAA, half-float and whole-scene compilation (0.392986ms)
+✔ iPhone retains all postprocess effects and bounded shadows without enabling asset streaming (0.55207ms)
+✔ obsolete automatic recovery markers cannot permanently remove cartoon effects (0.75285ms)
+✔ a deliberate full-effects retry clears reduced mode but cannot override an interrupted launch (0.343567ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6483.916111

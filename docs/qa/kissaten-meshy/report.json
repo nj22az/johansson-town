@@ -1,0 +1,30 @@
+{
+  "viewport": [
+    900,
+    600
+  ],
+  "time": "08:00",
+  "physicalDevice": false,
+  "meshyTriangles": {
+    "record-player": {
+      "tris": 2563
+    },
+    "bentwood-chair": {
+      "tris": 3100
+    },
+    "counter-stool": {
+      "tris": 2017
+    },
+    "cup-saucer": {
+      "tris": 1548
+    },
+    "hand-grinder": {
+      "tris": 2505
+    },
+    "drip-kettle": {
+      "tris": 2076
+    }
+  },
+  "scope": "The shut Higa Liquor with its shutter lifted and tubes lit for the photographs only; static createTown scene with cel and ink passes; the room still dressed as the liquor shop",
+  "errors": []
+}

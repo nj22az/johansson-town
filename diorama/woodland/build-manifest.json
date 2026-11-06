@@ -1,0 +1,91 @@
+{
+  "title": "Johansson Woodland",
+  "source_model": "Johansson_Woodland_Diorama.glb",
+  "source_model_bytes": 21194248,
+  "source_model_sha256": "94ad597834509739204ac7b0374a33ee50eac7f59678c8f6cb8efc2b99fbe549",
+  "compressed_model_bytes": 5639752,
+  "compressed_model_sha256": "0ef693d2c19e5a64db68b68044bcfe198cda54d370740dc0d8be6346a4b677c1",
+  "compression": "gzip level 9, lossless, deterministic timestamp",
+  "source_poster": "Johansson_Woodland_Corrected_R3_Front.png",
+  "source_poster_sha256": "56fdddf5c025faff4c5b5a58da376e1f0c2ba61d8584caab3c755db2b61744c6",
+  "source_poster_pixels": [
+    3000,
+    2000
+  ],
+  "source_cast_commit": "04753db10d392b2b929d32df5e0a32d43202f98d",
+  "model_geometry_modified": false,
+  "artwork": "Nils Johansson; exact corrected R3 Blender scene and render",
+  "runtime": {
+    "three": "existing johansson-town/vendor, r170",
+    "orbit_controls": "r170 from the authenticated source bundle; relative import only",
+    "gzip_fallback": "pako 1.0.11, inflate-only; imported only if needed"
+  },
+  "camera": {
+    "centre": [
+      0,
+      9.5,
+      0
+    ],
+    "width": 32,
+    "height": 21.5
+  },
+  "load_policy": "Only poster-board.webp is used by World. Iframe and all viewer/model requests begin on Look.",
+  "close_protocol": {
+    "query": "?embedded=1&token=<parent-generated-token>",
+    "message": {
+      "type": "johansson-diorama-close",
+      "token": "<same-token>"
+    },
+    "ready_message": {
+      "type": "johansson-diorama-ready",
+      "token": "<same-token>"
+    },
+    "validation": "Parent checks event.origin, event.source, and token; removes iframe and resumes existing World."
+  },
+  "files": {
+    "LICENSE-PAKO.txt": {
+      "bytes": 1104,
+      "sha256": "a04665b3b2de56c66730c1f720f528175739e4104f79073614aa611da1e85539"
+    },
+    "LICENSE-THREE.txt": {
+      "bytes": 1081,
+      "sha256": "4c40a1ef62450b857c3b2aaf294936304cd552d965fbcd9d32d4c5bcf4ba4454"
+    },
+    "index.html": {
+      "bytes": 1470,
+      "sha256": "7da3247ab3d2e26bc03ef52d5a9d312594d356f4c26b38d21bcad9d0db284b7b"
+    },
+    "inflate-fallback.js": {
+      "bytes": 22917,
+      "sha256": "2ca29205d967d3f2505524a6a8ef49ff706b175df5af44ae1c0b7dd48c3b7668"
+    },
+    "orbit-controls.js": {
+      "bytes": 32158,
+      "sha256": "7176d3da4de21ae53e807d23c6e8e24fa5cbffaca23853d623ccb860021b70b2"
+    },
+    "poster-board.webp": {
+      "bytes": 114994,
+      "sha256": "bb1c5fd88ff49fe47a081ce7205544232b41f7d2f4eb24e86e7e66d22bd0a008"
+    },
+    "poster.webp": {
+      "bytes": 312538,
+      "sha256": "304a7cfdc6d30265499aec5c79db406cb5dd1ade6b9ce9bbcd4b3700032a871b"
+    },
+    "viewer-3d.js": {
+      "bytes": 6435,
+      "sha256": "3fb43678d9d5fbd7aa1dbc973718c5a62fddace15c0978ce423ac4d3706ef511"
+    },
+    "viewer.css": {
+      "bytes": 3254,
+      "sha256": "02d782b9927e90bb61a1e3ae7192fed62516630017bb9518875e5012d80d7991"
+    },
+    "viewer.js": {
+      "bytes": 6247,
+      "sha256": "a4fd0af135e498bd6d99e2c83c937aca3dd46b9037051231588330022f6edb43"
+    },
+    "woodland.glb.gz": {
+      "bytes": 5639752,
+      "sha256": "0ef693d2c19e5a64db68b68044bcfe198cda54d370740dc0d8be6346a4b677c1"
+    }
+  }
+}

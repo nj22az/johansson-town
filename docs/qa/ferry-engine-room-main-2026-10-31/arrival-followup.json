@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-31",
+  "kind": "Targeted full-controller placement experiment; renderer and DOM substituted",
+  "full_tour_repeated": false,
+  "observations": {
+    "bad": {
+      "minute": 600,
+      "prime": false,
+      "before": {
+        "player": {
+          "position": [
+            -8.634623080171735,
+            -1.5419939079535907,
+            -75.60020786650291
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "deck": null,
+        "ship": [
+          -8.64,
+          -0.5432876010050246,
+          -69.45
+        ],
+        "berth": "town"
+      },
+      "after": {
+        "player": {
+          "position": [
+            184.67414011560498,
+            -1.5729947117609289,
+            -277.3145475682033
+          ],
+          "yaw": 1.3507963267948966,
+          "room": null
+        },
+        "camera": {
+          "active": false,
+          "id": null,
+          "fov": 65,
+          "zoom": 1
+        },
+        "deck": null,
+        "ship": [
+          190.67690632676252,
+          -0.5788395464269753,
+          -275.97255154681386
+        ],
+        "berth": "airport"
+      }
+    },
+    "good": {
+      "minute": 515,
+      "prime": true,
+      "before": {
+        "player": {
+          "position": [
+            -8.634480411260485,
+            -1.5399049249426233,
+            -75.60042460689388
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "deck": "engine-room",
+        "ship": [
+          -8.64,
+          -0.5425350391658296,
+          -69.45
+        ],
+        "berth": "town"
+      },
+      "after": {
+        "player": {
+          "position": [
+            -8.634448384385989,
+            -1.539401954447093,
+            -75.60047781956968
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "camera": {
+          "active": true,
+          "id": "engines-aft",
+          "fov": 65,
+          "zoom": 1
+        },
+        "deck": "engine-room",
+        "ship": [
+          -8.64,
+          -0.5423604455088712,
+          -69.45
+        ],
+        "berth": "town"
+      }
+    }
+  },
+  "result": "The previous fixture time (10:00) moves the parked ferry to its scheduled airport berth on the next frame; 08:35 Town dwell with normal cache update stays aboard and activates engines-aft.",
+  "focused_tests": {
+    "arrival_camera_opening": {
+      "tests": 12,
+      "pass": 12,
+      "fail": 0
+    },
+    "runtime_package": {
+      "tests": 4,
+      "pass": 4,
+      "fail": 0
+    }
+  },
+  "changes": [
+    "Ferry opening now shares the safe shore waiting x coordinate",
+    "Ladder prompt and upper return use the relocated CAD doorway centre",
+    "Native graphics review primes real simulation at the timetable Town dwell; no graphics or loading assertion removed"
+  ],
+  "previous_hosted_check": {
+    "commit": "2038cc9d3e6d10ff35899376b62e35edd3c0a73b",
+    "world_guard": "success",
+    "iphone_startup": "failed at first fixture placement, before asset check",
+    "run": "https://github.com/nj22az/nj22az.github.io/actions/runs/41203355517"
+  }
+}

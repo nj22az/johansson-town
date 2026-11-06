@@ -1,0 +1,5 @@
+numpy
+ezdxf
+reportlab
+matplotlib
+Pillow

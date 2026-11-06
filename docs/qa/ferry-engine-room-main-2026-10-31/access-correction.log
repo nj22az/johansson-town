@@ -1,0 +1,11 @@
+✔ ordinary play enables CAD headroom, deck stack, service openings and fixed lenses (189.874254ms)
+✔ H1 access uses the relocated side door and full top landing, then returns to the car deck (1177.631624ms)
+✔ down into the engine room: the casing P door, the ladder through the car deck, round the engines to the control booth (575.36873ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1614.73774

@@ -1,0 +1,43 @@
+{
+  "source_name": "Meshy_AI_Lantern_Izakaya_at_Du_0908171257_texture.glb",
+  "source_sha256": "96ed339a04752f6d6294c33cc57423a22601fde9aca0ccd89cbf6558a4e1f5d7",
+  "source_bytes": 101242600,
+  "source_triangles": 2999284,
+  "target_triangles": 60000,
+  "output_triangles": 60000,
+  "scale": 4.3,
+  "ground_offset": -0.08,
+  "front_offset": 1.15,
+  "runtime_bytes": 4716880,
+  "runtime_sha256": "c234bc2fc1d8247d879b7a27cc77e01ba0971dd2ca3f876a4ff54948e2580b44",
+  "images": [
+    {
+      "index": 0,
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 196055,
+      "base_color": false
+    },
+    {
+      "index": 1,
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 1147385,
+      "base_color": true
+    },
+    {
+      "index": 2,
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 269837,
+      "base_color": false
+    }
+  ],
+  "size_reduction_percent": 95.34
+}

@@ -1,0 +1,16 @@
+✔ one timetable from the Harbour Line: three calls at Minato, the first boat out and the last boat back, overnight at Minato (1.538767ms)
+✔ ashore, she sails at her time: the gangway closes at 08:45 and nothing asks him (13110.255846ms)
+✔ two minutes before: the horn, the 出港 sign and the Go ashore / Stay aboard prompt; Go ashore lands him on the quay and she leaves without him (8282.86054ms)
+✔ Stay aboard: he crosses on his own feet, lands at the advertised time at Kitano-jima, and goes ashore down her ramp (22607.467877ms)
+✔ on the gangway as it closes, he is walked to the nearer end (pier) before it moves; she does not wait for him (5115.296169ms)
+✔ on the gangway as it closes, he is walked to the nearer end (deck) before it moves; she does not wait for him (5478.379624ms)
+✔ the chief’s watch: Mac’s while Johansson is ashore or off duty, Johansson’s aboard in working hours, and the ship never waits for him (6455.095021ms)
+✔ an old save holding a requested or held crossing comes back on the timetable (335.168758ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 62156.263136

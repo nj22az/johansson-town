@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-08",
+  "referenceGenerator": "OpenAI built-in image generation (not FLUX)",
+  "referenceFiles": [
+    {
+      "file": "references/air-conditioner.png",
+      "sha256": "38649cfacb5179c2b84966efb4ca2b244ea8be7f204bcf66fddaee8729a69151"
+    },
+    {
+      "file": "references/fish-crate.png",
+      "sha256": "41df3ba4ceb4c85ae2f16b235684abc142d3eb3dae0eedd2bf38b42212b4f098"
+    },
+    {
+      "file": "references/radio.png",
+      "sha256": "aa6a2672ec408024d8ae07e68bead89ef6fe81a0c5f581ea8a3a5a9907cd6c44"
+    },
+    {
+      "file": "references/rice-cooker.png",
+      "sha256": "711ab983fff52eabdc3cdac784486d3eb16f366c230fb9b5c4bb33d085183768"
+    },
+    {
+      "file": "references/stool.png",
+      "sha256": "727026485ab563cb9f1e19862b0d0093241793b076a55b6b1e05127b8979404e"
+    }
+  ],
+  "completedVoices": [
+    "aiko-greeting",
+    "aiko-cat",
+    "aiko-chair",
+    "kenji-game"
+  ],
+  "pendingVoices": [
+    "kenji-weather",
+    "sato-food",
+    "sato-home",
+    "harbour-tide",
+    "bus-time",
+    "radio-weather"
+  ],
+  "completedMeshes": [],
+  "meshModel": "microsoft/TRELLIS.2-4B",
+  "spaceRevisionObserved": "ebf60b20fc5a4607f90a1c11c0aab0ceeda5429d",
+  "blocker": "Public ZeroGPU quota exhausted: TRELLIS requested 60s with 0s left; Qwen requested 90s with 0s left. No additional generation requests were submitted after these errors.",
+  "review": "Images visually inspected; WAV structure, duration, non-silence checked. Native Japanese pronunciation and in-game listening remain pending."
+}

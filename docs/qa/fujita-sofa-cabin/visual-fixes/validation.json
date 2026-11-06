@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-19",
+  "sourceCommit": "ab31811c3e4376b90f03a52cb53a9fb1dcad4b0f",
+  "runtimeSourceHash": "e96090a0e80f56b3c48a0007050bd45bdb7460883f75291cbd7d3842827149f4",
+  "automatedTests": {
+    "pass": 38,
+    "fail": 0
+  },
+  "fullGameScreenshots": 16,
+  "diagnosticScreenshots": 7,
+  "clearCameraProbes": 24,
+  "walkingWaypointsReached": 16,
+  "firstPersonMovement": [
+    {
+      "viewport": "phone",
+      "forward": 0.34211233120178974,
+      "backward": 0.12719847328690292
+    },
+    {
+      "viewport": "desktop",
+      "forward": 0.34211233120178974,
+      "backward": 0.12719847328690292
+    }
+  ],
+  "browserErrors": [
+    {
+      "viewport": "phone",
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "errors": []
+    }
+  ],
+  "physicalIPhoneSafari": "not tested",
+  "onDeviceTouch": "not tested",
+  "frameRateAndLongDurationStability": "not measured",
+  "evidenceSHA256": {
+    "camera/desktop-alternate-cabin-camera.png": "e95ac4aae1cfe70955d9ee1f53402ad1d60af0fb432147240f726946c148816b",
+    "camera/desktop-first-person-night.png": "499db82489ee63471f4f14304583365e5d1641273b7d94dca276240a6620ae75",
+    "camera/desktop-normal-cabin-camera.png": "17b8e01feb8560879f03435d8a87d52b9ed691d103e6651524606a1d5d0628fb",
+    "camera/desktop-open-cabinet-day.png": "7357c6d2d3dd76bab2ba70cac6f9547500b1b9e9018ba8a4f996253900a08c5f",
+    "camera/desktop-restored-exterior-day.png": "7a9099a930f11e6afea850cec20fc9798ac62c7504c5f27df2ab0e1374994309",
+    "camera/desktop-sleep-overhead.png": "966cdb582bc9f18713aad62f538c7aa845581ba3758bbc745b835073c3a3407c",
+    "camera/desktop-sleep-side-night.png": "f12830b35586fcdf348f9fb92854a92cf66f20c987844bd592bd56e080269937",
+    "camera/desktop-third-person-night.png": "ab4b1f756f8c0def44ca98b4790f34fec57668bbf681186a1a5c48ef526b904e",
+    "camera/phone-alternate-cabin-camera.png": "f859a20fde245b8a2b8fe35c5bae215c7f59fe1baeb0b5d841747e0a27109004",
+    "camera/phone-first-person-night.png": "eee195e07113f16b4ba34565a2b065000f298c7daeed81baa3f5bd88bf24e9ee",
+    "camera/phone-normal-cabin-camera.png": "ce242a94175ebda21d6229c4be598f7abe8691e47b48fd35b0bbe608657a5f67",
+    "camera/phone-open-cabinet-day.png": "998983e3640f6d2317cc715f29347730947fb715e2ad1f5e954b7a249f4abfec",
+    "camera/phone-restored-exterior-day.png": "0e4e1c91ce72154da72613026d91096a15757f0111f1ce98393c06ce9d92e53d",
+    "camera/phone-sleep-overhead.png": "d1463e8f9097065bf7fb7464fc3ebea1903857f8c67df6cd505e870adcaaa4b2",
+    "camera/phone-sleep-side-night.png": "f0ab37672e88b5ea3fe1fa9fb040564432bdf1329a5fb39b55dc951771d0076b",
+    "camera/phone-third-person-night.png": "555b4e6a5e95fdfbd011459a97771709b6c66c50d42d34d62fe61978b54567c2",
+    "camera/report.json": "f6f772a60a75d1c990a8d02c7889683f4dd5946f15f1f22c3b6cd6a3825611c3",
+    "geometry/01-exterior.png": "0bf9a52791510b39c4578958f4d6218e50b9dc590990904214c1a3f397892627",
+    "geometry/02-stern.png": "9699502ba810ecdf0627caff3558358d11276eccff868edb03a77697184f83de",
+    "geometry/03-sofa-sleep-side.png": "475b4f154a962b735c7233cbc8bdc811a60c401eb9fba436e93eda85e055f05d",
+    "geometry/04-sofa-sleep-overhead.png": "f41b2d38abb36ed685a8b4e3b8ad93ef489958efbf07961ec5f756dacb8d2d37",
+    "geometry/05-sofa-sleep-close.png": "bfd7c66ad27f4569d905c0765a7e57755eed0e25f2c5986a23fb5896677ac9cd",
+    "geometry/06-cabin-aisle.png": "1de2488215af1d88f717b26da3ad1339558eaec505f6e27183049052644186ae",
+    "geometry/07-open-futon-cabinet.png": "a100eb5f4969d815df50215a1a0b284a09d671bd0c37d119fd86b0af5457ee5e",
+    "geometry/report.json": "a803b5bc34b8064fb5f163ce3d4e1bbde0d377115c17dc3c5cbede64f119180c"
+  },
+  "passed": true
+}

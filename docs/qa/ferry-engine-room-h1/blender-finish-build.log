@@ -1,0 +1,10 @@
+Condensed Blender output; repeated object synchronization/extraction omitted.
+Blender 4.0.2
+Info: Total files 0 | Changed 0 | Failed 0
+11:40:33 | ERROR: Draco mesh compression is not available because library could not be found at /workspace/scratch/d916a0d6443b/tmp/blender-runtime/usr/bin/4.0/python/lib/python3.12/site-packages/libextern_draco.so
+11:40:34 | INFO: Starting glTF 2.0 export
+11:40:34 | INFO: Primitives created: 2
+11:40:34 | INFO: Finished glTF 2.0 export in 0.46485471725463867 s
+Info: Saved "Minato_Maru_Engine_Room_H1.blend"
+H1_F1_BUILD_COMPLETE {"revision": "H1-F1", "workflow": "Blender only", "source_components": 1290, "bevelled_equipment_boxes": 221, "bevelled_source_envelopes_checked": 221, "outward_faces_checked": 29268, "outward_faces_failed": 0, "dial_faces": 43, "source_glass_panes": 1, "contact_shade_range": [0.78, 1.0], "runtime_file": "minato-engine-room-h1-f1.glb", "runtime_bytes": 3587152, "runtime_triangles": 80376, "runtime_primitives": 2, "colour_quantization": "normalized unsigned byte; positions and normals unchanged", "tonemapping": "AgX / medium high contrast"}
+Blender quit

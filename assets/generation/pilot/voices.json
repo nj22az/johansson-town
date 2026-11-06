@@ -1,0 +1,92 @@
+[
+  {
+    "id": "aiko-greeting",
+    "resident": "Aiko",
+    "topic": "books",
+    "ja": "いらっしゃいませ。ゆっくり本を見ていってください。",
+    "en": "Welcome. Take your time looking through the books.",
+    "speaker": "Ono_anna",
+    "instruction": "Speak Japanese naturally and clearly, with a calm, warm delivery. Do not sing."
+  },
+  {
+    "id": "aiko-cat",
+    "resident": "Aiko",
+    "topic": "cat",
+    "ja": "タマを見かけませんでしたか。ラーメン屋さんの辺りが好きなんです。",
+    "en": "Have you seen Tama? He likes to linger near the ramen stall.",
+    "speaker": "Ono_anna",
+    "instruction": "Speak Japanese naturally and clearly, with a calm, warm delivery. Do not sing."
+  },
+  {
+    "id": "aiko-chair",
+    "resident": "Aiko",
+    "topic": "chair",
+    "ja": "窓際の椅子は空いていますよ。少し休んでいきませんか。",
+    "en": "The window chair is free. Would you like to rest a little?",
+    "speaker": "Ono_anna",
+    "instruction": "Speak Japanese naturally and clearly, with a calm, warm delivery. Do not sing."
+  },
+  {
+    "id": "kenji-game",
+    "resident": "Kenji",
+    "topic": "game",
+    "ja": "スターポートで満点を取ったら、工房に案内するよ。",
+    "en": "Get a perfect score at Star Port and I will show you the workshop.",
+    "speaker": "Aiden",
+    "instruction": "Speak Japanese naturally and clearly, with a calm, warm delivery. Do not sing."
+  },
+  {
+    "id": "kenji-weather",
+    "resident": "Kenji",
+    "topic": "weather",
+    "ja": "雨が来そうだね。工具を中に入れておこう。",
+    "en": "Looks like rain. I had better bring the tools inside.",
+    "speaker": "Aiden",
+    "instruction": "Speak Japanese naturally and clearly, with a calm, warm delivery. Do not sing."
+  },
+  {
+    "id": "sato-food",
+    "resident": "Mrs Sato",
+    "topic": "food",
+    "ja": "梅干しのおにぎり、八十円ですよ。お腹が空いていませんか。",
+    "en": "An umeboshi rice ball is eighty yen. Are you hungry?",
+    "speaker": "Ono_anna",
+    "instruction": "Speak Japanese naturally and clearly, with a calm, warm delivery. Sound like an older local shopkeeper."
+  },
+  {
+    "id": "sato-home",
+    "resident": "Mrs Sato",
+    "topic": "home",
+    "ja": "暗くなる前に帰りましょう。港の風は冷えますから。",
+    "en": "Let us head home before dark. The harbour wind gets cold.",
+    "speaker": "Ono_anna",
+    "instruction": "Speak Japanese naturally and clearly, with a calm, warm delivery. Sound like an older local shopkeeper."
+  },
+  {
+    "id": "harbour-tide",
+    "resident": "Harbour master",
+    "topic": "tide",
+    "ja": "潮の流れに気をつけて。桟橋の先は足元が滑ります。",
+    "en": "Mind the current. The end of the pier is slippery.",
+    "speaker": "Uncle_fu",
+    "instruction": "Speak Japanese naturally and clearly, with a calm, warm delivery. Do not sing."
+  },
+  {
+    "id": "bus-time",
+    "resident": "Bus driver",
+    "topic": "time",
+    "ja": "最終バスは十八時二十分です。乗り遅れないでくださいね。",
+    "en": "The last bus leaves at 18:20. Please do not miss it.",
+    "speaker": "Aiden",
+    "instruction": "Speak Japanese naturally and clearly, with a calm, warm delivery. Do not sing."
+  },
+  {
+    "id": "radio-weather",
+    "resident": "radio",
+    "topic": "weather",
+    "ja": "こちらは港の気象情報です。今夜は曇り、時々雨。海沿いでは風にご注意ください。",
+    "en": "Harbour weather: cloudy tonight with occasional rain. Take care in the wind along the coast.",
+    "speaker": "Ono_anna",
+    "instruction": "Speak Japanese naturally and clearly, with a calm, warm delivery. Do not sing."
+  }
+]

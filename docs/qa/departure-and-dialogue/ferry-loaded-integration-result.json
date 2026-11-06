@@ -1,0 +1,360 @@
+{
+  "passed": true,
+  "scenario": "Full constructed town, actual Tetsuo truck and original resident, physical crew/shore/plant, ordinary traffic timesteps",
+  "backgroundSetup": [
+    {
+      "name": "Nhung",
+      "from": [
+        -6.8999999999999995,
+        0,
+        1.6
+      ],
+      "to": [
+        1.9,
+        0,
+        1.6
+      ]
+    },
+    {
+      "name": "Mrs Sato",
+      "from": [
+        -4.2,
+        0,
+        -26
+      ],
+      "to": [
+        1.9,
+        0,
+        -26
+      ]
+    },
+    {
+      "name": "Reiko",
+      "from": [
+        -6.8999999999999995,
+        0,
+        1.6
+      ],
+      "to": [
+        1.9,
+        0,
+        1.6
+      ]
+    },
+    {
+      "name": "Thao",
+      "from": [
+        -7.05,
+        0,
+        -10.43
+      ],
+      "to": [
+        1.9,
+        0,
+        -10.43
+      ]
+    },
+    {
+      "name": "Thuan",
+      "from": [
+        -4,
+        0,
+        -25.5
+      ],
+      "to": [
+        1.9,
+        0,
+        -25.5
+      ]
+    },
+    {
+      "name": "Barfly",
+      "from": [
+        -7.05,
+        0,
+        -10.43
+      ],
+      "to": [
+        1.9,
+        0,
+        -10.43
+      ]
+    }
+  ],
+  "seconds": 856.5,
+  "minutes": 704.2750000000021,
+  "vehicle": "owned-car-1",
+  "driver": "Tetsuo",
+  "kind": "kei truck",
+  "berth": "airport",
+  "vehicleLocation": "airport",
+  "allFast": true,
+  "rampDown": 1,
+  "driverAtWheel": true,
+  "sameResident": true,
+  "stairSamples": 108,
+  "maxDriverStep": 0.10500000000000075,
+  "stages": [
+    null,
+    "preparing",
+    "securing",
+    "closing-access",
+    "raising-ramp",
+    "letting-go",
+    "departing",
+    "passage",
+    "arriving",
+    "making-fast",
+    "opening-access",
+    "alongside"
+  ],
+  "modes": [
+    "driving",
+    "stepping-out",
+    "walking",
+    "passenger",
+    "returning",
+    "stepping-in",
+    "driving"
+  ],
+  "blockedCrew": [],
+  "events": [
+    {
+      "seconds": 0.1,
+      "kind": "stage",
+      "blocking": null
+    },
+    {
+      "seconds": 0.1,
+      "kind": "driver",
+      "mode": "driving",
+      "position": [
+        -0.32,
+        0,
+        0.8
+      ],
+      "blocked": null
+    },
+    {
+      "seconds": 72,
+      "kind": "loaded",
+      "local": [
+        -1.3749999999999964,
+        1.0999999999999996,
+        -1.9000000000000057
+      ]
+    },
+    {
+      "seconds": 72.1,
+      "kind": "stage",
+      "stage": "preparing",
+      "blocking": "Master: Check the route and issue stations; Mate: Check traffic and the berth; Bosun: Inspect vehicle lanes and securing equipment; Able seaman: Supervise boarding; Purser: Check the passenger count and exits; Cook: Secure the galley and loose equipment; Chief engineer: Inspect fuel, cooling, starting air and engine-room readiness"
+    },
+    {
+      "seconds": 111.6,
+      "kind": "stage",
+      "stage": "securing",
+      "blocking": null
+    },
+    {
+      "seconds": 111.6,
+      "kind": "driver",
+      "mode": "stepping-out",
+      "position": [
+        -1.7376666666666636,
+        1.0999999999999999,
+        -1.1000000000000074
+      ],
+      "blocked": null
+    },
+    {
+      "seconds": 113,
+      "kind": "driver",
+      "mode": "walking",
+      "position": [
+        -2.3349999999999986,
+        1.0999999999999999,
+        -1.0999999999999914
+      ],
+      "blocked": null
+    },
+    {
+      "seconds": 127.6,
+      "kind": "driver",
+      "mode": "passenger",
+      "position": [
+        -0.9,
+        5.5,
+        -10.45
+      ],
+      "blocked": null
+    },
+    {
+      "seconds": 127.6,
+      "kind": "secured-driver-clear",
+      "securing": {
+        "operation": 1,
+        "elapsed": 12,
+        "progress": 1,
+        "engineOff": true,
+        "parkingBrake": true,
+        "transmission": "neutral",
+        "chocks": true,
+        "straps": true
+      },
+      "driver": {
+        "mode": "passenger",
+        "blocked": null,
+        "position": [
+          -0.9,
+          5.5,
+          -10.45
+        ],
+        "parent": "Minato–Kitano-jima shared ferry"
+      }
+    },
+    {
+      "seconds": 127.7,
+      "kind": "stage",
+      "stage": "closing-access",
+      "blocking": "Mate: Clear the ramp and close the vehicle access; Able seaman: Count the last passengers and stow the gangway"
+    },
+    {
+      "seconds": 173.7,
+      "kind": "stage",
+      "stage": "raising-ramp",
+      "blocking": "Mate: Raise the bow ramp and check both locking pins; Able seaman: Stand by the forward mooring station; Bosun: Stand by the after mooring station"
+    },
+    {
+      "seconds": 237.7,
+      "kind": "stage",
+      "stage": "letting-go",
+      "blocking": "Able seaman: Receive the head line eye and heave it aboard; Shore hand: Lift and return the head line eye"
+    },
+    {
+      "seconds": 365,
+      "kind": "stage",
+      "stage": "departing",
+      "blocking": "Master: Accept all reports and order departure; Mate: Report the berth and water ahead clear"
+    },
+    {
+      "seconds": 369,
+      "kind": "stage",
+      "stage": "passage",
+      "blocking": null
+    },
+    {
+      "seconds": 527.8,
+      "kind": "mid-passage",
+      "progress": 0.5000352449017674,
+      "position": [
+        -40.72193723810629,
+        0.6018809576696941,
+        -120.9823107902788
+      ]
+    },
+    {
+      "seconds": 646.8,
+      "kind": "stage",
+      "stage": "arriving",
+      "blocking": null
+    },
+    {
+      "seconds": 686.6,
+      "kind": "stage",
+      "stage": "making-fast",
+      "blocking": "Able seaman: Pay out head line under control; Shore hand: Make the head line eye fast"
+    },
+    {
+      "seconds": 731.1,
+      "kind": "stage",
+      "stage": "opening-access",
+      "blocking": "Mate: Lower the bow ramp onto its landing; Able seaman: Rig the passenger gangway and check its landing; Bosun: Remove wheel securing after all fast; Purser: Prepare passengers and drivers to disembark"
+    },
+    {
+      "seconds": 731.1,
+      "kind": "all-fast",
+      "lines": [
+        {
+          "id": "line-0",
+          "status": "fast"
+        },
+        {
+          "id": "line-1",
+          "status": "fast"
+        },
+        {
+          "id": "line-2",
+          "status": "fast"
+        },
+        {
+          "id": "line-3",
+          "status": "fast"
+        }
+      ]
+    },
+    {
+      "seconds": 756.6,
+      "kind": "driver",
+      "mode": "returning",
+      "position": [
+        -0.999611746295304,
+        5.5,
+        -10.416796084568231
+      ],
+      "blocked": null
+    },
+    {
+      "seconds": 771.1,
+      "kind": "driver",
+      "mode": "stepping-in",
+      "position": [
+        -2.3349999999999986,
+        1.0999999999999999,
+        -1.0999999999999914
+      ],
+      "blocked": null
+    },
+    {
+      "seconds": 772.6,
+      "kind": "driver",
+      "mode": "driving",
+      "position": [
+        -0.32,
+        0,
+        0.8
+      ],
+      "blocked": null
+    },
+    {
+      "seconds": 772.6,
+      "kind": "driver-returned",
+      "driver": {
+        "mode": "driving",
+        "blocked": null,
+        "position": [
+          -0.32,
+          0,
+          0.8
+        ],
+        "parent": "Tetsuo · kei truck"
+      },
+      "securing": {
+        "operation": 1,
+        "elapsed": 12,
+        "progress": 0,
+        "engineOff": true,
+        "parkingBrake": true,
+        "transmission": "neutral",
+        "chocks": false,
+        "straps": false
+      }
+    },
+    {
+      "seconds": 814,
+      "kind": "stage",
+      "stage": "alongside",
+      "blocking": null
+    }
+  ]
+}

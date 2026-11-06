@@ -1,0 +1,6147 @@
+{
+  "kind": "compiled-game-mcp-controls",
+  "date": "2026-10-17",
+  "passed": true,
+  "method": "Repository MCP server, normal UI/keyboard/camera controls and bounded simulation waits in isolated saves; no coordinate setting, crew acknowledgement injection or ambient actor relocation. Normal resident schedules and vehicle traffic run.",
+  "finalBuild": {
+    "boot": "boot-BYig4clw.js",
+    "sourceSha256": "0e12fb92e77822eaa4338dc71881a2474809e94388d7d76af8e406f272801528",
+    "bootAndPackageGate": {
+      "tests": 4,
+      "passed": 4,
+      "failed": 0,
+      "durationSeconds": 50.029657955
+    }
+  },
+  "completeLoadedVoyage": {
+    "boot": "boot-DafHIvLE.js",
+    "sourceSha256": "fe669325830771e486cd148f2e103c437ad83be80025212e190ce7b14e0ea039",
+    "provenance": "The completed compiled voyage preceded the final warm-cooling interlock, notice wording and paired-handler timing correction. Those final changes passed the final 205-test source gate and final compiled boot/package gate; final paired-handler behaviour was also walked separately below.",
+    "requestToAccessOpenSeconds": 767.816666666297,
+    "route": "Minato to Kitano",
+    "originalDriver": "Tetsuo",
+    "originalShoreHandler": "Mr Fujita",
+    "fullyUnloadedAndParked": true,
+    "walkingAboard": {
+      "alongsideControlAccepted": true,
+      "passageControlAccepted": true,
+      "evidenceRpc": 52,
+      "note": "Movement during passage includes both ship displacement and normal relative foot movement."
+    },
+    "milestones": [
+      {
+        "rpc": 27,
+        "stage": "securing",
+        "elapsedSeconds": 79.99999999999675,
+        "shipPosition": [
+          -8.64,
+          -0.5540352228899961,
+          -69.45
+        ],
+        "ramp": {
+          "down": 1,
+          "locked": false
+        },
+        "gangway": {
+          "out": 1
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 0,
+          "driversClear": 0
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "after spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "stern line",
+            "status": "fast",
+            "progress": 0
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Keeps the log and watches the berth from the wheelhouse",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "port-wing",
+            "pos": [
+              3.55,
+              8.1,
+              3.3500000000000014
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks traffic and the landing before supervising the ramp",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "car-deck",
+            "pos": [
+              -0.315,
+              1.1,
+              -0.8400000000000003
+            ],
+            "state": "working",
+            "task": "1:securing:car-check",
+            "action": "Check engines off, parking brakes, transmission and wheel securing",
+            "progress": 0.16249999999999984,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "gangway",
+            "pos": [
+              3.4,
+              1.1,
+              -4.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Supervises the gangway and gives passengers a hand with their bags",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "saloon",
+            "pos": [
+              -0.3,
+              5.8,
+              -5.23671711315917
+            ],
+            "state": "walking",
+            "task": "1:securing:drivers",
+            "action": "Confirm drivers and passengers are clear of the vehicle deck",
+            "progress": 0,
+            "atStation": false,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:securing:car-check",
+            "post": "bosun",
+            "issuer": "mate",
+            "station": "car-deck",
+            "action": "Check engines off, parking brakes, transmission and wheel securing",
+            "seconds": 12,
+            "target": {
+              "x": -0.315,
+              "y": 1.1,
+              "z": -0.8400000000000003
+            },
+            "complete": false,
+            "acknowledged": true
+          },
+          {
+            "id": "1:securing:drivers",
+            "post": "purser",
+            "issuer": "mate",
+            "station": "saloon",
+            "action": "Confirm drivers and passengers are clear of the vehicle deck",
+            "seconds": 6,
+            "complete": false,
+            "acknowledged": false
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 40,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Accept engine control from the chief engineer: complete.",
+            "kind": "report",
+            "stage": "preparing",
+            "elapsed": 39.11666666666573
+          },
+          {
+            "sequence": 41,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Master: Check the route and issue stations.",
+            "kind": "order",
+            "stage": "preparing",
+            "elapsed": 39.11666666666573
+          },
+          {
+            "sequence": 42,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Check the route and issue stations: at station.",
+            "kind": "acknowledgement",
+            "stage": "preparing",
+            "elapsed": 39.133333333332395
+          },
+          {
+            "sequence": 43,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Check the route and issue stations: complete.",
+            "kind": "report",
+            "stage": "preparing",
+            "elapsed": 39.133333333332395
+          },
+          {
+            "sequence": 44,
+            "speaker": "Chief engineer",
+            "post": "chief",
+            "text": "Master, both main engines and steering are ready; two generators are on the board and bridge control is accepted.",
+            "kind": "report",
+            "stage": "preparing",
+            "elapsed": 76.26666666666362
+          },
+          {
+            "sequence": 45,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Bosun: Check engines off, parking brakes, transmission and wheel securing.",
+            "kind": "order",
+            "stage": "securing",
+            "elapsed": 76.26666666666362
+          },
+          {
+            "sequence": 46,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Purser: Confirm drivers and passengers are clear of the vehicle deck.",
+            "kind": "order",
+            "stage": "securing",
+            "elapsed": 76.26666666666362
+          },
+          {
+            "sequence": 47,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Check engines off, parking brakes, transmission and wheel securing: at station.",
+            "kind": "acknowledgement",
+            "stage": "securing",
+            "elapsed": 78.06666666666352
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": false,
+            "driverState": {
+              "mode": "walking",
+              "blocked": null,
+              "position": [
+                -2.335000000000002,
+                1.1000000000000005,
+                -3.4450000000000154
+              ],
+              "parent": "Minato–Kitano-jima shared ferry"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 1.949999999999998,
+              "progress": 0.16249999999999984,
+              "engineOff": true,
+              "parkingBrake": false,
+              "transmission": "pending",
+              "chocks": false,
+              "straps": false
+            },
+            "transfer": null,
+            "position": [
+              -10.021059356272934,
+              0.5416097687133583,
+              -71.34812067762445
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 32,
+        "stage": "closing-access",
+        "elapsedSeconds": 120.36666666666112,
+        "shipPosition": [
+          -8.64,
+          -0.5598051382691392,
+          -69.45
+        ],
+        "ramp": {
+          "down": 1,
+          "locked": false
+        },
+        "gangway": {
+          "out": 1
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 1,
+          "driversClear": 1
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "after spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "stern line",
+            "status": "fast",
+            "progress": 0
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Keeps the log and watches the berth from the wheelhouse",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "ramp",
+            "pos": [
+              1.3499999999999999,
+              1.1,
+              0.19380592845632405
+            ],
+            "state": "walking",
+            "task": "1:closing-access:ramp-clear",
+            "action": "Clear the ramp and close the vehicle access",
+            "progress": 0,
+            "atStation": false,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "car-deck",
+            "pos": [
+              0,
+              1.1,
+              1.25
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Supervises vehicle parking and wheel securing",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "gangway",
+            "pos": [
+              3.4,
+              1.1,
+              -4.65
+            ],
+            "state": "reported complete",
+            "task": "1:closing-access:gangway",
+            "action": "Count the last passengers and stow the gangway",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -1.6,
+              5.5,
+              -8.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks tickets, the passenger count and the passenger exits",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:closing-access:ramp-clear",
+            "post": "mate",
+            "issuer": "master",
+            "station": "ramp",
+            "action": "Clear the ramp and close the vehicle access",
+            "seconds": 8,
+            "complete": false,
+            "acknowledged": false
+          },
+          {
+            "id": "1:closing-access:gangway",
+            "post": "deck",
+            "issuer": "bosun",
+            "station": "gangway",
+            "action": "Count the last passengers and stow the gangway",
+            "seconds": 8,
+            "complete": true,
+            "acknowledged": true
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 49,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Check engines off, parking brakes, transmission and wheel securing: complete.",
+            "kind": "report",
+            "stage": "securing",
+            "elapsed": 90.04999999999617
+          },
+          {
+            "sequence": 50,
+            "speaker": "Purser",
+            "post": "purser",
+            "text": "Confirm drivers and passengers are clear of the vehicle deck: complete.",
+            "kind": "report",
+            "stage": "securing",
+            "elapsed": 90.39999999999615
+          },
+          {
+            "sequence": 51,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Mate, vehicle securing is complete.",
+            "kind": "report",
+            "stage": "securing",
+            "elapsed": 92.33333333332938
+          },
+          {
+            "sequence": 52,
+            "speaker": "Purser",
+            "post": "purser",
+            "text": "Mate, all drivers and passengers are clear of the vehicle deck.",
+            "kind": "report",
+            "stage": "securing",
+            "elapsed": 92.33333333332938
+          },
+          {
+            "sequence": 53,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Mate: Clear the ramp and close the vehicle access.",
+            "kind": "order",
+            "stage": "closing-access",
+            "elapsed": 92.33333333332938
+          },
+          {
+            "sequence": 54,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Able seaman: Count the last passengers and stow the gangway.",
+            "kind": "order",
+            "stage": "closing-access",
+            "elapsed": 92.33333333332938
+          },
+          {
+            "sequence": 55,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Count the last passengers and stow the gangway: at station.",
+            "kind": "acknowledgement",
+            "stage": "closing-access",
+            "elapsed": 92.34999999999604
+          },
+          {
+            "sequence": 56,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Count the last passengers and stow the gangway: complete.",
+            "kind": "report",
+            "stage": "closing-access",
+            "elapsed": 100.34999999999559
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": false,
+            "driverState": {
+              "mode": "passenger",
+              "blocked": null,
+              "position": [
+                -0.9,
+                5.5,
+                -10.45
+              ],
+              "parent": "Minato–Kitano-jima shared ferry"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 12,
+              "progress": 1,
+              "engineOff": true,
+              "parkingBrake": true,
+              "transmission": "neutral",
+              "chocks": true,
+              "straps": true
+            },
+            "transfer": null,
+            "position": [
+              -10.00970650221872,
+              0.5483063977031365,
+              -71.34910977082025
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 36,
+        "stage": "raising-ramp",
+        "elapsedSeconds": 161.86666666668762,
+        "shipPosition": [
+          -8.64,
+          -0.5411410807169414,
+          -69.45
+        ],
+        "ramp": {
+          "down": 0.6072222222222232,
+          "locked": false
+        },
+        "gangway": {
+          "out": 0
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 1,
+          "driversClear": 1
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "after spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "stern line",
+            "status": "fast",
+            "progress": 0
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Keeps the log and watches the berth from the wheelhouse",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "ramp",
+            "pos": [
+              2.75,
+              1.1,
+              11.35
+            ],
+            "state": "working",
+            "task": "1:raising-ramp:ramp-up",
+            "action": "Raise the bow ramp and check both locking pins",
+            "progress": 0.3682291666666658,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "stern",
+            "pos": [
+              1.2,
+              1.1,
+              -15.65
+            ],
+            "state": "reported complete",
+            "task": "1:raising-ramp:aft-ready",
+            "action": "Stand by the after mooring station",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "bow",
+            "pos": [
+              3.4499999999999997,
+              3.56,
+              13.617936371330625
+            ],
+            "state": "walking",
+            "task": "1:raising-ramp:bow-ready",
+            "action": "Stand by the forward mooring station",
+            "progress": 0,
+            "atStation": false,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -1.6,
+              5.5,
+              -8.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks tickets, the passenger count and the passenger exits",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:raising-ramp:ramp-up",
+            "post": "mate",
+            "issuer": "master",
+            "station": "ramp",
+            "action": "Raise the bow ramp and check both locking pins",
+            "seconds": 64,
+            "complete": false,
+            "acknowledged": true
+          },
+          {
+            "id": "1:raising-ramp:bow-ready",
+            "post": "deck",
+            "issuer": "bosun",
+            "station": "bow",
+            "action": "Stand by the forward mooring station",
+            "seconds": 4,
+            "complete": false,
+            "acknowledged": false
+          },
+          {
+            "id": "1:raising-ramp:aft-ready",
+            "post": "bosun",
+            "issuer": "mate",
+            "station": "stern",
+            "action": "Stand by the after mooring station",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 57,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Clear the ramp and close the vehicle access: at station.",
+            "kind": "acknowledgement",
+            "stage": "closing-access",
+            "elapsed": 130.29999999999583
+          },
+          {
+            "sequence": 58,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Clear the ramp and close the vehicle access: complete.",
+            "kind": "report",
+            "stage": "closing-access",
+            "elapsed": 138.3000000000022
+          },
+          {
+            "sequence": 59,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Mate: Raise the bow ramp and check both locking pins.",
+            "kind": "order",
+            "stage": "raising-ramp",
+            "elapsed": 138.3000000000022
+          },
+          {
+            "sequence": 60,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Able seaman: Stand by the forward mooring station.",
+            "kind": "order",
+            "stage": "raising-ramp",
+            "elapsed": 138.3000000000022
+          },
+          {
+            "sequence": 61,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Bosun: Stand by the after mooring station.",
+            "kind": "order",
+            "stage": "raising-ramp",
+            "elapsed": 138.3000000000022
+          },
+          {
+            "sequence": 62,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Raise the bow ramp and check both locking pins: at station.",
+            "kind": "acknowledgement",
+            "stage": "raising-ramp",
+            "elapsed": 138.31666666666888
+          },
+          {
+            "sequence": 63,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Stand by the after mooring station: at station.",
+            "kind": "acknowledgement",
+            "stage": "raising-ramp",
+            "elapsed": 153.45000000001426
+          },
+          {
+            "sequence": 64,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Stand by the after mooring station: complete.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 157.45000000001744
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": false,
+            "driverState": {
+              "mode": "passenger",
+              "blocked": null,
+              "position": [
+                -0.9,
+                5.5,
+                -10.45
+              ],
+              "parent": "Minato–Kitano-jima shared ferry"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 12,
+              "progress": 1,
+              "engineOff": true,
+              "parkingBrake": true,
+              "transmission": "neutral",
+              "chocks": true,
+              "straps": true
+            },
+            "transfer": null,
+            "position": [
+              -10.01070756874328,
+              0.5635511377553115,
+              -71.35037913676108
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 41,
+        "stage": "letting-go",
+        "elapsedSeconds": 204.4000000000548,
+        "shipPosition": [
+          -8.64,
+          -0.6034740713914541,
+          -69.45
+        ],
+        "ramp": {
+          "down": 0,
+          "locked": true
+        },
+        "gangway": {
+          "out": 0
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 1,
+          "driversClear": 1
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "after spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "stern line",
+            "status": "fast",
+            "progress": 0
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Keeps the log and watches the berth from the wheelhouse",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "port-wing",
+            "pos": [
+              2.6999999999999997,
+              1.1,
+              8.896617642346403
+            ],
+            "state": "walking",
+            "task": null,
+            "action": "Checks traffic and the landing before supervising the ramp",
+            "progress": 0,
+            "atStation": false,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "car-deck",
+            "pos": [
+              0.3,
+              1.1,
+              -13.688617897281024
+            ],
+            "state": "walking",
+            "task": null,
+            "action": "Supervises vehicle parking and wheel securing",
+            "progress": 0,
+            "atStation": false,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "bow",
+            "pos": [
+              3.55,
+              3.56,
+              16.35
+            ],
+            "state": "working",
+            "task": "1:letting-go:line-0-ship",
+            "action": "Receive the head line eye and heave it aboard",
+            "progress": 0.26041666666666635,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -1.6,
+              5.5,
+              -8.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks tickets, the passenger count and the passenger exits",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Fujita",
+            "post": "shore",
+            "where": "shore-town",
+            "pos": [
+              -36.60950433262999,
+              0,
+              -57.069383988919775
+            ],
+            "state": "walking",
+            "task": "1:letting-go:line-0-shore",
+            "action": "Lift and return the head line eye",
+            "progress": 0,
+            "atStation": null,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:letting-go:line-0-ship",
+            "post": "deck",
+            "issuer": "bosun",
+            "station": "bow",
+            "action": "Receive the head line eye and heave it aboard",
+            "seconds": 8,
+            "complete": false,
+            "acknowledged": true
+          },
+          {
+            "id": "1:letting-go:line-0-shore",
+            "post": "shore",
+            "issuer": "bosun",
+            "station": "shore-town",
+            "action": "Lift and return the head line eye",
+            "seconds": 8,
+            "target": {
+              "x": -2.9999999999999996,
+              "y": 0.098,
+              "z": -53
+            },
+            "complete": false,
+            "acknowledged": false
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 64,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Stand by the after mooring station: complete.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 157.45000000001744
+          },
+          {
+            "sequence": 65,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Stand by the forward mooring station: at station.",
+            "kind": "acknowledgement",
+            "stage": "raising-ramp",
+            "elapsed": 164.2000000000228
+          },
+          {
+            "sequence": 66,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Stand by the forward mooring station: complete.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 168.200000000026
+          },
+          {
+            "sequence": 67,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Raise the bow ramp and check both locking pins: complete.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 202.3166666667198
+          },
+          {
+            "sequence": 68,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Bow ramp closed; both locking pins checked.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 202.3166666667198
+          },
+          {
+            "sequence": 69,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Able seaman: Receive the head line eye and heave it aboard.",
+            "kind": "order",
+            "stage": "letting-go",
+            "elapsed": 202.3166666667198
+          },
+          {
+            "sequence": 70,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Shore hand: Lift and return the head line eye.",
+            "kind": "order",
+            "stage": "letting-go",
+            "elapsed": 202.3166666667198
+          },
+          {
+            "sequence": 71,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Receive the head line eye and heave it aboard: at station.",
+            "kind": "acknowledgement",
+            "stage": "letting-go",
+            "elapsed": 202.3333333333865
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": false,
+            "driverState": {
+              "mode": "passenger",
+              "blocked": null,
+              "position": [
+                -0.9,
+                5.5,
+                -10.45
+              ],
+              "parent": "Minato–Kitano-jima shared ferry"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 12,
+              "progress": 1,
+              "engineOff": true,
+              "parkingBrake": true,
+              "transmission": "neutral",
+              "chocks": true,
+              "straps": true
+            },
+            "transfer": null,
+            "position": [
+              -10.013917717022466,
+              0.4949267087381257,
+              -71.3517073468498
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 50,
+        "stage": "passage",
+        "elapsedSeconds": 329.41666666669573,
+        "shipPosition": [
+          -8.865991734468942,
+          -0.5644574914853999,
+          -71.90042584036539
+        ],
+        "ramp": {
+          "down": 0,
+          "locked": true
+        },
+        "gangway": {
+          "out": 0
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 1,
+          "driversClear": 1
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "coiled",
+            "progress": 1
+          },
+          {
+            "name": "forward spring",
+            "status": "coiled",
+            "progress": 1
+          },
+          {
+            "name": "after spring",
+            "status": "coiled",
+            "progress": 1
+          },
+          {
+            "name": "stern line",
+            "status": "coiled",
+            "progress": 1
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "reported complete",
+            "task": "1:passage:bridge-watch",
+            "action": "Keep the navigation watch",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "port-wing",
+            "pos": [
+              3.55,
+              8.1,
+              3.3500000000000014
+            ],
+            "state": "reported complete",
+            "task": "1:passage:lookout",
+            "action": "Keep a lookout",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "reported complete",
+            "task": "1:passage:engineering-watch",
+            "action": "Monitor engines and the switchboard",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "reported complete",
+            "task": "1:passage:oiler-watch",
+            "action": "Check machinery temperatures and pressures",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "car-deck",
+            "pos": [
+              0.75,
+              1.1,
+              -3.974871963136608
+            ],
+            "state": "walking",
+            "task": "1:passage:deck-round",
+            "action": "Check the secured vehicle deck",
+            "progress": 0,
+            "atStation": false,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "saloon",
+            "pos": [
+              0.3,
+              5.5,
+              -6.666273117935519
+            ],
+            "state": "walking",
+            "task": "1:passage:deck-watch",
+            "action": "Keep passenger exits clear",
+            "progress": 0,
+            "atStation": false,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -1.6,
+              5.5,
+              -8.65
+            ],
+            "state": "reported complete",
+            "task": "1:passage:passenger-watch",
+            "action": "Attend the passengers",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "galley",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "working",
+            "task": "1:passage:galley-watch",
+            "action": "Keep the galley secure",
+            "progress": 0.6083333333333324,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Fujita",
+            "post": "shore",
+            "where": "shore-town",
+            "pos": [
+              -1.0358096582236271,
+              0.098,
+              -81.1925832098213
+            ],
+            "state": "walking",
+            "task": null,
+            "action": null,
+            "progress": 0,
+            "atStation": null,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:passage:bridge-watch",
+            "post": "master",
+            "issuer": "master",
+            "station": "wheelhouse",
+            "action": "Keep the navigation watch",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:passage:lookout",
+            "post": "mate",
+            "issuer": "master",
+            "station": "port-wing",
+            "action": "Keep a lookout",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:passage:engineering-watch",
+            "post": "chief",
+            "issuer": "master",
+            "station": "engine-room",
+            "action": "Monitor engines and the switchboard",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:passage:oiler-watch",
+            "post": "oiler",
+            "issuer": "chief",
+            "station": "engine-room",
+            "action": "Check machinery temperatures and pressures",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:passage:deck-round",
+            "post": "bosun",
+            "issuer": "mate",
+            "station": "car-deck",
+            "action": "Check the secured vehicle deck",
+            "seconds": 4,
+            "complete": false,
+            "acknowledged": false
+          },
+          {
+            "id": "1:passage:deck-watch",
+            "post": "deck",
+            "issuer": "bosun",
+            "station": "saloon",
+            "action": "Keep passenger exits clear",
+            "seconds": 4,
+            "complete": false,
+            "acknowledged": false
+          },
+          {
+            "id": "1:passage:passenger-watch",
+            "post": "purser",
+            "issuer": "mate",
+            "station": "purser",
+            "action": "Attend the passengers",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:passage:galley-watch",
+            "post": "cook",
+            "issuer": "purser",
+            "station": "galley",
+            "action": "Keep the galley secure",
+            "seconds": 4,
+            "complete": false,
+            "acknowledged": true
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 113,
+            "speaker": "Purser",
+            "post": "purser",
+            "text": "Attend the passengers: at station.",
+            "kind": "acknowledgement",
+            "stage": "passage",
+            "elapsed": 323.0000000000349
+          },
+          {
+            "sequence": 114,
+            "speaker": "Oiler",
+            "post": "oiler",
+            "text": "Check machinery temperatures and pressures: at station.",
+            "kind": "acknowledgement",
+            "stage": "passage",
+            "elapsed": 325.2000000000329
+          },
+          {
+            "sequence": 115,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Keep the navigation watch: complete.",
+            "kind": "report",
+            "stage": "passage",
+            "elapsed": 327.00000000003126
+          },
+          {
+            "sequence": 116,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Keep a lookout: complete.",
+            "kind": "report",
+            "stage": "passage",
+            "elapsed": 327.00000000003126
+          },
+          {
+            "sequence": 117,
+            "speaker": "Chief engineer",
+            "post": "chief",
+            "text": "Monitor engines and the switchboard: complete.",
+            "kind": "report",
+            "stage": "passage",
+            "elapsed": 327.00000000003126
+          },
+          {
+            "sequence": 118,
+            "speaker": "Purser",
+            "post": "purser",
+            "text": "Attend the passengers: complete.",
+            "kind": "report",
+            "stage": "passage",
+            "elapsed": 327.00000000003126
+          },
+          {
+            "sequence": 119,
+            "speaker": "Cook",
+            "post": "cook",
+            "text": "Keep the galley secure: at station.",
+            "kind": "acknowledgement",
+            "stage": "passage",
+            "elapsed": 327.00000000003126
+          },
+          {
+            "sequence": 120,
+            "speaker": "Oiler",
+            "post": "oiler",
+            "text": "Check machinery temperatures and pressures: complete.",
+            "kind": "report",
+            "stage": "passage",
+            "elapsed": 329.20000000002926
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": false,
+            "driverState": {
+              "mode": "passenger",
+              "blocked": null,
+              "position": [
+                -0.9,
+                5.5,
+                -10.45
+              ],
+              "parent": "Minato–Kitano-jima shared ferry"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 12,
+              "progress": 1,
+              "engineOff": true,
+              "parkingBrake": true,
+              "transmission": "neutral",
+              "chocks": true,
+              "straps": true
+            },
+            "transfer": null,
+            "position": [
+              -10.235703142640048,
+              0.5411123719225936,
+              -73.80101283796638
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 51,
+        "stage": "passage",
+        "elapsedSeconds": 349.41666666667754,
+        "shipPosition": [
+          -17.330945316620824,
+          -0.59461083691215,
+          -82.60540294860616
+        ],
+        "ramp": {
+          "down": 0,
+          "locked": true
+        },
+        "gangway": {
+          "out": 0
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 1,
+          "driversClear": 1
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "coiled",
+            "progress": 1
+          },
+          {
+            "name": "forward spring",
+            "status": "coiled",
+            "progress": 1
+          },
+          {
+            "name": "after spring",
+            "status": "coiled",
+            "progress": 1
+          },
+          {
+            "name": "stern line",
+            "status": "coiled",
+            "progress": 1
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "reported complete",
+            "task": "1:passage:bridge-watch",
+            "action": "Keep the navigation watch",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "port-wing",
+            "pos": [
+              3.55,
+              8.1,
+              3.3500000000000014
+            ],
+            "state": "reported complete",
+            "task": "1:passage:lookout",
+            "action": "Keep a lookout",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "reported complete",
+            "task": "1:passage:engineering-watch",
+            "action": "Monitor engines and the switchboard",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "reported complete",
+            "task": "1:passage:oiler-watch",
+            "action": "Check machinery temperatures and pressures",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "car-deck",
+            "pos": [
+              0,
+              1.1,
+              1.25
+            ],
+            "state": "reported complete",
+            "task": "1:passage:deck-round",
+            "action": "Check the secured vehicle deck",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "saloon",
+            "pos": [
+              0,
+              5.5,
+              -0.25
+            ],
+            "state": "reported complete",
+            "task": "1:passage:deck-watch",
+            "action": "Keep passenger exits clear",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -1.6,
+              5.5,
+              -8.65
+            ],
+            "state": "reported complete",
+            "task": "1:passage:passenger-watch",
+            "action": "Attend the passengers",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "galley",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "reported complete",
+            "task": "1:passage:galley-watch",
+            "action": "Keep the galley secure",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Fujita",
+            "post": "shore",
+            "where": "shore-town",
+            "pos": [
+              -2.725964479348761,
+              0.098,
+              -58.254767780261034
+            ],
+            "state": "walking",
+            "task": null,
+            "action": null,
+            "progress": 0,
+            "atStation": null,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:passage:bridge-watch",
+            "post": "master",
+            "issuer": "master",
+            "station": "wheelhouse",
+            "action": "Keep the navigation watch",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:passage:lookout",
+            "post": "mate",
+            "issuer": "master",
+            "station": "port-wing",
+            "action": "Keep a lookout",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:passage:engineering-watch",
+            "post": "chief",
+            "issuer": "master",
+            "station": "engine-room",
+            "action": "Monitor engines and the switchboard",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:passage:oiler-watch",
+            "post": "oiler",
+            "issuer": "chief",
+            "station": "engine-room",
+            "action": "Check machinery temperatures and pressures",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:passage:deck-round",
+            "post": "bosun",
+            "issuer": "mate",
+            "station": "car-deck",
+            "action": "Check the secured vehicle deck",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:passage:deck-watch",
+            "post": "deck",
+            "issuer": "bosun",
+            "station": "saloon",
+            "action": "Keep passenger exits clear",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:passage:passenger-watch",
+            "post": "purser",
+            "issuer": "mate",
+            "station": "purser",
+            "action": "Attend the passengers",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:passage:galley-watch",
+            "post": "cook",
+            "issuer": "purser",
+            "station": "galley",
+            "action": "Keep the galley secure",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 118,
+            "speaker": "Purser",
+            "post": "purser",
+            "text": "Attend the passengers: complete.",
+            "kind": "report",
+            "stage": "passage",
+            "elapsed": 327.00000000003126
+          },
+          {
+            "sequence": 119,
+            "speaker": "Cook",
+            "post": "cook",
+            "text": "Keep the galley secure: at station.",
+            "kind": "acknowledgement",
+            "stage": "passage",
+            "elapsed": 327.00000000003126
+          },
+          {
+            "sequence": 120,
+            "speaker": "Oiler",
+            "post": "oiler",
+            "text": "Check machinery temperatures and pressures: complete.",
+            "kind": "report",
+            "stage": "passage",
+            "elapsed": 329.20000000002926
+          },
+          {
+            "sequence": 121,
+            "speaker": "Cook",
+            "post": "cook",
+            "text": "Keep the galley secure: complete.",
+            "kind": "report",
+            "stage": "passage",
+            "elapsed": 331.0000000000276
+          },
+          {
+            "sequence": 122,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Check the secured vehicle deck: at station.",
+            "kind": "acknowledgement",
+            "stage": "passage",
+            "elapsed": 334.08333333335815
+          },
+          {
+            "sequence": 123,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Keep passenger exits clear: at station.",
+            "kind": "acknowledgement",
+            "stage": "passage",
+            "elapsed": 335.1333333333572
+          },
+          {
+            "sequence": 124,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Check the secured vehicle deck: complete.",
+            "kind": "report",
+            "stage": "passage",
+            "elapsed": 338.0833333333545
+          },
+          {
+            "sequence": 125,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Keep passenger exits clear: complete.",
+            "kind": "report",
+            "stage": "passage",
+            "elapsed": 339.13333333335356
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": false,
+            "driverState": {
+              "mode": "passenger",
+              "blocked": null,
+              "position": [
+                -0.9,
+                5.5,
+                -10.45
+              ],
+              "parent": "Minato–Kitano-jima shared ferry"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 12,
+              "progress": 1,
+              "engineOff": true,
+              "parkingBrake": true,
+              "transmission": "neutral",
+              "chocks": true,
+              "straps": true
+            },
+            "transfer": null,
+            "position": [
+              -18.711575964619723,
+              0.4982183156011498,
+              -84.50545780497825
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 68,
+        "stage": "making-fast",
+        "elapsedSeconds": 649.7666666664044,
+        "shipPosition": [
+          190.67690632676252,
+          -0.5502489510608143,
+          -275.97255154681386
+        ],
+        "ramp": {
+          "down": 0,
+          "locked": true
+        },
+        "gangway": {
+          "out": 0
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 1,
+          "driversClear": 1
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "eye-ashore",
+            "progress": 0.5395833333333321
+          },
+          {
+            "name": "forward spring",
+            "status": "coiled",
+            "progress": 0
+          },
+          {
+            "name": "after spring",
+            "status": "coiled",
+            "progress": 0
+          },
+          {
+            "name": "stern line",
+            "status": "coiled",
+            "progress": 0
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Cons the ship alongside and gives the mooring orders",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "port-wing",
+            "pos": [
+              3.55,
+              8.1,
+              3.3500000000000014
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Reports distance off the berth and keeps a lookout",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "stern",
+            "pos": [
+              1.2,
+              1.1,
+              -15.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Works the after mooring lines with the shore line hand",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "bow",
+            "pos": [
+              3.55,
+              3.56,
+              16.35
+            ],
+            "state": "reported complete",
+            "task": "1:making-fast:line-0-ship",
+            "action": "Pay out head line under control",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -1.6,
+              5.5,
+              -8.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks tickets, the passenger count and the passenger exits",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Fujita",
+            "post": "shore",
+            "where": "shore-town",
+            "pos": [
+              -36.6,
+              0.02,
+              -57.28
+            ],
+            "state": "standing by",
+            "task": null,
+            "action": null,
+            "progress": 0,
+            "atStation": null,
+            "blocked": null
+          },
+          {
+            "name": "Kitano line hand",
+            "post": "shore",
+            "where": "shore-airport",
+            "pos": [
+              210.41431210736218,
+              0.5899999999999999,
+              -273.5058101635408
+            ],
+            "state": "working the line",
+            "task": "1:making-fast:line-0-shore",
+            "action": "Make the head line eye fast",
+            "progress": 0.5395833333333321,
+            "atStation": null,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:making-fast:line-0-ship",
+            "post": "deck",
+            "issuer": "bosun",
+            "station": "bow",
+            "action": "Pay out head line under control",
+            "seconds": 8,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:making-fast:line-0-shore",
+            "post": "shore",
+            "issuer": "bosun",
+            "station": "shore-airport",
+            "action": "Make the head line eye fast",
+            "seconds": 8,
+            "target": {
+              "x": 210.41431210736218,
+              "y": 0.66,
+              "z": -273.5058101635408
+            },
+            "complete": false,
+            "acknowledged": true
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 134,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Stand by aft for mooring: at station.",
+            "kind": "acknowledgement",
+            "stage": "arriving",
+            "elapsed": 615.9166666664352
+          },
+          {
+            "sequence": 135,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Stand by aft for mooring: complete.",
+            "kind": "report",
+            "stage": "arriving",
+            "elapsed": 619.9166666664315
+          },
+          {
+            "sequence": 136,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Alongside. Telegraphs STOP; mains at idle. Make fast before opening access.",
+            "kind": "report",
+            "stage": "arriving",
+            "elapsed": 640.5666666664127
+          },
+          {
+            "sequence": 137,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Able seaman: Pay out head line under control.",
+            "kind": "order",
+            "stage": "making-fast",
+            "elapsed": 640.5666666664127
+          },
+          {
+            "sequence": 138,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Shore hand: Make the head line eye fast.",
+            "kind": "order",
+            "stage": "making-fast",
+            "elapsed": 640.5666666664127
+          },
+          {
+            "sequence": 139,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Pay out head line under control: at station.",
+            "kind": "acknowledgement",
+            "stage": "making-fast",
+            "elapsed": 641.7333333330783
+          },
+          {
+            "sequence": 140,
+            "speaker": "Shore hand",
+            "post": "shore",
+            "text": "Make the head line eye fast: at station.",
+            "kind": "acknowledgement",
+            "stage": "making-fast",
+            "elapsed": 645.4666666664083
+          },
+          {
+            "sequence": 141,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Pay out head line under control: complete.",
+            "kind": "report",
+            "stage": "making-fast",
+            "elapsed": 649.7333333330711
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": false,
+            "driverState": {
+              "mode": "passenger",
+              "blocked": null,
+              "position": [
+                -0.9,
+                5.5,
+                -10.45
+              ],
+              "parent": "Minato–Kitano-jima shared ferry"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 12,
+              "progress": 1,
+              "engineOff": true,
+              "parkingBrake": true,
+              "transmission": "neutral",
+              "chocks": true,
+              "straps": true
+            },
+            "transfer": null,
+            "position": [
+              188.52057016376102,
+              0.5442373597746394,
+              -275.0436064098301
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 69,
+        "stage": "making-fast",
+        "elapsedSeconds": 669.7666666663862,
+        "shipPosition": [
+          190.67690632676252,
+          -0.5743345887578578,
+          -275.97255154681386
+        ],
+        "ramp": {
+          "down": 0,
+          "locked": true
+        },
+        "gangway": {
+          "out": 0
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 1,
+          "driversClear": 1
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "fast",
+            "progress": 1
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 1
+          },
+          {
+            "name": "after spring",
+            "status": "paying-out",
+            "progress": 0.21458333333333318
+          },
+          {
+            "name": "stern line",
+            "status": "coiled",
+            "progress": 0
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Cons the ship alongside and gives the mooring orders",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "port-wing",
+            "pos": [
+              3.55,
+              8.1,
+              3.3500000000000014
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Reports distance off the berth and keeps a lookout",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "stern",
+            "pos": [
+              1.2,
+              1.1,
+              -15.65
+            ],
+            "state": "working",
+            "task": "1:making-fast:line-2-ship",
+            "action": "Pay out after spring under control",
+            "progress": 0.6937499999999982,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "bow",
+            "pos": [
+              3.55,
+              3.56,
+              16.35
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Works the forward mooring lines from the forecastle",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -1.6,
+              5.5,
+              -8.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks tickets, the passenger count and the passenger exits",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Fujita",
+            "post": "shore",
+            "where": "shore-town",
+            "pos": [
+              -36.6,
+              0.02,
+              -57.28
+            ],
+            "state": "standing by",
+            "task": null,
+            "action": null,
+            "progress": 0,
+            "atStation": null,
+            "blocked": null
+          },
+          {
+            "name": "Kitano line hand",
+            "post": "shore",
+            "where": "shore-airport",
+            "pos": [
+              210.46334724405241,
+              0.5899999999999999,
+              -269.60099319531173
+            ],
+            "state": "working the line",
+            "task": "1:making-fast:line-2-shore",
+            "action": "Make the after spring eye fast",
+            "progress": 0.21458333333333318,
+            "atStation": null,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:making-fast:line-2-ship",
+            "post": "bosun",
+            "issuer": "mate",
+            "station": "stern",
+            "action": "Pay out after spring under control",
+            "seconds": 8,
+            "complete": false,
+            "acknowledged": true
+          },
+          {
+            "id": "1:making-fast:line-2-shore",
+            "post": "shore",
+            "issuer": "bosun",
+            "station": "shore-airport",
+            "action": "Make the after spring eye fast",
+            "seconds": 8,
+            "target": {
+              "x": 210.46334724405241,
+              "y": 0.66,
+              "z": -269.60099319531173
+            },
+            "complete": false,
+            "acknowledged": true
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 145,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Pay out forward spring under control: at station.",
+            "kind": "acknowledgement",
+            "stage": "making-fast",
+            "elapsed": 653.4833333330677
+          },
+          {
+            "sequence": 146,
+            "speaker": "Shore hand",
+            "post": "shore",
+            "text": "Make the forward spring eye fast: at station.",
+            "kind": "acknowledgement",
+            "stage": "making-fast",
+            "elapsed": 656.2166666663985
+          },
+          {
+            "sequence": 147,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Pay out forward spring under control: complete.",
+            "kind": "report",
+            "stage": "making-fast",
+            "elapsed": 661.4833333330604
+          },
+          {
+            "sequence": 148,
+            "speaker": "Shore hand",
+            "post": "shore",
+            "text": "Make the forward spring eye fast: complete.",
+            "kind": "report",
+            "stage": "making-fast",
+            "elapsed": 664.2166666663912
+          },
+          {
+            "sequence": 149,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Bosun: Pay out after spring under control.",
+            "kind": "order",
+            "stage": "making-fast",
+            "elapsed": 664.2166666663912
+          },
+          {
+            "sequence": 150,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Shore hand: Make the after spring eye fast.",
+            "kind": "order",
+            "stage": "making-fast",
+            "elapsed": 664.2166666663912
+          },
+          {
+            "sequence": 151,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Pay out after spring under control: at station.",
+            "kind": "acknowledgement",
+            "stage": "making-fast",
+            "elapsed": 664.2333333330579
+          },
+          {
+            "sequence": 152,
+            "speaker": "Shore hand",
+            "post": "shore",
+            "text": "Make the after spring eye fast: at station.",
+            "kind": "acknowledgement",
+            "stage": "making-fast",
+            "elapsed": 668.0666666663877
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": false,
+            "driverState": {
+              "mode": "passenger",
+              "blocked": null,
+              "position": [
+                -0.9,
+                5.5,
+                -10.45
+              ],
+              "parent": "Minato–Kitano-jima shared ferry"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 12,
+              "progress": 1,
+              "engineOff": true,
+              "parkingBrake": true,
+              "transmission": "neutral",
+              "chocks": true,
+              "straps": true
+            },
+            "transfer": null,
+            "position": [
+              188.52025964983972,
+              0.5169930324117505,
+              -275.0406158547245
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 72,
+        "stage": "opening-access",
+        "elapsedSeconds": 729.7666666663316,
+        "shipPosition": [
+          190.67690632676252,
+          -0.5579241076113393,
+          -275.97255154681386
+        ],
+        "ramp": {
+          "down": 0.15481481481481438,
+          "locked": false
+        },
+        "gangway": {
+          "out": 0
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 0,
+          "driversClear": 0
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "fast",
+            "progress": 1
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 1
+          },
+          {
+            "name": "after spring",
+            "status": "fast",
+            "progress": 1
+          },
+          {
+            "name": "stern line",
+            "status": "fast",
+            "progress": 1
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Keeps the log and watches the berth from the wheelhouse",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "ramp",
+            "pos": [
+              2.75,
+              1.1,
+              11.35
+            ],
+            "state": "working",
+            "task": "1:opening-access:ramp-down",
+            "action": "Lower the bow ramp onto its landing",
+            "progress": 0.15481481481481438,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "car-deck",
+            "pos": [
+              -0.315,
+              1.1,
+              -0.8400000000000003
+            ],
+            "state": "reported complete",
+            "task": "1:opening-access:release-cars",
+            "action": "Remove wheel securing after all fast",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "gangway",
+            "pos": [
+              3.4,
+              1.1,
+              -4.65
+            ],
+            "state": "reported complete",
+            "task": "1:opening-access:gangway-out",
+            "action": "Rig the passenger gangway and check its landing",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "saloon",
+            "pos": [
+              0,
+              5.5,
+              -0.25
+            ],
+            "state": "reported complete",
+            "task": "1:opening-access:passengers",
+            "action": "Prepare passengers and drivers to disembark",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Fujita",
+            "post": "shore",
+            "where": "shore-town",
+            "pos": [
+              -36.6,
+              0.02,
+              -57.28
+            ],
+            "state": "standing by",
+            "task": null,
+            "action": null,
+            "progress": 0,
+            "atStation": null,
+            "blocked": null
+          },
+          {
+            "name": "Kitano line hand",
+            "post": "shore",
+            "where": "shore-airport",
+            "pos": [
+              214.0150750384084,
+              0.66,
+              -269.2166370131069
+            ],
+            "state": "standing by",
+            "task": null,
+            "action": null,
+            "progress": 0,
+            "atStation": null,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:opening-access:ramp-down",
+            "post": "mate",
+            "issuer": "master",
+            "station": "ramp",
+            "action": "Lower the bow ramp onto its landing",
+            "seconds": 45,
+            "complete": false,
+            "acknowledged": true
+          },
+          {
+            "id": "1:opening-access:gangway-out",
+            "post": "deck",
+            "issuer": "bosun",
+            "station": "gangway",
+            "action": "Rig the passenger gangway and check its landing",
+            "seconds": 8,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:opening-access:release-cars",
+            "post": "bosun",
+            "issuer": "mate",
+            "station": "car-deck",
+            "action": "Remove wheel securing after all fast",
+            "seconds": 12,
+            "target": {
+              "x": -0.315,
+              "y": 1.1,
+              "z": -0.8400000000000003
+            },
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:opening-access:passengers",
+            "post": "purser",
+            "issuer": "mate",
+            "station": "saloon",
+            "action": "Prepare passengers and drivers to disembark",
+            "seconds": 6,
+            "complete": true,
+            "acknowledged": true
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 166,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Purser: Prepare passengers and drivers to disembark.",
+            "kind": "order",
+            "stage": "opening-access",
+            "elapsed": 684.8499999997058
+          },
+          {
+            "sequence": 167,
+            "speaker": "Purser",
+            "post": "purser",
+            "text": "Prepare passengers and drivers to disembark: at station.",
+            "kind": "acknowledgement",
+            "stage": "opening-access",
+            "elapsed": 692.9833333330317
+          },
+          {
+            "sequence": 168,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Remove wheel securing after all fast: at station.",
+            "kind": "acknowledgement",
+            "stage": "opening-access",
+            "elapsed": 698.3166666663602
+          },
+          {
+            "sequence": 169,
+            "speaker": "Purser",
+            "post": "purser",
+            "text": "Prepare passengers and drivers to disembark: complete.",
+            "kind": "report",
+            "stage": "opening-access",
+            "elapsed": 698.9833333330263
+          },
+          {
+            "sequence": 170,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Remove wheel securing after all fast: complete.",
+            "kind": "report",
+            "stage": "opening-access",
+            "elapsed": 710.2999999996827
+          },
+          {
+            "sequence": 171,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Rig the passenger gangway and check its landing: at station.",
+            "kind": "acknowledgement",
+            "stage": "opening-access",
+            "elapsed": 710.7499999996822
+          },
+          {
+            "sequence": 172,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Rig the passenger gangway and check its landing: complete.",
+            "kind": "report",
+            "stage": "opening-access",
+            "elapsed": 718.749999999675
+          },
+          {
+            "sequence": 173,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Lower the bow ramp onto its landing: at station.",
+            "kind": "acknowledgement",
+            "stage": "opening-access",
+            "elapsed": 722.8166666663379
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": true,
+            "driverState": {
+              "mode": "driving",
+              "blocked": null,
+              "position": [
+                -0.32,
+                0,
+                0.8
+              ],
+              "parent": "Tetsuo · kei truck"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 12,
+              "progress": 0,
+              "engineOff": true,
+              "parkingBrake": true,
+              "transmission": "neutral",
+              "chocks": false,
+              "straps": false
+            },
+            "transfer": null,
+            "position": [
+              188.52215883070332,
+              0.5384719422076807,
+              -275.0421731667083
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 74,
+        "stage": "alongside",
+        "elapsedSeconds": 767.816666666297,
+        "shipPosition": [
+          190.67690632676252,
+          -0.564876449601035,
+          -275.97255154681386
+        ],
+        "ramp": {
+          "down": 1,
+          "locked": false
+        },
+        "gangway": {
+          "out": 0
+        },
+        "vehicleSummary": {
+          "aboard": 0,
+          "secured": 0,
+          "driversClear": 0
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "fast",
+            "progress": 1
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 1
+          },
+          {
+            "name": "after spring",
+            "status": "fast",
+            "progress": 1
+          },
+          {
+            "name": "stern line",
+            "status": "fast",
+            "progress": 1
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Keeps the log and watches the berth from the wheelhouse",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "port-wing",
+            "pos": [
+              2.6999999999999997,
+              1.1,
+              9.05395097567973
+            ],
+            "state": "walking",
+            "task": null,
+            "action": "Checks traffic and the landing before supervising the ramp",
+            "progress": 0,
+            "atStation": false,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "car-deck",
+            "pos": [
+              0,
+              1.1,
+              1.25
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Supervises vehicle parking and wheel securing",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "gangway",
+            "pos": [
+              3.4,
+              1.1,
+              -4.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Supervises the gangway and gives passengers a hand with their bags",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -0.3,
+              5.8,
+              -2.348271689215512
+            ],
+            "state": "walking",
+            "task": null,
+            "action": "Checks tickets, the passenger count and the passenger exits",
+            "progress": 0,
+            "atStation": false,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Fujita",
+            "post": "shore",
+            "where": "shore-town",
+            "pos": [
+              -36.6,
+              0.02,
+              -57.28
+            ],
+            "state": "standing by",
+            "task": null,
+            "action": null,
+            "progress": 0,
+            "atStation": null,
+            "blocked": null
+          },
+          {
+            "name": "Kitano line hand",
+            "post": "shore",
+            "where": "shore-airport",
+            "pos": [
+              214.0150750384084,
+              0.66,
+              -269.2166370131069
+            ],
+            "state": "standing by",
+            "task": null,
+            "action": null,
+            "progress": 0,
+            "atStation": null,
+            "blocked": null
+          }
+        ],
+        "tasks": [],
+        "reports": [
+          {
+            "sequence": 168,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Remove wheel securing after all fast: at station.",
+            "kind": "acknowledgement",
+            "stage": "opening-access",
+            "elapsed": 698.3166666663602
+          },
+          {
+            "sequence": 169,
+            "speaker": "Purser",
+            "post": "purser",
+            "text": "Prepare passengers and drivers to disembark: complete.",
+            "kind": "report",
+            "stage": "opening-access",
+            "elapsed": 698.9833333330263
+          },
+          {
+            "sequence": 170,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Remove wheel securing after all fast: complete.",
+            "kind": "report",
+            "stage": "opening-access",
+            "elapsed": 710.2999999996827
+          },
+          {
+            "sequence": 171,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Rig the passenger gangway and check its landing: at station.",
+            "kind": "acknowledgement",
+            "stage": "opening-access",
+            "elapsed": 710.7499999996822
+          },
+          {
+            "sequence": 172,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Rig the passenger gangway and check its landing: complete.",
+            "kind": "report",
+            "stage": "opening-access",
+            "elapsed": 718.749999999675
+          },
+          {
+            "sequence": 173,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Lower the bow ramp onto its landing: at station.",
+            "kind": "acknowledgement",
+            "stage": "opening-access",
+            "elapsed": 722.8166666663379
+          },
+          {
+            "sequence": 174,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Lower the bow ramp onto its landing: complete.",
+            "kind": "report",
+            "stage": "opening-access",
+            "elapsed": 767.816666666297
+          },
+          {
+            "sequence": 175,
+            "speaker": "Master",
+            "post": "master",
+            "text": "All fast. Ramp landed and access checked; passengers may disembark.",
+            "kind": "report",
+            "stage": "alongside",
+            "elapsed": 767.816666666297
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "driving",
+            "shore": "airport",
+            "destination": "airport",
+            "driving": true,
+            "occupied": true,
+            "driverState": {
+              "mode": "driving",
+              "blocked": null,
+              "position": [
+                -0.32,
+                0,
+                0.8
+              ],
+              "parent": "Tetsuo · kei truck"
+            },
+            "securing": null,
+            "transfer": "off",
+            "position": [
+              190.829444995496,
+              0.5447109661723988,
+              -274.69514738311057
+            ]
+          }
+        ],
+        "completedVoyages": [
+          {
+            "sequence": 1,
+            "id": 1,
+            "destination": "airport",
+            "origin": "town",
+            "automatic": false,
+            "startedMinute": 29870640.001111105,
+            "elapsed": 767.816666666297
+          }
+        ],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 77,
+        "stage": "alongside",
+        "elapsedSeconds": 767.816666666297,
+        "shipPosition": [
+          190.67690632676252,
+          -0.5734681347915771,
+          -275.97255154681386
+        ],
+        "ramp": {
+          "down": 1,
+          "locked": false
+        },
+        "gangway": {
+          "out": 0
+        },
+        "vehicleSummary": {
+          "aboard": 0,
+          "secured": 0,
+          "driversClear": 0
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "fast",
+            "progress": 1
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 1
+          },
+          {
+            "name": "after spring",
+            "status": "fast",
+            "progress": 1
+          },
+          {
+            "name": "stern line",
+            "status": "fast",
+            "progress": 1
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Keeps the log and watches the berth from the wheelhouse",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "port-wing",
+            "pos": [
+              3.55,
+              8.1,
+              3.3500000000000014
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks traffic and the landing before supervising the ramp",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "car-deck",
+            "pos": [
+              0,
+              1.1,
+              1.25
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Supervises vehicle parking and wheel securing",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "gangway",
+            "pos": [
+              3.4,
+              1.1,
+              -4.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Supervises the gangway and gives passengers a hand with their bags",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -1.6,
+              5.5,
+              -8.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks tickets, the passenger count and the passenger exits",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Fujita",
+            "post": "shore",
+            "where": "shore-town",
+            "pos": [
+              -36.6,
+              0.02,
+              -57.28
+            ],
+            "state": "standing by",
+            "task": null,
+            "action": null,
+            "progress": 0,
+            "atStation": null,
+            "blocked": null
+          },
+          {
+            "name": "Kitano line hand",
+            "post": "shore",
+            "where": "shore-airport",
+            "pos": [
+              214.0150750384084,
+              0.66,
+              -269.2166370131069
+            ],
+            "state": "standing by",
+            "task": null,
+            "action": null,
+            "progress": 0,
+            "atStation": null,
+            "blocked": null
+          }
+        ],
+        "tasks": [],
+        "reports": [
+          {
+            "sequence": 168,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Remove wheel securing after all fast: at station.",
+            "kind": "acknowledgement",
+            "stage": "opening-access",
+            "elapsed": 698.3166666663602
+          },
+          {
+            "sequence": 169,
+            "speaker": "Purser",
+            "post": "purser",
+            "text": "Prepare passengers and drivers to disembark: complete.",
+            "kind": "report",
+            "stage": "opening-access",
+            "elapsed": 698.9833333330263
+          },
+          {
+            "sequence": 170,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Remove wheel securing after all fast: complete.",
+            "kind": "report",
+            "stage": "opening-access",
+            "elapsed": 710.2999999996827
+          },
+          {
+            "sequence": 171,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Rig the passenger gangway and check its landing: at station.",
+            "kind": "acknowledgement",
+            "stage": "opening-access",
+            "elapsed": 710.7499999996822
+          },
+          {
+            "sequence": 172,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Rig the passenger gangway and check its landing: complete.",
+            "kind": "report",
+            "stage": "opening-access",
+            "elapsed": 718.749999999675
+          },
+          {
+            "sequence": 173,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Lower the bow ramp onto its landing: at station.",
+            "kind": "acknowledgement",
+            "stage": "opening-access",
+            "elapsed": 722.8166666663379
+          },
+          {
+            "sequence": 174,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Lower the bow ramp onto its landing: complete.",
+            "kind": "report",
+            "stage": "opening-access",
+            "elapsed": 767.816666666297
+          },
+          {
+            "sequence": 175,
+            "speaker": "Master",
+            "post": "master",
+            "text": "All fast. Ramp landed and access checked; passengers may disembark.",
+            "kind": "report",
+            "stage": "alongside",
+            "elapsed": 767.816666666297
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "airport",
+            "shore": "airport",
+            "destination": null,
+            "driving": false,
+            "occupied": true,
+            "driverState": {
+              "mode": "driving",
+              "blocked": null,
+              "position": [
+                -0.32,
+                0,
+                0.8
+              ],
+              "parent": "Tetsuo · kei truck"
+            },
+            "securing": null,
+            "transfer": null,
+            "position": [
+              235.2332412716854,
+              0.66,
+              -262.8323264240907
+            ]
+          }
+        ],
+        "completedVoyages": [
+          {
+            "sequence": 1,
+            "id": 1,
+            "destination": "airport",
+            "origin": "town",
+            "automatic": false,
+            "startedMinute": 29870640.001111105,
+            "elapsed": 767.816666666297
+          }
+        ],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      }
+    ]
+  },
+  "finalPairedHandover": {
+    "boot": "boot-BYig4clw.js",
+    "startSessionRpc": 80,
+    "endSessionRpc": 106,
+    "closed": true,
+    "observed": "AB waited with zero work progress until shore-hand acknowledgement, then both worked and reported completion together. Head line eye was returned, heaved aboard and coiled before the next line task.",
+    "shoreAcknowledgementSeconds": 253.3166666667604,
+    "pairedCompletionSeconds": 261.3333333334243,
+    "shipStayedAlongside": true,
+    "passengerViewRouteReached": true,
+    "passengerViewRouteRpc": 90,
+    "milestones": [
+      {
+        "rpc": 89,
+        "stage": "preparing",
+        "elapsedSeconds": 45.03333333333206,
+        "shipPosition": [
+          -8.64,
+          -0.6057836364684294,
+          -69.45
+        ],
+        "ramp": {
+          "down": 1,
+          "locked": false
+        },
+        "gangway": {
+          "out": 1
+        },
+        "vehicleSummary": {
+          "aboard": 0,
+          "secured": 0,
+          "driversClear": 0
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "after spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "stern line",
+            "status": "fast",
+            "progress": 0
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "reported complete",
+            "task": "1:preparing:bridge",
+            "action": "Check the route and issue stations",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "port-wing",
+            "pos": [
+              3.55,
+              8.1,
+              3.3500000000000014
+            ],
+            "state": "reported complete",
+            "task": "1:preparing:lookout",
+            "action": "Check traffic and the berth",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "car-deck",
+            "pos": [
+              0,
+              1.1,
+              1.25
+            ],
+            "state": "reported complete",
+            "task": "1:preparing:deck",
+            "action": "Inspect vehicle lanes and securing equipment",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "gangway",
+            "pos": [
+              3.4,
+              1.1,
+              -4.65
+            ],
+            "state": "reported complete",
+            "task": "1:preparing:boarding",
+            "action": "Supervise boarding",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -1.6,
+              5.5,
+              -8.65
+            ],
+            "state": "reported complete",
+            "task": "1:preparing:passengers",
+            "action": "Check the passenger count and exits",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "galley",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "reported complete",
+            "task": "1:preparing:galley",
+            "action": "Secure the galley and loose equipment",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:preparing:bridge",
+            "post": "master",
+            "issuer": "master",
+            "station": "wheelhouse",
+            "action": "Check the route and issue stations",
+            "seconds": 6,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:preparing:lookout",
+            "post": "mate",
+            "issuer": "master",
+            "station": "port-wing",
+            "action": "Check traffic and the berth",
+            "seconds": 6,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:preparing:deck",
+            "post": "bosun",
+            "issuer": "mate",
+            "station": "car-deck",
+            "action": "Inspect vehicle lanes and securing equipment",
+            "seconds": 6,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:preparing:boarding",
+            "post": "deck",
+            "issuer": "bosun",
+            "station": "gangway",
+            "action": "Supervise boarding",
+            "seconds": 6,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:preparing:passengers",
+            "post": "purser",
+            "issuer": "mate",
+            "station": "purser",
+            "action": "Check the passenger count and exits",
+            "seconds": 8,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:preparing:galley",
+            "post": "cook",
+            "issuer": "purser",
+            "station": "galley",
+            "action": "Secure the galley and loose equipment",
+            "seconds": 6,
+            "complete": true,
+            "acknowledged": true
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 36,
+            "speaker": "Chief engineer",
+            "post": "chief",
+            "text": "Check steering response and report machinery ready: at station.",
+            "kind": "acknowledgement",
+            "stage": "preparing",
+            "elapsed": 26.0999999999998
+          },
+          {
+            "sequence": 37,
+            "speaker": "Chief engineer",
+            "post": "chief",
+            "text": "Check steering response and report machinery ready: complete.",
+            "kind": "report",
+            "stage": "preparing",
+            "elapsed": 34.09999999999935
+          },
+          {
+            "sequence": 38,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Master: Accept engine control from the chief engineer.",
+            "kind": "order",
+            "stage": "preparing",
+            "elapsed": 34.09999999999935
+          },
+          {
+            "sequence": 39,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Accept engine control from the chief engineer: at station.",
+            "kind": "acknowledgement",
+            "stage": "preparing",
+            "elapsed": 34.11666666666601
+          },
+          {
+            "sequence": 40,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Accept engine control from the chief engineer: complete.",
+            "kind": "report",
+            "stage": "preparing",
+            "elapsed": 39.11666666666573
+          },
+          {
+            "sequence": 41,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Master: Check the route and issue stations.",
+            "kind": "order",
+            "stage": "preparing",
+            "elapsed": 39.11666666666573
+          },
+          {
+            "sequence": 42,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Check the route and issue stations: at station.",
+            "kind": "acknowledgement",
+            "stage": "preparing",
+            "elapsed": 39.133333333332395
+          },
+          {
+            "sequence": 43,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Check the route and issue stations: complete.",
+            "kind": "report",
+            "stage": "preparing",
+            "elapsed": 39.133333333332395
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "driving",
+            "shore": "town",
+            "destination": "airport",
+            "driving": true,
+            "occupied": true,
+            "driverState": {
+              "mode": "driving",
+              "blocked": null,
+              "position": [
+                -0.32,
+                0,
+                0.8
+              ],
+              "parent": "Tetsuo · kei truck"
+            },
+            "securing": null,
+            "transfer": null,
+            "position": [
+              -3.85,
+              0,
+              -40.3144166058723
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 93,
+        "stage": "securing",
+        "elapsedSeconds": 88.09999999999629,
+        "shipPosition": [
+          -8.64,
+          -0.5541973906943656,
+          -69.45
+        ],
+        "ramp": {
+          "down": 1,
+          "locked": false
+        },
+        "gangway": {
+          "out": 1
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 0,
+          "driversClear": 0
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "after spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "stern line",
+            "status": "fast",
+            "progress": 0
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Keeps the log and watches the berth from the wheelhouse",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "port-wing",
+            "pos": [
+              3.55,
+              8.1,
+              3.3500000000000014
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks traffic and the landing before supervising the ramp",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "car-deck",
+            "pos": [
+              -0.315,
+              1.1,
+              -0.8400000000000003
+            ],
+            "state": "working",
+            "task": "1:securing:car-check",
+            "action": "Check engines off, parking brakes, transmission and wheel securing",
+            "progress": 0.8472222222222293,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "gangway",
+            "pos": [
+              3.4,
+              1.1,
+              -4.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Supervises the gangway and gives passengers a hand with their bags",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "saloon",
+            "pos": [
+              0,
+              5.5,
+              -0.25
+            ],
+            "state": "working",
+            "task": "1:securing:drivers",
+            "action": "Confirm drivers and passengers are clear of the vehicle deck",
+            "progress": 0.6388888888888874,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:securing:car-check",
+            "post": "bosun",
+            "issuer": "mate",
+            "station": "car-deck",
+            "action": "Check engines off, parking brakes, transmission and wheel securing",
+            "seconds": 12,
+            "target": {
+              "x": -0.315,
+              "y": 1.1,
+              "z": -0.8400000000000003
+            },
+            "complete": false,
+            "acknowledged": true
+          },
+          {
+            "id": "1:securing:drivers",
+            "post": "purser",
+            "issuer": "mate",
+            "station": "saloon",
+            "action": "Confirm drivers and passengers are clear of the vehicle deck",
+            "seconds": 6,
+            "complete": false,
+            "acknowledged": true
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 41,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Master: Check the route and issue stations.",
+            "kind": "order",
+            "stage": "preparing",
+            "elapsed": 39.11666666666573
+          },
+          {
+            "sequence": 42,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Check the route and issue stations: at station.",
+            "kind": "acknowledgement",
+            "stage": "preparing",
+            "elapsed": 39.133333333332395
+          },
+          {
+            "sequence": 43,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Check the route and issue stations: complete.",
+            "kind": "report",
+            "stage": "preparing",
+            "elapsed": 39.133333333332395
+          },
+          {
+            "sequence": 44,
+            "speaker": "Chief engineer",
+            "post": "chief",
+            "text": "Master, both main engines and steering are ready; two generators are on the board and bridge control is accepted.",
+            "kind": "report",
+            "stage": "preparing",
+            "elapsed": 76.14999999999696
+          },
+          {
+            "sequence": 45,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Bosun: Check engines off, parking brakes, transmission and wheel securing.",
+            "kind": "order",
+            "stage": "securing",
+            "elapsed": 76.14999999999696
+          },
+          {
+            "sequence": 46,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Purser: Confirm drivers and passengers are clear of the vehicle deck.",
+            "kind": "order",
+            "stage": "securing",
+            "elapsed": 76.14999999999696
+          },
+          {
+            "sequence": 47,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Check engines off, parking brakes, transmission and wheel securing: at station.",
+            "kind": "acknowledgement",
+            "stage": "securing",
+            "elapsed": 77.94999999999686
+          },
+          {
+            "sequence": 48,
+            "speaker": "Purser",
+            "post": "purser",
+            "text": "Confirm drivers and passengers are clear of the vehicle deck: at station.",
+            "kind": "acknowledgement",
+            "stage": "securing",
+            "elapsed": 84.28333333332984
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": false,
+            "driverState": {
+              "mode": "walking",
+              "blocked": null,
+              "position": [
+                -3.0934776041837657,
+                4.197102190151648,
+                -8.606522395816237
+              ],
+              "parent": "Minato–Kitano-jima shared ferry"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 10.166666666666751,
+              "progress": 0.8472222222222293,
+              "engineOff": true,
+              "parkingBrake": true,
+              "transmission": "neutral",
+              "chocks": true,
+              "straps": false
+            },
+            "transfer": null,
+            "position": [
+              -10.013318604454263,
+              0.5447124312369538,
+              -71.35184600163176
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 97,
+        "stage": "raising-ramp",
+        "elapsedSeconds": 168.10000000002591,
+        "shipPosition": [
+          -8.64,
+          -0.5391218920248859,
+          -69.45
+        ],
+        "ramp": {
+          "down": 0.5013888888888959,
+          "locked": false
+        },
+        "gangway": {
+          "out": 0
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 1,
+          "driversClear": 1
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "after spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "stern line",
+            "status": "fast",
+            "progress": 0
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Keeps the log and watches the berth from the wheelhouse",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "ramp",
+            "pos": [
+              2.75,
+              1.1,
+              11.35
+            ],
+            "state": "working",
+            "task": "1:raising-ramp:ramp-up",
+            "action": "Raise the bow ramp and check both locking pins",
+            "progress": 0.46744791666666013,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "stern",
+            "pos": [
+              1.2,
+              1.1,
+              -15.65
+            ],
+            "state": "reported complete",
+            "task": "1:raising-ramp:aft-ready",
+            "action": "Stand by the after mooring station",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "bow",
+            "pos": [
+              3.55,
+              3.56,
+              16.35
+            ],
+            "state": "reported complete",
+            "task": "1:raising-ramp:bow-ready",
+            "action": "Stand by the forward mooring station",
+            "progress": 1,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -1.6,
+              5.5,
+              -8.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks tickets, the passenger count and the passenger exits",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:raising-ramp:ramp-up",
+            "post": "mate",
+            "issuer": "master",
+            "station": "ramp",
+            "action": "Raise the bow ramp and check both locking pins",
+            "seconds": 64,
+            "complete": false,
+            "acknowledged": true
+          },
+          {
+            "id": "1:raising-ramp:bow-ready",
+            "post": "deck",
+            "issuer": "bosun",
+            "station": "bow",
+            "action": "Stand by the forward mooring station",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          },
+          {
+            "id": "1:raising-ramp:aft-ready",
+            "post": "bosun",
+            "issuer": "mate",
+            "station": "stern",
+            "action": "Stand by the after mooring station",
+            "seconds": 4,
+            "complete": true,
+            "acknowledged": true
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 59,
+            "speaker": "Master",
+            "post": "master",
+            "text": "Mate: Raise the bow ramp and check both locking pins.",
+            "kind": "order",
+            "stage": "raising-ramp",
+            "elapsed": 138.18333333333544
+          },
+          {
+            "sequence": 60,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Able seaman: Stand by the forward mooring station.",
+            "kind": "order",
+            "stage": "raising-ramp",
+            "elapsed": 138.18333333333544
+          },
+          {
+            "sequence": 61,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Bosun: Stand by the after mooring station.",
+            "kind": "order",
+            "stage": "raising-ramp",
+            "elapsed": 138.18333333333544
+          },
+          {
+            "sequence": 62,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Raise the bow ramp and check both locking pins: at station.",
+            "kind": "acknowledgement",
+            "stage": "raising-ramp",
+            "elapsed": 138.20000000000212
+          },
+          {
+            "sequence": 63,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Stand by the after mooring station: at station.",
+            "kind": "acknowledgement",
+            "stage": "raising-ramp",
+            "elapsed": 153.3333333333475
+          },
+          {
+            "sequence": 64,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Stand by the after mooring station: complete.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 157.33333333335068
+          },
+          {
+            "sequence": 65,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Stand by the forward mooring station: at station.",
+            "kind": "acknowledgement",
+            "stage": "raising-ramp",
+            "elapsed": 164.08333333335605
+          },
+          {
+            "sequence": 66,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Stand by the forward mooring station: complete.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 168.08333333335923
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": false,
+            "driverState": {
+              "mode": "passenger",
+              "blocked": null,
+              "position": [
+                -0.9,
+                5.5,
+                -10.45
+              ],
+              "parent": "Minato–Kitano-jima shared ferry"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 12,
+              "progress": 1,
+              "engineOff": true,
+              "parkingBrake": true,
+              "transmission": "neutral",
+              "chocks": true,
+              "straps": true
+            },
+            "transfer": null,
+            "position": [
+              -10.011435518752863,
+              0.5631724958732012,
+              -71.35124609146514
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 99,
+        "stage": "letting-go",
+        "elapsedSeconds": 208.10000000005775,
+        "shipPosition": [
+          -8.64,
+          -0.5722749117291515,
+          -69.45
+        ],
+        "ramp": {
+          "down": 0,
+          "locked": true
+        },
+        "gangway": {
+          "out": 0
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 1,
+          "driversClear": 1
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "after spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "stern line",
+            "status": "fast",
+            "progress": 0
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Keeps the log and watches the berth from the wheelhouse",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "port-wing",
+            "pos": [
+              2.6999999999999997,
+              1.1,
+              4.392950975679764
+            ],
+            "state": "walking",
+            "task": null,
+            "action": "Checks traffic and the landing before supervising the ramp",
+            "progress": 0,
+            "atStation": false,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "car-deck",
+            "pos": [
+              0.3,
+              1.1,
+              -9.184951230614548
+            ],
+            "state": "walking",
+            "task": null,
+            "action": "Supervises vehicle parking and wheel securing",
+            "progress": 0,
+            "atStation": false,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "bow",
+            "pos": [
+              3.55,
+              3.56,
+              16.35
+            ],
+            "state": "waiting for shore hand",
+            "task": "1:letting-go:line-0-ship",
+            "action": "Receive the head line eye and heave it aboard",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -1.6,
+              5.5,
+              -8.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks tickets, the passenger count and the passenger exits",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Fujita",
+            "post": "shore",
+            "where": "shore-town",
+            "pos": [
+              -36.807365026683826,
+              0,
+              -52.68479100868623
+            ],
+            "state": "walking",
+            "task": "1:letting-go:line-0-shore",
+            "action": "Lift and return the head line eye",
+            "progress": 0,
+            "atStation": null,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:letting-go:line-0-ship",
+            "post": "deck",
+            "issuer": "bosun",
+            "station": "bow",
+            "action": "Receive the head line eye and heave it aboard",
+            "seconds": 8,
+            "complete": false,
+            "acknowledged": true
+          },
+          {
+            "id": "1:letting-go:line-0-shore",
+            "post": "shore",
+            "issuer": "bosun",
+            "station": "shore-town",
+            "action": "Lift and return the head line eye",
+            "seconds": 8,
+            "target": {
+              "x": -2.9999999999999996,
+              "y": 0.098,
+              "z": -53
+            },
+            "complete": false,
+            "acknowledged": false
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 64,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Stand by the after mooring station: complete.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 157.33333333335068
+          },
+          {
+            "sequence": 65,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Stand by the forward mooring station: at station.",
+            "kind": "acknowledgement",
+            "stage": "raising-ramp",
+            "elapsed": 164.08333333335605
+          },
+          {
+            "sequence": 66,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Stand by the forward mooring station: complete.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 168.08333333335923
+          },
+          {
+            "sequence": 67,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Raise the bow ramp and check both locking pins: complete.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 202.20000000005305
+          },
+          {
+            "sequence": 68,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Bow ramp closed; both locking pins checked.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 202.20000000005305
+          },
+          {
+            "sequence": 69,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Able seaman: Receive the head line eye and heave it aboard.",
+            "kind": "order",
+            "stage": "letting-go",
+            "elapsed": 202.20000000005305
+          },
+          {
+            "sequence": 70,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Shore hand: Lift and return the head line eye.",
+            "kind": "order",
+            "stage": "letting-go",
+            "elapsed": 202.20000000005305
+          },
+          {
+            "sequence": 71,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Receive the head line eye and heave it aboard: at station.",
+            "kind": "acknowledgement",
+            "stage": "letting-go",
+            "elapsed": 202.21666666671973
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": false,
+            "driverState": {
+              "mode": "passenger",
+              "blocked": null,
+              "position": [
+                -0.9,
+                5.5,
+                -10.45
+              ],
+              "parent": "Minato–Kitano-jima shared ferry"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 12,
+              "progress": 1,
+              "engineOff": true,
+              "parkingBrake": true,
+              "transmission": "neutral",
+              "chocks": true,
+              "straps": true
+            },
+            "transfer": null,
+            "position": [
+              -10.020243696097708,
+              0.5207074643089475,
+              -71.3502478430596
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 102,
+        "stage": "letting-go",
+        "elapsedSeconds": 248.10000000008958,
+        "shipPosition": [
+          -8.64,
+          -0.5486821514346852,
+          -69.45
+        ],
+        "ramp": {
+          "down": 0,
+          "locked": true
+        },
+        "gangway": {
+          "out": 0
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 1,
+          "driversClear": 1
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "after spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "stern line",
+            "status": "fast",
+            "progress": 0
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Keeps the log and watches the berth from the wheelhouse",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "port-wing",
+            "pos": [
+              3.55,
+              8.1,
+              3.3500000000000014
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks traffic and the landing before supervising the ramp",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "car-deck",
+            "pos": [
+              0,
+              1.1,
+              1.25
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Supervises vehicle parking and wheel securing",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "bow",
+            "pos": [
+              3.55,
+              3.56,
+              16.35
+            ],
+            "state": "waiting for shore hand",
+            "task": "1:letting-go:line-0-ship",
+            "action": "Receive the head line eye and heave it aboard",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -1.6,
+              5.5,
+              -8.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks tickets, the passenger count and the passenger exits",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Fujita",
+            "post": "shore",
+            "where": "shore-town",
+            "pos": [
+              -6.373522273602781,
+              0,
+              -49.40882435304584
+            ],
+            "state": "walking",
+            "task": "1:letting-go:line-0-shore",
+            "action": "Lift and return the head line eye",
+            "progress": 0,
+            "atStation": null,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:letting-go:line-0-ship",
+            "post": "deck",
+            "issuer": "bosun",
+            "station": "bow",
+            "action": "Receive the head line eye and heave it aboard",
+            "seconds": 8,
+            "complete": false,
+            "acknowledged": true
+          },
+          {
+            "id": "1:letting-go:line-0-shore",
+            "post": "shore",
+            "issuer": "bosun",
+            "station": "shore-town",
+            "action": "Lift and return the head line eye",
+            "seconds": 8,
+            "target": {
+              "x": -2.9999999999999996,
+              "y": 0.098,
+              "z": -53
+            },
+            "complete": false,
+            "acknowledged": false
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 64,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Stand by the after mooring station: complete.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 157.33333333335068
+          },
+          {
+            "sequence": 65,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Stand by the forward mooring station: at station.",
+            "kind": "acknowledgement",
+            "stage": "raising-ramp",
+            "elapsed": 164.08333333335605
+          },
+          {
+            "sequence": 66,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Stand by the forward mooring station: complete.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 168.08333333335923
+          },
+          {
+            "sequence": 67,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Raise the bow ramp and check both locking pins: complete.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 202.20000000005305
+          },
+          {
+            "sequence": 68,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Bow ramp closed; both locking pins checked.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 202.20000000005305
+          },
+          {
+            "sequence": 69,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Able seaman: Receive the head line eye and heave it aboard.",
+            "kind": "order",
+            "stage": "letting-go",
+            "elapsed": 202.20000000005305
+          },
+          {
+            "sequence": 70,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Shore hand: Lift and return the head line eye.",
+            "kind": "order",
+            "stage": "letting-go",
+            "elapsed": 202.20000000005305
+          },
+          {
+            "sequence": 71,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Receive the head line eye and heave it aboard: at station.",
+            "kind": "acknowledgement",
+            "stage": "letting-go",
+            "elapsed": 202.21666666671973
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": false,
+            "driverState": {
+              "mode": "passenger",
+              "blocked": null,
+              "position": [
+                -0.9,
+                5.5,
+                -10.45
+              ],
+              "parent": "Minato–Kitano-jima shared ferry"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 12,
+              "progress": 1,
+              "engineOff": true,
+              "parkingBrake": true,
+              "transmission": "neutral",
+              "chocks": true,
+              "straps": true
+            },
+            "transfer": null,
+            "position": [
+              -10.00975413162008,
+              0.5592650902917798,
+              -71.3491712741247
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 103,
+        "stage": "letting-go",
+        "elapsedSeconds": 256.10000000009575,
+        "shipPosition": [
+          -8.64,
+          -0.5715671942518886,
+          -69.45
+        ],
+        "ramp": {
+          "down": 0,
+          "locked": true
+        },
+        "gangway": {
+          "out": 0
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 1,
+          "driversClear": 1
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "eye-return",
+            "progress": 0.34999999999999937
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "after spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "stern line",
+            "status": "fast",
+            "progress": 0
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Keeps the log and watches the berth from the wheelhouse",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "port-wing",
+            "pos": [
+              3.55,
+              8.1,
+              3.3500000000000014
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks traffic and the landing before supervising the ramp",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "car-deck",
+            "pos": [
+              0,
+              1.1,
+              1.25
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Supervises vehicle parking and wheel securing",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "bow",
+            "pos": [
+              3.55,
+              3.56,
+              16.35
+            ],
+            "state": "working",
+            "task": "1:letting-go:line-0-ship",
+            "action": "Receive the head line eye and heave it aboard",
+            "progress": 0.34791666666666604,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -1.6,
+              5.5,
+              -8.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks tickets, the passenger count and the passenger exits",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Fujita",
+            "post": "shore",
+            "where": "shore-town",
+            "pos": [
+              -3,
+              0.098,
+              -53
+            ],
+            "state": "working the line",
+            "task": "1:letting-go:line-0-shore",
+            "action": "Lift and return the head line eye",
+            "progress": 0.34791666666666604,
+            "atStation": null,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:letting-go:line-0-ship",
+            "post": "deck",
+            "issuer": "bosun",
+            "station": "bow",
+            "action": "Receive the head line eye and heave it aboard",
+            "seconds": 8,
+            "complete": false,
+            "acknowledged": true
+          },
+          {
+            "id": "1:letting-go:line-0-shore",
+            "post": "shore",
+            "issuer": "bosun",
+            "station": "shore-town",
+            "action": "Lift and return the head line eye",
+            "seconds": 8,
+            "target": {
+              "x": -2.9999999999999996,
+              "y": 0.098,
+              "z": -53
+            },
+            "complete": false,
+            "acknowledged": true
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 65,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Stand by the forward mooring station: at station.",
+            "kind": "acknowledgement",
+            "stage": "raising-ramp",
+            "elapsed": 164.08333333335605
+          },
+          {
+            "sequence": 66,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Stand by the forward mooring station: complete.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 168.08333333335923
+          },
+          {
+            "sequence": 67,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Raise the bow ramp and check both locking pins: complete.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 202.20000000005305
+          },
+          {
+            "sequence": 68,
+            "speaker": "Mate",
+            "post": "mate",
+            "text": "Bow ramp closed; both locking pins checked.",
+            "kind": "report",
+            "stage": "raising-ramp",
+            "elapsed": 202.20000000005305
+          },
+          {
+            "sequence": 69,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Able seaman: Receive the head line eye and heave it aboard.",
+            "kind": "order",
+            "stage": "letting-go",
+            "elapsed": 202.20000000005305
+          },
+          {
+            "sequence": 70,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Shore hand: Lift and return the head line eye.",
+            "kind": "order",
+            "stage": "letting-go",
+            "elapsed": 202.20000000005305
+          },
+          {
+            "sequence": 71,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Receive the head line eye and heave it aboard: at station.",
+            "kind": "acknowledgement",
+            "stage": "letting-go",
+            "elapsed": 202.21666666671973
+          },
+          {
+            "sequence": 72,
+            "speaker": "Shore hand",
+            "post": "shore",
+            "text": "Lift and return the head line eye: at station.",
+            "kind": "acknowledgement",
+            "stage": "letting-go",
+            "elapsed": 253.3166666667604
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": false,
+            "driverState": {
+              "mode": "passenger",
+              "blocked": null,
+              "position": [
+                -0.9,
+                5.5,
+                -10.45
+              ],
+              "parent": "Minato–Kitano-jima shared ferry"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 12,
+              "progress": 1,
+              "engineOff": true,
+              "parkingBrake": true,
+              "transmission": "neutral",
+              "chocks": true,
+              "straps": true
+            },
+            "transfer": null,
+            "position": [
+              -10.015783007335054,
+              0.5276866462114725,
+              -71.34986502440428
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      },
+      {
+        "rpc": 105,
+        "stage": "letting-go",
+        "elapsedSeconds": 264.10000000008847,
+        "shipPosition": [
+          -8.64,
+          -0.55720163845371,
+          -69.45
+        ],
+        "ramp": {
+          "down": 0,
+          "locked": true
+        },
+        "gangway": {
+          "out": 0
+        },
+        "vehicleSummary": {
+          "aboard": 1,
+          "secured": 1,
+          "driversClear": 1
+        },
+        "lines": [
+          {
+            "name": "head line",
+            "status": "coiled",
+            "progress": 1
+          },
+          {
+            "name": "forward spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "after spring",
+            "status": "fast",
+            "progress": 0
+          },
+          {
+            "name": "stern line",
+            "status": "fast",
+            "progress": 0
+          }
+        ],
+        "crew": [
+          {
+            "name": "Bus driver",
+            "post": "master",
+            "where": "wheelhouse",
+            "pos": [
+              0.45,
+              8.1,
+              3.4499999999999993
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Keeps the log and watches the berth from the wheelhouse",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Chief officer",
+            "post": "mate",
+            "where": "port-wing",
+            "pos": [
+              3.55,
+              8.1,
+              3.3500000000000014
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks traffic and the landing before supervising the ramp",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Nakandakari",
+            "post": "chief",
+            "where": "engine-room",
+            "pos": [
+              -3.1,
+              -0.9999999999999999,
+              -6.85
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the plant and switchboard before accepting a departure order",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Higa Jr",
+            "post": "oiler",
+            "where": "engine-room",
+            "pos": [
+              0,
+              -0.9999999999999999,
+              -5.050000000000001
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks the machinery, bilges and lubricating oil",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Kōji",
+            "post": "bosun",
+            "where": "car-deck",
+            "pos": [
+              0,
+              1.1,
+              1.25
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Supervises vehicle parking and wheel securing",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Deck hand",
+            "post": "deck",
+            "where": "bow",
+            "pos": [
+              3.55,
+              3.56,
+              16.35
+            ],
+            "state": "waiting for shore hand",
+            "task": "1:letting-go:line-1-ship",
+            "action": "Receive the forward spring eye and heave it aboard",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Purser",
+            "post": "purser",
+            "where": "purser",
+            "pos": [
+              -1.6,
+              5.5,
+              -8.65
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Checks tickets, the passenger count and the passenger exits",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Cook-steward",
+            "post": "cook",
+            "where": "mess",
+            "pos": [
+              -1.6,
+              8.1,
+              -2.0500000000000007
+            ],
+            "state": "at station",
+            "task": null,
+            "action": "Prepares meals and secures the galley’s loose equipment",
+            "progress": 0,
+            "atStation": true,
+            "blocked": null
+          },
+          {
+            "name": "Mr Fujita",
+            "post": "shore",
+            "where": "shore-town",
+            "pos": [
+              -3,
+              0.098,
+              -56.16249999999947
+            ],
+            "state": "walking",
+            "task": "1:letting-go:line-1-shore",
+            "action": "Lift and return the forward spring eye",
+            "progress": 0,
+            "atStation": null,
+            "blocked": null
+          }
+        ],
+        "tasks": [
+          {
+            "id": "1:letting-go:line-1-ship",
+            "post": "deck",
+            "issuer": "bosun",
+            "station": "bow",
+            "action": "Receive the forward spring eye and heave it aboard",
+            "seconds": 8,
+            "complete": false,
+            "acknowledged": true
+          },
+          {
+            "id": "1:letting-go:line-1-shore",
+            "post": "shore",
+            "issuer": "bosun",
+            "station": "shore-town",
+            "action": "Lift and return the forward spring eye",
+            "seconds": 8,
+            "target": {
+              "x": -2.9999999999999996,
+              "y": 0.098,
+              "z": -62
+            },
+            "complete": false,
+            "acknowledged": false
+          }
+        ],
+        "reports": [
+          {
+            "sequence": 70,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Shore hand: Lift and return the head line eye.",
+            "kind": "order",
+            "stage": "letting-go",
+            "elapsed": 202.20000000005305
+          },
+          {
+            "sequence": 71,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Receive the head line eye and heave it aboard: at station.",
+            "kind": "acknowledgement",
+            "stage": "letting-go",
+            "elapsed": 202.21666666671973
+          },
+          {
+            "sequence": 72,
+            "speaker": "Shore hand",
+            "post": "shore",
+            "text": "Lift and return the head line eye: at station.",
+            "kind": "acknowledgement",
+            "stage": "letting-go",
+            "elapsed": 253.3166666667604
+          },
+          {
+            "sequence": 73,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Receive the head line eye and heave it aboard: complete.",
+            "kind": "report",
+            "stage": "letting-go",
+            "elapsed": 261.3333333334243
+          },
+          {
+            "sequence": 74,
+            "speaker": "Shore hand",
+            "post": "shore",
+            "text": "Lift and return the head line eye: complete.",
+            "kind": "report",
+            "stage": "letting-go",
+            "elapsed": 261.3333333334243
+          },
+          {
+            "sequence": 75,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Able seaman: Receive the forward spring eye and heave it aboard.",
+            "kind": "order",
+            "stage": "letting-go",
+            "elapsed": 261.3333333334243
+          },
+          {
+            "sequence": 76,
+            "speaker": "Bosun",
+            "post": "bosun",
+            "text": "Shore hand: Lift and return the forward spring eye.",
+            "kind": "order",
+            "stage": "letting-go",
+            "elapsed": 261.3333333334243
+          },
+          {
+            "sequence": 77,
+            "speaker": "Able seaman",
+            "post": "deck",
+            "text": "Receive the forward spring eye and heave it aboard: at station.",
+            "kind": "acknowledgement",
+            "stage": "letting-go",
+            "elapsed": 261.350000000091
+          }
+        ],
+        "vehicles": [
+          {
+            "id": "owned-car-1",
+            "owner": "Tetsuo",
+            "driver": "Tetsuo",
+            "purpose": "Collect airport cargo for the workshop",
+            "location": "aboard",
+            "shore": "town",
+            "destination": "airport",
+            "driving": false,
+            "occupied": false,
+            "driverState": {
+              "mode": "passenger",
+              "blocked": null,
+              "position": [
+                -0.9,
+                5.5,
+                -10.45
+              ],
+              "parent": "Minato–Kitano-jima shared ferry"
+            },
+            "securing": {
+              "operation": 1,
+              "elapsed": 12,
+              "progress": 1,
+              "engineOff": true,
+              "parkingBrake": true,
+              "transmission": "neutral",
+              "chocks": true,
+              "straps": true
+            },
+            "transfer": null,
+            "position": [
+              -10.02104732161497,
+              0.5333672982461193,
+              -71.3510504174707
+            ]
+          }
+        ],
+        "completedVoyages": [],
+        "javascriptOrNonFontErrors": [],
+        "invalidTransforms": []
+      }
+    ]
+  },
+  "diagnostics": {
+    "javascriptOrNonFontErrors": 0,
+    "invalidTransforms": 0,
+    "environmentOnly": "Isolated Chromium rejected external Google Fonts certificates; local font fallback remained usable."
+  },
+  "screenshots": {
+    "ferry-underway.png": "Completed compiled voyage, boot-DafHIvLE.js",
+    "ferry-arrival.png": "Completed compiled voyage, boot-DafHIvLE.js, after truck parked",
+    "final-line-handover.png": "Final compiled paired-handler check, boot-BYig4clw.js"
+  }
+}

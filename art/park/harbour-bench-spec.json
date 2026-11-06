@@ -1,0 +1,17 @@
+{
+  "name": "Harbour Park bench",
+  "units": "metres",
+  "axes": "glTF +Y up; seat faces -Z, backrest +Z; origin at foot centre",
+  "length": 2.0832,
+  "seatDepth": 0.454272,
+  "seatHeight": 0.4256,
+  "seatThickness": 0.045,
+  "backHeight": 0.53,
+  "backZ": 0.256256,
+  "footprintDepth": 0.5824,
+  "sitZ": -0.133952,
+  "parkModelX": 2.0992,
+  "parkModelFootY": 1.58,
+  "standModelX": 0.5,
+  "referenceParkScale": 0.56
+}

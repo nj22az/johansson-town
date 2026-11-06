@@ -1,0 +1,22 @@
+{
+  "results": [
+    {
+      "width": 1280,
+      "height": 800,
+      "originalPreset": true,
+      "hairSelection": true,
+      "saveReload": true,
+      "originalFace": true,
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "originalPreset": true,
+      "hairSelection": true,
+      "saveReload": true,
+      "originalFace": true,
+      "pageErrors": []
+    }
+  ]
+}

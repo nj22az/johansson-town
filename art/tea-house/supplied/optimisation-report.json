@@ -1,0 +1,43 @@
+{
+  "source_name": "Meshy_AI_Corner_Tea_House_0908175409_texture.glb",
+  "source_sha256": "0f2549681e85ebdedb83ecbfdcf0947c496fdc4471a2de4ba5a7b253fc3310a6",
+  "source_bytes": 101733180,
+  "source_triangles": 2966634,
+  "target_triangles": 60000,
+  "output_triangles": 60000,
+  "scale": 4.0,
+  "ground_offset": -0.08,
+  "front_offset": 0.4,
+  "runtime_bytes": 4988984,
+  "runtime_sha256": "2e12eb0f702199039a65c11ef9ddce4d77c01b362c53c1a3a30deeda76179105",
+  "images": [
+    {
+      "index": 0,
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 242664,
+      "base_color": false
+    },
+    {
+      "index": 1,
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 1294408,
+      "base_color": true
+    },
+    {
+      "index": 2,
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 223837,
+      "base_color": false
+    }
+  ],
+  "size_reduction_percent": 95.1
+}

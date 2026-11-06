@@ -1,0 +1,884 @@
+[
+  {
+    "name": "Bottle 01 | SANGO QUAY",
+    "translation": [
+      -1.4429999589920044,
+      0.9869999885559082,
+      0.04469556733965874
+    ],
+    "rotation": [
+      0,
+      -0.03702715411782265,
+      0,
+      0.9993142485618591
+    ],
+    "extras": {
+      "brand": "SANGO QUAY",
+      "spirit": "AWAMORI",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.292; radius 0.043"
+    }
+  },
+  {
+    "name": "Bottle 02 | HOSHINAMI",
+    "translation": [
+      -1.2610000371932983,
+      0.9869999885559082,
+      0.05087452009320259
+    ],
+    "rotation": [
+      0,
+      -0.015323679894208908,
+      0,
+      0.9998825788497925
+    ],
+    "extras": {
+      "brand": "HOSHINAMI",
+      "spirit": "AGED AWAMORI",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.275; radius 0.049"
+    }
+  },
+  {
+    "name": "Bottle 03 | GREYWAKE",
+    "translation": [
+      -1.093000054359436,
+      0.9869999885559082,
+      0.052459489554166794
+    ],
+    "rotation": [
+      0,
+      -0.03786245733499527,
+      0,
+      0.999282956123352
+    ],
+    "extras": {
+      "brand": "GREYWAKE",
+      "spirit": "SINGLE MALT WHISKY",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.292; radius 0.048"
+    }
+  },
+  {
+    "name": "Bottle 04 | COPPER LEDGER",
+    "translation": [
+      -0.8960000276565552,
+      0.9869999885559082,
+      0.038129325956106186
+    ],
+    "rotation": [
+      0,
+      0.033484116196632385,
+      0,
+      0.9994393587112427
+    ],
+    "extras": {
+      "brand": "COPPER LEDGER",
+      "spirit": "BOURBON WHISKEY",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.267; radius 0.048"
+    }
+  },
+  {
+    "name": "Bottle 05 | JUNIPER SOUND",
+    "translation": [
+      -0.7059999704360962,
+      0.9869999885559082,
+      0.0909947082400322
+    ],
+    "rotation": [
+      0,
+      -0.014028256759047508,
+      0,
+      0.9999015927314758
+    ],
+    "extras": {
+      "brand": "JUNIPER SOUND",
+      "spirit": "DRY GIN",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.276; radius 0.047"
+    }
+  },
+  {
+    "name": "Bottle 06 | MARROW CAY",
+    "translation": [
+      -0.37299999594688416,
+      0.9869999885559082,
+      0.038060933351516724
+    ],
+    "rotation": [
+      0,
+      -0.03743932396173477,
+      0,
+      0.9992989301681519
+    ],
+    "extras": {
+      "brand": "MARROW CAY",
+      "spirit": "AGED DARK RUM",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.266; radius 0.053"
+    }
+  },
+  {
+    "name": "Bottle 07 | NORTHGLASS",
+    "translation": [
+      -0.19099999964237213,
+      0.9869999885559082,
+      0.07663534581661224
+    ],
+    "rotation": [
+      0,
+      -0.061944715678691864,
+      0,
+      0.9980795979499817
+    ],
+    "extras": {
+      "brand": "NORTHGLASS",
+      "spirit": "VODKA",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.327; radius 0.037"
+    }
+  },
+  {
+    "name": "Bottle 08 | MAISON VEYRILLE",
+    "translation": [
+      -0.023000000044703484,
+      0.9860000014305115,
+      0.09011653065681458
+    ],
+    "rotation": [
+      0,
+      0.02902022749185562,
+      0,
+      0.9995788335800171
+    ],
+    "extras": {
+      "brand": "MAISON VEYRILLE",
+      "spirit": "VSOP BRANDY",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.252; radius 0.057"
+    }
+  },
+  {
+    "name": "Bottle 09 | ROSSO LUNARO",
+    "translation": [
+      0.17399999499320984,
+      0.9869999885559082,
+      0.04228682070970535
+    ],
+    "rotation": [
+      0,
+      -0.04068097099661827,
+      0,
+      0.9991722106933594
+    ],
+    "extras": {
+      "brand": "ROSSO LUNARO",
+      "spirit": "VERMOUTH ROSSO",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.312; radius 0.039"
+    }
+  },
+  {
+    "name": "Bottle 10 | NAMI YUZU",
+    "translation": [
+      0.36399999260902405,
+      0.9869999885559082,
+      0.051294613629579544
+    ],
+    "rotation": [
+      0,
+      -0.054221246391534805,
+      0,
+      0.9985289573669434
+    ],
+    "extras": {
+      "brand": "NAMI YUZU",
+      "spirit": "CITRUS LIQUEUR",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.245; radius 0.048"
+    }
+  },
+  {
+    "name": "Bottle 11 | CANTO RUBINO",
+    "translation": [
+      0.6970000267028809,
+      0.9869999885559082,
+      0.08624644577503204
+    ],
+    "rotation": [
+      0,
+      0.012703359127044678,
+      0,
+      0.9999194145202637
+    ],
+    "extras": {
+      "brand": "CANTO RUBINO",
+      "spirit": "BITTER APERITIVO",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.306; radius 0.039"
+    }
+  },
+  {
+    "name": "Bottle 12 | SIERRA CANDELA",
+    "translation": [
+      0.8790000081062317,
+      0.9869999885559082,
+      0.037624385207891464
+    ],
+    "rotation": [
+      0,
+      0.05763698369264603,
+      0,
+      0.9983376264572144
+    ],
+    "extras": {
+      "brand": "SIERRA CANDELA",
+      "spirit": "TEQUILA BLANCO",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.253; radius 0.052"
+    }
+  },
+  {
+    "name": "Bottle 13 | ORCHARD HOUR",
+    "translation": [
+      1.0470000505447388,
+      0.9860000014305115,
+      0.04304668679833412
+    ],
+    "rotation": [
+      0,
+      -0.06885295361280441,
+      0,
+      0.9976268410682678
+    ],
+    "extras": {
+      "brand": "ORCHARD HOUR",
+      "spirit": "PEAR LIQUEUR",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.282; radius 0.044"
+    }
+  },
+  {
+    "name": "Bottle 14 | BLACK TIDE",
+    "translation": [
+      1.24399995803833,
+      0.9869999885559082,
+      0.07675085216760635
+    ],
+    "rotation": [
+      0,
+      -0.06889747083187103,
+      0,
+      0.9976237416267395
+    ],
+    "extras": {
+      "brand": "BLACK TIDE",
+      "spirit": "COFFEE LIQUEUR",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.258; radius 0.047"
+    }
+  },
+  {
+    "name": "Bottle 15 | JUNIPER SOUND",
+    "translation": [
+      1.434000015258789,
+      0.9869999885559082,
+      0.04604734852910042
+    ],
+    "rotation": [
+      0,
+      -0.034340597689151764,
+      0,
+      0.9994102120399475
+    ],
+    "extras": {
+      "brand": "JUNIPER SOUND",
+      "spirit": "DRY GIN",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.276; radius 0.047"
+    }
+  },
+  {
+    "name": "Bottle 16 | MARROW CAY",
+    "translation": [
+      -1.4429999589920044,
+      1.500499963760376,
+      0.09209506213665009
+    ],
+    "rotation": [
+      0,
+      -0.01702307164669037,
+      0,
+      0.999855101108551
+    ],
+    "extras": {
+      "brand": "MARROW CAY",
+      "spirit": "AGED DARK RUM",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.266; radius 0.053"
+    }
+  },
+  {
+    "name": "Bottle 17 | NORTHGLASS",
+    "translation": [
+      -1.2610000371932983,
+      1.500499963760376,
+      0.07850737124681473
+    ],
+    "rotation": [
+      0,
+      -0.02207322046160698,
+      0,
+      0.999756395816803
+    ],
+    "extras": {
+      "brand": "NORTHGLASS",
+      "spirit": "VODKA",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.327; radius 0.037"
+    }
+  },
+  {
+    "name": "Bottle 18 | MAISON VEYRILLE",
+    "translation": [
+      -1.093000054359436,
+      1.499500036239624,
+      0.09177656471729279
+    ],
+    "rotation": [
+      0,
+      -0.0034244973212480545,
+      0,
+      0.999994158744812
+    ],
+    "extras": {
+      "brand": "MAISON VEYRILLE",
+      "spirit": "VSOP BRANDY",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.252; radius 0.057"
+    }
+  },
+  {
+    "name": "Bottle 19 | ROSSO LUNARO",
+    "translation": [
+      -0.8960000276565552,
+      1.500499963760376,
+      0.08379445225000381
+    ],
+    "rotation": [
+      0,
+      -0.01861218549311161,
+      0,
+      0.9998267889022827
+    ],
+    "extras": {
+      "brand": "ROSSO LUNARO",
+      "spirit": "VERMOUTH ROSSO",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.312; radius 0.039"
+    }
+  },
+  {
+    "name": "Bottle 20 | NAMI YUZU",
+    "translation": [
+      -0.7059999704360962,
+      1.500499963760376,
+      0.03842368721961975
+    ],
+    "rotation": [
+      0,
+      0.06288355588912964,
+      0,
+      0.9980208873748779
+    ],
+    "extras": {
+      "brand": "NAMI YUZU",
+      "spirit": "CITRUS LIQUEUR",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.245; radius 0.048"
+    }
+  },
+  {
+    "name": "Bottle 21 | CANTO RUBINO",
+    "translation": [
+      -0.37299999594688416,
+      1.500499963760376,
+      0.08568546921014786
+    ],
+    "rotation": [
+      0,
+      -0.005175319034606218,
+      0,
+      0.9999866485595703
+    ],
+    "extras": {
+      "brand": "CANTO RUBINO",
+      "spirit": "BITTER APERITIVO",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.306; radius 0.039"
+    }
+  },
+  {
+    "name": "Bottle 22 | SIERRA CANDELA",
+    "translation": [
+      -0.19099999964237213,
+      1.500499963760376,
+      0.03625898063182831
+    ],
+    "rotation": [
+      0,
+      0.06758400797843933,
+      0,
+      0.997713565826416
+    ],
+    "extras": {
+      "brand": "SIERRA CANDELA",
+      "spirit": "TEQUILA BLANCO",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.253; radius 0.052"
+    }
+  },
+  {
+    "name": "Bottle 23 | ORCHARD HOUR",
+    "translation": [
+      -0.023000000044703484,
+      1.499500036239624,
+      0.06013166159391403
+    ],
+    "rotation": [
+      0,
+      0.015466706827282906,
+      0,
+      0.9998804926872253
+    ],
+    "extras": {
+      "brand": "ORCHARD HOUR",
+      "spirit": "PEAR LIQUEUR",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.282; radius 0.044"
+    }
+  },
+  {
+    "name": "Bottle 24 | BLACK TIDE",
+    "translation": [
+      0.17399999499320984,
+      1.500499963760376,
+      0.045801080763339996
+    ],
+    "rotation": [
+      0,
+      0.005369305610656738,
+      0,
+      0.9999855756759644
+    ],
+    "extras": {
+      "brand": "BLACK TIDE",
+      "spirit": "COFFEE LIQUEUR",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.258; radius 0.047"
+    }
+  },
+  {
+    "name": "Bottle 25 | SANGO QUAY",
+    "translation": [
+      0.36399999260902405,
+      1.500499963760376,
+      0.08455369621515274
+    ],
+    "rotation": [
+      0,
+      0.016209697350859642,
+      0,
+      0.999868631362915
+    ],
+    "extras": {
+      "brand": "SANGO QUAY",
+      "spirit": "AWAMORI",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.292; radius 0.043"
+    }
+  },
+  {
+    "name": "Bottle 26 | HOSHINAMI",
+    "translation": [
+      0.6970000267028809,
+      1.500499963760376,
+      0.037194136530160904
+    ],
+    "rotation": [
+      0,
+      -0.05479007959365845,
+      0,
+      0.9984979033470154
+    ],
+    "extras": {
+      "brand": "HOSHINAMI",
+      "spirit": "AGED AWAMORI",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.275; radius 0.049"
+    }
+  },
+  {
+    "name": "Bottle 27 | GREYWAKE",
+    "translation": [
+      0.8790000081062317,
+      1.500499963760376,
+      0.030365990474820137
+    ],
+    "rotation": [
+      0,
+      0.033868975937366486,
+      0,
+      0.9994263052940369
+    ],
+    "extras": {
+      "brand": "GREYWAKE",
+      "spirit": "SINGLE MALT WHISKY",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.292; radius 0.048"
+    }
+  },
+  {
+    "name": "Bottle 28 | COPPER LEDGER",
+    "translation": [
+      1.0470000505447388,
+      1.500499963760376,
+      0.06947011500597
+    ],
+    "rotation": [
+      0,
+      -0.059655409306287766,
+      0,
+      0.9982191324234009
+    ],
+    "extras": {
+      "brand": "COPPER LEDGER",
+      "spirit": "BOURBON WHISKEY",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.267; radius 0.048"
+    }
+  },
+  {
+    "name": "Bottle 29 | JUNIPER SOUND",
+    "translation": [
+      1.24399995803833,
+      1.500499963760376,
+      0.06772948056459427
+    ],
+    "rotation": [
+      0,
+      -0.0491112656891346,
+      0,
+      0.9987934231758118
+    ],
+    "extras": {
+      "brand": "JUNIPER SOUND",
+      "spirit": "DRY GIN",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.276; radius 0.047"
+    }
+  },
+  {
+    "name": "Bottle 30 | MARROW CAY",
+    "translation": [
+      1.434000015258789,
+      1.500499963760376,
+      0.03178282082080841
+    ],
+    "rotation": [
+      0,
+      0.019646357744932175,
+      0,
+      0.9998070001602173
+    ],
+    "extras": {
+      "brand": "MARROW CAY",
+      "spirit": "AGED DARK RUM",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.266; radius 0.053"
+    }
+  },
+  {
+    "name": "Bottle 31 | GREYWAKE",
+    "translation": [
+      -1.4149999618530273,
+      2.000499963760376,
+      0.06850637495517731
+    ],
+    "rotation": [
+      0,
+      0.059253495186567307,
+      0,
+      0.998242974281311
+    ],
+    "extras": {
+      "brand": "GREYWAKE",
+      "spirit": "SINGLE MALT WHISKY",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.292; radius 0.048"
+    }
+  },
+  {
+    "name": "Bottle 32 | COPPER LEDGER",
+    "translation": [
+      -1.187000036239624,
+      2.000499963760376,
+      0.03384825214743614
+    ],
+    "rotation": [
+      0,
+      0.053659263998270035,
+      0,
+      0.9985593557357788
+    ],
+    "extras": {
+      "brand": "COPPER LEDGER",
+      "spirit": "BOURBON WHISKEY",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.267; radius 0.048"
+    }
+  },
+  {
+    "name": "Bottle 33 | JUNIPER SOUND",
+    "translation": [
+      -0.9580000042915344,
+      2.000499963760376,
+      0.03617137297987938
+    ],
+    "rotation": [
+      0,
+      0.05265769362449646,
+      0,
+      0.998612642288208
+    ],
+    "extras": {
+      "brand": "JUNIPER SOUND",
+      "spirit": "DRY GIN",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.276; radius 0.047"
+    }
+  },
+  {
+    "name": "Bottle 34 | MARROW CAY",
+    "translation": [
+      -0.7229999899864197,
+      2.000499963760376,
+      0.08197101950645447
+    ],
+    "rotation": [
+      0,
+      0.018470225855708122,
+      0,
+      0.9998294115066528
+    ],
+    "extras": {
+      "brand": "MARROW CAY",
+      "spirit": "AGED DARK RUM",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.266; radius 0.053"
+    }
+  },
+  {
+    "name": "Bottle 35 | NORTHGLASS",
+    "translation": [
+      -0.3449999988079071,
+      2.000499963760376,
+      0.09220977872610092
+    ],
+    "rotation": [
+      0,
+      -0.05072479322552681,
+      0,
+      0.9987127184867859
+    ],
+    "extras": {
+      "brand": "NORTHGLASS",
+      "spirit": "VODKA",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.327; radius 0.037"
+    }
+  },
+  {
+    "name": "Bottle 36 | MAISON VEYRILLE",
+    "translation": [
+      -0.11699999868869781,
+      1.999500036239624,
+      0.05129664018750191
+    ],
+    "rotation": [
+      0,
+      -0.027209626510739326,
+      0,
+      0.9996298551559448
+    ],
+    "extras": {
+      "brand": "MAISON VEYRILLE",
+      "spirit": "VSOP BRANDY",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.252; radius 0.057"
+    }
+  },
+  {
+    "name": "Bottle 37 | ROSSO LUNARO",
+    "translation": [
+      0.1120000034570694,
+      2.000499963760376,
+      0.054040152579545975
+    ],
+    "rotation": [
+      0,
+      0.010361081920564175,
+      0,
+      0.9999464154243469
+    ],
+    "extras": {
+      "brand": "ROSSO LUNARO",
+      "spirit": "VERMOUTH ROSSO",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.312; radius 0.039"
+    }
+  },
+  {
+    "name": "Bottle 38 | NAMI YUZU",
+    "translation": [
+      0.34700000286102295,
+      2.000499963760376,
+      0.07122214138507843
+    ],
+    "rotation": [
+      0,
+      0.0066958097741007805,
+      0,
+      0.9999775886535645
+    ],
+    "extras": {
+      "brand": "NAMI YUZU",
+      "spirit": "CITRUS LIQUEUR",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.245; radius 0.048"
+    }
+  },
+  {
+    "name": "Bottle 39 | CANTO RUBINO",
+    "translation": [
+      0.7250000238418579,
+      2.000499963760376,
+      0.05538126453757286
+    ],
+    "rotation": [
+      0,
+      -0.007284858264029026,
+      0,
+      0.999973475933075
+    ],
+    "extras": {
+      "brand": "CANTO RUBINO",
+      "spirit": "BITTER APERITIVO",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.306; radius 0.039"
+    }
+  },
+  {
+    "name": "Bottle 40 | SIERRA CANDELA",
+    "translation": [
+      0.953000009059906,
+      2.000499963760376,
+      0.07876159250736237
+    ],
+    "rotation": [
+      0,
+      0.010412024334073067,
+      0,
+      0.9999458193778992
+    ],
+    "extras": {
+      "brand": "SIERRA CANDELA",
+      "spirit": "TEQUILA BLANCO",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.253; radius 0.052"
+    }
+  },
+  {
+    "name": "Bottle 41 | ORCHARD HOUR",
+    "translation": [
+      1.1820000410079956,
+      1.999500036239624,
+      0.03842012211680412
+    ],
+    "rotation": [
+      0,
+      -0.06730624288320541,
+      0,
+      0.9977324604988098
+    ],
+    "extras": {
+      "brand": "ORCHARD HOUR",
+      "spirit": "PEAR LIQUEUR",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.282; radius 0.044"
+    }
+  },
+  {
+    "name": "Bottle 42 | BLACK TIDE",
+    "translation": [
+      1.4170000553131104,
+      2.000499963760376,
+      0.03169833496212959
+    ],
+    "rotation": [
+      0,
+      -0.06196571886539459,
+      0,
+      0.9980782866477966
+    ],
+    "extras": {
+      "brand": "BLACK TIDE",
+      "spirit": "COFFEE LIQUEUR",
+      "fictional_brand": true,
+      "capacity_ml": 700,
+      "dimensions_metres": "height 0.258; radius 0.047"
+    }
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "desktop": {
+    "viewport": [
+      1280,
+      800
+    ],
+    "softwareChromium": true,
+    "physicalDevice": false,
+    "linuxEditionBudgets": true,
+    "drinkBeforeFood": true,
+    "foodDelivered": true,
+    "noEatingBeforeDelivery": true
+  },
+  "phone": {
+    "viewport": [
+      390,
+      844
+    ],
+    "softwareChromium": true,
+    "physicalDevice": false,
+    "linuxEditionBudgets": true,
+    "drinkBeforeFood": true,
+    "foodDelivered": true,
+    "noEatingBeforeDelivery": true
+  },
+  "web-phone": {
+    "viewport": [
+      390,
+      844
+    ],
+    "softwareChromium": true,
+    "physicalDevice": false,
+    "linuxEditionBudgets": false,
+    "drinkBeforeFood": true,
+    "foodDelivered": true,
+    "noEatingBeforeDelivery": true
+  }
+}

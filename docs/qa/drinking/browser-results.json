@@ -1,0 +1,319 @@
+{
+  "date": "2026-10-21T16:47:31.971Z",
+  "host": {
+    "platform": "linux",
+    "release": "6.18.55",
+    "cpu": "AMD EPYC 9V74 80-Core Processor",
+    "logicalCpuCount": 9
+  },
+  "browser": "131.0.6778.0",
+  "graphics": "Chromium / ANGLE SwiftShader software rendering in a Linux container",
+  "limits": [
+    "Desktop and phone viewport sizes, not physical desktop/mobile GPUs.",
+    "No Safari, Firefox or physical iOS/Android tests performed.",
+    "Real-time videos use canvas.captureStream; they are not offline time-remapped renders."
+  ],
+  "checks": [
+    "Real UI gates repeated Space/sip and drink changes; Reset restores controls.",
+    "Pause holds clock and volume; reset works during reach, sip and set-down.",
+    "390×844 mobile context uses touch taps for selection, sip and reset; mouth, wrist and rim remain framed without horizontal overflow."
+  ],
+  "fills": [
+    {
+      "drink": "beer",
+      "fill": 1,
+      "volumeMl": 369.55871582031244,
+      "consumedMl": 30.441284179687557,
+      "tiltDegrees": 43.44955444335937,
+      "mouthErrorMm": 2.7755575615628914e-14,
+      "wristErrorMm": 1.3877787807814457e-14,
+      "wristDeviationDegrees": 48.01241498875336,
+      "fingerMinClearanceMm": 0.6000427756994182,
+      "thumbMinClearanceMm": 0.6008711445700168
+    },
+    {
+      "drink": "beer",
+      "fill": 0.5,
+      "volumeMl": 169.55871582031244,
+      "consumedMl": 30.441284179687557,
+      "tiltDegrees": 68.58352661132811,
+      "mouthErrorMm": 0,
+      "wristErrorMm": 1.942890293094024e-13,
+      "wristDeviationDegrees": 35.129826275167694,
+      "fingerMinClearanceMm": 0.6000427756994876,
+      "thumbMinClearanceMm": 0.6008711445699404
+    },
+    {
+      "drink": "beer",
+      "fill": 0.04,
+      "volumeMl": 4.403320312499984,
+      "consumedMl": 11.596679687500016,
+      "tiltDegrees": 85.45440673828126,
+      "mouthErrorMm": 0,
+      "wristErrorMm": 2.220446049250313e-13,
+      "wristDeviationDegrees": 26.406830368643693,
+      "fingerMinClearanceMm": 0.6000427756993002,
+      "thumbMinClearanceMm": 0.600871144569989
+    },
+    {
+      "drink": "whiskey",
+      "fill": 1,
+      "volumeMl": 51.302490234374986,
+      "consumedMl": 8.697509765625014,
+      "tiltDegrees": 66.60324096679689,
+      "mouthErrorMm": 0,
+      "wristErrorMm": 7.850462293418876e-14,
+      "wristDeviationDegrees": 36.855818798931026,
+      "fingerMinClearanceMm": 0.6000296556901135,
+      "thumbMinClearanceMm": 0.6006546081368507
+    },
+    {
+      "drink": "whiskey",
+      "fill": 0.5,
+      "volumeMl": 21.302490234374986,
+      "consumedMl": 8.697509765625014,
+      "tiltDegrees": 75.97732543945312,
+      "mouthErrorMm": 0,
+      "wristErrorMm": 6.71891344611886e-13,
+      "wristDeviationDegrees": 31.749343259586663,
+      "fingerMinClearanceMm": 0.6000296556899817,
+      "thumbMinClearanceMm": 0.6006546081367258
+    },
+    {
+      "drink": "whiskey",
+      "fill": 0.04,
+      "volumeMl": 0.6604980468749975,
+      "consumedMl": 1.7395019531250024,
+      "tiltDegrees": 86.80572509765625,
+      "mouthErrorMm": 2.7755575615628914e-14,
+      "wristErrorMm": 1.0007415106216802e-13,
+      "wristDeviationDegrees": 25.55611167678476,
+      "fingerMinClearanceMm": 0.6000296556902037,
+      "thumbMinClearanceMm": 0.6006546081367952
+    },
+    {
+      "drink": "gintonic",
+      "fill": 1,
+      "volumeMl": 234.63226318359372,
+      "consumedMl": 25.36773681640628,
+      "tiltDegrees": 64.31671142578125,
+      "mouthErrorMm": 0,
+      "wristErrorMm": 1.1443916996305594e-13,
+      "wristDeviationDegrees": 38.38850438446265,
+      "fingerMinClearanceMm": 0.6000177614754308,
+      "thumbMinClearanceMm": 0.6070653965094801
+    },
+    {
+      "drink": "gintonic",
+      "fill": 0.5,
+      "volumeMl": 104.63226318359372,
+      "consumedMl": 25.36773681640628,
+      "tiltDegrees": 77.08419799804689,
+      "mouthErrorMm": 0,
+      "wristErrorMm": 5.551115123125783e-14,
+      "wristDeviationDegrees": 31.764604602175506,
+      "fingerMinClearanceMm": 0.6000177614753684,
+      "thumbMinClearanceMm": 0.6070653965095495
+    },
+    {
+      "drink": "gintonic",
+      "fill": 0.04,
+      "volumeMl": 2.8621582031249897,
+      "consumedMl": 7.537841796875011,
+      "tiltDegrees": 88.56765747070312,
+      "mouthErrorMm": 2.7755575615628914e-14,
+      "wristErrorMm": 3.1031676915590914e-14,
+      "wristDeviationDegrees": 25.83387073300249,
+      "fingerMinClearanceMm": 0.600017761475247,
+      "thumbMinClearanceMm": 0.607065396509605
+    }
+  ],
+  "captures": [
+    "desktop-rest.png",
+    "beer-full-sip.png",
+    "beer-half-sip.png",
+    "beer-near-empty-sip.png",
+    "beer-grip.png",
+    "beer-mouth.png",
+    "beer-setdown.png",
+    "beer-grip-oblique.png",
+    "whiskey-full-sip.png",
+    "whiskey-half-sip.png",
+    "whiskey-near-empty-sip.png",
+    "whiskey-grip.png",
+    "whiskey-mouth.png",
+    "whiskey-setdown.png",
+    "whiskey-grip-oblique.png",
+    "gintonic-full-sip.png",
+    "gintonic-half-sip.png",
+    "gintonic-near-empty-sip.png",
+    "gintonic-grip.png",
+    "gintonic-mouth.png",
+    "gintonic-setdown.png",
+    "gintonic-grip-oblique.png",
+    "transition-grasp-0.png",
+    "transition-grasp-1.png",
+    "transition-grasp-2.png",
+    "transition-grasp-3.png",
+    "transition-grasp-4.png",
+    "transition-lip-0.png",
+    "transition-lip-1.png",
+    "transition-lip-2.png",
+    "transition-lip-3.png",
+    "transition-lip-4.png",
+    "transition-table-0.png",
+    "transition-table-1.png",
+    "transition-table-2.png",
+    "transition-table-3.png",
+    "transition-table-4.png",
+    "whole-body-support.png",
+    "phone-rest.png",
+    "phone-sip.png"
+  ],
+  "recordings": [
+    {
+      "filename": "beer-real-time.webm",
+      "mimeType": "video/webm;codecs=vp9",
+      "elapsedMs": 6985.5,
+      "event": {
+        "drinkId": "beer",
+        "volumeConsumedMl": 42,
+        "remainingVolumeMl": 358
+      },
+      "performance": {
+        "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/131.0.6778.0 Safari/537.36",
+        "platform": "Linux x86_64",
+        "hardwareConcurrency": 9,
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "width": 1100,
+        "height": 636,
+        "dpr": 1,
+        "samples": 81,
+        "meanFrameMs": 91.14938271604942,
+        "p95FrameMs": 116.60000000000036,
+        "medianCpuMs": 2.899999998509884,
+        "p95CpuMs": 6,
+        "drawCalls": 67,
+        "triangles": 31382,
+        "geometries": 69,
+        "textures": 1
+      }
+    },
+    {
+      "filename": "whiskey-real-time.webm",
+      "mimeType": "video/webm;codecs=vp9",
+      "elapsedMs": 6767.10000000149,
+      "event": {
+        "drinkId": "whiskey",
+        "volumeConsumedMl": 12,
+        "remainingVolumeMl": 48
+      },
+      "performance": {
+        "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/131.0.6778.0 Safari/537.36",
+        "platform": "Linux x86_64",
+        "hardwareConcurrency": 9,
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "width": 1100,
+        "height": 636,
+        "dpr": 1,
+        "samples": 79,
+        "meanFrameMs": 91.3468354430379,
+        "p95FrameMs": 250,
+        "medianCpuMs": 2.399999998509884,
+        "p95CpuMs": 6.299999997019768,
+        "drawCalls": 66,
+        "triangles": 31194,
+        "geometries": 68,
+        "textures": 1
+      }
+    },
+    {
+      "filename": "gintonic-real-time.webm",
+      "mimeType": "video/webm;codecs=vp9",
+      "elapsedMs": 6771,
+      "event": {
+        "drinkId": "gintonic",
+        "volumeConsumedMl": 35,
+        "remainingVolumeMl": 225
+      },
+      "performance": {
+        "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/131.0.6778.0 Safari/537.36",
+        "platform": "Linux x86_64",
+        "hardwareConcurrency": 9,
+        "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "width": 1100,
+        "height": 636,
+        "dpr": 1,
+        "samples": 70,
+        "meanFrameMs": 103.08999999999993,
+        "p95FrameMs": 233.29999999999563,
+        "medianCpuMs": 2.600000001490116,
+        "p95CpuMs": 5.800000004470348,
+        "drawCalls": 69,
+        "triangles": 31230,
+        "geometries": 69,
+        "textures": 1
+      }
+    }
+  ],
+  "errors": [],
+  "recorderControls": {
+    "passed": true,
+    "checks": [
+      "Reset cancellation and every UI recording gate.",
+      "Capture-stream, constructor and start exceptions restore controls and speed.",
+      "Asynchronous encoding failure settles once without a download.",
+      "Early stop and timeout never save incomplete footage.",
+      "Post-sip recording tail rejects a second action and only success returns a video."
+    ],
+    "stoppedTracks": 7
+  },
+  "phone": {
+    "width": 390,
+    "touchPoints": 1,
+    "coarsePointer": true,
+    "overflow": false,
+    "rect": {
+      "x": 0,
+      "y": 73,
+      "width": 390,
+      "height": 631
+    },
+    "points": [
+      [
+        -0.3602703978214159,
+        0.40030185045270417,
+        -0.701136999785859
+      ],
+      [
+        -0.18655311183674997,
+        0.39728451312640517,
+        -0.7085805086076362
+      ],
+      [
+        -0.3602703978214159,
+        0.40030185045270417,
+        -0.701136999785859
+      ]
+    ]
+  },
+  "phonePerformance": {
+    "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/131.0.6778.0 Safari/537.36",
+    "platform": "Linux x86_64",
+    "hardwareConcurrency": 9,
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "width": 390,
+    "height": 631,
+    "dpr": 1,
+    "samples": 162,
+    "meanFrameMs": 43.106172839506165,
+    "p95FrameMs": 83.30000000000018,
+    "medianCpuMs": 2.5,
+    "p95CpuMs": 3.600000001490116,
+    "drawCalls": 72,
+    "triangles": 31766,
+    "geometries": 69,
+    "textures": 1
+  },
+  "passed": true
+}

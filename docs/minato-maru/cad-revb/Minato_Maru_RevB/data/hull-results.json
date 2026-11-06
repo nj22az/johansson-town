@@ -1,0 +1,1618 @@
+{
+  "status": "CONDITIONAL ENGINEERING SCREENING; actual ship construction release withheld",
+  "source": {
+    "length": 34.5,
+    "lengthBP": 31,
+    "beam": 8.4,
+    "depth": 3,
+    "carDeck": 3,
+    "originalDraft": 1.9,
+    "originalDisplacement": 283,
+    "assumedLightship": 210,
+    "originalBlockCoefficient": 0.56,
+    "originalGM": 1.6,
+    "sourceCommit": "e87c06b16734d882626be7fe6cdd2ab153d649c4",
+    "evidence": "Exact analytic game hull; mass, KG, watertight subdivision and structure unverified"
+  },
+  "chosenGeometryDesignPoint": {
+    "draftM": 1.9,
+    "densityTPerM3": 1.025,
+    "volumeM3": 366.2541761121248,
+    "displacementTonnes": 375.41053051492787,
+    "waterplaneAreaM2": 259.2792311223446,
+    "lcbM": 19.25082568156345,
+    "kbM": 1.0567766422624167,
+    "lcfM": 18.391631724319737,
+    "transverseWaterplaneInertiaM4": 1425.5374418214067,
+    "longitudinalWaterplaneInertiaM4": 20959.65710907188,
+    "bmtM": 3.8922080205441634,
+    "bmlM": 57.2270801975929,
+    "kmtM": 4.948984662806581,
+    "kmlM": 58.28385683985532,
+    "tpcTonnesPerCm": 2.657612119004032,
+    "mctGeometric1CmTonnesM": 6.227144503419906,
+    "blockCoefficientLOA": 0.6651668593805615,
+    "blockCoefficientLBP": 0.7402663435041733,
+    "mouldedFreeboardM": 1.1,
+    "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+    "order": 64
+  },
+  "oldParticularsMismatch": {
+    "oldDisplacementTonnes": 283,
+    "computedDisplacementTonnes": 375.41053051492787,
+    "differenceTonnes": 92.41053051492787,
+    "relativePercent": 32.653897708455084
+  },
+  "conditionalTargetWeights": [
+    {
+      "draftM": 1.1982020114436556,
+      "densityTPerM3": 1.025,
+      "volumeM3": 204.87804878048792,
+      "displacementTonnes": 210.00000000000009,
+      "waterplaneAreaM2": 212.53461417184636,
+      "lcbM": 19.136062469332,
+      "kbM": 0.6614717936296424,
+      "lcfM": 19.47877352920301,
+      "transverseWaterplaneInertiaM4": 1181.806068986294,
+      "longitudinalWaterplaneInertiaM4": 11584.549470052792,
+      "bmtM": 5.768339146242622,
+      "bmlM": 56.54363431811479,
+      "kmtM": 6.429810939872264,
+      "kmlM": 57.205106111744435,
+      "tpcTonnesPerCm": 2.178479795261425,
+      "mctGeometric1CmTonnesM": 3.4417864367548145,
+      "blockCoefficientLOA": 0.590020367703488,
+      "blockCoefficientLBP": 0.6566355705087203,
+      "mouldedFreeboardM": 1.8017979885563444,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 64
+    },
+    {
+      "draftM": 1.5216799887527515,
+      "densityTPerM3": 1.025,
+      "volumeM3": 276.0975609756098,
+      "displacementTonnes": 283,
+      "waterplaneAreaM2": 227.7527620468808,
+      "lcbM": 19.229885838041497,
+      "kbM": 0.8421215387053489,
+      "lcfM": 19.498672197614063,
+      "transverseWaterplaneInertiaM4": 1275.825373933781,
+      "longitudinalWaterplaneInertiaM4": 14157.230862714641,
+      "bmtM": 4.62092229074956,
+      "bmlM": 51.27618952043289,
+      "kmtM": 5.463043829454909,
+      "kmlM": 52.118311059138236,
+      "tpcTonnesPerCm": 2.334465810980528,
+      "mctGeometric1CmTonnesM": 4.206133807038407,
+      "blockCoefficientLOA": 0.6260958997634423,
+      "blockCoefficientLBP": 0.6967841465109277,
+      "mouldedFreeboardM": 1.4783200112472485,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 64
+    }
+  ],
+  "hydrostaticTable": [
+    {
+      "draftM": 1.1,
+      "densityTPerM3": 1.025,
+      "volumeM3": 184.24132849777095,
+      "displacementTonnes": 188.8473617102152,
+      "waterplaneAreaM2": 207.72919832498584,
+      "lcbM": 19.09919911930929,
+      "kbM": 0.606831889025594,
+      "lcfM": 19.4499411327559,
+      "transverseWaterplaneInertiaM4": 1150.3111691154604,
+      "longitudinalWaterplaneInertiaM4": 10859.170841352694,
+      "bmtM": 6.243502359077798,
+      "bmlM": 58.93992911304954,
+      "kmtM": 6.850334248103392,
+      "kmlM": 59.54676100207513,
+      "tpcTonnesPerCm": 2.1292242828311045,
+      "mctGeometric1CmTonnesM": 3.2262753948946408,
+      "blockCoefficientLOA": 0.577957614962579,
+      "blockCoefficientLBP": 0.6432108940712572,
+      "mouldedFreeboardM": 1.9,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 64
+    },
+    {
+      "draftM": 1.2,
+      "densityTPerM3": 1.025,
+      "volumeM3": 205.26026100712966,
+      "displacementTonnes": 210.39176753230788,
+      "waterplaneAreaM2": 212.62114235825672,
+      "lcbM": 19.13670104098788,
+      "kbM": 0.6624729054888725,
+      "lcfM": 19.479215456736448,
+      "transverseWaterplaneInertiaM4": 1182.3643439280506,
+      "longitudinalWaterplaneInertiaM4": 11597.989672326177,
+      "bmtM": 5.760317842950524,
+      "bmlM": 56.5038240496212,
+      "kmtM": 6.422790748439397,
+      "kmlM": 57.16629695511007,
+      "tpcTonnesPerCm": 2.179366709172131,
+      "mctGeometric1CmTonnesM": 3.4457795403287914,
+      "blockCoefficientLOA": 0.5902353951205707,
+      "blockCoefficientLBP": 0.6568748752148286,
+      "mouldedFreeboardM": 1.8,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 64
+    },
+    {
+      "draftM": 1.3,
+      "densityTPerM3": 1.025,
+      "volumeM3": 226.76085190667487,
+      "displacementTonnes": 232.42987320434173,
+      "waterplaneAreaM2": 217.37315835498788,
+      "lcbM": 19.17018246744585,
+      "kbM": 0.7181974218358501,
+      "lcfM": 19.49862588983908,
+      "transverseWaterplaneInertiaM4": 1212.5749980475534,
+      "longitudinalWaterplaneInertiaM4": 12356.866507398445,
+      "bmtM": 5.347373622262619,
+      "bmlM": 54.492944454468734,
+      "kmtM": 6.065571044098469,
+      "kmlM": 55.21114187630459,
+      "tpcTonnesPerCm": 2.2280748731386257,
+      "mctGeometric1CmTonnesM": 3.671242947850262,
+      "blockCoefficientLOA": 0.6019027762028849,
+      "blockCoefficientLBP": 0.6698595412580493,
+      "mouldedFreeboardM": 1.7,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 64
+    },
+    {
+      "draftM": 1.4,
+      "densityTPerM3": 1.025,
+      "volumeM3": 248.7323660713262,
+      "displacementTonnes": 254.95067522310933,
+      "waterplaneAreaM2": 222.0509823204196,
+      "lcbM": 19.19965175030231,
+      "kbM": 0.7740227117709025,
+      "lcfM": 19.506931294682527,
+      "transverseWaterplaneInertiaM4": 1241.513070410211,
+      "longitudinalWaterplaneInertiaM4": 13143.932634062861,
+      "bmtM": 4.991361156650583,
+      "bmlM": 52.843676284146,
+      "kmtM": 5.765383868421485,
+      "kmlM": 53.6176989959169,
+      "tpcTonnesPerCm": 2.2760225687843008,
+      "mctGeometric1CmTonnesM": 3.9050814347578062,
+      "blockCoefficientLOA": 0.613064098568782,
+      "blockCoefficientLBP": 0.6822810129233218,
+      "mouldedFreeboardM": 1.6,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 64
+    },
+    {
+      "draftM": 1.5,
+      "densityTPerM3": 1.025,
+      "volumeM3": 271.1709921787914,
+      "displacementTonnes": 277.95026698326114,
+      "waterplaneAreaM2": 226.7293672931801,
+      "lcbM": 19.224972112229878,
+      "kbM": 0.8299722762268067,
+      "lcfM": 19.501882417452318,
+      "transverseWaterplaneInertiaM4": 1269.740334265754,
+      "longitudinalWaterplaneInertiaM4": 13970.987888572417,
+      "bmtM": 4.682434223748295,
+      "bmlM": 51.520952799261494,
+      "kmtM": 5.512406499975102,
+      "kmlM": 52.3509250754883,
+      "tpcTonnesPerCm": 2.323976014755096,
+      "mctGeometric1CmTonnesM": 4.150800749503399,
+      "blockCoefficientLOA": 0.6238118062544085,
+      "blockCoefficientLBP": 0.6942421714766804,
+      "mouldedFreeboardM": 1.5,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 64
+    },
+    {
+      "draftM": 1.6,
+      "densityTPerM3": 1.025,
+      "volumeM3": 294.0815456934273,
+      "displacementTonnes": 301.43358433576293,
+      "waterplaneAreaM2": 231.5107054516931,
+      "lcbM": 19.245794501565516,
+      "kbM": 0.8860798969043066,
+      "lcfM": 19.47921111091822,
+      "transverseWaterplaneInertiaM4": 1297.896184765111,
+      "longitudinalWaterplaneInertiaM4": 14857.539218105769,
+      "bmtM": 4.413388748024793,
+      "bmlM": 50.521834626081514,
+      "kmtM": 5.2994686449290995,
+      "kmlM": 51.40791452298582,
+      "tpcTonnesPerCm": 2.372984730879854,
+      "mctGeometric1CmTonnesM": 4.414196434364757,
+      "blockCoefficientLOA": 0.6342338373305453,
+      "blockCoefficientLBP": 0.7058408834807681,
+      "mouldedFreeboardM": 1.4,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 64
+    },
+    {
+      "draftM": 1.7,
+      "densityTPerM3": 1.025,
+      "volumeM3": 317.482359773444,
+      "displacementTonnes": 325.4194187677801,
+      "waterplaneAreaM2": 236.5782276342646,
+      "lcbM": 19.261376762077454,
+      "kbM": 0.9423997805483961,
+      "lcfM": 19.429507066783767,
+      "transverseWaterplaneInertiaM4": 1326.9087532301987,
+      "longitudinalWaterplaneInertiaM4": 15842.932624689507,
+      "bmtM": 4.179472378172706,
+      "bmlM": 49.90177292368324,
+      "kmtM": 5.121872158721102,
+      "kmlM": 50.84417270423164,
+      "tpcTonnesPerCm": 2.4249268332512117,
+      "mctGeometric1CmTonnesM": 4.706958243567172,
+      "blockCoefficientLOA": 0.6444248767373929,
+      "blockCoefficientLBP": 0.7171825241109694,
+      "mouldedFreeboardM": 1.3,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 64
+    },
+    {
+      "draftM": 1.8,
+      "densityTPerM3": 1.025,
+      "volumeM3": 341.4168139326173,
+      "displacementTonnes": 349.9522342809327,
+      "waterplaneAreaM2": 242.19446010357305,
+      "lcbM": 19.269670798307523,
+      "kbM": 0.999028926146753,
+      "lcfM": 19.3047890185238,
+      "transverseWaterplaneInertiaM4": 1358.7812180208266,
+      "longitudinalWaterplaneInertiaM4": 16985.399085187062,
+      "bmtM": 3.9798309941730006,
+      "bmlM": 49.74974398460451,
+      "kmtM": 4.978859920319754,
+      "kmlM": 50.748772910751256,
+      "tpcTonnesPerCm": 2.4824932160616235,
+      "mctGeometric1CmTonnesM": 5.046386684729488,
+      "blockCoefficientLOA": 0.6545065829549446,
+      "blockCoefficientLBP": 0.7284024874821156,
+      "mouldedFreeboardM": 1.2,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 64
+    },
+    {
+      "draftM": 1.9,
+      "densityTPerM3": 1.025,
+      "volumeM3": 366.2541761121248,
+      "displacementTonnes": 375.41053051492787,
+      "waterplaneAreaM2": 259.2792311223446,
+      "lcbM": 19.25082568156345,
+      "kbM": 1.0567766422624167,
+      "lcfM": 18.391631724319737,
+      "transverseWaterplaneInertiaM4": 1425.5374418214067,
+      "longitudinalWaterplaneInertiaM4": 20959.65710907188,
+      "bmtM": 3.8922080205441634,
+      "bmlM": 57.2270801975929,
+      "kmtM": 4.948984662806581,
+      "kmlM": 58.28385683985532,
+      "tpcTonnesPerCm": 2.657612119004032,
+      "mctGeometric1CmTonnesM": 6.227144503419906,
+      "blockCoefficientLOA": 0.6651668593805615,
+      "blockCoefficientLBP": 0.7402663435041733,
+      "mouldedFreeboardM": 1.1,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 64
+    },
+    {
+      "draftM": 2,
+      "densityTPerM3": 1.025,
+      "volumeM3": 393.3471999116561,
+      "displacementTonnes": 403.18087990944747,
+      "waterplaneAreaM2": 277.7432616468738,
+      "lcbM": 19.14561546280934,
+      "kbM": 1.118340514441116,
+      "lcfM": 17.37096000370864,
+      "transverseWaterplaneInertiaM4": 1528.883288457705,
+      "longitudinalWaterplaneInertiaM4": 25833.997582309734,
+      "bmtM": 3.8868543841193857,
+      "bmlM": 65.67733948051982,
+      "kmtM": 5.005194898560502,
+      "kmlM": 66.79567999496093,
+      "tpcTonnesPerCm": 2.846868431880456,
+      "mctGeometric1CmTonnesM": 7.675318122280427,
+      "blockCoefficientLOA": 0.6786528638917462,
+      "blockCoefficientLBP": 0.7552749614279111,
+      "mouldedFreeboardM": 1,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 64
+    },
+    {
+      "draftM": 2.1,
+      "densityTPerM3": 1.025,
+      "volumeM3": 421.3611266770719,
+      "displacementTonnes": 431.8951548439987,
+      "waterplaneAreaM2": 282.00214247211045,
+      "lcbM": 19.021416273454097,
+      "kbM": 1.1802895904513648,
+      "lcfM": 17.21203541096103,
+      "transverseWaterplaneInertiaM4": 1583.618077826602,
+      "longitudinalWaterplaneInertiaM4": 26845.7433278518,
+      "bmtM": 3.7583392903737782,
+      "bmlM": 63.7119601885491,
+      "kmtM": 4.938628880825143,
+      "kmlM": 64.89224977900047,
+      "tpcTonnesPerCm": 2.8905219603391314,
+      "mctGeometric1CmTonnesM": 7.975909249579157,
+      "blockCoefficientLOA": 0.6923676865442043,
+      "blockCoefficientLBP": 0.770538231799195,
+      "mouldedFreeboardM": 0.8999999999999999,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 64
+    }
+  ],
+  "convergence": [
+    {
+      "draftM": 1.9,
+      "densityTPerM3": 1.025,
+      "volumeM3": 366.2541759804284,
+      "displacementTonnes": 375.4105303799391,
+      "waterplaneAreaM2": 259.28046150332534,
+      "lcbM": 19.250825686718443,
+      "kbM": 1.056776642174513,
+      "lcfM": 18.391553921678174,
+      "transverseWaterplaneInertiaM4": 1425.5379293172389,
+      "longitudinalWaterplaneInertiaM4": 20959.987862199807,
+      "bmtM": 3.8922093529751747,
+      "bmlM": 57.227983288086385,
+      "kmtM": 4.9489859951496875,
+      "kmlM": 58.2847599302609,
+      "tpcTonnesPerCm": 2.6576247304090845,
+      "mctGeometric1CmTonnesM": 6.227242770653565,
+      "blockCoefficientLOA": 0.6651668591413832,
+      "blockCoefficientLBP": 0.7402663432379909,
+      "mouldedFreeboardM": 1.1,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 16
+    },
+    {
+      "draftM": 1.9,
+      "densityTPerM3": 1.025,
+      "volumeM3": 366.25417610697906,
+      "displacementTonnes": 375.4105305096535,
+      "waterplaneAreaM2": 259.2794343161715,
+      "lcbM": 19.25082568180585,
+      "kbM": 1.0567766422505727,
+      "lcfM": 18.39161887746622,
+      "transverseWaterplaneInertiaM4": 1425.5374923350257,
+      "longitudinalWaterplaneInertiaM4": 20959.71171236546,
+      "bmtM": 3.892208158518419,
+      "bmlM": 57.227229284188,
+      "kmtM": 4.948984800768992,
+      "kmlM": 58.284005926438574,
+      "tpcTonnesPerCm": 2.6576142017407576,
+      "mctGeometric1CmTonnesM": 6.227160726137564,
+      "blockCoefficientLOA": 0.6651668593712162,
+      "blockCoefficientLBP": 0.7402663434937727,
+      "mouldedFreeboardM": 1.1,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 32
+    },
+    {
+      "draftM": 1.9,
+      "densityTPerM3": 1.025,
+      "volumeM3": 366.2541761121248,
+      "displacementTonnes": 375.41053051492787,
+      "waterplaneAreaM2": 259.2792311223446,
+      "lcbM": 19.25082568156345,
+      "kbM": 1.0567766422624167,
+      "lcfM": 18.391631724319737,
+      "transverseWaterplaneInertiaM4": 1425.5374418214067,
+      "longitudinalWaterplaneInertiaM4": 20959.65710907188,
+      "bmtM": 3.8922080205441634,
+      "bmlM": 57.2270801975929,
+      "kmtM": 4.948984662806581,
+      "kmlM": 58.28385683985532,
+      "tpcTonnesPerCm": 2.657612119004032,
+      "mctGeometric1CmTonnesM": 6.227144503419906,
+      "blockCoefficientLOA": 0.6651668593805615,
+      "blockCoefficientLBP": 0.7402663435041733,
+      "mouldedFreeboardM": 1.1,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 64
+    },
+    {
+      "draftM": 1.9,
+      "densityTPerM3": 1.025,
+      "volumeM3": 366.25417611237725,
+      "displacementTonnes": 375.4105305151867,
+      "waterplaneAreaM2": 259.2791917078547,
+      "lcbM": 19.250825681551557,
+      "kbM": 1.0567766422630056,
+      "lcfM": 18.391634216150702,
+      "transverseWaterplaneInertiaM4": 1425.5374361277632,
+      "longitudinalWaterplaneInertiaM4": 20959.646518567693,
+      "bmtM": 3.8922080049958736,
+      "bmlM": 57.227051281830775,
+      "kmtM": 4.948984647258879,
+      "kmlM": 58.28382792409378,
+      "tpcTonnesPerCm": 2.65761171500551,
+      "mctGeometric1CmTonnesM": 6.227141356965763,
+      "blockCoefficientLOA": 0.66516685938102,
+      "blockCoefficientLBP": 0.7402663435046836,
+      "mouldedFreeboardM": 1.1,
+      "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+      "order": 128
+    }
+  ],
+  "conditionalLoadingCases": [
+    {
+      "id": "legacy-lightship-only-assumed-KG4.4",
+      "status": "CONDITIONAL SCREENING; construction and stability approval withheld",
+      "weightTonnes": 210,
+      "kgM": 4.4,
+      "lcgM": 19.23,
+      "tcgM": 0,
+      "freeSurfaceMomentTonnesM": 0,
+      "freeSurfaceCorrectionM": 0,
+      "gmSolidM": 2.0298143804958224,
+      "gmCorrectedM": 2.0298143804958224,
+      "indicativeHeelDeg": 0,
+      "indicativeTrimBowDownM": 0.0613728236391889,
+      "hydrostatics": {
+        "draftM": 1.1982020140552607,
+        "densityTPerM3": 1.025,
+        "volumeM3": 204.87804878048783,
+        "displacementTonnes": 210,
+        "waterplaneAreaM2": 212.53551052250992,
+        "lcbM": 19.13606246125545,
+        "kbM": 0.6614717936272371,
+        "lcfM": 19.478774541329283,
+        "transverseWaterplaneInertiaM4": 1181.8067738950274,
+        "longitudinalWaterplaneInertiaM4": 11584.705106253256,
+        "bmtM": 5.768342586868585,
+        "bmlM": 56.54439397099802,
+        "kmtM": 6.429814380495823,
+        "kmlM": 57.20586576462526,
+        "tpcTonnesPerCm": 2.178488982855727,
+        "mctGeometric1CmTonnesM": 3.4418326764955323,
+        "blockCoefficientLOA": 0.5900203664174773,
+        "blockCoefficientLBP": 0.656635569077515,
+        "mouldedFreeboardM": 1.8017979859447393,
+        "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+        "order": 32
+      },
+      "screeningMinimumGMM": 0.5,
+      "flags": [
+        "ASSUMED_WEIGHT_AND_CG",
+        "INITIAL_STABILITY_ONLY",
+        "WATERTIGHT_ENVELOPE_UNVERIFIED",
+        "FULL_GZ_AND_DAMAGE_CASES_REQUIRED"
+      ]
+    },
+    {
+      "id": "full-nominal-stores-and-all-ballast",
+      "status": "CONDITIONAL SCREENING; construction and stability approval withheld",
+      "weightTonnes": 289.01,
+      "kgM": 3.829830282689182,
+      "lcgM": 18.122675685962427,
+      "tcgM": 0,
+      "freeSurfaceMomentTonnesM": 0,
+      "freeSurfaceCorrectionM": 0,
+      "gmSolidM": 1.577098946336219,
+      "gmCorrectedM": 1.577098946336219,
+      "indicativeHeelDeg": 0,
+      "indicativeTrimBowDownM": -0.7992310112665133,
+      "hydrostatics": {
+        "draftM": 1.5473560010346534,
+        "densityTPerM3": 1.025,
+        "volumeM3": 281.9609756097562,
+        "displacementTonnes": 289.01000000000005,
+        "waterplaneAreaM2": 228.97369064829908,
+        "lcbM": 19.235426186012848,
+        "kbM": 0.8565202493866608,
+        "lcfM": 19.49372507066335,
+        "transverseWaterplaneInertiaM4": 1283.0377553223345,
+        "longitudinalWaterplaneInertiaM4": 14381.940317192712,
+        "bmtM": 4.550408979638741,
+        "bmlM": 51.00684690883542,
+        "kmtM": 5.406929229025401,
+        "kmlM": 51.86336715822208,
+        "tpcTonnesPerCm": 2.3469803291450653,
+        "mctGeometric1CmTonnesM": 4.272895311629718,
+        "blockCoefficientLOA": 0.6287824041436504,
+        "blockCoefficientLBP": 0.6997739659018044,
+        "mouldedFreeboardM": 1.4526439989653466,
+        "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+        "order": 32
+      },
+      "screeningMinimumGMM": 0.5,
+      "flags": [
+        "ASSUMED_WEIGHT_AND_CG",
+        "INITIAL_STABILITY_ONLY",
+        "WATERTIGHT_ENVELOPE_UNVERIFIED",
+        "FULL_GZ_AND_DAMAGE_CASES_REQUIRED",
+        "REQUIRES_TRIMMED_HYDROSTATICS"
+      ]
+    },
+    {
+      "id": "half-liquids-all-slack-sensitivity",
+      "status": "CONDITIONAL SCREENING; construction and stability approval withheld",
+      "weightTonnes": 259.66499999999996,
+      "kgM": 4.140079044153042,
+      "lcgM": 18.53985808638053,
+      "tcgM": 0,
+      "freeSurfaceMomentTonnesM": 128.79969343750003,
+      "freeSurfaceCorrectionM": 0.49602254226599674,
+      "gmSolidM": 1.5694244059135913,
+      "gmCorrectedM": 1.0734018636475946,
+      "indicativeHeelDeg": 0,
+      "indicativeTrimBowDownM": -0.4666643897476474,
+      "hydrostatics": {
+        "draftM": 1.4206681561372938,
+        "densityTPerM3": 1.025,
+        "volumeM3": 253.3317073170731,
+        "displacementTonnes": 259.6649999999999,
+        "waterplaneAreaM2": 223.01613540208868,
+        "lcbM": 19.205232833143135,
+        "kbM": 0.7855753415343095,
+        "lcfM": 19.507078887246543,
+        "transverseWaterplaneInertiaM4": 1247.38711444102,
+        "longitudinalWaterplaneInertiaM4": 13311.30143867759,
+        "bmtM": 4.923928108532324,
+        "bmlM": 52.54494820112273,
+        "kmtM": 5.7095034500666335,
+        "kmlM": 53.33052354265704,
+        "tpcTonnesPerCm": 2.285915387871409,
+        "mctGeometric1CmTonnesM": 3.9548069491723274,
+        "blockCoefficientLOA": 0.615316445968655,
+        "blockCoefficientLBP": 0.6847876576102773,
+        "mouldedFreeboardM": 1.5793318438627062,
+        "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+        "order": 32
+      },
+      "screeningMinimumGMM": 0.5,
+      "flags": [
+        "ASSUMED_WEIGHT_AND_CG",
+        "INITIAL_STABILITY_ONLY",
+        "WATERTIGHT_ENVELOPE_UNVERIFIED",
+        "FULL_GZ_AND_DAMAGE_CASES_REQUIRED",
+        "REQUIRES_TRIMMED_HYDROSTATICS"
+      ]
+    },
+    {
+      "id": "half-liquid-port-crowding-sensitivity",
+      "status": "CONDITIONAL SCREENING; construction and stability approval withheld",
+      "weightTonnes": 259.66499999999996,
+      "kgM": 4.140079044153042,
+      "lcgM": 18.53985808638053,
+      "tcgM": 0.10398012824215817,
+      "freeSurfaceMomentTonnesM": 128.79969343750003,
+      "freeSurfaceCorrectionM": 0.49602254226599674,
+      "gmSolidM": 1.5694244059135913,
+      "gmCorrectedM": 1.0734018636475946,
+      "indicativeHeelDeg": 5.532962066738563,
+      "indicativeTrimBowDownM": -0.4666643897476474,
+      "hydrostatics": {
+        "draftM": 1.4206681561372938,
+        "densityTPerM3": 1.025,
+        "volumeM3": 253.3317073170731,
+        "displacementTonnes": 259.6649999999999,
+        "waterplaneAreaM2": 223.01613540208868,
+        "lcbM": 19.205232833143135,
+        "kbM": 0.7855753415343095,
+        "lcfM": 19.507078887246543,
+        "transverseWaterplaneInertiaM4": 1247.38711444102,
+        "longitudinalWaterplaneInertiaM4": 13311.30143867759,
+        "bmtM": 4.923928108532324,
+        "bmlM": 52.54494820112273,
+        "kmtM": 5.7095034500666335,
+        "kmlM": 53.33052354265704,
+        "tpcTonnesPerCm": 2.285915387871409,
+        "mctGeometric1CmTonnesM": 3.9548069491723274,
+        "blockCoefficientLOA": 0.615316445968655,
+        "blockCoefficientLBP": 0.6847876576102773,
+        "mouldedFreeboardM": 1.5793318438627062,
+        "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+        "order": 32
+      },
+      "screeningMinimumGMM": 0.5,
+      "flags": [
+        "ASSUMED_WEIGHT_AND_CG",
+        "INITIAL_STABILITY_ONLY",
+        "WATERTIGHT_ENVELOPE_UNVERIFIED",
+        "FULL_GZ_AND_DAMAGE_CASES_REQUIRED",
+        "REQUIRES_TRIMMED_HYDROSTATICS"
+      ]
+    },
+    {
+      "id": "unverified-lightship-KG5.4-sensitivity",
+      "status": "CONDITIONAL SCREENING; construction and stability approval withheld",
+      "weightTonnes": 289.01,
+      "kgM": 4.556448738797966,
+      "lcgM": 18.122675685962427,
+      "tcgM": 0,
+      "freeSurfaceMomentTonnesM": 0,
+      "freeSurfaceCorrectionM": 0,
+      "gmSolidM": 0.8504804902274348,
+      "gmCorrectedM": 0.8504804902274348,
+      "indicativeHeelDeg": 0,
+      "indicativeTrimBowDownM": -0.8115069324823473,
+      "hydrostatics": {
+        "draftM": 1.5473560010346534,
+        "densityTPerM3": 1.025,
+        "volumeM3": 281.9609756097562,
+        "displacementTonnes": 289.01000000000005,
+        "waterplaneAreaM2": 228.97369064829908,
+        "lcbM": 19.235426186012848,
+        "kbM": 0.8565202493866608,
+        "lcfM": 19.49372507066335,
+        "transverseWaterplaneInertiaM4": 1283.0377553223345,
+        "longitudinalWaterplaneInertiaM4": 14381.940317192712,
+        "bmtM": 4.550408979638741,
+        "bmlM": 51.00684690883542,
+        "kmtM": 5.406929229025401,
+        "kmlM": 51.86336715822208,
+        "tpcTonnesPerCm": 2.3469803291450653,
+        "mctGeometric1CmTonnesM": 4.272895311629718,
+        "blockCoefficientLOA": 0.6287824041436504,
+        "blockCoefficientLBP": 0.6997739659018044,
+        "mouldedFreeboardM": 1.4526439989653466,
+        "status": "CALCULATED MODEL GEOMETRY; conditional immersion; not approved stability",
+        "order": 32
+      },
+      "screeningMinimumGMM": 0.5,
+      "flags": [
+        "ASSUMED_WEIGHT_AND_CG",
+        "INITIAL_STABILITY_ONLY",
+        "WATERTIGHT_ENVELOPE_UNVERIFIED",
+        "FULL_GZ_AND_DAMAGE_CASES_REQUIRED",
+        "REQUIRES_TRIMMED_HYDROSTATICS"
+      ]
+    }
+  ],
+  "weightSchedules": {
+    "full": [
+      {
+        "id": "legacy-lightship",
+        "massTonnes": 210,
+        "vcgM": 4.4,
+        "lcgM": 19.23,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "100 passengers including baggage at90kg/person",
+        "massTonnes": 9,
+        "vcgM": 8.4,
+        "lcgM": 13.5,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "8 crew at90kg/person",
+        "massTonnes": 0.72,
+        "vcgM": 7.4,
+        "lcgM": 14.5,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "6 cars at1.6t/vehicle",
+        "massTonnes": 9.6,
+        "vcgM": 3.8,
+        "lcgM": 20.8,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "fuel storage15m3 density0.86",
+        "massTonnes": 12.9,
+        "vcgM": 0.35,
+        "lcgM": 11.25,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "fuel service1.5m3 density0.86",
+        "massTonnes": 1.29,
+        "vcgM": 1.675,
+        "lcgM": 13.3,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "fresh water12m3",
+        "massTonnes": 12,
+        "vcgM": 2.425,
+        "lcgM": 3.8,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "relocated aft ballast4m3",
+        "massTonnes": 4.1,
+        "vcgM": 0.53,
+        "lcgM": 14.75,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "doublebottom ballast16m3",
+        "massTonnes": 16.4,
+        "vcgM": 0.35,
+        "lcgM": 17.8,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "forepeak ballast6m3",
+        "massTonnes": 6.15,
+        "vcgM": 2.1,
+        "lcgM": 32.5,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "sewage4m3",
+        "massTonnes": 4,
+        "vcgM": 1.6,
+        "lcgM": 16.5,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "bilge holding1m3",
+        "massTonnes": 1.025,
+        "vcgM": 0.35,
+        "lcgM": 11.25,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "sludge0.3m3 density0.95",
+        "massTonnes": 0.285,
+        "vcgM": 0.35,
+        "lcgM": 11.25,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "lube oil0.6m3 density0.9",
+        "massTonnes": 0.54,
+        "vcgM": 0.35,
+        "lcgM": 11.25,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "stores1t",
+        "massTonnes": 1,
+        "vcgM": 1.8,
+        "lcgM": 20.75,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      }
+    ],
+    "half": [
+      {
+        "id": "legacy-lightship",
+        "massTonnes": 210,
+        "vcgM": 4.4,
+        "lcgM": 19.23,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "100 passengers including baggage at90kg/person",
+        "massTonnes": 9,
+        "vcgM": 8.4,
+        "lcgM": 13.5,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "8 crew at90kg/person",
+        "massTonnes": 0.72,
+        "vcgM": 7.4,
+        "lcgM": 14.5,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "6 cars at1.6t/vehicle",
+        "massTonnes": 9.6,
+        "vcgM": 3.8,
+        "lcgM": 20.8,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "fuel storage15m3 density0.86",
+        "massTonnes": 6.45,
+        "vcgM": 0.35,
+        "lcgM": 11.25,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "fuel service1.5m3 density0.86",
+        "massTonnes": 0.645,
+        "vcgM": 1.675,
+        "lcgM": 13.3,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "fresh water12m3",
+        "massTonnes": 6,
+        "vcgM": 2.425,
+        "lcgM": 3.8,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "relocated aft ballast4m3",
+        "massTonnes": 2.05,
+        "vcgM": 0.53,
+        "lcgM": 14.75,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "doublebottom ballast16m3",
+        "massTonnes": 8.2,
+        "vcgM": 0.35,
+        "lcgM": 17.8,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "forepeak ballast6m3",
+        "massTonnes": 3.075,
+        "vcgM": 2.1,
+        "lcgM": 32.5,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "sewage4m3",
+        "massTonnes": 2,
+        "vcgM": 1.6,
+        "lcgM": 16.5,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "bilge holding1m3",
+        "massTonnes": 0.5125,
+        "vcgM": 0.35,
+        "lcgM": 11.25,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "sludge0.3m3 density0.95",
+        "massTonnes": 0.1425,
+        "vcgM": 0.35,
+        "lcgM": 11.25,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "lube oil0.6m3 density0.9",
+        "massTonnes": 0.27,
+        "vcgM": 0.35,
+        "lcgM": 11.25,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      },
+      {
+        "id": "stores1t",
+        "massTonnes": 1,
+        "vcgM": 1.8,
+        "lcgM": 20.75,
+        "tcgM": 0,
+        "basis": "Explicit unverified concept assumption"
+      }
+    ]
+  },
+  "slackTankSensitivity": {
+    "note": "Rectangular dimensions are unverified sensitivity assumptions, not tank installation drawings. Half-mass KG remains deliberately conservative at nominal-full liquidCG. No certified net capacity.",
+    "tanks": [
+      {
+        "id": "fuel storage0",
+        "lengthM": 4.5,
+        "breadthM": 3.2,
+        "densityTPerM3": 0.86,
+        "slack": true
+      },
+      {
+        "id": "fuel storage1",
+        "lengthM": 4.5,
+        "breadthM": 3.2,
+        "densityTPerM3": 0.86,
+        "slack": true
+      },
+      {
+        "id": "freshwater0",
+        "lengthM": 2.4,
+        "breadthM": 3,
+        "densityTPerM3": 1,
+        "slack": true
+      },
+      {
+        "id": "freshwater1",
+        "lengthM": 2.4,
+        "breadthM": 3,
+        "densityTPerM3": 1,
+        "slack": true
+      },
+      {
+        "id": "doublebottom ballast0",
+        "lengthM": 4.4,
+        "breadthM": 3.8,
+        "densityTPerM3": 1.025,
+        "slack": true
+      },
+      {
+        "id": "doublebottom ballast1",
+        "lengthM": 4.4,
+        "breadthM": 3.8,
+        "densityTPerM3": 1.025,
+        "slack": true
+      },
+      {
+        "id": "aftballast rectangle bounding sensitivity0",
+        "lengthM": 1.3,
+        "breadthM": 3.8,
+        "densityTPerM3": 1.025,
+        "slack": true
+      },
+      {
+        "id": "aftballast rectangle bounding sensitivity1",
+        "lengthM": 1.3,
+        "breadthM": 3.8,
+        "densityTPerM3": 1.025,
+        "slack": true
+      },
+      {
+        "id": "forepeak broad tank sensitivity",
+        "lengthM": 4,
+        "breadthM": 5,
+        "densityTPerM3": 1.025,
+        "slack": true
+      },
+      {
+        "id": "service fuel",
+        "lengthM": 1.38,
+        "breadthM": 0.75,
+        "densityTPerM3": 0.86,
+        "slack": true
+      },
+      {
+        "id": "sewage",
+        "lengthM": 2,
+        "breadthM": 1.6,
+        "densityTPerM3": 1,
+        "slack": true
+      }
+    ]
+  },
+  "propellerAudit": {
+    "diameterM": 1.45,
+    "originalAxisBaselineM": 0.9,
+    "originalCrownBaselineM": 1.625,
+    "originalBottomBaselineM": 0.175,
+    "physicalAxisMustNotFollowWaterline": true,
+    "designPointCrownImmersionM": 0.2749999999999999,
+    "conditional283tCrownImmersionM": -0.10332000751796366,
+    "conditional210tCrownImmersionM": -0.4267979859447393,
+    "buoyancyWeightAtCrownSubmergedTonnes": 307.3817516292915,
+    "note": "Conditional exposure numbers assume evenkeel. Actual trim must be solved; stern-downtrim can increase immersion."
+  },
+  "originalAftPeak": {
+    "envelopeVolumeM3": 18.2,
+    "insideHullVolumeM3": 0,
+    "insideFraction": 0,
+    "status": "Hull-envelope intersection only; structure, pipes, clearances and permeability excluded"
+  },
+  "originalERDoubleBottomGross": {
+    "envelopeVolumeM3": 30.799999999999997,
+    "insideHullVolumeM3": 26.409260256237776,
+    "insideFraction": 0.8574435148129149,
+    "status": "Hull-envelope intersection only; structure, pipes, clearances and permeability excluded"
+  },
+  "relocatedAftBallast": {
+    "z": [
+      14.1,
+      15.4
+    ],
+    "y": [
+      0.1,
+      0.68
+    ],
+    "centrelineGapM": 0.2,
+    "shellReserveM": 0.1,
+    "structuralReserveFraction": 0.1,
+    "grossEnvelopePerSideM3": 2.69578410627473,
+    "grossEnvelopeTotalM3": 5.39156821254946,
+    "planningCapacityPerSideM3": 2.426205695647257,
+    "planningCapacityTotalM3": 4.852411391294514,
+    "status": "CONCEPT GEOMETRY AND EXPLICIT RESERVE; tank partition and calibrated net capacity unverified",
+    "nominalTotalM3": 4,
+    "nominalPerSideM3": 2,
+    "sourceId": "aft-peak",
+    "parentGAId": "fwd-double-bottom",
+    "description": "Paired aft trim ballast tanks, relocated under auxiliary machineryroom. Original aftpeak sourceID retained solely for backwardcompatibility.",
+    "coordination": "Does not overlap ERfluid tankzone or mainballastpair; partition construction and calibrated net capacity remain unverified",
+    "ordinateTable": [
+      {
+        "zM": 14.1,
+        "lowerYM": 0.1,
+        "innerXM": 0.2,
+        "outboardXAtLowerYM": 3.2717701154822505,
+        "outboardXAtMidYM": 3.831976479306975,
+        "outboardXAtUpperYM": 3.9973848650806283
+      },
+      {
+        "zM": 14.5,
+        "lowerYM": 0.1,
+        "innerXM": 0.2,
+        "outboardXAtLowerYM": 3.271886861320433,
+        "outboardXAtMidYM": 3.8320714171189083,
+        "outboardXAtUpperYM": 3.997447571829214
+      },
+      {
+        "zM": 14.75,
+        "lowerYM": 0.1,
+        "innerXM": 0.2,
+        "outboardXAtLowerYM": 3.271951802689065,
+        "outboardXAtMidYM": 3.8321242222632446,
+        "outboardXAtUpperYM": 3.997482444763269
+      },
+      {
+        "zM": 15,
+        "lowerYM": 0.1,
+        "innerXM": 0.2,
+        "outboardXAtLowerYM": 3.2720105677068725,
+        "outboardXAtMidYM": 3.832172002068477,
+        "outboardXAtUpperYM": 3.9975139958157517
+      },
+      {
+        "zM": 15.4,
+        "lowerYM": 0.1,
+        "innerXM": 0.2,
+        "outboardXAtLowerYM": 3.272091738634784,
+        "outboardXAtMidYM": 3.8322379943084255,
+        "outboardXAtUpperYM": 3.997557568462622
+      }
+    ]
+  },
+  "testResults": {
+    "testFile": "tests/ferry-engineering-hydrostatics.test.mjs",
+    "tests": 10,
+    "result": "PASS",
+    "checks": [
+      "Original parametric section inverse",
+      "Independent polygon-volume integration",
+      "GL32/64/128 convergence",
+      "TPC finite-difference derivative",
+      "Seawater/freshwater density units",
+      "Conditional immersion solve",
+      "Weight/CG/FSM arithmetic",
+      "NegativeGM/heel/trim flags",
+      "Aftpeak outside hull",
+      "Conformal tanks/reserve",
+      "Invalid numeric inputs",
+      "Accepted coordinated ER/aux/mainballast volume packing"
+    ]
+  },
+  "engineeringHolds": [
+    "Measured or controlled weight estimate and all centres of gravity",
+    "Independent lines/mesh/hydrostatics reconciliation",
+    "Trimmed hydrostatics and propeller/shaft immersion in every loadingcase",
+    "Full intactGZ, weather/turning/crowding and downflooding cases",
+    "Subdivision/damage stability and watertight boundary evidence",
+    "Rule selection andflag/class approval",
+    "Plate/scantling/global strength and local foundation calculations",
+    "Net tank geometry/sounding tables andfuel/ballast partition coordination",
+    "Shaft alignment/bearing loads and stern arrangement",
+    "Tonnage measurement, loadline/freeboard and operational loading limits"
+  ],
+  "references": [
+    {
+      "title": "IMO ship design and stability overview",
+      "url": "https://www.imo.org/en/ourwork/safety/pages/shipdesignandstability-default.aspx"
+    },
+    {
+      "title": "IMO MSC.267(85),2008IS Code",
+      "url": "https://wwwcdn.imo.org/localresources/en/KnowledgeCentre/IndexofIMOResolutions/MSCResolutions/MSC.267%2885%29.pdf",
+      "sections": [
+        "PartB3.1 free surfaces",
+        "PartB8 lightship parameters",
+        "Annex1 inclining"
+      ]
+    },
+    {
+      "title": "ClassNK RulesPassengerShips December2025",
+      "url": "https://www.classnk.or.jp/hp/pdf/rules/501_passenger_e_202512.pdf",
+      "sections": [
+        "Part4Chapter4 intactstability"
+      ]
+    }
+  ],
+  "rejectedERAftBallastCandidate": {
+    "z": [
+      8.9,
+      11.2
+    ],
+    "y": [
+      0.38,
+      0.68
+    ],
+    "centrelineGapM": 0.2,
+    "shellReserveM": 0.1,
+    "structuralReserveFraction": 0.1,
+    "grossEnvelopePerSideM3": 2.535712117664584,
+    "grossEnvelopeTotalM3": 5.071424235329168,
+    "planningCapacityPerSideM3": 2.282140905898126,
+    "planningCapacityTotalM3": 4.564281811796252,
+    "status": "REJECTED coordinated packing: candidate alone fits but adds4m³ beyond ERdoublebottom budget",
+    "nominalTotalM3": 4,
+    "nominalPerSideM3": 2,
+    "coordination": "Requires new partition/remaining fuel, bilge/sludge/LO tank and structure coordination; geometric feasibility does not verify installed capacity",
+    "ordinateTable": [
+      {
+        "zM": 8.9,
+        "lowerYM": 0.381098953117888,
+        "innerXM": 0.2,
+        "outboardXAtLowerYM": 3.3075008974910807,
+        "outboardXAtMidYM": 3.6947125459564036,
+        "outboardXAtUpperYM": 3.8694142050428306
+      },
+      {
+        "zM": 9,
+        "lowerYM": 0.38,
+        "innerXM": 0.2,
+        "outboardXAtLowerYM": 3.420489414536582,
+        "outboardXAtMidYM": 3.739356756102252,
+        "outboardXAtUpperYM": 3.892283534884668
+      },
+      {
+        "zM": 9.5,
+        "lowerYM": 0.38,
+        "innerXM": 0.2,
+        "outboardXAtLowerYM": 3.6952764537353953,
+        "outboardXAtMidYM": 3.863038254602167,
+        "outboardXAtUpperYM": 3.9580900737159097
+      },
+      {
+        "zM": 10,
+        "lowerYM": 0.38,
+        "innerXM": 0.2,
+        "outboardXAtLowerYM": 3.79385024950362,
+        "outboardXAtMidYM": 3.9151067508556054,
+        "outboardXAtUpperYM": 3.9875807353964317
+      },
+      {
+        "zM": 10.5,
+        "lowerYM": 0.38,
+        "innerXM": 0.2,
+        "outboardXAtLowerYM": 3.821323326759835,
+        "outboardXAtMidYM": 3.930353848388869,
+        "outboardXAtUpperYM": 3.9964375975662594
+      },
+      {
+        "zM": 11.2,
+        "lowerYM": 0.38,
+        "innerXM": 0.2,
+        "outboardXAtLowerYM": 3.8216871921098496,
+        "outboardXAtMidYM": 3.9306541280565317,
+        "outboardXAtUpperYM": 3.996675793634411
+      }
+    ]
+  },
+  "acceptedTankPacking": {
+    "status": "GEOMETRIC CONCEPT COORDINATION; no verified installed netcapacity",
+    "geometricReserve": "100mm horizontal side/bottom clearance, central400mm gap. This is geometric reservation, not selected platingthickness.",
+    "structuralReserve": "10% volume planning deduction; structure is not calculated.",
+    "erFluidEnvelope": {
+      "z": [
+        8.5,
+        14
+      ],
+      "y": [
+        0.1,
+        0.68
+      ],
+      "centrelineGapM": 0.2,
+      "shellReserveM": 0.1,
+      "structuralReserveFraction": 0.1,
+      "grossEnvelopePerSideM3": 10.306997231439597,
+      "grossEnvelopeTotalM3": 20.613994462879194,
+      "planningCapacityPerSideM3": 9.276297508295638,
+      "planningCapacityTotalM3": 18.552595016591276,
+      "status": "CONCEPT GEOMETRY AND EXPLICIT RESERVE; tank partition and calibrated net capacity unverified",
+      "requiredNominalM3": 16.9,
+      "contents": {
+        "fuelStorageM3": 15,
+        "bilgeHoldingM3": 1,
+        "sludgeM3": 0.3,
+        "lubeOilM3": 0.6
+      },
+      "profileTable": [
+        {
+          "zM": 8.5,
+          "lowerYM": 0.517660446062813,
+          "upperYM": 0.68,
+          "innerXM": 0.2,
+          "sections": [
+            {
+              "yM": 0.517660446062813,
+              "outboardXM": 3.3116704094516094
+            },
+            {
+              "yM": 0.5988302230314065,
+              "outboardXM": 3.5710726069594765
+            },
+            {
+              "yM": 0.68,
+              "outboardXM": 3.7240304288349884
+            }
+          ]
+        },
+        {
+          "zM": 11.25,
+          "lowerYM": 0.1,
+          "upperYM": 0.68,
+          "innerXM": 0.2,
+          "sections": [
+            {
+              "yM": 0.1,
+              "outboardXM": 3.270482227016991
+            },
+            {
+              "yM": 0.39,
+              "outboardXM": 3.8309283662197386
+            },
+            {
+              "yM": 0.68,
+              "outboardXM": 3.9966918095314967
+            }
+          ]
+        },
+        {
+          "zM": 14,
+          "lowerYM": 0.1,
+          "upperYM": 0.68,
+          "innerXM": 0.2,
+          "sections": [
+            {
+              "yM": 0.1,
+              "outboardXM": 3.271738461114346
+            },
+            {
+              "yM": 0.39,
+              "outboardXM": 3.8319507358668723
+            },
+            {
+              "yM": 0.68,
+              "outboardXM": 3.9973678594425457
+            }
+          ]
+        }
+      ]
+    },
+    "aftTrimBallast": {
+      "z": [
+        14.1,
+        15.4
+      ],
+      "y": [
+        0.1,
+        0.68
+      ],
+      "centrelineGapM": 0.2,
+      "shellReserveM": 0.1,
+      "structuralReserveFraction": 0.1,
+      "grossEnvelopePerSideM3": 2.69578410627473,
+      "grossEnvelopeTotalM3": 5.39156821254946,
+      "planningCapacityPerSideM3": 2.426205695647257,
+      "planningCapacityTotalM3": 4.852411391294514,
+      "status": "CONCEPT GEOMETRY AND EXPLICIT RESERVE; tank partition and calibrated net capacity unverified",
+      "nominalTotalM3": 4,
+      "nominalPerSideM3": 2,
+      "sourceId": "aft-peak",
+      "parentGAId": "fwd-double-bottom",
+      "description": "Paired aft trim ballast tanks, relocated under auxiliary machineryroom. Original aftpeak sourceID retained solely for backwardcompatibility.",
+      "coordination": "Does not overlap ERfluid tankzone or mainballastpair; partition construction and calibrated net capacity remain unverified",
+      "ordinateTable": [
+        {
+          "zM": 14.1,
+          "lowerYM": 0.1,
+          "innerXM": 0.2,
+          "outboardXAtLowerYM": 3.2717701154822505,
+          "outboardXAtMidYM": 3.831976479306975,
+          "outboardXAtUpperYM": 3.9973848650806283
+        },
+        {
+          "zM": 14.5,
+          "lowerYM": 0.1,
+          "innerXM": 0.2,
+          "outboardXAtLowerYM": 3.271886861320433,
+          "outboardXAtMidYM": 3.8320714171189083,
+          "outboardXAtUpperYM": 3.997447571829214
+        },
+        {
+          "zM": 14.75,
+          "lowerYM": 0.1,
+          "innerXM": 0.2,
+          "outboardXAtLowerYM": 3.271951802689065,
+          "outboardXAtMidYM": 3.8321242222632446,
+          "outboardXAtUpperYM": 3.997482444763269
+        },
+        {
+          "zM": 15,
+          "lowerYM": 0.1,
+          "innerXM": 0.2,
+          "outboardXAtLowerYM": 3.2720105677068725,
+          "outboardXAtMidYM": 3.832172002068477,
+          "outboardXAtUpperYM": 3.9975139958157517
+        },
+        {
+          "zM": 15.4,
+          "lowerYM": 0.1,
+          "innerXM": 0.2,
+          "outboardXAtLowerYM": 3.272091738634784,
+          "outboardXAtMidYM": 3.8322379943084255,
+          "outboardXAtUpperYM": 3.997557568462622
+        }
+      ],
+      "profileTable": [
+        {
+          "zM": 14.1,
+          "lowerYM": 0.1,
+          "upperYM": 0.68,
+          "innerXM": 0.2,
+          "sections": [
+            {
+              "yM": 0.1,
+              "outboardXM": 3.2717701154822505
+            },
+            {
+              "yM": 0.39,
+              "outboardXM": 3.831976479306975
+            },
+            {
+              "yM": 0.68,
+              "outboardXM": 3.9973848650806283
+            }
+          ]
+        },
+        {
+          "zM": 14.75,
+          "lowerYM": 0.1,
+          "upperYM": 0.68,
+          "innerXM": 0.2,
+          "sections": [
+            {
+              "yM": 0.1,
+              "outboardXM": 3.271951802689065
+            },
+            {
+              "yM": 0.39,
+              "outboardXM": 3.8321242222632446
+            },
+            {
+              "yM": 0.68,
+              "outboardXM": 3.997482444763269
+            }
+          ]
+        },
+        {
+          "zM": 15.4,
+          "lowerYM": 0.1,
+          "upperYM": 0.68,
+          "innerXM": 0.2,
+          "sections": [
+            {
+              "yM": 0.1,
+              "outboardXM": 3.272091738634784
+            },
+            {
+              "yM": 0.39,
+              "outboardXM": 3.8322379943084255
+            },
+            {
+              "yM": 0.68,
+              "outboardXM": 3.997557568462622
+            }
+          ]
+        }
+      ]
+    },
+    "mainBallast": {
+      "z": [
+        15.6,
+        20
+      ],
+      "y": [
+        0.1,
+        0.68
+      ],
+      "centrelineGapM": 0.2,
+      "shellReserveM": 0.1,
+      "structuralReserveFraction": 0.1,
+      "grossEnvelopePerSideM3": 9.124326502438013,
+      "grossEnvelopeTotalM3": 18.248653004876026,
+      "planningCapacityPerSideM3": 8.211893852194212,
+      "planningCapacityTotalM3": 16.423787704388424,
+      "status": "CONCEPT GEOMETRY AND EXPLICIT RESERVE; tank partition and calibrated net capacity unverified",
+      "requiredNominalM3": 16,
+      "nominalPerSideM3": 8,
+      "lcgM": 17.8,
+      "profileTable": [
+        {
+          "zM": 15.6,
+          "lowerYM": 0.1,
+          "upperYM": 0.68,
+          "innerXM": 0.2,
+          "sections": [
+            {
+              "yM": 0.1,
+              "outboardXM": 3.272126389477858
+            },
+            {
+              "yM": 0.39,
+              "outboardXM": 3.8322661637817497
+            },
+            {
+              "yM": 0.68,
+              "outboardXM": 3.9975761661836047
+            }
+          ]
+        },
+        {
+          "zM": 17.8,
+          "lowerYM": 0.1,
+          "upperYM": 0.68,
+          "innerXM": 0.2,
+          "sections": [
+            {
+              "yM": 0.1,
+              "outboardXM": 3.272216247308214
+            },
+            {
+              "yM": 0.39,
+              "outboardXM": 3.832339208925556
+            },
+            {
+              "yM": 0.68,
+              "outboardXM": 3.9976243864118044
+            }
+          ]
+        },
+        {
+          "zM": 20,
+          "lowerYM": 0.1,
+          "upperYM": 0.68,
+          "innerXM": 0.2,
+          "sections": [
+            {
+              "yM": 0.1,
+              "outboardXM": 3.2711392037529037
+            },
+            {
+              "yM": 0.39,
+              "outboardXM": 3.8314632123828947
+            },
+            {
+              "yM": 0.68,
+              "outboardXM": 3.997045648886315
+            }
+          ]
+        }
+      ]
+    },
+    "forwardDoubleBottomTotal": {
+      "z": [
+        14,
+        22.5
+      ],
+      "y": [
+        0.1,
+        0.68
+      ],
+      "centrelineGapM": 0.2,
+      "shellReserveM": 0.1,
+      "structuralReserveFraction": 0.1,
+      "grossEnvelopePerSideM3": 17.62394231336594,
+      "grossEnvelopeTotalM3": 35.24788462673188,
+      "planningCapacityPerSideM3": 15.861548082029348,
+      "planningCapacityTotalM3": 31.723096164058695,
+      "status": "CONCEPT GEOMETRY AND EXPLICIT RESERVE; tank partition and calibrated net capacity unverified",
+      "profileTable": [
+        {
+          "zM": 14,
+          "lowerYM": 0.1,
+          "upperYM": 0.68,
+          "innerXM": 0.2,
+          "sections": [
+            {
+              "yM": 0.1,
+              "outboardXM": 3.271738461114346
+            },
+            {
+              "yM": 0.39,
+              "outboardXM": 3.8319507358668723
+            },
+            {
+              "yM": 0.68,
+              "outboardXM": 3.9973678594425457
+            }
+          ]
+        },
+        {
+          "zM": 18.25,
+          "lowerYM": 0.1,
+          "upperYM": 0.68,
+          "innerXM": 0.2,
+          "sections": [
+            {
+              "yM": 0.1,
+              "outboardXM": 3.27211265255608
+            },
+            {
+              "yM": 0.39,
+              "outboardXM": 3.8322549964506716
+            },
+            {
+              "yM": 0.68,
+              "outboardXM": 3.9975687935414403
+            }
+          ]
+        },
+        {
+          "zM": 22.5,
+          "lowerYM": 0.1,
+          "upperYM": 0.68,
+          "innerXM": 0.2,
+          "sections": [
+            {
+              "yM": 0.1,
+              "outboardXM": 3.268186170912449
+            },
+            {
+              "yM": 0.39,
+              "outboardXM": 3.8290561478172145
+            },
+            {
+              "yM": 0.68,
+              "outboardXM": 3.995450307265903
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "currentSourceVerification": {
+    "status": "PASS; local corrected source, not evidence of live game publication",
+    "sourceFile": "src/world/ferry-ship.js",
+    "displacementTonnes": 375.41053,
+    "computedDisplacementTonnes": 375.41053051492787,
+    "displacementRoundingDifferenceTonnes": -5.149278763383336e-7,
+    "blockCoefficient": 0.74026634,
+    "computedBlockCoefficientLBP": 0.7402663435041733,
+    "blockCoefficientLengthBasis": "LBP 31 m",
+    "draftM": 1.9,
+    "legacyLightshipAssumedTonnes": 210,
+    "assumedOperatingTargetTonnes": 283,
+    "arithmeticResidualTonnes": 165.41053,
+    "massReconciled": false,
+    "gameMotionOnlyGM": 1.6,
+    "constructionApproved": false,
+    "releaseIssue": "FOR DESIGN REVIEW",
+    "aftTankSourceId": "aft-peak",
+    "aftTankSourceZ": [
+      14.1,
+      15.4
+    ],
+    "aftTankParent": "fwd-double-bottom"
+  }
+}

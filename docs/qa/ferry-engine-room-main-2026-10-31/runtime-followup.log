@@ -1,0 +1,58 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> build:runtime
+> node scripts/build-runtime.mjs
+
+Printed Sakura flyer with current catalogue prices.
+Indexed 65 town documents
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 659 modules transformed.
+rendering chunks...
+computing gzip size...
+runtime/.vite/manifest.json                     11.34 kB │ gzip:   1.59 kB
+runtime/audio-BASudbp7.js                        0.10 kB │ gzip:   0.10 kB
+runtime/sato-ramen-BC3i5mNK.js                   0.54 kB │ gzip:   0.36 kB
+runtime/shopping-lane-plan-D0DhEU8_.js           0.61 kB │ gzip:   0.40 kB
+runtime/ferry-engine-room-asset-xkTbxdtZ.js      0.85 kB │ gzip:   0.54 kB
+runtime/preload-helper-PPVm8Dsz.js               1.23 kB │ gzip:   0.71 kB
+runtime/touch-ui-D34cMzo7.js                     2.41 kB │ gzip:   1.17 kB
+runtime/portraits-h0W4hcIF.js                    2.67 kB │ gzip:   1.51 kB
+runtime/webmcp-characters-BkXkAGJZ.js            3.13 kB │ gzip:   1.45 kB
+runtime/friendship-DyCc1p2x.js                   3.42 kB │ gzip:   1.74 kB
+runtime/title-menu-dnO4MlyO.js                   3.99 kB │ gzip:   1.92 kB
+runtime/boot-BwyXU0tX.js                         4.75 kB │ gzip:   2.38 kB
+runtime/catalog-CDeVBzZu.js                      4.96 kB │ gzip:   2.37 kB
+runtime/thuan-voice-Dz-XGNqd.js                  5.83 kB │ gzip:   2.80 kB
+runtime/studio-handoff-dU-3hwmR.js               6.10 kB │ gzip:   2.89 kB
+runtime/startup-recovery-CIJ7HiTu.js             8.78 kB │ gzip:   4.23 kB
+runtime/webmcp-CxSkO4VH.js                      15.82 kB │ gzip:   5.39 kB
+runtime/feed-0p_JP0uK.js                        25.89 kB │ gzip:  11.21 kB
+runtime/concert-m6Cv5kjw.js                     33.95 kB │ gzip:  13.93 kB
+runtime/ferry-ship-BYOQYI_W.js                  38.05 kB │ gzip:  14.42 kB
+runtime/scene-world-B1VS_l2p.js                 39.38 kB │ gzip:  16.36 kB
+runtime/hat-models-BltfS9Th.js                  48.04 kB │ gzip:  16.44 kB
+runtime/harbour-park-plan-CU8IGfsI.js           53.40 kB │ gzip:  18.16 kB
+runtime/town-hall-C65k24em.js                   57.95 kB │ gzip:  24.15 kB
+runtime/storyteller-9KhANrNZ.js                 67.19 kB │ gzip:  23.89 kB
+runtime/actors-uyEUiSkd.js                      93.26 kB │ gzip:  35.71 kB
+runtime/pixar-DC4sRsqH.js                      115.95 kB │ gzip:  40.22 kB
+runtime/sakura-interior-DXP2Bu18.js            179.29 kB │ gzip:  69.25 kB
+runtime/onsen-CyzWxpNZ.js                      189.55 kB │ gzip:  74.42 kB
+runtime/staff-bench-DSC0Cxar.js                223.91 kB │ gzip:  79.62 kB
+runtime/fish-hpRNmSNi.js                       332.43 kB │ gzip: 123.19 kB
+runtime/tree-design-data-iR1qvQBH.js           633.14 kB │ gzip: 363.81 kB
+runtime/animate-BX9iDI20.js                    644.41 kB │ gzip: 199.73 kB
+runtime/compact-shops-HRLOIi1Y.js              835.69 kB │ gzip: 239.27 kB
+runtime/game-Cj_esMUY.js                       892.07 kB │ gzip: 348.75 kB
+runtime/spector.bundle-_JPoFEkN.js           1,199.20 kB │ gzip: 327.35 kB
+runtime/halloween-Bz6ZJ5ch.js                1,231.89 kB │ gzip: 489.14 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 14.18s
+Pruned stale runtime chunks: 41
+Stylesheet hashes: base.css 989748aa, context-controls.css f898462d, landing.css 6b8bf0ea, dual-controls.css 396f3a7b, tomodachi-ui.css e851b42d, photo-mode.css 23db1895, quiet-ui.css 056d2627, context-rail.css a4e11923, line-ui.css c9fe9f5f, quiet-hud.css e0b5f153, title-screen.css 24e80986, town-directory.css 5fef277a, ferry-operations.css 1625ed17, town-book.css 74d6f099, creator/creator.css 8c337527, line-ui.css c9fe9f5f
+Published runtime entry points: boot-BwyXU0tX.js audio-BASudbp7.js files: 50

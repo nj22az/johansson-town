@@ -1,0 +1,22 @@
+Johansson trucker cap (johansson-trucker) is not available from the catalogue: its wearers wear the stand-in Error: HTTP 404
+    at file:///workspace/scratch/1f32372dc621/kissa-main-baseline/johansson-town/src/catalog/hat-models.js:32:26
+Builder placements not loaded: HTTP 404
+Johansson Town stability checks passed {
+  ok: true,
+  failures: [],
+  colliders: 607,
+  characterCount: 9,
+  streetInteractions: 7,
+  renderDpr: 1,
+  toneMapping: 'Ink grade',
+  shadows: true
+}
+✔ controller and camera controls boot in the game, pause movement in settings and resume cleanly (10531.878202ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52058.03945

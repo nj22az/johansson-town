@@ -1,0 +1,11 @@
+# Office, Sato Ramen and Thuan’s room
+
+The Johansson Marine Office uses the supplied Tomodachi Life room. Sato Ramen uses the supplied Shenmue restaurant for both its street exterior and furnished interior. Thuan’s home uses the supplied Seinfeld Apartment by kagley; see [the apartment and advertising notes](YURI-APARTMENT-AND-ADVERTISING.md). The separate Harbour Records building and original ramen stall remain in their existing locations.
+
+`src/world/supplied-rooms.js` owns a shared, bounded preload, room layouts, collision shapes and interaction anchors. Geometry is packed in metres with a floor at Y=0; the room layout follows each actual doorway. Each room has its own floor bounds and spawn; it does not inherit the generic 13 m shell. Failed model loads settle into the existing procedural building/room path.
+
+The office retains computer, service-file, ledger and seating interactions. The restaurant retains the ¥300 ramen purchase and 20-minute meal, plus counter seating and reading/inspection. Thuan’s apartment has sofa seating and sleeping, a breakfast table, writing desk, kitchen and coffee-table note. The restaurant entrance uses the existing east-lane approach. The supplied open door has its own exterior collision shape. Shared geometry, materials and textures survive room cleanup and are reused on subsequent visits.
+
+The packer preserves embedded image bytes, vertex colours and texture transforms. It removes the office's exact duplicate primitives and fixes its opaque shadow overlays. It converts the ramen model's unsupported `KHR_materials_pbrSpecularGlossiness` diffuse maps to base-colour maps. The bedroom packer downsamples textures to 1024px. All three use glTF unlit materials for the lighting already present in their artwork. Source metadata, hashes and changes are in `assets/models/{office,ramen,yuri-home}/manifest.json`; credits are in `assets/ATTRIBUTION.md`.
+
+Validation uses real GLBs in the CPU game smoke, material/texture integrity checks, flood-filled floor navigation to each interaction, outdoor route/exit checks, repeat-room resource checks and production build. Blender CPU renders inspect the supplied artwork and material repairs. These checks do not measure browser WebGL rendering, audio or frame rate.

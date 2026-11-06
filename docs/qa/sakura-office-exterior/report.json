@@ -1,0 +1,126 @@
+{
+  "engine": "Linux WebKit",
+  "physicalDevice": false,
+  "views": [
+    {
+      "label": "street-day",
+      "minutes": 720,
+      "mean": 170.72426407711777,
+      "ink": true,
+      "gpuError": 0,
+      "panes": [
+        {
+          "name": "Sakura main office glazing",
+          "emissive": 0
+        },
+        {
+          "name": "Sakura harbour office glazing",
+          "emissive": 0
+        }
+      ],
+      "render": {
+        "programs": 126,
+        "calls": 2653,
+        "triangles": 3205958,
+        "geometries": 1410,
+        "textures": 482
+      }
+    },
+    {
+      "label": "roof-day",
+      "minutes": 720,
+      "mean": 169.3771709523442,
+      "ink": true,
+      "gpuError": 0,
+      "panes": [
+        {
+          "name": "Sakura main office glazing",
+          "emissive": 0
+        },
+        {
+          "name": "Sakura harbour office glazing",
+          "emissive": 0
+        }
+      ],
+      "render": {
+        "programs": 126,
+        "calls": 17628,
+        "triangles": 21689974,
+        "geometries": 1410,
+        "textures": 482
+      }
+    },
+    {
+      "label": "street-midnight",
+      "minutes": 30,
+      "mean": 61.29266966596752,
+      "ink": true,
+      "gpuError": 0,
+      "panes": [
+        {
+          "name": "Sakura main office glazing",
+          "emissive": 0.75
+        },
+        {
+          "name": "Sakura harbour office glazing",
+          "emissive": 0.75
+        }
+      ],
+      "render": {
+        "programs": 126,
+        "calls": 33810,
+        "triangles": 41009954,
+        "geometries": 1409,
+        "textures": 482
+      }
+    },
+    {
+      "label": "phone-day",
+      "minutes": 720,
+      "mean": 175.91054965352686,
+      "ink": true,
+      "gpuError": 0,
+      "panes": [
+        {
+          "name": "Sakura main office glazing",
+          "emissive": 0
+        },
+        {
+          "name": "Sakura harbour office glazing",
+          "emissive": 0
+        }
+      ],
+      "render": {
+        "programs": 126,
+        "calls": 48445,
+        "triangles": 55167645,
+        "geometries": 1409,
+        "textures": 482
+      }
+    },
+    {
+      "label": "office-outlook-midnight",
+      "minutes": 30,
+      "mean": 137.07930198277725,
+      "ink": true,
+      "gpuError": 0,
+      "panes": [
+        {
+          "name": "Sakura main office glazing",
+          "emissive": 0.75
+        },
+        {
+          "name": "Sakura harbour office glazing",
+          "emissive": 0.75
+        }
+      ],
+      "render": {
+        "programs": 157,
+        "calls": 56895,
+        "triangles": 69641746,
+        "geometries": 1477,
+        "textures": 482
+      }
+    }
+  ]
+}

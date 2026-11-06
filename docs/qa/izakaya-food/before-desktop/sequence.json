@@ -1,0 +1,8008 @@
+[
+  {
+    "seconds": 0,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "rack",
+      "player": false,
+      "close": false
+    },
+    "thao": [
+      -1.0008666682081075,
+      0,
+      -2.1655897179305774
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 1.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "rack",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -1.06,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 3,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": false
+    },
+    "thao": [
+      -1.06,
+      0,
+      -2.16
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 4.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -0.52,
+      0,
+      -1.993333333333334
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 6,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -0.52,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Rack draft glass",
+        "visible": true,
+        "position": [
+          -0.52,
+          0.9305,
+          -1.72
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 7.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -0.52,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Rack draft glass",
+        "visible": true,
+        "position": [
+          -0.52,
+          0.9305,
+          -1.72
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 9,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -0.52,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Rack draft glass",
+        "visible": true,
+        "position": [
+          -0.52,
+          0.9305,
+          -1.72
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 10.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "tap",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -0.52,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Rack draft glass",
+        "visible": true,
+        "position": [
+          -0.52,
+          0.9305,
+          -1.72
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 12,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "making",
+      "step": "pick",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -0.52,
+      0,
+      -1.97
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Rack draft glass",
+        "visible": true,
+        "position": [
+          -0.52,
+          0.9305,
+          -1.72
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 13.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "thao": [
+      -0.52,
+      0,
+      -2.16
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 15,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "thao": [
+      0.5314594360249325,
+      0,
+      -2.2728685270309246
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 16.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "thao": [
+      1.25,
+      0,
+      -2.3495
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 18,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "thao": [
+      1.25,
+      0,
+      -1.202500000000005
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 19.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "thao": [
+      1.25,
+      0,
+      0.14749999999999447
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 21,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "thao": [
+      1.2360000000000002,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 22.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "thao": [
+      0.012500000000000067,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 24,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "thao": [
+      -1.3374999999999984,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 25.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "carrying",
+      "step": "serve",
+      "player": false,
+      "close": false
+    },
+    "thao": [
+      -2.6874999999999996,
+      0,
+      0.82
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 27,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.1,
+      0,
+      0.3450000000000006
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 28.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -2.9908471174628954,
+      0,
+      -0.2950970990258116
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 30,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.052387956319321,
+      0,
+      -0.448565556898136
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 31.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.0523886927766717,
+      0,
+      -0.44856678433086866
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -0.4326191852101788,
+          0,
+          2.371672457378044
+        ],
+        "activity": "walking to a seat"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 33,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.052388692778052,
+      0,
+      -0.44856678433316893
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -1.307579335073459,
+          0,
+          1.3435942812886892
+        ],
+        "activity": "walking to a seat"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 34.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.052388692778052,
+      0,
+      -0.44856678433316893
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -1.9154370814548465,
+          0,
+          0.9503282762246653
+        ],
+        "activity": "walking to a seat"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 36,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 37.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 39,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 40.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 42,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 43.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 45,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 46.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 48,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 49.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 51,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 52.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 54,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 55.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 57,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 58.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 60,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 61.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 63,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 64.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 66,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 67.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 69,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 70.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 72,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 73.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 75,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 76.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 78,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 79.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 81,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 82.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 84,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 85.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 87,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 88.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 90,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 91.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 93,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 94.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 96,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 97.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 99,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 100.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 102,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "seconds": 103.5,
+    "accounts": {
+      "Nhung": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      },
+      "Chin": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Mrs Sato": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Harbour master": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Tetsuo": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Officer Mori": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thao": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": []
+      },
+      "Thuan": {
+        "day": 0,
+        "yen": 2400,
+        "purchases": [],
+        "activities": [],
+        "meals": {
+          "izakaya": {
+            "item": "rice",
+            "drink": "beer",
+            "delivered": false,
+            "eaten": 0,
+            "finished": false
+          }
+        }
+      }
+    },
+    "work": {
+      "kind": "draft",
+      "phase": "stepping",
+      "step": "serve",
+      "player": false,
+      "close": true
+    },
+    "thao": [
+      -3.100790394164658,
+      0,
+      -0.5144414148178093
+    ],
+    "customers": [
+      {
+        "name": "Nhung",
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      },
+      {
+        "name": "Thuan",
+        "position": [
+          -2.7,
+          0,
+          -0.18
+        ],
+        "meal": "ordered",
+        "activity": "waiting for rice and beer"
+      }
+    ],
+    "props": [
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Minato dish · rice",
+        "visible": false,
+        "position": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "purpose": "Static 0.23m Sakura display only; never a living NPC",
+  "source": "Maneki_neko_Colorful.glb",
+  "sourceSha256": "a9c19f624fa11b1499af4af3c007181280bdaa71ac0745cc12906ae1a1d77e0f",
+  "file": "maneki-neko-display.glb",
+  "sha256": "8190ae7abaa1c7ee34ce3e58889552d3c2449e36609b1b307c86b423c2fec486",
+  "sourceTriangles": 26000,
+  "triangles": 26000,
+  "vertices": 24869,
+  "bytes": 1083720,
+  "animations": [],
+  "skins": 0,
+  "materialImages": "Original embedded images copied byte-for-byte",
+  "paintSha256": [
+    "2f75cddb69b42a3e52a21e718069db4f4a1144ae1c538f6b73753e81dd8ca8f4"
+  ],
+  "method": "Default source pose baked; every original triangle, normal and UV retained; meshoptimizer 1.2.0 compactMesh removes unused vertices; skin/animation/tangent payload removed from static display",
+  "normalizedError": 0,
+  "sourceBounds": {
+    "min": [
+      -0.709162712097168,
+      -0.953239381313324,
+      -0.5816454291343689
+    ],
+    "max": [
+      0.7075294256210327,
+      0.949428915977478,
+      0.5805050730705261
+    ]
+  },
+  "displayBounds": {
+    "min": [
+      -0.709162712097168,
+      -0.953239381313324,
+      -0.5816454291343689
+    ],
+    "max": [
+      0.7075294256210327,
+      0.949428915977478,
+      0.5805050730705261
+    ]
+  },
+  "reproduce": "node tools/optimize-owned-displays.mjs cat"
+}

@@ -1,0 +1,463 @@
+{
+  "time": "20:30",
+  "source": false,
+  "walks": [
+    {
+      "label": "customer aisle",
+      "target": [
+        -3.8,
+        -0.5
+      ],
+      "reached": true,
+      "final": [
+        -3.8000000003375742,
+        0,
+        -0.7044287957174735
+      ],
+      "steps": [
+        {
+          "from": [
+            -3.8,
+            0,
+            -0.7914121688392941
+          ],
+          "to": [
+            -3.8000000003375742,
+            0,
+            -0.7044287957174735
+          ],
+          "displacement": 0.08698337312182058,
+          "durationMs": 97.13738961309804
+        }
+      ]
+    },
+    {
+      "label": "counter end",
+      "target": [
+        3.95,
+        -0.5
+      ],
+      "reached": true,
+      "final": [
+        3.9908351676252725,
+        0,
+        -0.4989232762219036
+      ],
+      "steps": [
+        {
+          "from": [
+            -3.8000000003375742,
+            0,
+            -0.7044287957174735
+          ],
+          "to": [
+            -1.706974871700397,
+            0,
+            -0.6492192826030617
+          ],
+          "displacement": 2.072510677911554,
+          "durationMs": 750
+        },
+        {
+          "from": [
+            -1.706974871700397,
+            0,
+            -0.6492192826030617
+          ],
+          "to": [
+            0.5420350250431835,
+            0,
+            -0.589895225911227
+          ],
+          "displacement": 2.2497921813698585,
+          "durationMs": 750
+        },
+        {
+          "from": [
+            0.5420350250431835,
+            0,
+            -0.589895225911227
+          ],
+          "to": [
+            2.7912524249094335,
+            0,
+            -0.5305656957321345
+          ],
+          "displacement": 2.2499997566694017,
+          "durationMs": 750
+        },
+        {
+          "from": [
+            2.7912524249094335,
+            0,
+            -0.5305656957321345
+          ],
+          "to": [
+            3.9908351676252725,
+            0,
+            -0.4989232762219036
+          ],
+          "displacement": 1.1999999997225483,
+          "durationMs": 386.38354642531874
+        }
+      ]
+    },
+    {
+      "label": "kitchen passage",
+      "target": [
+        4.15,
+        -4.1
+      ],
+      "reached": true,
+      "final": [
+        4.148917181227354,
+        0,
+        -4.075507022748019
+      ],
+      "steps": [
+        {
+          "from": [
+            3.9908351676252725,
+            0,
+            -0.4989232762219036
+          ],
+          "to": [
+            4.089309564814986,
+            0,
+            -2.726892925724449
+          ],
+          "displacement": 2.1898849145244244,
+          "durationMs": 750
+        },
+        {
+          "from": [
+            4.089309564814986,
+            0,
+            -2.726892925724449
+          ],
+          "to": [
+            4.148917181227354,
+            0,
+            -4.075507022748019
+          ],
+          "displacement": 1.349930757715025,
+          "durationMs": 458.1492195475799
+        }
+      ]
+    },
+    {
+      "label": "behind host",
+      "target": [
+        4.15,
+        -4.7
+      ],
+      "reached": true,
+      "final": [
+        4.1500245658589865,
+        0,
+        -4.714142259454651
+      ],
+      "steps": [
+        {
+          "from": [
+            4.148917181227354,
+            0,
+            -4.075507022748019
+          ],
+          "to": [
+            4.1500245658589865,
+            0,
+            -4.714142259454651
+          ],
+          "displacement": 0.5983764405869626,
+          "durationMs": 208.1646386700089
+        }
+      ]
+    },
+    {
+      "label": "staff aisle",
+      "target": [
+        -2.875,
+        -4.7
+      ],
+      "reached": true,
+      "final": [
+        -2.8720248337132324,
+        0,
+        -4.7000059163892365
+      ],
+      "steps": [
+        {
+          "from": [
+            4.1500245658589865,
+            0,
+            -4.714142259454651
+          ],
+          "to": [
+            1.9278868968565424,
+            0,
+            -4.709668793285429
+          ],
+          "displacement": 2.1829980867140715,
+          "durationMs": 750
+        },
+        {
+          "from": [
+            1.9278868968565424,
+            0,
+            -4.709668793285429
+          ],
+          "to": [
+            -0.32203009283364814,
+            0,
+            -4.705139403555288
+          ],
+          "displacement": 2.24992154882518,
+          "durationMs": 750
+        },
+        {
+          "from": [
+            -0.32203009283364814,
+            0,
+            -4.705139403555288
+          ],
+          "to": [
+            -2.5720254416829933,
+            0,
+            -4.700609856077473
+          ],
+          "displacement": 2.2499999081431183,
+          "durationMs": 750
+        },
+        {
+          "from": [
+            -2.5720254416829933,
+            0,
+            -4.700609856077473
+          ],
+          "to": [
+            -2.8720248337132324,
+            0,
+            -4.7000059163892365
+          ],
+          "displacement": 0.29999999993610016,
+          "durationMs": 100.99172403487137
+        }
+      ]
+    },
+    {
+      "label": "back bar approach",
+      "target": [
+        -2.875,
+        -4.4
+      ],
+      "reached": true,
+      "final": [
+        -2.8750448373672306,
+        0,
+        -4.395476909167635
+      ],
+      "steps": [
+        {
+          "from": [
+            -2.8720248337132324,
+            0,
+            -4.7000059163892365
+          ],
+          "to": [
+            -2.8750448373672306,
+            0,
+            -4.395476909167635
+          ],
+          "displacement": 0.26428406529424775,
+          "durationMs": 100.0068894754419
+        }
+      ]
+    }
+  ],
+  "residents": [
+    {
+      "name": "Thao",
+      "position": [
+        3.5,
+        0,
+        -3.8
+      ],
+      "visible": true,
+      "parent": "",
+      "activity": "tidying the Minato counter",
+      "pose": "Use",
+      "indoors": "izakaya"
+    }
+  ],
+  "initialProbes": [
+    {
+      "x": 3.669982928395904,
+      "z": -4.408837710093022,
+      "y": 0,
+      "radius": 0.28,
+      "room": "izakaya",
+      "bounds": false,
+      "staticBlocked": false,
+      "residentBlocked": false,
+      "solids": [],
+      "residents": [],
+      "route": {
+        "id": "shop-pavement",
+        "surface": "stone"
+      }
+    },
+    {
+      "x": 3.619982928395904,
+      "z": -4.408837710093022,
+      "y": 0,
+      "radius": 0.28,
+      "room": "izakaya",
+      "bounds": false,
+      "staticBlocked": false,
+      "residentBlocked": true,
+      "solids": [],
+      "residents": [
+        "Thao"
+      ],
+      "route": {
+        "id": "shop-pavement",
+        "surface": "stone"
+      }
+    },
+    {
+      "x": 3.5,
+      "z": -4.4,
+      "y": 0,
+      "radius": 0.28,
+      "room": "izakaya",
+      "bounds": false,
+      "staticBlocked": false,
+      "residentBlocked": true,
+      "solids": [],
+      "residents": [
+        "Thao"
+      ],
+      "route": {
+        "id": "shop-pavement",
+        "surface": "stone"
+      }
+    },
+    {
+      "x": 3.5,
+      "z": -4.7,
+      "y": 0,
+      "radius": 0.28,
+      "room": "izakaya",
+      "bounds": false,
+      "staticBlocked": false,
+      "residentBlocked": false,
+      "solids": [],
+      "residents": [],
+      "route": {
+        "id": "shop-pavement",
+        "surface": "stone"
+      }
+    }
+  ],
+  "final": {
+    "player": [
+      -2.8750448373672306,
+      0,
+      -4.395476909167635
+    ],
+    "clearance": {
+      "x": -2.8750448373672306,
+      "z": -4.395476909167635,
+      "y": 0,
+      "radius": 0.28,
+      "room": "izakaya",
+      "bounds": false,
+      "staticBlocked": false,
+      "residentBlocked": false,
+      "solids": [],
+      "residents": [],
+      "route": {
+        "id": "harbour-boardwalk",
+        "surface": "asphalt"
+      }
+    },
+    "errors": [
+      {
+        "type": "request",
+        "message": "http://127.0.0.1:43463/johansson-town/assets/models/izakaya/minato-interior-walnut.glb net::ERR_ABORTED"
+      }
+    ]
+  },
+  "finalProbes": [
+    {
+      "x": 3.669982928395904,
+      "z": -4.408837710093022,
+      "y": 0,
+      "radius": 0.28,
+      "room": "izakaya",
+      "bounds": false,
+      "staticBlocked": false,
+      "residentBlocked": false,
+      "solids": [],
+      "residents": [],
+      "route": {
+        "id": "shop-pavement",
+        "surface": "stone"
+      }
+    },
+    {
+      "x": 3.619982928395904,
+      "z": -4.408837710093022,
+      "y": 0,
+      "radius": 0.28,
+      "room": "izakaya",
+      "bounds": false,
+      "staticBlocked": false,
+      "residentBlocked": true,
+      "solids": [],
+      "residents": [
+        "Thao"
+      ],
+      "route": {
+        "id": "shop-pavement",
+        "surface": "stone"
+      }
+    },
+    {
+      "x": 3.5,
+      "z": -4.4,
+      "y": 0,
+      "radius": 0.28,
+      "room": "izakaya",
+      "bounds": false,
+      "staticBlocked": false,
+      "residentBlocked": true,
+      "solids": [],
+      "residents": [
+        "Thao"
+      ],
+      "route": {
+        "id": "shop-pavement",
+        "surface": "stone"
+      }
+    },
+    {
+      "x": 3.5,
+      "z": -4.7,
+      "y": 0,
+      "radius": 0.28,
+      "room": "izakaya",
+      "bounds": false,
+      "staticBlocked": false,
+      "residentBlocked": false,
+      "solids": [],
+      "residents": [],
+      "route": {
+        "id": "shop-pavement",
+        "surface": "stone"
+      }
+    }
+  ],
+  "passed": true
+}

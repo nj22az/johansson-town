@@ -1,0 +1,43 @@
+{
+  "source_sha256": "48d8fd3dbb11414d0a8139cbe1e4342e90f613d1186ff507608aeaf2e1292079",
+  "runtime_entry": "boot-DiC5Khan.js",
+  "initial_full_guard": {
+    "files": 76,
+    "passed": 75,
+    "failed": 1,
+    "seconds": 487,
+    "failure": "no-z-fighting: poster paper and print separated by only 2 mm"
+  },
+  "correction": "Backing moved 4 mm farther back; visible print and pins unchanged. New sensitivity regression proves the original failure.",
+  "geometry_rerun": {
+    "tests": 13,
+    "passed": 13,
+    "failed": 0
+  },
+  "focused_files_rerun": {
+    "files": [
+      "woodland-poster",
+      "activity-lifecycle",
+      "sakura-flyer",
+      "runtime-package"
+    ],
+    "passed": 4
+  },
+  "compiled_game": {
+    "checks": 14,
+    "passed": 14,
+    "page_errors": 0,
+    "desktop": [
+      1280,
+      900
+    ],
+    "phone": [
+      390,
+      844
+    ],
+    "seconds": 122.3
+  },
+  "independent_review": "passed including follow-up history/origin review",
+  "physical_device": false,
+  "packaged_linux_tested": false
+}

@@ -1,0 +1,30 @@
+✔ ordinary exploration has no automatic shots, no bob and a constant ship-local eye through heave and roll (15.087623ms)
+✔ eight views require manual selection and inspection returns the exact walking pose; ordinary lens restores (11.4415ms)
+✔ inspection sweeps cannot tunnel through a bulkhead even after a large input (476.532674ms)
+✔ every representative room has a body-clear measured route to the lower ladder landing (98.956276ms)
+✔ the aft booth pocket cannot be offered a walking route through its chair (1.515948ms)
+✔ enclosed-room rendering removes street work only for the draw and restores it on failure (1.254414ms)
+✔ inspection also respects the transparent control-booth glazing (0.7619ms)
+✔ guidance never invents a floor-level shortcut from halfway up the ladder or inside equipment (0.133512ms)
+✔ a real visible Blender machinery surface resolves to inspection data at phone, iPad and desktop aspect ratios (108.604604ms)
+✔ published runtime matches the current source rather than an older build (308.078251ms)
+✔ published page uses one compiled audio/boot graph with local hashed dependencies (72.947033ms)
+✔ every stylesheet link carries a hash of the file it points at (18.747602ms)
+✔ delivered chunks contain no retired combat handlers, menus, damage simulation or rewards (215.331424ms)
+✔ a parked car blocks pedestrians on all four sides at every heading (2.946718ms)
+✔ the collider follows forward and reversing cars and leaves no wall in their old bay (10.665759ms)
+✔ held cars remain solid; hidden cars release their footprint and visible cars recover it (0.31837ms)
+✔ a car on a raised deck blocks that deck, not pedestrians underneath it (0.371541ms)
+✔ the dynamic broad phase follows a collider between cells in the same frame (0.184559ms)
+✔ moving traffic does not rebuild the town static collider grid every frame (0.287174ms)
+✔ Tetsuo keeps a solid kei truck throughout his actual town departure (87.10646ms)
+✔ the actual prompt selector excludes a driver but still offers ordinary conversations and car inspection (3.425751ms)
+✔ clicking a seated driver cannot open a conversation or walk into the cab (2.833527ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 966.075145

@@ -1,0 +1,36 @@
+{
+  "status": "FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED",
+  "sourceBaseCommit": "e87c06b16734d882626be7fe6cdd2ab153d649c4",
+  "dimensions": {
+    "paperSizes_mm": {
+      "A2": [
+        594,
+        420
+      ],
+      "A3": [
+        420,
+        297
+      ]
+    },
+    "internalLength_mm": 14000.0,
+    "ERlength_mm": 5500.0,
+    "roomClearHeight_mm": 1900.0
+  },
+  "counts": {
+    "pdfPages": 55,
+    "dxfSheets": 55,
+    "equipmentBounds": 75,
+    "pipingNodes": 196,
+    "pipingLines": 210,
+    "modelPipeRoutes": 55,
+    "unresolvedPositiveBoreConnections": 151,
+    "feeders": 58
+  },
+  "electricalNumericDefects": [],
+  "unroutedTopologyLines": 155,
+  "notes": [
+    "No construction approval",
+    "Reference dimensions distinct from fictional model",
+    "Proposed maintenance zones not clash-approved"
+  ]
+}

@@ -1,0 +1,508 @@
+{
+  "removedUnpublishedIntermediateChunks": [
+    "friendship-LlpCpYLN.js",
+    "onsen-dG5iTjHV.js",
+    "fish-CVs40f1Y.js",
+    "boot-CeG_OvaG.js",
+    "title-menu-DM4pdT7x.js",
+    "sakura-interior-myeTHqbs.js",
+    "sato-ramen-CiOv3nNY.js",
+    "town-hall-ml91zPT-.js",
+    "halloween-Bxid7aew.js",
+    "feed-B6OOo4Zi.js",
+    "scene-world-DoXjf8qX.js",
+    "game-Cf-dJha7.js"
+  ],
+  "productionJSFiles": 122,
+  "preserved": true,
+  "files": [
+    {
+      "path": "johansson-town/runtime/actors-BqR4ujRY.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/actors-D56Aqw3r.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/actors-uyEUiSkd.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/animate-BX9iDI20.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/animate-BkSzIkHa.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/animate-CCqlKjhr.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/audio-BASudbp7.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/audio-CE8cpUOv.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/audio-CM49mSir.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/boot-BQYIUHjR.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/boot-BwyXU0tX.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/boot-DM2LaXKU.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/boot-Dh4Mrg0N.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/boot-YKl8eog2.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/boot-kfijAj04.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/boot-lgoQ08Vx.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/catalog-CDeVBzZu.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/catalog-CGKBg51r.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/catalog-Dou-UlE5.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/compact-shops-B8IUoGcv.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/compact-shops-D386eqsq.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/compact-shops-HRLOIi1Y.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/concert-0Hdc3eN9.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/concert-jEu_euMX.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/concert-m6Cv5kjw.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/feed-0p_JP0uK.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/feed-4Hc-wfOC.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/feed-Czkene2n.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/feed-D7wFg3Ef.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/feed-Da1cZxUo.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/ferry-engine-room-asset-Dw08-X2-.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/ferry-engine-room-asset-xkTbxdtZ.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/ferry-ship-BYOQYI_W.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/ferry-ship-BkHvId4g.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/ferry-ship-BlnVoovY.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/ferry-ship-CAN-nQPz.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/ferry-ship-gyqbfnBG.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/fish-BWIq9yVq.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/fish-DJIlujZy.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/fish-DmlzgSB5.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/fish-QS-LRVQF.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/fish-hpRNmSNi.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/friendship-C0A5ehs1.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/friendship-DqXHyFL0.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/friendship-Drg3EPLK.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/friendship-DsTQAgrl.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/friendship-DyCc1p2x.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/game-BkKxYNe_.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/game-CHQvFNoA.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/game-CKxverAo.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/game-Cj_esMUY.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/game-DIeZgOnw.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/game-DnXd5tgp.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/game-TM2weX5N.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/halloween-Buo41LRJ.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/halloween-Bz6ZJ5ch.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/halloween-C-8USRQj.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/halloween-C_OkPKXa.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/halloween-DrI0gnxI.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/harbour-park-plan-B1KRv61-.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/harbour-park-plan-CU8IGfsI.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/harbour-park-plan-CXNa4AQv.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/hat-models-BGGgwBQt.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/hat-models-BltfS9Th.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/hat-models-y75xNIEN.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/icons-DfeBIm6m.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/onsen-BiOk0fVU.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/onsen-CyzWxpNZ.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/onsen-DdlFB1K2.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/onsen-IyAyM8I0.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/onsen-bmg3wi2e.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/pixar-DC4sRsqH.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/pixar-DVmUiIgS.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/pixar-DrVr-ZSY.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/portraits-CJ92fBau.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/portraits-DGT3dgE5.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/portraits-h0W4hcIF.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/preload-helper-PPVm8Dsz.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/sakura-interior-DTZB29tn.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/sakura-interior-DXP2Bu18.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/sakura-interior-DYeixllV.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/sakura-interior-Dvd89y_K.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/sakura-interior-q1Xy3n7H.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/sato-ramen-B4SkSv0l.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/sato-ramen-BC3i5mNK.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/sato-ramen-Bj5bo7Cv.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/sato-ramen-Cp-8a0vc.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/sato-ramen-DLbOVO5c.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/scene-world-B1VS_l2p.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/scene-world-BhEznZvC.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/scene-world-C4dZPQz-.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/scene-world-DqkEvwsb.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/scene-world-MP4LqS45.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/shopping-lane-plan-D0DhEU8_.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/spector.bundle-_JPoFEkN.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/staff-bench-CjSrHg3G.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/staff-bench-DGuyYEZl.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/staff-bench-DSC0Cxar.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/startup-recovery-CIJ7HiTu.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/storyteller-9KhANrNZ.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/storyteller-BXzpXliz.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/storyteller-B_6XBzQM.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/storyteller-CZDQqH4D.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/storyteller-DixtvLu9.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/studio-handoff-MzHhuZSW.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/studio-handoff-WRwutjPV.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/studio-handoff-dU-3hwmR.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/thuan-voice-Dz-XGNqd.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/title-menu-CrThthUz.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/title-menu-DJh6KtJV.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/title-menu-Dpcp6Pof.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/title-menu-bXbo70HQ.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/title-menu-dnO4MlyO.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/touch-ui-D34cMzo7.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/town-hall-B1JXEkbF.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/town-hall-C65k24em.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/town-hall-CecJUXvJ.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/town-hall-D7fn4Tzq.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/town-hall-DJTlt0JJ.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/tree-design-data-iR1qvQBH.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/webmcp-CxSkO4VH.js",
+      "preserved": true
+    },
+    {
+      "path": "johansson-town/runtime/webmcp-characters-BkXkAGJZ.js",
+      "preserved": true
+    }
+  ]
+}

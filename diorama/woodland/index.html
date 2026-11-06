@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>Johansson Woodland</title>
+  <link rel="stylesheet" href="./viewer.css">
+</head>
+<body>
+  <header>
+    <div><h1>Johansson Woodland</h1><p>A woodland diorama with the Johansson cast</p></div>
+    <button id="close" type="button">Back to World</button>
+  </header>
+  <main id="stage" aria-label="Interactive woodland diorama" aria-busy="true">
+    <img id="poster" src="./poster.webp" alt="The woodland illustration, rendered from the finished Blender diorama" draggable="false">
+    <div id="message" role="status">Opening the diorama…</div>
+  </main>
+  <nav class="toolbar" aria-label="Diorama controls">
+    <div class="views">
+      <button id="front" type="button" aria-pressed="true">Front view</button>
+      <button id="orbit" type="button" aria-pressed="false">Explore 3D</button>
+      <button id="posterButton" type="button" aria-pressed="false">Poster</button>
+    </div>
+    <div class="navigation">
+      <button id="zoomOut" type="button" aria-label="Zoom out">−</button>
+      <button id="zoomIn" type="button" aria-label="Zoom in">+</button>
+      <button id="reset" type="button">Reset</button>
+    </div>
+  </nav>
+  <p id="hint">Drag to move · Pinch or scroll to zoom</p>
+  <script type="module" src="./viewer.js"></script>
+</body>
+</html>

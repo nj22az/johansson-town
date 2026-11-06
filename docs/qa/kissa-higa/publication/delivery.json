@@ -1,0 +1,744 @@
+{
+  "release": "1c4d6c33d5f0447676cb4edcb22a25480e6e1adc",
+  "base": "37befc31db79e09ac2a1507663f80d6f0cc65ee3",
+  "checked": 92,
+  "matches": 92,
+  "files": [
+    {
+      "path": "johansson-town/assets/images/feed/higa-liquor-high-depth.webp",
+      "status": 200,
+      "bytes": 67996,
+      "expected_sha256": "7214cf3cee99b6e2666bd174e72556a84e5bcd7ad091a3bb576eeebc10e9c0ac",
+      "observed_sha256": "7214cf3cee99b6e2666bd174e72556a84e5bcd7ad091a3bb576eeebc10e9c0ac",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/higa-liquor-high.webp",
+      "status": 200,
+      "bytes": 51584,
+      "expected_sha256": "436dc35ba911c2eef129678f777af3406ea60c40fd5e8fb15ec33f4d822d6229",
+      "observed_sha256": "436dc35ba911c2eef129678f777af3406ea60c40fd5e8fb15ec33f4d822d6229",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/higa-liquor-low-depth.webp",
+      "status": 200,
+      "bytes": 78002,
+      "expected_sha256": "09939ae2bd5028227ec636e6d8ead1264ac6bd5c92d923c353050f99c89c065a",
+      "observed_sha256": "09939ae2bd5028227ec636e6d8ead1264ac6bd5c92d923c353050f99c89c065a",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/higa-liquor-low.webp",
+      "status": 200,
+      "bytes": 48892,
+      "expected_sha256": "8cd46cdbf4bb6321e2ecb547df58caca25f4ce64e539bcbc9af68842c4980ddc",
+      "observed_sha256": "8cd46cdbf4bb6321e2ecb547df58caca25f4ce64e539bcbc9af68842c4980ddc",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/higa-liquor-push-depth.webp",
+      "status": 200,
+      "bytes": 61746,
+      "expected_sha256": "fff45b1b559e05cf603d5b1b1ee71984abf3272cfd1d95df9fe8eb5108e1017d",
+      "observed_sha256": "fff45b1b559e05cf603d5b1b1ee71984abf3272cfd1d95df9fe8eb5108e1017d",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/higa-liquor-push.webp",
+      "status": 200,
+      "bytes": 32878,
+      "expected_sha256": "a4b798872e076d30300466c87ece87a664b60f0b2f5eae3041d49b7e3cdd1e05",
+      "observed_sha256": "a4b798872e076d30300466c87ece87a664b60f0b2f5eae3041d49b7e3cdd1e05",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/higa-liquor-wide-depth.webp",
+      "status": 200,
+      "bytes": 71570,
+      "expected_sha256": "11e6bbf7bf7b55c30019130f86841d5b4c5943ab187162ea061eabb4e604197b",
+      "observed_sha256": "11e6bbf7bf7b55c30019130f86841d5b4c5943ab187162ea061eabb4e604197b",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/higa-liquor-wide.webp",
+      "status": 200,
+      "bytes": 50956,
+      "expected_sha256": "e1ff98e914efab87df90927a0f9adb48b329e814c51ff93ca652953505646685",
+      "observed_sha256": "e1ff98e914efab87df90927a0f9adb48b329e814c51ff93ca652953505646685",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/higa-liquor.webp",
+      "status": 200,
+      "bytes": 25518,
+      "expected_sha256": "5d0490aa999d2266be81c7f84a7526897e9998691ac2f0d6ee66aa2dcf5bf843",
+      "observed_sha256": "5d0490aa999d2266be81c7f84a7526897e9998691ac2f0d6ee66aa2dcf5bf843",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/kissa-higa-high-depth.webp",
+      "status": 200,
+      "bytes": 66538,
+      "expected_sha256": "c51c75e5909eeb32d9510d0d310178a35c19af4c3704555dc00d8cda87c6b6f7",
+      "observed_sha256": "c51c75e5909eeb32d9510d0d310178a35c19af4c3704555dc00d8cda87c6b6f7",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/kissa-higa-high.webp",
+      "status": 200,
+      "bytes": 30988,
+      "expected_sha256": "34f09bae6433751e8acc9a3c33f3fc4f8aace1bf17d83e15a6b516cd452190a3",
+      "observed_sha256": "34f09bae6433751e8acc9a3c33f3fc4f8aace1bf17d83e15a6b516cd452190a3",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/kissa-higa-low-depth.webp",
+      "status": 200,
+      "bytes": 61396,
+      "expected_sha256": "a7c01e45dc928d2016bab1b5c3e771186ad8d1ced6293992c5264338d10e2b85",
+      "observed_sha256": "a7c01e45dc928d2016bab1b5c3e771186ad8d1ced6293992c5264338d10e2b85",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/kissa-higa-low.webp",
+      "status": 200,
+      "bytes": 28472,
+      "expected_sha256": "0ff45c3c4cad035ba245a05fc904aabec43105abb71abef37100213ffa717473",
+      "observed_sha256": "0ff45c3c4cad035ba245a05fc904aabec43105abb71abef37100213ffa717473",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/kissa-higa-push-depth.webp",
+      "status": 200,
+      "bytes": 61424,
+      "expected_sha256": "347e886de78e206e1af9d7065f8fd5a622f55807631bcc8437108e8c4e4e81cd",
+      "observed_sha256": "347e886de78e206e1af9d7065f8fd5a622f55807631bcc8437108e8c4e4e81cd",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/kissa-higa-push.webp",
+      "status": 200,
+      "bytes": 25228,
+      "expected_sha256": "d8a1a230f906770dbfd5c1d5504f15ff318c767f31c63d89ce92a60ca4585d74",
+      "observed_sha256": "d8a1a230f906770dbfd5c1d5504f15ff318c767f31c63d89ce92a60ca4585d74",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/kissa-higa-wide-depth.webp",
+      "status": 200,
+      "bytes": 62798,
+      "expected_sha256": "e60e18a061e0f28919cdc1f9d736e32215e690d922840b9274607810f726f72f",
+      "observed_sha256": "e60e18a061e0f28919cdc1f9d736e32215e690d922840b9274607810f726f72f",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/kissa-higa-wide.webp",
+      "status": 200,
+      "bytes": 28386,
+      "expected_sha256": "52d1e6ce2ca0cca1915855ac6a511f794123fa1c5e0af64222280c0246f1f4dc",
+      "observed_sha256": "52d1e6ce2ca0cca1915855ac6a511f794123fa1c5e0af64222280c0246f1f4dc",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/kissa-higa.webp",
+      "status": 200,
+      "bytes": 14612,
+      "expected_sha256": "8515d74fdba4908376ebc8a4302c2c2cba51c73e24cf5615136a3212d15c7a3f",
+      "observed_sha256": "8515d74fdba4908376ebc8a4302c2c2cba51c73e24cf5615136a3212d15c7a3f",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/images/feed/views.json",
+      "status": 200,
+      "bytes": 144529,
+      "expected_sha256": "6a3bcf6dd1175f41b67769bbf441fe58b8ede359925700c5f3ade37566f72426",
+      "observed_sha256": "6a3bcf6dd1175f41b67769bbf441fe58b8ede359925700c5f3ade37566f72426",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/models/kissaten/bentwood-chair.glb",
+      "status": 200,
+      "bytes": 183872,
+      "expected_sha256": "a517a779896bc4c6b72f3debfab64d5ee173faceb9d264220c15e1e34525dc06",
+      "observed_sha256": "a517a779896bc4c6b72f3debfab64d5ee173faceb9d264220c15e1e34525dc06",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/models/kissaten/hand-grinder.glb",
+      "status": 200,
+      "bytes": 183132,
+      "expected_sha256": "52bc51ac3268bd68da707210e2ed850d7506a0f12f744305ed1b16beeb8d5519",
+      "observed_sha256": "52bc51ac3268bd68da707210e2ed850d7506a0f12f744305ed1b16beeb8d5519",
+      "match": true
+    },
+    {
+      "path": "johansson-town/assets/models/kissaten/record-player.glb",
+      "status": 200,
+      "bytes": 187040,
+      "expected_sha256": "3f3bcaff5b5752057f06ab4d0ed0d3e59f80de7d77ebbf2f4702b1b38659f66f",
+      "observed_sha256": "3f3bcaff5b5752057f06ab4d0ed0d3e59f80de7d77ebbf2f4702b1b38659f66f",
+      "match": true
+    },
+    {
+      "path": "johansson-town/guide/articles.mjs",
+      "status": 200,
+      "bytes": 53316,
+      "expected_sha256": "5898ad7e97634ea775c36f148842ac5cbd4d1c0014c8bfaa87929a2fc46ed937",
+      "observed_sha256": "5898ad7e97634ea775c36f148842ac5cbd4d1c0014c8bfaa87929a2fc46ed937",
+      "match": true
+    },
+    {
+      "path": "johansson-town/guide/portraits.json",
+      "status": 200,
+      "bytes": 573,
+      "expected_sha256": "a96efeeab8654ee0ebb26b079af10b987400ec31ff89d184f32e7cdc88be3a17",
+      "observed_sha256": "a96efeeab8654ee0ebb26b079af10b987400ec31ff89d184f32e7cdc88be3a17",
+      "match": true
+    },
+    {
+      "path": "johansson-town/guide/residents.json",
+      "status": 200,
+      "bytes": 101225,
+      "expected_sha256": "31fdab07e6b7a5b5c03a909a2fe6146e57289d29a83fc60be43dfde25ba1944f",
+      "observed_sha256": "31fdab07e6b7a5b5c03a909a2fe6146e57289d29a83fc60be43dfde25ba1944f",
+      "match": true
+    },
+    {
+      "path": "johansson-town/index.html",
+      "status": 200,
+      "bytes": 46293,
+      "expected_sha256": "91e4bd8080e21ea59512a81f231a250b21c111e14dd8e40557f4ca959642a1fc",
+      "observed_sha256": "91e4bd8080e21ea59512a81f231a250b21c111e14dd8e40557f4ca959642a1fc",
+      "match": true
+    },
+    {
+      "path": "johansson-town/resident-guide.js",
+      "status": 200,
+      "bytes": 93703,
+      "expected_sha256": "41514e25c7edd63c24da964d1759d903d1a074a7ff92788ca16f69bcfe1d0a00",
+      "observed_sha256": "41514e25c7edd63c24da964d1759d903d1a074a7ff92788ca16f69bcfe1d0a00",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/.vite/manifest.json",
+      "status": 200,
+      "bytes": 10891,
+      "expected_sha256": "da256727686069ee16debe5b164a5ff5a57709f5c3b5ea99b06ef1ad2d5a3153",
+      "observed_sha256": "da256727686069ee16debe5b164a5ff5a57709f5c3b5ea99b06ef1ad2d5a3153",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/actors-BqR4ujRY.js",
+      "status": 200,
+      "bytes": 92700,
+      "expected_sha256": "85ad7fb866d82823f98ed18551f485774f82da6028c1cd55ae7e96acac308ee2",
+      "observed_sha256": "85ad7fb866d82823f98ed18551f485774f82da6028c1cd55ae7e96acac308ee2",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/animate-BkSzIkHa.js",
+      "status": 200,
+      "bytes": 644411,
+      "expected_sha256": "86411147748fffea1dfecdf8fac61678b98112e8d38925e20cbe1fb29d10326a",
+      "observed_sha256": "86411147748fffea1dfecdf8fac61678b98112e8d38925e20cbe1fb29d10326a",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/audio-CE8cpUOv.js",
+      "status": 200,
+      "bytes": 101,
+      "expected_sha256": "11521ca759160b955306901782cb22f82a9a9be54e76b81a7480c52e3d1d7b56",
+      "observed_sha256": "11521ca759160b955306901782cb22f82a9a9be54e76b81a7480c52e3d1d7b56",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/boot-DfkZ-ZpG.js",
+      "status": 200,
+      "bytes": 4557,
+      "expected_sha256": "c2c5fb8036c0ccb707b3dd0969fa23559b71afe03aba96fb92d7307794dfa9de",
+      "observed_sha256": "c2c5fb8036c0ccb707b3dd0969fa23559b71afe03aba96fb92d7307794dfa9de",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/catalog-Dou-UlE5.js",
+      "status": 200,
+      "bytes": 4958,
+      "expected_sha256": "fa10bfb50741ed5f37929a1ce849699177383be2c51fa63f2c0083ba0b3db424",
+      "observed_sha256": "fa10bfb50741ed5f37929a1ce849699177383be2c51fa63f2c0083ba0b3db424",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/compact-shops-D386eqsq.js",
+      "status": 200,
+      "bytes": 835746,
+      "expected_sha256": "63bc2ef41ffb4bf2f49f53ea30323f0df74d5c23eff60670f1542de1384b7e0a",
+      "observed_sha256": "63bc2ef41ffb4bf2f49f53ea30323f0df74d5c23eff60670f1542de1384b7e0a",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/concert-jEu_euMX.js",
+      "status": 200,
+      "bytes": 33951,
+      "expected_sha256": "939cac583438326e0a3723109c014b7fb055c64c343f7ee8db4a22348f497cb6",
+      "observed_sha256": "939cac583438326e0a3723109c014b7fb055c64c343f7ee8db4a22348f497cb6",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/feed-uniWY-hN.js",
+      "status": 200,
+      "bytes": 25889,
+      "expected_sha256": "56fd42d1eb48bcf9abd778176d63b6719aaf94d26dc4fb4f576e5d990f1a66b4",
+      "observed_sha256": "56fd42d1eb48bcf9abd778176d63b6719aaf94d26dc4fb4f576e5d990f1a66b4",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/ferry-ship-BkHvId4g.js",
+      "status": 200,
+      "bytes": 35805,
+      "expected_sha256": "ed033c36209339b0fa020c885c61f233d6a56af1b015551be64c95f7b02c00ae",
+      "observed_sha256": "ed033c36209339b0fa020c885c61f233d6a56af1b015551be64c95f7b02c00ae",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/fish-DJIlujZy.js",
+      "status": 200,
+      "bytes": 330767,
+      "expected_sha256": "6637be523da8891b044c575c4b024f73b5eba96e1d93b3db92a66ded90803bb3",
+      "observed_sha256": "6637be523da8891b044c575c4b024f73b5eba96e1d93b3db92a66ded90803bb3",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/friendship-Drg3EPLK.js",
+      "status": 200,
+      "bytes": 3421,
+      "expected_sha256": "5da8448a646acf37cf10344d5fa91424214987c4a55d609d0a7d9228dc65f5bc",
+      "observed_sha256": "5da8448a646acf37cf10344d5fa91424214987c4a55d609d0a7d9228dc65f5bc",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/game-B95vtaNc.js",
+      "status": 200,
+      "bytes": 877691,
+      "expected_sha256": "1231be13a3c5cd6de247feb30a1ab33934aa98027cb128344bb72530ced4ab3a",
+      "observed_sha256": "1231be13a3c5cd6de247feb30a1ab33934aa98027cb128344bb72530ced4ab3a",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/halloween-C7kc_oUI.js",
+      "status": 200,
+      "bytes": 1229775,
+      "expected_sha256": "0759c755eac470e662bf7b3b953756ba0439edafbaba707ebb583bc5bc03f636",
+      "observed_sha256": "0759c755eac470e662bf7b3b953756ba0439edafbaba707ebb583bc5bc03f636",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/harbour-park-plan-B1KRv61-.js",
+      "status": 200,
+      "bytes": 54063,
+      "expected_sha256": "babff9075f2e90379d38f01ff871263e2a23d58894a261c112f5bee78689022a",
+      "observed_sha256": "babff9075f2e90379d38f01ff871263e2a23d58894a261c112f5bee78689022a",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/hat-models-y75xNIEN.js",
+      "status": 200,
+      "bytes": 48026,
+      "expected_sha256": "8b7a01ece04efbcf87c41b4fefe40471a240913d8680cf68b3b5508467911cee",
+      "observed_sha256": "8b7a01ece04efbcf87c41b4fefe40471a240913d8680cf68b3b5508467911cee",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/icons-DfeBIm6m.js",
+      "status": 200,
+      "bytes": 7263,
+      "expected_sha256": "b091b9cb9311794bd87d1ba33e34fc8a3bb6ca8931abd3bc51614f9278744803",
+      "observed_sha256": "b091b9cb9311794bd87d1ba33e34fc8a3bb6ca8931abd3bc51614f9278744803",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/onsen-LC3Iy3yf.js",
+      "status": 200,
+      "bytes": 189552,
+      "expected_sha256": "14841d14a1a44cac86a744d47ad25810ff640e9c10d8aff802f57b530a2654d2",
+      "observed_sha256": "14841d14a1a44cac86a744d47ad25810ff640e9c10d8aff802f57b530a2654d2",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/pixar-DVmUiIgS.js",
+      "status": 200,
+      "bytes": 115851,
+      "expected_sha256": "ce50884063065f60faf9a5315cbfb14890ac0119f84141893235f3bac24b2423",
+      "observed_sha256": "ce50884063065f60faf9a5315cbfb14890ac0119f84141893235f3bac24b2423",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/portraits-CJ92fBau.js",
+      "status": 200,
+      "bytes": 2671,
+      "expected_sha256": "44a2465cd516b12c51b3c3683adf9dbdc21758bc56369cecbbde6a1a54bd0ded",
+      "observed_sha256": "44a2465cd516b12c51b3c3683adf9dbdc21758bc56369cecbbde6a1a54bd0ded",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/preload-helper-PPVm8Dsz.js",
+      "status": 200,
+      "bytes": 1232,
+      "expected_sha256": "0bcb72f8ec0d95f592f3a84b3554b9ef5a5325ff5416a9114d6913e03c1c9eb4",
+      "observed_sha256": "0bcb72f8ec0d95f592f3a84b3554b9ef5a5325ff5416a9114d6913e03c1c9eb4",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/sakura-interior--E8WUoVd.js",
+      "status": 200,
+      "bytes": 179200,
+      "expected_sha256": "78539ed5bb85fd281f876c5c1a079d593e8be656060bcac753974ff18b6a5267",
+      "observed_sha256": "78539ed5bb85fd281f876c5c1a079d593e8be656060bcac753974ff18b6a5267",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/sato-ramen-DUI_JU2A.js",
+      "status": 200,
+      "bytes": 543,
+      "expected_sha256": "c8c98acb3fe6a20b5992754ac8c0a524d6b82f83c52cb80935bbc93ecff5c4ed",
+      "observed_sha256": "c8c98acb3fe6a20b5992754ac8c0a524d6b82f83c52cb80935bbc93ecff5c4ed",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/scene-world-CbEe1sKF.js",
+      "status": 200,
+      "bytes": 39379,
+      "expected_sha256": "82c053dd84dfe8ec5740364524821fe9e80dd39b871f3d2c299e12f6d05f110c",
+      "observed_sha256": "82c053dd84dfe8ec5740364524821fe9e80dd39b871f3d2c299e12f6d05f110c",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/shopping-lane-plan-D0DhEU8_.js",
+      "status": 200,
+      "bytes": 606,
+      "expected_sha256": "5bdd9f9ba046f84c06cef3f1b7ed6318534d4216331464a43ea0682a47e32d94",
+      "observed_sha256": "5bdd9f9ba046f84c06cef3f1b7ed6318534d4216331464a43ea0682a47e32d94",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/source.json",
+      "status": 200,
+      "bytes": 83,
+      "expected_sha256": "b04aa7eded73f7ef5a967c63e3571801793d0a11b4c75c50596390b4525c5dbb",
+      "observed_sha256": "b04aa7eded73f7ef5a967c63e3571801793d0a11b4c75c50596390b4525c5dbb",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/spector.bundle-_JPoFEkN.js",
+      "status": 200,
+      "bytes": 1199203,
+      "expected_sha256": "8e4e5a80c99ba39625463e80fc7b32b8961b174d46d438fe18a08ee0f7023f5c",
+      "observed_sha256": "8e4e5a80c99ba39625463e80fc7b32b8961b174d46d438fe18a08ee0f7023f5c",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/staff-bench-CjSrHg3G.js",
+      "status": 200,
+      "bytes": 223524,
+      "expected_sha256": "cce0d81059de4a02719f73d6fff6d0cdaf9efb11e8bebd488c75ff2a3260372d",
+      "observed_sha256": "cce0d81059de4a02719f73d6fff6d0cdaf9efb11e8bebd488c75ff2a3260372d",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/storyteller-DixtvLu9.js",
+      "status": 200,
+      "bytes": 67528,
+      "expected_sha256": "75c35b032943e8a86163f1b93492261b8011ef5ee331e53b32f090b4a623b0c7",
+      "observed_sha256": "75c35b032943e8a86163f1b93492261b8011ef5ee331e53b32f090b4a623b0c7",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/studio-handoff-MzHhuZSW.js",
+      "status": 200,
+      "bytes": 6099,
+      "expected_sha256": "f604677633a51b81ff428dc144a0e93b54dc782a7377e8af4b270f0b1ca79b18",
+      "observed_sha256": "f604677633a51b81ff428dc144a0e93b54dc782a7377e8af4b270f0b1ca79b18",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/thuan-voice-Dz-XGNqd.js",
+      "status": 200,
+      "bytes": 5832,
+      "expected_sha256": "7353d3a89febbcb7ca9cded704c7c09b90bde9c665e843631510e857f881cd59",
+      "observed_sha256": "7353d3a89febbcb7ca9cded704c7c09b90bde9c665e843631510e857f881cd59",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/title-menu-CrThthUz.js",
+      "status": 200,
+      "bytes": 3993,
+      "expected_sha256": "4205aa2f9d35e2e6939d9f6a65182aab331dddda966a0b8131a3c73c2a8e500d",
+      "observed_sha256": "4205aa2f9d35e2e6939d9f6a65182aab331dddda966a0b8131a3c73c2a8e500d",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/touch-ui-D34cMzo7.js",
+      "status": 200,
+      "bytes": 2413,
+      "expected_sha256": "83b5028de47afa38a02300daf6d01f359d4ef5bc4aae58d4875f070d6f77db33",
+      "observed_sha256": "83b5028de47afa38a02300daf6d01f359d4ef5bc4aae58d4875f070d6f77db33",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/town-hall-Hg-VuEkh.js",
+      "status": 200,
+      "bytes": 58170,
+      "expected_sha256": "e1848343ab748878fad2037979ea88168cbc8ed74caf7641cbe6860199d0e4c7",
+      "observed_sha256": "e1848343ab748878fad2037979ea88168cbc8ed74caf7641cbe6860199d0e4c7",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/tree-design-data-iR1qvQBH.js",
+      "status": 200,
+      "bytes": 633139,
+      "expected_sha256": "c2e5523bbdfd35de736dba447e106edd8909a672776674d2c2c7313028c8e48e",
+      "observed_sha256": "c2e5523bbdfd35de736dba447e106edd8909a672776674d2c2c7313028c8e48e",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/webmcp-CxSkO4VH.js",
+      "status": 200,
+      "bytes": 15824,
+      "expected_sha256": "2a6856ebc806bc4225e8bdfd3d08f913aad788e032d8bda521a230291c0f1cb6",
+      "observed_sha256": "2a6856ebc806bc4225e8bdfd3d08f913aad788e032d8bda521a230291c0f1cb6",
+      "match": true
+    },
+    {
+      "path": "johansson-town/runtime/webmcp-characters-BkXkAGJZ.js",
+      "status": 200,
+      "bytes": 3130,
+      "expected_sha256": "4f1c850b6db1cf07f238f632a62d81eb8d1336f66d50e23a2bf6c738cb82b2bc",
+      "observed_sha256": "4f1c850b6db1cf07f238f632a62d81eb8d1336f66d50e23a2bf6c738cb82b2bc",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/commerce/higa-liquor.js",
+      "status": 200,
+      "bytes": 5955,
+      "expected_sha256": "04a94235530837ab3f3f3b9c749fc7ae07b0a210ce6dc6fba18be202b364c45b",
+      "observed_sha256": "04a94235530837ab3f3f3b9c749fc7ae07b0a210ce6dc6fba18be202b364c45b",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/commerce/kissa-higa.js",
+      "status": 200,
+      "bytes": 14176,
+      "expected_sha256": "603d8e7274e68210a879ab394a9bb9b29db634bec1196720c20f0137423de6b9",
+      "observed_sha256": "603d8e7274e68210a879ab394a9bb9b29db634bec1196720c20f0137423de6b9",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/commerce/merchandising.js",
+      "status": 200,
+      "bytes": 14927,
+      "expected_sha256": "40ac619e95d9efddf0ff5bbe588a1c63dbf30b6f398f37ffcf3367f060b9a29a",
+      "observed_sha256": "40ac619e95d9efddf0ff5bbe588a1c63dbf30b6f398f37ffcf3367f060b9a29a",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/feed/places.js",
+      "status": 200,
+      "bytes": 16750,
+      "expected_sha256": "c34f39581aef01c79c9405e98a2508db026f6a7ddf0459807ad380a327f9d9bb",
+      "observed_sha256": "c34f39581aef01c79c9405e98a2508db026f6a7ddf0459807ad380a327f9d9bb",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/game.js",
+      "status": 200,
+      "bytes": 250918,
+      "expected_sha256": "43e4ba1acae2dcbb0caef90a1bb0e473a16b230c573f3c820a38d67f43676168",
+      "observed_sha256": "43e4ba1acae2dcbb0caef90a1bb0e473a16b230c573f3c820a38d67f43676168",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/office/town-papers.js",
+      "status": 200,
+      "bytes": 27854,
+      "expected_sha256": "4962d05bfedc88054143a480c20eb6ec650a3c6749f85b80007def281c4a4d23",
+      "observed_sha256": "4962d05bfedc88054143a480c20eb6ec650a3c6749f85b80007def281c4a4d23",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/people/canonical-day.js",
+      "status": 200,
+      "bytes": 8175,
+      "expected_sha256": "90fd3feb499d8c70b006ebfc7c3baeabf242a6e91b021e05d5547dde950f8525",
+      "observed_sha256": "90fd3feb499d8c70b006ebfc7c3baeabf242a6e91b021e05d5547dde950f8525",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/people/canonical-rest.js",
+      "status": 200,
+      "bytes": 1283,
+      "expected_sha256": "343fbb1d72710c92ec3868488ab771bb23636ae4417cd96b7d650fa6bed52ecf",
+      "observed_sha256": "343fbb1d72710c92ec3868488ab771bb23636ae4417cd96b7d650fa6bed52ecf",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/people/cast.js",
+      "status": 200,
+      "bytes": 32811,
+      "expected_sha256": "c72a3102e775aba30bab02a4ca3928fe18854301ff0611438486fbf26c9ee233",
+      "observed_sha256": "c72a3102e775aba30bab02a4ca3928fe18854301ff0611438486fbf26c9ee233",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/people/commuter-schedule.js",
+      "status": 200,
+      "bytes": 6570,
+      "expected_sha256": "3035a193edc80e469dc851862ae644efa8f05b917edf58e0f90183422945b273",
+      "observed_sha256": "3035a193edc80e469dc851862ae644efa8f05b917edf58e0f90183422945b273",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/people/home-directory.js",
+      "status": 200,
+      "bytes": 13340,
+      "expected_sha256": "a0996c4c6c4a4707df6a283fea0afbfe1ff2db0d9c28d79fdc702140cf9a1597",
+      "observed_sha256": "a0996c4c6c4a4707df6a283fea0afbfe1ff2db0d9c28d79fdc702140cf9a1597",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/people/home-life.js",
+      "status": 200,
+      "bytes": 4708,
+      "expected_sha256": "8aafd6752ee0448e24f4b16da436776c5b1ba1a16d979046aecf0f5a32348818",
+      "observed_sha256": "8aafd6752ee0448e24f4b16da436776c5b1ba1a16d979046aecf0f5a32348818",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/people/neighbours.js",
+      "status": 200,
+      "bytes": 22708,
+      "expected_sha256": "f7162a75c9f716534875b04657d91c9fde26841ec0906a3e93255d816d00516f",
+      "observed_sha256": "f7162a75c9f716534875b04657d91c9fde26841ec0906a3e93255d816d00516f",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/people/roster.js",
+      "status": 200,
+      "bytes": 23851,
+      "expected_sha256": "c3b31ffea18d5406d6f1dbf41e0dca9a21a198079b8e3aa1a2fb0427a17c6e58",
+      "observed_sha256": "c3b31ffea18d5406d6f1dbf41e0dca9a21a198079b8e3aa1a2fb0427a17c6e58",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/people/schedules.js",
+      "status": 200,
+      "bytes": 38958,
+      "expected_sha256": "c023dfaa27e18d609a929d0662920dc8c092ea2cd1a5a709df0efef987ad459a",
+      "observed_sha256": "c023dfaa27e18d609a929d0662920dc8c092ea2cd1a5a709df0efef987ad459a",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/people/shop-days.js",
+      "status": 200,
+      "bytes": 6402,
+      "expected_sha256": "b6097ba31e4cfb35e83baba76b79315ad43a5defe4e0c75a648d80c801a3ed04",
+      "observed_sha256": "b6097ba31e4cfb35e83baba76b79315ad43a5defe4e0c75a648d80c801a3ed04",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/people/social.js",
+      "status": 200,
+      "bytes": 38822,
+      "expected_sha256": "09382c09804ab046d87041e37d69ff6faddd4d3140f45bc2da89f2989871eef6",
+      "observed_sha256": "09382c09804ab046d87041e37d69ff6faddd4d3140f45bc2da89f2989871eef6",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/world/fish-market.js",
+      "status": 200,
+      "bytes": 28334,
+      "expected_sha256": "64293554a8bc5589dbefa32caf53dc09ac571eb675ab7d4e6a851404140d3663",
+      "observed_sha256": "64293554a8bc5589dbefa32caf53dc09ac571eb675ab7d4e6a851404140d3663",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/world/okinawa/higa-liquor-dressing.js",
+      "status": 200,
+      "bytes": 49111,
+      "expected_sha256": "89d150c5eec501ef74ed325a479759936f8f30872678822f43366762bb26824a",
+      "observed_sha256": "89d150c5eec501ef74ed325a479759936f8f30872678822f43366762bb26824a",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/world/okinawa/houses.js",
+      "status": 200,
+      "bytes": 30491,
+      "expected_sha256": "75f49bc72fcbf01875c1e7dccde951b9ea34acab88138a1483c7ac8ee9225b17",
+      "observed_sha256": "75f49bc72fcbf01875c1e7dccde951b9ea34acab88138a1483c7ac8ee9225b17",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/world/okinawa/kissa-higa-props.js",
+      "status": 200,
+      "bytes": 5732,
+      "expected_sha256": "14567b617aed8be29c96b1ea25312f274ec1e91b96e0e0809d6efe236cdfbfc8",
+      "observed_sha256": "14567b617aed8be29c96b1ea25312f274ec1e91b96e0e0809d6efe236cdfbfc8",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/world/okinawa/kitahama-shop.js",
+      "status": 200,
+      "bytes": 17357,
+      "expected_sha256": "2fbd1cb293154475f11b4f97657f3bce4066204168909a490ecaa3fd352d44a3",
+      "observed_sha256": "2fbd1cb293154475f11b4f97657f3bce4066204168909a490ecaa3fd352d44a3",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/world/okinawa/lots.js",
+      "status": 200,
+      "bytes": 35307,
+      "expected_sha256": "76dac605dde1d6effc7295096a77b0c74624fd98347bdc1e0c2dbd80588fd889",
+      "observed_sha256": "76dac605dde1d6effc7295096a77b0c74624fd98347bdc1e0c2dbd80588fd889",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/world/okinawa/props.js",
+      "status": 200,
+      "bytes": 12438,
+      "expected_sha256": "8be7b4001fc202a4265189abf0805876ddc0002161783d7030335d8104651e2e",
+      "observed_sha256": "8be7b4001fc202a4265189abf0805876ddc0002161783d7030335d8104651e2e",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/world/okinawa/quarters.js",
+      "status": 200,
+      "bytes": 60471,
+      "expected_sha256": "0780fce09be9d9f921cd6535dcedcc76db203fc2af1af505bc860b87e23e6a4c",
+      "observed_sha256": "0780fce09be9d9f921cd6535dcedcc76db203fc2af1af505bc860b87e23e6a4c",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/world/okinawa/signs.js",
+      "status": 200,
+      "bytes": 18688,
+      "expected_sha256": "88942ded052ce344d19a057dbcf69eecdf0307fe154af0ec3cc8e3f3ded1a744",
+      "observed_sha256": "88942ded052ce344d19a057dbcf69eecdf0307fe154af0ec3cc8e3f3ded1a744",
+      "match": true
+    },
+    {
+      "path": "johansson-town/src/world/town.js",
+      "status": 200,
+      "bytes": 38084,
+      "expected_sha256": "5b2c53c3b96abfde3c20541e17797b3830a16f2dee5cc69992f45a18b6fa8160",
+      "observed_sha256": "5b2c53c3b96abfde3c20541e17797b3830a16f2dee5cc69992f45a18b6fa8160",
+      "match": true
+    },
+    {
+      "path": "johansson-town/sw.js",
+      "status": 200,
+      "bytes": 2308,
+      "expected_sha256": "a8ddf40833f4946affc2a9241023efc1d2c2bc995bd92ed958e8652ed2c10341",
+      "observed_sha256": "a8ddf40833f4946affc2a9241023efc1d2c2bc995bd92ed958e8652ed2c10341",
+      "match": true
+    }
+  ]
+}

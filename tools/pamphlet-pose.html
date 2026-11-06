@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Pamphlet pose</title>
+<style>html,body{margin:0;background:transparent;overflow:hidden}canvas{display:block}</style></head>
+<body>
+<script type="module">
+// One resident, posed for an illustration: transparent background, soft even light, full figure.
+// ?who=Tetsuo&gesture=Point (or &pose=DrinkHip, a held pose)&face=thinking&at=0.6&turn=0.35&size=1200&sit=0.45&speed=3.5 (walking or running)
+// &shoeOff=R (that shoe has come off: a sock), &lie=1 (knocked out on the back) or &lie=prone (face down, feet up); &pitch=0.6 looks down on them (radians)
+// The picture is drawn after `at` seconds of the gesture, stepped at 60 Hz so it is the same every time.
+import * as THREE from '../vendor/three.module.js';
+import {buildAvatar} from '../src/avatars/build.js';
+import {createAvatarAnimator} from '../src/avatars/animate.js';
+import {recipeFor} from '../src/avatars/cast.js';
+const q=new URLSearchParams(location.search),size=+(q.get('size')||1200);
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});
+renderer.setPixelRatio(1);renderer.setSize(size,size);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.setClearColor(0x000000,0);document.body.append(renderer.domElement);
+const scene=new THREE.Scene();
+scene.add(new THREE.HemisphereLight(0xffffff,0xb8b0a0,2.3));const sun=new THREE.DirectionalLight(0xffffff,.9);sun.position.set(2,5,6);scene.add(sun);
+const a=buildAvatar(recipeFor(q.get('who')||'Tetsuo'),{faceSize:1024,shadows:false});
+const holder=new THREE.Group();holder.add(a.root);holder.rotation.y=Math.PI+(+(q.get('turn')||0));scene.add(holder);
+const anim=createAvatarAnimator(a);if(q.get('shoeOff'))a.setShoe(q.get('shoeOff'),false);
+const sit=q.get('sit');
+const run=+(q.get('speed')||0);
+const state={speed:run,running:run>2.6,seated:!!sit,seatHeight:+(sit||.45),expression:q.get('face')||'neutral',talking:q.get('talk')==='1',lying:q.get('lie')==='prone'?'prone':q.get('lie')?1:0,pose:q.get('pose')||undefined};
+if(q.get('gesture'))anim.play(q.get('gesture'));
+const at=+(q.get('at')||0.6);for(let t=0;t<at;t+=1/60){anim.update(1/60,state);a.springs?.update(1/60);}
+const box=new THREE.Box3().setFromObject(a.root),h=Math.max(box.max.y-box.min.y,box.max.x-box.min.x,box.max.z-box.min.z),cy=(box.max.y+box.min.y)/2;
+const camera=new THREE.PerspectiveCamera(16,1,.1,100),d=(h*1.12)/(2*Math.tan(THREE.MathUtils.degToRad(8)));
+const pitch=+(q.get('pitch')||0);camera.position.set(0,cy+.05+Math.sin(pitch)*d,Math.cos(pitch)*d);camera.lookAt(0,cy,0);
+renderer.render(scene,camera);window.__READY__=true;
+</script>
+</body></html>

@@ -1,0 +1,14 @@
+{
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+  "space": "Qwen/Qwen3-TTS",
+  "event": "f19629fd72b04c6089c344ec17f96b61",
+  "request": {
+    "data": [
+      "スターポートで満点を取ったら、工房に案内するよ。",
+      "Japanese",
+      "Aiden",
+      "Speak Japanese naturally and clearly, with a calm, warm delivery. Do not sing.",
+      "1.7B"
+    ]
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "scope": "Real WebGL/Web Audio concert and registered WebMCP callbacks in an isolated fixture, not a complete town-navigation pass",
+  "browser": "131.0.6778.204",
+  "checks": [
+    "Registered MCP handlers expose all six arrangements, five voices and three energy levels, and reject invalid options",
+    {
+      "style": "pop",
+      "peak": 228,
+      "context": "running",
+      "held": 3,
+      "bones": 112,
+      "invalid": 0,
+      "balance": 400,
+      "song": {
+        "id": "bus",
+        "title": "Island Bus Stop",
+        "style": "pop",
+        "voice": "cast",
+        "performance": "wild",
+        "lines": [
+          "The last bus left without me",
+          "The moon is high above the sea",
+          "We walk the long way home tonight",
+          "The whole town sings along with me"
+        ]
+      }
+    },
+    {
+      "style": "ballad",
+      "peak": 222,
+      "context": "running",
+      "held": 3,
+      "bones": 112,
+      "invalid": 0,
+      "balance": 400,
+      "song": {
+        "id": "bus",
+        "title": "Island Bus Stop",
+        "style": "ballad",
+        "voice": "cast",
+        "performance": "wild",
+        "lines": [
+          "The last bus left without me",
+          "The moon is high above the sea",
+          "We walk the long way home tonight",
+          "The whole town sings along with me"
+        ]
+      }
+    },
+    {
+      "style": "disco",
+      "peak": 246,
+      "context": "running",
+      "held": 3,
+      "bones": 112,
+      "invalid": 0,
+      "balance": 400,
+      "song": {
+        "id": "bus",
+        "title": "Island Bus Stop",
+        "style": "disco",
+        "voice": "cast",
+        "performance": "wild",
+        "lines": [
+          "The last bus left without me",
+          "The moon is high above the sea",
+          "We walk the long way home tonight",
+          "The whole town sings along with me"
+        ]
+      }
+    },
+    {
+      "style": "rock",
+      "peak": 242,
+      "context": "running",
+      "held": 3,
+      "bones": 112,
+      "invalid": 0,
+      "balance": 400,
+      "song": {
+        "id": "bus",
+        "title": "Island Bus Stop",
+        "style": "rock",
+        "voice": "cast",
+        "performance": "wild",
+        "lines": [
+          "The last bus left without me",
+          "The moon is high above the sea",
+          "We walk the long way home tonight",
+          "The whole town sings along with me"
+        ]
+      }
+    },
+    {
+      "style": "enka",
+      "peak": 228,
+      "context": "running",
+      "held": 3,
+      "bones": 112,
+      "invalid": 0,
+      "balance": 400,
+      "song": {
+        "id": "bus",
+        "title": "Island Bus Stop",
+        "style": "enka",
+        "voice": "cast",
+        "performance": "wild",
+        "lines": [
+          "The last bus left without me",
+          "The moon is high above the sea",
+          "We walk the long way home tonight",
+          "The whole town sings along with me"
+        ]
+      }
+    },
+    {
+      "style": "eurobeat",
+      "peak": 252,
+      "context": "running",
+      "held": 2,
+      "bones": 112,
+      "invalid": 0,
+      "balance": 400,
+      "song": {
+        "id": "bus",
+        "title": "Island Bus Stop",
+        "style": "eurobeat",
+        "voice": "cast",
+        "performance": "wild",
+        "lines": [
+          "The last bus left without me",
+          "The moon is high above the sea",
+          "We walk the long way home tonight",
+          "The whole town sings along with me"
+        ]
+      }
+    },
+    "Full rock performance and bow, free encore, Stop, Return, focus and saved voice/energy settings"
+  ],
+  "errors": []
+}

@@ -1,0 +1,164 @@
+{
+  "model": {
+    "compressedBytes": 5639752,
+    "rawBytes": 21194248,
+    "sha256": "94ad597834509739204ac7b0374a33ee50eac7f59678c8f6cb8efc2b99fbe549",
+    "lossless": true
+  },
+  "scenarios": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1200,
+        "height": 900
+      },
+      "touchEmulated": false,
+      "nativeDecoderDisabled": false,
+      "modelUnavailable": false,
+      "initialViewerRequests": 0,
+      "modelRequests": 1,
+      "fallbackRequests": 0,
+      "state": {
+        "ready": true,
+        "mode": "front",
+        "errors": [],
+        "modelRequested": true,
+        "modelMeshCount": 2675,
+        "modelVertexCount": 1170195,
+        "modelBounds": {
+          "min": [
+            -16.200000762939453,
+            -0.8315193057060242,
+            -2.4250000417232513
+          ],
+          "max": [
+            16.613637924194336,
+            20.800000190734863,
+            2.7250000536441803
+          ]
+        },
+        "decoder": "native"
+      },
+      "poster": {
+        "complete": true,
+        "naturalWidth": 2048,
+        "naturalHeight": 1365,
+        "source": "http://127.0.0.1:45909/johansson-town/diorama/woodland/poster.webp"
+      },
+      "headerHidden": true,
+      "orbitChanged": true,
+      "posterZoomed": true,
+      "overflow": false,
+      "returned": {
+        "sameSession": true,
+        "paused": false,
+        "messages": [
+          "johansson-diorama-ready",
+          "johansson-diorama-close"
+        ]
+      },
+      "externalRequests": [],
+      "pageErrors": []
+    },
+    {
+      "name": "ipad-fallback",
+      "viewport": {
+        "width": 820,
+        "height": 1180
+      },
+      "touchEmulated": true,
+      "nativeDecoderDisabled": true,
+      "modelUnavailable": false,
+      "initialViewerRequests": 0,
+      "modelRequests": 1,
+      "fallbackRequests": 1,
+      "state": {
+        "ready": true,
+        "mode": "front",
+        "errors": [],
+        "modelRequested": true,
+        "modelMeshCount": 2675,
+        "modelVertexCount": 1170195,
+        "modelBounds": {
+          "min": [
+            -16.200000762939453,
+            -0.8315193057060242,
+            -2.4250000417232513
+          ],
+          "max": [
+            16.613637924194336,
+            20.800000190734863,
+            2.7250000536441803
+          ]
+        },
+        "decoder": "fallback"
+      },
+      "poster": {
+        "complete": true,
+        "naturalWidth": 2048,
+        "naturalHeight": 1365,
+        "source": "http://127.0.0.1:45909/johansson-town/diorama/woodland/poster.webp"
+      },
+      "headerHidden": true,
+      "orbitChanged": true,
+      "posterZoomed": true,
+      "overflow": false,
+      "returned": {
+        "sameSession": true,
+        "paused": false,
+        "messages": [
+          "johansson-diorama-ready",
+          "johansson-diorama-close"
+        ]
+      },
+      "externalRequests": [],
+      "pageErrors": []
+    },
+    {
+      "name": "phone-error",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "touchEmulated": true,
+      "nativeDecoderDisabled": false,
+      "modelUnavailable": true,
+      "initialViewerRequests": 0,
+      "modelRequests": 1,
+      "fallbackRequests": 0,
+      "state": {
+        "ready": false,
+        "mode": "poster",
+        "errors": [
+          "The scene could not be downloaded (503)."
+        ],
+        "modelRequested": true,
+        "modelMeshCount": 0,
+        "modelVertexCount": 0,
+        "modelBounds": null,
+        "decoder": null
+      },
+      "poster": {
+        "complete": true,
+        "naturalWidth": 2048,
+        "naturalHeight": 1365,
+        "source": "http://127.0.0.1:45909/johansson-town/diorama/woodland/poster.webp"
+      },
+      "headerHidden": true,
+      "orbitChanged": null,
+      "posterZoomed": null,
+      "overflow": false,
+      "returned": {
+        "sameSession": true,
+        "paused": false,
+        "messages": [
+          "johansson-diorama-ready",
+          "johansson-diorama-close"
+        ]
+      },
+      "externalRequests": [],
+      "pageErrors": []
+    }
+  ],
+  "status": "passed"
+}

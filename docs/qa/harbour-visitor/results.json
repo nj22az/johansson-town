@@ -1,0 +1,48 @@
+{
+  "results": [
+    {
+      "width": 1280,
+      "height": 800,
+      "touch": false,
+      "saveReload": true,
+      "wardrobeReuse": true,
+      "hairSelection": true,
+      "hairFrontRear": true,
+      "thuanScreenshots": true,
+      "featureRail": true,
+      "inlinePalette": true,
+      "sharedMoveMenu": true,
+      "roomLighting": true,
+      "poses": [
+        "idle",
+        "walk",
+        "sit",
+        "wave",
+        "rear"
+      ],
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "saveReload": true,
+      "wardrobeReuse": true,
+      "hairSelection": true,
+      "hairFrontRear": true,
+      "thuanScreenshots": true,
+      "featureRail": true,
+      "inlinePalette": true,
+      "sharedMoveMenu": true,
+      "roomLighting": true,
+      "poses": [
+        "idle",
+        "walk",
+        "sit",
+        "wave",
+        "rear"
+      ],
+      "pageErrors": []
+    }
+  ]
+}

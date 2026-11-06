@@ -1,0 +1,25 @@
+{
+  "finiteGeometry": true,
+  "dimensionedDesigns": 7,
+  "boundToleranceMetres": 1e-06,
+  "allTargetBoundsMatch": true,
+  "inventoryCount": 265,
+  "woodyTrees": 200,
+  "treeLikePlants": 65,
+  "dxf": {
+    "errors": 0,
+    "fixes": 0,
+    "nativeDimensions": 21
+  },
+  "sourceCommit": "f6ae9c119e5ce540537466ed1c91a8a24bad77cd",
+  "noGameRuntimeChanges": true,
+  "physicalDeviceAcceptance": false,
+  "pdfPages": 13,
+  "pdfTextOutsidePage": 0,
+  "glbMeshes": 7,
+  "glbPrimitiveChecks": 94,
+  "glbNormalsUnit": true,
+  "glbIndicesValid": true,
+  "nativeDimensionValuesMatch": true,
+  "closedManifoldComponents": true
+}

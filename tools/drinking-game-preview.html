@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Johansson — shared table drinking review</title>
+<style>body{margin:0;background:#e6e5df;font:14px system-ui;color:#283b36}canvas{display:block}header{position:fixed;top:18px;left:20px;z-index:1}h1{font-size:15px;margin:0 0 5px}p{margin:0}footer{position:fixed;bottom:20px;left:20px;display:flex;gap:10px}button{padding:10px 15px;border:1px solid #aabbb1;background:#f5f1e7;border-radius:7px;color:#283b36}</style></head><body>
+<header><h1>Johansson World · Shared sober drinking cycle</h1><p id="phase">Ready</p></header><footer><button id="sip">Take a sip</button><button id="reset">Reset</button><button id="view">First person</button></footer>
+<script type="module">
+import * as THREE from '../vendor/three.module.js';
+import {createAvatarJohansson} from '../src/avatars/actors.js';
+import {recipeFor} from '../src/avatars/cast.js';
+import {createBeerService,IZAKAYA_PLAYER_SEATS} from '../src/people/izakaya-beer.js';
+const scene=new THREE.Scene();scene.background=new THREE.Color(0xe6e5df);const room=new THREE.Group();scene.add(room);
+scene.add(new THREE.HemisphereLight(0xffffff,0x9c9c86,2));const key=new THREE.DirectionalLight(0xfff4de,2.8);key.position.set(1.5,3,1);key.castShadow=true;key.shadow.mapSize.set(1024,1024);Object.assign(key.shadow.camera,{left:-1.5,right:1.5,top:2,bottom:-1,near:.1,far:6});key.shadow.normalBias=.012;scene.add(key);
+const fill=new THREE.DirectionalLight(0xcbdde5,1);fill.position.set(-2,2,-1);scene.add(fill);
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setPixelRatio(1);renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1;document.body.append(renderer.domElement);
+const wood=new THREE.MeshStandardMaterial({color:0x655446,roughness:.65}),floorM=new THREE.MeshStandardMaterial({color:0xd3d1c6,roughness:.95});
+function mesh(g,m,p){const o=new THREE.Mesh(g,m);o.position.set(...p);o.castShadow=true;o.receiveShadow=true;scene.add(o);return o;}
+mesh(new THREE.BoxGeometry(1.2,.036,.7),wood,[0,.762,-.77]);mesh(new THREE.CylinderGeometry(.16,.16,.04,32),wood,[0,.44,0]);mesh(new THREE.CylinderGeometry(.026,.03,.42,16),wood,[0,.21,0]);mesh(new THREE.CylinderGeometry(.15,.15,.02,24),wood,[0,.01,0]);const floor=mesh(new THREE.PlaneGeometry(8,8),floorM,[0,0,0]);floor.rotation.x=-Math.PI/2;
+const who=new URLSearchParams(location.search).get('who')||'Johansson',actor=createAvatarJohansson({scene,recipe:recipeFor(who)});
+const seat={...IZAKAYA_PLAYER_SEATS.counter2,position:[0,0,0],table:[.15,.78,-.48],yaw:0};const service=createBeerService({room,getNao:()=>null});
+const side=new THREE.OrthographicCamera(-.98*innerWidth/innerHeight,.98*innerWidth/innerHeight,.98,-.98,.01,10);side.position.set(3.1,1.19,-1.8);side.lookAt(0,.91,-.22);
+const eyes=new THREE.PerspectiveCamera(58,innerWidth/innerHeight,.025,10);eyes.position.set(0,1.32,0);eyes.lookAt(0,1.10,-1);let first=false,running=false;
+const state=()=>({seated:true,seatHeight:.46,visible:!first,firstPersonDrinking:first,tipsy:0});
+function reset(){actor.cancelTableDrink();service.clear();for(let i=0;i<100;i++)actor.update(1/60,state());service.place('draft',seat);running=false;draw();}
+function sip(){const lease=service.beginSip();if(lease){running=actor.drinkFromTable(lease);if(!running)lease.cancel();}}
+function draw(){renderer.render(scene,first?eyes:side);document.querySelector('#phase').textContent=actor.drinkingState?.id||'Ready';}
+window.setPhase=t=>{reset();sip();for(let e=0;e<t;){const dt=Math.min(1/60,t-e);actor.update(dt,state());e+=dt;}running=false;draw();return actor.drinkingState;};
+window.setView=value=>{first=value==='first';actor.update(0,state());draw();};
+window.review={actor,service,scene,renderer,side,eyes,reset,sip,state};window.render_game_to_text=()=>JSON.stringify({who,drink:service.drink,state:actor.drinkingState});
+document.querySelector('#sip').onclick=()=>sip();document.querySelector('#reset').onclick=reset;document.querySelector('#view').onclick=()=>{first=!first;actor.update(0,state());draw();};
+let prior=performance.now();function frame(now){const dt=Math.min(.1,(now-prior)/1000);prior=now;if(running){actor.update(dt,state());if(!actor.drinking)running=false;}draw();requestAnimationFrame(frame);}
+reset();window.__READY__=true;requestAnimationFrame(frame);
+</script></body></html>

@@ -1,0 +1,4000 @@
+{
+ "rules": {
+  "tolerance": 0.002,
+  "minArea": 0.0004,
+  "floorTolerance": 0.01,
+  "floorMinArea": 0.01,
+  "floorTop": 0.015
+ },
+ "shop": {
+  "surfaces": [
+   {
+    "a": "Sakura delivery display",
+    "b": "Sakura delivery print",
+    "area": 1.4881,
+    "gapMm": 1,
+    "at": [
+     -5.17,
+     0.79,
+     -2.15
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura delivery display",
+    "b": "Sakura delivery print",
+    "area": 1.4881,
+    "gapMm": 1,
+    "at": [
+     -5.17,
+     0.79,
+     -2.4
+    ],
+    "normal": [
+     0,
+     0,
+     -1
+    ]
+   },
+   {
+    "a": "Sakura detergent goods",
+    "b": "Sakura detergent packaging",
+    "area": 1.0866,
+    "gapMm": 1,
+    "at": [
+     1.97,
+     0.64,
+     0.87
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura detergent goods",
+    "b": "Sakura detergent packaging",
+    "area": 1.0866,
+    "gapMm": 1,
+    "at": [
+     1.87,
+     0.64,
+     0.88
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura noodles goods",
+    "b": "Sakura noodles packaging",
+    "area": 1.0517,
+    "gapMm": 1.5,
+    "at": [
+     -3.68,
+     0.65,
+     0.62
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura noodles goods",
+    "b": "Sakura noodles goods",
+    "area": 0.9061,
+    "gapMm": 1.5,
+    "at": [
+     -3.68,
+     0.6,
+     0.62
+    ],
+    "normal": [
+     0,
+     -1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura biscuit goods",
+    "b": "Sakura biscuit packaging",
+    "area": 0.904,
+    "gapMm": 1,
+    "at": [
+     -1.14,
+     1.41,
+     0.33
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura biscuit goods",
+    "b": "Sakura biscuit packaging",
+    "area": 0.904,
+    "gapMm": 1,
+    "at": [
+     -1.22,
+     1.41,
+     0.33
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura postcard goods",
+    "b": "Sakura postcard packaging",
+    "area": 0.8417,
+    "gapMm": 1,
+    "at": [
+     1.17,
+     0.92,
+     -0.77
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura postcard goods",
+    "b": "Sakura postcard packaging",
+    "area": 0.8417,
+    "gapMm": 1,
+    "at": [
+     1.19,
+     0.92,
+     -0.78
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura notebook goods",
+    "b": "Sakura notebook packaging",
+    "area": 0.8417,
+    "gapMm": 1,
+    "at": [
+     1.19,
+     1.23,
+     0.87
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura notebook goods",
+    "b": "Sakura notebook packaging",
+    "area": 0.8417,
+    "gapMm": 1,
+    "at": [
+     1.17,
+     1.23,
+     0.88
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura soup goods",
+    "b": "Sakura soup packaging",
+    "area": 0.6641,
+    "gapMm": 1,
+    "at": [
+     -3.65,
+     1.07,
+     0.62
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura soup goods",
+    "b": "Sakura soup packaging",
+    "area": 0.6641,
+    "gapMm": 1,
+    "at": [
+     -3.7,
+     1.07,
+     0.62
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura battery goods",
+    "b": "Sakura battery packaging",
+    "area": 0.6392,
+    "gapMm": 1,
+    "at": [
+     1.19,
+     0.59,
+     0.87
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura battery goods",
+    "b": "Sakura battery packaging",
+    "area": 0.6392,
+    "gapMm": 1,
+    "at": [
+     1.16,
+     0.59,
+     0.87
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura milk goods",
+    "b": "Sakura milk packaging",
+    "area": 0.5941,
+    "gapMm": 1,
+    "at": [
+     2.39,
+     1.7,
+     -3.53
+    ],
+    "normal": [
+     0,
+     0,
+     -1
+    ]
+   },
+   {
+    "a": "Sakura milk goods",
+    "b": "Sakura milk packaging",
+    "area": 0.5941,
+    "gapMm": 1,
+    "at": [
+     2.39,
+     1.7,
+     -3.43
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura noodles goods",
+    "b": "Sakura noodles goods",
+    "area": 0.5696,
+    "gapMm": 0.5,
+    "at": [
+     -3.68,
+     0.65,
+     0.62
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura curry goods",
+    "b": "Sakura curry packaging",
+    "area": 0.5276,
+    "gapMm": 1,
+    "at": [
+     -3.7,
+     1.36,
+     0.62
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura curry goods",
+    "b": "Sakura curry packaging",
+    "area": 0.5276,
+    "gapMm": 1,
+    "at": [
+     -3.66,
+     1.36,
+     0.62
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura chocolate goods",
+    "b": "Sakura chocolate packaging",
+    "area": 0.5174,
+    "gapMm": 1,
+    "at": [
+     -1.91,
+     1.19,
+     0.33
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura chocolate goods",
+    "b": "Sakura chocolate packaging",
+    "area": 0.5174,
+    "gapMm": 1,
+    "at": [
+     -1.93,
+     1.19,
+     0.33
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura corners › Sakura aisle cards, window posters and cash corner prints",
+    "b": "Sakura corners › Sakura cash corner",
+    "area": 0.42,
+    "gapMm": 2,
+    "at": [
+     -3.21,
+     0.94,
+     -3.6
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura beer goods",
+    "b": "Sakura beer goods",
+    "area": 0.4073,
+    "gapMm": 2,
+    "at": [
+     2.39,
+     0.84,
+     -3.48
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Mesh",
+    "b": "Mesh",
+    "area": 0.3571,
+    "gapMm": 1,
+    "at": [
+     0.65,
+     0.36,
+     -5.97
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Mesh",
+    "b": "Mesh",
+    "area": 0.3571,
+    "gapMm": 1,
+    "at": [
+     0.65,
+     0.36,
+     -6.23
+    ],
+    "normal": [
+     0,
+     0,
+     -1
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-shelf",
+    "b": "Sakura shōten interior › sakura-shelf",
+    "area": 0.356,
+    "gapMm": 0,
+    "at": [
+     -5.87,
+     1.02,
+     0.33
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura peaches goods",
+    "b": "Sakura peaches goods",
+    "area": 0.3539,
+    "gapMm": 2,
+    "at": [
+     -4.42,
+     1.3,
+     0.62
+    ],
+    "normal": [
+     0,
+     -1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura promotion display",
+    "b": "Sakura promotion print",
+    "area": 0.3517,
+    "gapMm": 1,
+    "at": [
+     -1.53,
+     0.64,
+     -0.93
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura promotion display",
+    "b": "Sakura promotion print",
+    "area": 0.3517,
+    "gapMm": 1,
+    "at": [
+     -1.53,
+     0.64,
+     -0.97
+    ],
+    "normal": [
+     0,
+     0,
+     -1
+    ]
+   },
+   {
+    "a": "Sakura tuna goods",
+    "b": "Sakura tuna goods",
+    "area": 0.3511,
+    "gapMm": 2,
+    "at": [
+     -4.42,
+     0.99,
+     0.62
+    ],
+    "normal": [
+     0,
+     -1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura soap goods",
+    "b": "Sakura soap packaging",
+    "area": 0.3409,
+    "gapMm": 1,
+    "at": [
+     1.88,
+     1.18,
+     0.87
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura soap goods",
+    "b": "Sakura soap packaging",
+    "area": 0.3409,
+    "gapMm": 1,
+    "at": [
+     1.95,
+     1.18,
+     0.87
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura tissues goods",
+    "b": "Sakura tissues packaging",
+    "area": 0.3348,
+    "gapMm": 1,
+    "at": [
+     1.86,
+     0.55,
+     -0.78
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura tissues goods",
+    "b": "Sakura tissues packaging",
+    "area": 0.3348,
+    "gapMm": 1,
+    "at": [
+     1.97,
+     0.55,
+     -0.77
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura rice clear wrapper",
+    "b": "Sakura rice goods",
+    "area": 0.3234,
+    "gapMm": 2,
+    "at": [
+     -6.48,
+     1.27,
+     -0.93
+    ],
+    "normal": [
+     0,
+     -1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-shelf east",
+    "b": "Sakura shōten interior › sakura-shelf east",
+    "area": 0.2816,
+    "gapMm": 0,
+    "at": [
+     2.15,
+     0.81,
+     -0.05
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-shelf east",
+    "b": "Sakura shōten interior › sakura-shelf east",
+    "area": 0.2816,
+    "gapMm": 0,
+    "at": [
+     0.95,
+     0.81,
+     0.15
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Beer crate label",
+    "b": "Sakura back room stock › Sakura back room beer crate long wall",
+    "area": 0.272,
+    "gapMm": 2,
+    "at": [
+     0.62,
+     0.39,
+     -6.35
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura coffee goods",
+    "b": "Sakura coffee goods",
+    "area": 0.2716,
+    "gapMm": 2,
+    "at": [
+     -1.6,
+     0.66,
+     -3.48
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura toothpaste goods",
+    "b": "Sakura toothpaste packaging",
+    "area": 0.2427,
+    "gapMm": 1,
+    "at": [
+     1.9,
+     1.16,
+     -0.78
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura toothpaste goods",
+    "b": "Sakura toothpaste packaging",
+    "area": 0.2427,
+    "gapMm": 1,
+    "at": [
+     1.94,
+     1.16,
+     -0.77
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura yogurt goods",
+    "b": "Sakura yogurt packaging",
+    "area": 0.2291,
+    "gapMm": 0.5,
+    "at": [
+     -6.4,
+     0.67,
+     1.79
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-front-frame",
+    "b": "Sakura shōten interior › sakura-front-frame",
+    "area": 0.224,
+    "gapMm": 0,
+    "at": [
+     0,
+     0.16,
+     3.97
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura bread goods",
+    "b": "Sakura bread goods",
+    "area": 0.197,
+    "gapMm": 0.5,
+    "at": [
+     -6.4,
+     0.59,
+     0.43
+    ],
+    "normal": [
+     0,
+     -1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-front-frame",
+    "b": "Sakura shōten interior › sakura-front-frame",
+    "area": 0.192,
+    "gapMm": 0,
+    "at": [
+     0,
+     0.16,
+     3.87
+    ],
+    "normal": [
+     0,
+     0,
+     -1
+    ]
+   },
+   {
+    "a": "Sakura pudding goods",
+    "b": "Sakura pudding packaging",
+    "area": 0.1663,
+    "gapMm": 0.5,
+    "at": [
+     -6.48,
+     1.34,
+     1.79
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-shelf middle",
+    "b": "Sakura shōten interior › sakura-shelf middle",
+    "area": 0.1628,
+    "gapMm": 0,
+    "at": [
+     -0.95,
+     0.81,
+     0.27
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-shelf middle",
+    "b": "Sakura shōten interior › sakura-shelf middle",
+    "area": 0.1628,
+    "gapMm": 0,
+    "at": [
+     -2.15,
+     0.81,
+     0.38
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-shelf west",
+    "b": "Sakura shōten interior › sakura-shelf west",
+    "area": 0.1628,
+    "gapMm": 0,
+    "at": [
+     -3.45,
+     0.81,
+     0.56
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-shelf west",
+    "b": "Sakura shōten interior › sakura-shelf west",
+    "area": 0.1628,
+    "gapMm": 0,
+    "at": [
+     -4.65,
+     0.81,
+     0.67
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura crackers goods",
+    "b": "Sakura crackers goods",
+    "area": 0.1613,
+    "gapMm": 0.5,
+    "at": [
+     -1.18,
+     0.51,
+     0.33
+    ],
+    "normal": [
+     0,
+     -1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura candy goods",
+    "b": "Sakura candy goods",
+    "area": 0.1613,
+    "gapMm": 0.5,
+    "at": [
+     -1.92,
+     0.51,
+     0.33
+    ],
+    "normal": [
+     0,
+     -1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura sandwich goods",
+    "b": "Sakura sandwich goods",
+    "area": 0.1564,
+    "gapMm": 0.4,
+    "at": [
+     -6.46,
+     1.31,
+     0.43
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura sandwich goods",
+    "b": "Sakura sandwich goods",
+    "area": 0.1564,
+    "gapMm": 0.4,
+    "at": [
+     -6.5,
+     1.31,
+     0.43
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura backbar",
+    "b": "Sakura backbar",
+    "area": 0.1445,
+    "gapMm": 0,
+    "at": [
+     6.62,
+     0.62,
+     1.04
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura bento clear wrapper",
+    "b": "Sakura bento goods",
+    "area": 0.129,
+    "gapMm": 0.5,
+    "at": [
+     -6.4,
+     0.64,
+     -0.93
+    ],
+    "normal": [
+     0,
+     -1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room product tray",
+    "b": "Sakura back room stock › Sakura back room shrink film",
+    "area": 0.1271,
+    "gapMm": 0,
+    "at": [
+     -0.21,
+     0.83,
+     -4.69
+    ],
+    "normal": [
+     0,
+     -1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura chips goods",
+    "b": "Sakura chips goods",
+    "area": 0.121,
+    "gapMm": 0.5,
+    "at": [
+     -1.18,
+     0.98,
+     0.33
+    ],
+    "normal": [
+     0,
+     -1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room stock carton",
+    "b": "Sakura back room stock › Sakura back room stock carton",
+    "area": 0.119,
+    "gapMm": 1,
+    "at": [
+     0.56,
+     1.65,
+     -4.85
+    ],
+    "normal": [
+     -0.024,
+     0,
+     -1
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room stock carton",
+    "b": "Sakura back room stock › Sakura back room stock carton",
+    "area": 0.119,
+    "gapMm": 1,
+    "at": [
+     0.57,
+     1.65,
+     -4.6
+    ],
+    "normal": [
+     0.017,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room stock carton",
+    "b": "Sakura back room stock › Sakura back room stock carton",
+    "area": 0.119,
+    "gapMm": 1,
+    "at": [
+     -0.26,
+     1.65,
+     -4.59
+    ],
+    "normal": [
+     -0.01,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room stock carton",
+    "b": "Sakura back room stock › Sakura back room stock carton",
+    "area": 0.119,
+    "gapMm": 1,
+    "at": [
+     -0.22,
+     1.65,
+     -4.84
+    ],
+    "normal": [
+     0.024,
+     0,
+     -1
+    ]
+   },
+   {
+    "a": "Sakura bento goods",
+    "b": "Sakura bento packaging",
+    "area": 0.119,
+    "gapMm": 1,
+    "at": [
+     -6.4,
+     0.65,
+     -0.94
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1051,
+    "gapMm": 0.4,
+    "at": [
+     0.64,
+     0.37,
+     -6.51
+    ],
+    "normal": [
+     0.891,
+     0,
+     0.454
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1051,
+    "gapMm": 0.4,
+    "at": [
+     0.62,
+     0.37,
+     -6.55
+    ],
+    "normal": [
+     0.454,
+     0,
+     -0.891
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1051,
+    "gapMm": 0.4,
+    "at": [
+     0.59,
+     0.37,
+     -6.55
+    ],
+    "normal": [
+     -0.454,
+     0,
+     -0.891
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1051,
+    "gapMm": 0.39,
+    "at": [
+     0.64,
+     0.37,
+     -6.53
+    ],
+    "normal": [
+     0.891,
+     0,
+     -0.454
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1051,
+    "gapMm": 0.39,
+    "at": [
+     0.58,
+     0.37,
+     -6.51
+    ],
+    "normal": [
+     -0.988,
+     0,
+     0.156
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1051,
+    "gapMm": 0.39,
+    "at": [
+     0.6,
+     0.37,
+     -6.55
+    ],
+    "normal": [
+     -0.156,
+     0,
+     -0.988
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1051,
+    "gapMm": 0.4,
+    "at": [
+     0.61,
+     0.37,
+     -6.55
+    ],
+    "normal": [
+     0.156,
+     0,
+     -0.988
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1051,
+    "gapMm": 0.39,
+    "at": [
+     0.64,
+     0.37,
+     -6.52
+    ],
+    "normal": [
+     0.988,
+     0,
+     0.156
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1051,
+    "gapMm": 0.4,
+    "at": [
+     0.64,
+     0.37,
+     -6.53
+    ],
+    "normal": [
+     0.988,
+     0,
+     -0.156
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1051,
+    "gapMm": 0.4,
+    "at": [
+     0.63,
+     0.37,
+     -6.5
+    ],
+    "normal": [
+     0.707,
+     0,
+     0.707
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1051,
+    "gapMm": 0.4,
+    "at": [
+     0.63,
+     0.37,
+     -6.54
+    ],
+    "normal": [
+     0.707,
+     0,
+     -0.707
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1049,
+    "gapMm": 0.4,
+    "at": [
+     0.58,
+     0.37,
+     -6.52
+    ],
+    "normal": [
+     -0.988,
+     0,
+     -0.156
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1048,
+    "gapMm": 0.4,
+    "at": [
+     0.58,
+     0.37,
+     -6.51
+    ],
+    "normal": [
+     -0.891,
+     0,
+     0.454
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1039,
+    "gapMm": 0.39,
+    "at": [
+     0.58,
+     0.37,
+     -6.53
+    ],
+    "normal": [
+     -0.891,
+     0,
+     -0.454
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1039,
+    "gapMm": 0.4,
+    "at": [
+     0.58,
+     0.37,
+     -6.5
+    ],
+    "normal": [
+     -0.707,
+     0,
+     0.707
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.1039,
+    "gapMm": 0.4,
+    "at": [
+     0.58,
+     0.37,
+     -6.54
+    ],
+    "normal": [
+     -0.707,
+     0,
+     -0.707
+    ]
+   },
+   {
+    "a": "Sakura rice clear wrapper",
+    "b": "Sakura rice goods",
+    "area": 0.1022,
+    "gapMm": 2,
+    "at": [
+     -6.48,
+     1.27,
+     -0.93
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.102,
+    "gapMm": 0.39,
+    "at": [
+     0.62,
+     0.37,
+     -6.5
+    ],
+    "normal": [
+     0.454,
+     0,
+     0.891
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.102,
+    "gapMm": 0.39,
+    "at": [
+     0.59,
+     0.37,
+     -6.5
+    ],
+    "normal": [
+     -0.454,
+     0,
+     0.891
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.102,
+    "gapMm": 0.4,
+    "at": [
+     0.61,
+     0.37,
+     -6.49
+    ],
+    "normal": [
+     0.156,
+     0,
+     0.988
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Returnable amber beer bottles › Amber bottle bodies",
+    "b": "Sakura back room stock › Returnable amber beer bottles › Beer bottle labels",
+    "area": 0.102,
+    "gapMm": 0.4,
+    "at": [
+     0.6,
+     0.37,
+     -6.49
+    ],
+    "normal": [
+     -0.156,
+     0,
+     0.988
+    ]
+   },
+   {
+    "a": "Sakura branded packaging and shelf prices",
+    "b": "Sakura shelf edges › Sakura price channels",
+    "area": 0.0938,
+    "gapMm": 2,
+    "at": [
+     -0.81,
+     0.8,
+     0.24
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura flyer counter copies",
+    "b": "Sakura flyer counter copies › Thuan’s English shop flyer",
+    "area": 0.0889,
+    "gapMm": 1,
+    "at": [
+     4.76,
+     0.79,
+     2.88
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura branded packaging and shelf prices",
+    "b": "Sakura refrigerated drinks and dairy › Sliding refrigerator door 1",
+    "area": 0.0863,
+    "gapMm": 1,
+    "at": [
+     -1.6,
+     1.03,
+     -3.14
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura branded packaging and shelf prices",
+    "b": "Sakura refrigerated drinks and dairy › Sliding refrigerator door 3",
+    "area": 0.0862,
+    "gapMm": 1,
+    "at": [
+     1.06,
+     1.03,
+     -3.14
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura new-crisps display",
+    "b": "Sakura new-crisps display",
+    "area": 0.0806,
+    "gapMm": 0.5,
+    "at": [
+     -1.55,
+     0.59,
+     1.54
+    ],
+    "normal": [
+     0,
+     -1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room tray coffee",
+    "b": "Sakura back room stock › Sakura back room tray coffee",
+    "area": 0.0795,
+    "gapMm": 2,
+    "at": [
+     -0.21,
+     0.99,
+     -4.69
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura sandwich clear wrapper",
+    "b": "Sakura sandwich goods",
+    "area": 0.0716,
+    "gapMm": 1.5,
+    "at": [
+     -6.48,
+     1.27,
+     0.43
+    ],
+    "normal": [
+     0,
+     -1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura rice goods",
+    "b": "Sakura rice packaging",
+    "area": 0.056,
+    "gapMm": 1.5,
+    "at": [
+     -6.45,
+     1.3,
+     -0.93
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura sandwich clear wrapper",
+    "b": "Sakura sandwich goods",
+    "area": 0.056,
+    "gapMm": 1,
+    "at": [
+     -6.48,
+     1.3,
+     0.43
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura sandwich clear wrapper",
+    "b": "Sakura sandwich goods",
+    "area": 0.056,
+    "gapMm": 1,
+    "at": [
+     -6.48,
+     1.3,
+     0.43
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura branded packaging and shelf prices",
+    "b": "Sakura shelf edges › Sakura price channels",
+    "area": 0.0545,
+    "gapMm": 2,
+    "at": [
+     -6.32,
+     0.83,
+     0.42
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura refrigerated drinks and dairy",
+    "b": "Sakura refrigerated drinks and dairy",
+    "area": 0.053,
+    "gapMm": 0,
+    "at": [
+     -2.3,
+     1.35,
+     -3.72
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura refrigerated drinks and dairy",
+    "b": "Sakura refrigerated drinks and dairy",
+    "area": 0.053,
+    "gapMm": 0,
+    "at": [
+     3.09,
+     1.35,
+     -3.67
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura small office › Sakura office TV › Sakura office TV screen",
+    "b": "Sakura small office › Sakura small office",
+    "area": 0.0463,
+    "gapMm": 1.99,
+    "at": [
+     5.01,
+     1.04,
+     -3.53
+    ],
+    "normal": [
+     0.479,
+     0,
+     0.878
+    ]
+   },
+   {
+    "a": "Sakura tissues goods",
+    "b": "Sakura tissues goods",
+    "area": 0.0454,
+    "gapMm": 2,
+    "at": [
+     1.92,
+     0.59,
+     -0.78
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura back room stock",
+    "b": "Sakura back room stock › Stocktake clipboard",
+    "area": 0.0414,
+    "gapMm": 1,
+    "at": [
+     0.73,
+     1.43,
+     -4.68
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-building",
+    "b": "Sakura shōten interior › sakura-building",
+    "area": 0.0406,
+    "gapMm": 0,
+    "at": [
+     5.72,
+     0.89,
+     -3.95
+    ],
+    "normal": [
+     0,
+     0,
+     -1
+    ]
+   },
+   {
+    "a": "Sakura rice goods",
+    "b": "Sakura rice goods",
+    "area": 0.032,
+    "gapMm": 1,
+    "at": [
+     -6.45,
+     1.3,
+     -0.93
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura backbar",
+    "b": "Sakura backbar",
+    "area": 0.0287,
+    "gapMm": 0,
+    "at": [
+     6.61,
+     0.96,
+     0.97
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura sandwich clear wrapper",
+    "b": "Sakura sandwich packaging",
+    "area": 0.0245,
+    "gapMm": 0.5,
+    "at": [
+     -6.51,
+     1.3,
+     0.43
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura sandwich clear wrapper",
+    "b": "Sakura sandwich packaging",
+    "area": 0.0245,
+    "gapMm": 0.5,
+    "at": [
+     -6.45,
+     1.3,
+     0.43
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura sandwich goods",
+    "b": "Sakura sandwich packaging",
+    "area": 0.0245,
+    "gapMm": 0.5,
+    "at": [
+     -6.51,
+     1.3,
+     0.43
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura sandwich goods",
+    "b": "Sakura sandwich packaging",
+    "area": 0.0245,
+    "gapMm": 0.5,
+    "at": [
+     -6.45,
+     1.3,
+     0.43
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura postcard stand",
+    "b": "Sakura postcard stand",
+    "area": 0.0239,
+    "gapMm": 1,
+    "at": [
+     6.41,
+     0.86,
+     0.87
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura postcard stand",
+    "b": "Sakura postcard stand",
+    "area": 0.0239,
+    "gapMm": 1,
+    "at": [
+     6.39,
+     0.86,
+     0.87
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-shelf",
+    "b": "Sakura shōten interior › sakura-shelf",
+    "area": 0.0222,
+    "gapMm": 0,
+    "at": [
+     0.06,
+     1.11,
+     -3.2
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura backbar",
+    "b": "Sakura backbar",
+    "area": 0.0201,
+    "gapMm": 0,
+    "at": [
+     6.59,
+     0.4,
+     0.3
+    ],
+    "normal": [
+     0,
+     0,
+     -1
+    ]
+   },
+   {
+    "a": "Sakura backbar",
+    "b": "Sakura backbar",
+    "area": 0.0201,
+    "gapMm": 0,
+    "at": [
+     6.59,
+     0.51,
+     1.85
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura postcard goods",
+    "b": "Sakura postcard goods",
+    "area": 0.0199,
+    "gapMm": 0.5,
+    "at": [
+     1.17,
+     0.99,
+     -0.76
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura postcard goods",
+    "b": "Sakura postcard goods",
+    "area": 0.0199,
+    "gapMm": 0.5,
+    "at": [
+     1.19,
+     0.99,
+     -0.79
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura notebook goods",
+    "b": "Sakura notebook goods",
+    "area": 0.0199,
+    "gapMm": 0.5,
+    "at": [
+     1.17,
+     1.31,
+     0.89
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura notebook goods",
+    "b": "Sakura notebook goods",
+    "area": 0.0199,
+    "gapMm": 0.5,
+    "at": [
+     1.19,
+     1.31,
+     0.86
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-shelf",
+    "b": "Sakura shōten interior › sakura-shelf",
+    "area": 0.0164,
+    "gapMm": 0,
+    "at": [
+     0.18,
+     1.1,
+     -4.78
+    ],
+    "normal": [
+     0,
+     0,
+     -1
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-shelf",
+    "b": "Sakura shōten interior › sakura-shelf",
+    "area": 0.0164,
+    "gapMm": 0,
+    "at": [
+     0.18,
+     1.1,
+     -3.97
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura checkout equipment › Sakura checkout equipment print",
+    "b": "Sakura shōten interior › sakura-shelf",
+    "area": 0.0162,
+    "gapMm": 2,
+    "at": [
+     1.97,
+     0.99,
+     3.35
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Daisha with the rice delivery › Fresh salmon onigiri · rice and nori",
+    "b": "Sakura back room stock › Daisha with the rice delivery › Fresh salmon onigiri · rice and nori",
+    "area": 0.0158,
+    "gapMm": 1.5,
+    "at": [
+     -1.08,
+     0.59,
+     -6.15
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Daisha with the rice delivery › Fresh salmon onigiri · rice and nori",
+    "b": "Sakura back room stock › Daisha with the rice delivery › Fresh salmon onigiri · rice and nori",
+    "area": 0.0158,
+    "gapMm": 1.5,
+    "at": [
+     -1.12,
+     0.59,
+     -6.15
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura checkout equipment › Sakura checkout equipment bodies",
+    "b": "Sakura checkout equipment › Sakura checkout equipment print",
+    "area": 0.0149,
+    "gapMm": 1.5,
+    "at": [
+     4.63,
+     0.79,
+     0.56
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Daisha with the rice delivery › Fresh salmon onigiri · rice and nori",
+    "b": "Sakura back room stock › Daisha with the rice delivery › Fresh salmon onigiri · rice and nori",
+    "area": 0.0144,
+    "gapMm": 0.5,
+    "at": [
+     -1.1,
+     0.56,
+     -6.15
+    ],
+    "normal": [
+     0,
+     -1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura backbar batteries",
+    "b": "Sakura backbar batteries",
+    "area": 0.0133,
+    "gapMm": 1,
+    "at": [
+     6.41,
+     0.47,
+     0.84
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura backbar batteries",
+    "b": "Sakura backbar batteries",
+    "area": 0.0133,
+    "gapMm": 1,
+    "at": [
+     6.39,
+     0.47,
+     0.84
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura small office › Sakura small office",
+    "b": "Sakura small office › Sakura small office",
+    "area": 0.0132,
+    "gapMm": 0,
+    "at": [
+     5.02,
+     0.85,
+     -3.9
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura small office › Sakura small office",
+    "b": "Sakura small office › Sakura small office",
+    "area": 0.0126,
+    "gapMm": 0,
+    "at": [
+     4.93,
+     0.84,
+     -3.92
+    ],
+    "normal": [
+     0,
+     0,
+     -1
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Daisha with the rice delivery",
+    "b": "Sakura back room stock › Daisha with the rice delivery",
+    "area": 0.0117,
+    "gapMm": 1,
+    "at": [
+     -0.88,
+     0.58,
+     -6.15
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura beer goods",
+    "b": "Sakura beer goods",
+    "area": 0.0087,
+    "gapMm": 1.45,
+    "at": [
+     2.35,
+     0.75,
+     -3.47
+    ],
+    "normal": [
+     -0.966,
+     0,
+     0.259
+    ]
+   },
+   {
+    "a": "Sakura beer goods",
+    "b": "Sakura beer goods",
+    "area": 0.0087,
+    "gapMm": 1.45,
+    "at": [
+     2.43,
+     0.75,
+     -3.49
+    ],
+    "normal": [
+     0.966,
+     0,
+     -0.259
+    ]
+   },
+   {
+    "a": "Sakura beer goods",
+    "b": "Sakura beer goods",
+    "area": 0.0087,
+    "gapMm": 1.45,
+    "at": [
+     2.38,
+     0.75,
+     -3.52
+    ],
+    "normal": [
+     -0.259,
+     0,
+     -0.966
+    ]
+   },
+   {
+    "a": "Sakura beer goods",
+    "b": "Sakura beer goods",
+    "area": 0.0087,
+    "gapMm": 1.45,
+    "at": [
+     2.4,
+     0.75,
+     -3.44
+    ],
+    "normal": [
+     0.259,
+     0,
+     0.966
+    ]
+   },
+   {
+    "a": "Sakura beer goods",
+    "b": "Sakura beer goods",
+    "area": 0.0087,
+    "gapMm": 1.45,
+    "at": [
+     2.35,
+     0.75,
+     -3.49
+    ],
+    "normal": [
+     -0.966,
+     0,
+     -0.259
+    ]
+   },
+   {
+    "a": "Sakura beer goods",
+    "b": "Sakura beer goods",
+    "area": 0.0087,
+    "gapMm": 1.45,
+    "at": [
+     2.4,
+     0.75,
+     -3.52
+    ],
+    "normal": [
+     0.259,
+     0,
+     -0.966
+    ]
+   },
+   {
+    "a": "Sakura beer goods",
+    "b": "Sakura beer goods",
+    "area": 0.0087,
+    "gapMm": 1.45,
+    "at": [
+     2.38,
+     0.75,
+     -3.44
+    ],
+    "normal": [
+     -0.259,
+     0,
+     0.966
+    ]
+   },
+   {
+    "a": "Sakura beer goods",
+    "b": "Sakura beer goods",
+    "area": 0.0087,
+    "gapMm": 1.45,
+    "at": [
+     2.43,
+     0.75,
+     -3.47
+    ],
+    "normal": [
+     0.966,
+     0,
+     0.259
+    ]
+   },
+   {
+    "a": "Sakura beer goods",
+    "b": "Sakura beer goods",
+    "area": 0.0087,
+    "gapMm": 1.45,
+    "at": [
+     2.42,
+     0.75,
+     -3.45
+    ],
+    "normal": [
+     0.707,
+     0,
+     0.707
+    ]
+   },
+   {
+    "a": "Sakura beer goods",
+    "b": "Sakura beer goods",
+    "area": 0.0087,
+    "gapMm": 1.45,
+    "at": [
+     2.36,
+     0.75,
+     -3.51
+    ],
+    "normal": [
+     -0.707,
+     0,
+     -0.707
+    ]
+   },
+   {
+    "a": "Sakura beer goods",
+    "b": "Sakura beer goods",
+    "area": 0.0087,
+    "gapMm": 1.45,
+    "at": [
+     2.36,
+     0.75,
+     -3.45
+    ],
+    "normal": [
+     -0.707,
+     0,
+     0.707
+    ]
+   },
+   {
+    "a": "Sakura beer goods",
+    "b": "Sakura beer goods",
+    "area": 0.0087,
+    "gapMm": 1.45,
+    "at": [
+     2.42,
+     0.75,
+     -3.51
+    ],
+    "normal": [
+     0.707,
+     0,
+     -0.707
+    ]
+   },
+   {
+    "a": "Sakura bento goods",
+    "b": "Sakura bento goods",
+    "area": 0.0082,
+    "gapMm": 2,
+    "at": [
+     -6.43,
+     0.62,
+     -0.98
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura soda goods",
+    "b": "Sakura soda goods",
+    "area": 0.0078,
+    "gapMm": 1.93,
+    "at": [
+     1.04,
+     0.77,
+     -3.46
+    ],
+    "normal": [
+     -0.707,
+     0,
+     0.707
+    ]
+   },
+   {
+    "a": "Sakura soda goods",
+    "b": "Sakura soda goods",
+    "area": 0.0078,
+    "gapMm": 1.93,
+    "at": [
+     1.08,
+     0.77,
+     -3.5
+    ],
+    "normal": [
+     0.707,
+     0,
+     -0.707
+    ]
+   },
+   {
+    "a": "Sakura soda goods",
+    "b": "Sakura soda goods",
+    "area": 0.0078,
+    "gapMm": 1.93,
+    "at": [
+     1.08,
+     0.77,
+     -3.46
+    ],
+    "normal": [
+     0.707,
+     0,
+     0.707
+    ]
+   },
+   {
+    "a": "Sakura soda goods",
+    "b": "Sakura soda goods",
+    "area": 0.0078,
+    "gapMm": 1.93,
+    "at": [
+     1.04,
+     0.77,
+     -3.5
+    ],
+    "normal": [
+     -0.707,
+     0,
+     -0.707
+    ]
+   },
+   {
+    "a": "Sakura soda goods",
+    "b": "Sakura soda goods",
+    "area": 0.0078,
+    "gapMm": 1.93,
+    "at": [
+     1.07,
+     0.77,
+     -3.46
+    ],
+    "normal": [
+     0.259,
+     0,
+     0.966
+    ]
+   },
+   {
+    "a": "Sakura soda goods",
+    "b": "Sakura soda goods",
+    "area": 0.0078,
+    "gapMm": 1.93,
+    "at": [
+     1.05,
+     0.77,
+     -3.5
+    ],
+    "normal": [
+     -0.259,
+     0,
+     -0.966
+    ]
+   },
+   {
+    "a": "Sakura soda goods",
+    "b": "Sakura soda goods",
+    "area": 0.0078,
+    "gapMm": 1.93,
+    "at": [
+     1.08,
+     0.77,
+     -3.49
+    ],
+    "normal": [
+     0.966,
+     0,
+     -0.259
+    ]
+   },
+   {
+    "a": "Sakura soda goods",
+    "b": "Sakura soda goods",
+    "area": 0.0078,
+    "gapMm": 1.93,
+    "at": [
+     1.04,
+     0.77,
+     -3.47
+    ],
+    "normal": [
+     -0.966,
+     0,
+     0.259
+    ]
+   },
+   {
+    "a": "Sakura soda goods",
+    "b": "Sakura soda goods",
+    "area": 0.0078,
+    "gapMm": 1.93,
+    "at": [
+     1.08,
+     0.77,
+     -3.47
+    ],
+    "normal": [
+     0.966,
+     0,
+     0.259
+    ]
+   },
+   {
+    "a": "Sakura soda goods",
+    "b": "Sakura soda goods",
+    "area": 0.0078,
+    "gapMm": 1.93,
+    "at": [
+     1.04,
+     0.77,
+     -3.49
+    ],
+    "normal": [
+     -0.966,
+     0,
+     -0.259
+    ]
+   },
+   {
+    "a": "Sakura soda goods",
+    "b": "Sakura soda goods",
+    "area": 0.0078,
+    "gapMm": 1.93,
+    "at": [
+     1.05,
+     0.77,
+     -3.46
+    ],
+    "normal": [
+     -0.259,
+     0,
+     0.966
+    ]
+   },
+   {
+    "a": "Sakura soda goods",
+    "b": "Sakura soda goods",
+    "area": 0.0078,
+    "gapMm": 1.93,
+    "at": [
+     1.07,
+     0.77,
+     -3.5
+    ],
+    "normal": [
+     0.259,
+     0,
+     -0.966
+    ]
+   },
+   {
+    "a": "Sakura tuna goods",
+    "b": "Sakura tuna goods",
+    "area": 0.0071,
+    "gapMm": 1.45,
+    "at": [
+     -4.45,
+     1,
+     0.58
+    ],
+    "normal": [
+     -0.707,
+     0,
+     -0.707
+    ]
+   },
+   {
+    "a": "Sakura tuna goods",
+    "b": "Sakura tuna goods",
+    "area": 0.0071,
+    "gapMm": 1.45,
+    "at": [
+     -4.39,
+     1,
+     0.65
+    ],
+    "normal": [
+     0.707,
+     0,
+     0.707
+    ]
+   },
+   {
+    "a": "Sakura tuna goods",
+    "b": "Sakura tuna goods",
+    "area": 0.0071,
+    "gapMm": 1.45,
+    "at": [
+     -4.46,
+     1,
+     0.65
+    ],
+    "normal": [
+     -0.707,
+     0,
+     0.707
+    ]
+   },
+   {
+    "a": "Sakura tuna goods",
+    "b": "Sakura tuna goods",
+    "area": 0.0071,
+    "gapMm": 1.45,
+    "at": [
+     -4.38,
+     1,
+     0.58
+    ],
+    "normal": [
+     0.707,
+     0,
+     -0.707
+    ]
+   },
+   {
+    "a": "Sakura tuna goods",
+    "b": "Sakura tuna goods",
+    "area": 0.0071,
+    "gapMm": 1.45,
+    "at": [
+     -4.37,
+     1,
+     0.63
+    ],
+    "normal": [
+     0.966,
+     0,
+     0.259
+    ]
+   },
+   {
+    "a": "Sakura tuna goods",
+    "b": "Sakura tuna goods",
+    "area": 0.0071,
+    "gapMm": 1.45,
+    "at": [
+     -4.41,
+     1,
+     0.57
+    ],
+    "normal": [
+     0.259,
+     0,
+     -0.966
+    ]
+   },
+   {
+    "a": "Sakura tuna goods",
+    "b": "Sakura tuna goods",
+    "area": 0.0071,
+    "gapMm": 1.45,
+    "at": [
+     -4.47,
+     1,
+     0.6
+    ],
+    "normal": [
+     -0.966,
+     0,
+     -0.259
+    ]
+   },
+   {
+    "a": "Sakura tuna goods",
+    "b": "Sakura tuna goods",
+    "area": 0.0071,
+    "gapMm": 1.45,
+    "at": [
+     -4.43,
+     1,
+     0.66
+    ],
+    "normal": [
+     -0.259,
+     0,
+     0.966
+    ]
+   },
+   {
+    "a": "Sakura tuna goods",
+    "b": "Sakura tuna goods",
+    "area": 0.0071,
+    "gapMm": 1.45,
+    "at": [
+     -4.37,
+     1,
+     0.6
+    ],
+    "normal": [
+     0.966,
+     0,
+     -0.259
+    ]
+   },
+   {
+    "a": "Sakura tuna goods",
+    "b": "Sakura tuna goods",
+    "area": 0.0071,
+    "gapMm": 1.45,
+    "at": [
+     -4.47,
+     1,
+     0.63
+    ],
+    "normal": [
+     -0.966,
+     0,
+     0.259
+    ]
+   },
+   {
+    "a": "Sakura tuna goods",
+    "b": "Sakura tuna goods",
+    "area": 0.0071,
+    "gapMm": 1.45,
+    "at": [
+     -4.41,
+     1,
+     0.66
+    ],
+    "normal": [
+     0.259,
+     0,
+     0.966
+    ]
+   },
+   {
+    "a": "Sakura tuna goods",
+    "b": "Sakura tuna goods",
+    "area": 0.0071,
+    "gapMm": 1.45,
+    "at": [
+     -4.43,
+     1,
+     0.57
+    ],
+    "normal": [
+     -0.259,
+     0,
+     -0.966
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-light",
+    "b": "Sakura wall band cap",
+    "area": 0.0069,
+    "gapMm": 0,
+    "at": [
+     2.61,
+     2.81,
+     -3.94
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura peaches goods",
+    "b": "Sakura peaches goods",
+    "area": 0.0069,
+    "gapMm": 1.45,
+    "at": [
+     -4.38,
+     1.33,
+     0.65
+    ],
+    "normal": [
+     0.707,
+     0,
+     0.707
+    ]
+   },
+   {
+    "a": "Sakura peaches goods",
+    "b": "Sakura peaches goods",
+    "area": 0.0069,
+    "gapMm": 1.45,
+    "at": [
+     -4.46,
+     1.33,
+     0.65
+    ],
+    "normal": [
+     -0.707,
+     0,
+     0.707
+    ]
+   },
+   {
+    "a": "Sakura peaches goods",
+    "b": "Sakura peaches goods",
+    "area": 0.0069,
+    "gapMm": 1.45,
+    "at": [
+     -4.46,
+     1.33,
+     0.58
+    ],
+    "normal": [
+     -0.707,
+     0,
+     -0.707
+    ]
+   },
+   {
+    "a": "Sakura peaches goods",
+    "b": "Sakura peaches goods",
+    "area": 0.0069,
+    "gapMm": 1.45,
+    "at": [
+     -4.38,
+     1.33,
+     0.58
+    ],
+    "normal": [
+     0.707,
+     0,
+     -0.707
+    ]
+   },
+   {
+    "a": "Sakura peaches goods",
+    "b": "Sakura peaches goods",
+    "area": 0.0069,
+    "gapMm": 1.45,
+    "at": [
+     -4.43,
+     1.33,
+     0.67
+    ],
+    "normal": [
+     -0.259,
+     0,
+     0.966
+    ]
+   },
+   {
+    "a": "Sakura peaches goods",
+    "b": "Sakura peaches goods",
+    "area": 0.0069,
+    "gapMm": 1.45,
+    "at": [
+     -4.37,
+     1.33,
+     0.63
+    ],
+    "normal": [
+     0.966,
+     0,
+     0.259
+    ]
+   },
+   {
+    "a": "Sakura peaches goods",
+    "b": "Sakura peaches goods",
+    "area": 0.0069,
+    "gapMm": 1.45,
+    "at": [
+     -4.47,
+     1.33,
+     0.6
+    ],
+    "normal": [
+     -0.966,
+     0,
+     -0.259
+    ]
+   },
+   {
+    "a": "Sakura peaches goods",
+    "b": "Sakura peaches goods",
+    "area": 0.0069,
+    "gapMm": 1.45,
+    "at": [
+     -4.41,
+     1.33,
+     0.57
+    ],
+    "normal": [
+     0.259,
+     0,
+     -0.966
+    ]
+   },
+   {
+    "a": "Sakura peaches goods",
+    "b": "Sakura peaches goods",
+    "area": 0.0069,
+    "gapMm": 1.45,
+    "at": [
+     -4.41,
+     1.33,
+     0.67
+    ],
+    "normal": [
+     0.259,
+     0,
+     0.966
+    ]
+   },
+   {
+    "a": "Sakura peaches goods",
+    "b": "Sakura peaches goods",
+    "area": 0.0069,
+    "gapMm": 1.45,
+    "at": [
+     -4.37,
+     1.33,
+     0.6
+    ],
+    "normal": [
+     0.966,
+     0,
+     -0.259
+    ]
+   },
+   {
+    "a": "Sakura peaches goods",
+    "b": "Sakura peaches goods",
+    "area": 0.0069,
+    "gapMm": 1.45,
+    "at": [
+     -4.47,
+     1.33,
+     0.63
+    ],
+    "normal": [
+     -0.966,
+     0,
+     0.259
+    ]
+   },
+   {
+    "a": "Sakura peaches goods",
+    "b": "Sakura peaches goods",
+    "area": 0.0069,
+    "gapMm": 1.45,
+    "at": [
+     -4.43,
+     1.33,
+     0.57
+    ],
+    "normal": [
+     -0.259,
+     0,
+     -0.966
+    ]
+   },
+   {
+    "a": "Jaga-bo mascot › Branded chips",
+    "b": "Jaga-bo mascot › Branded chips",
+    "area": 0.0068,
+    "gapMm": 0.65,
+    "at": [
+     -2.77,
+     0.77,
+     2.96
+    ],
+    "normal": [
+     0.197,
+     -0.969,
+     0.15
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-building",
+    "b": "Sakura shōten interior › sakura-building",
+    "area": 0.0064,
+    "gapMm": 0,
+    "at": [
+     -0.02,
+     2.98,
+     -4.01
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura coffee goods",
+    "b": "Sakura coffee goods",
+    "area": 0.0058,
+    "gapMm": 1.45,
+    "at": [
+     -1.56,
+     0.57,
+     -3.49
+    ],
+    "normal": [
+     0.966,
+     0,
+     -0.259
+    ]
+   },
+   {
+    "a": "Sakura coffee goods",
+    "b": "Sakura coffee goods",
+    "area": 0.0058,
+    "gapMm": 1.45,
+    "at": [
+     -1.59,
+     0.57,
+     -3.44
+    ],
+    "normal": [
+     0.259,
+     0,
+     0.966
+    ]
+   },
+   {
+    "a": "Sakura coffee goods",
+    "b": "Sakura coffee goods",
+    "area": 0.0058,
+    "gapMm": 1.45,
+    "at": [
+     -1.61,
+     0.57,
+     -3.52
+    ],
+    "normal": [
+     -0.259,
+     0,
+     -0.966
+    ]
+   },
+   {
+    "a": "Sakura coffee goods",
+    "b": "Sakura coffee goods",
+    "area": 0.0058,
+    "gapMm": 1.45,
+    "at": [
+     -1.64,
+     0.57,
+     -3.47
+    ],
+    "normal": [
+     -0.966,
+     0,
+     0.259
+    ]
+   },
+   {
+    "a": "Sakura coffee goods",
+    "b": "Sakura coffee goods",
+    "area": 0.0058,
+    "gapMm": 1.45,
+    "at": [
+     -1.56,
+     0.57,
+     -3.47
+    ],
+    "normal": [
+     0.966,
+     0,
+     0.259
+    ]
+   },
+   {
+    "a": "Sakura coffee goods",
+    "b": "Sakura coffee goods",
+    "area": 0.0058,
+    "gapMm": 1.45,
+    "at": [
+     -1.59,
+     0.57,
+     -3.52
+    ],
+    "normal": [
+     0.259,
+     0,
+     -0.966
+    ]
+   },
+   {
+    "a": "Sakura coffee goods",
+    "b": "Sakura coffee goods",
+    "area": 0.0058,
+    "gapMm": 1.45,
+    "at": [
+     -1.64,
+     0.57,
+     -3.49
+    ],
+    "normal": [
+     -0.966,
+     0,
+     -0.259
+    ]
+   },
+   {
+    "a": "Sakura coffee goods",
+    "b": "Sakura coffee goods",
+    "area": 0.0058,
+    "gapMm": 1.45,
+    "at": [
+     -1.61,
+     0.57,
+     -3.44
+    ],
+    "normal": [
+     -0.259,
+     0,
+     0.966
+    ]
+   },
+   {
+    "a": "Sakura coffee goods",
+    "b": "Sakura coffee goods",
+    "area": 0.0058,
+    "gapMm": 1.45,
+    "at": [
+     -1.57,
+     0.57,
+     -3.51
+    ],
+    "normal": [
+     0.707,
+     0,
+     -0.707
+    ]
+   },
+   {
+    "a": "Sakura coffee goods",
+    "b": "Sakura coffee goods",
+    "area": 0.0058,
+    "gapMm": 1.45,
+    "at": [
+     -1.63,
+     0.57,
+     -3.45
+    ],
+    "normal": [
+     -0.707,
+     0,
+     0.707
+    ]
+   },
+   {
+    "a": "Sakura coffee goods",
+    "b": "Sakura coffee goods",
+    "area": 0.0058,
+    "gapMm": 1.45,
+    "at": [
+     -1.63,
+     0.57,
+     -3.51
+    ],
+    "normal": [
+     -0.707,
+     0,
+     -0.707
+    ]
+   },
+   {
+    "a": "Sakura coffee goods",
+    "b": "Sakura coffee goods",
+    "area": 0.0058,
+    "gapMm": 1.45,
+    "at": [
+     -1.57,
+     0.57,
+     -3.45
+    ],
+    "normal": [
+     0.707,
+     0,
+     0.707
+    ]
+   },
+   {
+    "a": "Sakura bun goods",
+    "b": "Sakura bun packaging",
+    "area": 0.0058,
+    "gapMm": 0.5,
+    "at": [
+     4.76,
+     1.02,
+     2.45
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura sale poster",
+    "b": "Sakura sale poster",
+    "area": 0.0057,
+    "gapMm": 2,
+    "at": [
+     -6.78,
+     1.5,
+     3.3
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Eisa festival poster",
+    "b": "Eisa festival poster",
+    "area": 0.0057,
+    "gapMm": 2,
+    "at": [
+     -3.45,
+     1.92,
+     -3.94
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura lived-in › Charity box",
+    "b": "Sakura lived-in › Charity box label",
+    "area": 0.0056,
+    "gapMm": 1,
+    "at": [
+     4.85,
+     0.86,
+     0.2
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura refrigerated drinks and dairy",
+    "b": "Sakura refrigerated drinks and dairy",
+    "area": 0.004,
+    "gapMm": 0,
+    "at": [
+     0.39,
+     1.64,
+     -3.17
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura bun steamer glass",
+    "b": "Sakura shōten interior › sakura-shelf",
+    "area": 0.0027,
+    "gapMm": 0,
+    "at": [
+     4.99,
+     1.02,
+     2.45
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura restroom › Hand towel",
+    "b": "Sakura restroom › Sakura restroom",
+    "area": 0.0026,
+    "gapMm": 0,
+    "at": [
+     -5.71,
+     1.16,
+     -3.92
+    ],
+    "normal": [
+     0,
+     0,
+     -1
+    ]
+   },
+   {
+    "a": "Sakura lived-in › Assistant manager leaf",
+    "b": "Sakura lived-in › Assistant manager leaf",
+    "area": 0.0025,
+    "gapMm": 1.25,
+    "at": [
+     -1.58,
+     0.54,
+     3.19
+    ],
+    "normal": [
+     -0.238,
+     -0.969,
+     -0.066
+    ]
+   },
+   {
+    "a": "Sakura lived-in › Assistant manager leaf",
+    "b": "Sakura lived-in › Assistant manager leaf",
+    "area": 0.0025,
+    "gapMm": 1.25,
+    "at": [
+     -1.37,
+     0.54,
+     3.26
+    ],
+    "normal": [
+     -0.128,
+     -0.969,
+     0.212
+    ]
+   },
+   {
+    "a": "Sakura lived-in › Assistant manager leaf",
+    "b": "Sakura lived-in › Assistant manager leaf",
+    "area": 0.0025,
+    "gapMm": 1.25,
+    "at": [
+     -1.32,
+     0.54,
+     3.04
+    ],
+    "normal": [
+     0,
+     -0.969,
+     -0.247
+    ]
+   },
+   {
+    "a": "Sakura checkout equipment › Sakura checkout equipment bodies",
+    "b": "Sakura checkout equipment › Sakura checkout equipment print",
+    "area": 0.0024,
+    "gapMm": 1,
+    "at": [
+     4.63,
+     0.86,
+     0.34
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Handy terminal",
+    "b": "Sakura back room stock › Handy terminal",
+    "area": 0.0023,
+    "gapMm": 1,
+    "at": [
+     0.95,
+     1.63,
+     -4.72
+    ],
+    "normal": [
+     0,
+     0.276,
+     -0.961
+    ]
+   },
+   {
+    "a": "Sakura lived-in › Assistant manager leaf",
+    "b": "Sakura lived-in › Assistant manager leaf",
+    "area": 0.0022,
+    "gapMm": 1.17,
+    "at": [
+     -1.42,
+     0.66,
+     3.31
+    ],
+    "normal": [
+     -0.226,
+     -0.942,
+     0.247
+    ]
+   },
+   {
+    "a": "Sakura lived-in › Assistant manager leaf",
+    "b": "Sakura lived-in › Assistant manager leaf",
+    "area": 0.0019,
+    "gapMm": 1.1,
+    "at": [
+     -1.19,
+     0.77,
+     3.19
+    ],
+    "normal": [
+     0.418,
+     -0.908,
+     -0.037
+    ]
+   },
+   {
+    "a": "Sakura lived-in › Assistant manager leaf",
+    "b": "Sakura lived-in › Assistant manager leaf",
+    "area": 0.0019,
+    "gapMm": 1.1,
+    "at": [
+     -1.35,
+     0.68,
+     3.34
+    ],
+    "normal": [
+     0.222,
+     -0.908,
+     0.356
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-building",
+    "b": "Sakura shōten interior › sakura-building",
+    "area": 0.0019,
+    "gapMm": 0,
+    "at": [
+     6.82,
+     0.89,
+     -3.93
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room tray coffee",
+    "b": "Sakura back room stock › Sakura back room tray coffee",
+    "area": 0.0017,
+    "gapMm": 1.45,
+    "at": [
+     -0.22,
+     0.9,
+     -4.74
+    ],
+    "normal": [
+     -0.259,
+     0,
+     -0.966
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room tray coffee",
+    "b": "Sakura back room stock › Sakura back room tray coffee",
+    "area": 0.0017,
+    "gapMm": 1.45,
+    "at": [
+     -0.2,
+     0.9,
+     -4.65
+    ],
+    "normal": [
+     0.259,
+     0,
+     0.966
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room tray coffee",
+    "b": "Sakura back room stock › Sakura back room tray coffee",
+    "area": 0.0017,
+    "gapMm": 1.45,
+    "at": [
+     -0.25,
+     0.9,
+     -4.68
+    ],
+    "normal": [
+     -0.966,
+     0,
+     0.259
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room tray coffee",
+    "b": "Sakura back room stock › Sakura back room tray coffee",
+    "area": 0.0017,
+    "gapMm": 1.45,
+    "at": [
+     -0.17,
+     0.9,
+     -4.7
+    ],
+    "normal": [
+     0.966,
+     0,
+     -0.259
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room tray coffee",
+    "b": "Sakura back room stock › Sakura back room tray coffee",
+    "area": 0.0017,
+    "gapMm": 1.45,
+    "at": [
+     -0.17,
+     0.9,
+     -4.68
+    ],
+    "normal": [
+     0.966,
+     0,
+     0.259
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room tray coffee",
+    "b": "Sakura back room stock › Sakura back room tray coffee",
+    "area": 0.0017,
+    "gapMm": 1.45,
+    "at": [
+     -0.25,
+     0.9,
+     -4.7
+    ],
+    "normal": [
+     -0.966,
+     0,
+     -0.259
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room tray coffee",
+    "b": "Sakura back room stock › Sakura back room tray coffee",
+    "area": 0.0017,
+    "gapMm": 1.45,
+    "at": [
+     -0.2,
+     0.9,
+     -4.74
+    ],
+    "normal": [
+     0.259,
+     0,
+     -0.966
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room tray coffee",
+    "b": "Sakura back room stock › Sakura back room tray coffee",
+    "area": 0.0017,
+    "gapMm": 1.45,
+    "at": [
+     -0.22,
+     0.9,
+     -4.65
+    ],
+    "normal": [
+     -0.259,
+     0,
+     0.966
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room tray coffee",
+    "b": "Sakura back room stock › Sakura back room tray coffee",
+    "area": 0.0017,
+    "gapMm": 1.45,
+    "at": [
+     -0.18,
+     0.9,
+     -4.66
+    ],
+    "normal": [
+     0.707,
+     0,
+     0.707
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room tray coffee",
+    "b": "Sakura back room stock › Sakura back room tray coffee",
+    "area": 0.0017,
+    "gapMm": 1.45,
+    "at": [
+     -0.24,
+     0.9,
+     -4.66
+    ],
+    "normal": [
+     -0.707,
+     0,
+     0.707
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room tray coffee",
+    "b": "Sakura back room stock › Sakura back room tray coffee",
+    "area": 0.0017,
+    "gapMm": 1.45,
+    "at": [
+     -0.24,
+     0.9,
+     -4.72
+    ],
+    "normal": [
+     -0.707,
+     0,
+     -0.707
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room tray coffee",
+    "b": "Sakura back room stock › Sakura back room tray coffee",
+    "area": 0.0017,
+    "gapMm": 1.45,
+    "at": [
+     -0.18,
+     0.9,
+     -4.72
+    ],
+    "normal": [
+     0.707,
+     0,
+     -0.707
+    ]
+   },
+   {
+    "a": "Sakura lived-in › Assistant manager leaf",
+    "b": "Sakura lived-in › Assistant manager leaf",
+    "area": 0.0015,
+    "gapMm": 1.02,
+    "at": [
+     -1.42,
+     0.88,
+     3.13
+    ],
+    "normal": [
+     -0.398,
+     -0.865,
+     -0.305
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room case coffee",
+    "b": "Sakura shōten interior › sakura-shelf",
+    "area": 0.0014,
+    "gapMm": 0.79,
+    "at": [
+     0.38,
+     1.03,
+     -4.86
+    ],
+    "normal": [
+     -0.001,
+     0,
+     -1
+    ]
+   },
+   {
+    "a": "Sakura lived-in › Assistant manager leaf",
+    "b": "Sakura lived-in › Assistant manager leaf",
+    "area": 0.0012,
+    "gapMm": 0.95,
+    "at": [
+     -1.4,
+     0.81,
+     3.13
+    ],
+    "normal": [
+     0.105,
+     -0.816,
+     -0.569
+    ]
+   },
+   {
+    "a": "Sakura lived-in › Assistant manager leaf",
+    "b": "Sakura lived-in › Assistant manager leaf",
+    "area": 0.0012,
+    "gapMm": 0.95,
+    "at": [
+     -1.3,
+     0.98,
+     3.3
+    ],
+    "normal": [
+     0.101,
+     -0.816,
+     0.569
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-shelf east",
+    "b": "Sakura shōten interior › sakura-shelf-ends east",
+    "area": 0.0011,
+    "gapMm": 0,
+    "at": [
+     1.55,
+     1.5,
+     0.05
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "a": "Sakura entrance basket stack",
+    "b": "Sakura entrance basket stack",
+    "area": 0.001,
+    "gapMm": 2,
+    "at": [
+     -1.67,
+     0.35,
+     3.51
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura entrance basket stack",
+    "b": "Sakura entrance basket stack",
+    "area": 0.001,
+    "gapMm": 2,
+    "at": [
+     -1.67,
+     0.35,
+     3.44
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura lived-in › Assistant manager leaf",
+    "b": "Sakura lived-in › Assistant manager leaf",
+    "area": 0.0009,
+    "gapMm": 0.87,
+    "at": [
+     -1.28,
+     1.08,
+     3.13
+    ],
+    "normal": [
+     0.349,
+     -0.759,
+     -0.549
+    ]
+   },
+   {
+    "a": "Sakura lived-in › Assistant manager leaf",
+    "b": "Sakura lived-in › Assistant manager leaf",
+    "area": 0.0008,
+    "gapMm": 0.8,
+    "at": [
+     -1.46,
+     0.92,
+     3.26
+    ],
+    "normal": [
+     -0.573,
+     -0.697,
+     0.432
+    ]
+   },
+   {
+    "a": "Sakura lived-in › Assistant manager leaf",
+    "b": "Sakura lived-in › Assistant manager leaf",
+    "area": 0.0008,
+    "gapMm": 0.8,
+    "at": [
+     -1.37,
+     1.18,
+     3.21
+    ],
+    "normal": [
+     -0.693,
+     -0.697,
+     0.186
+    ]
+   },
+   {
+    "a": "Sakura storage life › Hand truck",
+    "b": "Sakura storage life › Hand truck plate",
+    "area": 0.0008,
+    "gapMm": 0,
+    "at": [
+     5.44,
+     0.02,
+     -5.22
+    ],
+    "normal": [
+     0,
+     0,
+     -1
+    ]
+   },
+   {
+    "a": "Sakura storage life › Hand truck",
+    "b": "Sakura storage life › Hand truck plate",
+    "area": 0.0008,
+    "gapMm": 0,
+    "at": [
+     5.44,
+     0.02,
+     -4.78
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura lived-in › Assistant manager leaf",
+    "b": "Sakura lived-in › Assistant manager leaf",
+    "area": 0.0007,
+    "gapMm": 0.8,
+    "at": [
+     -1.23,
+     0.74,
+     3.1
+    ],
+    "normal": [
+     0.688,
+     -0.697,
+     -0.203
+    ]
+   },
+   {
+    "a": "Sakura shōten interior › sakura-building",
+    "b": "Sakura shōten interior › sakura-building",
+    "area": 0.0006,
+    "gapMm": 0,
+    "at": [
+     1.06,
+     0.89,
+     3.91
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "a": "Sakura corners › Sakura cash corner",
+    "b": "Sakura corners › Sakura cash corner",
+    "area": 0.0006,
+    "gapMm": 0,
+    "at": [
+     -2.37,
+     0.95,
+     -3.42
+    ],
+    "normal": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura corners › Sakura cash corner",
+    "b": "Sakura corners › Sakura cash corner",
+    "area": 0.0006,
+    "gapMm": 0,
+    "at": [
+     -2.95,
+     0.95,
+     -3.42
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "a": "Sakura back room stock › Sakura back room orikon rim",
+    "b": "Sakura shōten interior › sakura-shelf",
+    "area": 0.0005,
+    "gapMm": 0,
+    "at": [
+     -0.42,
+     0.52,
+     -4.86
+    ],
+    "normal": [
+     0,
+     0,
+     -1
+    ]
+   }
+  ],
+  "floors": [
+   {
+    "a": "Sakura shōten interior › sakura-floor",
+    "b": "Sakura till floor",
+    "area": 11.036,
+    "gapMm": 6,
+    "at": [
+     4.87,
+     0,
+     1.78
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   }
+  ],
+  "finishes": [
+   {
+    "name": "sakura-floor",
+    "level": 0,
+    "x": [
+     -6.86,
+     6.86
+    ],
+    "z": [
+     -3.99,
+     3.91
+    ],
+    "drawn": "solid"
+   },
+   {
+    "name": "sakura-floor back room",
+    "level": 0.001,
+    "x": [
+     -5.76,
+     5.76
+    ],
+    "z": [
+     -6.86,
+     -3.99
+    ],
+    "drawn": "solid"
+   },
+   {
+    "name": "Restroom mosaic floor",
+    "level": 0.003,
+    "x": [
+     -6.82,
+     -4.09
+    ],
+    "z": [
+     -3.95,
+     -2.58
+    ],
+    "drawn": "decal (offset -2/0)"
+   },
+   {
+    "name": "Sakura floor sheen",
+    "level": 0.004,
+    "x": [
+     -6.86,
+     6.86
+    ],
+    "z": [
+     -3.99,
+     3.91
+    ],
+    "drawn": "glaze (no depth)"
+   },
+   {
+    "name": "Sakura till floor",
+    "level": 0.006,
+    "x": [
+     3.05,
+     6.67
+    ],
+    "z": [
+     0,
+     3.56
+    ],
+    "drawn": "solid"
+   },
+   {
+    "name": "Sakura welcome mat",
+    "level": 0.006,
+    "x": [
+     -0.75,
+     0.75
+    ],
+    "z": [
+     2.975,
+     3.725
+    ],
+    "drawn": "decal (offset -2/0)"
+   },
+   {
+    "name": "Sakura floor sticker",
+    "level": 0.007,
+    "x": [
+     0.8815,
+     3.8185
+    ],
+    "z": [
+     0.9115,
+     2.8385
+    ],
+    "drawn": "glaze (no depth)"
+   },
+   {
+    "name": "Sakura till sticker",
+    "level": 0.007,
+    "x": [
+     3.855,
+     4.045
+    ],
+    "z": [
+     0.6,
+     1.1
+    ],
+    "drawn": "decal (offset -2/0)"
+   }
+  ]
+ },
+ "office": {
+  "surfaces": [
+   {
+    "a": "Sakura upstairs fittings",
+    "b": "Sakura upstairs fittings",
+    "area": 0.0011,
+    "gapMm": 1.95,
+    "at": [
+     -1.18,
+     1.98,
+     4.07
+    ],
+    "normal": [
+     -1,
+     0,
+     0
+    ]
+   }
+  ],
+  "floors": [
+   {
+    "a": "Sakura upstairs fittings",
+    "b": "Sakura upstairs fittings",
+    "area": 0.18,
+    "gapMm": 5,
+    "at": [
+     2.45,
+     0,
+     1.4
+    ],
+    "normal": [
+     0,
+     1,
+     0
+    ]
+   }
+  ],
+  "finishes": []
+ }
+}

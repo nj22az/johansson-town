@@ -1,0 +1,10 @@
+id,node,system,bounds_mm,interaction_mm,service_clearance_mm,collision,visual_only
+ELECTRICAL-EQ-MAIN,MAIN,electrical,"[7950, 850, 1250, 8250, 1150, 1550]","[7300, 1000, 1400]",600,False,maintenance icon/envelope; appliance detail excluded from collision
+ELECTRICAL-EQ-G0_DB,G0_DB,electrical,"[7950, 1350, 1250, 8250, 1650, 1550]","[7300, 1500, 1400]",600,False,maintenance icon/envelope; appliance detail excluded from collision
+ELECTRICAL-EQ-L1_DB,L1_DB,electrical,"[7950, 1350, 4050, 8250, 1650, 4350]","[7300, 1500, 4200]",600,False,maintenance icon/envelope; appliance detail excluded from collision
+ELECTRICAL-EQ-B1_DB,B1_DB,electrical,"[7950, 1350, -1550, 8250, 1650, -1250]","[7300, 1500, -1400]",600,False,maintenance icon/envelope; appliance detail excluded from collision
+WATER-EQ-HEATER,HEATER,water,"[10850, 1950, -2050, 11350, 2450, -1550]","[10300, 2200, -1800]",600,False,maintenance icon/envelope; appliance detail excluded from collision
+WATER-EQ-COLD_MANIFOLD,COLD_MANIFOLD,water,"[10650, 1250, -2050, 11150, 1750, -1550]","[10100, 1500, -1800]",600,False,maintenance icon/envelope; appliance detail excluded from collision
+DRAINAGE-EQ-B1_PUMP,B1_PUMP,drainage,"[11050, 5750, -3250, 11550, 6250, -2750]","[10500, 6000, -3000]",600,False,maintenance icon/envelope; appliance detail excluded from collision
+DRAINAGE-EQ-STORM_SUMP,STORM_SUMP,drainage,"[9450, -1050, -3750, 9950, -550, -3250]","[8900, -800, -3500]",600,False,maintenance icon/envelope; appliance detail excluded from collision
+HVAC-EQ-OUTDOOR_UNITS,OUTDOOR_UNITS,hvac,"[12750, 3950, 750, 13250, 4450, 1250]","[12200, 4200, 1000]",600,False,maintenance icon/envelope; appliance detail excluded from collision

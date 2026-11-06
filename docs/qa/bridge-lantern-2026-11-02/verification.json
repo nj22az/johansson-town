@@ -1,0 +1,28 @@
+{
+  "base": "4f545da4b6c441d1c36dd8eb34db44b1a480879d",
+  "independentReview": "physical_model_v4 approved final GLB/native, no remaining P1/P2",
+  "focused": {
+    "passed": 9,
+    "failed": 0
+  },
+  "unchangedVesselWalk": {
+    "passed": 12,
+    "failed": 0
+  },
+  "guard": {
+    "state": "pending aggregate/hosted full guard",
+    "localNoZFightingPassed": 13,
+    "localNPCSeatingPassed": 7,
+    "capturedLogHasFailure": false,
+    "publicationDecision": "Root approved reviewed bounded feature with runtime/focused/walk checks; monitor automatic hosted guard"
+  },
+  "browserRender": "not run; no local executable",
+  "physicalDevice": "not run",
+  "files": {
+    "assets/models/ferry-bridge/bridge-lantern-v1.glb": "77158376cc01d50bc5a8007217a3857faa5544b7c5ad934bd0f7f843bbd1f2ad",
+    "art/ferry-bridge-lantern/Minato_Maru_Bridge_Lantern.blend": "201fc43e8440fc01840d73bfea4aa5c3ce51f670b9fdabd261ddc5e8ac132f64",
+    "src/world/ferry-bridge.js": "d39037acdd9805b62ccd015637d68082660aa4ff3e834a34ddd29dfe54a31abe",
+    "src/world/ferry-bridge-lantern.js": "56a9d914d2ca237245407e92ad08a4aef6adaa252cdfb421d76243f1feab916f",
+    "src/world/ferry-bridge-lantern-plan.js": "3326e94234e687c25fb8e70cf2c98fad14c38435382be435b153a0bd2c9001c4"
+  }
+}

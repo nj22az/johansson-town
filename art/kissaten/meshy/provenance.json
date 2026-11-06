@@ -1,0 +1,116 @@
+{
+ "made": "30 October 2026, the kissaten Meshy audit (johansson-town/briefs/higa-kissaten/progress.md)",
+ "tool": "Meshy CLI 0.4.0 (meshy-cli on npm), text to 3D, model_type smart-topology, ai_model meshy-t2.5; refine with enable_pbr false, texture_resolution 2k",
+ "files": "Each GLB here has its 2048 px colour map shrunk to 1024 px by tools/shrink-glb-textures.py; geometry untouched. The 2048 px originals stay in the Meshy account under the refine task id.",
+ "photographs": "docs/qa/kissaten-meshy/ (tools/kissaten-meshy-look.mjs)",
+ "credits": {
+  "spent": 105,
+  "balanceBefore": 2753,
+  "balanceAfter": 2648,
+  "shape": "5 a preview (nine)",
+  "colour": "10 a refine (six)"
+ },
+ "models": [
+  {
+   "id": "bentwood-chair",
+   "file": "bentwood-chair.glb",
+   "verdict": "use",
+   "why": "Reads as a bentwood cafe chair from the street and from inside; the code chair (tubes and tori) reads as a ladder or a letter d.",
+   "prompt": "A classic bentwood cafe chair in dark stained beech: a round seat with a woven cane panel, a curved loop backrest, four slightly splayed legs joined by a round wooden ring under the seat. A single chair on its own. Stylised cartoon game prop, chunky clean shapes, flat colours, no text.",
+   "texturePrompt": "Dark walnut-brown stained wood frame, a light golden woven cane seat. Flat cartoon colours, clean, no text.",
+   "targetPolycount": 3000,
+   "triangles": 3100,
+   "previewTask": "01a18bf1-9b95-71e7-a251-e6d73dbc93a1",
+   "refineTask": "01a18bf3-3872-7045-939e-2d09d99b31ef",
+   "credits": 15
+  },
+  {
+   "id": "record-player",
+   "file": "record-player.glb",
+   "verdict": "use",
+   "why": "Reads as a record player: the open lid, the record and its label, the knobs. The code box reads as a flat box.",
+   "prompt": "A 1970s Japanese portable record player in a warm teak wooden case, the lid open and propped up behind, a black vinyl record with a plain red centre label on the platter, a silver tone arm at rest, two round knobs on the front. A single object on its own. Stylised cartoon game prop, chunky clean shapes, flat colours, no text, no logos.",
+   "texturePrompt": "Warm honey-coloured teak wood case, cream inside of the lid, a black vinyl record with a plain red centre label, silver tone arm, black knobs. Flat cartoon colours, clean, no text, no logos.",
+   "targetPolycount": 3000,
+   "triangles": 2563,
+   "previewTask": "01a18bf1-745f-7658-9372-33a6b2baa3ce",
+   "refineTask": "01a18bf3-2cdc-75e4-8afd-649c01e8c946",
+   "credits": 15
+  },
+  {
+   "id": "hand-grinder",
+   "file": "hand-grinder.glb",
+   "verdict": "use",
+   "why": "The drawer, its knob, the bowl and the crank read at the counter; the code grinder is a dark cube with a disc.",
+   "prompt": "A traditional wooden hand coffee grinder: a square dark wooden box with a small pull-out drawer at the front, a brass bowl on top, and an iron crank handle with a round wooden knob. A single object on its own. Stylised cartoon game prop, chunky clean shapes, flat colours, no text.",
+   "texturePrompt": "Dark brown wooden box and drawer, a brass bowl on top, a black iron crank, a light wooden knob. Flat cartoon colours, clean, no text.",
+   "targetPolycount": 2500,
+   "triangles": 2505,
+   "previewTask": "01a18bf1-cf3e-71f0-b93f-b49b893f4e3f",
+   "refineTask": "01a18bf3-5b32-76a0-a560-dcc97ec93c9d",
+   "credits": 15
+  },
+  {
+   "id": "drip-kettle",
+   "file": "drip-kettle.glb",
+   "verdict": "tie",
+   "why": "Its gooseneck rises from the base as a real one does; at room distance the code kettle reads as well.",
+   "prompt": "A Japanese pour-over coffee kettle in polished stainless steel: a round squat body, a long thin gooseneck spout rising from the bottom of the body and curving out, a domed lid with a small black knob, and a black wooden loop handle at the back. A single object on its own. Stylised cartoon game prop, chunky clean shapes, flat colours, no text.",
+   "texturePrompt": "Brushed stainless steel body, spout and lid, a black knob on the lid, a black wooden handle. Flat cartoon colours, clean, no text.",
+   "targetPolycount": 2000,
+   "triangles": 2076,
+   "previewTask": "01a18bf8-9d72-70af-8636-c6a954e4a7df",
+   "refineTask": "01a18bf9-3db8-7456-a17c-7aef5a186fcc",
+   "credits": 15
+  },
+  {
+   "id": "cup-saucer",
+   "file": "cup-saucer.glb",
+   "verdict": "code",
+   "why": "Nicer up close (handle, spoon) but mug-tall against its saucer, and many on screen; at a distance both read the same. The blue rim line asked for did not come.",
+   "prompt": "A white porcelain coffee cup with a thin dark blue rim line and a round handle, full of black coffee, on a matching white saucer with the same blue line, a small silver teaspoon lying on the saucer. A single object on its own. Stylised cartoon game prop, chunky clean shapes, flat colours, no text.",
+   "texturePrompt": "White porcelain cup and saucer, each with one thin dark blue line at the rim, black coffee in the cup, a silver teaspoon. Flat cartoon colours, clean, no text.",
+   "targetPolycount": 1500,
+   "triangles": 1548,
+   "previewTask": "01a18bf1-b437-7485-a2a9-fcd449038d06",
+   "refineTask": "01a18bf3-50be-765b-b955-3ae8d2e26764",
+   "credits": 15
+  },
+  {
+   "id": "counter-stool",
+   "file": "counter-stool.glb",
+   "verdict": "code",
+   "why": "The shape is right, but the seat's colour map carries painted streaks that read as scratches under the ink; a lathe draws a clean one.",
+   "prompt": "A 1980s Japanese coffee shop counter stool: a round padded seat in dark red vinyl on a single chrome column, a round flat chrome base on the floor and a chrome foot ring halfway up. A single stool on its own. Stylised cartoon game prop, chunky clean shapes, flat colours, no text.",
+   "texturePrompt": "Dark red vinyl seat, polished chrome column, chrome base and foot ring. Flat cartoon colours, clean, no text.",
+   "targetPolycount": 2000,
+   "triangles": 2017,
+   "previewTask": "01a18bf1-c081-728b-8479-dac360686eb6",
+   "refineTask": "01a18bf3-4399-756a-a2f7-2210271e6b12",
+   "credits": 15
+  }
+ ],
+ "rejected": [
+  {
+   "id": "siphon",
+   "why": "Two separate gadgets, not one siphon; and glass is baked as opaque paint. Drawn in code.",
+   "prompt": "A Japanese coffee siphon brewer: a clear glass upper bowl with a long glass tube sitting in a round clear glass flask half full of dark coffee, held by a chrome stand with a ring clamp, a small glass alcohol lamp with a short flame under the flask. A single object on its own. Stylised cartoon game prop, clean shapes, no text.",
+   "previewTask": "01a18bf1-a68b-735e-a251-6c353bc59ef7",
+   "credits": 5
+  },
+  {
+   "id": "morning-set",
+   "why": "The toast came as two blobs and no egg cup. Drawn in code.",
+   "prompt": "A Japanese coffee shop morning set on a small round white plate: one very thick slice of golden buttered toast cut in half, and a white boiled egg standing in a white egg cup beside it. A single plate on its own. Stylised cartoon food prop, chunky clean shapes, flat colours, no text.",
+   "previewTask": "01a18bf1-dbca-748b-a83d-eafdfa4abae7",
+   "credits": 5
+  },
+  {
+   "id": "fortune-machine",
+   "why": "An unreadable blob, not the zodiac fortune globe. Not drawn.",
+   "prompt": "A small 1980s Japanese coffee shop table fortune machine, about the size of a teapot: a red and chrome globe on a short round chrome foot, a round dial of twelve zodiac pictures on top, a coin slot on the side and a small chute at the front where a rolled paper fortune drops out. A single object on its own. Stylised cartoon game prop, chunky clean shapes, flat colours, no text.",
+   "previewTask": "01a18bf8-a857-7081-be61-f72d7697579d",
+   "credits": 5
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "cloudBrowser": {
+    "url": "https://nj22az.github.io/johansson-town/?audit&visual-audit&spawn=izakaya",
+    "result": "The browser could not create a WebGL context before gameplay. This is an environment failure, not reproduction of the reported izakaya crash."
+  },
+  "localSmoke": {
+    "command": "tests/minato-compact.browser.mjs, isolated temporary output",
+    "result": "Chromium could not remain running under the container socket restrictions. No in-game entry, exit, keyboard walk, FPS or device acceptance claimed."
+  },
+  "physicalDeviceTested": false,
+  "reportedCrashRootCause": "Unverified; confirmed geometry faults are separate from the unreproduced device crash."
+}

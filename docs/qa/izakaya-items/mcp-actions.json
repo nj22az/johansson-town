@@ -1,0 +1,2024 @@
+[
+  {
+    "id": 1,
+    "name": "start_session",
+    "args": {
+      "spawn": "izakaya",
+      "time": "20:30"
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0001-start_session.json"
+  },
+  {
+    "id": 2,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0002-wait.json"
+  },
+  {
+    "id": 3,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0003-wait.json"
+  },
+  {
+    "id": 4,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0004-wait.json"
+  },
+  {
+    "id": 5,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0005-wait.json"
+  },
+  {
+    "id": 6,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0006-wait.json"
+  },
+  {
+    "id": 7,
+    "name": "press_control",
+    "args": {
+      "control": "forward",
+      "durationMs": 300
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0007-press_control.json"
+  },
+  {
+    "id": 8,
+    "name": "press_control",
+    "args": {
+      "control": "view",
+      "durationMs": 34
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0008-press_control.json"
+  },
+  {
+    "id": 9,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4,
+      "radius": 0.28
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0009-inspect_navigation.json"
+  },
+  {
+    "id": 10,
+    "name": "wait",
+    "args": {
+      "durationMs": 50
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0010-wait.json"
+  },
+  {
+    "id": 11,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0011-get_state.json"
+  },
+  {
+    "id": 12,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0012-inspect_navigation.json"
+  },
+  {
+    "id": 13,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": -3.799999999999999,
+          "z": -0.5999999999999996
+        },
+        {
+          "x": -1.799999999999999,
+          "z": -0.5999999999999996
+        },
+        {
+          "x": -1.799999999999999,
+          "z": 4.2
+        },
+        {
+          "x": -3.799999999999999,
+          "z": 4.2
+        },
+        {
+          "x": -3.799999999999999,
+          "z": 4.6000000000000005
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0013-follow_path.json"
+  },
+  {
+    "id": 14,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0014-wait.json"
+  },
+  {
+    "id": 15,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0015-wait.json"
+  },
+  {
+    "id": 16,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0016-wait.json"
+  },
+  {
+    "id": 17,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0017-wait.json"
+  },
+  {
+    "id": 18,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0018-wait.json"
+  },
+  {
+    "id": 19,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0019-get_state.json"
+  },
+  {
+    "id": 20,
+    "name": "look",
+    "args": {
+      "degrees": -93.92494087146065,
+      "verticalDegrees": 0
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0020-look.json"
+  },
+  {
+    "id": 21,
+    "name": "look",
+    "args": {
+      "degrees": 0,
+      "verticalDegrees": 10
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0021-look.json"
+  },
+  {
+    "id": 22,
+    "name": "wait",
+    "args": {
+      "durationMs": 50
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0022-wait.json"
+  },
+  {
+    "id": 23,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0023-get_state.json"
+  },
+  {
+    "id": 24,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0024-inspect_navigation.json"
+  },
+  {
+    "id": 25,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": -3.799999999999999,
+          "z": 4.6000000000000005
+        },
+        {
+          "x": -3.799999999999999,
+          "z": 5.8
+        },
+        {
+          "x": -4.199999999999999,
+          "z": 5.8
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0025-follow_path.json"
+  },
+  {
+    "id": 26,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0026-wait.json"
+  },
+  {
+    "id": 27,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0027-wait.json"
+  },
+  {
+    "id": 28,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0028-wait.json"
+  },
+  {
+    "id": 29,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0029-wait.json"
+  },
+  {
+    "id": 30,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0030-wait.json"
+  },
+  {
+    "id": 31,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0031-get_state.json"
+  },
+  {
+    "id": 32,
+    "name": "look",
+    "args": {
+      "degrees": 1.7600699753293934,
+      "verticalDegrees": -10.000000187206163
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0032-look.json"
+  },
+  {
+    "id": 33,
+    "name": "look",
+    "args": {
+      "degrees": 0,
+      "verticalDegrees": -10
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0033-look.json"
+  },
+  {
+    "id": 34,
+    "name": "wait",
+    "args": {
+      "durationMs": 50
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0034-wait.json"
+  },
+  {
+    "id": 35,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0035-get_state.json"
+  },
+  {
+    "id": 36,
+    "name": "press_control",
+    "args": {
+      "control": "interact",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0036-press_control.json"
+  },
+  {
+    "id": 37,
+    "name": "wait",
+    "args": {
+      "durationMs": 50
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0037-wait.json"
+  },
+  {
+    "id": 38,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0038-get_state.json"
+  },
+  {
+    "id": 39,
+    "name": "press_control",
+    "args": {
+      "control": "close",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0039-press_control.json"
+  },
+  {
+    "id": 40,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0040-inspect_navigation.json"
+  },
+  {
+    "id": 41,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": -4.199999999999999,
+          "z": 5.8
+        },
+        {
+          "x": -2.999999999999999,
+          "z": 5.8
+        },
+        {
+          "x": -2.999999999999999,
+          "z": 5.400000000000001
+        },
+        {
+          "x": -0.1999999999999993,
+          "z": 5.400000000000001
+        },
+        {
+          "x": -0.1999999999999993,
+          "z": 4.6000000000000005
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0041-follow_path.json"
+  },
+  {
+    "id": 42,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0042-wait.json"
+  },
+  {
+    "id": 43,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0043-wait.json"
+  },
+  {
+    "id": 44,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0044-wait.json"
+  },
+  {
+    "id": 45,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0045-wait.json"
+  },
+  {
+    "id": 46,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0046-wait.json"
+  },
+  {
+    "id": 47,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0047-inspect_navigation.json"
+  },
+  {
+    "id": 48,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": -0.1999999999999993,
+          "z": 4.6000000000000005
+        },
+        {
+          "x": -0.1999999999999993,
+          "z": -0.20000000000000018
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0048-follow_path.json"
+  },
+  {
+    "id": 49,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0049-wait.json"
+  },
+  {
+    "id": 50,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0050-wait.json"
+  },
+  {
+    "id": 51,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0051-wait.json"
+  },
+  {
+    "id": 52,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0052-wait.json"
+  },
+  {
+    "id": 53,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0053-wait.json"
+  },
+  {
+    "id": 54,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0054-inspect_navigation.json"
+  },
+  {
+    "id": 55,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": -0.1999999999999993,
+          "z": -0.20000000000000018
+        },
+        {
+          "x": 3.8000000000000007,
+          "z": -0.20000000000000018
+        },
+        {
+          "x": 3.8000000000000007,
+          "z": -1
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0055-follow_path.json"
+  },
+  {
+    "id": 56,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0056-wait.json"
+  },
+  {
+    "id": 57,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0057-wait.json"
+  },
+  {
+    "id": 58,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0058-wait.json"
+  },
+  {
+    "id": 59,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0059-wait.json"
+  },
+  {
+    "id": 60,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0060-wait.json"
+  },
+  {
+    "id": 61,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0061-inspect_navigation.json"
+  },
+  {
+    "id": 62,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": 3.8000000000000007,
+          "z": -1
+        },
+        {
+          "x": 3.8000000000000007,
+          "z": -1.3999999999999995
+        },
+        {
+          "x": 4.200000000000001,
+          "z": -1.3999999999999995
+        },
+        {
+          "x": 4.200000000000001,
+          "z": -3.8
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0062-follow_path.json"
+  },
+  {
+    "id": 63,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0063-wait.json"
+  },
+  {
+    "id": 64,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0064-wait.json"
+  },
+  {
+    "id": 65,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0065-wait.json"
+  },
+  {
+    "id": 66,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0066-wait.json"
+  },
+  {
+    "id": 67,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0067-wait.json"
+  },
+  {
+    "id": 68,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0068-get_state.json"
+  },
+  {
+    "id": 69,
+    "name": "look",
+    "args": {
+      "degrees": 7.010953627490563,
+      "verticalDegrees": 10.000000187206163
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0069-look.json"
+  },
+  {
+    "id": 70,
+    "name": "look",
+    "args": {
+      "degrees": 0,
+      "verticalDegrees": 12
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0070-look.json"
+  },
+  {
+    "id": 71,
+    "name": "wait",
+    "args": {
+      "durationMs": 50
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0071-wait.json"
+  },
+  {
+    "id": 72,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0072-get_state.json"
+  },
+  {
+    "id": 73,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0073-inspect_navigation.json"
+  },
+  {
+    "id": 74,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": 4.200000000000001,
+          "z": -3.8
+        },
+        {
+          "x": 7.000000000000002,
+          "z": -3.8
+        },
+        {
+          "x": 7.000000000000002,
+          "z": -4.2
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0074-follow_path.json"
+  },
+  {
+    "id": 75,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0075-wait.json"
+  },
+  {
+    "id": 76,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0076-wait.json"
+  },
+  {
+    "id": 77,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0077-wait.json"
+  },
+  {
+    "id": 78,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0078-wait.json"
+  },
+  {
+    "id": 79,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0079-wait.json"
+  },
+  {
+    "id": 80,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0080-get_state.json"
+  },
+  {
+    "id": 81,
+    "name": "look",
+    "args": {
+      "degrees": -37.56193035466035,
+      "verticalDegrees": -12.000000224647396
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0081-look.json"
+  },
+  {
+    "id": 82,
+    "name": "look",
+    "args": {
+      "degrees": 0,
+      "verticalDegrees": 12
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0082-look.json"
+  },
+  {
+    "id": 83,
+    "name": "wait",
+    "args": {
+      "durationMs": 50
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0083-wait.json"
+  },
+  {
+    "id": 84,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0084-get_state.json"
+  },
+  {
+    "id": 85,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0085-inspect_navigation.json"
+  },
+  {
+    "id": 86,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": 7.000000000000002,
+          "z": -4.2
+        },
+        {
+          "x": 4.200000000000001,
+          "z": -4.2
+        },
+        {
+          "x": 4.200000000000001,
+          "z": -3
+        },
+        {
+          "x": 3.8000000000000007,
+          "z": -3
+        },
+        {
+          "x": 3.8000000000000007,
+          "z": -0.5999999999999996
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0086-follow_path.json"
+  },
+  {
+    "id": 87,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0087-wait.json"
+  },
+  {
+    "id": 88,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0088-wait.json"
+  },
+  {
+    "id": 89,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0089-wait.json"
+  },
+  {
+    "id": 90,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0090-wait.json"
+  },
+  {
+    "id": 91,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0091-wait.json"
+  },
+  {
+    "id": 92,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0092-inspect_navigation.json"
+  },
+  {
+    "id": 93,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": 3.8000000000000007,
+          "z": -0.20000000000000018
+        },
+        {
+          "x": 3.400000000000002,
+          "z": -0.20000000000000018
+        },
+        {
+          "x": 3.400000000000002,
+          "z": 0.20000000000000018
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0093-follow_path.json"
+  },
+  {
+    "id": 94,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0094-wait.json"
+  },
+  {
+    "id": 95,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0095-wait.json"
+  },
+  {
+    "id": 96,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0096-wait.json"
+  },
+  {
+    "id": 97,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0097-wait.json"
+  },
+  {
+    "id": 98,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0098-wait.json"
+  },
+  {
+    "id": 99,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0099-get_state.json"
+  },
+  {
+    "id": 100,
+    "name": "look",
+    "args": {
+      "degrees": 7.997864020658861,
+      "verticalDegrees": -12.000000224647396
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0100-look.json"
+  },
+  {
+    "id": 101,
+    "name": "press_control",
+    "args": {
+      "control": "interact",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0101-press_control.json"
+  },
+  {
+    "id": 102,
+    "name": "press_control",
+    "args": {
+      "control": "interact",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0102-press_control.json"
+  },
+  {
+    "id": 103,
+    "name": "press_control",
+    "args": {
+      "control": "close",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0103-press_control.json"
+  },
+  {
+    "id": 104,
+    "name": "wait",
+    "args": {
+      "durationMs": 50
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0104-wait.json"
+  },
+  {
+    "id": 105,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0105-get_state.json"
+  },
+  {
+    "id": 106,
+    "name": "press_control",
+    "args": {
+      "control": "forward",
+      "durationMs": 300
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0106-press_control.json"
+  },
+  {
+    "id": 107,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0107-inspect_navigation.json"
+  },
+  {
+    "id": 108,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": 3.400000000000002,
+          "z": 0.20000000000000018
+        },
+        {
+          "x": 1.0000000000000009,
+          "z": 0.20000000000000018
+        },
+        {
+          "x": 1.0000000000000009,
+          "z": 3.8
+        },
+        {
+          "x": 3.400000000000002,
+          "z": 3.8
+        },
+        {
+          "x": 3.400000000000002,
+          "z": 5.400000000000001
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0108-follow_path.json"
+  },
+  {
+    "id": 109,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0109-wait.json"
+  },
+  {
+    "id": 110,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0110-wait.json"
+  },
+  {
+    "id": 111,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0111-wait.json"
+  },
+  {
+    "id": 112,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0112-wait.json"
+  },
+  {
+    "id": 113,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0113-wait.json"
+  },
+  {
+    "id": 114,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0114-get_state.json"
+  },
+  {
+    "id": 115,
+    "name": "look",
+    "args": {
+      "degrees": 3.4142300239431393,
+      "verticalDegrees": 0
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0115-look.json"
+  },
+  {
+    "id": 116,
+    "name": "press_control",
+    "args": {
+      "control": "interact",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0116-press_control.json"
+  },
+  {
+    "id": 117,
+    "name": "choose_action",
+    "args": {
+      "label": "Call Harbour office · ¥10"
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0117-choose_action.json"
+  },
+  {
+    "id": 118,
+    "name": "wait",
+    "args": {
+      "durationMs": 50
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0118-wait.json"
+  },
+  {
+    "id": 119,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0119-get_state.json"
+  },
+  {
+    "id": 120,
+    "name": "press_control",
+    "args": {
+      "control": "close",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0120-press_control.json"
+  },
+  {
+    "id": 121,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0121-inspect_navigation.json"
+  },
+  {
+    "id": 122,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": 3.400000000000002,
+          "z": 5.400000000000001
+        },
+        {
+          "x": 5.000000000000002,
+          "z": 5.400000000000001
+        },
+        {
+          "x": 5.000000000000002,
+          "z": 5.000000000000001
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0122-follow_path.json"
+  },
+  {
+    "id": 123,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0123-wait.json"
+  },
+  {
+    "id": 124,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0124-wait.json"
+  },
+  {
+    "id": 125,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0125-wait.json"
+  },
+  {
+    "id": 126,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0126-wait.json"
+  },
+  {
+    "id": 127,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0127-wait.json"
+  },
+  {
+    "id": 128,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0128-get_state.json"
+  },
+  {
+    "id": 129,
+    "name": "look",
+    "args": {
+      "degrees": -115.78236682316548,
+      "verticalDegrees": 0
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0129-look.json"
+  },
+  {
+    "id": 130,
+    "name": "press_control",
+    "args": {
+      "control": "interact",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0130-press_control.json"
+  },
+  {
+    "id": 131,
+    "name": "choose_action",
+    "args": {
+      "label": "Harbour Lights · Kayoko Shima, 1994"
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0131-choose_action.json"
+  },
+  {
+    "id": 132,
+    "name": "wait",
+    "args": {
+      "durationMs": 50
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0132-wait.json"
+  },
+  {
+    "id": 133,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0133-get_state.json"
+  },
+  {
+    "id": 134,
+    "name": "press_control",
+    "args": {
+      "control": "close",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0134-press_control.json"
+  },
+  {
+    "id": 135,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0135-inspect_navigation.json"
+  },
+  {
+    "id": 136,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": 5.000000000000002,
+          "z": 5.000000000000001
+        },
+        {
+          "x": -3.799999999999999,
+          "z": 5.000000000000001
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0136-follow_path.json"
+  },
+  {
+    "id": 137,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0137-wait.json"
+  },
+  {
+    "id": 138,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0138-wait.json"
+  },
+  {
+    "id": 139,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0139-wait.json"
+  },
+  {
+    "id": 140,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0140-wait.json"
+  },
+  {
+    "id": 141,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0141-wait.json"
+  },
+  {
+    "id": 142,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0142-get_state.json"
+  },
+  {
+    "id": 143,
+    "name": "look",
+    "args": {
+      "degrees": -9.83255924992734,
+      "verticalDegrees": 0
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0143-look.json"
+  },
+  {
+    "id": 144,
+    "name": "look",
+    "args": {
+      "degrees": 0,
+      "verticalDegrees": 25
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0144-look.json"
+  },
+  {
+    "id": 145,
+    "name": "press_control",
+    "args": {
+      "control": "interact",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0145-press_control.json"
+  },
+  {
+    "id": 146,
+    "name": "choose_action",
+    "args": {
+      "label": "Read the first lantern-night entry"
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0146-choose_action.json"
+  },
+  {
+    "id": 147,
+    "name": "wait",
+    "args": {
+      "durationMs": 50
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0147-wait.json"
+  },
+  {
+    "id": 148,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0148-get_state.json"
+  },
+  {
+    "id": 149,
+    "name": "press_control",
+    "args": {
+      "control": "close",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0149-press_control.json"
+  },
+  {
+    "id": 150,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0150-get_state.json"
+  },
+  {
+    "id": 151,
+    "name": "look",
+    "args": {
+      "degrees": 103.84323209160874,
+      "verticalDegrees": -24.99999889433982
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0151-look.json"
+  },
+  {
+    "id": 152,
+    "name": "look",
+    "args": {
+      "degrees": 0,
+      "verticalDegrees": 0
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0152-look.json"
+  },
+  {
+    "id": 153,
+    "name": "press_control",
+    "args": {
+      "control": "interact",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0153-press_control.json"
+  },
+  {
+    "id": 154,
+    "name": "choose_action",
+    "args": {
+      "label": "Read the ticket in the sash"
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0154-choose_action.json"
+  },
+  {
+    "id": 155,
+    "name": "wait",
+    "args": {
+      "durationMs": 50
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0155-wait.json"
+  },
+  {
+    "id": 156,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0156-get_state.json"
+  },
+  {
+    "id": 157,
+    "name": "choose_action",
+    "args": {
+      "label": "Slide the curtains open"
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0157-choose_action.json"
+  },
+  {
+    "id": 158,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0158-inspect_navigation.json"
+  },
+  {
+    "id": 159,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": -3.799999999999999,
+          "z": 5.000000000000001
+        },
+        {
+          "x": 1.0000000000000009,
+          "z": 5.000000000000001
+        },
+        {
+          "x": 1.0000000000000009,
+          "z": 0.20000000000000018
+        },
+        {
+          "x": 3.8000000000000007,
+          "z": 0.20000000000000018
+        },
+        {
+          "x": 3.8000000000000007,
+          "z": -1.3999999999999995
+        },
+        {
+          "x": 4.200000000000001,
+          "z": -1.3999999999999995
+        },
+        {
+          "x": 4.200000000000001,
+          "z": -4.6
+        },
+        {
+          "x": -0.1999999999999993,
+          "z": -4.6
+        },
+        {
+          "x": -0.1999999999999993,
+          "z": -5
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0159-follow_path.json"
+  },
+  {
+    "id": 160,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0160-wait.json"
+  },
+  {
+    "id": 161,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0161-wait.json"
+  },
+  {
+    "id": 162,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0162-wait.json"
+  },
+  {
+    "id": 163,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0163-wait.json"
+  },
+  {
+    "id": 164,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0164-wait.json"
+  },
+  {
+    "id": 165,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0165-get_state.json"
+  },
+  {
+    "id": 166,
+    "name": "look",
+    "args": {
+      "degrees": 27.009480452941805,
+      "verticalDegrees": -1.5902773407317584e-15
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0166-look.json"
+  },
+  {
+    "id": 167,
+    "name": "look",
+    "args": {
+      "degrees": 0,
+      "verticalDegrees": -40
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0167-look.json"
+  },
+  {
+    "id": 168,
+    "name": "press_control",
+    "args": {
+      "control": "interact",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0168-press_control.json"
+  },
+  {
+    "id": 169,
+    "name": "choose_action",
+    "args": {
+      "label": "Read the station note"
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0169-choose_action.json"
+  },
+  {
+    "id": 170,
+    "name": "wait",
+    "args": {
+      "durationMs": 50
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0170-wait.json"
+  },
+  {
+    "id": 171,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0171-get_state.json"
+  },
+  {
+    "id": 172,
+    "name": "press_control",
+    "args": {
+      "control": "close",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0172-press_control.json"
+  },
+  {
+    "id": 173,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0173-inspect_navigation.json"
+  },
+  {
+    "id": 174,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": -0.1999999999999993,
+          "z": -5
+        },
+        {
+          "x": 5.800000000000001,
+          "z": -5
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0174-follow_path.json"
+  },
+  {
+    "id": 175,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0175-wait.json"
+  },
+  {
+    "id": 176,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0176-wait.json"
+  },
+  {
+    "id": 177,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0177-wait.json"
+  },
+  {
+    "id": 178,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0178-wait.json"
+  },
+  {
+    "id": 179,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0179-wait.json"
+  },
+  {
+    "id": 180,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0180-get_state.json"
+  },
+  {
+    "id": 181,
+    "name": "look",
+    "args": {
+      "degrees": 108.43220822871385,
+      "verticalDegrees": 40.000000748824654
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0181-look.json"
+  },
+  {
+    "id": 182,
+    "name": "look",
+    "args": {
+      "degrees": 0,
+      "verticalDegrees": 0
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0182-look.json"
+  },
+  {
+    "id": 183,
+    "name": "press_control",
+    "args": {
+      "control": "interact",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0183-press_control.json"
+  },
+  {
+    "id": 184,
+    "name": "choose_action",
+    "args": {
+      "label": "Read the old sauce recipe"
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0184-choose_action.json"
+  },
+  {
+    "id": 185,
+    "name": "wait",
+    "args": {
+      "durationMs": 50
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0185-wait.json"
+  },
+  {
+    "id": 186,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0186-get_state.json"
+  },
+  {
+    "id": 187,
+    "name": "press_control",
+    "args": {
+      "control": "close",
+      "durationMs": 16
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0187-press_control.json"
+  },
+  {
+    "id": 188,
+    "name": "inspect_navigation",
+    "args": {
+      "x": 2.4999999999999996,
+      "z": 0,
+      "width": 17.4,
+      "depth": 12.4,
+      "cell": 0.4
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0188-inspect_navigation.json"
+  },
+  {
+    "id": 189,
+    "name": "follow_path",
+    "args": {
+      "points": [
+        {
+          "x": 6.200000000000001,
+          "z": -5
+        },
+        {
+          "x": 4.200000000000001,
+          "z": -5
+        },
+        {
+          "x": 4.200000000000001,
+          "z": -3
+        },
+        {
+          "x": 3.8000000000000007,
+          "z": -3
+        },
+        {
+          "x": 3.8000000000000007,
+          "z": -1.3999999999999995
+        },
+        {
+          "x": 3.0000000000000018,
+          "z": -1.3999999999999995
+        },
+        {
+          "x": 3.0000000000000018,
+          "z": -0.5999999999999996
+        },
+        {
+          "x": 0.20000000000000107,
+          "z": -0.5999999999999996
+        },
+        {
+          "x": 0.20000000000000107,
+          "z": 5.8
+        }
+      ],
+      "maxSeconds": 120
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0189-follow_path.json"
+  },
+  {
+    "id": 190,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0190-wait.json"
+  },
+  {
+    "id": 191,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0191-wait.json"
+  },
+  {
+    "id": 192,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0192-wait.json"
+  },
+  {
+    "id": 193,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0193-wait.json"
+  },
+  {
+    "id": 194,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0194-wait.json"
+  },
+  {
+    "id": 195,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0195-get_state.json"
+  },
+  {
+    "id": 196,
+    "name": "look",
+    "args": {
+      "degrees": -35.17289066143556,
+      "verticalDegrees": 0
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0196-look.json"
+  },
+  {
+    "id": 197,
+    "name": "press_control",
+    "args": {
+      "control": "forward",
+      "durationMs": 650
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0197-press_control.json"
+  },
+  {
+    "id": 198,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0198-wait.json"
+  },
+  {
+    "id": 199,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0199-wait.json"
+  },
+  {
+    "id": 200,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0200-wait.json"
+  },
+  {
+    "id": 201,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0201-wait.json"
+  },
+  {
+    "id": 202,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0202-wait.json"
+  },
+  {
+    "id": 203,
+    "name": "ui_control",
+    "args": {
+      "control": "exit_room"
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0203-ui_control.json"
+  },
+  {
+    "id": 204,
+    "name": "wait",
+    "args": {
+      "durationMs": 1000
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0204-wait.json"
+  },
+  {
+    "id": 205,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0205-wait.json"
+  },
+  {
+    "id": 206,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0206-wait.json"
+  },
+  {
+    "id": 207,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0207-wait.json"
+  },
+  {
+    "id": 208,
+    "name": "wait",
+    "args": {
+      "durationMs": 100
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0208-wait.json"
+  },
+  {
+    "id": 209,
+    "name": "wait",
+    "args": {
+      "durationMs": 50
+    },
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0209-wait.json"
+  },
+  {
+    "id": 210,
+    "name": "get_state",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0210-get_state.json"
+  },
+  {
+    "id": 211,
+    "name": "close_session",
+    "args": {},
+    "file": "/private/tmp/johansson-town-final-20261004/output/mcp-izakaya-items-tour/calls/0211-close_session.json"
+  }
+]

@@ -1,0 +1,146 @@
+/* ==== Contextual controls and icons (context-controls.css) ==== */
+/* Quiet exploration HUD; detailed information and settings live in the menu. */
+#hud .placard{border:0;box-shadow:none;background:transparent;padding:3px 0;max-width:65vw}
+#hud .placard b{color:#f4ead3;font-size:12px;text-shadow:0 1px 4px #000;letter-spacing:.08em}
+#hud .placard small,#hud .timecard{display:none}
+#hud #clock{font-size:15px;padding:4px 8px;border-radius:12px;box-shadow:none;background:#132b35b8;border:0}
+
+@media(pointer:coarse){
+ #hud #prompt{display:none}
+ /* Seated opening: show the Stand prompt so touch matches desktop (touch-ui still labels #act). */
+ body.hud-seated #hud #prompt{
+  display:block;opacity:1;bottom:calc(env(safe-area-inset-bottom) + 118px);
+  max-width:min(70vw,280px);font-size:13px;letter-spacing:.02em;text-align:center;
+ }
+ #run{bottom:calc(env(safe-area-inset-bottom) + 140px)}
+ #drink{bottom:calc(env(safe-area-inset-bottom) + 140px)}
+ #hud #subtitle{bottom:calc(env(safe-area-inset-bottom) + 210px);font-size:14px}
+}
+
+/* Run and Jump share a layout container: separate absolute offsets can overlap.
+   dual-controls.css lays this out as a right-hand row; this is the fallback. */
+@media(pointer:coarse){
+ #movementActions{position:absolute;right:max(20px,env(safe-area-inset-right));bottom:max(96px,calc(env(safe-area-inset-bottom) + 84px));display:grid;grid-template-rows:48px 70px;gap:14px;width:84px;justify-items:center;pointer-events:none}
+ #movementActions #run,#movementActions #jump{position:static;inset:auto;transform:none;margin:0;pointer-events:auto}
+ #movementActions #run{grid-row:1;width:84px;height:48px;min-height:48px}
+ #movementActions #jump{grid-row:2;width:70px;height:70px}
+}
+@media(pointer:coarse) and (max-height:520px){
+ #movementActions{bottom:max(72px,calc(env(safe-area-inset-bottom) + 62px));right:max(108px,calc(env(safe-area-inset-right) + 98px));grid-template-rows:44px 62px;gap:12px}
+ #movementActions #run{height:44px;min-height:44px}
+ #movementActions #jump{width:62px;height:62px}
+}
+
+/* Contextual touch controls fade rather than snap.
+   display:none removes a button mid-tap and shifts what sits under the thumb; the
+   fade keeps the target in place while it leaves, and pointer-events stops a faded
+   control from swallowing a tap meant for the world behind it. */
+#act,#run,#jump,#drink{transition:opacity .16s ease,transform .16s ease}
+#act.control-off,#run.control-off,#jump.control-off,#drink.control-off{
+ opacity:0;transform:scale(.82);pointer-events:none!important}
+
+/* The stick used to be painted on the view the whole time, so it dimmed when nothing
+   was happening. It now draws nothing at all until a thumb is down — see
+   src/input/virtual-joystick.js — so there is no idle state left to dim. */
+
+@media(prefers-reduced-motion:reduce){
+ #act,#run,#jump,#drink,#mobile .stick-base{transition:none}
+}
+
+/* ---- Icons (src/ui/icons.js, src/ui/hud-icons.js) ----------------------------------
+   One line-drawn set on every control. With a mouse the top buttons read icon + word;
+   on a touch screen they are icon-only rounds sized for a thumb. Whatever is not needed
+   right now is not on screen: the bag appears once something is in it, the thumb
+   buttons appear with what they are for, and the top rail fades back while you walk. */
+.ui-icon{display:block;flex:0 0 auto}
+.icon-btn::before{content:"";display:inline-block;width:18px;height:18px;margin-right:8px;vertical-align:-4px;background:currentColor;
+ -webkit-mask:var(--icon) center/contain no-repeat;mask:var(--icon) center/contain no-repeat}
+#hud #prompt.has-icon::before{content:"";display:inline-block;width:18px;height:18px;margin-right:9px;vertical-align:-4px;background:currentColor;
+ -webkit-mask:var(--icon) center/contain no-repeat;mask:var(--icon) center/contain no-repeat}
+/* The bag: at the foot of the top rail, with a count. */
+#hud #bagButton{pointer-events:auto;position:absolute;right:max(14px,env(safe-area-inset-right));top:max(252px,calc(env(safe-area-inset-top) + 246px));
+ display:flex;align-items:center;gap:8px;min-height:40px;padding:7px 14px;border:1px solid #e6dbb955;border-radius:20px;background:#173238e8;color:#f4ead3;
+ font:700 12px/1 "Avenir Next",system-ui,sans-serif;letter-spacing:.04em;cursor:pointer;transition:opacity .2s ease,transform .2s ease}
+#hud #bagButton::before{content:none}
+#hud #bagButton .ui-icon{width:18px;height:18px}
+#hud #bagButton .bag-count{min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#f2c14e;color:#1c2f33;font:800 11px/18px system-ui;text-align:center}
+#hud #bagButton.control-off{opacity:0;transform:scale(.8);pointer-events:none}
+#hud #bagButton.hidden{display:none}
+.touch-controls #drink{display:flex;align-items:center;gap:8px}
+.touch-controls #drink .ui-icon,.touch-controls #run .ui-icon{width:20px;height:20px}
+.touch-controls #run{display:flex;align-items:center;justify-content:center;gap:6px;font:800 11px/1 system-ui;letter-spacing:.06em}
+.touch-controls #jump .jump-glyph .ui-icon{width:24px;height:24px}
+.touch-controls #act .act-glyph .ui-icon{width:32px;height:32px;margin:0 auto 3px}
+.touch-controls #act .act-glyph{display:block;line-height:0}
+@media(pointer:coarse){
+ #hud #cameraButton,#hud #viewButton,#hud #movesButton,#hud #bagButton{
+  width:48px;height:48px;min-height:48px;padding:0;border-radius:50%;display:grid;place-items:center;font-size:0!important;letter-spacing:0}
+ #hud #cameraButton::before,#hud #viewButton::before,#hud #movesButton::before{width:22px;height:22px;margin:0}
+ #hud #bagButton .ui-icon{width:22px;height:22px;grid-area:1/1}
+ #hud #bagButton .bag-label{display:none}
+ #hud #bagButton .bag-count{position:absolute;top:-3px;right:-3px;font-size:11px}
+ #exitRoomButton.icon-btn{display:flex;align-items:center;gap:0;font-size:0!important;min-height:48px;padding:0 16px 0 14px}
+ #exitRoomButton.icon-btn::before{width:22px;height:22px;margin:0 8px 0 0}
+ #exitRoomButton.icon-btn::after{content:"Exit";font-size:15px;font-weight:800}
+ /* Walking: the rail steps back so the street has the screen. */
+ body.hud-moving #hud .icon-btn,body.hud-moving #exitRoomButton{opacity:.28;transition:opacity .3s ease}
+}
+/* The bag tray: a grid of what you carry. */
+#activity.bag-view .bag-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:10px;margin:4px 0 18px}
+#activity.bag-view .bag-tile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:7px;min-height:104px;padding:14px 8px 10px;
+ border:2px solid #e3d3b2;border-radius:16px;background:#fffdf6;color:#284b44;font:700 12px/1.25 "Avenir Next",system-ui,sans-serif;text-align:center;cursor:pointer;
+ box-shadow:0 3px 0 #d9c7a2;transition:transform .12s ease}
+#activity.bag-view .bag-tile:active{transform:translateY(2px);box-shadow:0 1px 0 #d9c7a2}
+#activity.bag-view .bag-tile .ui-icon{width:34px;height:34px;color:#2f6a5d}
+#activity.bag-view .bag-n{position:absolute;top:6px;right:8px;font-size:12px;color:#9b6a2b}
+#activity.bag-view .bag-hero{display:grid;place-items:center;width:92px;height:92px;margin:0 auto 14px;border-radius:50%;background:#e7f1e4;color:#2f6a5d}
+#activity.bag-view .bag-hero .ui-icon{width:52px;height:52px}
+@media(prefers-reduced-motion:reduce){#hud #bagButton,#activity.bag-view .bag-tile{transition:none}}
+@media(max-height:520px){
+ #activity.bag-view .bag-hero{width:58px;height:58px;margin:0 auto 8px}
+ #activity.bag-view .bag-hero .ui-icon{width:32px;height:32px}
+ #activity.bag-view .bag-tile{min-height:84px;padding:10px 6px 8px}
+ #activity.bag-view .bag-grid{grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;margin-bottom:12px}
+}
+
+/* ==== Living-town HUD details (living-town.css) ==== */
+/* Warm paper and lacquer: compact controls, generous touch targets. */
+:root{--town-cream:#fff2d5;--town-ink:#493e43;--town-red:#b74e56;--town-green:#41776b}
+
+#activity .activity-card{background:#fff4db;border-color:#e4be95;color:#493e43;border-radius:24px;box-shadow:0 6px 0 #553f3930,0 16px 48px #251a2230}
+#activity #activityActions{gap:9px}
+#activity #activityActions button{min-height:46px;background:#f5dfbe;color:#493e43;border:1px solid #ddb990;border-radius:15px;text-transform:none;letter-spacing:0;box-shadow:0 3px 0 #d5af8540;transition:transform .12s,background .12s}
+#activity #activityActions button:hover{background:#f5c9b0;transform:translateY(-2px)}
+#activity #activityActions button:active{transform:translateY(1px)}
+#activity #activityActions button:focus-visible{outline:3px solid #41776b;outline-offset:3px}
+#activity #activityTitle{color:#8d4850;letter-spacing:0;text-transform:none}
+#movementActions #run{background:#fff1d5;color:#704c4b;border:2px solid #dfb982;box-shadow:0 3px 0 #54413a55;border-radius:18px}
+#movementActions #run[aria-pressed=true]{background:#b65059;color:#fff7e7}
+#movementActions #jump{background:#487c76;color:#fff3d8;border:2px solid #aad0b0;box-shadow:0 4px 0 #273e4055}
+#act{background:#bd6261;border:2px solid #ffdaad;color:#fff7df;box-shadow:0 4px 0 #633d4155}
+#hud #subtitle{background:#fff2dbeb;color:#4c4141;border:1px solid #dbbe91;border-radius:18px;padding:12px 18px;text-shadow:none;max-width:min(560px,86vw)}
+:is(#exitRoomButton,#enterBuildingButton){position:fixed;left:max(16px,env(safe-area-inset-left));top:max(86px,calc(env(safe-area-inset-top) + 76px));z-index:90;min-height:48px;padding:12px 18px;border:2px solid #fff6de;border-radius:18px;background:#a94435;color:#fff8e9;font:800 15px system-ui;letter-spacing:0;box-shadow:0 4px 0 #65382c;cursor:pointer}
+:is(#exitRoomButton,#enterBuildingButton):focus-visible{outline:3px solid #f7cd6c;outline-offset:4px}
+
+@media(prefers-reduced-motion:reduce){#activity #activityActions button{transition:none}}
+@media(pointer:coarse) and (max-width:430px){#movementActions{right:100px;width:74px}#movementActions #run{width:74px}#act{right:14px;width:76px;height:76px}}
+
+#hud #waypoint{position:fixed;pointer-events:auto;top:max(108px,calc(env(safe-area-inset-top) + 102px));left:max(14px,env(safe-area-inset-left));max-width:calc(100vw - 28px);min-height:44px;padding:10px 14px;border:2px solid #eed1ac;border-radius:15px;background:#fff2dbe8;color:#704d4e;font:700 13px system-ui;cursor:pointer}
+#hud #waypoint:focus-visible{outline:3px solid #f7cd6c;outline-offset:3px}
+
+/* One nearby exchange; never captures touch input or competes with menus. */
+.neighbour-chat{position:fixed;z-index:12;pointer-events:none;width:210px;max-width:58vw;padding:9px 12px;background:#fff3d9;color:#3d3530;border:2px solid #b59670;border-radius:16px;box-shadow:0 3px 0 #4a342333;transform:translate(-50%,-100%);font:13px/1.35 system-ui,sans-serif;text-align:left}
+.neighbour-chat[hidden]{display:none}
+.neighbour-chat strong{display:block;font-size:11px;color:#925443;margin-bottom:3px}
+.neighbour-chat span{display:block}
+.neighbour-chat:after{content:'';position:absolute;left:50%;bottom:-7px;width:10px;height:10px;background:#fff3d9;border-right:2px solid #b59670;border-bottom:2px solid #b59670;transform:rotate(45deg)}
+
+/* Door action occupies the free left rail, below location and navigation. */
+:is(#exitRoomButton,#enterBuildingButton){top:auto;bottom:max(24px,env(safe-area-inset-bottom));left:max(16px,env(safe-area-inset-left));border:1px solid #d4c49b;border-radius:14px;background:#173238ed;color:#fff4dd;box-shadow:none;font-size:13px;min-height:48px}
+:is(#exitRoomButton,#enterBuildingButton).hidden{display:none!important}
+@media(pointer:coarse){:is(#exitRoomButton,#enterBuildingButton){top:max(158px,calc(env(safe-area-inset-top) + 148px));bottom:auto;max-width:calc(100vw - 88px)}}
+body.inspecting :is(#exitRoomButton,#enterBuildingButton),body.conversation-open :is(#exitRoomButton,#enterBuildingButton){visibility:hidden}
+/* A letter (src/mail/post.js) reads on its sender's own writing paper, in their ink. */
+#activity.letter-view #activityBody{background:var(--letter-paper) center top/cover no-repeat;border-radius:10px;padding:22px 22px 18px;color:var(--letter-ink,#2f3a36);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+#activity.letter-view #activityBody p{white-space:pre-line;line-height:1.55;margin:0}
+#activity.letter-view:not(.conversation) .activity-card{max-height:calc(100dvh - 48px)}

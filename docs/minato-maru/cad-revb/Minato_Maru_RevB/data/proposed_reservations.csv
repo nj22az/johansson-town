@@ -1,0 +1,3 @@
+id,name,min,max,status,mass_t
+ME-P,Proposed engine + gear reservation,"[9350, 800, 900.0]","[12050, 2300, 2550.0]","PROPOSED - fictional machinery physical reservation, no maker approval",3.6
+ME-S,Proposed engine + gear reservation,"[9350, -2300, 900.0]","[12050, -800, 2550.0]","PROPOSED - fictional machinery physical reservation, no maker approval",3.6

@@ -1,0 +1,131 @@
+{
+  "physicalDevice": false,
+  "errors": [],
+  "captures": [
+    "desktop-park-gajumaru.png",
+    "desktop-school-fukugi.png",
+    "desktop-retained-cherry.png",
+    "desktop-kitano-palm.png",
+    "desktop-kitano-broadleaf.png",
+    "desktop-kitano-pandanus.png",
+    "desktop-kitano-banana.png",
+    "phone-width-park-gajumaru.png",
+    "phone-width-school-fukugi.png",
+    "phone-width-retained-cherry.png",
+    "phone-width-kitano-palm.png",
+    "phone-width-kitano-broadleaf.png",
+    "phone-width-kitano-pandanus.png",
+    "phone-width-kitano-banana.png"
+  ],
+  "trees": [
+    {
+      "name": "Coconut palms",
+      "count": 26,
+      "design": {
+        "family": "palm",
+        "lod": "near",
+        "options": {
+          "height": 8.5,
+          "bow": 1.8
+        },
+        "revision": "A1"
+      },
+      "triangles": 2196
+    },
+    {
+      "name": "Coconut palms",
+      "count": 32,
+      "design": {
+        "family": "palm",
+        "lod": "near",
+        "options": {
+          "height": 10,
+          "bow": 3
+        },
+        "revision": "A1"
+      },
+      "triangles": 2196
+    },
+    {
+      "name": "Coconut palms",
+      "count": 17,
+      "design": {
+        "family": "palm",
+        "lod": "near",
+        "options": {
+          "height": 7,
+          "bow": 1
+        },
+        "revision": "A1"
+      },
+      "triangles": 2196
+    },
+    {
+      "name": "Rainforest trees",
+      "count": 29,
+      "design": {
+        "family": "broadleaf",
+        "lod": "near",
+        "options": {
+          "height": 8,
+          "width": 6.8,
+          "depth": 6.12
+        },
+        "revision": "A1"
+      },
+      "triangles": 1818
+    },
+    {
+      "name": "Rainforest trees",
+      "count": 26,
+      "design": {
+        "family": "broadleaf",
+        "lod": "near",
+        "options": {
+          "height": 10,
+          "width": 8,
+          "depth": 7.2
+        },
+        "revision": "A1"
+      },
+      "triangles": 1818
+    },
+    {
+      "name": "Rainforest trees",
+      "count": 27,
+      "design": {
+        "family": "broadleaf",
+        "lod": "near",
+        "options": {
+          "height": 7,
+          "width": 6,
+          "depth": 5.4
+        },
+        "revision": "A1"
+      },
+      "triangles": 1818
+    },
+    {
+      "name": "Adan (pandanus)",
+      "count": 31,
+      "design": {
+        "family": "pandanus",
+        "lod": "near",
+        "options": {},
+        "revision": "A1"
+      },
+      "triangles": 3180
+    },
+    {
+      "name": "Banana plants",
+      "count": 34,
+      "design": {
+        "family": "banana",
+        "lod": "near",
+        "options": {},
+        "revision": "A1"
+      },
+      "triangles": 1350
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+SHIOSAI HOUSEBOAT — SCREENSHOT AUDIT
+18 October 2026
+
+VERDICT
+Gameplay integration passes the exercised route and schedule checks. Visual acceptance is withheld: the pillow does not support the sleeping resident, the stored futon is hidden inside a solid cupboard, and the third-person cabin camera gives a poor view of the interior.
+
+TESTED BUILD AND CAPTURE METHOD
+Game commit: a42fad65dc19c577f7f9b5707be152618aa92180, including the recent iPhone cel-shading update.
+Compiled runtime source SHA-256: f06fde681f926d2725622a9d6146dc8c55845553f77e31886460eaa7f6ee5c68.
+The published runtime stamp was fetched and matches this tested stamp.
+Full game served from this checkout in GitHub Actions, using Chromium software WebGL at 1280 x 800 and 390 x 844. Phone captures use mobile/touch configuration and an iPhone user-agent, but are still Chromium. The separate geometry images use the production boat, resident and sleep routine under diagnostic lighting; they do not represent the game's lighting or cel-shading pipeline.
+
+FINDINGS
+
+1. Pillow is behind the sleeping head — visual defect, medium priority.
+Evidence: geometry/04-sofa-sleep-overhead.png; geometry/06-cabin-aisle.png; game/phone-sleep-overhead.png.
+The pillow is clearly separated from the head. Its longitudinal centre is about 0.6 m beyond the resident's head centre. The resident's body is on the sofa, but the pillow is not functioning as head support.
+Source: src/world/fujita-houseboat.js, Creased sofa pillow; HOUSEBOAT.bed; the actual Mr Fujita avatar measurements.
+Required correction: align the pillow to the final sleeping head position, including its height and soft contact, then inspect overhead and side views again.
+
+2. Folded futon is not visible — visual defect, medium priority.
+Evidence: geometry/04-sofa-sleep-overhead.png and geometry/06-cabin-aisle.png.
+The radio stands on a solid wooden cuboid. The folded futon and quilt meshes sit inside that opaque cuboid. Mesh-name and existence checks pass, but those items cannot be seen through the intended cupboard opening because no opening exists.
+Source: src/world/fujita-houseboat.js, Futon cupboard, Folded futon, Stored futon quilt.
+Required correction: use separate sides, back and shelves with an open front; verify that the folded bedding can actually be seen from the aisle without introducing new obstructions.
+
+3. Third-person cabin view is cramped and obstructed — visual usability defect, medium priority.
+Evidence: camera/phone-normal-cabin-camera.png and camera/desktop-normal-cabin-camera.png, compared with the alternate-camera images.
+The roof is correctly hidden and both first- and third-person lens probes report blocked=false. Nevertheless, the close third-person camera fills a large part of the view with the player's head. A ceiling fitting also occupies the central sightline, conspicuously so on the phone-sized frame. This is a composition/visibility problem rather than evidence of a camera penetrating a solid wall. First-person view shows the cabin much more clearly.
+Required correction: review houseboat-specific camera distance/framing and the treatment of roof-mounted fittings during cutaway; repeat real movement and both view modes after any change.
+
+4. Night-time furnishings are hard to read — lower-priority polish concern.
+Evidence: game/desktop-sleep-night.png and game/phone-sleep-night.png.
+The sleeping cabin is very dark, particularly on the desktop capture. This is not a failed render or missing geometry. Review whether restrained material/ambient treatment could preserve the sleeping atmosphere while allowing the resident and furnishings to remain legible; avoid reintroducing expensive lights or render targets on iPhone.
+
+5. Optional character polish.
+Fujita sleeps with his work boots on. This is visible in both the diagnostic and game overhead views. It is not a collision failure; decide whether this is intentional characterisation before changing it.
+
+PASSED / OBSERVED
+- Loaded hull, extended stern, cabin and deck form a coherent exterior in the captured views.
+- The desktop control test reached all eight waypoints across the gangway, through the cabin entrance and aisle, and back to the pier.
+- Both viewport runs reached the sleeping state after 23:30 and the watching state after the 06:00 return.
+- The resident's sleeping body is on the sofa; no obvious wall or galley penetration appears in the valid sleeping close-ups.
+- Roof cutaway is active with the player inside, in both normal camera modes.
+- Both tested first-person and third-person camera lens positions report blocked=false.
+- Captured scene transforms were finite. Recorded browser/page/request errors were empty in the full-game and corrected-camera reports.
+- Earlier numerical cargo-clearance and runtime/source tests remain separate evidence; screenshots alone do not prove clearance throughout every ship movement.
+
+CAPTURE QUALITY CONTROL
+Four initial captures are excluded from this delivery: desktop/phone sleep-staged-daylight and desktop/phone cabin-pedestrian. The attempted staging changed the routine state, and the nominal pedestrian capture did not advance simulation enough to restore the normal camera. An apparent head-through-roof image in that sequence is therefore not used as proof of a normal-play defect. The camera/ captures replace those invalid camera views. The diagnostic geometry images are explicitly labelled as isolated, fixed-lighting views.
+
+PACKAGE CONTENTS
+20 accepted full-game screenshots in game/ and camera/; 6 diagnostic images in geometry/; their raw capture reports; this audit; and the overview contact sheet. The raw original report retains records of the four excluded images for transparency, but those images are not included.
+
+LIMITATIONS
+No physical iPhone, Safari/WebKit device run, measured frame-rate acceptance, flicker study or long-duration stability test is claimed. Phone-sized Chromium screenshots do not establish physical Safari acceptance. No game source fix was applied as part of this screenshot audit; the findings above remain to be corrected.
+
+REPRODUCTION / EVIDENCE RUNS
+Full-game capture: GitHub Actions run 39152409753.
+Isolated geometry: GitHub Actions run 39152996601.
+Corrected normal camera: GitHub Actions run 39153372104.
+Capture branch: codex/houseboat-visual-audit.

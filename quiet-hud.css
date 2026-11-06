@@ -1,0 +1,102 @@
+/* The quiet HUD (the owner, 20 October 2026: "this nice picture is almost ruined by the ui"). The town has the screen;
+   the HUD is a few small translucent things at its edges, in one set of tokens for the web and the Linux edition (both
+   load this page). Loaded last, so it is the HUD's final word over the older sheets. Behaviour: src/ui/quiet-hud.js.
+
+   - One chip top left: the place and the time ("Minato Machi · 14:11").
+   - The town book and its button: town-book.css.
+   - The next action: a compact pill at the bottom centre, fading in and out (hidden rail: context-actions.js).
+   - No Run button: on touch, pushing the stick past about 85% runs (src/input/touch-feel.js createAutoRun); Shift,
+     and the controller's bumper, still run. Jump, when it shows, is a small button in the bottom-right corner.
+   - html.hud-idle: a few seconds without input and it all fades low; any input brings it back.
+   - html.hud-photo: photo mode ("Clean view" in the town book, or H): nothing but the picture; a tap brings it back.
+
+   Contrast: --hud-ink on --hud-surface is at least 4.5:1, and --hud-accent at least 3:1, whether the scene behind is
+   black, white or sky blue (tests/quiet-hud.test.mjs computes it from these values). */
+:root{
+ --hud-surface:rgb(255 250 238 / .8);
+ --hud-surface-strong:rgb(255 250 238 / .94);
+ --hud-edge:rgb(255 255 255 / .55);
+ --hud-ink:#1f2a25;
+ --hud-ink-soft:#4a554f;
+ --hud-accent:#0b6e3c;
+ --hud-blur:blur(14px) saturate(1.3);
+ --hud-font:var(--line-font,system-ui,sans-serif);
+ --hud-fade:180ms;
+ --hud-idle:.3;
+ --hud-dim:1;
+ --hud-top:max(16px,env(safe-area-inset-top));
+ --hud-bottom:max(16px,calc(env(safe-area-inset-bottom) + 8px));
+}
+/* Visible actions take taps before the overlapping movement thumb zone (mobile: z13). */
+.touch-controls #hud{z-index:14}
+html.hud-idle{--hud-dim:var(--hud-idle)}
+html.hud-photo{--hud-dim:0}
+
+/* The chip: place and time together. */
+#hud .topbar{display:inline-flex;align-items:center;gap:0;height:32px;max-width:calc(100vw - 104px - env(safe-area-inset-left) - env(safe-area-inset-right));
+ padding:0 12px;border:1px solid var(--hud-edge);border-radius:16px;background:var(--hud-surface);color:var(--hud-ink);
+ -webkit-backdrop-filter:var(--hud-blur);backdrop-filter:var(--hud-blur);box-shadow:none;
+ opacity:var(--hud-dim);transition:opacity var(--hud-fade) ease}
+#hud .topbar :is(.placard,.status-stack,#clock){display:flex;align-items:center;min-width:0;margin:0;padding:0!important;border:0!important;border-radius:0!important;
+ background:transparent!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;max-width:none!important;color:var(--hud-ink)}
+#hud .topbar .placard{flex:0 1 auto;overflow:hidden}
+#hud .topbar #placeSub{display:none}
+#hud .topbar #place{display:block;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--hud-ink);
+ font:600 13px/1 var(--hud-font);letter-spacing:.01em;text-transform:none;text-shadow:none}
+#hud .topbar #clock{flex:none;font:600 13px/1 var(--hud-font);font-variant-numeric:tabular-nums;letter-spacing:.01em;color:var(--hud-ink)}
+#hud .topbar #clock::before{content:"·";margin:0 6px;color:var(--hud-ink-soft)}
+body.conversation-open #hud .topbar{opacity:0}
+
+
+#hud #waypoint{border:1px solid var(--hud-edge);border-radius:22px;background:var(--hud-surface);color:var(--hud-ink);box-shadow:none;
+ -webkit-backdrop-filter:var(--hud-blur);backdrop-filter:var(--hud-blur);font:600 14px/1.3 var(--hud-font);opacity:var(--hud-dim);transition:opacity var(--hud-fade) ease}
+
+/* The next action: a pill at the bottom centre, the primary one nearest the thumb. The rail fades rather than
+   disappearing (context-actions.js keeps the last words on it while it goes), so nothing jumps. */
+#hud #contextActions{--hud-on:1;left:50%;right:auto;bottom:var(--hud-bottom);transform:translateX(-50%);width:max-content;
+ max-width:min(560px,calc(100vw - 136px));flex-direction:row;flex-wrap:wrap-reverse;justify-content:center;align-items:center;gap:8px;visibility:visible}
+#hud #contextActions[hidden]{display:flex!important;--hud-on:0;visibility:hidden;transition:visibility 0s linear var(--hud-fade)}
+#hud #contextActions>button{display:inline-flex;align-items:center;gap:8px;width:auto;max-width:100%;height:auto;min-height:44px;padding:9px 16px 9px 12px;
+ border:1px solid var(--hud-edge);border-radius:22px;background:var(--hud-surface);color:var(--hud-ink);box-shadow:none;
+ -webkit-backdrop-filter:var(--hud-blur);backdrop-filter:var(--hud-blur);font:600 14px/1.25 var(--hud-font)!important;text-align:left;
+ opacity:calc(var(--hud-on) * var(--hud-dim));transition:opacity var(--hud-fade) ease,background .12s ease}
+#hud #contextActions>button.context-primary{order:-1;min-height:44px;background:var(--hud-surface);border-color:var(--hud-edge);color:var(--hud-ink)}
+#hud #contextActions>button:hover,#hud #contextActions>button.context-primary:hover{background:var(--hud-surface-strong)}
+#hud #contextActions>button:focus-visible,#hud #contextActions>button.context-primary:focus-visible{outline:2px solid var(--hud-accent);outline-offset:2px;box-shadow:none}
+#hud #contextActions[hidden]>button{pointer-events:none}
+#hud #contextActions .context-glyph{flex:none;color:var(--hud-accent)}
+#hud #contextActions .context-glyph .ui-icon{width:20px;height:20px;flex-basis:20px}
+#hud #contextActions .context-label{min-width:0;font:600 14px/1.25 var(--hud-font);overflow-wrap:normal;color:var(--hud-ink)}
+#hud #contextActions kbd{flex:none;margin-left:2px;padding:1px 5px;border:1px solid var(--hud-ink-soft);border-radius:5px;opacity:1;color:var(--hud-ink-soft);font:600 11px/1.3 var(--hud-font)}
+#hud #contextActionStatus{order:-2;flex-basis:100%;width:max-content;margin:0 auto;padding:7px 12px;border:1px solid var(--hud-edge);border-radius:16px;background:var(--hud-surface);
+ color:var(--hud-ink);box-shadow:none;-webkit-backdrop-filter:var(--hud-blur);backdrop-filter:var(--hud-blur);font:500 13px/1.3 var(--hud-font);opacity:calc(var(--hud-on) * var(--hud-dim))}
+
+/* Captions keep to their own place: under the chip on touch, above the action pill with a mouse. */
+#hud #subtitle{border:1px solid var(--hud-edge);border-radius:14px;background:var(--hud-surface-strong);color:var(--hud-ink);box-shadow:none;
+ -webkit-backdrop-filter:var(--hud-blur);backdrop-filter:var(--hud-blur)}
+@media(pointer:coarse){html.touch-controls body #hud #subtitle{top:calc(var(--hud-top) + 44px)}}
+@media(pointer:fine){body #hud #subtitle{left:50%;right:auto;transform:translateX(-50%);bottom:calc(var(--hud-bottom) + 60px);width:min(560px,calc(100vw - 32px));max-width:calc(100vw - 32px)}}
+
+/* Touch: no Run button over the picture, a small Jump in the corner, a quiet stick. */
+#run{display:none!important}
+.touch-controls #mobile #movementActions{left:auto;right:max(16px,env(safe-area-inset-right));bottom:var(--hud-bottom);width:auto;gap:0;display:flex;
+ opacity:var(--hud-dim);transition:opacity var(--hud-fade) ease}
+.touch-controls #mobile #movementActions #jump{display:grid;place-items:center;width:44px;height:44px;min-height:44px;padding:0;border:1px solid var(--hud-edge);border-radius:22px;
+ background:var(--hud-surface);color:var(--hud-ink);box-shadow:none;-webkit-backdrop-filter:var(--hud-blur);backdrop-filter:var(--hud-blur)}
+.touch-controls #mobile #movementActions #jump .jump-glyph .ui-icon{width:20px;height:20px;margin:0}
+.touch-controls #mobile #movementActions #jump .jump-label{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.touch-controls #mobile .stick-base{border:1px solid var(--hud-edge);background:rgb(255 250 238 / .28);box-shadow:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.touch-controls #mobile .stick-knob{border:1px solid var(--hud-edge);background:var(--hud-surface-strong);box-shadow:none}
+
+/* Idle: fade slowly, come back quickly (the shorter transition applies once the class is gone). */
+html.hud-idle :is(#hud .topbar,#hud #directoryButton,#hud #waypoint,#hud #contextActions>button,#hud #contextActionStatus,.touch-controls #mobile #movementActions){transition-duration:.9s}
+
+/* Photo mode: nothing but the picture. The stick still walks and a drag still looks round; a tap brings it back. */
+html.hud-photo #hud{visibility:hidden;transition:visibility 0s linear var(--hud-fade)}
+html.hud-photo #hud *{pointer-events:none!important}
+html.hud-photo #mobile :is(.stick-base,#movementActions){visibility:hidden!important}
+
+@media(prefers-reduced-motion:reduce){
+ :is(#hud .topbar,#hud #directoryButton,#hud #waypoint,#hud #contextActions>button,#hud #contextActionStatus,.touch-controls #mobile #movementActions){transition:none!important}
+ #hud #contextActions[hidden],html.hud-photo #hud{transition:none}
+}

@@ -1,0 +1,24 @@
+✔ the comic sets carry the game’s own seats, with their height and facing (1.134693ms)
+✔ residents sit on real seats a conversation apart, facing the camera (13.350804ms)
+✔ a seated resident stays on the seat through any gesture (349.840076ms)
+✔ every place’s regulars are the live cast, every resident is a regular somewhere, and the police station is a place (57.271326ms)
+✔ every genre tells a whole story with every resident at every real place (319.598263ms)
+✔ answers only follow the questions they fit (0.73042ms)
+✔ recipes, courses and overheard lines are complete (29.847002ms)
+✔ a day always tells the same stories, and different days differ (6.000263ms)
+✔ every place has its backdrop from the game (17.418305ms)
+✔ panels change camera, and twist endings happen (12.7679ms)
+✔ the Sunday page lays panels out in rows, establishing shots and stares across the page (30.144689ms)
+✔ every place was captured from the game with depth, a camera and somewhere to stand (43.832523ms)
+✔ published runtime matches the current source rather than an older build (418.868672ms)
+✔ published page uses one compiled audio/boot graph with local hashed dependencies (110.055402ms)
+✔ every stylesheet link carries a hash of the file it points at (14.400222ms)
+✔ delivered chunks contain no retired combat handlers, menus, damage simulation or rewards (89.628528ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 730.005149

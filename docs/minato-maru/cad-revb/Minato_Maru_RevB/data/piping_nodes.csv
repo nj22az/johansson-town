@@ -1,0 +1,197 @@
+system,id,kind,label,tag,space,X_mm,Y_mm,Z_mm,anchorStatus
+fuel,bunker,shore,"Bunkering connection, port car deck",10EGA10 AA501,car-deck,,,,No physical model port
+fuel,storeP,tank,Fuel storage P · 7.5 m³,10EGB10 BB001,er-double-bottom,12300.0,2250.0,920.0,Model port coordinate
+fuel,storeS,tank,Fuel storage S · 7.5 m³,10EGB10 BB002,er-double-bottom,12300.0,-2250.0,920.0,Model port coordinate
+fuel,vP,valve,Suction P,10EGC10 AA501,engine-room,12300.0,2250.0,1250.0,Model port coordinate
+fuel,vS,valve,Suction S,10EGC10 AA502,engine-room,12300.0,-2250.0,1250.0,Model port coordinate
+fuel,tp1,pump,Fuel transfer pump No.1 · 1.5 kW · 2 m³/h,10EGC10 AP001,aux-room,14200.0,3880.0,1400.0,Model port coordinate
+fuel,tp2,pump,Fuel transfer pump No.2 · 1.5 kW · 2 m³/h,10EGC10 AP002,aux-room,14550.0,3880.0,1400.0,Model port coordinate
+fuel,purifier,purifier,Fuel purifier JF-1 · 250 L/h,10EGD10 AT001,engine-room,12000.0,3710.0,1900.0,Model port coordinate
+fuel,sludge,tank,Sludge tank · 0.3 m³,10EGD10 BB002,er-double-bottom,13000.0,2980.0,920.0,Model port coordinate
+fuel,service,tank,Service tank · 1.5 m³ · gauge glass · level alarm,10EGD20 BB001,engine-room,13100.0,-3230.0,2200.0,Model port coordinate
+fuel,overflow,valve,Overflow to storage P,10EGD20 AA401,engine-room,12800.0,-3230.0,2400.0,Model port coordinate
+fuel,qcv,qcv,Quick-closing valve · wire pull from the CO₂ room,10EGD20 AA201,engine-room,13600.0,-3080.0,2400.0,Model port coordinate
+fuel,lvl,sensor,Level alarm (FUEL LEVEL on the console),10EGD20 CL001,engine-room,,,,No physical model port
+fuel,fuel-mainP,engine,"Port main engine: filters, engine-driven feed pump, injection pumps",11XJN10 AT001,engine-room,10000.0,1212.5,2050.0,Model port coordinate
+fuel,fuel-mainS,engine,"Starboard main engine: filters, engine-driven feed pump, injection pumps",12XJN10 AT001,engine-room,10000.0,-1212.5,2050.0,Model port coordinate
+fuel,fuel-gen1,engine,"Generator No.1 engine: filters, engine-driven feed pump, injection pumps",13XJN10 AT001,aux-room,15300.0,750.0,2000.0,Model port coordinate
+fuel,fuel-gen2,engine,"Generator No.2 engine: filters, engine-driven feed pump, injection pumps",14XJN10 AT001,aux-room,15300.0,-750.0,2000.0,Model port coordinate
+fuel,return,valve,Return line to the service tank,10EGD20 AA503,engine-room,13000.0,500.0,2400.0,Model port coordinate
+lube,lostore,tank,Lubricating-oil storage · 0.6 m³ · hand pump,10XJV10 BB001,er-double-bottom,9400.0,0,920.0,Model port coordinate
+lube,drums,drum,"Two 200 L drums on their rack, drip tray and taps",10XJV10 BB002,engine-store,,,,No physical model port
+lube,sump-mainP,tank,Port main engine sump,11XJV10 BB003,engine-room,10300.0,1100.0,1300.0,Model port coordinate
+lube,lop-mainP,pump,Engine-driven lube-oil pump,11XJV10 AP001,engine-room,12200.0,1550.0,1200.0,Model port coordinate
+lube,prime-mainP,pump,Priming pump · 0.75 kW (before the first start),11XJV10 AP002,engine-room,12300.0,1280.0,1200.0,Model port coordinate
+lube,lof-mainP,filter,Duplex filter · changed by the hours,11XJV10 AT001,engine-room,12200.0,1690.0,1500.0,Model port coordinate
+lube,loc-mainP,cooler,Lube-oil cooler (sea water),11XJV10 AC001,engine-room,11550.0,1955.0,1600.0,Model port coordinate
+lube,bear-mainP,consumer,"Bearings, camshaft, turbocharger",11XJA10 BR001,engine-room,10900.0,1550.0,2020.0,Model port coordinate
+lube,lop-mainP-p,sensor,LO pressure (LO PRESS on the console; shutdown),11XJV10 CP001,engine-room,,,,No physical model port
+lube,sump-mainS,tank,Starboard main engine sump,12XJV10 BB003,engine-room,10300.0,-1100.0,1300.0,Model port coordinate
+lube,lop-mainS,pump,Engine-driven lube-oil pump,12XJV10 AP001,engine-room,12200.0,-1550.0,1200.0,Model port coordinate
+lube,prime-mainS,pump,Priming pump · 0.75 kW (before the first start),12XJV10 AP002,engine-room,12300.0,-1280.0,1200.0,Model port coordinate
+lube,lof-mainS,filter,Duplex filter · changed by the hours,12XJV10 AT001,engine-room,12200.0,-1410.0,1500.0,Model port coordinate
+lube,loc-mainS,cooler,Lube-oil cooler (sea water),12XJV10 AC001,engine-room,11550.0,-1955.0,1600.0,Model port coordinate
+lube,bear-mainS,consumer,"Bearings, camshaft, turbocharger",12XJA10 BR001,engine-room,10900.0,-1550.0,2020.0,Model port coordinate
+lube,lop-mainS-p,sensor,LO pressure (LO PRESS on the console; shutdown),12XJV10 CP001,engine-room,,,,No physical model port
+lube,sump-gen1,tank,Generator No.1 engine sump,13XJV10 BB003,aux-room,15300.0,1000,1300.0,Model port coordinate
+lube,lop-gen1,pump,Engine-driven lube-oil pump,13XJV10 AP001,aux-room,15280.0,1400.0,1400.0,Model port coordinate
+lube,lof-gen1,filter,Duplex filter · changed by the hours,13XJV10 AT001,aux-room,15280.0,1200.0,1600.0,Model port coordinate
+lube,loc-gen1,cooler,Lube-oil cooler (sea water),13XJV10 AC001,aux-room,15970.0,1600.0,1500.0,Model port coordinate
+lube,bear-gen1,consumer,"Bearings, camshaft, turbocharger",13XJA10 BR001,aux-room,15625.0,1100.0,2000.0,Model port coordinate
+lube,lop-gen1-p,sensor,LO pressure (LO PRESS on the console; shutdown),13XJV10 CP001,aux-room,,,,No physical model port
+lube,sump-gen2,tank,Generator No.2 engine sump,14XJV10 BB003,aux-room,15300.0,-1000,1300.0,Model port coordinate
+lube,lop-gen2,pump,Engine-driven lube-oil pump,14XJV10 AP001,aux-room,15280.0,-1400.0,1400.0,Model port coordinate
+lube,lof-gen2,filter,Duplex filter · changed by the hours,14XJV10 AT001,aux-room,15280.0,-1200.0,1600.0,Model port coordinate
+lube,loc-gen2,cooler,Lube-oil cooler (sea water),14XJV10 AC001,aux-room,15970.0,-1600.0,1500.0,Model port coordinate
+lube,bear-gen2,consumer,"Bearings, camshaft, turbocharger",14XJA10 BR001,aux-room,15625.0,-1100.0,2000.0,Model port coordinate
+lube,lop-gen2-p,sensor,LO pressure (LO PRESS on the console; shutdown),14XJV10 CP001,aux-room,,,,No physical model port
+seawater,chestP,seachest,"Sea chest P (high, under the plates)",10PAB10 AA501,engine-room,13500.0,3630.0,930.0,Model port coordinate
+seawater,chestS,seachest,Sea chest S (low),10PAB10 AA502,engine-room,13500.0,-3630.0,930.0,Model port coordinate
+seawater,strP,strainer,Strainer P · basket Mondays,10PAB10 AT001,engine-room,13500.0,3500.0,1110.0,Model port coordinate
+seawater,strS,strainer,Strainer S,10PAB10 AT002,engine-room,13820.0,3500.0,1110.0,Model port coordinate
+seawater,cross,manifold,Crossover: either chest to every pump,10PAB10 AA503,engine-room,13600.0,3000,1200.0,Model port coordinate
+seawater,swp-mainP,pump,Port main engine: engine-driven sea-water pump,11PAB20 AP001,engine-room,12150.0,1800.0,1600.0,Model port coordinate
+seawater,cac-mainP,cooler,Charge-air cooler,11XJH10 AC001,engine-room,12270.0,1685.0,2000.0,Model port coordinate
+seawater,jwc-mainP,cooler,Jacket-water cooler,11XJG10 AC001,engine-room,11650.0,1977.5,1800.0,Model port coordinate
+seawater,swp-mainS,pump,Starboard main engine: engine-driven sea-water pump,12PAB20 AP001,engine-room,12150.0,-1300.0,1600.0,Model port coordinate
+seawater,cac-mainS,cooler,Charge-air cooler,12XJH10 AC001,engine-room,12270.0,-1685.0,2000.0,Model port coordinate
+seawater,jwc-mainS,cooler,Jacket-water cooler,12XJG10 AC001,engine-room,11650.0,-1977.5,1800.0,Model port coordinate
+seawater,swp-gen1,pump,Generator No.1 engine: engine-driven sea-water pump,13PAB20 AP001,aux-room,15980.0,1500.0,1400.0,Model port coordinate
+seawater,cac-gen1,cooler,Charge-air cooler,13XJH10 AC001,aux-room,15905.0,1700.0,1900.0,Model port coordinate
+seawater,jwc-gen1,cooler,Jacket-water cooler,13XJG10 AC001,aux-room,15280.0,1600.0,1400.0,Model port coordinate
+seawater,swp-gen2,pump,Generator No.2 engine: engine-driven sea-water pump,14PAB20 AP001,aux-room,15980.0,-1500.0,1400.0,Model port coordinate
+seawater,cac-gen2,cooler,Charge-air cooler,14XJH10 AC001,aux-room,15905.0,-1700.0,1900.0,Model port coordinate
+seawater,jwc-gen2,cooler,Jacket-water cooler,14XJG10 AC001,aux-room,15280.0,-1600.0,1400.0,Model port coordinate
+seawater,gs,pump,General-service pump JP-32 · 11 kW · standby cooling through the crossover,10GAA10 AP001,engine-room,11665.0,-3880.0,1400.0,Model port coordinate
+seawater,obP,overboard,Overboard P · non-return,10PAB30 AA504,engine-room,11500.0,3950.0,1500.0,Model port coordinate
+seawater,obS,overboard,Overboard S · non-return,10PAB30 AA505,engine-room,11500.0,-3950.0,1500.0,Model port coordinate
+jacket,exp-mainP,tank,Port main engine: expansion tank with sight glass and low-level alarm,11XJG10 BB001,engine-room,12050.0,1685.0,2450.0,Model port coordinate
+jacket,jwp-mainP,pump,Engine-driven jacket-water pump,11XJG10 AP001,engine-room,12160.0,1300.0,1650.0,Model port coordinate
+jacket,blk-mainP,engine,"Cylinder block, heads, turbocharger",11XJA10 BR002,engine-room,10825.0,1550.0,2020.0,Model port coordinate
+jacket,thermo-mainP,valve,Thermostat · 82 °C,11XJG10 AA601,engine-room,11850.0,1640.0,2400.0,Model port coordinate
+jacket,jwc2-mainP,cooler,Jacket-water cooler (sea water: 8.3),11XJG10 AC001,engine-room,11650.0,1977.5,1800.0,Model port coordinate
+jacket,jwt-mainP,sensor,Water temperature (WATER on the console; shutdown),11XJG10 CT001,engine-room,,,,No physical model port
+jacket,exp-mainS,tank,Starboard main engine: expansion tank with sight glass and low-level alarm,12XJG10 BB001,engine-room,12050.0,-1685.0,2450.0,Model port coordinate
+jacket,jwp-mainS,pump,Engine-driven jacket-water pump,12XJG10 AP001,engine-room,12160.0,-1800.0,1650.0,Model port coordinate
+jacket,blk-mainS,engine,"Cylinder block, heads, turbocharger",12XJA10 BR002,engine-room,10825.0,-1550.0,2020.0,Model port coordinate
+jacket,thermo-mainS,valve,Thermostat · 82 °C,12XJG10 AA601,engine-room,11850.0,-1640.0,2400.0,Model port coordinate
+jacket,jwc2-mainS,cooler,Jacket-water cooler (sea water: 8.3),12XJG10 AC001,engine-room,11650.0,-1977.5,1800.0,Model port coordinate
+jacket,jwt-mainS,sensor,Water temperature (WATER on the console; shutdown),12XJG10 CT001,engine-room,,,,No physical model port
+jacket,exp-gen1,tank,Generator No.1 engine: expansion tank with sight glass and low-level alarm,13XJG10 BB001,aux-room,15625.0,900.0,2200.0,Model port coordinate
+jacket,jwp-gen1,pump,Engine-driven jacket-water pump,13XJG10 AP001,aux-room,15970.0,1300.0,1500.0,Model port coordinate
+jacket,blk-gen1,engine,"Cylinder block, heads, turbocharger",13XJA10 BR002,aux-room,15725.0,1100.0,1900.0,Model port coordinate
+jacket,thermo-gen1,valve,Thermostat · 82 °C,13XJG10 AA601,aux-room,15825.0,1400.0,2050.0,Model port coordinate
+jacket,jwc2-gen1,cooler,Jacket-water cooler (sea water: 8.3),13XJG10 AC001,aux-room,15280.0,1600.0,1400.0,Model port coordinate
+jacket,jwt-gen1,sensor,Water temperature (WATER on the console; shutdown),13XJG10 CT001,aux-room,,,,No physical model port
+jacket,exp-gen2,tank,Generator No.2 engine: expansion tank with sight glass and low-level alarm,14XJG10 BB001,aux-room,15625.0,-900.0,2200.0,Model port coordinate
+jacket,jwp-gen2,pump,Engine-driven jacket-water pump,14XJG10 AP001,aux-room,15970.0,-1300.0,1500.0,Model port coordinate
+jacket,blk-gen2,engine,"Cylinder block, heads, turbocharger",14XJA10 BR002,aux-room,15725.0,-1100.0,1900.0,Model port coordinate
+jacket,thermo-gen2,valve,Thermostat · 82 °C,14XJG10 AA601,aux-room,15825.0,-1400.0,2050.0,Model port coordinate
+jacket,jwc2-gen2,cooler,Jacket-water cooler (sea water: 8.3),14XJG10 AC001,aux-room,15280.0,-1600.0,1400.0,Model port coordinate
+jacket,jwt-gen2,sensor,Water temperature (WATER on the console; shutdown),14XJG10 CT001,aux-room,,,,No physical model port
+bilge,wellERP,well,Bilge well ER aft P,10GMA10 AA501,engine-room,8750.0,1200.0,920.0,Model port coordinate
+bilge,wellERS,well,Bilge well ER aft S,10GMA10 AA502,engine-room,8750.0,-1200.0,920.0,Model port coordinate
+bilge,wellAux,well,Bilge well aux room,10GMA10 AA503,aux-room,18000.0,-3500.0,920.0,Model port coordinate
+bilge,wellShaft,well,Shaft space,10GMA10 AA504,shaft-space,8530.0,-2500.0,1100.0,Model port coordinate
+bilge,wellSG,well,Steering-gear room,10GMA10 AA505,steering-gear,8530.0,-2100.0,1100.0,Model port coordinate
+bilge,manifold,manifold,Bilge and ballast manifold · six valves,10GMA10 AA506,aux-room,16400.0,-3680.0,1400.0,Model port coordinate
+bilge,bp,pump,Bilge pump JP-25 · 3.7 kW · 25 m³/h,10GMA20 AP001,engine-room,11935.0,-3480.0,1150.0,Model port coordinate
+bilge,fbp,pump,Fire and bilge pump No.2 (8.6) · 11 kW,10SGA10 AP002,engine-room,11395.0,-3480.0,1150.0,Model port coordinate
+bilge,emerg,valve,Emergency bilge suction on the port main engine’s sea-water pump,10GMA10 AA507,engine-room,12200.0,1300.0,1200.0,Model port coordinate
+bilge,ows,separator,Oily-water separator JO-15 · 0.25 m³/h · 15 ppm,10GNA10 AT001,engine-room,13050.0,3430.0,1400.0,Model port coordinate
+bilge,ppm,sensor,15 ppm monitor · stops the overboard,10GNA10 CQ001,engine-room,13050.0,3430.0,1950.0,Model port coordinate
+bilge,hold,tank,Bilge holding tank · 1 m³,10GMA20 BB001,er-double-bottom,13100.0,2780.0,920.0,Model port coordinate
+bilge,ob,overboard,Overboard · non-return · 15 ppm interlock,10GNA10 AA504,engine-room,12450.0,3950.0,1500.0,Model port coordinate
+bilge,shoreB,shore,"Shore connection (bilge, sludge) · car deck",10GMA20 AA508,car-deck,13100.0,2980.0,2800.0,Model port coordinate
+bilge,chest,seachest,Sea chest (8.3 crossover),10PAB10 AA503,engine-room,13600.0,3000,1200.0,Model port coordinate
+bilge,balp,pump,Ballast pump JP-32 · 3.7 kW,10GHA10 AP001,aux-room,16850.0,-3480.0,1150.0,Model port coordinate
+bilge,gs2,pump,"General-service pump (standby, 8.3)",10GAA10 AP001,engine-room,11665.0,-3480.0,1150.0,Model port coordinate
+bilge,balP,tank,Ballast P · 8 m³,10GHA20 BB001,fwd-double-bottom,16500.0,2000,920.0,Model port coordinate
+bilge,balS,tank,Ballast S · 8 m³,10GHA20 BB002,fwd-double-bottom,16500.0,-2000,920.0,Model port coordinate
+bilge,aftpk,tank,Aft peak · 4 m³,10GHA20 BB003,aft-peak,8530.0,-3000,1100.0,Model port coordinate
+bilge,forepk,tank,Fore peak · 6 m³,10GHA20 BB004,fore-peak,22470.0,-3000,1100.0,Model port coordinate
+fire,fchest,seachest,Sea chests (8.3 crossover),10PAB10 AA503,engine-room,13600.0,3000,1200.0,Model port coordinate
+fire,fp1,pump,Fire and GS pump No.1 JP-40 · 11 kW · 40 m³/h at 0.5 MPa,10SGA10 AP001,engine-room,11125.0,-3880.0,1400.0,Model port coordinate
+fire,fp2,pump,Fire and bilge pump No.2 JP-40 · 11 kW,10SGA10 AP002,engine-room,11395.0,-3880.0,1400.0,Model port coordinate
+fire,efchest,seachest,"Own sea suction, steering-gear room",10SGA20 AA501,steering-gear,,,,No physical model port
+fire,efp,pump,Emergency fire pump · 5.5 kW · 20 m³/h · emergency switchboard,10SGA20 AP001,steering-gear,,,,No physical model port
+fire,iso,valve,"Isolating valve: the engine room cut off, the emergency pump feeds the rest",10SGA30 AA502,steering-gear,,,,No physical model port
+fire,main,manifold,Fire main · 65 mm · 0.5 MPa,10SGA30 BR001,car-deck,9400.0,-3680.0,2800.0,Model port coordinate
+fire,hER,hydrant,Hydrant engine room · 15 m hose · 12 mm nozzle,10SGA30 AA511,engine-room,13700.0,3730.0,1800.0,Model port coordinate
+fire,hCar1,hydrant,Hydrant car deck P aft · 15 m hose · 12 mm nozzle,10SGA30 AA512,car-deck,9400.0,-3680.0,2800.0,Model port coordinate
+fire,hCar2,hydrant,Hydrant car deck S aft · 15 m hose · 12 mm nozzle,10SGA30 AA513,car-deck,9400.0,-3680.0,2800.0,Model port coordinate
+fire,hCar3,hydrant,Hydrant car deck P fwd · 15 m hose · 12 mm nozzle,10SGA30 AA514,car-deck,9400.0,-3680.0,2800.0,Model port coordinate
+fire,hCar4,hydrant,Hydrant car deck S fwd · 15 m hose · 12 mm nozzle,10SGA30 AA515,car-deck,9400.0,-3680.0,2800.0,Model port coordinate
+fire,hPassP,hydrant,Hydrant passenger deck P · 15 m hose · 12 mm nozzle,10SGA30 AA516,walkway-p,9400.0,-3680.0,2800.0,Model port coordinate
+fire,hPassS,hydrant,Hydrant passenger deck S · 15 m hose · 12 mm nozzle,10SGA30 AA517,walkway-s,9400.0,-3680.0,2800.0,Model port coordinate
+fire,hBridge,hydrant,Hydrant bridge deck · 15 m hose · 12 mm nozzle,10SGA30 AA518,wing-p,9400.0,-3680.0,2800.0,Model port coordinate
+fire,isc,shore,International shore connection · port car deck,10SGA30 AA519,car-deck,9400.0,-3680.0,2800.0,Model port coordinate
+fire,wash,valve,Deck wash and anchor wash,10SGA30 AA520,bow-house-p,9400.0,-3680.0,2800.0,Model port coordinate
+fire,co2b,bottle,4 × 45 kg CO₂,10SGJ10 BB001,co2-room,,,,No physical model port
+fire,co2rel,cabinet,Release cabinet · key · alarm first,10SGJ10 CH001,co2-room,,,,No physical model port
+fire,co2v,valve,Main valve · opened by the cabinet,10SGJ10 AA201,co2-room,9500.0,0,2800.0,Model port coordinate
+fire,co2n,nozzle,Six nozzles under the engine-room deckhead,10SGJ10 BR001,engine-room,11000.0,0,2700.0,Model port coordinate
+fire,co2al,sensor,CO₂ alarm and fan stop before release,10SGJ10 CH002,engine-room,,,,No physical model port
+air,c1,compressor,Starting-air compressor No.1 JC-30 · 3.7 kW,10SCA10 AN001,engine-room,9130.0,2900.0,1520.0,Model port coordinate
+air,c2,compressor,Starting-air compressor No.2 JC-30 · 3.7 kW,10SCA10 AN002,aux-room,14250.0,-3780.0,1520.0,Model port coordinate
+air,b1,bottle,Air bottle No.1 · 150 L · 30 bar,10SCA20 BB001,engine-room,8750.0,2300.0,2200.0,Model port coordinate
+air,b2,bottle,Air bottle No.2 · 150 L · 30 bar,10SCA20 BB002,engine-room,8750.0,2750.0,2200.0,Model port coordinate
+air,sv1,relief,Safety valve 33 bar,10SCA20 AA901,engine-room,8950.0,2300.0,2420.0,Model port coordinate
+air,sv2,relief,Safety valve 33 bar,10SCA20 AA902,engine-room,8950.0,2750.0,2420.0,Model port coordinate
+air,dr1,valve,Drain (blown down each watch),10SCA20 AA401,engine-room,8950.0,2300.0,950.0,Model port coordinate
+air,dr2,valve,Drain,10SCA20 AA402,engine-room,8950.0,2750.0,950.0,Model port coordinate
+air,pr,sensor,"Pressure switch: start at 25, stop at 30 bar",10SCA20 CP301,engine-room,8850.0,2500.0,2400.0,Model port coordinate
+air,dist,manifold,Starting-air main · 30 bar,10SCB10 BR001,engine-room,8650.0,1000,2500.0,Model port coordinate
+air,start-mainP,valve,Port main engine: air-start valve and distributor,11XJJ10 AA201,engine-room,10200.0,1415.0,2200.0,Model port coordinate
+air,start-mainS,valve,Starboard main engine: air-start valve and distributor,12XJJ10 AA201,engine-room,10200.0,-1415.0,2200.0,Model port coordinate
+air,start-gen1,valve,Generator No.1 engine: air-start valve and distributor,13XJJ10 AA201,aux-room,15375.0,700.0,2050.0,Model port coordinate
+air,start-gen2,valve,Generator No.2 engine: air-start valve and distributor,14XJJ10 AA201,aux-room,15375.0,-700.0,2050.0,Model port coordinate
+air,red,valve,Reducing station 30 → 7 bar · service air,10SCB20 AA001,engine-room,9800.0,3680.0,2400.0,Model port coordinate
+air,svc,consumer,"Service air: the workshop, the whistle, the horn",10SCB20 BR001,workshop,21000.0,3880.0,2300.0,Model port coordinate
+freshwater,fill,shore,"Filling connection · Mr Chinen’s water lorry, every fifth morning",10GKA10 AA501,car-deck,,,,No physical model port
+freshwater,fwP,tank,Fresh-water tank P · 6 m³,10GKA10 BB001,fresh-water,8530.0,2000,1500.0,Model port coordinate
+freshwater,fwS,tank,Fresh-water tank S · 6 m³,10GKA10 BB002,fresh-water,8530.0,-2000,1500.0,Model port coordinate
+freshwater,hp1,pump,Hydrophore pump No.1 · 0.75 kW,10GKB10 AP001,engine-room,12475.0,-3880.0,1400.0,Model port coordinate
+freshwater,hp2,pump,Hydrophore pump No.2 · 0.75 kW,10GKB10 AP002,aux-room,15000.0,3880.0,1400.0,Model port coordinate
+freshwater,ptank,tank,Pressure tank · 300 L · 0.25–0.35 MPa,10GKB10 BB001,engine-room,17600.0,-3680.0,2020.0,Model port coordinate
+freshwater,psw,sensor,"Pressure switch (cut in, cut out)",10GKB10 CP301,engine-room,17900.0,-3680.0,2200.0,Model port coordinate
+freshwater,heater,cooler,Water heater · 100 L · 3 kW,10GKB20 AC001,galley,14500.0,3680.0,2800.0,Model port coordinate
+freshwater,galley,consumer,Galley · kiosk hot water,10GKB20 BR001,galley,14500.0,3680.0,2800.0,Model port coordinate
+freshwater,toilets,consumer,Toilets’ basins · crew WC and shower,10GKB20 BR002,toilets,14500.0,3680.0,2800.0,Model port coordinate
+freshwater,expfill,consumer,Expansion tanks (8.4) · the ER tap,10GKB20 BR003,engine-room,13950.0,1000,2100.0,Model port coordinate
+sewage,schest,seachest,Sea chest (8.3 crossover),10PAB10 AA503,engine-room,13600.0,3000,1200.0,Model port coordinate
+sewage,sp1,pump,Sanitary pump No.1 JP-15 · 1.5 kW,10GHB10 AP001,engine-room,12205.0,-3880.0,1400.0,Model port coordinate
+sewage,sp2,pump,Sanitary pump No.2 JP-15 · 1.5 kW,10GHB10 AP002,aux-room,15400.0,3880.0,1400.0,Model port coordinate
+sewage,flush,consumer,"Flushing: three WCs, two urinals, the crew WC",10GHB10 BR001,toilets,14500.0,-3680.0,2800.0,Model port coordinate
+sewage,htank,tank,Sewage holding tank · 4 m³ · sight glass · vent up the casing,10GQA10 BB001,aux-room,17000.0,3180.0,2620.0,Model port coordinate
+sewage,dp1,pump,Sewage discharge pump No.1 JP-15 · 1.5 kW,10GRA10 AP001,aux-room,16450.0,3880.0,1400.0,Model port coordinate
+sewage,dp2,pump,Sewage discharge pump No.2 JP-15 · 1.5 kW,10GRA10 AP002,aux-room,15850.0,3880.0,1400.0,Model port coordinate
+sewage,deck,shore,Deck connection to the quay’s sewage truck · after the last boat,10GRA10 AA501,car-deck,16000.0,3380.0,2800.0,Model port coordinate
+sewage,ob2,overboard,Overboard · blanked and sealed (never inside the strait),10GRA10 AA502,aux-room,16200.0,3950.0,1400.0,Model port coordinate
+exhaust,tc-mainP,engine,Port main engine: turbocharger turbine,11XJB10 BR001,engine-room,,,,No physical model port
+exhaust,sil-mainP,silencer,Silencer and spark arrester,11XJR10 BS001,engine-room,,,,No physical model port
+exhaust,temp-mainP,sensor,Exhaust temperature (EXHAUST on the console),11XJR10 CT001,engine-room,,,,No physical model port
+exhaust,tc-mainS,engine,Starboard main engine: turbocharger turbine,12XJB10 BR001,engine-room,,,,No physical model port
+exhaust,sil-mainS,silencer,Silencer and spark arrester,12XJR10 BS001,engine-room,,,,No physical model port
+exhaust,temp-mainS,sensor,Exhaust temperature (EXHAUST on the console),12XJR10 CT001,engine-room,,,,No physical model port
+exhaust,tc-gen1,engine,Generator No.1 engine: turbocharger turbine,13XJB10 BR001,aux-room,,,,No physical model port
+exhaust,sil-gen1,silencer,Silencer and spark arrester,13XJR10 BS001,aux-room,,,,No physical model port
+exhaust,temp-gen1,sensor,Exhaust temperature (EXHAUST on the console),13XJR10 CT001,aux-room,,,,No physical model port
+exhaust,tc-gen2,engine,Generator No.2 engine: turbocharger turbine,14XJB10 BR001,aux-room,,,,No physical model port
+exhaust,sil-gen2,silencer,Silencer and spark arrester,14XJR10 BS001,aux-room,,,,No physical model port
+exhaust,temp-gen2,sensor,Exhaust temperature (EXHAUST on the console),14XJR10 CT001,aux-room,,,,No physical model port
+exhaust,funP,funnel,Funnel P: port main engine and generator No.1,10XJR20 BR001,funnel-p,,,,No physical model port
+exhaust,funS,funnel,Funnel S: starboard main engine and generator No.2,10XJR20 BR002,funnel-s,,,,No physical model port
+hydraulics,hpu1,pump,Steering power unit No.1 · 2.2 kW,10XSA10 AP001,steering-gear,,,,No physical model port
+hydraulics,hpu2,pump,Steering power unit No.2 · 2.2 kW · emergency board,10XSA10 AP002,steering-gear,,,,No physical model port
+hydraulics,hand,pump,Hand pump,10XSA10 AP003,steering-gear,,,,No physical model port
+hydraulics,hvalve,valve,"Solenoid valve block (follow-up, non-follow-up)",10XSA10 AA201,steering-gear,,,,No physical model port
+hydraulics,rams,consumer,Two rams on the tiller and tie bar · 35°,10XSA10 BR001,steering-gear,,,,No physical model port
+hydraulics,htank,tank,Oil tank · 60 L · level switch,10XSA10 BB001,steering-gear,,,,No physical model port
+hydraulics,rp1,pump,Ramp pump No.1 · 5.5 kW,10XSB10 AP001,bow-house-p,,,,No physical model port
+hydraulics,rp2,pump,Ramp pump No.2 · 5.5 kW,10XSB10 AP002,bow-house-p,,,,No physical model port
+hydraulics,rhand,pump,Hand pump,10XSB10 AP003,bow-house-p,,,,No physical model port
+hydraulics,rvalve,valve,"Control valve block · up, down, hold",10XSB10 AA202,bow-house-p,,,,No physical model port
+hydraulics,cyl,consumer,Two cylinders · 100 mm · 14 MPa,10XSB10 BR001,ramp,,,,No physical model port
+hydraulics,pins,consumer,Two locking pins · limit switches to the bridge lamp,10XSB10 AA203,ramp,,,,No physical model port
+hydraulics,rtank,tank,Oil tank · 120 L,10XSB10 BB001,bow-house-p,,,,No physical model port

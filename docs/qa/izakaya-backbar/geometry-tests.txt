@@ -1,0 +1,44 @@
+✔ both shared dining entrances clone one complete replacement from the same cached asset (500.794953ms)
+✔ the runtime replacement keeps bounded geometry and opaque, front-sided finishes (5.6965ms)
+✔ forty-two physical bottles carry the fourteen fictional brands recorded for Thao and Higa Liquor (70.615765ms)
+✔ the new furniture stands on the floor, clears the back wall and fits the existing solids (0.966646ms)
+✔ every counter drink and dish rests on the new slate at the unchanged serving height (39.184988ms)
+✔ the old baked cupboard and counter bodies were removed rather than covered with new ones (456.349445ms)
+✔ the cabinet, labels, brasswork and counter contain no overlapping planes at phone viewing scale (163.032252ms)
+✔ the replacement shares no visible plane with the room, fitted props or runtime dressing (1353.328578ms)
+✔ the furniture scan detects an accidentally doubled counter finish (3.726095ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2691.810345
+
+✔ real Minato props retain seven finish batches and finite export geometry (54.696056ms)
+✔ the exported sinks have actual holes and recessed drains instead of black slabs (51.077532ms)
+✔ hollow empty glass and ceramic interiors are below their rims in the real GLB (34.515425ms)
+✔ the rolled cotton towels rest on their shallow trays (43.146952ms)
+✔ the replacement inventory covers every original food family and recognisable prop groups (2.217983ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 195.36417
+
+✔ the lowered checkout leaves every adult cast face visible from the customer floor (297.371173ms)
+✔ the counter, its collider, mounted goods and low till share their physical support heights (64.03141ms)
+✔ all exported Minato and ramen dining places meet their seat and tabletop surfaces (843.318101ms)
+✔ authored office, bookshop, bath and ticket desks keep props and colliders on shared surfaces (490.647713ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1700.577985

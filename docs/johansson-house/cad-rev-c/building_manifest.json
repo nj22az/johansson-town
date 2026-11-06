@@ -1,0 +1,1543 @@
+{
+  "project": "Johansson House / Johansson World",
+  "revision": "C - coordinated game geometry",
+  "units": "mm",
+  "footprint_mm": [
+    12000,
+    10000
+  ],
+  "levels_mm": {
+    "B1": -2800,
+    "G0": 0,
+    "L1": 2800
+  },
+  "rooms": {
+    "B1": [
+      {
+        "name": "Electrical workshop",
+        "bounds_mm": [
+          200,
+          200,
+          4800,
+          4900
+        ]
+      },
+      {
+        "name": "Club reading room",
+        "bounds_mm": [
+          200,
+          5100,
+          4800,
+          9800
+        ]
+      },
+      {
+        "name": "Stair hall",
+        "bounds_mm": [
+          5000,
+          3600,
+          7200,
+          6400
+        ]
+      },
+      {
+        "name": "Boiler and pumps",
+        "bounds_mm": [
+          7400,
+          200,
+          11800,
+          3400
+        ]
+      },
+      {
+        "name": "Sauna and shower",
+        "bounds_mm": [
+          7400,
+          3600,
+          11800,
+          6400
+        ]
+      },
+      {
+        "name": "Storage",
+        "bounds_mm": [
+          5000,
+          6600,
+          11800,
+          9800
+        ]
+      }
+    ],
+    "G0": [
+      {
+        "name": "Living room",
+        "bounds_mm": [
+          200,
+          200,
+          4800,
+          4900
+        ]
+      },
+      {
+        "name": "Kitchen and dining",
+        "bounds_mm": [
+          200,
+          5100,
+          4800,
+          9800
+        ]
+      },
+      {
+        "name": "Stair hall",
+        "bounds_mm": [
+          5000,
+          3600,
+          7200,
+          6400
+        ]
+      },
+      {
+        "name": "Thuan sewing studio",
+        "bounds_mm": [
+          7400,
+          200,
+          11800,
+          4900
+        ]
+      },
+      {
+        "name": "Entry and genkan",
+        "bounds_mm": [
+          5000,
+          200,
+          7200,
+          3400
+        ]
+      },
+      {
+        "name": "WC and utility",
+        "bounds_mm": [
+          7400,
+          5100,
+          11800,
+          7000
+        ]
+      },
+      {
+        "name": "Covered terrace access",
+        "bounds_mm": [
+          7400,
+          7200,
+          11800,
+          9800
+        ]
+      }
+    ],
+    "L1": [
+      {
+        "name": "Primary bedroom",
+        "bounds_mm": [
+          200,
+          200,
+          4800,
+          4900
+        ]
+      },
+      {
+        "name": "Guest bedroom",
+        "bounds_mm": [
+          200,
+          5100,
+          4800,
+          9800
+        ]
+      },
+      {
+        "name": "Stair hall",
+        "bounds_mm": [
+          5000,
+          3600,
+          7200,
+          6400
+        ]
+      },
+      {
+        "name": "Bathroom",
+        "bounds_mm": [
+          7400,
+          200,
+          11800,
+          3400
+        ]
+      },
+      {
+        "name": "Study",
+        "bounds_mm": [
+          7400,
+          3600,
+          11800,
+          7000
+        ]
+      },
+      {
+        "name": "Linen and landing",
+        "bounds_mm": [
+          5000,
+          6600,
+          11800,
+          9800
+        ]
+      }
+    ]
+  },
+  "openings": {
+    "B1": [
+      {
+        "id": "D-BEXT",
+        "side": "south",
+        "start_mm": 8800,
+        "end_mm": 9800,
+        "type": "door",
+        "sill_mm": 0,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-B1",
+        "side": "west",
+        "start_mm": 5900,
+        "end_mm": 6900,
+        "type": "window",
+        "sill_mm": 1100,
+        "head_mm": 2100
+      }
+    ],
+    "G0": [
+      {
+        "id": "D-ENTRY",
+        "side": "south",
+        "start_mm": 5550,
+        "end_mm": 6550,
+        "type": "door",
+        "sill_mm": 0,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-LIVING",
+        "side": "south",
+        "start_mm": 1400,
+        "end_mm": 3400,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-SEW",
+        "side": "east",
+        "start_mm": 1200,
+        "end_mm": 3000,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-KITCHEN",
+        "side": "west",
+        "start_mm": 6900,
+        "end_mm": 8500,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      },
+      {
+        "id": "D-TERRACE",
+        "side": "north",
+        "start_mm": 8800,
+        "end_mm": 9800,
+        "type": "door",
+        "sill_mm": 0,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-DINING",
+        "side": "north",
+        "start_mm": 1600,
+        "end_mm": 3400,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      }
+    ],
+    "L1": [
+      {
+        "id": "W-BED",
+        "side": "south",
+        "start_mm": 1300,
+        "end_mm": 3200,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-BATH",
+        "side": "east",
+        "start_mm": 900,
+        "end_mm": 1800,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-STUDY",
+        "side": "east",
+        "start_mm": 4400,
+        "end_mm": 6100,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-GUEST",
+        "side": "west",
+        "start_mm": 6500,
+        "end_mm": 8300,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-LANDING",
+        "side": "north",
+        "start_mm": 8600,
+        "end_mm": 10400,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      }
+    ]
+  },
+  "wall_thickness_mm": {
+    "exterior": 200,
+    "partition": 120
+  },
+  "stair": {
+    "footprint_mm": [
+      5100,
+      3700,
+      7100,
+      6300
+    ],
+    "rise_between_floors_mm": 2800,
+    "risers": 16,
+    "riser_mm": 175,
+    "tread_mm": 250,
+    "configuration": "two flights and intermediate landing; provisional game geometry"
+  },
+  "notes": [
+    "Game asset design; not suitable for actual construction",
+    "Structural spans, foundations and basement access need engineering review",
+    "Window and door rough openings are represented as real wall gaps in plans and mesh",
+    "Basement daylight and egress remain unresolved; do not imply real-world code compliance"
+  ],
+  "geometry_elements": [
+    {
+      "name": "B1 external south",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        0,
+        -2700,
+        8800,
+        200,
+        -200
+      ]
+    },
+    {
+      "name": "B1 external south",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        9800,
+        0,
+        -2700,
+        12000,
+        200,
+        -200
+      ]
+    },
+    {
+      "name": "B1 external north",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        9800,
+        -2700,
+        12000,
+        10000,
+        -200
+      ]
+    },
+    {
+      "name": "B1 external west",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        0,
+        -2700,
+        200,
+        5900,
+        -200
+      ]
+    },
+    {
+      "name": "B1 external west",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        6900,
+        -2700,
+        200,
+        10000,
+        -200
+      ]
+    },
+    {
+      "name": "B1 external east",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        0,
+        -2700,
+        12000,
+        10000,
+        -200
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        200,
+        -2700,
+        4960,
+        4100,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        4900,
+        -2700,
+        4960,
+        5700,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        6500,
+        -2700,
+        4960,
+        9800,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        200,
+        -2700,
+        7360,
+        4000,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        4800,
+        -2700,
+        7360,
+        7600,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        8400,
+        -2700,
+        7360,
+        9800,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        200,
+        4940,
+        -2700,
+        4900,
+        5060,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4900,
+        3440,
+        -2700,
+        7300,
+        3560,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4900,
+        6440,
+        -2700,
+        7300,
+        6560,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7300,
+        4940,
+        -2700,
+        9400,
+        5060,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        10200,
+        4940,
+        -2700,
+        11800,
+        5060,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7300,
+        7040,
+        -2700,
+        11800,
+        7160,
+        -250
+      ]
+    },
+    {
+      "name": "D-BEXT lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        8800,
+        0,
+        -700,
+        9800,
+        200,
+        -200
+      ]
+    },
+    {
+      "name": "W-B1 sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        5900,
+        -2700,
+        200,
+        6900,
+        -1700
+      ]
+    },
+    {
+      "name": "W-B1 lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        5900,
+        -700,
+        200,
+        6900,
+        -200
+      ]
+    },
+    {
+      "name": "B1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        0,
+        -2980,
+        12000,
+        3700,
+        -2700
+      ]
+    },
+    {
+      "name": "B1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        6300,
+        -2980,
+        12000,
+        10000,
+        -2700
+      ]
+    },
+    {
+      "name": "B1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        3700,
+        -2980,
+        5100,
+        6300,
+        -2700
+      ]
+    },
+    {
+      "name": "B1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        7100,
+        3700,
+        -2980,
+        12000,
+        6300,
+        -2700
+      ]
+    },
+    {
+      "name": "G0 external south",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        0,
+        100,
+        1400,
+        200,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external south",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        3400,
+        0,
+        100,
+        5550,
+        200,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external south",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        6550,
+        0,
+        100,
+        12000,
+        200,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external north",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        9800,
+        100,
+        1600,
+        10000,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external north",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        3400,
+        9800,
+        100,
+        8800,
+        10000,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external north",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        9800,
+        9800,
+        100,
+        12000,
+        10000,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external west",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        0,
+        100,
+        200,
+        6900,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external west",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        8500,
+        100,
+        200,
+        10000,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external east",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        0,
+        100,
+        12000,
+        1200,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external east",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        3000,
+        100,
+        12000,
+        10000,
+        2600
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        200,
+        100,
+        4960,
+        4100,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        4900,
+        100,
+        4960,
+        5700,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        6500,
+        100,
+        4960,
+        9800,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        200,
+        100,
+        7360,
+        4000,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        4800,
+        100,
+        7360,
+        5800,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        6600,
+        100,
+        7360,
+        9800,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        200,
+        4940,
+        100,
+        900,
+        5060,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        1700,
+        4940,
+        100,
+        4900,
+        5060,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4900,
+        3440,
+        100,
+        5400,
+        3560,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        6200,
+        3440,
+        100,
+        7300,
+        3560,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4900,
+        6440,
+        100,
+        7300,
+        6560,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7300,
+        4940,
+        100,
+        11800,
+        5060,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7300,
+        7040,
+        100,
+        9200,
+        7160,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        10000,
+        7040,
+        100,
+        11800,
+        7160,
+        2550
+      ]
+    },
+    {
+      "name": "D-ENTRY lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        5550,
+        0,
+        2100,
+        6550,
+        200,
+        2600
+      ]
+    },
+    {
+      "name": "W-LIVING sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        1400,
+        0,
+        100,
+        3400,
+        200,
+        850
+      ]
+    },
+    {
+      "name": "W-LIVING lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        1400,
+        0,
+        2100,
+        3400,
+        200,
+        2600
+      ]
+    },
+    {
+      "name": "W-SEW sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        1200,
+        100,
+        12000,
+        3000,
+        850
+      ]
+    },
+    {
+      "name": "W-SEW lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        1200,
+        2100,
+        12000,
+        3000,
+        2600
+      ]
+    },
+    {
+      "name": "W-KITCHEN sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        6900,
+        100,
+        200,
+        8500,
+        850
+      ]
+    },
+    {
+      "name": "W-KITCHEN lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        6900,
+        2100,
+        200,
+        8500,
+        2600
+      ]
+    },
+    {
+      "name": "D-TERRACE lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        8800,
+        9800,
+        2100,
+        9800,
+        10000,
+        2600
+      ]
+    },
+    {
+      "name": "W-DINING sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        1600,
+        9800,
+        100,
+        3400,
+        10000,
+        850
+      ]
+    },
+    {
+      "name": "W-DINING lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        1600,
+        9800,
+        2100,
+        3400,
+        10000,
+        2600
+      ]
+    },
+    {
+      "name": "G0 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        0,
+        -180,
+        12000,
+        3700,
+        100
+      ]
+    },
+    {
+      "name": "G0 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        6300,
+        -180,
+        12000,
+        10000,
+        100
+      ]
+    },
+    {
+      "name": "G0 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        3700,
+        -180,
+        5100,
+        6300,
+        100
+      ]
+    },
+    {
+      "name": "G0 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        7100,
+        3700,
+        -180,
+        12000,
+        6300,
+        100
+      ]
+    },
+    {
+      "name": "L1 external south",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        0,
+        2900,
+        1300,
+        200,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external south",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        3200,
+        0,
+        2900,
+        12000,
+        200,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external north",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        9800,
+        2900,
+        8600,
+        10000,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external north",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        10400,
+        9800,
+        2900,
+        12000,
+        10000,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external west",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        0,
+        2900,
+        200,
+        6500,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external west",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        8300,
+        2900,
+        200,
+        10000,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external east",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        0,
+        2900,
+        12000,
+        900,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external east",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        1800,
+        2900,
+        12000,
+        4400,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external east",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        6100,
+        2900,
+        12000,
+        10000,
+        5400
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        200,
+        2900,
+        4960,
+        4100,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        4900,
+        2900,
+        4960,
+        5700,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        6500,
+        2900,
+        4960,
+        9800,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        200,
+        2900,
+        7360,
+        4000,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        4800,
+        2900,
+        7360,
+        5800,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        6600,
+        2900,
+        7360,
+        9800,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        200,
+        4940,
+        2900,
+        1000,
+        5060,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        1800,
+        4940,
+        2900,
+        4900,
+        5060,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4900,
+        3440,
+        2900,
+        7300,
+        3560,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4900,
+        6440,
+        2900,
+        5400,
+        6560,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        6200,
+        6440,
+        2900,
+        7300,
+        6560,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7300,
+        4940,
+        2900,
+        11800,
+        5060,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7300,
+        7040,
+        2900,
+        11800,
+        7160,
+        5350
+      ]
+    },
+    {
+      "name": "W-BED sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        1300,
+        0,
+        2900,
+        3200,
+        200,
+        3650
+      ]
+    },
+    {
+      "name": "W-BED lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        1300,
+        0,
+        4900,
+        3200,
+        200,
+        5400
+      ]
+    },
+    {
+      "name": "W-BATH sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        900,
+        2900,
+        12000,
+        1800,
+        3650
+      ]
+    },
+    {
+      "name": "W-BATH lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        900,
+        4900,
+        12000,
+        1800,
+        5400
+      ]
+    },
+    {
+      "name": "W-STUDY sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        4400,
+        2900,
+        12000,
+        6100,
+        3650
+      ]
+    },
+    {
+      "name": "W-STUDY lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        4400,
+        4900,
+        12000,
+        6100,
+        5400
+      ]
+    },
+    {
+      "name": "W-GUEST sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        6500,
+        2900,
+        200,
+        8300,
+        3650
+      ]
+    },
+    {
+      "name": "W-GUEST lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        6500,
+        4900,
+        200,
+        8300,
+        5400
+      ]
+    },
+    {
+      "name": "W-LANDING sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        8600,
+        9800,
+        2900,
+        10400,
+        10000,
+        3650
+      ]
+    },
+    {
+      "name": "W-LANDING lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        8600,
+        9800,
+        4900,
+        10400,
+        10000,
+        5400
+      ]
+    },
+    {
+      "name": "L1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        0,
+        2620,
+        12000,
+        3700,
+        2900
+      ]
+    },
+    {
+      "name": "L1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        6300,
+        2620,
+        12000,
+        10000,
+        2900
+      ]
+    },
+    {
+      "name": "L1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        3700,
+        2620,
+        5100,
+        6300,
+        2900
+      ]
+    },
+    {
+      "name": "L1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        7100,
+        3700,
+        2620,
+        12000,
+        6300,
+        2900
+      ]
+    },
+    {
+      "name": "roof eaves slab",
+      "layer": "A-ROOF",
+      "bounds_mm": [
+        -400,
+        -400,
+        5600,
+        12400,
+        10400,
+        5800
+      ]
+    }
+  ]
+}

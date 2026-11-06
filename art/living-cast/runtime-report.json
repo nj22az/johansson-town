@@ -1,0 +1,317 @@
+[
+  {
+    "name": "Aiko",
+    "bytes": 630832,
+    "draws": 1,
+    "triangles": 13344,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Kenji",
+    "bytes": 569920,
+    "draws": 1,
+    "triangles": 10928,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Mrs Sato",
+    "bytes": 608016,
+    "draws": 1,
+    "triangles": 11788,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Harbour master",
+    "bytes": 584652,
+    "draws": 1,
+    "triangles": 11376,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Bus driver",
+    "bytes": 564904,
+    "draws": 1,
+    "triangles": 10928,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Cold-storage kid",
+    "bytes": 570520,
+    "draws": 1,
+    "triangles": 10928,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Officer Mori",
+    "bytes": 567904,
+    "draws": 1,
+    "triangles": 10928,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Hana",
+    "bytes": 568480,
+    "draws": 1,
+    "triangles": 11448,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Daichi",
+    "bytes": 536528,
+    "draws": 1,
+    "triangles": 10552,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Mr Fujita",
+    "bytes": 533544,
+    "draws": 1,
+    "triangles": 10496,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Masaru",
+    "bytes": 639396,
+    "draws": 1,
+    "triangles": 12944,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Yoshiko",
+    "bytes": 609388,
+    "draws": 1,
+    "triangles": 11788,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Reiko",
+    "bytes": 644052,
+    "draws": 1,
+    "triangles": 13048,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Tetsuo",
+    "bytes": 610572,
+    "draws": 1,
+    "triangles": 12152,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Emi",
+    "bytes": 572844,
+    "draws": 1,
+    "triangles": 11672,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Mr Tanabe",
+    "bytes": 516340,
+    "draws": 1,
+    "triangles": 10048,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Naoko",
+    "bytes": 609440,
+    "draws": 1,
+    "triangles": 12048,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Hiroshi",
+    "bytes": 654360,
+    "draws": 1,
+    "triangles": 13132,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Fumiko",
+    "bytes": 613828,
+    "draws": 1,
+    "triangles": 12672,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Kenta",
+    "bytes": 637072,
+    "draws": 1,
+    "triangles": 12944,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  },
+  {
+    "name": "Nao",
+    "bytes": 610112,
+    "draws": 1,
+    "triangles": 11788,
+    "clips": [
+      "Drink",
+      "Eat",
+      "Idle_Neutral",
+      "Sit",
+      "Walk",
+      "Wave",
+      "Run"
+    ]
+  }
+]

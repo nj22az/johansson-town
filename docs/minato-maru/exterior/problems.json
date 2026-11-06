@@ -1,0 +1,562 @@
+{
+ "date": "2026-11-03",
+ "rev": "B",
+ "source": "tools/ferry-exterior-cad.mjs",
+ "heights": {
+  "tankTop": 0.7,
+  "floorPlates": 0.9,
+  "carDeck": 4,
+  "passengerDeck": 8.4,
+  "bridgeDeck": 11,
+  "compassDeck": 13.4,
+  "funnelTop": 13,
+  "mastheadLight": 16,
+  "mastTop": 18,
+  "bridgeEye": 12.6
+ },
+ "ship": {
+  "length": 34.5,
+  "beam": 8.4,
+  "draft": 1.9,
+  "freeboard": 2.1
+ },
+ "bounds": {
+  "min": [
+   -4.59,
+   -1.94,
+   -17.28
+  ],
+  "max": [
+   4.59,
+   16.1,
+   17.81
+  ]
+ },
+ "kitano": {
+  "pierTopAboveWL": 1.22,
+  "landing": [
+   -2,
+   1.22,
+   23.35
+  ],
+  "jetty": {
+   "face": 19.150000000000034,
+   "end": 26.35000000000005,
+   "x0": -2.999999999999943,
+   "x1": 3.000000000000057,
+   "top": 1.15,
+   "thickness": 0.5
+  },
+  "asphalt": {
+   "from": 22.350000000000023,
+   "top": 1.2200000000000002
+  },
+  "lines": [
+   {
+    "id": "line-0",
+    "name": "port head line",
+    "station": "fwd",
+    "pts": [
+     [
+      3.1,
+      4.95,
+      16.6
+     ],
+     [
+      3,
+      4.7,
+      17.15
+     ],
+     [
+      2.5500000000000114,
+      1.6700000000000002,
+      19.80000000000001
+     ]
+    ],
+    "hits": [],
+    "spaces": [],
+    "length": 4.66
+   },
+   {
+    "id": "line-1",
+    "name": "port bow line",
+    "station": "fwd",
+    "pts": [
+     [
+      3.1,
+      4.95,
+      16.6
+     ],
+     [
+      3,
+      4.7,
+      17.15
+     ],
+     [
+      2.550000000000068,
+      1.6700000000000002,
+      22.950000000000017
+     ]
+    ],
+    "hits": [],
+    "spaces": [],
+    "length": 7.17
+   },
+   {
+    "id": "line-2",
+    "name": "starboard bow line",
+    "station": "fwdS",
+    "pts": [
+     [
+      -3.1,
+      4.95,
+      16.6
+     ],
+     [
+      -3,
+      4.7,
+      17.15
+     ],
+     [
+      -2.5499999999998977,
+      1.6700000000000002,
+      20.700000000000017
+     ]
+    ],
+    "hits": [],
+    "spaces": [],
+    "length": 5.3
+   },
+   {
+    "id": "line-3",
+    "name": "starboard head line",
+    "station": "fwdS",
+    "pts": [
+     [
+      -3.1,
+      4.95,
+      16.6
+     ],
+     [
+      -3,
+      4.7,
+      17.15
+     ],
+     [
+      -2.5500000000000114,
+      1.6700000000000002,
+      19.80000000000004
+     ]
+    ],
+    "hits": [],
+    "spaces": [],
+    "length": 4.66
+   }
+  ]
+ },
+ "minato": {
+  "lines": [
+   {
+    "id": "line-0",
+    "name": "head line",
+    "station": "fwd",
+    "pts": [
+     [
+      3.1,
+      4.9,
+      16.35
+     ],
+     [
+      3.9,
+      4.66,
+      16.9
+     ],
+     [
+      4.990000000000001,
+      1.158,
+      16.450000000000003
+     ]
+    ],
+    "hits": [],
+    "spaces": [],
+    "length": 4.7
+   },
+   {
+    "id": "line-1",
+    "name": "forward spring",
+    "station": "fwd",
+    "pts": [
+     [
+      3.1,
+      4.9,
+      16.35
+     ],
+     [
+      3.9,
+      4.66,
+      16.9
+     ],
+     [
+      4.990000000000001,
+      1.158,
+      7.450000000000003
+     ]
+    ],
+    "hits": [],
+    "spaces": [
+     {
+      "id": "bow-house-p",
+      "from": 33.7,
+      "to": 32.5
+     }
+    ],
+    "length": 11.14
+   },
+   {
+    "id": "line-2",
+    "name": "after spring",
+    "station": "aft",
+    "pts": [
+     [
+      2.9,
+      2.5500000000000003,
+      -15.65
+     ],
+     [
+      4.140000000000001,
+      3.1,
+      -15.05
+     ],
+     [
+      4.990000000000001,
+      1.158,
+      -7.549999999999997
+     ]
+    ],
+    "hits": [],
+    "spaces": [
+     {
+      "id": "aft-mooring",
+      "from": 1.6,
+      "to": 2.2
+     }
+    ],
+    "length": 9.28
+   },
+   {
+    "id": "line-3",
+    "name": "stern line",
+    "station": "aft",
+    "pts": [
+     [
+      2.9,
+      2.5500000000000003,
+      -15.65
+     ],
+     [
+      4.140000000000001,
+      3.1,
+      -15.05
+     ],
+     [
+      4.990000000000001,
+      1.158,
+      -17.549999999999997
+     ]
+    ],
+    "hits": [],
+    "spaces": [
+     {
+      "id": "aft-mooring",
+      "from": 1.6,
+      "to": 2.2
+     }
+    ],
+    "length": 4.76
+   }
+  ]
+ },
+ "ramp": {
+  "kitano": {
+   "clear": 0,
+   "at": [
+    1.8,
+    1.22,
+    23.115
+   ]
+  },
+  "minato": {
+   "clear": 0,
+   "at": [
+    1.82,
+    0.544,
+    20.91
+   ]
+  }
+ },
+ "laneBoard": {
+  "width": 512,
+  "height": 368,
+  "lanes": [
+   90,
+   256,
+   422
+  ],
+  "dividers": [
+   [
+    170,
+    176
+   ],
+   [
+    336,
+    342
+   ]
+  ],
+  "truck": {
+   "box": [
+    198,
+    214,
+    74,
+    52
+   ],
+   "cab": [
+    276,
+    230,
+    38,
+    36
+   ],
+   "window": [
+    292,
+    236,
+    16,
+    13
+   ],
+   "chassis": [
+    198,
+    266,
+    116,
+    8
+   ],
+   "wheels": [
+    [
+     216,
+     281
+    ],
+    [
+     242,
+     281
+    ],
+    [
+     294,
+     281
+    ]
+   ],
+   "wheel": 13,
+   "hub": 5
+  },
+  "truckSpan": [
+   198,
+   314
+  ],
+  "truckArrowFoot": 200,
+  "arrowFoot": 280
+ },
+ "boards": {
+  "name": {
+   "gap": 26.30136986301372,
+   "gapHelvetica": 26.133722106972925,
+   "scale": 0.8767123287671232,
+   "jpEnd": 226.69863013698628,
+   "enStart": 253
+  },
+  "lane": {
+   "truckSpan": [
+    198,
+    314
+   ],
+   "dividers": [
+    [
+     170,
+     176
+    ],
+    [
+     336,
+     342
+    ]
+   ]
+  }
+ },
+ "findings": [
+  {
+   "n": 1,
+   "id": "kitano-aft-lines-through-ship",
+   "sheet": "X2",
+   "title": "At Kitano-jima the after spring and stern line ran through the ship",
+   "found": "Rev A: the aft station’s two lines were led from the port-quarter fairlead to pier bitts ahead of the bow: 37.88 and 37 m through the aft mooring station, casing P, the lower lobby and across the car deck (10 and 9 modelled faces), the yellow line in the screenshot. The Minato head line also bent in the air over the port bow house’s roof edge, clipping it.",
+   "fix": "each station keeps its own two ropes (ferry.js FERRY_MOORING.ropes); bow-on at Kitano-jima she makes fast from both bows only, each led through its stem fairlead to the bitts on its own side, the bosun at the starboard bow, the stern ropes coiled aft; Minato’s head line and forward spring lead through a new side chock on the bow house’s corner; the coils moved clear of the windlass drums.",
+   "status": "resolved",
+   "now": "0 modelled faces pierced by any laid line at Kitano-jima or Minato, ramp raised or laid (tests/ferry-exterior.test.mjs).",
+   "marks": [
+    {
+     "view": "plan",
+     "at": [
+      18.925000000000008,
+      -2.774999999999949
+     ],
+     "off": [
+      12,
+      12
+     ]
+    },
+    {
+     "view": "bow",
+     "at": [
+      -2.55,
+      1.9
+     ],
+     "off": [
+      -22,
+      8
+     ]
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "name-board-text-overlap",
+   "sheet": "X2",
+   "title": "The bridge name board’s two names ran into each other",
+   "found": "Rev A: みなと丸 and MINATO MARU were each centred on fixed points of the 512 px board (30% and 72%); in Helvetica Bold (an iPad) the English started at 238.7 px and 丸 ended at 263.5 px, about 25 px of overlap.",
+   "fix": "the names are laid out from their measured widths, centred as a pair with 30 px between them inside a 34 px margin, both shrinking together if a device’s font is wider (src/world/ferry-boards.js nameBoardLayout).",
+   "status": "resolved",
+   "now": "26.3 px between the names in Chromium’s fonts, 26.1 px in Helvetica Bold.",
+   "marks": [
+    {
+     "view": "bow",
+     "at": [
+      0,
+      11.399999999999999
+     ],
+     "off": [
+      30,
+      -10
+     ]
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "lane-board-truck-symbol",
+   "sheet": "X2",
+   "title": "The lane boards’ truck sign sat across a lane divider",
+   "found": "Rev A: the truck pictogram was drawn beside the middle arrow’s foot, its cab (x 326–348 px) across the divider (329–335 px), 0.18 m tall: from the quay it read as a stray “L” on the arrow. The dividers were 7 px off the middle between the lanes.",
+   "fix": "a larger truck under a shortened centre arrow, centred in its lane; the dividers midway between the lanes (src/world/ferry-boards.js laneBoardLayout).",
+   "status": "resolved",
+   "now": "the truck spans x 198–314 px, 22 and 22 px clear of the dividers.",
+   "marks": [
+    {
+     "view": "bow",
+     "at": [
+      -2.62,
+      6.119999999999999
+     ],
+     "off": [
+      -24,
+      -14
+     ]
+    },
+    {
+     "view": "bow",
+     "at": [
+      2.62,
+      6.119999999999999
+     ],
+     "off": [
+      26,
+      -14
+     ]
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "ramp-girders-into-pier",
+   "sheet": "X2",
+   "title": "The ramp’s side girders ran into the pier",
+   "found": "Rev A: the leaf’s two side girders, 0.5 m deep for its whole 4 m and square at the toe, ended 0.28 m inside the Kitano-jima pier deck and 0.33 m below Minato’s landing plate; the flap’s hinge pin sank 0.02 m into the landing.",
+   "fix": "the girders taper over the leaf’s last 2 m to the deck plate’s own depth at the toe, the plate’s underside eases up over its last 0.3 m, the flap’s hinge pin is flush with its underside, and the plate is 4.4 m clear between the girders.",
+   "status": "resolved",
+   "now": "lowest point of the laid ramp 0.000 m over the Kitano-jima pier, 0.000 m over Minato’s landing plate.",
+   "marks": [
+    {
+     "view": "detail",
+     "at": [
+      23.115,
+      1.22
+     ],
+     "off": [
+      16,
+      -14
+     ]
+    },
+    {
+     "view": "profile",
+     "at": [
+      23.115,
+      1.22
+     ],
+     "off": [
+      12,
+      14
+     ]
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "chart-table-blocks-wing-door",
+   "sheet": "X3",
+   "title": "The chart table stood in front of the starboard wing door",
+   "found": "Found in Rev B: the chart table (x −2.9 to −1.7, shipyard z 19.54–20.35) stood across the inside of the starboard wing door (z 19.6–20.4), so nobody could walk from the wheelhouse out to the starboard wing.",
+   "fix": "the chart table moved to the aft bulkhead under the fire-detection panel (x −1.95 to −1.0); the starboard wing door moved 0.85 m forward, where the crew stair arrives beside it.",
+   "status": "resolved",
+   "now": "the chart table ends 0.47 m inboard of both wing doors’ ways in; walked in tests/ferry-walk.test.mjs.",
+   "marks": [
+    {
+     "view": "bplan",
+     "at": [
+      2.59,
+      -1.475
+     ],
+     "off": [
+      -10,
+      14
+     ]
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "saloon-front-row-through-wall",
+   "sheet": "X3",
+   "title": "The saloon’s front row stood out through the forward wall",
+   "found": "Found in Rev B: seven rows of three seats at 0.85 m did not fit the saloon: the front row stood 0.25 m out through the forward wall over the car deck (shipyard z 22.70–23.25 against the wall at 22.92), and the general arrangement claimed 42 seats where 36 fitted.",
+   "fix": "five rows at 0.88 m of four seats each side (two to starboard beside the crew stair), 34 seats; the lobby’s two benches are counted (6) and the carpet room carries 38, so she still has places for 100.",
+   "status": "resolved",
+   "now": "the front row ends 1.08 m short of the forward wall (tests/ferry-accommodation.test.mjs).",
+   "marks": [
+    {
+     "view": "pplan",
+     "at": [
+      4.589999999999998,
+      1.9
+     ],
+     "off": [
+      10,
+      -16
+     ]
+    }
+   ]
+  }
+ ]
+}

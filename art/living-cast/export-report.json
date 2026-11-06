@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Aiko",
+    "model": "resident-00",
+    "vertices": 6868,
+    "triangles": 13344,
+    "bytes": 657236,
+    "style": "Plum cardigan, round spectacles, long braid"
+  },
+  {
+    "name": "Kenji",
+    "model": "resident-01",
+    "vertices": 5632,
+    "triangles": 10928,
+    "bytes": 582788,
+    "style": "Indigo work jacket, rolled sleeves, tousled hair"
+  },
+  {
+    "name": "Mrs Sato",
+    "model": "resident-02",
+    "vertices": 6070,
+    "triangles": 11788,
+    "bytes": 624620,
+    "style": "Silver bun, berry apron, compact build"
+  },
+  {
+    "name": "Harbour master",
+    "model": "resident-03",
+    "vertices": 5860,
+    "triangles": 11376,
+    "bytes": 600104,
+    "style": "Navy cardigan, silver temples, little moustache"
+  },
+  {
+    "name": "Bus driver",
+    "model": "resident-04",
+    "vertices": 5632,
+    "triangles": 10928,
+    "bytes": 579168,
+    "style": "Teal waistcoat, neat side part, round face"
+  },
+  {
+    "name": "Cold-storage kid",
+    "model": "resident-05",
+    "vertices": 5632,
+    "triangles": 10928,
+    "bytes": 582116,
+    "style": "Mint overshirt, floppy fringe, slim build"
+  },
+  {
+    "name": "Officer Mori",
+    "model": "resident-06",
+    "vertices": 5632,
+    "triangles": 10928,
+    "bytes": 579736,
+    "style": "Blue uniform, tidy crop, broad shoulders"
+  },
+  {
+    "name": "Hana",
+    "model": "resident-07",
+    "vertices": 5896,
+    "triangles": 11448,
+    "bytes": 585708,
+    "style": "Coral cardigan, bob with yellow clip"
+  },
+  {
+    "name": "Daichi",
+    "model": "resident-08",
+    "vertices": 5440,
+    "triangles": 10552,
+    "bytes": 548208,
+    "style": "Ochre sweatshirt, windblown crop"
+  },
+  {
+    "name": "Mr Fujita",
+    "model": "resident-09",
+    "vertices": 5374,
+    "triangles": 10496,
+    "bytes": 546916,
+    "style": "Sea-green knit, white brows and moustache"
+  },
+  {
+    "name": "Masaru",
+    "model": "resident-10",
+    "vertices": 6658,
+    "triangles": 12944,
+    "bytes": 665012,
+    "style": "Rust overshirt, thick curls, stout shoulders"
+  },
+  {
+    "name": "Yoshiko",
+    "model": "resident-11",
+    "vertices": 6070,
+    "triangles": 11788,
+    "bytes": 625452,
+    "style": "Sage wrap blouse, pinned silver hair"
+  },
+  {
+    "name": "Reiko",
+    "model": "resident-12",
+    "vertices": 6718,
+    "triangles": 13048,
+    "bytes": 664160,
+    "style": "Burgundy jacket, sharp bob, spectacles"
+  },
+  {
+    "name": "Tetsuo",
+    "model": "resident-13",
+    "vertices": 6262,
+    "triangles": 12152,
+    "bytes": 625476,
+    "style": "Aubergine vest, swept hair, narrow glasses"
+  },
+  {
+    "name": "Emi",
+    "model": "resident-14",
+    "vertices": 6010,
+    "triangles": 11672,
+    "bytes": 594012,
+    "style": "Rose blouse, low ponytail and fabric flower"
+  },
+  {
+    "name": "Mr Tanabe",
+    "model": "resident-15",
+    "vertices": 5146,
+    "triangles": 10048,
+    "bytes": 527608,
+    "style": "Cream knit, bald crown, soft white fringe"
+  },
+  {
+    "name": "Naoko",
+    "model": "resident-16",
+    "vertices": 6202,
+    "triangles": 12048,
+    "bytes": 628456,
+    "style": "Post-red jacket, short ponytail, little satchel"
+  },
+  {
+    "name": "Hiroshi",
+    "model": "resident-17",
+    "vertices": 6754,
+    "triangles": 13132,
+    "bytes": 680200,
+    "style": "Moss apron, curls, broad smile"
+  },
+  {
+    "name": "Fumiko",
+    "model": "resident-18",
+    "vertices": 6526,
+    "triangles": 12672,
+    "bytes": 630868,
+    "style": "Lavender cardigan, white bob, pearl brooch"
+  },
+  {
+    "name": "Kenta",
+    "model": "resident-19",
+    "vertices": 6658,
+    "triangles": 12944,
+    "bytes": 663896,
+    "style": "Sky-blue overshirt, floppy curls, tall build"
+  },
+  {
+    "name": "Nao",
+    "model": "resident-20",
+    "vertices": 6070,
+    "triangles": 11788,
+    "bytes": 622756,
+    "style": "Terracotta apron, chestnut updo, ivory sleeves"
+  }
+]

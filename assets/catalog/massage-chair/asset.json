@@ -1,0 +1,1070 @@
+{
+ "format": 1,
+ "id": "massage-chair",
+ "name": "Coin massage chair",
+ "kind": "furniture",
+ "version": 1,
+ "purpose": {
+  "for": "Bathers resting after the bath in Umi-no-yu's lobby: the regulars cooling down in their after-bath clothes, and Mr Fujita, whose back is always stiff from the boat.",
+  "why": "Ten minutes of kneading for a ¥100 coin after a 42-degree soak; a sentō's lobby kept one so the regulars stayed for a coffee milk and the night game.",
+  "where": "In the Umi-no-yu lobby by the milk cooler, its back to the east wall on the men's side, facing the room: where the onsen's chair stands now (onsen.js)."
+ },
+ "size": [
+  0.9,
+  1.14,
+  0.73
+ ],
+ "model": "model.glb",
+ "colours": {
+  "upholstery": "#3fa0c8",
+  "piping": "#2f5f9e",
+  "shell": "#f4f1ea",
+  "base": "#6d7478",
+  "steel": "#6d7478",
+  "plate": "#9aa3a8",
+  "slot": "#2b2b2b",
+  "start": "#2a8a5a",
+  "stop": "#d8342c",
+  "lamp": "#ff4a2a",
+  "sticker": "#f4d23c",
+  "screen": "#27304d",
+  "cord": "#2b2b2b",
+  "plug": "#f4f1ea"
+ },
+ "colliders": [
+  {
+   "name": "body",
+   "x": 0,
+   "z": 0,
+   "w": 0.9,
+   "d": 0.61,
+   "yaw": 0,
+   "minY": 0,
+   "height": 1.14
+  },
+  {
+   "name": "leg rest",
+   "x": 0,
+   "z": 0.365,
+   "w": 0.43,
+   "d": 0.12,
+   "yaw": 0,
+   "minY": 0,
+   "height": 0.33
+  }
+ ],
+ "seats": [
+  {
+   "id": "seat",
+   "label": "Sit in the massage chair (¥100)",
+   "position": [
+    0,
+    0,
+    0.255
+   ],
+   "stand": [
+    0,
+    0,
+    1.105
+   ],
+   "yaw": 3.1416,
+   "surfaceY": 0.5,
+   "eyeY": 1.12,
+   "front": 0.05
+  }
+ ],
+ "spots": [
+  {
+   "id": "coin",
+   "kind": "stand",
+   "position": [
+    -0.25,
+    0,
+    0.785
+   ],
+   "yaw": 0.2908,
+   "label": "Put a ¥100 coin in",
+   "note": "Where Fujita stands bent double to feed the coin box (the film's panel 4b, room x 3.72, z 3.3)."
+  }
+ ],
+ "action": {
+  "kind": "seat",
+  "label": "Sit in the massage chair (¥100)",
+  "price": 100,
+  "minutes": 10
+ },
+ "anchors": {
+  "coin-slot": [
+   -0.384,
+   0.655,
+   0.305
+  ],
+  "timer-display": [
+   -0.411,
+   0.616,
+   0.3005
+  ],
+  "running-lamp": [
+   -0.428,
+   0.655,
+   0.304
+  ],
+  "cord": [
+   -0.36,
+   0.03,
+   -0.288
+  ],
+  "remote": [
+   0.405,
+   0.74,
+   0.155
+  ],
+  "right-arm-top": [
+   -0.405,
+   0.71,
+   0.05
+  ],
+  "roller-track": [
+   0,
+   0.76,
+   -0.125
+  ]
+ },
+ "keepClear": [
+  {
+   "name": "seat: sitters over the seat, y 0.52–0.57",
+   "min": [
+    -0.326,
+    0.515,
+    0.091
+   ],
+   "max": [
+    0.326,
+    0.565,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 0.57–0.62",
+   "min": [
+    -0.347,
+    0.565,
+    0.093
+   ],
+   "max": [
+    0.347,
+    0.615,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 0.62–0.67",
+   "min": [
+    -0.352,
+    0.615,
+    0.1
+   ],
+   "max": [
+    0.352,
+    0.665,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 0.67–0.72",
+   "min": [
+    -0.347,
+    0.665,
+    0.043
+   ],
+   "max": [
+    0.347,
+    0.715,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 0.72–0.77",
+   "min": [
+    -0.34,
+    0.715,
+    0.02
+   ],
+   "max": [
+    0.34,
+    0.765,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 0.77–0.82",
+   "min": [
+    -0.33,
+    0.765,
+    -0.021
+   ],
+   "max": [
+    0.357,
+    0.815,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 0.82–0.87",
+   "min": [
+    -0.326,
+    0.815,
+    -0.062
+   ],
+   "max": [
+    0.393,
+    0.865,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 0.87–0.92",
+   "min": [
+    -0.343,
+    0.865,
+    -0.084
+   ],
+   "max": [
+    0.417,
+    0.915,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 0.92–0.97",
+   "min": [
+    -0.342,
+    0.915,
+    -0.08
+   ],
+   "max": [
+    0.414,
+    0.965,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 0.97–1.02",
+   "min": [
+    -0.343,
+    0.965,
+    -0.041
+   ],
+   "max": [
+    0.425,
+    1.015,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.02–1.07",
+   "min": [
+    -0.337,
+    1.015,
+    0.06
+   ],
+   "max": [
+    0.395,
+    1.065,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.07–1.12",
+   "min": [
+    -0.323,
+    1.065,
+    0.029
+   ],
+   "max": [
+    0.356,
+    1.115,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.12–1.17",
+   "min": [
+    -0.295,
+    1.115,
+    -0.049
+   ],
+   "max": [
+    0.372,
+    1.165,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.17–1.22",
+   "min": [
+    -0.267,
+    1.165,
+    -0.091
+   ],
+   "max": [
+    0.424,
+    1.215,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.22–1.27",
+   "min": [
+    -0.276,
+    1.215,
+    -0.102
+   ],
+   "max": [
+    0.453,
+    1.265,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.27–1.32",
+   "min": [
+    -0.29,
+    1.265,
+    -0.102
+   ],
+   "max": [
+    0.473,
+    1.315,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.32–1.37",
+   "min": [
+    -0.295,
+    1.315,
+    -0.094
+   ],
+   "max": [
+    0.482,
+    1.365,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.37–1.42",
+   "min": [
+    -0.328,
+    1.365,
+    -0.102
+   ],
+   "max": [
+    0.484,
+    1.415,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.42–1.47",
+   "min": [
+    -0.312,
+    1.415,
+    -0.099
+   ],
+   "max": [
+    0.481,
+    1.465,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.47–1.52",
+   "min": [
+    -0.307,
+    1.465,
+    -0.078
+   ],
+   "max": [
+    0.468,
+    1.515,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.52–1.57",
+   "min": [
+    -0.296,
+    1.515,
+    -0.077
+   ],
+   "max": [
+    0.446,
+    1.565,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.57–1.62",
+   "min": [
+    -0.289,
+    1.565,
+    -0.071
+   ],
+   "max": [
+    0.403,
+    1.615,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.62–1.67",
+   "min": [
+    -0.283,
+    1.615,
+    -0.057
+   ],
+   "max": [
+    0.296,
+    1.665,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.67–1.72",
+   "min": [
+    -0.273,
+    1.665,
+    -0.048
+   ],
+   "max": [
+    0.26,
+    1.715,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.72–1.77",
+   "min": [
+    -0.275,
+    1.715,
+    -0.07
+   ],
+   "max": [
+    0.275,
+    1.765,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.77–1.82",
+   "min": [
+    -0.295,
+    1.765,
+    -0.066
+   ],
+   "max": [
+    0.295,
+    1.815,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters over the seat, y 1.82–1.87",
+   "min": [
+    -0.077,
+    1.815,
+    0.17
+   ],
+   "max": [
+    0.077,
+    1.839,
+    0.305
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.25–0.30",
+   "min": [
+    -0.208,
+    0.25,
+    0.34
+   ],
+   "max": [
+    0.208,
+    0.3,
+    0.684
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.30–0.35",
+   "min": [
+    -0.22,
+    0.3,
+    0.339
+   ],
+   "max": [
+    0.22,
+    0.35,
+    0.719
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.35–0.40",
+   "min": [
+    -0.21,
+    0.35,
+    0.307
+   ],
+   "max": [
+    0.21,
+    0.4,
+    0.687
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.40–0.45",
+   "min": [
+    -0.306,
+    0.4,
+    0.305
+   ],
+   "max": [
+    0.306,
+    0.45,
+    0.628
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.45–0.50",
+   "min": [
+    -0.337,
+    0.45,
+    0.305
+   ],
+   "max": [
+    0.337,
+    0.5,
+    0.693
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.50–0.55",
+   "min": [
+    -0.321,
+    0.5,
+    0.305
+   ],
+   "max": [
+    0.321,
+    0.55,
+    0.679
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.55–0.60",
+   "min": [
+    -0.338,
+    0.55,
+    0.305
+   ],
+   "max": [
+    0.338,
+    0.6,
+    0.664
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.60–0.65",
+   "min": [
+    -0.352,
+    0.6,
+    0.305
+   ],
+   "max": [
+    0.352,
+    0.65,
+    0.563
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.65–0.70",
+   "min": [
+    -0.352,
+    0.65,
+    0.305
+   ],
+   "max": [
+    0.352,
+    0.7,
+    0.512
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.70–0.75",
+   "min": [
+    -0.34,
+    0.7,
+    0.305
+   ],
+   "max": [
+    0.34,
+    0.75,
+    0.517
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.75–0.80",
+   "min": [
+    -0.334,
+    0.75,
+    0.305
+   ],
+   "max": [
+    0.334,
+    0.8,
+    0.519
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.80–0.85",
+   "min": [
+    -0.35,
+    0.8,
+    0.305
+   ],
+   "max": [
+    0.34,
+    0.85,
+    0.493
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.85–0.90",
+   "min": [
+    -0.368,
+    0.85,
+    0.305
+   ],
+   "max": [
+    0.336,
+    0.9,
+    0.477
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.90–0.95",
+   "min": [
+    -0.372,
+    0.9,
+    0.305
+   ],
+   "max": [
+    0.314,
+    0.95,
+    0.496
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 0.95–1.00",
+   "min": [
+    -0.358,
+    0.95,
+    0.305
+   ],
+   "max": [
+    0.302,
+    1,
+    0.599
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.00–1.05",
+   "min": [
+    -0.344,
+    1,
+    0.305
+   ],
+   "max": [
+    0.332,
+    1.05,
+    0.601
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.05–1.10",
+   "min": [
+    -0.327,
+    1.05,
+    0.305
+   ],
+   "max": [
+    0.316,
+    1.1,
+    0.487
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.10–1.15",
+   "min": [
+    -0.293,
+    1.1,
+    0.305
+   ],
+   "max": [
+    0.283,
+    1.15,
+    0.627
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.15–1.20",
+   "min": [
+    -0.298,
+    1.15,
+    0.305
+   ],
+   "max": [
+    0.259,
+    1.2,
+    0.776
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.20–1.25",
+   "min": [
+    -0.309,
+    1.2,
+    0.305
+   ],
+   "max": [
+    0.248,
+    1.25,
+    0.803
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.25–1.30",
+   "min": [
+    -0.308,
+    1.25,
+    0.305
+   ],
+   "max": [
+    0.265,
+    1.3,
+    0.77
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.30–1.35",
+   "min": [
+    -0.334,
+    1.3,
+    0.305
+   ],
+   "max": [
+    0.415,
+    1.35,
+    0.781
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.35–1.40",
+   "min": [
+    -0.337,
+    1.35,
+    0.305
+   ],
+   "max": [
+    0.269,
+    1.4,
+    0.777
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.40–1.45",
+   "min": [
+    -0.349,
+    1.4,
+    0.305
+   ],
+   "max": [
+    0.425,
+    1.45,
+    0.828
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.45–1.50",
+   "min": [
+    -0.348,
+    1.45,
+    0.305
+   ],
+   "max": [
+    0.404,
+    1.5,
+    0.853
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.50–1.55",
+   "min": [
+    -0.349,
+    1.5,
+    0.305
+   ],
+   "max": [
+    0.372,
+    1.55,
+    0.902
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.55–1.60",
+   "min": [
+    -0.354,
+    1.55,
+    0.305
+   ],
+   "max": [
+    0.344,
+    1.6,
+    0.886
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.60–1.65",
+   "min": [
+    -0.38,
+    1.6,
+    0.305
+   ],
+   "max": [
+    0.303,
+    1.65,
+    0.821
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.65–1.70",
+   "min": [
+    -0.372,
+    1.65,
+    0.305
+   ],
+   "max": [
+    0.254,
+    1.7,
+    0.739
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.70–1.75",
+   "min": [
+    -0.351,
+    1.7,
+    0.305
+   ],
+   "max": [
+    0.268,
+    1.75,
+    0.678
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.75–1.80",
+   "min": [
+    -0.288,
+    1.75,
+    0.305
+   ],
+   "max": [
+    0.288,
+    1.8,
+    0.557
+   ]
+  },
+  {
+   "name": "seat: sitters' legs and laps in front, y 1.80–1.85",
+   "min": [
+    -0.263,
+    1.8,
+    0.305
+   ],
+   "max": [
+    0.263,
+    1.85,
+    0.57
+   ]
+  }
+ ],
+ "budget": {
+  "triangles": 7000,
+  "materials": 6
+ },
+ "tags": [
+  "onsen",
+  "lobby",
+  "1990s",
+  "coin-operated",
+  "seat",
+  "massage",
+  "Fujita's Back"
+ ],
+ "replaces": {
+  "world": "johansson-town/src/world/interiors/onsen.js: the boxes named Massage chair seat, back and arm, and the collider round them",
+  "placement": {
+   "room": "onsen",
+   "x": 4.505,
+   "z": 3.55,
+   "yaw": -1.5708,
+   "why": "Asset frame to room: room x = 4.505 - z, room z = 3.55 + x. The body's footprint is the old collider exactly (room x 4.2-4.81, z 3.1-4.0)."
+  },
+  "keep": "World keeps drawing what moves or lights: the coin timer's readout and lamp, the kneading rollers and the cord to the 1994 socket (onsen-electrics.js). The model names those parts and gives their anchors."
+ },
+ "notes": "A 1990s lobby massage chair, made up (no maker's name). Colours from World's palettes: the residents' cloth palette (src/avatars/recipe.js PALETTE.cloth); plate is the milk cooler's shelf grey (onsen-lobby.js) and lamp the onsen chair's running lamp (onsen-electrics.js). The sky-blue vinyl stands out from the lobby's brown wainscot, cream plaster and hinoki boards, from the red milk cooler beside it, and from the white and beige after-bath clothes of whoever sits in it. Its seat is 0.50 m (the onsen's seat and World's chair poses), not the 0.45 m of a real one.",
+ "keepClearFrom": "modeller/tools/keep-clear.mjs on 2026-10-14: World's residents (src/avatars, read only) seated in every seated pose, in their clothes and after-bath clothes, and Mr Fujita in ChairUncurl and FrozenAbsurd with the cloud of hair; 5 cm bands with 5 mm to spare. Cloth that sinks into a seat's top is World's seat contact and is not counted.",
+ "parts": [
+  {
+   "name": "Coin massage chair",
+   "loose": false,
+   "note": ""
+  },
+  {
+   "name": "Massage chair seat",
+   "loose": false,
+   "note": ""
+  },
+  {
+   "name": "Massage chair back",
+   "loose": false,
+   "note": ""
+  },
+  {
+   "name": "Massage chair rollers",
+   "loose": false,
+   "note": ""
+  },
+  {
+   "name": "Massage chair coin box",
+   "loose": false,
+   "note": ""
+  },
+  {
+   "name": "Massage chair lamp",
+   "loose": false,
+   "note": ""
+  },
+  {
+   "name": "Massage chair remote",
+   "loose": false,
+   "note": ""
+  },
+  {
+   "name": "Massage chair cord",
+   "loose": true,
+   "note": "Lies on the floor beside the chair. A room that wires the chair itself (Umi-no-yu draws its own cord to the 1994 socket) hides this part and starts its cord at the cord anchor."
+  }
+ ],
+ "measured": {
+  "size": [
+   0.9,
+   1.14,
+   0.73
+  ],
+  "body": {
+   "min": [
+    -0.45,
+    0,
+    -0.305
+   ],
+   "max": [
+    0.45,
+    1.14,
+    0.425
+   ]
+  },
+  "all": {
+   "min": [
+    -0.7307,
+    -0.0004,
+    -0.3706
+   ],
+   "max": [
+    0.45,
+    1.14,
+    0.425
+   ]
+  },
+  "triangles": 6574,
+  "materials": 6,
+  "meshes": 13
+ },
+ "checks": [
+  {
+   "id": "card",
+   "ok": true,
+   "detail": "Every field is there."
+  },
+  {
+   "id": "purpose",
+   "ok": true,
+   "detail": "Who it is for, why they want it and where it belongs are written down."
+  },
+  {
+   "id": "brands",
+   "ok": true,
+   "detail": "None found."
+  },
+  {
+   "id": "id",
+   "ok": true,
+   "detail": "massage-chair is used by nothing else in Studio or World."
+  },
+  {
+   "id": "build",
+   "ok": true,
+   "detail": "66 pieces in 8 part(s)."
+  },
+  {
+   "id": "floor",
+   "ok": true,
+   "detail": "Lowest point at y = 0.000 m; all 66 pieces rest on the floor or on each other."
+  },
+  {
+   "id": "size",
+   "ok": true,
+   "detail": "0.90 × 1.14 × 0.73 m (w × h × d). Its top is up to the chest of a 1.6 m resident."
+  },
+  {
+   "id": "budget",
+   "ok": true,
+   "detail": "6574 of 7000 triangles, 6 of 6 materials, 13 draw calls."
+  },
+  {
+   "id": "collider",
+   "ok": true,
+   "detail": "2 boxes cover every solid piece: footprint 0.90 × 0.73 m."
+  },
+  {
+   "id": "seats",
+   "ok": true,
+   "detail": "\"seat\": surface 0.500 m, stand spot 68 cm clear; \"coin\" stand spot 36 cm clear."
+  },
+  {
+   "id": "room",
+   "ok": true,
+   "detail": "Nothing of it in the 59 spaces the residents' bodies use (keepClear)."
+  }
+ ],
+ "checked": "2026-10-10T20:55:37.389Z",
+ "hero": "hero.png",
+ "source": {
+  "from": "johansson-studio",
+  "files": {
+   "asset.json": "ec5d845437e20daf99a462ac82106a6fc44f2cdc",
+   "model.js": "01187bdbfc6888b4bee520615f71d19fd3cfafdf"
+  }
+ }
+}

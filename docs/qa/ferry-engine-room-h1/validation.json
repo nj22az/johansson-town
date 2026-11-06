@@ -1,0 +1,127 @@
+{
+  "revision": "H1-F1",
+  "date": "2026-10-31",
+  "workflow": "Blender only per owner; Meshy step superseded",
+  "artifacts": {
+    "assets/models/ferry-engine-room/minato-engine-room-h1-f1.glb": {
+      "bytes": 3587152,
+      "sha256": "6ee5d7362b402701b9ee9be8a7f3486464542f1b3687723e52d95da3dd516af9"
+    },
+    "art/ferry-engine-room/Minato_Maru_Engine_Room_H1.blend": {
+      "bytes": 784563,
+      "sha256": "26341179d5645e939ac07f4eb229a5d25664691182359c3ca7628588aa5add15"
+    },
+    "art/ferry-engine-room/geometry-h1.json": {
+      "bytes": 268905,
+      "sha256": "dfdd5f4262a75f117b308b1b0a9ea010486054a5dfc17f6fe74b86a8862f42bd"
+    },
+    "art/ferry-engine-room/cad/finish-h1-f1.json": {
+      "bytes": 1657,
+      "sha256": "7585ee64e9fa97a19fa37ea7e2818031a56529248775147d624f969d608cdd2b"
+    },
+    "art/ferry-engine-room/cad/Minato_Maru_Engine_Room_H1_Implementation.pdf": {
+      "bytes": 520776,
+      "sha256": "7faff00274599ab33d693fde5217de44914c498c344064796a49b68ce4057c72"
+    },
+    "art/ferry-engine-room/cad/JS127-ER-H1-03.dxf": {
+      "bytes": 65086,
+      "sha256": "ac28faac72a1f88ae916d5e8768a964a0763d3307b9ee787d967dc7fb2ca102a"
+    },
+    "art/ferry-engine-room/renders/aux.png": {
+      "bytes": 782258,
+      "sha256": "83959ac63f50196a8074a31f1a23ac28730a95e1ad19701513553633d0eca121"
+    },
+    "art/ferry-engine-room/renders/control.png": {
+      "bytes": 859935,
+      "sha256": "97ed164e40834f208902cacaf6bd07862587dfeffdc7e11fe818e21f08050ed6"
+    },
+    "art/ferry-engine-room/renders/electrical.png": {
+      "bytes": 778715,
+      "sha256": "f4bf26091e8e07661ef8cf5252508af24d67cf5c02b607fb6127ef4ac3b738b0"
+    },
+    "art/ferry-engine-room/renders/engines-aft.png": {
+      "bytes": 902078,
+      "sha256": "5fc97f14af197fd68a05f535849c782bd1c07185a4d01ce4961ce535cbab9f2c"
+    },
+    "art/ferry-engine-room/renders/engines-fore.png": {
+      "bytes": 840526,
+      "sha256": "a3250c8b296fe70c96d9dbc617a4e773a6f666f68e3516a610ed111d356cadbf"
+    },
+    "art/ferry-engine-room/renders/store.png": {
+      "bytes": 871753,
+      "sha256": "7cd1a38dcd6b15aaffda3ec7fe87bbb838d7fde29af21512dbbd9fdb50b5b2eb"
+    },
+    "art/ferry-engine-room/renders/workshop-entry.png": {
+      "bytes": 871246,
+      "sha256": "8b14a23c1dd59349bc12e52d5170a21b7860cc4804f6bb75cc501b707b4e98ba"
+    },
+    "art/ferry-engine-room/renders/workshop.png": {
+      "bytes": 863842,
+      "sha256": "01aa9111af6af3a97a91706ee16c96d29411f86512459d2d450d1759ee169025"
+    },
+    "docs/qa/ferry-engine-room-h1/blender-camera-sheet.jpg": {
+      "bytes": 300398,
+      "sha256": "70de5b848fe0f44b9bf5da5d4e7325bb251bf60eaaf06f912f4c86e00ffb6f90"
+    }
+  },
+  "glb_meshes": 1,
+  "glb_primitives": 2,
+  "glb_triangles": 80376,
+  "glb_colour": "normalized unsigned byte; position/normal float precision retained; no UVs",
+  "glb_draco_compression": "not requested; optional library unavailable, uncompressed export and loader checks pass",
+  "pdf_pages": 16,
+  "pdf_page_mm": [
+    594,
+    420
+  ],
+  "dxf_units": "mm",
+  "dxf_native_dimensions": 9,
+  "dxf_errors": 0,
+  "dxf_fixes": 0,
+  "dxf_paper_review_layouts": 4,
+  "camera_count": 8,
+  "working_clearance_m": 2.4,
+  "nominal_height_m": 2.7,
+  "source_components": 1290,
+  "bevelled_equipment_envelopes_checked": 221,
+  "outward_faces_checked": 29268,
+  "outward_faces_failed": 0,
+  "source_dial_faces": 43,
+  "ferry_and_camera_checks": "7/7 pass; updated GLB budget/colour/normals and 2 m booth door envelope",
+  "runtime_package_checks": "4/4 pass",
+  "h1_vessel_walk_checks": "7/7 pass in preceding geometry pass; H1-F1 surface-only changes preserve physics",
+  "final_guard": {
+    "files": 93,
+    "tests": 482,
+    "passed": 482,
+    "failed": 0,
+    "seconds": 485,
+    "node_heap_mb": 6144,
+    "concurrency": 2
+  },
+  "previews": {
+    "renderer": "Blender 4.0.2 EEVEE",
+    "views": 8,
+    "resolution": [
+      960,
+      720
+    ],
+    "samples": 64,
+    "tonemapping": "AgX / medium high contrast",
+    "in_game_captures": false
+  },
+  "game_visual_acceptance": false,
+  "browser_graphics": "WebGL context creation failed; GL_VENDOR Disabled",
+  "real_ship_engineering_acceptance": false,
+  "meshy_assets_generated": false,
+  "meshy_requirement": "superseded by owner; no account handoff required",
+  "runtime_source_sha256": "b44001aebe030c895416d516423732ab174f889df873a01a497639fae519922a",
+  "publication_base": "a30fb308700921e36032d1fdcd11dd78edd7dcab",
+  "original_h1_implementation_commit": "e43e6ff292bda94b5918dcb881acc8692e1b450b",
+  "blender_compressed_reopen": "pass: 1290 editable source components; 8 locked CAD camera positions, aims and vertical fields of view",
+  "glb_rebuild_reproducibility": "pass: final rebuild SHA256 matches the tested GLB byte-for-byte",
+  "implementation_commit": "091b24d31a808854740c59da920ed0771f5d2133",
+  "verified_source_tree": "6b3a2fe881006a29a6df3eecfa6099c4c61326eb",
+  "local_verified_snapshot": "ba863e5f631dedef14483344f94ab4ca275e03cb",
+  "github_blob_and_tree_verification": "all 53 changed source/artifact blobs and the complete implementation tree match local Git objects"
+}

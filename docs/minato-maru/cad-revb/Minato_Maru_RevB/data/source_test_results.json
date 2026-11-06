@@ -1,0 +1,8 @@
+{
+  "tests": 80,
+  "passed": 80,
+  "failed": 0,
+  "scope": "tests/ferry-*.test.mjs against audited source plus corrections",
+  "runtimeBuilt": false,
+  "liveDeploymentVerified": false
+}

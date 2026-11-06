@@ -1,0 +1,18 @@
+{
+  "path": "models/street/potted-plant.glb",
+  "creator": "Polygonal Mind",
+  "catalogue": "https://github.com/ToxSam/os3a-gallery",
+  "source": "https://github.com/ToxSam/cc0-models-Polygonal-Mind/blob/main/projects/avatar-show/Banana_Plant.glb",
+  "download": "https://raw.githubusercontent.com/ToxSam/cc0-models-Polygonal-Mind/main/projects/avatar-show/Banana_Plant.glb",
+  "license": "CC0-1.0",
+  "licenseURL": "https://github.com/ToxSam/cc0-models-Polygonal-Mind/blob/main/License.md",
+  "sourceSHA256": "d0bcf596c6662913e20c6d489626cf41d79e933a46b221ff0d0d76936ca0ad9b",
+  "sha256": "c760c383c1de9bf7c1666e3e63708e1ff597d4b2aca50134b2c78a8d3f0dc471",
+  "triangles": 3796,
+  "bytes": 420756,
+  "changes": [
+    "Textures reduced to 512px and re-encoded",
+    "Alpha testing replaces transparent leaf blending",
+    "Instanced at runtime; original geometry retained"
+  ]
+}

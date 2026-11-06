@@ -1,0 +1,732 @@
+{
+  "physicalDevice": false,
+  "views": [
+    {
+      "name": "chromium-iphone",
+      "label": "street",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        390,
+        844
+      ],
+      "shadows": true,
+      "shadowSize": [
+        512,
+        512
+      ],
+      "safe": false,
+      "streaming": {
+        "enabled": false,
+        "active": null,
+        "loaded": [],
+        "failed": [],
+        "retries": 0
+      },
+      "gpuError": 0,
+      "colours": 58689
+    },
+    {
+      "name": "chromium-iphone",
+      "label": "landscape",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        844,
+        390
+      ],
+      "shadows": true,
+      "shadowSize": [
+        512,
+        512
+      ],
+      "safe": false,
+      "streaming": {
+        "enabled": false,
+        "active": null,
+        "loaded": [],
+        "failed": [],
+        "retries": 0
+      },
+      "gpuError": 0,
+      "colours": 138241
+    },
+    {
+      "name": "chromium-iphone",
+      "label": "overhead",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        844,
+        390
+      ],
+      "shadows": true,
+      "shadowSize": [
+        512,
+        512
+      ],
+      "safe": false,
+      "streaming": {
+        "enabled": false,
+        "active": null,
+        "loaded": [],
+        "failed": [],
+        "retries": 0
+      },
+      "gpuError": 0,
+      "colours": 219276
+    },
+    {
+      "name": "chromium-iphone",
+      "label": "sakura-night",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        844,
+        390
+      ],
+      "shadows": true,
+      "shadowSize": [
+        512,
+        512
+      ],
+      "safe": false,
+      "streaming": {
+        "enabled": false,
+        "active": null,
+        "loaded": [],
+        "failed": [],
+        "retries": 0
+      },
+      "gpuError": 0,
+      "colours": 189184
+    },
+    {
+      "name": "chromium-iphone",
+      "label": "restored",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        844,
+        390
+      ],
+      "shadows": true,
+      "shadowSize": [
+        512,
+        512
+      ],
+      "safe": false,
+      "streaming": {
+        "enabled": false,
+        "active": null,
+        "loaded": [],
+        "failed": [],
+        "retries": 0
+      },
+      "gpuError": 0,
+      "colours": 189184
+    },
+    {
+      "name": "chromium-desktop",
+      "label": "street",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1.25,
+        "samples": 4
+      },
+      "buffer": [
+        1280,
+        800
+      ],
+      "shadows": true,
+      "shadowSize": [
+        2048,
+        2048
+      ],
+      "safe": false,
+      "streaming": {
+        "enabled": true,
+        "active": "park-onsen",
+        "loaded": [
+          "harbour-park-bench",
+          "sakura-interior",
+          "sakura-bench",
+          "warehouse"
+        ],
+        "failed": [],
+        "retries": 0
+      },
+      "gpuError": 0,
+      "colours": 86543
+    },
+    {
+      "name": "chromium-desktop",
+      "label": "overhead",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1.25,
+        "samples": 4
+      },
+      "buffer": [
+        1280,
+        800
+      ],
+      "shadows": true,
+      "shadowSize": [
+        2048,
+        2048
+      ],
+      "safe": false,
+      "streaming": {
+        "enabled": true,
+        "active": null,
+        "loaded": [
+          "harbour-park-bench",
+          "sakura-interior",
+          "sakura-bench",
+          "warehouse",
+          "park-onsen"
+        ],
+        "failed": [],
+        "retries": 0
+      },
+      "gpuError": 0,
+      "colours": 97633
+    },
+    {
+      "name": "chromium-desktop",
+      "label": "sakura-night",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1.25,
+        "samples": 4
+      },
+      "buffer": [
+        1280,
+        800
+      ],
+      "shadows": true,
+      "shadowSize": [
+        2048,
+        2048
+      ],
+      "safe": false,
+      "streaming": {
+        "enabled": true,
+        "active": null,
+        "loaded": [
+          "harbour-park-bench",
+          "sakura-interior",
+          "sakura-bench",
+          "warehouse",
+          "park-onsen"
+        ],
+        "failed": [],
+        "retries": 0
+      },
+      "gpuError": 0,
+      "colours": 70433
+    },
+    {
+      "name": "chromium-desktop",
+      "label": "restored",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1.25,
+        "samples": 4
+      },
+      "buffer": [
+        1280,
+        800
+      ],
+      "shadows": true,
+      "shadowSize": [
+        2048,
+        2048
+      ],
+      "safe": false,
+      "streaming": {
+        "enabled": true,
+        "active": null,
+        "loaded": [
+          "harbour-park-bench",
+          "sakura-interior",
+          "sakura-bench",
+          "warehouse",
+          "park-onsen"
+        ],
+        "failed": [],
+        "retries": 0
+      },
+      "gpuError": 0,
+      "colours": 70433
+    },
+    {
+      "name": "webkit-iphone",
+      "label": "street",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        390,
+        844
+      ],
+      "shadows": true,
+      "shadowSize": [
+        512,
+        512
+      ],
+      "safe": false,
+      "streaming": {
+        "enabled": false,
+        "active": null,
+        "loaded": [],
+        "failed": [],
+        "retries": 0
+      },
+      "gpuError": 0,
+      "colours": 58952
+    },
+    {
+      "name": "webkit-iphone",
+      "label": "landscape",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        844,
+        390
+      ],
+      "shadows": true,
+      "shadowSize": [
+        512,
+        512
+      ],
+      "safe": false,
+      "streaming": {
+        "enabled": false,
+        "active": null,
+        "loaded": [],
+        "failed": [],
+        "retries": 0
+      },
+      "gpuError": 0,
+      "colours": 135687
+    },
+    {
+      "name": "webkit-iphone",
+      "label": "overhead",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        844,
+        390
+      ],
+      "shadows": true,
+      "shadowSize": [
+        512,
+        512
+      ],
+      "safe": false,
+      "streaming": {
+        "enabled": false,
+        "active": null,
+        "loaded": [],
+        "failed": [],
+        "retries": 0
+      },
+      "gpuError": 0,
+      "colours": 214956
+    },
+    {
+      "name": "webkit-iphone",
+      "label": "sakura-night",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        844,
+        390
+      ],
+      "shadows": true,
+      "shadowSize": [
+        512,
+        512
+      ],
+      "safe": false,
+      "streaming": {
+        "enabled": false,
+        "active": null,
+        "loaded": [],
+        "failed": [],
+        "retries": 0
+      },
+      "gpuError": 0,
+      "colours": 185513
+    },
+    {
+      "name": "webkit-iphone",
+      "label": "restored",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        844,
+        390
+      ],
+      "shadows": true,
+      "shadowSize": [
+        512,
+        512
+      ],
+      "safe": false,
+      "streaming": {
+        "enabled": false,
+        "active": null,
+        "loaded": [],
+        "failed": [],
+        "retries": 0
+      },
+      "gpuError": 0,
+      "colours": 185513
+    }
+  ],
+  "engines": [
+    {
+      "engine": "chromium",
+      "status": "tested",
+      "referenceComparisons": [
+        {
+          "hdr": false,
+          "ink": false,
+          "grade": false,
+          "fxaa": false,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": false,
+          "ink": false,
+          "grade": false,
+          "fxaa": true,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": false,
+          "ink": false,
+          "grade": true,
+          "fxaa": false,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": false,
+          "ink": false,
+          "grade": true,
+          "fxaa": true,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": false,
+          "ink": true,
+          "grade": false,
+          "fxaa": false,
+          "mean": 0.0131640625,
+          "max": 2
+        },
+        {
+          "hdr": false,
+          "ink": true,
+          "grade": false,
+          "fxaa": true,
+          "mean": 0.013079427083333333,
+          "max": 3
+        },
+        {
+          "hdr": false,
+          "ink": true,
+          "grade": true,
+          "fxaa": false,
+          "mean": 0.007477213541666666,
+          "max": 1
+        },
+        {
+          "hdr": false,
+          "ink": true,
+          "grade": true,
+          "fxaa": true,
+          "mean": 0.007731119791666667,
+          "max": 4
+        },
+        {
+          "hdr": true,
+          "ink": false,
+          "grade": false,
+          "fxaa": false,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": true,
+          "ink": false,
+          "grade": false,
+          "fxaa": true,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": true,
+          "ink": false,
+          "grade": true,
+          "fxaa": false,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": true,
+          "ink": false,
+          "grade": true,
+          "fxaa": true,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": true,
+          "ink": true,
+          "grade": false,
+          "fxaa": false,
+          "mean": 0.00006184895833333334,
+          "max": 1
+        },
+        {
+          "hdr": true,
+          "ink": true,
+          "grade": false,
+          "fxaa": true,
+          "mean": 0.00009765625,
+          "max": 1
+        },
+        {
+          "hdr": true,
+          "ink": true,
+          "grade": true,
+          "fxaa": false,
+          "mean": 0.00017578125,
+          "max": 1
+        },
+        {
+          "hdr": true,
+          "ink": true,
+          "grade": true,
+          "fxaa": true,
+          "mean": 0.000244140625,
+          "max": 1
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "status": "tested",
+      "referenceComparisons": [
+        {
+          "hdr": false,
+          "ink": false,
+          "grade": false,
+          "fxaa": false,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": false,
+          "ink": false,
+          "grade": false,
+          "fxaa": true,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": false,
+          "ink": false,
+          "grade": true,
+          "fxaa": false,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": false,
+          "ink": false,
+          "grade": true,
+          "fxaa": true,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": false,
+          "ink": true,
+          "grade": false,
+          "fxaa": false,
+          "mean": 0.013206380208333333,
+          "max": 2
+        },
+        {
+          "hdr": false,
+          "ink": true,
+          "grade": false,
+          "fxaa": true,
+          "mean": 0.013118489583333334,
+          "max": 3
+        },
+        {
+          "hdr": false,
+          "ink": true,
+          "grade": true,
+          "fxaa": false,
+          "mean": 0.0073860677083333335,
+          "max": 1
+        },
+        {
+          "hdr": false,
+          "ink": true,
+          "grade": true,
+          "fxaa": true,
+          "mean": 0.007555338541666666,
+          "max": 4
+        },
+        {
+          "hdr": true,
+          "ink": false,
+          "grade": false,
+          "fxaa": false,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": true,
+          "ink": false,
+          "grade": false,
+          "fxaa": true,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": true,
+          "ink": false,
+          "grade": true,
+          "fxaa": false,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": true,
+          "ink": false,
+          "grade": true,
+          "fxaa": true,
+          "mean": 0,
+          "max": 0
+        },
+        {
+          "hdr": true,
+          "ink": true,
+          "grade": false,
+          "fxaa": false,
+          "mean": 0.0005501302083333334,
+          "max": 1
+        },
+        {
+          "hdr": true,
+          "ink": true,
+          "grade": false,
+          "fxaa": true,
+          "mean": 0.0005989583333333333,
+          "max": 2
+        },
+        {
+          "hdr": true,
+          "ink": true,
+          "grade": true,
+          "fxaa": false,
+          "mean": 0.00016276041666666666,
+          "max": 1
+        },
+        {
+          "hdr": true,
+          "ink": true,
+          "grade": true,
+          "fxaa": true,
+          "mean": 0.000244140625,
+          "max": 1
+        }
+      ]
+    }
+  ]
+}

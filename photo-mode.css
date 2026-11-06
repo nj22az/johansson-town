@@ -1,0 +1,104 @@
+.photo-open body > :not(#photoStudio):not(script):not(style){visibility:hidden!important}
+#photoStudio{position:fixed;inset:0;z-index:200;color:#24312c;background:#e9e4d4;display:grid;grid-template-columns:minmax(0,1fr) 320px;grid-template-rows:auto minmax(0,1fr);font:14px/1.4 system-ui,sans-serif;padding-top:env(safe-area-inset-top)}
+#photoStudio[hidden]{display:none}
+#photoStudio *{box-sizing:border-box}
+#photoStudio header{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid #bbb5a3;gap:12px}
+#photoStudio h2{font:700 20px Georgia,serif;margin:0}#photoStudio header p{font-size:12px;margin:2px 0 0;color:#5b655c}
+#photoStudio button,#photoStudio select,#photoStudio input:not([type=range]),#photoStudio a{min-height:42px;padding:8px 10px;border:1px solid #aaa997;border-radius:5px;background:#fffaf0;color:#24312c;font:600 13px system-ui;letter-spacing:0;text-decoration:none;max-width:100%}
+#photoStudio button:focus-visible,#photoStudio a:focus-visible,#photoStudio input:focus-visible,#photoStudio select:focus-visible{outline:3px solid #c06b41;outline-offset:2px}
+#photoStudio button:disabled{opacity:.4}#photoStudio .primary{background:#314f45;color:white;border-color:#314f45}
+.photo-stage{background:#263a36;min-width:0;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:12px}
+.photo-frame{position:relative;flex:none;overflow:hidden;touch-action:none;box-shadow:0 3px 20px #0004}
+#photoStudio .photo-frame canvas{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;display:block;visibility:visible!important;max-width:none}
+#photoStudio .photo-frame canvas.photo-pocket{image-rendering:pixelated;pointer-events:none}#photoStudio .photo-frame canvas.photo-pocket[hidden]{display:none!important}
+.photo-captions{pointer-events:none;z-index:1}.photo-tools{padding:12px;overflow:auto;min-height:0;border-left:1px solid #bbb5a3;overscroll-behavior:contain}
+#photoStudio details{border-bottom:1px solid #c6c1b0;padding:8px 0}#photoStudio summary{font-weight:750;cursor:pointer;min-height:34px}
+#photoStudio label{display:grid;gap:4px;margin:8px 0;font-size:12px}#photoStudio input,#photoStudio select{width:100%;min-width:0}#photoStudio input[type=range]{min-height:28px;accent-color:#385b4a;margin:0}
+.photo-row{display:flex;gap:6px;align-items:end}.photo-row>*{flex:1;min-width:0}#photoStudio .photo-row label{margin:4px 0}
+.photo-status{font-size:12px;min-height:32px;color:#455346;margin:8px 0}.photo-film{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.photo-film figure{margin:0;min-width:0}.photo-film img{width:100%;height:70px;object-fit:contain;background:#263a36;border:1px solid #aaa997}.photo-film .photo-row button,.photo-film .photo-row a{font-size:11px!important;padding:5px!important;min-height:32px!important;text-align:center}
+@media(max-width:760px){#photoStudio{grid-template-columns:1fr;grid-template-rows:auto minmax(160px,45%) minmax(0,1fr);padding-bottom:env(safe-area-inset-bottom)}#photoStudio header{padding:7px 10px}#photoStudio header p{font-size:11px}#photoStudio h2{font-size:17px}.photo-stage{padding:6px}.photo-tools{border-left:0;border-top:1px solid #bbb5a3;padding:8px 12px}.photo-film{grid-template-columns:repeat(4,minmax(0,1fr))}.photo-film .photo-row{display:grid}.photo-film img{height:55px}}
+@media(max-height:480px) and (min-width:600px){#photoStudio{grid-template-columns:minmax(0,1fr) 280px;grid-template-rows:auto minmax(0,1fr)}.photo-tools{border-left:1px solid #bbb5a3}}
+/* The photo studio in the town book's dress (QA O5): cream, rounded, one typeface, the
+   pose and the face as chips you tap rather than lists you scroll. */
+#photoStudio{background:#fffaf0;color:#3b3f55;font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Arial Rounded MT Bold",system-ui,sans-serif}
+#photoStudio header{border-bottom:0;background:#fff;box-shadow:0 3px 0 #e6e1d6;z-index:1}
+#photoStudio h2{font:800 20px/1.2 inherit;font-family:inherit}
+#photoStudio button,#photoStudio select,#photoStudio input:not([type=range]),#photoStudio a{border:2px solid #e6e1d6;border-radius:14px;background:#fff;color:#3b3f55;font:700 14px/1.2 inherit;font-family:inherit;box-shadow:0 2px 0 #e6e1d6}
+#photoStudio .primary,#photoStudio [data-close]{background:#7ccc4a;border-color:#fff;color:#fff;box-shadow:0 3px 0 #57a52f}
+#photoStudio [data-close]{background:#ff8a65;box-shadow:0 3px 0 #e0643f}
+.photo-stage{background:radial-gradient(circle at 50% 40%,#bfe3f5,#86c4e3)}
+.photo-frame{border:6px solid #fff;border-radius:10px;box-shadow:0 6px 0 #0001,0 18px 40px #0003}
+.photo-tools{border-left:0;background:#fffaf0}
+#photoStudio details{margin:0 0 10px;padding:8px 12px;border:0;border-radius:18px;background:#fff;box-shadow:0 3px 0 #e6e1d6}
+#photoStudio summary{font-weight:800}
+#photoStudio input[type=range]{accent-color:#45b7f0}
+#photoStudio .photo-row-selects{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.photo-chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.photo-chips-title{flex-basis:100%;font-size:12px;font-weight:800;color:#8a7f6f;letter-spacing:.06em;text-transform:uppercase}
+#photoStudio .photo-chip{min-height:36px;padding:6px 12px;border-radius:999px;font-size:13px;background:#f2f9ff;border-color:#d9e8f2;color:#2a8fcc;box-shadow:0 2px 0 #d9e8f2}
+#photoStudio .photo-chip.on{background:#ffc93c;border-color:#fff;color:#3b3f55;box-shadow:0 2px 0 #e8a415}
+
+#photoStudio [hidden]{display:none!important}
+#photoStudio .photo-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:12px;position:sticky;top:0;background:#fffaf0;z-index:2;padding:4px 0}
+#photoStudio .photo-tabs button{display:grid;place-items:center;gap:4px;min-height:58px;padding:6px 2px;font-size:11px}
+#photoStudio .photo-tabs button[aria-pressed=true]{background:#ffdb68;border-color:#efc049}
+#photoStudio button .ui-icon{margin:auto;flex-shrink:0}
+#photoStudio [data-capture],#photoStudio [data-remove]{display:flex;align-items:center;justify-content:center;gap:8px;width:100%}
+#photoStudio [data-capture] .ui-icon,#photoStudio [data-remove] .ui-icon{margin:0}
+#photoStudio [data-close]{font-size:0;width:48px;height:48px;padding:10px}
+#photoStudio [data-close]::after{content:'×';font-size:30px;line-height:1}
+#photoStudio .photo-place-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#photoStudio .photo-place-grid button{display:grid;place-items:center;gap:8px;padding:12px 6px;min-height:86px;font-size:12px}
+#photoStudio .photo-place-grid button:hover{background:#edf7e8}
+#photoStudio .photo-precise{background:#f5f7fa;box-shadow:none;padding:4px 8px;margin-top:12px}
+#photoStudio header p{font-size:11px}
+#photoStudio .photo-frame{cursor:grab}#photoStudio .photo-frame:active{cursor:grabbing}
+@media(max-width:760px){#photoStudio{grid-template-rows:auto minmax(140px,46%) minmax(0,1fr)}#photoStudio .photo-tools{padding:6px 10px}#photoStudio .photo-tabs{margin-bottom:6px}#photoStudio .photo-tabs button{min-height:48px}#photoStudio .photo-tabs .ui-icon{width:20px;height:20px}}
+
+#photoStudio .photo-chip{min-height:54px;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:11px}#photoStudio .photo-chip svg{width:24px;height:24px}#photoStudio .photo-face{font-size:21px;line-height:24px}#photoStudio .photo-tabs span{font-size:12px}
+
+#photoStudio [data-close]::after{content:none}#photoStudio [data-close] svg{width:24px;height:24px}#photoStudio [data-close] span{font-size:0}
+.photo-swatches{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 8px}
+#photoStudio .photo-swatch{width:28px;height:28px;min-height:28px;padding:0;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #c6c1b0}
+#photoStudio .photo-swatch.on{box-shadow:0 0 0 3px #ffc93c}
+#photoStudio .photo-check{display:flex;align-items:center;gap:6px;min-height:36px}
+#photoStudio .photo-check input{width:auto}
+
+#photoStudio [data-edit-mode][aria-pressed="true"]{background:#f8d86a;border-color:#c8a13d}
+/* The pocket camera raised to the eye (src/photo/pocket-viewfinder.js): the screen at a whole-pixel scale in a cream
+   body, the shutter beside it. Only the buttons take the pointer, so a drag anywhere still turns the view. */
+#pocketViewfinder{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;pointer-events:none;
+ background:radial-gradient(ellipse at center,transparent 38%,#0006 100%);font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Arial Rounded MT Bold",system-ui,sans-serif}
+#pocketViewfinder[hidden]{display:none}
+/* The town's fictional hand-helds (src/photo/pocket-models.js), our own design: even corners, a round lens set into the
+   top corner like a monocle, the screen in a walnut bezel, the model's name in upright small capitals under it. The
+   Pocket Gentleman is cream with a burgundy name; the Pocket Lady is pink with a plum bezel and a raspberry name.
+   Text on both bodies keeps at least 4.5:1 contrast. */
+.pocket-body{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:30px 16px 10px;background:#efe8d8;border-radius:20px;box-shadow:inset 0 -4px 0 #0000001a,0 6px 0 #0001,0 18px 40px #0004}
+.pocket-bezel{padding:10px;background:#4f3a2e;border-radius:10px;box-shadow:inset 0 2px 0 #0003}
+.pocket-lens{position:absolute;top:7px;right:16px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 36% 34%,#9aa6bb 0 12%,#2a3242 52%,#141922);box-shadow:0 0 0 3px #d6cdb8,0 0 0 4px #b3aa95}
+.pocket-mark{margin:0;font-family:Georgia,"Times New Roman",serif;font-variant:small-caps;font-weight:700;font-size:15px;line-height:1.2;letter-spacing:.08em;color:#6b2d2a}
+#pocketViewfinder[data-model="lady"] .pocket-body{background:#f7c6d4;box-shadow:inset 0 -4px 0 #b9567a26,0 6px 0 #0001,0 18px 40px #0004}
+#pocketViewfinder[data-model="lady"] .pocket-bezel{background:#5e2f47}
+#pocketViewfinder[data-model="lady"] .pocket-lens{box-shadow:0 0 0 3px #eeb0c3,0 0 0 4px #cf87a1}
+#pocketViewfinder[data-model="lady"] .pocket-mark{color:#7d2149}
+#pocketViewfinder[data-model="lady"] .pocket-said,#pocketViewfinder[data-model="lady"] .pocket-count{color:#4a3640}
+/* base.css makes every canvas the full-screen game view; these two are pictures in the page. */
+.pocket-screen{display:block;position:static;inset:auto;touch-action:auto;image-rendering:pixelated;border-radius:4px;box-shadow:inset 0 0 0 2px #0002}
+.pocket-controls{display:flex;align-items:center;gap:10px}
+.pocket-controls button{pointer-events:auto;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:8px 14px;border:2px solid #e6e1d6;border-radius:14px;background:#fff;color:#3b3f55;font-weight:700;font-size:15px;line-height:1.2;font-family:inherit;cursor:pointer}
+.pocket-controls .pocket-shutter{background:#7ccc4a;border-color:#fff;color:#fff;box-shadow:0 3px 0 #57a52f}
+.pocket-controls button:focus-visible{outline:3px solid #c06b41;outline-offset:2px}
+.pocket-controls svg{width:20px;height:20px}
+.pocket-count{margin:0;font-weight:700;font-size:13px;line-height:1.2;font-family:inherit;color:#3b3f55;min-width:7.5em;text-align:center}
+.pocket-said{margin:0;min-height:1.3em;font-weight:600;font-size:13px;line-height:1.3;font-family:inherit;color:#5b655c;text-align:center;max-width:32em}
+/* The pocket album, a page of the Field book (src/photo/pocket-album-view.js): photos at twice their size, square pixels. */
+#activity.pocket-album-view .activity-card{display:flex;flex-direction:column}
+#activity.pocket-album-view #activityBody{overflow:auto;min-height:0;white-space:normal;margin-bottom:12px}
+#activity.pocket-album-view #activityActions{flex-shrink:0}
+.pocket-album-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:10px}
+.pocket-album figure{margin:0;display:flex;flex-direction:column;gap:6px}
+.pocket-album-photo{display:block;position:static;inset:auto;touch-action:auto;width:100%;height:auto;aspect-ratio:128/112;image-rendering:pixelated;border-radius:6px;box-shadow:0 3px 0 #0001}
+.pocket-album figcaption{font-size:13px;line-height:1.35}
+.pocket-album-row{display:flex;gap:8px}.pocket-album-row button{flex:1;min-height:40px}
+.pocket-album-empty{margin:8px 0}

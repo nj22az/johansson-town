@@ -1,0 +1,437 @@
+Full suite (before restoring missing sparse-checkout motor fixture):
+1..1189
+# tests 1189
+# suites 0
+# pass 1183
+# fail 1
+# cancelled 0
+# skipped 5
+# todo 0
+# duration_ms 891777.1685
+
+Motor fixture rerun:
+TAP version 13
+# Subtest: the pump motor display is the packed site model: true size, one quantised mesh, within budget
+ok 1 - the pump motor display is the packed site model: true size, one quantised mesh, within budget
+  ---
+  duration_ms: 15.398334
+  type: 'test'
+  ...
+# Subtest: the Dock Electrical Workshop has the motor on a steel test bench, clear of the walking route
+ok 2 - the Dock Electrical Workshop has the motor on a steel test bench, clear of the walking route
+  ---
+  duration_ms: 23.040375
+  type: 'test'
+  ...
+# Subtest: looking at the motor offers the full strip-down and Erik’s routine in a new tab
+ok 3 - looking at the motor offers the full strip-down and Erik’s routine in a new tab
+  ---
+  duration_ms: 28.49325
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 402.253958
+
+Final focused boot/save run:
+TAP version 13
+# Johansson Town stability checks passed {
+#   ok: true,
+#   failures: [],
+#   colliders: 1249,
+#   characterCount: 11,
+#   streetInteractions: 7,
+#   renderDpr: 1,
+#   toneMapping: 'AgX',
+#   shadows: true
+# }
+# Builder placements not loaded: The "paths[2]" argument must be of type string. Received undefined
+# Johansson Town stability checks passed {
+#   ok: true,
+#   failures: [],
+#   colliders: 1249,
+#   characterCount: 11,
+#   streetInteractions: 7,
+#   renderDpr: 1,
+#   toneMapping: 'AgX',
+#   shadows: true
+# }
+# Subtest: Published island boots, shares the wooden bookshop/workshop and visits every interior
+ok 1 - Published island boots, shares the wooden bookshop/workshop and visits every interior
+  ---
+  duration_ms: 284635.304875
+  type: 'test'
+  ...
+# Subtest: the clock state onTime reads is declared before the activities restore a saved game
+ok 2 - the clock state onTime reads is declared before the activities restore a saved game
+  ---
+  duration_ms: 4.635792
+  type: 'test'
+  ...
+# Subtest: title preview cannot create or overwrite a save; saving resumes when play begins
+ok 3 - title preview cannot create or overwrite a save; saving resumes when play begins
+  ---
+  duration_ms: 52.229708
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 285021.317583
+
+Integrated main regression checks:
+TAP version 13
+# Subtest: markup: pauses, faces, emphasis and fill-ins land where they were written
+ok 1 - markup: pauses, faces, emphasis and fill-ins land where they were written
+  ---
+  duration_ms: 2.7185
+  type: 'test'
+  ...
+# Subtest: markup: a pool pick is fixed by its seed and always comes from the pool
+ok 2 - markup: a pool pick is fixed by its seed and always comes from the pool
+  ---
+  duration_ms: 1.464333
+  type: 'test'
+  ...
+# Subtest: letters: every temperament and occasion composes, the same way every time
+ok 3 - letters: every temperament and occasion composes, the same way every time
+  ---
+  duration_ms: 3.738417
+  type: 'test'
+  ...
+# Subtest: letters fit the fiction: nobody writes to the mayor as a newcomer
+ok 4 - letters fit the fiction: nobody writes to the mayor as a newcomer
+  ---
+  duration_ms: 1.019959
+  type: 'test'
+  ...
+# Subtest: letters: a P.S. points somewhere real when the sender has a clue; a thank-you needs a present
+ok 5 - letters: a P.S. points somewhere real when the sender has a clue; a thank-you needs a present
+  ---
+  duration_ms: 0.42375
+  type: 'test'
+  ...
+# Subtest: mailbox: ten letters, never twice, read ones make way, unread ones are kept
+ok 6 - mailbox: ten letters, never twice, read ones make way, unread ones are kept
+  ---
+  duration_ms: 0.477625
+  type: 'test'
+  ...
+# Subtest: letters: rating a letter Johansson wrote
+ok 7 - letters: rating a letter Johansson wrote
+  ---
+  duration_ms: 8.183708
+  type: 'test'
+  ...
+# Subtest: stationery: every paper draws as a sheet of SVG
+ok 8 - stationery: every paper draws as a sheet of SVG
+  ---
+  duration_ms: 1.131916
+  type: 'test'
+  ...
+# Subtest: greetings: the most specific true situation wins, and every face is one the town can draw
+ok 9 - greetings: the most specific true situation wins, and every face is one the town can draw
+  ---
+  duration_ms: 3.265167
+  type: 'test'
+  ...
+# Subtest: errands: a delivery from ask to thank-you, with the wrong neighbour on the way
+ok 10 - errands: a delivery from ask to thank-you, with the wrong neighbour on the way
+  ---
+  duration_ms: 0.677625
+  type: 'test'
+  ...
+# Subtest: errands: a return waits for room in the bag, and a missed day ends it kindly
+ok 11 - errands: a return waits for room in the bag, and a missed day ends it kindly
+  ---
+  duration_ms: 0.267084
+  type: 'test'
+  ...
+# Subtest: errands: every line of every kind renders without stray markup or unknown faces
+ok 12 - errands: every line of every kind renders without stray markup or unknown faces
+  ---
+  duration_ms: 1.541458
+  type: 'test'
+  ...
+# Subtest: the calendar: 1997 dates and weekdays, Okinawa’s seasons, the parts of the day
+ok 13 - the calendar: 1997 dates and weekdays, Okinawa’s seasons, the parts of the day
+  ---
+  duration_ms: 5.570041
+  type: 'test'
+  ...
+# Subtest: every happening is well formed and names only people who exist
+ok 14 - every happening is well formed and names only people who exist
+  ---
+  duration_ms: 0.401458
+  type: 'test'
+  ...
+# Subtest: the Sunday fish auction puts Mrs Sato and the harbour master on the quay, rain or not
+ok 15 - the Sunday fish auction puts Mrs Sato and the harbour master on the quay, rain or not
+  ---
+  duration_ms: 0.431459
+  type: 'test'
+  ...
+# Subtest: the last night of Obon brings the street out for the eisa, unless it rains
+ok 16 - the last night of Obon brings the street out for the eisa, unless it rains
+  ---
+  duration_ms: 0.830833
+  type: 'test'
+  ...
+# Subtest: people mention the day all day, once per day each
+ok 17 - people mention the day all day, once per day each
+  ---
+  duration_ms: 0.137667
+  type: 'test'
+  ...
+# Subtest: every happening the news reports has its own sentence for how it went, and a dry one for the rain
+ok 18 - every happening the news reports has its own sentence for how it went, and a dry one for the rain
+  ---
+  duration_ms: 0.234125
+  type: 'test'
+  ...
+# Subtest: a festival is reported as it went: held if its cast went out in a dry moment, off if every check was wet
+ok 19 - a festival is reported as it went: held if its cast went out in a dry moment, off if every check was wet
+  ---
+  duration_ms: 0.109333
+  type: 'test'
+  ...
+# Subtest: the news only names residents who are really there, and warns when a typhoon will call a festival off
+ok 20 - the news only names residents who are really there, and warns when a typhoon will call a festival off
+  ---
+  duration_ms: 0.384542
+  type: 'test'
+  ...
+# Subtest: the ?build town builder is off on the live site and on everywhere else
+ok 21 - the ?build town builder is off on the live site and on everywhere else
+  ---
+  duration_ms: 0.546459
+  type: 'test'
+  ...
+# Subtest: World has no maker, wardrobes, outfits, decorating or building: those are made in Johansson Studio
+ok 22 - World has no maker, wardrobes, outfits, decorating or building: those are made in Johansson Studio
+  ---
+  duration_ms: 271.385167
+  type: 'test'
+  ...
+# Subtest: a moment can say who it is about and carry its own news line; an id records a step once
+ok 23 - a moment can say who it is about and carry its own news line; an id records a step once
+  ---
+  duration_ms: 2.479167
+  type: 'test'
+  ...
+# Subtest: old saves load, and new fields survive a save but are bounded
+ok 24 - old saves load, and new fields survive a save but are bounded
+  ---
+  duration_ms: 0.463958
+  type: 'test'
+  ...
+# Subtest: the evening news: from six, the day’s news lines heaviest first, at most three
+ok 25 - the evening news: from six, the day’s news lines heaviest first, at most three
+  ---
+  duration_ms: 0.70725
+  type: 'test'
+  ...
+# Subtest: quiet days: one item, the same all evening, and none repeats until all are used
+ok 26 - quiet days: one item, the same all evening, and none repeats until all are used
+  ---
+  duration_ms: 0.667
+  type: 'test'
+  ...
+# Subtest: the post: a letter comes with Tōma’s 10:30 round on its day, once, written when it arrives
+ok 27 - the post: a letter comes with Tōma’s 10:30 round on its day, once, written when it arrives
+  ---
+  duration_ms: 0.834458
+  type: 'test'
+  ...
+# Subtest: the post: a full box of unread letters makes the next one wait, not vanish; a save keeps it all
+ok 28 - the post: a full box of unread letters makes the next one wait, not vanish; a save keeps it all
+  ---
+  duration_ms: 1.324625
+  type: 'test'
+  ...
+# Subtest: every favour is between residents who are really in the town, and its lines are clean
+ok 29 - every favour is between residents who are really in the town, and its lines are clean
+  ---
+  duration_ms: 0.840875
+  type: 'test'
+  ...
+# Subtest: the favour from the letter to the thanks: asked, accepted, the wrong person, handed over
+ok 30 - the favour from the letter to the thanks: asked, accepted, the wrong person, handed over
+  ---
+  duration_ms: 3.066209
+  type: 'test'
+  ...
+# Subtest: a favour he never took up is asked again, its old letter replaced, and in the end lets go
+ok 31 - a favour he never took up is asked again, its old letter replaced, and in the end lets go
+  ---
+  duration_ms: 0.736958
+  type: 'test'
+  ...
+# Subtest: a missed day ends it kindly: a moment, and the book goes back when he sees her
+ok 32 - a missed day ends it kindly: a moment, and the book goes back when he sees her
+  ---
+  duration_ms: 0.495625
+  type: 'test'
+  ...
+# Subtest: crafted saves cannot reach Object’s own methods through a letter or a favour
+ok 33 - crafted saves cannot reach Object’s own methods through a letter or a favour
+  ---
+  duration_ms: 0.261708
+  type: 'test'
+  ...
+# Subtest: back after a week or more: the closest friends write, at most two, never strangers
+ok 34 - back after a week or more: the closest friends write, at most two, never strangers
+  ---
+  duration_ms: 0.292417
+  type: 'test'
+  ...
+# Subtest: every letter says what it is about on its envelope
+ok 35 - every letter says what it is about on its envelope
+  ---
+  duration_ms: 0.071875
+  type: 'test'
+  ...
+# Subtest: Thuan’s scripted beats reach the box, and her script can use the line cues
+ok 36 - Thuan’s scripted beats reach the box, and her script can use the line cues
+  ---
+  duration_ms: 0.332125
+  type: 'test'
+  ...
+# Subtest: typhoon days are 1997’s real approaches to Okinawa, with their own hours
+ok 37 - typhoon days are 1997’s real approaches to Okinawa, with their own hours
+  ---
+  duration_ms: 0.660542
+  type: 'test'
+  ...
+# Subtest: the news looks ahead: tomorrow’s festival, and a typhoon on its way when the weather follows the town
+ok 38 - the news looks ahead: tomorrow’s festival, and a typhoon on its way when the weather follows the town
+  ---
+  duration_ms: 1.29475
+  type: 'test'
+  ...
+# Subtest: a friend’s typhoon letter comes with the first morning post the warning covers
+ok 39 - a friend’s typhoon letter comes with the first morning post the warning covers
+  ---
+  duration_ms: 0.141084
+  type: 'test'
+  ...
+# Subtest: each saved game has its own Studio choices, under the same pattern as its look
+ok 40 - each saved game has its own Studio choices, under the same pattern as its look
+  ---
+  duration_ms: 1.087208
+  type: 'test'
+  ...
+# Subtest: only what World understands is kept, and a change merges with what is stored
+ok 41 - only what World understands is kept, and a change merges with what is stored
+  ---
+  duration_ms: 0.3855
+  type: 'test'
+  ...
+# Subtest: World takes Studio’s choices into the game, and says what changed
+ok 42 - World takes Studio’s choices into the game, and says what changed
+  ---
+  duration_ms: 0.151166
+  type: 'test'
+  ...
+# Subtest: a saved game opens with the home and outfit chosen in Studio, and its save carries them
+ok 43 - a saved game opens with the home and outfit chosen in Studio, and its save carries them
+  ---
+  duration_ms: 45.752833
+  type: 'test'
+  ...
+# Subtest: World shows the furniture Studio arranged, and follows a later arrangement
+ok 44 - World shows the furniture Studio arranged, and follows a later arrangement
+  ---
+  duration_ms: 8.907666
+  type: 'test'
+  ...
+# Subtest: repeated frozen draws refresh lighting and late materials without advancing hourly animation
+ok 45 - repeated frozen draws refresh lighting and late materials without advancing hourly animation
+  ---
+  duration_ms: 14.4785
+  type: 'test'
+  ...
+# Subtest: frozen fixture time resets the shop decoration phase after normal town sync only
+ok 46 - frozen fixture time resets the shop decoration phase after normal town sync only
+  ---
+  duration_ms: 3.71025
+  type: 'test'
+  ...
+# Subtest: a fixed decorative phase makes the actual shop mascot independent of boot wall time
+ok 47 - a fixed decorative phase makes the actual shop mascot independent of boot wall time
+  ---
+  duration_ms: 65.322959
+  type: 'test'
+  ...
+1..47
+# tests 47
+# suites 0
+# pass 47
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 466.416958
+TAP version 13
+# Subtest: each save keeps the one before it, and only one that reads
+ok 1 - each save keeps the one before it, and only one that reads
+  ---
+  duration_ms: 3.214417
+  type: 'test'
+  ...
+# Subtest: a save that does not read falls back to the previous copy
+ok 2 - a save that does not read falls back to the previous copy
+  ---
+  duration_ms: 6.785834
+  type: 'test'
+  ...
+# Subtest: when the storage is full the previous copy goes first, never the save
+ok 3 - when the storage is full the previous copy goes first, never the save
+  ---
+  duration_ms: 0.880208
+  type: 'test'
+  ...
+# Subtest: a save that failed to load is kept once, raw, and never overwritten by the rescue
+ok 4 - a save that failed to load is kept once, raw, and never overwritten by the rescue
+  ---
+  duration_ms: 0.304917
+  type: 'test'
+  ...
+# Subtest: a full storage gives up every player’s previous copy, but never a rescued save
+ok 5 - a full storage gives up every player’s previous copy, but never a rescued save
+  ---
+  duration_ms: 1.661209
+  type: 'test'
+  ...
+# Subtest: the clock state onTime reads is declared before the activities restore a saved game
+ok 6 - the clock state onTime reads is declared before the activities restore a saved game
+  ---
+  duration_ms: 7.285209
+  type: 'test'
+  ...
+# Subtest: title preview cannot create or overwrite a save; saving resumes when play begins
+ok 7 - title preview cannot create or overwrite a save; saving resumes when play begins
+  ---
+  duration_ms: 43.416042
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 709.441208

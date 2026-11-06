@@ -1,0 +1,28 @@
+{
+  "project": "Johansson House / Johansson World",
+  "revision": "B - preliminary",
+  "units": "mm",
+  "footprint": [
+    12000,
+    10000
+  ],
+  "levels_mm": {
+    "basement": -2800,
+    "ground": 0,
+    "upper": 2800,
+    "eaves": 5600,
+    "ridge": 7900
+  },
+  "wall_thickness_mm": {
+    "external": 200,
+    "internal": "schematic centerlines"
+  },
+  "design_status": "game-development schematic, not construction documents",
+  "notes": [
+    "Rooms and wall positions provisional",
+    "Doors/windows are symbols, not wall cut-outs",
+    "Basement waterproofing and typhoon structure not engineered",
+    "MEP is conceptual, not full circuit or pipe network",
+    "Verify architectural coordination before 3D asset generation"
+  ]
+}

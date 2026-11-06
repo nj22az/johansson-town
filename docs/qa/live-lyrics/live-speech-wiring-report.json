@@ -1,0 +1,345 @@
+{
+  "scope": "Real WebGL stage, music and registered WebMCP callbacks with simulated browser speech events: custom lyrics, cast voices, boundaries, cancellation. Native speech listening is not established by this test.",
+  "browser": "131.0.6778.204",
+  "checks": [
+    "Registered MCP handlers expose all six arrangements, five voices and three energy levels, and reject invalid options",
+    {
+      "style": "pop",
+      "peak": 210,
+      "vocalSource": "live-text",
+      "spoken": [
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 1
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        }
+      ],
+      "context": "running",
+      "held": 3,
+      "bones": 112,
+      "invalid": 0,
+      "balance": 400,
+      "song": {
+        "id": "bus",
+        "title": "Island Bus Stop",
+        "style": "pop",
+        "voice": "cast",
+        "performance": "wild",
+        "lines": [
+          "My banana runs the harbour",
+          "Thuan dances on the moon",
+          "The captain lost his trousers",
+          "We all demand another tune"
+        ]
+      }
+    },
+    {
+      "style": "ballad",
+      "peak": 211,
+      "vocalSource": "live-text",
+      "spoken": [
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 1
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        }
+      ],
+      "context": "running",
+      "held": 3,
+      "bones": 112,
+      "invalid": 0,
+      "balance": 400,
+      "song": {
+        "id": "bus",
+        "title": "Island Bus Stop",
+        "style": "ballad",
+        "voice": "cast",
+        "performance": "wild",
+        "lines": [
+          "My banana runs the harbour",
+          "Thuan dances on the moon",
+          "The captain lost his trousers",
+          "We all demand another tune"
+        ]
+      }
+    },
+    {
+      "style": "disco",
+      "peak": 195,
+      "vocalSource": "live-text",
+      "spoken": [
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 1
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        }
+      ],
+      "context": "running",
+      "held": 3,
+      "bones": 112,
+      "invalid": 0,
+      "balance": 400,
+      "song": {
+        "id": "bus",
+        "title": "Island Bus Stop",
+        "style": "disco",
+        "voice": "cast",
+        "performance": "wild",
+        "lines": [
+          "My banana runs the harbour",
+          "Thuan dances on the moon",
+          "The captain lost his trousers",
+          "We all demand another tune"
+        ]
+      }
+    },
+    {
+      "style": "rock",
+      "peak": 201,
+      "vocalSource": "live-text",
+      "spoken": [
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 1
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        }
+      ],
+      "context": "running",
+      "held": 3,
+      "bones": 112,
+      "invalid": 0,
+      "balance": 400,
+      "song": {
+        "id": "bus",
+        "title": "Island Bus Stop",
+        "style": "rock",
+        "voice": "cast",
+        "performance": "wild",
+        "lines": [
+          "My banana runs the harbour",
+          "Thuan dances on the moon",
+          "The captain lost his trousers",
+          "We all demand another tune"
+        ]
+      }
+    },
+    {
+      "style": "enka",
+      "peak": 213,
+      "vocalSource": "live-text",
+      "spoken": [
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 1
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "Thuan dances on the moon",
+          "voice": "Serena",
+          "pitch": 1.255,
+          "rate": 0.6
+        },
+        {
+          "text": "The captain lost his trousers",
+          "voice": "Daniel",
+          "pitch": 1.03,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        }
+      ],
+      "context": "running",
+      "held": 3,
+      "bones": 112,
+      "invalid": 0,
+      "balance": 400,
+      "song": {
+        "id": "bus",
+        "title": "Island Bus Stop",
+        "style": "enka",
+        "voice": "cast",
+        "performance": "wild",
+        "lines": [
+          "My banana runs the harbour",
+          "Thuan dances on the moon",
+          "The captain lost his trousers",
+          "We all demand another tune"
+        ]
+      }
+    },
+    {
+      "style": "eurobeat",
+      "peak": 177,
+      "vocalSource": "live-text",
+      "spoken": [
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 1
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "Thuan dances on the moon",
+          "voice": "Serena",
+          "pitch": 1.255,
+          "rate": 0.6
+        },
+        {
+          "text": "The captain lost his trousers",
+          "voice": "Daniel",
+          "pitch": 1.03,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.6
+        },
+        {
+          "text": "My banana runs the harbour",
+          "voice": "Daniel",
+          "pitch": 0.85,
+          "rate": 0.7314285714285714
+        }
+      ],
+      "context": "running",
+      "held": 2,
+      "bones": 112,
+      "invalid": 0,
+      "balance": 400,
+      "song": {
+        "id": "bus",
+        "title": "Island Bus Stop",
+        "style": "eurobeat",
+        "voice": "cast",
+        "performance": "wild",
+        "lines": [
+          "My banana runs the harbour",
+          "Thuan dances on the moon",
+          "The captain lost his trousers",
+          "We all demand another tune"
+        ]
+      }
+    },
+    "Full rock performance and bow, free encore, Stop, Return, focus and saved voice/energy settings"
+  ],
+  "errors": []
+}

@@ -1,0 +1,75 @@
+{
+  "site": "/dev/shm/johansson-integration",
+  "runtime": true,
+  "viewport": [
+    1280,
+    800
+  ],
+  "softwareChromium": true,
+  "physicalDevice": false,
+  "stagedResidents": true,
+  "shots": [
+    {
+      "name": "clinic-bench",
+      "camera": {
+        "pos": [
+          -1.1036774620197414,
+          1.25,
+          2.100755764670349
+        ],
+        "at": [
+          1,
+          0.8,
+          0.75
+        ]
+      }
+    },
+    {
+      "name": "police-bench",
+      "camera": {
+        "pos": [
+          1.538664957147538,
+          1.25,
+          0.8394427604510288
+        ],
+        "at": [
+          0.75,
+          0.8,
+          3
+        ]
+      }
+    },
+    {
+      "name": "minato-stool-side",
+      "camera": {
+        "pos": [
+          -1.316031419717305,
+          1.05,
+          -0.44510609260820655
+        ],
+        "at": [
+          -3.5,
+          0.7,
+          -0.18
+        ]
+      }
+    },
+    {
+      "name": "minato-booth",
+      "camera": {
+        "pos": [
+          0.10970944070823396,
+          1.25,
+          2.764601712534686
+        ],
+        "at": [
+          -2.5,
+          0.8,
+          1.75
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "selection": "The onsen close-up was rejected for cropping; it is not included as approval evidence."
+}

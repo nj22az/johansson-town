@@ -1,0 +1,57 @@
+/* Nearby actions share one rail; navigation and utilities stay in the Town book. */
+#hud #prompt{display:none!important}
+#hud #contextActions{
+ position:absolute;right:max(16px,env(safe-area-inset-right));
+ bottom:max(28px,calc(env(safe-area-inset-bottom) + 24px));
+ display:flex;flex-direction:column;align-items:stretch;gap:8px;
+ width:clamp(132px,18vw,208px);max-width:calc(100vw - 32px);
+ pointer-events:none;
+}
+#hud #contextActions[hidden],#hud #contextActions>[hidden]{display:none!important}
+#mobile #movementActions .control-off{visibility:hidden!important;pointer-events:none!important}
+#hud #contextActions>button{
+ position:static!important;inset:auto!important;transform:none!important;
+ display:grid;grid-template-columns:24px minmax(0,1fr) auto;align-items:center;gap:10px;
+ width:100%;height:auto;min-height:48px;margin:0;padding:12px;
+ border:1px solid var(--line-border);border-radius:12px;
+ background:var(--line-white);color:var(--line-text);box-shadow:var(--line-shadow);
+ font:700 14px/1.3 var(--line-font);text-align:left;letter-spacing:normal;
+ pointer-events:auto;touch-action:manipulation;cursor:pointer;filter:none;
+ transition:background .12s ease,border-color .12s ease;
+}
+#hud #contextActions>button::before,#hud #contextActions>button::after{content:none!important}
+#hud #contextActions>button.context-primary{
+ order:10;min-height:56px;background:var(--line-green);border-color:var(--line-green);color:#fff;
+}
+#hud #contextActions>button:hover{background:var(--line-surface)}
+#hud #contextActions>button.context-primary:hover{background:var(--line-green-hover)}
+#hud #contextActions>button:active{box-shadow:none}
+#hud #contextActions>button:focus-visible{outline:3px solid var(--line-green);outline-offset:3px}
+#hud #contextActions>button.context-primary:focus-visible{outline-color:#fff;box-shadow:0 0 0 5px var(--line-green)}
+#contextActions .context-glyph{display:block;line-height:0;color:inherit}
+#contextActions .context-label{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;color:inherit;overflow-wrap:anywhere}
+#contextActions kbd{font:600 11px/1.3 var(--line-font);padding:3px 5px;border:1px solid currentColor;border-radius:4px;opacity:.75;color:inherit}
+#hud #contextActionStatus{margin:0;padding:9px 12px;border-radius:10px;background:var(--line-white);color:var(--line-secondary);font:400 12px/1.4 var(--line-font);box-shadow:var(--line-shadow)}
+/* Captions leave the action edge free instead of sitting underneath a button. */
+body #hud #subtitle{left:max(16px,env(safe-area-inset-left));right:auto;transform:none;width:min(560px,calc(100vw - 260px));max-width:calc(100vw - 260px);bottom:max(28px,calc(env(safe-area-inset-bottom) + 24px));font-size:16px;padding:12px 16px}
+body:has(#activity:not(.hidden),#directory:not(.hidden),#cameraPanel:not([hidden]),#photoStudio:not([hidden]),>.shm) #contextActions,
+body.inspecting #contextActions,body.conversation-open #contextActions{visibility:hidden;pointer-events:none}
+@media(pointer:coarse){
+ /* 168 px: a place name fits its two lines (at 140 it read "Enter / Sakura…"). */
+ #hud #contextActions{width:168px;right:max(12px,env(safe-area-inset-right));bottom:max(24px,calc(env(safe-area-inset-bottom) + 20px))}
+ #hud #contextActions>button{grid-template-columns:24px minmax(0,1fr);gap:8px;padding:12px 10px;min-height:48px}
+ #contextActions kbd{display:none}
+ /* Run and Jump sit above the context rail, clear of the left movement thumb. */
+ .touch-controls #mobile #movementActions{left:auto;right:max(16px,env(safe-area-inset-right));bottom:calc(env(safe-area-inset-bottom) + 190px);gap:8px}
+ .touch-controls #mobile #movementActions #run,.touch-controls #mobile #movementActions #jump{min-height:44px;height:44px;width:56px}
+ body #hud #subtitle{top:max(76px,calc(env(safe-area-inset-top) + 70px));bottom:auto;width:calc(100vw - 88px);max-width:calc(100vw - 88px);font-size:14px;padding:10px 12px}
+}
+@media(max-height:520px){
+ #hud #contextActions{right:max(12px,env(safe-area-inset-right));bottom:max(12px,calc(env(safe-area-inset-bottom) + 8px));width:164px;gap:6px}
+ #hud #contextActions>button{min-height:44px;padding:9px 10px;font-size:13px}
+ #hud #contextActions>button.context-primary{min-height:48px}
+ .touch-controls #mobile #movementActions{left:auto;right:max(16px,env(safe-area-inset-right));bottom:calc(env(safe-area-inset-bottom) + 130px)}
+ body #hud #subtitle{top:max(66px,calc(env(safe-area-inset-top) + 60px));bottom:auto;max-width:min(50vw,400px);width:fit-content;font-size:13px}
+ #hud #contextActionStatus{font-size:11px;padding:6px 10px}
+}
+@media(prefers-reduced-motion:reduce){#hud #contextActions>button{transition:none}}

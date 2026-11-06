@@ -1,0 +1,522 @@
+{
+  "status": "PASS",
+  "scope": "coordinated game production reference; no construction certification or live-engine runtime certification",
+  "checks": 62,
+  "passed": 62,
+  "failed": 0,
+  "results": [
+    {
+      "check": "unique stable IDs",
+      "pass": true,
+      "detail": {
+        "count": 796
+      }
+    },
+    {
+      "check": "all positive geometry volumes",
+      "pass": true,
+      "detail": "No reversed or zero-size solid"
+    },
+    {
+      "check": "service versus architecture solids",
+      "pass": true,
+      "detail": {
+        "clashes": [],
+        "total": 0
+      }
+    },
+    {
+      "check": "gravity routes descend with specified fall",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "spatial routes equal functional endpoints",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "all door apertures pass 500 mm capsule width",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "all room zones reachable by 500 mm capsule on open-door plan",
+      "pass": true,
+      "detail": {
+        "B1-ROOM-01": 1816,
+        "B1-ROOM-02": 1816,
+        "B1-ROOM-03": 1097,
+        "B1-ROOM-04": 862,
+        "B1-ROOM-05": 910,
+        "B1-ROOM-06": 1484,
+        "G0-ROOM-01": 1816,
+        "G0-ROOM-02": 1816,
+        "G0-ROOM-03": 1076,
+        "G0-ROOM-04": 1300,
+        "G0-ROOM-05": 824,
+        "G0-ROOM-06": 460,
+        "G0-ROOM-07": 682,
+        "L1-ROOM-01": 1816,
+        "L1-ROOM-02": 1816,
+        "L1-ROOM-03": 1097,
+        "L1-ROOM-04": 850,
+        "L1-ROOM-05": 910,
+        "L1-ROOM-06": 1484
+      }
+    },
+    {
+      "check": "stair vertical headroom >=2000 mm",
+      "pass": true,
+      "detail": {
+        "minimum_mm": 2625,
+        "samples": 28
+      }
+    },
+    {
+      "check": "stair rise run and available enclosure",
+      "pass": true,
+      "detail": {
+        "rise": 2800,
+        "run": 2650,
+        "width": 2000,
+        "side_passage": 1140
+      }
+    },
+    {
+      "check": "Johansson_House_Architecture.glb valid binary meshes",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "Johansson_House_Architecture.glb performance budget",
+      "pass": true,
+      "detail": {
+        "nodes": 708
+      }
+    },
+    {
+      "check": "Johansson_House_Services.glb valid binary meshes",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "Johansson_House_Services.glb performance budget",
+      "pass": true,
+      "detail": {
+        "nodes": 285
+      }
+    },
+    {
+      "check": "A_B1_Coordinated.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 109,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "A_G0_Coordinated.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 121,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "A_L1_Coordinated.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 103,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "A104_Roof.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 11,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "A201_Elevations.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 251,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "A301_Sections.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 113,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "C101_Site_Utilities.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 27,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "R_condensate_3D.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 6,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "R_electrical_3D.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 100,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "R_flue_3D.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 4,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "R_hvac_3D.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 10,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "R_potable_cold_3D.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 20,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "R_potable_hot_3D.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 8,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "R_refrigerant_3D.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 6,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "R_sanitary_3D.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 18,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "R_storm_3D.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 12,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "R_vent_3D.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 4,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "E101_One_Line.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 151,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "P101_Water.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 34,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "P102_Drainage.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 46,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "M101_HVAC.dxf CAD audit",
+      "pass": true,
+      "detail": {
+        "entities": 38,
+        "errors": 0,
+        "fixes": 0
+      }
+    },
+    {
+      "check": "potable_hot route DXF/manifest parity",
+      "pass": true,
+      "detail": {
+        "polylines": 3
+      }
+    },
+    {
+      "check": "storm route DXF/manifest parity",
+      "pass": true,
+      "detail": {
+        "polylines": 5
+      }
+    },
+    {
+      "check": "sanitary route DXF/manifest parity",
+      "pass": true,
+      "detail": {
+        "polylines": 8
+      }
+    },
+    {
+      "check": "electrical route DXF/manifest parity",
+      "pass": true,
+      "detail": {
+        "polylines": 49
+      }
+    },
+    {
+      "check": "condensate route DXF/manifest parity",
+      "pass": true,
+      "detail": {
+        "polylines": 2
+      }
+    },
+    {
+      "check": "refrigerant route DXF/manifest parity",
+      "pass": true,
+      "detail": {
+        "polylines": 2
+      }
+    },
+    {
+      "check": "potable_cold route DXF/manifest parity",
+      "pass": true,
+      "detail": {
+        "polylines": 9
+      }
+    },
+    {
+      "check": "vent route DXF/manifest parity",
+      "pass": true,
+      "detail": {
+        "polylines": 1
+      }
+    },
+    {
+      "check": "flue route DXF/manifest parity",
+      "pass": true,
+      "detail": {
+        "polylines": 1
+      }
+    },
+    {
+      "check": "hvac route DXF/manifest parity",
+      "pass": true,
+      "detail": {
+        "polylines": 4
+      }
+    },
+    {
+      "check": "every Revision E asset has a migration action",
+      "pass": true,
+      "detail": {
+        "migrated": 58
+      }
+    },
+    {
+      "check": "migration aliases resolve",
+      "pass": true,
+      "detail": "Retired dependencies explicitly documented"
+    },
+    {
+      "check": "HVAC supply/extract design balance",
+      "pass": true,
+      "detail": {
+        "B1_FRESH": 400,
+        "B1_EXHAUST": 180,
+        "SAUNA_EXHAUST": 100,
+        "SMOKING_EXHAUST": 120
+      }
+    },
+    {
+      "check": "roof stormwater design capacity",
+      "pass": true,
+      "detail": {
+        "rain_mm_h": 100,
+        "roof_plan_m2": 138.24,
+        "runoff": 1,
+        "roof_flow_L_s": 3.84,
+        "downpipes": 2,
+        "downpipe_game_capacity_L_s_each": 3
+      }
+    },
+    {
+      "check": "game electrical main demand budget",
+      "pass": true,
+      "detail": {
+        "connected_W": 12320,
+        "diversified_W": 7392.0,
+        "budget_W": 12000
+      }
+    },
+    {
+      "check": "roof closed manifold including sleeve walls",
+      "pass": true,
+      "detail": {
+        "edges": 498,
+        "non_manifold_edges": 0
+      }
+    },
+    {
+      "check": "roof has vent and flue apertures with 20 mm radial clearance",
+      "pass": true,
+      "detail": [
+        [
+          11330,
+          5930,
+          11470,
+          6070
+        ],
+        [
+          11030,
+          2130,
+          11170,
+          2270
+        ]
+      ]
+    },
+    {
+      "check": "no inherited visual flat roof overlay",
+      "pass": true,
+      "detail": "One hipped exterior roof and one lower structural ceiling deck"
+    },
+    {
+      "check": "room zones do not overlap wall solids",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "every named room has a controlled luminaire",
+      "pass": true,
+      "detail": {
+        "luminaires": 19,
+        "fixture_total": 30
+      }
+    },
+    {
+      "check": "equipment service port offsets <=250 mm",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "route scheduled lengths equal spatial polylines",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "electrical and potable graphs fully routed",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "distinct service families have no tube envelope collisions",
+      "pass": true,
+      "detail": {
+        "clashes": [],
+        "intentional_shared": "sanitary and vent occupy one continuous vented stack; same-family routes may share network trunks or conduit runs"
+      }
+    },
+    {
+      "check": "game cold-water pressure exceeds 100 kPa at design fixtures",
+      "pass": true,
+      "detail": {
+        "residual_kPa": {
+          "KITCHEN": 277.22,
+          "G0_WC": 280.25,
+          "L1_BATH": 251.02,
+          "LAUNDRY": 279.36,
+          "SAUNA_SHOWER": 293.6
+        },
+        "model": "Darcy factor 0.025; upstream 0.6 L/s; fixture demand from schedule; nominal game envelopes; not engineering pipe sizing"
+      }
+    },
+    {
+      "check": "external and internal stair proxy slopes within 40 degrees",
+      "pass": true,
+      "detail": {
+        "slope_deg": 34.99,
+        "end_step_mm": 175
+      }
+    },
+    {
+      "check": "opening guards preserve 1100 mm physical side passage",
+      "pass": true,
+      "detail": {
+        "clear_mm": 1100,
+        "capsule_width_mm": 500
+      }
+    },
+    {
+      "check": "reference simulation regression suite",
+      "pass": true,
+      "detail": {
+        "tests_run": 31,
+        "failures": 0,
+        "errors": 0,
+        "pass": true,
+        "scope": "reference simulation only"
+      }
+    }
+  ],
+  "defects": []
+}

@@ -1,0 +1,45 @@
+{
+  "purpose": "Static 0.85m Sakura display only; never a living NPC",
+  "source": "thuan-realistic.glb",
+  "sourceSha256": "6ecfa25a4926b6804cbf03b8d19d6012e90f85d132d8cd27467598745ff0e121",
+  "file": "thuan-display.glb",
+  "sha256": "4dbe93af4607dc2dc35b7e33ccd8a55da5e68f1b072a0e0012ecb4c2ae6e21de",
+  "sourceTriangles": 98972,
+  "triangles": 98972,
+  "vertices": 98333,
+  "bytes": 5171572,
+  "animations": [],
+  "skins": 0,
+  "materialImages": "Original embedded images copied byte-for-byte",
+  "paintSha256": [
+    "ab9b883a2cbbf8949fd47050d1bbcd1b1094efe58fdbbe908db157ed68898f7b",
+    "47244c7e7b61641916f00f3ba249284b248c5eabb8db92eee107c3e155bde5ba"
+  ],
+  "method": "Default source pose baked; every original triangle, normal and UV retained; meshoptimizer 1.2.0 compactMesh removes unused vertices; skin/animation/tangent payload removed from static display",
+  "normalizedError": 0,
+  "sourceBounds": {
+    "min": [
+      -0.36857139157310126,
+      -4.406710972070483e-8,
+      -0.18988372184641739
+    ],
+    "max": [
+      0.36793755459645405,
+      1.7000004430586468,
+      0.1933339260211346
+    ]
+  },
+  "displayBounds": {
+    "min": [
+      -0.368571400642395,
+      -4.4067110849255187e-8,
+      -0.18988372385501862
+    ],
+    "max": [
+      0.3679375648498535,
+      1.7000004053115845,
+      0.1933339238166809
+    ]
+  },
+  "reproduce": "node tools/optimize-owned-displays.mjs thuan"
+}

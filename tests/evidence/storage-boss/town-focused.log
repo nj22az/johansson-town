@@ -1,0 +1,23 @@
+✔ a new activity calls onOpen once; nested menus retain the opener and reject stale actions (80.860286ms)
+✔ dialogue replies and switching to the field book do not reopen the activity (38.568601ms)
+✔ published runtime matches the current source rather than an older build (540.143256ms)
+✔ published page uses one compiled audio/boot graph with local hashed dependencies (88.758026ms)
+✔ every stylesheet link carries a hash of the file it points at (5.019526ms)
+✔ boss reward and restock apply once across duplicates, purchases and save recovery (2.765561ms)
+✔ late results mark only their own trading day and never refill an already restocked day (0.420517ms)
+✔ zero-reward completed nights are final; malformed, future and foreign outcomes are inert (0.679329ms)
+✔ per-player pending results coexist and survive until saved and acknowledged (1.18745ms)
+✔ legacy unscoped results belong only to the original player; failed removal cannot consume; ack cannot erase a newer result (0.546969ms)
+✔ a saved future-night return uses its player save clock before town clock restoration (0.527587ms)
+✔ applyStorageRestock fills shelves from reserve and marks the closing day (1.765439ms)
+✔ applyStorageRestock is idempotent (1.573057ms)
+✔ consumeStorageWonHandshake clears the localStorage key once (1.113461ms)
+✔ a boss seen off in the stockroom pays its cave coins; one still loose pays nothing (0.296527ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 890.021741

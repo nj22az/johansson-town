@@ -1,0 +1,45 @@
+{
+  "checks": {
+    "native_source_labelled_and_hidden": true,
+    "distinct_band_and_panel_cages": true,
+    "six_editable_fit_keys": true,
+    "finite_key_coordinates": true,
+    "all_quad_cages": true,
+    "uv_per_corner": true,
+    "band_follows_Waist width": true,
+    "band_follows_Hip width": true,
+    "band_follows_Seat depth": true,
+    "band_follows_Front ease": true,
+    "band_follows_Length": true,
+    "band_follows_Hem flare": true,
+    "export_contains_only_two_authored_parts": true,
+    "rest_export_under_8000_triangles": true,
+    "export_finite": true,
+    "export_no_armature_or_animation": true,
+    "closed_export_shells": true
+  },
+  "passed": 17,
+  "total": 17,
+  "triangles": 6912,
+  "shells": [
+    {
+      "object": "Skirt \u2014 front, back and side panel cage \u2014 rest export",
+      "edges": 7296,
+      "non_two_face_edges": 0
+    },
+    {
+      "object": "Waistband \u2014 separate fitted construction \u2014 rest export",
+      "edges": 3072,
+      "non_two_face_edges": 0
+    }
+  ],
+  "rest_surface_comparison": {
+    "sample_count": 1024,
+    "missing_samples": 0,
+    "mean_source_units": 0.0015201985634046454,
+    "p95_source_units": 0.004330587712347966,
+    "maximum_source_units": 0.013286245316529992,
+    "scope": "Eight cross-sections below the band, 128 offset angles each. Crop holes/artefacts affect results. No hem/band or animation acceptance."
+  },
+  "limits": "Rest-mesh and native-data checks only; no skinning, collision, cloth simulation, pose acceptance or visual approval."
+}

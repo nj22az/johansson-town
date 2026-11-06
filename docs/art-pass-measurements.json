@@ -1,0 +1,113 @@
+{
+  "baselineCommit": "0ec628732241eb0b340fc96087f86d06993a2195",
+  "camera": {
+    "position": [
+      0,
+      1.65,
+      46
+    ],
+    "lookAt": [
+      0,
+      1.6,
+      20
+    ],
+    "fov": 65,
+    "aspect": "16:9"
+  },
+  "method": "CPU construction with loaded local bodies, eight scheduled residents and content props. Frustum estimate includes full intersecting instance batches. Excludes shadows, WebGL driver overhead, Points and postprocessing. Not FPS or a visual render.",
+  "before": {
+    "visibleCallsEstimate": 823,
+    "submittedTrianglesEstimate": 99600,
+    "totalVisibleSceneCalls": 943,
+    "totalVisibleSceneTriangles": 102072,
+    "actors": [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ]
+  },
+  "after": {
+    "staticProps": {
+      "batches": 25,
+      "sourceMeshes": 221,
+      "drawsSaved": 196,
+      "triangles": 6536,
+      "cellSize": 24
+    },
+    "visibleCallsEstimate": 621,
+    "submittedTrianglesEstimate": 100200,
+    "totalVisibleSceneCalls": 731,
+    "totalVisibleSceneTriangles": 102508,
+    "actors": [
+      {
+        "normalSmoothing": {
+          "creaseDegrees": 70,
+          "vertices": 12968,
+          "changed": 12756
+        },
+        "wardrobeVertices": 2402
+      },
+      {
+        "normalSmoothing": {
+          "creaseDegrees": 70,
+          "vertices": 10534,
+          "changed": 10228
+        },
+        "wardrobeVertices": 3048
+      },
+      {
+        "normalSmoothing": {
+          "creaseDegrees": 70,
+          "vertices": 13333,
+          "changed": 12965
+        },
+        "wardrobeVertices": 3279
+      },
+      {
+        "normalSmoothing": {
+          "creaseDegrees": 70,
+          "vertices": 13333,
+          "changed": 12965
+        },
+        "wardrobeVertices": 3279
+      },
+      {
+        "normalSmoothing": {
+          "creaseDegrees": 70,
+          "vertices": 12296,
+          "changed": 11978
+        },
+        "wardrobeVertices": 842
+      },
+      {
+        "normalSmoothing": {
+          "creaseDegrees": 70,
+          "vertices": 12968,
+          "changed": 12756
+        },
+        "wardrobeVertices": 2402
+      },
+      {
+        "normalSmoothing": {
+          "creaseDegrees": 70,
+          "vertices": 12296,
+          "changed": 11978
+        },
+        "wardrobeVertices": 842
+      },
+      {
+        "normalSmoothing": {
+          "creaseDegrees": 70,
+          "vertices": 10534,
+          "changed": 10228
+        },
+        "wardrobeVertices": 3048
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "file": "industrial_sunset_02_1k.hdr",
+  "source": "https://polyhaven.com/a/industrial_sunset_02",
+  "download": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/industrial_sunset_02_1k.hdr",
+  "author": {
+    "Sergej Majboroda": "All"
+  },
+  "licence": "CC0-1.0",
+  "licenceURL": "https://polyhaven.com/license",
+  "bytes": 1610744,
+  "sha256": "43ad8b5ae5de42a6d0123ed063ba6867488c2f90adf24efdf051781952b5e9cb",
+  "md5": "730164f65edbc6617e8cfec4bdcebe00",
+  "use": "Local reflection and diffuse environment lighting only, not background scenery."
+}

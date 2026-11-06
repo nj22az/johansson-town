@@ -1,0 +1,60 @@
+{
+  "source": false,
+  "baseline": null,
+  "viewport": [
+    390,
+    844
+  ],
+  "physicalDevice": false,
+  "steps": [
+    {
+      "name": "page loaded",
+      "s": 0.4
+    },
+    {
+      "name": "island ready",
+      "s": 10.8
+    },
+    {
+      "name": "playing",
+      "s": 12.5
+    },
+    {
+      "name": "photographed johansson-night-none",
+      "s": 35.1
+    },
+    {
+      "name": "photographed johansson-night-sketchbook",
+      "s": 60.2
+    },
+    {
+      "name": "photographed johansson-night-flat",
+      "s": 76.7
+    },
+    {
+      "name": "photographed johansson-night-oil",
+      "s": 92.1
+    },
+    {
+      "name": "entered the Community Hall",
+      "s": 92.1
+    },
+    {
+      "name": "photographed room-none",
+      "s": 104.9
+    },
+    {
+      "name": "photographed room-sketchbook",
+      "s": 110.7
+    },
+    {
+      "name": "photographed room-flat",
+      "s": 116.5
+    },
+    {
+      "name": "photographed room-oil",
+      "s": 121.8
+    }
+  ],
+  "errors": []
+}

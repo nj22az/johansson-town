@@ -1,0 +1,39 @@
+{
+  "base_commit": "7356f64ad017afa2e38e41403ecbcd3fd83b1e09",
+  "source_sha256": "71b35d7f78b51e7f166a42ed990b55125a24b8aae2fc672c6fcce9abe4bb82a2",
+  "runtime_entry": "boot-NaJQUdXp.js",
+  "service_worker_version": "47d64e919d29c32b59f0",
+  "guard": {
+    "files": 76,
+    "checks": 400,
+    "passed": 400,
+    "failed": 0,
+    "skipped": 0,
+    "duration_seconds": 148
+  },
+  "additional": {
+    "files": [
+      "tests/openings.test.mjs",
+      "tests/port-building.test.mjs",
+      "tests/spawn-scene.test.mjs",
+      "../steam-deck/tests/life.test.cjs"
+    ],
+    "checks": 20,
+    "passed": 20,
+    "failed": 0,
+    "skipped": 0
+  },
+  "screenshots": {
+    "before": 3,
+    "after": 3,
+    "all_visually_reviewed": true,
+    "page_errors": 0,
+    "woodland_viewer_open_and_close": true,
+    "physical_device": false
+  },
+  "review": {
+    "syntax": true,
+    "diff_check": true,
+    "independent_source_review": "No blocking defect found"
+  }
+}

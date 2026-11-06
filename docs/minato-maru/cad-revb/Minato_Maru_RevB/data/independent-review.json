@@ -1,0 +1,169 @@
+{
+  "reviewRevision": "IR1",
+  "reviewedAtUTC": "2026-10-13T14:34:12.434227+00:00",
+  "sourceBaseCommit": "e87c06b16734d882626be7fe6cdd2ab153d649c4",
+  "reviewMethod": "Independent AI technical and document review; not a registered engineer signature, ship survey, flag approval or classification approval",
+  "disposition": {
+    "correctionReferencePackage": "ACCEPTED FOR DESIGN REVIEW WITH EXPLICIT ENGINEERING HOLDS",
+    "constructionRelease": "WITHHELD",
+    "completeRealVesselDesign": false,
+    "deployedGameVerified": false
+  },
+  "reviewedArtifacts": {
+    "drawingBook": "Minato_Maru_Engine_Room_CAD_RevB.pdf",
+    "drawingBookSHA256": "58cdb31dee474ef41c7361196294cb159ed47df62fd31467c200068db2071d0d",
+    "sourceSnapshotSHA256": "bd72a2784190123289243b0a6bc197d989b2ba04839f4bff570002bdb88d22fa",
+    "drawingRegisterSHA256": "bee3ce6f986d9e2890d466efc4d1de81a4ddccc2bed429d821a6bd79566e134f"
+  },
+  "independentChecks": {
+    "localSourceTests": {
+      "command": "node --test --test-reporter=spec tests/ferry-*.test.mjs",
+      "passed": 80,
+      "failed": 0,
+      "durationMS": 5016.617383
+    },
+    "liveSnapshotMatches": {
+      "ship": true,
+      "ga": true,
+      "machinery": true,
+      "electrics": true,
+      "loads": true,
+      "sources": true,
+      "feeders": true,
+      "acceptedRoutes": true,
+      "routeIssues": true
+    },
+    "pdf": {
+      "pages": 55,
+      "A3pages": 46,
+      "A2pages": 9,
+      "allPagesRevisionB": true,
+      "allPagesApprovalNone": true,
+      "allPagesConstructionWithheld": true,
+      "offPageTextWords": 0,
+      "visualReview": "All 55 pages in seven final montages; selected full-page schedule and source-value inspection"
+    },
+    "dxf": {
+      "sheetFiles": 55,
+      "spatialFiles": 1,
+      "reopenAuditsWithErrorsOrFixes": 0,
+      "allUnitsMillimetres": true,
+      "sectionLinesOutsideXYPlane": 0
+    },
+    "paperMeasurements": {
+      "context5mBarAt1to100_mm": 50.000006,
+      "arrangement5mBarAt1to50_mm": 100.000006,
+      "earlierER5500mmAt1to50_mm": 110.0,
+      "earlierBreadth7960mmAt1to50_mm": 159.2
+    },
+    "independentMachineryArithmetic": {
+      "sweptVolumeLitres": 24.127431579569613,
+      "BMEPbar": 16.94705412552589,
+      "meanPistonSpeedMS": 9.0,
+      "ratedCrankshaftTorqueNm": 3253.8343921009714,
+      "fuelLitresPerCrossing": 73.1031007751938,
+      "crossingOnlyEnduranceDays": 9.233534458076626,
+      "differenceFromM1": 0
+    },
+    "oneLineSpotChecks": {
+      "shorePrimary": "200 V / 144.3 A / 160 A frame / 145 A provisional setting",
+      "shoreSecondary": "440 V / 65.6 A / 80 A frame / 66 A provisional setting",
+      "ETR": "5 kVA; 440/105 V; 6.6/27.5 A; 10/32 A frames; 7/28 A settings",
+      "emergencyGenerator": "445 V nameplate / 440 V nominal; 40 kVA / 32 kW; 63 A frame / 52 A provisional setting"
+    },
+    "routing": {
+      "acceptedConceptRoutes": 55,
+      "unresolvedPositiveDNConnections": 151,
+      "unverifiedGamePreviewRoutes": 172,
+      "allTopologyConnections": 210,
+      "signalConnections": 4,
+      "physicalCADUsesAcceptedCollectionOnly": true
+    }
+  },
+  "closedReviewFindings": [
+    {
+      "id": "IR-01",
+      "finding": "Original section DXF mixed 3D boundaries and 2D equipment projections",
+      "closure": "All section LINE entities now have Z=0; projected views use consistent axes"
+    },
+    {
+      "id": "IR-02",
+      "finding": "One-line hardcoded old shore setting and 10 kVA emergency transformer",
+      "closure": "Final page 50 matches live side-specific source data, including 66 A shore and 5 kVA ETR"
+    },
+    {
+      "id": "IR-03",
+      "finding": "25-row tables overlapped note headings",
+      "closure": "Final line chunks 24 and feeder chunks 20; all final page montages inspected with notes separated"
+    },
+    {
+      "id": "IR-04",
+      "finding": "Visual pipe previews could be promoted into physical CAD",
+      "closure": "CAD uses engineeringPipes only; unresolved issues exported separately; snapshot retains explicitly unverified previews"
+    },
+    {
+      "id": "IR-05",
+      "finding": "Route envelope omitted longitudinal bounds and overstated terminal ownership",
+      "closure": "Longitudinal radius-aware bounds regression passes; terminal/nozzle ownership limitation explicit"
+    },
+    {
+      "id": "IR-06",
+      "finding": "Revision/scale/source-reference and creator-approval inconsistencies",
+      "closure": "Final B metadata, physical 1:50/1:100 scales, primary source separation and APPROVAL NONE verified"
+    }
+  ],
+  "remainingPackageBlockers": [],
+  "engineeringConstructionHolds": [
+    {
+      "id": "H-01",
+      "subject": "Vessel service/flag/class/tonnage and rule applicability",
+      "required": "Agree statutory/class basis, tonnage calculation and passenger/vehicle service requirements"
+    },
+    {
+      "id": "H-02",
+      "subject": "Weight, trim and stability",
+      "required": "Resolve 86.40053 t difference between conditional 289.010 t schedule and 375.41053 t retained waterline buoyancy; verified mass/CoG, trimmed hydrostatics, GZ, downflooding and intact/damage cases"
+    },
+    {
+      "id": "H-03",
+      "subject": "Structure and fabricated tanks",
+      "required": "Scantlings, materials, weld details, frame/foundation calculations; tank partition/access/vent/suction and calibrated net capacities. Concept reserves are not fabricated volumes"
+    },
+    {
+      "id": "H-04",
+      "subject": "Machinery installation and shaft line",
+      "required": "Actual OEM duty and period identity, certified outlines/masses/CoG, mounts/bolt/nozzle data; propeller/thrust/alignment/bearings/torsional vibration and fatigue"
+    },
+    {
+      "id": "H-05",
+      "subject": "Human access, overhaul and removal",
+      "required": "Resolve 1.9 m nominal headroom versus 2.0 m yard route target and 0.25 m overhead reservation; engineer full protected escape, removable hatches, lifting points and certified lift plan"
+    },
+    {
+      "id": "H-06",
+      "subject": "Piping and service performance",
+      "required": "Resolve 151 unsupported/missing/obstructed positive-DN connections; actual nozzle ownership, insulation/wall/bends/supports, hull/fire/watertight penetrations; hydraulic, cooling, air, exhaust, ventilation and fire-suppression calculations"
+    },
+    {
+      "id": "H-07",
+      "subject": "Electrical physical installation",
+      "required": "OEM generator/transformer/motor/cable data, fault duties/coordination, group/thermal installation, complete voltage drops, DC inventory/battery endurance and emergency generator dynamics. Fire-pump scenario 52.5 kVA exceeds 40 kVA continuous rating but transient behaviour is unknown"
+    },
+    {
+      "id": "H-08",
+      "subject": "Survey, testing and approval",
+      "required": "Qualified human engineering approval, supplier/class/flag accepted drawings and applicable shop/onboard/sea-trial surveys. No such approval is represented here"
+    }
+  ],
+  "verificationLimits": [
+    "Partial repository source snapshot; no full town runtime/browser/shipyard trial or deployed-site verification",
+    "Game walk/collision and mesh-budget checks concern the software model only",
+    "55 accepted pipes are conceptual envelope/radius checks, not supplier-nozzle, complete hull or construction clash clearance",
+    "Legacy lightship and GM are not measurements; positive initial GM is not a stability approval",
+    "Automatic software checks do not certify real vessel construction"
+  ],
+  "primaryReferencesIndependentlyOpened": [
+    "https://www.classnk.or.jp/hp/pdf/rules/420_part_h_e_202606.pdf",
+    "https://www.yanmar.com/media/news/2020/05/22051608/6aym-wstwet.pdf"
+  ]
+}

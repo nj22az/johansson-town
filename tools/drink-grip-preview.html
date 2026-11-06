@@ -1,0 +1,22 @@
+<!doctype html><meta charset="utf-8"><title>Drink grip review</title><style>body{margin:0;background:#dce5df}canvas{display:block}</style><script type="module">
+import * as THREE from '../vendor/three.module.js';
+import {createAvatarActor,updateAvatarActor} from '../src/avatars/actors.js';
+import {CAST_RECIPES,NEIGHBOUR_RECIPES,recipeFor} from '../src/avatars/cast.js';
+import {PROFILES} from '../src/people/profiles.js';
+import {STREET_CAST_NAMES} from '../src/people/residents.js';
+import {saveResidentRecipe} from '../src/avatars/wardrobe.js';
+const query=new URLSearchParams(location.search),names=(query.get('who')||'Mr Fujita').split(','),seated=query.get('seat')!=='0',kind=query.get('drink')||'beer';
+let elapsed=Number(query.get('phase')||0);const scene=new THREE.Scene();scene.background=new THREE.Color(0xdce5df);
+scene.add(new THREE.HemisphereLight(0xffffff,0x777d75,2));const sun=new THREE.DirectionalLight(0xffffff,2);sun.position.set(-3,5,4);scene.add(sun);
+if(query.has('custom')){const r=recipeFor('Johansson');saveResidentRecipe('Custom drink review',{...r,name:'Custom drink review',age:'child',body:{...r.body,height:0,proportion:'rounded'},head:{...r.head,size:1,form:'round'}});names.splice(0,names.length,'Custom drink review');}
+const actors=names.map((name,i)=>{const entity=new THREE.Group();entity.position.x=(i-(names.length-1)/2)*.75;entity.rotation.y=Number(query.get('turn')??Math.PI);scene.add(entity);Object.assign(entity.userData,{socialPose:seated?'Drink':'DrinkStanding',heldItem:kind,heldPortion:.6,consumeElapsed:elapsed,...(seated?{seatHeight:.42}:{})});return createAvatarActor(entity,name);});
+const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(1);renderer.setSize(innerWidth,innerHeight);document.body.append(renderer.domElement);
+const camera=new THREE.PerspectiveCamera(28,innerWidth/innerHeight,.01,40);const span=Math.max(1,names.length*.75);camera.position.set(-.22,.78,span*1.8+1);camera.lookAt(0,.75,0);
+function draw(){for(const actor of actors){actor.entity.userData.consumeElapsed=elapsed;updateAvatarActor(actor,1/60,1000);}renderer.render(scene,camera);}
+window.advanceTime=ms=>{for(let i=0;i<Math.max(1,Math.round(ms/16.67));i++)draw();};
+window.setPhase=value=>{elapsed=value;window.advanceTime(600);};
+window.addEventListener('keydown',event=>{if(event.key==='ArrowLeft')window.setPhase(0);if(event.key==='ArrowRight')window.setPhase(1.2);if(event.code==='Space')window.setPhase(2.4);});
+window.render_game_to_text=()=>JSON.stringify({names,seated,kind,elapsed,props:actors.map(a=>({name:a.entity.name||a.avatar.recipe.name,held:a.heldKind,position:a.heldProp?.getWorldPosition(new THREE.Vector3()).toArray()}))});
+window.reviewActors=actors;window.reviewScene=scene;window.reviewCamera=camera;window.allDrinkCharacters=[...new Set([...Object.keys(CAST_RECIPES),...Object.keys(NEIGHBOUR_RECIPES),...PROFILES.map(p=>p.name),...STREET_CAST_NAMES])];
+window.advanceTime(1200);window.__READY__=true;
+</script>

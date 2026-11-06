@@ -1,0 +1,15 @@
+defect,status,resolution
+Room-zone / partition overlap,CLOSED,19 room IDs preserved; exact floor zones exclude partitions. Doors checked with a 500 mm capsule and room flood fill.
+Duplicate placeholder roof,CLOSED,"One manifold hipped roof; lower deck is a separate ceiling slab. Ridge 8000, eaves 5800; roof has flue and vent apertures."
+Stair run and landing,CLOSED,16 risers at 175; 7 treads at 250 per flight; 900 landing and flight width. Opening 2000 x 2650; 1100 clear guarded side passage.
+Basement access / flood / daylight,CLOSED FOR GAME SCOPE,"1000 wide garden stair; 1400 x 1300 bottom court; drained west lightwell. Dedicated storm lift, flood alarm and entry gating."
+Engineering load and installation sizing,SCOPE EXCLUSION,"Game electrical budgets, pressure/fall calculations, pipe/duct envelopes and HVAC assumptions are defined. No construction certification or installation ratings are claimed."
+Elevation / section consistency,CLOSED,"Openings, floor levels, roof profiles and cut geometry are generated from the same manifest."
+Assemblies / product selection,CLOSED FOR GAME SCOPE,"Concrete wall/slab, foundation, tile roof, sealed sleeves, wet-zone and weathering specifications established; manufacturer procurement is outside game scope."
+Preliminary MEP routes,CLOSED,"84 spatial routes, declared physical ports, 125 wall/slab/grade reservations, independent clearance and fall checks."
+Roof overlay audit,CLOSED,Inherited GLBs are superseded; one named ROOF-HIPPED mesh exported. No visual flat roof overlay retained.
+Stair headroom / guarding,CLOSED,"28 tread-centre headroom samples meet 2000 mm; sloping handrails, opening guards, exterior guards and ramp collision proxies provided."
+Closed room / solid geometry,CLOSED,Room wall-overlap and access checks pass. Box solids closed individually; roof edge valence is two. Apertures remain intentionally open.
+Blocked hall portals discovered in final audit,CLOSED,Entry and north hall sliding apertures shifted into side passage; all room zones now accessible.
+Cross-family service clashes discovered in final audit,CLOSED,Separated route lanes and equipment ports; final distinct-family collision count zero. Same-family shared routes and continuous vented soil stack are explicit.
+Game runtime acceptance,SCOPE EXCLUSION,"Tested reference simulation and integration contract delivered. Live repository performance, animation, camera and engine imports require host acceptance; no live integration claim is made."

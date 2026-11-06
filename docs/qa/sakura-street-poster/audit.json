@@ -1,0 +1,43 @@
+{
+ "zone": {
+  "min": [
+   10.9,
+   0.47,
+   -14.555000000000001
+  ],
+  "max": [
+   12.94,
+   3.09,
+   -14.145
+  ]
+ },
+ "found": {
+  "Sakura street poster · Blue Coral › Sakura street poster board": {
+   "n": 24,
+   "min": [
+    11.2,
+    0.77,
+    -14.168
+   ],
+   "max": [
+    12.64,
+    2.79,
+    -14.15
+   ]
+  },
+  "Sakura street poster · Blue Coral › Sakura street poster print": {
+   "n": 4,
+   "min": [
+    11.22,
+    0.79,
+    -14.171
+   ],
+   "max": [
+    12.62,
+    2.77,
+    -14.171
+   ]
+  }
+ },
+ "intruders": []
+}

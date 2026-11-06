@@ -1,0 +1,35 @@
+{
+  "method": "Blender Cycles CPU studio renders of the packed production GLBs, with their embedded animation tracks and referenced local textures. Studio lighting; not a screenshot of the browser game.",
+  "models": [
+    {
+      "file": "assets/characters/neighbours/resident-00.glb",
+      "sha256": "09b84f9a83f07747384aea928ba79e60e7185dbd242ed06e79803d3783031c15"
+    },
+    {
+      "file": "assets/characters/neighbours/resident-01.glb",
+      "sha256": "8b63716c01abae1b8f0d406bba71bfab5c28199fcd4d38604e26400e39f1eb1d"
+    },
+    {
+      "file": "assets/characters/neighbours/resident-02.glb",
+      "sha256": "93fee09b3799446332292f7e1c75f381f042078767fe6bfbd59ba0c94c6cb329"
+    },
+    {
+      "file": "assets/characters/neighbours/resident-09.glb",
+      "sha256": "69c8c4a60d30c432d5b41661b216a23049c01d3830f0f1fce1fa1ab29c4847b9"
+    }
+  ],
+  "images": [
+    {
+      "file": "fitted-cast-Walk.png",
+      "sha256": "6f166cadb5a5d98fbf9cfa6ef9ac1e2bb21b52822eb75e3402825543c9496f15"
+    },
+    {
+      "file": "fitted-cast-Sit.png",
+      "sha256": "80607b10593ed095ef74ab1657770a083a08ce20f6adb22f7b8c7b09727a99fa"
+    },
+    {
+      "file": "fitted-cast-Run.png",
+      "sha256": "3ade46a76237df282026255e8b5bbb13c43a08e2c231b4081affd5ebe254bc8b"
+    }
+  ]
+}

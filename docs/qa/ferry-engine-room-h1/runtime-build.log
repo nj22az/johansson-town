@@ -1,0 +1,57 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> build:runtime
+> node scripts/build-runtime.mjs
+
+Printed Sakura flyer with current catalogue prices.
+Indexed 64 town documents
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 671 modules transformed.
+rendering chunks...
+computing gzip size...
+runtime/.vite/manifest.json                     10.70 kB │ gzip:   1.55 kB
+runtime/audio-BEDOh5-N.js                        0.10 kB │ gzip:   0.10 kB
+runtime/sato-ramen-4AP6S_Zg.js                   0.48 kB │ gzip:   0.32 kB
+runtime/shopping-lane-plan-D0DhEU8_.js           0.61 kB │ gzip:   0.40 kB
+runtime/ferry-engine-room-asset-ZvTkqhS-.js      0.85 kB │ gzip:   0.54 kB
+runtime/preload-helper-PPVm8Dsz.js               1.23 kB │ gzip:   0.71 kB
+runtime/touch-ui-D34cMzo7.js                     2.41 kB │ gzip:   1.17 kB
+runtime/portraits-BMxsALq_.js                    2.64 kB │ gzip:   1.49 kB
+runtime/webmcp-characters-BkXkAGJZ.js            3.13 kB │ gzip:   1.45 kB
+runtime/friendship-3sKIj7kt.js                   3.42 kB │ gzip:   1.75 kB
+runtime/title-menu-BoFup2X2.js                   3.96 kB │ gzip:   1.91 kB
+runtime/boot-BaGA0XBK.js                         4.26 kB │ gzip:   2.18 kB
+runtime/catalog-D0ZOSIcJ.js                      4.96 kB │ gzip:   2.37 kB
+runtime/thuan-voice-Dz-XGNqd.js                  5.83 kB │ gzip:   2.80 kB
+runtime/studio-handoff-Cfjfkfw8.js               6.10 kB │ gzip:   2.89 kB
+runtime/icons-DfeBIm6m.js                        7.26 kB │ gzip:   3.36 kB
+runtime/webmcp-CxSkO4VH.js                      15.82 kB │ gzip:   5.39 kB
+runtime/feed-CldHgu-b.js                        25.77 kB │ gzip:  11.16 kB
+runtime/concert-CBGalUHB.js                     33.92 kB │ gzip:  13.91 kB
+runtime/scene-world-C9AVxov_.js                 38.99 kB │ gzip:  16.27 kB
+runtime/hat-models-vS6pLFtP.js                  48.27 kB │ gzip:  16.53 kB
+runtime/storyteller-ECPb_jl-.js                 52.08 kB │ gzip:  18.06 kB
+runtime/harbour-park-plan-DoE5tL84.js           53.74 kB │ gzip:  18.13 kB
+runtime/town-hall-BciRoTpk.js                   58.11 kB │ gzip:  24.22 kB
+runtime/actors-BOQmFiUz.js                      86.40 kB │ gzip:  33.32 kB
+runtime/onsen-DekuZ43B.js                      189.55 kB │ gzip:  74.42 kB
+runtime/staff-bench-4QRKc7eH.js                233.94 kB │ gzip:  83.51 kB
+runtime/sakura-interior-4wkQfJLB.js            346.32 kB │ gzip: 177.35 kB
+runtime/fish-BmcJYCfW.js                       371.91 kB │ gzip: 137.44 kB
+runtime/seawall-photo-mesh-BWgxFsE-.js         537.78 kB │ gzip:  39.07 kB
+runtime/tree-design-data-iR1qvQBH.js           633.14 kB │ gzip: 363.81 kB
+runtime/compact-shops-D5Esx0ju.js              840.76 kB │ gzip: 241.72 kB
+runtime/game-B3M3UJLR.js                       872.08 kB │ gzip: 342.13 kB
+runtime/animate-PmOkampd.js                    998.55 kB │ gzip: 304.65 kB
+runtime/halloween-D9m2xV3E.js                1,177.65 kB │ gzip: 467.47 kB
+runtime/spector.bundle-_JPoFEkN.js           1,199.20 kB │ gzip: 327.35 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 16.66s
+Pruned stale runtime chunks: 12
+Stylesheet hashes: base.css 989748aa, context-controls.css f898462d, landing.css 6b8bf0ea, dual-controls.css 396f3a7b, tomodachi-ui.css e851b42d, photo-mode.css 23db1895, quiet-ui.css 056d2627, context-rail.css a4e11923, line-ui.css c9fe9f5f, quiet-hud.css e0b5f153, title-screen.css d00ff286, town-directory.css 5fef277a, ferry-operations.css 1625ed17, town-book.css 74d6f099, creator/creator.css ffa632ec, line-ui.css c9fe9f5f
+Published runtime entry points: boot-BaGA0XBK.js audio-BEDOh5-N.js files: 48

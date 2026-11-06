@@ -1,0 +1,19 @@
+{
+  "source_base": "baf0da1a0745bad6238811bdfae26c4df4aebe67",
+  "hosted_guard": {
+    "tests": 569,
+    "pass": 569,
+    "fail": 0,
+    "files": 110,
+    "seconds": 224
+  },
+  "ferry_graphics": "passed: real GLB/two meshes/80376 triangles/GPU error 0, normal input movement, V, all eight saved cameras, ordinary view restored",
+  "remaining_failure": "The later Izakaya exit tap was intercepted by the mobile movement hit zone. Both layouts overlap at the bottom; the HUD was below mobile in the stacking order.",
+  "correction": "On touch layouts, HUD z14 is above mobile z13. Existing pointer-events:none on the HUD leaves walking input available outside controls. No geometry or runtime JS change.",
+  "validation": {
+    "quiet_hud_context_runtime_tests": 15,
+    "pass": 15,
+    "fail": 0
+  },
+  "native_check": "The phone test now explicitly verifies elementFromPoint at the visible exit button before performing its normal tap; no force or bypass."
+}

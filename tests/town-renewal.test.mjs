@@ -1,0 +1,15 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';
+import * as THREE from '../vendor/three.module.js';import {GLTFLoader} from '../vendor/GLTFLoader.js';import {installDOM} from './fixtures.mjs';import {createTown} from '../src/world/town.js';import {createBusinesses} from '../src/world/businesses.js';import {PARK_ACCESS,GARDEN} from '../src/world/garden-layout.js';import {groundHeight,routeAt} from '../src/world/layout.js';import {standingHitsRect} from '../physics.js';import {prepareFurniture,IKEA_FURNITURE} from '../src/world/interiors/ikea-furniture.js';
+test('nearby garden routes and power station feeders keep clear of existing buildings',()=>{
+ installDOM();const w=createTown({scene:new THREE.Scene(),sites:createBusinesses(),mobile:true,shadows:false,register(){},enter(){},onAction(){}});
+ assert.ok(GARDEN.entry[1]<40);assert.ok(groundHeight(40,175)<1);
+ // Aoba Radio stood on the retired uplands. The owner, 18 October 2026 (AGENTS.md): "Keep Minato a compact urban port
+ // town. Do not restore rural districts"; docs/qa/urban-only-island/README.md. Its station must not come back in the town.
+ assert.equal(w.aobaRadio,undefined,'no Aoba Radio on the compact island');let radio=false;w.group.traverse(o=>{if(/^Aoba radio/i.test(o.name))radio=true;});assert.equal(radio,false,'no radio station mesh');
+ for(const r of PARK_ACCESS)for(let i=1;i<r.points.length;i++)for(let t=0;t<=1;t+=.025){const a=r.points[i-1],b=r.points[i],x=a[0]+(b[0]-a[0])*t,z=a[1]+(b[1]-a[1])*t;assert.ok(routeAt(x,z,.32));assert.equal(w.colliders.some(c=>standingHitsRect(x,z,.32,groundHeight(x,z),c)),false,r.id+' '+x+','+z);}
+ const n=w.powerNetwork;assert.equal(n.connected,n.nodes.length);assert.equal(new Set(n.nodes.map(p=>p.id)).size,n.nodes.length);
+ for(const p of n.nodes){assert.ok(Number.isFinite(p.y));assert.equal(w.colliders.some(c=>c!==p.collider&&standingHitsRect(p.x,p.z,.16,groundHeight(p.x,p.z),c)),false,'pole '+p.id);}
+ const set=new Set([n.source]);for(let i=0;i<n.nodes.length;i++)for(const s of n.spans)if(set.has(s.from)||set.has(s.to)){set.add(s.from);set.add(s.to);}assert.equal(set.size,n.nodes.length);
+ const gull=w.quietLife.group.getObjectByName('Circling harbour gull');w.quietLife.update(0);const before=gull.position.clone();w.quietLife.update(8);assert.ok(gull.position.distanceTo(before)>1);
+});
+for(const kind of Object.keys(IKEA_FURNITURE))test('cel shaded IKEA '+kind+' keeps its measured footprint',async()=>{installDOM();const b=await readFile(new URL('../assets/models/furniture/town-'+kind+'.glb',import.meta.url)),g=await new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'');const model=prepareFurniture(g.scene,kind),bounds=new THREE.Box3().setFromObject(model),s=bounds.getSize(new THREE.Vector3()),spec=IKEA_FURNITURE[kind];assert.ok(Math.abs(bounds.min.y)<1e-6);assert.ok(Math.abs(s.x-spec.width)<1e-6&&Math.abs(s.z-spec.depth)<1e-6);model.traverse(o=>{if(o.isMesh)assert.ok(o.material.isMeshToonMaterial);});});

@@ -1,0 +1,505 @@
+{
+  "commit": "580de3c1ed4f12c3e2f962dd49370435bf4256cb",
+  "tree": "c5b3f9b9b882bed15e88b6da5bd9cab18ee78b9d",
+  "verifiedAtUtc": "2026-10-24T11:05:28.961058+00:00",
+  "pages": {
+    "id": 40088349611,
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/nj22az/nj22az.github.io/actions/runs/40088349611",
+    "headSha": "580de3c1ed4f12c3e2f962dd49370435bf4256cb",
+    "updatedAtUtc": "2026-10-24T11:04:42Z"
+  },
+  "worldGuard": {
+    "id": 40088350128,
+    "headSha": "580de3c1ed4f12c3e2f962dd49370435bf4256cb",
+    "status": "completed",
+    "conclusion": "success",
+    "updatedAtUtc": "2026-10-24T11:09:12Z",
+    "url": "https://github.com/nj22az/nj22az.github.io/actions/runs/40088350128"
+  },
+  "sourceFingerprint": "71b35d7f78b51e7f166a42ed990b55125a24b8aae2fc672c6fcce9abe4bb82a2",
+  "entry": "boot-NaJQUdXp.js",
+  "game": "game-DRNFU97A.js",
+  "serviceWorkerVersion": "47d64e919d29c32b59f0",
+  "runtimeManifestMatches": true,
+  "runtimeFiles": 32,
+  "pageRuntimeReferences": [
+    "actors-BhJ_TyLX.js",
+    "animate-DVRyKc1f.js",
+    "audio-ClT0uVQ7.js",
+    "boot-NaJQUdXp.js",
+    "catalog-BqceGcE7.js",
+    "compact-shops-MkBTANhC.js",
+    "feed-Cc2KrknU.js",
+    "fish-C8tPcD-Z.js",
+    "friendship-D-153hkW.js",
+    "game-DRNFU97A.js",
+    "halloween-BmWki43t.js",
+    "harbour-park-plan-BhIaivO_.js",
+    "hat-models-0BWE2BDN.js",
+    "icons-DfeBIm6m.js",
+    "onsen-DfUpHZCj.js",
+    "portraits-SbbwpoMT.js",
+    "preload-helper-PPVm8Dsz.js",
+    "sakura-interior-DWM98uMH.js",
+    "sato-ramen-CjqpFJPV.js",
+    "shopping-lane-plan-D0DhEU8_.js",
+    "staff-bench-Ibxli6LV.js",
+    "storyteller-DFpIt5VF.js",
+    "studio-handoff-AXht5MiX.js",
+    "thuan-voice-Dz-XGNqd.js",
+    "title-menu-BeNExQQF.js",
+    "touch-ui-D34cMzo7.js",
+    "town-hall-Bxsdk-Ei.js"
+  ],
+  "allLiveAssetsMatch": true,
+  "woodlandManifestHashesMatch": {
+    "LICENSE-PAKO.txt": true,
+    "LICENSE-THREE.txt": true,
+    "index.html": true,
+    "inflate-fallback.js": true,
+    "orbit-controls.js": true,
+    "poster-board.webp": true,
+    "poster.webp": true,
+    "viewer-3d.js": true,
+    "viewer.css": true,
+    "viewer.js": true,
+    "woodland.glb.gz": true
+  },
+  "checks": [
+    {
+      "path": "index.html",
+      "url": "https://nj22az.github.io/johansson-town/index.html",
+      "ok": true,
+      "bytes": 46241,
+      "sha256": "b24268f8344594dfae4a29652f10835eb40d3adacb451047eab69caeea4f5d59",
+      "localSha256": "b24268f8344594dfae4a29652f10835eb40d3adacb451047eab69caeea4f5d59"
+    },
+    {
+      "path": "sw.js",
+      "url": "https://nj22az.github.io/johansson-town/sw.js",
+      "ok": true,
+      "bytes": 2308,
+      "sha256": "379378c9d0116c9325f53f74d200c6e3d1befd727361b402aae1fc718fd6c0e6",
+      "localSha256": "379378c9d0116c9325f53f74d200c6e3d1befd727361b402aae1fc718fd6c0e6"
+    },
+    {
+      "path": "runtime/source.json",
+      "url": "https://nj22az.github.io/johansson-town/runtime/source.json",
+      "ok": true,
+      "bytes": 83,
+      "sha256": "bdfd7cf06cdaeeae782d232a5f7e94aae065b14e2be677e9dde59f063941bb20",
+      "localSha256": "bdfd7cf06cdaeeae782d232a5f7e94aae065b14e2be677e9dde59f063941bb20"
+    },
+    {
+      "path": "runtime/.vite/manifest.json",
+      "url": "https://nj22az.github.io/johansson-town/runtime/.vite/manifest.json",
+      "ok": true,
+      "bytes": 9565,
+      "sha256": "029354ecce623390de6b5b07fbc709fbb2255334cb8ff8508525ce6ec7183893",
+      "localSha256": "029354ecce623390de6b5b07fbc709fbb2255334cb8ff8508525ce6ec7183893"
+    },
+    {
+      "path": "src/game.js",
+      "url": "https://nj22az.github.io/johansson-town/src/game.js",
+      "ok": true,
+      "bytes": 246381,
+      "sha256": "c858d55ffee143970a36da09865aa39662e940bc8c0c82b2fe0e9374e35dfbca",
+      "localSha256": "c858d55ffee143970a36da09865aa39662e940bc8c0c82b2fe0e9374e35dfbca"
+    },
+    {
+      "path": "src/world/town.js",
+      "url": "https://nj22az.github.io/johansson-town/src/world/town.js",
+      "ok": true,
+      "bytes": 37026,
+      "sha256": "dcc82187070ba4fde481294bed321ed7ecd64d99bbd2007c8c0e7fe3dd921f1b",
+      "localSha256": "dcc82187070ba4fde481294bed321ed7ecd64d99bbd2007c8c0e7fe3dd921f1b"
+    },
+    {
+      "path": "src/world/port-building.js",
+      "url": "https://nj22az.github.io/johansson-town/src/world/port-building.js",
+      "ok": true,
+      "bytes": 9643,
+      "sha256": "866f08ab51f3290aad93497c495b0e173e671a0d06c1257000d7626fa4e77892",
+      "localSha256": "866f08ab51f3290aad93497c495b0e173e671a0d06c1257000d7626fa4e77892"
+    },
+    {
+      "path": "src/world/openings.js",
+      "url": "https://nj22az.github.io/johansson-town/src/world/openings.js",
+      "ok": true,
+      "bytes": 7630,
+      "sha256": "807a9773eae4a556d544a56dfc7a904573fb0b622abe3f4f187546c80c191307",
+      "localSha256": "807a9773eae4a556d544a56dfc7a904573fb0b622abe3f4f187546c80c191307"
+    },
+    {
+      "path": "src/desktop/life.js",
+      "url": "https://nj22az.github.io/johansson-town/src/desktop/life.js",
+      "ok": true,
+      "bytes": 4206,
+      "sha256": "501c1f655fc3f5adf0570e83574b6de21be2d2cdb6761a7fcada33cefb29baf7",
+      "localSha256": "501c1f655fc3f5adf0570e83574b6de21be2d2cdb6761a7fcada33cefb29baf7"
+    },
+    {
+      "path": "src/world/woodland-poster.js",
+      "url": "https://nj22az.github.io/johansson-town/src/world/woodland-poster.js",
+      "ok": true,
+      "bytes": 2195,
+      "sha256": "e05aca98210b75c1538279a90515c095e6b39b59cbfe07ca1ac4ceec6ba68cd7",
+      "localSha256": "e05aca98210b75c1538279a90515c095e6b39b59cbfe07ca1ac4ceec6ba68cd7"
+    },
+    {
+      "path": "runtime/actors-BhJ_TyLX.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/actors-BhJ_TyLX.js",
+      "ok": true,
+      "bytes": 85688,
+      "sha256": "20dfb8d6e0840d9a53c0bd36ca9ddc24f35c613e8e86369867969b6f5acd6fe6",
+      "localSha256": "20dfb8d6e0840d9a53c0bd36ca9ddc24f35c613e8e86369867969b6f5acd6fe6"
+    },
+    {
+      "path": "runtime/animate-DVRyKc1f.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/animate-DVRyKc1f.js",
+      "ok": true,
+      "bytes": 686833,
+      "sha256": "15471541146fd562185ac8e20b7bd561e3e129b64271330fbabda329c41d63c6",
+      "localSha256": "15471541146fd562185ac8e20b7bd561e3e129b64271330fbabda329c41d63c6"
+    },
+    {
+      "path": "runtime/audio-ClT0uVQ7.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/audio-ClT0uVQ7.js",
+      "ok": true,
+      "bytes": 101,
+      "sha256": "59a55843a4ffe908f5812222fbc2635cd3fb33dc3b0ad3a17ba04becd3baf049",
+      "localSha256": "59a55843a4ffe908f5812222fbc2635cd3fb33dc3b0ad3a17ba04becd3baf049"
+    },
+    {
+      "path": "runtime/boot-NaJQUdXp.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/boot-NaJQUdXp.js",
+      "ok": true,
+      "bytes": 4259,
+      "sha256": "6de6fdf3d55ff779a01ef88d8d85c00f82198beedea26da56b3e8b36dcf5c4b1",
+      "localSha256": "6de6fdf3d55ff779a01ef88d8d85c00f82198beedea26da56b3e8b36dcf5c4b1"
+    },
+    {
+      "path": "runtime/catalog-BqceGcE7.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/catalog-BqceGcE7.js",
+      "ok": true,
+      "bytes": 4958,
+      "sha256": "72626219ca8b3f5492a58b45b7d5aefdbf3ab592aa8198d44f97f2c8d463a2ac",
+      "localSha256": "72626219ca8b3f5492a58b45b7d5aefdbf3ab592aa8198d44f97f2c8d463a2ac"
+    },
+    {
+      "path": "runtime/compact-shops-MkBTANhC.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/compact-shops-MkBTANhC.js",
+      "ok": true,
+      "bytes": 834650,
+      "sha256": "049e5c6f51325134e1630d4b6df80f0e5bb283ac05a0031c44a90095d45551ba",
+      "localSha256": "049e5c6f51325134e1630d4b6df80f0e5bb283ac05a0031c44a90095d45551ba"
+    },
+    {
+      "path": "runtime/concert-DVAcT41P.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/concert-DVAcT41P.js",
+      "ok": true,
+      "bytes": 33923,
+      "sha256": "3fd71615f4035654152c6095c62a02ca9b461e1810625d3092e8104841cdcf1b",
+      "localSha256": "3fd71615f4035654152c6095c62a02ca9b461e1810625d3092e8104841cdcf1b"
+    },
+    {
+      "path": "runtime/feed-Cc2KrknU.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/feed-Cc2KrknU.js",
+      "ok": true,
+      "bytes": 25773,
+      "sha256": "5c07395df21c4ef44c608e7df4c822a6c74a0f903c6943ed40defd57a56885c2",
+      "localSha256": "5c07395df21c4ef44c608e7df4c822a6c74a0f903c6943ed40defd57a56885c2"
+    },
+    {
+      "path": "runtime/fish-C8tPcD-Z.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/fish-C8tPcD-Z.js",
+      "ok": true,
+      "bytes": 366397,
+      "sha256": "33f4f892b29b5721057fee3ebb956c52e0102819827d57e62bf5ba8b92814c4d",
+      "localSha256": "33f4f892b29b5721057fee3ebb956c52e0102819827d57e62bf5ba8b92814c4d"
+    },
+    {
+      "path": "runtime/friendship-D-153hkW.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/friendship-D-153hkW.js",
+      "ok": true,
+      "bytes": 3421,
+      "sha256": "77de36cf82b40d6f8d35f98963fce5b55d4d5719eaba54ddf52848aa665a3486",
+      "localSha256": "77de36cf82b40d6f8d35f98963fce5b55d4d5719eaba54ddf52848aa665a3486"
+    },
+    {
+      "path": "runtime/game-DRNFU97A.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/game-DRNFU97A.js",
+      "ok": true,
+      "bytes": 867279,
+      "sha256": "eec42d39817e588133e936c2089c3f1ab3f51fccb736e0d7c530ce6d23d73432",
+      "localSha256": "eec42d39817e588133e936c2089c3f1ab3f51fccb736e0d7c530ce6d23d73432"
+    },
+    {
+      "path": "runtime/halloween-BmWki43t.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/halloween-BmWki43t.js",
+      "ok": true,
+      "bytes": 1146543,
+      "sha256": "04358ecae7c2f93631a93faf3d58f4b6a5e03035b18a5a00253fa60586da07a0",
+      "localSha256": "04358ecae7c2f93631a93faf3d58f4b6a5e03035b18a5a00253fa60586da07a0"
+    },
+    {
+      "path": "runtime/harbour-park-plan-BhIaivO_.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/harbour-park-plan-BhIaivO_.js",
+      "ok": true,
+      "bytes": 53740,
+      "sha256": "77c3d658f4432827390fdadc29bc4060a45aaddfd45712dc3ab1b16cb7f968b5",
+      "localSha256": "77c3d658f4432827390fdadc29bc4060a45aaddfd45712dc3ab1b16cb7f968b5"
+    },
+    {
+      "path": "runtime/hat-models-0BWE2BDN.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/hat-models-0BWE2BDN.js",
+      "ok": true,
+      "bytes": 47675,
+      "sha256": "914f1f0468646035aa203b585aec2802a2adcbad75a1a23ba16bff92ef6d6f07",
+      "localSha256": "914f1f0468646035aa203b585aec2802a2adcbad75a1a23ba16bff92ef6d6f07"
+    },
+    {
+      "path": "runtime/icons-DfeBIm6m.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/icons-DfeBIm6m.js",
+      "ok": true,
+      "bytes": 7263,
+      "sha256": "b091b9cb9311794bd87d1ba33e34fc8a3bb6ca8931abd3bc51614f9278744803",
+      "localSha256": "b091b9cb9311794bd87d1ba33e34fc8a3bb6ca8931abd3bc51614f9278744803"
+    },
+    {
+      "path": "runtime/onsen-DfUpHZCj.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/onsen-DfUpHZCj.js",
+      "ok": true,
+      "bytes": 189553,
+      "sha256": "51f930c4c7b555f8fc958c74c5cfb5eeb64a79e84b333bc446dea63842cce079",
+      "localSha256": "51f930c4c7b555f8fc958c74c5cfb5eeb64a79e84b333bc446dea63842cce079"
+    },
+    {
+      "path": "runtime/portraits-SbbwpoMT.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/portraits-SbbwpoMT.js",
+      "ok": true,
+      "bytes": 2606,
+      "sha256": "95b67f807b9402fdf492f59924df6230a3a2df13671871998d5d01b3c7293c45",
+      "localSha256": "95b67f807b9402fdf492f59924df6230a3a2df13671871998d5d01b3c7293c45"
+    },
+    {
+      "path": "runtime/preload-helper-PPVm8Dsz.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/preload-helper-PPVm8Dsz.js",
+      "ok": true,
+      "bytes": 1232,
+      "sha256": "0bcb72f8ec0d95f592f3a84b3554b9ef5a5325ff5416a9114d6913e03c1c9eb4",
+      "localSha256": "0bcb72f8ec0d95f592f3a84b3554b9ef5a5325ff5416a9114d6913e03c1c9eb4"
+    },
+    {
+      "path": "runtime/sakura-interior-DWM98uMH.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/sakura-interior-DWM98uMH.js",
+      "ok": true,
+      "bytes": 173911,
+      "sha256": "2fcef2c531d5c33348edd0cd41f02aab5083f10cdf6b8d64b62c1d9c1b15cee3",
+      "localSha256": "2fcef2c531d5c33348edd0cd41f02aab5083f10cdf6b8d64b62c1d9c1b15cee3"
+    },
+    {
+      "path": "runtime/sato-ramen-CjqpFJPV.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/sato-ramen-CjqpFJPV.js",
+      "ok": true,
+      "bytes": 445,
+      "sha256": "a1d8ea2d63d095378444a2e4f6c9608e8c169b3f24b65ed0af3e1ac077ccab4a",
+      "localSha256": "a1d8ea2d63d095378444a2e4f6c9608e8c169b3f24b65ed0af3e1ac077ccab4a"
+    },
+    {
+      "path": "runtime/scene-world-D1L1PIzX.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/scene-world-D1L1PIzX.js",
+      "ok": true,
+      "bytes": 38928,
+      "sha256": "a531bfce8c9763de27d17f11e555efbc2268ed7f044c069855fbfe87385fde04",
+      "localSha256": "a531bfce8c9763de27d17f11e555efbc2268ed7f044c069855fbfe87385fde04"
+    },
+    {
+      "path": "runtime/shopping-lane-plan-D0DhEU8_.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/shopping-lane-plan-D0DhEU8_.js",
+      "ok": true,
+      "bytes": 606,
+      "sha256": "5bdd9f9ba046f84c06cef3f1b7ed6318534d4216331464a43ea0682a47e32d94",
+      "localSha256": "5bdd9f9ba046f84c06cef3f1b7ed6318534d4216331464a43ea0682a47e32d94"
+    },
+    {
+      "path": "runtime/spector.bundle-_JPoFEkN.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/spector.bundle-_JPoFEkN.js",
+      "ok": true,
+      "bytes": 1199203,
+      "sha256": "8e4e5a80c99ba39625463e80fc7b32b8961b174d46d438fe18a08ee0f7023f5c",
+      "localSha256": "8e4e5a80c99ba39625463e80fc7b32b8961b174d46d438fe18a08ee0f7023f5c"
+    },
+    {
+      "path": "runtime/staff-bench-Ibxli6LV.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/staff-bench-Ibxli6LV.js",
+      "ok": true,
+      "bytes": 227289,
+      "sha256": "8f649469f045f7aa150171a991abe9c9f9da6861b9da5d2ca4722400a6d0a5e1",
+      "localSha256": "8f649469f045f7aa150171a991abe9c9f9da6861b9da5d2ca4722400a6d0a5e1"
+    },
+    {
+      "path": "runtime/storyteller-DFpIt5VF.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/storyteller-DFpIt5VF.js",
+      "ok": true,
+      "bytes": 52081,
+      "sha256": "ff68ac76cd5cf290a79bae1942f954ab5e7c4bddf8c2d9c224aeffba9a6e8b61",
+      "localSha256": "ff68ac76cd5cf290a79bae1942f954ab5e7c4bddf8c2d9c224aeffba9a6e8b61"
+    },
+    {
+      "path": "runtime/studio-handoff-AXht5MiX.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/studio-handoff-AXht5MiX.js",
+      "ok": true,
+      "bytes": 6099,
+      "sha256": "af07dc1b19adce520cb2d454806d2648ecf76ffc910067d0be22ea5483d8b625",
+      "localSha256": "af07dc1b19adce520cb2d454806d2648ecf76ffc910067d0be22ea5483d8b625"
+    },
+    {
+      "path": "runtime/thuan-voice-Dz-XGNqd.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/thuan-voice-Dz-XGNqd.js",
+      "ok": true,
+      "bytes": 5832,
+      "sha256": "7353d3a89febbcb7ca9cded704c7c09b90bde9c665e843631510e857f881cd59",
+      "localSha256": "7353d3a89febbcb7ca9cded704c7c09b90bde9c665e843631510e857f881cd59"
+    },
+    {
+      "path": "runtime/title-menu-BeNExQQF.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/title-menu-BeNExQQF.js",
+      "ok": true,
+      "bytes": 3923,
+      "sha256": "7cacfefafb27b525d9a2919a2a22c1320b92659718e8afaf46ed85b921594a24",
+      "localSha256": "7cacfefafb27b525d9a2919a2a22c1320b92659718e8afaf46ed85b921594a24"
+    },
+    {
+      "path": "runtime/touch-ui-D34cMzo7.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/touch-ui-D34cMzo7.js",
+      "ok": true,
+      "bytes": 2413,
+      "sha256": "83b5028de47afa38a02300daf6d01f359d4ef5bc4aae58d4875f070d6f77db33",
+      "localSha256": "83b5028de47afa38a02300daf6d01f359d4ef5bc4aae58d4875f070d6f77db33"
+    },
+    {
+      "path": "runtime/town-hall-Bxsdk-Ei.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/town-hall-Bxsdk-Ei.js",
+      "ok": true,
+      "bytes": 58072,
+      "sha256": "e9293f9f124c94daf52ed1b547195abaac169381ec9ddb1b1439ffc7f79d60cd",
+      "localSha256": "e9293f9f124c94daf52ed1b547195abaac169381ec9ddb1b1439ffc7f79d60cd"
+    },
+    {
+      "path": "runtime/webmcp-CxSkO4VH.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/webmcp-CxSkO4VH.js",
+      "ok": true,
+      "bytes": 15824,
+      "sha256": "2a6856ebc806bc4225e8bdfd3d08f913aad788e032d8bda521a230291c0f1cb6",
+      "localSha256": "2a6856ebc806bc4225e8bdfd3d08f913aad788e032d8bda521a230291c0f1cb6"
+    },
+    {
+      "path": "runtime/webmcp-characters-BkXkAGJZ.js",
+      "url": "https://nj22az.github.io/johansson-town/runtime/webmcp-characters-BkXkAGJZ.js",
+      "ok": true,
+      "bytes": 3130,
+      "sha256": "4f1c850b6db1cf07f238f632a62d81eb8d1336f66d50e23a2bf6c738cb82b2bc",
+      "localSha256": "4f1c850b6db1cf07f238f632a62d81eb8d1336f66d50e23a2bf6c738cb82b2bc"
+    },
+    {
+      "path": "diorama/woodland/build-manifest.json",
+      "url": "https://nj22az.github.io/johansson-town/diorama/woodland/build-manifest.json",
+      "ok": true,
+      "bytes": 3170,
+      "sha256": "4c9944ad57d3e13cacc29d30c3f1bec0435a67875b8a5ec81656eeb098f7520f",
+      "localSha256": "4c9944ad57d3e13cacc29d30c3f1bec0435a67875b8a5ec81656eeb098f7520f"
+    },
+    {
+      "path": "diorama/woodland/LICENSE-PAKO.txt",
+      "url": "https://nj22az.github.io/johansson-town/diorama/woodland/LICENSE-PAKO.txt",
+      "ok": true,
+      "bytes": 1104,
+      "sha256": "a04665b3b2de56c66730c1f720f528175739e4104f79073614aa611da1e85539",
+      "localSha256": "a04665b3b2de56c66730c1f720f528175739e4104f79073614aa611da1e85539"
+    },
+    {
+      "path": "diorama/woodland/LICENSE-THREE.txt",
+      "url": "https://nj22az.github.io/johansson-town/diorama/woodland/LICENSE-THREE.txt",
+      "ok": true,
+      "bytes": 1081,
+      "sha256": "4c40a1ef62450b857c3b2aaf294936304cd552d965fbcd9d32d4c5bcf4ba4454",
+      "localSha256": "4c40a1ef62450b857c3b2aaf294936304cd552d965fbcd9d32d4c5bcf4ba4454"
+    },
+    {
+      "path": "diorama/woodland/index.html",
+      "url": "https://nj22az.github.io/johansson-town/diorama/woodland/index.html",
+      "ok": true,
+      "bytes": 1470,
+      "sha256": "7da3247ab3d2e26bc03ef52d5a9d312594d356f4c26b38d21bcad9d0db284b7b",
+      "localSha256": "7da3247ab3d2e26bc03ef52d5a9d312594d356f4c26b38d21bcad9d0db284b7b"
+    },
+    {
+      "path": "diorama/woodland/inflate-fallback.js",
+      "url": "https://nj22az.github.io/johansson-town/diorama/woodland/inflate-fallback.js",
+      "ok": true,
+      "bytes": 22917,
+      "sha256": "2ca29205d967d3f2505524a6a8ef49ff706b175df5af44ae1c0b7dd48c3b7668",
+      "localSha256": "2ca29205d967d3f2505524a6a8ef49ff706b175df5af44ae1c0b7dd48c3b7668"
+    },
+    {
+      "path": "diorama/woodland/orbit-controls.js",
+      "url": "https://nj22az.github.io/johansson-town/diorama/woodland/orbit-controls.js",
+      "ok": true,
+      "bytes": 32158,
+      "sha256": "7176d3da4de21ae53e807d23c6e8e24fa5cbffaca23853d623ccb860021b70b2",
+      "localSha256": "7176d3da4de21ae53e807d23c6e8e24fa5cbffaca23853d623ccb860021b70b2"
+    },
+    {
+      "path": "diorama/woodland/poster-board.webp",
+      "url": "https://nj22az.github.io/johansson-town/diorama/woodland/poster-board.webp",
+      "ok": true,
+      "bytes": 114994,
+      "sha256": "bb1c5fd88ff49fe47a081ce7205544232b41f7d2f4eb24e86e7e66d22bd0a008",
+      "localSha256": "bb1c5fd88ff49fe47a081ce7205544232b41f7d2f4eb24e86e7e66d22bd0a008"
+    },
+    {
+      "path": "diorama/woodland/poster.webp",
+      "url": "https://nj22az.github.io/johansson-town/diorama/woodland/poster.webp",
+      "ok": true,
+      "bytes": 312538,
+      "sha256": "304a7cfdc6d30265499aec5c79db406cb5dd1ade6b9ce9bbcd4b3700032a871b",
+      "localSha256": "304a7cfdc6d30265499aec5c79db406cb5dd1ade6b9ce9bbcd4b3700032a871b"
+    },
+    {
+      "path": "diorama/woodland/viewer-3d.js",
+      "url": "https://nj22az.github.io/johansson-town/diorama/woodland/viewer-3d.js",
+      "ok": true,
+      "bytes": 6435,
+      "sha256": "3fb43678d9d5fbd7aa1dbc973718c5a62fddace15c0978ce423ac4d3706ef511",
+      "localSha256": "3fb43678d9d5fbd7aa1dbc973718c5a62fddace15c0978ce423ac4d3706ef511"
+    },
+    {
+      "path": "diorama/woodland/viewer.css",
+      "url": "https://nj22az.github.io/johansson-town/diorama/woodland/viewer.css",
+      "ok": true,
+      "bytes": 3254,
+      "sha256": "02d782b9927e90bb61a1e3ae7192fed62516630017bb9518875e5012d80d7991",
+      "localSha256": "02d782b9927e90bb61a1e3ae7192fed62516630017bb9518875e5012d80d7991"
+    },
+    {
+      "path": "diorama/woodland/viewer.js",
+      "url": "https://nj22az.github.io/johansson-town/diorama/woodland/viewer.js",
+      "ok": true,
+      "bytes": 6247,
+      "sha256": "a4fd0af135e498bd6d99e2c83c937aca3dd46b9037051231588330022f6edb43",
+      "localSha256": "a4fd0af135e498bd6d99e2c83c937aca3dd46b9037051231588330022f6edb43"
+    },
+    {
+      "path": "diorama/woodland/woodland.glb.gz",
+      "url": "https://nj22az.github.io/johansson-town/diorama/woodland/woodland.glb.gz",
+      "ok": true,
+      "bytes": 5639752,
+      "sha256": "0ef693d2c19e5a64db68b68044bcfe198cda54d370740dc0d8be6346a4b677c1",
+      "localSha256": "0ef693d2c19e5a64db68b68044bcfe198cda54d370740dc0d8be6346a4b677c1"
+    }
+  ],
+  "publicationVerifiedAtUtc": "2026-10-24T11:09:35.631401+00:00"
+}

@@ -1,0 +1,16 @@
+✔ tests/enterable-sites.test.mjs (14720.682254ms)
+✔ tests/ground-quarters.test.mjs (770.695209ms)
+✔ tests/izakaya-backbar.test.mjs (1412.51426ms)
+✔ tests/izakaya-service-layout.test.mjs (1677.690521ms)
+✔ tests/minato-compact.test.mjs (533.799723ms)
+✔ tests/runtime-package.test.mjs (280.793263ms)
+✔ tests/shared-dining-entry.test.mjs (629.56567ms)
+✔ tests/sign-backs.test.mjs (3189.178736ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 23229.750047

@@ -1,0 +1,64 @@
+{
+  "engine": "Linux WebKit",
+  "physicalDevice": false,
+  "reference": "716bc0c1309ef7d0392e5183d32b6b8a0151c5ad",
+  "views": [
+    {
+      "version": "reference",
+      "label": "park-relative-day",
+      "mean": 150.8683179136529,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4
+      },
+      "buffer": [
+        585,
+        1266
+      ],
+      "gpuError": 0
+    },
+    {
+      "version": "before",
+      "label": "park-relative-day",
+      "mean": 153.5519075215587,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        548,
+        1186
+      ],
+      "safe": false,
+      "gpuError": 0
+    },
+    {
+      "version": "restored",
+      "label": "park-relative-day",
+      "mean": 155.59069526289835,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 2,
+        "hdr": true
+      },
+      "buffer": [
+        548,
+        1186
+      ],
+      "safe": false,
+      "gpuError": 0
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+✔ healthy native Blender asset has three bounded meshes and a complete separate return (96.766157ms)
+✔ actual ferry retains all navigation lights and existing floor/collision layout (8358.461531ms)
+✔ real GLB replaces fallback once, while failed loading preserves visible equipment (6518.166203ms)
+✔ bridge follows heading and each engine order without changing the plant (6539.75846ms)
+✔ CRT aperture, helm and chart are visible equipment in the actual model (7307.599376ms)
+✔ published runtime matches the current source rather than an older build (6374.349393ms)
+✔ published page uses one compiled audio/boot graph with local hashed dependencies (1018.100209ms)
+✔ every stylesheet link carries a hash of the file it points at (640.613199ms)
+✔ delivered chunks contain no retired combat handlers, menus, damage simulation or rewards (572.507542ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15537.591137

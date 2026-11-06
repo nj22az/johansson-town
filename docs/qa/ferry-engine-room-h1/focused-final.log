@@ -1,0 +1,19 @@
+✔ locked ferry shot follows translation, yaw, pitch and roll; ordinary lens restores on exit (4.853488ms)
+✔ automatic cuts have hysteresis and held movement keeps its direction until release (0.615194ms)
+✔ representative walking positions keep head and feet framed on desktop and portrait screens (6.279001ms)
+✔ H1 headroom, deck stack, service openings and all fixed lenses match the CAD (233.239524ms)
+✔ H1 access uses the relocated side door and full top landing, then returns to the car deck (1264.077896ms)
+✔ the shipped Blender GLB keeps CAD units, source bounds and finite normals within two surface groups (58.27111ms)
+✔ raised-deck boarding meets the pier and the forward crew station remains on its actual floor (1652.086556ms)
+✔ published runtime matches the current source rather than an older build (441.766759ms)
+✔ published page uses one compiled audio/boot graph with local hashed dependencies (167.797533ms)
+✔ every stylesheet link carries a hash of the file it points at (9.270948ms)
+✔ delivered chunks contain no retired combat handlers, menus, damage simulation or rewards (127.531312ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3470.500504

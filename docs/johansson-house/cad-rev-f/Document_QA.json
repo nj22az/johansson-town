@@ -1,0 +1,14 @@
+{
+  "Architectural_and_Services_Drawings": {
+    "pages": 14,
+    "text_outside_page": [],
+    "visual_review": "PASS - all final rendered pages inspected",
+    "sha256": "18567e4d4fcbca1cb030d0e06d2264bbe3c3cb030b6c531123738065cc4c42b5"
+  },
+  "Final_Technical_and_Validation_Report": {
+    "pages": 12,
+    "text_outside_page": [],
+    "visual_review": "PASS - all final rendered pages inspected",
+    "sha256": "e9de69902caafa2fa3946a0251e0b03fbb62e9c9b8913f3413744562e7dcb0d8"
+  }
+}

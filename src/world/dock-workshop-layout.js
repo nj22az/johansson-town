@@ -1,0 +1,4 @@
+/** Independent harbour address; adjust this plot to Claude's expanded dock plan. */
+export const DOCK_WORKSHOP_PLOT=Object.freeze({x:-25,z:-43.7,width:8.8,depth:7.4,door:Object.freeze([-25,0,-39.35])});
+export const DOCK_WORKSHOP_ROOM=Object.freeze({width:8.4,depth:7,bounds:{minX:-4.2,maxX:4.2,minZ:-3.5,maxZ:3.5},doorX:0,spawn:[0,0,2.9],exit:[0,1.1,3.42],yaw:0,staff:{Chin:[-1.25,0,-1.9],Tetsuo:[1.5,0,-1.9]}});
+export const DOCK_WORKSHOP=Object.freeze({title:'Dock Electrical & Repair Workshop',jp:'Dock Electrical Workshop',sub:'ELECTRICAL · INSTRUMENTS · REPAIRS',industrialWorkshop:true,x:DOCK_WORKSHOP_PLOT.x,z:DOCK_WORKSHOP_PLOT.z,line:'Chin’s fabrication and Form 3D bench, with Tetsuo’s electrical and instrument repairs.',directions:'On the western quay, beside the harbour warehouse. Look for the blue electrical workshop sign.'});

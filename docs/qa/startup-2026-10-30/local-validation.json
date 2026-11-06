@@ -1,0 +1,45 @@
+{
+  "codeCommit": "6d064234099d943d00e991d8455467063877de9b",
+  "testedTree": "4a87db3b53d49f27010f728619683b0ef6637f28",
+  "checks": [
+    {
+      "command": "NODE_OPTIONS=--max-old-space-size=6144 node tools/ci-guard.mjs",
+      "passed": 505,
+      "failed": 0,
+      "files": 96,
+      "seconds": 208.266
+    },
+    {
+      "command": "node --test tests/runtime-package.test.mjs tests/boot.test.mjs",
+      "passed": 5,
+      "failed": 0,
+      "seconds": 159.762
+    },
+    {
+      "command": "focused runtime/package/canvas/lifecycle/loading/startup tests",
+      "passed": 27,
+      "failed": 0
+    }
+  ],
+  "physicalDevice": false,
+  "final": {
+    "codeCommit": "4a37c11da8c0674145e4b3ad03facc28d223158e",
+    "testedCommit": "6d43b4283f1035b1afb3e5e7169f7eaec2d5064d",
+    "localGuard": {
+      "passed": 513,
+      "failed": 0,
+      "files": 99,
+      "seconds": 219.268
+    },
+    "hostedGuard": {
+      "passed": 513,
+      "failed": 0,
+      "files": 99,
+      "seconds": 356,
+      "workflow": "https://github.com/nj22az/nj22az.github.io/actions/runs/41136194829"
+    },
+    "focusedChecks": 54,
+    "iphoneScenarios": 8,
+    "physicalDevice": false
+  }
+}

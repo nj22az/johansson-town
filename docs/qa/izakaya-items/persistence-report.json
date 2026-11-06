@@ -1,0 +1,907 @@
+{
+  "normalControls": true,
+  "fixturePlacement": false,
+  "walks": [
+    {
+      "label": "guestbook",
+      "attempt": 0,
+      "goal": [
+        -3.8,
+        4.85
+      ],
+      "points": [
+        {
+          "x": -3.799999999999999,
+          "z": -0.5999999999999996
+        },
+        {
+          "x": -1.799999999999999,
+          "z": -0.5999999999999996
+        },
+        {
+          "x": -1.799999999999999,
+          "z": 4.2
+        },
+        {
+          "x": -3.799999999999999,
+          "z": 4.2
+        },
+        {
+          "x": -3.799999999999999,
+          "z": 5.000000000000001
+        }
+      ],
+      "reached": true,
+      "player": [
+        -3.7996336640811252,
+        0,
+        4.984947864466541
+      ]
+    },
+    {
+      "label": "radio",
+      "attempt": 0,
+      "goal": [
+        -0.4,
+        -4.82
+      ],
+      "points": [
+        {
+          "x": -3.799999999999999,
+          "z": 5.000000000000001
+        },
+        {
+          "x": 1.0000000000000009,
+          "z": 5.000000000000001
+        },
+        {
+          "x": 1.0000000000000009,
+          "z": 0.20000000000000018
+        },
+        {
+          "x": 3.8000000000000007,
+          "z": 0.20000000000000018
+        },
+        {
+          "x": 3.8000000000000007,
+          "z": -1.3999999999999995
+        },
+        {
+          "x": 4.200000000000001,
+          "z": -1.3999999999999995
+        },
+        {
+          "x": 4.200000000000001,
+          "z": -4.6
+        },
+        {
+          "x": -0.1999999999999993,
+          "z": -4.6
+        },
+        {
+          "x": -0.1999999999999993,
+          "z": -5
+        }
+      ],
+      "reached": true,
+      "player": [
+        -0.20022552520182305,
+        0,
+        -4.99699638843078
+      ]
+    },
+    {
+      "label": "recipe",
+      "attempt": 0,
+      "goal": [
+        5.65,
+        -4.94
+      ],
+      "points": [
+        {
+          "x": -0.1999999999999993,
+          "z": -5
+        },
+        {
+          "x": 5.800000000000001,
+          "z": -5
+        }
+      ],
+      "reached": true,
+      "player": [
+        5.799437489367791,
+        0,
+        -5.000003513084336
+      ]
+    }
+  ],
+  "captures": [
+    "/private/tmp/johansson-town-final-20261004/johansson-town/docs/qa/izakaya-items/persistence-guestbook.png",
+    "/private/tmp/johansson-town-final-20261004/johansson-town/docs/qa/izakaya-items/persistence-window.png",
+    "/private/tmp/johansson-town-final-20261004/johansson-town/docs/qa/izakaya-items/persistence-radio.png",
+    "/private/tmp/johansson-town-final-20261004/johansson-town/docs/qa/izakaya-items/persistence-recipe.png",
+    "/private/tmp/johansson-town-final-20261004/johansson-town/docs/qa/izakaya-items/persistence-save-now.png",
+    "/private/tmp/johansson-town-final-20261004/johansson-town/docs/qa/izakaya-items/persistence-restored-recipe-card.png"
+  ],
+  "checks": [
+    "four physical memories read through normal walking and menus",
+    "autosaved story, six markers and exactly one recipe card",
+    "Menu → Player & save → Save now",
+    "reload and normal Enter restore completed discovery",
+    "saved recipe card remains readable through the normal Bag"
+  ],
+  "beforeReload": {
+    "savedAt": 1791194683632,
+    "markers": [
+      "minato-memory:collected",
+      "minato-memory:complete",
+      "minato-memory:recipe",
+      "minato-memory:radio",
+      "minato-memory:window",
+      "minato-memory:guestbook"
+    ],
+    "storyCount": 1,
+    "cardCount": 1
+  },
+  "afterReload": {
+    "room": "izakaya",
+    "discoveries": {
+      "found": [
+        "guestbook",
+        "window",
+        "radio",
+        "recipe"
+      ],
+      "complete": true
+    },
+    "markers": [
+      "minato-memory:collected",
+      "minato-memory:complete",
+      "minato-memory:recipe",
+      "minato-memory:radio",
+      "minato-memory:window",
+      "minato-memory:guestbook"
+    ],
+    "storyCount": 1,
+    "cardCount": 1
+  },
+  "observedErrors": [],
+  "expectedNavigationCancellations": [],
+  "passed": true,
+  "inputs": [
+    {
+      "control": "forward",
+      "durationMs": 300,
+      "run": false,
+      "from": [
+        -3.8,
+        0,
+        -1.42
+      ],
+      "to": [
+        -3.8,
+        0,
+        -0.8366548901347906
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0.5833451098652094,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "view",
+      "durationMs": 34,
+      "run": false,
+      "from": [
+        -3.8,
+        0,
+        -0.8366548901347906
+      ],
+      "to": [
+        -3.8,
+        0,
+        -0.8366548901347906
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": -179.9999999999998,
+      "verticalDegrees": 0
+    },
+    {
+      "control": "forward",
+      "durationMs": 78.88496337826363,
+      "run": false,
+      "from": [
+        -3.8000000000944927,
+        0,
+        -0.812306819001782
+      ],
+      "to": [
+        -3.800000000740145,
+        0,
+        -0.6459406373381009
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0.1663661816636811,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": 88.68412930990485,
+      "verticalDegrees": 0
+    },
+    {
+      "control": "forward",
+      "durationMs": 666.8425222327495,
+      "run": false,
+      "from": [
+        -3.7695048078729827,
+        0,
+        -0.6452401542488726
+      ],
+      "to": [
+        -1.8901755738774588,
+        0,
+        -0.6020714373550108
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 1.879824967348946,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": -87.60833048992095,
+      "verticalDegrees": 0
+    },
+    {
+      "control": "forward",
+      "durationMs": 750,
+      "run": false,
+      "from": [
+        -1.8894204199798408,
+        0,
+        -0.5618575241668787
+      ],
+      "to": [
+        -1.8483095911760323,
+        0,
+        1.6274012558293374
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 2.1896447442531537,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "forward",
+      "durationMs": 750,
+      "run": false,
+      "from": [
+        -1.8483095911760323,
+        0,
+        1.6274012558293374
+      ],
+      "to": [
+        -1.8060669124031847,
+        0,
+        3.8769339965910357
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 2.249929331261039,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "forward",
+      "durationMs": 107.70765472887399,
+      "run": false,
+      "from": [
+        -1.8060669124031847,
+        0,
+        3.8769339965910357
+      ],
+      "to": [
+        -1.8004343792479895,
+        0,
+        4.176881067044862
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0.29999995083929104,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": -90.41337497510217,
+      "verticalDegrees": 0
+    },
+    {
+      "control": "forward",
+      "durationMs": 666.5664221928134,
+      "run": false,
+      "from": [
+        -1.840691600394844,
+        0,
+        4.177346518054937
+      ],
+      "to": [
+        -3.780525550552835,
+        0,
+        4.1997747345526575
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 1.9399636025144449,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": 87.94349305363257,
+      "verticalDegrees": 0
+    },
+    {
+      "control": "forward",
+      "durationMs": 266.8207325031258,
+      "run": false,
+      "from": [
+        -3.781504560100036,
+        0,
+        4.240003299724907
+      ],
+      "to": [
+        -3.7996336640811252,
+        0,
+        4.984947864466541
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0.7451651286454968,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": -95.58725151398696,
+      "verticalDegrees": 25
+    },
+    {
+      "control": "interact",
+      "durationMs": 16,
+      "run": false,
+      "from": [
+        -3.838887477051349,
+        0,
+        4.980141081656977
+      ],
+      "to": [
+        -3.838887477051349,
+        0,
+        4.980141081656977
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "choose",
+      "label": "Read the first lantern-night entry"
+    },
+    {
+      "control": "look",
+      "degrees": 93.93905079772803,
+      "verticalDegrees": -24.99999889433982
+    },
+    {
+      "control": "interact",
+      "durationMs": 16,
+      "run": false,
+      "from": [
+        -3.840577490809392,
+        0,
+        5.0119393992754135
+      ],
+      "to": [
+        -3.840577490809392,
+        0,
+        5.0119393992754135
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "choose",
+      "label": "Read the ticket in the sash"
+    },
+    {
+      "control": "look",
+      "degrees": 93.18360902751877,
+      "verticalDegrees": 0
+    },
+    {
+      "control": "forward",
+      "durationMs": 750,
+      "run": false,
+      "from": [
+        -3.814937480522604,
+        0,
+        5.011876156524688
+      ],
+      "to": [
+        -1.7152914626383926,
+        0,
+        5.006697243246799
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 2.099652404937485,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "forward",
+      "durationMs": 750,
+      "run": false,
+      "from": [
+        -1.7152914626383926,
+        0,
+        5.006697243246799
+      ],
+      "to": [
+        0.5345256545577557,
+        0,
+        5.001147923198641
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 2.249823961064906,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "forward",
+      "durationMs": 155.15858696921694,
+      "run": false,
+      "from": [
+        0.5345256545577557,
+        0,
+        5.001147923198641
+      ],
+      "to": [
+        1.0345239732630844,
+        0,
+        4.999914644870001
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0.49999983968356565,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": 90.27077632181069,
+      "verticalDegrees": 0
+    },
+    {
+      "control": "forward",
+      "durationMs": 750,
+      "run": false,
+      "from": [
+        1.0342344041932876,
+        0,
+        4.95965577604427
+      ],
+      "to": [
+        1.0184836753968924,
+        0,
+        2.7698275427716244
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 2.1898848774982707,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "forward",
+      "durationMs": 750,
+      "run": false,
+      "from": [
+        1.0184836753968924,
+        0,
+        2.7698275427716244
+      ],
+      "to": [
+        1.0023010753431316,
+        0,
+        0.5199561277043913
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 2.249929612428161,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "forward",
+      "durationMs": 106.65480069589167,
+      "run": false,
+      "from": [
+        1.0023010753431316,
+        0,
+        0.5199561277043913
+      ],
+      "to": [
+        1.0001433281865415,
+        0,
+        0.21996393655911925
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0.29999995103488464,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": -90.00357137267329,
+      "verticalDegrees": 0
+    },
+    {
+      "control": "forward",
+      "durationMs": 750,
+      "run": false,
+      "from": [
+        1.0404022166320073,
+        0,
+        0.21967687968130345
+      ],
+      "to": [
+        3.2302314385579503,
+        0,
+        0.20406279882441708
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 2.189884887550436,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "forward",
+      "durationMs": 189.92768212665442,
+      "run": false,
+      "from": [
+        3.2302314385579503,
+        0,
+        0.20406279882441708
+      ],
+      "to": [
+        3.780160523017874,
+        0,
+        0.2001416541505147
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0.5499430636988555,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": 88.88112271007097,
+      "verticalDegrees": 0
+    },
+    {
+      "control": "forward",
+      "durationMs": 533.4215466833451,
+      "run": false,
+      "from": [
+        3.780659625815079,
+        0,
+        0.15988659546409498
+      ],
+      "to": [
+        3.7997555719413216,
+        0,
+        -1.380293977134848
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 1.5402989487010839,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": -86.47097408113918,
+      "verticalDegrees": 0
+    },
+    {
+      "control": "forward",
+      "durationMs": 133.57641571990055,
+      "run": false,
+      "from": [
+        3.8399023029249846,
+        0,
+        -1.3822706015356825
+      ],
+      "to": [
+        4.1971328205995615,
+        0,
+        -1.3998588469708009
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0.35766323425190377,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": 87.1299838849862,
+      "verticalDegrees": 0
+    },
+    {
+      "control": "forward",
+      "durationMs": 750,
+      "run": false,
+      "from": [
+        4.1971667595578825,
+        0,
+        -1.4377409164023143
+      ],
+      "to": [
+        4.199115552294577,
+        0,
+        -3.6129491552896336
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 2.175209111859456,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "forward",
+      "durationMs": 329.0170803217755,
+      "run": false,
+      "from": [
+        4.199115552294577,
+        0,
+        -3.6129491552896336
+      ],
+      "to": [
+        4.200011388182062,
+        0,
+        -4.612865445233552
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0.9999166912383984,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": 90.21886183167717,
+      "verticalDegrees": 0
+    },
+    {
+      "control": "forward",
+      "durationMs": 750,
+      "run": false,
+      "from": [
+        4.1597522128763575,
+        0,
+        -4.612747730102221
+      ],
+      "to": [
+        1.9698801699463446,
+        0,
+        -4.606344690964619
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 2.1898814039387307,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "forward",
+      "durationMs": 723.2964819360661,
+      "run": false,
+      "from": [
+        1.9698801699463446,
+        0,
+        -4.606344690964619
+      ],
+      "to": [
+        -0.23004004780725346,
+        0,
+        -4.599912271637036
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 2.1999296217150777,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": -94.46144794541893,
+      "verticalDegrees": 0
+    },
+    {
+      "control": "forward",
+      "durationMs": 133.73796720905764,
+      "run": false,
+      "from": [
+        -0.2270256724251013,
+        0,
+        -4.6400591692462125
+      ],
+      "to": [
+        -0.20022552520182305,
+        0,
+        -4.99699638843078
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0.3579419315062172,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": 20.157624481291187,
+      "verticalDegrees": -40
+    },
+    {
+      "control": "interact",
+      "durationMs": 16,
+      "run": false,
+      "from": [
+        -0.21058486872529122,
+        0,
+        -5.033450777954289
+      ],
+      "to": [
+        -0.21058486872529122,
+        0,
+        -5.033450777954289
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "choose",
+      "label": "Read the station note"
+    },
+    {
+      "control": "look",
+      "degrees": -106.18256983396684,
+      "verticalDegrees": 0
+    },
+    {
+      "control": "forward",
+      "durationMs": 750,
+      "run": false,
+      "from": [
+        -0.18007014648798536,
+        0,
+        -5.033280955957582
+      ],
+      "to": [
+        1.9496380791472228,
+        0,
+        -5.021428601527883
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 2.129741206025698,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "forward",
+      "durationMs": 750,
+      "run": false,
+      "from": [
+        1.9496380791472228,
+        0,
+        -5.021428601527883
+      ],
+      "to": [
+        4.199462430082621,
+        0,
+        -5.008907771072855
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 2.2498591914289143,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "forward",
+      "durationMs": 533.520785922527,
+      "run": false,
+      "from": [
+        4.199462430082621,
+        0,
+        -5.008907771072855
+      ],
+      "to": [
+        5.799437489367791,
+        0,
+        -5.000003513084336
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 1.599999836295276,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "look",
+      "degrees": 97.6596062093935,
+      "verticalDegrees": 40.000000748824654
+    },
+    {
+      "control": "interact",
+      "durationMs": 16,
+      "run": false,
+      "from": [
+        5.794293483413893,
+        0,
+        -5.039933452240273
+      ],
+      "to": [
+        5.794293483413893,
+        0,
+        -5.039933452240273
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "choose",
+      "label": "Read the old sauce recipe"
+    },
+    {
+      "control": "ui",
+      "button": "town_menu"
+    },
+    {
+      "control": "choose",
+      "label": "Save now"
+    },
+    {
+      "control": "forward",
+      "durationMs": 300,
+      "run": false,
+      "from": [
+        -3.8,
+        0,
+        -1.42
+      ],
+      "to": [
+        -3.8,
+        0,
+        -0.8366548901347906
+      ],
+      "fromRoom": "izakaya",
+      "toRoom": "izakaya",
+      "displacement": 0.5833451098652094,
+      "coordinateFrameChanged": false
+    },
+    {
+      "control": "ui",
+      "button": "town_menu"
+    },
+    {
+      "control": "ui",
+      "button": "bag"
+    },
+    {
+      "control": "choose",
+      "label": "Minato house recipe card"
+    }
+  ]
+}

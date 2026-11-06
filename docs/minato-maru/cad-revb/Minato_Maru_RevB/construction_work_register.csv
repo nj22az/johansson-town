@@ -1,0 +1,12 @@
+id,discipline,status,requiredEvidence
+H01,Mass and centres of gravity,OPEN,Reconcile the 210 t legacy lightship and 283 t operating target with 375.41053 t geometric displacement; prepare a controlled weight and centre-of-gravity book.
+H02,Stability and trim,OPEN,"Calculate trimmed loading, propeller immersion, full righting-arm curves, weather/crowding, damage/downflooding and an approved loading book."
+H03,Machinery supplier interfaces,OPEN,"Confirm selected engine/gear duty, installation/nozzle/bolt data, foundations, vibration and delivered-fuel acceptance."
+H04,Physical piping,OPEN,"Resolve 151 positive-bore connections; define physical ports, pipe classes, spools, joints, supports and penetrations."
+H05,Overhaul and lifting,OPEN,"Resolve 1.9 m nominal headroom, an engineered removal route and hatch installation, lifting beam, working load limit and rigging approval."
+H06,Fire and escape,OPEN,"Verify protected escape routes and hatches, fire divisions, protected volumes, extinguishing distribution and release interlocks."
+H07,Power dynamics and protection,OPEN,"Validate emergency fire-pump starting, approximately 52.5 kVA against 40 kVA continuous capacity, plus transient response, fault levels, selectivity and installed cable grouping."
+H08,Hull and shaft structure,OPEN,"Calculate scantlings, materials, weld specifications, engine beds, thrust/bearing loads, alignment and torsional vibration."
+H09,Ventilation and cooling,OPEN,"Obtain manufacturer heat, air and coolant duties; confirm fan/pump curves, pressure losses, acoustics and hot-surface clearances."
+H10,Construction approval,OPEN,"Establish applicable flag, class and service requirements; obtain required signed approvals and construction surveys."
+S01,Game publication,NOT DEPLOYED,Draft PR 173 contains the source corrections; application runtime build and browser acceptance remain pending.

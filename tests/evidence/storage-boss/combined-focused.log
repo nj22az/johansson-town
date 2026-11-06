@@ -1,0 +1,34 @@
+✔ a new activity calls onOpen once; nested menus retain the opener and reject stale actions (33.986716ms)
+✔ dialogue replies and switching to the field book do not reopen the activity (11.877702ms)
+✔ published runtime matches the current source rather than an older build (378.351462ms)
+✔ published page uses one compiled audio/boot graph with local hashed dependencies (109.622901ms)
+✔ every stylesheet link carries a hash of the file it points at (8.769651ms)
+✔ boss reward and restock apply once across duplicates, purchases and save recovery (5.045534ms)
+✔ late results mark only their own trading day and never refill an already restocked day (1.405891ms)
+✔ zero-reward completed nights are final; malformed, future and foreign outcomes are inert (1.005989ms)
+✔ per-player pending results coexist and survive until saved and acknowledged (1.233751ms)
+✔ legacy unscoped results belong only to the original player; failed removal cannot consume; ack cannot erase a newer result (0.619307ms)
+✔ applyStorageRestock fills shelves from reserve and marks the closing day (3.643986ms)
+✔ applyStorageRestock is idempotent (0.478133ms)
+✔ consumeStorageWonHandshake clears the localStorage key once (1.363108ms)
+✔ a boss seen off in the stockroom pays its cave coins; one still loose pays nothing (0.370188ms)
+✔ all four bosses retain their identity, fight progress, picked goods, position and auto mode across rebuild (15390.497626ms)
+✔ a defeated boss remains defeated with exactly 200 coins after pagehide and reload (2735.902936ms)
+✔ old carton schema and malformed fight checkpoints cannot be restored (340.06138ms)
+✔ 300 random stockrooms have separate departments and reachable goods and exit (1895.332808ms)
+✔ walking and sprinting cannot penetrate racks; diagonal contact slides (14.300493ms)
+✔ real Thuan skin animates both legs through wave, walk, run and idle (494.247708ms)
+✔ keyboard, touch and focus loss feed and clear movement (1.186398ms)
+✔ game moves on touch, pauses without drift and automatic restocking completes (17050.800408ms)
+✔ harbour guests spawn on a fraction of seeds and never sit on restock shortest paths (1267.290642ms)
+✔ each night one of Bizarro Minato comes up the sea-cave hole, in the same suit as in the cave (318.010522ms)
+✔ the suit is the behaviour: each boss has its tell, its attack and a worn-out moment to shoo it (4935.070735ms)
+✔ with a boss about, Thuan restocking still gets the list in, and sees some off (23881.378247ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 51229.839065

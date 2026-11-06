@@ -1,0 +1,42 @@
+import {writeFile} from 'node:fs/promises';
+import {FLYER_PRODUCTS} from '../src/commerce/sakura-flyer.js';
+import {STAMP_PER_YEN,CARD_STAMPS} from '../src/commerce/konbini.js';
+import {SAKURA_HOURS} from '../src/commerce/sakura-rota.js';
+// The hours as the rota keeps them (noticeboard drawing JW-NB-003 rev A corrected the old "open daily" line).
+const hhmm=m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+const [rice,tea,chips]=FLYER_PRODUCTS;
+const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1280" viewBox="0 0 900 1280" role="img" aria-labelledby="title desc">
+<title id="title">Sakura Shop — Thuan's neighbourhood flyer</title><desc id="desc">English 1997 shop flyer: rice balls, green tea, potato crisps, a stamp-card offer and a schematic map of Main Street down to the harbour.</desc>
+<defs><pattern id="paper" width="13" height="17" patternUnits="userSpaceOnUse"><circle cx="3" cy="4" r=".65" fill="#ad8552" opacity=".16"/><circle cx="10" cy="13" r=".7" fill="#fff" opacity=".4"/></pattern></defs>
+<rect width="900" height="1280" fill="#f7e5b4"/><rect width="900" height="1280" fill="url(#paper)"/>
+<g fill="none" stroke="#a83432"><rect x="22" y="22" width="856" height="1236" stroke-width="8"/><path d="M27 46H873M27 70H873M27 1210H873M27 1234H873" stroke-width="10"/></g>
+<g font-family="Arial,Helvetica,sans-serif" fill="#982d32">
+<g transform="translate(143 172)"><circle r="91" fill="#bc4041" stroke="#e2ab37" stroke-width="7"/><g fill="#fbd5ca" stroke="#982d32" stroke-width="3"><ellipse cy="-38" rx="22" ry="41"/><ellipse cy="-38" rx="22" ry="41" transform="rotate(72)"/><ellipse cy="-38" rx="22" ry="41" transform="rotate(144)"/><ellipse cy="-38" rx="22" ry="41" transform="rotate(216)"/><ellipse cy="-38" rx="22" ry="41" transform="rotate(288)"/></g><circle r="15" fill="#e9b744"/></g>
+<text x="256" y="172" font-size="91" font-weight="900" letter-spacing="-3">SAKURA</text><text x="259" y="244" font-size="72" font-weight="900" letter-spacing="4">SHOP</text>
+<text x="450" y="296" text-anchor="middle" font-size="26" font-weight="bold">Your little island convenience store</text>
+<rect x="53" y="317" width="794" height="55" rx="3" fill="#367268"/><text x="450" y="353" text-anchor="middle" font-size="28" font-weight="bold" fill="#fff2d3">THUAN'S NEIGHBOURHOOD FAVOURITES</text>
+<circle cx="191" cy="507" r="116" fill="#e6a448"/><circle cx="451" cy="507" r="116" fill="#88ac9c"/><circle cx="711" cy="507" r="116" fill="#82a4b4"/>
+<!-- Original illustrated shop goods, drawn as small printed advertisements. -->
+<g transform="translate(190 491) rotate(-9)"><path d="M-79 60Q-84 30-52-26L-16-79Q0-99 20-72L72 22Q94 66 65 77H-54Q-74 78-79 60" fill="#fff2d4" stroke="#77654a" stroke-width="4"/><path d="M-34 22H34V76H-34Z" fill="#36473d"/><circle cx="0" cy="-15" r="13" fill="#ba5250"/><g fill="#cdbb8f"><circle cx="-39" cy="4" r="3"/><circle cx="31" cy="-2" r="3"/><circle cx="15" cy="-52" r="3"/></g></g>
+<g transform="translate(451 500) rotate(8)"><rect x="-29" y="-88" width="58" height="20" rx="5" fill="#f9ebc6" stroke="#476750" stroke-width="3"/><path d="M-29-68L-43-39V81Q0 94 43 81V-39L29-68Z" fill="#639260" stroke="#365d49" stroke-width="4"/><rect x="-43" y="-29" width="86" height="80" fill="#f8e8be"/><path d="M-15 5Q-7-25 20-12Q18 15-15 5" fill="#568b5c"/><text x="0" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#365d49">GREEN TEA</text></g>
+<g transform="translate(710 501) rotate(-7)"><path d="M-69-82L66-82L58 88L-62 88Z" fill="#ebc243" stroke="#9a6338" stroke-width="4"/><path d="M-69-82H66M-62 88H58" stroke="#a56a3a" stroke-width="10"/><ellipse cy="-3" rx="52" ry="54" fill="#fff1ca"/><text y="-14" text-anchor="middle" font-size="22" font-weight="900" fill="#43735a">KOGANE</text><text y="10" text-anchor="middle" font-size="15" fill="#43735a">POTATO CRISPS</text><ellipse cx="-13" cy="39" rx="19" ry="11" fill="#dfa139"/><ellipse cx="16" cy="37" rx="19" ry="11" fill="#e3b44c"/></g>
+<g text-anchor="middle" font-weight="bold" font-size="24"><text x="191" y="649">Plum rice ball</text><text x="451" y="649">Green tea</text><text x="711" y="649">Potato crisps</text></g>
+<g text-anchor="middle" font-weight="900" font-size="48"><text x="191" y="700">¥${rice.cost}</text><text x="451" y="700">¥${tea.cost}</text><text x="711" y="700">¥${chips.cost}</text></g>
+<rect x="53" y="721" width="794" height="192" fill="#ecd084" stroke="#b44a3a" stroke-width="3"/>
+<text x="78" y="765" font-size="32" font-weight="900">STAMP, SMILE, SIP!</text><text x="78" y="809" font-size="24">One stamp per ¥${STAMP_PER_YEN} spent in a visit.</text><text x="78" y="849" font-size="29" font-weight="bold">${CARD_STAMPS} stamps = a FREE green tea!</text><text x="78" y="884" font-size="20">Bring your card to Thuan at the till.</text>
+<!-- Jaga-bo is Sakura's own potato mascot, rather than the reference's game character. -->
+<g transform="translate(730 811)"><path d="M-66-18Q-79-82-17-77Q58-96 65-33Q91 32 33 63Q-40 90-66-18" fill="#b99a55" stroke="#685134" stroke-width="4"/><ellipse cx="-21" cy="-22" rx="24" ry="28" fill="#fff6d5"/><ellipse cx="27" cy="-21" rx="15" ry="18" fill="#fff6d5"/><circle cx="-16" cy="-19" r="11" fill="#353d39"/><circle cx="29" cy="-17" r="8" fill="#353d39"/><path d="M-28 20Q6 51 36 13" fill="none" stroke="#413b31" stroke-width="5"/><rect x="-3" y="27" width="13" height="14" fill="#fff4ce"/><path d="M-62 15L-81 29M65 5L83-13" stroke="#685134" stroke-width="10" stroke-linecap="round"/><text y="89" text-anchor="middle" font-size="19" font-weight="bold">Hello, Jaga-bo!</text></g>
+<g transform="translate(53 940)"><rect width="794" height="203" fill="#f6efe0" stroke="#b44a3a" stroke-width="3"/><text x="19" y="32" font-size="22" font-weight="bold">FIND US ON MAIN STREET</text><text x="19" y="59" font-size="16">Neighbourhood sketch · north is up</text>
+<path d="M380 16V187" stroke="#d1cabc" stroke-width="46"/><path d="M380 77H702" stroke="#d1cabc" stroke-width="22"/>
+<path d="M380 34V173" stroke="#fff" stroke-width="2" stroke-dasharray="9 9"/>
+<rect x="170" y="62" width="133" height="50" fill="#decbaa" stroke="#867058"/><text x="236" y="83" text-anchor="middle" font-size="17">Front-Row</text><text x="236" y="103" text-anchor="middle" font-size="15">reading room</text>
+<rect x="128" y="118" width="175" height="55" fill="#bf4242" stroke="#982d32"/><text x="216" y="142" text-anchor="middle" font-size="21" font-weight="bold" fill="#fff4d4">SAKURA SHOP</text><text x="216" y="163" text-anchor="middle" font-size="16" fill="#fff4d4">Thuan is here!</text>
+<path d="M353 145H310M322 136L309 145L322 154" fill="none" stroke="#b44035" stroke-width="5"/>
+<text x="403" y="26" font-size="19">↑ Main Street</text><text x="403" y="184" font-size="19">↓ Harbour / notice board</text>
+</g>
+<text x="450" y="1166" text-anchor="middle" font-size="22" font-weight="bold">OPEN SUN–FRI ${hhmm(SAKURA_HOURS.open)}–${hhmm(SAKURA_HOURS.close)} · PURCHASES UNTIL ${hhmm(SAKURA_HOURS.till)}</text>
+<text x="450" y="1190" text-anchor="middle" font-size="22" font-weight="bold">CLOSED SATURDAYS · CASH ONLY · PRICES INCLUDE TAX</text>
+<text x="450" y="1203" text-anchor="middle" font-size="11">Johansson Town · 1997 neighbourhood edition · Free copy · Filed at Community Hall</text>
+</g></svg>`;
+await writeFile(new URL('../assets/papers/sakura-flyer.svg',import.meta.url),svg);
+console.log('Printed Sakura flyer with current catalogue prices.');

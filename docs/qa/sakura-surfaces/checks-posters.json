@@ -1,0 +1,137 @@
+[
+ {
+  "check": "nine designs, each hung at least once",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "every design says who sent it and why it is here",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "nami-sour (lower flight, north wall) clear of the handrail",
+  "ok": true,
+  "detail": "120 mm"
+ },
+ {
+  "check": "umineko-draft (lower flight, north wall) clear of the handrail",
+  "ok": true,
+  "detail": "126 mm"
+ },
+ {
+  "check": "shimakaze (landing, west wall) clear of the handrail",
+  "ok": true,
+  "detail": "274 mm"
+ },
+ {
+  "check": "minato-tsuru (landing, south wall) clear of the handrail",
+  "ok": true,
+  "detail": "274 mm"
+ },
+ {
+  "check": "kitano-12 (upper flight, south wall) clear of the handrail",
+  "ok": true,
+  "detail": "116 mm"
+ },
+ {
+  "check": "umineko-black (upper flight, south wall) clear of the handrail",
+  "ok": true,
+  "detail": "114 mm"
+ },
+ {
+  "check": "asagao-rouge (hall, west wall by the store door) clear of the doors",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "umineko-gift (hall, west wall, over the gift sets) clear of the doors",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "asagao-uv (hall, west wall, over the spirits) clear of the doors",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "umineko-draft (hall, east wall, over the shoe cabinet) clear of the doors",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "umineko-gift stack clear of the doors",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "shimakaze-case stack clear of the doors",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "shimakaze-case stack clear of the doors",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "tsuru-case stack clear of the doors",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "kitano-case stack clear of the doors",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "umineko-case stack clear of the doors",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "black-case stack clear of the doors",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "a 1.2 m way through the hall past the stacks",
+  "ok": true,
+  "detail": "1.90 m"
+ },
+ {
+  "check": "umineko-gift stack under the posters' paper",
+  "ok": true,
+  "detail": "0.66 m high"
+ },
+ {
+  "check": "shimakaze-case stack under the posters' paper",
+  "ok": true,
+  "detail": "0.82 m high"
+ },
+ {
+  "check": "shimakaze-case stack under the posters' paper",
+  "ok": true,
+  "detail": "0.82 m high"
+ },
+ {
+  "check": "tsuru-case stack under the posters' paper",
+  "ok": true,
+  "detail": "0.82 m high"
+ },
+ {
+  "check": "kitano-case stack under the posters' paper",
+  "ok": true,
+  "detail": "0.60 m high"
+ },
+ {
+  "check": "umineko-case stack under the posters' paper",
+  "ok": true,
+  "detail": "0.76 m high"
+ },
+ {
+  "check": "black-case stack under the posters' paper",
+  "ok": true,
+  "detail": "0.64 m high"
+ }
+]

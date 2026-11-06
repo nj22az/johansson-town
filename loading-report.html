@@ -1,0 +1,7 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Johansson World loading report</title><style>body{max-width:42rem;margin:3rem auto;padding:0 1rem;font:17px/1.5 system-ui;color:#263b40;background:#faf8ef}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:1rem;background:#e9ede7;border-radius:8px;font-size:14px}button,a{display:inline-block;margin:.5rem .5rem .5rem 0;padding:.65rem 1rem}button{font:inherit}#status{min-height:1.5em}</style><h1>Johansson World loading report</h1><p>This report stays on this device. It records loading stages and errors, without your game save.</p><pre id="report">Reading report…</pre><button id="copy">Copy report</button><a href="./?graphics=safe">Open with reduced graphics</a><p id="status" role="status"></p><script type="module">
+import {readLaunchReport} from './src/render/launch-report.js';
+let storage;try{storage=localStorage;}catch{}
+const data=readLaunchReport(storage),text=data?JSON.stringify(data,null,2):'No loading report is available in this browser. Open this page in the same Safari session used for the game.';
+document.getElementById('report').textContent=text;
+document.getElementById('copy').onclick=async()=>{try{await navigator.clipboard.writeText(text);document.getElementById('status').textContent='Report copied.';}catch{document.getElementById('status').textContent='Select and copy the report above.';}};
+</script></html>

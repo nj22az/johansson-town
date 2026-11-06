@@ -1,0 +1,247 @@
+[
+ {
+  "check": "west: \"leaf\" inside the board, 120 mm from its ends",
+  "ok": true,
+  "detail": "1225..1375 of 5620"
+ },
+ {
+  "check": "west: \"Rice balls · Bento · Fresh bread\" inside the board, 120 mm from its ends",
+  "ok": true,
+  "detail": "1810..3810 of 5620"
+ },
+ {
+  "check": "west: \"Rice balls · Bento · Fresh bread\" letters fit the board height",
+  "ok": true,
+  "detail": "115 of 220"
+ },
+ {
+  "check": "west: \"Rice balls · Bento · Fresh bread\" lettering inside its allotted width",
+  "ok": true,
+  "detail": "1732 of 2000"
+ },
+ {
+  "check": "west: \"leaf\" inside the board, 120 mm from its ends",
+  "ok": true,
+  "detail": "4245..4395 of 5620"
+ },
+ {
+  "check": "west: leaf and Rice balls · Bento · Fresh bread 80 mm apart",
+  "ok": true,
+  "detail": "435 mm"
+ },
+ {
+  "check": "west: Rice balls · Bento · Fresh bread and leaf 80 mm apart",
+  "ok": true,
+  "detail": "435 mm"
+ },
+ {
+  "check": "west: joint at 1770 clear of the lettering",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "west: joint at 3850 clear of the lettering",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "west: no wording repeated on the wall",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "back: \"Groceries · Daily goods\" inside the board, 120 mm from its ends",
+  "ok": true,
+  "detail": "965..2315 of 8580"
+ },
+ {
+  "check": "back: \"Groceries · Daily goods\" letters fit the board height",
+  "ok": true,
+  "detail": "100 of 220"
+ },
+ {
+  "check": "back: \"Groceries · Daily goods\" lettering inside its allotted width",
+  "ok": true,
+  "detail": "1121 of 1350"
+ },
+ {
+  "check": "back: \"crest\" inside the board, 120 mm from its ends",
+  "ok": true,
+  "detail": "3585..3775 of 8580"
+ },
+ {
+  "check": "back: \"Sakura Shop\" inside the board, 120 mm from its ends",
+  "ok": true,
+  "detail": "3870..4970 of 8580"
+ },
+ {
+  "check": "back: \"Sakura Shop\" letters fit the board height",
+  "ok": true,
+  "detail": "160 of 220"
+ },
+ {
+  "check": "back: \"Sakura Shop\" lettering inside its allotted width",
+  "ok": true,
+  "detail": "949 of 1100"
+ },
+ {
+  "check": "back: \"crest\" inside the board, 120 mm from its ends",
+  "ok": true,
+  "detail": "5065..5255 of 8580"
+ },
+ {
+  "check": "back: \"Since 1963\" inside the board, 120 mm from its ends",
+  "ok": true,
+  "detail": "6850..7550 of 8580"
+ },
+ {
+  "check": "back: \"Since 1963\" letters fit the board height",
+  "ok": true,
+  "detail": "100 of 220"
+ },
+ {
+  "check": "back: \"Since 1963\" lettering inside its allotted width",
+  "ok": true,
+  "detail": "542 of 700"
+ },
+ {
+  "check": "back: Groceries · Daily goods and crest 80 mm apart",
+  "ok": true,
+  "detail": "1270 mm"
+ },
+ {
+  "check": "back: crest and Sakura Shop 80 mm apart",
+  "ok": true,
+  "detail": "95 mm"
+ },
+ {
+  "check": "back: Sakura Shop and crest 80 mm apart",
+  "ok": true,
+  "detail": "95 mm"
+ },
+ {
+  "check": "back: crest and Since 1963 80 mm apart",
+  "ok": true,
+  "detail": "1595 mm"
+ },
+ {
+  "check": "back: joint at 2860 clear of the lettering",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "back: joint at 5720 clear of the lettering",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "back: no wording repeated on the wall",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "east: \"Medicine · Batteries · Stationery\" inside the board, 120 mm from its ends",
+  "ok": true,
+  "detail": "1335..3285 of 4620"
+ },
+ {
+  "check": "east: \"Medicine · Batteries · Stationery\" letters fit the board height",
+  "ok": true,
+  "detail": "105 of 220"
+ },
+ {
+  "check": "east: \"Medicine · Batteries · Stationery\" lettering inside its allotted width",
+  "ok": true,
+  "detail": "1673 of 1950"
+ },
+ {
+  "check": "east: joint at 1295 clear of the lettering",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "east: joint at 3325 clear of the lettering",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "east: no wording repeated on the wall",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "cap top under the ceiling beams with 10 mm",
+  "ok": true,
+  "detail": "10 mm"
+ },
+ {
+  "check": "beam bottom as built",
+  "ok": true,
+  "detail": "ceiling 2980 - 160"
+ },
+ {
+  "check": "west: boards no longer than stock (3000)",
+  "ok": true,
+  "detail": "longest 2080"
+ },
+ {
+  "check": "back: boards no longer than stock (3000)",
+  "ok": true,
+  "detail": "longest 2860"
+ },
+ {
+  "check": "east: boards no longer than stock (3000)",
+  "ok": true,
+  "detail": "longest 2030"
+ },
+ {
+  "check": "west: board face 60 mm off the wall, as the band always stood",
+  "ok": true,
+  "detail": "60 mm"
+ },
+ {
+  "check": "west: nothing else in the band volume",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "west: wall fittings stay under 2470",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "back: board face 60 mm off the wall, as the band always stood",
+  "ok": true,
+  "detail": "60 mm"
+ },
+ {
+  "check": "back: nothing else in the band volume",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "back: wall fittings stay under 2470",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "east: board face 60 mm off the wall, as the band always stood",
+  "ok": true,
+  "detail": "60 mm"
+ },
+ {
+  "check": "east: nothing else in the band volume",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "east: wall fittings stay under 2470",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "DXF reopens with no audit errors",
+  "ok": true,
+  "detail": "0 errors"
+ }
+]

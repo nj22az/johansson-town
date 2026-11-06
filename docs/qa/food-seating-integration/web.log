@@ -1,0 +1,38 @@
+✔ two people walking into each other end up apart, each moved half (1.356502ms)
+✔ someone busy (seated, serving) stays put; the other steps aside (0.877422ms)
+✔ nobody is pushed into a wall: the other gives way (0.198178ms)
+✔ people in different spaces (a room and the street) never collide (0.24555ms)
+✔ a crowd settles without anyone overlapping (0.250236ms)
+✔ exactly coincident residents separate by a full body width in one resolution (0.148213ms)
+✔ a service worker uses her measured close-up radius beside a seated customer (0.181133ms)
+✔ yakitori is prepared, plated, collected and delivered with real hand contact (542.630563ms)
+✔ edamame is prepared, plated, collected and delivered with real hand contact (344.215362ms)
+✔ oden is prepared, plated, collected and delivered with real hand contact (227.297813ms)
+✔ hiyayakko is prepared, plated, collected and delivered with real hand contact (273.19184ms)
+✔ dashimaki is prepared, plated, collected and delivered with real hand contact (268.344592ms)
+✔ hokke is prepared, plated, collected and delivered with real hand contact (274.228892ms)
+✔ sashimi is prepared, plated, collected and delivered with real hand contact (407.534361ms)
+✔ agedashi is prepared, plated, collected and delivered with real hand contact (255.287503ms)
+✔ karaage is prepared, plated, collected and delivered with real hand contact (267.038864ms)
+✔ ochazuke is prepared, plated, collected and delivered with real hand contact (290.992464ms)
+✔ rice is prepared, plated, collected and delivered with real hand contact (233.086859ms)
+✔ a resident drinks first, waits for food, pays once, and only eats after placement (199.670831ms)
+✔ leaving cancels preparation and an already carried plate without a callback or stranded hands (236.232536ms)
+✔ partial food/drink delivery survives save restoration, without marking both delivered (0.552502ms)
+✔ a wide plate reaches table without entering its furniture (257.094031ms)
+✔ a wide plate reaches window without entering its furniture (264.660316ms)
+✔ a wide plate reaches counter0 without entering its furniture (358.597469ms)
+✔ a wide plate reaches counter1 without entering its furniture (352.832536ms)
+✔ a wide plate reaches counter2 without entering its furniture (321.375529ms)
+✔ a wide plate reaches counter3 without entering its furniture (282.101805ms)
+✔ a wide plate reaches counter4 without entering its furniture (307.150446ms)
+✔ cancellation while working close to the cooker backs Thao out before the return walk (39.736816ms)
+✔ a resident meal and drink have separate supported places at all four booth seats (94.933489ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6545.491012

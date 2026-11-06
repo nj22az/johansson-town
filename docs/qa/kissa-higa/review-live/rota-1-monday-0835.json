@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Officer Mori",
+    "activity": "morning set at Kissa Higa",
+    "at": [
+      9.11,
+      0.08,
+      7.82
+    ],
+    "seatHeight": 0.46,
+    "seatKey": "kissa-stool-2",
+    "walking": false,
+    "yaw": -14.1372,
+    "lowestFootBone": 0.393,
+    "footBones": {
+      "footL": 0.393,
+      "footR": 0.393
+    }
+  },
+  {
+    "name": "Grandmother Higa",
+    "activity": "behind the counter at Kissa Higa: the siphons and the toast",
+    "at": [
+      10.7,
+      0.08,
+      7.5
+    ],
+    "seatHeight": null,
+    "seatKey": null,
+    "walking": false,
+    "yaw": 7.854,
+    "lowestFootBone": 0.154,
+    "footBones": {
+      "footL": 0.154,
+      "footR": 0.159
+    }
+  },
+  {
+    "name": "Ms Uezu",
+    "activity": "iced coffee at Kissa Higa",
+    "at": [
+      6.85,
+      0.08,
+      9.7
+    ],
+    "seatHeight": 0.42,
+    "seatKey": "kissa-chair-1",
+    "walking": false,
+    "yaw": 4.7124,
+    "lowestFootBone": 0.366,
+    "footBones": {
+      "footL": 0.366,
+      "footR": 0.366
+    }
+  }
+]

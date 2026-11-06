@@ -1,0 +1,17 @@
+Initial publication Linux regression failure; job 124151439971, run 41081356967.
+https://github.com/nj22az/nj22az.github.io/actions/runs/41081356967
+
+2026-10-30T15:33:22.9976362Z test at johansson-town/tests/controller-game.test.mjs:8:1
+2026-10-30T15:33:22.9977023Z ✖ controller and camera controls boot in the game, pause movement in settings and resume cleanly (8246.248157ms)
+2026-10-30T15:33:22.9977565Z   AssertionError [ERR_ASSERTION]: Unmapped Linux left stick moves the actual player
+2026-10-30T15:33:22.9978423Z       at TestContext.<anonymous> (file:///home/runner/work/nj22az.github.io/nj22az.github.io/johansson-town/tests/controller-game.test.mjs:35:10)
+2026-10-30T15:33:22.9978984Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-30T15:33:22.9979383Z       at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+2026-10-30T15:33:22.9979730Z     generatedMessage: false,
+2026-10-30T15:33:22.9979940Z     code: 'ERR_ASSERTION',
+2026-10-30T15:33:22.9980248Z     actual: false,
+2026-10-30T15:33:22.9980433Z     expected: true,
+2026-10-30T15:33:22.9980605Z     operator: '==',
+2026-10-30T15:33:22.9980773Z     diff: 'simple'
+2026-10-30T15:33:22.9980936Z   }
+2026-10-30T15:33:23.0012305Z ##[error]Process completed with exit code 1.

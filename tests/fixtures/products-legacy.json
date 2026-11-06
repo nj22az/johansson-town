@@ -1,0 +1,5754 @@
+{
+ "STORE_BRANDS": {
+  "tea": {
+   "name": "NAGI",
+   "jp": "Nagi",
+   "line": "Green tea",
+   "paper": "#f5edcf",
+   "ink": "#224b35",
+   "accent": "#738c43",
+   "symbol": "leaf"
+  },
+  "coffee": {
+   "name": "PORT 88",
+   "jp": "Port88",
+   "line": "Canned coffee",
+   "paper": "#322823",
+   "ink": "#f5e5c1",
+   "accent": "#bd4826",
+   "symbol": "gull"
+  },
+  "rice": {
+   "name": "SAKURA",
+   "jp": "Sakura knot",
+   "line": "Plum rice ball",
+   "paper": "#fff5de",
+   "ink": "#354b35",
+   "accent": "#ba3d39",
+   "symbol": "rice"
+  },
+  "biscuit": {
+   "name": "KOMOREBI",
+   "jp": "Komorebi",
+   "line": "Butter biscuit",
+   "paper": "#f5e4ad",
+   "ink": "#982d24",
+   "accent": "#ce9234",
+   "symbol": "sun"
+  },
+  "soap": {
+   "name": "HANAMORI",
+   "jp": "Hanamori",
+   "line": "Soap",
+   "paper": "#f8dedb",
+   "ink": "#944355",
+   "accent": "#ba727e",
+   "symbol": "flower"
+  },
+  "notebook": {
+   "name": "SHIOFUMI",
+   "jp": "Shiofumi",
+   "line": "University Notes",
+   "paper": "#e8e1c8",
+   "ink": "#364d66",
+   "accent": "#63849d",
+   "symbol": "wave"
+  },
+  "postcard": {
+   "name": "SHIOFUMI",
+   "jp": "Shiofumi",
+   "line": "Port postcard",
+   "paper": "#efe4c8",
+   "ink": "#2c5f6e",
+   "accent": "#bf633e",
+   "symbol": "gull"
+  },
+  "battery": {
+   "name": "HOSHIMARU",
+   "jp": "Hoshimaru",
+   "line": "Dry battery · AA",
+   "paper": "#253f59",
+   "ink": "#f9e1a0",
+   "accent": "#c15734",
+   "symbol": "star"
+  },
+  "cola": {
+   "name": "SHIOSAI",
+   "jp": "Shiosai",
+   "line": "Cola",
+   "paper": "#b63231",
+   "ink": "#fff0d3",
+   "accent": "#e8b855",
+   "symbol": "wave"
+  },
+  "water": {
+   "name": "MIZUNOWA",
+   "jp": "Mizunowa",
+   "line": "Natural water",
+   "paper": "#d3e5df",
+   "ink": "#2e6572",
+   "accent": "#6dabae",
+   "symbol": "wave"
+  },
+  "beer": {
+   "name": "UMINEKO",
+   "jp": "Umineko",
+   "line": "Beer",
+   "paper": "#eddda0",
+   "ink": "#38523d",
+   "accent": "#9f5433",
+   "symbol": "gull"
+  },
+  "noodles": {
+   "name": "YUNAGI",
+   "jp": "Yuunagi",
+   "line": "Soy sauce ramen",
+   "paper": "#ecd0a1",
+   "ink": "#8d3028",
+   "accent": "#394e41",
+   "symbol": "sun"
+  },
+  "milk": {
+   "name": "ASAMORI",
+   "jp": "Asamori",
+   "line": "Milk",
+   "paper": "#f4ebdb",
+   "ink": "#356b8b",
+   "accent": "#80a4bb",
+   "symbol": "sun"
+  },
+  "stock": {
+   "name": "SAKURA",
+   "jp": "Sakura Shop",
+   "line": "Delivery box · Handle with care",
+   "paper": "#e5d1ac",
+   "ink": "#60523f",
+   "accent": "#9d493d",
+   "symbol": "flower"
+  },
+  "buns": {
+   "name": "SAKURA",
+   "jp": "Sakura Shop",
+   "line": "Other meat buns",
+   "paper": "#f3deb6",
+   "ink": "#934033",
+   "accent": "#d3934c",
+   "symbol": "sun"
+  },
+  "chips": {
+   "name": "KOGANE",
+   "jp": "Kogane",
+   "line": "Potato chips",
+   "paper": "#f8dc7e",
+   "ink": "#a42a23",
+   "accent": "#bf3928",
+   "symbol": "sun"
+  },
+  "crackers": {
+   "name": "HAMABE",
+   "jp": "Hamabe",
+   "line": "Soy sauce cracker",
+   "paper": "#f1e2bf",
+   "ink": "#233b51",
+   "accent": "#ac7840",
+   "symbol": "wave"
+  },
+  "chocolate": {
+   "name": "TSUKINO",
+   "jp": "Moon",
+   "line": "Milk chocolate",
+   "paper": "#67252b",
+   "ink": "#f4d48a",
+   "accent": "#a07443",
+   "symbol": "star"
+  },
+  "candy": {
+   "name": "MARUAME",
+   "jp": "Maruame",
+   "line": "Fruit candy",
+   "paper": "#f6cd4d",
+   "ink": "#315a36",
+   "accent": "#e8812b",
+   "symbol": "sun"
+  },
+  "curry": {
+   "name": "HINODE",
+   "jp": "Sunrise",
+   "line": "Curry roux",
+   "paper": "#e7af32",
+   "ink": "#7e3024",
+   "accent": "#b73c24",
+   "symbol": "sun"
+  },
+  "soy": {
+   "name": "KAMEJIRUSHI",
+   "jp": "Turtle",
+   "line": "Soy sauce",
+   "paper": "#efe2c7",
+   "ink": "#722b24",
+   "accent": "#ac352b",
+   "symbol": "flower"
+  },
+  "soup": {
+   "name": "MISATO",
+   "jp": "Misato",
+   "line": "Miso soup",
+   "paper": "#f1dfbd",
+   "ink": "#8e3529",
+   "accent": "#b15231",
+   "symbol": "sun"
+  },
+  "peaches": {
+   "name": "MOMOSATO",
+   "jp": "Momosato",
+   "line": "White peach pickled in syrup",
+   "paper": "#f5e4c9",
+   "ink": "#a95151",
+   "accent": "#cd8b7c",
+   "symbol": "leaf"
+  },
+  "tuna": {
+   "name": "SHIOHAMA",
+   "jp": "Ushiohama",
+   "line": "Tuna flakes",
+   "paper": "#dce4d7",
+   "ink": "#265c6b",
+   "accent": "#679999",
+   "symbol": "gull"
+  },
+  "detergent": {
+   "name": "SUZUKAZE",
+   "jp": "Suzukaze",
+   "line": "Washing detergent",
+   "paper": "#eef0df",
+   "ink": "#284e81",
+   "accent": "#dd7b33",
+   "symbol": "wave"
+  },
+  "tissues": {
+   "name": "KOMACHI",
+   "jp": "Komachi",
+   "line": "Facial tissue",
+   "paper": "#dce5d2",
+   "ink": "#c25a58",
+   "accent": "#99b6a0",
+   "symbol": "flower"
+  },
+  "toothpaste": {
+   "name": "HAKUSEN",
+   "jp": "White rice",
+   "line": "Medicinal toothpaste",
+   "paper": "#f2efe5",
+   "ink": "#20518a",
+   "accent": "#be4038",
+   "symbol": "star"
+  },
+  "orange": {
+   "name": "MIKANBI",
+   "jp": "Orange day",
+   "line": "Orange juice",
+   "paper": "#f1a134",
+   "ink": "#28502e",
+   "accent": "#db7324",
+   "symbol": "sun"
+  },
+  "soda": {
+   "name": "AOZORA",
+   "jp": "Blue sky",
+   "line": "Ramune",
+   "paper": "#d9eced",
+   "ink": "#25557e",
+   "accent": "#69aed0",
+   "symbol": "wave"
+  },
+  "yogurt": {
+   "name": "ASAMORI",
+   "jp": "Asamori",
+   "line": "Plain yogurt",
+   "paper": "#eef0df",
+   "ink": "#32638b",
+   "accent": "#81aa7d",
+   "symbol": "sun"
+  },
+  "bread": {
+   "name": "KOMUGI",
+   "jp": "Komugi",
+   "line": "Milk bread",
+   "paper": "#f1dcae",
+   "ink": "#6f422c",
+   "accent": "#c9924c",
+   "symbol": "leaf"
+  },
+  "bento": {
+   "name": "MINATOYA",
+   "jp": "Minatoya",
+   "line": "Makunouchi bento",
+   "paper": "#e4d7b6",
+   "ink": "#4a3a2a",
+   "accent": "#9d4a34",
+   "symbol": "rice"
+  },
+  "sandwich": {
+   "name": "KOMUGI",
+   "jp": "Komugi",
+   "line": "Egg sandwich",
+   "paper": "#f4ecd8",
+   "ink": "#6f422c",
+   "accent": "#c9924c",
+   "symbol": "leaf"
+  },
+  "pudding": {
+   "name": "ASAMORI",
+   "jp": "Asamori",
+   "line": "Custard Pudding",
+   "paper": "#f6e0ab",
+   "ink": "#8a5a24",
+   "accent": "#c98f3c",
+   "symbol": "sun"
+  },
+  "magazine-sea": {
+   "name": "UMIKAZE",
+   "jp": "Sea breeze",
+   "line": "Monthly Sea breeze",
+   "paper": "#d7e5ec",
+   "ink": "#20496b",
+   "accent": "#3d7fa6",
+   "symbol": "wave"
+  },
+  "magazine-night": {
+   "name": "HOSHIZORA",
+   "jp": "Starzora",
+   "line": "Weekly Starry sky",
+   "paper": "#2b3a5c",
+   "ink": "#f2e2b0",
+   "accent": "#c58a3a",
+   "symbol": "star"
+  },
+  "magazine-rod": {
+   "name": "KATSUO",
+   "jp": "Bonito",
+   "line": "Fishing and the sea",
+   "paper": "#f0e3c4",
+   "ink": "#2f5c45",
+   "accent": "#b5622f",
+   "symbol": "gull"
+  },
+  "newspaper": {
+   "name": "MINATO",
+   "jp": "Minato Shimbun",
+   "line": "Evening edition",
+   "paper": "#e8e4d6",
+   "ink": "#3a3530",
+   "accent": "#8d3f31",
+   "symbol": "wave"
+  }
+ },
+ "BRAND_ATLAS_KEYS": [
+  "tea",
+  "coffee",
+  "rice",
+  "biscuit",
+  "soap",
+  "notebook",
+  "postcard",
+  "battery",
+  "cola",
+  "water",
+  "beer",
+  "noodles",
+  "milk",
+  "stock",
+  "buns",
+  "shop",
+  "chips",
+  "crackers",
+  "chocolate",
+  "candy",
+  "curry",
+  "soy",
+  "soup",
+  "peaches",
+  "tuna",
+  "detergent",
+  "tissues",
+  "toothpaste",
+  "orange",
+  "soda",
+  "yogurt",
+  "bread",
+  "bento",
+  "sandwich",
+  "pudding",
+  "magazine-sea",
+  "magazine-night",
+  "magazine-rod",
+  "newspaper"
+ ],
+ "STORE_ITEMS": [
+  {
+   "id": "tea",
+   "jp": "Green tea",
+   "name": "Green tea",
+   "cost": 120,
+   "color": 6587227,
+   "text": "NAGI · Nagi\nA chilled bottle of green tea. Thuan keeps the oldest stock at the front.",
+   "brand": "NAGI",
+   "brandJp": "Nagi"
+  },
+  {
+   "id": "coffee",
+   "jp": "Canned coffee",
+   "name": "Canned coffee",
+   "cost": 120,
+   "color": 8475977,
+   "text": "PORT 88 · Port88\nA small can of coffee for the walk down to the harbour.",
+   "brand": "PORT 88",
+   "brandJp": "Port88"
+  },
+  {
+   "id": "rice",
+   "jp": "Onigiri",
+   "name": "Plum rice ball",
+   "cost": 110,
+   "color": 15655875,
+   "text": "SAKURA · Sakura knot\nRice, a little pickled plum and a strip of nori. Wrapped this afternoon.",
+   "brand": "SAKURA",
+   "brandJp": "Sakura knot"
+  },
+  {
+   "id": "biscuit",
+   "jp": "Biscuit",
+   "name": "Butter biscuits",
+   "cost": 100,
+   "color": 12686436,
+   "text": "KOMOREBI · Komorebi\nA paper packet of biscuits. The corner is folded closed with care.",
+   "brand": "KOMOREBI",
+   "brandJp": "Komorebi"
+  },
+  {
+   "id": "soap",
+   "jp": "Soap",
+   "name": "Sakura soap",
+   "cost": 90,
+   "color": 13142427,
+   "text": "HANAMORI · Hanamori\nA lightly scented bar wrapped in pale pink paper.",
+   "brand": "HANAMORI",
+   "brandJp": "Hanamori"
+  },
+  {
+   "id": "notebook",
+   "jp": "University Notes",
+   "name": "Pocket notebook",
+   "cost": 80,
+   "color": 8883346,
+   "text": "SHIOFUMI · Shiofumi\nRuled pages for tide times, errands and things you meant to remember.",
+   "brand": "SHIOFUMI",
+   "brandJp": "Shiofumi"
+  },
+  {
+   "id": "postcard",
+   "jp": "Postcard",
+   "name": "Harbour postcard",
+   "cost": 50,
+   "color": 7969445,
+   "text": "SHIOFUMI · Shiofumi\nA printed view of the old breakwater. Thuan knows the photographer.",
+   "brand": "SHIOFUMI",
+   "brandJp": "Shiofumi"
+  },
+  {
+   "id": "battery",
+   "jp": "Dry battery",
+   "name": "Radio batteries",
+   "cost": 180,
+   "color": 11565142,
+   "text": "HOSHIMARU · Hoshimaru\nTwo dry-cell batteries. Ask before fitting them to the shop radio.",
+   "brand": "HOSHIMARU",
+   "brandJp": "Hoshimaru"
+  }
+ ],
+ "GROCERY_ITEMS": [
+  {
+   "id": "tea",
+   "jp": "Green tea",
+   "name": "Green tea",
+   "cost": 120,
+   "color": 6587227,
+   "text": "NAGI · Nagi\nA chilled bottle of green tea. Thuan keeps the oldest stock at the front.",
+   "brand": "NAGI",
+   "brandJp": "Nagi"
+  },
+  {
+   "id": "coffee",
+   "jp": "Canned coffee",
+   "name": "Canned coffee",
+   "cost": 120,
+   "color": 8475977,
+   "text": "PORT 88 · Port88\nA small can of coffee for the walk down to the harbour.",
+   "brand": "PORT 88",
+   "brandJp": "Port88"
+  },
+  {
+   "id": "rice",
+   "jp": "Onigiri",
+   "name": "Plum rice ball",
+   "cost": 110,
+   "color": 15655875,
+   "text": "SAKURA · Sakura knot\nRice, a little pickled plum and a strip of nori. Wrapped this afternoon.",
+   "brand": "SAKURA",
+   "brandJp": "Sakura knot"
+  },
+  {
+   "id": "biscuit",
+   "jp": "Biscuit",
+   "name": "Butter biscuits",
+   "cost": 100,
+   "color": 12686436,
+   "text": "KOMOREBI · Komorebi\nA paper packet of biscuits. The corner is folded closed with care.",
+   "brand": "KOMOREBI",
+   "brandJp": "Komorebi"
+  },
+  {
+   "id": "soap",
+   "jp": "Soap",
+   "name": "Sakura soap",
+   "cost": 90,
+   "color": 13142427,
+   "text": "HANAMORI · Hanamori\nA lightly scented bar wrapped in pale pink paper.",
+   "brand": "HANAMORI",
+   "brandJp": "Hanamori"
+  },
+  {
+   "id": "notebook",
+   "jp": "University Notes",
+   "name": "Pocket notebook",
+   "cost": 80,
+   "color": 8883346,
+   "text": "SHIOFUMI · Shiofumi\nRuled pages for tide times, errands and things you meant to remember.",
+   "brand": "SHIOFUMI",
+   "brandJp": "Shiofumi"
+  },
+  {
+   "id": "postcard",
+   "jp": "Postcard",
+   "name": "Harbour postcard",
+   "cost": 50,
+   "color": 7969445,
+   "text": "SHIOFUMI · Shiofumi\nA printed view of the old breakwater. Thuan knows the photographer.",
+   "brand": "SHIOFUMI",
+   "brandJp": "Shiofumi"
+  },
+  {
+   "id": "battery",
+   "jp": "Dry battery",
+   "name": "Radio batteries",
+   "cost": 180,
+   "color": 11565142,
+   "text": "HOSHIMARU · Hoshimaru\nTwo dry-cell batteries. Ask before fitting them to the shop radio.",
+   "brand": "HOSHIMARU",
+   "brandJp": "Hoshimaru"
+  },
+  {
+   "id": "cola",
+   "name": "Sea breeze cola",
+   "jp": "Cola",
+   "cost": 120,
+   "color": 11940401,
+   "text": "A small bottle of cola.",
+   "brand": "SHIOSAI",
+   "brandJp": "Shiosai"
+  },
+  {
+   "id": "water",
+   "name": "Spring water",
+   "jp": "Natural water",
+   "cost": 110,
+   "color": 9289665,
+   "text": "Water from the hills above the harbour.",
+   "brand": "MIZUNOWA",
+   "brandJp": "Mizunowa"
+  },
+  {
+   "id": "beer",
+   "name": "Umineko lager",
+   "jp": "Beer",
+   "cost": 220,
+   "color": 13216601,
+   "text": "A chilled can of the local fictional lager.",
+   "brand": "UMINEKO",
+   "brandJp": "Umineko"
+  },
+  {
+   "id": "noodles",
+   "name": "Instant shoyu noodles",
+   "jp": "Cup noodles",
+   "cost": 150,
+   "color": 14201966,
+   "text": "A sealed cup of noodles to take home.",
+   "brand": "YUNAGI",
+   "brandJp": "Yuunagi"
+  },
+  {
+   "id": "milk",
+   "name": "Asamori milk",
+   "jp": "Milk",
+   "cost": 110,
+   "color": 14411231,
+   "text": "A small carton of milk.",
+   "brand": "ASAMORI",
+   "brandJp": "Asamori"
+  },
+  {
+   "id": "chips",
+   "name": "Salted potato crisps",
+   "jp": "Potato chips",
+   "cost": 100,
+   "color": 15063484,
+   "text": "KOGANE · Salted potato crisps",
+   "brand": "KOGANE",
+   "brandJp": "Kogane"
+  },
+  {
+   "id": "crackers",
+   "name": "Soy rice crackers",
+   "jp": "Soy sauce cracker",
+   "cost": 110,
+   "color": 15063484,
+   "text": "HAMABE · Soy rice crackers",
+   "brand": "HAMABE",
+   "brandJp": "Hamabe"
+  },
+  {
+   "id": "chocolate",
+   "name": "Milk chocolate",
+   "jp": "Milk chocolate",
+   "cost": 100,
+   "color": 15063484,
+   "text": "TSUKINO · Milk chocolate",
+   "brand": "TSUKINO",
+   "brandJp": "Moon"
+  },
+  {
+   "id": "candy",
+   "name": "Fruit sweets",
+   "jp": "Fruit candy",
+   "cost": 90,
+   "color": 15063484,
+   "text": "MARUAME · Fruit sweets",
+   "brand": "MARUAME",
+   "brandJp": "Maruame"
+  },
+  {
+   "id": "curry",
+   "name": "Curry roux",
+   "jp": "Curry roux",
+   "cost": 180,
+   "color": 15063484,
+   "text": "HINODE · Curry roux",
+   "brand": "HINODE",
+   "brandJp": "Sunrise"
+  },
+  {
+   "id": "soy",
+   "name": "Soy sauce",
+   "jp": "Soy sauce",
+   "cost": 160,
+   "color": 15063484,
+   "text": "KAMEJIRUSHI · Soy sauce",
+   "brand": "KAMEJIRUSHI",
+   "brandJp": "Turtle"
+  },
+  {
+   "id": "soup",
+   "name": "Miso soup sachets",
+   "jp": "Miso soup",
+   "cost": 120,
+   "color": 15063484,
+   "text": "MISATO · Miso soup sachets",
+   "brand": "MISATO",
+   "brandJp": "Misato"
+  },
+  {
+   "id": "peaches",
+   "name": "Tinned peaches",
+   "jp": "White peach pickled in syrup",
+   "cost": 190,
+   "color": 15063484,
+   "text": "MOMOSATO · Tinned peaches",
+   "brand": "MOMOSATO",
+   "brandJp": "Momosato"
+  },
+  {
+   "id": "tuna",
+   "name": "Tinned tuna",
+   "jp": "Tuna flakes",
+   "cost": 160,
+   "color": 15063484,
+   "text": "SHIOHAMA · Tinned tuna",
+   "brand": "SHIOHAMA",
+   "brandJp": "Ushiohama"
+  },
+  {
+   "id": "detergent",
+   "name": "Laundry powder",
+   "jp": "Washing detergent",
+   "cost": 240,
+   "color": 15063484,
+   "text": "SUZUKAZE · Laundry powder",
+   "brand": "SUZUKAZE",
+   "brandJp": "Suzukaze"
+  },
+  {
+   "id": "tissues",
+   "name": "Facial tissues",
+   "jp": "Facial tissue",
+   "cost": 130,
+   "color": 15063484,
+   "text": "KOMACHI · Facial tissues",
+   "brand": "KOMACHI",
+   "brandJp": "Komachi"
+  },
+  {
+   "id": "toothpaste",
+   "name": "Mint toothpaste",
+   "jp": "Medicinal toothpaste",
+   "cost": 180,
+   "color": 15063484,
+   "text": "HAKUSEN · Mint toothpaste",
+   "brand": "HAKUSEN",
+   "brandJp": "White rice"
+  },
+  {
+   "id": "orange",
+   "name": "Mandarin juice",
+   "jp": "Orange juice",
+   "cost": 120,
+   "color": 15063484,
+   "text": "MIKANBI · Mandarin juice",
+   "brand": "MIKANBI",
+   "brandJp": "Orange day"
+  },
+  {
+   "id": "soda",
+   "name": "Ramune soda",
+   "jp": "Ramune",
+   "cost": 100,
+   "color": 15063484,
+   "text": "AOZORA · Ramune soda",
+   "brand": "AOZORA",
+   "brandJp": "Blue sky"
+  },
+  {
+   "id": "yogurt",
+   "name": "Plain yogurt",
+   "jp": "Plain yogurt",
+   "cost": 110,
+   "color": 15063484,
+   "text": "ASAMORI · Plain yogurt",
+   "brand": "ASAMORI",
+   "brandJp": "Asamori"
+  },
+  {
+   "id": "bread",
+   "name": "Milk bread",
+   "jp": "Milk bread",
+   "cost": 150,
+   "color": 15063484,
+   "text": "KOMUGI · Milk bread",
+   "brand": "KOMUGI",
+   "brandJp": "Komugi"
+  },
+  {
+   "id": "bento",
+   "name": "Makunouchi bento",
+   "jp": "Makunouchi bento",
+   "cost": 480,
+   "color": 15063484,
+   "text": "MINATOYA · Makunouchi bento",
+   "brand": "MINATOYA",
+   "brandJp": "Minatoya"
+  },
+  {
+   "id": "sandwich",
+   "name": "Egg sandwiches",
+   "jp": "Egg sandwich",
+   "cost": 230,
+   "color": 15063484,
+   "text": "KOMUGI · Egg sandwiches",
+   "brand": "KOMUGI",
+   "brandJp": "Komugi"
+  },
+  {
+   "id": "pudding",
+   "name": "Custard pudding",
+   "jp": "Custard Pudding",
+   "cost": 130,
+   "color": 15063484,
+   "text": "ASAMORI · Custard pudding",
+   "brand": "ASAMORI",
+   "brandJp": "Asamori"
+  }
+ ],
+ "PACKS": {
+  "tea": {
+   "shape": "bottle",
+   "size": [
+    0.092,
+    0.26,
+    0.092
+   ],
+   "net": "500ml",
+   "flash": "Fragrant",
+   "art": "tea",
+   "tag": "Clean and easy"
+  },
+  "coffee": {
+   "shape": "can",
+   "size": [
+    0.094,
+    0.135,
+    0.094
+   ],
+   "net": "190g",
+   "flash": "Less sugar",
+   "art": "coffee",
+   "tag": "One for the harbour morning"
+  },
+  "rice": {
+   "shape": "bag",
+   "size": [
+    0.15,
+    0.12,
+    0.09
+   ],
+   "net": "1 piece",
+   "flash": "Hand-pressed",
+   "art": "rice",
+   "tag": "Kishu plum inside"
+  },
+  "biscuit": {
+   "shape": "box",
+   "size": [
+    0.18,
+    0.22,
+    0.075
+   ],
+   "net": "12 pieces",
+   "flash": "Real butter",
+   "art": "biscuit",
+   "tag": "Baked crisp"
+  },
+  "soap": {
+   "shape": "box",
+   "size": [
+    0.1,
+    0.065,
+    0.04
+   ],
+   "net": "100g",
+   "flash": "Gentle",
+   "art": "soap",
+   "tag": "Flower scent"
+  },
+  "notebook": {
+   "shape": "flat",
+   "size": [
+    0.18,
+    0.252,
+    0.006
+   ],
+   "net": "30 sheets",
+   "flash": "7mm ruled",
+   "art": "notebook",
+   "tag": "Semi-B5"
+  },
+  "postcard": {
+   "shape": "flat",
+   "size": [
+    0.148,
+    0.1,
+    0.004
+   ],
+   "net": "1 card",
+   "flash": "Harbour town",
+   "art": "postcard",
+   "tag": "Harbour morning"
+  },
+  "battery": {
+   "shape": "box",
+   "size": [
+    0.105,
+    0.15,
+    0.03
+   ],
+   "net": "4 pack",
+   "flash": "Long life",
+   "art": "battery",
+   "tag": "Alkaline AA"
+  },
+  "cola": {
+   "shape": "bottle",
+   "size": [
+    0.092,
+    0.26,
+    0.092
+   ],
+   "net": "500ml",
+   "flash": "Extra fizz",
+   "art": "cola",
+   "tag": "Crisp and cold"
+  },
+  "water": {
+   "shape": "bottle",
+   "size": [
+    0.092,
+    0.26,
+    0.092
+   ],
+   "net": "500ml",
+   "flash": "Natural",
+   "art": "water",
+   "tag": "Island spring water"
+  },
+  "beer": {
+   "shape": "can",
+   "size": [
+    0.094,
+    0.135,
+    0.094
+   ],
+   "net": "350ml",
+   "flash": "Draft",
+   "art": "beer",
+   "tag": "The harbour town lager"
+  },
+  "noodles": {
+   "shape": "cup",
+   "size": [
+    0.136,
+    0.13,
+    0.136
+   ],
+   "net": "78g",
+   "flash": "Soy sauce",
+   "art": "noodles",
+   "tag": "Ready in 3 minutes"
+  },
+  "milk": {
+   "shape": "carton",
+   "size": [
+    0.093,
+    0.2,
+    0.093
+   ],
+   "net": "500ml",
+   "flash": "Whole milk",
+   "art": "milk",
+   "tag": "Asamori Dairy"
+  },
+  "chips": {
+   "shape": "bag",
+   "size": [
+    0.16,
+    0.22,
+    0.07
+   ],
+   "net": "60g",
+   "flash": "Lightly salted",
+   "art": "chips",
+   "tag": "Crunchy and good"
+  },
+  "crackers": {
+   "shape": "bag",
+   "size": [
+    0.16,
+    0.22,
+    0.07
+   ],
+   "net": "12 pieces",
+   "flash": "Soy sauce",
+   "art": "crackers",
+   "tag": "Toasted soy glaze"
+  },
+  "chocolate": {
+   "shape": "flat",
+   "size": [
+    0.17,
+    0.1,
+    0.018
+   ],
+   "net": "50g",
+   "flash": "Milk",
+   "art": "chocolate",
+   "tag": "Melts smoothly"
+  },
+  "candy": {
+   "shape": "bag",
+   "size": [
+    0.16,
+    0.22,
+    0.07
+   ],
+   "net": "90g",
+   "flash": "5 flavours",
+   "art": "candy",
+   "tag": "Made with fruit juice"
+  },
+  "curry": {
+   "shape": "box",
+   "size": [
+    0.16,
+    0.13,
+    0.045
+   ],
+   "net": "200g",
+   "flash": "Medium hot",
+   "art": "curry",
+   "tag": "Serves 10"
+  },
+  "soy": {
+   "shape": "bottle",
+   "size": [
+    0.092,
+    0.26,
+    0.092
+   ],
+   "net": "500ml",
+   "flash": "Brewed",
+   "art": "soy",
+   "tag": "Dark soy"
+  },
+  "soup": {
+   "shape": "box",
+   "size": [
+    0.14,
+    0.17,
+    0.05
+   ],
+   "net": "8 servings",
+   "flash": "Mixed miso",
+   "art": "soup",
+   "tag": "Just add hot water"
+  },
+  "peaches": {
+   "shape": "can",
+   "size": [
+    0.106,
+    0.095,
+    0.106
+   ],
+   "net": "425g",
+   "flash": "White peach",
+   "art": "peaches",
+   "tag": "In light syrup"
+  },
+  "tuna": {
+   "shape": "can",
+   "size": [
+    0.102,
+    0.046,
+    0.102
+   ],
+   "net": "80g",
+   "flash": "In oil",
+   "art": "tuna",
+   "tag": "Tuna flakes"
+  },
+  "detergent": {
+   "shape": "box",
+   "size": [
+    0.18,
+    0.255,
+    0.095
+   ],
+   "net": "1.0kg",
+   "flash": "Whiter whites",
+   "art": "detergent",
+   "tag": "Laundry powder"
+  },
+  "tissues": {
+   "shape": "box",
+   "size": [
+    0.22,
+    0.075,
+    0.11
+   ],
+   "net": "160 pairs",
+   "flash": "Soft",
+   "art": "tissues",
+   "tag": "2-ply"
+  },
+  "toothpaste": {
+   "shape": "box",
+   "size": [
+    0.205,
+    0.05,
+    0.045
+   ],
+   "net": "120g",
+   "flash": "Medicated",
+   "art": "toothpaste",
+   "tag": "Mint flavour"
+  },
+  "orange": {
+   "shape": "carton",
+   "size": [
+    0.093,
+    0.2,
+    0.093
+   ],
+   "net": "500ml",
+   "flash": "100% juice",
+   "art": "orange",
+   "tag": "Mandarin"
+  },
+  "soda": {
+   "shape": "bottle",
+   "size": [
+    0.074,
+    0.26,
+    0.074
+   ],
+   "net": "200ml",
+   "flash": "Ramune",
+   "art": "soda",
+   "tag": "Marble inside"
+  },
+  "yogurt": {
+   "shape": "cup",
+   "size": [
+    0.096,
+    0.078,
+    0.096
+   ],
+   "net": "400g",
+   "flash": "Plain",
+   "art": "yogurt",
+   "tag": "100% fresh milk"
+  },
+  "bread": {
+   "shape": "bag",
+   "size": [
+    0.19,
+    0.235,
+    0.12
+   ],
+   "net": "6 slices",
+   "flash": "Milk",
+   "art": "bread",
+   "tag": "Soft white loaf"
+  },
+  "bento": {
+   "shape": "tray",
+   "size": [
+    0.19,
+    0.052,
+    0.135
+   ],
+   "net": "1 meal",
+   "flash": "Makunouchi",
+   "art": "bento",
+   "tag": "Made by hand today"
+  },
+  "sandwich": {
+   "shape": "box",
+   "size": [
+    0.12,
+    0.12,
+    0.052
+   ],
+   "net": "2 halves",
+   "flash": "Egg",
+   "art": "sandwich",
+   "tag": "Fluffy egg salad"
+  },
+  "pudding": {
+   "shape": "cup",
+   "size": [
+    0.076,
+    0.062,
+    0.076
+   ],
+   "net": "85g",
+   "flash": "Custard",
+   "art": "pudding",
+   "tag": "Melt-in-the-mouth"
+  },
+  "bun": {
+   "shape": "bag",
+   "size": [
+    0.15,
+    0.12,
+    0.09
+   ],
+   "net": "1 piece",
+   "flash": "Piping hot",
+   "art": "bun",
+   "tag": "Pork bun"
+  }
+ },
+ "INGREDIENTS": {
+  "chips": "Potatoes, vegetable oil, salt",
+  "crackers": "Rice, soy sauce, sugar, nori",
+  "biscuit": "Wheat flour, butter, sugar, egg, salt",
+  "chocolate": "Sugar, cocoa mass, whole milk powder, cocoa butter, flavouring",
+  "candy": "Sugar, glucose syrup, fruit juice, acidulant, flavouring, colour",
+  "curry": "Wheat flour, beef fat, curry powder, salt, sugar, spices",
+  "noodles": "Fried noodles (wheat flour, vegetable oil, salt), soup (soy sauce, salt, spices), toppings (naruto, spring onion)",
+  "soup": "Miso, wakame, spring onion, tofu, bonito extract",
+  "tuna": "Tuna, soybean oil, salt, vegetable extract",
+  "peaches": "White peaches, sugar, acidulant",
+  "soy": "Soybeans, wheat, salt",
+  "rice": "Rice, pickled plum, nori, salt",
+  "bun": "Wheat flour, pork, onion, soy sauce, sugar",
+  "bread": "Wheat flour, milk, sugar, butter, yeast, salt",
+  "tea": "Green tea, vitamin C",
+  "coffee": "Milk, coffee, sugar, emulsifier",
+  "cola": "Sugars, carbonation, caramel colour, acidulant, flavouring, caffeine",
+  "water": "Water (mineral water)",
+  "beer": "Malt, hops",
+  "milk": "100% fresh milk",
+  "orange": "100% mandarin juice",
+  "soda": "Sugar, carbonation, acidulant, flavouring",
+  "yogurt": "Fresh milk, dairy products",
+  "pudding": "Milk, sugar, egg, caramel sauce",
+  "bento": "Rice, grilled salmon, rolled omelette, fried chicken, simmered vegetables, pickles",
+  "sandwich": "Bread, egg, mayonnaise, salt, pepper",
+  "soap": "Soap base, fragrance, glycerin",
+  "detergent": "Surfactants, carbonates, optical brightener, enzymes",
+  "tissues": "100% pulp",
+  "toothpaste": "Calcium carbonate, glycerin, flavouring, sodium fluoride",
+  "battery": "Alkaline battery LR6 1.5V",
+  "notebook": "Fine paper · 30 sheets · 7mm ruled · sewn binding",
+  "postcard": "Postcard · a morning on the harbour"
+ },
+ "back": {
+  "tea": {
+   "food": true,
+   "unit": "bottle",
+   "recycle": "PET",
+   "ingredients": "Green tea, vitamin C"
+  },
+  "coffee": {
+   "food": true,
+   "unit": "bottle",
+   "recycle": "CAN",
+   "ingredients": "Milk, coffee, sugar, emulsifier"
+  },
+  "rice": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Rice, pickled plum, nori, salt"
+  },
+  "biscuit": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Wheat flour, butter, sugar, egg, salt"
+  },
+  "soap": {
+   "food": false,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Soap base, fragrance, glycerin"
+  },
+  "notebook": {
+   "food": false,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Fine paper · 30 sheets · 7mm ruled · sewn binding"
+  },
+  "postcard": {
+   "food": false,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Postcard · a morning on the harbour"
+  },
+  "battery": {
+   "food": false,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Alkaline battery LR6 1.5V"
+  },
+  "cola": {
+   "food": true,
+   "unit": "bottle",
+   "recycle": "PET",
+   "ingredients": "Sugars, carbonation, caramel colour, acidulant, flavouring, caffeine"
+  },
+  "water": {
+   "food": true,
+   "unit": "bottle",
+   "recycle": "PET",
+   "ingredients": "Water (mineral water)"
+  },
+  "beer": {
+   "food": true,
+   "unit": "bottle",
+   "recycle": "CAN",
+   "ingredients": "Malt, hops"
+  },
+  "noodles": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Fried noodles (wheat flour, vegetable oil, salt), soup (soy sauce, salt, spices), toppings (naruto, spring onion)"
+  },
+  "milk": {
+   "food": true,
+   "unit": "bottle",
+   "recycle": "PLA",
+   "ingredients": "100% fresh milk"
+  },
+  "stock": {
+   "food": false,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": null
+  },
+  "buns": {
+   "food": false,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": null
+  },
+  "shop": {
+   "food": false,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": null
+  },
+  "chips": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Potatoes, vegetable oil, salt"
+  },
+  "crackers": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Rice, soy sauce, sugar, nori"
+  },
+  "chocolate": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Sugar, cocoa mass, whole milk powder, cocoa butter, flavouring"
+  },
+  "candy": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Sugar, glucose syrup, fruit juice, acidulant, flavouring, colour"
+  },
+  "curry": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Wheat flour, beef fat, curry powder, salt, sugar, spices"
+  },
+  "soy": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PET",
+   "ingredients": "Soybeans, wheat, salt"
+  },
+  "soup": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Miso, wakame, spring onion, tofu, bonito extract"
+  },
+  "peaches": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "CAN",
+   "ingredients": "White peaches, sugar, acidulant"
+  },
+  "tuna": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "CAN",
+   "ingredients": "Tuna, soybean oil, salt, vegetable extract"
+  },
+  "detergent": {
+   "food": false,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Surfactants, carbonates, optical brightener, enzymes"
+  },
+  "tissues": {
+   "food": false,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "100% pulp"
+  },
+  "toothpaste": {
+   "food": false,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Calcium carbonate, glycerin, flavouring, sodium fluoride"
+  },
+  "orange": {
+   "food": true,
+   "unit": "bottle",
+   "recycle": "PLA",
+   "ingredients": "100% mandarin juice"
+  },
+  "soda": {
+   "food": true,
+   "unit": "bottle",
+   "recycle": "PET",
+   "ingredients": "Sugar, carbonation, acidulant, flavouring"
+  },
+  "yogurt": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Fresh milk, dairy products"
+  },
+  "bread": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Wheat flour, milk, sugar, butter, yeast, salt"
+  },
+  "bento": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Rice, grilled salmon, rolled omelette, fried chicken, simmered vegetables, pickles"
+  },
+  "sandwich": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Bread, egg, mayonnaise, salt, pepper"
+  },
+  "pudding": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Milk, sugar, egg, caramel sauce"
+  },
+  "magazine-sea": {
+   "food": false,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": null
+  },
+  "magazine-night": {
+   "food": false,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": null
+  },
+  "magazine-rod": {
+   "food": false,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": null
+  },
+  "newspaper": {
+   "food": false,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": null
+  },
+  "bun": {
+   "food": true,
+   "unit": "pack",
+   "recycle": "PLA",
+   "ingredients": "Wheat flour, pork, onion, soy sauce, sugar"
+  }
+ },
+ "FLAVOURS": {
+  "chips": [
+   [
+    "Nori seaweed",
+    95
+   ],
+   [
+    "Consommé",
+    -38
+   ],
+   [
+    "Sour cream",
+    150
+   ]
+  ],
+  "crackers": [
+   [
+    "Shrimp",
+    -28
+   ],
+   [
+    "Sesame",
+    40
+   ]
+  ],
+  "biscuit": [
+   [
+    "Chocolate",
+    -25
+   ],
+   [
+    "Strawberry",
+    -60
+   ]
+  ],
+  "candy": [
+   [
+    "Melon",
+    90
+   ],
+   [
+    "Grape",
+    -110
+   ]
+  ],
+  "chocolate": [
+   [
+    "Bitter",
+    25
+   ],
+   [
+    "Strawberry",
+    -40
+   ]
+  ],
+  "noodles": [
+   [
+    "Miso",
+    25
+   ],
+   [
+    "Curry",
+    55
+   ],
+   [
+    "Seafood",
+    -150
+   ]
+  ],
+  "soup": [
+   [
+    "Corn",
+    35
+   ],
+   [
+    "Clam",
+    -140
+   ]
+  ],
+  "curry": [
+   [
+    "Hot",
+    -25
+   ],
+   [
+    "Mild",
+    40
+   ]
+  ],
+  "tea": [
+   [
+    "Barley tea",
+    -70
+   ],
+   [
+    "Oolong",
+    -35
+   ]
+  ],
+  "water": [
+   [
+    "Sparkling",
+    40
+   ]
+  ],
+  "cola": [
+   [
+    "Zero",
+    180
+   ]
+  ],
+  "orange": [
+   [
+    "Apple",
+    45
+   ],
+   [
+    "Grape",
+    -95
+   ]
+  ],
+  "soda": [
+   [
+    "Melon",
+    -90
+   ]
+  ],
+  "coffee": [
+   [
+    "Café au lait",
+    25
+   ],
+   [
+    "Sugar free",
+    -150
+   ]
+  ],
+  "beer": [
+   [
+    "Dry",
+    -30
+   ],
+   [
+    "Black",
+    170
+   ]
+  ],
+  "milk": [
+   [
+    "Coffee milk",
+    -170
+   ],
+   [
+    "Strawberry",
+    140
+   ]
+  ],
+  "yogurt": [
+   [
+    "Aloe",
+    -80
+   ],
+   [
+    "Blueberry",
+    60
+   ]
+  ],
+  "pudding": [
+   [
+    "Caramel",
+    -18
+   ],
+   [
+    "Matcha",
+    70
+   ]
+  ],
+  "bread": [
+   [
+    "Melon bread",
+    60
+   ],
+   [
+    "Raisin",
+    -40
+   ]
+  ],
+  "rice": [
+   [
+    "Salmon",
+    -25
+   ],
+   [
+    "Tuna mayo",
+    150
+   ],
+   [
+    "Kelp",
+    95
+   ]
+  ],
+  "sandwich": [
+   [
+    "Ham",
+    -30
+   ],
+   [
+    "Tuna",
+    150
+   ]
+  ],
+  "bento": [
+   [
+    "Karaage",
+    -25
+   ]
+  ],
+  "detergent": [
+   [
+    "Floral",
+    -80
+   ]
+  ],
+  "soap": [
+   [
+    "Citrus",
+    70
+   ],
+   [
+    "Mint",
+    140
+   ]
+  ],
+  "tissues": [
+   [
+    "Lotion",
+    -60
+   ]
+  ],
+  "toothpaste": [
+   [
+    "Mint",
+    120
+   ]
+  ],
+  "battery": [
+   [
+    "AAA",
+    140
+   ]
+  ],
+  "notebook": [
+   [
+    "Graph paper",
+    60
+   ]
+  ]
+ },
+ "flavourCount": {
+  "tea": 3,
+  "coffee": 3,
+  "rice": 4,
+  "biscuit": 3,
+  "soap": 3,
+  "notebook": 2,
+  "postcard": 1,
+  "battery": 2,
+  "cola": 2,
+  "water": 2,
+  "beer": 3,
+  "noodles": 4,
+  "milk": 3,
+  "stock": 1,
+  "buns": 1,
+  "shop": 1,
+  "chips": 4,
+  "crackers": 3,
+  "chocolate": 3,
+  "candy": 3,
+  "curry": 3,
+  "soy": 1,
+  "soup": 3,
+  "peaches": 1,
+  "tuna": 1,
+  "detergent": 2,
+  "tissues": 2,
+  "toothpaste": 2,
+  "orange": 3,
+  "soda": 2,
+  "yogurt": 3,
+  "bread": 3,
+  "bento": 2,
+  "sandwich": 3,
+  "pudding": 3,
+  "magazine-sea": 1,
+  "magazine-night": 1,
+  "magazine-rod": 1,
+  "newspaper": 1,
+  "bun": 1
+ },
+ "ZONES": {
+  "drinks": "The cold cabinet on the back wall. Drinks are the shop’s magnet: everyone walks the length of the floor to reach them and passes everything else on the way.",
+  "fresh": "The open chiller on the west wall. Made today, gone tomorrow; open decks so a lunch can be taken without opening a door.",
+  "pantry": "The west gondola, beside the chiller: the cupboard at home, for people who cook.",
+  "sweets": "The middle gondola, on the door’s own line, so it is the first aisle you look down: crisps at a grown-up’s eye, children’s sweets low.",
+  "daily": "The east gondola, nearest the till: what runs out at home, heavy things low, small dear things where Thuan can see them.",
+  "counter": "On the counter by the register: hot, quick, and bought on impulse while paying."
+ },
+ "MERCHANDISING": {
+  "tea": {
+   "zone": "drinks",
+   "for": [
+    "Grandmother Higa",
+    "Mrs Miyagi",
+    "Thuan"
+   ],
+   "why": "The everyday bottle: with lunch, on a hot walk, on the verandah.",
+   "placed": "First column, eye level: the drink most people come in for is the first one they see."
+  },
+  "coffee": {
+   "zone": "drinks",
+   "for": [
+    "Mr Toguchi",
+    "Harbour master",
+    "Bus driver",
+    "Postman Tōma"
+   ],
+   "why": "A sweet canned coffee before a dawn shift or between rounds.",
+   "placed": "Under the tea, where a working hand reaches without looking."
+  },
+  "water": {
+   "zone": "drinks",
+   "for": [
+    "Riku",
+    "Haru",
+    "Officer Mori"
+   ],
+   "why": "Spring water for runs, patrols and long afternoons on the quay.",
+   "placed": "Second column, eye level: the second most asked-for drink."
+  },
+  "orange": {
+   "zone": "drinks",
+   "for": [
+    "Mina",
+    "Jun",
+    "Mrs Nakamura"
+   ],
+   "why": "Mandarin juice for a child’s lunch, or a breakfast in a hurry.",
+   "placed": "Low in the juice column, at a child’s reach."
+  },
+  "cola": {
+   "zone": "drinks",
+   "for": [
+    "Kōji",
+    "Riku",
+    "Emi Kado"
+   ],
+   "why": "A cold cola after school or a shift.",
+   "placed": "Eye level in the third column: the impulse drink."
+  },
+  "soda": {
+   "zone": "drinks",
+   "for": [
+    "Vy",
+    "Mina",
+    "Jun"
+   ],
+   "why": "Ramune with the marble: the summer drink children ask for by name.",
+   "placed": "Low under the cola, where children look."
+  },
+  "milk": {
+   "zone": "drinks",
+   "for": [
+    "Miss Higa",
+    "Mrs Yonamine",
+    "Thao"
+   ],
+   "why": "For the morning tea, the children, and the bathhouse fridge when it runs out.",
+   "placed": "Top of the last column: for people who knew what they came for."
+  },
+  "beer": {
+   "zone": "drinks",
+   "for": [
+    "Barfly",
+    "Tetsuo",
+    "Uncle Kinjō",
+    "Johansson"
+   ],
+   "why": "Umineko lager for the evening at home, the boat, or the walk to Minato.",
+   "placed": "The column nearest the till: beer is the last thing picked up, and Thuan sees who buys it."
+  },
+  "rice": {
+   "zone": "fresh",
+   "for": [
+    "Thuan",
+    "Chin",
+    "Postman Tōma",
+    "Officer Mori"
+   ],
+   "why": "The lunch eaten standing up: plum onigiri, made this afternoon.",
+   "placed": "Eye level in the chiller: the shop’s best seller where nobody has to look for it."
+  },
+  "bento": {
+   "zone": "fresh",
+   "for": [
+    "Mr Shimabukuro",
+    "Tetsuo",
+    "Mr Tamaki"
+   ],
+   "why": "A proper lunch for people who cannot leave their work: the power house, the workshop, the office.",
+   "placed": "Under the rice balls: the dearer lunch beside the cheap one."
+  },
+  "sandwich": {
+   "zone": "fresh",
+   "for": [
+    "Johansson",
+    "Reiko",
+    "Emi Kado"
+   ],
+   "why": "Egg sandwiches eaten at a desk or on the ferry.",
+   "placed": "Middle bay, eye level, over the bread it is made from."
+  },
+  "bread": {
+   "zone": "fresh",
+   "for": [
+    "Mrs Nakamura",
+    "Mrs Yonamine",
+    "Mrs Kinjō"
+   ],
+   "why": "Milk bread for tomorrow’s breakfast.",
+   "placed": "Under the sandwiches: the household buy below the snack."
+  },
+  "pudding": {
+   "zone": "fresh",
+   "for": [
+    "Vy",
+    "Nhung",
+    "Grandmother Higa"
+   ],
+   "why": "A small treat: after homework, after a long shelf, after the bath.",
+   "placed": "Top deck of the last bay: the treat at eye level, where it is hard to walk past."
+  },
+  "yogurt": {
+   "zone": "fresh",
+   "for": [
+    "Mrs Miyagi",
+    "Haru",
+    "Miss Higa"
+   ],
+   "why": "Plain yoghurt for a light breakfast and a careful stomach.",
+   "placed": "Under the pudding, for the people with good intentions."
+  },
+  "noodles": {
+   "zone": "pantry",
+   "for": [
+    "Kōji",
+    "Barfly",
+    "Riku"
+   ],
+   "why": "Cup noodles for a late night or a typhoon day indoors.",
+   "placed": "Pantry, front face: quick food first."
+  },
+  "soup": {
+   "zone": "pantry",
+   "for": [
+    "Mrs Kinjō",
+    "Mr Ōshiro",
+    "Thao"
+   ],
+   "why": "Miso sachets for one bowl when cooking a pot is too much.",
+   "placed": "Beside the noodles: the other thing you add hot water to."
+  },
+  "curry": {
+   "zone": "pantry",
+   "for": [
+    "Mrs Nakamura",
+    "Mrs Yonamine",
+    "Mrs Sato"
+   ],
+   "why": "Curry roux for a family dinner; Mrs Sato swears it is not for the shop.",
+   "placed": "Pantry, front face, low: a heavy box for a cook who comes back every week."
+  },
+  "soy": {
+   "zone": "pantry",
+   "for": [
+    "Mrs Sato",
+    "Thao",
+    "Mrs Miyagi"
+   ],
+   "why": "Soy sauce for a kitchen that ran out mid-service.",
+   "placed": "Pantry, back face: the staple, found by people who already know where it is."
+  },
+  "tuna": {
+   "zone": "pantry",
+   "for": [
+    "Uncle Kinjō",
+    "Mr Tamaki",
+    "Haru"
+   ],
+   "why": "Tinned tuna for onigiri at home and for the cat that is not officially fed.",
+   "placed": "Back face, with the other tins."
+  },
+  "peaches": {
+   "zone": "pantry",
+   "for": [
+    "Grandmother Higa",
+    "Miss Higa"
+   ],
+   "why": "Tinned peaches for visiting someone who is ill, as one does.",
+   "placed": "Back face, high: an occasional buy, not in the way."
+  },
+  "chips": {
+   "zone": "sweets",
+   "for": [
+    "Barfly",
+    "Kōji",
+    "Jun"
+   ],
+   "why": "Salted crisps with a beer or a baseball game on the radio.",
+   "placed": "Front face at a grown-up’s eye, seen on the way back from the beer."
+  },
+  "crackers": {
+   "zone": "sweets",
+   "for": [
+    "Grandmother Higa",
+    "Mr Ōshiro",
+    "Mrs Kinjō"
+   ],
+   "why": "Soy rice crackers with tea, for visitors.",
+   "placed": "Front face, the low boards: a big bag for visitors, easy to lift down, under the crisps."
+  },
+  "biscuit": {
+   "zone": "sweets",
+   "for": [
+    "Nhung",
+    "Reiko",
+    "Thuan"
+   ],
+   "why": "Butter biscuits for a reading afternoon or a night at the press.",
+   "placed": "Front face, top: the gift-sized packet where it can be seen."
+  },
+  "chocolate": {
+   "zone": "sweets",
+   "for": [
+    "Vy",
+    "Mina",
+    "Jun"
+   ],
+   "why": "Milk chocolate after school.",
+   "placed": "Back face, low: at a child’s eye, below a parent’s."
+  },
+  "candy": {
+   "zone": "sweets",
+   "for": [
+    "Mina",
+    "Jun",
+    "Vy"
+   ],
+   "why": "Fruit sweets, the ten-yen kind of treat.",
+   "placed": "The lowest shelf of the back face, where small hands find it first."
+  },
+  "detergent": {
+   "zone": "daily",
+   "for": [
+    "Mrs Yonamine",
+    "Mrs Nakamura",
+    "Miss Higa"
+   ],
+   "why": "Laundry powder: the bathhouse towels and a family’s week.",
+   "placed": "Bottom of the front face: the heaviest thing in the shop, low and near the door out."
+  },
+  "soap": {
+   "zone": "daily",
+   "for": [
+    "Miss Higa",
+    "Mrs Miyagi",
+    "Thuan"
+   ],
+   "why": "Sakura soap for the bath and the shop’s own washroom.",
+   "placed": "Above the detergent: washing beside washing."
+  },
+  "tissues": {
+   "zone": "daily",
+   "for": [
+    "Mrs Kinjō",
+    "Reiko",
+    "Officer Mori"
+   ],
+   "why": "Tissues for hay fever, a cold, or a sad film.",
+   "placed": "Front face, next bay: bulky and light, at hand height."
+  },
+  "toothpaste": {
+   "zone": "daily",
+   "for": [
+    "Haru",
+    "Emi Kado",
+    "Johansson"
+   ],
+   "why": "Mint toothpaste, the thing you notice has run out at night.",
+   "placed": "Above the tissues, with the bathroom."
+  },
+  "battery": {
+   "zone": "daily",
+   "for": [
+    "Chin",
+    "Tetsuo",
+    "Harbour master"
+   ],
+   "why": "Dry cells for radios, torches and the harbour lamp.",
+   "placed": "Back face, nearest the till: small, dear and easy to pocket, so Thuan can see them."
+  },
+  "notebook": {
+   "zone": "daily",
+   "for": [
+    "Johansson",
+    "Reiko",
+    "Vy"
+   ],
+   "why": "Pocket notebooks for tide times, articles and homework.",
+   "placed": "Beside the batteries: stationery with the small things."
+  },
+  "postcard": {
+   "zone": "daily",
+   "for": [
+    "Johansson",
+    "Emi Kado",
+    "Nhung"
+   ],
+   "why": "Harbour postcards for visitors and for letters to the main island.",
+   "placed": "Back face, by the till, beside the stamps Thuan sells."
+  },
+  "bun": {
+   "zone": "counter",
+   "for": [
+    "Officer Mori",
+    "Bus driver",
+    "Kōji",
+    "Vy"
+   ],
+   "why": "A steamed pork bun to eat walking out of the door.",
+   "placed": "In the steamer on the counter: smelt while paying, bought on impulse."
+  }
+ },
+ "ZONE_OF_SHELF": {
+  "fridge": "drinks",
+  "chiller": "fresh",
+  "west": "pantry",
+  "middle": "sweets",
+  "east": "daily",
+  "steamer": "counter"
+ },
+ "SOURCED_FROM": {
+  "beer": "higa-saketen"
+ },
+ "SUPPLIERS": {
+  "sakura": {
+   "name": "Sakura Shōten (Sakura Trading)",
+   "owner": "Thuan",
+   "depot": "warehouse",
+   "goods": "Everyday goods: drinks, food, washing, paper goods, batteries."
+  },
+  "higa-saketen": {
+   "name": "Higa Liquor",
+   "owner": "Grandmother Higa",
+   "goods": "Beer, awamori, sake and shōchū.",
+   "stock": [
+    "Umineko lager, crates and kegs",
+    "awamori, from the 180 ml bottles to the clay kame",
+    "sake for warming",
+    "shōchū for the mixes"
+   ]
+  },
+  "rainflower-florist": {
+   "name": "Rainflower Florist",
+   "owner": "Mrs Kinjō",
+   "goods": "Flowers and decorations: the season’s window dressing, festival trimmings, wreaths.",
+   "stock": [
+    "seasonal window decorations",
+    "Tanabata bamboo and paper strips",
+    "New Year kadomatsu and shimenawa",
+    "paper lanterns and festival bunting",
+    "wreaths and table flowers"
+   ]
+  },
+  "frontrow": {
+   "name": "Front-Row Books & Stationery",
+   "owner": "Nhung",
+   "goods": "Office supplies and stationery.",
+   "stock": [
+    "A4 copy paper by the ream",
+    "account ledgers and receipt books",
+    "ballpoint pens by the box",
+    "envelopes, long and square",
+    "cellophane tape and glue"
+   ]
+  }
+ },
+ "ACCOUNTS": {
+  "sakura": {
+   "izakaya": {
+    "name": "Minato Izakaya",
+    "owner": "Thao",
+    "lines": [
+     "soy",
+     "water",
+     "orange",
+     "tissues",
+     "detergent",
+     "battery"
+    ],
+    "why": "Soy for the grill, water for chasers, mandarin juice for the shōchū mixes, table tissues, cloth washing, and batteries for the karaoke microphone.",
+    "delivery": "Two crates on the trolley at three, before the noren goes up; Thao signs for it."
+   },
+   "ramen": {
+    "name": "Sato Ramen",
+    "owner": "Mrs Sato",
+    "lines": [
+     "soy",
+     "tea",
+     "detergent"
+    ],
+    "why": "Soy to top up the tare, tea for the counter, and powder for the towels.",
+    "delivery": "At half past ten, while the stock comes up to the boil."
+   },
+   "onsen": {
+    "name": "Umi-no-yu",
+    "owner": "Miss Higa",
+    "lines": [
+     "milk",
+     "soda",
+     "soap",
+     "detergent"
+    ],
+    "why": "Bottled milk and ramune for the fridge by the bandai — the after-bath drink — soap for the washing stools, and powder for the towels.",
+    "delivery": "Mornings before the bath opens; the milk crate is the heaviest thing Thuan carries all week."
+   },
+   "frontrow": {
+    "name": "Front-Row Books & Stationery",
+    "owner": "Nhung",
+    "lines": [
+     "tea",
+     "biscuit",
+     "battery"
+    ],
+    "why": "Tea and biscuits for the reading corner, batteries for the press-room radio.",
+    "delivery": "Thursdays, when the evening paper is set and there is a quiet hour."
+   },
+   "form3d": {
+    "name": "Chin & Tetsuo Repairs",
+    "owner": "Chin",
+    "lines": [
+     "battery",
+     "coffee",
+     "rice"
+    ],
+    "why": "Batteries by the box for testing radios, canned coffee for the bench, and a lunch order of rice balls.",
+    "delivery": "Lunch at noon on the bicycle; batteries when Tetsuo remembers to ask."
+   },
+   "office": {
+    "name": "Johansson Harbour Office",
+    "owner": "Johansson",
+    "lines": [
+     "battery",
+     "coffee",
+     "tea",
+     "water"
+    ],
+    "why": "Batteries for the quay lamps, and drinks for the crews.",
+    "delivery": "With the first ferry, on the harbour cart."
+   },
+   "koban": {
+    "name": "Minato Police Station",
+    "owner": "Officer Mori",
+    "lines": [
+     "water",
+     "rice",
+     "battery"
+    ],
+    "why": "Water and a rice ball for the night patrol, batteries for the torch.",
+    "delivery": "Officer Mori collects it himself, at closing, and calls it a patrol."
+   },
+   "mayor-office": {
+    "name": "the mayor’s office",
+    "owner": "Johansson",
+    "lines": [
+     "tea",
+     "crackers",
+     "tissues"
+    ],
+    "why": "Tea and rice crackers for visitors, and tissues for difficult meetings.",
+    "delivery": "Mondays, carried up the Community Hall stairs."
+   },
+   "coral-bay-bar": {
+    "name": "the Coral Bay Bar on Kitano-jima",
+    "contact": "the beach bar keeper",
+    "lines": [
+     "orange",
+     "water"
+    ],
+    "why": "Mandarin and shikuwasa juice for the children and the drivers, and water for anyone who fell asleep under a parasol.",
+    "delivery": "On the morning car ferry, in the Sakura Trading crate that goes over with the Higa ice boxes."
+   },
+   "fumoto-co-op": {
+    "name": "the Fumoto co-op store",
+    "owner": "Grandmother Tokashiki",
+    "lines": [
+     "rice",
+     "soy",
+     "tuna",
+     "soap",
+     "battery",
+     "tea"
+    ],
+    "why": "What a farming hamlet runs out of: rice and soy, tinned tuna for the cane-cut lunches, soap, batteries for the radios in the fields, and tea for the bench.",
+    "delivery": "Wednesdays: Mr Tokashiki brings the Sakura Trading crate up from the morning ferry in the co-op’s van."
+   },
+   "community-kitchen": {
+    "name": "the community kitchen",
+    "owner": "Mrs Nakamura",
+    "lines": [
+     "curry",
+     "soy",
+     "tuna",
+     "rice"
+    ],
+    "why": "The Saturday curry for the whole street, and onigiri for the volunteers.",
+    "delivery": "Friday evening, so the pot can start early."
+   },
+   "school": {
+    "name": "the island school",
+    "contact": "the head teacher",
+    "lines": [
+     "milk",
+     "tissues"
+    ],
+    "why": "School milk, and tissues every hay-fever season.",
+    "delivery": "First thing on Mondays, by the school gate."
+   },
+   "clinic": {
+    "name": "the clinic",
+    "contact": "the clinic nurse",
+    "lines": [
+     "tissues",
+     "soap",
+     "water",
+     "peaches"
+    ],
+    "why": "Tissues and soap for the waiting room, water for patients, and tinned peaches for anyone kept in overnight.",
+    "delivery": "Whenever the clinic telephones; it is never urgent and always is."
+   }
+  },
+  "higa-saketen": {
+   "market": {
+    "name": "Sakura Shōten",
+    "owner": "Thuan",
+    "lines": [
+     "Umineko lager, cases of cans"
+    ],
+    "why": "The beer column in Sakura’s cold cabinet, nearest the till.",
+    "delivery": "Saturday mornings: the Higas’ van, and Grandmother Higa counting the cases off herself."
+   },
+   "izakaya": {
+    "name": "Minato Izakaya",
+    "owner": "Thao",
+    "lines": [
+     "Umineko lager, kegs and bottles",
+     "awamori for the bottle keep",
+     "sake for warming",
+     "shōchū for the mixes"
+    ],
+    "why": "Everything behind Minato’s bar: the tap, the keep shelf, the tokkuri and the highballs.",
+    "delivery": "Kegs on Tuesdays and Fridays at two, rolled down the side passage before the noren goes up."
+   },
+   "ramen": {
+    "name": "Sato Ramen",
+    "owner": "Mrs Sato",
+    "lines": [
+     "Umineko lager, large bottles"
+    ],
+    "why": "A bottle with the gyōza, for the lunch crowd who are not going back to work.",
+    "delivery": "With the Minato order, one crate left at the back door."
+   },
+   "coral-bay-bar": {
+    "name": "the Coral Bay Bar on Kitano-jima",
+    "contact": "the beach bar keeper",
+    "lines": [
+     "Umineko lager, bottles on ice"
+    ],
+    "why": "Cold beer for the day-trippers on Coral Bay, the reason half the morning ferry carries towels.",
+    "delivery": "Ice boxes on the morning car ferry; the empties come back on the evening sailing."
+   },
+   "fumoto-co-op": {
+    "name": "the Fumoto co-op store",
+    "owner": "Grandmother Tokashiki",
+    "lines": [
+     "awamori, by the cup and the 180 ml bottle",
+     "Umineko lager, cases of bottles"
+    ],
+    "why": "A cup of awamori for the farmers on the way home, and the beer for the cane-cut party, which the store pays for.",
+    "delivery": "With the Wednesday van: Mr Tokashiki collects the Higa crates at the quay and takes back the empties from the porch."
+   },
+   "fujita-shed": {
+    "name": "Mr Fujita’s shed on the pier",
+    "contact": "Mr Fujita",
+    "lines": [
+     "Umineko lager, large bottles"
+    ],
+    "why": "Twenty-four to forty-nine large bottles a day, three small glasses a bottle, poured from the armchair in front of the television.",
+    "delivery": "Six every morning at the pier root: the day’s crates down, yesterday’s empties up off his floor. Returnable bottles, counted by Grandmother Higa."
+   }
+  },
+  "rainflower-florist": {
+   "market": {
+    "name": "Sakura Shōten",
+    "owner": "Thuan",
+    "lines": [
+     "seasonal window decorations",
+     "Tanabata bamboo",
+     "New Year shimenawa"
+    ],
+    "why": "Sakura’s windows follow the town calendar: the season’s dressing goes up the week before every festival.",
+    "delivery": "The Sunday before each festival, after closing; Mrs Kinjō dresses the window herself."
+   },
+   "izakaya": {
+    "name": "Minato Izakaya",
+    "owner": "Thao",
+    "lines": [
+     "paper lanterns",
+     "a vase of flowers for the counter"
+    ],
+    "why": "Fresh lanterns when the old ones fade, and one stem on the counter that Thao pretends not to care about.",
+    "delivery": "Flowers on Mondays; lanterns when the typhoon has had the last ones."
+   },
+   "mayor-office": {
+    "name": "the mayor’s office",
+    "owner": "Johansson",
+    "lines": [
+     "ceremony wreaths",
+     "festival bunting",
+     "a garland for the Merry Moose"
+    ],
+    "why": "Openings, prize days and the town’s festivals, and the moose is dressed for every one of them.",
+    "delivery": "The morning of each ceremony, carried up the Community Hall stairs."
+   },
+   "onsen": {
+    "name": "Umi-no-yu",
+    "owner": "Miss Higa",
+    "lines": [
+     "seasonal flowers for the bandai"
+    ],
+    "why": "A small vase on the bandai, changed with the season, the first thing a bather sees.",
+    "delivery": "Every other Saturday, before the bath opens."
+   },
+   "school": {
+    "name": "the island school",
+    "contact": "the head teacher",
+    "lines": [
+     "sports day bunting",
+     "graduation flowers"
+    ],
+    "why": "Sports day in the autumn and the graduation in March.",
+    "delivery": "The day before, with the children helping to carry."
+   }
+  },
+  "frontrow": {
+   "office": {
+    "name": "Johansson Harbour Office",
+    "owner": "Johansson",
+    "lines": [
+     "log books for tides and freight",
+     "A4 copy paper",
+     "carbon receipt books"
+    ],
+    "why": "The harbour’s records: tide tables, freight manifests and receipts for the ferry.",
+    "delivery": "Reiko drops it off on her way to the evening press."
+   },
+   "mayor-office": {
+    "name": "the mayor’s office",
+    "owner": "Johansson",
+    "lines": [
+     "A4 copy paper",
+     "envelopes",
+     "account ledgers",
+     "cellophane tape"
+    ],
+    "why": "Minutes, letters to the main island, the town accounts and the notice board.",
+    "delivery": "With the Monday paper round."
+   },
+   "school": {
+    "name": "the island school",
+    "contact": "the head teacher",
+    "lines": [
+     "exercise books",
+     "pencils",
+     "glue"
+    ],
+    "why": "A new term’s exercise books, and the glue that is always running out.",
+    "delivery": "The week before term, in boxes the children carry in."
+   },
+   "koban": {
+    "name": "Minato Police Station",
+    "owner": "Officer Mori",
+    "lines": [
+     "the incident book",
+     "ballpoint pens"
+    ],
+    "why": "The incident book has to be the right kind, and pens disappear from a police station.",
+    "delivery": "Officer Mori collects it himself."
+   },
+   "market": {
+    "name": "Sakura Shōten",
+    "owner": "Thuan",
+    "lines": [
+     "receipt rolls",
+     "account ledgers",
+     "price-gun labels"
+    ],
+    "why": "The till’s receipt rolls, Sakura’s own trade ledgers, and labels for the price gun.",
+    "delivery": "Whenever Thuan visits her sister."
+   }
+  }
+ },
+ "linesFor": {
+  "Barfly": [
+   "beer",
+   "noodles",
+   "chips"
+  ],
+  "Bus driver": [
+   "coffee",
+   "bun"
+  ],
+  "Chin": [
+   "rice",
+   "battery"
+  ],
+  "Emi Kado": [
+   "cola",
+   "sandwich",
+   "toothpaste",
+   "postcard"
+  ],
+  "Grandmother Higa": [
+   "tea",
+   "pudding",
+   "peaches",
+   "crackers"
+  ],
+  "Harbour master": [
+   "coffee",
+   "battery"
+  ],
+  "Haru": [
+   "water",
+   "yogurt",
+   "tuna",
+   "toothpaste"
+  ],
+  "Johansson": [
+   "beer",
+   "sandwich",
+   "toothpaste",
+   "notebook",
+   "postcard"
+  ],
+  "Jun": [
+   "orange",
+   "soda",
+   "chips",
+   "chocolate",
+   "candy"
+  ],
+  "Kōji": [
+   "cola",
+   "noodles",
+   "chips",
+   "bun"
+  ],
+  "Mina": [
+   "orange",
+   "soda",
+   "chocolate",
+   "candy"
+  ],
+  "Mr Shimabukuro": [
+   "bento"
+  ],
+  "Mr Tamaki": [
+   "bento",
+   "tuna"
+  ],
+  "Mr Toguchi": [
+   "coffee"
+  ],
+  "Mr Ōshiro": [
+   "soup",
+   "crackers"
+  ],
+  "Miss Higa": [
+   "milk",
+   "yogurt",
+   "peaches",
+   "detergent",
+   "soap"
+  ],
+  "Mrs Kinjō": [
+   "bread",
+   "soup",
+   "crackers",
+   "tissues"
+  ],
+  "Mrs Miyagi": [
+   "tea",
+   "yogurt",
+   "soy",
+   "soap"
+  ],
+  "Mrs Nakamura": [
+   "orange",
+   "bread",
+   "curry",
+   "detergent"
+  ],
+  "Mrs Sato": [
+   "curry",
+   "soy"
+  ],
+  "Mrs Yonamine": [
+   "milk",
+   "bread",
+   "curry",
+   "detergent"
+  ],
+  "Nhung": [
+   "pudding",
+   "biscuit",
+   "postcard"
+  ],
+  "Officer Mori": [
+   "water",
+   "rice",
+   "tissues",
+   "bun"
+  ],
+  "Postman Tōma": [
+   "coffee",
+   "rice"
+  ],
+  "Reiko": [
+   "sandwich",
+   "biscuit",
+   "tissues",
+   "notebook"
+  ],
+  "Riku": [
+   "water",
+   "cola",
+   "noodles"
+  ],
+  "Tetsuo": [
+   "beer",
+   "bento",
+   "battery"
+  ],
+  "Thao": [
+   "milk",
+   "soup",
+   "soy"
+  ],
+  "Thuan": [
+   "tea",
+   "rice",
+   "biscuit",
+   "soap"
+  ],
+  "Uncle Kinjō": [
+   "beer",
+   "tuna"
+  ],
+  "Vy": [
+   "soda",
+   "pudding",
+   "chocolate",
+   "candy",
+   "notebook",
+   "bun"
+  ]
+ },
+ "SHOP_STOCK": [
+  {
+   "id": "tea",
+   "jp": "Green tea",
+   "name": "Green tea",
+   "cost": 120,
+   "color": 6587227,
+   "text": "NAGI · Nagi\nA chilled bottle of green tea. Thuan keeps the oldest stock at the front.",
+   "brand": "NAGI",
+   "brandJp": "Nagi",
+   "capacity": 24,
+   "unitCost": 66
+  },
+  {
+   "id": "coffee",
+   "jp": "Canned coffee",
+   "name": "Canned coffee",
+   "cost": 120,
+   "color": 8475977,
+   "text": "PORT 88 · Port88\nA small can of coffee for the walk down to the harbour.",
+   "brand": "PORT 88",
+   "brandJp": "Port88",
+   "capacity": 24,
+   "unitCost": 66
+  },
+  {
+   "id": "rice",
+   "jp": "Onigiri",
+   "name": "Plum rice ball",
+   "cost": 110,
+   "color": 15655875,
+   "text": "SAKURA · Sakura knot\nRice, a little pickled plum and a strip of nori. Wrapped this afternoon.",
+   "brand": "SAKURA",
+   "brandJp": "Sakura knot",
+   "capacity": 24,
+   "unitCost": 61
+  },
+  {
+   "id": "biscuit",
+   "jp": "Biscuit",
+   "name": "Butter biscuits",
+   "cost": 100,
+   "color": 12686436,
+   "text": "KOMOREBI · Komorebi\nA paper packet of biscuits. The corner is folded closed with care.",
+   "brand": "KOMOREBI",
+   "brandJp": "Komorebi",
+   "capacity": 24,
+   "unitCost": 55
+  },
+  {
+   "id": "soap",
+   "jp": "Soap",
+   "name": "Sakura soap",
+   "cost": 90,
+   "color": 13142427,
+   "text": "HANAMORI · Hanamori\nA lightly scented bar wrapped in pale pink paper.",
+   "brand": "HANAMORI",
+   "brandJp": "Hanamori",
+   "capacity": 24,
+   "unitCost": 50
+  },
+  {
+   "id": "notebook",
+   "jp": "University Notes",
+   "name": "Pocket notebook",
+   "cost": 80,
+   "color": 8883346,
+   "text": "SHIOFUMI · Shiofumi\nRuled pages for tide times, errands and things you meant to remember.",
+   "brand": "SHIOFUMI",
+   "brandJp": "Shiofumi",
+   "capacity": 24,
+   "unitCost": 44
+  },
+  {
+   "id": "postcard",
+   "jp": "Postcard",
+   "name": "Harbour postcard",
+   "cost": 50,
+   "color": 7969445,
+   "text": "SHIOFUMI · Shiofumi\nA printed view of the old breakwater. Thuan knows the photographer.",
+   "brand": "SHIOFUMI",
+   "brandJp": "Shiofumi",
+   "capacity": 24,
+   "unitCost": 28
+  },
+  {
+   "id": "battery",
+   "jp": "Dry battery",
+   "name": "Radio batteries",
+   "cost": 180,
+   "color": 11565142,
+   "text": "HOSHIMARU · Hoshimaru\nTwo dry-cell batteries. Ask before fitting them to the shop radio.",
+   "brand": "HOSHIMARU",
+   "brandJp": "Hoshimaru",
+   "capacity": 24,
+   "unitCost": 99
+  },
+  {
+   "id": "cola",
+   "name": "Sea breeze cola",
+   "jp": "Cola",
+   "cost": 120,
+   "color": 11940401,
+   "text": "A small bottle of cola.",
+   "brand": "SHIOSAI",
+   "brandJp": "Shiosai",
+   "capacity": 24,
+   "unitCost": 66
+  },
+  {
+   "id": "water",
+   "name": "Spring water",
+   "jp": "Natural water",
+   "cost": 110,
+   "color": 9289665,
+   "text": "Water from the hills above the harbour.",
+   "brand": "MIZUNOWA",
+   "brandJp": "Mizunowa",
+   "capacity": 24,
+   "unitCost": 61
+  },
+  {
+   "id": "beer",
+   "name": "Umineko lager",
+   "jp": "Beer",
+   "cost": 220,
+   "color": 13216601,
+   "text": "A chilled can of the local fictional lager.",
+   "brand": "UMINEKO",
+   "brandJp": "Umineko",
+   "capacity": 24,
+   "unitCost": 121
+  },
+  {
+   "id": "noodles",
+   "name": "Instant shoyu noodles",
+   "jp": "Cup noodles",
+   "cost": 150,
+   "color": 14201966,
+   "text": "A sealed cup of noodles to take home.",
+   "brand": "YUNAGI",
+   "brandJp": "Yuunagi",
+   "capacity": 24,
+   "unitCost": 83
+  },
+  {
+   "id": "milk",
+   "name": "Asamori milk",
+   "jp": "Milk",
+   "cost": 110,
+   "color": 14411231,
+   "text": "A small carton of milk.",
+   "brand": "ASAMORI",
+   "brandJp": "Asamori",
+   "capacity": 24,
+   "unitCost": 61
+  },
+  {
+   "id": "chips",
+   "name": "Salted potato crisps",
+   "jp": "Potato chips",
+   "cost": 100,
+   "color": 15063484,
+   "text": "KOGANE · Salted potato crisps",
+   "brand": "KOGANE",
+   "brandJp": "Kogane",
+   "capacity": 24,
+   "unitCost": 55
+  },
+  {
+   "id": "crackers",
+   "name": "Soy rice crackers",
+   "jp": "Soy sauce cracker",
+   "cost": 110,
+   "color": 15063484,
+   "text": "HAMABE · Soy rice crackers",
+   "brand": "HAMABE",
+   "brandJp": "Hamabe",
+   "capacity": 24,
+   "unitCost": 61
+  },
+  {
+   "id": "chocolate",
+   "name": "Milk chocolate",
+   "jp": "Milk chocolate",
+   "cost": 100,
+   "color": 15063484,
+   "text": "TSUKINO · Milk chocolate",
+   "brand": "TSUKINO",
+   "brandJp": "Moon",
+   "capacity": 24,
+   "unitCost": 55
+  },
+  {
+   "id": "candy",
+   "name": "Fruit sweets",
+   "jp": "Fruit candy",
+   "cost": 90,
+   "color": 15063484,
+   "text": "MARUAME · Fruit sweets",
+   "brand": "MARUAME",
+   "brandJp": "Maruame",
+   "capacity": 24,
+   "unitCost": 50
+  },
+  {
+   "id": "curry",
+   "name": "Curry roux",
+   "jp": "Curry roux",
+   "cost": 180,
+   "color": 15063484,
+   "text": "HINODE · Curry roux",
+   "brand": "HINODE",
+   "brandJp": "Sunrise",
+   "capacity": 24,
+   "unitCost": 99
+  },
+  {
+   "id": "soy",
+   "name": "Soy sauce",
+   "jp": "Soy sauce",
+   "cost": 160,
+   "color": 15063484,
+   "text": "KAMEJIRUSHI · Soy sauce",
+   "brand": "KAMEJIRUSHI",
+   "brandJp": "Turtle",
+   "capacity": 24,
+   "unitCost": 88
+  },
+  {
+   "id": "soup",
+   "name": "Miso soup sachets",
+   "jp": "Miso soup",
+   "cost": 120,
+   "color": 15063484,
+   "text": "MISATO · Miso soup sachets",
+   "brand": "MISATO",
+   "brandJp": "Misato",
+   "capacity": 24,
+   "unitCost": 66
+  },
+  {
+   "id": "peaches",
+   "name": "Tinned peaches",
+   "jp": "White peach pickled in syrup",
+   "cost": 190,
+   "color": 15063484,
+   "text": "MOMOSATO · Tinned peaches",
+   "brand": "MOMOSATO",
+   "brandJp": "Momosato",
+   "capacity": 24,
+   "unitCost": 105
+  },
+  {
+   "id": "tuna",
+   "name": "Tinned tuna",
+   "jp": "Tuna flakes",
+   "cost": 160,
+   "color": 15063484,
+   "text": "SHIOHAMA · Tinned tuna",
+   "brand": "SHIOHAMA",
+   "brandJp": "Ushiohama",
+   "capacity": 24,
+   "unitCost": 88
+  },
+  {
+   "id": "detergent",
+   "name": "Laundry powder",
+   "jp": "Washing detergent",
+   "cost": 240,
+   "color": 15063484,
+   "text": "SUZUKAZE · Laundry powder",
+   "brand": "SUZUKAZE",
+   "brandJp": "Suzukaze",
+   "capacity": 24,
+   "unitCost": 132
+  },
+  {
+   "id": "tissues",
+   "name": "Facial tissues",
+   "jp": "Facial tissue",
+   "cost": 130,
+   "color": 15063484,
+   "text": "KOMACHI · Facial tissues",
+   "brand": "KOMACHI",
+   "brandJp": "Komachi",
+   "capacity": 24,
+   "unitCost": 72
+  },
+  {
+   "id": "toothpaste",
+   "name": "Mint toothpaste",
+   "jp": "Medicinal toothpaste",
+   "cost": 180,
+   "color": 15063484,
+   "text": "HAKUSEN · Mint toothpaste",
+   "brand": "HAKUSEN",
+   "brandJp": "White rice",
+   "capacity": 24,
+   "unitCost": 99
+  },
+  {
+   "id": "orange",
+   "name": "Mandarin juice",
+   "jp": "Orange juice",
+   "cost": 120,
+   "color": 15063484,
+   "text": "MIKANBI · Mandarin juice",
+   "brand": "MIKANBI",
+   "brandJp": "Orange day",
+   "capacity": 24,
+   "unitCost": 66
+  },
+  {
+   "id": "soda",
+   "name": "Ramune soda",
+   "jp": "Ramune",
+   "cost": 100,
+   "color": 15063484,
+   "text": "AOZORA · Ramune soda",
+   "brand": "AOZORA",
+   "brandJp": "Blue sky",
+   "capacity": 24,
+   "unitCost": 55
+  },
+  {
+   "id": "yogurt",
+   "name": "Plain yogurt",
+   "jp": "Plain yogurt",
+   "cost": 110,
+   "color": 15063484,
+   "text": "ASAMORI · Plain yogurt",
+   "brand": "ASAMORI",
+   "brandJp": "Asamori",
+   "capacity": 24,
+   "unitCost": 61
+  },
+  {
+   "id": "bread",
+   "name": "Milk bread",
+   "jp": "Milk bread",
+   "cost": 150,
+   "color": 15063484,
+   "text": "KOMUGI · Milk bread",
+   "brand": "KOMUGI",
+   "brandJp": "Komugi",
+   "capacity": 24,
+   "unitCost": 83
+  },
+  {
+   "id": "bento",
+   "name": "Makunouchi bento",
+   "jp": "Makunouchi bento",
+   "cost": 480,
+   "color": 15063484,
+   "text": "MINATOYA · Makunouchi bento",
+   "brand": "MINATOYA",
+   "brandJp": "Minatoya",
+   "capacity": 24,
+   "unitCost": 264
+  },
+  {
+   "id": "sandwich",
+   "name": "Egg sandwiches",
+   "jp": "Egg sandwich",
+   "cost": 230,
+   "color": 15063484,
+   "text": "KOMUGI · Egg sandwiches",
+   "brand": "KOMUGI",
+   "brandJp": "Komugi",
+   "capacity": 24,
+   "unitCost": 127
+  },
+  {
+   "id": "pudding",
+   "name": "Custard pudding",
+   "jp": "Custard Pudding",
+   "cost": 130,
+   "color": 15063484,
+   "text": "ASAMORI · Custard pudding",
+   "brand": "ASAMORI",
+   "brandJp": "Asamori",
+   "capacity": 24,
+   "unitCost": 72
+  },
+  {
+   "id": "bun",
+   "name": "Steamed pork bun",
+   "cost": 150,
+   "unitCost": 80,
+   "capacity": 12
+  }
+ ],
+ "shelfCapacity": {
+  "tea": 24,
+  "coffee": 24,
+  "rice": 24,
+  "biscuit": 24,
+  "soap": 24,
+  "notebook": 24,
+  "postcard": 24,
+  "battery": 24,
+  "cola": 24,
+  "water": 24,
+  "beer": 24,
+  "noodles": 24,
+  "milk": 24,
+  "stock": 24,
+  "buns": 24,
+  "shop": 24,
+  "chips": 24,
+  "crackers": 24,
+  "chocolate": 24,
+  "candy": 24,
+  "curry": 24,
+  "soy": 24,
+  "soup": 24,
+  "peaches": 24,
+  "tuna": 24,
+  "detergent": 24,
+  "tissues": 24,
+  "toothpaste": 24,
+  "orange": 24,
+  "soda": 24,
+  "yogurt": 24,
+  "bread": 24,
+  "bento": 24,
+  "sandwich": 24,
+  "pudding": 24,
+  "magazine-sea": 24,
+  "magazine-night": 24,
+  "magazine-rod": 24,
+  "newspaper": 24,
+  "bun": 12,
+  "nothing": 24
+ },
+ "VENDING_PRODUCTS": [
+  {
+   "id": "harbour-tea",
+   "brand": "HARBOUR TEA",
+   "subtitle": "Green tea",
+   "buttonLabel": "Harbour Tea · Green tea · ¥120",
+   "mark": "茶",
+   "color": "#366451",
+   "price": 120,
+   "inventoryName": "Green tea",
+   "container": "can",
+   "label": "Harbour Tea · Green tea · ¥120"
+  },
+  {
+   "id": "dockside-coffee",
+   "brand": "DOCKSIDE",
+   "subtitle": "Canned coffee",
+   "buttonLabel": "Dockside Coffee · ¥120",
+   "mark": "珈",
+   "color": "#784632",
+   "price": 120,
+   "inventoryName": "Canned coffee",
+   "container": "can",
+   "label": "Dockside Coffee · ¥120"
+  },
+  {
+   "id": "sanpin",
+   "brand": "SANPIN",
+   "subtitle": "Jasmine tea",
+   "mark": "花",
+   "color": "#c9a33a",
+   "price": 120,
+   "inventoryName": "Sanpin jasmine tea",
+   "container": "can",
+   "label": "Sanpin · Jasmine tea · ¥120"
+  },
+  {
+   "id": "shikuwasa",
+   "brand": "SHIKUWASA",
+   "subtitle": "Citrus soda",
+   "mark": "柑",
+   "color": "#7bb342",
+   "price": 120,
+   "inventoryName": "Shikuwasa soda",
+   "container": "can",
+   "label": "Shikuwasa · Citrus soda · ¥120"
+  },
+  {
+   "id": "ryukyu-cola",
+   "brand": "RYUKYU COLA",
+   "subtitle": "Cola",
+   "mark": "C",
+   "color": "#b3262e",
+   "price": 120,
+   "inventoryName": "Ryukyu cola",
+   "container": "can",
+   "label": "Ryukyu cola · Cola · ¥120"
+  },
+  {
+   "id": "j-coffee",
+   "brand": "J-COFFEE",
+   "subtitle": "Black coffee",
+   "mark": "J",
+   "color": "#141414",
+   "price": 120,
+   "inventoryName": "J-Coffee",
+   "container": "can",
+   "size": 350,
+   "who": "the quay crew, early and late; Fujita; Officer Mori on watch",
+   "why": "Strong and unsweetened, and a full 350 ml for ¥120: the working man’s can at the port.",
+   "label": "J-coffee · Black coffee · ¥120"
+  },
+  {
+   "id": "corn-soup",
+   "brand": "CORN SOUP",
+   "subtitle": "Hot · creamy",
+   "mark": "温",
+   "color": "#e8b030",
+   "price": 120,
+   "inventoryName": "Hot corn soup",
+   "container": "can",
+   "hot": true,
+   "label": "Corn soup · Hot · creamy (hot) · ¥120"
+  }
+ ],
+ "DRINKABLE": [
+  "Green tea",
+  "Canned coffee",
+  "Sanpin jasmine tea",
+  "Shikuwasa soda",
+  "Ryukyu cola",
+  "J-Coffee",
+  "Hot corn soup",
+  "Umineko lager"
+ ],
+ "canColour": {
+  "Green tea": 3564625,
+  "Canned coffee": 7882290,
+  "Sanpin jasmine tea": 13214522,
+  "Shikuwasa soda": 8106818,
+  "Ryukyu cola": 11740718,
+  "J-Coffee": 1315860,
+  "Hot corn soup": 15249456,
+  "Plum rice ball": 9532238,
+  "Butter biscuits": 9532238,
+  "Sakura soap": 9532238,
+  "Pocket notebook": 9532238,
+  "Harbour postcard": 9532238,
+  "Radio batteries": 9532238,
+  "Sea breeze cola": 9532238,
+  "Spring water": 9532238,
+  "Umineko lager": 2976666,
+  "Instant shoyu noodles": 9532238,
+  "Asamori milk": 9532238,
+  "Salted potato crisps": 9532238,
+  "Soy rice crackers": 9532238,
+  "Milk chocolate": 9532238,
+  "Fruit sweets": 9532238,
+  "Curry roux": 9532238,
+  "Soy sauce": 9532238,
+  "Miso soup sachets": 9532238,
+  "Tinned peaches": 9532238,
+  "Tinned tuna": 9532238,
+  "Laundry powder": 9532238,
+  "Facial tissues": 9532238,
+  "Mint toothpaste": 9532238,
+  "Mandarin juice": 9532238,
+  "Ramune soda": 9532238,
+  "Plain yogurt": 9532238,
+  "Milk bread": 9532238,
+  "Makunouchi bento": 9532238,
+  "Egg sandwiches": 9532238,
+  "Custard pudding": 9532238,
+  "Steamed pork bun": 9532238,
+  "Empty can": 9532238,
+  "A stranger's parcel": 9532238
+ },
+ "emptyFor": {
+  "Green tea": "Empty can",
+  "Canned coffee": "Empty can",
+  "Sanpin jasmine tea": "Empty can",
+  "Shikuwasa soda": "Empty can",
+  "Ryukyu cola": "Empty can",
+  "J-Coffee": "Empty can",
+  "Hot corn soup": "Empty can",
+  "Plum rice ball": "Empty can",
+  "Butter biscuits": "Empty can",
+  "Sakura soap": "Empty can",
+  "Pocket notebook": "Empty can",
+  "Harbour postcard": "Empty can",
+  "Radio batteries": "Empty can",
+  "Sea breeze cola": "Empty can",
+  "Spring water": "Empty can",
+  "Umineko lager": "Empty can",
+  "Instant shoyu noodles": "Empty can",
+  "Asamori milk": "Empty can",
+  "Salted potato crisps": "Empty can",
+  "Soy rice crackers": "Empty can",
+  "Milk chocolate": "Empty can",
+  "Fruit sweets": "Empty can",
+  "Curry roux": "Empty can",
+  "Soy sauce": "Empty can",
+  "Miso soup sachets": "Empty can",
+  "Tinned peaches": "Empty can",
+  "Tinned tuna": "Empty can",
+  "Laundry powder": "Empty can",
+  "Facial tissues": "Empty can",
+  "Mint toothpaste": "Empty can",
+  "Mandarin juice": "Empty can",
+  "Ramune soda": "Empty can",
+  "Plain yogurt": "Empty can",
+  "Milk bread": "Empty can",
+  "Makunouchi bento": "Empty can",
+  "Egg sandwiches": "Empty can",
+  "Custard pudding": "Empty can",
+  "Steamed pork bun": "Empty can",
+  "Empty can": "Empty can",
+  "A stranger's parcel": "Empty can"
+ },
+ "SAKURA_SHELVES": {
+  "noodles": {
+   "x": -3.6799999999999997,
+   "z": 0.6165,
+   "levels": [
+    0.3553,
+    0.6683
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    -2.88,
+    0,
+    0.6165
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 6,
+   "width": 1.85,
+   "fitting": "west"
+  },
+  "soup": {
+   "x": -3.6799999999999997,
+   "z": 0.6165,
+   "levels": [
+    0.9813
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    -2.88,
+    0,
+    0.6165
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 8,
+   "width": 1.85,
+   "fitting": "west"
+  },
+  "curry": {
+   "x": -3.6799999999999997,
+   "z": 0.6165,
+   "levels": [
+    1.2943
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    -2.88,
+    0,
+    0.6165
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 8,
+   "width": 1.85,
+   "fitting": "west"
+  },
+  "soy": {
+   "x": -4.42,
+   "z": 0.6165,
+   "levels": [
+    0.3553,
+    0.6683
+   ],
+   "yaw": 4.71238898038469,
+   "stand": [
+    -5.22,
+    0,
+    0.6165
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 6,
+   "width": 1.85,
+   "fitting": "west"
+  },
+  "tuna": {
+   "x": -4.42,
+   "z": 0.6165,
+   "levels": [
+    0.9813
+   ],
+   "yaw": 4.71238898038469,
+   "stand": [
+    -5.22,
+    0,
+    0.6165
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 8,
+   "width": 1.85,
+   "fitting": "west"
+  },
+  "peaches": {
+   "x": -4.42,
+   "z": 0.6165,
+   "levels": [
+    1.2943
+   ],
+   "yaw": 4.71238898038469,
+   "stand": [
+    -5.22,
+    0,
+    0.6165
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 8,
+   "width": 1.85,
+   "fitting": "west"
+  },
+  "crackers": {
+   "x": -1.1814999999999998,
+   "z": 0.33,
+   "levels": [
+    0.3553,
+    0.6683
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    -0.3815,
+    0,
+    0.33
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 6,
+   "width": 1.85,
+   "fitting": "middle"
+  },
+  "chips": {
+   "x": -1.1814999999999998,
+   "z": 0.33,
+   "levels": [
+    0.9813
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    -0.3815,
+    0,
+    0.33
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 8,
+   "width": 1.85,
+   "fitting": "middle"
+  },
+  "biscuit": {
+   "x": -1.1814999999999998,
+   "z": 0.33,
+   "levels": [
+    1.2943
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    -0.3815,
+    0,
+    0.33
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 8,
+   "width": 1.85,
+   "fitting": "middle"
+  },
+  "candy": {
+   "x": -1.9215,
+   "z": 0.33,
+   "levels": [
+    0.3553,
+    0.6683
+   ],
+   "yaw": 4.71238898038469,
+   "stand": [
+    -2.7215,
+    0,
+    0.33
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 6,
+   "width": 1.85,
+   "fitting": "middle"
+  },
+  "chocolate": {
+   "x": -1.9215,
+   "z": 0.33,
+   "levels": [
+    0.9813,
+    1.2943
+   ],
+   "yaw": 4.71238898038469,
+   "stand": [
+    -2.7215,
+    0,
+    0.33
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 6,
+   "width": 1.85,
+   "fitting": "middle"
+  },
+  "detergent": {
+   "x": 1.9184999999999999,
+   "z": 0.875,
+   "levels": [
+    0.3553,
+    0.6683
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    2.7185,
+    0,
+    0.875
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 6,
+   "width": 1.55,
+   "fitting": "east"
+  },
+  "soap": {
+   "x": 1.9184999999999999,
+   "z": 0.875,
+   "levels": [
+    0.9813,
+    1.2943
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    2.7185,
+    0,
+    0.875
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 6,
+   "width": 1.55,
+   "fitting": "east"
+  },
+  "tissues": {
+   "x": 1.9184999999999999,
+   "z": -0.775,
+   "levels": [
+    0.3553,
+    0.6683
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    2.7185,
+    0,
+    -0.775
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 6,
+   "width": 1.55,
+   "fitting": "east"
+  },
+  "toothpaste": {
+   "x": 1.9184999999999999,
+   "z": -0.775,
+   "levels": [
+    0.9813,
+    1.2943
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    2.7185,
+    0,
+    -0.775
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 6,
+   "width": 1.55,
+   "fitting": "east"
+  },
+  "battery": {
+   "x": 1.1785,
+   "z": 0.875,
+   "levels": [
+    0.3553,
+    0.6683
+   ],
+   "yaw": 4.71238898038469,
+   "stand": [
+    0.3785,
+    0,
+    0.875
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 6,
+   "width": 1.55,
+   "fitting": "east"
+  },
+  "notebook": {
+   "x": 1.1785,
+   "z": 0.875,
+   "levels": [
+    0.9813,
+    1.2943
+   ],
+   "yaw": 4.71238898038469,
+   "stand": [
+    0.3785,
+    0,
+    0.875
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 6,
+   "width": 1.55,
+   "fitting": "east"
+  },
+  "postcard": {
+   "x": 1.1785,
+   "z": -0.775,
+   "levels": [
+    0.3553,
+    0.6683,
+    0.9813,
+    1.2943
+   ],
+   "yaw": 4.71238898038469,
+   "stand": [
+    0.3785,
+    0,
+    -0.775
+   ],
+   "spacing": 0.23,
+   "depth": 0.12,
+   "columns": 6,
+   "width": 1.55,
+   "fitting": "east"
+  },
+  "tea": {
+   "x": -1.6,
+   "z": -3.48,
+   "levels": [
+    0.34,
+    0.7,
+    1.06
+   ],
+   "yaw": 0,
+   "stand": [
+    -1.6,
+    0,
+    -2.66
+   ],
+   "spacing": 0.19,
+   "depth": 0.12,
+   "columns": 4,
+   "fridge": 0,
+   "width": 1.2,
+   "fitting": "fridge"
+  },
+  "coffee": {
+   "x": -1.6,
+   "z": -3.48,
+   "levels": [
+    1.42,
+    1.78
+   ],
+   "yaw": 0,
+   "stand": [
+    -1.6,
+    0,
+    -2.66
+   ],
+   "spacing": 0.19,
+   "depth": 0.12,
+   "columns": 6,
+   "fridge": 0,
+   "width": 1.2,
+   "fitting": "fridge"
+  },
+  "water": {
+   "x": -0.27,
+   "z": -3.48,
+   "levels": [
+    0.34,
+    0.7,
+    1.06
+   ],
+   "yaw": 0,
+   "stand": [
+    -0.27,
+    0,
+    -2.66
+   ],
+   "spacing": 0.19,
+   "depth": 0.12,
+   "columns": 4,
+   "fridge": 1,
+   "width": 1.2,
+   "fitting": "fridge"
+  },
+  "orange": {
+   "x": -0.27,
+   "z": -3.48,
+   "levels": [
+    1.42,
+    1.78
+   ],
+   "yaw": 0,
+   "stand": [
+    -0.27,
+    0,
+    -2.66
+   ],
+   "spacing": 0.19,
+   "depth": 0.12,
+   "columns": 6,
+   "fridge": 1,
+   "width": 1.2,
+   "fitting": "fridge"
+  },
+  "cola": {
+   "x": 1.06,
+   "z": -3.48,
+   "levels": [
+    0.34,
+    0.7,
+    1.06
+   ],
+   "yaw": 0,
+   "stand": [
+    1.06,
+    0,
+    -2.66
+   ],
+   "spacing": 0.19,
+   "depth": 0.12,
+   "columns": 4,
+   "fridge": 2,
+   "width": 1.2,
+   "fitting": "fridge"
+  },
+  "soda": {
+   "x": 1.06,
+   "z": -3.48,
+   "levels": [
+    1.42,
+    1.78
+   ],
+   "yaw": 0,
+   "stand": [
+    1.06,
+    0,
+    -2.66
+   ],
+   "spacing": 0.19,
+   "depth": 0.12,
+   "columns": 6,
+   "fridge": 2,
+   "width": 1.2,
+   "fitting": "fridge"
+  },
+  "milk": {
+   "x": 2.39,
+   "z": -3.48,
+   "levels": [
+    0.34,
+    0.7
+   ],
+   "yaw": 0,
+   "stand": [
+    2.39,
+    0,
+    -2.66
+   ],
+   "spacing": 0.19,
+   "depth": 0.12,
+   "columns": 6,
+   "fridge": 3,
+   "width": 1.2,
+   "fitting": "fridge"
+  },
+  "beer": {
+   "x": 2.39,
+   "z": -3.48,
+   "levels": [
+    1.06,
+    1.42,
+    1.78
+   ],
+   "yaw": 0,
+   "stand": [
+    2.39,
+    0,
+    -2.66
+   ],
+   "spacing": 0.19,
+   "depth": 0.12,
+   "columns": 4,
+   "fridge": 3,
+   "width": 1.2,
+   "fitting": "fridge"
+  },
+  "rice": {
+   "x": -6.48,
+   "z": -0.93,
+   "levels": [
+    1.1,
+    1.44
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    -5.38,
+    0,
+    -0.93
+   ],
+   "spacing": 0.2,
+   "depth": 0.13,
+   "columns": 6,
+   "width": 1.25,
+   "fitting": "chiller"
+  },
+  "bento": {
+   "x": -6.4,
+   "z": -0.93,
+   "levels": [
+    0.42,
+    0.76
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    -5.38,
+    0,
+    -0.93
+   ],
+   "spacing": 0.2,
+   "depth": 0.13,
+   "columns": 6,
+   "width": 1.25,
+   "fitting": "chiller"
+  },
+  "sandwich": {
+   "x": -6.48,
+   "z": 0.43,
+   "levels": [
+    1.1,
+    1.44
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    -5.38,
+    0,
+    0.43
+   ],
+   "spacing": 0.2,
+   "depth": 0.13,
+   "columns": 6,
+   "width": 1.25,
+   "fitting": "chiller"
+  },
+  "bread": {
+   "x": -6.4,
+   "z": 0.43,
+   "levels": [
+    0.42,
+    0.76
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    -5.38,
+    0,
+    0.43
+   ],
+   "spacing": 0.2,
+   "depth": 0.13,
+   "columns": 6,
+   "width": 1.25,
+   "fitting": "chiller"
+  },
+  "pudding": {
+   "x": -6.48,
+   "z": 1.79,
+   "levels": [
+    1.1,
+    1.44
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    -5.38,
+    0,
+    1.79
+   ],
+   "spacing": 0.2,
+   "depth": 0.13,
+   "columns": 6,
+   "width": 1.25,
+   "fitting": "chiller"
+  },
+  "yogurt": {
+   "x": -6.4,
+   "z": 1.79,
+   "levels": [
+    0.42,
+    0.76
+   ],
+   "yaw": 1.5707963267948966,
+   "stand": [
+    -5.38,
+    0,
+    1.79
+   ],
+   "spacing": 0.2,
+   "depth": 0.13,
+   "columns": 6,
+   "width": 1.25,
+   "fitting": "chiller"
+  },
+  "bun": {
+   "x": 4.8,
+   "z": 2.45,
+   "levels": [
+    0.81,
+    1.01
+   ],
+   "columns": 3,
+   "yaw": -1.5707963267948966,
+   "stand": [
+    4.05,
+    0,
+    2.45
+   ],
+   "spacing": 0.15,
+   "depth": 0.11,
+   "fitting": "steamer"
+  }
+ },
+ "SAKURA_DRESSING": [
+  {
+   "id": "delivery",
+   "template": "stock",
+   "levels": [
+    0.088,
+    0.357,
+    0.67,
+    0.983,
+    1.296
+   ],
+   "x": -5.165,
+   "z": -2.28,
+   "yaw": 0,
+   "columns": 5,
+   "rows": 1,
+   "spacing": 0.365,
+   "depth": 0.25,
+   "look": [
+    -5.165,
+    1.44,
+    -2.09
+   ],
+   "title": "Look over the delivery shelf",
+   "text": "Cartons off the morning van, waiting to be priced up and put out. Thuan works down them after closing."
+  },
+  {
+   "id": "promotion",
+   "template": "curry",
+   "island": "middle",
+   "levels": [
+    0.202,
+    0.334,
+    0.805,
+    0.937
+   ],
+   "x": -1.5265,
+   "z": -0.95,
+   "yaw": 3.141592653589793,
+   "columns": 5,
+   "rows": 1,
+   "spacing": 0.18,
+   "depth": 0.05,
+   "look": [
+    -1.5265,
+    1.08,
+    -1.14
+   ],
+   "title": "Read the end-cap promotion",
+   "text": "Hinode Curry Roux — the month’s offer, stacked at the end of the aisle with a hand-lettered card."
+  },
+  {
+   "id": "ramen-week",
+   "template": "noodles",
+   "levels": [
+    0.35,
+    0.82
+   ],
+   "x": -4.05,
+   "z": 1.8,
+   "yaw": 0,
+   "columns": 5,
+   "rows": 2,
+   "spacing": 0.18,
+   "depth": 0.15,
+   "look": [
+    -4.05,
+    1.3,
+    2.3
+   ],
+   "title": "Read the ramen-week card",
+   "text": "Ramen week: any two YUNAGI cups for ¥280. Thuan has written underneath, in smaller letters, that the kettle by the till is for customers."
+  },
+  {
+   "id": "new-crisps",
+   "template": "chips",
+   "levels": [
+    0.35,
+    0.82
+   ],
+   "x": -1.55,
+   "z": 1.54,
+   "yaw": 0,
+   "columns": 5,
+   "rows": 2,
+   "spacing": 0.18,
+   "depth": 0.12,
+   "look": [
+    -1.55,
+    1.3,
+    2
+   ],
+   "title": "Read the new-release card",
+   "text": "New: KOGANE lightly salted. Jaga-bō on the bag, Jaga-bō on the card, Jaga-bō by the window. The rep is very proud of him."
+  }
+ ],
+ "packagingSlot": {
+  "tea": 0,
+  "coffee": 1,
+  "rice": 2,
+  "biscuit": 3,
+  "soap": 4,
+  "notebook": 5,
+  "postcard": 6,
+  "battery": 7,
+  "cola": 8,
+  "water": 9,
+  "beer": 10,
+  "noodles": 11,
+  "milk": 12,
+  "stock": 13,
+  "buns": 14,
+  "shop": 15,
+  "chips": 16,
+  "crackers": 17,
+  "chocolate": 18,
+  "candy": 19,
+  "curry": 20,
+  "soy": 21,
+  "soup": 22,
+  "peaches": 23,
+  "tuna": 24,
+  "detergent": 25,
+  "tissues": 26,
+  "toothpaste": 27,
+  "orange": 28,
+  "soda": 29,
+  "yogurt": 30,
+  "bread": 31,
+  "bento": 32,
+  "sandwich": 33,
+  "pudding": 34,
+  "magazine-sea": 35,
+  "magazine-night": 36,
+  "magazine-rod": 37,
+  "newspaper": 38,
+  "bun": 14,
+  "nothing": null
+ },
+ "priceSlot": {
+  "tea": 39,
+  "coffee": 40,
+  "rice": 41,
+  "biscuit": 42,
+  "soap": 43,
+  "notebook": 44,
+  "postcard": 45,
+  "battery": 46,
+  "cola": 47,
+  "water": 48,
+  "beer": 49,
+  "noodles": 50,
+  "milk": 51,
+  "stock": null,
+  "buns": null,
+  "shop": null,
+  "chips": 52,
+  "crackers": 53,
+  "chocolate": 54,
+  "candy": 55,
+  "curry": 56,
+  "soy": 57,
+  "soup": 58,
+  "peaches": 59,
+  "tuna": 60,
+  "detergent": 61,
+  "tissues": 62,
+  "toothpaste": 63,
+  "orange": 64,
+  "soda": 65,
+  "yogurt": 66,
+  "bread": 67,
+  "bento": 68,
+  "sandwich": 69,
+  "pudding": 70,
+  "magazine-sea": null,
+  "magazine-night": null,
+  "magazine-rod": null,
+  "newspaper": null,
+  "bun": null
+ },
+ "flavourShift": {
+  "tea": [
+   [
+    0,
+    0
+   ],
+   [
+    0.75,
+    -0.2
+   ],
+   [
+    0.875,
+    -0.2
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "coffee": [
+   [
+    0,
+    0
+   ],
+   [
+    0.5,
+    -0.3
+   ],
+   [
+    0.625,
+    -0.3
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "rice": [
+   [
+    0,
+    0
+   ],
+   [
+    0.375,
+    -0.45
+   ],
+   [
+    0.5,
+    -0.45
+   ],
+   [
+    0.625,
+    -0.45
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "biscuit": [
+   [
+    0,
+    0
+   ],
+   [
+    0.25,
+    -0.05
+   ],
+   [
+    0.375,
+    -0.05
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "soap": [
+   [
+    0,
+    0
+   ],
+   [
+    0.5,
+    -0.5
+   ],
+   [
+    0.625,
+    -0.5
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "notebook": [
+   [
+    0,
+    0
+   ],
+   [
+    0.5,
+    -0.55
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "postcard": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "battery": [
+   [
+    0,
+    0
+   ],
+   [
+    0.125,
+    -0.55
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "cola": [
+   [
+    0,
+    0
+   ],
+   [
+    0.625,
+    -0.15
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "water": [
+   [
+    0,
+    0
+   ],
+   [
+    0.375,
+    -0.15
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "beer": [
+   [
+    0,
+    0
+   ],
+   [
+    0.625,
+    -0.2
+   ],
+   [
+    0.25,
+    -0.25
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "noodles": [
+   [
+    0,
+    0
+   ],
+   [
+    0.5,
+    0
+   ],
+   [
+    0.125,
+    -0.05
+   ],
+   [
+    0.25,
+    -0.05
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "milk": [
+   [
+    0,
+    0
+   ],
+   [
+    0.625,
+    -0.2
+   ],
+   [
+    0.75,
+    -0.2
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "stock": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "buns": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "shop": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "chips": [
+   [
+    0,
+    0
+   ],
+   [
+    0.5,
+    0.2
+   ],
+   [
+    0.625,
+    0.2
+   ],
+   [
+    0.75,
+    0.2
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "crackers": [
+   [
+    0,
+    0
+   ],
+   [
+    0.75,
+    0.2
+   ],
+   [
+    0.375,
+    0.15
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "chocolate": [
+   [
+    0,
+    0
+   ],
+   [
+    0.375,
+    0.1
+   ],
+   [
+    0.5,
+    0.1
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "candy": [
+   [
+    0,
+    0
+   ],
+   [
+    0.5,
+    0.15
+   ],
+   [
+    0.125,
+    0.1
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "curry": [
+   [
+    0,
+    0
+   ],
+   [
+    0.5,
+    0.05
+   ],
+   [
+    0.625,
+    0.05
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "soy": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "soup": [
+   [
+    0,
+    0
+   ],
+   [
+    0.5,
+    0.1
+   ],
+   [
+    0.625,
+    0.1
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "peaches": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "tuna": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "detergent": [
+   [
+    0,
+    0
+   ],
+   [
+    0.75,
+    -0.2
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "tissues": [
+   [
+    0,
+    0
+   ],
+   [
+    0.5,
+    -0.25
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "toothpaste": [
+   [
+    0,
+    0
+   ],
+   [
+    0.5,
+    -0.25
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "orange": [
+   [
+    0,
+    0
+   ],
+   [
+    0.75,
+    0.1
+   ],
+   [
+    0.875,
+    0.1
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "soda": [
+   [
+    0,
+    0
+   ],
+   [
+    0.375,
+    0.05
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "yogurt": [
+   [
+    0,
+    0
+   ],
+   [
+    0.625,
+    0
+   ],
+   [
+    0.25,
+    -0.05
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "bread": [
+   [
+    0,
+    0
+   ],
+   [
+    0.5,
+    -0.05
+   ],
+   [
+    0.125,
+    -0.1
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "bento": [
+   [
+    0,
+    0
+   ],
+   [
+    0.75,
+    -0.1
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "sandwich": [
+   [
+    0,
+    0
+   ],
+   [
+    0.375,
+    -0.1
+   ],
+   [
+    0.5,
+    -0.1
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "pudding": [
+   [
+    0,
+    0
+   ],
+   [
+    0.375,
+    0
+   ],
+   [
+    0.5,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "magazine-sea": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "magazine-night": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "magazine-rod": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "newspaper": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "bun": [
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ]
+ },
+ "ROUND": [
+  "beer",
+  "coffee",
+  "cola",
+  "noodles",
+  "orange",
+  "peaches",
+  "pudding",
+  "soda",
+  "soy",
+  "tea",
+  "tuna",
+  "water",
+  "yogurt"
+ ],
+ "TOP_PRINTED": [
+  "bento",
+  "newspaper"
+ ],
+ "geometry": {
+  "tea": {
+   "shelf": [
+    "6699e82790c011c704411407e10d1c5f08f3f18ba53487e49a8dd4ed335ee346",
+    "19d71605fece1ac33dd04ef17fabc8a6cd634f96a58e307039d08cbf0e4ceded"
+   ],
+   "closeUp": [
+    "2d054fdb236347eabb96ff9daf7f698defc6a486addde4ddf3cc23f8458a8cb9",
+    "732c71c741e6f09f31d5be50ef88ecd295b8e8135b37ad0173b4689bdfa0d33d"
+   ],
+   "bounds": [
+    -0.04698969051241875,
+    1.7881393032936899e-9,
+    -0.04600000008940697,
+    0.04698969051241875,
+    0.2630000114440918,
+    0.04699999839067459
+   ],
+   "food": [
+    "6699e82790c011c704411407e10d1c5f08f3f18ba53487e49a8dd4ed335ee346",
+    "19d71605fece1ac33dd04ef17fabc8a6cd634f96a58e307039d08cbf0e4ceded",
+    null
+   ]
+  },
+  "coffee": {
+   "shelf": [
+    "51ac89707e5cb06cb27023bee3283a9f2be6909ae1d6b90281a65eba9635288c",
+    "e1afd840cbde6ee6772988733bbee5fdf440bfdc6eefd0644eac9d10f461ee2e"
+   ],
+   "closeUp": [
+    "ca7446c61602445adb4687884c5bbcbef4fef0f5309e80a86eee338e1747307a",
+    "ec029b8bac6456a3f53da29f49be506d9e374d6def94fabd53ed87b7ba262a51"
+   ],
+   "bounds": [
+    -0.048500001430511475,
+    -2.607703289414509e-11,
+    -0.048500001430511475,
+    0.048500001430511475,
+    0.13699999451637268,
+    0.048500001430511475
+   ],
+   "food": [
+    "70acdb9c3e4fe388dcc22b02e3d0b3fa01d3731c69a9b9cb467363f9c916c51a",
+    "6f754cc88c348b816ae2121d1f973b866350fa0420e3935a7d79913a54d60613",
+    null
+   ]
+  },
+  "rice": {
+   "shelf": [
+    "3ef99ab99cb190eb6d28fc5dfd24b51cc328af58b605d8dee7476500c418b65e",
+    "490cf06038b88f6dc3bfa1efeaf189c8dcf9ed373444f8faa15b8e53fc055ef2"
+   ],
+   "closeUp": [
+    "3ef99ab99cb190eb6d28fc5dfd24b51cc328af58b605d8dee7476500c418b65e",
+    "490cf06038b88f6dc3bfa1efeaf189c8dcf9ed373444f8faa15b8e53fc055ef2"
+   ],
+   "bounds": [
+    -0.07500000298023224,
+    1.3411045607369942e-9,
+    -0.04600000008940697,
+    0.07500000298023224,
+    0.12250000238418579,
+    0.04600000008940697
+   ],
+   "food": [
+    "75b99fab690a4f2c8bae2061b35691bbdbfad9e5284b48c143d912ac8903b69a",
+    "e2666d38bf72f919bf165bb34f951f0a37f6e855f028e02e48bfb8b7a140d421",
+    "dade4d296e11a0429224208a2d193e49f179f63d935a48acc9212d0e585db5cd"
+   ]
+  },
+  "biscuit": {
+   "shelf": [
+    "cd4e718c74bb60153f7dfbdd5db2bca099e038b176e1e5686d931d9a0c69a7ed",
+    "d727389d99a5330f5e9a826cec5f236414d499c6fdf44350c4061459433b4820"
+   ],
+   "closeUp": [
+    "cd4e718c74bb60153f7dfbdd5db2bca099e038b176e1e5686d931d9a0c69a7ed",
+    "d727389d99a5330f5e9a826cec5f236414d499c6fdf44350c4061459433b4820"
+   ],
+   "bounds": [
+    -0.09000000357627869,
+    5.9604643443123e-10,
+    -0.03849999979138374,
+    0.09000000357627869,
+    0.2199999988079071,
+    0.03849999979138374
+   ],
+   "food": [
+    "cd4e718c74bb60153f7dfbdd5db2bca099e038b176e1e5686d931d9a0c69a7ed",
+    "d727389d99a5330f5e9a826cec5f236414d499c6fdf44350c4061459433b4820",
+    null
+   ]
+  },
+  "soap": {
+   "shelf": [
+    "9c72557746e60dbd435999b040301ed3fc5bf9523cdb5968aa34aa6c6911e1bd",
+    "969b340503353a0811cb17e606407248252e1f72632b6a006a62634d71f3255f"
+   ],
+   "closeUp": [
+    "9c72557746e60dbd435999b040301ed3fc5bf9523cdb5968aa34aa6c6911e1bd",
+    "969b340503353a0811cb17e606407248252e1f72632b6a006a62634d71f3255f"
+   ],
+   "bounds": [
+    -0.07000000029802322,
+    8.940696516468449e-10,
+    -0.035999998450279236,
+    0.07000000029802322,
+    0.07999999821186066,
+    0.035999998450279236
+   ],
+   "food": [
+    "9c72557746e60dbd435999b040301ed3fc5bf9523cdb5968aa34aa6c6911e1bd",
+    "969b340503353a0811cb17e606407248252e1f72632b6a006a62634d71f3255f",
+    null
+   ]
+  },
+  "notebook": {
+   "shelf": [
+    "708ce2089a801e4ad7b43661a6a66364317cd0566816d8af2365001108b4c220",
+    "ede213695fc7fca4986bae1f44ba1170eb17a7d0adf6c7622ffc3e7828da8866"
+   ],
+   "closeUp": [
+    "708ce2089a801e4ad7b43661a6a66364317cd0566816d8af2365001108b4c220",
+    "ede213695fc7fca4986bae1f44ba1170eb17a7d0adf6c7622ffc3e7828da8866"
+   ],
+   "bounds": [
+    -0.07500000298023224,
+    1.1205673056124965e-9,
+    -0.013500000350177288,
+    0.07500000298023224,
+    0.18000000715255737,
+    0.013500000350177288
+   ],
+   "food": [
+    "708ce2089a801e4ad7b43661a6a66364317cd0566816d8af2365001108b4c220",
+    "ede213695fc7fca4986bae1f44ba1170eb17a7d0adf6c7622ffc3e7828da8866",
+    null
+   ]
+  },
+  "postcard": {
+   "shelf": [
+    "ad6e6afa1cba2603caf00a0af6da666d32657e3acdea2890b6195a1cb33b11f1",
+    "ff62c408f434e1109cc84d126a83834762ee1b820147ec6a1a20a8c21b8265c5"
+   ],
+   "closeUp": [
+    "ad6e6afa1cba2603caf00a0af6da666d32657e3acdea2890b6195a1cb33b11f1",
+    "ff62c408f434e1109cc84d126a83834762ee1b820147ec6a1a20a8c21b8265c5"
+   ],
+   "bounds": [
+    -0.07500000298023224,
+    1.1205673056124965e-9,
+    -0.013500000350177288,
+    0.07500000298023224,
+    0.18000000715255737,
+    0.013500000350177288
+   ],
+   "food": [
+    "ad6e6afa1cba2603caf00a0af6da666d32657e3acdea2890b6195a1cb33b11f1",
+    "ff62c408f434e1109cc84d126a83834762ee1b820147ec6a1a20a8c21b8265c5",
+    null
+   ]
+  },
+  "battery": {
+   "shelf": [
+    "9448074dd17f6d2cbce060d5e08cd01d7dffbd8c4757d8e65cabca48023d5d04",
+    "96d79c87a25b5c347e551ccaf70c62d6d107b97c1a71170cf2816ed14f0f21bb"
+   ],
+   "closeUp": [
+    "9448074dd17f6d2cbce060d5e08cd01d7dffbd8c4757d8e65cabca48023d5d04",
+    "96d79c87a25b5c347e551ccaf70c62d6d107b97c1a71170cf2816ed14f0f21bb"
+   ],
+   "bounds": [
+    -0.05249999836087227,
+    -2.9802322831784522e-9,
+    -0.01600000075995922,
+    0.05249999836087227,
+    0.15000000596046448,
+    0.01600000075995922
+   ],
+   "food": [
+    "9448074dd17f6d2cbce060d5e08cd01d7dffbd8c4757d8e65cabca48023d5d04",
+    "96d79c87a25b5c347e551ccaf70c62d6d107b97c1a71170cf2816ed14f0f21bb",
+    null
+   ]
+  },
+  "cola": {
+   "shelf": [
+    "b62be7c265a2ef6c0be4f094d5b899bd8dffcae5671c1e3c20675cceac620ed5",
+    "617fc0d6e19ae5644122024c4a7ef53849652490e1e34bf3710ac73fbb567a2c"
+   ],
+   "closeUp": [
+    "18bbab3ce8b3371e76cbeb69f0e855c1884ce96598a72729bdadb7e873cfccbd",
+    "16516876b57e3da362dfbb96331851e5cd7a757e4109332b1b687090820f45fa"
+   ],
+   "bounds": [
+    -0.04698969051241875,
+    1.7881393032936899e-9,
+    -0.04600000008940697,
+    0.04698969051241875,
+    0.2630000114440918,
+    0.04699999839067459
+   ],
+   "food": [
+    "b62be7c265a2ef6c0be4f094d5b899bd8dffcae5671c1e3c20675cceac620ed5",
+    "617fc0d6e19ae5644122024c4a7ef53849652490e1e34bf3710ac73fbb567a2c",
+    null
+   ]
+  },
+  "water": {
+   "shelf": [
+    "d14bffa9c0f58b4ecb49524bb07390466b71d386f1f5ad8d1ff67e59d79babc3",
+    "a46f9ff5c0303064b94cfb9199f5dc42c9549c6a064f3bc775bc43b1ef5b82d3"
+   ],
+   "closeUp": [
+    "9ac92acd69ed768ef073ecde0f527a29ccf9fedad5b971d85b051164f695762d",
+    "bfe361ab545645934f13cf16a2da773fba8f0e2db8bab15be642f503b9f714ba"
+   ],
+   "bounds": [
+    -0.04698969051241875,
+    1.7881393032936899e-9,
+    -0.04600000008940697,
+    0.04698969051241875,
+    0.2630000114440918,
+    0.04699999839067459
+   ],
+   "food": [
+    "d14bffa9c0f58b4ecb49524bb07390466b71d386f1f5ad8d1ff67e59d79babc3",
+    "a46f9ff5c0303064b94cfb9199f5dc42c9549c6a064f3bc775bc43b1ef5b82d3",
+    null
+   ]
+  },
+  "beer": {
+   "shelf": [
+    "ed14f7e20b2a44b62e41d75278f184af1b7ff59a1e95ff1bda2d46f050b922c8",
+    "c6d22aa2e211443468333e5664634394e7b44be625f194a1328de0da84c45089"
+   ],
+   "closeUp": [
+    "841eaf647a3878924c52d16a842fa1a2865d09522ffd834302a884170d3fde42",
+    "142347b04c6cd27250277e8cee9936d944c60bbdb2cc0a2bf82c23b3a84a6c4a"
+   ],
+   "bounds": [
+    -0.048500001430511475,
+    -2.607703289414509e-11,
+    -0.048500001430511475,
+    0.048500001430511475,
+    0.13699999451637268,
+    0.048500001430511475
+   ],
+   "food": [
+    "0ddce46036071465ff5c4745fac0da4c6e493bc27fd39693ca545c982e25031a",
+    "297e6c5b0cb8b8160b869c5f51b4cdb0176fb9d6125870cb87e7ba3ff742fb30",
+    null
+   ]
+  },
+  "noodles": {
+   "shelf": [
+    "40c43da9133eb5ae3e31ee276fc20c4e26958c53ef98bfdfea79fd27284e529b",
+    "f7ffd6235699457c51f8b26cc2a0bce4ed40c09f3cd92e71dee1afa243dfda75"
+   ],
+   "closeUp": [
+    "2bcdc082c4b9ef5d2c6674dec0aba8eff8c20f11e5ca9830be6ce312c28367d6",
+    "676420e07590a89eadefb63aec8239a2ceef7580fe03ded52c346ac0e42bdbe1"
+   ],
+   "bounds": [
+    -0.07100000232458115,
+    2.38418573772492e-9,
+    -0.07100000232458115,
+    0.07100000232458115,
+    0.13449999690055847,
+    0.07100000232458115
+   ],
+   "food": [
+    "c93a29da26eb543dea4bad3af46961f6eca8ad94532c5929cd6e02307cc515b4",
+    "fb03bf096170a2e882a46e2a0ac698b9e355d83813b42d75f5ca39c3bcc60cfc",
+    null
+   ]
+  },
+  "milk": {
+   "shelf": [
+    "86dd2ba350ee47e9d1abb277b6f89770b15aad73e9e452b0102bcc04566d4e8e",
+    "5a63f03da6c29730149eb67aa3d5cdeb73f828e10512a2e577574ddd44eeaffb"
+   ],
+   "closeUp": [
+    "86dd2ba350ee47e9d1abb277b6f89770b15aad73e9e452b0102bcc04566d4e8e",
+    "5a63f03da6c29730149eb67aa3d5cdeb73f828e10512a2e577574ddd44eeaffb"
+   ],
+   "bounds": [
+    -0.04666904732584953,
+    -5.364417798858767e-10,
+    -0.04749999940395355,
+    0.04666904732584953,
+    0.2434999942779541,
+    0.04749999940395355
+   ],
+   "food": [
+    "86dd2ba350ee47e9d1abb277b6f89770b15aad73e9e452b0102bcc04566d4e8e",
+    "5a63f03da6c29730149eb67aa3d5cdeb73f828e10512a2e577574ddd44eeaffb",
+    null
+   ]
+  },
+  "stock": {
+   "shelf": [
+    "034a6f11500ec695f5bebdcfb304a366d676f4e6f78452ea86065704a8177d10",
+    "4b1e361b1c0cbd923b134236cb38a9d02755c0d1c0761d7a068a17d530028b05"
+   ],
+   "closeUp": [
+    "034a6f11500ec695f5bebdcfb304a366d676f4e6f78452ea86065704a8177d10",
+    "4b1e361b1c0cbd923b134236cb38a9d02755c0d1c0761d7a068a17d530028b05"
+   ],
+   "bounds": [
+    -0.1599999964237213,
+    5.9604643443123e-10,
+    -0.12600000202655792,
+    0.1599999964237213,
+    0.2199999988079071,
+    0.12600000202655792
+   ]
+  },
+  "buns": {
+   "shelf": [
+    "6b1aae15933ef31303bc35275df6533419181cb55f365c50b70aa9dcebe5582f",
+    "643c8e28a60b508e05365207e43a50296dc6922841cff68d910d579f0b1ecfaf"
+   ],
+   "closeUp": [
+    "6b1aae15933ef31303bc35275df6533419181cb55f365c50b70aa9dcebe5582f",
+    "643c8e28a60b508e05365207e43a50296dc6922841cff68d910d579f0b1ecfaf"
+   ],
+   "bounds": [
+    -0.07500000298023224,
+    -3.5762786065873797e-9,
+    -0.013500000350177288,
+    0.07500000298023224,
+    0.18000000715255737,
+    0.013500000350177288
+   ]
+  },
+  "shop": {
+   "shelf": [
+    "05c4e528b61218b831b96ed787b629b4529034960a77468db56d6b19fc0d6c75",
+    "30f916ccda83e836e5caf76273579f44b59377bc9e53ce9bcea860bf0e6f6af9"
+   ],
+   "closeUp": [
+    "05c4e528b61218b831b96ed787b629b4529034960a77468db56d6b19fc0d6c75",
+    "30f916ccda83e836e5caf76273579f44b59377bc9e53ce9bcea860bf0e6f6af9"
+   ],
+   "bounds": [
+    -0.07500000298023224,
+    -3.5762786065873797e-9,
+    -0.013500000350177288,
+    0.07500000298023224,
+    0.18000000715255737,
+    0.013500000350177288
+   ]
+  },
+  "chips": {
+   "shelf": [
+    "839fbac22a128d3514bde571a4637b24f79c281953150da62b4dc73ee4fc14d7",
+    "6c76d796587e3a9937fc73d5ff5b571167d7ac58df1a2166a555cac1394fc6d9"
+   ],
+   "closeUp": [
+    "839fbac22a128d3514bde571a4637b24f79c281953150da62b4dc73ee4fc14d7",
+    "6c76d796587e3a9937fc73d5ff5b571167d7ac58df1a2166a555cac1394fc6d9"
+   ],
+   "bounds": [
+    -0.07999999821186066,
+    5.9604643443123e-10,
+    -0.035999998450279236,
+    0.07999999821186066,
+    0.2224999964237213,
+    0.035999998450279236
+   ],
+   "food": [
+    "839fbac22a128d3514bde571a4637b24f79c281953150da62b4dc73ee4fc14d7",
+    "6c76d796587e3a9937fc73d5ff5b571167d7ac58df1a2166a555cac1394fc6d9",
+    null
+   ]
+  },
+  "crackers": {
+   "shelf": [
+    "d43caac7e659738feeae9790bd9df1024cef692f16dac34ed8b5e9bf1d3b5edf",
+    "8e27139a2ec911dc925750635bb320980a79a74edf98937e3463ec7d8a1e88a3"
+   ],
+   "closeUp": [
+    "d43caac7e659738feeae9790bd9df1024cef692f16dac34ed8b5e9bf1d3b5edf",
+    "8e27139a2ec911dc925750635bb320980a79a74edf98937e3463ec7d8a1e88a3"
+   ],
+   "bounds": [
+    -0.07999999821186066,
+    5.9604643443123e-10,
+    -0.035999998450279236,
+    0.07999999821186066,
+    0.2224999964237213,
+    0.035999998450279236
+   ],
+   "food": [
+    "d43caac7e659738feeae9790bd9df1024cef692f16dac34ed8b5e9bf1d3b5edf",
+    "8e27139a2ec911dc925750635bb320980a79a74edf98937e3463ec7d8a1e88a3",
+    null
+   ]
+  },
+  "chocolate": {
+   "shelf": [
+    "7a610cb03ef4898e804434b4142ae54260da65879e9cf9e307842a7f4a2c8eaf",
+    "141f10c606fcb7938d3d1d7e18d06a41574631890bc533ca55c3b9d477df1c55"
+   ],
+   "closeUp": [
+    "7a610cb03ef4898e804434b4142ae54260da65879e9cf9e307842a7f4a2c8eaf",
+    "141f10c606fcb7938d3d1d7e18d06a41574631890bc533ca55c3b9d477df1c55"
+   ],
+   "bounds": [
+    -0.08500000089406967,
+    -7.450580707946131e-10,
+    -0.009999999776482582,
+    0.08500000089406967,
+    0.10000000149011612,
+    0.009999999776482582
+   ],
+   "food": [
+    "7a610cb03ef4898e804434b4142ae54260da65879e9cf9e307842a7f4a2c8eaf",
+    "141f10c606fcb7938d3d1d7e18d06a41574631890bc533ca55c3b9d477df1c55",
+    null
+   ]
+  },
+  "candy": {
+   "shelf": [
+    "1ddeb7d8253d0ca3546a6d6f29c862923a46f46e9330a1deb19d9374aa1bc5ff",
+    "b774079e6691cc0d037705198ac4ab87584d0c27fc565e29b5ad76d1539cb820"
+   ],
+   "closeUp": [
+    "1ddeb7d8253d0ca3546a6d6f29c862923a46f46e9330a1deb19d9374aa1bc5ff",
+    "b774079e6691cc0d037705198ac4ab87584d0c27fc565e29b5ad76d1539cb820"
+   ],
+   "bounds": [
+    -0.07999999821186066,
+    5.9604643443123e-10,
+    -0.035999998450279236,
+    0.07999999821186066,
+    0.2224999964237213,
+    0.035999998450279236
+   ],
+   "food": [
+    "1ddeb7d8253d0ca3546a6d6f29c862923a46f46e9330a1deb19d9374aa1bc5ff",
+    "b774079e6691cc0d037705198ac4ab87584d0c27fc565e29b5ad76d1539cb820",
+    null
+   ]
+  },
+  "curry": {
+   "shelf": [
+    "83d95e2c0d137dfc83a91aa5c6fd1683e801907b048cc17d5ddd6da4a2cbff17",
+    "c820e529258eadca94e86e06102a176cd2a24624c351534110888077198b9a86"
+   ],
+   "closeUp": [
+    "83d95e2c0d137dfc83a91aa5c6fd1683e801907b048cc17d5ddd6da4a2cbff17",
+    "c820e529258eadca94e86e06102a176cd2a24624c351534110888077198b9a86"
+   ],
+   "bounds": [
+    -0.07999999821186066,
+    2.38418573772492e-9,
+    -0.023499999195337296,
+    0.07999999821186066,
+    0.12999999523162842,
+    0.023499999195337296
+   ],
+   "food": [
+    "83d95e2c0d137dfc83a91aa5c6fd1683e801907b048cc17d5ddd6da4a2cbff17",
+    "c820e529258eadca94e86e06102a176cd2a24624c351534110888077198b9a86",
+    null
+   ]
+  },
+  "soy": {
+   "shelf": [
+    "25d624ff488bf228b8513a31562331b0266f7635e720a9c9f9c559d3b5f498e8",
+    "b773012b3b727cceac6108411e15acbcc35686877a6163c1b68006ca75fc3875"
+   ],
+   "closeUp": [
+    "ee111ef70ac426fec3f2ba2018e9cf6d1e8ee777f33a9f9cbcc900e7ee47ab45",
+    "c92892e712b808fa2c05498d1f3bacd0b671ba18a063e5f16b00a04f809fb800"
+   ],
+   "bounds": [
+    -0.04698969051241875,
+    1.7881393032936899e-9,
+    -0.04600000008940697,
+    0.04698969051241875,
+    0.2630000114440918,
+    0.04699999839067459
+   ],
+   "food": [
+    "25d624ff488bf228b8513a31562331b0266f7635e720a9c9f9c559d3b5f498e8",
+    "b773012b3b727cceac6108411e15acbcc35686877a6163c1b68006ca75fc3875",
+    null
+   ]
+  },
+  "soup": {
+   "shelf": [
+    "d4a825a3f9c45461c9d6b0718709edbb66e6bdbdc8c597cdbd6b62e024ccd412",
+    "c21b57c772dc0552dc9f68c60c9960f373a6edcf479f54f7d636bc5aebde2c50"
+   ],
+   "closeUp": [
+    "d4a825a3f9c45461c9d6b0718709edbb66e6bdbdc8c597cdbd6b62e024ccd412",
+    "c21b57c772dc0552dc9f68c60c9960f373a6edcf479f54f7d636bc5aebde2c50"
+   ],
+   "bounds": [
+    -0.07000000029802322,
+    -8.940696516468449e-10,
+    -0.026000000536441803,
+    0.07000000029802322,
+    0.17000000178813934,
+    0.026000000536441803
+   ],
+   "food": [
+    "d4a825a3f9c45461c9d6b0718709edbb66e6bdbdc8c597cdbd6b62e024ccd412",
+    "c21b57c772dc0552dc9f68c60c9960f373a6edcf479f54f7d636bc5aebde2c50",
+    null
+   ]
+  },
+  "peaches": {
+   "shelf": [
+    "10c9a64d20ed33b8bc39c92eb651c94fc14e976b26f115b9bf4eb7a010640d72",
+    "e2128a454f1759a51d604a144737ac71896f408bd68f7467704498da71a8e0b5"
+   ],
+   "closeUp": [
+    "639933dbef9f0dbd3aa3d16f0c4bb6fdb0d06c6090efee36c78d9bb8930af446",
+    "53fe32561fdfc883392b5816219b83c923d5411ea7bf4e05c467cc5acafac2ac"
+   ],
+   "bounds": [
+    -0.054499998688697815,
+    -2.607703289414509e-11,
+    -0.054499998688697815,
+    0.054499998688697815,
+    0.09700000286102295,
+    0.054499998688697815
+   ],
+   "food": [
+    "10c9a64d20ed33b8bc39c92eb651c94fc14e976b26f115b9bf4eb7a010640d72",
+    "e2128a454f1759a51d604a144737ac71896f408bd68f7467704498da71a8e0b5",
+    null
+   ]
+  },
+  "tuna": {
+   "shelf": [
+    "c040d6e327b310179ebe35a7039e160bc80b9d7c53a10ce7b366352b4780b644",
+    "035f0b3ed134d890515a907ebca51bfd726784dde8390cb886e882706cf5855c"
+   ],
+   "closeUp": [
+    "8da530cb8793720d69c7057aa5c2b8e5a5fc6a10d01642dc83849e08f70a3c5d",
+    "93f1514feccdc551a14794ef7fc4d4834138efa4dd8269b2617d1d9547522391"
+   ],
+   "bounds": [
+    -0.05249999836087227,
+    -2.607703289414509e-11,
+    -0.05249999836087227,
+    0.05249999836087227,
+    0.04800000041723251,
+    0.05249999836087227
+   ],
+   "food": [
+    "c040d6e327b310179ebe35a7039e160bc80b9d7c53a10ce7b366352b4780b644",
+    "035f0b3ed134d890515a907ebca51bfd726784dde8390cb886e882706cf5855c",
+    null
+   ]
+  },
+  "detergent": {
+   "shelf": [
+    "4d2d0f0ef82762ea529f9616a7bea7d3920b34a0059cc941d07989e68a81b529",
+    "c6128ca777aad0ede2a6fcef186b415b0be617c31ae83d70785c827cc9dbc93a"
+   ],
+   "closeUp": [
+    "4d2d0f0ef82762ea529f9616a7bea7d3920b34a0059cc941d07989e68a81b529",
+    "c6128ca777aad0ede2a6fcef186b415b0be617c31ae83d70785c827cc9dbc93a"
+   ],
+   "bounds": [
+    -0.09000000357627869,
+    2.38418573772492e-9,
+    -0.048500001430511475,
+    0.09000000357627869,
+    0.2549999952316284,
+    0.048500001430511475
+   ],
+   "food": [
+    "4d2d0f0ef82762ea529f9616a7bea7d3920b34a0059cc941d07989e68a81b529",
+    "c6128ca777aad0ede2a6fcef186b415b0be617c31ae83d70785c827cc9dbc93a",
+    null
+   ]
+  },
+  "tissues": {
+   "shelf": [
+    "1dbc547b7683826755691e0f3cac31f57520ec87b484a23d37a094c3dfdac7ee",
+    "bdbcff99f87be69f0a08eb2526b985203aa5d6bec45f5d9d0eda769511bc8bb7"
+   ],
+   "closeUp": [
+    "1dbc547b7683826755691e0f3cac31f57520ec87b484a23d37a094c3dfdac7ee",
+    "bdbcff99f87be69f0a08eb2526b985203aa5d6bec45f5d9d0eda769511bc8bb7"
+   ],
+   "bounds": [
+    -0.10999999940395355,
+    -1.4901161415892261e-9,
+    -0.0560000017285347,
+    0.10999999940395355,
+    0.07720000296831131,
+    0.0560000017285347
+   ],
+   "food": [
+    "1dbc547b7683826755691e0f3cac31f57520ec87b484a23d37a094c3dfdac7ee",
+    "bdbcff99f87be69f0a08eb2526b985203aa5d6bec45f5d9d0eda769511bc8bb7",
+    null
+   ]
+  },
+  "toothpaste": {
+   "shelf": [
+    "b783cb948e4476f05dc70448d64f34aa8338fb6359e45f281b6cff21acc28370",
+    "55717770c222d3d53bb4d89f6c9832878c56b7165d4415e2e561c2fba97bcb5f"
+   ],
+   "closeUp": [
+    "b783cb948e4476f05dc70448d64f34aa8338fb6359e45f281b6cff21acc28370",
+    "55717770c222d3d53bb4d89f6c9832878c56b7165d4415e2e561c2fba97bcb5f"
+   ],
+   "bounds": [
+    -0.10249999910593033,
+    -3.7252903539730653e-10,
+    -0.023499999195337296,
+    0.10249999910593033,
+    0.05000000074505806,
+    0.023499999195337296
+   ],
+   "food": [
+    "b783cb948e4476f05dc70448d64f34aa8338fb6359e45f281b6cff21acc28370",
+    "55717770c222d3d53bb4d89f6c9832878c56b7165d4415e2e561c2fba97bcb5f",
+    null
+   ]
+  },
+  "orange": {
+   "shelf": [
+    "bf54d13cd35af0c1f25759a98723026814c1bd6f54ddf0a1634a9daee1a57119",
+    "bd35c5bdaa293bdb242118ed160eb8d90c88aa0c1f5cf408df2481610df9fc84"
+   ],
+   "closeUp": [
+    "f18e5c7fc1dbae5669b85b7de3496b2fd2487e2b13dad238ca5e3346c097f87f",
+    "2a75a4a49b8f80a40ba5c50d4f0e061e658f2cbcd43e572dc3a74f5ff17cf348"
+   ],
+   "bounds": [
+    -0.04698969051241875,
+    1.7881393032936899e-9,
+    -0.04600000008940697,
+    0.04698969051241875,
+    0.2630000114440918,
+    0.04699999839067459
+   ],
+   "food": [
+    "bf54d13cd35af0c1f25759a98723026814c1bd6f54ddf0a1634a9daee1a57119",
+    "bd35c5bdaa293bdb242118ed160eb8d90c88aa0c1f5cf408df2481610df9fc84",
+    null
+   ]
+  },
+  "soda": {
+   "shelf": [
+    "9ed7e828656c784ec40bbfa864f12e279ceec82beb5474f6926f4953b3e1b573",
+    "24dc2fab34fd7083b333200e3c262fa214e1be10e6da5dc982f2dafb9c5154b2"
+   ],
+   "closeUp": [
+    "8d25e5ca6a42f5a1a9d0bb00ccbb675aad2d3929b57ae5e22701e6b4589d4671",
+    "b2cb2d49f9614fe0601a6f20a80d0535504a5b623f2e7cab08268057d2ab7cf2"
+   ],
+   "bounds": [
+    -0.03799166530370712,
+    1.7881393032936899e-9,
+    -0.03700000047683716,
+    0.03799166530370712,
+    0.2630000114440918,
+    0.03799999877810478
+   ],
+   "food": [
+    "9ed7e828656c784ec40bbfa864f12e279ceec82beb5474f6926f4953b3e1b573",
+    "24dc2fab34fd7083b333200e3c262fa214e1be10e6da5dc982f2dafb9c5154b2",
+    null
+   ]
+  },
+  "yogurt": {
+   "shelf": [
+    "0c61ec61b8162612f48b6d26797337cc8caa65491b129b4141fc91693843f956",
+    "9eeec72d7a04b5f6558d3cdf65c3694511b230ec6e92401d543537a759a5bec0"
+   ],
+   "closeUp": [
+    "6f8594f6fb9a12834ead1413b89686e66b10aa0f07dd77b3d6de9bfa7a55b440",
+    "27961e5c7b6f50f78e9cc8a7dfec5fea7f47a4cf648ddf51dbd59927173dc722"
+   ],
+   "bounds": [
+    -0.050999999046325684,
+    -8.046627253399663e-10,
+    -0.050999999046325684,
+    0.050999999046325684,
+    0.08250000327825546,
+    0.050999999046325684
+   ],
+   "food": [
+    "b18ae2e01b9e0bf729a4d33dc0c5ff5ba004e6b06e3149622daaa2c31037292e",
+    "efe6b4a6ac8ed7f5685d5b044bb37ebdbcca480e4e43df306fb0dc828593bf13",
+    "c46ad8eb644f0db3ce97c26840ede961665e0f74d38de024211f45995186d656"
+   ]
+  },
+  "bread": {
+   "shelf": [
+    "379f82b457da9d58bf8eb4df0f4497ae509df0cca27ba01a8ce6909260a990f6",
+    "0f7060755fd4f9026568f8c922f5e74f7708ee2a034734215d15bd9692d932cd"
+   ],
+   "closeUp": [
+    "379f82b457da9d58bf8eb4df0f4497ae509df0cca27ba01a8ce6909260a990f6",
+    "0f7060755fd4f9026568f8c922f5e74f7708ee2a034734215d15bd9692d932cd"
+   ],
+   "bounds": [
+    -0.0949999988079071,
+    2.98023217215615e-10,
+    -0.061000000685453415,
+    0.0949999988079071,
+    0.23749999701976776,
+    0.061000000685453415
+   ],
+   "food": [
+    "379f82b457da9d58bf8eb4df0f4497ae509df0cca27ba01a8ce6909260a990f6",
+    "0f7060755fd4f9026568f8c922f5e74f7708ee2a034734215d15bd9692d932cd",
+    null
+   ]
+  },
+  "bento": {
+   "shelf": [
+    "efafaab3799049232ec64cdab80c669b261fcc6f7d18faa3a6c79638511bbf75",
+    "fa6cf0ef3ff2ef6fc7fb79078d07fe3fe4685bbde94129e6f3214cf062e6f017"
+   ],
+   "closeUp": [
+    "efafaab3799049232ec64cdab80c669b261fcc6f7d18faa3a6c79638511bbf75",
+    "fa6cf0ef3ff2ef6fc7fb79078d07fe3fe4685bbde94129e6f3214cf062e6f017"
+   ],
+   "bounds": [
+    -0.09700000286102295,
+    1.88946719381633e-10,
+    -0.06949999928474426,
+    0.09700000286102295,
+    0.0560000017285347,
+    0.06949999928474426
+   ],
+   "food": [
+    "850eebf8507b13127faf88fd3558a45a9833393a58743ff033ce2723ac084e54",
+    "ba1b738e1c41cf94baa159e77a87be638a5a7894d9b6ed7eb1d9d33abfc7d459",
+    "c871ceb4013901f9b097c88a4ccdcc3b23c7497d90e4b4afe29d6a89c478db05"
+   ]
+  },
+  "sandwich": {
+   "shelf": [
+    "e548151d77fb78467f7c16454ab39454b5c9f41892128d25004c2dd27dc09403",
+    "ffe08e78232b48706c0478d318cffca60df99029e0d7343458ef8828c8c78b98"
+   ],
+   "closeUp": [
+    "e548151d77fb78467f7c16454ab39454b5c9f41892128d25004c2dd27dc09403",
+    "ffe08e78232b48706c0478d318cffca60df99029e0d7343458ef8828c8c78b98"
+   ],
+   "bounds": [
+    -0.07101408392190933,
+    0.009839998558163643,
+    -0.027000000700354576,
+    0.07101408392190933,
+    0.13284000754356384,
+    0.027000000700354576
+   ],
+   "food": [
+    "b4a90efd1951de7532dad2dd3b227e5bf4ee1301594fb4e0366246a8835f9423",
+    "67f2fbc235660b8ba2e4efc1c50054e8b8b56919f97799987bc964bac5451fbb",
+    "ee856f666001b3284ce25a90d91277c2e8f2bed68322c97d6c2ccb769586b167"
+   ]
+  },
+  "pudding": {
+   "shelf": [
+    "703855879718d1b8ebbace3609d756825ce0592333ae5ee1649e34db9c790a68",
+    "bf90bf81c51e81fbaeb4ee594aa315bd827637c45fd37e0c5c7f21ff745e8dcd"
+   ],
+   "closeUp": [
+    "51f27fce7e3c828df5a5cce505b2639ae4a93c2e8adca581c6493ff547975966",
+    "81814d8f3ed3042139a7f90bb31fecae7d662cf6373bbd20ea8708aff5f99cb2"
+   ],
+   "bounds": [
+    -0.04100000113248825,
+    5.066395081243513e-10,
+    -0.04100000113248825,
+    0.04100000113248825,
+    0.06499999761581421,
+    0.04100000113248825
+   ],
+   "food": [
+    "3d789d58a96143069458886e63ae6f37bf966e1bced02ffd19cbdbcc2bd804ba",
+    "f5f5470c1fe3abfda63c1e4a0aa779a53d6c1529f065d10e82829e13499e6c80",
+    "c20a0a0eb4c346463d339a175b336082a83fe5bc3fe65a7a4e1db69ab414b74c"
+   ]
+  },
+  "magazine-sea": {
+   "shelf": [
+    "bd868946797f017f5ad391d95d7b81833622840676cd6b4cb8b9c3843edc706c",
+    "bd0ec7585a74a3677145c6cceade4e33afc70d5fb6b0c5b3b5f76be68129824b"
+   ],
+   "closeUp": [
+    "bd868946797f017f5ad391d95d7b81833622840676cd6b4cb8b9c3843edc706c",
+    "bd0ec7585a74a3677145c6cceade4e33afc70d5fb6b0c5b3b5f76be68129824b"
+   ],
+   "bounds": [
+    -0.10499999672174454,
+    -2.38418573772492e-9,
+    -0.007499999832361937,
+    0.10499999672174454,
+    0.24500000476837158,
+    0.007499999832361937
+   ]
+  },
+  "magazine-night": {
+   "shelf": [
+    "a68fccf8fcacf7e481303367074a7a710330530f61d6c70b524581e3a63631d0",
+    "5ef75bb2d623877e071aa4477be16e2a699f91db75bb6459a006479378e90cfc"
+   ],
+   "closeUp": [
+    "a68fccf8fcacf7e481303367074a7a710330530f61d6c70b524581e3a63631d0",
+    "5ef75bb2d623877e071aa4477be16e2a699f91db75bb6459a006479378e90cfc"
+   ],
+   "bounds": [
+    -0.10499999672174454,
+    -2.38418573772492e-9,
+    -0.007499999832361937,
+    0.10499999672174454,
+    0.24500000476837158,
+    0.007499999832361937
+   ]
+  },
+  "magazine-rod": {
+   "shelf": [
+    "690171d498964313b73074d6e39188248e76505339d1f92583bbb3cd1e45166e",
+    "0d748a0f05b72bdefa6b073c77d9cca05b508683f420e7a32c61044ed6de98db"
+   ],
+   "closeUp": [
+    "690171d498964313b73074d6e39188248e76505339d1f92583bbb3cd1e45166e",
+    "0d748a0f05b72bdefa6b073c77d9cca05b508683f420e7a32c61044ed6de98db"
+   ],
+   "bounds": [
+    -0.10499999672174454,
+    -2.38418573772492e-9,
+    -0.007499999832361937,
+    0.10499999672174454,
+    0.24500000476837158,
+    0.007499999832361937
+   ]
+  },
+  "newspaper": {
+   "shelf": [
+    "ad592bf106c47d913dbb7a51249267ca82e17d06b3b60c2580b27186a957ad27",
+    "d12baf795b26be310314dbed41447b107ae6046ed05ac8ff3f6abd77527aeb16"
+   ],
+   "closeUp": [
+    "ad592bf106c47d913dbb7a51249267ca82e17d06b3b60c2580b27186a957ad27",
+    "d12baf795b26be310314dbed41447b107ae6046ed05ac8ff3f6abd77527aeb16"
+   ],
+   "bounds": [
+    -0.14249999821186066,
+    1.4156102678963833e-10,
+    -0.10249999910593033,
+    0.14249999821186066,
+    0.02199999988079071,
+    0.10249999910593033
+   ]
+  },
+  "bun": {
+   "shelf": [
+    "25e369feed9c3350c48ab2e00a3524e9d4660a386ecec7ee94c13abefdb1d0d8",
+    "d5dd5e00fb6f36b8c41807ce62ac5c336723ee50b4853685a7eb9fc843c12d15"
+   ],
+   "closeUp": [
+    "25e369feed9c3350c48ab2e00a3524e9d4660a386ecec7ee94c13abefdb1d0d8",
+    "d5dd5e00fb6f36b8c41807ce62ac5c336723ee50b4853685a7eb9fc843c12d15"
+   ],
+   "bounds": [
+    -0.07500000298023224,
+    1.3411045607369942e-9,
+    -0.04600000008940697,
+    0.07500000298023224,
+    0.12250000238418579,
+    0.04600000008940697
+   ],
+   "food": [
+    "1a940fa3dce3a8fc72bdd4e5683a705b1ce884d112402d53e4c758f1fc3c0cdb",
+    "5277fc1f833e358d476237c54d70f77f124e161e554366efba2ab3b5919afd28",
+    null
+   ]
+  }
+ }
+}

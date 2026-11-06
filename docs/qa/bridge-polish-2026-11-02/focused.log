@@ -1,0 +1,18 @@
+✔ healthy native Blender asset has three bounded meshes and a complete separate return (40.30146ms)
+✔ actual ferry retains all navigation lights and existing floor/collision layout (492.878087ms)
+✔ real GLB replaces fallback once, while failed loading preserves visible equipment (699.881506ms)
+✔ wiper dimensions use actual vertical fore windows and solid upper frame (4.595154ms)
+✔ full 80-degree stroke: both arms remain linked; blade stays vertical and outside glass (76.568998ms)
+✔ wet powered wipes, power loss holds, dry powered self-parks without a pose jump (10.192429ms)
+✔ native GLB has same four articulated part meshes as the Blender-derived fallback (68.768418ms)
+✔ lazy native replacement keeps current pivots, linkage pose, and shared GPU buffers (193.425366ms)
+✔ bridge follows heading and each engine order without changing the plant (531.852357ms)
+✔ CRT aperture, helm and chart are visible equipment in the actual model (454.51893ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2122.521488

@@ -1,0 +1,78 @@
+{
+  "gameCommit": "ab31811c3e4376b90f03a52cb53a9fb1dcad4b0f",
+  "kind": "Isolated production geometry under diagnostic lighting; not the game renderer or physical iPhone",
+  "views": [
+    {
+      "name": "01-exterior",
+      "routine": "watching",
+      "resident": [
+        -36.1,
+        0.02,
+        -57.28
+      ],
+      "drawCalls": 140
+    },
+    {
+      "name": "02-stern",
+      "routine": "watching",
+      "resident": [
+        -36.1,
+        0.02,
+        -57.28
+      ],
+      "drawCalls": 139
+    },
+    {
+      "name": "03-sofa-sleep-side",
+      "routine": "sleeping",
+      "resident": [
+        -41.13,
+        0.85,
+        -57.15
+      ],
+      "drawCalls": 81
+    },
+    {
+      "name": "04-sofa-sleep-overhead",
+      "routine": "sleeping",
+      "resident": [
+        -41.13,
+        0.85,
+        -57.15
+      ],
+      "drawCalls": 60
+    },
+    {
+      "name": "05-sofa-sleep-close",
+      "routine": "sleeping",
+      "resident": [
+        -41.13,
+        0.85,
+        -57.15
+      ],
+      "drawCalls": 33
+    },
+    {
+      "name": "06-cabin-aisle",
+      "routine": "sleeping",
+      "resident": [
+        -41.13,
+        0.85,
+        -57.15
+      ],
+      "drawCalls": 44
+    },
+    {
+      "name": "07-open-futon-cabinet",
+      "routine": "sleeping",
+      "resident": [
+        -41.13,
+        0.85,
+        -57.15
+      ],
+      "drawCalls": 25
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

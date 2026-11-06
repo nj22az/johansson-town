@@ -1,0 +1,260 @@
+{
+  "about": "The blog's rubber-stamp pictures, one per article, shot in Minato by tools/minato-stamp-shoot.mjs. Ship frames: x across (+ port), y above the keel (engine-room floor plates at 0.9 m, bridge deck 10 m), z from the stern.",
+  "shots": [
+    {
+      "name": "blog-harbour",
+      "article": "/blog/",
+      "view": "harbour/wide",
+      "time": "17:40",
+      "note": "The blog's header: the harbour with the Minato Maru alongside at dusk",
+      "alt": "Minato's harbour at dusk, printed as a rubber stamp from Johansson World."
+    },
+    {
+      "name": "blog-harbour-ferry",
+      "article": null,
+      "near": {
+        "pos": [
+          26,
+          10,
+          46
+        ],
+        "at": [
+          0,
+          2,
+          -4
+        ]
+      },
+      "time": "17:40",
+      "note": "The blog header option: the Minato Maru alongside the quay at dusk, from across the harbour (not used: the camera stood over a roof)",
+      "alt": "The Minato Maru alongside the quay at dusk, printed as a rubber stamp from Johansson World."
+    },
+    {
+      "name": "torn-poster",
+      "article": "the-torn-poster",
+      "view": "sakura-street/wide",
+      "time": "15:00",
+      "note": "Sakura Shōten's front, where Thuận's sale poster hangs",
+      "alt": "Sakura Shōten on Minato's main street, printed as a rubber stamp.",
+      "caption": "Sakura Shōten, where Thuận's sale poster hangs, in Johansson World.",
+      "place": false
+    },
+    {
+      "name": "navigation-light",
+      "article": "lanternan-som-lyser-svagt",
+      "near": {
+        "pos": [
+          9,
+          4.5,
+          18
+        ],
+        "at": [
+          0,
+          3.2,
+          0
+        ]
+      },
+      "time": "18:20",
+      "lights": true,
+      "note": "The Minato Maru at dusk with her navigation lights on",
+      "alt": "The ferry Minato Maru at dusk, printed as a rubber stamp.",
+      "caption": "The Minato Maru at dusk, her navigation lights on, in Johansson World.",
+      "alt_sv": "Färjan Minato Maru i skymningen, tryckt som en gummistämpel.",
+      "caption_sv": "Minato Maru i skymningen med lanternorna tända, i Johansson World."
+    },
+    {
+      "name": "three-phase",
+      "article": "trefas-440-v-60-hz",
+      "ship": {
+        "pos": [
+          -3.0,
+          2.25,
+          10.25
+        ],
+        "at": [
+          -3.6,
+          1.9,
+          9.0
+        ]
+      },
+      "time": "12:00",
+      "note": "The main switchboard's generator and synchronising panels: 440 V, 60 Hz",
+      "alt": "The generator panels of a ship's main switchboard, with their meters, printed as a rubber stamp.",
+      "caption": "The main switchboard on the Minato Maru: the generator panels, 440 V and 60 Hz.",
+      "alt_sv": "Generatorpanelerna på ett fartygs huvudtavla, med sina instrument, tryckta som en gummistämpel.",
+      "caption_sv": "Huvudtavlan på Minato Maru: generatorpanelerna, 440 V och 60 Hz."
+    },
+    {
+      "name": "switchboard",
+      "article": "fem-sakerhetsregler",
+      "ship": {
+        "pos": [
+          -2.5,
+          2.2,
+          10.75
+        ],
+        "at": [
+          -3.45,
+          1.6,
+          9.1
+        ]
+      },
+      "time": "12:00",
+      "note": "The engine control booth: the main switchboard and the engine console",
+      "alt": "A ship's engine control room with the main switchboard and the engine console, printed as a rubber stamp.",
+      "caption": "The engine control room on the Minato Maru: the main switchboard and the engine console.",
+      "alt_sv": "Kontrollrummet på ett fartyg med huvudtavlan och maskinpulpeten, tryckt som en gummistämpel.",
+      "caption_sv": "Kontrollrummet på Minato Maru: huvudtavlan och maskinpulpeten."
+    },
+    {
+      "name": "insulation-alarm",
+      "article": "isolationslarmet",
+      "ship": {
+        "pos": [
+          -3.35,
+          2.15,
+          9.8
+        ],
+        "at": [
+          -2.85,
+          1.95,
+          9.0
+        ]
+      },
+      "time": "12:00",
+      "note": "The 440 V feeder panel: the three earth lamps and the insulation meter",
+      "alt": "The synchronising and feeder panels of a main switchboard, with the three earth lamps, printed as a rubber stamp.",
+      "caption": "The main switchboard on the Minato Maru, with the three earth lamps of its insulated (IT) system.",
+      "alt_sv": "Synkroniserings- och utgångspanelerna på en huvudtavla, med de tre jordfelslamporna, tryckta som en gummistämpel.",
+      "caption_sv": "Huvudtavlan på Minato Maru med de tre jordfelslamporna för det isolerade IT-systemet."
+    },
+    {
+      "name": "pump",
+      "article": "pumpen-som-inte-startar",
+      "ship": {
+        "pos": [
+          -2.25,
+          1.8,
+          12.9
+        ],
+        "at": [
+          -3.75,
+          1.05,
+          11.55
+        ]
+      },
+      "time": "12:00",
+      "note": "The fire pumps along her starboard side in the engine room",
+      "alt": "The fire pumps in a ship's engine room, printed as a rubber stamp.",
+      "caption": "The fire pumps in the Minato Maru's engine room.",
+      "alt_sv": "Brandpumparna i ett fartygs maskinrum, tryckta som en gummistämpel.",
+      "caption_sv": "Brandpumparna i maskinrummet på Minato Maru.",
+      "crop": [
+        0.27,
+        0.15,
+        1.0,
+        0.88
+      ]
+    },
+    {
+      "name": "bridge",
+      "article": "more-survivor-than-tyrant-the-captain-bligh-you-dont-know",
+      "ship": {
+        "pos": [
+          1.9,
+          11.65,
+          20.55
+        ],
+        "at": [
+          0,
+          11.22,
+          22.5
+        ]
+      },
+      "time": "10:30",
+      "note": "The bridge, looking out over her bow",
+      "alt": "A ferry's bridge, looking out over the bow, printed as a rubber stamp.",
+      "caption": "The bridge of the Minato Maru, in Johansson World."
+    },
+    {
+      "name": "workshop",
+      "article": "the-discipline-of-building-something-that-lasts",
+      "ship": {
+        "pos": [
+          1.9,
+          2.35,
+          24.4
+        ],
+        "at": [
+          2.3,
+          1.9,
+          25.9
+        ]
+      },
+      "time": "12:00",
+      "note": "The electrical workshop bench",
+      "alt": "An electrical workbench on board a ship, printed as a rubber stamp.",
+      "caption": "The electrical workbench on board the Minato Maru, in Johansson World."
+    },
+    {
+      "name": "vietnam",
+      "article": "vietnam",
+      "source": "Pixar Thuan from Johansson Studio: nj22az/jojo branch pixar, 3d/cast/renders/thuan-hero.jpg, stamped with tools/stamp-filter.py --crop 0.12,0.12,0.88,0.50 (not a World shot; the owner: \"you can do it with Thuan, she is Vietnamese\", \"remember to use Pixar Thuan\")",
+      "note": "Vietnam: Thuan, Sakura Shōten's owner, who is Vietnamese",
+      "alt": "Thuan, a young woman with long dark hair in a braid, waving and making a peace sign, printed as a rubber stamp.",
+      "caption": "Thuan of Sakura Shōten, who is Vietnamese, from Johansson Studio."
+    },
+    {
+      "name": "stay-marina",
+      "article": "hotel-marina-vedbaek",
+      "view": "park/wide",
+      "time": "16:00",
+      "back": 1.2,
+      "note": "Hotel stay post, shot in the Rubber stamp Look",
+      "alt": "Harbour Park by the water in Minato, printed as a rubber stamp.",
+      "caption": "Harbour Park by the water, in Johansson World."
+    },
+    {
+      "name": "stay-odense",
+      "article": "best-western-plus-hotel-odense",
+      "view": "onsen/push",
+      "time": "18:00",
+      "back": 1.2,
+      "note": "Hotel stay post, shot in the Rubber stamp Look",
+      "alt": "A street of shops running away into the distance, printed as a rubber stamp.",
+      "caption": "A long walk down Minato's main street, in Johansson World."
+    },
+    {
+      "name": "stay-rosendahl",
+      "article": "scandic-rosendahl-tampere",
+      "room": "market",
+      "view": "sakura/push",
+      "time": "15:00",
+      "back": 1.2,
+      "note": "Hotel stay post, shot in the Rubber stamp Look",
+      "alt": "The counter and shelves of a small Japanese shop, printed as a rubber stamp.",
+      "caption": "Paying at the counter: Sakura Shōten, in Johansson World."
+    },
+    {
+      "name": "stay-laajavuori",
+      "article": "scandic-laajavuori-jyvaskyla",
+      "room": "onsen",
+      "view": "onsen/wide",
+      "time": "18:00",
+      "back": 1.2,
+      "note": "Hotel stay post, shot in the Rubber stamp Look",
+      "alt": "The front desk of a Japanese bathhouse with its price board and a red curtain, printed as a rubber stamp.",
+      "caption": "The front desk of Umi-no-yu, Minato's bathhouse, in Johansson World."
+    },
+    {
+      "name": "stay-elmia",
+      "article": "scandic-elmia-jonkoping",
+      "room": "onsen",
+      "view": "onsen/push",
+      "time": "18:00",
+      "back": 1.2,
+      "note": "Hotel stay post (the check-in desk), shot in the Rubber stamp Look",
+      "alt": "The front desk of a Japanese bathhouse with its attendant and price board, printed as a rubber stamp.",
+      "caption": "Check-in at the front desk: Umi-no-yu, in Johansson World."
+    }
+  ]
+}

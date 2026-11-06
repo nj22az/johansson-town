@@ -1,0 +1,75 @@
+{
+ "format": 1,
+ "id": "halloween-paper-bat",
+ "name": "Paper bat",
+ "kind": "prop",
+ "version": 1,
+ "purpose": {
+  "for": "The children on Sakura Street's Halloween walk and the shopkeepers who decorate for it",
+  "why": "Sakura Shōten has supplied the town's decorations since Mrs Kinjō retired; black-card bats hung between the lanterns make the walk's string read as Halloween from down the street, lit or dark",
+  "where": "Hung on cotton threads from the lantern string along Sakura Shōten's awning, between the paper pumpkin lanterns, from 24 to 31 October"
+ },
+ "size": [
+  0.2382,
+  0.0985,
+  0.0306
+ ],
+ "model": "model.glb",
+ "colours": {
+  "card": "#24222a",
+  "paper": "#f8f5ee"
+ },
+ "colliders": "auto",
+ "seats": [],
+ "spots": [],
+ "action": {
+  "kind": "none",
+  "label": ""
+ },
+ "anchors": {
+  "hang": [
+   0.0,
+   0.068,
+   0.0
+  ],
+  "balance": [
+   0.0,
+   0.0455,
+   0.0123
+  ],
+  "eyes": [
+   0.0,
+   0.045,
+   0.0013
+  ],
+  "wing-tip-left": [
+   0.1191,
+   0.06,
+   0.0297
+  ],
+  "wing-tip-right": [
+   -0.1191,
+   0.06,
+   0.0297
+  ]
+ },
+ "keepClear": [],
+ "budget": {
+  "triangles": 1000,
+  "materials": 2
+ },
+ "tags": [
+  "Halloween",
+  "decoration",
+  "bat",
+  "black card",
+  "paper",
+  "lantern string",
+  "awning",
+  "Sakura Shōten",
+  "October",
+  "1997",
+  "children's walk"
+ ],
+ "notes": "Cut by hand from 1 mm black card at Sakura Shōten: a round head with two pointed ears, wings scalloped between the finger points, two white hole-punch dots for eyes with marker pupils, creased down the middle so each wing stands 14 degrees forward. 24 cm across. Built in Blender from a script (site: johansson-town/assets/catalog/halloween-paper-bat/source/build-halloween-paper-bat.py); the Pocket Camera's Halloween sticker is rendered from the same builder (tools/blender/render-halloween-stickers.py). Frame: the back of the crease is z = 0 (the least z), the eyes face +z, lowest point y = 0. Anchors: hang (the thread's pinhole at the top of the crease), balance (the card's centre of mass: hung from hang it settles with balance straight below), eyes, the wing tips. The collider is the bat's own box (auto): it hangs above the walkway at the awning's edge, out of the residents' way; nothing walks into it."
+}

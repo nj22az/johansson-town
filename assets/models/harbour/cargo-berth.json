@@ -1,0 +1,19 @@
+{
+  "source": "cad/cargo-ship-berth/build.py",
+  "units": "metres",
+  "scale": 1,
+  "groups": {
+    "vessel": {
+      "cadComponents": 622,
+      "draws": 12
+    },
+    "quay": {
+      "cadComponents": 173,
+      "draws": 6
+    },
+    "connections": {
+      "cadComponents": 86,
+      "draws": 3
+    }
+  }
+}

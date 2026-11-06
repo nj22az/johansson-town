@@ -1,0 +1,439 @@
+{
+  "errors": [],
+  "views": [
+    {
+      "name": "desktop-overall",
+      "state": {
+        "game": {
+          "coordinates": "x/z in metres; y is height; interiors use local coordinates",
+          "room": null,
+          "home": null,
+          "calendar": null,
+          "discoveries": null,
+          "minutes": 720,
+          "cargoBerth": {
+            "visible": true,
+            "moored": true,
+            "phase": "alongside",
+            "progress": 1,
+            "loaded": true,
+            "position": [
+              42.5,
+              -0.56,
+              -95.5
+            ]
+          },
+          "player": [
+            57,
+            1.54,
+            -60
+          ],
+          "seat": null,
+          "customers": [],
+          "island": {
+            "location": "town",
+            "cinematic": false,
+            "ferry": {
+              "berth": "airport",
+              "destination": null,
+              "progress": null,
+              "departing": null,
+              "next": {
+                "sailing": {
+                  "id": "in-1",
+                  "from": "airport",
+                  "to": "town",
+                  "departs": 848,
+                  "arrives": 870,
+                  "why": "The commuter boat in, alongside at Minato at 14:30 (the Harbour Line)."
+                },
+                "at": 848,
+                "wait": 128
+              }
+            },
+            "crossing": null,
+            "ticket": null,
+            "checked": false,
+            "projects": [],
+            "treasury": 90000
+          },
+          "arrival": {
+            "active": false,
+            "id": null,
+            "seconds": 0,
+            "action": null,
+            "bird": false,
+            "reason": null,
+            "shot": null,
+            "establishing": false,
+            "holding": false
+          }
+        },
+        "cargo": {
+          "visible": true,
+          "moored": true,
+          "phase": "alongside",
+          "progress": 1,
+          "loaded": true,
+          "position": [
+            42.5,
+            -0.56,
+            -95.5
+          ]
+        },
+        "render": {
+          "programs": 137,
+          "calls": 62464,
+          "triangles": 109341296,
+          "geometries": 1324,
+          "textures": 207
+        }
+      }
+    },
+    {
+      "name": "desktop-dockside",
+      "state": {
+        "game": {
+          "coordinates": "x/z in metres; y is height; interiors use local coordinates",
+          "room": null,
+          "home": null,
+          "calendar": null,
+          "discoveries": null,
+          "minutes": 720,
+          "cargoBerth": {
+            "visible": true,
+            "moored": true,
+            "phase": "alongside",
+            "progress": 1,
+            "loaded": true,
+            "position": [
+              42.5,
+              -0.56,
+              -95.5
+            ]
+          },
+          "player": [
+            57,
+            1.54,
+            -60
+          ],
+          "seat": null,
+          "customers": [],
+          "island": {
+            "location": "town",
+            "cinematic": false,
+            "ferry": {
+              "berth": "airport",
+              "destination": null,
+              "progress": null,
+              "departing": null,
+              "next": {
+                "sailing": {
+                  "id": "in-1",
+                  "from": "airport",
+                  "to": "town",
+                  "departs": 848,
+                  "arrives": 870,
+                  "why": "The commuter boat in, alongside at Minato at 14:30 (the Harbour Line)."
+                },
+                "at": 848,
+                "wait": 128
+              }
+            },
+            "crossing": null,
+            "ticket": null,
+            "checked": false,
+            "projects": [],
+            "treasury": 90000
+          },
+          "arrival": {
+            "active": false,
+            "id": null,
+            "seconds": 0,
+            "action": null,
+            "bird": false,
+            "reason": null,
+            "shot": null,
+            "establishing": false,
+            "holding": false
+          }
+        },
+        "cargo": {
+          "visible": true,
+          "moored": true,
+          "phase": "alongside",
+          "progress": 1,
+          "loaded": true,
+          "position": [
+            42.5,
+            -0.56,
+            -95.5
+          ]
+        },
+        "render": {
+          "programs": 137,
+          "calls": 73543,
+          "triangles": 160121350,
+          "geometries": 1324,
+          "textures": 207
+        }
+      }
+    },
+    {
+      "name": "phone-dockside",
+      "state": {
+        "game": {
+          "coordinates": "x/z in metres; y is height; interiors use local coordinates",
+          "room": null,
+          "home": null,
+          "calendar": null,
+          "discoveries": null,
+          "minutes": 720,
+          "cargoBerth": {
+            "visible": true,
+            "moored": true,
+            "phase": "alongside",
+            "progress": 1,
+            "loaded": true,
+            "position": [
+              42.5,
+              -0.56,
+              -95.5
+            ]
+          },
+          "player": [
+            57,
+            1.54,
+            -60
+          ],
+          "seat": null,
+          "customers": [],
+          "island": {
+            "location": "town",
+            "cinematic": false,
+            "ferry": {
+              "berth": "airport",
+              "destination": null,
+              "progress": null,
+              "departing": null,
+              "next": {
+                "sailing": {
+                  "id": "in-1",
+                  "from": "airport",
+                  "to": "town",
+                  "departs": 848,
+                  "arrives": 870,
+                  "why": "The commuter boat in, alongside at Minato at 14:30 (the Harbour Line)."
+                },
+                "at": 848,
+                "wait": 128
+              }
+            },
+            "crossing": null,
+            "ticket": null,
+            "checked": false,
+            "projects": [],
+            "treasury": 90000
+          },
+          "arrival": {
+            "active": false,
+            "id": null,
+            "seconds": 0,
+            "action": null,
+            "bird": false,
+            "reason": null,
+            "shot": null,
+            "establishing": false,
+            "holding": false
+          }
+        },
+        "cargo": {
+          "visible": true,
+          "moored": true,
+          "phase": "alongside",
+          "progress": 1,
+          "loaded": true,
+          "position": [
+            42.5,
+            -0.56,
+            -95.5
+          ]
+        },
+        "render": {
+          "programs": 137,
+          "calls": 80948,
+          "triangles": 203406692,
+          "geometries": 1324,
+          "textures": 207
+        }
+      }
+    },
+    {
+      "name": "phone-approach",
+      "state": {
+        "game": {
+          "coordinates": "x/z in metres; y is height; interiors use local coordinates",
+          "room": null,
+          "home": null,
+          "calendar": null,
+          "discoveries": null,
+          "minutes": 720,
+          "cargoBerth": {
+            "visible": true,
+            "moored": true,
+            "phase": "alongside",
+            "progress": 1,
+            "loaded": true,
+            "position": [
+              42.5,
+              -0.56,
+              -95.5
+            ]
+          },
+          "player": [
+            57,
+            1.54,
+            -60
+          ],
+          "seat": null,
+          "customers": [],
+          "island": {
+            "location": "town",
+            "cinematic": false,
+            "ferry": {
+              "berth": "airport",
+              "destination": null,
+              "progress": null,
+              "departing": null,
+              "next": {
+                "sailing": {
+                  "id": "in-1",
+                  "from": "airport",
+                  "to": "town",
+                  "departs": 848,
+                  "arrives": 870,
+                  "why": "The commuter boat in, alongside at Minato at 14:30 (the Harbour Line)."
+                },
+                "at": 848,
+                "wait": 128
+              }
+            },
+            "crossing": null,
+            "ticket": null,
+            "checked": false,
+            "projects": [],
+            "treasury": 90000
+          },
+          "arrival": {
+            "active": false,
+            "id": null,
+            "seconds": 0,
+            "action": null,
+            "bird": false,
+            "reason": null,
+            "shot": null,
+            "establishing": false,
+            "holding": false
+          }
+        },
+        "cargo": {
+          "visible": true,
+          "moored": true,
+          "phase": "alongside",
+          "progress": 1,
+          "loaded": true,
+          "position": [
+            42.5,
+            -0.56,
+            -95.5
+          ]
+        },
+        "render": {
+          "programs": 137,
+          "calls": 88209,
+          "triangles": 247816738,
+          "geometries": 1324,
+          "textures": 207
+        }
+      }
+    }
+  ],
+  "walked": {
+    "coordinates": "x/z in metres; y is height; interiors use local coordinates",
+    "room": null,
+    "home": null,
+    "calendar": null,
+    "discoveries": null,
+    "minutes": 720.0500000000034,
+    "cargoBerth": {
+      "visible": true,
+      "moored": true,
+      "phase": "alongside",
+      "progress": 1,
+      "loaded": true,
+      "position": [
+        42.5,
+        -0.56,
+        -95.5
+      ]
+    },
+    "player": [
+      52.59104190091676,
+      1.088728501113078,
+      -44.4
+    ],
+    "seat": null,
+    "customers": [],
+    "island": {
+      "location": "town",
+      "cinematic": false,
+      "ferry": {
+        "berth": "airport",
+        "destination": null,
+        "progress": null,
+        "departing": null,
+        "next": {
+          "sailing": {
+            "id": "in-1",
+            "from": "airport",
+            "to": "town",
+            "departs": 848,
+            "arrives": 870,
+            "why": "The commuter boat in, alongside at Minato at 14:30 (the Harbour Line)."
+          },
+          "at": 848,
+          "wait": 127.94999999999663
+        }
+      },
+      "crossing": null,
+      "ticket": null,
+      "checked": false,
+      "projects": [],
+      "treasury": 90000
+    },
+    "arrival": {
+      "active": false,
+      "id": null,
+      "seconds": 0,
+      "action": null,
+      "bird": false,
+      "reason": null,
+      "shot": null,
+      "establishing": false,
+      "holding": false
+    }
+  },
+  "navigation": "clear",
+  "departure": {
+    "visible": true,
+    "moored": false,
+    "phase": "departing",
+    "progress": 0.5,
+    "loaded": true,
+    "position": [
+      42.5,
+      -0.56,
+      -157.75
+    ]
+  }
+}

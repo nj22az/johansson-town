@@ -1,0 +1,111 @@
+{
+  "physicalDevice": false,
+  "engine": "Linux WebKit",
+  "views": [
+    {
+      "label": "park-portrait",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        548,
+        1186
+      ],
+      "shadowSize": [
+        512,
+        512
+      ],
+      "shadowWidth": 28,
+      "gpuError": 0,
+      "image": {
+        "minimum": 0,
+        "maximum": 254,
+        "colours": 26687
+      }
+    },
+    {
+      "label": "park-landscape",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        1186,
+        548
+      ],
+      "shadowSize": [
+        512,
+        512
+      ],
+      "shadowWidth": 28,
+      "gpuError": 0,
+      "image": {
+        "minimum": 0,
+        "maximum": 254,
+        "colours": 33302
+      }
+    },
+    {
+      "label": "sakura-interior",
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        1186,
+        548
+      ],
+      "shadowSize": [
+        512,
+        512
+      ],
+      "shadowWidth": 28,
+      "gpuError": 0,
+      "image": {
+        "minimum": 0,
+        "maximum": 254,
+        "colours": 30169
+      }
+    }
+  ],
+  "heldRequest": {
+    "state": {
+      "completed": 2,
+      "total": 8,
+      "percent": 25,
+      "label": "Loading character accessories",
+      "error": null,
+      "assets": {
+        "completed": 0,
+        "total": 1,
+        "failed": 0
+      }
+    },
+    "width": "25%"
+  },
+  "completed": {
+    "completed": 8,
+    "total": 8,
+    "percent": 100,
+    "label": "Island ready",
+    "error": null,
+    "assets": {
+      "completed": 19,
+      "total": 21,
+      "failed": 0
+    }
+  }
+}

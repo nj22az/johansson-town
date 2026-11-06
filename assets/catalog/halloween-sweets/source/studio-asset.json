@@ -1,0 +1,62 @@
+{
+ "format": 1,
+ "id": "halloween-sweets",
+ "name": "Wrapped sweets",
+ "kind": "prop",
+ "version": 1,
+ "purpose": {
+  "for": "The children in costume on the Halloween walk",
+  "why": "The walk is for collecting sweets; Sakura sells these twist-wrapped boiled sweets by the bag and heaps them out on the crates for the children to take",
+  "where": "Heaped on the lid of the middle stack of drinks crates by Sakura's machine, between the two jack-o'-lantern pails, at a child's reach (58 cm), where the walk passes"
+ },
+ "size": [
+  0.2501,
+  0.057,
+  0.2564
+ ],
+ "model": "model.glb",
+ "colours": {
+  "orange": "#f28a1e",
+  "purple": "#8a55b8",
+  "green": "#8fcf3a",
+  "white": "#f4f1ea"
+ },
+ "colliders": "auto",
+ "seats": [],
+ "spots": [],
+ "action": {
+  "kind": "none",
+  "label": ""
+ },
+ "anchors": {
+  "top": [
+   0.0,
+   0.057,
+   0.0
+  ],
+  "rest": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ "keepClear": [],
+ "budget": {
+  "triangles": 3000,
+  "materials": 1
+ },
+ "tags": [
+  "Halloween",
+  "sweets",
+  "boiled sweets",
+  "fruit sweets",
+  "wrapped",
+  "cellophane",
+  "drinks crates",
+  "Sakura Shōten",
+  "October",
+  "1997",
+  "children's walk"
+ ],
+ "notes": "41 boiled fruit drops in cellophane twisted at both ends (about 3 cm fan to fan), about ten each of orange, grape purple, melon green and white: the sweets of the bags Sakura Shōten sells (src/commerce/products-data.js candy, Fruit sweets), tipped out on a crate lid: a pile of 26 with a skirt of 9 round it and 6 strays, about 25 cm across and 5.7 cm high, enough for the whole walk and to be seen from the street. Each sweet was dropped from above until it touched the lid or another sweet, turned (up to 28 degrees) and let slide (up to 12 mm) to where it settles lowest, so none floats, none passes into another and none is left perched (0.4 mm left at each contact); the places come from a fixed seed. Built in Blender from a script (site: johansson-town/assets/catalog/halloween-sweets/source/build-halloween-sweets.py); the Pocket Camera's Halloween sticker is rendered from the same builder and the same places (tools/blender/render-halloween-stickers.py). The phone's sweets are simple (a hexagon round, 72 triangles each, let down onto what holds them); one material (cellophane, glossy) with the wrappers' colours in the vertex colours: one draw call. Frame: lowest point y = 0, the lid it lies on; the mound centred on x = z = 0; it fits the 0.40 x 0.44 m lid. The collider is the mound's own box (auto): it lies on the crate lid, inside the crates' own collider."
+}

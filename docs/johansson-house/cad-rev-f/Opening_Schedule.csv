@@ -1,0 +1,32 @@
+id,side,start_mm,end_mm,type,sill_mm,head_mm,level,axis,position_mm,clear_width_mm,operation
+D-BEXT,south,8800,9800,door,0,2100,B1,,,,
+W-B1,west,5900,6900,window,1100,2100,B1,,,,
+D-B1-WEST-S,,2300,3200,door,0,2100,B1,x,4900,900,sliding; collision disabled only when open
+D-B1-WEST-N,,7500,8400,door,0,2100,B1,x,4900,900,sliding; collision disabled only when open
+D-B1-EAST-S,,2300,3200,door,0,2100,B1,x,8300,900,sliding; collision disabled only when open
+D-B1-EAST-M,,4500,5400,door,0,2100,B1,x,8300,900,sliding; collision disabled only when open
+D-B1-EAST-N,,7900,8800,door,0,2100,B1,x,8300,900,sliding; collision disabled only when open
+D-B1-HALL-N,,7300,8200,door,0,2100,B1,y,6500,900,sliding; collision disabled only when open
+D-ENTRY,south,5550,6550,door,0,2100,G0,,,,
+W-LIVING,south,1400,3400,window,850,2100,G0,,,,
+W-SEW,east,1200,3000,window,850,2100,G0,,,,
+W-KITCHEN,west,6900,8500,window,850,2100,G0,,,,
+D-TERRACE,north,8800,9800,door,0,2100,G0,,,,
+W-DINING,north,1600,3400,window,850,2100,G0,,,,
+D-G0-WEST-S,,2300,3200,door,0,2100,G0,x,4900,900,sliding; collision disabled only when open
+D-G0-WEST-N,,7500,8400,door,0,2100,G0,x,4900,900,sliding; collision disabled only when open
+D-G0-EAST-S,,2300,3200,door,0,2100,G0,x,8300,900,sliding; collision disabled only when open
+D-G0-EAST-M,,5800,6700,door,0,2100,G0,x,8300,900,sliding; collision disabled only when open
+D-G0-EAST-N,,7900,8800,door,0,2100,G0,x,8300,900,sliding; collision disabled only when open
+D-G0-ENTRY-HALL,,7300,8200,door,0,2100,G0,y,3500,900,sliding; collision disabled only when open
+W-BED,south,1300,3200,window,850,2100,L1,,,,
+W-BATH,east,900,1800,window,850,2100,L1,,,,
+W-STUDY,east,4400,6100,window,850,2100,L1,,,,
+W-GUEST,west,6500,8300,window,850,2100,L1,,,,
+W-LANDING,north,8600,10400,window,850,2100,L1,,,,
+D-L1-WEST-S,,2300,3200,door,0,2100,L1,x,4900,900,sliding; collision disabled only when open
+D-L1-WEST-N,,7500,8400,door,0,2100,L1,x,4900,900,sliding; collision disabled only when open
+D-L1-EAST-S,,2300,3200,door,0,2100,L1,x,8300,900,sliding; collision disabled only when open
+D-L1-EAST-M,,4500,5400,door,0,2100,L1,x,8300,900,sliding; collision disabled only when open
+D-L1-EAST-N,,7900,8800,door,0,2100,L1,x,8300,900,sliding; collision disabled only when open
+D-L1-HALL-N,,7300,8200,door,0,2100,L1,y,6500,900,sliding; collision disabled only when open

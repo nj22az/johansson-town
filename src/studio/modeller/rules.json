@@ -1,0 +1,277 @@
+{
+ "about": "The rules an asset is checked against, read by both the Models page (modeller/checks.js) and Python (townstudio/assets.py), so the two never disagree.",
+ "format": 1,
+ "resident": {
+  "height": 1.6,
+  "radius": 0.35,
+  "why": "World's residents are about 1.6 m tall, and walk as circles of 0.35 m (src/game.js NPC_RADIUS; the player is 0.28)."
+ },
+ "kinds": {
+  "prop": {
+   "max": 1.5,
+   "triangles": 3000,
+   "materials": 4,
+   "about": "something you hold or put on a shelf or table"
+  },
+  "furniture": {
+   "max": 2.6,
+   "triangles": 8000,
+   "materials": 6,
+   "about": "seats, tables, beds, cabinets, machines people use indoors"
+  },
+  "fixture": {
+   "max": 4.0,
+   "triangles": 10000,
+   "materials": 6,
+   "about": "fitted to a room or a street: counters, lamps, vending machines, poles"
+  },
+  "sign": {
+   "max": 4.0,
+   "triangles": 2000,
+   "materials": 4,
+   "about": "boards, banners, notices"
+  },
+  "plant": {
+   "max": 6.0,
+   "triangles": 6000,
+   "materials": 4,
+   "about": "pot plants, shrubs, trees"
+  },
+  "vehicle-part": {
+   "max": 12.0,
+   "triangles": 20000,
+   "materials": 8,
+   "about": "parts of the ferry, a boat, a car"
+  },
+  "building-part": {
+   "max": 20.0,
+   "triangles": 30000,
+   "materials": 8,
+   "about": "facades, roofs, stairs, whole small buildings"
+  }
+ },
+ "actions": [
+  "seat",
+  "use",
+  "buy",
+  "look",
+  "none"
+ ],
+ "tolerance": {
+  "floor": 0.002,
+  "touch": 0.003,
+  "size": 0.03,
+  "collider": 0.03,
+  "seat": 0.015,
+  "clear": 0.001
+ },
+ "purposeWords": 4,
+ "brands": [
+  "fujiiryoki",
+  "family inada",
+  "osim",
+  "omron",
+  "panasonic",
+  "toshiba",
+  "hitachi",
+  "sanyo",
+  "mitsubishi",
+  "daikin",
+  "yamaha",
+  "casio",
+  "fujifilm",
+  "nikon",
+  "sony",
+  "nintendo",
+  "sega",
+  "konami",
+  "nissan",
+  "mazda",
+  "coca-cola",
+  "coca cola",
+  "pepsi",
+  "glico",
+  "yakult",
+  "calpis",
+  "pocari",
+  "suntory",
+  "orion beer",
+  "kikkoman",
+  "nissin",
+  "cup noodle",
+  "7-eleven",
+  "seven-eleven",
+  "seven eleven",
+  "lawson",
+  "familymart",
+  "family mart",
+  "ministop",
+  "uniqlo",
+  "muji",
+  "daiso",
+  "sanrio",
+  "hello kitty",
+  "pokemon",
+  "pokémon",
+  "disney",
+  "mcdonald's",
+  "mcdonalds",
+  "starbucks",
+  "kfc",
+  "ikea",
+  "nike",
+  "adidas",
+  "samsung"
+ ],
+ "checks": [
+  {
+   "id": "card",
+   "label": "The card is complete",
+   "by": "python"
+  },
+  {
+   "id": "build",
+   "label": "The model builds",
+   "by": "page"
+  },
+  {
+   "id": "floor",
+   "label": "Stands on the floor, nothing floating",
+   "by": "page"
+  },
+  {
+   "id": "size",
+   "label": "Real size, sane next to a 1.6 m resident",
+   "by": "page"
+  },
+  {
+   "id": "budget",
+   "label": "Within the phone budget",
+   "by": "page"
+  },
+  {
+   "id": "roles",
+   "label": "Every part says what it is for",
+   "by": "page"
+  },
+  {
+   "id": "collider",
+   "label": "A collider that fits",
+   "by": "page"
+  },
+  {
+   "id": "seats",
+   "label": "Seats and standing spots are clear",
+   "by": "page"
+  },
+  {
+   "id": "room",
+   "label": "Room for the people who use it",
+   "by": "page"
+  },
+  {
+   "id": "purpose",
+   "label": "Purpose: who it is for, why, where",
+   "by": "python"
+  },
+  {
+   "id": "brands",
+   "label": "No real brand names",
+   "by": "python"
+  },
+  {
+   "id": "id",
+   "label": "Its own id",
+   "by": "python"
+  }
+ ],
+ "brandsWhy": "Real makers and shops a 1990s Japanese town would show. Words that are also ordinary words or names here are left out on purpose: the onsen's bandai (番台) counter, the Meiji era, Asahi as a street, surnames such as Honda, Suzuki or Toyota, and words like national, sharp, canon or apple.",
+ "roles": {
+  "body": {
+   "is": "the solid shell or frame",
+   "world": "nothing happens: it is what you see and bump into",
+   "now": true
+  },
+  "seat": {
+   "is": "where someone sits",
+   "world": "backs one of the card's seats (World seats people from the card's seats)",
+   "now": true
+  },
+  "surface": {
+   "is": "a top things are put on",
+   "world": "props can be set down on it (a counter, a table top)",
+   "now": false
+  },
+  "shelf": {
+   "is": "a level stock stands on",
+   "world": "a shop's merchandising fills it",
+   "now": false
+  },
+  "container": {
+   "is": "something that holds things inside",
+   "world": "can be opened and looked into",
+   "now": false
+  },
+  "door": {
+   "is": "a door, lid or hatch",
+   "world": "opens and closes when used",
+   "now": false
+  },
+  "handle": {
+   "is": "what a hand takes hold of",
+   "world": "where a resident's hand goes to open or carry it",
+   "now": false
+  },
+  "button": {
+   "is": "a switch or button",
+   "world": "pressing it starts or stops the asset",
+   "now": false
+  },
+  "coin-slot": {
+   "is": "where a coin goes in",
+   "world": "paying here starts the asset (the card's action price)",
+   "now": false
+  },
+  "control": {
+   "is": "a handheld remote or pendant",
+   "world": "a resident can pick it up to work the asset",
+   "now": false
+  },
+  "lamp": {
+   "is": "a light, LED or glowing panel",
+   "world": "lights while the asset is powered and running",
+   "now": true
+  },
+  "screen": {
+   "is": "a display or readout",
+   "world": "shows something while powered (a timer, a picture)",
+   "now": false
+  },
+  "motor": {
+   "is": "a part that moves under power (rollers, fan blades, a drum)",
+   "world": "moves while the asset is running",
+   "now": true
+  },
+  "wheel": {
+   "is": "a wheel or castor",
+   "world": "turns when the asset is pushed or driven",
+   "now": false
+  },
+  "cord": {
+   "is": "a mains lead or cable",
+   "world": "leads to a socket; a room that wires the asset itself may hide it",
+   "now": true
+  },
+  "sign": {
+   "is": "words or a picture meant to be read",
+   "world": "the player can read it; stories can quote it",
+   "now": false
+  },
+  "decoration": {
+   "is": "trim that is only there to look right",
+   "world": "nothing happens",
+   "now": true
+  }
+ },
+ "rolesWhy": "Parts are verbs (research/mario-artist/report.md §3): what a part is for tells World what it does and gives the storyteller something to write (\"Fujita fed the chair a coin\"). A part with no role, or a role not on this list, is refused. `now` says whether World already does what the role promises (studio-assets.js); the check names the roles World does not act on yet, so nobody expects them to work."
+}

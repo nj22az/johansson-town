@@ -1,0 +1,62 @@
+[
+  {
+    "file": "asphalt.jpg",
+    "name": "asphalt_02",
+    "author": "Rob Tuytel",
+    "role": "Road surface",
+    "source": "https://polyhaven.com/a/asphalt_02",
+    "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_diff_1k.jpg",
+    "license": "CC0 1.0 Universal",
+    "license_url": "https://polyhaven.com/license",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 731707,
+    "md5": "fa19772d4817754c3efab708c651f5a8",
+    "sha256": "1aa5ce99f58a625c71d48cfc3e68b65ca85ccb00f39e045c0a928608a0ea25ed"
+  },
+  {
+    "file": "timber.jpg",
+    "name": "weathered_planks",
+    "author": "Dario Barresi and Dimitrios Savva",
+    "role": "Weathered timber walls and docks",
+    "source": "https://polyhaven.com/a/weathered_planks",
+    "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/weathered_planks/weathered_planks_diff_1k.jpg",
+    "license": "CC0 1.0 Universal",
+    "license_url": "https://polyhaven.com/license",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 599581,
+    "md5": "5d7c9e7088bfa54490ba03ba15b660d8",
+    "sha256": "01c9a372cfd7a7bf471b59c2458ed3ccecc93448aebf7ba0cc5b3b5b6ed24349"
+  },
+  {
+    "file": "roof.jpg",
+    "name": "roof_tiles_14",
+    "author": "Rob Tuytel",
+    "role": "Aged tile roofs",
+    "source": "https://polyhaven.com/a/roof_tiles_14",
+    "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/roof_tiles_14/roof_tiles_14_diff_1k.jpg",
+    "license": "CC0 1.0 Universal",
+    "license_url": "https://polyhaven.com/license",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 416642,
+    "md5": "89bae450f83f966c4d82a4b2eddeb5dc",
+    "sha256": "756217e3dfa9ddfd9d880a9f4938abca7fb7dfcf9b7184949894eed33868ae6f"
+  },
+  {
+    "file": "plaster.jpg",
+    "name": "plastered_stone_wall",
+    "author": "Rob Tuytel",
+    "role": "Plaster walls and harbour masonry",
+    "source": "https://polyhaven.com/a/plastered_stone_wall",
+    "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/plastered_stone_wall/plastered_stone_wall_diff_1k.jpg",
+    "license": "CC0 1.0 Universal",
+    "license_url": "https://polyhaven.com/license",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 680077,
+    "md5": "dfa5e68b2337761c887f995301272ac3",
+    "sha256": "b86e9a408aac5b493c31a4ec221e5022b0b704d2f51596006f7d6840a6a3300a"
+  }
+]

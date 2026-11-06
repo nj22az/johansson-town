@@ -1,0 +1,267 @@
+{
+  "revision": "bridge-lantern-v2",
+  "units": "m",
+  "frame": "ship local +X port +Y up +Z forward; origin at bridge floor/forward wall",
+  "ownership": "Nils Johansson",
+  "healthy": true,
+  "independentSourceV": 12,
+  "shipDCV": 24,
+  "canonicalNavigationLightsChanged": false,
+  "bookSource": "blender-illustrationer/reality-scenes/lantern-path/build_lantern.py",
+  "componentScales": {
+    "battery": 0.24,
+    "fuseHolder": 0.2,
+    "lamp": 0.4
+  },
+  "wires": {
+    "sourceToFuse": [
+      [
+        2.8352,
+        1.17,
+        -0.3092
+      ],
+      [
+        2.8352,
+        1.17,
+        -0.48
+      ],
+      [
+        2.8352,
+        1.025,
+        -0.48
+      ],
+      [
+        2.8352,
+        1.025,
+        -0.715
+      ],
+      [
+        1.704,
+        1.025,
+        -0.715
+      ],
+      [
+        1.704,
+        0.8,
+        -0.749
+      ]
+    ],
+    "fuseToLamp": [
+      [
+        1.898,
+        0.8,
+        -0.749
+      ],
+      [
+        1.98,
+        0.8,
+        -0.749
+      ],
+      [
+        1.98,
+        0.91,
+        -0.749
+      ],
+      [
+        2.885,
+        0.91,
+        -0.749
+      ],
+      [
+        2.885,
+        0.82,
+        -0.18
+      ],
+      [
+        3.065,
+        0.82,
+        -0.18
+      ],
+      [
+        4.015,
+        0.82,
+        -0.18
+      ],
+      [
+        4.015,
+        0.82,
+        -1.066
+      ],
+      [
+        3.822,
+        1.018,
+        -1.066
+      ]
+    ],
+    "returnToSource": [
+      [
+        3.822,
+        1.018,
+        -0.834
+      ],
+      [
+        3.9,
+        0.85,
+        -0.834
+      ],
+      [
+        4.045,
+        0.85,
+        -0.834
+      ],
+      [
+        4.045,
+        0.85,
+        -0.15
+      ],
+      [
+        3.065,
+        0.85,
+        -0.15
+      ],
+      [
+        2.915,
+        0.85,
+        -0.15
+      ],
+      [
+        2.88,
+        0.85,
+        -0.15
+      ],
+      [
+        2.88,
+        1.08,
+        -0.74
+      ],
+      [
+        2.66,
+        1.08,
+        -0.74
+      ],
+      [
+        2.66,
+        1.17,
+        -0.3092
+      ],
+      [
+        2.7176,
+        1.17,
+        -0.3092
+      ]
+    ]
+  },
+  "connections": [
+    [
+      "B1.P",
+      "F1.input"
+    ],
+    [
+      "F1.input",
+      "F1.intact_fuse"
+    ],
+    [
+      "F1.intact_fuse",
+      "F1.output"
+    ],
+    [
+      "F1.output",
+      "L1.A"
+    ],
+    [
+      "L1.A",
+      "L1.bulb"
+    ],
+    [
+      "L1.bulb",
+      "L1.N"
+    ],
+    [
+      "L1.N",
+      "B1.N"
+    ]
+  ],
+  "placement": "Existing wheelhouse console; no new floor obstruction",
+  "sourceComponents": [
+    "B1_12V_battery",
+    "B1_battery_lid",
+    "B1_negative_N_collar",
+    "B1_negative_N_metal_post",
+    "B1_positive_P_collar",
+    "B1_positive_P_metal_post",
+    "Battery_minus",
+    "Battery_nameplate",
+    "Battery_plus",
+    "Battery_tray_diagonal_support",
+    "Battery_tray_diagonal_support.001",
+    "Battery_wall_bracket_back",
+    "Battery_wall_tray",
+    "F1_input_clip_floor",
+    "F1_input_clip_jaw",
+    "F1_input_clip_jaw.001",
+    "F1_input_fuse_cap",
+    "F1_input_metal_link",
+    "F1_input_screw",
+    "F1_input_screw_slot",
+    "F1_insulating_base",
+    "F1_intact_fuse_element",
+    "F1_intact_glass_tube",
+    "F1_output_clip_floor",
+    "F1_output_clip_jaw",
+    "F1_output_clip_jaw.001",
+    "F1_output_fuse_cap",
+    "F1_output_metal_link",
+    "F1_output_screw",
+    "F1_output_screw_slot",
+    "Fuse_holder_support",
+    "L1_bulb_glass",
+    "L1_bulb_socket",
+    "L1_filament",
+    "L1_internal_A_to_bulb",
+    "L1_internal_bulb_to_N",
+    "L1_lens_chamber",
+    "L1_lens_protecting_ring",
+    "L1_lens_protecting_ring.001",
+    "L1_lens_protecting_ring.002",
+    "L1_lower_housing",
+    "L1_protective_guard",
+    "L1_protective_guard.001",
+    "L1_protective_guard.002",
+    "L1_protective_guard.003",
+    "L1_terminal_A_block",
+    "L1_terminal_A_screw",
+    "L1_terminal_N_block",
+    "L1_terminal_N_screw",
+    "L1_top_cap",
+    "Lantern_mount_bracket",
+    "Lantern_wall_mount",
+    "Paired_cable_clip",
+    "Paired_cable_clip.001",
+    "Paired_wall_gland_0",
+    "Paired_wall_gland_1",
+    "W1_battery_to_intact_fuse",
+    "W2_intact_fuse_to_lamp",
+    "W3_lamp_return_to_battery"
+  ],
+  "labels": {
+    "Battery_nameplate": {
+      "up": [
+        -3.821371353845884e-15,
+        1.0,
+        -4.371138828673793e-08
+      ],
+      "normal": [
+        -8.742277657347586e-08,
+        -4.371138828673793e-08,
+        -1.0
+      ]
+    }
+  },
+  "visibleText": {
+    "Battery_minus": "−",
+    "Battery_nameplate": "12 V",
+    "Battery_plus": "+"
+  },
+  "gameAssetBytes": 311964,
+  "triangles": 4916
+}

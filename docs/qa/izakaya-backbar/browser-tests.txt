@@ -1,0 +1,8 @@
+desktop: starting published game
+desktop: complete room loaded
+desktop: views captured; fixed-view changed pixels = 0
+desktop: 6 checks passed
+phone: starting published game
+phone: complete room loaded
+phone: views captured; fixed-view changed pixels = 0
+phone: 4 checks passed

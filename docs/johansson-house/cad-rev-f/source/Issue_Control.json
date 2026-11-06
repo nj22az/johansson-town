@@ -1,0 +1,30 @@
+{
+  "assemblies": {
+    "exterior": "200 mm nominal reinforced concrete; game wall finish weathered cream; exterior waterproof membrane below grade",
+    "partitions": "120 mm nominal concrete/masonry visual walls; isolated sliding apertures",
+    "floors": "180 mm nominal slab; top equals FFL; additional floor finish represented in material, not elevation offset",
+    "foundation": "400 mm nominal perimeter footing, 300 mm deep; geometric game representation only",
+    "roof": "hipped tile shell; underside 5680; eaves5800/ridge8000; 400 overhang; lower deck5420-5600",
+    "wet_zones": "tiled finish, floor drain/trap state, watertight sleeve and equipment isolation",
+    "shutters": "optional weather-state art variant, no structural claim",
+    "weathering": "salt staining at fittings, roof tile mottling, worn timber sliding doors",
+    "roof_sleeves": "140 x140 shaft apertures around100 mm vent/flue; 20 radial clearance; four-sided weather collars provided as cosmetic roof solids"
+  },
+  "acceptance": {
+    "status": "PASS - coordinated game production reference",
+    "date": "2026-10-13",
+    "independent_checks": 62,
+    "reference_tests": 31,
+    "open_defects_in_scope": 0,
+    "scope_exclusions": [
+      "No structural certification, real installation ratings, product selection, survey or regulatory approval.",
+      "Live Johansson World repository runtime acceptance is not performed; this delivery contains integration specifications and tested reference simulation."
+    ],
+    "validation_files": [
+      "Validation_Results.json",
+      "Simulation_Test_Results.json",
+      "Defect_Register.csv"
+    ]
+  },
+  "service_co_routing": "Same-family branches may share trunk/conduit centre-lines; vent and soil are one continuous stack. Distinct service families have zero physical tube-envelope clashes. Ports are offset inside 250 mm logical equipment envelopes."
+}

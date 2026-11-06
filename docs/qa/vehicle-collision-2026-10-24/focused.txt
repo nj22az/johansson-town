@@ -1,0 +1,36 @@
+✔ two people walking into each other end up apart, each moved half (0.761486ms)
+✔ someone busy (seated, serving) stays put; the other steps aside (0.566803ms)
+✔ nobody is pushed into a wall: the other gives way (0.141262ms)
+✔ people in different spaces (a room and the street) never collide (0.87795ms)
+✔ a crowd settles without anyone overlapping (0.236956ms)
+✔ exactly coincident residents separate by a full body width in one resolution (0.149806ms)
+✔ a service worker uses her measured close-up radius beside a seated customer (0.143085ms)
+✔ the collider grid answers exactly as checking every collider does, however the list changes (3136.330378ms)
+✔ a collider without a centre is ignored rather than making every query rebuild the grid (0.420253ms)
+✔ a driver holds the steering wheel at nine and three, in every vehicle and at every height (1020.993493ms)
+✔ a player clears a visible wall corner when the circle does not touch it (0.696909ms)
+✔ circle contact and zero-radius point probes retain strict boundary behaviour (0.134212ms)
+✔ translated, rotated wall corners use the same physical distance (0.19942ms)
+✔ a swept walk passes a clear corner but cannot tunnel through the wall (0.222244ms)
+✔ standing collision keeps the vertical limits of the actual wall (0.148503ms)
+✔ published runtime matches the current source rather than an older build (136.061243ms)
+✔ published page uses one compiled audio/boot graph with local hashed dependencies (63.557728ms)
+✔ every stylesheet link carries a hash of the file it points at (6.774017ms)
+✔ delivered chunks contain no retired combat handlers, menus, damage simulation or rewards (70.756572ms)
+✔ a parked car blocks pedestrians on all four sides at every heading (5.076854ms)
+✔ the collider follows forward and reversing cars and leaves no wall in their old bay (7.742458ms)
+✔ held cars remain solid; hidden cars release their footprint and visible cars recover it (1.226465ms)
+✔ a car on a raised deck blocks that deck, not pedestrians underneath it (0.253521ms)
+✔ the dynamic broad phase follows a collider between cells in the same frame (0.127131ms)
+✔ moving traffic does not rebuild the town static collider grid every frame (0.355815ms)
+✔ Tetsuo keeps a solid kei truck throughout his actual town departure (83.432161ms)
+✔ the actual prompt selector excludes a driver but still offers ordinary conversations and car inspection (2.674444ms)
+✔ clicking a seated driver cannot open a conversation or walk into the cab (2.250886ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3467.559187

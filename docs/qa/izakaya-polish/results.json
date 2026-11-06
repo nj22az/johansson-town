@@ -1,0 +1,115 @@
+[
+  {
+    "viewport": "desktop",
+    "before": {
+      "title": "Future Calendar",
+      "dateKey": "2026-10-05",
+      "dateLabel": "Monday, 5 October 2026",
+      "timeZone": "Europe/Stockholm",
+      "calendarYear": 2026,
+      "calendarMonth": 10,
+      "highlightedDay": 5,
+      "daysInMonth": 31,
+      "textureVersion": 2,
+      "position": [
+        -5.55,
+        2.03,
+        6.255
+      ]
+    },
+    "midnight": {
+      "title": "Future Calendar",
+      "dateKey": "2026-10-06",
+      "dateLabel": "Tuesday, 6 October 2026",
+      "timeZone": "Europe/Stockholm",
+      "calendarYear": 2026,
+      "calendarMonth": 10,
+      "highlightedDay": 6,
+      "daysInMonth": 31,
+      "textureVersion": 3,
+      "position": [
+        -5.55,
+        2.03,
+        6.255
+      ]
+    },
+    "scene": {
+      "names": [
+        "Minato worn wood",
+        "Minato worn plaster",
+        "Minato worn fabric"
+      ],
+      "info": {
+        "programs": 229,
+        "calls": 805,
+        "triangles": 3124784,
+        "geometries": 1146,
+        "textures": 212
+      }
+    },
+    "calendarCount": 1,
+    "errors": [],
+    "cancellations": []
+  },
+  {
+    "viewport": "phone",
+    "before": {
+      "title": "Future Calendar",
+      "dateKey": "2026-10-05",
+      "dateLabel": "Monday, 5 October 2026",
+      "timeZone": "Europe/Stockholm",
+      "calendarYear": 2026,
+      "calendarMonth": 10,
+      "highlightedDay": 5,
+      "daysInMonth": 31,
+      "textureVersion": 2,
+      "position": [
+        -5.55,
+        2.03,
+        6.255
+      ]
+    },
+    "midnight": {
+      "title": "Future Calendar",
+      "dateKey": "2026-10-06",
+      "dateLabel": "Tuesday, 6 October 2026",
+      "timeZone": "Europe/Stockholm",
+      "calendarYear": 2026,
+      "calendarMonth": 10,
+      "highlightedDay": 6,
+      "daysInMonth": 31,
+      "textureVersion": 3,
+      "position": [
+        -5.55,
+        2.03,
+        6.255
+      ]
+    },
+    "scene": {
+      "names": [
+        "Minato worn wood",
+        "Minato worn plaster",
+        "Minato worn fabric"
+      ],
+      "info": {
+        "programs": 184,
+        "calls": 1118,
+        "triangles": 2389073,
+        "geometries": 412,
+        "textures": 128
+      }
+    },
+    "calendarCount": 1,
+    "errors": [],
+    "cancellations": [
+      {
+        "type": "request",
+        "message": "http://127.0.0.1:60819/johansson-town/assets/figurines/thuan/thuan-display.glb net::ERR_ABORTED"
+      },
+      {
+        "type": "request",
+        "message": "http://127.0.0.1:60819/johansson-town/assets/models/owned/barfly.glb net::ERR_ABORTED"
+      }
+    ]
+  }
+]

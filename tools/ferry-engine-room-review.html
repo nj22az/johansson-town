@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Minato Maru — engine room H1 review</title>
+<style>
+body{margin:0;background:#15292c;color:#edf2e6;font:14px system-ui}header{padding:12px 16px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}h1{font-size:17px;margin:0 14px 0 0}button{font:inherit;background:#eceddc;color:#173437;border:0;border-radius:5px;padding:8px;cursor:pointer}button[aria-pressed=true]{background:#ffd66e}iframe{display:block;width:100%;height:calc(100vh - 128px);border:0;margin:auto;background:#000}output{display:block;padding:8px 16px;font:12px ui-monospace,monospace;white-space:pre-wrap}p{margin:0 16px 8px;color:#cbd9d4}
+</style>
+<header><h1>Minato Maru · H1</h1><nav id="rooms" aria-label="Machinery rooms"></nav><button id="deck">Car deck</button><button id="size">Phone width</button></header>
+<p>2.4 m clear headroom · Walk with WASD; Drag to look; V selects an optional view, Escape returns. O inspects nearby machinery.</p>
+<iframe title="Playable engine room" src="../?audit&cinematic=off"></iframe><output id="status">Loading the island. Start Exploring inside the game, then choose a room.</output>
+<script type="module">
+import {h1ToLocal} from '../src/world/ferry-engine-room-plan.js';
+const frame=document.querySelector('iframe'),status=document.querySelector('output');
+// Review placement only. Ordinary play still reaches the room via the ferry's ladder.
+const stops=[['Main engines',[11.1,0,.9]],['Engine service side',[13.1,0,.9]],['Control booth',[10.55,-2.8,.9]],['Auxiliaries',[16.7,0,.9]],['Workshop',[21,0,.9]],['Engine store',[21.4,-1.4,.9]],['Electrical workshop',[24,0,.9]]];
+function place(cad){
+ const a=frame.contentWindow.__JOHANSSON_AUDIT__;if(!a)return;
+ a.activities.close();a.frozen=false;a.camera=null;a.setTime(515);a.world.ferry.parkAt('town');a.world.ferry.update(0,515,0);a.step(50);
+ const ship=a.world.ferry.ferry;ship.updateMatrixWorld(true);const p=ship.localToWorld(ship.position.clone().set(...h1ToLocal(cad)));a.stand(p.x,p.y,p.z,0);a.step(20);frame.focus();
+}
+for(const [name,point] of stops){const b=document.createElement('button');b.textContent=name;b.onclick=()=>place(point);document.querySelector('nav').append(b);}
+document.querySelector('#deck').onclick=()=>place([5,1.3,4]);
+document.querySelector('#size').onclick=()=>{const phone=frame.style.width!=='390px';frame.style.width=phone?'390px':'100%';document.querySelector('#size').textContent=phone?'Desktop width':'Phone width';};
+setInterval(()=>{
+ const a=frame.contentWindow.__JOHANSSON_AUDIT__;if(!a)return;
+ const ship=a.world.ferry.ferry,s=ship.userData.engineRoomH1,p=a.player.position,local=ship.worldToLocal(ship.position.clone().set(...p));
+ const model=ship.getObjectByName('Minato Maru H1-F1 / Blender CAD');let triangles=0,meshes=0;model?.traverse(o=>{if(o.isMesh){meshes++;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;}});
+ status.textContent=JSON.stringify({started:a.blocked.started,floor:a.probe(...[p[0],p[1]+1,p[2]]).deck,playerCAD:[local.z+17.25,local.x,local.y+1.9].map(v=>+v.toFixed(3)),model:s?.error|| (s?.loaded?'Blender GLB loaded':s?.pending?'loading':'retained source fallback'),meshes,triangles,clearHeadroom:2.4,lensBlocked:a.lens.blocked,viewControl:frame.contentDocument.querySelector('#viewButton')?.textContent,render:a.renderInfo});
+},500);
+</script></html>

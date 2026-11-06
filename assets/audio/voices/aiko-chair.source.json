@@ -1,0 +1,14 @@
+{
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+  "space": "Qwen/Qwen3-TTS",
+  "event": "6abc7a2b86b9438e8a455eb666b230ca",
+  "request": {
+    "data": [
+      "窓際の椅子は空いていますよ。少し休んでいきませんか。",
+      "Japanese",
+      "Ono_anna",
+      "Speak Japanese naturally and clearly, with a calm, warm delivery. Do not sing.",
+      "1.7B"
+    ]
+  }
+}

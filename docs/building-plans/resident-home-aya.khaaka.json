@@ -1,0 +1,445 @@
+{
+ "version": 1,
+ "pxPerMeter": 40,
+ "pxPerBox": 36.4,
+ "grid": {
+  "show": true,
+  "snap": true,
+  "size": 0.91
+ },
+ "showDims": false,
+ "units": "m",
+ "defaultWallThickness": 0.12,
+ "projectName": "Johansson Town · Aya & Reiko’s home",
+ "view": {
+  "x": 60,
+  "y": 80,
+  "zoom": 2
+ },
+ "objects": [
+  {
+   "id": 1,
+   "type": "wall",
+   "label": "",
+   "stroke": "#3b2f2a",
+   "fill": "#e8f0ff",
+   "strokeWidth": 2,
+   "x1": 0.2,
+   "y1": 0.25,
+   "x2": 5.7,
+   "y2": 0.25,
+   "thickness": 0.1
+  },
+  {
+   "id": 2,
+   "type": "wall",
+   "label": "",
+   "stroke": "#3b2f2a",
+   "fill": "#e8f0ff",
+   "strokeWidth": 2,
+   "x1": 0.25,
+   "y1": 0.3,
+   "x2": 0.25,
+   "y2": 3.3,
+   "thickness": 0.1
+  },
+  {
+   "id": 3,
+   "type": "wall",
+   "label": "",
+   "stroke": "#3b2f2a",
+   "fill": "#e8f0ff",
+   "strokeWidth": 2,
+   "x1": 3.15,
+   "y1": 0.3,
+   "x2": 3.15,
+   "y2": 1.2,
+   "thickness": 0.1
+  },
+  {
+   "id": 4,
+   "type": "wall",
+   "label": "",
+   "stroke": "#3b2f2a",
+   "fill": "#e8f0ff",
+   "strokeWidth": 2,
+   "x1": 5.65,
+   "y1": 0.3,
+   "x2": 5.65,
+   "y2": 3.3,
+   "thickness": 0.1
+  },
+  {
+   "id": 5,
+   "type": "wall",
+   "label": "",
+   "stroke": "#3b2f2a",
+   "fill": "#e8f0ff",
+   "strokeWidth": 2,
+   "x1": 3.15,
+   "y1": 2,
+   "x2": 3.15,
+   "y2": 2.5,
+   "thickness": 0.1
+  },
+  {
+   "id": 6,
+   "type": "wall",
+   "label": "",
+   "stroke": "#3b2f2a",
+   "fill": "#e8f0ff",
+   "strokeWidth": 2,
+   "x1": 4.5,
+   "y1": 2.1,
+   "x2": 5.6,
+   "y2": 2.1,
+   "thickness": 0.2
+  },
+  {
+   "id": 7,
+   "type": "wall",
+   "label": "",
+   "stroke": "#3b2f2a",
+   "fill": "#e8f0ff",
+   "strokeWidth": 2,
+   "x1": 0.3,
+   "y1": 3.25,
+   "x2": 3.3,
+   "y2": 3.25,
+   "thickness": 0.1
+  },
+  {
+   "id": 8,
+   "type": "wall",
+   "label": "",
+   "stroke": "#3b2f2a",
+   "fill": "#e8f0ff",
+   "strokeWidth": 2,
+   "x1": 4.1,
+   "y1": 3.25,
+   "x2": 4.5,
+   "y2": 3.25,
+   "thickness": 0.1
+  },
+  {
+   "id": 9,
+   "type": "wall",
+   "label": "",
+   "stroke": "#3b2f2a",
+   "fill": "#e8f0ff",
+   "strokeWidth": 2,
+   "x1": 4.6,
+   "y1": 3.25,
+   "x2": 5.6,
+   "y2": 3.25,
+   "thickness": 0.1
+  },
+  {
+   "id": 10,
+   "type": "polygon",
+   "label": "",
+   "closed": true,
+   "fill": "#efe3c8",
+   "stroke": "#9a8a6a",
+   "strokeWidth": 1,
+   "points": [
+    {
+     "x": 3.4,
+     "y": 0.3
+    },
+    {
+     "x": 3.5,
+     "y": 0.3
+    },
+    {
+     "x": 3.5,
+     "y": 0.9
+    },
+    {
+     "x": 3.4,
+     "y": 0.9
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "type": "polygon",
+   "label": "",
+   "closed": true,
+   "fill": "#efe3c8",
+   "stroke": "#9a8a6a",
+   "strokeWidth": 1,
+   "points": [
+    {
+     "x": 4.9,
+     "y": 0.3
+    },
+    {
+     "x": 5,
+     "y": 0.3
+    },
+    {
+     "x": 5,
+     "y": 0.9
+    },
+    {
+     "x": 4.9,
+     "y": 0.9
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "type": "polygon",
+   "label": "",
+   "closed": true,
+   "fill": "#efe3c8",
+   "stroke": "#9a8a6a",
+   "strokeWidth": 1,
+   "points": [
+    {
+     "x": 5.5,
+     "y": 0.3
+    },
+    {
+     "x": 5.6,
+     "y": 0.3
+    },
+    {
+     "x": 5.6,
+     "y": 0.8
+    },
+    {
+     "x": 5.5,
+     "y": 0.8
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "type": "polygon",
+   "label": "",
+   "closed": true,
+   "fill": "#efe3c8",
+   "stroke": "#9a8a6a",
+   "strokeWidth": 1,
+   "points": [
+    {
+     "x": 3.5,
+     "y": 0.8
+    },
+    {
+     "x": 4.9,
+     "y": 0.8
+    },
+    {
+     "x": 4.9,
+     "y": 0.9
+    },
+    {
+     "x": 3.5,
+     "y": 0.9
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "type": "polygon",
+   "label": "",
+   "closed": true,
+   "fill": "#efe3c8",
+   "stroke": "#9a8a6a",
+   "strokeWidth": 1,
+   "points": [
+    {
+     "x": 5,
+     "y": 0.8
+    },
+    {
+     "x": 5.5,
+     "y": 0.8
+    },
+    {
+     "x": 5.5,
+     "y": 0.9
+    },
+    {
+     "x": 5,
+     "y": 0.9
+    }
+   ]
+  },
+  {
+   "id": 15,
+   "type": "polygon",
+   "label": "",
+   "closed": true,
+   "fill": "#efe3c8",
+   "stroke": "#9a8a6a",
+   "strokeWidth": 1,
+   "points": [
+    {
+     "x": 5.3,
+     "y": 1
+    },
+    {
+     "x": 5.4,
+     "y": 1
+    },
+    {
+     "x": 5.4,
+     "y": 2
+    },
+    {
+     "x": 5.3,
+     "y": 2
+    }
+   ]
+  },
+  {
+   "id": 16,
+   "type": "polygon",
+   "label": "",
+   "closed": true,
+   "fill": "#efe3c8",
+   "stroke": "#9a8a6a",
+   "strokeWidth": 1,
+   "points": [
+    {
+     "x": 5.4,
+     "y": 1
+    },
+    {
+     "x": 5.6,
+     "y": 1
+    },
+    {
+     "x": 5.6,
+     "y": 1.3
+    },
+    {
+     "x": 5.4,
+     "y": 1.3
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "type": "polygon",
+   "label": "",
+   "closed": true,
+   "fill": "#efe3c8",
+   "stroke": "#9a8a6a",
+   "strokeWidth": 1,
+   "points": [
+    {
+     "x": 5.2,
+     "y": 1.1
+    },
+    {
+     "x": 5.3,
+     "y": 1.1
+    },
+    {
+     "x": 5.3,
+     "y": 1.9
+    },
+    {
+     "x": 5.2,
+     "y": 1.9
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "type": "polygon",
+   "label": "",
+   "closed": true,
+   "fill": "#efe3c8",
+   "stroke": "#9a8a6a",
+   "strokeWidth": 1,
+   "points": [
+    {
+     "x": 5.5,
+     "y": 1.3
+    },
+    {
+     "x": 5.6,
+     "y": 1.3
+    },
+    {
+     "x": 5.6,
+     "y": 2
+    },
+    {
+     "x": 5.5,
+     "y": 2
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "type": "polygon",
+   "label": "",
+   "closed": true,
+   "fill": "#efe3c8",
+   "stroke": "#9a8a6a",
+   "strokeWidth": 1,
+   "points": [
+    {
+     "x": 5.4,
+     "y": 2.4
+    },
+    {
+     "x": 5.6,
+     "y": 2.4
+    },
+    {
+     "x": 5.6,
+     "y": 2.9
+    },
+    {
+     "x": 5.4,
+     "y": 2.9
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "type": "text",
+   "label": "",
+   "fill": "#1c2433",
+   "stroke": "#1c2433",
+   "strokeWidth": 1,
+   "x": 0.1,
+   "y": -0.6,
+   "text": "Aya & Reiko’s home (resident-home-aya) · 5.90 × 3.50 m · 6.2 tsubo · ceiling 2.5 m",
+   "size": 16
+  },
+  {
+   "id": 21,
+   "type": "measure",
+   "label": "",
+   "stroke": "#c0392b",
+   "fill": "#e8f0ff",
+   "strokeWidth": 1,
+   "x1": 0,
+   "y1": 3.8,
+   "x2": 5.900000095367432,
+   "y2": 3.8
+  },
+  {
+   "id": 22,
+   "type": "measure",
+   "label": "",
+   "stroke": "#c0392b",
+   "fill": "#e8f0ff",
+   "strokeWidth": 1,
+   "x1": 6.2000000953674315,
+   "y1": 0,
+   "x2": 6.2000000953674315,
+   "y2": 3.5
+  }
+ ],
+ "nextId": 23
+}

@@ -1,0 +1,354 @@
+/* Canonical LINE presentation. Layout/input mechanics remain in the existing sheets. */
+:root{
+ --line-green:#06c755;--line-green-hover:#05b34c;--line-white:#fff;
+ --line-surface:#f7f8f9;--line-text:#000;--line-secondary:#666;
+ --line-disabled:#999;--line-border:#e5e5e5;--line-danger:#d93025;
+ --line-font:Figtree,"LINE Seed JP",-apple-system,BlinkMacSystemFont,"SF Pro Text",Arial,"Noto Sans JP","Noto Sans KR",sans-serif;
+ --line-shadow:0 2px 8px rgb(0 0 0 / .08);--line-overlay:rgb(0 0 0 / .24);
+ --ink:var(--line-text);--paper:var(--line-white);--gold:var(--line-green);--rust:var(--line-green);
+ --isle-font:var(--line-font);--isle-ink:var(--line-text);--isle-white:var(--line-white);--isle-cream:var(--line-white);--isle-edge:var(--line-border);
+ --isle-sky:var(--line-green);--isle-sky-deep:var(--line-green-hover);--isle-leaf:var(--line-green);--isle-leaf-deep:var(--line-green-hover);
+ --isle-sun:var(--line-green);--isle-sun-deep:var(--line-green-hover);--isle-peach:var(--line-danger);--isle-peach-deep:var(--line-danger);
+ --isle-berry:var(--line-green);--isle-berry-deep:var(--line-green-hover);--isle-grape:var(--line-green);--isle-grape-deep:var(--line-green-hover);
+ color-scheme:light;background:var(--line-surface)!important;
+}
+html,body{font-family:var(--line-font);color:var(--line-text);background:var(--line-surface)!important}
+:is(#hud,#directory,#activity,#mobile,#cameraPanel,#photoStudio,#inspect-caption,#qte,.modal-card){font-family:var(--line-font);letter-spacing:normal;color:var(--line-text)}
+:is(#directory,#activity,#cameraPanel,#photoStudio,#inspect-caption,.modal-card) :is(button,input,select,textarea,a,summary){font-family:var(--line-font);letter-spacing:normal;-webkit-tap-highlight-color:transparent}
+:is(#directory,#activity,#cameraPanel,#photoStudio,#inspect-caption,.modal-card) :is(button,a){min-height:44px;border:1px solid var(--line-border);border-radius:8px;background:var(--line-white);color:var(--line-text);box-shadow:none;font-size:16px;font-weight:700;line-height:1.35;padding:12px 16px;text-decoration:none;max-width:100%;white-space:normal;overflow-wrap:break-word}
+:is(#directory,#activity,#cameraPanel,#photoStudio,#inspect-caption,.modal-card) :is(input,select,textarea):not([type=range]):not([type=checkbox]){min-height:48px;padding:12px 16px;border:1px solid var(--line-border);border-radius:8px;background:var(--line-white);color:var(--line-text);font-size:16px;line-height:1.4;max-width:100%;min-width:0;box-shadow:none}
+:is(#directory,#activity,#cameraPanel,#photoStudio,#inspect-caption,.modal-card) :is(button,input,select,textarea,a,summary):focus-visible{outline:2px solid var(--line-green);outline-offset:3px}
+:is(#directory,#activity,#cameraPanel,#photoStudio,#inspect-caption,.modal-card) :is(button,a):hover:not(:disabled){background:var(--line-surface)}
+:is(#directory,#activity,#cameraPanel,#photoStudio,#inspect-caption,.modal-card) button:disabled{color:var(--line-disabled);opacity:.55;box-shadow:none;cursor:default}
+:is(#directory,#activity,#cameraPanel,#photoStudio,#inspect-caption,.modal-card) :is(input[type=range],input[type=checkbox]){accent-color:var(--line-green)}
+:is(#directory,#activity,#cameraPanel,#photoStudio,.modal-card) h2{font-family:var(--line-font);font-size:24px;line-height:1.25;font-weight:700;letter-spacing:normal}
+:is(#directory,#activity,#cameraPanel,#photoStudio,.modal-card) :is(h3,h4){font-family:var(--line-font);letter-spacing:normal;color:var(--line-text)}
+:is(#directory,#activity,#cameraPanel,#photoStudio,.modal-card) :is(summary,label){font-family:var(--line-font);letter-spacing:normal}
+.ui-icon{display:block;flex:0 0 24px;width:24px;height:24px;margin:0;vertical-align:middle}
+.icon-control{gap:8px;min-height:44px;align-items:center;justify-content:center}
+.ui-control-label{min-width:0;line-height:1.35;white-space:normal;overflow-wrap:break-word;text-align:inherit}
+
+/* World controls: compact white surfaces, with the town remaining visible. */
+#hud{padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+#hud :is(.placard,#clock,.timecard,#waypoint,#prompt,#subtitle){background:var(--line-white);color:var(--line-text);border:1px solid var(--line-border);border-radius:12px;box-shadow:var(--line-shadow);backdrop-filter:none;-webkit-backdrop-filter:none;letter-spacing:normal}
+#hud .placard{padding:12px 16px;max-width:min(560px,calc(100% - 88px))}
+#hud .placard b{font:700 16px/1.3 var(--line-font);letter-spacing:normal}
+#hud .placard small{font:400 14px/1.4 var(--line-font);color:var(--line-secondary);letter-spacing:normal;margin-top:4px}
+#hud #clock{font:700 18px/1.3 var(--line-font);font-variant-numeric:tabular-nums;padding:12px 16px}
+
+body:has(#activity:not(.hidden),#directory:not(.hidden),#cameraPanel:not([hidden]),#photoStudio:not([hidden]),>.shm) :is(#prompt,#mobile){visibility:hidden;pointer-events:none}
+#hud #prompt{font:700 16px/1.4 var(--line-font);padding:12px 16px;max-width:calc(100vw - 32px)}
+#hud #subtitle{font:400 18px/1.5 var(--line-font);padding:16px;max-width:calc(100vw - 32px)}
+body #hud #subtitle{top:auto;bottom:calc(env(safe-area-inset-bottom) + 32px);left:50%;right:auto;transform:translateX(-50%);width:min(560px,calc(100vw - 32px));max-width:calc(100vw - 32px);text-shadow:none}
+body:has(#activity:not(.hidden),#directory:not(.hidden),#cameraPanel:not([hidden]),#photoStudio:not([hidden]),>.shm) #hud{visibility:hidden}
+#hud .timecard small{font-size:14px;color:var(--line-secondary);letter-spacing:normal}
+#hud .timecard div{font:400 16px/1.4 var(--line-font)}
+#hud #waypoint{min-height:44px;padding:12px 16px;font:700 16px/1.4 var(--line-font)}
+:is(#exitRoomButton,#enterBuildingButton){min-height:44px;border:1px solid var(--line-border);border-radius:8px;background:var(--line-white);color:var(--line-text);box-shadow:var(--line-shadow);font:700 16px/1.4 var(--line-font);letter-spacing:normal;padding:12px 16px}
+
+/* One card language for quick menus, longer tools, and system dialogs. */
+#activity .activity-card,#cameraPanel .camera-card,.modal-card{background:var(--line-white);color:var(--line-text);border:1px solid var(--line-border);border-radius:12px;box-shadow:var(--line-shadow);backdrop-filter:none;-webkit-backdrop-filter:none;padding:24px}
+
+:is(#closeDirectory,#closeActivity){display:grid!important;place-items:center;width:44px;height:44px;min-height:44px!important;padding:10px!important;background:var(--line-white)!important;color:var(--line-text)!important;border:1px solid var(--line-border)!important;border-radius:8px!important;box-shadow:none!important;flex:0 0 44px}
+:is(#closeDirectory,#closeActivity)::before,:is(#closeDirectory,#closeActivity)::after{content:none!important}
+:is(#closeDirectory,#closeActivity)>.ui-control-label{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+
+#activity:not(.conversation) .activity-card{gap:16px;width:min(560px,100%);max-height:60dvh;border:1px solid var(--line-border);border-radius:12px;background:var(--line-white);color:var(--line-text);box-shadow:var(--line-shadow);animation:none}
+#activity:not(.conversation) .activity-card header{top:16px;right:16px}
+#activity:not(.conversation) #activityTitle{font:700 24px/1.3 var(--line-font);margin:0;padding-right:56px;color:var(--line-text)}
+#activity:not(.conversation) #activityBody{font:400 20px/1.5 var(--line-font);color:var(--line-text)}
+#activity:not(.conversation) #activityBody p{margin:0 0 16px;background:none;color:var(--line-text)}
+#activity:not(.conversation) #activityActions{gap:8px;max-height:24dvh;padding:0}
+#activity:not(.conversation) #activityActions button{flex:1 1 160px;padding:12px 16px;border:1px solid var(--line-border);border-radius:8px;background:var(--line-green);color:var(--line-white);font:700 16px/1.4 var(--line-font);box-shadow:none}
+#activity:not(.conversation) #activityActions button:hover:not(:disabled){background:var(--line-green-hover)}
+#activity:is(.office-records,.sakura-records,.workshop-tool,.magazine-view,.flyer-view,.pocket-album-view) .activity-card{width:min(1060px,100%);max-height:calc(100dvh - 48px)}
+.modal-card h2{margin:0 0 16px}.modal-card p{font:400 20px/1.5 var(--line-font);margin:0 0 24px}
+.modal-card button{background:var(--line-green);color:var(--line-white)}
+
+/* Conversation phases remain controlled by dialogue-box; only bubbles change. */
+#activity.conversation.rpg{--panel:var(--line-white);--ink:var(--line-text);--line-colour:var(--line-green)}
+#activity.conversation.rpg .activity-card{padding:24px;border:1px solid var(--line-border);border-radius:12px;background:var(--line-white);box-shadow:var(--line-shadow);animation:none}
+#activity.conversation.rpg #activityTitle{position:relative;top:auto;left:auto;display:block;width:auto;height:auto;min-height:24px;margin:0 56px 16px 0;padding:0;border:0;border-radius:0;background:transparent;color:var(--line-text);box-shadow:none;font-size:0;line-height:1.3;white-space:normal}
+#activity.conversation.rpg #activityTitle::before{font:700 20px/1.3 var(--line-font)}
+#activity.conversation.rpg #activityTitle[data-hearts]::after{font:400 14px/1.3 var(--line-font);color:var(--line-green);letter-spacing:normal}
+#activity.conversation.rpg.has-portrait #activityTitle{left:auto;margin-left:72px}
+#activity.conversation.rpg.player-speaking #activityTitle{left:auto;background:transparent;color:var(--line-text)}
+#activity.conversation.rpg.has-portrait .activity-card::after{top:16px;left:24px;border:1px solid var(--line-border);box-shadow:none}
+#activity.conversation.rpg .activity-card header{top:16px;right:16px}
+#activity.conversation.rpg #activityBody{margin:0 0 16px;min-height:0;color:var(--line-text)}
+/* The spoken lines are speech balloons (see the "Speech balloons" block below). */
+#activity.conversation.rpg #activityActions{gap:8px;padding:0}
+#activity.conversation.rpg #activityActions button{display:flex!important;align-items:center;justify-content:flex-start;gap:8px;padding:12px 16px;border:1px solid var(--line-border);border-radius:8px;background:var(--line-white);color:var(--line-text);font:700 16px/1.4 var(--line-font);box-shadow:none}
+#activity.conversation.rpg #activityActions button::before,#activity.conversation.rpg #activityActions button::after{content:none}
+#activity.conversation.rpg #activityActions button.selected{background:var(--line-surface);border-color:var(--line-green);box-shadow:none}
+#activity.conversation.rpg #activityActions button:focus-visible{outline:2px solid var(--line-green);outline-offset:2px}
+#activityBody .chat-log{display:flex;flex-direction:column;gap:12px;padding:16px 0;max-height:32dvh;overflow:auto}
+#activityBody .chat-log .chat-line{display:flex;flex-direction:column;gap:4px;width:fit-content;max-width:85%;padding:12px 16px;border:1px solid var(--line-border);border-radius:18px;font:400 18px/1.5 var(--line-font);margin:0;background:var(--line-surface);color:var(--line-text);border-bottom-left-radius:4px;align-self:flex-start}
+#activityBody .chat-log .chat-line b{font-size:14px;line-height:1.4}
+#activityBody .chat-log .chat-you{background:var(--line-green);color:var(--line-white);border-color:var(--line-green);border-radius:18px 18px 4px 18px;align-self:flex-end}
+#activityBody .chat-input{display:flex;gap:8px;align-items:center;margin:16px 0}
+#activityBody .chat-input input{flex:1;min-width:0}
+#activityBody .chat-input button{flex:0 0 auto;background:var(--line-green);color:var(--line-white)}
+#activityBody .chat-status{font-size:14px;color:var(--line-secondary)}
+
+/* Artwork stays original; surrounding products, pages, and records share LINE UI. */
+#activity.bag-view .bag-grid{gap:8px;grid-template-columns:repeat(auto-fill,minmax(104px,1fr))}
+#activity.bag-view .bag-tile{border:1px solid var(--line-border);border-radius:12px;background:var(--line-white);box-shadow:none;padding:16px 8px;gap:8px;min-height:120px;font:700 16px/1.35 var(--line-font)}
+#activity.bag-view .bag-tile .ui-icon,#activity.bag-view .bag-hero{color:var(--line-text)}
+#activity.bag-view .bag-n{font-size:14px;color:var(--line-secondary)}
+#activity.bag-view .bag-name{color:var(--line-text)}
+#activity.bag-view .bag-hero{border-radius:12px;background:var(--line-surface)}
+#activity .mag-cover{padding:12px;border:1px solid var(--line-border);border-radius:12px;background:var(--line-white);box-shadow:none;gap:8px}
+#activity .mag-cover:hover,#activity .mag-cover:focus-visible{box-shadow:var(--line-shadow);transform:none}
+#activity .mag-cover-name{font:700 16px/1.4 var(--line-font);color:var(--line-text)}
+#activity .mag-cover-issue,#activity .mag-reader .mag-hint,#activity .mag-hint{font:400 14px/1.5 var(--line-font);color:var(--line-secondary)}
+#activity .mag-title{font:700 18px/1.4 var(--line-font);color:var(--line-text)}
+#activity .mag-head{flex-wrap:wrap;gap:8px}
+#activity .mag-nav{gap:8px;flex-wrap:wrap}
+#activity .mag-count{font-size:16px;color:var(--line-secondary)}
+#activity .mag-back,#activity .mag-turn{border:1px solid var(--line-border);border-radius:8px;background:var(--line-white);color:var(--line-text);box-shadow:none;font:700 16px/1.4 var(--line-font);min-height:44px}
+#activity .mag-buy{border:1px solid var(--line-green);border-radius:8px;background:var(--line-green);color:var(--line-white);box-shadow:none}
+#activity :is(.office-workbook,.town-archive,.sakura-ledger){font:400 16px/1.5 var(--line-font);color:var(--line-text)}
+#activity :is(.office-workbook,.town-archive,.sakura-ledger) :is(table,caption){font-family:var(--line-font);font-size:16px;line-height:1.5;background:var(--line-white);color:var(--line-text)}
+#activity :is(.office-workbook,.town-archive,.sakura-ledger) :is(th,td){border-color:var(--line-border);padding:12px 16px;color:var(--line-text)}
+#activity :is(.office-workbook,.town-archive,.sakura-ledger) :is(thead th,caption){background:var(--line-surface);color:var(--line-text)}
+#activity :is(.office-workbook,.town-archive,.sakura-ledger) :is(.office-calculated,.office-workbook-formula,.archive-paper,.archive-finding){background:var(--line-surface);color:var(--line-text);border-color:var(--line-border);border-radius:12px}
+#activity :is(.office-workbook,.town-archive,.sakura-ledger) :is(dt,.archive-policy,.office-workbook-count,.office-workbook-note,.sakura-ledger-note){font-size:14px;line-height:1.5;color:var(--line-secondary)}
+#activity :is(.office-workbook,.town-archive,.sakura-ledger) button[aria-pressed=true]{background:var(--line-green);color:var(--line-white);border-color:var(--line-green)}
+#activity :is(.office-workbook-download,.archive-paper){border-color:var(--line-border);box-shadow:none}
+#activity .office-workbook-download{background:var(--line-green);color:var(--line-white)}
+#activity .arcade-track{border-radius:8px;background:var(--line-surface);border:1px solid var(--line-border)}
+#activity .target-zone{background:var(--line-green)}#activity .arcade-marker{background:var(--line-text)}
+#inspect-caption{background:var(--line-white);color:var(--line-text);border:1px solid var(--line-border);border-radius:12px;box-shadow:var(--line-shadow);font:400 18px/1.5 var(--line-font);padding:16px}
+
+/* Tools retain their current stage and scrolling geometry. */
+#cameraPanel .camera-card{padding:24px;background:var(--line-white);border:1px solid var(--line-border);border-radius:12px}
+#cameraPanel :is(p,dl){font:400 16px/1.5 var(--line-font)}
+#cameraPanel label{font:700 16px/1.5 var(--line-font)}
+#cameraPanel .camera-help{color:var(--line-secondary)}
+#photoStudio{background:var(--line-surface);color:var(--line-text);font:400 16px/1.5 var(--line-font)}
+#photoStudio header{background:var(--line-white);border-bottom:1px solid var(--line-border);box-shadow:none;padding:16px 24px}
+#photoStudio h2{font:700 24px/1.25 var(--line-font)}
+#photoStudio header p,#photoStudio label,#photoStudio .photo-status{font:400 14px/1.5 var(--line-font);color:var(--line-secondary)}
+#photoStudio .photo-tools{background:var(--line-surface);padding:16px}
+#photoStudio details{padding:16px;border:1px solid var(--line-border);border-radius:12px;background:var(--line-white);box-shadow:none;margin:0 0 16px}
+#photoStudio summary{display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 0;font-size:16px;list-style:none}
+#photoStudio summary::-webkit-details-marker{display:none}
+#photoStudio summary::before{content:'›';flex:0 0 12px;font-size:20px}
+#photoStudio details[open]>summary::before{transform:rotate(90deg)}
+#photoStudio .photo-tabs{background:var(--line-surface);gap:8px;padding:8px 0}
+#photoStudio .photo-tabs button{min-height:72px;gap:8px;font-size:14px;border-radius:8px}
+#photoStudio .photo-tabs button[aria-pressed=true],#photoStudio .photo-chip.on{background:var(--line-green);color:var(--line-white);border-color:var(--line-green);box-shadow:none}
+#photoStudio .photo-chip{min-height:64px;padding:8px 12px;border-radius:8px;background:var(--line-white);color:var(--line-text);font-size:14px;gap:8px;box-shadow:none}
+#photoStudio .photo-chips-title{font-size:14px;color:var(--line-secondary);letter-spacing:normal}
+#photoStudio :is(.primary,[data-capture]){background:var(--line-green);color:var(--line-white);border-color:var(--line-green);box-shadow:none}
+#photoStudio [data-close]{display:grid;place-items:center;width:44px;height:44px;min-height:44px;padding:10px;background:var(--line-white);color:var(--line-text);border-color:var(--line-border);border-radius:8px;box-shadow:none}
+#photoStudio [data-close]::before,#photoStudio [data-close]::after{content:none}
+#photoStudio .photo-stage{background:var(--line-surface)}
+#photoStudio .photo-frame{border:1px solid var(--line-border);border-radius:12px;box-shadow:var(--line-shadow)}
+#photoStudio .photo-precise{background:var(--line-surface)}
+#photoStudio .photo-film{grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:8px}
+#photoStudio .photo-film .photo-row{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px}
+#photoStudio .photo-film .photo-row :is(button,a){min-height:44px!important;padding:8px!important;font-size:14px!important;white-space:normal;overflow-wrap:normal;word-break:normal;min-width:0}
+#photoStudio .photo-film .photo-row button.icon-control{display:flex!important;flex-direction:row;align-items:center;justify-content:center;gap:8px}
+#photoStudio .photo-film .photo-row button.icon-control>.ui-control-label{flex:0 1 auto;width:auto;text-align:center}
+#photoStudio .photo-film .photo-row button.icon-control>.ui-icon{margin:0}
+#photoStudio .photo-place-grid button{border-radius:12px;font-size:16px;gap:8px;min-height:96px}
+#photoStudio .photo-swatch{width:44px;height:44px;min-height:44px;padding:0;border-radius:8px;box-shadow:0 0 0 1px var(--line-border)}
+#photoStudio .photo-swatch.on{box-shadow:0 0 0 3px var(--line-green)}
+
+/* Creator CSS is injected after boot; these scoped rules stay authoritative. */
+body>.shm{background:var(--line-surface);color:var(--line-text);font-family:var(--line-font)}
+body>.shm :is(button,input,select,textarea,a){font-family:var(--line-font);letter-spacing:normal;-webkit-tap-highlight-color:transparent}
+body>.shm :is(button,a){min-height:44px;padding:12px 16px;max-width:100%;white-space:normal;overflow-wrap:break-word;font-size:16px;line-height:1.35;font-weight:700;text-decoration:none}
+body>.shm :is(input,select,textarea):not([type=range]):not([type=checkbox]){min-height:48px;padding:12px 16px;border:1px solid var(--line-border);border-radius:8px;background:var(--line-white);color:var(--line-text);font-size:16px;line-height:1.4;max-width:100%;min-width:0;box-shadow:none}
+body>.shm :is(button,input,select,textarea,a):focus-visible{outline:2px solid var(--line-green);outline-offset:3px}
+body>.shm button:disabled{color:var(--line-disabled);opacity:.55;box-shadow:none;cursor:default}
+body>.shm :is(input[type=range],input[type=checkbox]){accent-color:var(--line-green)}
+body>.shm :is(.shm-panel,.shm-stage,.shm-share>div,.shm-type){background:var(--line-white);border:1px solid var(--line-border);border-radius:12px;box-shadow:none}
+body>.shm :is(.shm-top,.shm-foot){background:var(--line-white);border-color:var(--line-border)}
+body>.shm :is(button,.shm-select,.shm-name,.shm-text){font-family:var(--line-font);letter-spacing:normal;border:1px solid var(--line-border);border-radius:8px;background:var(--line-white);color:var(--line-text);box-shadow:none;font-size:16px;min-height:44px}
+body>.shm :is(.shm-note,.shm-top h2 small,.shm-body h4,.shm-type small,.shm-persona-moment b,.shm-pad b){font-family:var(--line-font);font-size:14px;line-height:1.5;letter-spacing:normal;color:var(--line-secondary)}
+body>.shm :is(.shm-type span,.shm-persona-moment p,.shm-share p){font-size:16px;line-height:1.5;color:var(--line-text)}
+body>.shm :is(.shm-tabs,.shm-category,.shm-pages){background:var(--line-surface);border-color:var(--line-border);border-radius:8px}
+body>.shm :is(.shm-tabs button,.shm-pages button,.shm-grid button,.shm-chips button,.shm-toggle,.shm-pips button,.shm-dots button){border-color:var(--line-border);border-radius:8px;background:var(--line-white);color:var(--line-text);font-size:14px;box-shadow:none}
+body>.shm .shm-grid button{gap:8px;border-radius:12px;padding:8px}
+body>.shm .shm-grid button canvas{border-radius:8px;background:var(--line-surface)}
+body>.shm :is(.shm-tabs button[aria-selected=true],.shm-pages button[aria-selected=true],.shm-chips button[aria-pressed=true],.shm-toggle[aria-pressed=true],.shm-pips button[aria-pressed=true],.shm-dots button[aria-current=step],.shm-next,.shm-save){background:var(--line-green);color:var(--line-white);border-color:var(--line-green);box-shadow:none}
+body>.shm .shm-grid button[aria-pressed=true]{background:var(--line-surface);border-color:var(--line-green)}
+body>.shm .shm-meter i{background:var(--line-border)}body>.shm .shm-meter i.on,body>.shm .shm-pips button.on{background:var(--line-green)}
+body>.shm .shm-dial>div:first-child{color:var(--line-secondary);font-size:14px}
+body>.shm .shm-dial>div:first-child strong{color:var(--line-text)}
+body>.shm .shm-swatches button{min-width:44px;min-height:44px;border-radius:8px}
+body>.shm .shm-swatches button[aria-pressed=true]{box-shadow:0 0 0 3px var(--line-green)}
+body>.shm .shm-bubble{background:var(--line-surface);color:var(--line-text);border:1px solid var(--line-border);border-radius:18px 18px 18px 4px;box-shadow:var(--line-shadow);font:400 18px/1.5 var(--line-font)}
+body>.shm .shm-step>span{font-size:14px}body>.shm .shm-step button,body>.shm .shm-pad button{border-radius:8px;font-size:20px}
+body>.shm .shm-foot{min-height:64px;flex-wrap:nowrap;gap:8px}
+body>.shm .shm-dots button{display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:44px;min-height:44px;height:auto;padding:8px;white-space:nowrap;overflow-wrap:normal}
+body>.shm .shm-dots button span{margin:0}
+body>.shm .shm-foot :is(.shm-pill,.shm-next,.shm-save){flex:0 0 auto;white-space:nowrap;overflow-wrap:normal}
+body>.shm .shm-share{background:var(--line-overlay)}body>.shm .shm-share>div{box-sizing:border-box;max-height:calc(100dvh - 24px);overflow-y:auto;padding:24px}
+
+/* Touch hit areas and control-off visibility are left to the input styles. */
+.touch-controls #mobile :is(#act,#drink),.touch-controls #mobile #movementActions :is(#run,#jump){min-height:44px;border:1px solid var(--line-border);border-radius:8px;background:var(--line-white);color:var(--line-text);box-shadow:var(--line-shadow);filter:none;text-shadow:none;font-family:var(--line-font);letter-spacing:normal}
+.touch-controls #mobile #act.available,.touch-controls #mobile #movementActions #run[aria-pressed=true]{background:var(--line-green);color:var(--line-white);border-color:var(--line-green)}
+.touch-controls #mobile :is(.act-glyph,.act-label,.jump-glyph,.jump-label,#drink b,#run b){color:inherit;letter-spacing:normal}
+.touch-controls #mobile :is(.act-label,.jump-label,#drink b,#run b){font:700 14px/1.3 var(--line-font)}
+.touch-controls #mobile .stick-base{border:1px solid var(--line-border);background:rgb(247 248 249 / .86);box-shadow:var(--line-shadow)}
+.touch-controls #mobile .stick-knob{border:1px solid var(--line-green);background:var(--line-green);box-shadow:none}
+/* Touch captions sit under the place card, never on the thumb zone: the action buttons own the bottom edge.
+   (The class lives on <html>; these rules previously targeted body.touch-controls and never applied.) */
+@media(pointer:coarse){html.touch-controls body #hud #subtitle{top:max(76px,calc(env(safe-area-inset-top) + 70px));bottom:auto;left:max(16px,env(safe-area-inset-left));right:auto;transform:none;width:calc(100vw - 88px);max-width:calc(100vw - 88px);font-size:16px;padding:10px 14px}}
+@media(pointer:coarse) and (max-height:520px){html.touch-controls body #hud #subtitle{top:max(66px,calc(env(safe-area-inset-top) + 60px));width:fit-content;max-width:min(50vw,420px);font-size:15px;padding:10px 12px}}
+#qte .qte-card{border:1px solid var(--line-border);border-radius:12px;background:var(--line-white);box-shadow:var(--line-shadow);backdrop-filter:none}
+#qte #qteGlyph{color:var(--line-text);text-shadow:none}#qte #qteText{font:700 16px/1.4 var(--line-font);letter-spacing:normal;color:var(--line-text)}
+#qte .qte-track{background:var(--line-border);height:8px;border-radius:4px}#qte .qte-track span{background:var(--line-green)}
+#qte.good .qte-card{border-color:var(--line-green);box-shadow:var(--line-shadow)}#qte.bad .qte-card{border-color:var(--line-danger)}
+
+@media(max-width:760px){
+ #hud .placard{padding:8px 12px;max-width:calc(100% - 80px)}
+ #hud .placard b{font-size:14px}#hud .placard small{font-size:12px}
+ #hud #clock{font-size:16px;padding:8px 12px}
+ #activity .activity-card,#cameraPanel .camera-card{padding:16px}
+ 
+ #activity:not(.conversation) #activityTitle,#cameraPanel h2{font-size:24px}
+ #activity:not(.conversation) .activity-card header{top:8px;right:8px}
+ #activity:not(.conversation) #activityBody,.modal-card p{font-size:18px;line-height:1.5}
+ #activity.conversation.rpg .activity-card{padding:16px}
+ #activity.conversation.rpg .activity-card header{top:8px;right:8px}
+ #activity.conversation.rpg.has-portrait .activity-card::after{left:16px;top:12px}
+ #photoStudio header{padding:12px 16px}#photoStudio .photo-tools{padding:8px}
+ #photoStudio .photo-tabs{gap:4px}#photoStudio .photo-tabs button{font-size:12px;padding:8px 4px;min-height:64px}
+ #photoStudio details{padding:12px;margin-bottom:8px}
+ #activity .mag-head{gap:8px}#activity .mag-title{flex:1 1 160px}
+}
+@media(max-width:360px){
+
+ #photoStudio .photo-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+ #activityBody .chat-input{flex-wrap:wrap}#activityBody .chat-input button{width:100%}
+}
+@media(max-width:760px){body>.shm .shm-foot :is(.shm-pill,.shm-next,.shm-save){padding:8px;min-width:64px;font-size:14px;gap:4px}body>.shm .shm-dots{gap:4px}body>.shm .shm-dots button{padding:8px 4px}body>.shm .shm-dots button span{display:none}body>.shm .shm-foot .ui-icon{width:20px;height:20px;flex-basis:20px}}
+@media(max-width:760px){
+ body>.shm .shm-pips{display:grid;grid-template-columns:repeat(auto-fit,minmax(44px,1fr));gap:4px;width:100%}
+ body>.shm .shm-pips button{min-width:44px;min-height:44px;padding:0}
+ body>.shm .shm-body{overflow-x:hidden}
+ body>.shm .shm-pages button{padding:8px 4px;flex-direction:column;gap:4px;font-size:14px}
+ body>.shm .shm-pages button>.ui-control-label{white-space:nowrap;overflow-wrap:normal}
+}
+@media(max-width:360px){
+ body>.shm .shm-foot{gap:4px;padding-right:8px;padding-left:8px}
+ body>.shm .shm-foot :is(.shm-pill,.shm-next,.shm-save){position:relative;min-width:44px;width:44px;padding:8px}
+ body>.shm .shm-foot :is(.shm-pill,.shm-next,.shm-save)>.ui-control-label{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+}
+/* The last step keeps its full save caption beneath the step navigation. */
+@media(max-width:520px){
+ body>.shm .shm-step{grid-template-columns:44px minmax(0,1fr) 44px;gap:4px 8px}
+ body>.shm .shm-step>span{grid-column:1/-1}
+ body>.shm .shm-step button{width:44px;height:44px}
+ body>.shm .shm-step .shm-meter{gap:1px}
+ body>.shm .shm-dial>div:first-child{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px 8px;align-items:start}
+ body>.shm .shm-dial>div:first-child strong{grid-column:1/-1;grid-row:1;text-align:center}
+ body>.shm .shm-dial>div:first-child span{min-width:0;overflow-wrap:break-word}
+ body>.shm .shm-dial>div:first-child span:first-child{grid-column:1;grid-row:2}
+ body>.shm .shm-dial>div:first-child span:last-child{grid-column:2;grid-row:2;text-align:right}
+ body>.shm[data-step=hello] .shm-foot{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;padding:8px max(8px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
+ body>.shm[data-step=hello] .shm-foot .shm-pill{width:44px;min-width:44px;padding:8px}
+ body>.shm[data-step=hello] .shm-foot .shm-pill>.ui-control-label{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+ body>.shm[data-step=hello] .shm-dots{width:100%;justify-content:space-between}
+ body>.shm[data-step=hello] .shm-save{grid-column:1/-1;display:inline-flex;width:100%;min-width:44px;justify-content:center;padding:8px 12px}
+ body>.shm[data-step=hello] .shm-save>.ui-control-label{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;white-space:normal}
+}
+@media(max-height:520px){
+ #cameraPanel .camera-card{max-height:calc(100dvh - 80px)}
+ #activity:not(.conversation) .activity-card{max-height:calc(100dvh - 24px)}
+ #activity:not(.conversation) #activityActions{max-height:35dvh}
+ #activity.conversation.rpg .activity-card{padding:12px 16px}
+}
+
+/* A phone held upright: the action tray (the Town clock's eight buttons) gets room to show them,
+   instead of 24% of the height with the last row cut off below a scroll nobody can see. */
+@media(max-width:600px) and (min-height:640px){
+ #activity:not(.conversation) .activity-card{max-height:75dvh}
+ #activity:not(.conversation) #activityActions{max-height:44dvh}
+}
+/* The same on a desktop window: 24% of a 760 px window shows two rows of buttons and half of a third (Ms Ganaha's
+   seven places and the way out), so a window tall enough gives the tray a third of its height. */
+@media(min-width:601px) and (min-height:640px){
+ #activity:not(.conversation) #activityActions{max-height:35dvh}
+}
+
+/* One typeface for every piece of interface text: LINE Seed JP, with the LINE stack behind it. (Figtree comes
+   first only for ā ē ī ō ū and their capitals, which LINE Seed JP draws wrongly: index.html loads just those.)
+   Product packaging, shop signs and other in-world artwork are painted into their own textures
+   and keep their own lettering. */
+body,body :is(div,p,span,a,b,i,em,strong,small,h1,h2,h3,h4,h5,h6,li,dt,dd,label,legend,summary,button,input,select,textarea,th,td,caption,figcaption,blockquote,time,output,kbd,code){font-family:var(--line-font)!important;letter-spacing:normal}
+
+/* ---- Speech balloons --------------------------------------------------------------------
+   A soft white balloon wraps beside the active speaker, with a short rounded tail,
+   a faint cool edge and bold, rounded words. Conversation lines and neighbours' street
+   chats share the same placement, which protects faces, replies and screen margins.
+   The full sentence reserves its footprint while the visible words appear.
+   Figtree comes first only for
+   the macron letters it was subset to (index.html); everything else is M PLUS Rounded 1c,
+   loaded by tomodachi-ui.css. */
+:root{
+ --balloon-font:Figtree,"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Arial Rounded MT Bold","LINE Seed JP",system-ui,sans-serif;
+ --balloon-ink:#2b2f3a;--balloon-paper:#fff;--balloon-edge:#d9e3ee;
+ --balloon-shadow:0 0 0 1.5px var(--balloon-edge),0 8px 22px rgb(31 52 82 / .18),0 2px 4px rgb(31 52 82 / .08);
+ --balloon-safe-top:env(safe-area-inset-top,0px);--balloon-safe-right:env(safe-area-inset-right,0px);--balloon-safe-bottom:env(safe-area-inset-bottom,0px);--balloon-safe-left:env(safe-area-inset-left,0px);
+}
+/* The conversation: the line leaves the panel and floats above it (Thuan's free chat, with its
+   transcript and input box, stays inside the panel). */
+#activity.conversation.rpg #activityBody:not(:has(.chat-log,.chat-input)){position:fixed;left:var(--balloon-x,16px);top:var(--balloon-y,24px);bottom:auto;transform:none;
+ width:var(--balloon-width,320px);max-width:calc(100vw - 24px);height:var(--balloon-height,auto);margin:0;min-height:0;z-index:2;pointer-events:none}
+#activity.conversation.rpg #activityBody :is(.rpg-line,.rpg-own){position:relative;display:grid;width:100%;max-width:none;margin:0;padding:16px 20px 18px;border:0;border-radius:28px;
+ background:var(--balloon-paper);color:var(--balloon-ink);box-shadow:var(--balloon-shadow);font:700 clamp(18px,1.7vw,21px)/1.4 var(--balloon-font);letter-spacing:normal;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere}
+#activity.conversation.rpg #activityBody :is(.rpg-line,.rpg-own)::before{content:attr(data-full-line);grid-area:1/1;visibility:hidden;pointer-events:none}
+#activity.conversation.rpg #activityBody .balloon-text{grid-area:1/1;min-width:0}
+#activity.conversation.rpg #activityBody .rpg-own,#activity.conversation.rpg.player-speaking #activityBody .rpg-line{display:none}
+#activity.conversation.rpg.player-speaking #activityBody .rpg-own{display:grid}
+#activity.conversation.rpg #activityBody[data-balloon-overflow="true"]{overflow:auto;pointer-events:auto;overscroll-behavior:contain;border-radius:24px}
+/* A short side tail points to the active speaker; it does not stretch across a face. */
+#activity.conversation.rpg #activityBody :is(.rpg-line,.rpg-own)::after,.neighbour-chat::after{content:"";position:absolute;left:calc(var(--balloon-tail-x,50%) - 8px);top:calc(var(--balloon-tail-y,100%) - 8px);bottom:auto;width:16px;height:16px;margin:0;
+ border:0;border-radius:3px;background:var(--balloon-paper);transform:rotate(45deg);box-shadow:1.5px 1.5px 0 0 var(--balloon-edge)}
+#activityBody[data-balloon-overflow="true"] :is(.rpg-line,.rpg-own)::after{display:none}
+/* "Tap to go on" sits inside the balloon's corner. */
+#activity.conversation.rpg.listening #activityBody::after,#activity.conversation.rpg.player-speaking #activityBody::after{right:20px;bottom:8px;font-size:12px;color:#8a93a3;z-index:1}
+/* Johansson's own line: the same balloon (the camera is on him while he says it). */
+#activity.conversation.rpg #activityBody .rpg-own{color:var(--balloon-ink)}
+/* The panel keeps only a quiet reminder of who you are talking to, and the replies. */
+#activity.conversation.rpg #activityTitle::before{font:700 15px/1.3 var(--line-font);color:var(--line-secondary)}
+#activity.conversation.rpg.has-portrait .activity-card::after{width:44px;height:44px;top:16px}
+#activity.conversation.rpg.has-portrait #activityTitle{margin-left:56px;min-height:44px;display:flex;align-items:center}
+@media(prefers-reduced-motion:no-preference){
+ #activity.conversation.rpg #activityBody .rpg-line,#activity.conversation.rpg.player-speaking #activityBody .rpg-own{animation:balloon-pop .22s cubic-bezier(.2,.9,.3,1.25)}
+}
+@keyframes balloon-pop{from{scale:.9}to{scale:1}}
+/* The street chats: the same balloon, a size smaller. The name stays in the markup only. */
+.neighbour-chat{left:var(--balloon-x,16px);top:var(--balloon-y,80px);width:var(--balloon-width,248px);height:var(--balloon-height,auto);max-width:calc(100vw - 24px);padding:12px 16px 14px;border:0;border-radius:24px;
+ background:var(--balloon-paper);color:var(--balloon-ink);box-shadow:var(--balloon-shadow);font:700 17px/1.4 var(--balloon-font);letter-spacing:normal;text-align:left;margin-top:0;transform:none;white-space:pre-wrap;overflow-wrap:anywhere}
+.neighbour-chat strong{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:520px){
+ #activity.conversation.rpg #activityBody :is(.rpg-line,.rpg-own){padding:12px 16px 14px;border-radius:24px;font-size:18px}
+ .neighbour-chat{font-size:16px;padding:10px 14px 12px;border-radius:22px}
+}
+@media(max-height:520px){
+ #activity.conversation.rpg #activityBody :is(.rpg-line,.rpg-own){padding:12px 22px 14px;font-size:17px;border-radius:30px}
+}
+/* Bag browsing and read-only resident records share the town's controls and touch sizes. */
+.bag-controls{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.bag-controls select,.bag-controls input,.resident-compare select{min-width:0;min-height:44px;padding:10px 12px;border:1px solid #cbd3ce;border-radius:10px;background:#fff;color:#26372f;font:inherit}
+.bag-controls select{flex:1 1 140px}.bag-controls input{flex:2 1 180px}
+.bag-status{font-size:14px;color:#53655a}
+.resident-compare{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:16px 0}.resident-compare select{max-width:100%}
+.personality-reference summary{min-height:44px;padding:10px 0;cursor:pointer;font-weight:700}
+.personality-reference-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:10px}
+.personality-reference article{border-left:4px solid;padding:12px;background:#f5f8f6;border-radius:8px}
+.personality-reference article h4,.personality-reference article p{margin:0 0 6px}
+#activity.resident-record #activityBody h3{font-size:16px;line-height:1.4;margin:18px 0 6px}
+#activity.resident-record #activityBody p{font-size:16px;line-height:1.5;margin:0 0 10px}
+#activity.resident-record .personality-reference small{font-size:12px}
+@media(max-width:520px){.bag-controls select,.bag-controls input{flex-basis:100%;width:100%}}
+.resident-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr));gap:8px;margin:12px 0}
+.resident-list button{min-height:48px;border:1px solid var(--line-border);border-radius:10px;background:#fff;color:var(--line-text);font:600 16px var(--line-font);padding:12px;cursor:pointer}
+.resident-list button:focus-visible{outline:3px solid var(--line-green);outline-offset:2px}

@@ -1,0 +1,14 @@
+{
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+  "space": "Qwen/Qwen3-TTS",
+  "event": "cb448650e3e74eafbed90d5a3b062262",
+  "request": {
+    "data": [
+      "いらっしゃいませ。ゆっくり本を見ていってください。",
+      "Japanese",
+      "Ono_anna",
+      "Speak gently and naturally, as a calm adult bookshop assistant greeting a customer.",
+      "1.7B"
+    ]
+  }
+}

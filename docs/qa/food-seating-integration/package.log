@@ -1,0 +1,11 @@
+✔ published runtime matches the current source rather than an older build (356.2437ms)
+✔ published page uses one compiled audio/boot graph with local hashed dependencies (99.412681ms)
+✔ every stylesheet link carries a hash of the file it points at (6.499802ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 589.426358

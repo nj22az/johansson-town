@@ -1,0 +1,4 @@
+{
+ "about": "Minato's ground violations against src/world/ground-standard.js, by stable key (kind|district|class|surface, or kind|district|route|end): square metres for colour and height, metres of seam, one per dead end. tests/ground-standard.test.mjs fails on a new key, a key that grew, and a key fixed but still listed. Regenerate with node tools/ground-audit.mjs --write-baseline only after a fix.",
+ "violations": {}
+}

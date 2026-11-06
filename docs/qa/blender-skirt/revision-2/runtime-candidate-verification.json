@@ -1,0 +1,43 @@
+{
+  "triangles": 1472,
+  "parts": [
+    {
+      "name": "Runtime skirt",
+      "vertices": 576,
+      "quads": 544,
+      "triangles": 1088,
+      "boundary_edges": 64,
+      "more_than_two_face_edges": 0
+    },
+    {
+      "name": "Runtime waistband",
+      "vertices": 192,
+      "quads": 192,
+      "triangles": 384,
+      "boundary_edges": 0,
+      "more_than_two_face_edges": 0
+    }
+  ],
+  "checks": {
+    "within_1200_1600_triangles": true,
+    "two_garment_meshes": true,
+    "six_exported_fit_targets": true,
+    "normal_texture_exported": true,
+    "sheen_exported": true,
+    "short_returns_no_full_lining": true,
+    "no_skeleton_or_animation": true
+  },
+  "glb_bytes": 143628,
+  "status": "Unrigged runtime geometry/material candidate. Not integrated or pose accepted.",
+  "material_limits": "Sheen and low-strength tangent normal texture export verified in GLB metadata; Three.js render parity and performance still require inspection.",
+  "normal_scale": 0.07999999821186066,
+  "lining": "Only top tuck returns and three-ring hem returns remain. The two open boundaries are intentional; the waist band is closed.",
+  "unverified": [
+    "Dressed-body fit",
+    "Shirt tuck clearance in motion",
+    "Thigh splay and sitting correctives",
+    "Shared rig binding",
+    "Runtime shader/render parity",
+    "Device performance"
+  ]
+}

@@ -1,0 +1,7 @@
+SUPERSEDED — 31 October 2026
+
+Owner: "Make the assets in blender don't care about mushy now".
+The active asset workflow is Blender only. No Meshy sign-in, generation or handoff is required.
+Current deliverables and rebuild instructions: README.md.
+Controlling surface schedule: cad/finish-h1-f1.json (H1-F1).
+No Meshy assets were generated or applied. The former sign-in blocker is no longer a task blocker.

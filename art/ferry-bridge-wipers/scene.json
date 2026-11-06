@@ -1,0 +1,44 @@
+{
+  "revision": "bridge-wipers-v1",
+  "units": "metres",
+  "sourcePane": {
+    "centres": [
+      -1.18,
+      0,
+      1.18
+    ],
+    "centreY": 1.45,
+    "centreZ": -0.04,
+    "width": 1.05,
+    "height": 0.95,
+    "depth": 0.03,
+    "outerFaceZ": -0.025
+  },
+  "rootY": 2.005,
+  "rootXOffset": -0.025,
+  "armLength": 0.54,
+  "shaftCentres": 0.05,
+  "sweep": [
+    -0.7,
+    0.7
+  ],
+  "park": -0.7,
+  "bladeLength": 0.53,
+  "rubberMinZ": -0.0245,
+  "rubberMaxZ": -0.0125,
+  "fixedBounds": [
+    -0.055,
+    0.095,
+    1.955,
+    2.055,
+    -0.19,
+    0.065
+  ],
+  "nativeAsset": "models/ferry-bridge/bridge-wipers-v1.glb",
+  "parts": [
+    "fixed",
+    "drive",
+    "idler",
+    "carrier"
+  ]
+}

@@ -1,0 +1,781 @@
+{
+  "testedGameCommit": "a42fad65dc19c577f7f9b5707be152618aa92180",
+  "runnerCommit": "5475a92860d51d6feaa952d81e08afa2a840f995",
+  "physicalDevice": false,
+  "views": [
+    {
+      "viewport": "desktop",
+      "name": "exterior-day",
+      "file": "desktop-exterior-day.png",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "sleeping": false,
+        "roofs": [
+          true
+        ],
+        "bad": [],
+        "player": [
+          -37.5,
+          0.06,
+          -54.2
+        ],
+        "lens": {
+          "position": [
+            -46.4,
+            5,
+            -50.8
+          ],
+          "rotation": [
+            -0.45620675660741167,
+            -0.8101864734347471,
+            -3.091750756175689e-17
+          ],
+          "distance": 3.128346868942622,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 2503
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "stern-day",
+      "file": "desktop-stern-day.png",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "sleeping": false,
+        "roofs": [
+          true
+        ],
+        "bad": [],
+        "player": [
+          -37.5,
+          0.06,
+          -54.2
+        ],
+        "lens": {
+          "position": [
+            -44.5,
+            3.6,
+            -63.4
+          ],
+          "rotation": [
+            -0.4298776563336739,
+            -2.4569754892770126,
+            -3.0533624146527696e-17
+          ],
+          "distance": 3.128346868942622,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 5419
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "sleep-night",
+      "file": "desktop-sleep-night.png",
+      "state": {
+        "routine": "sleeping",
+        "position": [
+          -41.13,
+          0.85,
+          -57.15
+        ],
+        "sleeping": true,
+        "roofs": [
+          false
+        ],
+        "bad": [],
+        "player": [
+          -37.5,
+          0.06,
+          -54.2
+        ],
+        "lens": {
+          "position": [
+            -43.7,
+            3.6,
+            -54.3
+          ],
+          "rotation": [
+            -0.5201736092662418,
+            -0.6226707887570673,
+            -3.198631226308888e-17
+          ],
+          "distance": 3.1999999999999997,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 74448
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "sleep-overhead",
+      "file": "desktop-sleep-overhead.png",
+      "state": {
+        "routine": "sleeping",
+        "position": [
+          -41.13,
+          0.85,
+          -57.15
+        ],
+        "sleeping": true,
+        "roofs": [
+          false
+        ],
+        "bad": [],
+        "player": [
+          -37.5,
+          0.06,
+          -54.2
+        ],
+        "lens": {
+          "position": [
+            -40.5,
+            7,
+            -57.7
+          ],
+          "rotation": [
+            -1.5706963267951588,
+            0,
+            0
+          ],
+          "distance": 3.1999999999999997,
+          "ceiling": null,
+          "blocked": false
+        },
+        "drawCalls": 75310
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "sleep-staged-daylight",
+      "file": "desktop-sleep-staged-daylight.png",
+      "state": {
+        "routine": "to-boat",
+        "position": [
+          -41.13,
+          0.8500000000000001,
+          -57.15
+        ],
+        "sleeping": false,
+        "roofs": [
+          true
+        ],
+        "bad": [],
+        "player": [
+          -37.5,
+          0.06,
+          -54.2
+        ],
+        "lens": {
+          "position": [
+            -42.9,
+            3.2,
+            -54.8
+          ],
+          "rotation": [
+            -0.556411745431271,
+            -0.5448639154515431,
+            -3.2686085891747124e-17
+          ],
+          "distance": 3.1999999999999997,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 77758
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "cabin-pedestrian",
+      "file": "desktop-cabin-pedestrian.png",
+      "state": {
+        "routine": "to-boat",
+        "position": [
+          -41.13,
+          0.8500000000000001,
+          -57.15
+        ],
+        "sleeping": false,
+        "roofs": [
+          true
+        ],
+        "bad": [],
+        "player": [
+          -40.18,
+          0.06,
+          -57.05
+        ],
+        "lens": {
+          "position": [
+            -42.9,
+            3.2,
+            -54.8
+          ],
+          "rotation": [
+            -0.556411745431271,
+            -0.5448639154515431,
+            -3.2686085891747124e-17
+          ],
+          "distance": 3.1999999999999997,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 78520
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "gangway-approach",
+      "file": "desktop-gangway-approach.png",
+      "state": {
+        "routine": "to-shed",
+        "position": [
+          -40.2,
+          0.06,
+          -55.23881142510261
+        ],
+        "sleeping": false,
+        "roofs": [
+          true
+        ],
+        "bad": [],
+        "player": [
+          -37.46417116458575,
+          0.06,
+          -54.199668696295525
+        ],
+        "lens": {
+          "position": [
+            -35.5,
+            2,
+            -52.7
+          ],
+          "rotation": [
+            -0.23466159700057285,
+            1.0082983957258242,
+            0
+          ],
+          "distance": 3.0518843446378865,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 93906
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "wake-return",
+      "file": "desktop-wake-return.png",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "sleeping": false,
+        "roofs": [
+          true
+        ],
+        "bad": [],
+        "player": [
+          -37.259703148078195,
+          0.06,
+          -54.19777875268993
+        ],
+        "lens": {
+          "position": [
+            -45.8,
+            5,
+            -51.4
+          ],
+          "rotation": [
+            -0.44480268445606197,
+            -0.9428150361240383,
+            0
+          ],
+          "distance": 3.1999999999999997,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 112352
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "harbour-overhead",
+      "file": "desktop-harbour-overhead.png",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "sleeping": false,
+        "roofs": [
+          true
+        ],
+        "bad": [],
+        "player": [
+          -37.259703148078195,
+          0.06,
+          -54.19777875268993
+        ],
+        "lens": {
+          "position": [
+            -40,
+            30,
+            -36
+          ],
+          "rotation": [
+            -0.9302740141154717,
+            -0.4636476090008059,
+            0
+          ],
+          "distance": 3.1999999999999997,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 114446
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "exterior-day",
+      "file": "phone-exterior-day.png",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "sleeping": false,
+        "roofs": [
+          true
+        ],
+        "bad": [],
+        "player": [
+          -37.5,
+          0.06,
+          -54.2
+        ],
+        "lens": {
+          "position": [
+            -46.4,
+            5,
+            -50.8
+          ],
+          "rotation": [
+            -0.45620675660741167,
+            -0.8101864734347471,
+            -3.091750756175689e-17
+          ],
+          "distance": 3.519151868153085,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 1369
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "stern-day",
+      "file": "phone-stern-day.png",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "sleeping": false,
+        "roofs": [
+          true
+        ],
+        "bad": [],
+        "player": [
+          -37.5,
+          0.06,
+          -54.2
+        ],
+        "lens": {
+          "position": [
+            -44.5,
+            3.6,
+            -63.4
+          ],
+          "rotation": [
+            -0.4298776563336739,
+            -2.4569754892770126,
+            -3.0533624146527696e-17
+          ],
+          "distance": 3.519151868153085,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 2559
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "sleep-night",
+      "file": "phone-sleep-night.png",
+      "state": {
+        "routine": "sleeping",
+        "position": [
+          -41.13,
+          0.85,
+          -57.15
+        ],
+        "sleeping": true,
+        "roofs": [
+          false
+        ],
+        "bad": [],
+        "player": [
+          -37.5,
+          0.06,
+          -54.2
+        ],
+        "lens": {
+          "position": [
+            -43.7,
+            3.6,
+            -54.3
+          ],
+          "rotation": [
+            -0.5201736092662418,
+            -0.6226707887570673,
+            -3.198631226308888e-17
+          ],
+          "distance": 4.223999999999991,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 28938
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "sleep-overhead",
+      "file": "phone-sleep-overhead.png",
+      "state": {
+        "routine": "sleeping",
+        "position": [
+          -41.13,
+          0.85,
+          -57.15
+        ],
+        "sleeping": true,
+        "roofs": [
+          false
+        ],
+        "bad": [],
+        "player": [
+          -37.5,
+          0.06,
+          -54.2
+        ],
+        "lens": {
+          "position": [
+            -40.5,
+            7,
+            -57.7
+          ],
+          "rotation": [
+            -1.5706963267951588,
+            0,
+            0
+          ],
+          "distance": 4.223999999999991,
+          "ceiling": null,
+          "blocked": false
+        },
+        "drawCalls": 29110
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "sleep-staged-daylight",
+      "file": "phone-sleep-staged-daylight.png",
+      "state": {
+        "routine": "to-boat",
+        "position": [
+          -41.13,
+          0.8500000000000001,
+          -57.15
+        ],
+        "sleeping": false,
+        "roofs": [
+          true
+        ],
+        "bad": [],
+        "player": [
+          -37.5,
+          0.06,
+          -54.2
+        ],
+        "lens": {
+          "position": [
+            -42.9,
+            3.2,
+            -54.8
+          ],
+          "rotation": [
+            -0.556411745431271,
+            -0.5448639154515431,
+            -3.2686085891747124e-17
+          ],
+          "distance": 4.223999999999991,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 29574
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "cabin-pedestrian",
+      "file": "phone-cabin-pedestrian.png",
+      "state": {
+        "routine": "to-boat",
+        "position": [
+          -41.13,
+          0.8500000000000001,
+          -57.15
+        ],
+        "sleeping": false,
+        "roofs": [
+          true
+        ],
+        "bad": [],
+        "player": [
+          -40.18,
+          0.06,
+          -57.05
+        ],
+        "lens": {
+          "position": [
+            -42.9,
+            3.2,
+            -54.8
+          ],
+          "rotation": [
+            -0.556411745431271,
+            -0.5448639154515431,
+            -3.2686085891747124e-17
+          ],
+          "distance": 4.223999999999991,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 29677
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "gangway-approach",
+      "file": "phone-gangway-approach.png",
+      "state": {
+        "routine": "waking",
+        "position": [
+          -41.13,
+          0.8500000000000001,
+          -57.15
+        ],
+        "sleeping": false,
+        "roofs": [
+          false
+        ],
+        "bad": [],
+        "player": [
+          -37.5,
+          0.06,
+          -54.2
+        ],
+        "lens": {
+          "position": [
+            -35.5,
+            2,
+            -52.7
+          ],
+          "rotation": [
+            -0.23466159700057285,
+            1.0082983957258242,
+            0
+          ],
+          "distance": 4.223999999999991,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 29997
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "wake-return",
+      "file": "phone-wake-return.png",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "sleeping": false,
+        "roofs": [
+          true
+        ],
+        "bad": [],
+        "player": [
+          -37.5,
+          0.06,
+          -54.2
+        ],
+        "lens": {
+          "position": [
+            -45.8,
+            5,
+            -51.4
+          ],
+          "rotation": [
+            -0.44480268445606197,
+            -0.9428150361240383,
+            0
+          ],
+          "distance": 3.0800000000000014,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 34593
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "harbour-overhead",
+      "file": "phone-harbour-overhead.png",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "sleeping": false,
+        "roofs": [
+          true
+        ],
+        "bad": [],
+        "player": [
+          -37.5,
+          0.06,
+          -54.2
+        ],
+        "lens": {
+          "position": [
+            -40,
+            30,
+            -36
+          ],
+          "rotation": [
+            -0.9302740141154717,
+            -0.4636476090008059,
+            0
+          ],
+          "distance": 3.0800000000000014,
+          "ceiling": null,
+          "blocked": true
+        },
+        "drawCalls": 35465
+      }
+    }
+  ],
+  "errors": [
+    {
+      "viewport": "desktop",
+      "errors": []
+    },
+    {
+      "viewport": "phone",
+      "errors": []
+    }
+  ],
+  "walk": [
+    {
+      "point": {
+        "x": -40.2,
+        "z": -54.2
+      },
+      "reached": true
+    },
+    {
+      "point": {
+        "x": -39.85,
+        "z": -55.35
+      },
+      "reached": true
+    },
+    {
+      "point": {
+        "x": -39.85,
+        "z": -56.35
+      },
+      "reached": true
+    },
+    {
+      "point": {
+        "x": -40.18,
+        "z": -57.05
+      },
+      "reached": true
+    },
+    {
+      "point": {
+        "x": -39.85,
+        "z": -56.35
+      },
+      "reached": true
+    },
+    {
+      "point": {
+        "x": -39.85,
+        "z": -55.35
+      },
+      "reached": true
+    },
+    {
+      "point": {
+        "x": -40.2,
+        "z": -54.2
+      },
+      "reached": true
+    },
+    {
+      "point": {
+        "x": -37.5,
+        "z": -54.2
+      },
+      "reached": true
+    }
+  ],
+  "sourceHash": {
+    "sha256": "f06fde681f926d2725622a9d6146dc8c55845553f77e31886460eaa7f6ee5c68"
+  },
+  "passed": true
+}

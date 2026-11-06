@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#202528">
+  <title>Drinking Study · Johansson World</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="header">
+    <div><a class="eyebrow" href="../">Johansson World / Motion studies</a><h1>One measured sip.</h1></div>
+    <button id="dev-toggle" class="quiet" aria-expanded="false" aria-controls="development">Inspect</button>
+  </header>
+  <main id="stage">
+    <div id="viewport"></div>
+    <div class="scene-caption"><span id="phase">At rest</span><span id="instruction">A shared, sober drinking motion.</span></div>
+    <div id="loading" role="status">Preparing the mannequin…</div>
+    <aside id="development" hidden aria-label="Development controls">
+      <div class="drawer-title"><h2>Motion inspector</h2><button id="dev-close" aria-label="Close inspector">×</button></div>
+      <div class="row"><button id="pause">Pause</button><label>Speed <select id="speed"><option value="1">1×</option><option value="0.5">½×</option><option value="0.25">¼×</option><option value="0.1">¹⁄₁₀×</option></select></label></div>
+      <label class="field">Camera<select id="camera"><option value="side">Side view</option><option value="body">Whole body & support</option><option value="mouth">Mouth & rim</option><option value="grip">Hand grip</option><option value="setdown">Table contact</option><option value="orbit">Orbit — drag / pinch</option></select></label>
+      <label class="check"><input id="markers" type="checkbox"> Contact and elbow markers</label>
+      <label class="field">Inspect time <output id="time-label">0.00 s</output><input id="scrub" type="range" min="0" max="6.6" step="0.005" value="0"></label>
+      <div class="row"><button data-fill="1">Full</button><button data-fill="0.5">Half</button><button data-fill="0.04">Near empty</button></div>
+      <p class="hint">Fill presets apply at rest. Scrubbing samples a fresh cycle at the selected starting volume.</p>
+      <dl id="telemetry"></dl>
+      <div class="row"><button id="record">Record one sip</button><a class="button" href="../assets/models/drinking/drinking-mannequin.blend" download>Blender source</a></div>
+      <a class="doc-link" href="../docs/DRINKING-SIMULATOR.md">Source, run instructions & measured checks</a>
+      <p id="record-status" class="hint" role="status"></p>
+    </aside>
+  </main>
+  <footer class="controls">
+    <div class="drinks" role="group" aria-label="Choose a drink">
+      <button data-drink="beer" aria-pressed="true">Beer</button><button data-drink="whiskey" aria-pressed="false">Whiskey</button><button data-drink="gintonic" aria-pressed="false">Gin & tonic</button>
+    </div>
+    <div class="remaining"><div><span id="drink-name">Beer</span><output id="volume">—</output></div><progress id="volume-bar" value="1" max="1" aria-label="Remaining drink"></progress></div>
+    <div class="actions"><button id="sip" class="primary" disabled>Take a sip <kbd>Space</kbd></button><button id="refill" disabled>Refill</button><button id="reset" disabled>Reset</button></div>
+  </footer>
+  <div id="announcement" class="sr-only" aria-live="polite"></div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

@@ -1,0 +1,633 @@
+{
+  "version": 1,
+  "asOf": "14 September 1988",
+  "workbooks": [
+    {
+      "id": "berth-register",
+      "title": "Harbour berth register",
+      "sheet": "Berth register",
+      "description": "Vessel calls, berth assignments and scheduled time alongside.",
+      "file": "berth-register.xlsx",
+      "bytes": 6648,
+      "sha256": "8b4990832584d959ef8f5d6cc602b3d3214fdcfacd4d9d2c1111b8cc7b9558b9",
+      "columns": [
+        {
+          "label": "Call ID",
+          "type": "text",
+          "calculated": false
+        },
+        {
+          "label": "Vessel",
+          "type": "text",
+          "calculated": false
+        },
+        {
+          "label": "Berth",
+          "type": "text",
+          "calculated": false
+        },
+        {
+          "label": "Arrival",
+          "type": "datetime",
+          "calculated": false
+        },
+        {
+          "label": "Departure",
+          "type": "datetime",
+          "calculated": false
+        },
+        {
+          "label": "Stay (hours)",
+          "type": "number",
+          "calculated": true
+        },
+        {
+          "label": "Cargo",
+          "type": "text",
+          "calculated": false
+        },
+        {
+          "label": "Status",
+          "type": "text",
+          "calculated": false
+        }
+      ],
+      "rows": [
+        [
+          "BR-8814-01",
+          "Aoba Maru",
+          "East quay 1",
+          32400.26388888889,
+          32400.38888888889,
+          3,
+          "Fish boxes",
+          "Departed"
+        ],
+        [
+          "BR-8814-02",
+          "Harbour launch",
+          "South jetty",
+          32400.354166666668,
+          32400.708333333332,
+          8.5,
+          "Service equipment",
+          "Alongside"
+        ],
+        [
+          "BR-8814-03",
+          "Midori",
+          "East quay 2",
+          32400.416666666668,
+          32400.729166666668,
+          7.5,
+          "General stores",
+          "Alongside"
+        ],
+        [
+          "BR-8814-04",
+          "Shiosai",
+          "East quay 1",
+          32400.708333333332,
+          32401.25,
+          13,
+          "Paper and tea",
+          "Expected"
+        ],
+        [
+          "BR-8814-05",
+          "Mellosa",
+          "Outer berth",
+          32400.770833333332,
+          32401.354166666668,
+          14,
+          "Workshop supplies",
+          "Expected"
+        ],
+        [
+          "BR-8814-06",
+          "Nam Phuoc",
+          "East quay 2",
+          32401.375,
+          32401.625,
+          6,
+          "Household goods",
+          "Expected"
+        ]
+      ],
+      "formulas": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A10=\"\",\"\",IF(COUNT(D10:E10)<2,\"\",ROUND((E10-D10)*24,2)))",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A11=\"\",\"\",IF(COUNT(D11:E11)<2,\"\",ROUND((E11-D11)*24,2)))",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A12=\"\",\"\",IF(COUNT(D12:E12)<2,\"\",ROUND((E12-D12)*24,2)))",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A13=\"\",\"\",IF(COUNT(D13:E13)<2,\"\",ROUND((E13-D13)*24,2)))",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A14=\"\",\"\",IF(COUNT(D14:E14)<2,\"\",ROUND((E14-D14)*24,2)))",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A15=\"\",\"\",IF(COUNT(D15:E15)<2,\"\",ROUND((E15-D15)*24,2)))",
+          "",
+          ""
+        ]
+      ],
+      "summaries": [
+        {
+          "label": "Registered calls",
+          "value": 6,
+          "type": "number"
+        },
+        {
+          "label": "Alongside",
+          "value": 2,
+          "type": "number"
+        },
+        {
+          "label": "Scheduled berth hours",
+          "value": 52,
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "id": "warehouse-stock",
+      "title": "Warehouse stock ledger",
+      "sheet": "Stock ledger",
+      "description": "Receipts, issues, stock on hand and reorder quantities.",
+      "file": "warehouse-stock.xlsx",
+      "bytes": 7125,
+      "sha256": "c1d8cd868459e23f9b863fd345c3a36ff194145e29b9179dee53498c67631fc8",
+      "columns": [
+        {
+          "label": "Stock code",
+          "type": "text",
+          "calculated": false
+        },
+        {
+          "label": "Item",
+          "type": "text",
+          "calculated": false
+        },
+        {
+          "label": "Unit",
+          "type": "text",
+          "calculated": false
+        },
+        {
+          "label": "Opening",
+          "type": "integer",
+          "calculated": false
+        },
+        {
+          "label": "Received",
+          "type": "integer",
+          "calculated": false
+        },
+        {
+          "label": "Issued",
+          "type": "integer",
+          "calculated": false
+        },
+        {
+          "label": "On hand",
+          "type": "integer",
+          "calculated": true
+        },
+        {
+          "label": "Minimum",
+          "type": "integer",
+          "calculated": false
+        },
+        {
+          "label": "Reorder qty",
+          "type": "integer",
+          "calculated": true
+        }
+      ],
+      "rows": [
+        [
+          "WH-001",
+          "Mooring line",
+          "Coils",
+          8,
+          3,
+          7,
+          4,
+          6,
+          2
+        ],
+        [
+          "WH-002",
+          "Rubber fenders",
+          "Each",
+          12,
+          4,
+          3,
+          13,
+          8,
+          0
+        ],
+        [
+          "WH-003",
+          "Fish boxes",
+          "Each",
+          120,
+          40,
+          115,
+          45,
+          60,
+          15
+        ],
+        [
+          "WH-004",
+          "Printer paper",
+          "Reams",
+          9,
+          5,
+          4,
+          10,
+          6,
+          0
+        ],
+        [
+          "WH-005",
+          "Work gloves",
+          "Pairs",
+          24,
+          0,
+          18,
+          6,
+          12,
+          6
+        ],
+        [
+          "WH-006",
+          "Packing tape",
+          "Rolls",
+          15,
+          12,
+          8,
+          19,
+          10,
+          0
+        ]
+      ],
+      "formulas": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A10=\"\",\"\",IF(COUNT(D10:F10)<3,\"\",D10+E10-F10))",
+          "",
+          "=IF(A10=\"\",\"\",IF(COUNT(G10:H10)<2,\"\",MAX(0,H10-G10)))"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A11=\"\",\"\",IF(COUNT(D11:F11)<3,\"\",D11+E11-F11))",
+          "",
+          "=IF(A11=\"\",\"\",IF(COUNT(G11:H11)<2,\"\",MAX(0,H11-G11)))"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A12=\"\",\"\",IF(COUNT(D12:F12)<3,\"\",D12+E12-F12))",
+          "",
+          "=IF(A12=\"\",\"\",IF(COUNT(G12:H12)<2,\"\",MAX(0,H12-G12)))"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A13=\"\",\"\",IF(COUNT(D13:F13)<3,\"\",D13+E13-F13))",
+          "",
+          "=IF(A13=\"\",\"\",IF(COUNT(G13:H13)<2,\"\",MAX(0,H13-G13)))"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A14=\"\",\"\",IF(COUNT(D14:F14)<3,\"\",D14+E14-F14))",
+          "",
+          "=IF(A14=\"\",\"\",IF(COUNT(G14:H14)<2,\"\",MAX(0,H14-G14)))"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A15=\"\",\"\",IF(COUNT(D15:F15)<3,\"\",D15+E15-F15))",
+          "",
+          "=IF(A15=\"\",\"\",IF(COUNT(G15:H15)<2,\"\",MAX(0,H15-G15)))"
+        ]
+      ],
+      "summaries": [
+        {
+          "label": "Stock lines",
+          "value": 6,
+          "type": "number"
+        },
+        {
+          "label": "Lines to reorder",
+          "value": 3,
+          "type": "number"
+        },
+        {
+          "label": "Negative balances",
+          "value": 0,
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "id": "service-work-log",
+      "title": "Marine service work log",
+      "sheet": "Service log",
+      "description": "Equipment jobs, assigned staff, due dates and remaining work.",
+      "file": "service-work-log.xlsx",
+      "bytes": 7298,
+      "sha256": "fc7ca5c329aff309648879af37128600ed33d76b494e496b199a721ff58196ed",
+      "columns": [
+        {
+          "label": "Job ID",
+          "type": "text",
+          "calculated": false
+        },
+        {
+          "label": "Equipment",
+          "type": "text",
+          "calculated": false
+        },
+        {
+          "label": "Work requested",
+          "type": "text",
+          "calculated": false
+        },
+        {
+          "label": "Owner",
+          "type": "text",
+          "calculated": false
+        },
+        {
+          "label": "Due date",
+          "type": "date",
+          "calculated": false
+        },
+        {
+          "label": "Planned hours",
+          "type": "number",
+          "calculated": false
+        },
+        {
+          "label": "Worked hours",
+          "type": "number",
+          "calculated": false
+        },
+        {
+          "label": "Hours left",
+          "type": "number",
+          "calculated": true
+        },
+        {
+          "label": "Closed date",
+          "type": "date",
+          "calculated": false
+        },
+        {
+          "label": "State",
+          "type": "text",
+          "calculated": true
+        }
+      ],
+      "rows": [
+        [
+          "SV-001",
+          "Quay light 2",
+          "Replace lamp and test",
+          "Tetsuo",
+          32399,
+          2,
+          1,
+          1,
+          null,
+          "Overdue"
+        ],
+        [
+          "SV-002",
+          "Harbour launch",
+          "Check instrument panel",
+          "Kenji",
+          32400,
+          4,
+          2.5,
+          1.5,
+          null,
+          "Open"
+        ],
+        [
+          "SV-003",
+          "Office printer",
+          "Clean feed rollers",
+          "Tetsuo",
+          32400,
+          1.5,
+          1.5,
+          0,
+          32400,
+          "Closed"
+        ],
+        [
+          "SV-004",
+          "Warehouse trolley",
+          "Replace wheel bearing",
+          "Kenji",
+          32402,
+          3,
+          0,
+          3,
+          null,
+          "Open"
+        ],
+        [
+          "SV-005",
+          "Vessel records",
+          "File service certificates",
+          "Harbour master",
+          32401,
+          2,
+          1,
+          1,
+          null,
+          "Open"
+        ],
+        [
+          "SV-006",
+          "Quay hand pump",
+          "Inspect seals",
+          "Kenji",
+          32403,
+          2.5,
+          0,
+          2.5,
+          null,
+          "Open"
+        ]
+      ],
+      "formulas": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A10=\"\",\"\",IF(COUNT(F10:G10)<2,\"\",MAX(0,F10-G10)))",
+          "",
+          "=IF(A10=\"\",\"\",IF(I10<>\"\",\"Closed\",IF(E10=\"\",\"Set due date\",IF(E10<$A$6,\"Overdue\",\"Open\"))))"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A11=\"\",\"\",IF(COUNT(F11:G11)<2,\"\",MAX(0,F11-G11)))",
+          "",
+          "=IF(A11=\"\",\"\",IF(I11<>\"\",\"Closed\",IF(E11=\"\",\"Set due date\",IF(E11<$A$6,\"Overdue\",\"Open\"))))"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A12=\"\",\"\",IF(COUNT(F12:G12)<2,\"\",MAX(0,F12-G12)))",
+          "",
+          "=IF(A12=\"\",\"\",IF(I12<>\"\",\"Closed\",IF(E12=\"\",\"Set due date\",IF(E12<$A$6,\"Overdue\",\"Open\"))))"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A13=\"\",\"\",IF(COUNT(F13:G13)<2,\"\",MAX(0,F13-G13)))",
+          "",
+          "=IF(A13=\"\",\"\",IF(I13<>\"\",\"Closed\",IF(E13=\"\",\"Set due date\",IF(E13<$A$6,\"Overdue\",\"Open\"))))"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A14=\"\",\"\",IF(COUNT(F14:G14)<2,\"\",MAX(0,F14-G14)))",
+          "",
+          "=IF(A14=\"\",\"\",IF(I14<>\"\",\"Closed\",IF(E14=\"\",\"Set due date\",IF(E14<$A$6,\"Overdue\",\"Open\"))))"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "=IF(A15=\"\",\"\",IF(COUNT(F15:G15)<2,\"\",MAX(0,F15-G15)))",
+          "",
+          "=IF(A15=\"\",\"\",IF(I15<>\"\",\"Closed\",IF(E15=\"\",\"Set due date\",IF(E15<$A$6,\"Overdue\",\"Open\"))))"
+        ]
+      ],
+      "summaries": [
+        {
+          "label": "Review date",
+          "value": 32400,
+          "type": "date"
+        },
+        {
+          "label": "Unclosed jobs",
+          "value": 5,
+          "type": "number"
+        },
+        {
+          "label": "Overdue jobs",
+          "value": 1,
+          "type": "number"
+        }
+      ]
+    }
+  ]
+}

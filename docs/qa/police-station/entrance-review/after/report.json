@@ -1,0 +1,53 @@
+{
+  "stage": "after",
+  "errors": [],
+  "physicalDevice": false,
+  "views": [
+    {
+      "name": "front",
+      "pos": [
+        -0.6,
+        1.85,
+        20.3
+      ],
+      "at": [
+        5.7,
+        1.95,
+        20.3
+      ],
+      "triangles": 14040,
+      "groups": 80,
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true
+      }
+    },
+    {
+      "name": "angle",
+      "pos": [
+        0.2,
+        2.05,
+        23.4
+      ],
+      "at": [
+        5.5,
+        1.9,
+        20.3
+      ],
+      "triangles": 14040,
+      "groups": 80,
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true
+      }
+    }
+  ]
+}

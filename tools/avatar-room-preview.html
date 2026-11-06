@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Avatar in Umi-no-yu</title><style>html,body{margin:0;height:100%;overflow:hidden}canvas{display:block;width:100%;height:100%}</style></head><body><script type="module">
+import * as THREE from '../vendor/three.module.js';
+import {buildOnsenInterior} from '../src/world/interiors/onsen.js';
+import {buildAvatar} from '../src/avatars/build.js';
+import {createAvatarAnimator} from '../src/avatars/animate.js';
+import {recipeFor} from '../src/avatars/cast.js';
+import {applyCelShading} from '../src/render/cel.js';
+import {createInkPipeline} from '../src/render/ink-pipeline.js';
+// Development preview: actual room geometry, room lights and town ink/grade settings.
+const q=new URLSearchParams(location.search),renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(2,devicePixelRatio));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.shadowMap.enabled=true;document.body.append(renderer.domElement);
+const scene=new THREE.Scene(),room=new THREE.Group();scene.background=new THREE.Color(0xe8dcc5);scene.add(room);
+const layout=buildOnsenInterior({room,reg(){},action(){},exit(){}});applyCelShading(room);
+const avatar=buildAvatar(recipeFor(q.get('who')||'Thuan'),{faceSize:512}),holder=new THREE.Group();holder.add(avatar.root);holder.position.set(.2,0,2.3);holder.rotation.y=Math.PI+Number(q.get('turn')||0);room.add(holder);
+const animator=createAvatarAnimator(avatar);if(q.get('pose'))animator.play(q.get('pose'));
+const camera=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,.05,40);camera.position.set(.2,1.35,4.75);camera.lookAt(.2,1.0,2.3);
+const mobile=innerWidth<761,pipeline=createInkPipeline(renderer,{superScale:mobile?1:1.25,samples:4,pixelBudget:mobile?2.4e6:4.6e6,fxaa:true,inkOptions:{thickness:1.05,strength:.68,concaveAmount:.25},gradeOptions:{shadowTint:0xe0dcf0,lift:.045,saturation:1.08,warmth:.02,vignette:.05}});
+renderer.toneMapping=THREE.NoToneMapping;const clock=new THREE.Clock();
+function frame(){requestAnimationFrame(frame);const dt=Math.min(.05,clock.getDelta());layout.tick(dt,18*60);animator.update(dt,{speed:0});avatar.springs.update(dt);pipeline.render(r=>r.render(scene,camera));window.__READY__=true;}frame();
+addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();});
+</script></body></html>

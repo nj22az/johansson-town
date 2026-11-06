@@ -1,0 +1,30 @@
+Builder placements not loaded: The "paths[2]" argument must be of type string. Received undefined
+Johansson Town stability checks passed {
+  ok: true,
+  failures: [],
+  colliders: 622,
+  characterCount: 9,
+  streetInteractions: 7,
+  renderDpr: 1,
+  toneMapping: 'Ink grade',
+  shadows: true
+}
+Johansson Town stability checks passed {
+  ok: true,
+  failures: [],
+  colliders: 929,
+  characterCount: 9,
+  streetInteractions: 7,
+  renderDpr: 1,
+  toneMapping: 'Ink grade',
+  shadows: true
+}
+✔ Published island boots, shares the wooden bookshop/workshop and visits every interior (158701.572272ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 159046.814535

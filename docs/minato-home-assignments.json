@@ -1,0 +1,204 @@
+{
+  "superseded": "19 October 2026: docs/CAST-CONSOLIDATION.md is the plan of record (21 core and 5 supporting identities, 14 households, ten retirements); the roster is src/people/roster.js, mirrored in docs/cast-roster.json. This file records the 18 October assignments the consolidation starts from; it is not the target.",
+  "status": "runtime implementation; CPU verification performed; rendered views and physical iPhone checks remain outstanding; superseded on 19 October 2026 by docs/CAST-CONSOLIDATION.md",
+  "auditedMain": "e1b606d50a58d5c5fab0781e590fe773bb3472fd",
+  "canonDate": "2026-10-18",
+  "residentCount": 31,
+  "primaryMinatoHouseholds": 21,
+  "primaryTropicalHouseholds": 1,
+  "assignments": [
+    {
+      "name": "Johansson",
+      "home": "kitano-1",
+      "secondary": [
+        "ferry-chief-cabin"
+      ]
+    },
+    {
+      "name": "Thuan",
+      "home": "kitano-1",
+      "secondary": []
+    },
+    {
+      "name": "Grandmother Chinen",
+      "home": "kitahama-5",
+      "secondary": []
+    },
+    {
+      "name": "Thao",
+      "home": "kitahama-1",
+      "secondary": []
+    },
+    {
+      "name": "Chin",
+      "home": "kitahama-1",
+      "secondary": []
+    },
+    {
+      "name": "Vy",
+      "home": "kitahama-1",
+      "secondary": []
+    },
+    {
+      "name": "Nhung",
+      "home": "kitahama-3",
+      "secondary": []
+    },
+    {
+      "name": "Kōji",
+      "home": "kitahama-3",
+      "secondary": []
+    },
+    {
+      "name": "Riku",
+      "home": "kitahama-3",
+      "secondary": []
+    },
+    {
+      "name": "Miss Higa",
+      "home": "higa",
+      "secondary": []
+    },
+    {
+      "name": "Grandmother Higa",
+      "home": "higa",
+      "secondary": []
+    },
+    {
+      "name": "Tetsuo",
+      "home": "resident-home-kenji",
+      "secondary": []
+    },
+    {
+      "name": "Reiko",
+      "home": "resident-home-aya",
+      "secondary": []
+    },
+    {
+      "name": "Mrs Sato",
+      "home": "kitahama-2",
+      "secondary": []
+    },
+    {
+      "name": "Officer Mori",
+      "home": "koban",
+      "secondary": []
+    },
+    {
+      "name": "Harbour master",
+      "home": "office",
+      "secondary": []
+    },
+    {
+      "name": "Barfly",
+      "home": "izakaya",
+      "secondary": []
+    },
+    {
+      "name": "Grandmother Sakurai",
+      "home": "kitahama-flat-2",
+      "secondary": [],
+      "note": "retired home: kitahama-flat-2 went with the Heights’ upper storey (phase 3); body until phase 4; no Sakura shift (Thuan owns the shop)"
+    },
+    {
+      "name": "Postman Tōma",
+      "home": "kitahama-4",
+      "secondary": []
+    },
+    {
+      "name": "Dr Kakazu",
+      "home": "clinic",
+      "secondary": []
+    },
+    {
+      "name": "Mr Ōshiro",
+      "home": "oshiro",
+      "secondary": []
+    },
+    {
+      "name": "Mrs Kinjō",
+      "home": "kinjo",
+      "secondary": []
+    },
+    {
+      "name": "Mrs Nakamura",
+      "home": "nakamura",
+      "secondary": []
+    },
+    {
+      "name": "Mai",
+      "home": "nakamura",
+      "secondary": []
+    },
+    {
+      "name": "Bus driver",
+      "home": "kitahama-6",
+      "secondary": []
+    },
+    {
+      "name": "Mac",
+      "home": "kitahama-flat-3",
+      "secondary": [
+        "ferry-engineer-duty-berth"
+      ],
+      "note": "Kitahama Heights A; was Mr Nakandakari"
+    },
+    {
+      "name": "Mr Higa Jr",
+      "home": "kitahama-flat-1",
+      "secondary": [],
+      "note": "retired home: kitahama-flat-1 went with the Heights’ upper storey (phase 3); body until phase 4"
+    },
+    {
+      "name": "Ms Uezu",
+      "home": "kitahama-8",
+      "secondary": []
+    },
+    {
+      "name": "Ms Ganaha",
+      "home": "kitahama-flat-4",
+      "secondary": [],
+      "note": "Kitahama Heights B"
+    },
+    {
+      "name": "Mr Fujita",
+      "home": "fujita-houseboat",
+      "secondary": []
+    },
+    {
+      "name": "Mr Shimabukuro",
+      "home": "shimabukuro",
+      "secondary": []
+    }
+  ],
+  "removedMinatoDwellings": [
+    "kitahama-7",
+    "kitahama-9",
+    "kitahama-10",
+    "kitahama-11",
+    "kitahama-12",
+    "nakasone",
+    "miyagi",
+    "arakaki",
+    "yonamine"
+  ],
+  "repurposed": [
+    {
+      "id": "market",
+      "use": "Sakura main office and kitchenette with port and town views; downstairs tiny office remains complementary; no dwelling"
+    },
+    {
+      "id": "ferry",
+      "use": "chief engineer Johansson’s duty cabin; use ferry-chief-cabin destination"
+    }
+  ],
+  "notes": [
+    "kitano-1 is the existing Johansson/Thuan home in the airport/tropical island frame. Preserve its save identity; verify its actual entrance and remove stale mayor-only descriptions without building a duplicate home.",
+    "Mr Nakandakari remains a Minato resident. Proposed role is experienced engineer/relief engineer; do not retain a competing sole chief-engineer role.",
+    "Standalone empty homes may be removed after routes, interactions, saves and story references are migrated. Mixed-use closed Arakaki and Yonamine buildings have no registered occupants or active trade; verify all non-residential uses before removal.",
+    "Approved mobility exchange applied: Sakurai occupies ground-floor Flat 2; Ganaha occupies upper Flat 4. See MINATO-HOMES-IMPLEMENTATION.md for evidence and limits."
+  ],
+  "implementationBase": "c5e36e578a3aa7ba6dea6b07a9cb89284edbfad9",
+  "phase3": "19 October 2026, phase 3 of docs/CAST-CONSOLIDATION.md: Nhung moved from resident-home-aya to kitahama-3 (with Kōji and Riku); Thuan’s secondary kitahama-1 was dropped (kitano-1 only; ferry commute); Kitahama Heights became two attached ground-floor houses, A (kitahama-flat-3, Mac) and B (kitahama-flat-4, Ms Ganaha), and kitahama-flat-1/2 were retired with the upper storey (Mr Higa Jr and Grandmother Sakurai keep bodies until phase 4 with no home standing; their records resolve to the roster fallback, mayor-office). The assignments below reflect that.",
+  "primaryMinatoHouseholdsNote": "21 standing primary homes on Minato after phase 3 (the two retired flats are no home); the roster’s 14 core households are src/people/roster.js HOUSEHOLDS"
+}

@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-25",
+  "branch": "development",
+  "baseCommit": "955b5870e558be823e9d54e005f9420f7f93fa07",
+  "previewFlag": "tree-rebuild",
+  "worldGuard": {
+    "passed": 433,
+    "failed": 0,
+    "files": 85,
+    "seconds": 289
+  },
+  "focusedChecks": {
+    "passed": 16,
+    "failed": 0
+  },
+  "finalTreeAndRuntimeChecks": {
+    "passed": 10,
+    "failed": 0
+  },
+  "canonicalFamilies": 7,
+  "tropicalPreviewInstances": 222,
+  "plantingCentresUnchanged": true,
+  "cherryGeometryUnchanged": true,
+  "nearFarEnvelopeTolerance": 0.05,
+  "cadRootAmendment": "A1: inboard anchored banyan roots and radial site limits",
+  "browserReview": {
+    "status": "passed",
+    "runId": 40164286284,
+    "artifactId": 12588091350,
+    "captures": 14,
+    "viewports": [
+      [
+        1440,
+        900
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "pageErrors": 0,
+    "tropicalPreviewInstances": 222,
+    "visualInspection": "all fourteen reviewed; branch/crown and root/ground contact present; fine render banding remains on rebuilt and retained foliage",
+    "physicalDevice": false
+  },
+  "physicalDevicesVerified": false,
+  "publishedToMain": false,
+  "implementationCommit": "5ab0316ce45eaaf8662abe8e9a5e794d030cbe95"
+}

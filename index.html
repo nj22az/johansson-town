@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>/* A shared islander (?avatar=code) opens in Johansson Studio, where looks are made and sent to World (src/studio-handoff.js). */{const c=new URLSearchParams(location.search).get('avatar');if(c)location.replace('/avatar-creator/?r='+encodeURIComponent(c));}</script>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no,interactive-widget=resizes-content">
+<meta name="theme-color" content="#16815E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Johansson World">
+<meta name="description" content="A small harbour town with a 1990s way of life and your device’s calendar. Walk its streets, meet the residents, browse the shops and settle into daily life.">
+<style>:root,html,body{margin:0;background:#f7f8f9!important}</style>
+<script>/* The title's backdrop while the town is built: its own view by day or by night, by the hour here (title-screen.css). */{const h=new Date().getHours();document.documentElement.dataset.titleLight=h>=6&&h<19?'day':'night';}</script>
+<link rel="icon" type="image/png" href="./assets/icons/town-192.png">
+<link rel="apple-touch-icon" href="./assets/icons/town-192.png">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&display=swap">
+<!-- LINE Seed JP draws ā ē ī ō ū with the bar beside the letter, not over it: those ten letters (and only those, the
+     text= subset) come from Figtree, which sits first in the font lists (line-ui.css, src/feed/comic.js). -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700;800&text=%C4%81%C4%93%C4%AB%C5%8D%C5%AB%C4%80%C4%92%C4%AA%C5%8C%C5%AA&display=swap">
+<link rel="stylesheet" href="./base.css?h=989748aa">
+<link rel="stylesheet" href="./context-controls.css?h=f898462d">
+<title>Johansson World</title>
+<link rel="stylesheet" href="./landing.css?h=6b8bf0ea">
+<link rel="stylesheet" href="./dual-controls.css?h=396f3a7b">
+<link rel="stylesheet" href="./tomodachi-ui.css?h=e851b42d">
+<link rel="stylesheet" href="./photo-mode.css?h=23db1895">
+<link rel="stylesheet" href="./quiet-ui.css?h=056d2627">
+<link rel="stylesheet" href="./context-rail.css?h=a4e11923">
+<link rel="stylesheet" href="./line-ui.css?h=c9fe9f5f">
+<link rel="stylesheet" href="./quiet-hud.css?h=5576c077">
+<link rel="stylesheet" href="./title-screen.css?h=24e80986">
+<link rel="stylesheet" href="./town-directory.css?h=5fef277a">
+<link rel="stylesheet" href="./ferry-operations.css?h=1625ed17">
+<link rel="stylesheet" href="./town-book.css?h=74d6f099">
+<link rel="modulepreload" data-town-runtime href="./runtime/title-menu-SzOfqUsc.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/staff-bench-CXKq2cGc.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/friendship-BZ6sO6cx.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/compact-shops-BKdMS2U6.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/harbour-park-plan-BjDVKF9F.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/shopping-lane-plan-D0DhEU8_.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/preload-helper-PPVm8Dsz.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/fish-BxjJ3SFU.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/ferry-ship-DfhHmc7y.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/boot-BfEbudVM.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/startup-recovery-CIJ7HiTu.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/touch-ui-D34cMzo7.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/game-CCppv-8Q.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/halloween-y21oLgeX.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/hat-models-Dq64WB2Y.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/actors-fWn-iiQL.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/animate-CsKgrGQr.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/pixar-CWCdbQwH.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/onsen-C6NAPFCK.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/sakura-interior-DyR36Nm_.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/sato-ramen-DEs8YNWP.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/town-hall-VcsFtnxK.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/studio-handoff-D2Od3tev.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/storyteller-B7_FViTr.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/thuan-voice-Dz-XGNqd.js">
+</head>
+<body>
+<canvas id="game" aria-label="Johansson World three-dimensional game"></canvas>
+<div id="ink"></div>
+<div id="threshold"></div>
+<section id="start">
+  <div id="splash" class="splash done" aria-hidden="true"></div>
+  <section id="title" class="title-screen" data-weather="sunny" aria-labelledby="titleLogo">
+    <div class="title-backdrop" aria-hidden="true"></div>
+    <details class="title-settings"><summary aria-label="Island settings">Settings</summary><div class="title-utilities">
+    <button id="titleWeather" class="title-weather" type="button" aria-label="Weather: sunny. Tap to change" title="Change the weather"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><g data-icon="sunny"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g><g data-icon="cloudy"><path d="M7 18h10a4 4 0 0 0 .4-8A5.5 5.5 0 0 0 6.8 11 3.5 3.5 0 0 0 7 18z"/></g><g data-icon="rain"><path d="M7 14h10a3.6 3.6 0 0 0 .4-7.2A5 5 0 0 0 6.8 8 3 3 0 0 0 7 14z"/><path d="M8.5 17l-1 3M12.5 17l-1 3M16.5 17l-1 3"/></g></svg></button>
+    <button id="titleDice" class="title-weather title-dice" type="button" aria-label="Random weather" title="Random weather"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3.5"/><circle cx="9" cy="9" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="9" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/></svg></button>
+    <button id="installTown" type="button" hidden>Install app</button>
+    </div></details>
+    <div class="title-center">
+      <h1 id="titleLogo" class="title-logo"><span class="logo-main">JOHANSSON</span><span class="logo-town">WORLD</span></h1>
+      <p class="title-tag">A little island life · the 1990s</p>
+      <p class="title-wip" aria-label="Work in progress">WORK IN PROGRESS</p>
+      <div class="title-world-space" aria-hidden="true"></div>
+      <div class="title-menu">
+        <p id="titleSave" class="title-player" aria-live="polite"><b id="titlePlayerName">Visitor</b><span id="titlePlayerSummary">Your island story awaits</span></p>
+        <button id="enter" type="button" data-mode="explore" class="loading" disabled><i class="enter-fill" data-load-fill aria-hidden="true"></i><b>Start Exploring</b><span id="titleActionHint">Welcome to the island</span><span class="enter-loading"><strong>Loading the island</strong><span><i data-load-percent>0%</i> · <i data-load-label>Preparing controls</i></span></span></button>
+        <nav class="title-secondary" aria-label="Island navigation">
+          <button id="titleLoad" type="button">Load</button>
+          <button id="titleNew" type="button">New Game</button>
+          <a class="title-guide" href="#board" data-guide-open>Guide</a>
+        </nav>
+      </div>
+      <div id="titleSlots" class="title-slots hidden" role="dialog" aria-modal="true" aria-labelledby="titleSlotsHead">
+        <div class="title-slots-card">
+          <h2 id="titleSlotsHead">Saved games</h2>
+          <p class="title-slots-note">Each save keeps its money, bag, friendships and decorating. The calendar follows your device’s actual date and weekday; island life follows the 1990s.</p>
+          <ul id="titleSlotList"></ul>
+          <form id="titleNewForm" class="title-new hidden"><label for="titleNewName">Name for the new game</label><input id="titleNewName" maxlength="24" autocomplete="off" placeholder="Your name"><button type="submit">Start a new game</button></form>
+          <div class="title-slots-foot"><button id="titleImport" type="button">Import a save file</button><input id="titleImportFile" type="file" accept="application/json,.json" hidden><button id="titleSlotsClose" type="button">Close</button></div>
+        </div>
+      </div>
+      <div class="title-loading">
+        <aside class="island-fact" aria-label="Island fact"><span class="island-fact-icon" aria-hidden="true">✿</span><p class="island-fact-label">A LITTLE ISLAND LIFE</p><p id="loadingFact" aria-live="polite" aria-atomic="true"></p></aside>
+        <div class="load-meter">
+          <p class="load-meter-head"><span id="bootStatus" role="status">Loading the island…</span><b data-load-percent>0%</b></p>
+          <div class="title-bar" id="bootProgress" role="progressbar" aria-label="Loading the island" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span data-load-fill></span></div>
+        </div>
+      </div>
+    </div>
+    <footer class="title-foot"><a id="openStudio" href="/avatar-creator/" class="title-studio">Johansson Studio <span aria-hidden="true">↗</span></a><span>© 1997 JOHANSSON CO.</span></footer>
+  </section>
+  <div class="board-wrap">
+    <article id="board" class="board-frame">
+      <div class="crop-marks" aria-hidden="true"></div>
+
+      <header>
+        <nav class="guide-nav" aria-label="Visitor guide"><a href="#roll-heading" aria-label="Residents" title="Residents" ><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 12a4 4 0 118 0a4 4 0 01-8 0M4 22v-2a8 8 0 0116 0v2"/></svg></a><a href="#dir-heading" aria-label="Places" title="Places" ><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5l6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16"/></svg></a><a href="#visit-planning" aria-label="Hours and visiting" title="Hours and visiting" ><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3a9 9 0 100 18a9 9 0 000-18M12 7v5l4 2"/></svg></a><a href="#title" aria-label="Title screen" title="Title screen" data-guide-close ><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-8 9 8M5 9v12h14V9M9 21v-7h6v7"/></svg></a><button type="button" data-town-enter aria-label="Play Johansson World" title="Play Johansson World"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l12 8-12 8z" fill="currentColor"/></svg></button></nav>
+        <div class="board-kicker">
+          <span>JOHANSSON WORLD · VISITOR’S GUIDE</span>
+          <span class="sr-only" id="boardDoc">Document JT-HB-63-0913</span>
+          <span>HARBOUR DISTRICT · 1997</span>
+        </div>
+
+        <div class="guide-heading"><h1>Johansson World</h1><p>Your guide to a 1990s island: working quays, quiet gardens, small shops and familiar faces.</p></div>
+      </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <section class="island-brochure-hero" aria-label="Welcome to the island"><img src="./assets/images/title/sakura-current-119667983af8.webp" width="1600" height="1000" alt="The current Sakura Shōten shop and its upstairs office, captured from the published game"><div><p class="board-tiny">KITANO-JIMA VISITOR BUREAU · 1997 EDITION</p><h2>Take the long way home.</h2><p>Step off the boat into a town with time for you. Meet Thuan at Sakura, follow the harbour deliveries, browse a book, or spend the afternoon walking through the garden.</p><a href="#roll-heading">Meet your neighbours</a></div></section>
+      <section aria-labelledby="dir-heading">
+        <div class="section-bar paper">
+          <div>
+            <p class="board-tiny">THE NEIGHBOURHOOD</p>
+            <h2 id="dir-heading">Shops &amp; local places</h2>
+          </div>
+        </div>
+        <div class="place-grid" id="placesGrid"></div>
+      </section>
+      <section class="town-feed" aria-labelledby="feed-heading">
+        <div class="section-bar paper"><div><p class="board-tiny">KITANO-JIMA DAILY · NEW EVERY MORNING</p><h2 id="feed-heading">Today in Minato Machi</h2></div></div>
+        <p class="brochure-intro">Comics, recipes and short courses from the people of the island, told fresh each day by the town’s storyteller.</p>
+        <div class="feed-list" id="townFeed"></div>
+        <button type="button" class="feed-more" id="feedMore">Earlier editions</button>
+      </section>
+
+      <section aria-labelledby="roll-heading">
+        <div class="section-bar paper">
+          <div>
+            <p class="board-tiny">THE PEOPLE WHO MAKE THE PLACE</p>
+            <h2 id="roll-heading">Island resident catalogue</h2>
+          </div>
+        </div>
+        <p class="brochure-intro">Thuan opens Sakura. Thao keeps the evening going at Minato. Around them, the neighbourhood goes about its day — working, walking, talking and coming home.</p>
+        <label class="catalogue-search">Find a resident <input id="residentSearch" type="search" placeholder="Name, occupation or place" autocomplete="off"></label><p id="catalogueCount" role="status">Meet the people of the island</p>
+        <div class="roll-grid" id="rollGrid"></div>
+      </section>
+      <section aria-labelledby="stockroom-heading">
+        <div class="section-bar paper">
+          <div>
+            <p class="board-tiny">ANOTHER SIDE OF SAKURA</p>
+            <h2 id="stockroom-heading">Thuan's Storage</h2>
+          </div>
+          <p class="board-tiny">SAKURA SHŌTEN</p>
+        </div>
+        <a class="stockroom-card" href="/thuans-storage/">
+          <img src="./assets/images/storage-cover.svg" width="1200" height="630" alt="Thuan’s Storage – the stockroom behind Sakura Shop">
+          <span class="stockroom-text">
+            <span class="notice-no">BEHIND THE SHOP</span>
+            <b>Restock the konbini with Thuan</b>
+            <span>Walk Thuan through Sakura Shōten's stockroom, pick the day's list and restock the shelves. The day’s deliveries are waiting behind the shop.</span>
+            <span class="stockroom-go">Open the stockroom <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+      </section>
+      <section aria-labelledby="poster-heading">
+        <div class="section-bar paper">
+          <div>
+            <p class="board-tiny">WHEN THE LANTERNS COME ON</p>
+            <h2 id="poster-heading">An evening at Minato</h2>
+          </div>
+        </div>
+        <div class="poster-wall">
+          <figure class="poster-card">
+            <img src="./assets/graphics/izakaya/minato-tori.webp" width="512" height="768" alt="MINATO TORI · Harbour Birds, print for Minato Izakaya">
+            <figcaption>
+              <p class="notice-no">Harbour Birds</p>
+              <h3>MINATO TORI</h3>
+              <p>Charcoal yakitori until last pour. Hiroshi turns the skewers; Thao keeps the sauce.</p>
+            </figcaption>
+          </figure>
+          <figure class="poster-card">
+            <img src="./assets/graphics/izakaya/shiomachi-sake.webp" width="512" height="768" alt="SHIOMACHI · Waiting for the tide, print for Minato Izakaya">
+            <figcaption>
+              <p class="notice-no">Waiting for the tide</p>
+              <h3>SHIOMACHI</h3>
+              <p>Junmai from the harbour brewery. Waiting for the tide, one cup at a time.</p>
+            </figcaption>
+          </figure>
+          <figure class="poster-card">
+            <img src="./assets/graphics/izakaya/minato-lanterns.webp" width="512" height="768" alt="MINATO · Minato, print for Minato Izakaya">
+            <figcaption>
+              <p class="notice-no">Minato</p>
+              <h3>MINATO</h3>
+              <p>The house poster. Red lanterns, the noren, and Welcome back — welcome back.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <details id="visit-planning" class="visit-planning">
+        <summary><span>Plan your visit</span><small>Starting time, street controls & opening hours</small><b aria-hidden="true">＋</b></summary>
+        <div class="planning-content">
+        <div class="board-status">
+          <div><span>Weekday</span><b id="statusWeekday">—</b></div>
+          <div><span>Weather</span><b>Clear</b></div>
+          <div><span>Shops</span><b id="statusShops">—</b></div>
+          <div><span>Period</span><b id="statusPeriod">AFTERNOON</b></div>
+        </div>
+      <div class="board-split">
+        <section class="clock-panel" aria-labelledby="town-clock-heading">
+          <div class="clock-head">
+            <div>
+              <p class="board-tiny">04 · TOWN CLOCK</p>
+              <h2 id="town-clock-heading">Town clock</h2>
+            </div>
+            <p>
+              <small id="boardLive">LIVE · VISITOR CLOCK</small>
+              <span id="boardDateShort">Device date</span>
+            </p>
+          </div>
+
+          <div class="clock-body">
+            <div class="clock-face">
+              <svg viewBox="0 0 200 200" role="img" aria-labelledby="boardDigital">
+                <circle cx="100" cy="100" r="96" fill="var(--paper)" stroke="currentColor" stroke-width="6"/>
+                <circle cx="100" cy="100" r="88" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <g id="clockTicks"></g>
+                <text x="100" y="48" text-anchor="middle" fill="currentColor" font-family="Noto Sans JP, sans-serif" font-size="16" font-weight="900">12</text>
+                <text x="162" y="106" text-anchor="middle" fill="currentColor" font-family="Noto Sans JP, sans-serif" font-size="16" font-weight="900">3</text>
+                <text x="100" y="168" text-anchor="middle" fill="currentColor" font-family="Noto Sans JP, sans-serif" font-size="16" font-weight="900">6</text>
+                <text x="38" y="106" text-anchor="middle" fill="currentColor" font-family="Noto Sans JP, sans-serif" font-size="16" font-weight="900">9</text>
+                <text x="100" y="72" text-anchor="middle" fill="var(--vermillion)" font-family="Shippori Mincho, serif" font-size="14">Minato</text>
+                <text x="100" y="136" text-anchor="middle" fill="currentColor" font-family="Noto Sans JP, sans-serif" font-size="6.5" font-weight="700" letter-spacing="0.32em">JOHANSSON</text>
+                <g id="handHour">
+                  <line x1="100" y1="118" x2="100" y2="56" stroke="currentColor" stroke-width="7" stroke-linecap="square"/>
+                </g>
+                <g id="handMinute">
+                  <line x1="100" y1="124" x2="100" y2="30" stroke="currentColor" stroke-width="4" stroke-linecap="square"/>
+                </g>
+                <g id="handSecond" class="hand-second">
+                  <line x1="100" y1="128" x2="100" y2="24" stroke="currentColor" stroke-width="2"/>
+                </g>
+                <circle cx="100" cy="100" r="5" fill="var(--vermillion)"/>
+                <circle cx="100" cy="100" r="2.2" fill="var(--paper)"/>
+              </svg>
+            </div>
+            <div>
+              <p class="board-tiny" id="boardWeekdayLine">Device weekday</p>
+              <p class="clock-digits" id="boardDigital" aria-live="polite">16:42:00</p>
+              <p class="clock-period" id="boardPeriod">AFTERNOON</p>
+              <p class="clock-line" id="boardLine">Shops are open.</p>
+              <p class="clock-shops" id="boardShops">SHOPS 00/00 OPEN · HARBOUR DISTRICT TIME</p>
+            </div>
+          </div>
+
+          <div class="clock-modes" role="group" aria-label="Town clock modes">
+            <button type="button" data-clock-mode="live" aria-pressed="true"><b>LIVE</b><span>Now in town</span></button>
+            <button type="button" data-clock-mode="saved" aria-pressed="false"><b>SAVED</b><span>Where I left off</span></button>
+            <button type="button" data-clock-mode="0600" aria-pressed="false"><b>06:00</b><span>Early morning</span></button>
+            <button type="button" data-clock-mode="1200" aria-pressed="false"><b>12:00</b><span>Kyūshoku</span></button>
+            <button type="button" data-clock-mode="1830" aria-pressed="false"><b>18:30</b><span>Evening press</span></button>
+            <button type="button" data-clock-mode="2200" aria-pressed="false"><b>22:00</b><span>Night</span></button>
+          </div>
+          <div class="clock-speeds" role="group" aria-label="Town clock speed">
+            <span class="board-tiny">SPEED</span>
+            <button type="button" data-clock-speed="1" aria-pressed="true"><b>1×</b><span>Real pace</span></button>
+            <button type="button" data-clock-speed="2" aria-pressed="false"><b>2×</b><span>An hour in 30 minutes</span></button>
+            <button type="button" data-clock-speed="4" aria-pressed="false"><b>4×</b><span>An hour in 15 minutes</span></button>
+          </div>
+          <p class="clock-choice-note" id="clockChoiceNote">LIVE follows your own clock and today's date. Pick a time to start the town there instead; it can run faster.</p>
+        </section>
+        <section class="controls-panel" aria-labelledby="controls-heading">
+          <h2 id="controls-heading" class="sr-only">Street controls</h2>
+          <p class="board-tiny">06 · STREET CONTROLS</p>
+          <ul class="controls-grid">
+            <li><kbd>WASD / left stick</kbd><span>Walk</span></li>
+            <li><kbd>Shift</kbd><span>Run</span></li>
+            <li><kbd>Mouse / drag / right stick</kbd><span>Look</span></li>
+            <li><kbd>Space</kbd><span>Jump</span></li>
+            <li><kbd>E</kbd><span>Interact / stand</span></li>
+            <li><kbd>R</kbd><span>Drink</span></li>
+            <li><kbd>Q</kbd><span>Town book</span></li>
+            <li><kbd>B</kbd><span>Notebook</span></li>
+            <li><kbd>N</kbd><span>Town clock</span></li>
+          </ul>
+        </section>
+
+      </div>
+
+      <section aria-labelledby="hours-heading">
+        <div class="section-bar">
+          <div>
+            <p class="board-tiny">07 · HOURS OF BUSINESS</p>
+            <h2 id="hours-heading">Opening board</h2>
+          </div>
+          <p class="board-tiny" id="hoursHeadTime">16:42:00 · AFTERNOON</p>
+        </div>
+        <div class="hours-wrap">
+          <table class="hours-table">
+            <caption class="sr-only">Shop and landmark hours for Minato Machi</caption>
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Place</th>
+                <th>District</th>
+                <th>Hours</th>
+                <th>Now</th>
+              </tr>
+            </thead>
+            <tbody id="hoursBody"></tbody>
+          </table>
+        </div>
+      </section>
+      <section aria-labelledby="noticeWhen">
+        <div class="section-bar paper">
+          <div>
+            <p class="board-tiny">10 · HARBOUR NOTICES</p>
+            <h2 id="noticeWhen">Posted this Sunday</h2>
+          </div>
+        </div>
+        <div class="notice-grid">
+          <article class="notice-card">
+            <p class="notice-no">NOTICE A-14</p>
+            <h3>Outer pier after dark</h3>
+            <p>Boards are wet and unlit past twenty hundred. Walk the inner quay.</p>
+          </article>
+          <article class="notice-card">
+            <p class="notice-no">NOTICE B-07</p>
+            <h3>Evening paper</h3>
+            <p>Reiko works the evening press inside Front-Row Books until 00:30. Newspapers are available at Nhung’s counter.</p>
+          </article>
+          <article class="notice-card">
+            <p class="notice-no">NOTICE C-02</p>
+            <h3>Form 3D printer</h3>
+            <p>Five collectible patterns at the shared bookshop workshop. Speak to Thuan at Sakura to sell a finished piece.</p>
+          </article>
+          <article class="notice-card">
+            <p class="notice-no">NOTICE D-11</p>
+            <h3>Opening seat</h3>
+            <p>Visitors arrive seated on the cedar bench, east sidewalk, facing Sakura. Press E to stand.</p>
+          </article>
+        </div>
+      </section>
+        </div>
+      </details>
+
+      <footer class="board-foot">
+        <p>Johansson World · Harbour District · 1997.<br>Explore with touch, keyboard or controller. First- and third-person views. Your town remembers you on this device.</p>
+        <p class="jp"><span id="boardJpDate">Local calendar</span><span class="board-foot-line">HARBOUR DISTRICT · 1997</span></p>
+      </footer>
+    </article>
+  </div>
+</section>
+<div id="hud" class="hidden">
+  <div class="topbar"><div class="placard"><b id="place">Minato Machi</b><small id="placeSub">Minato Machi · HARBOUR DISTRICT</small></div><div class="status-stack"><div id="clock">16:42</div></div></div>
+  <button id="waypoint" class="hidden" aria-label="Clear walking directions"></button>
+  <button id="directoryButton" aria-label="Open town menu" aria-controls="directory" aria-expanded="false">Menu</button>
+
+
+
+  <div id="prompt" hidden aria-hidden="true"></div>
+  <nav id="contextActions" hidden aria-label="Nearby actions">
+    <p id="contextActionStatus" hidden role="status"></p>
+    <button id="standButton" class="control-off" type="button" hidden aria-label="Stand up">Stand up</button>
+    <button id="orderButton" class="control-off" type="button" hidden aria-label="Order food and drinks">Order</button>
+    <button id="eatButton" class="control-off" type="button" hidden aria-label="Eat">Eat</button>
+    <button id="drink" class="control-off" type="button" hidden aria-label="Drink">Drink</button>
+    <button id="exitRoomButton" class="hidden control-off" type="button" hidden aria-label="Exit to street">Exit to street</button>
+    <button id="enterBuildingButton" class="hidden control-off" type="button" hidden aria-label="Enter building">Enter</button>
+    <button id="goAshoreButton" class="control-off" type="button" hidden aria-label="Go ashore">Go ashore</button>
+    <button id="stayAboardButton" class="control-off" type="button" hidden aria-label="Stay aboard">Stay aboard</button>
+    <button id="act" class="control-off" type="button" hidden aria-label="Nearby action">Action</button>
+  </nav>
+  <div id="subtitle" role="status" aria-live="polite"></div>
+  <div class="timecard"><small>AFTERNOON</small><div id="timeText">Shops are open.</div></div>
+</div>
+<div id="directory" class="hidden" role="dialog" aria-modal="true" aria-label="Town menu"><div class="directory-card"><div class="directory-head"><div><h2>Town book</h2><p id="wallet">¥1,200</p></div><button id="closeDirectory" aria-label="Close the town book">×</button></div><nav id="townControls" class="menu-apps" aria-label="Town book"><details class="menu-camera"><summary>Camera</summary><div class="book-grid"><button id="photoButton" class="app-tile" data-icon="camera" aria-label="Open photo studio (P)">Photo</button><button id="pocketButton" class="app-tile" data-icon="pocket" aria-label="Raise the Pocket Gentleman camera (F)">Pocket Gentleman</button><button id="freeCameraButton" class="app-tile" data-icon="cube" aria-label="Free camera: freeze the town and fly the camera round it (O)">Free camera</button><button id="cleanViewButton" class="app-tile" data-icon="eye" aria-label="Clean view: hide the controls for a clean picture (H). Tap to bring them back">Clean view</button><button id="lookButton" class="app-tile" data-icon="star" aria-label="Look: choose how the whole town is drawn (Manga, Pencil crayon, pixel, old TV …)">Look</button></div></details><details class="menu-places"><summary>Map</summary><button id="mapScope" type="button" aria-pressed="false">Show whole world</button><div class="map-frame"><canvas id="minimap" width="720" height="620" aria-label="Local map showing your position, homes, places and walking directions"></canvas></div><p id="mapDescription">Choose Show home beside a resident to mark their entrance.</p><div id="directoryGrid"></div></details><button id="peopleButton" class="app-tile" data-icon="person" aria-label="People: where everyone is, their homes and resident records">People</button><button id="notebookButton" class="app-tile" data-icon="book">Field book</button><button id="movesButton" class="app-tile" data-icon="moves" aria-label="Choose something for Johansson to do (G)">Moves</button><button id="ferryOperationsButton" class="app-tile" data-icon="page" aria-label="Ferry departure and crew">Ferry</button><details class="menu-settings" aria-label="Settings"><summary>Settings</summary><div class="book-grid"><button id="cameraButton" class="app-tile" data-icon="game" aria-label="Open camera and controller settings" aria-controls="cameraPanel">Controls</button><button id="playerButton" class="app-tile" data-icon="person" aria-label="Player and save">Save</button></div><div class="setting-row"><span>View</span><button id="viewButton" aria-pressed="false" aria-label="Switch between first- and third-person view (V)">Behind him</button></div><div class="setting-row"><span>Clock</span><button id="timeButton">Set the time</button></div><div class="setting-row"><span>Weather</span><button id="weatherButton">Clear</button></div><div class="setting-row"><span>Sound</span><button id="soundButton">On</button></div><div class="setting-row"><span>Screen</span><button id="fullscreenButton">Full screen</button></div></details></nav><div class="directory-foot">HARBOUR DISTRICT · 1997 · <span id="saveState">Progress saved</span> <button id="creditsButton">Credits</button></div></div></div>
+<div id="activity" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="activityTitle"><section class="activity-card"><header><span><span aria-hidden="true">✿</span> A LITTLE MOMENT · 1997</span><button id="closeActivity" aria-label="Close activity"><span aria-hidden="true">×</span></button></header><h2 id="activityTitle"></h2><div id="activityBody"></div><div id="activityActions"></div></section></div>
+<div id="mobile" class="hidden"><div id="stick" class="touch-stick" aria-label="Movement area"><div id="stickBase" class="stick-base" aria-hidden="true"><div id="knob" class="stick-knob"></div></div></div><div id="movementActions" aria-label="Movement actions"><button id="run" class="control-off" aria-label="Toggle running" aria-pressed="false">RUN</button><button id="jump" class="control-off" aria-label="Jump"><span class="jump-glyph">↑</span><b class="jump-label">JUMP</b></button></div></div>
+<div id="qte" class="hidden" aria-live="assertive"><div class="qte-card"><span id="qteGlyph">←</span><b id="qteText">SWIPE LEFT</b><div class="qte-track"><span id="qteTimer"></span></div></div></div>
+<div id="fatal" class="modal hidden"><div class="modal-card"><h2>JOHANSSON WORLD</h2><p>Unable to start the graphics engine.</p><button id="retry">RETRY</button></div></div>
+<div id="iosFullscreen" class="modal hidden"><div class="modal-card"><h2>INSTALL JOHANSSON WORLD</h2><p>On iPhone or iPad, open this page in Safari. Tap Share, then Add to Home Screen, and turn on Open as Web App if offered. Open the town from its new icon. Your save stays on this device; installed apps and Safari may have separate saves. Reopen while online to get the latest town updates. Previously visited content can load offline.</p><button id="closeFullscreenHelp">CLOSE</button></div></div>
+<script src="./resident-guide.js?h=18755153"></script>
+<script>window.JOHANSSON_FEED_MODULE="./runtime/feed-B--FrUlV.js";</script>
+<script>window.JOHANSSON_PORTRAIT_MODULE="./runtime/portraits-7hi-8286.js";</script>
+<script src="./landing.js?h=ee7b1d7f"></script>
+<script>
+// Title screen: the Johansson Co. splash, the START menu, and the town guide page
+// behind it. Launching the game stays in index.html; this only presses its button.
+(() => {
+  const start = document.getElementById("start");
+  const splash = document.getElementById("splash");
+  const enter = document.getElementById("enter");
+  const guideLink = document.querySelector("[data-guide-open]");
+  // The d-pad follows the primary action and secondary navigation in reading order.
+  const titleItems = () => [...document.querySelectorAll(".title-menu #enter, .title-secondary > *")];
+  const SPLASH_KEY = "johansson-town-splash";
+
+  // The company mark plays once per visit; a tap or key skips it.
+  let splashSeen = true;
+  try { splashSeen = splashSeen || sessionStorage.getItem(SPLASH_KEY) === "1"; } catch {}
+  const endSplash = () => {
+    if (splash.classList.contains("done")) return;
+    splash.classList.add("done");
+    try { sessionStorage.setItem(SPLASH_KEY, "1"); } catch {}
+    if (!start.classList.contains("guide-open")) enter.focus({ preventScroll: true });
+  };
+  if (splashSeen || matchMedia("(prefers-reduced-motion: reduce)").matches) endSplash();
+  else {
+    splash.addEventListener("animationend", (event) => { if (event.animationName === "splash-out") endSplash(); });
+    splash.addEventListener("pointerdown", endSplash);
+  }
+
+  const titleActive = () => !start.classList.contains("hidden") && !start.classList.contains("guide-open") && !start.classList.contains("booting") && document.getElementById("titleSlots").classList.contains("hidden") && !document.activeElement?.closest(".title-settings");
+
+  function openGuide(event) {
+    event?.preventDefault();
+    start.classList.add("guide-open");
+    start.scrollTop = 0;
+    history.pushState({guide:true},"", "#board");
+    document.getElementById("board").focus?.({ preventScroll: true });
+  }
+  function closeGuide(event) {
+    event?.preventDefault();
+    start.classList.remove("guide-open");
+    history.replaceState(null,"",location.pathname+location.search);
+    enter.focus({ preventScroll: true });
+  }
+  document.querySelectorAll("[data-town-enter]").forEach(button => button.addEventListener("click", () => enter.click()));
+  guideLink.addEventListener("click", openGuide);
+  addEventListener("popstate",()=>{start.classList.toggle("guide-open",location.hash==="#board");});
+  if(location.hash==="#board")start.classList.add("guide-open");
+  document.querySelectorAll("[data-guide-close]").forEach((link) => link.addEventListener("click", closeGuide));
+  document.getElementById("board").tabIndex = -1;
+
+  // The Johansson Co. jingle when START is pressed: our own, not a borrowed blip. Four
+  // plucked notes climbing the Ryukyu scale (sol, ti, do, mi), the way a sanshin opens a
+  // song, then a soft open fifth that rings out like the harbour bell. The press is the
+  // user gesture browsers ask for, so this never autoplays.
+  function chime() {
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      const ctx = new Ctx(), t0 = ctx.currentTime + .02;
+      const out = ctx.createGain(); out.gain.value = .9;
+      const tone = ctx.createBiquadFilter(); tone.type = "lowpass"; tone.frequency.value = 3200; tone.Q.value = .4;
+      out.connect(tone).connect(ctx.destination);
+      // A pluck: a triangle for the body, a quieter octave sine for the bite, quick decay.
+      const pluck = (freq, at, level, decay) => {
+        for (const [type, mult, share] of [["triangle", 1, 1], ["sine", 2, .35], ["sine", 3, .08]]) {
+          const osc = ctx.createOscillator(), gain = ctx.createGain();
+          osc.type = type; osc.frequency.value = freq * mult;
+          osc.detune.setValueAtTime(-8, t0 + at); osc.detune.linearRampToValueAtTime(0, t0 + at + .04);
+          gain.gain.setValueAtTime(.0001, t0 + at);
+          gain.gain.exponentialRampToValueAtTime(level * share, t0 + at + .008);
+          gain.gain.exponentialRampToValueAtTime(.0001, t0 + at + decay);
+          osc.connect(gain).connect(out);
+          osc.start(t0 + at); osc.stop(t0 + at + decay + .05);
+        }
+      };
+      // G4 B4 C5 E5, then C5 and G5 together, held.
+      [[392, 0], [493.9, .11], [523.3, .22], [659.3, .33]].forEach(([f, at]) => pluck(f, at, .05, .42));
+      pluck(523.3, .5, .04, 1.3); pluck(784, .5, .028, 1.4);
+      setTimeout(() => ctx.close(), 2200);
+    } catch {}
+  }
+  enter.addEventListener("click", () => { if (!window.__JOHANSSON_BOOTING__) chime(); }, { capture: true });
+
+  document.addEventListener("keydown", (event) => {
+    if (!splash.classList.contains("done")) { endSplash(); event.preventDefault(); return; }
+    if (start.classList.contains("guide-open") && event.key === "Escape") { closeGuide(event); return; }
+    if (!titleActive()) return;
+    const list = titleItems();
+    const index = list.indexOf(document.activeElement);
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      const step = event.key === "ArrowDown" ? 1 : -1;
+      list[((index < 0 ? 0 : index + step) + list.length) % list.length].focus();
+    } else if ((event.key === "Enter" || event.key === " ") && index < 0 && document.activeElement === document.body) {
+      event.preventDefault();
+      enter.click();
+    }
+  });
+
+  // Controller: Start or A presses START, the d-pad moves the cursor.
+  let held = {};
+  function pollPads() {
+    if (start.classList.contains("hidden") || window.__JOHANSSON_RUNNING__) return;
+    let pads = [];
+    try { pads = navigator.getGamepads?.() || []; } catch {}
+    for (const pad of pads) {
+      if (!pad) continue;
+      const pressed = (i) => pad.buttons[i]?.pressed;
+      const edge = (i) => { const now = pressed(i), was = held[pad.index + ":" + i]; held[pad.index + ":" + i] = now; return now && !was; };
+      if (!splash.classList.contains("done")) { if (edge(9) || edge(0)) endSplash(); continue; }
+      if (!titleActive()) { if (edge(1) && start.classList.contains("guide-open")) closeGuide(); continue; }
+      const list = titleItems();
+      const current = Math.max(0, list.indexOf(document.activeElement));
+      if (edge(12) || edge(13)) list[(current + 1) % list.length].focus();
+      if (edge(9)) enter.click();
+      else if (edge(0)) list[current].click();
+    }
+    requestAnimationFrame(pollPads);
+  }
+  window.addEventListener("gamepadconnected", () => requestAnimationFrame(pollPads), { once: true });
+})();
+</script>
+<script type="module">
+import {createLoadingFacts} from './loading-facts.js?h=2738098f';
+import {createLoadingProgress} from './loading-progress.js?h=282b5bd3';
+import {createTitleMenu} from './runtime/title-menu-SzOfqUsc.js';
+import {unlockTownAudio} from './runtime/audio-xyCcv-We.js';
+(() => {
+  const enter=document.getElementById('enter');
+  const status=document.getElementById('bootStatus');
+  // One bar, on the START button while the island loads and on the loading card after START (loading-progress.js).
+  // It glides towards the running step's end as a transform animation, which the compositor keeps playing while
+  // the town is built in one blocking stretch. Each glide starts where the bar is now by the clock (never from a
+  // stale frame, so it cannot jump back), and the number beside it is the same position.
+  const bar=document.getElementById('bootProgress'),fills=[...document.querySelectorAll('[data-load-fill]')];
+  const still=matchMedia('(prefers-reduced-motion: reduce)');let glide={from:0,to:0,at:0,ms:1},glides=[];
+  const position=()=>glide.from+(glide.to-glide.from)*Math.min(1,Math.max(0,(performance.now()-glide.at)/glide.ms));
+  const moveTo=(to,seconds)=>{
+    if(to<=glide.to)return;
+    const from=position();glide={from,to,at:performance.now(),ms:still.matches?1:Math.max(1,seconds*1000)};
+    for(const g of glides)g.cancel();
+    glides=fills.map(fill=>{fill.style.transform='scaleX('+to+')';const g=fill.animate([{transform:'scaleX('+from+')'},{transform:'scaleX('+to+')'}],{duration:glide.ms});g.startTime=glide.at;return g;});
+  };
+  const showPercent=()=>{
+    const p=Math.round(position()*100);
+    for(const el of document.querySelectorAll('[data-load-percent]'))el.textContent=p+'%';
+    bar.setAttribute('aria-valuenow',p);if(enter.disabled)enter.setAttribute('aria-label','Loading the island, '+p+' percent');else enter.removeAttribute('aria-label');
+  };
+  const progress=window.__JOHANSSON_LOADING__=createLoadingProgress({now:()=>performance.now(),onChange:state=>{
+    if(!state.error)moveTo(state.target/100,state.seconds);
+    status.textContent=state.label;
+    for(const el of document.querySelectorAll('[data-load-label]'))el.textContent=state.label;
+    if(!window.__JOHANSSON_BOOTING__){
+      const waiting=!state.ready||!!state.error;
+      enter.classList.toggle('loading',waiting);
+      if(enter.disabled!==waiting){enter.disabled=waiting;if(!waiting&&document.activeElement===document.body)enter.focus({preventScroll:true});}
+    }
+    showPercent();
+  }});
+  const ticker=setInterval(()=>{showPercent();const s=progress.snapshot();if(s.completed===s.total||s.error)clearInterval(ticker);},120);
+  const loadingFacts=createLoadingFacts(document.getElementById('loadingFact'));
+  const fatal=document.getElementById('fatal');
+  const retry=document.getElementById('retry');
+  const fsButton=document.getElementById('fullscreenButton');
+  const fsHelp=document.getElementById('iosFullscreen');
+  const fsClose=document.getElementById('closeFullscreenHelp');
+  const isIPhone=/iPhone|iPod/.test(navigator.userAgent);
+  const standalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+
+  function startupFailed(err){
+    loadingFacts.stop();
+    progress.fail(err);
+    status.textContent='START FAILED';
+    fatal.querySelector('p').textContent=/WebGL|graphics context/i.test(err.message||'')
+      ? 'The browser could not start the 3D graphics engine. Close other tabs, then retry. Your saved island is unchanged.'
+      : 'Johansson World could not start: '+(err.message||'Unknown startup error')+'. Please retry.';
+    fatal.querySelector('button').hidden=false;
+    fatal.classList.remove('hidden');
+    window.__JOHANSSON_BOOTING__=false;
+    document.getElementById('start').classList.remove('booting');
+    enter.disabled=true;
+  }
+
+  async function fullscreen(){
+    if(document.fullscreenElement||document.webkitFullscreenElement){
+      const exit=document.exitFullscreen||document.webkitExitFullscreen;
+      if(exit){try{await exit.call(document)}catch{}}
+      return;
+    }
+    const el=document.documentElement;
+    const request=el.requestFullscreen||el.webkitRequestFullscreen;
+    if(request){try{await request.call(el);return}catch{}}
+    if(isIPhone&&!standalone())fsHelp.classList.remove('hidden');
+  }
+
+  async function launch(){
+    if(window.__JOHANSSON_BOOTING__)return;
+    window.__JOHANSSON_BOOTING__=true;
+    enter.disabled=true;
+    document.getElementById('start').classList.remove('guide-open');
+    document.getElementById('start').classList.add('booting');
+    loadingFacts.start();
+    if(progress.snapshot().ready)progress.start('frame');
+    window.__JOHANSSON_STARTUP__={startedAt:performance.now(),stage:'code'};
+    try{unlockTownAudio();}catch(error){console.warn('Town audio unavailable:',error);}
+    if(!isIPhone||standalone())fullscreen();
+    const watchdog=setTimeout(()=>{
+      if(progress.snapshot().completed<progress.snapshot().total&&!progress.snapshot().error){
+        status.textContent='Still loading · '+progress.snapshot().label;
+      }
+    },25000);
+    try{
+      // Let the browser paint the first fact before constructing the town.
+      await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+      await window.__JOHANSSON_PREVIEW_PROMISE__;
+      window.__JOHANSSON_ENTER_WORLD__();
+      await progress.ready;
+      document.getElementById('start').classList.add('hidden');
+      clearTimeout(watchdog);
+      loadingFacts.stop();
+      window.__JOHANSSON_RUNNING__=true;
+      fatal.classList.add('hidden');
+    }catch(err){
+      clearTimeout(watchdog);
+      console.error(err);
+      startupFailed(err);
+    }
+  }
+
+  if(window.johanssonDesktop)document.getElementById('installTown').hidden=true;
+  window.__JOHANSSON_TITLE_PREVIEW__=true;
+  async function loadPreview(){
+    try { await import('./runtime/boot-BfEbudVM.js'); } catch (error) {
+        if (!/fetch|module|import|404/i.test(error.message||'')) throw error;
+        const response=await fetch('./index.html',{cache:'no-store'});
+        if(!response.ok)throw error;
+        const fresh=await response.text(),match=fresh.match(/import\(['"]\.\/runtime\/(boot-[A-Za-z0-9_-]+\.js)['"]\)/);
+        if(!match)throw error;
+        await import('./runtime/'+match[1]);
+      }
+  }
+  window.__JOHANSSON_PREVIEW_PROMISE__=loadPreview().catch(error=>{
+    console.error(error);
+    startupFailed(error);
+    throw error;
+  });
+  window.__JOHANSSON_PREVIEW_PROMISE__.catch(()=>{});
+  enter.addEventListener('click',launch);
+  createTitleMenu({launch:()=>enter.click()});
+  retry.addEventListener('click',()=>location.reload());
+  fsButton.addEventListener('click',fullscreen);
+  fsClose.addEventListener('click',()=>fsHelp.classList.add('hidden'));
+  document.addEventListener('fullscreenchange',()=>{fsButton.textContent=document.fullscreenElement?'Leave full screen':'Full screen'});
+  document.addEventListener('webkitfullscreenchange',()=>{fsButton.textContent=document.webkitFullscreenElement?'Leave full screen':'Full screen'});
+})();
+</script>
+<script type="module" src="./title-sky.js"></script>
+<script type="module" src="./pwa.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+{
+ "drawing": {
+  "number": "KS-001",
+  "revision": "A",
+  "date": "2026-10-27",
+  "title": "Johansson Mart, Kitahama: the corner shop",
+  "scale": "1:50 (site 1:200)",
+  "units": "millimetres"
+ },
+ "checks": [
+  {
+   "check": "the shortened gōyā curtain clears the garden shed",
+   "ok": true,
+   "detail": "curtain from x 29.8, shed to x 29.6"
+  },
+  {
+   "check": "the shop stands inside the north block",
+   "ok": true,
+   "detail": "shop x 35.6–41.6, z 63.2–69.4; block x 16–42, z 62–72"
+  },
+  {
+   "check": "a clear strip between the shop and the approach",
+   "ok": true,
+   "detail": "400 mm to the road edge"
+  },
+  {
+   "check": "the forecourt to the cross lane takes the vending machines and a way past",
+   "ok": true,
+   "detail": "1 700 mm apron; machines 750 mm deep leave 950 mm"
+  },
+  {
+   "check": "the re-laid bays are at least 2.4 m wide",
+   "ok": true,
+   "detail": "2 467 mm a bay"
+  },
+  {
+   "check": "the re-laid parking clears the shop",
+   "ok": true,
+   "detail": "parking ends at x 35.4, the shop starts at x 35.6"
+  },
+  {
+   "check": "aisle: west aisle (chiller to island) at least 900",
+   "ok": true,
+   "detail": "950 mm"
+  },
+  {
+   "check": "aisle: the counter’s front (island to counter) at least 1 200",
+   "ok": true,
+   "detail": "1 500 mm"
+  },
+  {
+   "check": "aisle: the back aisle (island to cooler) at least 900",
+   "ok": true,
+   "detail": "900 mm"
+  },
+  {
+   "check": "aisle: the keeper’s aisle (counter to back shelf) at least 700",
+   "ok": true,
+   "detail": "700 mm"
+  },
+  {
+   "check": "aisle: the window aisle (magazines to island) at least 900",
+   "ok": true,
+   "detail": "1 300 mm"
+  },
+  {
+   "check": "every fitting stands inside the walls",
+   "ok": true,
+   "detail": "12 fittings"
+  },
+  {
+   "check": "no fitting overlaps another or a partition",
+   "ok": true,
+   "detail": "none"
+  },
+  {
+   "check": "the door’s clear width takes a wheelchair (at least 900 mm)",
+   "ok": true,
+   "detail": "1 600 mm opening, two leaves"
+  },
+  {
+   "check": "nothing stands in the door’s way inside",
+   "ok": true,
+   "detail": "900 mm clear inside the door"
+  },
+  {
+   "check": "the delivery door has 900 mm clear inside it",
+   "ok": true,
+   "detail": "clear"
+  },
+  {
+   "check": "the staff door swings clear of the stockroom fittings",
+   "ok": true,
+   "detail": "clear"
+  },
+  {
+   "check": "the signboard clears the door and the canopy",
+   "ok": true,
+   "detail": "sign from 2 800; door head 2 300, canopy top 2 550"
+  },
+  {
+   "check": "the signboard stands under the parapet",
+   "ok": true,
+   "detail": "sign to 3 500, parapet 3 600"
+  },
+  {
+   "check": "the canopy’s underside clears a head (2.1 m)",
+   "ok": true,
+   "detail": "2 450 mm"
+  },
+  {
+   "check": "clear height over the floor at least 2.6 m",
+   "ok": true,
+   "detail": "2 700 mm"
+  },
+  {
+   "check": "the cooler and the stock shelving fit under the ceiling",
+   "ok": true,
+   "detail": "cooler, chiller and shelving 100 mm or more under the ceiling"
+  },
+  {
+   "check": "the island is low enough for the keeper to see over (under 1.40 m)",
+   "ok": true,
+   "detail": "1 350 mm"
+  }
+ ],
+ "passed": 23,
+ "of": 23
+}

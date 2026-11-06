@@ -1,0 +1,406 @@
+{
+  "_actors-fWn-iiQL.js": {
+    "file": "actors-fWn-iiQL.js",
+    "name": "actors",
+    "isDynamicEntry": true,
+    "imports": [
+      "_compact-shops-BKdMS2U6.js",
+      "_animate-CsKgrGQr.js",
+      "_hat-models-Dq64WB2Y.js",
+      "_pixar-CWCdbQwH.js",
+      "_staff-bench-CXKq2cGc.js",
+      "_harbour-park-plan-BjDVKF9F.js"
+    ]
+  },
+  "_animate-CsKgrGQr.js": {
+    "file": "animate-CsKgrGQr.js",
+    "name": "animate",
+    "imports": [
+      "_compact-shops-BKdMS2U6.js",
+      "_pixar-CWCdbQwH.js",
+      "_shopping-lane-plan-D0DhEU8_.js"
+    ]
+  },
+  "_compact-shops-BKdMS2U6.js": {
+    "file": "compact-shops-BKdMS2U6.js",
+    "name": "compact-shops",
+    "isDynamicEntry": true
+  },
+  "_ferry-ship-DfhHmc7y.js": {
+    "file": "ferry-ship-DfhHmc7y.js",
+    "name": "ferry-ship"
+  },
+  "_fish-BxjJ3SFU.js": {
+    "file": "fish-BxjJ3SFU.js",
+    "name": "fish",
+    "imports": [
+      "_staff-bench-CXKq2cGc.js",
+      "_compact-shops-BKdMS2U6.js",
+      "_ferry-ship-DfhHmc7y.js",
+      "_preload-helper-PPVm8Dsz.js",
+      "_harbour-park-plan-BjDVKF9F.js"
+    ],
+    "dynamicImports": [
+      "_compact-shops-BKdMS2U6.js",
+      "_compact-shops-BKdMS2U6.js",
+      "src/world/ferry-engine-room-asset.js"
+    ]
+  },
+  "_friendship-BZ6sO6cx.js": {
+    "file": "friendship-BZ6sO6cx.js",
+    "name": "friendship",
+    "imports": [
+      "_fish-BxjJ3SFU.js",
+      "_harbour-park-plan-BjDVKF9F.js"
+    ]
+  },
+  "_halloween-y21oLgeX.js": {
+    "file": "halloween-y21oLgeX.js",
+    "name": "halloween",
+    "isDynamicEntry": true,
+    "imports": [
+      "_compact-shops-BKdMS2U6.js",
+      "_fish-BxjJ3SFU.js",
+      "_animate-CsKgrGQr.js",
+      "_hat-models-Dq64WB2Y.js",
+      "_harbour-park-plan-BjDVKF9F.js",
+      "_actors-fWn-iiQL.js",
+      "_staff-bench-CXKq2cGc.js",
+      "_storyteller-B7_FViTr.js",
+      "_ferry-ship-DfhHmc7y.js"
+    ]
+  },
+  "_harbour-park-plan-BjDVKF9F.js": {
+    "file": "harbour-park-plan-BjDVKF9F.js",
+    "name": "harbour-park-plan",
+    "imports": [
+      "_compact-shops-BKdMS2U6.js"
+    ]
+  },
+  "_hat-models-Dq64WB2Y.js": {
+    "file": "hat-models-Dq64WB2Y.js",
+    "name": "hat-models",
+    "imports": [
+      "_animate-CsKgrGQr.js",
+      "_harbour-park-plan-BjDVKF9F.js",
+      "_compact-shops-BKdMS2U6.js"
+    ]
+  },
+  "_onsen-C6NAPFCK.js": {
+    "file": "onsen-C6NAPFCK.js",
+    "name": "onsen",
+    "isDynamicEntry": true,
+    "imports": [
+      "_compact-shops-BKdMS2U6.js",
+      "_fish-BxjJ3SFU.js",
+      "_animate-CsKgrGQr.js",
+      "_hat-models-Dq64WB2Y.js",
+      "_halloween-y21oLgeX.js"
+    ]
+  },
+  "_pixar-CWCdbQwH.js": {
+    "file": "pixar-CWCdbQwH.js",
+    "name": "pixar",
+    "isDynamicEntry": true,
+    "imports": [
+      "_compact-shops-BKdMS2U6.js"
+    ]
+  },
+  "_preload-helper-PPVm8Dsz.js": {
+    "file": "preload-helper-PPVm8Dsz.js",
+    "name": "preload-helper"
+  },
+  "_sakura-interior-DyR36Nm_.js": {
+    "file": "sakura-interior-DyR36Nm_.js",
+    "name": "sakura-interior",
+    "isDynamicEntry": true,
+    "imports": [
+      "_halloween-y21oLgeX.js",
+      "_compact-shops-BKdMS2U6.js",
+      "_harbour-park-plan-BjDVKF9F.js",
+      "_fish-BxjJ3SFU.js",
+      "_hat-models-Dq64WB2Y.js"
+    ]
+  },
+  "_shopping-lane-plan-D0DhEU8_.js": {
+    "file": "shopping-lane-plan-D0DhEU8_.js",
+    "name": "shopping-lane-plan"
+  },
+  "_spector.bundle-_JPoFEkN.js": {
+    "file": "spector.bundle-_JPoFEkN.js",
+    "name": "spector.bundle",
+    "isDynamicEntry": true
+  },
+  "_staff-bench-CXKq2cGc.js": {
+    "file": "staff-bench-CXKq2cGc.js",
+    "name": "staff-bench",
+    "imports": [
+      "_compact-shops-BKdMS2U6.js",
+      "_harbour-park-plan-BjDVKF9F.js",
+      "_shopping-lane-plan-D0DhEU8_.js",
+      "_preload-helper-PPVm8Dsz.js"
+    ],
+    "dynamicImports": [
+      "src/world/tree-design-data.js"
+    ]
+  },
+  "_startup-recovery-CIJ7HiTu.js": {
+    "file": "startup-recovery-CIJ7HiTu.js",
+    "name": "startup-recovery"
+  },
+  "_storyteller-B7_FViTr.js": {
+    "file": "storyteller-B7_FViTr.js",
+    "name": "storyteller",
+    "imports": [
+      "_compact-shops-BKdMS2U6.js",
+      "_ferry-ship-DfhHmc7y.js",
+      "_harbour-park-plan-BjDVKF9F.js"
+    ]
+  },
+  "_studio-handoff-D2Od3tev.js": {
+    "file": "studio-handoff-D2Od3tev.js",
+    "name": "studio-handoff",
+    "imports": [
+      "_staff-bench-CXKq2cGc.js",
+      "_compact-shops-BKdMS2U6.js"
+    ]
+  },
+  "_thuan-voice-Dz-XGNqd.js": {
+    "file": "thuan-voice-Dz-XGNqd.js",
+    "name": "thuan-voice"
+  },
+  "src/audio/town-audio.js?snappy=1": {
+    "file": "audio-xyCcv-We.js",
+    "name": "audio",
+    "src": "src/audio/town-audio.js?snappy=1",
+    "isEntry": true,
+    "imports": [
+      "_compact-shops-BKdMS2U6.js"
+    ]
+  },
+  "src/avatars/guide-portraits.js": {
+    "file": "portraits-7hi-8286.js",
+    "name": "portraits",
+    "src": "src/avatars/guide-portraits.js",
+    "isEntry": true,
+    "imports": [
+      "_compact-shops-BKdMS2U6.js",
+      "_animate-CsKgrGQr.js",
+      "_hat-models-Dq64WB2Y.js",
+      "_staff-bench-CXKq2cGc.js",
+      "_studio-handoff-D2Od3tev.js",
+      "_actors-fWn-iiQL.js",
+      "_pixar-CWCdbQwH.js",
+      "_shopping-lane-plan-D0DhEU8_.js",
+      "_harbour-park-plan-BjDVKF9F.js",
+      "_preload-helper-PPVm8Dsz.js"
+    ]
+  },
+  "src/boot.js": {
+    "file": "boot-BfEbudVM.js",
+    "name": "boot",
+    "src": "src/boot.js",
+    "isEntry": true,
+    "imports": [
+      "_preload-helper-PPVm8Dsz.js",
+      "_startup-recovery-CIJ7HiTu.js"
+    ],
+    "dynamicImports": [
+      "_pixar-CWCdbQwH.js",
+      "touch-ui.js?ui=controls-3",
+      "src/game.js?snappy=1",
+      "webmcp.js",
+      "webmcp-characters.js"
+    ]
+  },
+  "src/feed/mount.js": {
+    "file": "feed-B--FrUlV.js",
+    "name": "feed",
+    "src": "src/feed/mount.js",
+    "isEntry": true,
+    "imports": [
+      "_storyteller-B7_FViTr.js",
+      "_preload-helper-PPVm8Dsz.js",
+      "_compact-shops-BKdMS2U6.js",
+      "_animate-CsKgrGQr.js",
+      "_hat-models-Dq64WB2Y.js",
+      "_ferry-ship-DfhHmc7y.js",
+      "_harbour-park-plan-BjDVKF9F.js",
+      "_pixar-CWCdbQwH.js",
+      "_shopping-lane-plan-D0DhEU8_.js"
+    ],
+    "dynamicImports": [
+      "src/scene/scene-world.js"
+    ]
+  },
+  "src/game.js?snappy=1": {
+    "file": "game-CCppv-8Q.js",
+    "name": "game",
+    "src": "src/game.js?snappy=1",
+    "isDynamicEntry": true,
+    "imports": [
+      "_preload-helper-PPVm8Dsz.js",
+      "_halloween-y21oLgeX.js",
+      "_ferry-ship-DfhHmc7y.js",
+      "_compact-shops-BKdMS2U6.js",
+      "_fish-BxjJ3SFU.js",
+      "_harbour-park-plan-BjDVKF9F.js",
+      "_staff-bench-CXKq2cGc.js",
+      "_startup-recovery-CIJ7HiTu.js",
+      "_hat-models-Dq64WB2Y.js",
+      "_actors-fWn-iiQL.js",
+      "_animate-CsKgrGQr.js",
+      "_pixar-CWCdbQwH.js",
+      "_shopping-lane-plan-D0DhEU8_.js",
+      "_onsen-C6NAPFCK.js",
+      "_sakura-interior-DyR36Nm_.js",
+      "src/world/interiors/sato-ramen.js",
+      "_friendship-BZ6sO6cx.js",
+      "src/world/interiors/town-hall.js",
+      "_studio-handoff-D2Od3tev.js",
+      "_storyteller-B7_FViTr.js",
+      "_thuan-voice-Dz-XGNqd.js"
+    ],
+    "dynamicImports": [
+      "_spector.bundle-_JPoFEkN.js",
+      "src/music/concert.js"
+    ]
+  },
+  "src/music/concert.js": {
+    "file": "concert-ldoms4fl.js",
+    "name": "concert",
+    "src": "src/music/concert.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_thuan-voice-Dz-XGNqd.js",
+      "_compact-shops-BKdMS2U6.js",
+      "_animate-CsKgrGQr.js",
+      "_pixar-CWCdbQwH.js",
+      "_shopping-lane-plan-D0DhEU8_.js"
+    ]
+  },
+  "src/scene/scene-world.js": {
+    "file": "scene-world-Bg6iJMAo.js",
+    "name": "scene-world",
+    "src": "src/scene/scene-world.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_preload-helper-PPVm8Dsz.js",
+      "_compact-shops-BKdMS2U6.js",
+      "_halloween-y21oLgeX.js",
+      "_staff-bench-CXKq2cGc.js",
+      "_fish-BxjJ3SFU.js",
+      "_actors-fWn-iiQL.js",
+      "_animate-CsKgrGQr.js",
+      "_pixar-CWCdbQwH.js",
+      "_shopping-lane-plan-D0DhEU8_.js",
+      "_hat-models-Dq64WB2Y.js",
+      "_harbour-park-plan-BjDVKF9F.js",
+      "_storyteller-B7_FViTr.js",
+      "_ferry-ship-DfhHmc7y.js"
+    ],
+    "dynamicImports": [
+      "_sakura-interior-DyR36Nm_.js",
+      "_halloween-y21oLgeX.js",
+      "src/world/interiors/sato-ramen.js",
+      "_actors-fWn-iiQL.js",
+      "_compact-shops-BKdMS2U6.js",
+      "_compact-shops-BKdMS2U6.js",
+      "_compact-shops-BKdMS2U6.js",
+      "_compact-shops-BKdMS2U6.js",
+      "_onsen-C6NAPFCK.js",
+      "src/world/interiors/town-hall.js"
+    ]
+  },
+  "src/world/ferry-engine-room-asset.js": {
+    "file": "ferry-engine-room-asset-DZpga16V.js",
+    "name": "ferry-engine-room-asset",
+    "src": "src/world/ferry-engine-room-asset.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_compact-shops-BKdMS2U6.js"
+    ]
+  },
+  "src/world/interiors/sato-ramen.js": {
+    "file": "sato-ramen-DEs8YNWP.js",
+    "name": "sato-ramen",
+    "src": "src/world/interiors/sato-ramen.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_compact-shops-BKdMS2U6.js",
+      "_halloween-y21oLgeX.js",
+      "_fish-BxjJ3SFU.js",
+      "_staff-bench-CXKq2cGc.js",
+      "_harbour-park-plan-BjDVKF9F.js",
+      "_shopping-lane-plan-D0DhEU8_.js",
+      "_preload-helper-PPVm8Dsz.js",
+      "_ferry-ship-DfhHmc7y.js",
+      "_animate-CsKgrGQr.js",
+      "_pixar-CWCdbQwH.js",
+      "_hat-models-Dq64WB2Y.js",
+      "_actors-fWn-iiQL.js",
+      "_storyteller-B7_FViTr.js"
+    ]
+  },
+  "src/world/interiors/town-hall.js": {
+    "file": "town-hall-VcsFtnxK.js",
+    "name": "town-hall",
+    "src": "src/world/interiors/town-hall.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_compact-shops-BKdMS2U6.js",
+      "_fish-BxjJ3SFU.js",
+      "_animate-CsKgrGQr.js",
+      "_hat-models-Dq64WB2Y.js",
+      "_halloween-y21oLgeX.js",
+      "_staff-bench-CXKq2cGc.js",
+      "_ferry-ship-DfhHmc7y.js",
+      "_preload-helper-PPVm8Dsz.js",
+      "_harbour-park-plan-BjDVKF9F.js",
+      "_pixar-CWCdbQwH.js",
+      "_shopping-lane-plan-D0DhEU8_.js",
+      "_actors-fWn-iiQL.js",
+      "_storyteller-B7_FViTr.js"
+    ]
+  },
+  "src/world/tree-design-data.js": {
+    "file": "tree-design-data-iR1qvQBH.js",
+    "name": "tree-design-data",
+    "src": "src/world/tree-design-data.js",
+    "isDynamicEntry": true
+  },
+  "title-menu.js": {
+    "file": "title-menu-SzOfqUsc.js",
+    "name": "title-menu",
+    "src": "title-menu.js",
+    "isEntry": true,
+    "imports": [
+      "_staff-bench-CXKq2cGc.js",
+      "_friendship-BZ6sO6cx.js",
+      "_compact-shops-BKdMS2U6.js",
+      "_harbour-park-plan-BjDVKF9F.js",
+      "_shopping-lane-plan-D0DhEU8_.js",
+      "_preload-helper-PPVm8Dsz.js",
+      "_fish-BxjJ3SFU.js",
+      "_ferry-ship-DfhHmc7y.js"
+    ]
+  },
+  "touch-ui.js?ui=controls-3": {
+    "file": "touch-ui-D34cMzo7.js",
+    "name": "touch-ui",
+    "src": "touch-ui.js?ui=controls-3",
+    "isDynamicEntry": true
+  },
+  "webmcp-characters.js": {
+    "file": "webmcp-characters-BkXkAGJZ.js",
+    "name": "webmcp-characters",
+    "src": "webmcp-characters.js",
+    "isDynamicEntry": true
+  },
+  "webmcp.js": {
+    "file": "webmcp-CxSkO4VH.js",
+    "name": "webmcp",
+    "src": "webmcp.js",
+    "isDynamicEntry": true
+  }
+}

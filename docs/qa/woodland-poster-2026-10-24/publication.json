@@ -1,0 +1,106 @@
+{
+  "commit": "afe5ba69526a5c20bc47ab53abfad412aae73159",
+  "checked_at": "2026-10-24T09:54:38.389455+00:00",
+  "files": [
+    {
+      "path": "johansson-town/index.html",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 46241,
+      "sha256": "28e466a8ac3c15bc2dcca6804c3106de451a58d37d4da08202cdc7e4e436be35",
+      "matches_reviewed_file": true
+    },
+    {
+      "path": "johansson-town/runtime/source.json",
+      "status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 83,
+      "sha256": "14510cf44e627dc59d9ab547dcb0901b840506a69050226a08dfe0a5e657def4",
+      "matches_reviewed_file": true
+    },
+    {
+      "path": "johansson-town/sw.js",
+      "status": 200,
+      "content_type": "application/javascript; charset=utf-8",
+      "bytes": 2308,
+      "sha256": "55c2823783873195747d4ec98b116b222a7930c73f71d79681e993f618c5fbeb",
+      "matches_reviewed_file": true
+    },
+    {
+      "path": "johansson-town/diorama/woodland/index.html",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 1470,
+      "sha256": "7da3247ab3d2e26bc03ef52d5a9d312594d356f4c26b38d21bcad9d0db284b7b",
+      "matches_reviewed_file": true
+    },
+    {
+      "path": "johansson-town/diorama/woodland/viewer.js",
+      "status": 200,
+      "content_type": "application/javascript; charset=utf-8",
+      "bytes": 6247,
+      "sha256": "a4fd0af135e498bd6d99e2c83c937aca3dd46b9037051231588330022f6edb43",
+      "matches_reviewed_file": true
+    },
+    {
+      "path": "johansson-town/diorama/woodland/viewer-3d.js",
+      "status": 200,
+      "content_type": "application/javascript; charset=utf-8",
+      "bytes": 6435,
+      "sha256": "3fb43678d9d5fbd7aa1dbc973718c5a62fddace15c0978ce423ac4d3706ef511",
+      "matches_reviewed_file": true
+    },
+    {
+      "path": "johansson-town/diorama/woodland/viewer.css",
+      "status": 200,
+      "content_type": "text/css; charset=utf-8",
+      "bytes": 3254,
+      "sha256": "02d782b9927e90bb61a1e3ae7192fed62516630017bb9518875e5012d80d7991",
+      "matches_reviewed_file": true
+    },
+    {
+      "path": "johansson-town/diorama/woodland/poster-board.webp",
+      "status": 200,
+      "content_type": "image/webp",
+      "bytes": 114994,
+      "sha256": "bb1c5fd88ff49fe47a081ce7205544232b41f7d2f4eb24e86e7e66d22bd0a008",
+      "matches_reviewed_file": true
+    },
+    {
+      "path": "johansson-town/diorama/woodland/poster.webp",
+      "status": 200,
+      "content_type": "image/webp",
+      "bytes": 312538,
+      "sha256": "304a7cfdc6d30265499aec5c79db406cb5dd1ade6b9ce9bbcd4b3700032a871b",
+      "matches_reviewed_file": true
+    },
+    {
+      "path": "johansson-town/diorama/woodland/woodland.glb.gz",
+      "status": 200,
+      "content_type": "application/gzip",
+      "bytes": 5639752,
+      "sha256": "0ef693d2c19e5a64db68b68044bcfe198cda54d370740dc0d8be6346a4b677c1",
+      "matches_reviewed_file": true
+    }
+  ],
+  "passed": true,
+  "errors": [],
+  "pages_workflow": {
+    "id": 40083680718,
+    "conclusion": "success",
+    "url": "https://github.com/nj22az/nj22az.github.io/actions/runs/40083680718"
+  },
+  "world_guard_workflow": {
+    "id": 40083681589,
+    "conclusion": "success",
+    "url": "https://github.com/nj22az/nj22az.github.io/actions/runs/40083681589",
+    "tests": 401,
+    "passed": 401,
+    "failed": 0,
+    "skipped": 0,
+    "todo": 0,
+    "files": 76,
+    "seconds": 285,
+    "completed_at": "2026-10-24T09:57:43Z"
+  }
+}

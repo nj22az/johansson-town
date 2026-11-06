@@ -1,0 +1,132 @@
+[
+ {
+  "check": "handrail 800..900 mm over the nosing line on both flights",
+  "ok": true,
+  "detail": "850, 850, 850, 850"
+ },
+ {
+  "check": "handrail 32..45 mm across",
+  "ok": true,
+  "detail": "40 mm"
+ },
+ {
+  "check": "a hand fits between rail and wall (40 mm clear or more)",
+  "ok": true,
+  "detail": "45 mm"
+ },
+ {
+  "check": "a bracket at least every metre",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "one continuous rail, foot to top landing",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "string 1 stands 60..80 mm over the nosing line",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "string 2 stands 60..80 mm over the nosing line",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "string 3 stands 60..80 mm over the nosing line",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "string 4 stands 60..80 mm over the nosing line",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "lower treads housed between their strings",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "upper treads housed between their strings",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "non-slip nosing 4 mm proud (clear of the 2 mm rule)",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "1F plate clear of the handrail",
+  "ok": true,
+  "detail": "345 mm"
+ },
+ {
+  "check": "2F plate clear of the handrail",
+  "ok": true,
+  "detail": "723 mm"
+ },
+ {
+  "check": "fire alarm clear of the handrail",
+  "ok": true,
+  "detail": "589 mm"
+ },
+ {
+  "check": "stair light clear of the handrail",
+  "ok": true,
+  "detail": "1287 mm"
+ },
+ {
+  "check": "switch 1 clear of the handrail",
+  "ok": true,
+  "detail": "269 mm"
+ },
+ {
+  "check": "switch 2 clear of the handrail",
+  "ok": true,
+  "detail": "577 mm"
+ },
+ {
+  "check": "poster 1 clear of the handrail",
+  "ok": true,
+  "detail": "1465 mm"
+ },
+ {
+  "check": "poster 1 wholly on the wall between the flights, under the upper flight",
+  "ok": true,
+  "detail": "top 2.26 m, flight above 3.14 m"
+ },
+ {
+  "check": "poster 2 clear of the handrail",
+  "ok": true,
+  "detail": "279 mm"
+ },
+ {
+  "check": "poster 2 on the landing wall, clear of the alarm",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "stair-head balustrade at least 900 mm high",
+  "ok": true,
+  "detail": "950 mm"
+ },
+ {
+  "check": "balustrade gaps under 110 mm (a child's head does not pass)",
+  "ok": true,
+  "detail": "90 mm, 10 balusters"
+ },
+ {
+  "check": "no two faces in one plane: shop, office and the strict zones",
+  "ok": true,
+  "detail": "{\"shop\": 0, \"office\": 0, \"zones\": 0}"
+ },
+ {
+  "check": "DXF reopens with no audit errors",
+  "ok": true,
+  "detail": ""
+ }
+]

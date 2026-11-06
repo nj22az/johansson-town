@@ -1,0 +1,11 @@
+{
+  "source_commit": "2bb7bb35aab07b5859b6124559f435146c8b57f2",
+  "source_tree": "88b7b1e427bacc78711dcb50bcb78447e736ae4f",
+  "local_tested_snapshot": "6b0652d5948f263a19248ea6526ae4caa39c06a9",
+  "parent": "93519733462cd7b88c43f7639bae4124ca3ff8f6",
+  "new_blobs_verified": 56,
+  "existing_blobs_reused": 41,
+  "complete_tree_matches": true,
+  "branch": "main",
+  "scope": "Blender engine room and its default camera/boarding integration; unrelated development prototypes excluded"
+}

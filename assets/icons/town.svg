@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Johansson World">
+<path d="M112,0 H400 A112,112 0 0 1 512,112 V400 A112,112 0 0 1 400,512 H112 A112,112 0 0 1 0,400 V112 A112,112 0 0 1 112,0 Z" fill="#294b60"/>
+<defs><clipPath id="tile"><path d="M112,0 H400 A112,112 0 0 1 512,112 V400 A112,112 0 0 1 400,512 H112 A112,112 0 0 1 0,400 V112 A112,112 0 0 1 112,0 Z"/></clipPath></defs>
+<circle cx="400" cy="104" r="56" fill="#f3c34c"/>
+<path d="M96,256 H416 V384 H96 Z" fill="#fcf0d0"/>
+<path d="M192,128 L320,128 L448,256 L64,256 Z" fill="#b4523d"/>
+<path d="M224,312 A24,24 0 0 1 248,288 L264,288 A24,24 0 0 1 288,312 L288,384 L224,384 Z" fill="#294b60"/>
+<path d="M32,400 A16,16 0 0 1 48,384 L464,384 A16,16 0 0 1 480,400 L480,416 L32,416 Z" fill="#d8b36e"/>
+<path d="M-16,416 H528 V528 H-16 Z" fill="#63929a" clip-path="url(#tile)"/>
+</svg>

@@ -1,0 +1,210 @@
+{
+  "engine": "Linux WebKit",
+  "physicalDevice": false,
+  "reference": "716bc0c1309ef7d0392e5183d32b6b8a0151c5ad",
+  "views": [
+    {
+      "version": "reference",
+      "label": "park-day",
+      "mean": 168.08337249016066,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4
+      },
+      "buffer": [
+        585,
+        1266
+      ],
+      "gpuError": 0
+    },
+    {
+      "version": "reference",
+      "label": "street-day",
+      "mean": 176.05090744772278,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4
+      },
+      "buffer": [
+        1266,
+        585
+      ],
+      "gpuError": 0
+    },
+    {
+      "version": "reference",
+      "label": "shop-night",
+      "mean": 140.46022118638237,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4
+      },
+      "buffer": [
+        585,
+        1266
+      ],
+      "gpuError": 0
+    },
+    {
+      "version": "before",
+      "label": "park-day",
+      "mean": 153.58219598569409,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        548,
+        1186
+      ],
+      "safe": false,
+      "gpuError": 0
+    },
+    {
+      "version": "before",
+      "label": "street-day",
+      "mean": 173.3967277513085,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        1186,
+        548
+      ],
+      "safe": false,
+      "gpuError": 0
+    },
+    {
+      "version": "before",
+      "label": "shop-night",
+      "mean": 140.86362809850263,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 0
+      },
+      "buffer": [
+        548,
+        1186
+      ],
+      "safe": false,
+      "gpuError": 0
+    },
+    {
+      "version": "restored",
+      "label": "park-day",
+      "mean": 153.1922608149911,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 2,
+        "hdr": true
+      },
+      "buffer": [
+        548,
+        1186
+      ],
+      "safe": false,
+      "gpuError": 0
+    },
+    {
+      "version": "restored",
+      "label": "street-day",
+      "mean": 173.59578654772653,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 2,
+        "hdr": true
+      },
+      "buffer": [
+        1186,
+        548
+      ],
+      "safe": false,
+      "gpuError": 0
+    },
+    {
+      "version": "restored",
+      "label": "shop-night",
+      "mean": 140.88770728350337,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 2,
+        "hdr": true
+      },
+      "buffer": [
+        548,
+        1186
+      ],
+      "safe": false,
+      "gpuError": 0
+    },
+    {
+      "version": "restored",
+      "label": "office-midnight",
+      "mean": 137.1434831374255,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 2,
+        "hdr": true
+      },
+      "buffer": [
+        548,
+        1186
+      ],
+      "safe": false,
+      "gpuError": 0
+    }
+  ],
+  "recovery": {
+    "safe": true,
+    "ink": true,
+    "effects": {
+      "ink": true,
+      "grade": true,
+      "fxaa": true,
+      "scale": 1,
+      "samples": 0,
+      "hdr": true
+    }
+  }
+}

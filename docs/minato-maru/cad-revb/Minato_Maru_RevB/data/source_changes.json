@@ -1,0 +1,62 @@
+{
+  "src/world/ferry-ship.js": {
+    "sha256": "1ec576fa693f42fdc7ca67547d14b6a1dcc8d57e5da60da2d6f30dd75b009848",
+    "bytes": 48958
+  },
+  "src/world/ferry-piping.js": {
+    "sha256": "4febece7a0c97c7ef1b17a7262d8ad3c90c0a2543951e40bac616311d735b2d0",
+    "bytes": 28601
+  },
+  "src/world/ferry-electrical.js": {
+    "sha256": "832dd35695ddc03d2b532bc1b85b1acfedf60d5a46d18efd20de37ed11dba817",
+    "bytes": 27214
+  },
+  "src/world/ferry-interior.js": {
+    "sha256": "159d129bc636a0e0ea073352a4bce73238fa440491677f2091973668d992436d",
+    "bytes": 124488
+  },
+  "src/world/ferry-pipe-routes.js": {
+    "sha256": "7127920a673d8860b3f2c489f14791191fe7915731327415e472c973d2341162",
+    "bytes": 11880
+  },
+  "src/world/ferry-plant-controls.js": {
+    "sha256": "e5eedd0d778f9c3f0065848333089fadeeace81906aff1bb92e55a423f8870e7",
+    "bytes": 9405
+  },
+  "src/world/ferry-engineering-hydrostatics.js": {
+    "sha256": "c9e70938c03177d957fb3773ca699fe969085b3365640bd8e150d16228e59052",
+    "bytes": 13680
+  },
+  "src/world/ferry-machinery-design.js": {
+    "sha256": "41521c2872a0894f6ccee31cf6bcd9a3edb8bf85def50455f7f34f6398e7fe38",
+    "bytes": 16322
+  },
+  "tests/ferry-ship.test.mjs": {
+    "sha256": "46e64f6fd84740c5e1c73e0d4f81a77e9bf1c00503730188e32e11274375ed83",
+    "bytes": 19854
+  },
+  "tests/ferry-walk.test.mjs": {
+    "sha256": "23f0e81501b66ff4603c370f9e8e7df78f5009ca68a8d86a04689962caba56f1",
+    "bytes": 16113
+  },
+  "tests/ferry-engineering-hydrostatics.test.mjs": {
+    "sha256": "27981a35fc9e1de3a37d84bb55a943746459e41da2bc99be53d002999b7a8095",
+    "bytes": 7530
+  },
+  "tests/ferry-machinery-design.test.mjs": {
+    "sha256": "aea2e75d7ffe81e808fcbd7f73a73e7545bcbeab5ff109e129f8cbb531756850",
+    "bytes": 5306
+  },
+  "tests/ferry-electrical-engineering.test.mjs": {
+    "sha256": "33da4cd8dc984480d071b68ecaf93aef3577fb4a6997fca8906a1338b58ac76d",
+    "bytes": 5531
+  },
+  "tests/ferry-engineering-arrangement.test.mjs": {
+    "sha256": "e424d8192bc1e8cbc10324e41c7098db5735fc373d4cd6d9838955f0b4006d86",
+    "bytes": 9490
+  },
+  "tools/ferry-drawings.mjs": {
+    "sha256": "189ec750a9a8e8de4a27c1f5df09e1004ce7c4f0ee29bea90e4ded4bb33b434b",
+    "bytes": 59835
+  }
+}

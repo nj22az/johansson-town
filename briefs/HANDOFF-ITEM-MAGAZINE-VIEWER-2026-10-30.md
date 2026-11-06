@@ -1,0 +1,58 @@
+# Handover: item artwork as a virtual magazine - 30 October 2026
+
+**Combined follow-up, 31 October 2026:** see [Sakura/izakaya integration](HANDOFF-SAKURA-IZAKAYA-INTEGRATION-2026-10-31.md). `codex/sakura-office-izakaya-review` brings the three candidates together, with exactly KITANO 12 and UMINEKO Black in the upstairs office. The original results below describe this branch independently; combined results and publication state are in the new note.
+
+
+The owner asked for interior adverts for Sakura's upper office, hall and storage, using Artlist, then: "I want to improve the look at item function in the game I want to be able to take a look and enjoy zoom in, download etc like a virtual magazine".
+
+## Publication — 31 October 2026
+
+The owner explicitly authorised publication: “Push to main”. PR #409 was marked ready after the exact `415f1d60` candidate passed hosted World guard [41099425611](https://github.com/nj22az/nj22az.github.io/actions/runs/41099425611) and Linux console acceptance [41099425539](https://github.com/nj22az/nj22az.github.io/actions/runs/41099425539). Production advanced to `cf86ea2a` with Pocket Camera publication, tool documentation and the Blender washroom-sign builder correction. The only overlapping path is `HANDOVER.md`; the reconciliation preserves current main and adds this feature’s index row. Shipped World source, runtime and all artwork stay byte-identical to the tested candidate. PR #409 merged into `main` as `c432fe1cbe9472263c0c07878ab7b1930c58cd36`. [Pages deployment 41144501848](https://github.com/nj22az/nj22az.github.io/actions/runs/41144501848) passed. Public-byte verification passed **77/77** files (all retained runtime files, nine original adverts and nine previews, reader sources, entry point and worker), using a publication query after deployment; the unversioned entry page and service worker also match their Git blob hashes. The live runtime source SHA256 is `7ae70f1e0976950cc51649f507a10d5f8a55bf0aea040b690f89a9d45fb2bee4`. [Post-merge World guard 41144503269](https://github.com/nj22az/nj22az.github.io/actions/runs/41144503269) and [island review 41144503132](https://github.com/nj22az/nj22az.github.io/actions/runs/41144503132) both passed. Evidence: [`docs/qa/item-viewer/publication-live.json`](../docs/qa/item-viewer/publication-live.json). Full-room GPU and physical-device limitations below remain.
+
+## Preparation history
+
+Prepared on `codex/item-magazine-viewer` from production `main`, fast-forwarded to `1d355885` (verified Kissa Higa/fish-market publication notes). Draft [PR #409](https://github.com/nj22az/nj22az.github.io/pull/409), feature commit `744e9037e9e2c5fa036b124f9d6d9a181b51f88d`. Not merged or published; the owner has not authorised publication. The GitHub app published a tree exactly equal to locally tested `b567ccf7` (tree `1eefb66d1c0058461aa952b8eb613ba339c2e533`), after shell Git lacked write credentials. The final artwork and six wall placements are implementation commit `0aee301ab2ec2cf5e63d2942b119f5dd3609aa3e`, whose tree `df15e6322970ad3076d75c95c528930c366365da` exactly matches locally tested `ee8420e4`. Current main `ff76aee1` was merged into this draft to resolve the handover index’s modify/delete conflict; the feature row and main’s Pocket Camera publication notes are both retained. This brings only already-published Camera files into branch ancestry; World source/runtime is unchanged by the merge and the tested runtime source hash below still matches. The later owner instructions — “They should have pretty Japanese girls in the ads” and “So pls update the walls” — are implemented below with adult Japanese models and six measured physical wall placements. The existing draft is updated; main remains untouched. Last fetched main `ff76aee1` differs from the feature base only in Pocket Camera and handover files; no newer World or Studio code/runtime is replaced.
+
+## What changed
+
+- `src/ui/print-viewer.js`: one original image or a multipage collection. Fit page, 1-8x zoom, cursor/pinch-centred zoom, bounded drag panning, explicit touch double-tap, desktop double-click, keyboard controls, page buttons and fit-size swipes. Images retain their source aspect ratio. Downloads use the same-origin original image or a full-resolution PNG of an authored canvas page, without the World Look, lighting or wall atlas.
+- `src/ui/reader-history.js`: temporary browser-history entries shared by prints and the woodland diorama. Back closes the current reader; rapid close/reopen and replacement between the two kinds wait for the preceding asynchronous Back. Replacements clean up images, captures, listeners and export Blob URLs. Activities retains its focus return and Escape/Tab handling.
+- Sakura's magazine rack uses this reader while retaining its issue calendar, Japanese right-to-left page order, free reading and existing purchase callback. Drawn pages are rendered at 1200 x 1680 instead of the old 600 x 840. Raster pages use their native source.
+- The existing flyer collection screen has a Look closer button. The harbour notice board's existing 3D Look action is preserved.
+- The 3D product viewer retains Turn over, Put back, Ask Thuan and Into basket, and gains explicit zoom buttons, Fit item and Read label. Read label waits for the original painted/designed front label, with a held-item guard against late completion, then shows front/back pages with zoom, pan and PNG download. Escape returns to the product; Tab remains in the visible controls.
+- Flat readers hold the hidden World renderer and simulation while open; the 3D product renderer also holds while its flat labels are open.
+
+## Art and physical placement
+
+All nine canonical campaigns now use the approved Artlist adult-model revisions. The owner approved 1,170 Artlist credits for this revision batch. Seven native sources are 1792 x 2400; MINATO-TSURU and ASAGAO UV received footer-only ChatGPT image-editor cleanup and remain at their native 1084 x 1451, without upscaling. Independent visual review confirmed the sake footer exactly お酒は二十歳になってから。 and removal of the UV advert’s nonsensical English footer while retaining model, branding, SPF and price. No additional Artlist credits were spent on cleanup. The flawed proofs and superseded product-only WebPs are excluded. Provenance, source/output hashes and dimensions: `assets/graphics/sakura-trade/README.md` and `SOURCES.json`.
+
+All eighteen WebPs decode and match their manifest hashes. Full images total 7,835,326 bytes and load only for inspection/download; the nine previews total 247,590 bytes. Revisioned `models-r1` paths prevent mixing cached old and new art. B2 wall cells contain each native aspect ratio with narrow cream margins, preserving all lettering and figures without stretching or cropping. The room waits for previews; on a failure or 12-second timeout the complete procedural design remains, and a late response cannot visibly replace it.
+
+The original ten stair/hall slots stay. SK-ST-004 adds six B2 prints to the actual builders:
+
+| Actual room | Campaign | Wall centre [x,y,z] m | Clear Look/standing anchor |
+| --- | --- | --- | --- |
+| Upstairs office, front wall | KITANO 12 | [5.15,2.30,4.49], -z | [5.15,1.50,3.20] |
+| Upstairs office, front wall | UMINEKO gift | [1.18,2.30,4.49], -z | [1.18,1.50,3.25] |
+| Upstairs office, back wall | ASAGAO rouge | [4.25,1.80,.55], +z | [4.25,1.50,1.60] |
+| Ground-floor stockroom, rear wall | MINATO-TSURU | [-.10,1.78,-6.86], +z | [-.10,1.50,-5.40] |
+| Ground-floor stockroom, rear wall | NAMI SOUR | [1.60,2.08,-6.86], +z | [1.60,1.50,-5.40] |
+| Ground-floor stockroom, rear wall | ASAGAO UV | [2.35,2.08,-6.86], +z | [2.35,1.50,-5.40] |
+
+Measured elevation data and the SVG were recorded before placement: `docs/qa/sakura-surfaces/sakura-model-walls.json`, `Sakura-Model-Walls-Rev-A.svg`, `build_model_walls.py` and `checks-model-walls.json` (33/33). Office prints clear the street window, fridge, cupboard, whiteboard, calendar, filing tube and ledger shelf. Stockroom prints clear the stairwell, cartons, old standees and delivery door. Every new slot records who uses it and why. Look prompts open that campaign in the nine-page supplier collection. Stockroom uses one atlas paper mesh and one merged pin mesh; upstairs pins share the existing static merge pass. No furniture, doors, windows, switches, colliders or routes are moved. The upper decorations store and archive remain closed; “storage” means the existing reachable ground-floor stockroom.
+
+## Verification
+
+Final model/wall revision: runtime build completed (655 modules); runtime-package checks pass within the full guard. Generated runtime files were restored from current main before the final build, retaining all 35 current-main cached entry files. The **95-file guard passes 502/502 in 435 seconds**, with a 6 GB heap and two-file concurrency. Runtime source SHA256: `7ae70f1e0976950cc51649f507a10d5f8a55bf0aea040b690f89a9d45fb2bee4`. Evidence: `docs/qa/item-viewer/guard.txt` and `verification.json`.
+
+The six placements pass 43 focused room, trade, budget, surface and navigation checks. Actual assembled geometry is tested with 54 unobstructed front-on sight rays and 54 immediate wall-support rays; all six registered Look anchors have exact collision-aware paths at player radius .28 m. The strict no-Z-fighting scan separately passes 13/13 in 110.5 seconds; SK-ST-004 passes 33/33 measured separation checks. No geometry baseline or draw budget is relaxed. The English/reachability test now permits numeric campaign names such as KITANO 12, retaining its English-character, height and reachable-standing assertions.
+
+Measured fixture counts against the preceding `a20df7fa` builders: shop 729 → 731 draws and 313,991 → 314,381 triangles; upstairs 33 → 34 draws and 10,796 → 11,186 triangles. The addition costs three draws and 780 triangles total. The existing full loaded-display and shop budget checks pass in the guard.
+
+Earlier reader feature validation passed 500/500 (94 files, 502 seconds). Its first guard attempt exposed a stale runtime-source hash after a title edit and a geometry worker termination while an 8 GB heap ran beside other tests; rebuilding and using 6 GB/two-file concurrency resolved both with every geometry assertion retained. The final revision passes the larger guard above.
+
+The earlier reader UI cloud browser visual review used the actual components and activity CSS on an uncommitted local normal-button test page. Verified: desktop poster zoom to 150%, poster WebP download, both product label pages and a label PNG download, magazine page 2/8 with browser Back to the rack, poster-gallery browser Back, and the 390 x 844 nested layout. A phone-height overflow found in that review was corrected: the card's client/scroll height is now 790/790 with scrollTop 0 after 150% zoom, with title, Close, zoom/download toolbar and page navigation visible. The nested frame checks CSS layout, not touch hardware or a physical phone. The cloud browser disables WebGL, so whole-World entry, wall appearance and the 3D product overlay cannot be visually verified there. The final model sources passed image QA, but the new wall layout has geometry/navigation verification rather than a GPU screenshot. Physical iPhone/iPad Safari, Steam Deck and packaged Linux remain unverified; no Linux release is prepared.
+
+## Next
+
+Published and verified. Next, verify the 3D product view and actual room art on a WebGL-capable browser. All nine art revisions and the requested office/stockroom wall placements are included. No new generation, rooms or Linux release is part of this publication.

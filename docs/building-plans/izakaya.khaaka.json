@@ -1,0 +1,2108 @@
+{
+ "version": 1,
+ "pxPerMeter": 40,
+ "pxPerBox": 36.4,
+ "grid": {
+  "show": true,
+  "snap": true,
+  "size": 0.91
+ },
+ "showDims": false,
+ "units": "m",
+ "defaultWallThickness": 0.12,
+ "projectName": "Johansson Town · Minato Izakaya / shared compact interior",
+ "view": {
+  "x": 60,
+  "y": 80,
+  "zoom": 1
+ },
+ "objects": [
+  {
+   "id": 1,
+   "label": "Movement domain (not net walkable area)",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 0
+    },
+    {
+     "x": 6.4,
+     "y": 0
+    },
+    {
+     "x": 6.4,
+     "y": 2
+    },
+    {
+     "x": 9.94,
+     "y": 2
+    },
+    {
+     "x": 9.94,
+     "y": 7.2
+    },
+    {
+     "x": 0,
+     "y": 7.2
+    }
+   ],
+   "fill": "#f1eee5",
+   "stroke": "#f1eee5"
+  },
+  {
+   "id": 2,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 0
+    },
+    {
+     "x": 6.362,
+     "y": 0
+    },
+    {
+     "x": 6.362,
+     "y": 0.2
+    },
+    {
+     "x": 0,
+     "y": 0.2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 3,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 0.2
+    },
+    {
+     "x": 6.362,
+     "y": 0.2
+    },
+    {
+     "x": 6.362,
+     "y": 0.4
+    },
+    {
+     "x": 0,
+     "y": 0.4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 4,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 0.4
+    },
+    {
+     "x": 6.362,
+     "y": 0.4
+    },
+    {
+     "x": 6.362,
+     "y": 0.6
+    },
+    {
+     "x": 0,
+     "y": 0.6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 5,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 0.6
+    },
+    {
+     "x": 6.362,
+     "y": 0.6
+    },
+    {
+     "x": 6.362,
+     "y": 0.8
+    },
+    {
+     "x": 0,
+     "y": 0.8
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 6,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 0.8
+    },
+    {
+     "x": 6.362,
+     "y": 0.8
+    },
+    {
+     "x": 6.362,
+     "y": 1
+    },
+    {
+     "x": 0,
+     "y": 1
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 7,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 1
+    },
+    {
+     "x": 6.362,
+     "y": 1
+    },
+    {
+     "x": 6.362,
+     "y": 1.2
+    },
+    {
+     "x": 0,
+     "y": 1.2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 8,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 1.2
+    },
+    {
+     "x": 6.362,
+     "y": 1.2
+    },
+    {
+     "x": 6.362,
+     "y": 1.4
+    },
+    {
+     "x": 0,
+     "y": 1.4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 9,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 1.4
+    },
+    {
+     "x": 6.362,
+     "y": 1.4
+    },
+    {
+     "x": 6.362,
+     "y": 1.6
+    },
+    {
+     "x": 0,
+     "y": 1.6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 10,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 1.6
+    },
+    {
+     "x": 6.362,
+     "y": 1.6
+    },
+    {
+     "x": 6.362,
+     "y": 1.8
+    },
+    {
+     "x": 0,
+     "y": 1.8
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 11,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 1.8
+    },
+    {
+     "x": 6.362,
+     "y": 1.8
+    },
+    {
+     "x": 6.362,
+     "y": 2
+    },
+    {
+     "x": 0,
+     "y": 2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 12,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 2
+    },
+    {
+     "x": 9.94,
+     "y": 2
+    },
+    {
+     "x": 9.94,
+     "y": 2.2
+    },
+    {
+     "x": 0,
+     "y": 2.2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 13,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 2.2
+    },
+    {
+     "x": 9.94,
+     "y": 2.2
+    },
+    {
+     "x": 9.94,
+     "y": 2.4
+    },
+    {
+     "x": 0,
+     "y": 2.4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 14,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 2.4
+    },
+    {
+     "x": 9.94,
+     "y": 2.4
+    },
+    {
+     "x": 9.94,
+     "y": 2.6
+    },
+    {
+     "x": 0,
+     "y": 2.6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 15,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 2.6
+    },
+    {
+     "x": 9.94,
+     "y": 2.6
+    },
+    {
+     "x": 9.94,
+     "y": 2.8
+    },
+    {
+     "x": 0,
+     "y": 2.8
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 16,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 2.8
+    },
+    {
+     "x": 9.94,
+     "y": 2.8
+    },
+    {
+     "x": 9.94,
+     "y": 3
+    },
+    {
+     "x": 0,
+     "y": 3
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 17,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 3
+    },
+    {
+     "x": 9.94,
+     "y": 3
+    },
+    {
+     "x": 9.94,
+     "y": 3.2
+    },
+    {
+     "x": 0,
+     "y": 3.2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 18,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 3.2
+    },
+    {
+     "x": 9.94,
+     "y": 3.2
+    },
+    {
+     "x": 9.94,
+     "y": 3.4
+    },
+    {
+     "x": 0,
+     "y": 3.4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 19,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 3.4
+    },
+    {
+     "x": 9.94,
+     "y": 3.4
+    },
+    {
+     "x": 9.94,
+     "y": 3.6
+    },
+    {
+     "x": 0,
+     "y": 3.6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 20,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 3.6
+    },
+    {
+     "x": 9.94,
+     "y": 3.6
+    },
+    {
+     "x": 9.94,
+     "y": 3.8
+    },
+    {
+     "x": 0,
+     "y": 3.8
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 21,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 3.8
+    },
+    {
+     "x": 9.94,
+     "y": 3.8
+    },
+    {
+     "x": 9.94,
+     "y": 4
+    },
+    {
+     "x": 0,
+     "y": 4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 22,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 4
+    },
+    {
+     "x": 9.94,
+     "y": 4
+    },
+    {
+     "x": 9.94,
+     "y": 4.2
+    },
+    {
+     "x": 0,
+     "y": 4.2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 23,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 4.2
+    },
+    {
+     "x": 9.94,
+     "y": 4.2
+    },
+    {
+     "x": 9.94,
+     "y": 4.4
+    },
+    {
+     "x": 0,
+     "y": 4.4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 24,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 4.4
+    },
+    {
+     "x": 9.94,
+     "y": 4.4
+    },
+    {
+     "x": 9.94,
+     "y": 4.6
+    },
+    {
+     "x": 0,
+     "y": 4.6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 25,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 4.6
+    },
+    {
+     "x": 9.94,
+     "y": 4.6
+    },
+    {
+     "x": 9.94,
+     "y": 4.8
+    },
+    {
+     "x": 0,
+     "y": 4.8
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 26,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 4.8
+    },
+    {
+     "x": 9.94,
+     "y": 4.8
+    },
+    {
+     "x": 9.94,
+     "y": 5
+    },
+    {
+     "x": 0,
+     "y": 5
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 27,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 5
+    },
+    {
+     "x": 9.94,
+     "y": 5
+    },
+    {
+     "x": 9.94,
+     "y": 5.2
+    },
+    {
+     "x": 0,
+     "y": 5.2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 28,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 5.2
+    },
+    {
+     "x": 9.94,
+     "y": 5.2
+    },
+    {
+     "x": 9.94,
+     "y": 5.4
+    },
+    {
+     "x": 0,
+     "y": 5.4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 29,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 5.4
+    },
+    {
+     "x": 9.94,
+     "y": 5.4
+    },
+    {
+     "x": 9.94,
+     "y": 5.6
+    },
+    {
+     "x": 0,
+     "y": 5.6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 30,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 5.6
+    },
+    {
+     "x": 9.94,
+     "y": 5.6
+    },
+    {
+     "x": 9.94,
+     "y": 5.8
+    },
+    {
+     "x": 0,
+     "y": 5.8
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 31,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 5.8
+    },
+    {
+     "x": 9.94,
+     "y": 5.8
+    },
+    {
+     "x": 9.94,
+     "y": 6
+    },
+    {
+     "x": 0,
+     "y": 6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 32,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 6
+    },
+    {
+     "x": 9.94,
+     "y": 6
+    },
+    {
+     "x": 9.94,
+     "y": 6.2
+    },
+    {
+     "x": 0,
+     "y": 6.2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 33,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 6.2
+    },
+    {
+     "x": 9.94,
+     "y": 6.2
+    },
+    {
+     "x": 9.94,
+     "y": 6.4
+    },
+    {
+     "x": 0,
+     "y": 6.4
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 34,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 6.4
+    },
+    {
+     "x": 9.94,
+     "y": 6.4
+    },
+    {
+     "x": 9.94,
+     "y": 6.6
+    },
+    {
+     "x": 0,
+     "y": 6.6
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 35,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 6.6
+    },
+    {
+     "x": 9.94,
+     "y": 6.6
+    },
+    {
+     "x": 9.94,
+     "y": 6.8
+    },
+    {
+     "x": 0,
+     "y": 6.8
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 36,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 6.8
+    },
+    {
+     "x": 9.94,
+     "y": 6.8
+    },
+    {
+     "x": 9.94,
+     "y": 7
+    },
+    {
+     "x": 0,
+     "y": 7
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 37,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0,
+     "y": 7
+    },
+    {
+     "x": 9.94,
+     "y": 7
+    },
+    {
+     "x": 9.94,
+     "y": 7.2
+    },
+    {
+     "x": 0,
+     "y": 7.2
+    }
+   ],
+   "fill": "#d9e7d5",
+   "stroke": "#d9e7d5"
+  },
+  {
+   "id": 38,
+   "label": "minato-counter",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0.155,
+     "y": 2.45
+    },
+    {
+     "x": 4.505,
+     "y": 2.45
+    },
+    {
+     "x": 4.505,
+     "y": 3.15
+    },
+    {
+     "x": 0.155,
+     "y": 3.15
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 39,
+   "label": "minato-worktop",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0.155,
+     "y": 1.95
+    },
+    {
+     "x": 4.505,
+     "y": 1.95
+    },
+    {
+     "x": 4.505,
+     "y": 2.45
+    },
+    {
+     "x": 0.155,
+     "y": 2.45
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 40,
+   "label": "minato-backbar",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0.285,
+     "y": 0.06
+    },
+    {
+     "x": 3.675,
+     "y": 0.06
+    },
+    {
+     "x": 3.675,
+     "y": 0.7
+    },
+    {
+     "x": 0.285,
+     "y": 0.7
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 41,
+   "label": "drinks-fridge",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 3.98,
+     "y": 0.03
+    },
+    {
+     "x": 4.68,
+     "y": 0.03
+    },
+    {
+     "x": 4.68,
+     "y": 0.63
+    },
+    {
+     "x": 3.98,
+     "y": 0.63
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 42,
+   "label": "kitchen-sink",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 4.805,
+     "y": 0.03
+    },
+    {
+     "x": 6.055,
+     "y": 0.03
+    },
+    {
+     "x": 6.055,
+     "y": 0.63
+    },
+    {
+     "x": 4.805,
+     "y": 0.63
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 43,
+   "label": "minato-stool",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0.28,
+     "y": 3.27
+    },
+    {
+     "x": 0.88,
+     "y": 3.27
+    },
+    {
+     "x": 0.88,
+     "y": 3.87
+    },
+    {
+     "x": 0.28,
+     "y": 3.87
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 44,
+   "label": "minato-stool",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 1.08,
+     "y": 3.27
+    },
+    {
+     "x": 1.68,
+     "y": 3.27
+    },
+    {
+     "x": 1.68,
+     "y": 3.87
+    },
+    {
+     "x": 1.08,
+     "y": 3.87
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 45,
+   "label": "minato-stool",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 1.88,
+     "y": 3.27
+    },
+    {
+     "x": 2.48,
+     "y": 3.27
+    },
+    {
+     "x": 2.48,
+     "y": 3.87
+    },
+    {
+     "x": 1.88,
+     "y": 3.87
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 46,
+   "label": "minato-stool",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 2.68,
+     "y": 3.27
+    },
+    {
+     "x": 3.28,
+     "y": 3.27
+    },
+    {
+     "x": 3.28,
+     "y": 3.87
+    },
+    {
+     "x": 2.68,
+     "y": 3.87
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 47,
+   "label": "minato-stool",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 3.48,
+     "y": 3.27
+    },
+    {
+     "x": 4.08,
+     "y": 3.27
+    },
+    {
+     "x": 4.08,
+     "y": 3.87
+    },
+    {
+     "x": 3.48,
+     "y": 3.87
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 48,
+   "label": "dining-table",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0.83,
+     "y": 5.775
+    },
+    {
+     "x": 2.33,
+     "y": 5.775
+    },
+    {
+     "x": 2.33,
+     "y": 6.525
+    },
+    {
+     "x": 0.83,
+     "y": 6.525
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 49,
+   "label": "dining-bench",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0.83,
+     "y": 5.29
+    },
+    {
+     "x": 2.33,
+     "y": 5.29
+    },
+    {
+     "x": 2.33,
+     "y": 5.71
+    },
+    {
+     "x": 0.83,
+     "y": 5.71
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 50,
+   "label": "dining-bench",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0.83,
+     "y": 6.59
+    },
+    {
+     "x": 2.33,
+     "y": 6.59
+    },
+    {
+     "x": 2.33,
+     "y": 7.01
+    },
+    {
+     "x": 0.83,
+     "y": 7.01
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 51,
+   "label": "dining-bench-back",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0.817,
+     "y": 5.205
+    },
+    {
+     "x": 2.343,
+     "y": 5.205
+    },
+    {
+     "x": 2.343,
+     "y": 5.325
+    },
+    {
+     "x": 0.817,
+     "y": 5.325
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 52,
+   "label": "dining-bench-back",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0.817,
+     "y": 6.975
+    },
+    {
+     "x": 2.343,
+     "y": 6.975
+    },
+    {
+     "x": 2.343,
+     "y": 7.095
+    },
+    {
+     "x": 0.817,
+     "y": 7.095
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 53,
+   "label": "connecting-wall-rear",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 6.4,
+     "y": 2
+    },
+    {
+     "x": 6.7,
+     "y": 2
+    },
+    {
+     "x": 6.7,
+     "y": 2.2
+    },
+    {
+     "x": 6.4,
+     "y": 2.2
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 54,
+   "label": "connecting-wall-front",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 6.4,
+     "y": 3.7
+    },
+    {
+     "x": 6.7,
+     "y": 3.7
+    },
+    {
+     "x": 6.7,
+     "y": 7.2
+    },
+    {
+     "x": 6.4,
+     "y": 7.2
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 55,
+   "label": "wc-north",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 4.78,
+     "y": 5.325
+    },
+    {
+     "x": 6.4,
+     "y": 5.325
+    },
+    {
+     "x": 6.4,
+     "y": 5.475
+    },
+    {
+     "x": 4.78,
+     "y": 5.475
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 56,
+   "label": "wc-west-rear",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 4.705,
+     "y": 5.4
+    },
+    {
+     "x": 4.855,
+     "y": 5.4
+    },
+    {
+     "x": 4.855,
+     "y": 5.57
+    },
+    {
+     "x": 4.705,
+     "y": 5.57
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 57,
+   "label": "wc-west-front",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 4.705,
+     "y": 6.43
+    },
+    {
+     "x": 4.855,
+     "y": 6.43
+    },
+    {
+     "x": 4.855,
+     "y": 7.2
+    },
+    {
+     "x": 4.705,
+     "y": 7.2
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 58,
+   "label": "wc-folded-door",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 4.595,
+     "y": 6.44
+    },
+    {
+     "x": 4.695,
+     "y": 6.44
+    },
+    {
+     "x": 4.695,
+     "y": 6.89
+    },
+    {
+     "x": 4.595,
+     "y": 6.89
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 59,
+   "label": "wc-toilet",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 5.41,
+     "y": 6.46
+    },
+    {
+     "x": 5.85,
+     "y": 6.46
+    },
+    {
+     "x": 5.85,
+     "y": 7.14
+    },
+    {
+     "x": 5.41,
+     "y": 7.14
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 60,
+   "label": "wc-basin",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 5.82,
+     "y": 5.59
+    },
+    {
+     "x": 6.3,
+     "y": 5.59
+    },
+    {
+     "x": 6.3,
+     "y": 5.95
+    },
+    {
+     "x": 5.82,
+     "y": 5.95
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 61,
+   "label": "ramen-counter",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 7.53,
+     "y": 3.75
+    },
+    {
+     "x": 9.93,
+     "y": 3.75
+    },
+    {
+     "x": 9.93,
+     "y": 4.45
+    },
+    {
+     "x": 7.53,
+     "y": 4.45
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 62,
+   "label": "ramen-prep",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 6.755,
+     "y": 2.03
+    },
+    {
+     "x": 9.905,
+     "y": 2.03
+    },
+    {
+     "x": 9.905,
+     "y": 2.63
+    },
+    {
+     "x": 6.755,
+     "y": 2.63
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 63,
+   "label": "ramen-stool",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 7.64,
+     "y": 4.66
+    },
+    {
+     "x": 8.02,
+     "y": 4.66
+    },
+    {
+     "x": 8.02,
+     "y": 5.04
+    },
+    {
+     "x": 7.64,
+     "y": 5.04
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 64,
+   "label": "ramen-stool",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 8.34,
+     "y": 4.66
+    },
+    {
+     "x": 8.72,
+     "y": 4.66
+    },
+    {
+     "x": 8.72,
+     "y": 5.04
+    },
+    {
+     "x": 8.34,
+     "y": 5.04
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 65,
+   "label": "ramen-stool",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 9.04,
+     "y": 4.66
+    },
+    {
+     "x": 9.42,
+     "y": 4.66
+    },
+    {
+     "x": 9.42,
+     "y": 5.04
+    },
+    {
+     "x": 9.04,
+     "y": 5.04
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 66,
+   "label": "wall-ledge",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 9.52,
+     "y": 5.725
+    },
+    {
+     "x": 9.92,
+     "y": 5.725
+    },
+    {
+     "x": 9.92,
+     "y": 7.175
+    },
+    {
+     "x": 9.52,
+     "y": 7.175
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 67,
+   "label": "ledge-stool",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 8.84,
+     "y": 6.02
+    },
+    {
+     "x": 9.2,
+     "y": 6.02
+    },
+    {
+     "x": 9.2,
+     "y": 6.38
+    },
+    {
+     "x": 8.84,
+     "y": 6.38
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 68,
+   "label": "ledge-stool",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 8.84,
+     "y": 6.72
+    },
+    {
+     "x": 9.2,
+     "y": 6.72
+    },
+    {
+     "x": 9.2,
+     "y": 7.08
+    },
+    {
+     "x": 8.84,
+     "y": 7.08
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 69,
+   "label": "ticket-machine",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 6.74,
+     "y": 5.9
+    },
+    {
+     "x": 7.24,
+     "y": 5.9
+    },
+    {
+     "x": 7.24,
+     "y": 6.3
+    },
+    {
+     "x": 6.74,
+     "y": 6.3
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 70,
+   "label": "pink-phone",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 4.9,
+     "y": 5.06
+    },
+    {
+     "x": 5.3,
+     "y": 5.06
+    },
+    {
+     "x": 5.3,
+     "y": 5.32
+    },
+    {
+     "x": 4.9,
+     "y": 5.32
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 71,
+   "label": "karaoke",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 5.73,
+     "y": 4.46
+    },
+    {
+     "x": 6.35,
+     "y": 4.46
+    },
+    {
+     "x": 6.35,
+     "y": 4.94
+    },
+    {
+     "x": 5.73,
+     "y": 4.94
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 72,
+   "label": "bottle-keep",
+   "strokeWidth": 1,
+   "type": "polygon",
+   "closed": true,
+   "points": [
+    {
+     "x": 0.025,
+     "y": 1.875
+    },
+    {
+     "x": 0.225,
+     "y": 1.875
+    },
+    {
+     "x": 0.225,
+     "y": 3.025
+    },
+    {
+     "x": 0.025,
+     "y": 3.025
+    }
+   ],
+   "fill": "#ad9c85",
+   "stroke": "#ad9c85"
+  },
+  {
+   "id": 73,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "text",
+   "x": 0.48,
+   "y": 1.1,
+   "text": "Shared kitchen",
+   "size": 13,
+   "fill": "#1c2433",
+   "stroke": "#1c2433"
+  },
+  {
+   "id": 74,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "text",
+   "x": 0.48,
+   "y": 2.7,
+   "text": "Minato counter",
+   "size": 13,
+   "fill": "#1c2433",
+   "stroke": "#1c2433"
+  },
+  {
+   "id": 75,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "text",
+   "x": 1.18,
+   "y": 6.05,
+   "text": "Booth",
+   "size": 13,
+   "fill": "#1c2433",
+   "stroke": "#1c2433"
+  },
+  {
+   "id": 76,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "text",
+   "x": 5.1,
+   "y": 6.2,
+   "text": "Guest WC",
+   "size": 13,
+   "fill": "#1c2433",
+   "stroke": "#1c2433"
+  },
+  {
+   "id": 77,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "text",
+   "x": 7.33,
+   "y": 4.17,
+   "text": "Sato Ramen",
+   "size": 13,
+   "fill": "#1c2433",
+   "stroke": "#1c2433"
+  },
+  {
+   "id": 78,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "text",
+   "x": 3.4,
+   "y": 6.93,
+   "text": "Minato entry",
+   "size": 13,
+   "fill": "#1c2433",
+   "stroke": "#1c2433"
+  },
+  {
+   "id": 79,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "text",
+   "x": 7.1,
+   "y": 6.93,
+   "text": "Sato entry",
+   "size": 13,
+   "fill": "#1c2433",
+   "stroke": "#1c2433"
+  },
+  {
+   "id": 80,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "text",
+   "x": 6.78,
+   "y": 0.35,
+   "text": "Shared Minato / Sato",
+   "size": 13,
+   "fill": "#1c2433",
+   "stroke": "#1c2433"
+  },
+  {
+   "id": 81,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "text",
+   "x": 6.78,
+   "y": 0.75,
+   "text": "Working prototype r8",
+   "size": 13,
+   "fill": "#1c2433",
+   "stroke": "#1c2433"
+  },
+  {
+   "id": 82,
+   "label": "",
+   "strokeWidth": 1,
+   "type": "text",
+   "x": 0,
+   "y": -0.7,
+   "text": "Minato Izakaya / shared compact interior · movement domain 9.94 × 7.2 m · 64.488 m²",
+   "size": 16,
+   "fill": "#1c2433",
+   "stroke": "#1c2433"
+  }
+ ],
+ "nextId": 83,
+ "provenance": {
+  "status": "working prototype",
+  "plan": "art/izakaya/compact/plan.json",
+  "planRevision": 8,
+  "planSha256": "9e240c025dd0bd2ac5b1a73e57497765332ccbabb33fed27ad71548de437100b",
+  "asset": "assets/models/izakaya/minato-interior-compact.glb",
+  "assetSha256": "6a9aa12a6eabc20258304211d592f04ed137c04fad1b0df63f609b851f4f4fee",
+  "colliders": "src/world/interiors/shared-dining-layout.js",
+  "collidersSha256": "9c1e746757dd7a844cabf0b07c744eebed2f5528f251bbc32576a01ab617292b",
+  "blenderBuilder": "tools/blender/build-minato-compact.py",
+  "blenderBuilderSha256": "75c5de33a92a1e7d337e1fff877f252001a82b3326a4157d62fc1a9ec215ba9d",
+  "exportReport": "art/izakaya/compact/compact-report.json",
+  "exportReportSha256": "6ebad16105613b3e7a0b39cf4d79ae0a23801a8495240165d25e9f52762a31da"
+ }
+}

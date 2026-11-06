@@ -1,0 +1,63 @@
+{
+  "compiled": true,
+  "physicalDevice": false,
+  "checks": [
+    {
+      "name": "compiled World boots",
+      "passed": true
+    },
+    {
+      "name": "existing resident occupies an actual on-road vehicle",
+      "passed": true,
+      "x": -3.85,
+      "y": -0.10999999999999999,
+      "z": -26,
+      "width": 1.48,
+      "length": 3.4,
+      "driver": true,
+      "trip": true
+    },
+    {
+      "name": "ordinary walking blocked on east",
+      "passed": true,
+      "clearance": 0.3027041966017012,
+      "moved": 0.9972958033982988
+    },
+    {
+      "name": "ordinary walking blocked on west",
+      "passed": true,
+      "clearance": 0.3147793849479157,
+      "moved": 0.8348740189498978
+    },
+    {
+      "name": "ordinary walking blocked on front",
+      "passed": true,
+      "clearance": 0.31477929866211984,
+      "moved": 0.8348740490617033
+    },
+    {
+      "name": "ordinary walking blocked on rear",
+      "passed": true,
+      "clearance": 0.3147792986620843,
+      "moved": 0.8348740490617175
+    },
+    {
+      "name": "desktop and phone-width game views captured",
+      "passed": true
+    },
+    {
+      "name": "travelling car and live pedestrian boundary remain synchronised",
+      "passed": true
+    },
+    {
+      "name": "existing overlap recovers without trapping the player",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "vehicle-collision-desktop.png",
+    "vehicle-collision-phone.png"
+  ],
+  "passed": true
+}

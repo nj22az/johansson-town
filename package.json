@@ -1,0 +1,31 @@
+{
+  "name": "johansson-town",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/build-runtime.mjs && vite build",
+    "test": "node --test --test-concurrency=4 --test-timeout=900000 tests/*.test.mjs",
+    "audit:serve": "python3 tools/serve-audit.py",
+    "audit:visual": "node tools/visual-audit.mjs",
+    "audit:visual:update": "node tools/visual-audit.mjs --update-baselines",
+    "mcp:audit": "node tools/mcp/server.mjs",
+    "audit:mcp": "node tools/mcp/smoke.mjs",
+    "mcp:studio": "node tools/studio/server.mjs",
+    "studio": "node tools/studio/cli.mjs",
+    "studio:data": "node tools/studio/build-data.mjs",
+    "studio:smoke": "node --test tools/studio/smoke.mjs",
+    "build:runtime": "node scripts/build-runtime.mjs"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.3.0",
+    "@modelcontextprotocol/server": "2.3.0",
+    "meshoptimizer": "1.2.0",
+    "pixelmatch": "7.2.0",
+    "playwright": "1.61.0",
+    "pngjs": "7.0.0",
+    "spectorjs": "0.9.33",
+    "vite": "7.3.7",
+    "zod": "4.6.6"
+  }
+}

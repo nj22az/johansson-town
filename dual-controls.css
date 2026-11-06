@@ -1,0 +1,66 @@
+/* Two fixed thumb zones, with actions above them rather than covering the view. */
+#mobile.hidden{display:none!important}
+#hud #cameraButton{pointer-events:auto;position:absolute;right:max(14px,env(safe-area-inset-right));top:max(104px,calc(env(safe-area-inset-top) + 98px));min-height:44px;padding:8px 16px;border:1px solid #e6dbb955;border-radius:22px;background:#173238e8;color:#f4ead3;font:700 12px system-ui;letter-spacing:.04em}
+.touch-controls #mobile{display:block;position:fixed;inset:0;z-index:13;pointer-events:none}
+/* The movement area: a large invisible hit zone, not a circle to aim at. Nothing is
+   painted here until a thumb is down, and then the ring is drawn where it landed.
+   It deliberately stops short of the top of the view so tapping scenery still works. */
+.touch-controls #mobile .touch-stick{position:absolute;left:0;right:auto;top:auto;
+ bottom:0;width:46vw;max-width:340px;height:min(52vh,420px);margin:0;transform:none;
+ pointer-events:auto;touch-action:none;background:none;border:0;border-radius:0;box-shadow:none}
+.touch-controls #mobile .stick-base{position:absolute;left:50%;top:62%;width:124px;height:124px;
+ margin:-62px 0 0 -62px;border:1px solid #f3e6c880;border-radius:50%;background:#122f3b73;
+ box-shadow:inset 0 0 0 13px #f8eaca0d;pointer-events:none;opacity:0;transition:opacity .13s ease}
+.touch-controls #mobile .touch-stick.joystick-on .stick-base{opacity:.92}
+.touch-controls #mobile .touch-stick.active .stick-base{background:#173842c9}
+.touch-controls #mobile .stick-knob{position:absolute;left:50%;top:50%;width:46px;height:46px;
+ margin:-23px;border:1px solid #f3e6c899;border-radius:50%;background:#eadfc1b5;
+ box-shadow:0 2px 7px #0003;pointer-events:none}
+
+/* Every button the thumb presses sits on the right, clear of the walking hand. */
+.touch-controls #mobile #act{left:auto;right:max(20px,env(safe-area-inset-right));
+ bottom:calc(env(safe-area-inset-bottom) + 26px);width:82px;height:82px;font-size:11px}
+.touch-controls #mobile #movementActions{position:absolute;left:auto;
+ right:max(20px,env(safe-area-inset-right));bottom:calc(env(safe-area-inset-bottom) + 122px);
+ width:auto;display:flex;align-items:center;justify-content:flex-end;gap:10px;pointer-events:none}
+.touch-controls #mobile #movementActions #run,.touch-controls #mobile #movementActions #jump{
+ position:static;inset:auto;pointer-events:auto;transform:none;margin:0;min-height:48px}
+.touch-controls #mobile #movementActions #run{width:72px;height:48px}
+.touch-controls #mobile #movementActions #jump{width:56px;height:56px}
+.touch-controls #mobile #drink{position:absolute;left:auto;
+ right:max(20px,env(safe-area-inset-right));bottom:calc(env(safe-area-inset-bottom) + 190px);
+ width:72px;min-height:48px;pointer-events:auto}
+.camera-controls-open #mobile,.camera-controls-open #hud{visibility:hidden}
+#cameraPanel{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:16px;background:#09191be8;color:#243c3c;touch-action:auto}
+#cameraPanel[hidden]{display:none}
+#cameraPanel .camera-card{width:min(560px,100%);max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;padding:22px;background:#f4ecd8;border-radius:18px;box-shadow:0 18px 65px #0005}
+#cameraPanel header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
+#cameraPanel h2{font:700 25px Georgia,serif;margin:0}
+#cameraPanel button{min-height:44px;padding:10px 14px;border:0;border-radius:10px;background:#24454a;color:#fff7df;font:700 14px system-ui;letter-spacing:0}
+#cameraPanel p{font:14px/1.5 system-ui;margin:10px 0 18px}
+#cameraPanel label{display:block;font:600 15px/1.5 system-ui;margin:14px 0}
+#cameraPanel output{float:right;font-variant-numeric:tabular-nums}
+#cameraPanel input[type=range]{display:block;width:100%;height:36px;accent-color:#9b4035;touch-action:pan-y}
+#cameraPanel .camera-check{display:flex;align-items:center;gap:10px;min-height:44px;margin:2px 0}
+#cameraPanel input[type=checkbox]{width:22px;height:22px;accent-color:#9b4035}
+#cameraPanel .camera-actions{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 20px}
+#cameraPanel dl{display:grid;grid-template-columns:1fr 1.4fr;gap:8px 14px;border-top:1px solid #adbbad;padding-top:16px;font:14px/1.4 system-ui}
+#cameraPanel dt{font-weight:700}#cameraPanel dd{margin:0}
+#cameraPanel .camera-help{color:#49615c}
+:is(#cameraPanel,#directory,#activity,#inspect-caption) :focus-visible{outline:3px solid #bd6930;outline-offset:3px}
+@media(max-height:520px){
+ .touch-controls #mobile .touch-stick{height:min(62vh,300px)}
+ .touch-controls #mobile .stick-base{width:104px;height:104px;margin:-52px 0 0 -52px}
+ .touch-controls #mobile #act{bottom:calc(env(safe-area-inset-bottom) + 14px);width:64px;height:64px}
+ .touch-controls #mobile #movementActions{bottom:calc(env(safe-area-inset-bottom) + 88px)}
+ .touch-controls #mobile #movementActions #run{height:44px;min-height:44px}
+ .touch-controls #mobile #movementActions #jump{width:48px;height:48px}
+ .touch-controls #mobile #drink{bottom:calc(env(safe-area-inset-bottom) + 142px)}
+ #cameraPanel .camera-card{padding:16px}
+}
+
+/* Third-person view and moves: under the camera button, same pill. */
+#hud #viewButton,#hud #movesButton{pointer-events:auto;position:absolute;right:max(14px,env(safe-area-inset-right));min-height:40px;padding:7px 14px;border:1px solid #e6dbb955;border-radius:20px;background:#173238e8;color:#f4ead3;font:700 12px system-ui;letter-spacing:.04em}
+#hud #viewButton{top:max(156px,calc(env(safe-area-inset-top) + 150px))}
+#hud #movesButton{top:max(204px,calc(env(safe-area-inset-top) + 198px))}
+#hud #viewButton[aria-pressed="true"]{background:#2f5d57f0;border-color:#f4ead3aa}

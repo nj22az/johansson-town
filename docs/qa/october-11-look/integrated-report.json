@@ -1,0 +1,139 @@
+{
+  "engine": "Linux WebKit",
+  "physicalDevice": false,
+  "reference": "716bc0c1309ef7d0392e5183d32b6b8a0151c5ad",
+  "views": [
+    {
+      "version": "restored",
+      "label": "park-day",
+      "mean": 155.59800813384305,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 2,
+        "hdr": true
+      },
+      "buffer": [
+        548,
+        1186
+      ],
+      "safe": false,
+      "gpuError": 0
+    },
+    {
+      "version": "restored",
+      "label": "onsen-day",
+      "mean": 168.17656028614715,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 2,
+        "hdr": true
+      },
+      "buffer": [
+        1186,
+        548
+      ],
+      "safe": false,
+      "gpuError": 0
+    },
+    {
+      "version": "restored",
+      "label": "park-overhead-day",
+      "mean": 166.78364199696753,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 2,
+        "hdr": true
+      },
+      "buffer": [
+        1186,
+        548
+      ],
+      "safe": false,
+      "gpuError": 0
+    },
+    {
+      "version": "restored",
+      "label": "street-day",
+      "mean": 175.17048242984364,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 2,
+        "hdr": true
+      },
+      "buffer": [
+        1186,
+        548
+      ],
+      "safe": false,
+      "gpuError": 0
+    },
+    {
+      "version": "restored",
+      "label": "shop-night",
+      "mean": 140.30250657558918,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 2,
+        "hdr": true
+      },
+      "buffer": [
+        548,
+        1186
+      ],
+      "safe": false,
+      "gpuError": 0
+    },
+    {
+      "version": "restored",
+      "label": "office-midnight",
+      "mean": 137.0700933822478,
+      "ink": true,
+      "effects": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 2,
+        "hdr": true
+      },
+      "buffer": [
+        548,
+        1186
+      ],
+      "safe": false,
+      "gpuError": 0
+    }
+  ],
+  "recovery": {
+    "safe": true,
+    "ink": true,
+    "effects": {
+      "ink": true,
+      "grade": true,
+      "fxaa": true,
+      "scale": 1,
+      "samples": 0,
+      "hdr": true
+    }
+  }
+}

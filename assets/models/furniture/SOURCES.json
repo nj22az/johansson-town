@@ -1,0 +1,14 @@
+[
+  {
+    "name": "lack",
+    "source": "https://web-api.ikea.com/dimma/assets/1.2/30449908/PS01_S01_NV01/iqp1/glb/c6dd8b967da542c49dca84322f2298fe-30449908_PS01_S01_NV01_IQP1_2.0.glb?cn=pip",
+    "file": "assets/models/furniture/ikea-lack.glb",
+    "bytes": 1064336
+  },
+  {
+    "name": "ivar",
+    "source": "https://web-api.ikea.com/dimma/assets/1.2/70033766/PS01_S01_NV01/iqp1/glb/954d8ceffef2413ebb4653d76d242307-70033766_PS01_S01_NV01_IQP1_2.0.glb?cn=pip",
+    "file": "assets/models/furniture/ikea-ivar.glb",
+    "bytes": 809696
+  }
+]

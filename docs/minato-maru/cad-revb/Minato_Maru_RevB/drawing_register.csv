@@ -1,0 +1,56 @@
+number,title,paper,scale,pdfPage,dxf,status
+JS127-ER-000,Drawing register and engineering basis,A3,NTS,1,JS127-ER-000.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-ER-100,Machinery spaces in vessel context,A2,1:100,2,JS127-ER-100.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-ME-001,Main machinery and propulsion particulars,A3,NTS,3,JS127-ME-001.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-ER-101,Machinery spaces - corrected source arrangement,A2,1:50,4,JS127-ER-101.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-ER-102,Machinery spaces - longitudinal and transverse sections,A2,1:50,5,JS127-ER-102.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-ER-103,Corrected machinery reservation and maintenance strategy,A2,1:50,6,JS127-ER-103.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-ER-104,"Access, escape and compartment interfaces",A2,1:50,7,JS127-ER-104.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-ER-108,Double-bottom tank allocation and conformal boundaries,A2,1:50,8,JS127-ER-108.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-ER-105,Physical pipe routes - fuel and lubricating oil,A2,1:50,9,JS127-ER-105.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-ER-106,Physical pipe routes - cooling and water,A2,1:50,10,JS127-ER-106.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-ER-107,"Physical pipe routes - bilge, fire, air and sanitary",A2,1:50,11,JS127-ER-107.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-01,Fuel oil - system connection schematic,A3,NTS,12,JS127-PID-01.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-01-N1,Fuel oil - equipment and node schedule,A3,NTS,13,JS127-PID-01-N1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-01-L1,Fuel oil - line connection schedule,A3,NTS,14,JS127-PID-01-L1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-02,Lubricating oil - system connection schematic,A3,NTS,15,JS127-PID-02.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-02-N1,Lubricating oil - equipment and node schedule,A3,NTS,16,JS127-PID-02-N1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-02-N2,Lubricating oil - equipment and node schedule,A3,NTS,17,JS127-PID-02-N2.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-02-L1,Lubricating oil - line connection schedule,A3,NTS,18,JS127-PID-02-L1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-02-L2,Lubricating oil - line connection schedule,A3,NTS,19,JS127-PID-02-L2.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-03,Sea-water cooling - system connection schematic,A3,NTS,20,JS127-PID-03.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-03-N1,Sea-water cooling - equipment and node schedule,A3,NTS,21,JS127-PID-03-N1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-03-L1,Sea-water cooling - line connection schedule,A3,NTS,22,JS127-PID-03-L1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-04,Jacket water - system connection schematic,A3,NTS,23,JS127-PID-04.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-04-N1,Jacket water - equipment and node schedule,A3,NTS,24,JS127-PID-04-N1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-04-N2,Jacket water - equipment and node schedule,A3,NTS,25,JS127-PID-04-N2.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-04-L1,Jacket water - line connection schedule,A3,NTS,26,JS127-PID-04-L1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-05,Bilge and ballast - system connection schematic,A3,NTS,27,JS127-PID-05.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-05-N1,Bilge and ballast - equipment and node schedule,A3,NTS,28,JS127-PID-05-N1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-05-N2,Bilge and ballast - equipment and node schedule,A3,NTS,29,JS127-PID-05-N2.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-05-L1,Bilge and ballast - line connection schedule,A3,NTS,30,JS127-PID-05-L1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-06,Fire main and CO₂ - system connection schematic,A3,NTS,31,JS127-PID-06.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-06-N1,Fire main and CO₂ - equipment and node schedule,A3,NTS,32,JS127-PID-06-N1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-06-N2,Fire main and CO₂ - equipment and node schedule,A3,NTS,33,JS127-PID-06-N2.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-06-L1,Fire main and CO₂ - line connection schedule,A3,NTS,34,JS127-PID-06-L1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-07,Starting and service air - system connection schematic,A3,NTS,35,JS127-PID-07.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-07-N1,Starting and service air - equipment and node schedule,A3,NTS,36,JS127-PID-07-N1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-07-L1,Starting and service air - line connection schedule,A3,NTS,37,JS127-PID-07-L1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-08,Fresh water - system connection schematic,A3,NTS,38,JS127-PID-08.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-08-N1,Fresh water - equipment and node schedule,A3,NTS,39,JS127-PID-08-N1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-08-L1,Fresh water - line connection schedule,A3,NTS,40,JS127-PID-08-L1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-09,Sanitary water and sewage - system connection schematic,A3,NTS,41,JS127-PID-09.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-09-N1,Sanitary water and sewage - equipment and node schedule,A3,NTS,42,JS127-PID-09-N1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-09-L1,Sanitary water and sewage - line connection schedule,A3,NTS,43,JS127-PID-09-L1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-10,Exhaust gas - system connection schematic,A3,NTS,44,JS127-PID-10.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-10-N1,Exhaust gas - equipment and node schedule,A3,NTS,45,JS127-PID-10-N1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-10-L1,Exhaust gas - line connection schedule,A3,NTS,46,JS127-PID-10-L1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-11,Hydraulics: steering and ramp - system connection schematic,A3,NTS,47,JS127-PID-11.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-11-N1,Hydraulics: steering and ramp - equipment and node schedule,A3,NTS,48,JS127-PID-11-N1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-PID-11-L1,Hydraulics: steering and ramp - line connection schedule,A3,NTS,49,JS127-PID-11-L1.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-EL-001,Electrical distribution - corrected one-line,A3,NTS,50,JS127-EL-001.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-EL-002,Sources and transformer side schedule,A3,NTS,51,JS127-EL-002.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-EL-F01,Feeder and cable schedule - 1,A3,NTS,52,JS127-EL-F01.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-EL-F02,Feeder and cable schedule - 2,A3,NTS,53,JS127-EL-F02.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-EL-F03,Feeder and cable schedule - 3,A3,NTS,54,JS127-EL-F03.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED
+JS127-ER-900,Drawing production and validation record,A3,NTS,55,JS127-ER-900.dxf,FOR DESIGN REVIEW - CONSTRUCTION NOT APPROVED

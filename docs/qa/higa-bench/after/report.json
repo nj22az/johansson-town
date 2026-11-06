@@ -1,0 +1,10 @@
+{
+  "phase": "after",
+  "viewport": [
+    800,
+    600
+  ],
+  "physicalDevice": false,
+  "scope": "Static createTown scene with cel and ink passes and the sea; no simulation or streamed detail models",
+  "errors": []
+}

@@ -1,0 +1,117 @@
+{
+ "format": 1,
+ "assets": [
+  {
+   "id": "halloween-paper-bat",
+   "name": "Paper bat",
+   "kind": "prop",
+   "version": 1,
+   "model": "halloween-paper-bat/model.glb",
+   "card": "halloween-paper-bat/asset.json",
+   "hero": "halloween-paper-bat/hero.png",
+   "tags": [
+    "Halloween",
+    "decoration",
+    "bat",
+    "black card",
+    "paper",
+    "lantern string",
+    "awning",
+    "Sakura Shōten",
+    "October",
+    "1997",
+    "children's walk"
+   ],
+   "from": "johansson-studio",
+   "published": "2026-11-02"
+  },
+  {
+   "id": "halloween-sweets",
+   "name": "Wrapped sweets",
+   "kind": "prop",
+   "version": 1,
+   "model": "halloween-sweets/model.glb",
+   "card": "halloween-sweets/asset.json",
+   "hero": "halloween-sweets/hero.png",
+   "tags": [
+    "Halloween",
+    "sweets",
+    "boiled sweets",
+    "fruit sweets",
+    "wrapped",
+    "cellophane",
+    "drinks crates",
+    "Sakura Shōten",
+    "October",
+    "1997",
+    "children's walk"
+   ],
+   "from": "johansson-studio",
+   "published": "2026-11-02"
+  },
+  {
+   "id": "johansson-trucker",
+   "name": "Johansson trucker cap",
+   "kind": "prop",
+   "version": 1,
+   "model": "johansson-trucker/model.glb",
+   "card": "johansson-trucker/asset.json",
+   "hero": "johansson-trucker/hero.png",
+   "tags": [
+    "cap",
+    "trucker cap",
+    "mesh cap",
+    "snapback",
+    "Johansson",
+    "J",
+    "premium",
+    "sun",
+    "quay",
+    "1990s",
+    "wearable",
+    "Sakura Shōten"
+   ],
+   "from": "johansson-studio",
+   "published": "2026-10-14"
+  },
+  {
+   "id": "johansson-trucker-display",
+   "name": "Johansson trucker cap (shop display)",
+   "kind": "prop",
+   "version": 1,
+   "model": "johansson-trucker-display/model.glb",
+   "card": "johansson-trucker-display/asset.json",
+   "hero": "johansson-trucker-display/hero.png",
+   "tags": [
+    "cap",
+    "trucker cap",
+    "display",
+    "level of detail",
+    "Johansson",
+    "Sakura Shōten"
+   ],
+   "from": "johansson-studio",
+   "published": "2026-10-14"
+  },
+  {
+   "id": "massage-chair",
+   "name": "Coin massage chair",
+   "kind": "furniture",
+   "version": 1,
+   "model": "massage-chair/model.glb",
+   "card": "massage-chair/asset.json",
+   "hero": "massage-chair/hero.png",
+   "tags": [
+    "onsen",
+    "lobby",
+    "1990s",
+    "coin-operated",
+    "seat",
+    "massage",
+    "Fujita's Back"
+   ],
+   "from": "johansson-studio",
+   "published": "2026-10-11"
+  }
+ ]
+}

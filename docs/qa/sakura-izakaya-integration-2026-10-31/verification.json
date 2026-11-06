@@ -1,0 +1,189 @@
+{
+  "date": "2026-10-31",
+  "branch": "codex/sakura-office-izakaya-review",
+  "source_sha256": "e15a990389f94387f9aaa63dac7da136243e9011b3639bd005c05ea6195019d4",
+  "selected_office_campaigns": [
+    "kitano-12",
+    "umineko-black"
+  ],
+  "images": [
+    {
+      "file": "umineko-draft-models-r1.webp",
+      "sha256_match": true,
+      "dimensions": [
+        1792,
+        2400
+      ]
+    },
+    {
+      "file": "umineko-draft-models-r1-small.webp",
+      "sha256_match": true,
+      "dimensions": [
+        358,
+        480
+      ]
+    },
+    {
+      "file": "umineko-black-models-r1.webp",
+      "sha256_match": true,
+      "dimensions": [
+        1792,
+        2400
+      ]
+    },
+    {
+      "file": "umineko-black-models-r1-small.webp",
+      "sha256_match": true,
+      "dimensions": [
+        358,
+        480
+      ]
+    },
+    {
+      "file": "umineko-gift-models-r1.webp",
+      "sha256_match": true,
+      "dimensions": [
+        1792,
+        2400
+      ]
+    },
+    {
+      "file": "umineko-gift-models-r1-small.webp",
+      "sha256_match": true,
+      "dimensions": [
+        358,
+        480
+      ]
+    },
+    {
+      "file": "kitano-12-models-r1.webp",
+      "sha256_match": true,
+      "dimensions": [
+        1792,
+        2400
+      ]
+    },
+    {
+      "file": "kitano-12-models-r1-small.webp",
+      "sha256_match": true,
+      "dimensions": [
+        358,
+        480
+      ]
+    },
+    {
+      "file": "shimakaze-models-r1.webp",
+      "sha256_match": true,
+      "dimensions": [
+        1792,
+        2400
+      ]
+    },
+    {
+      "file": "shimakaze-models-r1-small.webp",
+      "sha256_match": true,
+      "dimensions": [
+        358,
+        480
+      ]
+    },
+    {
+      "file": "minato-tsuru-models-r1.webp",
+      "sha256_match": true,
+      "dimensions": [
+        1084,
+        1451
+      ]
+    },
+    {
+      "file": "minato-tsuru-models-r1-small.webp",
+      "sha256_match": true,
+      "dimensions": [
+        359,
+        480
+      ]
+    },
+    {
+      "file": "nami-sour-models-r1.webp",
+      "sha256_match": true,
+      "dimensions": [
+        1792,
+        2400
+      ]
+    },
+    {
+      "file": "nami-sour-models-r1-small.webp",
+      "sha256_match": true,
+      "dimensions": [
+        358,
+        480
+      ]
+    },
+    {
+      "file": "asagao-rouge-models-r1.webp",
+      "sha256_match": true,
+      "dimensions": [
+        1792,
+        2400
+      ]
+    },
+    {
+      "file": "asagao-rouge-models-r1-small.webp",
+      "sha256_match": true,
+      "dimensions": [
+        358,
+        480
+      ]
+    },
+    {
+      "file": "asagao-uv-models-r1.webp",
+      "sha256_match": true,
+      "dimensions": [
+        1084,
+        1451
+      ]
+    },
+    {
+      "file": "asagao-uv-models-r1-small.webp",
+      "sha256_match": true,
+      "dimensions": [
+        359,
+        480
+      ]
+    }
+  ],
+  "selected_originals_match": true,
+  "published_cache_entry_files_retained": 35,
+  "main_sha": "87f47e8f6e5fafdb586ac723e9aa3cc704d11345",
+  "focused_checks": {
+    "pass": 16,
+    "fail": 0
+  },
+  "cad_clearances": {
+    "pass": 28,
+    "fail": 0
+  },
+  "browser": {
+    "local_cloud": "WebGL disabled",
+    "extended_webkit": "not run; branch upload blocked by automatic approval review",
+    "physical_iphone": "unverified"
+  },
+  "guard": {
+    "files": 103,
+    "pass": 538,
+    "fail": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_seconds": 405,
+    "heap_mb": 6144,
+    "file_concurrency": 2
+  },
+  "cpu_game_smoke": {
+    "pass": 1,
+    "fail": 0,
+    "duration_seconds": 159,
+    "renderer": "substituted; actual game, geometry, simulation and room code execute"
+  },
+  "local_validation_passed": true,
+  "code_commit": "41b7a930e101bd95cbd78fe31e87f2151851ae33"
+}

@@ -1,0 +1,31 @@
+/* Exploration keeps the town in view. Expanded tools retain their working space. */
+
+#activity:not(.conversation){place-items:end center;background:transparent;backdrop-filter:none;padding:12px max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+#activity:not(.conversation) .activity-card{position:relative;width:min(440px,100%);max-height:45dvh;display:flex;flex-direction:column;overflow:hidden;gap:8px;padding:16px;border:1px solid #fffdf2b8;border-radius:18px;background:#fff8eaf5;box-shadow:0 8px 30px #172b3826}
+#activity:not(.conversation) .activity-card header{position:absolute;top:5px;right:5px}
+#activity:not(.conversation) .activity-card header>span{display:none}
+#activity #closeActivity{width:44px;min-height:44px;padding:0;border:0;background:transparent;box-shadow:none}
+#activity #closeActivity span{margin:0}
+#activity:not(.conversation) #activityTitle{font-size:19px;line-height:1.25;margin:0;padding-right:36px}
+#activity:not(.conversation) #activityBody{font-size:14px;line-height:1.5;overflow:auto;min-height:0;overscroll-behavior:contain}
+#activity:not(.conversation) #activityBody p{padding:0;background:none;border:0;border-radius:0;margin:0 0 8px}
+#activity:not(.conversation) #activityActions{display:flex;flex-wrap:wrap;gap:6px;padding:0;overflow:auto;flex-shrink:0;max-height:18dvh}
+#activity:not(.conversation) #activityActions button{flex:1 1 130px;min-height:44px;padding:8px 12px;border:1px solid #bdcdbd;border-radius:10px;background:#e4eedf;color:#294539;box-shadow:none;font-size:13px}
+/* Documents and creation tools need legible pages, not a cramped quick-action tray. */
+#activity:is(.office-records,.workshop-tool,.magazine-view,.flyer-view,.pocket-album-view){place-items:center}
+#activity:is(.office-records,.workshop-tool,.magazine-view,.flyer-view,.pocket-album-view) .activity-card{width:min(900px,100%);max-height:82dvh}
+#activity.conversation{background:transparent;backdrop-filter:none}
+@media(max-height:520px){#activity:not(.conversation) .activity-card{max-height:65dvh}#activity:not(.conversation) #activityActions{max-height:25dvh}}
+
+#cameraPanel{place-items:start end;background:transparent;padding:64px 12px 12px}
+#cameraPanel .camera-card{width:min(360px,100%);max-height:65dvh;padding:16px;background:#fff8eaf5;box-shadow:0 8px 30px #172b3826}
+#cameraPanel h2{font:700 18px system-ui}
+#cameraPanel p,#cameraPanel dl{font-size:12px}
+
+/* Look at the woodland poster: one close control, with the model given the screen. */
+#activity.woodland-view:not(.conversation){place-items:stretch;padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));background:#fff7e7}
+#activity.woodland-view:not(.conversation) .activity-card{width:100%;height:100%;max-height:none;display:grid;grid-template-rows:auto minmax(0,1fr);gap:8px;padding:12px;border-radius:12px;background:#fff7e7;box-shadow:none}
+#activity.woodland-view:not(.conversation) #activityTitle{min-height:32px;padding:3px 44px 0 2px;margin:0}
+#activity.woodland-view:not(.conversation) #activityBody{height:100%;min-height:0;overflow:hidden;margin:0;white-space:normal}
+#activity.woodland-view:not(.conversation) #activityActions{display:none}
+#activity.woodland-view .woodland-viewer{display:block;width:100%;height:100%;border:0;background:#fff7e7}

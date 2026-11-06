@@ -1,0 +1,20 @@
+✔ locked ferry shot follows translation, yaw, pitch and roll; ordinary lens restores on exit (3.458801ms)
+✔ automatic cuts have hysteresis and held movement keeps its direction until release (1.136428ms)
+✔ representative walking positions keep head and feet framed on desktop and portrait screens (3.290896ms)
+✔ ordinary play enables CAD headroom, deck stack, service openings and fixed lenses (1219.461328ms)
+✔ H1 access uses the relocated side door and full top landing, then returns to the car deck (1340.890648ms)
+✔ the shipped Blender GLB keeps CAD units, source bounds and finite normals within two surface groups (71.562312ms)
+✔ raised-deck boarding meets the pier and the forward crew station remains on its actual floor (1226.561226ms)
+✔ the game always starts at the docks, and shows every dock sight once before any again (2.167575ms)
+✔ each sight only while it is there to be seen (1.512508ms)
+✔ an opening can be asked for by name, and every one says where you are (0.926471ms)
+✔ only checkpoints in the retired bench footprint recover to the harbour (0.453651ms)
+✔ every dock sight stands him on the docks, clear of everything, facing what it names (3948.540952ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4607.858677

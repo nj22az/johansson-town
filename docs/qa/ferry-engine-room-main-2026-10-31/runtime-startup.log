@@ -1,0 +1,21 @@
+✔ startup loads all six full Pixar bodies with at most two simultaneous model decodes (99.385914ms)
+✔ published runtime matches the current source rather than an older build (426.860434ms)
+✔ published page uses one compiled audio/boot graph with local hashed dependencies (154.543701ms)
+✔ every stylesheet link carries a hash of the file it points at (6.551981ms)
+✔ delivered chunks contain no retired combat handlers, menus, damage simulation or rewards (147.294904ms)
+✔ model-stage interruptions are counted by the same attempt used in the game (11.698827ms)
+✔ two processes killed in a row select recovery on the next launch, and it says so (0.951095ms)
+✔ normal reloads and settled starts do not trigger recovery (0.710345ms)
+✔ old attempts and unavailable storage do not block launch; explicit recovery persists (0.761413ms)
+✔ every device class draws the full look; only recovery is lean (2.448967ms)
+✔ recovery keeps a CSS-pixel floor within its hard canvas budget (0.717035ms)
+✔ obsolete automatic recovery markers cannot permanently remove cartoon effects (1.100496ms)
+✔ a deliberate full-effects request clears reduced mode and overrides recovery for that launch (0.36768ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 864.788298

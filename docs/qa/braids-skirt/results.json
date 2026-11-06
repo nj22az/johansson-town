@@ -1,0 +1,40 @@
+{
+  "results": [
+    {
+      "width": 1280,
+      "height": 800,
+      "touch": false,
+      "hairSelection": true,
+      "braidParametersSaved": true,
+      "faceRoundness": true,
+      "glassesToggle": true,
+      "tposeExport": true,
+      "saveReload": true,
+      "headAndOutfitPreserved": true,
+      "poses": [
+        "walk",
+        "sit",
+        "wave"
+      ],
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "hairSelection": true,
+      "braidParametersSaved": true,
+      "faceRoundness": true,
+      "glassesToggle": true,
+      "tposeExport": false,
+      "saveReload": true,
+      "headAndOutfitPreserved": true,
+      "poses": [
+        "walk",
+        "sit",
+        "wave"
+      ],
+      "pageErrors": []
+    }
+  ]
+}

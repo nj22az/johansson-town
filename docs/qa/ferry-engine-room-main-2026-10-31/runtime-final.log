@@ -1,0 +1,12 @@
+✔ published runtime matches the current source rather than an older build (256.300273ms)
+✔ published page uses one compiled audio/boot graph with local hashed dependencies (91.197444ms)
+✔ every stylesheet link carries a hash of the file it points at (5.47024ms)
+✔ delivered chunks contain no retired combat handlers, menus, damage simulation or rewards (170.93936ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 669.683525

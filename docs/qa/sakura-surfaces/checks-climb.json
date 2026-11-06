@@ -1,0 +1,42 @@
+[
+ {
+  "check": "24 rises reach the office floor",
+  "ok": true,
+  "detail": "4.010 m"
+ },
+ {
+  "check": "2 rises + going within 550..700 mm",
+  "ok": true,
+  "detail": "559 mm"
+ },
+ {
+  "check": "the landing is the twelfth rise",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "up: round the turning landing",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "down: round the turning landing",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "shop camera locked below, at the stair foot (\"Camera should lock from below\")",
+  "ok": true,
+  "detail": "[-0.72, 0.95, -4.3]"
+ },
+ {
+  "check": "office camera inside the stairwell, over the top landing",
+  "ok": true,
+  "detail": "[-0.72, 6.26, -6.45]"
+ },
+ {
+  "check": "DXF reopens with no audit errors",
+  "ok": true,
+  "detail": ""
+ }
+]

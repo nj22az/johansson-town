@@ -1,0 +1,23 @@
+{
+  "source": "Meshy_AI_Meshy_Merged_Animations.glb",
+  "sourceSha256": "3bb4103978ebb15b189ea4789f8e75fb6786327c8c6c7fcf68255fe49bcb711d",
+  "sha256": "6ecfa25a4926b6804cbf03b8d19d6012e90f85d132d8cd27467598745ff0e121",
+  "sourceBytes": 25647572,
+  "bytes": 10059548,
+  "triangles": 98972,
+  "animations": [
+    "Running",
+    "Walking",
+    "01a08cb2-62dd-7781-b4ae-7f021fcdd7b0",
+    "Big_Heart_Gesture",
+    "Big_Wave_Hello",
+    "Casual_Walk",
+    "Catching_Breath",
+    "Chair_Sit_Idle_F",
+    "air_squat",
+    "restpose"
+  ],
+  "notes": "User-supplied Yuri replacement. Original geometry, skin, materials and all animation channels retained. Embedded maps resized to 1024 pixels; identical buffer payloads shared. No external dependencies.",
+  "purpose": "Preserved at the user’s request as a figurine/display asset only. Never an NPC body or avatar-creator fallback.",
+  "file": "thuan-realistic.glb"
+}

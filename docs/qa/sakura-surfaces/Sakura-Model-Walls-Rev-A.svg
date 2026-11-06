@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="940" viewBox="0 0 1000 940">
+<rect width="1000" height="940" fill="#faf7ec"/><g font-family="sans-serif" fill="#292c28">
+<text x="35" y="35" font-size="20">SK-ST-004 rev A · Sakura supplier wall prints · 30 October 2026</text>
+<text x="35" y="58" font-size="13">Measured elevations in metres · B2 515 × 728 mm · 1 mm paper offset; doors and furniture retained</text>
+<text x="35" y="100" font-size="16">office-front · -z · plane 4.49</text>
+<rect x="80.00" y="125.00" width="415.50" height="210.00" fill="#fffdf7" stroke="#666"/>
+<text x="83.00" y="137.00" font-size="9"></text>
+<rect x="140.00" y="158.75" width="240.00" height="108.75" fill="#d7ddd4" stroke="#666"/>
+<text x="143.00" y="170.75" font-size="9">town window</text>
+<rect x="80.38" y="198.88" width="56.25" height="136.12" fill="#d7ddd4" stroke="#666"/>
+<text x="83.38" y="210.88" font-size="9">ledger shelf</text>
+<rect x="387.12" y="198.50" width="35.25" height="136.50" fill="#d7ddd4" stroke="#666"/>
+<text x="390.12" y="210.50" font-size="9">filing and archive tube</text>
+<rect x="461.75" y="201.50" width="24.00" height="34.50" fill="#d7ddd4" stroke="#666"/>
+<text x="464.75" y="213.50" font-size="9">calendar</text>
+<rect x="89.19" y="135.20" width="38.63" height="54.60" fill="#edb9b0" stroke="#666"/>
+<text x="92.19" y="147.20" font-size="9">umineko-gift</text>
+<rect x="386.94" y="135.20" width="38.63" height="54.60" fill="#edb9b0" stroke="#666"/>
+<text x="389.94" y="147.20" font-size="9">kitano-12</text>
+<text x="80" y="355" font-size="12">along x 0.80…6.34 · ceiling 2.80 m · anchors in JSON</text>
+<text x="35" y="370" font-size="16">office-back · +z · plane 0.55</text>
+<rect x="80.00" y="395.00" width="415.50" height="210.00" fill="#fffdf7" stroke="#666"/>
+<text x="83.00" y="407.00" font-size="9"></text>
+<rect x="80.75" y="451.25" width="66.00" height="153.75" fill="#d7ddd4" stroke="#666"/>
+<text x="83.75" y="463.25" font-size="9">open office door</text>
+<rect x="170.00" y="443.75" width="135.00" height="45.00" fill="#d7ddd4" stroke="#666"/>
+<text x="173.00" y="455.75" font-size="9">wall cupboard</text>
+<rect x="312.88" y="515.00" width="41.25" height="90.00" fill="#d7ddd4" stroke="#666"/>
+<text x="315.88" y="527.00" font-size="9">fridge</text>
+<rect x="375.13" y="457.81" width="92.25" height="61.88" fill="#d7ddd4" stroke="#666"/>
+<text x="378.13" y="469.81" font-size="9">departures whiteboard frame</text>
+<rect x="319.44" y="442.70" width="38.63" height="54.60" fill="#edb9b0" stroke="#666"/>
+<text x="322.44" y="454.70" font-size="9">asagao-rouge</text>
+<text x="80" y="625" font-size="12">along x 0.80…6.34 · ceiling 2.80 m · anchors in JSON</text>
+<text x="35" y="640" font-size="16">stockroom-rear · +z · plane -6.86</text>
+<rect x="80.00" y="665.00" width="253.69" height="210.00" fill="#fffdf7" stroke="#666"/>
+<text x="83.00" y="677.00" font-size="9"></text>
+<rect x="80.00" y="798.89" width="140.94" height="76.11" fill="#d7ddd4" stroke="#666"/>
+<text x="83.00" y="810.89" font-size="9">low stock cartons and crates</text>
+<rect x="206.85" y="764.38" width="56.38" height="110.62" fill="#d7ddd4" stroke="#666"/>
+<text x="209.85" y="776.38" font-size="9">cola standee</text>
+<rect x="256.17" y="781.90" width="63.42" height="93.10" fill="#d7ddd4" stroke="#666"/>
+<text x="259.17" y="793.90" font-size="9">Jaga-bo standee</text>
+<rect x="97.09" y="723.91" width="36.29" height="51.30" fill="#edb9b0" stroke="#666"/>
+<text x="100.09" y="735.91" font-size="9">minato-tsuru</text>
+<rect x="216.89" y="702.77" width="36.29" height="51.30" fill="#edb9b0" stroke="#666"/>
+<text x="219.89" y="714.77" font-size="9">nami-sour</text>
+<rect x="269.74" y="702.77" width="36.29" height="51.30" fill="#edb9b0" stroke="#666"/>
+<text x="272.74" y="714.77" font-size="9">asagao-uv</text>
+<text x="80" y="895" font-size="12">along x -0.60…3.00 · ceiling 2.98 m · anchors in JSON</text>
+</g></svg>

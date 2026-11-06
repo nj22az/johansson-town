@@ -1,0 +1,15 @@
+{
+  "main_base": "37befc31db79e09ac2a1507663f80d6f0cc65ee3",
+  "review_head": "c95ad9dd353e1ece88cd20781b9fe4a615ae81b6",
+  "camera_differences_from_main": [],
+  "prior_published_manifest_files_retained": 34,
+  "missing_previous_files": [],
+  "source_sha256": "116a61c368eaeb4b9d57762f1aed26e1c5581704f734b27057861acbe8610d3a",
+  "entry": "boot-DfkZ-ZpG.js",
+  "physical_device": false,
+  "world_source_asset_differences": [],
+  "test_differences_from_review": [
+    "johansson-town/tests/controller-game.test.mjs"
+  ],
+  "test_change": "Explicit clear ferry landing, with initial position assertion; no original assertion removed or relaxed."
+}

@@ -1,0 +1,152 @@
+lineId,system,from,to,dn,status,reason,missing,attempts,obstacle,other
+fuel/bunker>storeP#0,fuel,bunker,storeP,50,unresolved,missing physical terminal,"[""bunker""]",,,
+fuel/bunker>storeS#1,fuel,bunker,storeS,50,unresolved,missing physical terminal,"[""bunker""]",,,
+fuel/vP>tp2#6,fuel,vP,tp2,25,unresolved,pipe clearance,,32,,fuel/vP>tp1#4
+fuel/vS>tp1#7,fuel,vS,tp1,25,unresolved,pipe clearance,,96,,fuel/vS>tp2#5
+fuel/tp1>purifier#8,fuel,tp1,purifier,25,unresolved,pipe clearance,,32,,fuel/vP>tp1#4
+fuel/tp2>purifier#9,fuel,tp2,purifier,25,unresolved,pipe clearance,,32,,fuel/vS>tp2#5
+fuel/purifier>sludge#11,fuel,purifier,sludge,20,unresolved,pipe clearance,,32,,fuel/purifier>service#10
+fuel/overflow>storeP#13,fuel,overflow,storeP,32,unresolved,pipe clearance,,96,,fuel/vP>tp1#4
+fuel/service>qcv#14,fuel,service,qcv,20,unresolved,pipe clearance,,32,,fuel/purifier>service#10
+fuel/fuel-mainP>return#19,fuel,fuel-mainP,return,15,unresolved,pipe clearance,,32,,fuel/qcv>fuel-mainP#15
+fuel/fuel-mainS>return#20,fuel,fuel-mainS,return,15,unresolved,pipe clearance,,96,,fuel/qcv>fuel-mainS#16
+fuel/return>service#21,fuel,return,service,15,unresolved,pipe clearance,,96,,fuel/purifier>service#10
+lube/sump-mainP>prime-mainP#25,lube,sump-mainP,prime-mainP,25,unresolved,pipe clearance,,30,,lube/lostore>sump-mainP#22
+lube/prime-mainP>lof-mainP#26,lube,prime-mainP,lof-mainP,25,unresolved,pipe clearance,,30,,lube/sump-mainP>lop-mainP#24
+lube/loc-mainP>bear-mainP#29,lube,loc-mainP,bear-mainP,40,unresolved,equipment clearance,,30,main engine bedplate,
+lube/sump-mainS>prime-mainS#32,lube,sump-mainS,prime-mainS,25,unresolved,pipe clearance,,30,,lube/lostore>sump-mainS#23
+lube/prime-mainS>lof-mainS#33,lube,prime-mainS,lof-mainS,25,unresolved,pipe clearance,,31,,lube/sump-mainS>lop-mainS#31
+lube/loc-mainS>bear-mainS#36,lube,loc-mainS,bear-mainS,40,unresolved,equipment clearance,,30,main engine bedplate,
+lube/loc-gen1>bear-gen1#41,lube,loc-gen1,bear-gen1,40,unresolved,equipment clearance,,30,generator bed,
+lube/bear-gen1>sump-gen1#42,lube,bear-gen1,sump-gen1,50,unresolved,equipment clearance,,30,generator bed,
+lube/loc-gen2>bear-gen2#46,lube,loc-gen2,bear-gen2,40,unresolved,equipment clearance,,30,generator bed,
+lube/bear-gen2>sump-gen2#47,lube,bear-gen2,sump-gen2,50,unresolved,equipment clearance,,30,generator bed,
+seawater/chestP>strP#48,seawater,chestP,strP,65,unresolved,equipment clearance,,30,sea-water strainer,
+seawater/chestS>strS#49,seawater,chestS,strS,65,unresolved,equipment clearance,,72,fuel service tank,
+seawater/strS>cross#51,seawater,strS,cross,65,unresolved,pipe clearance,,24,,lube/lostore>sump-mainS#23
+seawater/cross>swp-mainP#52,seawater,cross,swp-mainP,50,unresolved,equipment clearance,,32,engine rail,
+seawater/swp-mainP>cac-mainP#53,seawater,swp-mainP,cac-mainP,50,unresolved,equipment clearance,,39,engine rail,
+seawater/cac-mainP>jwc-mainP#54,seawater,cac-mainP,jwc-mainP,50,unresolved,pipe clearance,,38,,lube/lof-mainP>loc-mainP#28
+seawater/jwc-mainP>obP#55,seawater,jwc-mainP,obP,50,unresolved,pipe clearance,,32,,lube/lof-mainP>loc-mainP#28
+seawater/cross>swp-mainS#56,seawater,cross,swp-mainS,50,unresolved,equipment clearance,,96,engine rail,
+seawater/swp-mainS>cac-mainS#57,seawater,swp-mainS,cac-mainS,50,unresolved,equipment clearance,,38,engine rail,
+seawater/jwc-mainS>obS#59,seawater,jwc-mainS,obS,50,unresolved,pipe clearance,,32,,seawater/cac-mainS>jwc-mainS#58
+seawater/cross>swp-gen1#60,seawater,cross,swp-gen1,32,unresolved,pipe clearance,,24,,seawater/strP>cross#50
+seawater/cac-gen1>jwc-gen1#62,seawater,cac-gen1,jwc-gen1,32,unresolved,pipe clearance,,38,,seawater/swp-gen1>cac-gen1#61
+seawater/jwc-gen1>obP#63,seawater,jwc-gen1,obP,32,unresolved,pipe clearance,,24,,lube/lostore>sump-mainS#23
+seawater/cross>swp-gen2#64,seawater,cross,swp-gen2,32,unresolved,pipe clearance,,72,,seawater/strP>cross#50
+seawater/cac-gen2>jwc-gen2#66,seawater,cac-gen2,jwc-gen2,32,unresolved,pipe clearance,,38,,seawater/swp-gen2>cac-gen2#65
+seawater/jwc-gen2>obS#67,seawater,jwc-gen2,obS,32,unresolved,pipe clearance,,24,,lube/lostore>sump-mainS#23
+seawater/cross>gs#68,seawater,cross,gs,65,unresolved,pipe clearance,,96,,seawater/strP>cross#50
+seawater/gs>cac-mainP#69,seawater,gs,cac-mainP,50,unresolved,pipe clearance,,96,,lube/lof-mainP>loc-mainP#28
+seawater/gs>cac-mainS#70,seawater,gs,cac-mainS,50,unresolved,pipe clearance,,32,,seawater/cac-mainS>jwc-mainS#58
+jacket/exp-mainP>jwp-mainP#71,jacket,exp-mainP,jwp-mainP,25,unresolved,pipe clearance,,38,,lube/lof-mainP>loc-mainP#28
+jacket/jwp-mainP>blk-mainP#72,jacket,jwp-mainP,blk-mainP,50,unresolved,equipment clearance,,38,engine rail,
+jacket/blk-mainP>thermo-mainP#73,jacket,blk-mainP,thermo-mainP,50,unresolved,pipe clearance,,38,,lube/bear-mainP>sump-mainP#30
+jacket/jwc2-mainP>jwp-mainP#75,jacket,jwc2-mainP,jwp-mainP,50,unresolved,pipe clearance,,38,,jacket/thermo-mainP>jwc2-mainP#74
+jacket/thermo-mainP>jwp-mainP#76,jacket,thermo-mainP,jwp-mainP,40,unresolved,equipment clearance,,38,engine rail,
+jacket/exp-mainS>jwp-mainS#77,jacket,exp-mainS,jwp-mainS,25,unresolved,equipment clearance,,38,engine rail,
+jacket/jwp-mainS>blk-mainS#78,jacket,jwp-mainS,blk-mainS,50,unresolved,equipment clearance,,38,engine rail,
+jacket/blk-mainS>thermo-mainS#79,jacket,blk-mainS,thermo-mainS,50,unresolved,pipe clearance,,38,,lube/bear-mainS>sump-mainS#37
+jacket/thermo-mainS>jwc2-mainS#80,jacket,thermo-mainS,jwc2-mainS,50,unresolved,pipe clearance,,38,,seawater/cac-mainS>jwc-mainS#58
+jacket/jwc2-mainS>jwp-mainS#81,jacket,jwc2-mainS,jwp-mainS,50,unresolved,pipe clearance,,38,,seawater/cac-mainS>jwc-mainS#58
+jacket/thermo-mainS>jwp-mainS#82,jacket,thermo-mainS,jwp-mainS,40,unresolved,equipment clearance,,38,engine rail,
+jacket/jwp-gen1>blk-gen1#84,jacket,jwp-gen1,blk-gen1,50,unresolved,pipe clearance,,38,,jacket/exp-gen1>jwp-gen1#83
+jacket/thermo-gen1>jwp-gen1#88,jacket,thermo-gen1,jwp-gen1,40,unresolved,pipe clearance,,38,,jacket/thermo-gen1>jwc2-gen1#86
+jacket/jwp-gen2>blk-gen2#90,jacket,jwp-gen2,blk-gen2,50,unresolved,pipe clearance,,38,,jacket/exp-gen2>jwp-gen2#89
+jacket/thermo-gen2>jwp-gen2#94,jacket,thermo-gen2,jwp-gen2,40,unresolved,pipe clearance,,38,,jacket/thermo-gen2>jwc2-gen2#92
+bilge/wellERS>manifold#96,bilge,wellERS,manifold,50,unresolved,pipe clearance,,24,,lube/lostore>sump-mainS#23
+bilge/wellAux>manifold#97,bilge,wellAux,manifold,50,unresolved,pipe clearance,,24,,bilge/wellERP>manifold#95
+bilge/wellShaft>manifold#98,bilge,wellShaft,manifold,40,unresolved,equipment clearance,,24,main switchboard,
+bilge/wellSG>manifold#99,bilge,wellSG,manifold,40,unresolved,pipe clearance,,24,,lube/lostore>sump-mainS#23
+bilge/manifold>bp#100,bilge,manifold,bp,65,unresolved,pipe clearance,,24,,bilge/wellERP>manifold#95
+bilge/manifold>fbp#101,bilge,manifold,fbp,65,unresolved,pipe clearance,,24,,bilge/wellERP>manifold#95
+bilge/emerg>bp#102,bilge,emerg,bp,65,unresolved,pipe clearance,,72,,lube/lostore>sump-mainS#23
+bilge/bp>ows#103,bilge,bp,ows,25,unresolved,pipe clearance,,72,,lube/lostore>sump-mainS#23
+bilge/bp>hold#104,bilge,bp,hold,65,unresolved,pipe clearance,,72,,lube/lostore>sump-mainS#23
+bilge/fbp>ob#105,bilge,fbp,ob,65,unresolved,pipe clearance,,72,,lube/lostore>sump-mainS#23
+bilge/ppm>ob#107,bilge,ppm,ob,25,unresolved,pipe clearance,,24,,bilge/ows>ppm#106
+bilge/chest>balp#110,bilge,chest,balp,65,unresolved,pipe clearance,,72,,seawater/strP>cross#50
+bilge/chest>gs2#111,bilge,chest,gs2,65,unresolved,pipe clearance,,72,,seawater/strP>cross#50
+bilge/balp>manifold#112,bilge,balp,manifold,65,unresolved,pipe clearance,,24,,bilge/wellERP>manifold#95
+bilge/gs2>manifold#113,bilge,gs2,manifold,65,unresolved,pipe clearance,,24,,lube/lostore>sump-mainS#23
+bilge/manifold>balP#114,bilge,manifold,balP,65,unresolved,pipe clearance,,72,,bilge/wellERP>manifold#95
+bilge/manifold>balS#115,bilge,manifold,balS,65,unresolved,pipe clearance,,24,,bilge/wellERP>manifold#95
+bilge/manifold>aftpk#116,bilge,manifold,aftpk,50,unresolved,pipe clearance,,24,,bilge/wellERP>manifold#95
+bilge/manifold>forepk#117,bilge,manifold,forepk,50,unresolved,pipe clearance,,24,,bilge/wellERP>manifold#95
+bilge/manifold>ob#118,bilge,manifold,ob,65,unresolved,pipe clearance,,72,,bilge/wellERP>manifold#95
+fire/fchest>fp1#119,fire,fchest,fp1,65,unresolved,pipe clearance,,96,,seawater/strP>cross#50
+fire/fchest>fp2#120,fire,fchest,fp2,65,unresolved,pipe clearance,,96,,seawater/strP>cross#50
+fire/efchest>efp#121,fire,efchest,efp,65,unresolved,missing physical terminal,"[""efchest"", ""efp""]",,,
+fire/fp2>main#123,fire,fp2,main,65,unresolved,pipe clearance,,32,,fire/fp1>main#122
+fire/efp>iso#124,fire,efp,iso,65,unresolved,missing physical terminal,"[""efp"", ""iso""]",,,
+fire/iso>main#125,fire,iso,main,65,unresolved,missing physical terminal,"[""iso""]",,,
+fire/main>hER#126,fire,main,hER,50,unresolved,pipe clearance,,96,,fire/fp1>main#122
+fire/main>hCar1#127,fire,main,hCar1,50,unresolved,pipe clearance,,39,,fire/fp1>main#122
+fire/main>hCar2#128,fire,main,hCar2,50,unresolved,pipe clearance,,39,,fire/fp1>main#122
+fire/main>hCar3#129,fire,main,hCar3,50,unresolved,pipe clearance,,39,,fire/fp1>main#122
+fire/main>hCar4#130,fire,main,hCar4,50,unresolved,pipe clearance,,39,,fire/fp1>main#122
+fire/main>hPassP#131,fire,main,hPassP,50,unresolved,pipe clearance,,39,,fire/fp1>main#122
+fire/main>hPassS#132,fire,main,hPassS,50,unresolved,pipe clearance,,39,,fire/fp1>main#122
+fire/main>hBridge#133,fire,main,hBridge,50,unresolved,pipe clearance,,39,,fire/fp1>main#122
+fire/main>isc#134,fire,main,isc,65,unresolved,pipe clearance,,39,,fire/fp1>main#122
+fire/main>wash#135,fire,main,wash,50,unresolved,pipe clearance,,39,,fire/fp1>main#122
+fire/co2rel>co2v#136,fire,co2rel,co2v,25,unresolved,missing physical terminal,"[""co2rel""]",,,
+fire/co2b>co2v#137,fire,co2b,co2v,40,unresolved,missing physical terminal,"[""co2b""]",,,
+fire/co2v>co2n#138,fire,co2v,co2n,40,unresolved,outside machinery-space envelope,,32,,
+air/c1>b2#141,air,c1,b2,20,unresolved,pipe clearance,,39,,air/c1>b1#139
+air/c2>b1#142,air,c2,b1,20,unresolved,pipe clearance,,96,,air/c2>b2#140
+air/b1>sv1#143,air,b1,sv1,15,unresolved,pipe clearance,,39,,air/c1>b1#139
+air/b2>sv2#144,air,b2,sv2,15,unresolved,pipe clearance,,39,,air/c2>b2#140
+air/b2>dr2#146,air,b2,dr2,10,unresolved,pipe clearance,,39,,air/c2>b2#140
+air/b1>pr#147,air,b1,pr,10,unresolved,pipe clearance,,39,,air/c1>b1#139
+air/b1>dist#148,air,b1,dist,25,unresolved,pipe clearance,,32,,air/c1>b1#139
+air/b2>dist#149,air,b2,dist,25,unresolved,pipe clearance,,32,,air/c2>b2#140
+air/dist>start-mainS#151,air,dist,start-mainS,25,unresolved,pipe clearance,,96,,lube/lof-mainP>loc-mainP#28
+air/dist>start-gen2#153,air,dist,start-gen2,15,unresolved,pipe clearance,,96,,air/dist>start-gen1#152
+air/red>svc#155,air,red,svc,15,unresolved,pipe clearance,,32,,air/c2>b2#140
+freshwater/fill>fwP#156,freshwater,fill,fwP,40,unresolved,missing physical terminal,"[""fill""]",,,
+freshwater/fill>fwS#157,freshwater,fill,fwS,40,unresolved,missing physical terminal,"[""fill""]",,,
+freshwater/fwP>hp1#158,freshwater,fwP,hp1,32,unresolved,pipe clearance,,96,,lube/lof-mainP>loc-mainP#28
+freshwater/fwP>hp2#160,freshwater,fwP,hp2,32,unresolved,pipe clearance,,32,,lube/lof-mainP>loc-mainP#28
+freshwater/fwS>hp2#161,freshwater,fwS,hp2,32,unresolved,pipe clearance,,96,,freshwater/fwS>hp1#159
+freshwater/hp1>ptank#162,freshwater,hp1,ptank,32,unresolved,pipe clearance,,32,,freshwater/fwS>hp1#159
+freshwater/hp2>ptank#163,freshwater,hp2,ptank,32,unresolved,pipe clearance,,96,,air/dist>start-gen1#152
+freshwater/ptank>galley#165,freshwater,ptank,galley,20,unresolved,pipe clearance,,96,,freshwater/ptank>psw#164
+freshwater/ptank>toilets#166,freshwater,ptank,toilets,20,unresolved,pipe clearance,,96,,freshwater/ptank>psw#164
+freshwater/ptank>heater#167,freshwater,ptank,heater,15,unresolved,pipe clearance,,96,,freshwater/ptank>psw#164
+freshwater/heater>galley#168,freshwater,heater,galley,15,unresolved,outside machinery-space envelope,,39,,
+freshwater/heater>toilets#169,freshwater,heater,toilets,15,unresolved,outside machinery-space envelope,,39,,
+freshwater/ptank>expfill#170,freshwater,ptank,expfill,15,unresolved,pipe clearance,,96,,freshwater/ptank>psw#164
+sewage/schest>sp1#171,sewage,schest,sp1,32,unresolved,pipe clearance,,96,,seawater/strP>cross#50
+sewage/schest>sp2#172,sewage,schest,sp2,32,unresolved,pipe clearance,,32,,seawater/strP>cross#50
+sewage/sp1>flush#173,sewage,sp1,flush,32,unresolved,pipe clearance,,32,,freshwater/fwS>hp1#159
+sewage/flush>htank#175,sewage,flush,htank,100,unresolved,pipe clearance,,96,,fuel/qcv>fuel-gen2#18
+sewage/htank>dp1#176,sewage,htank,dp1,50,unresolved,outside machinery-space envelope,,32,,
+sewage/htank>dp2#177,sewage,htank,dp2,50,unresolved,outside machinery-space envelope,,32,,
+sewage/dp1>ob2#180,sewage,dp1,ob2,50,unresolved,pipe clearance,,39,,sewage/dp1>deck#178
+exhaust/tc-mainP>sil-mainP#181,exhaust,tc-mainP,sil-mainP,200,unresolved,system has no coordinated 3D route,,,,
+exhaust/sil-mainP>funP#182,exhaust,sil-mainP,funP,200,unresolved,system has no coordinated 3D route,,,,
+exhaust/tc-gen1>sil-gen1#183,exhaust,tc-gen1,sil-gen1,125,unresolved,system has no coordinated 3D route,,,,
+exhaust/sil-gen1>funP#184,exhaust,sil-gen1,funP,125,unresolved,system has no coordinated 3D route,,,,
+exhaust/tc-mainS>sil-mainS#185,exhaust,tc-mainS,sil-mainS,200,unresolved,system has no coordinated 3D route,,,,
+exhaust/sil-mainS>funS#186,exhaust,sil-mainS,funS,200,unresolved,system has no coordinated 3D route,,,,
+exhaust/tc-gen2>sil-gen2#187,exhaust,tc-gen2,sil-gen2,125,unresolved,system has no coordinated 3D route,,,,
+exhaust/sil-gen2>funS#188,exhaust,sil-gen2,funS,125,unresolved,system has no coordinated 3D route,,,,
+hydraulics/htank>hpu1#189,hydraulics,htank,hpu1,20,unresolved,system has no coordinated 3D route,,,,
+hydraulics/htank>hpu2#190,hydraulics,htank,hpu2,20,unresolved,system has no coordinated 3D route,,,,
+hydraulics/htank>hand#191,hydraulics,htank,hand,15,unresolved,system has no coordinated 3D route,,,,
+hydraulics/hpu1>hvalve#192,hydraulics,hpu1,hvalve,15,unresolved,system has no coordinated 3D route,,,,
+hydraulics/hpu2>hvalve#193,hydraulics,hpu2,hvalve,15,unresolved,system has no coordinated 3D route,,,,
+hydraulics/hand>hvalve#194,hydraulics,hand,hvalve,15,unresolved,system has no coordinated 3D route,,,,
+hydraulics/hvalve>rams#195,hydraulics,hvalve,rams,15,unresolved,system has no coordinated 3D route,,,,
+hydraulics/rams>htank#196,hydraulics,rams,htank,20,unresolved,system has no coordinated 3D route,,,,
+hydraulics/rtank>rp1#197,hydraulics,rtank,rp1,25,unresolved,system has no coordinated 3D route,,,,
+hydraulics/rtank>rp2#198,hydraulics,rtank,rp2,25,unresolved,system has no coordinated 3D route,,,,
+hydraulics/rtank>rhand#199,hydraulics,rtank,rhand,15,unresolved,system has no coordinated 3D route,,,,
+hydraulics/rp1>rvalve#200,hydraulics,rp1,rvalve,20,unresolved,system has no coordinated 3D route,,,,
+hydraulics/rp2>rvalve#201,hydraulics,rp2,rvalve,20,unresolved,system has no coordinated 3D route,,,,
+hydraulics/rhand>rvalve#202,hydraulics,rhand,rvalve,15,unresolved,system has no coordinated 3D route,,,,
+hydraulics/rvalve>cyl#203,hydraulics,rvalve,cyl,20,unresolved,system has no coordinated 3D route,,,,
+hydraulics/rvalve>pins#204,hydraulics,rvalve,pins,12,unresolved,system has no coordinated 3D route,,,,
+hydraulics/cyl>rtank#205,hydraulics,cyl,rtank,25,unresolved,system has no coordinated 3D route,,,,

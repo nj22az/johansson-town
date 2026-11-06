@@ -1,0 +1,76 @@
+/* The live canvas is the title's scenery. Only the controls have surfaces. */
+#start{--title-green:#16815e;--title-text:#263d39;--title-surface:#f5f5ec;background:transparent;color:var(--title-text)}
+#start:not(.guide-open){overflow-y:auto;overflow-x:hidden}
+#start .title-screen,#start .title-screen[data-weather]{position:relative;display:flex;flex-direction:column;min-height:100svh;min-height:100dvh;height:auto;background:transparent;color:var(--title-text);isolation:isolate}
+#start .title-screen::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#f5f5eced 0%,#f5f5ecba 19%,transparent 35%,transparent 65%,#f5f5ec40 100%);pointer-events:none}
+#start .title-center{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;width:100%;box-sizing:border-box;padding:calc(env(safe-area-inset-top) + 64px) max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left));min-height:0}
+#start .title-logo,#start .title-logo *{animation:none;transform:none;text-shadow:none}
+#start .title-logo{margin:0;gap:4px}
+#start .logo-main{margin:0;font:800 clamp(28px,6.9vw,52px)/1.12 var(--line-font);letter-spacing:.035em;color:var(--title-text)}
+#start .logo-town{margin:0;padding:0;font:800 clamp(24px,5.6vw,40px)/1.1 var(--line-font);letter-spacing:.18em;text-indent:.18em;color:var(--title-green);background:none;border:0;border-radius:0;box-shadow:none}
+#start .title-tag{margin:12px 0 0;font:400 14px/1.5 var(--line-font);color:var(--title-text);animation:none}
+#start .title-world-space{flex:1;min-height:230px;width:100%;pointer-events:none}
+#start .title-menu{display:flex;flex-direction:column;gap:12px;width:min(352px,100%);padding:16px;margin:0;border:1px solid #f5f5ec70;border-radius:18px;background:#f5f5eceb;box-shadow:0 4px 20px #263d3912;box-sizing:border-box}
+#start .title-player{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;width:100%;font:400 12px/1.4 var(--line-font);color:var(--title-text)}
+#start .title-player b{font-size:15px;max-width:45%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#start .title-player span{text-align:right}
+#start .title-menu #enter{display:flex;flex-direction:column;justify-content:center;gap:2px;width:100%;min-height:64px;padding:10px 16px;background:var(--title-green);color:white;border:0;border-radius:14px;font:700 20px/1.3 var(--line-font);box-shadow:none;text-shadow:none}
+#start .title-menu #enter b{animation:none;font:inherit}
+#start #titleActionHint{font:400 12px/1.5 var(--line-font)}
+#start .title-menu #enter:hover{background:#126c4f}
+#start .title-secondary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%}
+#start #title .title-menu .title-secondary :is(button,.title-guide){display:flex;align-items:center;justify-content:center;min-height:44px;width:100%;padding:8px 4px;border:1px solid #263d3920;border-radius:12px;background:#f5f5ec;color:var(--title-text);font:700 13px/1.4 var(--line-font);box-shadow:none;text-shadow:none;text-decoration:none;margin:0}
+#start .title-settings{position:absolute;z-index:3;top:calc(env(safe-area-inset-top) + 12px);right:max(16px,env(safe-area-inset-right));font:700 13px/1.4 var(--line-font)}
+#start .title-settings summary{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;box-sizing:border-box;border:1px solid #263d3920;border-radius:14px;background:#f5f5eceb;cursor:pointer;list-style:none}
+#start .title-settings summary::-webkit-details-marker{display:none}
+#start .title-utilities{display:flex;flex-wrap:wrap;gap:8px;width:208px;padding:12px;margin-top:8px;box-sizing:border-box;border-radius:16px;background:var(--title-surface);box-shadow:0 4px 20px #263d3918}
+#start .title-weather{position:static;display:grid;place-items:center;width:44px;height:44px;min-width:44px;padding:0;border:1px solid #263d3920;border-radius:12px;background:transparent;color:var(--title-text);backdrop-filter:none}
+#start .title-screen[data-weather-mode=random] .title-dice{color:var(--title-green)}
+#start #installTown{min-height:44px;padding:8px 12px;font-size:13px;background:transparent;color:var(--title-text);border-radius:12px}
+#start [hidden]{display:none!important}
+#start .title-foot{position:static;display:flex;flex-direction:column;gap:0;align-items:center;justify-content:center;padding:8px 16px calc(env(safe-area-inset-bottom) + 12px);background:transparent;border:0;color:var(--title-text);font:400 10px/1.5 var(--line-font);text-shadow:none}
+#start #openStudio.title-studio{border:0;background:transparent;padding:0;display:flex;align-items:center;gap:8px;justify-content:center;min-height:44px;font:700 12px/1.4 var(--line-font);color:var(--title-text);text-decoration:none}
+#start .title-loading{width:min(352px,100%);margin:0;padding:16px;box-sizing:border-box;border-radius:18px;background:var(--title-surface)}
+#start .title-screen :is(button,a,summary):focus-visible{outline:3px solid var(--title-green);outline-offset:3px}
+#start.guide-open{background:var(--title-surface)}
+@media(min-width:768px){#start .title-center{padding-top:calc(env(safe-area-inset-top) + 48px)}#start .title-world-space{min-height:270px}#start .title-foot{flex-direction:row;gap:24px;padding-bottom:calc(env(safe-area-inset-bottom) + 8px)}}
+@media(max-height:600px){#start .title-world-space{min-height:100px}#start .title-center{padding-top:calc(env(safe-area-inset-top) + 60px)}#start .logo-main{font-size:28px}#start .logo-town{font-size:24px}#start .title-tag{display:block;margin-top:8px}}
+
+#start .title-utilities #enterBuild{min-height:44px;font-size:13px;border-radius:12px;background:transparent;color:var(--title-text)}
+#start .title-slots{padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));background:#263d3960}
+#start .title-slots-card{border:1px solid #263d3920;border-radius:18px;background:var(--title-surface);color:var(--title-text);box-shadow:0 4px 20px #263d3920}
+#start .title-slots-card :is(button,input){border-radius:12px;color:var(--title-text)}
+#start .title-new button{background:var(--title-green);border-color:var(--title-green);color:white}
+
+/* The canonical current-game Sakura capture also used on the World page. Keep it local to the game so the
+   offline package has the same title. The content hash changes its URL when the capture changes. Day/night
+   shading and cover cropping share this one verified view; the current live world replaces it when ready. */
+#start .title-backdrop{position:absolute;inset:0;z-index:-2;background:#cfd9d2 url(assets/images/title/sakura-current-119667983af8.webp) center/cover no-repeat;transition:opacity 1.2s ease;pointer-events:none}
+:root[data-title-light=night] #start .title-backdrop{background-color:#1d2a36;background-image:linear-gradient(#13243b88,#101e3066),url(assets/images/title/sakura-current-119667983af8.webp)}
+@media (orientation:portrait){#start .title-backdrop{background-position:50% center}}
+#start .title-screen[data-scene=ready] .title-backdrop{opacity:0}
+/* The footer and the work-in-progress stamp sit on the scenery at every hour: a light backing keeps them readable at night. */
+#start .title-foot>:is(span,a){padding:2px 10px;border-radius:999px;background:#f5f5ecd9}
+#start .title-wip{background:#f5f5ecd9}
+
+/* Loading (index.html, loading-progress.js): until the island is ready the START button is the bar, with its number
+   and one readable line; it becomes START when the island has been drawn. After START, until the first playable
+   frame, the loading card shows the same bar large. The fill is a transform animation (index.html), so it keeps
+   moving on the compositor while the town is built, and it never passes the end of the step that is running. */
+#start:not(.booting) .title-loading{display:none}
+#start .title-menu #enter{position:relative;overflow:hidden;isolation:isolate;transition:none}
+#start .title-menu #enter .enter-fill{display:none;position:absolute;inset:0;z-index:-1;background:#7fcaa5;transform-origin:left;transform:scaleX(0)}
+#start .title-menu #enter .enter-loading{display:none}
+#start .title-menu #enter.loading,#start .title-menu #enter.loading:disabled{background:#eef1ea;box-shadow:inset 0 0 0 1px #263d3926;color:var(--title-text);cursor:progress;opacity:1}
+#start .title-menu #enter.loading .enter-fill{display:block}
+#start .title-menu #enter.loading :is(b,#titleActionHint){display:none}
+#start .title-menu #enter.loading .enter-loading{display:flex;flex-direction:column;gap:2px}
+#start .title-menu #enter .enter-loading strong{font:700 20px/1.3 var(--line-font)}
+#start .title-menu #enter .enter-loading>span{font:700 15px/1.3 var(--line-font)}
+#start .title-menu #enter .enter-loading i{font-style:normal}
+#start .load-meter{margin-top:12px}
+#start .load-meter-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 8px;font:700 17px/1.35 var(--line-font);color:var(--title-text)}
+#start .load-meter-head b{font:800 22px/1 var(--line-font);color:var(--title-green)}
+#start .title-loading #bootStatus{margin:0;padding:0;border:0;border-radius:0;background:none;font:inherit;letter-spacing:normal;color:inherit;text-shadow:none}
+#start .title-loading .title-bar{height:16px;padding:0;border:0;border-radius:999px;background:#dfe5dc;box-shadow:inset 0 0 0 1px #263d3920;overflow:hidden}
+#start .title-loading .title-bar span{display:block;width:100%;height:100%;border-radius:999px;background:var(--title-green);opacity:1;animation:none;transform-origin:left;transform:scaleX(0);transition:none}

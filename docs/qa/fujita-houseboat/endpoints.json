@@ -1,0 +1,18 @@
+{
+  "screens": [
+    {
+      "viewport": "phone",
+      "endpoint": {
+        "state": "watching",
+        "position": [
+          -36.6,
+          0.02,
+          -57.28
+        ]
+      },
+      "stagedEndpointIllustrations": true
+    }
+  ],
+  "externalFonts": "Google font CSS stubbed because the execution network blocks it; local fallback fonts used.",
+  "passed": true
+}

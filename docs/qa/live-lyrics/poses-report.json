@@ -1,0 +1,60 @@
+{
+  "scope": "Actual shared avatar builder, animator and face painter, rendered in Chromium; not a device performance test",
+  "poses": [
+    {
+      "name": "HeroicPride",
+      "person": "Thuan",
+      "expression": "smug",
+      "invalid": 0
+    },
+    {
+      "name": "VictoryStand",
+      "person": "Johansson",
+      "expression": "happy",
+      "invalid": 0
+    },
+    {
+      "name": "DeepThinker",
+      "person": "Thuan",
+      "expression": "thinking",
+      "invalid": 0
+    },
+    {
+      "name": "Heartbreak",
+      "person": "Johansson",
+      "expression": "sad",
+      "invalid": 0
+    },
+    {
+      "name": "BattleRage",
+      "person": "Thuan",
+      "expression": "angry",
+      "invalid": 0
+    },
+    {
+      "name": "StartledPanic",
+      "person": "Johansson",
+      "expression": "surprised",
+      "invalid": 0
+    },
+    {
+      "name": "BashfulPose",
+      "person": "Thuan",
+      "expression": "shy",
+      "invalid": 0
+    },
+    {
+      "name": "GrandGrace",
+      "person": "Johansson",
+      "expression": "happy",
+      "invalid": 0
+    },
+    {
+      "name": "Sleepwalker",
+      "person": "Thuan",
+      "expression": "drowsy",
+      "invalid": 0
+    }
+  ],
+  "errors": []
+}

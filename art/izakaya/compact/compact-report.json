@@ -1,0 +1,608 @@
+{
+  "title": "Minato and Sato — compact shared restaurant",
+  "planRevision": 9,
+  "dimensions": {
+    "revision": 9,
+    "title": "Minato and Sato — compact shared restaurant",
+    "owner": "Thao; Mrs Sato operates the lunch counter",
+    "purpose": "A small harbour gathering place with a shared kitchen, usable seats, guest WC and deliberate storage.",
+    "units": "metres; Three.js x,y,z; Blender x,-z,y",
+    "floorY": 0.04,
+    "ceilingY": 2.94,
+    "wallThickness": 0.15,
+    "main": {
+      "minX": -4.08,
+      "maxX": 2.32,
+      "minZ": -3.75,
+      "maxZ": 3.45
+    },
+    "ramen": {
+      "minX": 2.62,
+      "maxX": 5.86,
+      "minZ": -1.75,
+      "maxZ": 3.45
+    },
+    "floorPolygon": [
+      [
+        -4.08,
+        -3.75
+      ],
+      [
+        2.32,
+        -3.75
+      ],
+      [
+        2.32,
+        -1.75
+      ],
+      [
+        5.86,
+        -1.75
+      ],
+      [
+        5.86,
+        3.45
+      ],
+      [
+        -4.08,
+        3.45
+      ]
+    ],
+    "bounds": {
+      "minX": -4.08,
+      "maxX": 5.86,
+      "minZ": -3.75,
+      "maxZ": 3.45
+    },
+    "exterior": {
+      "mainWidth": 6.7,
+      "mainDepth": 7.5,
+      "annexWidth": 3.54,
+      "annexDepth": 5.5,
+      "keepStreetFront": true
+    },
+    "entrance": {
+      "position": [
+        0,
+        0,
+        3.45
+      ],
+      "width": 1.5,
+      "height": 2.1,
+      "spawn": [
+        0,
+        0,
+        2.88
+      ],
+      "exit": [
+        0,
+        1.1,
+        3.4
+      ]
+    },
+    "ramenEntrance": {
+      "position": [
+        3.47,
+        0,
+        3.45
+      ],
+      "width": 1.2,
+      "height": 2.1,
+      "spawn": [
+        3.47,
+        0,
+        2.88
+      ],
+      "exit": [
+        3.47,
+        1.1,
+        3.4
+      ]
+    },
+    "connection": {
+      "x": 2.47,
+      "width": 0.3,
+      "minZ": -1.55,
+      "maxZ": -0.05,
+      "height": 2.2
+    },
+    "window": {
+      "position": [
+        -2.4,
+        1.62,
+        3.44
+      ],
+      "width": 2.25,
+      "height": 1.05
+    },
+    "backbar": {
+      "position": [
+        -2.1,
+        0.04,
+        -3.42
+      ],
+      "width": 3.39,
+      "depth": 0.64,
+      "height": 2.641,
+      "collisionOffsetZ": 0.05
+    },
+    "counter": {
+      "position": [
+        -1.75,
+        0.04,
+        -0.95
+      ],
+      "width": 4.35,
+      "depth": 0.7,
+      "top": 0.78
+    },
+    "worktop": {
+      "position": [
+        -1.75,
+        0,
+        -1.55
+      ],
+      "width": 4.35,
+      "depth": 0.5,
+      "top": 0.9175
+    },
+    "counterStools": [
+      -3.5,
+      -2.7,
+      -1.9,
+      -1.1,
+      -0.3
+    ],
+    "counterSeatZ": -0.18,
+    "counterStandZ": 0.82,
+    "seatHeight": 0.46,
+    "booth": {
+      "position": [
+        -2.5,
+        0,
+        2.4
+      ],
+      "tableWidth": 1.5,
+      "tableDepth": 0.75,
+      "tableTop": 0.72,
+      "benchWidth": 1.5,
+      "benchDepth": 0.42,
+      "benchZ": [
+        1.75,
+        3.05
+      ],
+      "seatX": [
+        -2.85,
+        -2.15
+      ],
+      "standX": [
+        -3.65,
+        -1.35
+      ]
+    },
+    "wc": {
+      "minX": 0.7,
+      "maxX": 2.32,
+      "minZ": 1.65,
+      "maxZ": 3.45,
+      "doorX": 0.7,
+      "doorZ": 2.25,
+      "doorWidth": 0.86,
+      "toilet": [
+        1.55,
+        0.04,
+        3.05
+      ],
+      "sink": [
+        1.98,
+        0.8,
+        2.02
+      ],
+      "approach": [
+        1.45,
+        0,
+        2.35
+      ]
+    },
+    "storage": {
+      "position": [
+        0.25,
+        0,
+        -3.42
+      ],
+      "width": 0.7,
+      "depth": 0.6,
+      "height": 2.1,
+      "purpose": "Thao's cold storage beneath a shelf of labelled supplies."
+    },
+    "sink": {
+      "position": [
+        1.35,
+        0,
+        -3.42
+      ],
+      "width": 1.25,
+      "depth": 0.6,
+      "top": 0.9175,
+      "basinX": 0.98,
+      "rangeX": 1.38,
+      "fryerX": 1.8,
+      "purpose": "A supported stainless rear unit with a wash basin, compact range and fryer."
+    },
+    "staff": {
+      "position": [
+        0.95,
+        0,
+        -2.35
+      ],
+      "aisleZ": -2.35,
+      "counterPassZ": -2.15,
+      "endX": 1.25
+    },
+    "kitchenStations": {
+      "grill": [
+        -0.1,
+        0,
+        -2.15
+      ],
+      "oden": [
+        -3.35,
+        0,
+        -2.15
+      ],
+      "range": [
+        1.38,
+        0,
+        -2.65
+      ],
+      "fryer": [
+        1.8,
+        0,
+        -2.65
+      ],
+      "prep": [
+        -1.65,
+        0,
+        -2.15
+      ]
+    },
+    "ramenCounter": {
+      "position": [
+        4.65,
+        0.04,
+        0.35
+      ],
+      "width": 2.4,
+      "depth": 0.7,
+      "top": 0.78
+    },
+    "ramenStools": [
+      3.75,
+      4.45,
+      5.15
+    ],
+    "ramenSeatZ": 1.1,
+    "ramenStandZ": 1.75,
+    "ramenLedge": {
+      "position": [
+        5.64,
+        0,
+        2.7
+      ],
+      "width": 0.4,
+      "depth": 1.45,
+      "top": 0.78,
+      "seatX": 4.94,
+      "seatZ": [
+        2.45,
+        3.15
+      ],
+      "standX": 4.18
+    },
+    "ramenPrep": {
+      "position": [
+        4.25,
+        0,
+        -1.42
+      ],
+      "width": 3.15,
+      "depth": 0.6,
+      "top": 0.9175
+    },
+    "ramenStaff": {
+      "position": [
+        4.25,
+        0,
+        -0.55
+      ],
+      "aisleZ": -0.55,
+      "passZ": -0.55,
+      "minX": 2.98,
+      "maxX": 5.4,
+      "prep": [
+        3.1,
+        -0.55
+      ],
+      "boiler": [
+        3.65,
+        -0.55
+      ],
+      "pots": [
+        4.45,
+        -0.55
+      ],
+      "toppings": [
+        5.15,
+        -0.55
+      ],
+      "drinks": [
+        5.35,
+        -0.55
+      ]
+    },
+    "details": {
+      "radio": [
+        0.25,
+        2.38,
+        -3.38
+      ],
+      "recipe": [
+        1.65,
+        1.75,
+        -3.735
+      ],
+      "guestbook": [
+        -2.95,
+        0.724,
+        2.4
+      ],
+      "calendar": [
+        1.02,
+        1.92,
+        1.565
+      ],
+      "phone": [
+        1.02,
+        1.02,
+        1.44
+      ],
+      "karaoke": [
+        1.96,
+        0.04,
+        0.95
+      ],
+      "television": [
+        -3.78,
+        2.1,
+        0.65
+      ],
+      "ticketMachine": [
+        2.91,
+        0,
+        2.35
+      ],
+      "keptBottleShelf": {
+        "x": -4.055,
+        "z": -1.3,
+        "width": 1.15,
+        "levels": [
+          1.45,
+          1.86
+        ],
+        "depth": 0.2
+      },
+      "lanterns": [
+        [
+          -3.1,
+          2.28,
+          -0.95
+        ],
+        [
+          -0.75,
+          2.28,
+          -0.95
+        ]
+      ],
+      "campaignPoster": [
+        -4.055,
+        1.85,
+        1.95
+      ],
+      "tanuki": [
+        0.16,
+        0.78,
+        -0.95
+      ]
+    },
+    "review": {
+      "status": "working prototype; validate all seats and passages before publication",
+      "originalMovementDomainM2": 202.26,
+      "mainGrossM2": 50.25,
+      "annexGrossM2": 19.47
+    },
+    "story": [
+      {
+        "id": "walnut-stock",
+        "who": "Thao",
+        "why": "Higa Liquor's fourteen fictional brands are the bar's principal display."
+      },
+      {
+        "id": "booth",
+        "who": "The island regulars and families",
+        "why": "One four-person table keeps shared meals close to the counter."
+      },
+      {
+        "id": "shared-kitchen",
+        "who": "Thao and Mrs Sato",
+        "why": "Lunch and evening service share washing, cold storage and a continuous staff passage."
+      },
+      {
+        "id": "guest-wc",
+        "who": "Customers of both businesses",
+        "why": "A real guest facility reached from the dining side, separate from food preparation."
+      }
+    ],
+    "joinery": {
+      "doorJamb": 0.055,
+      "doorHead": 0.075,
+      "windowFrame": 0.055,
+      "serviceJamb": 0.05,
+      "serviceHead": 0.07,
+      "wcJamb": 0.05
+    }
+  },
+  "units": "metres; Three.js x,y,z; Blender x,-z,y",
+  "notes": [
+    "Architectural prototype. Blender render lighting is independent of runtime lighting.",
+    "Existing 42-bottle walnut cabinet imported at scale 1.0; counter re-authored at the planned length and depth.",
+    "Runtime radio, phone, guestbook, karaoke, TV, period posters, calendar, curtains, bottle-keep shelf and tanuki are intentionally supplied by the application.",
+    "Two 0.43 m WC door leaves fold beside its 0.86 m clear opening; door and street window apertures are physically open."
+  ],
+  "counter": {
+    "file": "minato-compact-counter.glb",
+    "root": "Compact counter",
+    "file_bytes": 89784,
+    "vertices": 480,
+    "triangles": 258,
+    "primitives": 4,
+    "materials": 4,
+    "images": 2,
+    "bounds": {
+      "min": [
+        -2.175,
+        0.0,
+        -0.35
+      ],
+      "max": [
+        2.175,
+        0.74,
+        0.35
+      ]
+    },
+    "bottles": [],
+    "brands": [],
+    "front": "+Z",
+    "all_opaque": true,
+    "double_sided_materials": 0,
+    "material_triangles": {
+      "Dark hardware": 8,
+      "Wood": 120,
+      "Slate": 10,
+      "Brass": 120
+    }
+  },
+  "renders": [
+    {
+      "file": "entry.png",
+      "camera": {
+        "name": "entry",
+        "at": [
+          0.08,
+          1.59,
+          3.1
+        ],
+        "target": [
+          -1.67,
+          1.23,
+          -1.4
+        ],
+        "lens": 24
+      },
+      "planRevision": 9,
+      "sha256": "e78ad0bc7ad6f0f469b0cf65d96bf6e56a5f09eb6a33237cf9d577eb30dddd52",
+      "renderer": "Blender Cycles; architectural prototype lighting, not the game ink pass"
+    },
+    {
+      "file": "counter.png",
+      "camera": {
+        "name": "counter",
+        "at": [
+          -3.66,
+          1.55,
+          1.06
+        ],
+        "target": [
+          -1.38,
+          1.27,
+          -2.76
+        ],
+        "lens": 27
+      },
+      "planRevision": 9,
+      "sha256": "7782b449c276f744265f5e32b3f81b89e5631a5dfc3088335d31fb6816de0bd9",
+      "renderer": "Blender Cycles; architectural prototype lighting, not the game ink pass"
+    },
+    {
+      "file": "overhead.png",
+      "camera": {
+        "name": "overhead",
+        "at": [
+          8.5,
+          12.0,
+          10.5
+        ],
+        "target": [
+          0.6,
+          1.05,
+          -0.1
+        ],
+        "ortho": 16.0,
+        "cutaway": true
+      },
+      "planRevision": 9,
+      "sha256": "4ec6678f8aab5680e6e6bf565a4c0b1b95ad63cf507db13151153b3582d84f4c",
+      "renderer": "Blender Cycles; architectural prototype lighting, not the game ink pass"
+    }
+  ],
+  "renderPlanRevisions": [
+    9
+  ],
+  "editable": {
+    "meshes": 926,
+    "triangles": 51000,
+    "bounds": {
+      "min": [
+        -4.230000019073486,
+        0.009999999776482582,
+        -3.9000000953674316
+      ],
+      "max": [
+        6.010000228881836,
+        3.009999990463257,
+        3.6000001430511475
+      ]
+    },
+    "materials": 32
+  },
+  "export": {
+    "meshes": 35,
+    "triangles": 52155,
+    "bounds": {
+      "min": [
+        -4.230000019073486,
+        0.009999999776482582,
+        -3.9000000953674316
+      ],
+      "max": [
+        6.010000228881836,
+        3.009999990463257,
+        3.6000001430511475
+      ]
+    },
+    "materials": 33,
+    "file": "minato-interior-compact.glb",
+    "path": "assets/models/izakaya/minato-interior-compact.glb",
+    "bytes": 3872380,
+    "primitives": 35,
+    "sha256": "a553f23a384f3ad21eae495497a40bd5b1250afe096907e0cd03db26b28dff4a"
+  },
+  "blend": "minato-compact.blend",
+  "blendSha256": "6e02a646f3088c80320521ecd23e7a0c36382b29bf5cedb602326fadcfddb4bf",
+  "inputs": {
+    "art/izakaya/compact/plan.json": "42cc52f4145fd1d44701170c2693b5edff093f71d8de8733c4db679dee766b41",
+    "tools/blender/build-minato-compact.py": "2cb7d6c3183a6720ae76fa31f57443bb445a4598567f8c8825c2b52d12a73817",
+    "tools/blender/build-minato-walnut.py": "3cc9231318ccc961e0158d15c7a9113365ae92c65ecea495676095c3e7610049",
+    "assets/models/izakaya/minato-walnut-backbar.glb": "4fc640430634e0bf17da87d80bf3c6ccb39d2c7f52a4a6a67861438caba96e43",
+    "art/izakaya/compact/minato-signs.otf": "76766701cd570ed46ca63bc5122c144fb269c9288d385817939af3fe941957b2"
+  }
+}

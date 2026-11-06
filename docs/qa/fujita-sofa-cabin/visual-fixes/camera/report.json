@@ -1,0 +1,1595 @@
+{
+  "gameCommit": "ab31811c3e4376b90f03a52cb53a9fb1dcad4b0f",
+  "physicalDevice": false,
+  "browser": "Chromium software WebGL",
+  "controls": "Keyboard/mouse in both viewport sizes; physical touch acceptance outstanding",
+  "views": [
+    {
+      "viewport": "phone",
+      "name": "normal-cabin-camera",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "roofs": [
+          false,
+          false,
+          false
+        ],
+        "player": {
+          "position": [
+            -40.18,
+            0.06,
+            -57.05
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -39.65992452188636,
+            3.7516406625864693,
+            -54.773652239124374
+          ],
+          "rotation": [
+            -0.64,
+            0,
+            0
+          ],
+          "distance": 2.838,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 0,
+          "pitch": -0.05,
+          "thirdPerson": true
+        },
+        "playerVisible": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "alternate-cabin-camera",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "roofs": [
+          false,
+          false,
+          false
+        ],
+        "player": {
+          "position": [
+            -40.18,
+            0.06,
+            -57.05
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -40.18,
+            1.76,
+            -57.05
+          ],
+          "rotation": [
+            -0.05,
+            0,
+            0
+          ],
+          "distance": 2.838,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 0,
+          "pitch": -0.05,
+          "thirdPerson": false
+        },
+        "playerVisible": false
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "open-cabinet-day",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "roofs": [
+          false,
+          false,
+          false
+        ],
+        "player": {
+          "position": [
+            -40.00853607496452,
+            0.06,
+            -56.651735643413836
+          ],
+          "yaw": 1.7802358302739005,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -40.00853607496452,
+            1.76,
+            -56.651735643413836
+          ],
+          "rotation": [
+            -0.7132251281738281,
+            1.7802358302739005,
+            0
+          ],
+          "distance": 2.838,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 1.7802358302739005,
+          "pitch": -0.7132251281738281,
+          "thirdPerson": false
+        },
+        "playerVisible": false
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "first-person-night",
+      "state": {
+        "routine": "sleeping",
+        "position": [
+          -41.13,
+          0.85,
+          -57.15
+        ],
+        "roofs": [
+          false,
+          false,
+          false
+        ],
+        "player": {
+          "position": [
+            -40.18,
+            0.06,
+            -57.05
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -40.18,
+            1.76,
+            -57.05
+          ],
+          "rotation": [
+            -0.05,
+            0,
+            0
+          ],
+          "distance": 2.838,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 0,
+          "pitch": -0.05,
+          "thirdPerson": false
+        },
+        "playerVisible": false
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "third-person-night",
+      "state": {
+        "routine": "sleeping",
+        "position": [
+          -41.13,
+          0.85,
+          -57.15
+        ],
+        "roofs": [
+          false,
+          false,
+          false
+        ],
+        "player": {
+          "position": [
+            -40.18,
+            0.06,
+            -57.05
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -39.659902298545866,
+            3.7516406625864693,
+            -54.773652239124374
+          ],
+          "rotation": [
+            -0.64,
+            0,
+            0
+          ],
+          "distance": 2.838,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 0,
+          "pitch": -0.05,
+          "thirdPerson": true
+        },
+        "playerVisible": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "sleep-overhead",
+      "state": {
+        "routine": "sleeping",
+        "position": [
+          -41.13,
+          0.85,
+          -57.15
+        ],
+        "roofs": [
+          false,
+          false,
+          false
+        ],
+        "player": {
+          "position": [
+            -40.18,
+            0.06,
+            -57.05
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -40.5,
+            6.3,
+            -57.7
+          ],
+          "rotation": [
+            -1.5706963267951588,
+            0,
+            0
+          ],
+          "distance": 2.835536747589013,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 0,
+          "pitch": -0.05,
+          "thirdPerson": true
+        },
+        "playerVisible": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "sleep-side-night",
+      "state": {
+        "routine": "sleeping",
+        "position": [
+          -41.13,
+          0.85,
+          -57.15
+        ],
+        "roofs": [
+          false,
+          false,
+          false
+        ],
+        "player": {
+          "position": [
+            -40.18,
+            0.06,
+            -57.05
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -39.95,
+            1.45,
+            -57.3
+          ],
+          "rotation": [
+            -0.4404154607531546,
+            0.8076167287241661,
+            0
+          ],
+          "distance": 2.835536747589013,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 0,
+          "pitch": -0.05,
+          "thirdPerson": true
+        },
+        "playerVisible": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "name": "restored-exterior-day",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "roofs": [
+          true,
+          true,
+          true
+        ],
+        "player": {
+          "position": [
+            -37.46417124413355,
+            0.06,
+            -54.40414557031851
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -36.944137725353336,
+            2.2678400767493168,
+            -50.18686195630672
+          ],
+          "rotation": [
+            -0.05,
+            0,
+            0
+          ],
+          "distance": 4.2225607153724525,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 0,
+          "pitch": -0.05,
+          "thirdPerson": true
+        },
+        "playerVisible": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "normal-cabin-camera",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "roofs": [
+          false,
+          false,
+          false
+        ],
+        "player": {
+          "position": [
+            -40.18,
+            0.06,
+            -57.05
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -39.65990899035305,
+            3.1607701989291432,
+            -55.32549412054877
+          ],
+          "rotation": [
+            -0.64,
+            0,
+            0
+          ],
+          "distance": 2.15,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 0,
+          "pitch": -0.05,
+          "thirdPerson": true
+        },
+        "playerVisible": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "alternate-cabin-camera",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "roofs": [
+          false,
+          false,
+          false
+        ],
+        "player": {
+          "position": [
+            -40.18,
+            0.06,
+            -57.05
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -40.18,
+            1.76,
+            -57.05
+          ],
+          "rotation": [
+            -0.05,
+            0,
+            0
+          ],
+          "distance": 2.15,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 0,
+          "pitch": -0.05,
+          "thirdPerson": false
+        },
+        "playerVisible": false
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "open-cabinet-day",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "roofs": [
+          false,
+          false,
+          false
+        ],
+        "player": {
+          "position": [
+            -40.008536075025425,
+            0.06,
+            -56.651735643700405
+          ],
+          "yaw": 1.7802358653691153,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -40.008536075025425,
+            1.76,
+            -56.651735643700405
+          ],
+          "rotation": [
+            -0.7132251281738281,
+            1.7802358653691153,
+            0
+          ],
+          "distance": 2.15,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 1.7802358653691153,
+          "pitch": -0.7132251281738281,
+          "thirdPerson": false
+        },
+        "playerVisible": false
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "first-person-night",
+      "state": {
+        "routine": "sleeping",
+        "position": [
+          -41.13,
+          0.85,
+          -57.15
+        ],
+        "roofs": [
+          false,
+          false,
+          false
+        ],
+        "player": {
+          "position": [
+            -40.18,
+            0.06,
+            -57.05
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -40.18,
+            1.76,
+            -57.05
+          ],
+          "rotation": [
+            -0.05,
+            0,
+            0
+          ],
+          "distance": 2.15,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 0,
+          "pitch": -0.05,
+          "thirdPerson": false
+        },
+        "playerVisible": false
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "third-person-night",
+      "state": {
+        "routine": "sleeping",
+        "position": [
+          -41.13,
+          0.85,
+          -57.15
+        ],
+        "roofs": [
+          false,
+          false,
+          false
+        ],
+        "player": {
+          "position": [
+            -40.18,
+            0.06,
+            -57.05
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -39.659902296811524,
+            3.1607701989291432,
+            -55.32549412054877
+          ],
+          "rotation": [
+            -0.64,
+            0,
+            0
+          ],
+          "distance": 2.15,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 0,
+          "pitch": -0.05,
+          "thirdPerson": true
+        },
+        "playerVisible": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "sleep-overhead",
+      "state": {
+        "routine": "sleeping",
+        "position": [
+          -41.13,
+          0.85,
+          -57.15
+        ],
+        "roofs": [
+          false,
+          false,
+          false
+        ],
+        "player": {
+          "position": [
+            -40.18,
+            0.06,
+            -57.05
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -40.5,
+            6.3,
+            -57.7
+          ],
+          "rotation": [
+            -1.5706963267951588,
+            0,
+            0
+          ],
+          "distance": 2.1493376774785733,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 0,
+          "pitch": -0.05,
+          "thirdPerson": true
+        },
+        "playerVisible": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "sleep-side-night",
+      "state": {
+        "routine": "sleeping",
+        "position": [
+          -41.13,
+          0.85,
+          -57.15
+        ],
+        "roofs": [
+          false,
+          false,
+          false
+        ],
+        "player": {
+          "position": [
+            -40.18,
+            0.06,
+            -57.05
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -39.95,
+            1.45,
+            -57.3
+          ],
+          "rotation": [
+            -0.4404154607531546,
+            0.8076167287241661,
+            0
+          ],
+          "distance": 2.1493376774785733,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 0,
+          "pitch": -0.05,
+          "thirdPerson": true
+        },
+        "playerVisible": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "name": "restored-exterior-day",
+      "state": {
+        "routine": "watching",
+        "position": [
+          -36.1,
+          0.02,
+          -57.28
+        ],
+        "roofs": [
+          true,
+          true,
+          true
+        ],
+        "player": {
+          "position": [
+            -37.46417126945408,
+            0.06,
+            -54.40414540066609
+          ],
+          "yaw": 0,
+          "room": null
+        },
+        "lens": {
+          "position": [
+            -36.94413775067386,
+            2.0367170391885385,
+            -51.20847034520159
+          ],
+          "rotation": [
+            -0.05,
+            0,
+            0
+          ],
+          "distance": 3.1996738145537353,
+          "ceiling": null,
+          "blocked": false
+        },
+        "mouse": {
+          "walking": false,
+          "destination": null,
+          "yaw": 0,
+          "pitch": -0.05,
+          "thirdPerson": true
+        },
+        "playerVisible": true
+      }
+    }
+  ],
+  "errors": [
+    {
+      "viewport": "phone",
+      "errors": []
+    },
+    {
+      "viewport": "desktop",
+      "errors": []
+    }
+  ],
+  "probes": [
+    {
+      "viewport": "phone",
+      "z": -56.35,
+      "yaw": 0,
+      "lens": {
+        "position": [
+          -39.659902296811524,
+          3.7516406625864693,
+          -54.07365223912438
+        ],
+        "rotation": [
+          -0.64,
+          0,
+          0
+        ],
+        "distance": 2.838,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 0,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "z": -56.35,
+      "yaw": 1.5707963267948966,
+      "lens": {
+        "position": [
+          -39.15331742990811,
+          2.8473299152640372,
+          -56.852837649352885
+        ],
+        "rotation": [
+          -0.6400000000000001,
+          1.5707963267948966,
+          0
+        ],
+        "distance": 1.2800000000000002,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 1.5707963267948966,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "z": -56.35,
+      "yaw": 3.141592653589793,
+      "lens": {
+        "position": [
+          -40.68305720623085,
+          3.338998079585792,
+          -58.06483699520742
+        ],
+        "rotation": [
+          -0.64,
+          3.141592653589793,
+          0
+        ],
+        "distance": 2.1379454739053685,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 3.141592653589793,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "z": -56.35,
+      "yaw": -1.5707963267948966,
+      "lens": {
+        "position": [
+          -40.87432151284752,
+          2.7582857888748884,
+          -56.06443609002984
+        ],
+        "rotation": [
+          -0.64,
+          -1.5707963267948966,
+          0
+        ],
+        "distance": 0.8656341914573287,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": -1.5707963267948966,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "z": -57.05,
+      "yaw": 0,
+      "lens": {
+        "position": [
+          -39.82690339680649,
+          3.2680866083332147,
+          -55.4845024543571
+        ],
+        "rotation": [
+          -0.64,
+          0,
+          0
+        ],
+        "distance": 1.9517589143872955,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 0,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "z": -57.05,
+      "yaw": 1.5707963267948966,
+      "lens": {
+        "position": [
+          -39.15331742990811,
+          2.8565576121790826,
+          -57.48234527829019
+        ],
+        "rotation": [
+          -0.64,
+          1.5707963267948966,
+          0
+        ],
+        "distance": 1.2800000000000002,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 1.5707963267948966,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "z": -57.05,
+      "yaw": 3.141592653589793,
+      "lens": {
+        "position": [
+          -40.65774849516923,
+          3.3408611194620494,
+          -58.76483699520742
+        ],
+        "rotation": [
+          -0.6399999999999999,
+          3.141592653589793,
+          0
+        ],
+        "distance": 2.1379454739053685,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 3.141592653589793,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "z": -57.05,
+      "yaw": -1.5707963267948966,
+      "lens": {
+        "position": [
+          -41.84835917639933,
+          3.3004383090377076,
+          -56.54587829501229
+        ],
+        "rotation": [
+          -0.6400000000000001,
+          -1.5707963267948966,
+          0
+        ],
+        "distance": 2.0800000000000005,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": -1.5707963267948966,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "z": -58.7,
+      "yaw": 0,
+      "lens": {
+        "position": [
+          -39.66536441499865,
+          3.548241058131958,
+          -56.69683911998221
+        ],
+        "rotation": [
+          -0.64,
+          0,
+          0
+        ],
+        "distance": 2.4974086451991457,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 0,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "z": -58.7,
+      "yaw": 1.5707963267948966,
+      "lens": {
+        "position": [
+          -39.15331742990811,
+          2.847389908709153,
+          -59.20106120967291
+        ],
+        "rotation": [
+          -0.64,
+          1.5707963267948966,
+          0
+        ],
+        "distance": 1.2800000000000002,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 1.5707963267948966,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "z": -58.7,
+      "yaw": 3.141592653589793,
+      "lens": {
+        "position": [
+          -40.680014067489005,
+          2.9924666697868187,
+          -59.94752802102756
+        ],
+        "rotation": [
+          -0.64,
+          3.141592653589793,
+          0
+        ],
+        "distance": 1.5553355179413897,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 3.141592653589793,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "phone",
+      "z": -58.7,
+      "yaw": -1.5707963267948966,
+      "lens": {
+        "position": [
+          -41.659267549287875,
+          3.1595579412363706,
+          -58.18896772654199
+        ],
+        "rotation": [
+          -0.6399999999999999,
+          -1.5707963267948966,
+          0
+        ],
+        "distance": 1.844253051767507,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": -1.5707963267948966,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "z": -56.35,
+      "yaw": 0,
+      "lens": {
+        "position": [
+          -39.65990229628915,
+          3.1607701989291432,
+          -54.62549412054877
+        ],
+        "rotation": [
+          -0.64,
+          0,
+          0
+        ],
+        "distance": 2.15,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 0,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "z": -56.35,
+      "yaw": 1.5707963267948966,
+      "lens": {
+        "position": [
+          -39.15331742990811,
+          2.667329915264037,
+          -56.85283764951022
+        ],
+        "rotation": [
+          -0.6400000000000001,
+          1.5707963267948966,
+          0
+        ],
+        "distance": 1.2800000000000002,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 1.5707963267948966,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "z": -56.35,
+      "yaw": 3.141592653589793,
+      "lens": {
+        "position": [
+          -40.68219039939864,
+          2.9331943994034098,
+          -57.76095365471995
+        ],
+        "rotation": [
+          -0.64,
+          3.141592653589793,
+          0
+        ],
+        "distance": 1.7590838012180172,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 3.141592653589793,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "z": -56.35,
+      "yaw": -1.5707963267948966,
+      "lens": {
+        "position": [
+          -40.89752996481607,
+          2.5922901462534784,
+          -56.063903209098335
+        ],
+        "rotation": [
+          -0.64,
+          -1.5707963267948966,
+          0
+        ],
+        "distance": 0.8945689560916265,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": -1.5707963267948966,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "z": -57.05,
+      "yaw": 0,
+      "lens": {
+        "position": [
+          -39.83459115362079,
+          2.8763312791584488,
+          -55.77795756516277
+        ],
+        "rotation": [
+          -0.64,
+          0,
+          0
+        ],
+        "distance": 1.5858984695200482,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 0,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "z": -57.05,
+      "yaw": 1.5707963267948966,
+      "lens": {
+        "position": [
+          -39.15331742990811,
+          2.6779173570984978,
+          -57.47705429408798
+        ],
+        "rotation": [
+          -0.64,
+          1.5707963267948966,
+          0
+        ],
+        "distance": 1.2800000000000002,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 1.5707963267948966,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "z": -57.05,
+      "yaw": 3.141592653589793,
+      "lens": {
+        "position": [
+          -40.65468733615874,
+          2.9353319670442586,
+          -58.460953654719944
+        ],
+        "rotation": [
+          -0.64,
+          3.141592653589793,
+          0
+        ],
+        "distance": 1.7590838012180172,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 3.141592653589793,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "z": -57.05,
+      "yaw": -1.5707963267948966,
+      "lens": {
+        "position": [
+          -41.763617783116075,
+          3.0574910660320227,
+          -56.54712074257724
+        ],
+        "rotation": [
+          -0.64,
+          -1.5707963267948966,
+          0
+        ],
+        "distance": 1.97435002934465,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": -1.5707963267948966,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "z": -58.7,
+      "yaw": 0,
+      "lens": {
+        "position": [
+          -39.66580332957984,
+          3.1139634908059,
+          -57.038799222931495
+        ],
+        "rotation": [
+          -0.64,
+          0,
+          0
+        ],
+        "distance": 2.0710753806382107,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 0,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "z": -58.7,
+      "yaw": 1.5707963267948966,
+      "lens": {
+        "position": [
+          -39.15331742990811,
+          2.667395877838655,
+          -59.20091594913012
+        ],
+        "rotation": [
+          -0.64,
+          1.5707963267948966,
+          0
+        ],
+        "distance": 1.2800000000000002,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 1.5707963267948966,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "z": -58.7,
+      "yaw": 3.141592653589793,
+      "lens": {
+        "position": [
+          -40.67996767867968,
+          2.8124678749332803,
+          -59.94752802102756
+        ],
+        "rotation": [
+          -0.64,
+          3.141592653589793,
+          0
+        ],
+        "distance": 1.5553355179413897,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": 3.141592653589793,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    },
+    {
+      "viewport": "desktop",
+      "z": -58.7,
+      "yaw": -1.5707963267948966,
+      "lens": {
+        "position": [
+          -41.69018591241887,
+          3.0025782608136096,
+          -58.18898223101923
+        ],
+        "rotation": [
+          -0.6399999999999999,
+          -1.5707963267948966,
+          0
+        ],
+        "distance": 1.8828000242793006,
+        "ceiling": null,
+        "blocked": false
+      },
+      "mouse": {
+        "walking": false,
+        "destination": null,
+        "yaw": -1.5707963267948966,
+        "pitch": -0.05,
+        "thirdPerson": true
+      }
+    }
+  ],
+  "walk": [
+    {
+      "viewport": "phone",
+      "point": {
+        "x": -40.2,
+        "z": -54.2
+      },
+      "reached": true
+    },
+    {
+      "viewport": "phone",
+      "point": {
+        "x": -39.85,
+        "z": -55.35
+      },
+      "reached": true
+    },
+    {
+      "viewport": "phone",
+      "point": {
+        "x": -39.85,
+        "z": -56.35
+      },
+      "reached": true
+    },
+    {
+      "viewport": "phone",
+      "point": {
+        "x": -40.18,
+        "z": -57.05
+      },
+      "reached": true
+    },
+    {
+      "viewport": "phone",
+      "point": {
+        "x": -39.85,
+        "z": -56.35
+      },
+      "reached": true
+    },
+    {
+      "viewport": "phone",
+      "point": {
+        "x": -39.85,
+        "z": -55.35
+      },
+      "reached": true
+    },
+    {
+      "viewport": "phone",
+      "point": {
+        "x": -40.2,
+        "z": -54.2
+      },
+      "reached": true
+    },
+    {
+      "viewport": "phone",
+      "point": {
+        "x": -37.5,
+        "z": -54.2
+      },
+      "reached": true
+    },
+    {
+      "viewport": "desktop",
+      "point": {
+        "x": -40.2,
+        "z": -54.2
+      },
+      "reached": true
+    },
+    {
+      "viewport": "desktop",
+      "point": {
+        "x": -39.85,
+        "z": -55.35
+      },
+      "reached": true
+    },
+    {
+      "viewport": "desktop",
+      "point": {
+        "x": -39.85,
+        "z": -56.35
+      },
+      "reached": true
+    },
+    {
+      "viewport": "desktop",
+      "point": {
+        "x": -40.18,
+        "z": -57.05
+      },
+      "reached": true
+    },
+    {
+      "viewport": "desktop",
+      "point": {
+        "x": -39.85,
+        "z": -56.35
+      },
+      "reached": true
+    },
+    {
+      "viewport": "desktop",
+      "point": {
+        "x": -39.85,
+        "z": -55.35
+      },
+      "reached": true
+    },
+    {
+      "viewport": "desktop",
+      "point": {
+        "x": -40.2,
+        "z": -54.2
+      },
+      "reached": true
+    },
+    {
+      "viewport": "desktop",
+      "point": {
+        "x": -37.5,
+        "z": -54.2
+      },
+      "reached": true
+    }
+  ],
+  "firstPerson": [
+    {
+      "viewport": "phone",
+      "forward": 0.34211233120178974,
+      "backward": 0.12719847328690292
+    },
+    {
+      "viewport": "desktop",
+      "forward": 0.34211233120178974,
+      "backward": 0.12719847328690292
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,94 @@
+[
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "checks": [
+      "town player/closing-day bridge",
+      "partial fight reload",
+      "re-entry recovery",
+      "defeated boss reload",
+      "full automatic restock and town redirect",
+      "once-only 200 yen",
+      "duplicate handshake leaves shelves unchanged",
+      "completed night cannot restart",
+      "failed save recovery"
+    ],
+    "applied": {
+      "yen": 1200,
+      "day": 20733,
+      "restocked": 20733
+    },
+    "errors": [],
+    "networkNotes": [
+      "https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap net::ERR_FAILED",
+      "http://town.test/johansson-town/assets/models/street/potted-plant.glb net::ERR_ABORTED",
+      "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@500&family=Nunito:wght@400;500;600;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@500&family=Nunito:wght@400;500;600;700;800&display=swap net::ERR_FAILED",
+      "http://town.test/johansson-town/src/commerce/catalogue.js net::ERR_ABORTED",
+      "https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@500&family=Nunito:wght@400;500;600;700;800&display=swap net::ERR_FAILED",
+      "http://town.test/thuans-storage/vendor/three-r186/three.core.js net::ERR_ABORTED",
+      "http://town.test/johansson-town/src/commerce/catalogue.js net::ERR_ABORTED",
+      "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@500&family=Nunito:wght@400;500;600;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@500&family=Nunito:wght@400;500;600;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap net::ERR_FAILED"
+    ]
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "checks": [
+      "town player/closing-day bridge",
+      "partial fight reload",
+      "re-entry recovery",
+      "defeated boss reload",
+      "full automatic restock and town redirect",
+      "once-only 200 yen",
+      "duplicate handshake leaves shelves unchanged",
+      "completed night cannot restart",
+      "failed save recovery"
+    ],
+    "applied": {
+      "yen": 1200,
+      "day": 20733,
+      "restocked": 20733
+    },
+    "errors": [],
+    "networkNotes": [
+      "https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap net::ERR_FAILED",
+      "http://town.test/johansson-town/assets/models/street/potted-plant.glb net::ERR_ABORTED",
+      "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@500&family=Nunito:wght@400;500;600;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@500&family=Nunito:wght@400;500;600;700;800&display=swap net::ERR_FAILED",
+      "http://town.test/thuans-storage/vendor/three-r186/three.core.js net::ERR_ABORTED",
+      "https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@500&family=Nunito:wght@400;500;600;700;800&display=swap net::ERR_FAILED",
+      "http://town.test/johansson-town/src/commerce/catalogue.js net::ERR_ABORTED",
+      "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@500&family=Nunito:wght@400;500;600;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@500&family=Nunito:wght@400;500;600;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap net::ERR_FAILED",
+      "http://town.test/johansson-town/assets/models/street/sakura-bench.glb?bench-1 net::ERR_ABORTED",
+      "https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800&display=swap net::ERR_FAILED",
+      "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap net::ERR_FAILED"
+    ]
+  }
+]

@@ -1,0 +1,256 @@
+{
+ "parts": [
+  {
+   "name": "Cap front",
+   "material": "front",
+   "role": "body",
+   "ink": 1,
+   "triangles": 88,
+   "note": "two foam panels, the front seam, topstitching, the band stitching"
+  },
+  {
+   "name": "Cap front lining",
+   "material": "front",
+   "role": "body",
+   "ink": 0,
+   "triangles": 0,
+   "note": "the inside of the foam front"
+  },
+  {
+   "name": "Cap mesh",
+   "material": "mesh",
+   "role": "body",
+   "ink": 0,
+   "triangles": 126,
+   "note": "four mesh panels: the sides and the back, see-through"
+  },
+  {
+   "name": "Cap sweatband",
+   "material": "trim",
+   "role": "body",
+   "ink": 0,
+   "triangles": 36,
+   "note": "cotton sweatband inside the band, all round"
+  },
+  {
+   "name": "Cap band edge",
+   "material": "trim",
+   "role": "body",
+   "ink": 1,
+   "triangles": 36,
+   "note": "the bottom edge of the band; round the opening, the binding tape"
+  },
+  {
+   "name": "Cap binding",
+   "material": "front",
+   "role": "body",
+   "ink": 1,
+   "triangles": 16,
+   "note": "the tape binding the snapback opening"
+  },
+  {
+   "name": "Cap piping",
+   "material": "accent",
+   "role": "decoration",
+   "ink": 0,
+   "triangles": 64,
+   "note": "contrast piping on the front seams"
+  },
+  {
+   "name": "Cap button",
+   "material": "front",
+   "role": "decoration",
+   "ink": 1,
+   "triangles": 54,
+   "note": "the cloth-covered button where the six panels meet"
+  },
+  {
+   "name": "Cap bill",
+   "material": "front",
+   "role": "body",
+   "ink": 1,
+   "triangles": 68,
+   "note": "the visor: a pre-curved board in cloth, five rows of stitching, the rolled edge"
+  },
+  {
+   "name": "Cap undervisor",
+   "material": "accent",
+   "role": "body",
+   "ink": 1,
+   "triangles": 32,
+   "note": "the contrast undervisor"
+  },
+  {
+   "name": "Cap rope",
+   "material": "accent",
+   "role": "decoration",
+   "ink": 1,
+   "triangles": 88,
+   "note": "braided rope across the front"
+  },
+  {
+   "name": "Cap snapback strap",
+   "material": "trim",
+   "role": "decoration",
+   "ink": 1,
+   "triangles": 48,
+   "note": "two plastic straps across the opening, studs through holes"
+  },
+  {
+   "name": "Cap J",
+   "material": "accent",
+   "role": "sign",
+   "ink": 0,
+   "triangles": 448,
+   "note": "Johansson's J in raised embroidery, inside the seal's two rings: the house mark (config.js CONFIG.logo)"
+  },
+  {
+   "name": "Cap J outline",
+   "material": "trim",
+   "role": "sign",
+   "ink": 0,
+   "triangles": 184,
+   "note": "the satin-stitch outline in gold thread"
+  },
+  {
+   "name": "Cap woven label",
+   "material": "trim",
+   "role": "sign",
+   "ink": 0,
+   "triangles": 10,
+   "note": "woven label: the seal J on cream"
+  }
+ ],
+ "real": {
+  "band": "58 cm round the band (55-60 by the strap), a 3 cm cotton sweatband",
+  "front": "two foam panels 12 cm high from band to the top seam, stiff, standing about 1.5 cm off the forehead",
+  "mesh": "polyester knit, 3.5 mm holes at 4.5 mm, four panels",
+  "bill": "7 cm from the forehead, pre-curved, 3-4 mm board, five rows of stitching 5 mm apart, rolled edge",
+  "rope": "4 mm braided cord across the front, its ends sewn under the crown at the corners of the bill",
+  "button": "1.6 cm, covered in the front cloth",
+  "opening": "6.5 cm wide, 4 cm high, bound in tape",
+  "strap": "two plastic straps 1.8 cm high, seven studs",
+  "embroidery": "the J 5 cm high in raised (3D, foam-backed) embroidery, a 1 mm satin outline, the seal ring 9 cm across",
+  "label": "a woven label 3.5 x 2 cm over the back seam"
+ },
+ "wear": {
+  "about": "How World fits this cap to a head (src/avatars/hat-assets.js): a point's place on the head it was built on (head: its centre and radii, metres) is carried to the same place on the wearer's head; the hair under the crown is pressed in to `tuck` (head radii) above the band, except in the opening above the strap. `tint`: which recipe colour each material takes (its vertex colour a shade of it); `seeThrough`: the materials drawn as the hat's see-through layer, with `weave`.",
+  "head": {
+   "centre": [
+    0.0,
+    -0.008833,
+    0.0
+   ],
+   "radii": [
+    0.226122,
+    0.259799,
+    0.235744
+   ],
+   "recipe": "the default adult (src/avatars/recipe.js DEFAULT_RECIPE): Rh 0.240555, width 0.94, height 1.08, oval"
+  },
+  "band": {
+   "front": 0.4,
+   "side": 0.27,
+   "back": 0.03,
+   "billRoot": 1.27409,
+   "arch": 0.13
+  },
+  "opening": {
+   "halfWidth": 0.36,
+   "height": 0.27,
+   "strapHeight": 0.16
+  },
+  "tuck": {
+   "radius": 1.065,
+   "front": 1.0070000000000001,
+   "frontFrom": 0.5,
+   "frontTo": 0.9
+  },
+  "tint": {
+   "front": "hatColour",
+   "mesh": "accent",
+   "accent": "accent"
+  },
+  "seeThrough": [
+   "mesh"
+  ],
+  "weave": {
+   "tile": 0.034,
+   "holes": [
+    [
+     0.25,
+     0.25
+    ],
+    [
+     0.75,
+     0.75
+    ]
+   ],
+   "radius": 0.17,
+   "size": 64
+  }
+ },
+ "objects": {
+  "Cap front, bill and button": "Cap bill, Cap binding, Cap button, Cap front",
+  "Cap front, bill and button (no ink)": "Cap front lining",
+  "Cap mesh (no ink)": "Cap mesh",
+  "Cap trim": "Cap band edge, Cap snapback strap",
+  "Cap trim (no ink)": "Cap J outline, Cap sweatband, Cap woven label",
+  "Cap undervisor, piping, rope and J": "Cap rope, Cap undervisor",
+  "Cap undervisor, piping, rope and J (no ink)": "Cap J, Cap piping"
+ },
+ "size": [
+  0.476,
+  0.3182,
+  0.663
+ ],
+ "triangles": 1298,
+ "materials": 4,
+ "anchors": {
+  "head-centre": [
+   0.0,
+   -0.0088,
+   0.0
+  ],
+  "head-top": [
+   0.0,
+   0.251,
+   0.0
+  ],
+  "head-left": [
+   0.2261,
+   -0.0088,
+   0.0
+  ],
+  "head-front": [
+   0.0,
+   -0.0088,
+   0.2357
+  ],
+  "peg": [
+   0.0,
+   0.0613,
+   -0.2465
+  ],
+  "crown-top": [
+   0.0,
+   0.3159,
+   0.0
+  ],
+  "bill-tip": [
+   0.0,
+   0.076,
+   0.4028
+  ],
+  "band-front": [
+   0.0,
+   0.0951,
+   0.239
+  ],
+  "logo": [
+   0.0,
+   0.203,
+   0.2235
+  ]
+ }
+}

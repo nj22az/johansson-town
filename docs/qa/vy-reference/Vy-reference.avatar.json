@@ -1,0 +1,147 @@
+{
+  "format": "nj-avatar-studio",
+  "version": 1,
+  "recipe": {
+    "v": 1,
+    "name": "Vy",
+    "age": "child",
+    "body": {
+      "height": 0.42,
+      "build": 0.3,
+      "proportion": "classic",
+      "silhouette": "feminine",
+      "skin": "#f1cfae"
+    },
+    "head": {
+      "size": 0.55,
+      "shape": 0.52,
+      "form": "round",
+      "jaw": 0.32,
+      "cheeks": 0.65,
+      "roundness": 0.65
+    },
+    "hair": {
+      "style": "longfringe",
+      "colour": "#1c1c24",
+      "flip": false,
+      "length": 0.65,
+      "volume": 0.6,
+      "tieColour": "#f4f1ea"
+    },
+    "eyes": {
+      "style": "dot",
+      "colour": "#2a1d16",
+      "size": 0.72,
+      "width": 0.35,
+      "spacing": 0.53,
+      "height": 0.5,
+      "tilt": 0.5
+    },
+    "brows": {
+      "style": "rounded",
+      "colour": "#1c1c24",
+      "size": 0.4,
+      "spacing": 0.5,
+      "height": 0.5,
+      "tilt": 0.5
+    },
+    "nose": {
+      "style": "drawn",
+      "size": 0.42,
+      "height": 0.5,
+      "x": 0.5
+    },
+    "mouth": {
+      "style": "smile",
+      "colour": "#b8544a",
+      "size": 0.42,
+      "width": 0.5,
+      "height": 0.5,
+      "x": 0.5
+    },
+    "glasses": {
+      "style": "none",
+      "enabled": true,
+      "colour": "#2b2b2b",
+      "size": 0.5,
+      "height": 0.5
+    },
+    "facial": {
+      "colour": "#1c1714",
+      "size": 0.5,
+      "height": 0.5,
+      "width": 0.5,
+      "paint": "none",
+      "moustache": "none",
+      "beard": "none",
+      "style": "none"
+    },
+    "blush": 0.3,
+    "freckles": false,
+    "mole": false,
+    "wrinkles": 0,
+    "moleSpot": {
+      "x": 0.77,
+      "height": 0.33,
+      "size": 0.5
+    },
+    "marks": {
+      "forehead": false,
+      "worry": false,
+      "frown": false,
+      "lids": false,
+      "bags": false,
+      "crowsfeet": false,
+      "smilelines": false,
+      "cheeks": false,
+      "dimples": false,
+      "cleft": false,
+      "stubble": false,
+      "rosy": false,
+      "cocked": false,
+      "blushing": false
+    },
+    "outfit": {
+      "top": "stripedvest",
+      "topColour": "#24252b",
+      "pattern": "none",
+      "bottom": "skirt",
+      "bottomColour": "#24252b",
+      "bottomPattern": "none",
+      "footwear": "sneakers",
+      "shoes": "#f4f1ea",
+      "hat": "none",
+      "hatColour": "#f4f1ea",
+      "accent": "#f4f1ea",
+      "belt": "none",
+      "beltColour": "#16171b",
+      "number": 0
+    },
+    "accessories": {
+      "earrings": "none",
+      "neckwear": "none",
+      "colour": "#e0b93a",
+      "necklaceColour": "#e0b93a",
+      "pin": false
+    },
+    "swim": {
+      "colour": "#2f5f9e",
+      "bath": "towel"
+    },
+    "profile": {
+      "pace": 0.4023622047244094,
+      "talk": 0.5409448818897639,
+      "show": 0.7551181102362204,
+      "outlook": 0.6984251968503937,
+      "pitch": 0.5,
+      "speed": 0.5,
+      "timbre": "auto",
+      "softness": 0.5,
+      "vibrato": 0,
+      "month": 7,
+      "day": 1,
+      "favourite": "#3fa0c8",
+      "catchphrase": ""
+    }
+  }
+}

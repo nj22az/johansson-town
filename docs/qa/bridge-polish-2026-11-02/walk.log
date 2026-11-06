@@ -1,0 +1,20 @@
+✔ alongside at Minato: up the gangway from the pier, through the gate, the passage and the foyer, out of the stair door onto the car deck (750.919408ms)
+✔ her bulwark, her casings and the gangway's rails keep you aboard (197.121438ms)
+✔ down the bow ramp onto the quay's landing plate, and back up (266.470369ms)
+✔ under way her decks are still walked (he sails aboard), but the gangway and the ramp are in: no way on or off (22830.131165ms)
+✔ at Kitano-jima: up the ramp from the pier (180.49185ms)
+✔ every floor lies where the model draws it (1504.017885ms)
+✔ up stair P to the lobby, through the carpet room and the saloon, out and up the ladder to the wheelhouse (155.827816ms)
+✔ from the lobby out onto the open deck and up a ladder to the bridge deck's aft platform (205.791102ms)
+✔ the walls keep you in: no walking through the house's side, into the toilets, over the stair well, or off the wing (162.114387ms)
+✔ down into the engine room: the casing P door, the ladder through the car deck, round the engines to the control booth (175.630632ms)
+✔ the crew house: in from the bridge deck's aft platform, along the corridor, into a cabin, the mess and the wheelhouse (146.183839ms)
+✔ below: from the engine room through the watertight door to the aux room, through the door at Fr 38 to the workshop and round the partition into the store (6q-1) (149.032166ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 28221.649314

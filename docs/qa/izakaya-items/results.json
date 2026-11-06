@@ -1,0 +1,146 @@
+[
+  {
+    "viewport": "desktop",
+    "actual": {
+      "meshes": [
+        {
+          "name": "minato-interior__Minato_embers",
+          "triangles": 12
+        },
+        {
+          "name": "minato-interior__Minato_glass",
+          "triangles": 5064
+        },
+        {
+          "name": "minato-interior__Minato_glossy",
+          "triangles": 76644
+        },
+        {
+          "name": "minato-interior__Minato_lamplight",
+          "triangles": 1708
+        },
+        {
+          "name": "minato-interior__Minato_lantern_paper",
+          "triangles": 196
+        },
+        {
+          "name": "minato-interior__Minato_matte",
+          "triangles": 93523
+        },
+        {
+          "name": "minato-interior__Minato_steel",
+          "triangles": 26402
+        }
+      ],
+      "draws": {
+        "programs": 294,
+        "calls": 4441,
+        "triangles": 13420297,
+        "geometries": 1324,
+        "textures": 229
+      },
+      "devices": [
+        {
+          "id": "pink-payphone",
+          "min": [
+            3.2200000286102295,
+            0.8199999928474426,
+            6.03000020980835
+          ],
+          "max": [
+            3.619999885559082,
+            1.2020000219345093,
+            6.289999961853027
+          ]
+        },
+        {
+          "id": "laserdisc-karaoke",
+          "min": [
+            5.550000190734863,
+            -1.4305114426349519e-8,
+            4.936220169067383
+          ],
+          "max": [
+            6.170000076293945,
+            1.0800000429153442,
+            5.440000057220459
+          ]
+        }
+      ]
+    },
+    "errors": [],
+    "cancellations": []
+  },
+  {
+    "viewport": "phone",
+    "actual": {
+      "meshes": [
+        {
+          "name": "minato-interior__Minato_embers",
+          "triangles": 12
+        },
+        {
+          "name": "minato-interior__Minato_glass",
+          "triangles": 5064
+        },
+        {
+          "name": "minato-interior__Minato_glossy",
+          "triangles": 76644
+        },
+        {
+          "name": "minato-interior__Minato_lamplight",
+          "triangles": 1708
+        },
+        {
+          "name": "minato-interior__Minato_lantern_paper",
+          "triangles": 196
+        },
+        {
+          "name": "minato-interior__Minato_matte",
+          "triangles": 93523
+        },
+        {
+          "name": "minato-interior__Minato_steel",
+          "triangles": 26402
+        }
+      ],
+      "draws": {
+        "programs": 221,
+        "calls": 1429,
+        "triangles": 4254194,
+        "geometries": 690,
+        "textures": 155
+      },
+      "devices": [
+        {
+          "id": "pink-payphone",
+          "min": [
+            3.2200000286102295,
+            0.8199999928474426,
+            6.03000020980835
+          ],
+          "max": [
+            3.619999885559082,
+            1.2020000219345093,
+            6.289999961853027
+          ]
+        },
+        {
+          "id": "laserdisc-karaoke",
+          "min": [
+            5.550000190734863,
+            -1.4305114426349519e-8,
+            4.936220169067383
+          ],
+          "max": [
+            6.170000076293945,
+            1.0800000429153442,
+            5.440000057220459
+          ]
+        }
+      ]
+    },
+    "errors": [],
+    "cancellations": []
+  }
+]

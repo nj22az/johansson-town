@@ -1,0 +1,1131 @@
+{
+  "engine": "webkit",
+  "profile": "iPhone 13",
+  "physicalDevice": false,
+  "notes": [
+    "Desktop WebKit/Chromium with iPhone viewport, DPR, touch and user agent. Not physical iOS Safari or its memory limits."
+  ],
+  "steps": [
+    {
+      "name": "cold-start portrait",
+      "seconds": 37.99,
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 888,
+            "end": 932
+          },
+          "code": {
+            "start": 932,
+            "end": 2534
+          },
+          "accessories": {
+            "start": 2535,
+            "end": 2641
+          },
+          "graphics": {
+            "start": 2641,
+            "end": 2734
+          },
+          "town": {
+            "start": 2872,
+            "end": 5721
+          },
+          "residents": {
+            "start": 5855,
+            "end": 7799
+          },
+          "shaders": {
+            "start": 8593,
+            "end": 11324
+          },
+          "walking": {
+            "start": 11360,
+            "end": 11770
+          },
+          "preview": {
+            "start": 11771,
+            "end": 20927
+          },
+          "frame": {
+            "start": 29654,
+            "end": 34069
+          }
+        }
+      },
+      "room": null,
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        -1.5,
+        0.098,
+        -72.7
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 133,
+        "calls": 980,
+        "triangles": 882180,
+        "geometries": 1134,
+        "textures": 198,
+        "releasedCanvases": 240
+      },
+      "frames": 84,
+      "canvas": {
+        "width": 585,
+        "height": 996
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793406301475,
+        "previousStage": null,
+        "previousAttempts": [],
+        "events": [
+          {
+            "at": 1793406301475,
+            "stage": "Loading game code"
+          },
+          {
+            "at": 1793406301632,
+            "stage": "Creating graphics context"
+          },
+          {
+            "at": 1793406301967,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793406310386,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793406318276,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793406319867,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793406320059,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793406320605,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793406323677,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793406323952,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793406326801,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793406329190,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793406332066,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793406333010,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 198,
+              "geometries": 1134,
+              "programs": 133,
+              "drawCalls": 972,
+              "triangles": 881598,
+              "bufferWidth": 585,
+              "bufferHeight": 996
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "live frame loop advances",
+      "seconds": 41.4,
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 888,
+            "end": 932
+          },
+          "code": {
+            "start": 932,
+            "end": 2534
+          },
+          "accessories": {
+            "start": 2535,
+            "end": 2641
+          },
+          "graphics": {
+            "start": 2641,
+            "end": 2734
+          },
+          "town": {
+            "start": 2872,
+            "end": 5721
+          },
+          "residents": {
+            "start": 5855,
+            "end": 7799
+          },
+          "shaders": {
+            "start": 8593,
+            "end": 11324
+          },
+          "walking": {
+            "start": 11360,
+            "end": 11770
+          },
+          "preview": {
+            "start": 11771,
+            "end": 20927
+          },
+          "frame": {
+            "start": 29654,
+            "end": 34069
+          }
+        }
+      },
+      "room": null,
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        -1.5,
+        0.098,
+        -72.7
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 133,
+        "calls": 988,
+        "triangles": 887334,
+        "geometries": 1135,
+        "textures": 198,
+        "releasedCanvases": 240
+      },
+      "frames": 120,
+      "canvas": {
+        "width": 585,
+        "height": 996
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793406301475,
+        "previousStage": null,
+        "previousAttempts": [],
+        "events": [
+          {
+            "at": 1793406301475,
+            "stage": "Loading game code"
+          },
+          {
+            "at": 1793406301632,
+            "stage": "Creating graphics context"
+          },
+          {
+            "at": 1793406301967,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793406310386,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793406318276,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793406319867,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793406320059,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793406320605,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793406323677,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793406323952,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793406326801,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793406329190,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793406332066,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793406333010,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 198,
+              "geometries": 1134,
+              "programs": 133,
+              "drawCalls": 972,
+              "triangles": 881598,
+              "bufferWidth": 585,
+              "bufferHeight": 996
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape",
+      "seconds": 43.08,
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 888,
+            "end": 932
+          },
+          "code": {
+            "start": 932,
+            "end": 2534
+          },
+          "accessories": {
+            "start": 2535,
+            "end": 2641
+          },
+          "graphics": {
+            "start": 2641,
+            "end": 2734
+          },
+          "town": {
+            "start": 2872,
+            "end": 5721
+          },
+          "residents": {
+            "start": 5855,
+            "end": 7799
+          },
+          "shaders": {
+            "start": 8593,
+            "end": 11324
+          },
+          "walking": {
+            "start": 11360,
+            "end": 11770
+          },
+          "preview": {
+            "start": 11771,
+            "end": 20927
+          },
+          "frame": {
+            "start": 29654,
+            "end": 34069
+          }
+        }
+      },
+      "room": null,
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        -1.5,
+        0.098,
+        -72.7
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 135,
+        "calls": 1221,
+        "triangles": 938696,
+        "geometries": 1230,
+        "textures": 212,
+        "releasedCanvases": 252
+      },
+      "frames": 135,
+      "canvas": {
+        "width": 1266,
+        "height": 585
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793406301475,
+        "previousStage": null,
+        "previousAttempts": [],
+        "events": [
+          {
+            "at": 1793406301475,
+            "stage": "Loading game code"
+          },
+          {
+            "at": 1793406301632,
+            "stage": "Creating graphics context"
+          },
+          {
+            "at": 1793406301967,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793406310386,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793406318276,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793406319867,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793406320059,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793406320605,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793406323677,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793406323952,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793406326801,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793406329190,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793406332066,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793406333010,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 198,
+              "geometries": 1134,
+              "programs": 133,
+              "drawCalls": 972,
+              "triangles": 881598,
+              "bufferWidth": 585,
+              "bufferHeight": 996
+            }
+          },
+          {
+            "at": 1793406338045,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 212,
+              "geometries": 1230,
+              "programs": 135,
+              "drawCalls": 1221,
+              "triangles": 938696,
+              "bufferWidth": 1266,
+              "bufferHeight": 585
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "warm reload",
+      "seconds": 65.53,
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 941,
+            "end": 1000
+          },
+          "code": {
+            "start": 1001,
+            "end": 2943
+          },
+          "accessories": {
+            "start": 2944,
+            "end": 3079
+          },
+          "graphics": {
+            "start": 3080,
+            "end": 3161
+          },
+          "town": {
+            "start": 3308,
+            "end": 5291
+          },
+          "residents": {
+            "start": 5360,
+            "end": 6280
+          },
+          "shaders": {
+            "start": 6705,
+            "end": 7523
+          },
+          "walking": {
+            "start": 7562,
+            "end": 8021
+          },
+          "preview": {
+            "start": 8022,
+            "end": 10582
+          },
+          "frame": {
+            "start": 15255,
+            "end": 17943
+          }
+        }
+      },
+      "room": null,
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        -1.5,
+        0.098,
+        -72.7
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 131,
+        "calls": 925,
+        "triangles": 919684,
+        "geometries": 1089,
+        "textures": 192,
+        "releasedCanvases": 236
+      },
+      "frames": 84,
+      "canvas": {
+        "width": 585,
+        "height": 1266
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793406345348,
+        "previousStage": "Page left normally",
+        "previousAttempts": [
+          {
+            "startedAt": 1793406301475,
+            "stage": "Page left normally"
+          }
+        ],
+        "events": [
+          {
+            "at": 1793406345348,
+            "stage": "Loading game code"
+          },
+          {
+            "at": 1793406345549,
+            "stage": "Creating graphics context"
+          },
+          {
+            "at": 1793406345817,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793406350067,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793406352541,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793406352986,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793406353139,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793406353862,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793406354506,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793406354827,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793406355721,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793406358182,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793406359947,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793406360348,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 192,
+              "geometries": 1089,
+              "programs": 131,
+              "drawCalls": 924,
+              "triangles": 919648,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "entered Izakaya",
+      "seconds": 71.5,
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 941,
+            "end": 1000
+          },
+          "code": {
+            "start": 1001,
+            "end": 2943
+          },
+          "accessories": {
+            "start": 2944,
+            "end": 3079
+          },
+          "graphics": {
+            "start": 3080,
+            "end": 3161
+          },
+          "town": {
+            "start": 3308,
+            "end": 5291
+          },
+          "residents": {
+            "start": 5360,
+            "end": 6280
+          },
+          "shaders": {
+            "start": 6705,
+            "end": 7523
+          },
+          "walking": {
+            "start": 7562,
+            "end": 8021
+          },
+          "preview": {
+            "start": 8022,
+            "end": 10582
+          },
+          "frame": {
+            "start": 15255,
+            "end": 17943
+          }
+        }
+      },
+      "room": "izakaya",
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        0,
+        0,
+        1.68
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 136,
+        "calls": 72,
+        "triangles": 107099,
+        "geometries": 1146,
+        "textures": 209,
+        "releasedCanvases": 236
+      },
+      "frames": 117,
+      "canvas": {
+        "width": 585,
+        "height": 1266
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793406345348,
+        "previousStage": "Page left normally",
+        "previousAttempts": [
+          {
+            "startedAt": 1793406301475,
+            "stage": "Page left normally"
+          }
+        ],
+        "events": [
+          {
+            "at": 1793406345348,
+            "stage": "Loading game code"
+          },
+          {
+            "at": 1793406345549,
+            "stage": "Creating graphics context"
+          },
+          {
+            "at": 1793406345817,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793406350067,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793406352541,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793406352986,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793406353139,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793406353862,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793406354506,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793406354827,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793406355721,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793406358182,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793406359947,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793406360348,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 192,
+              "geometries": 1089,
+              "programs": 131,
+              "drawCalls": 924,
+              "triangles": 919648,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          },
+          {
+            "at": 1793406365021,
+            "stage": "Loading detail: kissa-higa-models"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [
+    "Viewport argument key \"interactive-widget\" not recognized and ignored.",
+    "Viewport argument key \"interactive-widget\" not recognized and ignored."
+  ],
+  "failedRequests": [
+    {
+      "url": "http://127.0.0.1:44699/johansson-town/assets/video/izakaya-ad.mp4",
+      "failure": "Load request cancelled"
+    }
+  ],
+  "passed": false,
+  "failure": "locator.tap: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#exitRoomButton')\n    - locator resolved to <button disabled hidden=\"\" type=\"button\" tabindex=\"-1\" aria-hidden=\"true\" id=\"exitRoomButton\" aria-label=\"Exit to street\" class=\"control-off icon-btn hidden\">Exit to street</button>\n  - attempting tap action\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying tap action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying tap action\n      - waiting 100ms\n    29 × waiting for element to be visible, enabled and stable\n       - element is not visible\n     - retrying tap action\n       - waiting 500ms\n",
+  "failureState": {
+    "running": true,
+    "safe": false,
+    "loading": {
+      "completed": 10,
+      "total": 10,
+      "percent": 100,
+      "target": 100,
+      "seconds": 0.3,
+      "ready": true,
+      "label": "Island ready",
+      "error": null,
+      "assets": {
+        "completed": 47,
+        "total": 47,
+        "failed": 0
+      },
+      "timings": {
+        "controls": {
+          "start": 941,
+          "end": 1000
+        },
+        "code": {
+          "start": 1001,
+          "end": 2943
+        },
+        "accessories": {
+          "start": 2944,
+          "end": 3079
+        },
+        "graphics": {
+          "start": 3080,
+          "end": 3161
+        },
+        "town": {
+          "start": 3308,
+          "end": 5291
+        },
+        "residents": {
+          "start": 5360,
+          "end": 6280
+        },
+        "shaders": {
+          "start": 6705,
+          "end": 7523
+        },
+        "walking": {
+          "start": 7562,
+          "end": 8021
+        },
+        "preview": {
+          "start": 8022,
+          "end": 10582
+        },
+        "frame": {
+          "start": 15255,
+          "end": 17943
+        }
+      }
+    },
+    "room": "izakaya",
+    "blocked": {
+      "catchingUp": false,
+      "roomLoading": false,
+      "camera": false,
+      "inspector": false,
+      "viewer": false,
+      "photo": false,
+      "directory": false,
+      "started": true,
+      "hidden": false
+    },
+    "player": [
+      1.0428932188134523,
+      0,
+      0.9728932188134524
+    ],
+    "graphics": {
+      "ink": true,
+      "grade": true,
+      "fxaa": true,
+      "scale": 1,
+      "samples": 4,
+      "hdr": true,
+      "look": "none",
+      "focusDistance": 0,
+      "focusRange": 3,
+      "focusMode": 0
+    },
+    "render": {
+      "programs": 146,
+      "calls": 78,
+      "triangles": 152026,
+      "geometries": 1155,
+      "textures": 212,
+      "releasedCanvases": 236
+    },
+    "frames": 780,
+    "canvas": {
+      "width": 468,
+      "height": 1012
+    },
+    "launch": {
+      "version": 1,
+      "build": "ios-full-cel-20261018",
+      "startedAt": 1793406345348,
+      "previousStage": "Page left normally",
+      "previousAttempts": [
+        {
+          "startedAt": 1793406301475,
+          "stage": "Page left normally"
+        }
+      ],
+      "events": [
+        {
+          "at": 1793406345348,
+          "stage": "Loading game code"
+        },
+        {
+          "at": 1793406345549,
+          "stage": "Creating graphics context"
+        },
+        {
+          "at": 1793406345817,
+          "stage": "Building town"
+        },
+        {
+          "at": 1793406350067,
+          "stage": "Preparing walking surface"
+        },
+        {
+          "at": 1793406352541,
+          "stage": "Rendering title preview"
+        },
+        {
+          "at": 1793406352986,
+          "stage": "Ready to enter town"
+        },
+        {
+          "at": 1793406353139,
+          "stage": "Loading detail: harbour-park-bench"
+        },
+        {
+          "at": 1793406353862,
+          "stage": "Loading detail: cargo-berth-cad"
+        },
+        {
+          "at": 1793406354506,
+          "stage": "Loading detail: sakura-interior"
+        },
+        {
+          "at": 1793406354827,
+          "stage": "Loading detail: park-onsen"
+        },
+        {
+          "at": 1793406355721,
+          "stage": "Loading detail: warehouse"
+        },
+        {
+          "at": 1793406358182,
+          "stage": "Entering town"
+        },
+        {
+          "at": 1793406359947,
+          "stage": "Rendering first gameplay frame"
+        },
+        {
+          "at": 1793406360348,
+          "stage": "Playing",
+          "metrics": {
+            "textures": 192,
+            "geometries": 1089,
+            "programs": 131,
+            "drawCalls": 924,
+            "triangles": 919648,
+            "bufferWidth": 585,
+            "bufferHeight": 1266
+          }
+        },
+        {
+          "at": 1793406365021,
+          "stage": "Loading detail: kissa-higa-models"
+        }
+      ]
+    }
+  }
+}

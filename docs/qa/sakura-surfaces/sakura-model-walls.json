@@ -1,0 +1,242 @@
+{
+  "drawing": "SK-ST-004",
+  "revision": "B",
+  "date": "2026-10-31",
+  "units": "metres",
+  "paper": {
+    "width": 0.515,
+    "height": 0.728
+  },
+  "scope": "Two selected office prints (KITANO 12 and UMINEKO Black), three existing stockroom additions; office/storey and shop frames differ. Existing stair/hall unchanged. No doors, furniture, switches, colliders or routes moved.",
+  "walls": [
+    {
+      "id": "office-front",
+      "room": "office",
+      "face": "-z",
+      "plane": 4.49,
+      "along": [
+        0.8,
+        6.34
+      ],
+      "height": 2.8,
+      "source": "sakura-office-room.js SAKURA_UPSTAIRS; sakura-office-dressing.js furniture assembly",
+      "features": [
+        {
+          "id": "town window",
+          "rect": [
+            1.6,
+            0.9,
+            4.8,
+            2.35
+          ]
+        },
+        {
+          "id": "ledger shelf",
+          "rect": [
+            0.805,
+            0,
+            1.555,
+            1.815
+          ]
+        },
+        {
+          "id": "filing and archive tube",
+          "rect": [
+            4.895,
+            0,
+            5.365,
+            1.82
+          ]
+        },
+        {
+          "id": "calendar",
+          "rect": [
+            5.89,
+            1.32,
+            6.21,
+            1.78
+          ]
+        }
+      ],
+      "posters": [
+        {
+          "id": "umineko-black",
+          "at": [
+            1.18,
+            2.3,
+            4.49
+          ],
+          "lookAt": [
+            1.18,
+            1.5,
+            3.25
+          ]
+        },
+        {
+          "id": "kitano-12",
+          "at": [
+            5.15,
+            2.3,
+            4.49
+          ],
+          "lookAt": [
+            5.15,
+            1.5,
+            3.2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "office-back",
+      "room": "office",
+      "face": "+z",
+      "plane": 0.55,
+      "along": [
+        0.8,
+        6.34
+      ],
+      "height": 2.8,
+      "source": "sakura-office-room.js kitchenette and door; sakura-office-dressing.js departures",
+      "features": [
+        {
+          "id": "open office door",
+          "rect": [
+            0.81,
+            0,
+            1.69,
+            2.05
+          ]
+        },
+        {
+          "id": "wall cupboard",
+          "rect": [
+            2,
+            1.55,
+            3.8,
+            2.15
+          ]
+        },
+        {
+          "id": "fridge",
+          "rect": [
+            3.905,
+            0,
+            4.455,
+            1.2
+          ]
+        },
+        {
+          "id": "departures whiteboard frame",
+          "rect": [
+            4.735,
+            1.1375,
+            5.965,
+            1.9625
+          ]
+        }
+      ],
+      "posters": []
+    },
+    {
+      "id": "stockroom-rear",
+      "room": "stockroom",
+      "face": "+z",
+      "plane": -6.86,
+      "along": [
+        -0.6,
+        3
+      ],
+      "height": 2.98,
+      "source": "sakura-shell.js rear wall/delivery door; sakura-life.js storage standees; measured built geometry",
+      "features": [
+        {
+          "id": "stairwell",
+          "rect": [
+            -5.65,
+            0,
+            -0.6,
+            2.98
+          ]
+        },
+        {
+          "id": "delivery door",
+          "rect": [
+            3,
+            0,
+            4.3,
+            2.1
+          ]
+        },
+        {
+          "id": "low stock cartons and crates",
+          "rect": [
+            -0.6,
+            0,
+            1.4,
+            1.08
+          ]
+        },
+        {
+          "id": "cola standee",
+          "rect": [
+            1.2,
+            0,
+            2,
+            1.569757
+          ]
+        },
+        {
+          "id": "Jaga-bo standee",
+          "rect": [
+            1.9,
+            0,
+            2.8,
+            1.321113
+          ]
+        }
+      ],
+      "posters": [
+        {
+          "id": "minato-tsuru",
+          "at": [
+            -0.1,
+            1.78,
+            -6.86
+          ],
+          "lookAt": [
+            -0.1,
+            1.5,
+            -5.4
+          ]
+        },
+        {
+          "id": "nami-sour",
+          "at": [
+            1.6,
+            2.08,
+            -6.86
+          ],
+          "lookAt": [
+            1.6,
+            1.5,
+            -5.4
+          ]
+        },
+        {
+          "id": "asagao-uv",
+          "at": [
+            2.35,
+            2.08,
+            -6.86
+          ],
+          "lookAt": [
+            2.35,
+            1.5,
+            -5.4
+          ]
+        }
+      ]
+    }
+  ]
+}

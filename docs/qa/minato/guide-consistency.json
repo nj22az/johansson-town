@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-17",
+  "scope": [
+    "Photo Studio destinations",
+    "Pocket-camera place captions",
+    "Feed garden and florist descriptions and camera plans",
+    "Sakura Blue Coral mural directions"
+  ],
+  "sourceChecks": {
+    "command": "node --test tests/neighbourhood-access.test.mjs tests/feed-storyteller.test.mjs",
+    "tests": 16,
+    "passed": 16,
+    "failed": 0,
+    "exitCode": 0,
+    "durationSecondsApprox": 100.8,
+    "method": "Actual public photo records, stable IDs, canonical destinations, collision-aware routes in the constructed town, actual mural interaction callback, existing feed generation and backing-asset checks."
+  },
+  "destinations": [
+    {
+      "savedPhotoId": "photo-garden",
+      "savedFeedId": "garden",
+      "name": "Harbour Park pond",
+      "publicApproach": [
+        26,
+        -34.2
+      ]
+    },
+    {
+      "savedPhotoId": "photo-rainflower",
+      "savedFeedId": "rainflower",
+      "name": "Rainflower Florist",
+      "publicApproach": [
+        5,
+        -16.7
+      ]
+    }
+  ],
+  "assetRefresh": {
+    "status": "passed",
+    "evidence": "feed-cache-refresh.json",
+    "method": "Actual current game captures with colour/depth camera alignment and physical standing-position validation.",
+    "webpImages": 18,
+    "matchedColourDepthPairs": 8,
+    "assetFilesChanged": 19,
+    "otherFeedFilesUnchanged": 126,
+    "otherCachedViewLocationsUnchanged": 14,
+    "twoPersonPlacements": "Dry, clear positions selected by actual comic blocking; heads, knees and feet visible in wide, push and high views, with the existing low-view fallback.",
+    "feedAndSeatingRegressions": {
+      "passed": 11,
+      "failed": 0
+    }
+  },
+  "build": {
+    "boot": "boot-CGD5q-iu.js",
+    "game": "game-D_N-kZtv.js",
+    "feed": "feed-CYjdFeQk.js",
+    "sourceSha256": "0b4d3a0f1c07024c380feecc017b281600e4d31ab1253c86f6854d4c4fabda19"
+  },
+  "nativeBoot": {
+    "passed": true,
+    "durationSecondsApprox": 73.422,
+    "note": "Boot and all interior visits passed in the initial four-case run. The final garden camera correction changed only the lazy feed chunk; boot and game chunks remain byte-identical to that passed run."
+  },
+  "initialPackagingGate": {
+    "tests": 4,
+    "passed": 3,
+    "failed": 1,
+    "durationSeconds": 74.135449174,
+    "cause": "The previous 34-entry total-graph guard encountered 35 after photo, feed and world began sharing the canonical Harbour Park data module.",
+    "resolution": "An explicit 35-entry bound documents that one intentional 2,521-byte shared module with no imports. Existing dependency, lazy-loading, audio and stylesheet assertions remain intact."
+  },
+  "finalPackagingGate": {
+    "command": "node --test --test-concurrency=4 --test-timeout=900000 tests/runtime-package.test.mjs",
+    "tests": 3,
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0,
+    "exitCode": 0,
+    "durationSeconds": 0.491194116
+  },
+  "status": "passed; implementation and assets frozen for publication"
+}

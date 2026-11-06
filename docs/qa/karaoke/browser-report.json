@@ -1,0 +1,24 @@
+{
+  "views": [
+    "desktop-solo-setup",
+    "desktop-duet-setup",
+    "desktop-quartet-performing",
+    "phone-quartet-performing",
+    "tablet-quartet-performing",
+    "tablet-finished",
+    "phone-setup",
+    "minato-karaoke-preview"
+  ],
+  "checks": [
+    "Real Web Audio output, paid once, saved title/lyrics, no injected HTML",
+    "Unsaved text is retained on Escape",
+    "Full performance and bow",
+    "Free encore",
+    "Stop and backgrounding silence and reset the song",
+    "Exit restores canvas and focus",
+    "Reopening restores the draft",
+    "Insufficient funds never starts a take"
+  ],
+  "errors": [],
+  "browser": "131.0.6778.33"
+}

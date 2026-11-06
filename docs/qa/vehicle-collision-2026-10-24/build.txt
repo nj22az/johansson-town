@@ -1,0 +1,53 @@
+
+> build:runtime
+> node scripts/build-runtime.mjs
+
+Printed Sakura flyer with current catalogue prices.
+Indexed 64 town documents
+[36mvite v7.3.6 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 632 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mruntime/[22m[32m.vite/manifest.json             [39m[1m[2m    9.57 kB[22m[1m[22m[2m │ gzip:   1.38 kB[22m
+[2mruntime/[22m[36maudio-ClT0uVQ7.js               [39m[1m[2m    0.10 kB[22m[1m[22m[2m │ gzip:   0.10 kB[22m
+[2mruntime/[22m[36msato-ramen-ula94FMr.js          [39m[1m[2m    0.45 kB[22m[1m[22m[2m │ gzip:   0.31 kB[22m
+[2mruntime/[22m[36mshopping-lane-plan-D0DhEU8_.js  [39m[1m[2m    0.61 kB[22m[1m[22m[2m │ gzip:   0.40 kB[22m
+[2mruntime/[22m[36mpreload-helper-PPVm8Dsz.js      [39m[1m[2m    1.23 kB[22m[1m[22m[2m │ gzip:   0.71 kB[22m
+[2mruntime/[22m[36mtouch-ui-D34cMzo7.js            [39m[1m[2m    2.41 kB[22m[1m[22m[2m │ gzip:   1.17 kB[22m
+[2mruntime/[22m[36mportraits-SbbwpoMT.js           [39m[1m[2m    2.61 kB[22m[1m[22m[2m │ gzip:   1.47 kB[22m
+[2mruntime/[22m[36mwebmcp-characters-BkXkAGJZ.js   [39m[1m[2m    3.13 kB[22m[1m[22m[2m │ gzip:   1.45 kB[22m
+[2mruntime/[22m[36mfriendship-D-153hkW.js          [39m[1m[2m    3.42 kB[22m[1m[22m[2m │ gzip:   1.75 kB[22m
+[2mruntime/[22m[36mtitle-menu-BeNExQQF.js          [39m[1m[2m    3.92 kB[22m[1m[22m[2m │ gzip:   1.89 kB[22m
+[2mruntime/[22m[36mboot-CY-tclsF.js                [39m[1m[2m    4.26 kB[22m[1m[22m[2m │ gzip:   2.18 kB[22m
+[2mruntime/[22m[36mcatalog-BqceGcE7.js             [39m[1m[2m    4.96 kB[22m[1m[22m[2m │ gzip:   2.37 kB[22m
+[2mruntime/[22m[36mthuan-voice-Dz-XGNqd.js         [39m[1m[2m    5.83 kB[22m[1m[22m[2m │ gzip:   2.80 kB[22m
+[2mruntime/[22m[36mstudio-handoff-AXht5MiX.js      [39m[1m[2m    6.10 kB[22m[1m[22m[2m │ gzip:   2.89 kB[22m
+[2mruntime/[22m[36micons-DfeBIm6m.js               [39m[1m[2m    7.26 kB[22m[1m[22m[2m │ gzip:   3.36 kB[22m
+[2mruntime/[22m[36mwebmcp-CxSkO4VH.js              [39m[1m[2m   15.82 kB[22m[1m[22m[2m │ gzip:   5.39 kB[22m
+[2mruntime/[22m[36mfeed-Cm_qzbL7.js                [39m[1m[2m   25.77 kB[22m[1m[22m[2m │ gzip:  11.17 kB[22m
+[2mruntime/[22m[36mconcert-DVAcT41P.js             [39m[1m[2m   33.92 kB[22m[1m[22m[2m │ gzip:  13.92 kB[22m
+[2mruntime/[22m[36mscene-world-c33QZh7D.js         [39m[1m[2m   38.93 kB[22m[1m[22m[2m │ gzip:  16.27 kB[22m
+[2mruntime/[22m[36mhat-models-0BWE2BDN.js          [39m[1m[2m   47.68 kB[22m[1m[22m[2m │ gzip:  16.29 kB[22m
+[2mruntime/[22m[36mstoryteller-DFpIt5VF.js         [39m[1m[2m   52.08 kB[22m[1m[22m[2m │ gzip:  18.06 kB[22m
+[2mruntime/[22m[36mharbour-park-plan-BhIaivO_.js   [39m[1m[2m   53.74 kB[22m[1m[22m[2m │ gzip:  18.13 kB[22m
+[2mruntime/[22m[36mtown-hall-CI-SL0Im.js           [39m[1m[2m   58.07 kB[22m[1m[22m[2m │ gzip:  24.20 kB[22m
+[2mruntime/[22m[36mactors-BhJ_TyLX.js              [39m[1m[2m   85.69 kB[22m[1m[22m[2m │ gzip:  33.10 kB[22m
+[2mruntime/[22m[36msakura-interior-BbJjSSYR.js     [39m[1m[2m  173.91 kB[22m[1m[22m[2m │ gzip:  67.26 kB[22m
+[2mruntime/[22m[36monsen-Pc1rtNhg.js               [39m[1m[2m  189.55 kB[22m[1m[22m[2m │ gzip:  74.42 kB[22m
+[2mruntime/[22m[36mstaff-bench-Ibxli6LV.js         [39m[1m[2m  227.29 kB[22m[1m[22m[2m │ gzip:  80.92 kB[22m
+[2mruntime/[22m[36mfish-C8tPcD-Z.js                [39m[1m[2m  366.40 kB[22m[1m[22m[2m │ gzip: 135.12 kB[22m
+[2mruntime/[22m[36manimate-DVRyKc1f.js             [39m[1m[33m  686.83 kB[39m[22m[2m │ gzip: 212.56 kB[22m
+[2mruntime/[22m[36mcompact-shops-MkBTANhC.js       [39m[1m[33m  834.65 kB[39m[22m[2m │ gzip: 239.32 kB[22m
+[2mruntime/[22m[36mgame-Buy7-zOP.js                [39m[1m[33m  867.62 kB[39m[22m[2m │ gzip: 340.24 kB[22m
+[2mruntime/[22m[36mhalloween-OzX0hXwF.js           [39m[1m[33m1,146.66 kB[39m[22m[2m │ gzip: 454.71 kB[22m
+[2mruntime/[22m[36mspector.bundle-_JPoFEkN.js      [39m[1m[33m1,199.20 kB[39m[22m[2m │ gzip: 327.35 kB[22m
+[33m
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+[32m✓ built in 7.73s[39m
+Pruned stale runtime chunks: 16
+Stylesheet hashes: base.css 989748aa, context-controls.css f898462d, landing.css 6b8bf0ea, dual-controls.css 396f3a7b, tomodachi-ui.css e851b42d, photo-mode.css 23db1895, quiet-ui.css 056d2627, context-rail.css a4e11923, line-ui.css c9fe9f5f, quiet-hud.css e0b5f153, title-screen.css d00ff286, town-directory.css 5fef277a, ferry-operations.css 1625ed17, town-book.css 74d6f099, creator/creator.css 8c337527, line-ui.css c9fe9f5f
+Published runtime entry points: boot-CY-tclsF.js audio-ClT0uVQ7.js files: 41

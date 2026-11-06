@@ -1,0 +1,124 @@
+{
+  "candidate": "9afb4cfa4a1ff5d89bc7c8434340506a899911dd",
+  "unchanged_main": {
+    "BEFORE": {
+      "hits": [
+        {
+          "x": 19.8,
+          "z": -40,
+          "blocked": false,
+          "colliders": []
+        },
+        {
+          "x": 19.46,
+          "z": -39.66,
+          "blocked": false,
+          "colliders": []
+        }
+      ],
+      "opening": "fish-auction",
+      "position": [
+        19.446446609406728,
+        0.009333332069218159,
+        -39.64644660940672
+      ],
+      "yaw": -1.2359219418950935,
+      "controls": true,
+      "frame": {
+        "connected": false,
+        "move": {
+          "x": 0,
+          "y": 0
+        },
+        "look": {
+          "x": 0,
+          "y": 0
+        },
+        "held": [],
+        "pressed": [],
+        "zoom": 0
+      }
+    },
+    "AFTER": {
+      "position": [
+        19.46553375208358,
+        0.009333332069218159,
+        -39.66597838175661
+      ],
+      "distance": 0.027309506526012006,
+      "frame": {
+        "connected": true,
+        "move": {
+          "x": 0,
+          "y": -1
+        },
+        "look": {
+          "x": 0.7675919047342226,
+          "y": 0.19189797618355564
+        },
+        "held": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "navigation": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "zoom": 0,
+        "pressed": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "controls": true
+    }
+  },
+  "main_base": "37befc31db79e09ac2a1507663f80d6f0cc65ee3",
+  "unchanged_test_sha256": "2fc136b747c5c396cb4d6894f6fd063f63eae03907d4a95ac805b07e2fbe122d",
+  "conclusion": "Both original tests choose fish-auction and stop after 0.0273095 m beside an occupied mark. Production controls work at the other tested dock openings. The input smoke now explicitly selects the clear ferry landing and asserts its position; all existing control and refresh-rate assertions remain unchanged."
+}

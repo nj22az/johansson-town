@@ -1,0 +1,22 @@
+{
+  "kind": "native-source-regression",
+  "passed": true,
+  "workingDirectory": "johansson-town",
+  "command": "node --test --test-concurrency=4 --test-timeout=900000 tests/ferry*.test.mjs tests/airport-ferry.test.mjs tests/airport-dock-access.test.mjs tests/owned-vehicles.test.mjs tests/island-growth.test.mjs tests/travel-progression.test.mjs tests/travel-webmcp.test.mjs tests/balloon-layout.test.mjs tests/neighbour-chats.test.mjs tests/dialogue-rpg.test.mjs tests/conversation.test.mjs tests/activity-lifecycle.test.mjs tests/red-tile-veranda.test.mjs tests/mcp-audit.test.mjs",
+  "aggregate": {
+    "tests": 205,
+    "passed": 205,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "exitCode": 0,
+    "durationSeconds": 188.262795227
+  },
+  "loadedIntegration": {
+    "record": "ferry-loaded-integration-result.json",
+    "passed": true,
+    "fixtureCaveat": "The CPU fixture does not run ambient resident schedules. Six original ambient start poses obstructing Main Street were initialized on the adjoining footway before the run. The same resident bodies, actual town geometry, parked fleet, active traffic, original Tetsuo and existing Fujita were retained. No ferry, crew or driver readiness was bypassed. The six original and adjusted positions are recorded in backgroundSetup in the linked result."
+  },
+  "coverageNote": "This release gate includes the paired-hand timing correction: during letting-go and making-fast, both handlers wait for both station acknowledgements before work timing or handling gestures begin. Each handler still acknowledges arrival independently."
+}

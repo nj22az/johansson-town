@@ -1,0 +1,774 @@
+{
+  "screens": [
+    {
+      "viewport": "phone",
+      "steps": [
+        {
+          "state": "to-boat",
+          "position": [
+            -36.6,
+            0.02,
+            -56.53000000000001
+          ]
+        },
+        {
+          "state": "to-boat",
+          "position": [
+            -36.6,
+            0.02,
+            -55.78
+          ]
+        },
+        {
+          "state": "to-boat",
+          "position": [
+            -37.17,
+            0.02,
+            -55.6
+          ]
+        },
+        {
+          "state": "to-boat",
+          "position": [
+            -37.5,
+            0.03199510503752839,
+            -55.18017132368651
+          ]
+        },
+        {
+          "state": "to-boat",
+          "position": [
+            -37.5,
+            0.05341493546168612,
+            -54.43047725884099
+          ]
+        },
+        {
+          "state": "to-boat",
+          "position": [
+            -38.019428687999074,
+            0.06,
+            -54.2
+          ]
+        },
+        {
+          "state": "to-boat",
+          "position": [
+            -38.76942868799907,
+            0.06,
+            -54.2
+          ]
+        },
+        {
+          "state": "to-boat",
+          "position": [
+            -39.51942868799908,
+            0.06,
+            -54.2
+          ]
+        },
+        {
+          "state": "to-boat",
+          "position": [
+            -40.2,
+            0.06,
+            -54.26942868799909
+          ]
+        },
+        {
+          "state": "to-boat",
+          "position": [
+            -40.2,
+            0.06,
+            -55.019428687999095
+          ]
+        },
+        {
+          "state": "to-boat",
+          "position": [
+            -39.85,
+            0.06,
+            -55.41942868799911
+          ]
+        },
+        {
+          "state": "to-boat",
+          "position": [
+            -39.85,
+            0.06,
+            -56.169428687999115
+          ]
+        },
+        {
+          "state": "to-boat",
+          "position": [
+            -40.12714217139886,
+            0.06,
+            -56.84743466661333
+          ]
+        },
+        {
+          "state": "settling",
+          "position": [
+            -40.863,
+            0.6130000000000004,
+            -57.12
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        },
+        {
+          "state": "sleeping",
+          "position": [
+            -41.13,
+            0.85,
+            -57.15
+          ]
+        }
+      ],
+      "walk": {
+        "controls": "CDP touch joystick and swipes",
+        "gangway": true,
+        "deck": true,
+        "door": true,
+        "aisle": true,
+        "returnRoute": [
+          {
+            "point": {
+              "x": -39.85,
+              "z": -56.35
+            },
+            "reached": true
+          },
+          {
+            "point": {
+              "x": -39.85,
+              "z": -55.35
+            },
+            "reached": true
+          },
+          {
+            "point": {
+              "x": -40.2,
+              "z": -54.2
+            },
+            "reached": true
+          },
+          {
+            "point": {
+              "x": -37.5,
+              "z": -54.2
+            },
+            "reached": true
+          }
+        ]
+      },
+      "camera": {
+        "lens": {
+          "position": [
+            -39.45816496010151,
+            2.582608183068108,
+            -56.71275275296537
+          ],
+          "rotation": [
+            -0.30090909090909085,
+            0.3237584451354789,
+            0
+          ],
+          "distance": 0.48,
+          "ceiling": null,
+          "blocked": false
+        },
+        "roofVisible": [
+          false
+        ]
+      },
+      "collision": {
+        "from": [
+          -40.10375424515585,
+          0.06,
+          -57.00178662036253
+        ],
+        "to": [
+          -39.62367446562876,
+          0.06,
+          -57.00178692823876
+        ]
+      },
+      "awakeRoofs": [
+        true
+      ],
+      "wake": {
+        "state": "watching",
+        "position": [
+          -36.6,
+          0.02,
+          -57.28
+        ],
+        "held": "beer"
+      },
+      "wakeSteps": [
+        {
+          "state": "to-shed",
+          "position": [
+            -40.24,
+            0.06,
+            -57.05
+          ]
+        },
+        {
+          "state": "to-shed",
+          "position": [
+            -39.87497338133855,
+            0.06,
+            -56.39482401778714
+          ]
+        },
+        {
+          "state": "to-shed",
+          "position": [
+            -39.85,
+            0.06,
+            -55.65131142510262
+          ]
+        },
+        {
+          "state": "to-shed",
+          "position": [
+            -40.2,
+            0.06,
+            -55.25131142510261
+          ]
+        },
+        {
+          "state": "to-shed",
+          "position": [
+            -40.2,
+            0.06,
+            -54.5013114251026
+          ]
+        },
+        {
+          "state": "to-shed",
+          "position": [
+            -39.751311425102585,
+            0.06,
+            -54.2
+          ]
+        },
+        {
+          "state": "to-shed",
+          "position": [
+            -39.00131142510258,
+            0.06,
+            -54.2
+          ]
+        },
+        {
+          "state": "to-shed",
+          "position": [
+            -38.25131142510258,
+            0.06,
+            -54.2
+          ]
+        },
+        {
+          "state": "to-shed",
+          "position": [
+            -37.501311425102585,
+            0.06,
+            -54.2
+          ]
+        },
+        {
+          "state": "to-shed",
+          "position": [
+            -37.5,
+            0.038617623580257374,
+            -54.948383174690996
+          ]
+        },
+        {
+          "state": "to-shed",
+          "position": [
+            -37.401882737103506,
+            0.02,
+            -55.6
+          ]
+        },
+        {
+          "state": "to-shed",
+          "position": [
+            -36.651882737103506,
+            0.02,
+            -55.6
+          ]
+        },
+        {
+          "state": "to-shed",
+          "position": [
+            -36.6,
+            0.02,
+            -56.2981172628965
+          ]
+        },
+        {
+          "state": "to-shed",
+          "position": [
+            -36.6,
+            0.02,
+            -57.0481172628965
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        },
+        {
+          "state": "watching",
+          "position": [
+            -36.6,
+            0.02,
+            -57.28
+          ]
+        }
+      ],
+      "harbour": [
+        {
+          "minutes": 420,
+          "boatOverlap": false,
+          "gangwayOverlap": false
+        },
+        {
+          "minutes": 435,
+          "boatOverlap": false,
+          "gangwayOverlap": false
+        },
+        {
+          "minutes": 450,
+          "boatOverlap": false,
+          "gangwayOverlap": false
+        },
+        {
+          "minutes": 520,
+          "boatOverlap": false,
+          "gangwayOverlap": false
+        },
+        {
+          "minutes": 535,
+          "boatOverlap": false,
+          "gangwayOverlap": false
+        },
+        {
+          "minutes": 549,
+          "boatOverlap": false,
+          "gangwayOverlap": false
+        },
+        {
+          "minutes": 870,
+          "boatOverlap": false,
+          "gangwayOverlap": false
+        },
+        {
+          "minutes": 885,
+          "boatOverlap": false,
+          "gangwayOverlap": false
+        },
+        {
+          "minutes": 900,
+          "boatOverlap": false,
+          "gangwayOverlap": false
+        },
+        {
+          "minutes": 990,
+          "boatOverlap": false,
+          "gangwayOverlap": false
+        },
+        {
+          "minutes": 1005,
+          "boatOverlap": false,
+          "gangwayOverlap": false
+        },
+        {
+          "minutes": 1019,
+          "boatOverlap": false,
+          "gangwayOverlap": false
+        }
+      ],
+      "routine": "watching",
+      "errors": [],
+      "environmentNotes": [],
+      "invalidTransforms": []
+    }
+  ],
+  "externalFonts": "Google font CSS stubbed because the execution network blocks it; local fallback fonts used.",
+  "passed": true,
+  "testedBaseHead": "7b66e00275e220a988bea7d88c32c12e3b0e7357",
+  "testedRuntimeSourceSHA256": "baa35241c189fe00342cbfc05212f2ce1c630be620e978688da86884c9f69c85",
+  "focusedChecks": {
+    "passed": 14,
+    "failed": 0
+  }
+}

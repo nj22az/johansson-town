@@ -1,0 +1,119 @@
+name: Johansson World guard
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: johansson-world-guard-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  iphone-startup:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: nj22az/nj22az.github.io
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/johansson-town/
+      - uses: actions/checkout@v4
+        with:
+          path: johansson-town
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: johansson-town/package-lock.json
+      - name: Install iPhone simulation tools
+        working-directory: johansson-town
+        run: |
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps webkit
+      - name: iPhone WebKit startup, reload, rotation and room entry
+        working-directory: johansson-town
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: xvfb-run -a node tools/iphone-startup-smoke.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: iphone-startup
+          path: johansson-town/output/iphone-startup/
+          if-no-files-found: warn
+  ferry-exploration:
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [ipad-portrait, ipad-landscape, desktop]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: nj22az/nj22az.github.io
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/johansson-town/
+      - uses: actions/checkout@v4
+        with:
+          path: johansson-town
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: johansson-town/package-lock.json
+      - name: Install WebKit exploration tools
+        working-directory: johansson-town
+        run: |
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps webkit
+      - name: Real engine-room exploration on fresh iPad and desktop contexts
+        working-directory: johansson-town
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: xvfb-run -a node tools/ferry-exploration-smoke.mjs ${{ matrix.profile }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ferry-exploration-${{ matrix.profile }}
+          path: johansson-town/output/ferry-exploration/
+          if-no-files-found: warn
+  guard:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: nj22az/nj22az.github.io
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/johansson-town/
+      - uses: actions/checkout@v4
+        with:
+          path: johansson-town
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: johansson-town/package-lock.json
+      - name: Install
+        working-directory: johansson-town
+        run: npm ci --no-audit --no-fund
+      # The list is johansson-town/tests/ci-guard.txt: tests that pass on main and guard the owner's rules.
+      - name: Guard tests
+        working-directory: johansson-town
+        # The town-wide surface scan (tests/no-z-fighting.test.mjs) needs more than Node's default heap since every
+        # shop's packs gained their real joints (26 October 2026); the ferry integration uses the same limit.
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: node tools/ci-guard.mjs

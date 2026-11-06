@@ -1,0 +1,50 @@
+✔ locked ferry shot follows translation, yaw, pitch and roll; ordinary lens restores on exit (4.413099ms)
+✔ automatic cuts have hysteresis and held movement keeps its direction until release (1.040244ms)
+✔ representative walking positions keep head and feet framed on desktop and portrait screens (10.041261ms)
+✔ ordinary play enables CAD headroom, deck stack, service openings and fixed lenses (361.736436ms)
+✔ H1 access uses the relocated side door and full top landing, then returns to the car deck (2501.486624ms)
+✔ the shipped Blender GLB keeps CAD units, source bounds and finite normals within two surface groups (356.013746ms)
+✔ raised-deck boarding meets the pier and the forward crew station remains on its actual floor (2577.202884ms)
+✔ alongside at Minato: up the gangway from the pier, through the gate, the passage and the foyer, out of the stair door onto the car deck (1248.517506ms)
+✔ her bulwark, her casings and the gangway's rails keep you aboard (438.688034ms)
+✔ down the bow ramp onto the quay's landing plate, and back up (309.821368ms)
+✔ under way her decks are still walked (he sails aboard), but the gangway and the ramp are in: no way on or off (34123.795585ms)
+✔ at Kitano-jima: up the ramp from the pier (213.132365ms)
+✔ every floor lies where the model draws it (2168.519566ms)
+✔ up stair P to the lobby, through the carpet room and the saloon, out and up the ladder to the wheelhouse (267.790101ms)
+✔ from the lobby out onto the open deck and up a ladder to the bridge deck's aft platform (301.496267ms)
+✔ the walls keep you in: no walking through the house's side, into the toilets, over the stair well, or off the wing (225.137091ms)
+✖ down into the engine room: the casing P door, the ladder through the car deck, round the engines to the control booth (187.017635ms)
+✔ the crew house: in from the bridge deck's aft platform, along the corridor, into a cabin, the mess and the wheelhouse (204.1761ms)
+✔ below: from the engine room through the watertight door to the aux room, through the door at Fr 38 to the workshop and round the partition into the store (6q-1) (181.312547ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 40934.432789
+
+✖ failing tests:
+
+test at tests/ferry-walk.test.mjs:170:1
+✖ down into the engine room: the casing P door, the ladder through the car deck, round the engines to the control booth (187.017635ms)
+  AssertionError [ERR_ASSERTION]: stopped at car-deck local 2.30,2.10,-10.35
+
+  'car-deck' !== null
+
+      at TestContext.<anonymous> (file:///workspace/scratch/d916a0d6443b/ferry-main-release/johansson-town/tests/ferry-walk.test.mjs:175:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'car-deck',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

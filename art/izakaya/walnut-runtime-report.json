@@ -1,0 +1,559 @@
+{
+  "original_model": "Walnut-Harbour-Back-Bar.blend (Blender 4.5.0, original authoring asset; not required for regeneration)",
+  "strategy": "Opaque material batches, integral shell label faces, no transmissive layers or duplicate decal surfaces",
+  "exports": [
+    {
+      "file": "minato-walnut-backbar.glb",
+      "root": "Backbar",
+      "file_bytes": 2242940,
+      "vertices": 30112,
+      "triangles": 15662,
+      "primitives": 8,
+      "materials": 8,
+      "images": 3,
+      "bounds": {
+        "min": [
+          -1.695,
+          0.0,
+          -0.27
+        ],
+        "max": [
+          1.695,
+          2.6405,
+          0.37
+        ]
+      },
+      "bottles": [
+        {
+          "brand": "SANGO QUAY",
+          "position": [
+            -1.4429999589920044,
+            0.9899999885559082,
+            0.04469556733965874
+          ],
+          "angle_y": -0.07407124105151137,
+          "base_height": 0.9899999885559082,
+          "source": "Bottle 01 | SANGO QUAY"
+        },
+        {
+          "brand": "HOSHINAMI",
+          "position": [
+            -1.2610000371932983,
+            0.9899999885559082,
+            0.05087452009320259
+          ],
+          "angle_y": -0.03064855953053567,
+          "base_height": 0.9899999885559082,
+          "source": "Bottle 02 | HOSHINAMI"
+        },
+        {
+          "brand": "GREYWAKE",
+          "position": [
+            -1.093000054359436,
+            0.9899999885559082,
+            0.052459489554166794
+          ],
+          "angle_y": -0.07574301942507522,
+          "base_height": 0.9899999885559082,
+          "source": "Bottle 03 | GREYWAKE"
+        },
+        {
+          "brand": "COPPER LEDGER",
+          "position": [
+            -0.8960000276565552,
+            0.9899999885559082,
+            0.038129325956106186
+          ],
+          "angle_y": 0.06698074538950813,
+          "base_height": 0.9899999885559082,
+          "source": "Bottle 04 | COPPER LEDGER"
+        },
+        {
+          "brand": "JUNIPER SOUND",
+          "position": [
+            -0.7059999704360962,
+            0.9899999885559082,
+            0.0909947082400322
+          ],
+          "angle_y": -0.02805743399626911,
+          "base_height": 0.9899999885559082,
+          "source": "Bottle 05 | JUNIPER SOUND"
+        },
+        {
+          "brand": "MARROW CAY",
+          "position": [
+            -0.37299999594688416,
+            0.9899999885559082,
+            0.038060933351516724
+          ],
+          "angle_y": -0.07489614985031058,
+          "base_height": 0.9899999885559082,
+          "source": "Bottle 06 | MARROW CAY"
+        },
+        {
+          "brand": "NORTHGLASS",
+          "position": [
+            -0.19099999964237213,
+            0.9899999885559082,
+            0.07663534581661224
+          ],
+          "angle_y": -0.12396879685820768,
+          "base_height": 0.9899999885559082,
+          "source": "Bottle 07 | NORTHGLASS"
+        },
+        {
+          "brand": "MAISON VEYRILLE",
+          "position": [
+            -0.023000000044703484,
+            0.9900000014305115,
+            0.09011653065681458
+          ],
+          "angle_y": 0.0580486042357425,
+          "base_height": 0.9900000014305115,
+          "source": "Bottle 08 | MAISON VEYRILLE"
+        },
+        {
+          "brand": "ROSSO LUNARO",
+          "position": [
+            0.17399999499320984,
+            0.9899999885559082,
+            0.04228682070970535
+          ],
+          "angle_y": -0.0813843983082685,
+          "base_height": 0.9899999885559082,
+          "source": "Bottle 09 | ROSSO LUNARO"
+        },
+        {
+          "brand": "NAMI YUZU",
+          "position": [
+            0.36399999260902405,
+            0.9899999885559082,
+            0.051294613629579544
+          ],
+          "angle_y": -0.10849569779626198,
+          "base_height": 0.9899999885559082,
+          "source": "Bottle 10 | NAMI YUZU"
+        },
+        {
+          "brand": "CANTO RUBINO",
+          "position": [
+            0.6970000267028809,
+            0.9899999885559082,
+            0.08624644577503204
+          ],
+          "angle_y": 0.025407398961044176,
+          "base_height": 0.9899999885559082,
+          "source": "Bottle 11 | CANTO RUBINO"
+        },
+        {
+          "brand": "SIERRA CANDELA",
+          "position": [
+            0.8790000081062317,
+            0.9899999885559082,
+            0.037624385207891464
+          ],
+          "angle_y": 0.11533788454842948,
+          "base_height": 0.9899999885559082,
+          "source": "Bottle 12 | SIERRA CANDELA"
+        },
+        {
+          "brand": "ORCHARD HOUR",
+          "position": [
+            1.0470000505447388,
+            0.9900000014305115,
+            0.04304668679833412
+          ],
+          "angle_y": -0.13781494141691936,
+          "base_height": 0.9900000014305115,
+          "source": "Bottle 13 | ORCHARD HOUR"
+        },
+        {
+          "brand": "BLACK TIDE",
+          "position": [
+            1.24399995803833,
+            0.9899999885559082,
+            0.07675085216760635
+          ],
+          "angle_y": -0.1379041913720743,
+          "base_height": 0.9899999885559082,
+          "source": "Bottle 14 | BLACK TIDE"
+        },
+        {
+          "brand": "JUNIPER SOUND",
+          "position": [
+            1.434000015258789,
+            0.9899999885559082,
+            0.04604734852910042
+          ],
+          "angle_y": -0.06869469989935632,
+          "base_height": 0.9899999885559082,
+          "source": "Bottle 15 | JUNIPER SOUND"
+        },
+        {
+          "brand": "MARROW CAY",
+          "position": [
+            -1.4429999589920044,
+            1.5034999637603759,
+            0.09209506213665009
+          ],
+          "angle_y": -0.034047787711983926,
+          "base_height": 1.5034999637603759,
+          "source": "Bottle 16 | MARROW CAY"
+        },
+        {
+          "brand": "NORTHGLASS",
+          "position": [
+            -1.2610000371932983,
+            1.5034999637603759,
+            0.07850737124681473
+          ],
+          "angle_y": -0.04415002487657875,
+          "base_height": 1.5034999637603759,
+          "source": "Bottle 17 | NORTHGLASS"
+        },
+        {
+          "brand": "MAISON VEYRILLE",
+          "position": [
+            -1.093000054359436,
+            1.503500036239624,
+            0.09177656471729279
+          ],
+          "angle_y": -0.006849007876039162,
+          "base_height": 1.503500036239624,
+          "source": "Bottle 18 | MAISON VEYRILLE"
+        },
+        {
+          "brand": "ROSSO LUNARO",
+          "position": [
+            -0.8960000276565552,
+            1.5034999637603759,
+            0.08379445225000381
+          ],
+          "angle_y": -0.037226520096094194,
+          "base_height": 1.5034999637603759,
+          "source": "Bottle 19 | ROSSO LUNARO"
+        },
+        {
+          "brand": "NAMI YUZU",
+          "position": [
+            -0.7059999704360962,
+            1.5034999637603759,
+            0.03842368721961975
+          ],
+          "angle_y": 0.1258501452139423,
+          "base_height": 1.5034999637603759,
+          "source": "Bottle 20 | NAMI YUZU"
+        },
+        {
+          "brand": "CANTO RUBINO",
+          "position": [
+            -0.37299999594688416,
+            1.5034999637603759,
+            0.08568546921014786
+          ],
+          "angle_y": -0.010350683854523578,
+          "base_height": 1.5034999637603759,
+          "source": "Bottle 21 | CANTO RUBINO"
+        },
+        {
+          "brand": "SIERRA CANDELA",
+          "position": [
+            -0.19099999964237213,
+            1.5034999637603759,
+            0.03625898063182831
+          ],
+          "angle_y": 0.1352711297711785,
+          "base_height": 1.5034999637603759,
+          "source": "Bottle 22 | SIERRA CANDELA"
+        },
+        {
+          "brand": "ORCHARD HOUR",
+          "position": [
+            -0.023000000044703484,
+            1.503500036239624,
+            0.06013166159391403
+          ],
+          "angle_y": 0.030934643714889312,
+          "base_height": 1.503500036239624,
+          "source": "Bottle 23 | ORCHARD HOUR"
+        },
+        {
+          "brand": "BLACK TIDE",
+          "position": [
+            0.17399999499320984,
+            1.5034999637603759,
+            0.045801080763339996
+          ],
+          "angle_y": 0.010738662922016053,
+          "base_height": 1.5034999637603759,
+          "source": "Bottle 24 | BLACK TIDE"
+        },
+        {
+          "brand": "SANGO QUAY",
+          "position": [
+            0.36399999260902405,
+            1.5034999637603759,
+            0.08455369621515274
+          ],
+          "angle_y": 0.03242081403650145,
+          "base_height": 1.5034999637603759,
+          "source": "Bottle 25 | SANGO QUAY"
+        },
+        {
+          "brand": "HOSHINAMI",
+          "position": [
+            0.6970000267028809,
+            1.5034999637603759,
+            0.037194136530160904
+          ],
+          "angle_y": -0.1096350582599973,
+          "base_height": 1.5034999637603759,
+          "source": "Bottle 26 | HOSHINAMI"
+        },
+        {
+          "brand": "GREYWAKE",
+          "position": [
+            0.8790000081062317,
+            1.5034999637603759,
+            0.030365990474820137
+          ],
+          "angle_y": 0.06775090741571,
+          "base_height": 1.5034999637603759,
+          "source": "Bottle 27 | GREYWAKE"
+        },
+        {
+          "brand": "COPPER LEDGER",
+          "position": [
+            1.0470000505447388,
+            1.5034999637603759,
+            0.06947011500597
+          ],
+          "angle_y": -0.11938168656337828,
+          "base_height": 1.5034999637603759,
+          "source": "Bottle 28 | COPPER LEDGER"
+        },
+        {
+          "brand": "JUNIPER SOUND",
+          "position": [
+            1.24399995803833,
+            1.5034999637603759,
+            0.06772948056459427
+          ],
+          "angle_y": -0.09826204763523926,
+          "base_height": 1.5034999637603759,
+          "source": "Bottle 29 | JUNIPER SOUND"
+        },
+        {
+          "brand": "MARROW CAY",
+          "position": [
+            1.434000015258789,
+            1.5034999637603759,
+            0.03178282082080841
+          ],
+          "angle_y": 0.039295243292368526,
+          "base_height": 1.5034999637603759,
+          "source": "Bottle 30 | MARROW CAY"
+        },
+        {
+          "brand": "GREYWAKE",
+          "position": [
+            -1.4149999618530273,
+            2.003499963760376,
+            0.06850637495517731
+          ],
+          "angle_y": 0.11857644530944962,
+          "base_height": 2.003499963760376,
+          "source": "Bottle 31 | GREYWAKE"
+        },
+        {
+          "brand": "COPPER LEDGER",
+          "position": [
+            -1.187000036239624,
+            2.003499963760376,
+            0.03384825214743614
+          ],
+          "angle_y": 0.10737008994633723,
+          "base_height": 2.003499963760376,
+          "source": "Bottle 32 | COPPER LEDGER"
+        },
+        {
+          "brand": "JUNIPER SOUND",
+          "position": [
+            -0.9580000042915344,
+            2.003499963760376,
+            0.03617137297987938
+          ],
+          "angle_y": 0.10536411618733141,
+          "base_height": 2.003499963760376,
+          "source": "Bottle 33 | JUNIPER SOUND"
+        },
+        {
+          "brand": "MARROW CAY",
+          "position": [
+            -0.7229999899864197,
+            2.003499963760376,
+            0.08197101950645447
+          ],
+          "angle_y": 0.036942552376714934,
+          "base_height": 2.003499963760376,
+          "source": "Bottle 34 | MARROW CAY"
+        },
+        {
+          "brand": "NORTHGLASS",
+          "position": [
+            -0.3449999988079071,
+            2.003499963760376,
+            0.09220977872610092
+          ],
+          "angle_y": -0.10149313692989673,
+          "base_height": 2.003499963760376,
+          "source": "Bottle 35 | NORTHGLASS"
+        },
+        {
+          "brand": "MAISON VEYRILLE",
+          "position": [
+            -0.11699999868869781,
+            2.003500036239624,
+            0.05129664018750191
+          ],
+          "angle_y": -0.054425964521012976,
+          "base_height": 2.003500036239624,
+          "source": "Bottle 36 | MAISON VEYRILLE"
+        },
+        {
+          "brand": "ROSSO LUNARO",
+          "position": [
+            0.1120000034570694,
+            2.003499963760376,
+            0.054040152579545975
+          ],
+          "angle_y": 0.020722532695504402,
+          "base_height": 2.003499963760376,
+          "source": "Bottle 37 | ROSSO LUNARO"
+        },
+        {
+          "brand": "NAMI YUZU",
+          "position": [
+            0.34700000286102295,
+            2.003499963760376,
+            0.07122214138507843
+          ],
+          "angle_y": 0.013391719538377245,
+          "base_height": 2.003499963760376,
+          "source": "Bottle 38 | NAMI YUZU"
+        },
+        {
+          "brand": "CANTO RUBINO",
+          "position": [
+            0.7250000238418579,
+            2.003499963760376,
+            0.05538126453757286
+          ],
+          "angle_y": -0.014569845239937117,
+          "base_height": 2.003499963760376,
+          "source": "Bottle 39 | CANTO RUBINO"
+        },
+        {
+          "brand": "SIERRA CANDELA",
+          "position": [
+            0.953000009059906,
+            2.003499963760376,
+            0.07876159250736237
+          ],
+          "angle_y": 0.020824424402374347,
+          "base_height": 2.003499963760376,
+          "source": "Bottle 40 | SIERRA CANDELA"
+        },
+        {
+          "brand": "ORCHARD HOUR",
+          "position": [
+            1.1820000410079956,
+            2.003500036239624,
+            0.03842012211680412
+          ],
+          "angle_y": -0.13471431584328697,
+          "base_height": 2.003500036239624,
+          "source": "Bottle 41 | ORCHARD HOUR"
+        },
+        {
+          "brand": "BLACK TIDE",
+          "position": [
+            1.4170000553131104,
+            2.003499963760376,
+            0.03169833496212959
+          ],
+          "angle_y": -0.12401088501795758,
+          "base_height": 2.003499963760376,
+          "source": "Bottle 42 | BLACK TIDE"
+        }
+      ],
+      "brands": [
+        "SANGO QUAY",
+        "HOSHINAMI",
+        "GREYWAKE",
+        "COPPER LEDGER",
+        "JUNIPER SOUND",
+        "MARROW CAY",
+        "NORTHGLASS",
+        "MAISON VEYRILLE",
+        "ROSSO LUNARO",
+        "NAMI YUZU",
+        "CANTO RUBINO",
+        "SIERRA CANDELA",
+        "ORCHARD HOUR",
+        "BLACK TIDE"
+      ],
+      "front": "+Z",
+      "all_opaque": true,
+      "double_sided_materials": 0,
+      "material_triangles": {
+        "Dark hardware": 10,
+        "Wood": 228,
+        "Brass": 916,
+        "Slate": 10,
+        "Smoked backing": 6,
+        "Lamp diffusers": 4,
+        "Bottle bodies": 13624,
+        "Bottle labels": 864
+      }
+    },
+    {
+      "file": "minato-walnut-counter.glb",
+      "root": "Counter",
+      "file_bytes": 110712,
+      "vertices": 784,
+      "triangles": 418,
+      "primitives": 4,
+      "materials": 4,
+      "images": 2,
+      "bounds": {
+        "min": [
+          -4.2,
+          0.0,
+          -0.415
+        ],
+        "max": [
+          4.2,
+          0.74,
+          0.415
+        ]
+      },
+      "bottles": [],
+      "brands": [],
+      "front": "+Z",
+      "all_opaque": true,
+      "double_sided_materials": 0,
+      "material_triangles": {
+        "Dark hardware": 8,
+        "Wood": 224,
+        "Slate": 10,
+        "Brass": 176
+      }
+    }
+  ],
+  "texture_files": [
+    "spirits-label-atlas.jpg",
+    "runtime-walnut.jpg",
+    "runtime-slate.jpg"
+  ]
+}

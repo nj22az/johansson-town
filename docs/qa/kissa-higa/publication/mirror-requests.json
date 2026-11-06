@@ -1,0 +1,496 @@
+{
+  "release": "1c4d6c33d5f0447676cb4edcb22a25480e6e1adc",
+  "source": "https://nj22az.github.io/",
+  "files": {
+    "johansson-town/index.html": {
+      "sha256": "91e4bd8080e21ea59512a81f231a250b21c111e14dd8e40557f4ca959642a1fc",
+      "bytes": 46293,
+      "match": true
+    },
+    "johansson-town/dual-controls.css": {
+      "sha256": "396f3a7b4bc3f2e3e7ea60d4ed58985fe953bab14cfe55cca5a419db8110d5ac",
+      "bytes": 5692,
+      "match": true
+    },
+    "johansson-town/base.css": {
+      "sha256": "989748aadca5e7c70135c05d1f19c706cd3b54ed4808a99b5e399c80c9ab6d09",
+      "bytes": 44812,
+      "match": true
+    },
+    "johansson-town/tomodachi-ui.css": {
+      "sha256": "e851b42def9d23ec4eb85a8fbbd4644517b3a0d7584abea82fbc32bda62c669f",
+      "bytes": 5194,
+      "match": true
+    },
+    "johansson-town/landing.css": {
+      "sha256": "6b8bf0eab47ef68584ecabf9665e471055b4c31155e6c709a0b2d2cbb05ffb21",
+      "bytes": 55131,
+      "match": true
+    },
+    "johansson-town/photo-mode.css": {
+      "sha256": "23db18959dcc013a381c5e45559f57c309bd56b9ed5c2e4d81131ba5a00f4d5f",
+      "bytes": 12347,
+      "match": true
+    },
+    "johansson-town/context-controls.css": {
+      "sha256": "f898462d578cef60e5faca0da94b12ec125ae246f0f00d5ea2947cace4598269",
+      "bytes": 12249,
+      "match": true
+    },
+    "johansson-town/town-directory.css": {
+      "sha256": "5fef277aa95876c8f23fd981bccbcef19e72c06be4ca2c6dbb74b4c3cb663540",
+      "bytes": 2818,
+      "match": true
+    },
+    "johansson-town/context-rail.css": {
+      "sha256": "a4e11923e9cc8e1c79fce9368fbc413441e737312a7c6f80f662a40e55b68022",
+      "bytes": 4683,
+      "match": true
+    },
+    "johansson-town/quiet-ui.css": {
+      "sha256": "056d2627f8457ee62b5f397798f9acf743b4442019f5a8b963cdd6fea799edb3",
+      "bytes": 3411,
+      "match": true
+    },
+    "johansson-town/title-screen.css": {
+      "sha256": "24e80986b05daff69652408f408af54515b77201a34533d13576ce3024113616",
+      "bytes": 9651,
+      "match": true
+    },
+    "johansson-town/quiet-hud.css": {
+      "sha256": "e0b5f1532fa376dfe2375f1464f84fd5a3956f102410bd4d8837ed76743adf63",
+      "bytes": 8706,
+      "match": true
+    },
+    "johansson-town/line-ui.css": {
+      "sha256": "c9fe9f5f49b1e31174eb80b6d4d9cd8d1a37cf39e13963e1cc56acb792c6d990",
+      "bytes": 38170,
+      "match": true
+    },
+    "johansson-town/runtime/friendship-Drg3EPLK.js": {
+      "sha256": "5da8448a646acf37cf10344d5fa91424214987c4a55d609d0a7d9228dc65f5bc",
+      "bytes": 3421,
+      "match": true
+    },
+    "johansson-town/ferry-operations.css": {
+      "sha256": "1625ed17fd44b016bbd655346701c3164a6c4dc36749d4ef215f2dda81e63915",
+      "bytes": 3217,
+      "match": true
+    },
+    "johansson-town/runtime/title-menu-CrThthUz.js": {
+      "sha256": "4205aa2f9d35e2e6939d9f6a65182aab331dddda966a0b8131a3c73c2a8e500d",
+      "bytes": 3993,
+      "match": true
+    },
+    "johansson-town/runtime/staff-bench-CjSrHg3G.js": {
+      "sha256": "cce0d81059de4a02719f73d6fff6d0cdaf9efb11e8bebd488c75ff2a3260372d",
+      "bytes": 223524,
+      "match": true
+    },
+    "johansson-town/runtime/compact-shops-D386eqsq.js": {
+      "sha256": "63bc2ef41ffb4bf2f49f53ea30323f0df74d5c23eff60670f1542de1384b7e0a",
+      "bytes": 835746,
+      "match": true
+    },
+    "johansson-town/town-book.css": {
+      "sha256": "74d6f09989e0ab5a2ff252f35bd1bf02fad374c701847fdce5b7e98124f20ce8",
+      "bytes": 13560,
+      "match": true
+    },
+    "johansson-town/runtime/shopping-lane-plan-D0DhEU8_.js": {
+      "sha256": "5bdd9f9ba046f84c06cef3f1b7ed6318534d4216331464a43ea0682a47e32d94",
+      "bytes": 606,
+      "match": true
+    },
+    "johansson-town/runtime/preload-helper-PPVm8Dsz.js": {
+      "sha256": "0bcb72f8ec0d95f592f3a84b3554b9ef5a5325ff5416a9114d6913e03c1c9eb4",
+      "bytes": 1232,
+      "match": true
+    },
+    "johansson-town/runtime/fish-DJIlujZy.js": {
+      "sha256": "6637be523da8891b044c575c4b024f73b5eba96e1d93b3db92a66ded90803bb3",
+      "bytes": 330767,
+      "match": true
+    },
+    "johansson-town/runtime/boot-DfkZ-ZpG.js": {
+      "sha256": "c2c5fb8036c0ccb707b3dd0969fa23559b71afe03aba96fb92d7307794dfa9de",
+      "bytes": 4557,
+      "match": true
+    },
+    "johansson-town/runtime/ferry-ship-BkHvId4g.js": {
+      "sha256": "ed033c36209339b0fa020c885c61f233d6a56af1b015551be64c95f7b02c00ae",
+      "bytes": 35805,
+      "match": true
+    },
+    "johansson-town/runtime/harbour-park-plan-B1KRv61-.js": {
+      "sha256": "babff9075f2e90379d38f01ff871263e2a23d58894a261c112f5bee78689022a",
+      "bytes": 54063,
+      "match": true
+    },
+    "johansson-town/runtime/touch-ui-D34cMzo7.js": {
+      "sha256": "83b5028de47afa38a02300daf6d01f359d4ef5bc4aae58d4875f070d6f77db33",
+      "bytes": 2413,
+      "match": true
+    },
+    "johansson-town/runtime/icons-DfeBIm6m.js": {
+      "sha256": "b091b9cb9311794bd87d1ba33e34fc8a3bb6ca8931abd3bc51614f9278744803",
+      "bytes": 7263,
+      "match": true
+    },
+    "johansson-town/runtime/actors-BqR4ujRY.js": {
+      "sha256": "85ad7fb866d82823f98ed18551f485774f82da6028c1cd55ae7e96acac308ee2",
+      "bytes": 92700,
+      "match": true
+    },
+    "johansson-town/runtime/hat-models-y75xNIEN.js": {
+      "sha256": "8b7a01ece04efbcf87c41b4fefe40471a240913d8680cf68b3b5508467911cee",
+      "bytes": 48026,
+      "match": true
+    },
+    "johansson-town/runtime/game-B95vtaNc.js": {
+      "sha256": "1231be13a3c5cd6de247feb30a1ab33934aa98027cb128344bb72530ced4ab3a",
+      "bytes": 877691,
+      "match": true
+    },
+    "johansson-town/runtime/halloween-C7kc_oUI.js": {
+      "sha256": "0759c755eac470e662bf7b3b953756ba0439edafbaba707ebb583bc5bc03f636",
+      "bytes": 1229775,
+      "match": true
+    },
+    "johansson-town/runtime/sato-ramen-DUI_JU2A.js": {
+      "sha256": "c8c98acb3fe6a20b5992754ac8c0a524d6b82f83c52cb80935bbc93ecff5c4ed",
+      "bytes": 543,
+      "match": true
+    },
+    "johansson-town/runtime/catalog-Dou-UlE5.js": {
+      "sha256": "fa10bfb50741ed5f37929a1ce849699177383be2c51fa63f2c0083ba0b3db424",
+      "bytes": 4958,
+      "match": true
+    },
+    "johansson-town/runtime/pixar-DVmUiIgS.js": {
+      "sha256": "ce50884063065f60faf9a5315cbfb14890ac0119f84141893235f3bac24b2423",
+      "bytes": 115851,
+      "match": true
+    },
+    "johansson-town/runtime/animate-BkSzIkHa.js": {
+      "sha256": "86411147748fffea1dfecdf8fac61678b98112e8d38925e20cbe1fb29d10326a",
+      "bytes": 644411,
+      "match": true
+    },
+    "johansson-town/runtime/sakura-interior--E8WUoVd.js": {
+      "sha256": "78539ed5bb85fd281f876c5c1a079d593e8be656060bcac753974ff18b6a5267",
+      "bytes": 179200,
+      "match": true
+    },
+    "johansson-town/runtime/onsen-LC3Iy3yf.js": {
+      "sha256": "14841d14a1a44cac86a744d47ad25810ff640e9c10d8aff802f57b530a2654d2",
+      "bytes": 189552,
+      "match": true
+    },
+    "johansson-town/runtime/thuan-voice-Dz-XGNqd.js": {
+      "sha256": "7353d3a89febbcb7ca9cded704c7c09b90bde9c665e843631510e857f881cd59",
+      "bytes": 5832,
+      "match": true
+    },
+    "johansson-town/pwa.js": {
+      "sha256": "2450c45e9a22efc8552baf075378248337d129ec3bff6aa04637b57dc4b3b192",
+      "bytes": 1806,
+      "match": true
+    },
+    "johansson-town/title-sky.js": {
+      "sha256": "cf5917e513fc510dffd276e0ec4f9f6c54210080af551cc63f26732e8b8231e7",
+      "bytes": 1654,
+      "match": true
+    },
+    "johansson-town/runtime/studio-handoff-MzHhuZSW.js": {
+      "sha256": "f604677633a51b81ff428dc144a0e93b54dc782a7377e8af4b270f0b1ca79b18",
+      "bytes": 6099,
+      "match": true
+    },
+    "johansson-town/runtime/town-hall-Hg-VuEkh.js": {
+      "sha256": "e1848343ab748878fad2037979ea88168cbc8ed74caf7641cbe6860199d0e4c7",
+      "bytes": 58170,
+      "match": true
+    },
+    "johansson-town/runtime/storyteller-DixtvLu9.js": {
+      "sha256": "75c35b032943e8a86163f1b93492261b8011ef5ee331e53b32f090b4a623b0c7",
+      "bytes": 67528,
+      "match": true
+    },
+    "johansson-town/assets/images/storage-cover.svg": {
+      "sha256": "6054194907f191908576cc8a754d7ab78c823806e4afec2bc2db5bb661865557",
+      "bytes": 1650,
+      "match": true
+    },
+    "johansson-town/assets/graphics/izakaya/shiomachi-sake.webp": {
+      "sha256": "8dfb58faa6fd56fd7d3406a389bbcbbe81c2ba4e4bf25dce37373c500c7943eb",
+      "bytes": 73744,
+      "match": true
+    },
+    "johansson-town/resident-guide.js": {
+      "sha256": "41514e25c7edd63c24da964d1759d903d1a074a7ff92788ca16f69bcfe1d0a00",
+      "bytes": 93703,
+      "match": true
+    },
+    "johansson-town/assets/graphics/izakaya/minato-tori.webp": {
+      "sha256": "db353566552f4907df57054950ed0de59486dfb33814a5179f7aab4833a8a1c9",
+      "bytes": 97074,
+      "match": true
+    },
+    "johansson-town/assets/images/title/sakura-current-119667983af8.webp": {
+      "sha256": "119667983af80d566880cebfdc1d31437961b73b0816d48a39a85141a398d316",
+      "bytes": 173648,
+      "match": true
+    },
+    "johansson-town/assets/graphics/izakaya/minato-lanterns.webp": {
+      "sha256": "32787b3a0964f6bc9882bfa3d57ac4361c992d9a31db48790ae721595cef2463",
+      "bytes": 88766,
+      "match": true
+    },
+    "johansson-town/landing.js": {
+      "sha256": "ee7b1d7fca9b1d14a1bf359270131f9df27fe8f709e159fb23dc39eb63e07c89",
+      "bytes": 20001,
+      "match": true
+    },
+    "johansson-town/loading-progress.js": {
+      "sha256": "282b5bd31148689f9a52bc840d8b0ebffbdc833681245396efee2417d100ddcd",
+      "bytes": 3979,
+      "match": true
+    },
+    "johansson-town/runtime/audio-CE8cpUOv.js": {
+      "sha256": "11521ca759160b955306901782cb22f82a9a9be54e76b81a7480c52e3d1d7b56",
+      "bytes": 101,
+      "match": true
+    },
+    "johansson-town/runtime/portraits-CJ92fBau.js": {
+      "sha256": "44a2465cd516b12c51b3c3683adf9dbdc21758bc56369cecbbde6a1a54bd0ded",
+      "bytes": 2671,
+      "match": true
+    },
+    "johansson-town/loading-facts.js": {
+      "sha256": "2738098f2f8f0a90ec7670478d06a1347272d8ca55401dffde3284e46af281d0",
+      "bytes": 1918,
+      "match": true
+    },
+    "johansson-town/runtime/tree-design-data-iR1qvQBH.js": {
+      "sha256": "c2e5523bbdfd35de736dba447e106edd8909a672776674d2c2c7313028c8e48e",
+      "bytes": 633139,
+      "match": true
+    },
+    "johansson-town/assets/avatars/pixar/tetsuo.json": {
+      "sha256": "e8d9dc4711bab9647e25a34c862545822fa543398ebfc57cbc33a7050dccc5e1",
+      "bytes": 7071,
+      "match": true
+    },
+    "johansson-town/assets/avatars/pixar/chin.json": {
+      "sha256": "4f295f95c7d04643a203ff9e2ae514aae1eb5bccaa973d53ab8f4f01d25502e2",
+      "bytes": 7095,
+      "match": true
+    },
+    "johansson-town/assets/avatars/pixar/fujita.json": {
+      "sha256": "b4ae706da86575f9630680b92a1f8f0c43ba9e3320c655d6971cbca1f93cbc99",
+      "bytes": 7092,
+      "match": true
+    },
+    "johansson-town/assets/avatars/pixar/johansson.json": {
+      "sha256": "3361c18b52cf02e050f25e2b176185330d48fe65f776fdef575e934b234a51f2",
+      "bytes": 7012,
+      "match": true
+    },
+    "johansson-town/assets/avatars/pixar/thuan.json": {
+      "sha256": "09a2e74f6a5decf7df451a73d3b10da6d1cd0a5994a592f5d8990ffece436fca",
+      "bytes": 7507,
+      "match": true
+    },
+    "johansson-town/assets/avatars/pixar/thao.json": {
+      "sha256": "db87d445b310cb5b265f16b39f7424c646dd8c96f9a2b344f5d345c3e83c24cb",
+      "bytes": 7744,
+      "match": true
+    },
+    "johansson-town/assets/avatars/pixar/chin.glb": {
+      "sha256": "1b7589a6b2b58ac8cb011182d68e26a619d2a0192464c1a0bec27005438471d7",
+      "bytes": 1755324,
+      "match": true
+    },
+    "johansson-town/assets/avatars/pixar/thao.glb": {
+      "sha256": "c41a269523cc541480874ca10bfe69509461c9f09b2fe683770778a79d053fd7",
+      "bytes": 2091448,
+      "match": true
+    },
+    "johansson-town/assets/avatars/pixar/johansson.glb": {
+      "sha256": "5cb788b657a6e030a8b8260f3e4398ed00622bec1865c7e64f09745bc852be1d",
+      "bytes": 1872920,
+      "match": true
+    },
+    "johansson-town/assets/avatars/pixar/thuan.glb": {
+      "sha256": "a547eec1d7053f9e86bcc76980ab20f03c7c6aa676b6c4cebb4fd3e32a1ef16c",
+      "bytes": 1397192,
+      "match": true
+    },
+    "johansson-town/assets/avatars/pixar/fujita.glb": {
+      "sha256": "dd82ed6d9a142410898ff67d6f08740f789b7be711a8ebf355047c3f9d8b1d0c",
+      "bytes": 1930348,
+      "match": true
+    },
+    "johansson-town/assets/avatars/pixar/tetsuo.glb": {
+      "sha256": "87961f3990d657d5a69d9861079124bed6004b3d7a3be17491d489d5e247d68b",
+      "bytes": 2237120,
+      "match": true
+    },
+    "johansson-town/assets/catalog/johansson-trucker/model.glb": {
+      "sha256": "358bf73a1f56aa92c34f11ef15c3a58d27c724f44e52e47e14ccd2dc2f91c069",
+      "bytes": 146880,
+      "match": true
+    },
+    "johansson-town/assets/models/harbour/fujita-houseboat-hull.glb": {
+      "sha256": "c810514450ba0c6aa85673b55cbe3e9d9a364ceb55d951d1f2315086d10fa693",
+      "bytes": 83888,
+      "match": true
+    },
+    "johansson-town/assets/lighting/industrial_sunset_02_1k.hdr": {
+      "sha256": "43ad8b5ae5de42a6d0123ed063ba6867488c2f90adf24efdf051781952b5e9cb",
+      "bytes": 1610744,
+      "match": true
+    },
+    "johansson-town/data/world-placements.json": {
+      "sha256": "936d0594ab2827e7706b82421915604beab1374634298f62b9cdcc2861ea7dcf",
+      "bytes": 37,
+      "match": true
+    },
+    "johansson-town/assets/materials/timber-arm.jpg": {
+      "sha256": "05346e3dd7aa0bab9daf64cd360c844a6b555b86cadfdc1c474b3b3ac807fa16",
+      "bytes": 74425,
+      "match": true
+    },
+    "johansson-town/assets/materials/timber-nor_gl.jpg": {
+      "sha256": "68e3f3a0755fbaf1d2fa72a3659fa59d80304d7a7040f38464c71a444a487ad4",
+      "bytes": 140527,
+      "match": true
+    },
+    "johansson-town/assets/materials/plaster-arm.jpg": {
+      "sha256": "a4afaface17a0e54d4b5ab3e9dbd74ebc4d554fa2a81c5cc23d3d7207e9ca7cc",
+      "bytes": 123055,
+      "match": true
+    },
+    "johansson-town/assets/timber.jpg": {
+      "sha256": "6295f4e397770b217b36240c1ee9e026b6f7caa8826b7c8a21f37accaeba8deb",
+      "bytes": 123334,
+      "match": true
+    },
+    "johansson-town/assets/materials/plaster-nor_gl.jpg": {
+      "sha256": "4ac0a871a83511d2ff80b1fafb23c3ae95ca27a077bf931e9c64f0ea102a0de1",
+      "bytes": 338284,
+      "match": true
+    },
+    "johansson-town/assets/papers/sakura-flyer.svg": {
+      "sha256": "13c0ca4bc11540ec1133c4d6bc4152565210c2d73eb9cbd2dbca19a768493768",
+      "bytes": 6721,
+      "match": true
+    },
+    "johansson-town/assets/graphics/advertising/j-coffee-island-banner.webp": {
+      "sha256": "8df320c15ea5c37f5520abe04ed8916c9ccb15040d6b45f43a292d17b1f72fcf",
+      "bytes": 131004,
+      "match": true
+    },
+    "johansson-town/assets/models/owned/maneki-neko-display.glb": {
+      "sha256": "8190ae7abaa1c7ee34ce3e58889552d3c2449e36609b1b307c86b423c2fec486",
+      "bytes": 1083720,
+      "match": true
+    },
+    "johansson-town/assets/catalog/johansson-trucker-display/model.glb": {
+      "sha256": "f3ff0cfad64b9fd5d96a6324cd547df90d38e20e5d01f0dbefc8c4843e3ca5bd",
+      "bytes": 81260,
+      "match": true
+    },
+    "johansson-town/diorama/woodland/poster-board.webp": {
+      "sha256": "bb1c5fd88ff49fe47a081ce7205544232b41f7d2f4eb24e86e7e66d22bd0a008",
+      "bytes": 114994,
+      "match": true
+    },
+    "johansson-town/assets/graphics/noticeboard/header.webp": {
+      "sha256": "4f2d9b5fa563fe8557d5d270a537c5f74d5f8eb676fae2c76072f5956405b099",
+      "bytes": 16224,
+      "match": true
+    },
+    "johansson-town/assets/roof.jpg": {
+      "sha256": "b501c95d6647295352d77d36f0f7ad2cd0188e0232f71745827bb4dd681c6fcc",
+      "bytes": 163037,
+      "match": true
+    },
+    "johansson-town/assets/materials/roof-arm.jpg": {
+      "sha256": "83c4274fcd3c68d7e79f743b7d9d943be93d31953e9fb449ca714a9887995b56",
+      "bytes": 190527,
+      "match": true
+    },
+    "johansson-town/assets/graphics/advertising/sakura-street-poster.webp": {
+      "sha256": "eeadf73db74b9e9bfe04bd761df3f721e69bdd7357d3d5a16ef20731ad97619b",
+      "bytes": 173640,
+      "match": true
+    },
+    "johansson-town/assets/graphics/konbini/packaging-groceries.webp": {
+      "sha256": "2c7e5607b3888c9df95de42cc950a21c78a848975fd5b2aae44742c2742612c6",
+      "bytes": 491278,
+      "match": true
+    },
+    "johansson-town/assets/materials/roof-nor_gl.jpg": {
+      "sha256": "4baff484e119ed0ee922415980cdf34b2685c060d253c783d7fe248a13d6ab02",
+      "bytes": 242177,
+      "match": true
+    },
+    "johansson-town/assets/graphics/konbini/packaging-atlas.webp": {
+      "sha256": "4aabcfa832d0de855740d4fce547702280db7e3fbd64a6a38c60370955aa9003",
+      "bytes": 550814,
+      "match": true
+    },
+    "johansson-town/assets/graphics/konbini/thuan-labels/golden-tea.webp": {
+      "sha256": "eff4c462137821f6889e5abf3e67caef49ad647aeb31f76117cc860b8f706fa2",
+      "bytes": 59080,
+      "match": true
+    },
+    "johansson-town/assets/graphics/konbini/thuan-labels/stick-bites.webp": {
+      "sha256": "a509bb8bff8de044152ef0488ab5920233fc2300b94096adfeedf68479b8ef9e",
+      "bytes": 107760,
+      "match": true
+    },
+    "johansson-town/runtime/webmcp-CxSkO4VH.js": {
+      "sha256": "2a6856ebc806bc4225e8bdfd3d08f913aad788e032d8bda521a230291c0f1cb6",
+      "bytes": 15824,
+      "match": true
+    },
+    "johansson-town/assets/graphics/konbini/thuan-labels/night-shift.webp": {
+      "sha256": "c05fbca58fe8abf51c08b1043db6e47d57d19b2412fb7e5ab7fb8591b487b3da",
+      "bytes": 39160,
+      "match": true
+    },
+    "johansson-town/runtime/webmcp-characters-BkXkAGJZ.js": {
+      "sha256": "4f1c850b6db1cf07f238f632a62d81eb8d1336f66d50e23a2bf6c738cb82b2bc",
+      "bytes": 3130,
+      "match": true
+    },
+    "johansson-town/assets/models/kissaten/record-player.glb": {
+      "sha256": "3f3bcaff5b5752057f06ab4d0ed0d3e59f80de7d77ebbf2f4702b1b38659f66f",
+      "bytes": 187040,
+      "match": true
+    },
+    "johansson-town/assets/models/kissaten/hand-grinder.glb": {
+      "sha256": "52bc51ac3268bd68da707210e2ed850d7506a0f12f744305ed1b16beeb8d5519",
+      "bytes": 183132,
+      "match": true
+    },
+    "johansson-town/assets/models/kissaten/bentwood-chair.glb": {
+      "sha256": "a517a779896bc4c6b72f3debfab64d5ee173faceb9d264220c15e1e34525dc06",
+      "bytes": 183872,
+      "match": true
+    },
+    "johansson-town/assets/models/park/harbour-bench.glb": {
+      "sha256": "efa712c21d3bfe2b9da8d8171c6d18f72a067eacc2077f423e4dda55b7369790",
+      "bytes": 67964,
+      "match": true
+    },
+    "johansson-town/assets/models/onsen/umi-no-yu.glb": {
+      "sha256": "30e965045f248f86270ea19d36fcd7d7184e3d2ec834fc18e4ad35498def5ace",
+      "bytes": 1070496,
+      "match": true
+    }
+  }
+}

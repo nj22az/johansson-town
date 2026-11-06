@@ -1,0 +1,1110 @@
+{
+  "source": false,
+  "softwareGPU": true,
+  "viewports": [
+    {
+      "viewport": "desktop",
+      "entry": "izakaya",
+      "checks": [
+        "one fitted cabinet/counter, saved discoveries and calendar through izakaya",
+        "normal first-person walking reaches WC; third-person lens clears entrance",
+        "ramen physical door exits to the matching clear street position",
+        "opposite entry reloads the same fitted room once",
+        "no invalid transforms or browser/shader/HTTP errors"
+      ],
+      "captures": [
+        {
+          "file": "desktop-entry.png",
+          "pos": [
+            0.08,
+            1.59,
+            3.1
+          ],
+          "at": [
+            -1.67,
+            1.23,
+            -1.4
+          ]
+        },
+        {
+          "file": "desktop-counter.png",
+          "pos": [
+            -3.66,
+            1.55,
+            1.06
+          ],
+          "at": [
+            -1.38,
+            1.27,
+            -2.76
+          ]
+        },
+        {
+          "file": "desktop-sato.png",
+          "pos": [
+            3.72,
+            1.6,
+            3.02
+          ],
+          "at": [
+            4.4,
+            1.25,
+            -0.7
+          ]
+        },
+        {
+          "file": "desktop-first-person.png"
+        },
+        {
+          "file": "desktop-third-person.png"
+        }
+      ],
+      "walks": [
+        {
+          "label": "Minato customer aisle",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                -3.5,
+                0,
+                0.7485878311607058
+              ],
+              "to": [
+                -1.559184698603185,
+                0,
+                0.7963802186394013
+              ],
+              "displacement": 1.9414036536580752,
+              "durationMs": 750
+            },
+            {
+              "from": [
+                -1.559184698603185,
+                0,
+                0.7963802186394013
+              ],
+              "to": [
+                -0.6098133250505352,
+                0,
+                0.8197583961060331
+              ],
+              "displacement": 0.9496591725997839,
+              "durationMs": 319.8251571138354
+            }
+          ],
+          "lens": {
+            "position": [
+              -0.6098133250505352,
+              1.6861765343971824,
+              0.8197583961060331
+            ],
+            "rotation": [
+              0,
+              -1.5954162536621095,
+              0
+            ],
+            "distance": 2.2,
+            "ceiling": 2.719999904483556,
+            "blocked": false
+          }
+        },
+        {
+          "label": "Minato main aisle",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                -0.6098133250505352,
+                0,
+                0.8197583961060331
+              ],
+              "to": [
+                -0.01235926980609145,
+                0,
+                1.0453336376838922
+              ],
+              "displacement": 0.5983628366562476,
+              "durationMs": 217.2769578141778
+            }
+          ],
+          "lens": {
+            "position": [
+              -0.01235926980609145,
+              1.7053320895925264,
+              1.0453336376838922
+            ],
+            "rotation": [
+              0,
+              -1.9318102050781252,
+              0
+            ],
+            "distance": 2.2,
+            "ceiling": 2.719999904483556,
+            "blocked": false
+          }
+        },
+        {
+          "label": "WC approach",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                -0.01235926980609145,
+                0,
+                1.0453336376838922
+              ],
+              "to": [
+                0.29476311207042893,
+                0,
+                2.2298033888016513
+              ],
+              "displacement": 1.1844953504751667,
+              "durationMs": 414.8345530891024
+            }
+          ],
+          "lens": {
+            "position": [
+              0.29476311207042893,
+              1.683122474678563,
+              2.2298033888016513
+            ],
+            "rotation": [
+              0,
+              -2.887888787841797,
+              0
+            ],
+            "distance": 2.2,
+            "ceiling": 2.719999904483556,
+            "blocked": false
+          }
+        },
+        {
+          "label": "inside WC",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                0.29476311207042893,
+                0,
+                2.2298033888016513
+              ],
+              "to": [
+                1.419242478092175,
+                0,
+                2.346799913098706
+              ],
+              "displacement": 1.090495099649855,
+              "durationMs": 387.1576613354719
+            }
+          ],
+          "lens": {
+            "position": [
+              1.419242478092175,
+              1.6992329133165298,
+              2.346799913098706
+            ],
+            "rotation": [
+              0,
+              -1.6744683654785157,
+              0
+            ],
+            "distance": 2.2,
+            "ceiling": 2.719999904483556,
+            "blocked": false
+          }
+        },
+        {
+          "label": "WC return",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                1.419242478092175,
+                0,
+                2.346799913098706
+              ],
+              "to": [
+                0.3427341106975068,
+                0,
+                2.2536960049823724
+              ],
+              "displacement": 1.040521312500795,
+              "durationMs": 374.47354867894654
+            }
+          ],
+          "lens": {
+            "position": [
+              0.3427341106975068,
+              1.7161837503226016,
+              2.2536960049823724
+            ],
+            "rotation": [
+              0,
+              -4.798661236572264,
+              0
+            ],
+            "distance": 2.2,
+            "ceiling": 2.719999904483556,
+            "blocked": false
+          }
+        },
+        {
+          "label": "Minato entrance",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                0.3427341106975068,
+                0,
+                2.2536960049823724
+              ],
+              "to": [
+                0.01302663373776217,
+                0,
+                2.7311364557535507
+              ],
+              "displacement": 0.5080796704535318,
+              "durationMs": 201.04845355896674
+            }
+          ],
+          "lens": {
+            "position": [
+              0.01302663373776217,
+              1.6907027165774362,
+              2.7311364557535507
+            ],
+            "rotation": [
+              0,
+              -3.745963702392577,
+              0
+            ],
+            "distance": 2.2,
+            "ceiling": 2.7199999044835566,
+            "blocked": false
+          }
+        },
+        {
+          "label": "return main aisle",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                -0.095692513743084,
+                0,
+                2.888569703125891
+              ],
+              "to": [
+                -0.017890751133714838,
+                0,
+                1.3937396040849526
+              ],
+              "displacement": 1.4962358877675732,
+              "durationMs": 613.6860951513399
+            },
+            {
+              "from": [
+                -0.017890751133714838,
+                0,
+                1.3937396040849526
+              ],
+              "to": [
+                0.00025458818702433486,
+                0,
+                1.045107407792197
+              ],
+              "displacement": 0.3491040842370299,
+              "durationMs": 114.73495756772476
+            }
+          ],
+          "lens": {
+            "position": [
+              0.00025458818702433486,
+              1.7082095737196457,
+              1.045107407792197
+            ],
+            "rotation": [
+              0,
+              -6.335185614013669,
+              0
+            ],
+            "distance": 2.2,
+            "ceiling": 2.7199999044835566,
+            "blocked": false
+          }
+        },
+        {
+          "label": "counter end",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                0.00025458818702433486,
+                0,
+                1.045107407792197
+              ],
+              "to": [
+                1.2503118397627326,
+                0,
+                0.3498266578455321
+              ],
+              "displacement": 1.3902079259141786,
+              "durationMs": 476.6827389732284
+            }
+          ],
+          "lens": {
+            "position": [
+              1.2503118397627326,
+              1.7171198069530489,
+              0.3498266578455321
+            ],
+            "rotation": [
+              0,
+              -7.346391479492184,
+              0
+            ],
+            "distance": 2.2,
+            "ceiling": 2.719999904483556,
+            "blocked": false
+          }
+        },
+        {
+          "label": "kitchen end",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                1.2503118397627326,
+                0,
+                0.3498266578455321
+              ],
+              "to": [
+                1.2500050292553213,
+                0,
+                -0.7814468802293736
+              ],
+              "displacement": 1.0911155408546127,
+              "durationMs": 383.2755667106405
+            }
+          ],
+          "lens": {
+            "position": [
+              1.2500050292553213,
+              1.700029309165487,
+              -0.7814468802293736
+            ],
+            "rotation": [
+              0,
+              -6.282914099121091,
+              0
+            ],
+            "distance": 2.2,
+            "ceiling": 2.7199999044835566,
+            "blocked": false
+          }
+        },
+        {
+          "label": "shared passage",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                1.2500050292553213,
+                0,
+                -0.7814468802293736
+              ],
+              "to": [
+                2.4298238361666638,
+                0,
+                -0.7993890551127624
+              ],
+              "displacement": 1.1399468868642282,
+              "durationMs": 406.71201207509273
+            }
+          ],
+          "lens": {
+            "position": [
+              2.4298238361666638,
+              1.6821459419462703,
+              -0.7993890551127624
+            ],
+            "rotation": [
+              0,
+              -7.838775238037106,
+              0
+            ],
+            "distance": 2.2,
+            "ceiling": 1.9799999284744263,
+            "blocked": false
+          }
+        },
+        {
+          "label": "Sato passage",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                2.4298238361666638,
+                0,
+                -0.7993890551127624
+              ],
+              "to": [
+                3.0136709039715184,
+                0,
+                -0.5440205302148263
+              ],
+              "displacement": 0.5972122012239839,
+              "durationMs": 207.44363588260038
+            }
+          ],
+          "lens": {
+            "position": [
+              3.0136709039715184,
+              1.7137398320620194,
+              -0.5440205302148263
+            ],
+            "rotation": [
+              0,
+              -8.266299249267576,
+              0
+            ],
+            "distance": 2.2,
+            "ceiling": 2.719999904483556,
+            "blocked": false
+          }
+        },
+        {
+          "label": "Sato side aisle",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                3.0136709039715184,
+                0,
+                -0.5440205302148263
+              ],
+              "to": [
+                3.000137513407811,
+                0,
+                1.627911739130453
+              ],
+              "displacement": 2.1328555120922825,
+              "durationMs": 731.3543737948372
+            }
+          ],
+          "lens": {
+            "position": [
+              3.000137513407811,
+              1.7054281929337065,
+              1.627911739130453
+            ],
+            "rotation": [
+              0,
+              -9.431008917236325,
+              0
+            ],
+            "distance": 2.2,
+            "ceiling": 2.7199999044835566,
+            "blocked": false
+          }
+        },
+        {
+          "label": "Sato customer aisle",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                3.000137513407811,
+                0,
+                1.627911739130453
+              ],
+              "to": [
+                3.687163350069926,
+                0,
+                1.6495948723560414
+              ],
+              "displacement": 0.6471199233374293,
+              "durationMs": 233.40365402434458
+            }
+          ],
+          "lens": {
+            "position": [
+              3.687163350069926,
+              1.6884326371048874,
+              1.6495948723560414
+            ],
+            "rotation": [
+              0,
+              -7.885532031249998,
+              0
+            ],
+            "distance": 2.2,
+            "ceiling": 2.7199999044835566,
+            "blocked": false
+          }
+        },
+        {
+          "label": "Sato exit",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                3.687163350069926,
+                0,
+                1.6495948723560414
+              ],
+              "to": [
+                3.699421123422884,
+                0,
+                2.8245089096651337
+              ],
+              "displacement": 1.1356796256328765,
+              "durationMs": 410.1573624454634
+            }
+          ],
+          "lens": {
+            "position": [
+              3.699421123422884,
+              1.6878122212854614,
+              2.8245089096651337
+            ],
+            "rotation": [
+              0,
+              -9.414345428466794,
+              0
+            ],
+            "distance": 2.2,
+            "ceiling": 2.7199999044835566,
+            "blocked": false
+          }
+        }
+      ],
+      "runtime": {
+        "sha256": "27d31343668c18fd0f195ebcb3c88688f83f836f96783efee14d2307e8250188"
+      },
+      "furniture": [
+        {
+          "name": "Minato walnut back bar",
+          "kind": "backbar"
+        },
+        {
+          "name": "Minato walnut counter",
+          "kind": "counter"
+        }
+      ],
+      "thirdPersonLens": {
+        "position": [
+          0.7274580655519907,
+          1.8168000000000002,
+          0.7813227911036942
+        ],
+        "rotation": [
+          0,
+          -3.745963702392577,
+          0
+        ],
+        "distance": 2.2,
+        "ceiling": 2.7199999044835566,
+        "blocked": false
+      },
+      "cancelledRequests": [
+        {
+          "type": "request",
+          "message": "http://127.0.0.1:35701/johansson-town/assets/models/izakaya/minato-interior-compact.glb net::ERR_ABORTED"
+        }
+      ],
+      "errors": [],
+      "renderInfo": {
+        "programs": 256,
+        "calls": 16908,
+        "triangles": 19627735,
+        "geometries": 1654,
+        "textures": 325
+      },
+      "passed": true
+    },
+    {
+      "viewport": "phone",
+      "entry": "ramen",
+      "checks": [
+        "one fitted cabinet/counter, saved discoveries and calendar through ramen",
+        "normal first-person walking reaches WC; third-person lens clears entrance",
+        "izakaya physical door exits to the matching clear street position",
+        "opposite entry reloads the same fitted room once",
+        "no invalid transforms or browser/shader/HTTP errors"
+      ],
+      "captures": [
+        {
+          "file": "phone-entry.png",
+          "pos": [
+            0.08,
+            1.59,
+            3.1
+          ],
+          "at": [
+            -1.67,
+            1.23,
+            -1.4
+          ]
+        },
+        {
+          "file": "phone-counter.png",
+          "pos": [
+            -3.66,
+            1.55,
+            1.06
+          ],
+          "at": [
+            -1.38,
+            1.27,
+            -2.76
+          ]
+        },
+        {
+          "file": "phone-sato.png",
+          "pos": [
+            3.72,
+            1.6,
+            3.02
+          ],
+          "at": [
+            4.4,
+            1.25,
+            -0.7
+          ]
+        },
+        {
+          "file": "phone-first-person.png"
+        },
+        {
+          "file": "phone-third-person.png"
+        }
+      ],
+      "walks": [
+        {
+          "label": "Sato customer aisle",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                3.75,
+                0,
+                1.6785878311607052
+              ],
+              "to": [
+                3.2767378347804446,
+                0,
+                1.6605484472314134
+              ],
+              "displacement": 0.47360584498172126,
+              "durationMs": 250.18154832274035
+            },
+            {
+              "from": [
+                3.2767378347804446,
+                0,
+                1.6605484472314134
+              ],
+              "to": [
+                3.044088609127767,
+                0,
+                1.651680532128895
+              ],
+              "displacement": 0.232818173936349,
+              "durationMs": 92.31293332883327
+            }
+          ],
+          "lens": {
+            "position": [
+              3.044088609127767,
+              1.7141868974686116,
+              1.651680532128895
+            ],
+            "rotation": [
+              0,
+              1.5326976654052735,
+              0
+            ],
+            "distance": 1.4793823384106854,
+            "ceiling": 2.7199999044835566,
+            "blocked": false
+          }
+        },
+        {
+          "label": "Sato counter end",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                3.044088609127767,
+                0,
+                1.651680532128895
+              ],
+              "to": [
+                3.0007275246933345,
+                0,
+                -0.5136683642127005
+              ],
+              "displacement": 2.1275275124113966,
+              "durationMs": 734.0406415489387
+            }
+          ],
+          "lens": {
+            "position": [
+              3.0007275246933345,
+              1.6843064137044286,
+              -0.5136683642127005
+            ],
+            "rotation": [
+              0,
+              0.02002231140136715,
+              0
+            ],
+            "distance": 1.4793823384106854,
+            "ceiling": 2.719999904483556,
+            "blocked": false
+          }
+        },
+        {
+          "label": "shared kitchen passage",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                3.0007275246933345,
+                0,
+                -0.5136683642127005
+              ],
+              "to": [
+                2.4815260298353,
+                0,
+                -0.7937816185945057
+              ],
+              "displacement": 0.549696697807282,
+              "durationMs": 201.01340782250335
+            }
+          ],
+          "lens": {
+            "position": [
+              2.4815260298353,
+              1.7053320895925264,
+              -0.7937816185945057
+            ],
+            "rotation": [
+              0,
+              1.0760442222595215,
+              0
+            ],
+            "distance": 1.4793823384106854,
+            "ceiling": 1.9799999284744259,
+            "blocked": false
+          }
+        },
+        {
+          "label": "Minato counter end",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                2.4815260298353,
+                0,
+                -0.7937816185945057
+              ],
+              "to": [
+                1.2591824649963888,
+                0,
+                -0.7999536345185033
+              ],
+              "displacement": 1.183397332510075,
+              "durationMs": 410.5139096884403
+            }
+          ],
+          "lens": {
+            "position": [
+              1.2591824649963888,
+              1.683122474678563,
+              -0.7999536345185033
+            ],
+            "rotation": [
+              0,
+              1.5657470397949218,
+              0
+            ],
+            "distance": 1.4793823384106854,
+            "ceiling": 2.7199999044835566,
+            "blocked": false
+          }
+        },
+        {
+          "label": "Minato customer aisle",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                1.2591824649963888,
+                0,
+                -0.7999536345185033
+              ],
+              "to": [
+                1.2501554152452652,
+                0,
+                0.33053569963625573
+              ],
+              "displacement": 1.0904744822872692,
+              "durationMs": 383.3300984219628
+            }
+          ],
+          "lens": {
+            "position": [
+              1.2501554152452652,
+              1.6992329133165298,
+              0.33053569963625573
+            ],
+            "rotation": [
+              0,
+              3.13360774154663,
+              0
+            ],
+            "distance": 1.4793823384106854,
+            "ceiling": 2.719999904483556,
+            "blocked": false
+          }
+        },
+        {
+          "label": "Minato main aisle",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                1.2501554152452652,
+                0,
+                0.33053569963625573
+              ],
+              "to": [
+                0.011574338792677843,
+                0,
+                1.0433389535144058
+              ],
+              "displacement": 1.3890400804045298,
+              "durationMs": 480.7999632285244
+            }
+          ],
+          "lens": {
+            "position": [
+              0.011574338792677843,
+              1.712144577377336,
+              1.0433389535144058
+            ],
+            "rotation": [
+              0,
+              2.0930061943054197,
+              0
+            ],
+            "distance": 1.4793823384106854,
+            "ceiling": 2.7199999044835566,
+            "blocked": false
+          }
+        },
+        {
+          "label": "WC approach",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                0.011574338792677843,
+                0,
+                1.0433389535144058
+              ],
+              "to": [
+                0.2976998631830227,
+                0,
+                2.240377132388272
+              ],
+              "displacement": 1.1906031546794196,
+              "durationMs": 413.55105061038654
+            }
+          ],
+          "lens": {
+            "position": [
+              0.2976998631830227,
+              1.713924968513157,
+              2.240377132388272
+            ],
+            "rotation": [
+              0,
+              3.376218276977538,
+              0
+            ],
+            "distance": 1.4793823384106854,
+            "ceiling": 2.7199999044835566,
+            "blocked": false
+          }
+        },
+        {
+          "label": "inside WC",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                0.2976998631830227,
+                0,
+                2.240377132388272
+              ],
+              "to": [
+                1.423301019161717,
+                0,
+                2.3474600176894893
+              ],
+              "displacement": 1.0906097852177483,
+              "durationMs": 385.8342733482924
+            }
+          ],
+          "lens": {
+            "position": [
+              1.423301019161717,
+              1.6848664922882894,
+              2.3474600176894893
+            ],
+            "rotation": [
+              0,
+              4.6175404830932605,
+              0
+            ],
+            "distance": 1.4793823384106854,
+            "ceiling": 2.7199999044835566,
+            "blocked": false
+          }
+        },
+        {
+          "label": "WC return",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                1.423301019161717,
+                0,
+                2.3474600176894893
+              ],
+              "to": [
+                0.3468147322287238,
+                0,
+                2.25406174520741
+              ],
+              "displacement": 1.0405242284850813,
+              "durationMs": 375.84033765798125
+            }
+          ],
+          "lens": {
+            "position": [
+              0.3468147322287238,
+              1.6986260252966703,
+              2.25406174520741
+            ],
+            "rotation": [
+              0,
+              1.4842508972167974,
+              0
+            ],
+            "distance": 1.4793823384106854,
+            "ceiling": 2.7199999044835566,
+            "blocked": false
+          }
+        },
+        {
+          "label": "Minato entrance",
+          "reached": true,
+          "steps": [
+            {
+              "from": [
+                0.3468147322287238,
+                0,
+                2.25406174520741
+              ],
+              "to": [
+                -0.018105786875688003,
+                0,
+                2.7758909205435787
+              ],
+              "displacement": 0.5968042450619775,
+              "durationMs": 201.7245677368584
+            }
+          ],
+          "lens": {
+            "position": [
+              -0.018105786875688003,
+              1.6913937326819464,
+              2.7758909205435787
+            ],
+            "rotation": [
+              0,
+              2.5313297225952156,
+              0
+            ],
+            "distance": 1.4793823384106854,
+            "ceiling": 2.7199999044835566,
+            "blocked": false
+          }
+        }
+      ],
+      "runtime": {
+        "sha256": "27d31343668c18fd0f195ebcb3c88688f83f836f96783efee14d2307e8250188"
+      },
+      "furniture": [
+        {
+          "name": "Minato walnut back bar",
+          "kind": "backbar"
+        },
+        {
+          "name": "Minato walnut counter",
+          "kind": "counter"
+        }
+      ],
+      "thirdPersonLens": {
+        "position": [
+          0.8423536230453795,
+          1.9968000000000001,
+          0.6379253459029535
+        ],
+        "rotation": [
+          0,
+          2.5313297225952156,
+          0
+        ],
+        "distance": 2.4408934570071112,
+        "ceiling": 2.7199999044835566,
+        "blocked": false
+      },
+      "cancelledRequests": [],
+      "errors": [],
+      "renderInfo": {
+        "programs": 232,
+        "calls": 5937,
+        "triangles": 8226934,
+        "geometries": 1269,
+        "textures": 260
+      },
+      "passed": true
+    }
+  ],
+  "runtime": {
+    "sha256": "27d31343668c18fd0f195ebcb3c88688f83f836f96783efee14d2307e8250188"
+  },
+  "notes": [
+    "Phone is a 390 × 844 Chromium viewport, not a physical iPhone Safari test.",
+    "renderInfo is cumulative during frozen manual draws; it is not a per-frame performance measurement."
+  ],
+  "finalCollisionReplay": {
+    "test": "tests/minato-compact.test.mjs",
+    "collidersSha256": "9c1e746757dd7a844cabf0b07c744eebed2f5528f251bbc32576a01ab617292b",
+    "segments": 27,
+    "samples": 619,
+    "spacingMetres": 0.05,
+    "playerRadiusMetres": 0.28,
+    "blockedSamples": 0
+  },
+  "followupCorrections": [
+    "Added measured folded-WC-door and two booth-back collision solids.",
+    "Matched Sato exterior wall boxes to the plan’s 0.15 m thickness.",
+    "Translated the Sato inspect menu to English; physical plaques remain Japanese."
+  ]
+}

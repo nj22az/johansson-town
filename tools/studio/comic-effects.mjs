@@ -1,0 +1,22 @@
+import {studioInput} from './input.mjs';
+import {LOOKS} from '../../src/render/looks.js';
+const obj=(properties,required=[])=>({type:'object',additionalProperties:false,properties,required});
+const text={type:'string',maxLength:120};
+const asset=obj({kind:{enum:['star','heart','arrow','text','image']},x:{type:'number',minimum:0,maximum:1},y:{type:'number',minimum:0,maximum:1},size:{type:'number',minimum:.03,maximum:.8},rotation:{type:'number',minimum:-180,maximum:180},opacity:{type:'number',minimum:.05,maximum:1},text,image:{type:'string',maxLength:2800000,description:'PNG, JPEG or WebP base64 data URL; use a resized image.'}},['kind']);
+export const COMIC_EFFECTS_TOOLS=[{
+ name:'comic_effects_info',readOnly:true,description:'Discover After effects: shader look ids, replaceable dialogue/captions, assets, translation presets and portable project exchange. No browser or writes.',input:obj({}),
+ async run(){return {tool:'comic_after_effects',looks:Object.entries(LOOKS).map(([id,l])=>({id,label:l.label})),source:'Omit projectFile to open the built-in Fujita TV comic. Otherwise supply a repository-relative layered .json project from Studio or this tool.',edits:'Panel numbers start at 1. dialogue replaces text by actor id from panelScenes; empty text removes its bubble. top/bottom replace captions. assets replaces the complete asset list; [] removes all. Read the returned project to inspect speakers and current assets.',translation:'language en/sv switches only the original Fujita script. Supply replacement text for any custom translation. Translation runs before explicit edits.',outputs:'PNG preview, layered .studio.json, and a share link when the bounded link can hold the project. Image-heavy projects may require the project file. No World changes; input project is never overwritten.'};}
+},{
+ name:'comic_after_effects',readOnly:false,image:true,description:'Open Fujita’s comic or a layered Studio project, replace dialogue/captions (including arbitrary translations), apply shared shader looks, and replace/add/remove sticker, text or image assets. Uses the actual Studio After effects renderer. Returns a PNG preview, editable project paths, actor ids and sharing link. Makes a new output copy; never changes World or the input file.',
+ input:obj({projectFile:{type:'string',maxLength:240,description:'Optional repository-relative layered Studio .json file, no symlinks. Omit for Fujita TV.'},name:{type:'string',pattern:'^[a-z][a-z0-9-]{0,47}$',default:'comic-effects'},language:{enum:['en','sv']},layout:{enum:['grid','strip']},edits:{type:'array',maxItems:16,items:obj({panel:{type:'integer',minimum:1,maximum:4},look:{enum:Object.keys(LOOKS)},focus:obj({mode:{enum:['depth','tilt']},distance:{type:'number',minimum:.1,maximum:2000},range:{type:'number',minimum:.1,maximum:1000}},['distance','range']),top:text,bottom:text,dialogue:{type:'array',maxItems:6,items:obj({actor:{type:'string',maxLength:80},text},['actor','text'])},assets:{type:'array',maxItems:20,items:asset}},['panel'])}}),
+ async run({projectFile,name='comic-effects',edits=[],language,layout},ctx){
+  if(!/^[a-z][a-z0-9-]{0,47}$/.test(name))throw Error('Use a short lowercase output name.');
+  if(projectFile===`output/studio-mcp/scenes/${name}.studio.json`)throw Error('Choose a different output name to preserve the input project.');
+  if(JSON.stringify(edits).length>12000000)throw Error('Edits exceed 12 MB.');
+  const project=projectFile?JSON.parse(await studioInput(ctx.repo,projectFile,{suffix:'.json',limit:64*1024*1024})):null;
+  const page=await ctx.page(),result=await page.evaluate(options=>window.__JOHANSSON_STUDIO__.comicAfterEffects(options),{project,edits,language,layout});
+  const bytes=Buffer.from(result.image.split(',')[1],'base64'),path=`output/studio-mcp/scenes/${name}.png`,projectPath=`output/studio-mcp/scenes/${name}.studio.json`;
+  await ctx.repo.writeAll([[path,bytes],[projectPath,JSON.stringify(result.project)]]);
+  return {image:bytes.toString('base64'),mimeType:'image/png',data:{path,projectPath,shareUrl:result.shareUrl,shareWarning:result.shareWarning,warnings:result.warnings,panels:result.project.panelScenes.map((s,i)=>({panel:i+1,actors:s.actors.map(a=>({id:a.id,name:a.name,speech:a.speech})),top:s.top,bottom:s.bottom,...result.project.panelLayers[i].post,assets:result.project.panelLayers[i].post.assets.map(({image,...a})=>({...a,...image?{hasImage:true}:{}}))}))}};
+ }
+}];

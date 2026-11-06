@@ -1,0 +1,323 @@
+{
+  "revision": "M1",
+  "status": "PRELIMINARY DESIGN / GAME COORDINATION",
+  "constructionRelease": false,
+  "installedFiction": {
+    "brand": "Johansson Marine",
+    "model": "JM6-160",
+    "year": 1994,
+    "classification": "Fictional medium-speed mechanical diesel; numerical design basis only",
+    "engines": 2,
+    "ratedKW": 460,
+    "ratedRPM": 1350,
+    "cylinders": 6,
+    "boreMM": 160,
+    "strokeMM": 200,
+    "statedEngineDryMassKG": 3000,
+    "fuelSpecificGPerKWh": 210,
+    "fuelSpecificStatus": "design-assumption",
+    "fuel": "A-heavy oil remains a fictional period service assumption; exact delivered fuel properties and OEM acceptance remain open",
+    "starting": "Air-start arrangement retained for gameplay; vessel start-capacity proof remains open",
+    "verifiedManufacturerIdentity": false,
+    "verified1994Availability": false
+  },
+  "calculated": {
+    "displacementLitres": 24.127431579569613,
+    "bmepBar": 16.94705412552589,
+    "meanPistonSpeedMS": 9
+  },
+  "referencePackage": {
+    "manufacturer": "YANMAR",
+    "engineModel": "6AYM-WST",
+    "use": "Comparison and space reservation only; not the installed fictional engine",
+    "operatingReference": {
+      "rating": "C",
+      "ratedKW": 485,
+      "ratedRPM": 1900,
+      "cylinders": 6,
+      "boreMM": 155,
+      "strokeMM": 180,
+      "publishedLitres": 20.379,
+      "fuelSpecificGPerKWh": 207,
+      "source": "YAN-2020-6AY",
+      "fluids": {
+        "jacketWaterL": 60,
+        "lubeOilL": 91
+      },
+      "starter": {
+        "volts": 24,
+        "electricKW": 8,
+        "airOptional": true
+      }
+    },
+    "physicalReference": {
+      "rating": "Legacy H",
+      "engineOnly": {
+        "lengthMM": 2000,
+        "widthMM": 1305,
+        "heightMM": 1431,
+        "dryMassKG": 2365
+      },
+      "gear": {
+        "model": "YX-181",
+        "dryMassKG": 560,
+        "availableRatios": [
+          2.08,
+          2.55,
+          3.03
+        ],
+        "comparisonRatio": 3.03,
+        "type": "Hydraulic multi-disc clutch; output rotation either direction"
+      },
+      "engineAndGear": {
+        "overallLengthMM": 2364,
+        "combinedDryMassKG": 2925
+      },
+      "interface": {
+        "flywheelHousing": "SAE #0",
+        "flywheelInches": 18,
+        "mountingBoltPattern": null,
+        "outputFlangeDrawing": null,
+        "gearOffsetMM": null
+      },
+      "source": "YAN-LEGACY-WST",
+      "note": "Length 2364 mm is the published combined outline with YX181, not engine length plus an invented gear length. Engine width/height are engine-only; accessory extremes must be verified."
+    },
+    "eraCaution": "2020 and legacy IMO Tier II literature are modern references. No 1994 build history is inferred."
+  },
+  "alternatives": [
+    {
+      "manufacturer": "Mitsubishi",
+      "model": "S6A3-MPTAW",
+      "cylinders": 6,
+      "boreMM": 150,
+      "strokeMM": 175,
+      "publishedLitres": 18.56,
+      "lengthMM": 1636,
+      "widthMM": 1036,
+      "heightMM": 1421,
+      "dryMassKG": 1900,
+      "source": "MHI-S6A3",
+      "decision": "Not selected: different engine class/displacement and no confirmed gearbox package; do not import the S6A3-MPTA generator rating as propulsion approval."
+    }
+  ],
+  "reservations": {
+    "status": "YARD RESERVATION / SUPPLIER CONFIRMATION REQUIRED",
+    "units": [
+      {
+        "id": "mainP",
+        "tag": "11XJA10",
+        "centre": [
+          1.55,
+          1.725,
+          10.7
+        ]
+      },
+      {
+        "id": "mainS",
+        "tag": "12XJA10",
+        "centre": [
+          -1.55,
+          1.725,
+          10.7
+        ]
+      }
+    ],
+    "physicalEnvelope": {
+      "lengthM": 2.7,
+      "widthM": 1.5,
+      "heightM": 1.65,
+      "lowerEdgeAboveKeelM": 0.9,
+      "massKG": 3600,
+      "massBasis": "3000 kg fictional engine + 600 kg gear allowance; excludes foundations, shafts and rigging",
+      "centreOfMass": "Geometric reservation centre only; actual equipment CoG not supplied",
+      "boundingBoxOffsets": {
+        "x": [
+          -0.75,
+          0.75
+        ],
+        "y": [
+          -0.825,
+          0.825
+        ],
+        "z": [
+          -1.35,
+          1.35
+        ]
+      }
+    },
+    "access": {
+      "operatingSideM": 1,
+      "otherSideM": 0.8,
+      "endM": 0.6,
+      "mainRouteTargetHeightM": 2,
+      "status": "Design targets, not OEM minima or demonstrated class compliance"
+    },
+    "removal": {
+      "hatchClearLengthM": 2.9,
+      "hatchClearWidthM": 1.8,
+      "sideClearanceM": 0.15,
+      "endClearanceM": 0.1,
+      "location": "Centred above each machinery reservation; continuity through decks and lifting path NOT modelled or verified",
+      "method": "Dry dock or alongside shore crane, with vessel stable and unloaded as lift study requires",
+      "nominalAssemblyMassKG": 3600,
+      "riggingAllowanceKG": 400,
+      "preliminaryLiftLoadKG": 4000,
+      "liftingApplianceWLLKG": null,
+      "liftingPointDrawing": null,
+      "hold": "Hatch framing, weather/watertight closure, deck loading, rigging, crane radius, stability during lift and engine lifting points require design"
+    },
+    "inRoomOverhaul": {
+      "pistonWithdrawalHeightM": null,
+      "chainBlockClearanceM": null,
+      "hold": "No manufacturer piston/liner extraction envelope; nominal current overhead cannot be declared sufficient"
+    },
+    "operatingCentresDoNotAuthorizeRelocation": true
+  },
+  "serviceAssumptions": {
+    "fuelDensityKGPerL": 0.86,
+    "fuelLoadFraction": 0.8,
+    "crossingMinutes": 22,
+    "crossingsPerDay": 20,
+    "storageGrossM3": 15,
+    "unusableFraction": 0.1,
+    "dayTankGrossM3": 1.5,
+    "dayTankUnusableFraction": 0.1,
+    "generatorTotalElectricalKW": 65,
+    "generatorSpecificGPerElectricalKWh": 260,
+    "fuelBasis": "Illustrative duty budget; generators use a separate assumed g/kWhe value. No fuel economy guarantee.",
+    "ventilation": {
+      "roomSensibleHeatKW": 100,
+      "airDensityKGPerM3": 1.18,
+      "airSpecificHeatKJPerKGK": 1.005,
+      "permittedTemperatureRiseK": 10,
+      "combustionAirFuelMassRatio": 32,
+      "reservationSupplyM3PerHour": 40000,
+      "fanCount": 2,
+      "fanPressurePa": 750,
+      "fanTotalEfficiency": 0.65,
+      "status": "Preliminary heat and combustion air assumptions. Obtain OEM heat release/air consumption and fan/duct curves before sizing."
+    },
+    "cooling": {
+      "estimatedHeatToWaterFraction": 0.3,
+      "fuelLHVKJPerKG": 42700,
+      "seawaterDensityKGPerM3": 1025,
+      "seawaterSpecificHeatKJPerKGK": 3.99,
+      "seawaterRiseK": 10,
+      "status": "Screening heat balance only; OEM pump curve, charge-air/jacket/gear cooler split, seawater limit and fouling allowance not supplied"
+    },
+    "shaft": {
+      "gearEfficiency": 0.97,
+      "steelAllowableShearScreeningMPa": 40,
+      "status": "Pure torsion screen only. No fatigue, bending, keyway, class diameter, bearing, alignment or torsional vibration approval."
+    },
+    "startAir": {
+      "receiverCount": 2,
+      "receiverVolumeL": 150,
+      "upperPressureBarGauge": 30,
+      "lowerPressureBarGauge": 18,
+      "manufacturerAirPerStartNM3": null,
+      "requiredConsecutiveStarts": null,
+      "status": "Isothermal usable free-air estimate only; simultaneous start requirements and compressor recovery not proven"
+    }
+  },
+  "access": {
+    "deckheadAboveKeelM": 2.8,
+    "machineryTopAboveKeelM": 2.55,
+    "overheadReserveM": 0.25,
+    "nominalClearHeightM": 1.9,
+    "routeTargetHeightM": 2,
+    "routeHeightTargetMet": false,
+    "supplierOverhaulEnvelopeVerified": false,
+    "removalPathVerified": false
+  },
+  "fuel": {
+    "engineKGPerHour": 154.56,
+    "generatorKGPerHour": 16.9,
+    "propulsionLPerCrossing": 65.89767441860465,
+    "totalLPerCrossing": 73.1031007751938,
+    "dailyL": 1462.062015503876,
+    "usableStorageL": 13500,
+    "enduranceDays": 9.233534458076626,
+    "dayTankHours": 6.771258602589525,
+    "excludes": "Idle/alongside generator consumption, start/warm-up, reserve policy, diversions and adverse weather; no fixed 16-day endurance claim"
+  },
+  "ventilation": {
+    "heatRemovalM3PerHour": 30356.69112066785,
+    "combustionM3PerHour": 5239.322033898305,
+    "totalM3PerHour": 35596.01315456616,
+    "reservedM3PerHour": 40000,
+    "reservationMarginFraction": 0.12372135121735983,
+    "totalFanElectricalKW": 12.820512820512821,
+    "perFanElectricalKW": 6.410256410256411,
+    "existingMotorKWProvesFlow": false,
+    "sourceStatus": "assumed screening inputs; not supplier validation"
+  },
+  "cooling": {
+    "perEngineFuelInputKW": 1145.7833333333333,
+    "perEngineHeatToWaterKW": 343.73499999999996,
+    "perEngineRawWaterM3PerHour": 30.25725288831835,
+    "status": "Order-of-magnitude only; includes assumed heat split, no pump/pipe sizing release"
+  },
+  "shafts": {
+    "engineTorqueNm": 3253.8343921009714,
+    "propellerRPM": 450,
+    "shaftTorqueNm": 9468.658081013828,
+    "shaftDiameterM": 0.11,
+    "pureTorsionStressMPa": 36.23101398744693,
+    "torsionOnlyMinDiameterM": 0.1064305200582925,
+    "approved": false,
+    "status": "Pure torsion screen only. No fatigue, bending, keyway, class diameter, bearing, alignment or torsional vibration approval."
+  },
+  "startingAir": {
+    "usableReferenceAirM3": 3.5999999999999996,
+    "referenceAbsolutePressureBar": 1,
+    "temperatureBasis": "Same assumed constant receiver/reference temperature; not normal cubic metres",
+    "startCount": null,
+    "capacityProven": false,
+    "note": "Isothermal approximation at 1 bar reference. No manufacturer air-per-start, minimum receiver pressure, temperature or consecutive-start requirement has been verified."
+  },
+  "sources": [
+    {
+      "id": "YAN-2020-6AY",
+      "kind": "manufacturer-brochure",
+      "publisher": "YANMAR POWER TECHNOLOGY",
+      "url": "https://www.yanmar.com/media/news/2020/05/22051608/6aym-wstwet.pdf",
+      "location": "Engine specifications and marine gear specifications; two-page brochure",
+      "accessed": "2026-10-13",
+      "scope": "C-rating 485 kW at 1900 rpm; bore/stroke, displacement, gear alternatives, mechanical control, fluids and optional air start",
+      "limitation": "Later product reference. Not evidence of manufacture or installation in 1994. Air-start consumption and installation interfaces are not supplied."
+    },
+    {
+      "id": "YAN-LEGACY-WST",
+      "kind": "manufacturer-channel-datasheet",
+      "publisher": "YANMAR Norway",
+      "url": "https://www.yanmar.no/theme/yanmarportal/uploadedFiles/Marine/productDownloads/Commercial-datasheet/6148-Datasheet-6AYM-WST.pdf",
+      "location": "One-page datasheet, specification table and right-side outline with YX181",
+      "accessed": "2026-10-13",
+      "scope": "Legacy H-rating physical reference: engine-only outline, mass; YX181 combined length, mass and ratios",
+      "limitation": "Legacy H designation and 7 kW electric starter differ from the later C-rating/8 kW brochure. Not an installation or foundation drawing."
+    },
+    {
+      "id": "MHI-S6A3",
+      "kind": "manufacturer-product-page",
+      "publisher": "Mitsubishi Turbocharger and Engine Europe",
+      "url": "https://engine-genset.mhi.com/marine-engine/s6a3-mptaw",
+      "accessed": "2026-10-13",
+      "scope": "Alternative propulsion engine physical reference",
+      "limitation": "No matched gear or period-specific installation drawing was obtained."
+    }
+  ],
+  "holds": [
+    "OEM installation drawings, mount coordinates, bolt sizes/grades and certified mass/CoG",
+    "Engine and gear rating compatibility, thrust capacity, rotation and shaft-line alignment",
+    "Torsional vibration calculation, critical speed/whirling and bearing reactions",
+    "Fuel quality acceptance, delivery/return pressures, filtration and spill drainage",
+    "Heat rejection, raw-water flows, strainer pressure losses and sea-chest submerged geometry",
+    "Air-start consumption, receiver certified pressure/volume, compressor delivery and independent emergency starting",
+    "Exhaust flow, temperatures, allowable backpressure, silencer, insulation and expansion/support drawings",
+    "Measured duct pressure, fan curves and shutdown arrangements; ventilation must not compromise fire boundaries",
+    "Piston/liner withdrawal, complete engine removal path and certified lifting point/load data",
+    "All fuel shutoffs, remote stops, insulated hot surfaces, leak shielding and fire suppression volume review"
+  ]
+}

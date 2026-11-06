@@ -1,0 +1,17 @@
+{
+  "base_game": "83783c93448d1be251a61c213959448e1d21c971",
+  "latest_main_seen": "93519733462cd7b88c43f7639bae4124ca3ff8f6",
+  "later_main_game_sources_changed": false,
+  "blender_asset_sha256": "6ee5d7362b402701b9ee9be8a7f3486464542f1b3687723e52d95da3dd516af9",
+  "blender_asset_unchanged": true,
+  "source_components": 1290,
+  "CAD_geometry_and_camera_arrays": "identical to verified H1-F1 development source",
+  "shore": {
+    "landingX": 0.3,
+    "queueX": 0.3,
+    "arrivalX": 0.6
+  },
+  "queue_columns": 3,
+  "queue_places_on_pier_verified": 24,
+  "normal_url_enabled": true
+}

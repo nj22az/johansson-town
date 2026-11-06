@@ -1,0 +1,445 @@
+{
+  "method": "CPU frustum estimate; all local character assets must load. Images are stubbed. No shadows, Points, GPU timings, player/held objects or interiors. Fixed starting resident population across viewpoints; not a gameplay walk-through.",
+  "configuration": {
+    "consolidate": true,
+    "cellSize": "48"
+  },
+  "loaded": {
+    "ready": 24,
+    "total": 24
+  },
+  "harbourBlock": {
+    "shops": [
+      "journal",
+      "electronics",
+      "market",
+      "career"
+    ],
+    "nearTriangles": 109997,
+    "farTriangles": 34080,
+    "boardwalk": true
+  },
+  "streetPlants": {
+    "count": 15,
+    "draws": 16
+  },
+  "staticProps": {
+    "batches": 20,
+    "sourceMeshes": 175,
+    "drawsSaved": 155,
+    "triangles": 5100,
+    "cellSize": 24
+  },
+  "visibleCallsEstimate": 569,
+  "submittedTrianglesEstimate": 307959,
+  "totalVisibleSceneCalls": 666,
+  "totalVisibleSceneTriangles": 373437,
+  "contributors": {
+    "otherMeshes": {
+      "calls": 424,
+      "triangles": 115336
+    },
+    "otherInstances": {
+      "calls": 30,
+      "triangles": 58316
+    },
+    "characters": {
+      "calls": 50,
+      "triangles": 111151
+    },
+    "harbourInstances": {
+      "calls": 45,
+      "triangles": 18056
+    },
+    "staticProps": {
+      "calls": 20,
+      "triangles": 5100
+    }
+  },
+  "views": {
+    "day": {
+      "start": {
+        "position": [
+          0,
+          1.65,
+          46
+        ],
+        "target": [
+          0,
+          1.6,
+          20
+        ],
+        "visibleCallsEstimate": 564,
+        "submittedTrianglesEstimate": 307899,
+        "totalVisibleSceneCalls": 661,
+        "totalVisibleSceneTriangles": 373377,
+        "contributors": {
+          "otherMeshes": {
+            "calls": 419,
+            "triangles": 115276
+          },
+          "otherInstances": {
+            "calls": 30,
+            "triangles": 58316
+          },
+          "characters": {
+            "calls": 50,
+            "triangles": 111151
+          },
+          "harbourInstances": {
+            "calls": 45,
+            "triangles": 18056
+          },
+          "staticProps": {
+            "calls": 20,
+            "triangles": 5100
+          }
+        }
+      },
+      "street": {
+        "position": [
+          0,
+          1.65,
+          0
+        ],
+        "target": [
+          0,
+          1.6,
+          -35
+        ],
+        "visibleCallsEstimate": 310,
+        "submittedTrianglesEstimate": 246715,
+        "totalVisibleSceneCalls": 661,
+        "totalVisibleSceneTriangles": 430295,
+        "contributors": {
+          "otherMeshes": {
+            "calls": 200,
+            "triangles": 108228
+          },
+          "otherInstances": {
+            "calls": 18,
+            "triangles": 17944
+          },
+          "characters": {
+            "calls": 50,
+            "triangles": 111151
+          },
+          "harbourInstances": {
+            "calls": 31,
+            "triangles": 6876
+          },
+          "staticProps": {
+            "calls": 11,
+            "triangles": 2516
+          }
+        }
+      },
+      "quay": {
+        "position": [
+          0,
+          1.65,
+          -58
+        ],
+        "target": [
+          0,
+          1.6,
+          -78
+        ],
+        "visibleCallsEstimate": 105,
+        "submittedTrianglesEstimate": 128513,
+        "totalVisibleSceneCalls": 661,
+        "totalVisibleSceneTriangles": 425377,
+        "contributors": {
+          "otherMeshes": {
+            "calls": 32,
+            "triangles": 8370
+          },
+          "otherInstances": {
+            "calls": 2,
+            "triangles": 2028
+          },
+          "characters": {
+            "calls": 50,
+            "triangles": 111151
+          },
+          "harbourInstances": {
+            "calls": 14,
+            "triangles": 4928
+          },
+          "staticProps": {
+            "calls": 7,
+            "triangles": 2036
+          }
+        }
+      },
+      "pierLookingBack": {
+        "position": [
+          0,
+          1.65,
+          -76
+        ],
+        "target": [
+          0,
+          1.6,
+          -40
+        ],
+        "visibleCallsEstimate": 633,
+        "submittedTrianglesEstimate": 390384,
+        "totalVisibleSceneCalls": 661,
+        "totalVisibleSceneTriangles": 392376,
+        "contributors": {
+          "otherMeshes": {
+            "calls": 481,
+            "triangles": 194289
+          },
+          "otherInstances": {
+            "calls": 39,
+            "triangles": 62112
+          },
+          "characters": {
+            "calls": 50,
+            "triangles": 111151
+          },
+          "harbourInstances": {
+            "calls": 43,
+            "triangles": 17732
+          },
+          "staticProps": {
+            "calls": 20,
+            "triangles": 5100
+          }
+        }
+      },
+      "shrineLookingBack": {
+        "position": [
+          72,
+          7.65,
+          117
+        ],
+        "target": [
+          45,
+          1.6,
+          55
+        ],
+        "visibleCallsEstimate": 651,
+        "submittedTrianglesEstimate": 372961,
+        "totalVisibleSceneCalls": 661,
+        "totalVisibleSceneTriangles": 373377,
+        "contributors": {
+          "otherMeshes": {
+            "calls": 494,
+            "triangles": 176470
+          },
+          "otherInstances": {
+            "calls": 41,
+            "triangles": 62328
+          },
+          "characters": {
+            "calls": 50,
+            "triangles": 111151
+          },
+          "harbourInstances": {
+            "calls": 46,
+            "triangles": 17912
+          },
+          "staticProps": {
+            "calls": 20,
+            "triangles": 5100
+          }
+        }
+      }
+    },
+    "rainNight": {
+      "start": {
+        "position": [
+          0,
+          1.65,
+          46
+        ],
+        "target": [
+          0,
+          1.6,
+          20
+        ],
+        "visibleCallsEstimate": 566,
+        "submittedTrianglesEstimate": 307995,
+        "totalVisibleSceneCalls": 663,
+        "totalVisibleSceneTriangles": 373473,
+        "contributors": {
+          "otherMeshes": {
+            "calls": 421,
+            "triangles": 115372
+          },
+          "otherInstances": {
+            "calls": 30,
+            "triangles": 58316
+          },
+          "characters": {
+            "calls": 50,
+            "triangles": 111151
+          },
+          "harbourInstances": {
+            "calls": 45,
+            "triangles": 18056
+          },
+          "staticProps": {
+            "calls": 20,
+            "triangles": 5100
+          }
+        }
+      },
+      "street": {
+        "position": [
+          0,
+          1.65,
+          0
+        ],
+        "target": [
+          0,
+          1.6,
+          -35
+        ],
+        "visibleCallsEstimate": 307,
+        "submittedTrianglesEstimate": 246709,
+        "totalVisibleSceneCalls": 663,
+        "totalVisibleSceneTriangles": 430391,
+        "contributors": {
+          "otherMeshes": {
+            "calls": 197,
+            "triangles": 108222
+          },
+          "otherInstances": {
+            "calls": 18,
+            "triangles": 17944
+          },
+          "characters": {
+            "calls": 50,
+            "triangles": 111151
+          },
+          "harbourInstances": {
+            "calls": 31,
+            "triangles": 6876
+          },
+          "staticProps": {
+            "calls": 11,
+            "triangles": 2516
+          }
+        }
+      },
+      "quay": {
+        "position": [
+          0,
+          1.65,
+          -58
+        ],
+        "target": [
+          0,
+          1.6,
+          -78
+        ],
+        "visibleCallsEstimate": 105,
+        "submittedTrianglesEstimate": 128513,
+        "totalVisibleSceneCalls": 663,
+        "totalVisibleSceneTriangles": 425473,
+        "contributors": {
+          "otherMeshes": {
+            "calls": 32,
+            "triangles": 8370
+          },
+          "otherInstances": {
+            "calls": 2,
+            "triangles": 2028
+          },
+          "characters": {
+            "calls": 50,
+            "triangles": 111151
+          },
+          "harbourInstances": {
+            "calls": 14,
+            "triangles": 4928
+          },
+          "staticProps": {
+            "calls": 7,
+            "triangles": 2036
+          }
+        }
+      },
+      "pierLookingBack": {
+        "position": [
+          0,
+          1.65,
+          -76
+        ],
+        "target": [
+          0,
+          1.6,
+          -40
+        ],
+        "visibleCallsEstimate": 635,
+        "submittedTrianglesEstimate": 390480,
+        "totalVisibleSceneCalls": 663,
+        "totalVisibleSceneTriangles": 392472,
+        "contributors": {
+          "otherMeshes": {
+            "calls": 483,
+            "triangles": 194385
+          },
+          "otherInstances": {
+            "calls": 39,
+            "triangles": 62112
+          },
+          "characters": {
+            "calls": 50,
+            "triangles": 111151
+          },
+          "harbourInstances": {
+            "calls": 43,
+            "triangles": 17732
+          },
+          "staticProps": {
+            "calls": 20,
+            "triangles": 5100
+          }
+        }
+      },
+      "shrineLookingBack": {
+        "position": [
+          72,
+          7.65,
+          117
+        ],
+        "target": [
+          45,
+          1.6,
+          55
+        ],
+        "visibleCallsEstimate": 653,
+        "submittedTrianglesEstimate": 373057,
+        "totalVisibleSceneCalls": 663,
+        "totalVisibleSceneTriangles": 373473,
+        "contributors": {
+          "otherMeshes": {
+            "calls": 496,
+            "triangles": 176566
+          },
+          "otherInstances": {
+            "calls": 41,
+            "triangles": 62328
+          },
+          "characters": {
+            "calls": 50,
+            "triangles": 111151
+          },
+          "harbourInstances": {
+            "calls": 46,
+            "triangles": 17912
+          },
+          "staticProps": {
+            "calls": 20,
+            "triangles": 5100
+          }
+        }
+      }
+    }
+  }
+}

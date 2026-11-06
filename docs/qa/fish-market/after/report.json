@@ -1,0 +1,10 @@
+{
+  "phase": "after",
+  "viewport": [
+    900,
+    600
+  ],
+  "physicalDevice": false,
+  "scope": "East-quay fish auction; static createTown scene with cel and ink passes and the sea; no simulation or streamed detail models",
+  "errors": []
+}

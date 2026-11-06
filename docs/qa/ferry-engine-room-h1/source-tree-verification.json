@@ -1,0 +1,11 @@
+{
+  "revision": "H1-F1",
+  "implementation_commit": "091b24d31a808854740c59da920ed0771f5d2133",
+  "verified_source_tree": "6b3a2fe881006a29a6df3eecfa6099c4c61326eb",
+  "local_verified_snapshot": "ba863e5f631dedef14483344f94ab4ca275e03cb",
+  "publication_base": "a30fb308700921e36032d1fdcd11dd78edd7dcab",
+  "branch": "development",
+  "github_blobs_verified": 53,
+  "verification": "Each changed blob SHA and the complete implementation tree SHA equal the tested local Git objects. A subsequent documentation-only commit records this evidence.",
+  "runtime_source_sha256": "b44001aebe030c895416d516423732ab174f889df873a01a497639fae519922a"
+}

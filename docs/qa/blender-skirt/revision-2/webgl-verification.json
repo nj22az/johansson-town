@@ -1,0 +1,55 @@
+{
+  "meshes": 2,
+  "triangles": 1472,
+  "materials": [
+    {
+      "type": "MeshPhysicalMaterial",
+      "sheen": 1,
+      "sheenColour": [
+        0.05999999865889549,
+        0.05999999865889549,
+        0.05999999865889549
+      ],
+      "normalMap": true,
+      "normalScale": [
+        0.07999999821186066,
+        -0.07999999821186066
+      ]
+    },
+    {
+      "type": "MeshPhysicalMaterial",
+      "sheen": 1,
+      "sheenColour": [
+        0.05999999865889549,
+        0.05999999865889549,
+        0.05999999865889549
+      ],
+      "normalMap": true,
+      "normalScale": [
+        0.07999999821186066,
+        -0.07999999821186066
+      ]
+    }
+  ],
+  "morphs": [
+    [
+      "Waist width",
+      "Hip width",
+      "Seat depth",
+      "Front ease",
+      "Length",
+      "Hem flare"
+    ],
+    [
+      "Waist width",
+      "Hip width",
+      "Seat depth",
+      "Front ease",
+      "Length",
+      "Hem flare"
+    ]
+  ],
+  "drawCalls": 2,
+  "pageErrors": [],
+  "scope": "Actual project Three.js/GLTFLoader, Chromium software WebGL; isolated rest mesh only. No game integration or hardware performance acceptance."
+}

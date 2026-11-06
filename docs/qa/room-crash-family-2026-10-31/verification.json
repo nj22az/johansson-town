@@ -1,0 +1,169 @@
+{
+  "date": "2026-10-31",
+  "branch": "codex/sakura-izakaya-resident-repair",
+  "pr": 415,
+  "application_candidate": "e13f14afbf653361a9df6d35ec1df57164c6fe09",
+  "acceptance_candidate": "b8a3174ee4d7a2d4977fe34c8a9c4b2ad76d679e",
+  "acceptance_tree": "dbe595ac4a19f6390ba5613558d8e64803a6fb68",
+  "local_application_commit": "8d3f7220f3db4a091153049cf3cbe62929eb4908",
+  "runtime_source_sha256": "64e1d6e1f45a6865e3555fb1325eb1c18c4c66dbb5f89f523890098f79812392",
+  "published_cache_entries_retained": 35,
+  "manifest_entries": 35,
+  "local_guard": {
+    "files": 109,
+    "tests": 560,
+    "passed": 560,
+    "failed": 0,
+    "skipped": 0,
+    "todo": 0,
+    "seconds": 393,
+    "heap_mb": 6144,
+    "file_concurrency": 2
+  },
+  "cpu_boot": {
+    "passed": 1,
+    "failed": 0,
+    "seconds": 154.2,
+    "renderer": "substituted; actual game, room builders, simulation, saves and entry/exit"
+  },
+  "bar_lifetime": {
+    "actual_glb_cycles": 3,
+    "private_index_wrappers_per_visit": 5,
+    "extracted_geometries_per_visit": 6,
+    "private_disposals_per_visit": 11,
+    "undisposed_after": 0,
+    "cached_source_buffers_and_materials_preserved": true,
+    "focused_checks_passed": 30,
+    "independent_review_checks_passed": 19
+  },
+  "active_roster": {
+    "core": 18,
+    "supporting": 5,
+    "retired": 13,
+    "core_households": 12,
+    "guide_residents": 23
+  },
+  "world_library": {
+    "checks_passed": 3,
+    "retired_live_entries_absent": true
+  },
+  "portrait_catalogue": {
+    "checks_passed": 8,
+    "rendered": 0,
+    "existing_portraits_retained": 23
+  },
+  "native_prior_observation": {
+    "run": 41152673466,
+    "checked_pairs": 3,
+    "geometry_growth": 0,
+    "released_canvas_growth": 0,
+    "office_exit_textures_each_cycle": 235,
+    "izakaya_exit_textures_each_cycle": 234,
+    "page_errors": 0,
+    "complete_acceptance": false,
+    "reason": "Global baseline compared different stable venue states; final fixture captures fresh matching baseline visits after complete warm-up, zero allowance retained."
+  },
+  "native_final": {
+    "run": 41153437339,
+    "artifact": 13024636306,
+    "guard": "success",
+    "passed": true,
+    "checked_pairs": 3,
+    "growth": [
+      {
+        "cycle": 0,
+        "venue": "sakura-office",
+        "delta": {
+          "textures": 0,
+          "geometries": 0,
+          "releasedCanvases": 0
+        }
+      },
+      {
+        "cycle": 0,
+        "venue": "izakaya",
+        "delta": {
+          "textures": 0,
+          "geometries": 0,
+          "releasedCanvases": 0
+        }
+      },
+      {
+        "cycle": 1,
+        "venue": "sakura-office",
+        "delta": {
+          "textures": 0,
+          "geometries": 0,
+          "releasedCanvases": 0
+        }
+      },
+      {
+        "cycle": 1,
+        "venue": "izakaya",
+        "delta": {
+          "textures": 0,
+          "geometries": 0,
+          "releasedCanvases": 0
+        }
+      },
+      {
+        "cycle": 2,
+        "venue": "sakura-office",
+        "delta": {
+          "textures": 0,
+          "geometries": 0,
+          "releasedCanvases": 0
+        }
+      },
+      {
+        "cycle": 2,
+        "venue": "izakaya",
+        "delta": {
+          "textures": 0,
+          "geometries": 0,
+          "releasedCanvases": 0
+        }
+      }
+    ],
+    "page_errors": [],
+    "failed_requests": [
+      {
+        "url": "http://127.0.0.1:36413/johansson-town/assets/video/izakaya-ad.mp4",
+        "failure": "Load request cancelled"
+      }
+    ],
+    "natural_return_entering_ms": 55161,
+    "total_seconds": 402.79,
+    "captures_inspected": [
+      "izakaya.png",
+      "sakura-office.png",
+      "office-umineko-black.png",
+      "office-kitano-12.png",
+      "restored-startup.png"
+    ]
+  },
+  "physical_device": "unobserved; no physical iPhone/Safari process-closure claim",
+  "publication": {
+    "merged_pr": 415,
+    "main_commit": "4a06f5fcc9f60ce447a6a28b915b3f8d087a087c",
+    "tree": "dbe595ac4a19f6390ba5613558d8e64803a6fb68",
+    "same_tree_as_tested_candidate": true,
+    "pages_run": 41154350179,
+    "pages_status": "success",
+    "public_bytes": {
+      "matched": 63,
+      "total": 63,
+      "verified_utc": "2026-10-31T01:17:41.199284+00:00",
+      "evidence": "publication-live.json",
+      "unversioned_entry_and_worker_matched": 2,
+      "unversioned_entry_and_worker_total": 2
+    },
+    "linux_acceptance": "not claimed by this web acceptance record; no release",
+    "post_merge_world_run": {
+      "id": 41154351097,
+      "status": "success",
+      "guard": "success",
+      "iphone_startup": "success"
+    }
+  }
+}

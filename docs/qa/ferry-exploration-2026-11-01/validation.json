@@ -1,0 +1,43 @@
+{
+  "source_base": "dedc09d38ad76365febb445954ccdd92dea4d5f7",
+  "owner_instruction": "Implement",
+  "runtime_source_sha256": "6aa5d0f01eba3f6d0a2baecd0f2160368149618c32e954f22a72c5d6aeeb163e",
+  "previous_production_runtime_JS_files_preserved": 91,
+  "geometry_and_Blender_files_changed": false,
+  "GLB_sha256": "6ee5d7362b402701b9ee9be8a7f3486464542f1b3687723e52d95da3dd516af9",
+  "default_mode": "walk",
+  "walking_metres_per_second": 1,
+  "precision_metres_per_second": 0.35,
+  "manual_saved_views": 8,
+  "controller_review": {
+    "passed": true,
+    "walking_metres_in_point6_seconds": 0.497480360469724,
+    "idle_ship_local_drift_metres": 1.8748771142837145e-13,
+    "manual_views": 8,
+    "renderer_substituted": true
+  },
+  "final_focused_checks": {
+    "tests": 22,
+    "pass": 22,
+    "fail": 0
+  },
+  "local_browser_limit": "WebGL disabled in the connected cloud browser; one retry failed. Hosted software WebKit checks and physical-device acceptance are distinct.",
+  "hosted_status": "Recorded after publication in the root release evidence.",
+  "camera_navigation_geometry_checks": {
+    "tests": 9,
+    "pass": 9,
+    "fail": 0
+  },
+  "local_guard": {
+    "tests": 576,
+    "pass": 576,
+    "fail": 0,
+    "files": 111,
+    "seconds": 350,
+    "note": "The final focused checks also include the subsequent route-entry and real-GLB pick cases. Hosted checks pin the final published source."
+  },
+  "source_commit": "8bdf28c6073775fb4f87115ba2aff37b3be13ca7",
+  "verified_source_tree": "3ee34359570f63166d22f9f8e5c31bded82373f0",
+  "local_tested_snapshot": "f6b4f142ccbbb06f8e334a896911251c4b1a705d",
+  "publication_parent": "027f3e3f8a1dc993d3801f415fc57c5f6e0ea855"
+}

@@ -1,0 +1,418 @@
+{
+  "url": "http://127.0.0.1:8767/johansson-town/?audit&cinematic=off",
+  "browser": "154.0.8037.98",
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "scrollHeight": 844,
+      "clientHeight": 844,
+      "logo": {
+        "x": 87.71875,
+        "y": 64,
+        "width": 214.546875,
+        "height": 61.75,
+        "right": 302.265625,
+        "bottom": 125.75
+      },
+      "actions": [
+        {
+          "x": 36,
+          "y": 626,
+          "width": 318,
+          "height": 66,
+          "right": 354,
+          "bottom": 692
+        },
+        {
+          "x": 36,
+          "y": 704,
+          "width": 100.65625,
+          "height": 44,
+          "right": 136.65625,
+          "bottom": 748
+        },
+        {
+          "x": 144.65625,
+          "y": 704,
+          "width": 100.671875,
+          "height": 44,
+          "right": 245.328125,
+          "bottom": 748
+        },
+        {
+          "x": 253.328125,
+          "y": 704,
+          "width": 100.65625,
+          "height": 44,
+          "right": 353.984375,
+          "bottom": 748
+        }
+      ]
+    },
+    {
+      "width": 393,
+      "height": 852,
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "scrollHeight": 852,
+      "clientHeight": 852,
+      "logo": {
+        "x": 89.21875,
+        "y": 64,
+        "width": 214.546875,
+        "height": 61.75,
+        "right": 303.765625,
+        "bottom": 125.75
+      },
+      "actions": [
+        {
+          "x": 37.5,
+          "y": 634,
+          "width": 318,
+          "height": 66,
+          "right": 355.5,
+          "bottom": 700
+        },
+        {
+          "x": 37.5,
+          "y": 712,
+          "width": 100.65625,
+          "height": 44,
+          "right": 138.15625,
+          "bottom": 756
+        },
+        {
+          "x": 146.15625,
+          "y": 712,
+          "width": 100.671875,
+          "height": 44,
+          "right": 246.828125,
+          "bottom": 756
+        },
+        {
+          "x": 254.828125,
+          "y": 712,
+          "width": 100.65625,
+          "height": 44,
+          "right": 355.484375,
+          "bottom": 756
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "scrollHeight": 932,
+      "clientHeight": 932,
+      "logo": {
+        "x": 101.328125,
+        "y": 64,
+        "width": 227.34375,
+        "height": 63.703125,
+        "right": 328.671875,
+        "bottom": 127.703125
+      },
+      "actions": [
+        {
+          "x": 56,
+          "y": 714,
+          "width": 318,
+          "height": 66,
+          "right": 374,
+          "bottom": 780
+        },
+        {
+          "x": 56,
+          "y": 792,
+          "width": 100.65625,
+          "height": 44,
+          "right": 156.65625,
+          "bottom": 836
+        },
+        {
+          "x": 164.65625,
+          "y": 792,
+          "width": 100.671875,
+          "height": 44,
+          "right": 265.328125,
+          "bottom": 836
+        },
+        {
+          "x": 273.328125,
+          "y": 792,
+          "width": 100.65625,
+          "height": 44,
+          "right": 373.984375,
+          "bottom": 836
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "scrollHeight": 1024,
+      "clientHeight": 1024,
+      "logo": {
+        "x": 184.78125,
+        "y": 48,
+        "width": 398.4375,
+        "height": 106.234375,
+        "right": 583.21875,
+        "bottom": 154.234375
+      },
+      "actions": [
+        {
+          "x": 225,
+          "y": 825,
+          "width": 318,
+          "height": 66,
+          "right": 543,
+          "bottom": 891
+        },
+        {
+          "x": 225,
+          "y": 903,
+          "width": 100.65625,
+          "height": 44,
+          "right": 325.65625,
+          "bottom": 947
+        },
+        {
+          "x": 333.65625,
+          "y": 903,
+          "width": 100.671875,
+          "height": 44,
+          "right": 434.328125,
+          "bottom": 947
+        },
+        {
+          "x": 442.328125,
+          "y": 903,
+          "width": 100.65625,
+          "height": 44,
+          "right": 542.984375,
+          "bottom": 947
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "scrollHeight": 800,
+      "clientHeight": 800,
+      "logo": {
+        "x": 440.78125,
+        "y": 48,
+        "width": 398.4375,
+        "height": 106.234375,
+        "right": 839.21875,
+        "bottom": 154.234375
+      },
+      "actions": [
+        {
+          "x": 481,
+          "y": 601,
+          "width": 318,
+          "height": 66,
+          "right": 799,
+          "bottom": 667
+        },
+        {
+          "x": 481,
+          "y": 679,
+          "width": 100.65625,
+          "height": 44,
+          "right": 581.65625,
+          "bottom": 723
+        },
+        {
+          "x": 589.65625,
+          "y": 679,
+          "width": 100.671875,
+          "height": 44,
+          "right": 690.328125,
+          "bottom": 723
+        },
+        {
+          "x": 698.328125,
+          "y": 679,
+          "width": 100.65625,
+          "height": 44,
+          "right": 798.984375,
+          "bottom": 723
+        }
+      ]
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "scrollHeight": 1080,
+      "clientHeight": 1080,
+      "logo": {
+        "x": 760.78125,
+        "y": 48,
+        "width": 398.4375,
+        "height": 106.234375,
+        "right": 1159.21875,
+        "bottom": 154.234375
+      },
+      "actions": [
+        {
+          "x": 801,
+          "y": 881,
+          "width": 318,
+          "height": 66,
+          "right": 1119,
+          "bottom": 947
+        },
+        {
+          "x": 801,
+          "y": 959,
+          "width": 100.65625,
+          "height": 44,
+          "right": 901.65625,
+          "bottom": 1003
+        },
+        {
+          "x": 909.65625,
+          "y": 959,
+          "width": 100.671875,
+          "height": 44,
+          "right": 1010.328125,
+          "bottom": 1003
+        },
+        {
+          "x": 1018.328125,
+          "y": 959,
+          "width": 100.65625,
+          "height": 44,
+          "right": 1118.984375,
+          "bottom": 1003
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "scrollWidth": 844,
+      "clientWidth": 844,
+      "scrollHeight": 500,
+      "clientHeight": 390,
+      "logo": {
+        "x": 314.71875,
+        "y": 60,
+        "width": 214.546875,
+        "height": 61.75,
+        "right": 529.265625,
+        "bottom": 121.75
+      },
+      "actions": [
+        {
+          "x": 263,
+          "y": 300.75,
+          "width": 318,
+          "height": 66,
+          "right": 581,
+          "bottom": 366.75
+        },
+        {
+          "x": 263,
+          "y": 378.75,
+          "width": 100.65625,
+          "height": 44,
+          "right": 363.65625,
+          "bottom": 422.75
+        },
+        {
+          "x": 371.65625,
+          "y": 378.75,
+          "width": 100.671875,
+          "height": 44,
+          "right": 472.328125,
+          "bottom": 422.75
+        },
+        {
+          "x": 480.328125,
+          "y": 378.75,
+          "width": 100.65625,
+          "height": 44,
+          "right": 580.984375,
+          "bottom": 422.75
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "scrollHeight": 568,
+      "clientHeight": 568,
+      "logo": {
+        "x": 52.71875,
+        "y": 60,
+        "width": 214.546875,
+        "height": 61.75,
+        "right": 267.265625,
+        "bottom": 121.75
+      },
+      "actions": [
+        {
+          "x": 33,
+          "y": 339.625,
+          "width": 254,
+          "height": 66,
+          "right": 287,
+          "bottom": 405.625
+        },
+        {
+          "x": 33,
+          "y": 417.625,
+          "width": 79.328125,
+          "height": 54.375,
+          "right": 112.328125,
+          "bottom": 472
+        },
+        {
+          "x": 120.328125,
+          "y": 417.625,
+          "width": 79.328125,
+          "height": 54.375,
+          "right": 199.65625,
+          "bottom": 472
+        },
+        {
+          "x": 207.65625,
+          "y": 417.625,
+          "width": 79.34375,
+          "height": 54.375,
+          "right": 287,
+          "bottom": 472
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "Fresh player label; preview leaves save untouched; no legacy image/sky; stable action placement",
+    "Guide open/close and browser back/forward; original Studio destination responds",
+    "Shared weather cycle and random weather; desktop install hidden until install prompt is available",
+    "Reduced motion keeps title camera still",
+    "Existing player Continue and currency; New Game confirmation cancel/accept; new slot retains old save",
+    "Save import loads a separate player and preserves previous progress",
+    "Save picker traps keyboard focus; selecting another player reloads its state; keyboard Continue restores selected money without touching the other save"
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "pass": true
+}

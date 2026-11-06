@@ -1,0 +1,2122 @@
+{
+  "compiled": true,
+  "softwareGPU": true,
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "notes": [
+    "Actual compiled Johansson World opening at Minato Izakaya, 20:30.",
+    "Normal UI/keyboard inputs start actions; audit step advances elapsed time and camera only changes inspection framing.",
+    "Linux headless Chromium with SwiftShader software rendering. No FPS, physical-phone, Safari or Firefox claim.",
+    "The existing game cast retains mitten hands. The separate mannequin lab supplies articulated finger evidence."
+  ],
+  "checks": [
+    "compiled opening is seated with one actual delivered draft beer",
+    "Drink button: all 12 phases, same prop, held/lip/table constraints, rendered-hand clearance, valid gradual consumption and repeat gating",
+    "R: consecutive complete sip in first person, same real arm/glass, cleanup and actual-volume events",
+    "normal W standing cancels safely, supports the original glass, preserves partial consumption and removes arm view",
+    "no browser/load errors or invalid transforms"
+  ],
+  "captures": [
+    {
+      "file": "third-person-rest.png",
+      "camera": "normal game camera"
+    },
+    {
+      "file": "third-person-grasp.png",
+      "camera": {
+        "pos": [
+          -2.1,
+          1.45,
+          -1.13
+        ],
+        "at": [
+          -3.55,
+          1.04,
+          -0.41000000000000003
+        ]
+      }
+    },
+    {
+      "file": "third-person-mouth.png",
+      "camera": {
+        "pos": [
+          -2.1,
+          1.45,
+          -1.13
+        ],
+        "at": [
+          -3.55,
+          1.04,
+          -0.41000000000000003
+        ]
+      }
+    },
+    {
+      "file": "third-person-setdown.png",
+      "camera": {
+        "pos": [
+          -2.1,
+          1.45,
+          -1.13
+        ],
+        "at": [
+          -3.55,
+          1.04,
+          -0.41000000000000003
+        ]
+      }
+    },
+    {
+      "file": "first-person-grasp.png",
+      "camera": "normal game camera"
+    },
+    {
+      "file": "first-person-mouth.png",
+      "camera": "normal game camera"
+    },
+    {
+      "file": "standing-cancel.png",
+      "camera": {
+        "pos": [
+          -2.1,
+          1.45,
+          -1.13
+        ],
+        "at": [
+          -3.55,
+          1.04,
+          -0.41000000000000003
+        ]
+      }
+    }
+  ],
+  "samples": [
+    {
+      "label": "delivered",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 6,
+          "sips": 6
+        }
+      },
+      "drinking": false,
+      "phase": null,
+      "meshGrip": null,
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "world": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "portion": 1,
+        "volumeMl": null,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": false,
+        "drinkDisabled": false
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "button-start",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 6,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": null,
+      "meshGrip": null,
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "world": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "portion": 1,
+        "volumeMl": 571.7673744960914,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "third-PREPARE",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 6,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "PREPARE",
+        "duration": 0.25,
+        "index": 1,
+        "progress": 0.6,
+        "eased": 0.6825600000000001,
+        "elapsed": 0.15,
+        "busy": true,
+        "done": false,
+        "grip": 0,
+        "flowProgress": 0,
+        "lift": 0,
+        "controller": "TABLE",
+        "rimError": 0.45614519057499975,
+        "wristError": 2.2887833992611187e-16,
+        "maxWristError": 2.2887833992611187e-16,
+        "valid": false,
+        "tilt": 0,
+        "consumedPortion": 0,
+        "glassPosition": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "wristPosition": [
+          -3.2093265656728027,
+          0.6398611817877846,
+          -0.25047253454975044
+        ],
+        "mouth": [
+          -3.5000001322620613,
+          1.3249694604765807,
+          -0.44704791220544654
+        ]
+      },
+      "meshGrip": null,
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "world": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "portion": 1,
+        "volumeMl": 571.7673744960914,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "third-REACH",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 6,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "REACH",
+        "duration": 0.65,
+        "index": 2,
+        "progress": 0.6000000000000005,
+        "eased": 0.6825600000000009,
+        "elapsed": 0.6400000000000003,
+        "busy": true,
+        "done": false,
+        "grip": 0,
+        "flowProgress": 0,
+        "lift": 0,
+        "controller": "TABLE",
+        "rimError": 0.3853312994348042,
+        "wristError": 5.438959822042073e-16,
+        "maxWristError": 5.661048867003676e-16,
+        "valid": false,
+        "tilt": 0,
+        "consumedPortion": 0,
+        "glassPosition": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "wristPosition": [
+          -3.2377580788665594,
+          0.8418025767467145,
+          -0.529999601367473
+        ],
+        "mouth": [
+          -3.5000000001680562,
+          1.2747339287237456,
+          -0.5345090024890848
+        ]
+      },
+      "meshGrip": null,
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "world": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "portion": 1,
+        "volumeMl": 571.7673744960914,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "third-GRASP",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 6,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "GRASP",
+        "duration": 0.3,
+        "index": 3,
+        "progress": 0.6000000000000046,
+        "eased": 0.682560000000008,
+        "elapsed": 1.0800000000000014,
+        "busy": true,
+        "done": false,
+        "grip": 0.682560000000008,
+        "flowProgress": 0,
+        "lift": 0,
+        "controller": "TABLE",
+        "rimError": 0.35612970257662246,
+        "wristError": 1.1102230246251565e-16,
+        "maxWristError": 5.661048867003676e-16,
+        "valid": false,
+        "tilt": 0,
+        "consumedPortion": 0,
+        "glassPosition": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "wristPosition": [
+          -3.2509807985516073,
+          0.8912784,
+          -0.6599999999999999
+        ],
+        "mouth": [
+          -3.5000000000003864,
+          1.249168550393687,
+          -0.5694036140753153
+        ]
+      },
+      "meshGrip": {
+        "clearanceMm": 0.9999935673064009,
+        "samples": 3056,
+        "handleInsideClasp": true
+      },
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "world": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "portion": 1,
+        "volumeMl": 571.7673744960914,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "third-LIFT",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 6,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "LIFT",
+        "duration": 0.45,
+        "index": 4,
+        "progress": 0.6,
+        "eased": 0.6825600000000001,
+        "elapsed": 1.47,
+        "busy": true,
+        "done": false,
+        "grip": 1,
+        "flowProgress": 0,
+        "lift": 0.13651200000000002,
+        "controller": "TRAJECTORY",
+        "rimError": 0.3156255173074336,
+        "wristError": 1.1102230246251565e-16,
+        "maxWristError": 5.661048867003676e-16,
+        "valid": false,
+        "tilt": 0,
+        "consumedPortion": 0,
+        "glassPosition": [
+          -3.35,
+          0.8243663999999999,
+          -0.6504441599999999
+        ],
+        "wristPosition": [
+          -3.2509807985516073,
+          0.9356447999999999,
+          -0.6504441599999999
+        ],
+        "mouth": [
+          -3.5000000000000013,
+          1.2491685503875796,
+          -0.5694036140753153
+        ]
+      },
+      "meshGrip": null,
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.35,
+          0.8243663999999999,
+          -0.6504441599999999
+        ],
+        "world": [
+          -3.35,
+          0.8243663999999999,
+          -0.6504441599999999
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "portion": 1,
+        "volumeMl": 571.7673744960914,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "third-APPROACH",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 6,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "APPROACH",
+        "duration": 0.65,
+        "index": 5,
+        "progress": 0.5999999999999974,
+        "eased": 0.6825599999999955,
+        "elapsed": 2.0399999999999983,
+        "busy": true,
+        "done": false,
+        "grip": 1,
+        "flowProgress": 0,
+        "lift": 0.7460479999999965,
+        "controller": "TRAJECTORY",
+        "rimError": 0.09109078155054594,
+        "wristError": 5.087681048627601e-16,
+        "maxWristError": 5.661048867003676e-16,
+        "valid": false,
+        "tilt": 0,
+        "consumedPortion": 0,
+        "glassPosition": [
+          -3.4523839999999995,
+          1.095230729649277,
+          -0.6027919275886314
+        ],
+        "wristPosition": [
+          -3.3533647985516066,
+          1.2061360666101943,
+          -0.5936876132187651
+        ],
+        "mouth": [
+          -3.5,
+          1.2984800974830757,
+          -0.4970350489268891
+        ]
+      },
+      "meshGrip": null,
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.4523839999999995,
+          1.095230729649277,
+          -0.6027919275886314
+        ],
+        "world": [
+          -3.4523839999999995,
+          1.095230729649277,
+          -0.6027919275886314
+        ],
+        "quaternion": [
+          0.04094215308172659,
+          0,
+          0,
+          0.9991615185249242
+        ],
+        "portion": 1,
+        "volumeMl": 571.7673744960914,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "third-CONTACT",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 6,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "CONTACT",
+        "duration": 0.3,
+        "index": 6,
+        "progress": 0.5999999999999902,
+        "eased": 0.6825599999999832,
+        "elapsed": 2.479999999999997,
+        "busy": true,
+        "done": false,
+        "grip": 1,
+        "flowProgress": 0,
+        "lift": 1,
+        "controller": "MOUTH",
+        "rimError": 0.008570880000000503,
+        "wristError": 4.965068306494546e-16,
+        "maxWristError": 5.978733960281817e-16,
+        "valid": false,
+        "tilt": 0,
+        "consumedPortion": 0,
+        "glassPosition": [
+          -3.5,
+          1.1740305556560415,
+          -0.5283989001295037
+        ],
+        "wristPosition": [
+          -3.400980798551607,
+          1.2845087121600425,
+          -0.5150775172419244
+        ],
+        "mouth": [
+          -3.5,
+          1.3180436505352757,
+          -0.4611660349661568
+        ]
+      },
+      "meshGrip": null,
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.5,
+          1.1740305556560415,
+          -0.5283989001295037
+        ],
+        "world": [
+          -3.5,
+          1.1740305556560415,
+          -0.5283989001295037
+        ],
+        "quaternion": [
+          0.0599640064794446,
+          0,
+          0,
+          0.9982005399352042
+        ],
+        "portion": 1,
+        "volumeMl": 571.7673744960914,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "third-SIP",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 6,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "SIP",
+        "duration": 1.25,
+        "index": 7,
+        "progress": 0.5999999999999943,
+        "eased": 0.6825599999999902,
+        "elapsed": 3.3499999999999925,
+        "busy": true,
+        "done": false,
+        "grip": 1,
+        "flowProgress": 0.27520751953123057,
+        "lift": 1,
+        "controller": "MOUTH",
+        "rimError": 5.551115123125783e-17,
+        "wristError": 2.482534153247273e-16,
+        "maxWristError": 5.978733960281817e-16,
+        "valid": true,
+        "tilt": 0.5003413897986368,
+        "consumedPortion": 0.27520751953123057,
+        "glassPosition": [
+          -3.5,
+          1.2258822802176708,
+          -0.5591250546511635
+        ],
+        "wristPosition": [
+          -3.400980798551607,
+          1.32352004483665,
+          -0.5057420121491778
+        ],
+        "mouth": [
+          -3.5,
+          1.3378263767383385,
+          -0.4511921159615705
+        ]
+      },
+      "meshGrip": {
+        "clearanceMm": 0.9999935673064009,
+        "samples": 3056,
+        "handleInsideClasp": true
+      },
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.5,
+          1.2258822802176708,
+          -0.5591250546511635
+        ],
+        "world": [
+          -3.5,
+          1.2258822802176708,
+          -0.5591250546511635
+        ],
+        "quaternion": [
+          0.2475693440577186,
+          0,
+          0,
+          0.9688701770014551
+        ],
+        "portion": 0.9541320800781282,
+        "volumeMl": 545.5415943487658,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "third-SWALLOW",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 5,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "SWALLOW",
+        "duration": 0.55,
+        "index": 8,
+        "progress": 0.5999999999999807,
+        "eased": 0.6825599999999666,
+        "elapsed": 4.179999999999989,
+        "busy": true,
+        "done": false,
+        "grip": 1,
+        "flowProgress": 1,
+        "lift": 1,
+        "controller": "MOUTH",
+        "rimError": 5.551115123125783e-17,
+        "wristError": 0,
+        "maxWristError": 5.978733960281817e-16,
+        "valid": false,
+        "tilt": 0,
+        "consumedPortion": 1,
+        "glassPosition": [
+          -3.5,
+          1.1948615476062783,
+          -0.5441859501962051
+        ],
+        "wristPosition": [
+          -3.400980798551607,
+          1.300515108599853,
+          -0.5092544836375706
+        ],
+        "mouth": [
+          -3.5,
+          1.3244090969971052,
+          -0.4581718092260642
+        ]
+      },
+      "meshGrip": null,
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.5,
+          1.1948615476062783,
+          -0.5441859501962051
+        ],
+        "world": [
+          -3.5,
+          1.1948615476062783,
+          -0.5441859501962051
+        ],
+        "quaternion": [
+          0.15897711599770067,
+          0,
+          0,
+          0.9872822679401538
+        ],
+        "portion": 0.8333333333333334,
+        "volumeMl": 476.4728120800762,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "third-RECOVER",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 5,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "RECOVER",
+        "duration": 0.6,
+        "index": 9,
+        "progress": 0.5999999999999799,
+        "eased": 0.6825599999999651,
+        "elapsed": 4.759999999999987,
+        "busy": true,
+        "done": false,
+        "grip": 1,
+        "flowProgress": 1,
+        "lift": 0.4539520000000279,
+        "controller": "TRAJECTORY",
+        "rimError": 0.2022296240055311,
+        "wristError": 2.220446049250313e-16,
+        "maxWristError": 5.978733960281817e-16,
+        "valid": false,
+        "tilt": 0,
+        "consumedPortion": 1,
+        "glassPosition": [
+          -3.3976160000000055,
+          0.9569092268507329,
+          -0.6298969003102408
+        ],
+        "wristPosition": [
+          -3.2985967985516127,
+          1.0681069007168835,
+          -0.6256590195524594
+        ],
+        "mouth": [
+          -3.5,
+          1.2732937218031306,
+          -0.5366100042212386
+        ]
+      },
+      "meshGrip": null,
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.3976160000000055,
+          0.9569092268507329,
+          -0.6298969003102408
+        ],
+        "world": [
+          -3.3976160000000055,
+          0.9569092268507329,
+          -0.6298969003102408
+        ],
+        "quaternion": [
+          0.019045248458552825,
+          0,
+          0,
+          0.999818622806733
+        ],
+        "portion": 0.8333333333333334,
+        "volumeMl": 476.4728120800762,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "third-SET_DOWN",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 5,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "SET_DOWN",
+        "duration": 0.65,
+        "index": 10,
+        "progress": 0.5999999999999762,
+        "eased": 0.682559999999959,
+        "elapsed": 5.389999999999984,
+        "busy": true,
+        "done": false,
+        "grip": 1,
+        "flowProgress": 1,
+        "lift": 0.0634880000000082,
+        "controller": "TRAJECTORY",
+        "rimError": 0.3371377168292672,
+        "wristError": 3.510833468576701e-16,
+        "maxWristError": 5.978733960281817e-16,
+        "valid": false,
+        "tilt": 0,
+        "consumedPortion": 1,
+        "glassPosition": [
+          -3.35,
+          0.8006336000000027,
+          -0.6555558399999993
+        ],
+        "wristPosition": [
+          -3.2509807985516073,
+          0.9119120000000027,
+          -0.6555558399999993
+        ],
+        "mouth": [
+          -3.5,
+          1.2491685503875536,
+          -0.5694036140753153
+        ]
+      },
+      "meshGrip": {
+        "clearanceMm": 0.9999935673064009,
+        "samples": 3056,
+        "handleInsideClasp": true
+      },
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.35,
+          0.8006336000000027,
+          -0.6555558399999993
+        ],
+        "world": [
+          -3.35,
+          0.8006336000000027,
+          -0.6555558399999993
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "portion": 0.8333333333333334,
+        "volumeMl": 476.4728120800762,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "third-RELEASE",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 5,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "RELEASE",
+        "duration": 0.3,
+        "index": 11,
+        "progress": 0.5999999999999428,
+        "eased": 0.6825599999999011,
+        "elapsed": 5.829999999999982,
+        "busy": true,
+        "done": false,
+        "grip": 0.31744000000009887,
+        "flowProgress": 1,
+        "lift": 0,
+        "controller": "TABLE",
+        "rimError": 0.35612970257096294,
+        "wristError": 2.482534153247273e-16,
+        "maxWristError": 5.978733960281817e-16,
+        "valid": false,
+        "tilt": 0,
+        "consumedPortion": 1,
+        "glassPosition": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "wristPosition": [
+          -3.2509807985516073,
+          0.8912784,
+          -0.6599999999999999
+        ],
+        "mouth": [
+          -3.5,
+          1.2491685503875536,
+          -0.5694036140753153
+        ]
+      },
+      "meshGrip": null,
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "world": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "portion": 0.8333333333333334,
+        "volumeMl": 476.4728120800762,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "third-RETURN",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 5,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "RETURN",
+        "duration": 0.65,
+        "index": 12,
+        "progress": 0.5999999999999708,
+        "eased": 0.6825599999999495,
+        "elapsed": 6.33999999999998,
+        "busy": true,
+        "done": false,
+        "grip": 0,
+        "flowProgress": 1,
+        "lift": 0,
+        "controller": "TABLE",
+        "rimError": 0.43157055070964667,
+        "wristError": 6.497413668604471e-16,
+        "maxWristError": 6.497413668604471e-16,
+        "valid": false,
+        "tilt": 0,
+        "consumedPortion": 1,
+        "glassPosition": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "wristPosition": [
+          -3.2225492853578523,
+          0.7500051220330856,
+          -0.3804729331822983
+        ],
+        "mouth": [
+          -3.5,
+          1.309272466712042,
+          -0.4779130189068074
+        ]
+      },
+      "meshGrip": null,
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "world": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "portion": 0.8333333333333334,
+        "volumeMl": 476.4728120800762,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "third-complete",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 5,
+          "sips": 6
+        }
+      },
+      "drinking": false,
+      "phase": null,
+      "meshGrip": null,
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "world": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "portion": 0.8333333333333334,
+        "volumeMl": 476.4728120800762,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": false,
+        "drinkDisabled": false
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "first-GRASP",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": false,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 5,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "GRASP",
+        "duration": 0.3,
+        "index": 3,
+        "progress": 0.5000000000000001,
+        "eased": 0.5000000000000001,
+        "elapsed": 1.05,
+        "busy": true,
+        "done": false,
+        "grip": 0.5000000000000001,
+        "flowProgress": 0,
+        "lift": 0,
+        "controller": "TABLE",
+        "rimError": 0.3548568452885843,
+        "wristError": 0,
+        "maxWristError": 4.965068306494546e-16,
+        "valid": false,
+        "tilt": 0,
+        "consumedPortion": 0,
+        "glassPosition": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "wristPosition": [
+          -3.2509807985516073,
+          0.8912784,
+          -0.6599999999999999
+        ],
+        "mouth": [
+          -3.4999999999286717,
+          1.2479560420456142,
+          -0.5707575291236813
+        ]
+      },
+      "meshGrip": {
+        "clearanceMm": 0.9999935673064009,
+        "samples": 3056,
+        "handleInsideClasp": true
+      },
+      "rootVisible": true,
+      "bodyVisible": false,
+      "arm": {
+        "visible": true,
+        "meshes": 2
+      },
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "world": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "portion": 0.8333333333333334,
+        "volumeMl": 476.4728120800762,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "first-SIP",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": false,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 5,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "SIP",
+        "duration": 1.25,
+        "index": 7,
+        "progress": 0.6399999999999963,
+        "eased": 0.7491026943999942,
+        "elapsed": 3.399999999999995,
+        "busy": true,
+        "done": false,
+        "grip": 1,
+        "flowProgress": 0.4222359362943532,
+        "lift": 1,
+        "controller": "MOUTH",
+        "rimError": 5.551115123125783e-17,
+        "wristError": 1.6653345369377348e-16,
+        "maxWristError": 8.759511914735174e-16,
+        "valid": true,
+        "tilt": 0.8557935004915127,
+        "consumedPortion": 0.4222359362943532,
+        "glassPosition": [
+          -3.5,
+          1.275691219197233,
+          -0.5792057407516686
+        ],
+        "wristPosition": [
+          -3.400980798551607,
+          1.348647513820879,
+          -0.4951803792151197
+        ],
+        "mouth": [
+          -3.5,
+          1.3430754049021711,
+          -0.43906163093294537
+        ]
+      },
+      "meshGrip": {
+        "clearanceMm": 0.999993567307289,
+        "samples": 3056,
+        "handleInsideClasp": true
+      },
+      "rootVisible": true,
+      "bodyVisible": false,
+      "arm": {
+        "visible": true,
+        "meshes": 2
+      },
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.5,
+          1.275691219197233,
+          -0.5792057407516686
+        ],
+        "world": [
+          -3.5,
+          1.275691219197233,
+          -0.5792057407516686
+        ],
+        "quaternion": [
+          0.41495809980219417,
+          0,
+          0,
+          0.9098405219644552
+        ],
+        "portion": 0.7629606772842745,
+        "volumeMl": 436.23602329458936,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "first-RELEASE",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": false,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 4,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "RELEASE",
+        "duration": 0.3,
+        "index": 11,
+        "progress": 0.26666666666663436,
+        "eased": 0.12186864197527156,
+        "elapsed": 5.72999999999999,
+        "busy": true,
+        "done": false,
+        "grip": 0.8781313580247284,
+        "flowProgress": 1,
+        "lift": 0,
+        "controller": "TABLE",
+        "rimError": 0.3548568453187352,
+        "wristError": 1.1102230246251565e-16,
+        "maxWristError": 8.759511914735174e-16,
+        "valid": false,
+        "tilt": 0,
+        "consumedPortion": 1,
+        "glassPosition": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "wristPosition": [
+          -3.2509807985516073,
+          0.8912784,
+          -0.6599999999999999
+        ],
+        "mouth": [
+          -3.5,
+          1.2479560420456142,
+          -0.5707575291236813
+        ]
+      },
+      "meshGrip": null,
+      "rootVisible": true,
+      "bodyVisible": false,
+      "arm": {
+        "visible": true,
+        "meshes": 2
+      },
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "world": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "portion": 0.6666666666666666,
+        "volumeMl": 381.1782496640609,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "first-complete",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": false,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 4,
+          "sips": 6
+        }
+      },
+      "drinking": false,
+      "phase": null,
+      "meshGrip": null,
+      "rootVisible": false,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "world": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "portion": 0.6666666666666666,
+        "volumeMl": 381.1782496640609,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": false,
+        "drinkDisabled": false
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "before-standing",
+      "room": "izakaya",
+      "seated": true,
+      "seat": {
+        "position": [
+          -3.5,
+          0,
+          -0.18
+        ],
+        "stand": [
+          -3.5,
+          -0.10999999999999999,
+          0.82
+        ],
+        "surfaceY": 0.46,
+        "yaw": 0
+      },
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 4,
+          "sips": 6
+        }
+      },
+      "drinking": true,
+      "phase": {
+        "id": "SIP",
+        "duration": 1.25,
+        "index": 7,
+        "progress": 0.6,
+        "eased": 0.6825600000000001,
+        "elapsed": 3.3499999999999996,
+        "busy": true,
+        "done": false,
+        "grip": 1,
+        "flowProgress": 0.27520751953124994,
+        "lift": 1,
+        "controller": "MOUTH",
+        "rimError": 1.1102230246251565e-16,
+        "wristError": 1.1102230246251565e-16,
+        "maxWristError": 6.661338147750939e-16,
+        "valid": true,
+        "tilt": 1.0148481334354051,
+        "consumedPortion": 0.27520751953124994,
+        "glassPosition": [
+          -3.5,
+          1.2903369346442213,
+          -0.6026707748825233
+        ],
+        "wristPosition": [
+          -3.400980798551607,
+          1.349063991527598,
+          -0.508150855836977
+        ],
+        "mouth": [
+          -3.5,
+          1.3346738576377142,
+          -0.4536230065011446
+        ]
+      },
+      "meshGrip": {
+        "clearanceMm": 0.9999935673059568,
+        "samples": 3056,
+        "handleInsideClasp": true
+      },
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.5,
+          1.2903369346442213,
+          -0.6026707748825233
+        ],
+        "world": [
+          -3.5,
+          1.2903369346442213,
+          -0.6026707748825233
+        ],
+        "quaternion": [
+          0.4859274981123062,
+          0,
+          0,
+          0.8739991227560326
+        ],
+        "portion": 0.6207987467447916,
+        "volumeMl": 354.95246951673346,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    },
+    {
+      "label": "standing-cancel",
+      "room": "izakaya",
+      "seated": false,
+      "seat": null,
+      "thirdPerson": true,
+      "beer": {
+        "pending": null,
+        "drink": {
+          "kind": "draft",
+          "left": 4,
+          "sips": 6
+        }
+      },
+      "drinking": false,
+      "phase": null,
+      "meshGrip": null,
+      "rootVisible": true,
+      "bodyVisible": true,
+      "arm": null,
+      "held": [],
+      "prop": {
+        "uuid": "3b39ca68-13db-401d-b4e7-b8cf2e913145",
+        "parent": "7cee2ac1-c5cb-48f7-af4a-2e01befe21a9",
+        "position": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "world": [
+          -3.35,
+          0.78,
+          -0.6599999999999999
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "portion": 0.6207987467447916,
+        "volumeMl": 354.95246951673346,
+        "visible": true
+      },
+      "directDrinks": [
+        "3b39ca68-13db-401d-b4e7-b8cf2e913145"
+      ],
+      "ui": {
+        "drinkHidden": true,
+        "drinkDisabled": true
+      },
+      "failures": [],
+      "invalid": []
+    }
+  ],
+  "events": [
+    {
+      "drinkId": "beer",
+      "volumeConsumedMl": 95.29456241601521,
+      "source": "izakaya"
+    },
+    {
+      "drinkId": "beer",
+      "volumeConsumedMl": 95.29456241601528,
+      "source": "izakaya"
+    }
+  ],
+  "runtime": {
+    "sha256": "8c0eceb287132c2dbd17d9e8c2f15059c554b1c54901246dec061f94d6bf27f8"
+  },
+  "browser": "131.0.6778.0",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/131.0.6778.0 Safari/537.36",
+    "platform": "Linux x86_64",
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "runtimeScripts": [
+      "http://127.0.0.1:35203/johansson-town/runtime/title-menu-BRY1QOCp.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/staff-bench-BsoaLcD8.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/friendship-nM7-UE3n.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/compact-shops-Op2Qdsqg.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/shopping-lane-plan-D0DhEU8_.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/harbour-park-plan-BbYmcdna.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/boot-By4NK0Fc.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/fish-DHMJOXG5.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/preload-helper-PPVm8Dsz.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/icons-DfeBIm6m.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/touch-ui-D34cMzo7.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/hat-models-CuU7kCAR.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/actors-Ddtlr_wj.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/game-COHNmCzy.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/halloween-B4uUALco.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/animate-wuoDq9Jh.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/onsen-Bquz05Js.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/catalog-B1I88dQU.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/sato-ramen-D8_OfeQX.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/town-hall-1O7D1nF8.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/studio-handoff-tjK7WGku.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/sakura-interior-BlsPB0b2.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/thuan-voice-Dz-XGNqd.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/storyteller-BUnDbmec.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/portraits-Do_JyjP_.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/audio-CbL4Qaz8.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/webmcp-CxSkO4VH.js",
+      "http://127.0.0.1:35203/johansson-town/runtime/webmcp-characters-BkXkAGJZ.js"
+    ]
+  },
+  "cancelledRequests": [],
+  "errors": [],
+  "passed": true
+}

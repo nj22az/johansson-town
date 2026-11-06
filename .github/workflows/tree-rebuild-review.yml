@@ -1,0 +1,50 @@
+name: Island tree game review
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tree-rebuild-review.yml'
+      - 'src/world/**'
+      - 'tests/tree-rebuild.test.mjs'
+      - 'tools/tree-rebuild-browser.mjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: island-tree-game-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: johansson-town
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: nj22az/nj22az.github.io
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/johansson-town/
+      - uses: actions/checkout@v4
+        with:
+          path: johansson-town
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: johansson-town/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: node --test tests/tree-rebuild.test.mjs tests/kitano-on-demand.test.mjs tests/east-lawn-tree-collision.test.mjs
+      - run: npm run build:runtime
+      - run: node --test tests/runtime-package.test.mjs
+      - run: npx playwright install --with-deps chromium
+      - name: Real compiled World at desktop and phone widths
+        run: node tools/tree-rebuild-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: island-tree-prototype-review
+          path: johansson-town/output/tree-rebuild/

@@ -1,0 +1,10 @@
+✔ published photo articles retain their real model portraits and canonical household data (43.250243ms)
+✔ title opens first and keeps game launch and separate guide navigation (2.186074ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 514.275232

@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap");
+
+/* Island HUD — a bright, bubbly life-sim skin over the street controls.
+   White rounded tiles with a coloured face and a chunky under-shadow, pill labels,
+   speech-bubble captions and one rounded typeface. Loaded last; layout, visibility and
+   behaviour stay with the stylesheets before it, this only changes how things look. */
+:root {
+  --isle-font: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --isle-ink: #3b3f55;
+  --isle-white: #ffffff;
+  --isle-cream: #fffaf0;
+  --isle-edge: #e6e1d6;
+  --isle-sky: #45b7f0;
+  --isle-sky-deep: #2a8fcc;
+  --isle-leaf: #7ccc4a;
+  --isle-leaf-deep: #57a52f;
+  --isle-sun: #ffc93c;
+  --isle-sun-deep: #e8a415;
+  --isle-peach: #ff8a65;
+  --isle-peach-deep: #e0643f;
+  --isle-berry: #f06ba8;
+  --isle-berry-deep: #cf4787;
+  --isle-grape: #9b7bf0;
+  --isle-grape-deep: #7556d4;
+}
+
+/* Compact orientation: keep the place and time legible without large placards. */
+#hud .placard {
+  padding:4px 8px;border:0;border-radius:7px;background:#fffaf0e8;
+  box-shadow:none;max-width:60vw;
+}
+#hud .placard b {
+  color:var(--isle-ink);font:800 11px/1.3 var(--isle-font);
+  letter-spacing:.02em;text-shadow:none;
+}
+#hud .placard b::before { content:none; }
+#hud #clock {
+  padding:4px 8px;border:0;border-radius:7px;background:#fffaf0e8;
+  color:#286582;font:800 13px/1.2 var(--isle-font);
+  letter-spacing:.02em;box-shadow:none;
+}
+
+/* Touch already has the context action; repeating its keyboard prompt wastes space. */
+@media(pointer:coarse) { body.hud-seated #hud #prompt { display:none; } }
+
+/* Status notices are temporary captions, not dialogue bubbles. Auto width keeps
+   short confirmations small; wrapping preserves complete instructions on phones. */
+#hud #subtitle {
+  left:max(14px,env(safe-area-inset-left));
+  top:max(48px,calc(env(safe-area-inset-top) + 42px));bottom:auto;
+  transform:none;width:fit-content;max-width:min(36ch,calc(100vw - 94px));
+  margin:0;padding:6px 9px;border:0;border-radius:6px;
+  background:#17303bdf;color:#fffaf0;
+  font:500 12px/1.4 var(--isle-font);letter-spacing:0;text-align:left;
+  white-space:normal;overflow-wrap:anywhere;box-shadow:none;
+  pointer-events:none;transition:opacity .15s ease;
+}
+#hud #subtitle::after { content:none; }
+/* Hide background notices while reading an opened panel. */
+body:has(#directory:not(.hidden),#activity:not(.hidden)) #hud #subtitle { visibility:hidden; }
+#hud #prompt {
+  padding:5px 9px;border:0;border-radius:6px;
+  background:#17303bdf;color:#fffaf0;
+  font:700 12px/1.35 var(--isle-font);letter-spacing:0;box-shadow:none;
+}
+@media(prefers-reduced-motion:reduce) { #hud #subtitle { transition:none; } }
+
+/* Context actions remain thumb-sized, with centred icons and no painted frame. */
+.touch-controls #mobile #act,
+.touch-controls #mobile #movementActions #run,
+.touch-controls #mobile #movementActions #jump,
+.touch-controls #mobile #drink {
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;
+  color:#fff;filter:drop-shadow(0 1px 2px #16262dcc);
+  font-family:var(--isle-font);font-weight:800;
+}
+.touch-controls #mobile #act { width:56px;height:56px; }
+.touch-controls #mobile #act.available:not(.control-off) { transform:none; }
+.touch-controls #mobile #act .act-glyph .ui-icon { width:28px;height:28px;margin:0; }
+.touch-controls #mobile #act .act-label { font-size:10px; }
+.touch-controls #mobile #movementActions #run,
+.touch-controls #mobile #movementActions #jump,
+.touch-controls #mobile #drink { width:48px;height:48px;min-height:48px; }
+.touch-controls #mobile #movementActions { bottom:calc(env(safe-area-inset-bottom) + 96px); }
+.touch-controls #mobile #drink { bottom:calc(env(safe-area-inset-bottom) + 158px); }
+.touch-controls #mobile #movementActions #run[aria-pressed="true"] { color:#ffe07a; }
+@media(max-height:520px) {
+  .touch-controls #mobile #movementActions { bottom:calc(env(safe-area-inset-bottom) + 82px); }
+  .touch-controls #mobile #drink { bottom:calc(env(safe-area-inset-bottom) + 138px); }
+}
+
+/* ---------- Menus ---------- */
+
+#activity .activity-card { font-family: var(--isle-font); }
+#activity #activityTitle { font-family: var(--isle-font); font-weight: 800; }
+
+@media (prefers-reduced-motion: reduce) {
+  #hud .icon-btn { transition: none; }
+}
+
+/* Tablets: the HUD was drawn for a phone held close. On an iPad at arm's length the
+   place name, clock and captions were 11–13 px; they read at 14–16 now. */
+@media (min-width:700px) and (pointer:coarse){
+ #hud .placard{padding:6px 11px;border-radius:9px}
+ #hud .placard b{font-size:14px}
+ #hud #clock{padding:6px 11px;border-radius:9px;font-size:17px}
+ #hud #subtitle{font-size:15px;padding:8px 12px;border-radius:9px;max-width:min(42ch,calc(100vw - 110px))}
+ #hud #prompt{font-size:15px;padding:8px 12px;border-radius:9px}
+ .touch-controls #mobile #act{width:72px;height:72px}
+ .touch-controls #mobile #act .act-glyph .ui-icon{width:34px;height:34px}
+ .touch-controls #mobile #act .act-label{font-size:12px}
+}
+

@@ -1,0 +1,98 @@
+{
+  "source_file": "vy-reference.glb",
+  "units": "source glTF units; Blender Z up, front -Y",
+  "selection": "Dark surface faces, z -0.379 to -0.103, bounded skirt envelope. First ray hits exclude external sleeve/arm surfaces. Crop is a review aid, not a clean garment asset.",
+  "waist_z": -0.105,
+  "hem_z": -0.375,
+  "length": 0.27,
+  "reference_body_height": 1.902922,
+  "cardinal_measurements": [
+    {
+      "z": -0.108,
+      "half_width": 0.13675769418478012,
+      "front_y": -0.1748681515455246,
+      "back_y": 0.07661654055118561,
+      "centre_y": -0.049125805497169495
+    },
+    {
+      "z": -0.125,
+      "half_width": 0.14410138875246048,
+      "front_y": -0.1759529411792755,
+      "back_y": 0.08262050151824951,
+      "centre_y": -0.046666219830513
+    },
+    {
+      "z": -0.15,
+      "half_width": 0.15538450330495834,
+      "front_y": -0.1775265336036682,
+      "back_y": 0.0925598293542862,
+      "centre_y": -0.04248335212469101
+    },
+    {
+      "z": -0.175,
+      "half_width": 0.16519419103860855,
+      "front_y": -0.17906957864761353,
+      "back_y": 0.10160557925701141,
+      "centre_y": -0.038731999695301056
+    },
+    {
+      "z": -0.2,
+      "half_width": 0.1737649068236351,
+      "front_y": -0.1804330199956894,
+      "back_y": 0.10980139672756195,
+      "centre_y": -0.03531581163406372
+    },
+    {
+      "z": -0.225,
+      "half_width": 0.18098552525043488,
+      "front_y": -0.18097925186157227,
+      "back_y": 0.11649808287620544,
+      "centre_y": -0.03224058449268341
+    },
+    {
+      "z": -0.25,
+      "half_width": 0.18684256076812744,
+      "front_y": -0.18101617693901062,
+      "back_y": 0.12160229682922363,
+      "centre_y": -0.029706940054893494
+    },
+    {
+      "z": -0.275,
+      "half_width": 0.19177406281232834,
+      "front_y": -0.180306538939476,
+      "back_y": 0.12519331276416779,
+      "centre_y": -0.027556613087654114
+    },
+    {
+      "z": -0.3,
+      "half_width": 0.19592268764972687,
+      "front_y": -0.1797187626361847,
+      "back_y": 0.126922607421875,
+      "centre_y": -0.026398077607154846
+    },
+    {
+      "z": -0.325,
+      "half_width": 0.19933945685625076,
+      "front_y": -0.17954686284065247,
+      "back_y": 0.12758512794971466,
+      "centre_y": -0.025980867445468903
+    }
+  ],
+  "cage_vertices": 832,
+  "cage_quads": 768,
+  "fit_controls": [
+    "Waist width",
+    "Hip width",
+    "Seat depth",
+    "Front ease",
+    "Length",
+    "Hem flare"
+  ],
+  "limitations": [
+    "Static garment study, not skinned or cloth simulated.",
+    "Reference crop retains source imperfections and may have selection holes.",
+    "No full original body, hair, face or top reconstruction claimed.",
+    "Shape-key extremes require body fitting and pose validation before runtime use."
+  ],
+  "rest_export_triangles": 6936
+}

@@ -1,0 +1,6 @@
+The top-level WAV files in this directory (audio/*.wav, excluding audio/voices/) were created for Johansson Town using the accompanying tools/render-audio.py signal generator. They contain no third-party recordings or sampled music.
+
+These newly generated audio files are dedicated to the public domain under CC0 1.0 Universal:
+https://creativecommons.org/publicdomain/zero/1.0/
+
+This dedication applies only to the generated audio files, not to the entire repository.

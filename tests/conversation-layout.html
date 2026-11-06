@@ -1,0 +1,45 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Conversation canvas proportions regression</title>
+<style>body{font:16px system-ui;background:#fff;color:#222}iframe{border:0;max-width:none}pre{white-space:pre-wrap}</style>
+<h1>Conversation canvas proportions regression</h1>
+<p>Uses the production styles and viewport calculation in real browser layout. Checks opening, closing and resizing, including the 720px dialogue breakpoint. This checks layout, not WebGL or iOS compositing.</p>
+<pre id="results">Running…</pre>
+<script type="module">
+const sizes=[[390,844],[719,900],[720,900],[768,1030],[1024,768],[1440,900],[844,390]];
+const results=[],frame=document.createElement('iframe');
+frame.title='Production canvas layout';
+const root=new URL('../',location.href).href;
+let index=0;
+function size(){const [w,h]=sizes[index];frame.style.width=w+'px';frame.style.height=h+'px';}
+size();document.body.append(frame);
+window.addEventListener('message',event=>{
+ if(event.source!==frame.contentWindow||event.data?.type!=='layout-result')return;
+ results.push(...event.data.results);
+ document.querySelector('#results').textContent=results.map(r=>`${r.ok?'PASS':'FAIL'} ${r.label}: display ${r.width}×${r.height}, expected ${r.expectedWidth}×${r.expectedHeight}`).join('\n');
+ if(++index<sizes.length)size();
+ else document.querySelector('#results').textContent+=`\n${results.filter(r=>r.ok).length}/${results.length} checks passed`;
+});
+frame.srcdoc=`<!doctype html><meta charset="utf-8">
+ ${['base.css','context-controls.css'].map(path=>'<link rel="stylesheet" href="'+root+path+'">').join('')}
+ <canvas id="game"></canvas>
+ <script type="module">
+ import {conversationViewport} from '${root}src/conversation-layout.js';
+ const canvas=document.querySelector('#game');
+ function check(){
+  const results=[];
+  for(const [label,active] of [['closed',false],['talking',true],['closed again',false]]){
+   document.body.classList.toggle('conversation-open',active);
+   const view=conversationViewport(innerWidth,innerHeight,active);
+   canvas.width=Math.floor(view.width);canvas.height=Math.floor(view.height);
+   canvas.style.width=view.width+'px';canvas.style.height=view.height+'px';
+   const rect=canvas.getBoundingClientRect();
+   results.push({label:innerWidth+'×'+innerHeight+' '+label,width:rect.width,height:rect.height,expectedWidth:view.width,expectedHeight:view.height,
+    ok:Math.abs(rect.width-view.width)<.02&&Math.abs(rect.height-view.height)<.02&&rect.left===0&&rect.top===0});
+  }
+  parent.postMessage({type:'layout-result',results},'*');
+ }
+ addEventListener('resize',check);
+ check();
+ <\/script>`;
+</script>

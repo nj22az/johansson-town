@@ -1,0 +1,3 @@
+From the package directory, run:
+python3 source/build_review_report.py --input-dir source/review_inputs --out-dir .
+The review generator reads data/source_test_results.json from the output directory.

@@ -1,0 +1,99 @@
+{
+  "before": false,
+  "baselineRef": null,
+  "builtRuntime": true,
+  "physicalDevice": false,
+  "errors": [],
+  "screenshots": [
+    {
+      "name": "frontage-portrait",
+      "viewport": {
+        "width": 1008,
+        "height": 1536
+      },
+      "camera": {
+        "pos": [
+          1.8,
+          3.2,
+          -26.2
+        ],
+        "at": [
+          10.7,
+          2.4,
+          -38
+        ]
+      }
+    },
+    {
+      "name": "frontage-desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "camera": {
+        "pos": [
+          2.8,
+          3.4,
+          -27
+        ],
+        "at": [
+          10.7,
+          2.25,
+          -37.8
+        ]
+      }
+    },
+    {
+      "name": "door-phone",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "camera": {
+        "pos": [
+          11.1,
+          2.2,
+          -32.5
+        ],
+        "at": [
+          13.3,
+          2,
+          -38.4
+        ]
+      }
+    }
+  ],
+  "opening": {
+    "player": {
+      "position": [
+        19.8,
+        0.02199999988079071,
+        -40
+      ],
+      "yaw": -1.03,
+      "room": null
+    },
+    "seated": false,
+    "stability": {
+      "ok": true,
+      "failures": [],
+      "colliders": 590,
+      "characterCount": 9,
+      "streetInteractions": 7,
+      "renderDpr": 1,
+      "toneMapping": "Ink grade",
+      "shadows": true
+    }
+  },
+  "frontage": {
+    "bench": false,
+    "seat": false,
+    "flyer": true,
+    "sitPrompt": false,
+    "boardPrompt": true
+  },
+  "viewer": {
+    "opened": true,
+    "returned": true
+  }
+}

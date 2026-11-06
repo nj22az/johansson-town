@@ -1,0 +1,73 @@
+{
+  "time": "Tuesday (town day 5): 07:42 at Kissa Higa, 19:41 on the bench outside",
+  "viewport": [
+    960,
+    640
+  ],
+  "physicalDevice": false,
+  "morning": [
+    {
+      "name": "Miss Higa",
+      "activity": "morning set at Kissa Higa",
+      "at": [
+        9.11,
+        0.08,
+        7.28
+      ],
+      "seatHeight": 0.46,
+      "lowestFootBone": 0.407,
+      "footBones": {
+        "footL": 0.407,
+        "footR": 0.407
+      }
+    },
+    {
+      "name": "Grandmother Higa",
+      "activity": "behind the counter at Kissa Higa: the siphons and the toast",
+      "at": [
+        10.7,
+        0.08,
+        7.85
+      ],
+      "seatHeight": null,
+      "lowestFootBone": 0.154,
+      "footBones": {
+        "footL": 0.154,
+        "footR": 0.16
+      }
+    },
+    {
+      "name": "Ms Ganaha",
+      "activity": "blend coffee at Kissa Higa",
+      "at": [
+        9.11,
+        0.08,
+        6.74
+      ],
+      "seatHeight": 0.46,
+      "lowestFootBone": 0.404,
+      "footBones": {
+        "footL": 0.404,
+        "footR": 0.404
+      }
+    }
+  ],
+  "evening": [
+    {
+      "name": "Tetsuo",
+      "activity": "a bottle on the bench outside Kissa Higa",
+      "at": [
+        5.3,
+        0.04,
+        9.75
+      ],
+      "seatHeight": 0.44,
+      "lowestFootBone": 0.207,
+      "footBones": {
+        "footL": 0.207,
+        "footR": 0.207
+      }
+    }
+  ],
+  "errors": []
+}

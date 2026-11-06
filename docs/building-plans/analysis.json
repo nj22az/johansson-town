@@ -1,0 +1,1014 @@
+[
+ {
+  "id": "clinic",
+  "title": "Minato Clinic",
+  "kind": "civic",
+  "w": 6.5,
+  "h": 5.5,
+  "m2": 35.75,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.85,
+  "moduleOff": null,
+  "rooms": null,
+  "roomSizes": [],
+  "doors": null,
+  "missing": [],
+  "measurement": {
+   "method": "runtime-builder-full-domain",
+   "source": "80dc175fb588a91381a5e44fd479f464f23cc23a",
+   "bounds": {
+    "minX": -3.25,
+    "maxX": 3.25,
+    "minZ": -2.75,
+    "maxZ": 2.75
+   },
+   "floorPolygon": [
+    [
+     -3.25,
+     -2.75
+    ],
+    [
+     3.25,
+     -2.75
+    ],
+    [
+     3.25,
+     2.75
+    ],
+    [
+     -3.25,
+     2.75
+    ]
+   ],
+   "floorArea": 35.75,
+   "floorSampleStep": 0.2,
+   "floorMeshes": [
+    "Floor",
+    "Clinic tiles",
+    "Toilet floor"
+   ],
+   "scope": "Complete movement domain; not net walkable area"
+  }
+ },
+ {
+  "id": "community-kitchen",
+  "title": "Community Kitchen",
+  "kind": "civic",
+  "w": 6.5,
+  "h": 5.5,
+  "m2": 35.75,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.85,
+  "moduleOff": null,
+  "rooms": null,
+  "roomSizes": [],
+  "doors": null,
+  "missing": [
+   "counter"
+  ],
+  "measurement": {
+   "method": "runtime-builder-full-domain",
+   "source": "80dc175fb588a91381a5e44fd479f464f23cc23a",
+   "bounds": {
+    "minX": -3.25,
+    "maxX": 3.25,
+    "minZ": -2.75,
+    "maxZ": 2.75
+   },
+   "floorPolygon": [
+    [
+     -3.25,
+     -2.75
+    ],
+    [
+     3.25,
+     -2.75
+    ],
+    [
+     3.25,
+     2.75
+    ],
+    [
+     -3.25,
+     2.75
+    ]
+   ],
+   "floorArea": 35.75,
+   "floorSampleStep": 0.2,
+   "floorMeshes": [
+    "Floor",
+    "Toilet floor"
+   ],
+   "scope": "Complete movement domain; not net walkable area"
+  }
+ },
+ {
+  "id": "koban",
+  "title": "Minato Police Box",
+  "kind": "civic",
+  "w": 6.6,
+  "h": 6,
+  "m2": 39.6,
+  "jo": 24.4,
+  "tsubo": 12,
+  "ceiling": null,
+  "moduleOff": null,
+  "rooms": null,
+  "roomSizes": [],
+  "doors": null,
+  "missing": [],
+  "measurement": {
+   "method": "runtime-builder-full-domain",
+   "source": "80dc175fb588a91381a5e44fd479f464f23cc23a",
+   "bounds": {
+    "minX": -3.3,
+    "maxX": 3.3,
+    "minZ": -3,
+    "maxZ": 3
+   },
+   "floorPolygon": [
+    [
+     -3.3,
+     -3
+    ],
+    [
+     3.3,
+     -3
+    ],
+    [
+     3.3,
+     3
+    ],
+    [
+     -3.3,
+     3
+    ]
+   ],
+   "floorArea": 39.6,
+   "floorSampleStep": 0.2,
+   "floorMeshes": [
+    "Police box office floor",
+    "Tatami room floor",
+    "Toilet floor"
+   ],
+   "scope": "Complete movement domain; not net walkable area"
+  }
+ },
+ {
+  "id": "mayor-office",
+  "title": "Mayor’s Office",
+  "kind": "civic",
+  "w": 6.5,
+  "h": 5.5,
+  "m2": 35.75,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.85,
+  "moduleOff": null,
+  "rooms": null,
+  "roomSizes": [],
+  "doors": null,
+  "missing": [
+   "counter",
+   "toilet"
+  ],
+  "measurement": {
+   "method": "runtime-builder-full-domain",
+   "source": "80dc175fb588a91381a5e44fd479f464f23cc23a",
+   "bounds": {
+    "minX": -3.25,
+    "maxX": 3.25,
+    "minZ": -2.75,
+    "maxZ": 2.75
+   },
+   "floorPolygon": [
+    [
+     -3.25,
+     -2.75
+    ],
+    [
+     3.25,
+     -2.75
+    ],
+    [
+     3.25,
+     2.75
+    ],
+    [
+     -3.25,
+     2.75
+    ]
+   ],
+   "floorArea": 35.75,
+   "floorSampleStep": 0.2,
+   "floorMeshes": [
+    "Floor",
+    "Wood floor seam",
+    "Wood floor seam",
+    "Wood floor seam",
+    "Wood floor seam",
+    "Wood floor seam",
+    "Wood floor seam",
+    "Wood floor seam",
+    "Wood floor seam",
+    "Wood floor seam",
+    "Wood floor seam",
+    "Wood floor seam",
+    "Wood floor seam",
+    "Wood floor seam",
+    "Wood floor seam"
+   ],
+   "scope": "Complete movement domain; not net walkable area"
+  }
+ },
+ {
+  "id": "office",
+  "title": "Johansson Harbour Office",
+  "kind": "civic",
+  "w": 6.74,
+  "h": 6.74,
+  "m2": 45.4,
+  "jo": 28,
+  "tsubo": 13.7,
+  "ceiling": 2.9,
+  "moduleOff": 0.37,
+  "rooms": 1,
+  "roomSizes": [
+   48.7
+  ],
+  "doors": 1,
+  "missing": []
+ },
+ {
+  "id": "onsen",
+  "title": "Umi-no-yu",
+  "kind": "civic",
+  "w": 9.7,
+  "h": 13.65,
+  "m2": 132.405,
+  "jo": 81.7,
+  "tsubo": 40.1,
+  "ceiling": 2.8,
+  "moduleOff": null,
+  "rooms": null,
+  "roomSizes": [],
+  "doors": null,
+  "missing": [
+   "toilet"
+  ],
+  "measurement": {
+   "method": "runtime-builder-full-domain",
+   "source": "80dc175fb588a91381a5e44fd479f464f23cc23a",
+   "bounds": {
+    "minX": -4.85,
+    "maxX": 4.85,
+    "minZ": -8.8,
+    "maxZ": 4.85
+   },
+   "floorPolygon": [
+    [
+     -4.85,
+     -8.8
+    ],
+    [
+     4.85,
+     -8.8
+    ],
+    [
+     4.85,
+     4.85
+    ],
+    [
+     -4.85,
+     4.85
+    ]
+   ],
+   "floorArea": 112.589,
+   "floorSampleStep": 0.2,
+   "floorMeshes": [
+    "Umi-no-yu floor",
+    "Umi-no-yu floor",
+    "Umi-no-yu floor",
+    "Umi-no-yu floor",
+    "Umi-no-yu floor",
+    "Rock bath paving"
+   ],
+   "scope": "Complete movement domain; not net walkable area"
+  }
+ },
+ {
+  "id": "school",
+  "title": "Town Hall Classroom",
+  "kind": "civic",
+  "w": 8.58,
+  "h": 6.84,
+  "m2": 58.687,
+  "jo": 36.2,
+  "tsubo": 17.8,
+  "ceiling": 3,
+  "moduleOff": null,
+  "rooms": null,
+  "roomSizes": [],
+  "doors": null,
+  "missing": [
+   "counter",
+   "toilet"
+  ],
+  "measurement": {
+   "method": "runtime-layout-full-domain",
+   "source": "80dc175fb588a91381a5e44fd479f464f23cc23a",
+   "bounds": {
+    "minX": -4.28,
+    "maxX": 4.3,
+    "minZ": -3.42,
+    "maxZ": 3.42
+   },
+   "floorPolygon": [
+    [
+     -4.28,
+     -3.42
+    ],
+    [
+     4.3,
+     -3.42
+    ],
+    [
+     4.3,
+     3.42
+    ],
+    [
+     -4.28,
+     3.42
+    ]
+   ],
+   "floorArea": null,
+   "floorSampleStep": 0.2,
+   "floorMeshes": [],
+   "scope": "Complete movement domain; not net walkable area"
+  }
+ },
+ {
+  "id": "home-kitahama-10",
+  "title": "Mr Tamashiro & Mrs Tamashiro’s home",
+  "kind": "home",
+  "w": 6.4,
+  "h": 5.6,
+  "m2": 35.8,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.7,
+  "moduleOff": 0.14,
+  "rooms": 1,
+  "roomSizes": [
+   39.2
+  ],
+  "doors": 0,
+  "missing": [
+   "entrance"
+  ]
+ },
+ {
+  "id": "home-kitahama-11",
+  "title": "Mr Iha’s home",
+  "kind": "home",
+  "w": 6.4,
+  "h": 5.6,
+  "m2": 35.8,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.7,
+  "moduleOff": 0.14,
+  "rooms": 1,
+  "roomSizes": [
+   39.1
+  ],
+  "doors": 0,
+  "missing": [
+   "tokonoma"
+  ]
+ },
+ {
+  "id": "home-kitahama-12",
+  "title": "Mrs Kohagura’s home",
+  "kind": "home",
+  "w": 6.4,
+  "h": 5.6,
+  "m2": 35.8,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.7,
+  "moduleOff": 0.14,
+  "rooms": 1,
+  "roomSizes": [
+   39.1
+  ],
+  "doors": 0,
+  "missing": [
+   "tokonoma"
+  ]
+ },
+ {
+  "id": "home-kitahama-3",
+  "title": "Kōji’s home",
+  "kind": "home",
+  "w": 6.4,
+  "h": 5.6,
+  "m2": 35.8,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.7,
+  "moduleOff": 0.14,
+  "rooms": 1,
+  "roomSizes": [
+   39.1
+  ],
+  "doors": 0,
+  "missing": [
+   "tokonoma"
+  ]
+ },
+ {
+  "id": "home-kitahama-4",
+  "title": "Postman Tōma’s home",
+  "kind": "home",
+  "w": 6.4,
+  "h": 5.6,
+  "m2": 35.8,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.7,
+  "moduleOff": 0.14,
+  "rooms": 1,
+  "roomSizes": [
+   39.2
+  ],
+  "doors": 0,
+  "missing": [
+   "entrance"
+  ]
+ },
+ {
+  "id": "home-kitahama-5",
+  "title": "House to let",
+  "kind": "home",
+  "w": 6.4,
+  "h": 5.6,
+  "m2": 35.8,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.7,
+  "moduleOff": 0.14,
+  "rooms": 1,
+  "roomSizes": [
+   39.1
+  ],
+  "doors": 0,
+  "missing": [
+   "butsudan",
+   "bedding",
+   "tokonoma"
+  ]
+ },
+ {
+  "id": "home-kitahama-6",
+  "title": "Grandfather Taira & Grandmother Taira’s home",
+  "kind": "home",
+  "w": 6.4,
+  "h": 5.6,
+  "m2": 35.8,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.7,
+  "moduleOff": 0.14,
+  "rooms": 1,
+  "roomSizes": [
+   39.2
+  ],
+  "doors": 0,
+  "missing": [
+   "entrance"
+  ]
+ },
+ {
+  "id": "home-kitahama-7",
+  "title": "Mr Chinen & Mrs Chinen’s home",
+  "kind": "home",
+  "w": 6.4,
+  "h": 5.6,
+  "m2": 35.8,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.7,
+  "moduleOff": 0.14,
+  "rooms": 1,
+  "roomSizes": [
+   39.1
+  ],
+  "doors": 0,
+  "missing": [
+   "tokonoma"
+  ]
+ },
+ {
+  "id": "home-kitahama-8",
+  "title": "Ms Uezu’s home",
+  "kind": "home",
+  "w": 6.4,
+  "h": 5.6,
+  "m2": 35.8,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.7,
+  "moduleOff": 0.14,
+  "rooms": 1,
+  "roomSizes": [
+   39.1
+  ],
+  "doors": 0,
+  "missing": [
+   "tokonoma"
+  ]
+ },
+ {
+  "id": "home-kitahama-9",
+  "title": "Grandmother Gushiken’s home",
+  "kind": "home",
+  "w": 6.4,
+  "h": 5.6,
+  "m2": 35.8,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.7,
+  "moduleOff": 0.14,
+  "rooms": 1,
+  "roomSizes": [
+   39.2
+  ],
+  "doors": 0,
+  "missing": [
+   "entrance"
+  ]
+ },
+ {
+  "id": "mayor-home",
+  "title": "Mayor’s House",
+  "kind": "home",
+  "w": 6.5,
+  "h": 5.5,
+  "m2": 35.75,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.85,
+  "moduleOff": null,
+  "rooms": null,
+  "roomSizes": [],
+  "doors": null,
+  "missing": [
+   "butsudan",
+   "tokonoma"
+  ],
+  "measurement": {
+   "method": "runtime-builder-full-domain",
+   "source": "80dc175fb588a91381a5e44fd479f464f23cc23a",
+   "bounds": {
+    "minX": -3.25,
+    "maxX": 3.25,
+    "minZ": -2.75,
+    "maxZ": 2.75
+   },
+   "floorPolygon": [
+    [
+     -3.25,
+     -2.75
+    ],
+    [
+     3.25,
+     -2.75
+    ],
+    [
+     3.25,
+     2.75
+    ],
+    [
+     -3.25,
+     2.75
+    ]
+   ],
+   "floorArea": 35.75,
+   "floorSampleStep": 0.2,
+   "floorMeshes": [
+    "Tatami floor",
+    "Toilet floor",
+    "Bath floor"
+   ],
+   "scope": "Complete movement domain; not net walkable area"
+  }
+ },
+ {
+  "id": "resident-home-aya",
+  "title": "Aya & Reiko’s home",
+  "kind": "home",
+  "w": 5.4,
+  "h": 3,
+  "m2": 16.2,
+  "jo": 10,
+  "tsubo": 4.9,
+  "ceiling": 2.5,
+  "moduleOff": 0.27,
+  "rooms": 1,
+  "roomSizes": [
+   19
+  ],
+  "doors": 0,
+  "missing": [
+   "bath",
+   "butsudan",
+   "tokonoma"
+  ]
+ },
+ {
+  "id": "resident-home-kenji",
+  "title": "Kenji & Tetsuo’s home",
+  "kind": "home",
+  "w": 5.4,
+  "h": 3.4,
+  "m2": 18.4,
+  "jo": 11.3,
+  "tsubo": 5.6,
+  "ceiling": 2.5,
+  "moduleOff": 0.24,
+  "rooms": 1,
+  "roomSizes": [
+   21.9
+  ],
+  "doors": 0,
+  "missing": [
+   "bath",
+   "butsudan",
+   "tokonoma"
+  ]
+ },
+ {
+  "id": "resident-home-mrs-sato",
+  "title": "Mrs Sato’s home",
+  "kind": "home",
+  "w": 5.98,
+  "h": 5.96,
+  "m2": 35.6,
+  "jo": 22,
+  "tsubo": 10.8,
+  "ceiling": 2.8,
+  "moduleOff": 0.41,
+  "rooms": 1,
+  "roomSizes": [
+   38.7
+  ],
+  "doors": 1,
+  "missing": [
+   "kitchen",
+   "toilet",
+   "bath",
+   "butsudan",
+   "bedding",
+   "entrance",
+   "tokonoma"
+  ]
+ },
+ {
+  "id": "resident-home-thuan",
+  "title": "Thuan & Nao’s home",
+  "kind": "home",
+  "w": 6.4,
+  "h": 5.6,
+  "m2": 35.8,
+  "jo": 22.1,
+  "tsubo": 10.8,
+  "ceiling": 2.7,
+  "moduleOff": 0.14,
+  "rooms": 1,
+  "roomSizes": [
+   39.2
+  ],
+  "doors": 0,
+  "missing": [
+   "butsudan",
+   "entrance"
+  ]
+ },
+ {
+  "id": "form3d",
+  "title": "Dock Electrical & Repair Workshop",
+  "kind": "shop",
+  "w": 8.4,
+  "h": 7,
+  "m2": 58.8,
+  "jo": 36.3,
+  "tsubo": 17.8,
+  "ceiling": 2.75,
+  "moduleOff": null,
+  "rooms": null,
+  "roomSizes": [],
+  "doors": null,
+  "missing": [
+   "counter",
+   "toilet"
+  ],
+  "measurement": {
+   "method": "runtime-builder-full-domain",
+   "source": "80dc175fb588a91381a5e44fd479f464f23cc23a",
+   "bounds": {
+    "minX": -4.2,
+    "maxX": 4.2,
+    "minZ": -3.5,
+    "maxZ": 3.5
+   },
+   "floorPolygon": [
+    [
+     -4.2,
+     -3.5
+    ],
+    [
+     4.2,
+     -3.5
+    ],
+    [
+     4.2,
+     3.5
+    ],
+    [
+     -4.2,
+     3.5
+    ]
+   ],
+   "floorArea": 58.8,
+   "floorSampleStep": 0.2,
+   "floorMeshes": [
+    "Workshop concrete floor"
+   ],
+   "scope": "Complete movement domain; not net walkable area"
+  }
+ },
+ {
+  "id": "frontrow",
+  "title": "Front-Row Books",
+  "kind": "shop",
+  "w": 8.4,
+  "h": 7,
+  "m2": 58.8,
+  "jo": 36.3,
+  "tsubo": 17.8,
+  "ceiling": 2.75,
+  "moduleOff": null,
+  "rooms": null,
+  "roomSizes": [],
+  "doors": null,
+  "missing": [
+   "toilet",
+   "storage"
+  ],
+  "measurement": {
+   "method": "runtime-builder-full-domain",
+   "source": "80dc175fb588a91381a5e44fd479f464f23cc23a",
+   "bounds": {
+    "minX": -4.2,
+    "maxX": 4.2,
+    "minZ": -3.5,
+    "maxZ": 3.5
+   },
+   "floorPolygon": [
+    [
+     -4.2,
+     -3.5
+    ],
+    [
+     4.2,
+     -3.5
+    ],
+    [
+     4.2,
+     3.5
+    ],
+    [
+     -4.2,
+     3.5
+    ]
+   ],
+   "floorArea": 58.8,
+   "floorSampleStep": 0.2,
+   "floorMeshes": [
+    "Fitted timber floor"
+   ],
+   "scope": "Complete movement domain; not net walkable area"
+  }
+ },
+ {
+  "id": "izakaya",
+  "title": "Minato Izakaya",
+  "kind": "shop",
+  "w": 9.94,
+  "h": 7.2,
+  "m2": 64.488,
+  "jo": 39.8,
+  "tsubo": 19.5,
+  "ceiling": 2.9,
+  "moduleOff": null,
+  "rooms": null,
+  "roomSizes": [],
+  "doors": null,
+  "missing": [],
+  "measurement": {
+   "method": "compact-gltf-full-domain",
+   "source": "working-prototype:minato-compact-r8:sha256:9e240c025dd0bd2ac5b1a73e57497765332ccbabb33fed27ad71548de437100b",
+   "provenance": {
+    "status": "working prototype",
+    "plan": "art/izakaya/compact/plan.json",
+    "planRevision": 8,
+    "planSha256": "9e240c025dd0bd2ac5b1a73e57497765332ccbabb33fed27ad71548de437100b",
+    "asset": "assets/models/izakaya/minato-interior-compact.glb",
+    "assetSha256": "6a9aa12a6eabc20258304211d592f04ed137c04fad1b0df63f609b851f4f4fee",
+    "colliders": "src/world/interiors/shared-dining-layout.js",
+    "collidersSha256": "9c1e746757dd7a844cabf0b07c744eebed2f5528f251bbc32576a01ab617292b",
+    "blenderBuilder": "tools/blender/build-minato-compact.py",
+    "blenderBuilderSha256": "75c5de33a92a1e7d337e1fff877f252001a82b3326a4157d62fc1a9ec215ba9d",
+    "exportReport": "art/izakaya/compact/compact-report.json",
+    "exportReportSha256": "6ebad16105613b3e7a0b39cf4d79ae0a23801a8495240165d25e9f52762a31da"
+   },
+   "bounds": {
+    "minX": -4.08,
+    "maxX": 5.86,
+    "minZ": -3.75,
+    "maxZ": 3.45
+   },
+   "floorPolygon": [
+    [
+     -4.08,
+     -3.75
+    ],
+    [
+     2.32,
+     -3.75
+    ],
+    [
+     2.32,
+     -1.75
+    ],
+    [
+     5.86,
+     -1.75
+    ],
+    [
+     5.86,
+     3.45
+    ],
+    [
+     -4.08,
+     3.45
+    ]
+   ],
+   "floorArea": 64.411,
+   "floorSampleStep": 0.2,
+   "floorMeshes": [
+    "Datum floor · Minato_compact__room__Dark_grout",
+    "Datum floor · Minato_compact__room__Cedar_floor",
+    "Datum floor · Minato_compact__room__Quarry_tile"
+   ],
+   "floorGeometry": {
+    "method": "Upward datum triangles from actual GLB floor batches; mixed floor/furniture materials separated by world-space height and face direction",
+    "band": {
+     "minY": -0.15,
+     "maxY": 0.08
+    },
+    "batches": [
+     {
+      "sourceMesh": "Minato_compact__room__Dark_grout",
+      "upwardTriangles": 4
+     },
+     {
+      "sourceMesh": "Minato_compact__room__Cedar_floor",
+      "upwardTriangles": 288
+     },
+     {
+      "sourceMesh": "Minato_compact__room__Quarry_tile",
+      "upwardTriangles": 566
+     }
+    ]
+   },
+   "scope": "Shared Minato / Sato interior; the same domain appears at both entrances and is counted once. Sampled floor support is not net walkable area."
+  }
+ },
+ {
+  "id": "market",
+  "title": "Sakura Shōten",
+  "kind": "shop",
+  "w": 13.72,
+  "h": 7.9,
+  "m2": 108.4,
+  "jo": 66.9,
+  "tsubo": 32.8,
+  "ceiling": 2.82,
+  "moduleOff": 0.29,
+  "rooms": 1,
+  "roomSizes": [
+   112.5
+  ],
+  "doors": 1,
+  "missing": []
+ },
+ {
+  "id": "ramen",
+  "title": "Sato Ramen",
+  "kind": "shop",
+  "w": 9.94,
+  "h": 7.2,
+  "m2": 64.488,
+  "jo": 39.8,
+  "tsubo": 19.5,
+  "ceiling": 2.9,
+  "moduleOff": null,
+  "rooms": null,
+  "roomSizes": [],
+  "doors": null,
+  "missing": [],
+  "measurement": {
+   "method": "compact-gltf-full-domain",
+   "source": "working-prototype:minato-compact-r8:sha256:9e240c025dd0bd2ac5b1a73e57497765332ccbabb33fed27ad71548de437100b",
+   "provenance": {
+    "status": "working prototype",
+    "plan": "art/izakaya/compact/plan.json",
+    "planRevision": 8,
+    "planSha256": "9e240c025dd0bd2ac5b1a73e57497765332ccbabb33fed27ad71548de437100b",
+    "asset": "assets/models/izakaya/minato-interior-compact.glb",
+    "assetSha256": "6a9aa12a6eabc20258304211d592f04ed137c04fad1b0df63f609b851f4f4fee",
+    "colliders": "src/world/interiors/shared-dining-layout.js",
+    "collidersSha256": "9c1e746757dd7a844cabf0b07c744eebed2f5528f251bbc32576a01ab617292b",
+    "blenderBuilder": "tools/blender/build-minato-compact.py",
+    "blenderBuilderSha256": "75c5de33a92a1e7d337e1fff877f252001a82b3326a4157d62fc1a9ec215ba9d",
+    "exportReport": "art/izakaya/compact/compact-report.json",
+    "exportReportSha256": "6ebad16105613b3e7a0b39cf4d79ae0a23801a8495240165d25e9f52762a31da"
+   },
+   "bounds": {
+    "minX": -4.08,
+    "maxX": 5.86,
+    "minZ": -3.75,
+    "maxZ": 3.45
+   },
+   "floorPolygon": [
+    [
+     -4.08,
+     -3.75
+    ],
+    [
+     2.32,
+     -3.75
+    ],
+    [
+     2.32,
+     -1.75
+    ],
+    [
+     5.86,
+     -1.75
+    ],
+    [
+     5.86,
+     3.45
+    ],
+    [
+     -4.08,
+     3.45
+    ]
+   ],
+   "floorArea": 64.411,
+   "floorSampleStep": 0.2,
+   "floorMeshes": [
+    "Datum floor · Minato_compact__room__Dark_grout",
+    "Datum floor · Minato_compact__room__Cedar_floor",
+    "Datum floor · Minato_compact__room__Quarry_tile"
+   ],
+   "floorGeometry": {
+    "method": "Upward datum triangles from actual GLB floor batches; mixed floor/furniture materials separated by world-space height and face direction",
+    "band": {
+     "minY": -0.15,
+     "maxY": 0.08
+    },
+    "batches": [
+     {
+      "sourceMesh": "Minato_compact__room__Dark_grout",
+      "upwardTriangles": 4
+     },
+     {
+      "sourceMesh": "Minato_compact__room__Cedar_floor",
+      "upwardTriangles": 288
+     },
+     {
+      "sourceMesh": "Minato_compact__room__Quarry_tile",
+      "upwardTriangles": 566
+     }
+    ]
+   },
+   "scope": "Shared Minato / Sato interior; the same domain appears at both entrances and is counted once. Sampled floor support is not net walkable area."
+  }
+ }
+]

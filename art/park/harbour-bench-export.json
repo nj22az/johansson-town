@@ -1,0 +1,26 @@
+{
+  "source": "Original Johansson Town geometry authored in Blender",
+  "generator": "tools/blender/build-harbour-bench.py",
+  "spec": "art/park/harbour-bench-spec.json",
+  "blender": "5.2.0 LTS",
+  "units": "metres",
+  "meshes": 3,
+  "materials": 3,
+  "triangles": 1284,
+  "bytes": 67964,
+  "glbSHA256": "efa712c21d3bfe2b9da8d8171c6d18f72a067eacc2077f423e4dda55b7369790",
+  "dimensions": {
+    "length": 2.0832,
+    "seatDepth": 0.454272,
+    "seatHeight": 0.4256,
+    "seatThickness": 0.045,
+    "backHeight": 0.53,
+    "backZ": 0.256256,
+    "footprintDepth": 0.5824,
+    "sitZ": -0.133952,
+    "parkModelX": 2.0992,
+    "parkModelFootY": 1.58,
+    "standModelX": 0.5,
+    "referenceParkScale": 0.56
+  }
+}

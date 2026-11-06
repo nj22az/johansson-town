@@ -1,0 +1,14 @@
+{
+  "baseline": "8e234f1bb407611d37101247eff0f56c1facb5f3",
+  "runtimeSource": "f04b07d34de55df0bf795a50d29cbedc914d787966364ce296384be0944295eb",
+  "viewport": [
+    1280,
+    800
+  ],
+  "softwareChromium": true,
+  "physicalDevice": false,
+  "linuxEditionBudgets": true,
+  "drinkBeforeFood": true,
+  "foodDelivered": true,
+  "noEatingBeforeDelivery": true
+}

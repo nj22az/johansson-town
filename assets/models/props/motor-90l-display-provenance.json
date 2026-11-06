@@ -1,0 +1,123 @@
+{
+ "purpose": "Static display of the site's own IEC 90L pump motor on the Dock Electrical Workshop test bench",
+ "source": "../../motor-90l/motor.js buildMotor(), B3 mount, assembled",
+ "sourceSha256": {
+  "motor-90l/motor.js": "1b74eec11625008a491d215f4e4e9885fd048e68514195195709704a7717eefb",
+  "motor-90l/calc.mjs": "e2fd8cdd47fdc5055cda6df636eebaf533358c1fd3bdd132d3ae863cb40131ab"
+ },
+ "licence": "Original project content (nj22az.github.io); no third-party geometry or textures",
+ "units": "metres, true size; feet at y = 0, axis along x, drive end toward -x, terminal box up, rating plate toward +z",
+ "townScale": 1.7,
+ "file": "motor-90l-display.glb",
+ "sha256": "b55b5a3c915c7305c372ecadef915eb5c4f3b3cbd450922d004b1907e7a1dedb",
+ "bytes": 446016,
+ "sourceTriangles": 52338,
+ "triangles": 13936,
+ "vertices": 22558,
+ "drawCalls": 1,
+ "size": [
+  0.3425,
+  0.248,
+  0.1958
+ ],
+ "method": "Visible parts only; per-part weld, meshoptimizer 1.2.0 simplify (error 0.004 of part size), 35° creased normals, one vertex-coloured mesh, compactMesh",
+ "parts": [
+  {
+   "part": "frame",
+   "label": "Stator frame",
+   "sourceTriangles": 2816,
+   "triangles": 1000
+  },
+  {
+   "part": "feet",
+   "label": "Feet (IM B3)",
+   "sourceTriangles": 880,
+   "triangles": 236
+  },
+  {
+   "part": "shaft",
+   "label": "Shaft",
+   "sourceTriangles": 3744,
+   "triangles": 300
+  },
+  {
+   "part": "key",
+   "label": "Feather key 8×7×40",
+   "sourceTriangles": 260,
+   "triangles": 60
+  },
+  {
+   "part": "shieldDE",
+   "label": "DE end shield (B3)",
+   "sourceTriangles": 3576,
+   "triangles": 910
+  },
+  {
+   "part": "tieRods",
+   "label": "Tie-rods M8 (4×)",
+   "sourceTriangles": 736,
+   "triangles": 292
+  },
+  {
+   "part": "shieldNDE",
+   "label": "NDE end shield",
+   "sourceTriangles": 3612,
+   "triangles": 772
+  },
+  {
+   "part": "fan",
+   "label": "Cooling fan",
+   "sourceTriangles": 1368,
+   "triangles": 354
+  },
+  {
+   "part": "cowl",
+   "label": "Fan cowl",
+   "sourceTriangles": 32184,
+   "triangles": 8902
+  },
+  {
+   "part": "tbox",
+   "label": "Terminal box",
+   "sourceTriangles": 1284,
+   "triangles": 330
+  },
+  {
+   "part": "gland",
+   "label": "Cable gland M20",
+   "sourceTriangles": 592,
+   "triangles": 352
+  },
+  {
+   "part": "lid",
+   "label": "Terminal box lid",
+   "sourceTriangles": 1092,
+   "triangles": 354
+  },
+  {
+   "part": "nameplate",
+   "label": "Rating plate",
+   "sourceTriangles": 194,
+   "triangles": 74
+  }
+ ],
+ "omitted": [
+  "pads",
+  "core",
+  "slotins",
+  "winding",
+  "ptc",
+  "rotor",
+  "bearingDE",
+  "bearingNDE",
+  "wave",
+  "seal",
+  "flangeDE",
+  "circlip",
+  "tboard",
+  "links",
+  "leads",
+  "tpblock",
+  "earth"
+ ]
+}

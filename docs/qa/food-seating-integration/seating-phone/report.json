@@ -1,0 +1,45 @@
+{
+  "site": "/dev/shm/johansson-integration",
+  "runtime": true,
+  "viewport": [
+    390,
+    844
+  ],
+  "softwareChromium": true,
+  "physicalDevice": false,
+  "stagedResidents": true,
+  "shots": [
+    {
+      "name": "minato-stool-side",
+      "camera": {
+        "pos": [
+          -1.316031419717305,
+          1.05,
+          -0.44510609260820655
+        ],
+        "at": [
+          -3.5,
+          0.7,
+          -0.18
+        ]
+      }
+    },
+    {
+      "name": "minato-booth",
+      "camera": {
+        "pos": [
+          0.10970944070823396,
+          1.25,
+          2.764601712534686
+        ],
+        "at": [
+          -2.5,
+          0.8,
+          1.75
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "selection": "The selected phone views show the complete seated figures; wider paired bench views are provided at desktop dimensions."
+}

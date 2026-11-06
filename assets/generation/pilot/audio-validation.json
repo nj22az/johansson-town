@@ -1,0 +1,46 @@
+[
+  {
+    "id": "aiko-greeting",
+    "file": "audio/voices/aiko-greeting.wav",
+    "bytes": 217814,
+    "sha256": "bfb7fec93dd9f497d36c34f70fd4c2daa034e8c8baf2d1c446f372d53150dd52",
+    "durationSeconds": 4.536875,
+    "sampleRate": 24000,
+    "channels": 1,
+    "peak": 32767,
+    "rms": 4097.3555486520345
+  },
+  {
+    "id": "aiko-cat",
+    "file": "audio/voices/aiko-cat.wav",
+    "bytes": 248534,
+    "sha256": "067ce4bb73f57c262d7335e3c2040d9c3612c27fe31a38ba14e5f44c13901a97",
+    "durationSeconds": 5.176875,
+    "sampleRate": 24000,
+    "channels": 1,
+    "peak": 32767,
+    "rms": 6537.817399484631
+  },
+  {
+    "id": "aiko-chair",
+    "file": "audio/voices/aiko-chair.wav",
+    "bytes": 210134,
+    "sha256": "838ae349639a3ef025a80192420af6be1ca9fcfd5f8e1ee7e1927ef629da28b1",
+    "durationSeconds": 4.376875,
+    "sampleRate": 24000,
+    "channels": 1,
+    "peak": 32767,
+    "rms": 5507.391114505456
+  },
+  {
+    "id": "kenji-game",
+    "file": "audio/voices/kenji-game.wav",
+    "bytes": 156374,
+    "sha256": "bb092c8da84d3915f30dd2f46f3868cd976a5342df85ef32264b1fb2f95ae897",
+    "durationSeconds": 3.256875,
+    "sampleRate": 24000,
+    "channels": 1,
+    "peak": 32767,
+    "rms": 5089.981973451958
+  }
+]

@@ -1,0 +1,23 @@
+✔ exploration offers a single named next action and no generic idle button (4.541433ms)
+✔ benches, meals, pending orders and held drinks show only usable choices (1.148418ms)
+✔ a pressed action retains its meaning until release, and menus clear the rail (0.497606ms)
+✔ the live rail hides and disables inactive controls and exposes full accessible labels (2.248959ms)
+✔ door controls expose their transition completion to integration callers (0.690663ms)
+✔ pending delivery is announced once instead of repeatedly on each frame (0.409567ms)
+✔ console action cycling stays selected until the nearby context changes (0.556966ms)
+✔ the last action fades out with its words on it, but can no longer be pressed or read (1.375807ms)
+✔ the HUD fades after a few seconds without input, and any input brings it back (1.308575ms)
+✔ photo mode hides the controls; a tap, H or Escape or a controller button brings them back, a drag does not (0.446551ms)
+✔ one set of HUD tokens, translucent and readable, with no run button over the picture (9.198122ms)
+✔ published runtime matches the current source rather than an older build (235.233566ms)
+✔ published page uses one compiled audio/boot graph with local hashed dependencies (87.388651ms)
+✔ every stylesheet link carries a hash of the file it points at (8.04662ms)
+✔ delivered chunks contain no retired combat handlers, menus, damage simulation or rewards (180.46606ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 645.625772

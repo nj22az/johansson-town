@@ -1,0 +1,971 @@
+{
+ "status": "31 October 2026: 18 core and 5 supporting residents; the Nakamura family retires without successors while its facilities remain vacant. The 13 retired identities retain historical drawings (avatars/cast.js RETIRED_RECIPES); the consolidation report is docs/CAST-CONSOLIDATION-REPORT.md",
+ "canonDate": "2026-10-19",
+ "source": "docs/CAST-CONSOLIDATION.md",
+ "counts": {
+  "core": 18,
+  "supporting": 5,
+  "retired": 13,
+  "households": 12
+ },
+ "core": [
+  {
+   "id": "nils",
+   "name": "Nils",
+   "fullName": "Nils Johansson",
+   "category": "core",
+   "sex": "m",
+   "age": null,
+   "nationality": "Swedish",
+   "was": [
+    "Johansson"
+   ],
+   "avatar": "Johansson",
+   "role": "the player; Swedish chief engineer of the Minato Maru; married to Thuan",
+   "post": "chief",
+   "relief": null,
+   "shore": [],
+   "home": "kitano-1",
+   "berth": "ferry-chief-cabin",
+   "room": null,
+   "oldHomes": [
+    "ferry"
+   ],
+   "household": "kitano-1"
+  },
+  {
+   "id": "thuan",
+   "name": "Thuan",
+   "fullName": "Thuan",
+   "category": "core",
+   "sex": "f",
+   "age": 25,
+   "nationality": "Vietnamese",
+   "was": [
+    "Yuri"
+   ],
+   "avatar": "Thuan",
+   "role": "owns and runs Sakura Shōten outright: purchasing, accounts, stock, shop and supply; Nils’s wife; sister of Thao and Nhung",
+   "post": null,
+   "relief": null,
+   "shore": [],
+   "home": "kitano-1",
+   "berth": null,
+   "room": null,
+   "oldHomes": [
+    "kitahama-1"
+   ],
+   "household": "kitano-1"
+  },
+  {
+   "id": "thao",
+   "name": "Thao",
+   "fullName": "Thao",
+   "category": "core",
+   "sex": "f",
+   "age": 34,
+   "nationality": "Vietnamese",
+   "was": [],
+   "avatar": "Thao",
+   "role": "runs Minato Izakaya; Chin’s wife and Vy’s mother; the middle sister",
+   "post": null,
+   "relief": null,
+   "shore": [],
+   "home": "kitahama-1",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": "kitahama-1"
+  },
+  {
+   "id": "chin",
+   "name": "Chin",
+   "fullName": "Chin",
+   "category": "core",
+   "sex": "m",
+   "age": 36,
+   "nationality": null,
+   "was": [
+    "Kenji"
+   ],
+   "avatar": "Chin",
+   "role": "motorman aboard the Minato Maru; mechanical repairman at the workshop with Tetsu when ashore; Thao’s husband and Vy’s father",
+   "post": "oiler",
+   "relief": null,
+   "shore": [],
+   "home": "kitahama-1",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": "kitahama-1"
+  },
+  {
+   "id": "vy",
+   "name": "Vy",
+   "fullName": "Vy",
+   "category": "core",
+   "sex": "f",
+   "age": 11,
+   "nationality": null,
+   "was": [],
+   "avatar": "Vy",
+   "role": "Thao and Chin’s daughter; a pupil at the island school",
+   "post": null,
+   "relief": null,
+   "shore": [],
+   "home": "kitahama-1",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": "kitahama-1"
+  },
+  {
+   "id": "nhung",
+   "name": "Nhung",
+   "fullName": "Nhung",
+   "category": "core",
+   "sex": "f",
+   "age": 37,
+   "nationality": "Vietnamese",
+   "was": [],
+   "avatar": "Nhung",
+   "role": "the island doctor (the owner, 22 October 2026: the clinic doctor’s look and post are hers, Dr Ken retired into her): surgery at the town hall clinic weekdays and Saturday mornings, house calls, on call at night; prints the town’s small paper in the evenings at the back bench of the old Front-Row shop; Sakura’s Sunday clerk; the eldest sister; Koji’s wife and Riku’s mother",
+   "post": null,
+   "relief": null,
+   "shore": [],
+   "home": "kitahama-3",
+   "berth": null,
+   "room": null,
+   "oldHomes": [
+    "resident-home-aya"
+   ],
+   "household": "kitahama-3"
+  },
+  {
+   "id": "koji",
+   "name": "Koji",
+   "fullName": "Kōji",
+   "category": "core",
+   "sex": "m",
+   "age": 38,
+   "nationality": null,
+   "was": [
+    "Kōji"
+   ],
+   "avatar": "Kōji",
+   "role": "fisherman and the bosun’s relief; drives Sakura Trading’s round in his kei truck on his weeks ashore, paid by the round (Higa Liquor’s until it closed, 22 October 2026); Nhung’s husband and Riku’s father",
+   "post": null,
+   "relief": "bosun",
+   "shore": [],
+   "home": "kitahama-3",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": "kitahama-3"
+  },
+  {
+   "id": "riku",
+   "name": "Riku",
+   "fullName": "Riku",
+   "category": "core",
+   "sex": "m",
+   "age": 9,
+   "nationality": null,
+   "was": [],
+   "avatar": "Riku",
+   "role": "Nhung and Koji’s son; a pupil at the island school; Vy’s cousin",
+   "post": null,
+   "relief": null,
+   "shore": [],
+   "home": "kitahama-3",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": "kitahama-3"
+  },
+  {
+   "id": "yui",
+   "name": "Yui",
+   "fullName": "Yui Higa",
+   "category": "core",
+   "sex": "f",
+   "age": 29,
+   "nationality": "Japanese",
+   "was": [
+    "Yonamine-sensei",
+    "Mrs Higa",
+    "Miss Higa"
+   ],
+   "avatar": "Miss Higa",
+   "role": "the island’s schoolteacher; Gran Higa’s granddaughter; helps at the bathhouse after school and at weekends",
+   "post": null,
+   "relief": null,
+   "shore": [],
+   "home": "higa",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": "higa"
+  },
+  {
+   "id": "gran-higa",
+   "name": "Gran Higa",
+   "fullName": "Grandmother Higa",
+   "category": "core",
+   "sex": "f",
+   "age": 78,
+   "nationality": "Japanese",
+   "was": [
+    "Grandmother Higa"
+   ],
+   "avatar": "Grandmother Higa",
+   "role": "owns Umi-no-yu and keeps it by day; her liquor shop is shut, its trade Sakura’s (the owner, 22 October 2026), and its room is Kissa Higa, her morning coffee shop on weekdays (30 October 2026); the family’s ties in town",
+   "post": null,
+   "relief": null,
+   "shore": [],
+   "home": "higa",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": "higa"
+  },
+  {
+   "id": "tetsu",
+   "name": "Tetsu",
+   "fullName": "Tetsuo Chinen",
+   "category": "core",
+   "sex": "m",
+   "age": 40,
+   "nationality": "Japanese",
+   "was": [
+    "Tetsuo"
+   ],
+   "avatar": "Tetsuo",
+   "role": "electrician; workshop partner of Chin; maintains the ship’s electrical equipment, the bathhouse’s plant and the island’s electrical systems",
+   "post": null,
+   "relief": null,
+   "shore": [
+    "electrician"
+   ],
+   "home": "resident-home-kenji",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": "resident-home-kenji"
+  },
+  {
+   "id": "aki",
+   "name": "Aki",
+   "fullName": "Aki Sato",
+   "category": "core",
+   "sex": "f",
+   "age": 68,
+   "nationality": "Japanese",
+   "was": [
+    "Mrs Sato"
+   ],
+   "avatar": "Mrs Sato",
+   "role": "owns Sato Ramen, which keeps its name; stays ashore",
+   "post": null,
+   "relief": null,
+   "shore": [],
+   "home": "kitahama-2",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": "kitahama-2"
+  },
+  {
+   "id": "mori",
+   "name": "Mori",
+   "fullName": "Officer Mori",
+   "category": "core",
+   "sex": "m",
+   "age": 45,
+   "nationality": "Japanese",
+   "was": [
+    "Officer Mori"
+   ],
+   "avatar": "Officer Mori",
+   "role": "the island’s police officer; the desk and the night patrol; his accommodation moves into the police station to come (addendum 1), koban staying his home id",
+   "post": null,
+   "relief": null,
+   "shore": [],
+   "home": "koban",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": "koban"
+  },
+  {
+   "id": "fuji",
+   "name": "Fuji",
+   "fullName": "Fujita",
+   "category": "core",
+   "sex": "m",
+   "age": 63,
+   "nationality": "Japanese",
+   "was": [
+    "Mr Fujita"
+   ],
+   "avatar": "Mr Fujita",
+   "role": "master of the Minato Maru; sober on watch, the shed and the beer only after he signs off; lives aboard Shiosai",
+   "post": "master",
+   "relief": null,
+   "shore": [],
+   "home": "fujita-houseboat",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": "fujita-houseboat"
+  },
+  {
+   "id": "jack",
+   "name": "Jack",
+   "fullName": "Jack Reed",
+   "category": "core",
+   "sex": "m",
+   "age": 58,
+   "nationality": "American",
+   "was": [
+    "Harbour master"
+   ],
+   "avatar": "Harbour master",
+   "role": "harbour agent: berth communications, freight and Minato’s shore-side mooring; an American former merchant seaman, long settled here",
+   "post": null,
+   "relief": null,
+   "shore": [
+    "port",
+    "linesman"
+   ],
+   "home": "office",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": "office"
+  },
+  {
+   "id": "mac",
+   "name": "Mac",
+   "fullName": "Mac Turner",
+   "category": "core",
+   "sex": "m",
+   "age": 61,
+   "nationality": "American",
+   "was": [
+    "Mr Nakandakari"
+   ],
+   "avatar": "Mr Nakandakari",
+   "role": "relief engineer of the Minato Maru; an older American engineer, an established island resident; a shore home and a separate duty berth",
+   "post": null,
+   "relief": "chief",
+   "shore": [
+    "relief-engineer"
+   ],
+   "home": "kitahama-flat-3",
+   "berth": "ferry-engineer-duty-berth",
+   "room": null,
+   "oldHomes": [
+    "ferry"
+   ],
+   "household": "kitahama-flat-3"
+  },
+  {
+   "id": "nao",
+   "name": "Nao",
+   "fullName": "Nao Uezu",
+   "category": "core",
+   "sex": "f",
+   "age": 44,
+   "nationality": "Japanese",
+   "was": [
+    "Ms Uezu"
+   ],
+   "avatar": "Ms Uezu",
+   "role": "bosun of the Minato Maru; a shore home and a credible relief rota with Koji",
+   "post": "bosun",
+   "relief": null,
+   "shore": [],
+   "home": "kitahama-8",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": "kitahama-8"
+  },
+  {
+   "id": "mika",
+   "name": "Mika",
+   "fullName": "Mika Ganaha",
+   "category": "core",
+   "sex": "f",
+   "age": 27,
+   "nationality": "Japanese",
+   "was": [
+    "Ms Ganaha"
+   ],
+   "avatar": "Ms Ganaha",
+   "role": "port clerk: passenger tickets, parcels and the postal counter, all at the Port Terminal; keeps the coin laundry on the side, its morning round before the mailbag (the owner, 21 October 2026)",
+   "post": null,
+   "relief": null,
+   "shore": [
+    "tickets"
+   ],
+   "home": "kitahama-flat-4",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": "kitahama-flat-4"
+  }
+ ],
+ "supporting": [
+  {
+   "id": "ryo",
+   "name": "Ryo",
+   "fullName": "Ryo",
+   "category": "supporting",
+   "sex": "m",
+   "age": 41,
+   "nationality": "Japanese",
+   "was": [
+    "Chief officer"
+   ],
+   "avatar": "Ryo",
+   "role": "chief officer of the Minato Maru: the lookout, access and the ramp; from Itoman, six years on the Kerama ferries before her",
+   "post": "mate",
+   "relief": null,
+   "shore": [],
+   "home": null,
+   "berth": "ferry-officer-cabin",
+   "room": null,
+   "oldHomes": [],
+   "household": null
+  },
+  {
+   "id": "ren",
+   "name": "Ren",
+   "fullName": "Ren",
+   "category": "supporting",
+   "sex": "m",
+   "age": 23,
+   "nationality": "Japanese",
+   "was": [
+    "Deck hand"
+   ],
+   "avatar": "Ren",
+   "role": "deck hand: the forward mooring station, the gangway and passenger-deck rounds; from Nago, his first ship",
+   "post": "deck",
+   "relief": null,
+   "shore": [],
+   "home": null,
+   "berth": "ferry-crew-cabin",
+   "room": null,
+   "oldHomes": [],
+   "household": null
+  },
+  {
+   "id": "aya",
+   "name": "Aya",
+   "fullName": "Aya",
+   "category": "supporting",
+   "sex": "f",
+   "age": 31,
+   "nationality": "Japanese",
+   "was": [
+    "Purser"
+   ],
+   "avatar": "Aya",
+   "role": "the sailing purser: the passenger count, the vehicle deck and the lobby; came from the Kume line for the short crossings",
+   "post": "purser",
+   "relief": null,
+   "shore": [],
+   "home": null,
+   "berth": "ferry-crew-cabin",
+   "room": null,
+   "oldHomes": [],
+   "household": null
+  },
+  {
+   "id": "jun",
+   "name": "Jun",
+   "fullName": "Jun",
+   "category": "supporting",
+   "sex": "m",
+   "age": 52,
+   "nationality": "Japanese",
+   "was": [
+    "Cook-steward"
+   ],
+   "avatar": "Jun",
+   "role": "cook-steward: the crew’s meals, the galley and the kiosk; twenty years in the galleys of the cargo boats out of Naha",
+   "post": "cook",
+   "relief": null,
+   "shore": [],
+   "home": null,
+   "berth": "ferry-crew-cabin",
+   "room": null,
+   "oldHomes": [],
+   "household": null
+  },
+  {
+   "id": "kai",
+   "name": "Kai",
+   "fullName": "Kai",
+   "category": "supporting",
+   "sex": "m",
+   "age": 47,
+   "nationality": "Japanese",
+   "was": [
+    "Kitano line hand"
+   ],
+   "avatar": "Kai",
+   "role": "the Kitano shore line hand: the shore eyes at the Kitano berth every call; rents the Shiroma house across the lane from the pier",
+   "post": null,
+   "relief": null,
+   "shore": [
+    "airport-linesman"
+   ],
+   "home": "kitano-2",
+   "berth": null,
+   "room": null,
+   "oldHomes": [],
+   "household": null
+  }
+ ],
+ "retired": [
+  {
+   "id": "bus-driver",
+   "name": "Bus driver",
+   "category": "retired",
+   "was": [],
+   "home": "kitahama-6",
+   "transfer": {
+    "to": [
+     "fuji"
+    ],
+    "purpose": "the master’s post; Fuji does not inherit his home"
+   }
+  },
+  {
+   "id": "higa-jr",
+   "name": "Mr Higa Jr",
+   "category": "retired",
+   "was": [],
+   "home": "kitahama-flat-1",
+   "transfer": {
+    "to": [
+     "chin"
+    ],
+    "purpose": "the motorman post (the oiler key); Chin takes neither his flat nor the Higa family"
+   }
+  },
+  {
+   "id": "gran-sakurai",
+   "name": "Grandmother Sakurai",
+   "category": "retired",
+   "was": [],
+   "home": "kitahama-flat-2",
+   "transfer": {
+    "to": [
+     "thuan"
+    ],
+    "purpose": "Sakura Shōten, which Thuan owns outright"
+   }
+  },
+  {
+   "id": "gran-chinen",
+   "name": "Grandmother Chinen",
+   "category": "retired",
+   "was": [],
+   "home": "kitahama-5",
+   "transfer": {
+    "to": [
+     "tetsu"
+    ],
+    "purpose": "only compatible family history, as Tetsu’s mother"
+   }
+  },
+  {
+   "id": "toma",
+   "name": "Postman Tōma",
+   "category": "retired",
+   "was": [],
+   "home": "kitahama-4",
+   "transfer": {
+    "to": [
+     "mika"
+    ],
+    "purpose": "tickets, parcels and the postal collection at Mika’s port counter"
+   }
+  },
+  {
+   "id": "shimabukuro",
+   "name": "Mr Shimabukuro",
+   "category": "retired",
+   "was": [],
+   "home": "shimabukuro",
+   "transfer": {
+    "to": [
+     "chin",
+     "tetsu"
+    ],
+    "purpose": "mechanical work to Chin, electrical maintenance to Tetsu; the power station stays, unmanned"
+   }
+  },
+  {
+   "id": "oshiro",
+   "name": "Mr Ōshiro",
+   "category": "retired",
+   "was": [],
+   "home": "oshiro",
+   "transfer": {
+    "to": [
+     "koji",
+     "chin",
+     "fuji"
+    ],
+    "purpose": "Koji fishes on his own; Chin mends the boats; Fuji keeps the old seamen’s stories"
+   }
+  },
+  {
+   "id": "kinjo",
+   "name": "Mrs Kinjō",
+   "category": "retired",
+   "was": [],
+   "home": "kinjo",
+   "transfer": {
+    "to": [
+     "thuan"
+    ],
+    "purpose": "flowers and decorations, supplied by Sakura; the florist pavilion goes"
+   }
+  },
+  {
+   "id": "barfly",
+   "name": "Barfly",
+   "category": "retired",
+   "was": [],
+   "home": "izakaya",
+   "transfer": {
+    "to": [
+     "fuji"
+    ],
+    "purpose": "the izakaya’s regulars and gossip, from the residents themselves, Fuji among them off duty"
+   }
+  },
+  {
+   "id": "reiko",
+   "name": "Reiko",
+   "category": "retired",
+   "was": [],
+   "home": "resident-home-aya",
+   "transfer": {
+    "to": [
+     "nhung"
+    ],
+    "purpose": "a smaller local paper, beside the bookshop; her friendship with Nhung stays as backstory"
+   }
+  },
+  {
+   "id": "dr-ken",
+   "name": "Dr Kakazu",
+   "category": "retired",
+   "was": [
+    "Dr Ken",
+    "Dr Ken Kakazu"
+   ],
+   "home": "clinic",
+   "transfer": {
+    "to": [
+     "nhung"
+    ],
+    "purpose": "the island doctor: the clinic, its hours, house calls and the night telephone"
+   }
+  },
+  {
+   "id": "emi",
+   "name": "Mrs Nakamura",
+   "category": "retired",
+   "was": [
+    "Emi",
+    "Emi Nakamura"
+   ],
+   "home": "nakamura",
+   "transfer": {
+    "to": [],
+    "purpose": "the dessert counter, upstairs flat and community-kitchen programme wait for future staffing; no replacement resident is assigned"
+   }
+  },
+  {
+   "id": "mai",
+   "name": "Mai",
+   "category": "retired",
+   "was": [
+    "Nakamura Mai",
+    "Mai Nakamura"
+   ],
+   "home": "nakamura",
+   "transfer": {
+    "to": [],
+    "purpose": "the daughter retires with her mother; her school and friendship roles are not transferred to another child"
+   }
+  }
+ ],
+ "households": [
+  {
+   "home": "kitano-1",
+   "members": [
+    "nils",
+    "thuan"
+   ],
+   "note": "Johansson & Thuan’s house on Kitano-jima; Nils’s cabin aboard is duty accommodation, not a home"
+  },
+  {
+   "home": "kitahama-1",
+   "members": [
+    "thao",
+    "chin",
+    "vy"
+   ],
+   "note": "purely Thao, Chin and Vy: Thuan’s weekday room is dropped (addendum 4)"
+  },
+  {
+   "home": "kitahama-3",
+   "members": [
+    "nhung",
+    "koji",
+    "riku"
+   ],
+   "note": "reunited as one household; Nhung moves here from 1 Front-Row Yard (phase 3)"
+  },
+  {
+   "home": "higa",
+   "members": [
+    "yui",
+    "gran-higa"
+   ],
+   "note": "the Higa house, Nishi-machi"
+  },
+  {
+   "home": "resident-home-kenji",
+   "members": [
+    "tetsu"
+   ],
+   "note": "2 Front-Row Yard"
+  },
+  {
+   "home": "kitahama-2",
+   "members": [
+    "aki"
+   ],
+   "note": "2 Kitahama"
+  },
+  {
+   "home": "koban",
+   "members": [
+    "mori"
+   ],
+   "note": "Mori’s accommodation moves inside the police station built next to the kōban, a later job; koban stays the logical id (addendum 1)"
+  },
+  {
+   "home": "office",
+   "members": [
+    "jack"
+   ],
+   "note": "the Harbour Office residence"
+  },
+  {
+   "home": "kitahama-flat-3",
+   "members": [
+    "mac"
+   ],
+   "note": "one of the two attached ground-floor houses Kitahama Heights becomes (addendum 6); the id is kept for migration"
+  },
+  {
+   "home": "kitahama-flat-4",
+   "members": [
+    "mika"
+   ],
+   "note": "the other attached ground-floor house; the id is kept for migration"
+  },
+  {
+   "home": "kitahama-8",
+   "members": [
+    "nao"
+   ],
+   "note": "8 Kitahama"
+  },
+  {
+   "home": "fujita-houseboat",
+   "members": [
+    "fuji"
+   ],
+   "note": "Shiosai, the houseboat at the west pier"
+  }
+ ],
+ "quarters": [
+  {
+   "id": "ferry-chief-cabin",
+   "who": [
+    "nils"
+   ],
+   "aboard": true,
+   "registered": true,
+   "what": "the chief engineer’s duty cabin"
+  },
+  {
+   "id": "ferry-engineer-duty-berth",
+   "who": [
+    "mac"
+   ],
+   "aboard": true,
+   "registered": true,
+   "what": "the relief engineer’s separate duty berth"
+  },
+  {
+   "id": "ferry-officer-cabin",
+   "who": [
+    "ryo"
+   ],
+   "aboard": true,
+   "registered": true,
+   "what": "the chief officer’s cabin aboard (FERRY_GA mate-cabin)"
+  },
+  {
+   "id": "ferry-crew-cabin",
+   "who": [
+    "ren",
+    "aya",
+    "jun"
+   ],
+   "aboard": true,
+   "registered": true,
+   "what": "the crew accommodation aboard: the deckhand’s cabin (Ren) and the crew cabin; the crew cabin is drawn with one two-tier bunk, the bosun’s week-on berth and the relief engineer’s duty berth, so the purser’s and the cook’s berths are two more bunks for the docks-and-boats job"
+  },
+  {
+   "id": "kitano-2",
+   "who": [
+    "kai"
+   ],
+   "aboard": false,
+   "registered": true,
+   "what": "the Shiroma house on Kitano-jima, rented from the Shiromas in Naha: its gate on the hamlet lane, a bed, a table and a door, 25 m from the pier (phase 2 inspected it)"
+  }
+ ],
+ "shipPosts": [
+  {
+   "key": "master",
+   "title": "Master",
+   "holder": "fuji",
+   "relief": null,
+   "alias": null
+  },
+  {
+   "key": "mate",
+   "title": "Chief officer",
+   "holder": "ryo",
+   "relief": null,
+   "alias": null
+  },
+  {
+   "key": "chief",
+   "title": "Chief engineer",
+   "holder": "nils",
+   "relief": "mac",
+   "alias": null
+  },
+  {
+   "key": "oiler",
+   "title": "Motorman",
+   "holder": "chin",
+   "relief": null,
+   "alias": "motorman"
+  },
+  {
+   "key": "bosun",
+   "title": "Bosun",
+   "holder": "nao",
+   "relief": "koji",
+   "alias": null
+  },
+  {
+   "key": "deck",
+   "title": "Deck hand",
+   "holder": "ren",
+   "relief": null,
+   "alias": null
+  },
+  {
+   "key": "purser",
+   "title": "Purser",
+   "holder": "aya",
+   "relief": null,
+   "alias": null
+  },
+  {
+   "key": "cook",
+   "title": "Cook-steward",
+   "holder": "jun",
+   "relief": null,
+   "alias": null
+  }
+ ],
+ "shipPostAliases": {
+  "motorman": "oiler"
+ },
+ "shoreRoles": [
+  {
+   "key": "tickets",
+   "title": "Port clerk",
+   "holder": "mika",
+   "does": "tickets, parcels and the postal counter"
+  },
+  {
+   "key": "port",
+   "title": "Harbour agent",
+   "holder": "jack",
+   "does": "the berth, the office radio and the freight book"
+  },
+  {
+   "key": "linesman",
+   "title": "Linesman at Minato",
+   "holder": "jack",
+   "does": "the shore end of every line at Minato"
+  },
+  {
+   "key": "airport-linesman",
+   "title": "Kitano line hand",
+   "holder": "kai",
+   "does": "the shore eyes at the Kitano berth"
+  },
+  {
+   "key": "relief-engineer",
+   "title": "Relief engineer",
+   "holder": "mac",
+   "does": "the machinery watches when the chief is away"
+  },
+  {
+   "key": "electrician",
+   "title": "Electrician (under contract)",
+   "holder": "tetsu",
+   "does": "the ship’s electrical equipment, in port"
+  }
+ ],
+ "retiredHomes": {
+  "kitahama-4": "community-kitchen",
+  "kitahama-5": "community-kitchen",
+  "kitahama-6": "community-kitchen",
+  "kinjo": "community-kitchen",
+  "oshiro": "community-kitchen",
+  "resident-home-aya": "community-kitchen",
+  "kitano-3": "community-kitchen",
+  "kitahama-flat-1": "community-kitchen",
+  "kitahama-flat-2": "community-kitchen",
+  "shimabukuro": "ferry-terminal",
+  "post-office": "ferry-terminal",
+  "florist": "market",
+  "rainflower-florist": "market",
+  "izakaya": "izakaya",
+  "clinic": "clinic",
+  "nakamura": "nakamura"
+ }
+}

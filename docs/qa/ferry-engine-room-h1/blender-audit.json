@@ -1,0 +1,88 @@
+{
+  "units": "metres",
+  "source_components": 1290,
+  "cameras": [
+    {
+      "id": "engines-aft",
+      "CAD_position": [
+        9.199999809265137,
+        3.450000047683716,
+        3.1000000476837157
+      ],
+      "vertical_fov": 64.99999864480853,
+      "transforms_locked": true
+    },
+    {
+      "id": "engines-fore",
+      "CAD_position": [
+        13.599999904632568,
+        3.5,
+        3.1000000476837157
+      ],
+      "vertical_fov": 64.99999864480853,
+      "transforms_locked": true
+    },
+    {
+      "id": "control",
+      "CAD_position": [
+        10.550000190734863,
+        -2.700000047683716,
+        2.750000023841858
+      ],
+      "vertical_fov": 75.00000061635836,
+      "transforms_locked": true
+    },
+    {
+      "id": "aux",
+      "CAD_position": [
+        18.5,
+        -2.799999952316284,
+        3.1000000476837157
+      ],
+      "vertical_fov": 68.00000057361459,
+      "transforms_locked": true
+    },
+    {
+      "id": "workshop",
+      "CAD_position": [
+        19.34999990463257,
+        0.30000001192092896,
+        3.1000000476837157
+      ],
+      "vertical_fov": 75.00000061635836,
+      "transforms_locked": true
+    },
+    {
+      "id": "store",
+      "CAD_position": [
+        20.0,
+        -0.8500000238418579,
+        3.1000000476837157
+      ],
+      "vertical_fov": 70.00000207272562,
+      "transforms_locked": true
+    },
+    {
+      "id": "electrical",
+      "CAD_position": [
+        22.84999990463257,
+        -2.700000047683716,
+        3.1000000476837157
+      ],
+      "vertical_fov": 68.00000057361459,
+      "transforms_locked": true
+    },
+    {
+      "id": "workshop-entry",
+      "CAD_position": [
+        22.09999990463257,
+        3.200000047683716,
+        3.1000000476837157
+      ],
+      "vertical_fov": 74.00000069432146,
+      "transforms_locked": true
+    }
+  ],
+  "workflow": "Blender only, per owner instruction 31 October 2026",
+  "finish_revision": "H1-F1"
+}

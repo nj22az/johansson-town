@@ -1,0 +1,199 @@
+{
+  "date": "2026-10-30",
+  "revision": "models-r1",
+  "owner_approved_artlist_revision_budget_credits": 1170,
+  "additional_artlist_credits_for_footer_cleanup": 0,
+  "footer_cleanup": "Two Artlist base images received footer-only ChatGPT image-editor corrections; native resolution/aspect preserved.",
+  "images": [
+    {
+      "id": "umineko-draft",
+      "kind": "adult-model",
+      "artlist_generation_id": "01a18db3-3de3-736a-bdfe-d824bddc00d3",
+      "footer_correction": null,
+      "source_png_sha256": "770ecad61060220b6fe0314ab109921d41909b85b61370eefcf398523739ba9c",
+      "full": "umineko-draft-models-r1.webp",
+      "preview": "umineko-draft-models-r1-small.webp",
+      "full_dimensions": [
+        1792,
+        2400
+      ],
+      "preview_dimensions": [
+        358,
+        480
+      ],
+      "full_sha256": "ccd56b9e6c92d12d3c393d8b3d99afc68f88d2327ad65c512d898053453aad62",
+      "preview_sha256": "66240a4ccc8e292c45d798ba8cefa097f1cb1ce7411824bd626122155b95efe9",
+      "full_bytes": 1073284,
+      "preview_bytes": 30136
+    },
+    {
+      "id": "umineko-black",
+      "kind": "adult-model",
+      "artlist_generation_id": "01a18db3-3d9e-71a1-8a9a-17315914e122",
+      "footer_correction": null,
+      "source_png_sha256": "b1258fee245ec1dcc2bb5519e05c4c7c777820943abab139d585f131273aadbf",
+      "full": "umineko-black-models-r1.webp",
+      "preview": "umineko-black-models-r1-small.webp",
+      "full_dimensions": [
+        1792,
+        2400
+      ],
+      "preview_dimensions": [
+        358,
+        480
+      ],
+      "full_sha256": "3feb9ebfc5fd1ef38d0a59a899d353d9d1a819e7e6aa52d364cf0e5420596c56",
+      "preview_sha256": "13d216c923179f506e6b1c6bbf3c2a7b988eaed73dea6337bbc72b420b657b4f",
+      "full_bytes": 1305194,
+      "preview_bytes": 24772
+    },
+    {
+      "id": "umineko-gift",
+      "kind": "adult-model",
+      "artlist_generation_id": "01a18db3-3deb-7715-932f-702c23337c49",
+      "footer_correction": null,
+      "source_png_sha256": "9403cb126698539247ab44925dda2a8ed136057381d47f4b21539bd5ecdd878b",
+      "full": "umineko-gift-models-r1.webp",
+      "preview": "umineko-gift-models-r1-small.webp",
+      "full_dimensions": [
+        1792,
+        2400
+      ],
+      "preview_dimensions": [
+        358,
+        480
+      ],
+      "full_sha256": "21439ecc7157aa7503cfcf5f16b5ac013b31a8082bd7dc1951177a2c1500b80a",
+      "preview_sha256": "76e37cb0a5ef57c7a643861325335da9e5cb7fbd723741fc44f65e1f9da8807c",
+      "full_bytes": 1138704,
+      "preview_bytes": 22814
+    },
+    {
+      "id": "kitano-12",
+      "kind": "adult-model",
+      "artlist_generation_id": "01a18db3-3dec-76a3-bc5a-cfea1d301468",
+      "footer_correction": null,
+      "source_png_sha256": "e398ba780aa0316e78d789ed6ea880dc453e702614bd5d6c2e59292ddc37366b",
+      "full": "kitano-12-models-r1.webp",
+      "preview": "kitano-12-models-r1-small.webp",
+      "full_dimensions": [
+        1792,
+        2400
+      ],
+      "preview_dimensions": [
+        358,
+        480
+      ],
+      "full_sha256": "9489bdf1d4a6421a46585bd763043eeb06e2d9b9fbbd8bbafacfe72e62e09749",
+      "preview_sha256": "002ac66352a15eab51ff68aa1e411f03077455e1695927bc5b74c24a32c53227",
+      "full_bytes": 1163582,
+      "preview_bytes": 21420
+    },
+    {
+      "id": "shimakaze",
+      "kind": "adult-model",
+      "artlist_generation_id": "01a18db3-3ded-7490-bb84-5d7a35e99efd",
+      "footer_correction": null,
+      "source_png_sha256": "a5e8a2df981f569cda64c9f025896a9bb3177cc01ffb1a320114bc4a12b07221",
+      "full": "shimakaze-models-r1.webp",
+      "preview": "shimakaze-models-r1-small.webp",
+      "full_dimensions": [
+        1792,
+        2400
+      ],
+      "preview_dimensions": [
+        358,
+        480
+      ],
+      "full_sha256": "1014c47bf1d329a3a96d251ee6c7d7008693c63a60bfcae32c2a7aa16f4e59ac",
+      "preview_sha256": "c1ae2dd965055c7dc6d9dc2e7ada7452302a968ecaaa955baa124f265a096eb1",
+      "full_bytes": 834694,
+      "preview_bytes": 36174
+    },
+    {
+      "id": "minato-tsuru",
+      "kind": "adult-model-footer-corrected",
+      "artlist_generation_id": "01a18db3-3eba-7cec-9392-eef279ac2dcc",
+      "footer_correction": "ChatGPT image editor",
+      "source_png_sha256": "43f9ab626c7d1ecc44d9467b6a7769a57ffce57e6fe5667d29573bafdae74681",
+      "full": "minato-tsuru-models-r1.webp",
+      "preview": "minato-tsuru-models-r1-small.webp",
+      "full_dimensions": [
+        1084,
+        1451
+      ],
+      "preview_dimensions": [
+        359,
+        480
+      ],
+      "full_sha256": "61ccd79ffc5c0a48e441e1246028d6a16d0297bea044d07141b1dcb17ef82645",
+      "preview_sha256": "c5f5b44764bc7251fe6c9bed5767a6b2be0905bc82313a3c545335c60d40b3ca",
+      "full_bytes": 266182,
+      "preview_bytes": 30640
+    },
+    {
+      "id": "nami-sour",
+      "kind": "adult-model",
+      "artlist_generation_id": "01a18db3-3e4c-703f-8ec1-265edf6d894d",
+      "footer_correction": null,
+      "source_png_sha256": "8c0c4613cd57561cd311555eaf97330edc3bb86417a7f391be1252abd0adab60",
+      "full": "nami-sour-models-r1.webp",
+      "preview": "nami-sour-models-r1-small.webp",
+      "full_dimensions": [
+        1792,
+        2400
+      ],
+      "preview_dimensions": [
+        358,
+        480
+      ],
+      "full_sha256": "376868dfc14a01626849ca57b70b121ec59425357d984ac41aa2791a36637281",
+      "preview_sha256": "0df29be1686d97c351c804d485000193ca85dbd64d51f01707a0f029e081f6a6",
+      "full_bytes": 910690,
+      "preview_bytes": 31448
+    },
+    {
+      "id": "asagao-rouge",
+      "kind": "adult-model",
+      "artlist_generation_id": "01a18db3-3ea1-7182-afed-eceedeb27ea6",
+      "footer_correction": null,
+      "source_png_sha256": "eebd131d471ed5a01b657700f2376558cb0e1e6b1d95c7e6323f30dc4a950b8a",
+      "full": "asagao-rouge-models-r1.webp",
+      "preview": "asagao-rouge-models-r1-small.webp",
+      "full_dimensions": [
+        1792,
+        2400
+      ],
+      "preview_dimensions": [
+        358,
+        480
+      ],
+      "full_sha256": "857e28380565548fa7e7f0c1cf299f562bd1517eeb6a8f782d9442ff639309b2",
+      "preview_sha256": "e0716f592bc0863c53f95c3fdf15b473a9717165ef5b5d2f8a3a157cb87dada4",
+      "full_bytes": 993358,
+      "preview_bytes": 26258
+    },
+    {
+      "id": "asagao-uv",
+      "kind": "adult-model-footer-corrected",
+      "artlist_generation_id": "01a18db3-3ec6-7e34-b923-54836e5be8d8",
+      "footer_correction": "ChatGPT image editor",
+      "source_png_sha256": "9cf969184f84840c51d9e007635079b1fde734c2a044a070683bc87aae90fcd0",
+      "full": "asagao-uv-models-r1.webp",
+      "preview": "asagao-uv-models-r1-small.webp",
+      "full_dimensions": [
+        1084,
+        1451
+      ],
+      "preview_dimensions": [
+        359,
+        480
+      ],
+      "full_sha256": "efd5b6651f25b6f4936829ae5409b0f08a341f9c7224aa2362de35b83ce88a0f",
+      "preview_sha256": "312b2f85acdabd4fa52439c06952ccf5643f789d7bd8031e99dbdf6eda9bf7a0",
+      "full_bytes": 149638,
+      "preview_bytes": 23928
+    }
+  ],
+  "qa_status": "All nine passed root review; independent reviewer also confirmed both footer-corrected images."
+}

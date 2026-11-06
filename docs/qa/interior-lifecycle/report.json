@@ -1,0 +1,384 @@
+{
+  "engine": "Linux WebKit",
+  "physicalDevice": false,
+  "cycles": [
+    {
+      "cycle": 0,
+      "venue": "market",
+      "indoor": {
+        "visible": true,
+        "children": 1,
+        "info": {
+          "programs": 132,
+          "calls": 9133,
+          "triangles": 17238362,
+          "geometries": 1231,
+          "textures": 444
+        }
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "info": {
+          "programs": 170,
+          "calls": 15072,
+          "triangles": 25687268,
+          "geometries": 1497,
+          "textures": 467
+        }
+      }
+    },
+    {
+      "cycle": 0,
+      "venue": "izakaya",
+      "indoor": {
+        "visible": true,
+        "children": 67,
+        "info": {
+          "programs": 214,
+          "calls": 15872,
+          "triangles": 28757741,
+          "geometries": 1551,
+          "textures": 477
+        }
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "info": {
+          "programs": 248,
+          "calls": 18917,
+          "triangles": 44107376,
+          "geometries": 1572,
+          "textures": 481
+        }
+      }
+    },
+    {
+      "cycle": 1,
+      "venue": "market",
+      "indoor": {
+        "visible": true,
+        "children": 1,
+        "info": {
+          "programs": 283,
+          "calls": 19834,
+          "triangles": 46150968,
+          "geometries": 1580,
+          "textures": 481
+        }
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "info": {
+          "programs": 285,
+          "calls": 20238,
+          "triangles": 47631927,
+          "geometries": 1572,
+          "textures": 481
+        }
+      }
+    },
+    {
+      "cycle": 1,
+      "venue": "izakaya",
+      "indoor": {
+        "visible": true,
+        "children": 67,
+        "info": {
+          "programs": 288,
+          "calls": 21036,
+          "triangles": 50736746,
+          "geometries": 1593,
+          "textures": 487
+        }
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "info": {
+          "programs": 313,
+          "calls": 21404,
+          "triangles": 52071459,
+          "geometries": 1572,
+          "textures": 481
+        }
+      }
+    },
+    {
+      "cycle": 2,
+      "venue": "market",
+      "indoor": {
+        "visible": true,
+        "children": 1,
+        "info": {
+          "programs": 372,
+          "calls": 22302,
+          "triangles": 54113261,
+          "geometries": 1580,
+          "textures": 481
+        }
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "info": {
+          "programs": 382,
+          "calls": 22706,
+          "triangles": 55594220,
+          "geometries": 1572,
+          "textures": 481
+        }
+      }
+    },
+    {
+      "cycle": 2,
+      "venue": "izakaya",
+      "indoor": {
+        "visible": true,
+        "children": 67,
+        "info": {
+          "programs": 428,
+          "calls": 23504,
+          "triangles": 58699039,
+          "geometries": 1593,
+          "textures": 487
+        }
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "info": {
+          "programs": 430,
+          "calls": 23872,
+          "triangles": 60033752,
+          "geometries": 1572,
+          "textures": 481
+        }
+      }
+    },
+    {
+      "cycle": 3,
+      "venue": "market",
+      "indoor": {
+        "visible": true,
+        "children": 1,
+        "info": {
+          "programs": 430,
+          "calls": 24770,
+          "triangles": 62075554,
+          "geometries": 1580,
+          "textures": 481
+        }
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "info": {
+          "programs": 430,
+          "calls": 25174,
+          "triangles": 63556513,
+          "geometries": 1572,
+          "textures": 481
+        }
+      }
+    },
+    {
+      "cycle": 3,
+      "venue": "izakaya",
+      "indoor": {
+        "visible": true,
+        "children": 67,
+        "info": {
+          "programs": 436,
+          "calls": 25972,
+          "triangles": 66661332,
+          "geometries": 1593,
+          "textures": 487
+        }
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "info": {
+          "programs": 430,
+          "calls": 26340,
+          "triangles": 67996045,
+          "geometries": 1572,
+          "textures": 481
+        }
+      }
+    }
+  ],
+  "views": [
+    {
+      "label": "street-day",
+      "gpuError": 0,
+      "render": {
+        "programs": 124,
+        "calls": 2307,
+        "triangles": 4231066,
+        "geometries": 1245,
+        "textures": 442
+      },
+      "portal": {
+        "total": 0,
+        "visible": 0,
+        "culled": 0,
+        "passes": 0,
+        "batchTriangles": 0,
+        "submittedBatchTriangles": 0,
+        "cacheBytes": 0
+      }
+    },
+    {
+      "label": "market-inside",
+      "gpuError": 0,
+      "render": {
+        "programs": 139,
+        "calls": 9427,
+        "triangles": 17535134,
+        "geometries": 1337,
+        "textures": 455
+      },
+      "portal": {
+        "total": 0,
+        "visible": 0,
+        "culled": 0,
+        "passes": 0,
+        "batchTriangles": 0,
+        "submittedBatchTriangles": 0,
+        "cacheBytes": 0
+      }
+    },
+    {
+      "label": "market-window",
+      "gpuError": 0,
+      "render": {
+        "programs": 166,
+        "calls": 12368,
+        "triangles": 21354169,
+        "geometries": 1426,
+        "textures": 459
+      },
+      "portal": {
+        "total": 2860,
+        "visible": 153,
+        "culled": 2707,
+        "passes": 1,
+        "batchTriangles": 89241,
+        "submittedBatchTriangles": 10159,
+        "cacheBytes": 1382568
+      }
+    },
+    {
+      "label": "izakaya-inside",
+      "gpuError": 0,
+      "render": {
+        "programs": 217,
+        "calls": 15929,
+        "triangles": 29326109,
+        "geometries": 1559,
+        "textures": 479
+      },
+      "portal": {
+        "total": 3735,
+        "visible": 0,
+        "culled": 3735,
+        "passes": 0,
+        "batchTriangles": 91289,
+        "submittedBatchTriangles": 20340,
+        "cacheBytes": 1407144
+      }
+    },
+    {
+      "label": "izakaya-window",
+      "gpuError": 0,
+      "render": {
+        "programs": 221,
+        "calls": 16658,
+        "triangles": 35403959,
+        "geometries": 1567,
+        "textures": 482
+      },
+      "portal": {
+        "total": 3735,
+        "visible": 117,
+        "culled": 3618,
+        "passes": 1,
+        "batchTriangles": 91289,
+        "submittedBatchTriangles": 22990,
+        "cacheBytes": 1407144
+      }
+    },
+    {
+      "label": "sakura-night",
+      "gpuError": 0,
+      "render": {
+        "programs": 441,
+        "calls": 27508,
+        "triangles": 70412655,
+        "geometries": 1583,
+        "textures": 481
+      },
+      "portal": {
+        "total": 2870,
+        "visible": 0,
+        "culled": 2870,
+        "passes": 0,
+        "batchTriangles": 89241,
+        "submittedBatchTriangles": 8235,
+        "cacheBytes": 1382568
+      }
+    },
+    {
+      "label": "street-night",
+      "gpuError": 0,
+      "render": {
+        "programs": 475,
+        "calls": 31801,
+        "triangles": 76328361,
+        "geometries": 1659,
+        "textures": 493
+      },
+      "portal": {
+        "total": 2870,
+        "visible": 0,
+        "culled": 2870,
+        "passes": 0,
+        "batchTriangles": 89241,
+        "submittedBatchTriangles": 8235,
+        "cacheBytes": 0
+      }
+    }
+  ],
+  "continuity": {
+    "before": 145,
+    "after": 148,
+    "start": [
+      0,
+      0.04,
+      10
+    ],
+    "resident": {
+      "name": "Grandmother Sakurai",
+      "indoors": "home",
+      "position": [
+        -22.561940706982234,
+        0.04,
+        40.49294787734516
+      ]
+    },
+    "roomVisible": true
+  },
+  "errors": []
+}

@@ -1,0 +1,4739 @@
+{
+  "engine": "webkit",
+  "profile": "iPhone 13",
+  "physicalDevice": false,
+  "notes": [
+    "Desktop WebKit/Chromium with iPhone viewport, DPR, touch and user agent. Not physical iOS Safari or its memory limits."
+  ],
+  "steps": [
+    {
+      "name": "cold-start portrait",
+      "seconds": 64.8,
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 1325,
+            "end": 1393
+          },
+          "code": {
+            "start": 1394,
+            "end": 3865
+          },
+          "accessories": {
+            "start": 3866,
+            "end": 4022
+          },
+          "graphics": {
+            "start": 4023,
+            "end": 4138
+          },
+          "town": {
+            "start": 4391,
+            "end": 9054
+          },
+          "residents": {
+            "start": 9156,
+            "end": 12713
+          },
+          "shaders": {
+            "start": 14102,
+            "end": 19188
+          },
+          "walking": {
+            "start": 19254,
+            "end": 20044
+          },
+          "preview": {
+            "start": 20045,
+            "end": 37815
+          },
+          "frame": {
+            "start": 53244,
+            "end": 59524
+          }
+        }
+      },
+      "room": null,
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        -1.5,
+        0.098,
+        -72.7
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 135,
+        "calls": 992,
+        "triangles": 883860,
+        "geometries": 1141,
+        "textures": 199,
+        "releasedCanvases": 240
+      },
+      "frames": 84,
+      "canvas": {
+        "width": 585,
+        "height": 996
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793408695554,
+        "previousStage": null,
+        "previousAttempts": [],
+        "events": [
+          {
+            "at": 1793408695554,
+            "stage": "Loading game code"
+          },
+          {
+            "at": 1793408695784,
+            "stage": "Creating graphics context"
+          },
+          {
+            "at": 1793408696298,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793408711063,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793408726404,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793408729503,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793408729813,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793408735842,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793408736639,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793408737155,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793408742278,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793408745784,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793408749506,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793408751212,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 199,
+              "geometries": 1141,
+              "programs": 135,
+              "drawCalls": 983,
+              "triangles": 882958,
+              "bufferWidth": 585,
+              "bufferHeight": 996
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "live frame loop advances",
+      "seconds": 70.63,
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 1325,
+            "end": 1393
+          },
+          "code": {
+            "start": 1394,
+            "end": 3865
+          },
+          "accessories": {
+            "start": 3866,
+            "end": 4022
+          },
+          "graphics": {
+            "start": 4023,
+            "end": 4138
+          },
+          "town": {
+            "start": 4391,
+            "end": 9054
+          },
+          "residents": {
+            "start": 9156,
+            "end": 12713
+          },
+          "shaders": {
+            "start": 14102,
+            "end": 19188
+          },
+          "walking": {
+            "start": 19254,
+            "end": 20044
+          },
+          "preview": {
+            "start": 20045,
+            "end": 37815
+          },
+          "frame": {
+            "start": 53244,
+            "end": 59524
+          }
+        }
+      },
+      "room": null,
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        -1.5,
+        0.098,
+        -72.7
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 135,
+        "calls": 1002,
+        "triangles": 889138,
+        "geometries": 1142,
+        "textures": 199,
+        "releasedCanvases": 240
+      },
+      "frames": 120,
+      "canvas": {
+        "width": 585,
+        "height": 996
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793408695554,
+        "previousStage": null,
+        "previousAttempts": [],
+        "events": [
+          {
+            "at": 1793408695554,
+            "stage": "Loading game code"
+          },
+          {
+            "at": 1793408695784,
+            "stage": "Creating graphics context"
+          },
+          {
+            "at": 1793408696298,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793408711063,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793408726404,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793408729503,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793408729813,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793408735842,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793408736639,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793408737155,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793408742278,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793408745784,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793408749506,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793408751212,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 199,
+              "geometries": 1141,
+              "programs": 135,
+              "drawCalls": 983,
+              "triangles": 882958,
+              "bufferWidth": 585,
+              "bufferHeight": 996
+            }
+          },
+          {
+            "at": 1793408756431,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 199,
+              "geometries": 1142,
+              "programs": 135,
+              "drawCalls": 1002,
+              "triangles": 889138,
+              "bufferWidth": 585,
+              "bufferHeight": 996
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape",
+      "seconds": 73.59,
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 1325,
+            "end": 1393
+          },
+          "code": {
+            "start": 1394,
+            "end": 3865
+          },
+          "accessories": {
+            "start": 3866,
+            "end": 4022
+          },
+          "graphics": {
+            "start": 4023,
+            "end": 4138
+          },
+          "town": {
+            "start": 4391,
+            "end": 9054
+          },
+          "residents": {
+            "start": 9156,
+            "end": 12713
+          },
+          "shaders": {
+            "start": 14102,
+            "end": 19188
+          },
+          "walking": {
+            "start": 19254,
+            "end": 20044
+          },
+          "preview": {
+            "start": 20045,
+            "end": 37815
+          },
+          "frame": {
+            "start": 53244,
+            "end": 59524
+          }
+        }
+      },
+      "room": null,
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        -1.5,
+        0.098,
+        -72.7
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 137,
+        "calls": 1240,
+        "triangles": 941000,
+        "geometries": 1237,
+        "textures": 213,
+        "releasedCanvases": 252
+      },
+      "frames": 135,
+      "canvas": {
+        "width": 1266,
+        "height": 585
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793408695554,
+        "previousStage": null,
+        "previousAttempts": [],
+        "events": [
+          {
+            "at": 1793408695554,
+            "stage": "Loading game code"
+          },
+          {
+            "at": 1793408695784,
+            "stage": "Creating graphics context"
+          },
+          {
+            "at": 1793408696298,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793408711063,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793408726404,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793408729503,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793408729813,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793408735842,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793408736639,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793408737155,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793408742278,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793408745784,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793408749506,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793408751212,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 199,
+              "geometries": 1141,
+              "programs": 135,
+              "drawCalls": 983,
+              "triangles": 882958,
+              "bufferWidth": 585,
+              "bufferHeight": 996
+            }
+          },
+          {
+            "at": 1793408756431,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 199,
+              "geometries": 1142,
+              "programs": 135,
+              "drawCalls": 1002,
+              "triangles": 889138,
+              "bufferWidth": 585,
+              "bufferHeight": 996
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "warm reload",
+      "seconds": 112.26,
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 1424,
+            "end": 1507
+          },
+          "code": {
+            "start": 1508,
+            "end": 4414
+          },
+          "accessories": {
+            "start": 4416,
+            "end": 4614
+          },
+          "graphics": {
+            "start": 4615,
+            "end": 4742
+          },
+          "town": {
+            "start": 4992,
+            "end": 8353
+          },
+          "residents": {
+            "start": 8467,
+            "end": 9926
+          },
+          "shaders": {
+            "start": 10634,
+            "end": 11879
+          },
+          "walking": {
+            "start": 11943,
+            "end": 12668
+          },
+          "preview": {
+            "start": 12669,
+            "end": 16916
+          },
+          "frame": {
+            "start": 24826,
+            "end": 31198
+          }
+        }
+      },
+      "room": null,
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        -1.5,
+        0.098,
+        -72.7
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 129,
+        "calls": 917,
+        "triangles": 918768,
+        "geometries": 1082,
+        "textures": 192,
+        "releasedCanvases": 236
+      },
+      "frames": 84,
+      "canvas": {
+        "width": 585,
+        "height": 1266
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793408771726,
+        "previousStage": "Page left normally",
+        "previousAttempts": [
+          {
+            "startedAt": 1793408695554,
+            "stage": "Page left normally"
+          }
+        ],
+        "events": [
+          {
+            "at": 1793408771726,
+            "stage": "Loading game code"
+          },
+          {
+            "at": 1793408772030,
+            "stage": "Creating graphics context"
+          },
+          {
+            "at": 1793408772455,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793408779392,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793408783453,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793408784226,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793408784458,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793408785499,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793408786548,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793408787112,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793408788813,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793408793046,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793408797812,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793408798509,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 192,
+              "geometries": 1082,
+              "programs": 129,
+              "drawCalls": 916,
+              "triangles": 918732,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "entered Izakaya",
+      "seconds": 122.16,
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 1424,
+            "end": 1507
+          },
+          "code": {
+            "start": 1508,
+            "end": 4414
+          },
+          "accessories": {
+            "start": 4416,
+            "end": 4614
+          },
+          "graphics": {
+            "start": 4615,
+            "end": 4742
+          },
+          "town": {
+            "start": 4992,
+            "end": 8353
+          },
+          "residents": {
+            "start": 8467,
+            "end": 9926
+          },
+          "shaders": {
+            "start": 10634,
+            "end": 11879
+          },
+          "walking": {
+            "start": 11943,
+            "end": 12668
+          },
+          "preview": {
+            "start": 12669,
+            "end": 16916
+          },
+          "frame": {
+            "start": 24826,
+            "end": 31198
+          }
+        }
+      },
+      "room": "izakaya",
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        0,
+        0,
+        1.68
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 134,
+        "calls": 72,
+        "triangles": 107099,
+        "geometries": 1139,
+        "textures": 209,
+        "releasedCanvases": 236
+      },
+      "frames": 117,
+      "canvas": {
+        "width": 585,
+        "height": 1266
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793408771726,
+        "previousStage": "Page left normally",
+        "previousAttempts": [
+          {
+            "startedAt": 1793408695554,
+            "stage": "Page left normally"
+          }
+        ],
+        "events": [
+          {
+            "at": 1793408771726,
+            "stage": "Loading game code"
+          },
+          {
+            "at": 1793408772030,
+            "stage": "Creating graphics context"
+          },
+          {
+            "at": 1793408772455,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793408779392,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793408783453,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793408784226,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793408784458,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793408785499,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793408786548,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793408787112,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793408788813,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793408793046,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793408797812,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793408798509,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 192,
+              "geometries": 1082,
+              "programs": 129,
+              "drawCalls": 916,
+              "triangles": 918732,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          },
+          {
+            "at": 1793408803683,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 199,
+              "geometries": 1127,
+              "programs": 132,
+              "drawCalls": 1003,
+              "triangles": 974148,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          },
+          {
+            "at": 1793408805726,
+            "stage": "Loading detail: kissa-higa-models"
+          }
+        ]
+      }
+    },
+    {
+      "name": "approach authored dining exit",
+      "seconds": 129.55,
+      "navigation": {
+        "id": "izakaya",
+        "title": "Minato Izakaya",
+        "bounds": {
+          "minX": -4.08,
+          "maxX": 5.86,
+          "minZ": -3.75,
+          "maxZ": 3.45
+        },
+        "spawn": [
+          0,
+          0,
+          2.88
+        ],
+        "exit": [
+          0,
+          1.1,
+          3.4
+        ],
+        "yaw": 0
+      },
+      "player": {
+        "position": [
+          0.46966991411008924,
+          0,
+          1.1496699141100892
+        ],
+        "yaw": 1.5707963267948966,
+        "room": "izakaya"
+      },
+      "layout": {
+        "bounds": {
+          "minX": -4.08,
+          "maxX": 5.86,
+          "minZ": -3.75,
+          "maxZ": 3.45
+        },
+        "spawn": [
+          0,
+          0,
+          2.88
+        ],
+        "exit": [
+          0,
+          1.1,
+          3.4
+        ]
+      },
+      "candidates": [
+        {
+          "standing": [
+            0,
+            0,
+            2.88
+          ],
+          "distance": 0.52,
+          "probe": {
+            "x": 0,
+            "z": 2.88,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            0,
+            0,
+            2.75
+          ],
+          "distance": 0.6499999999999999,
+          "probe": {
+            "x": 0,
+            "z": 2.75,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": true,
+            "solids": [],
+            "residents": [
+              "Nhung"
+            ],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": false
+        },
+        {
+          "standing": [
+            -0.2,
+            0,
+            2.75
+          ],
+          "distance": 0.6800735254367721,
+          "probe": {
+            "x": -0.2,
+            "z": 2.75,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": true,
+            "solids": [],
+            "residents": [
+              "Nhung"
+            ],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": false
+        },
+        {
+          "standing": [
+            0.2,
+            0,
+            2.75
+          ],
+          "distance": 0.6800735254367721,
+          "probe": {
+            "x": 0.2,
+            "z": 2.75,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            0,
+            0,
+            2.55
+          ],
+          "distance": 0.8500000000000001,
+          "probe": {
+            "x": 0,
+            "z": 2.55,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": true,
+            "solids": [],
+            "residents": [
+              "Nhung"
+            ],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": false
+        },
+        {
+          "standing": [
+            -0.2,
+            0,
+            2.55
+          ],
+          "distance": 0.8732124598286491,
+          "probe": {
+            "x": -0.2,
+            "z": 2.55,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": true,
+            "solids": [],
+            "residents": [
+              "Nhung"
+            ],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": false
+        },
+        {
+          "standing": [
+            0.2,
+            0,
+            2.55
+          ],
+          "distance": 0.8732124598286491,
+          "probe": {
+            "x": 0.2,
+            "z": 2.55,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            0,
+            0,
+            2.3499999999999996
+          ],
+          "distance": 1.0500000000000003,
+          "probe": {
+            "x": 0,
+            "z": 2.3499999999999996,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": true,
+            "solids": [],
+            "residents": [
+              "Nhung"
+            ],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": false
+        },
+        {
+          "standing": [
+            -0.2,
+            0,
+            2.3499999999999996
+          ],
+          "distance": 1.0688779163215978,
+          "probe": {
+            "x": -0.2,
+            "z": 2.3499999999999996,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": true,
+            "solids": [],
+            "residents": [
+              "Nhung"
+            ],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": false
+        },
+        {
+          "standing": [
+            0.2,
+            0,
+            2.3499999999999996
+          ],
+          "distance": 1.0688779163215978,
+          "probe": {
+            "x": 0.2,
+            "z": 2.3499999999999996,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            0,
+            0,
+            2.2
+          ],
+          "distance": 1.1999999999999997,
+          "probe": {
+            "x": 0,
+            "z": 2.2,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": true,
+            "solids": [],
+            "residents": [
+              "Nhung",
+              "Thao"
+            ],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": false
+        },
+        {
+          "standing": [
+            -0.2,
+            0,
+            2.2
+          ],
+          "distance": 1.2165525060596436,
+          "probe": {
+            "x": -0.2,
+            "z": 2.2,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": true,
+            "solids": [],
+            "residents": [
+              "Nhung",
+              "Thao"
+            ],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": false
+        },
+        {
+          "standing": [
+            0.2,
+            0,
+            2.2
+          ],
+          "distance": 1.2165525060596436,
+          "probe": {
+            "x": 0.2,
+            "z": 2.2,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": true,
+            "solids": [],
+            "residents": [
+              "Thao"
+            ],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": false
+        }
+      ],
+      "blockingResidents": [
+        {
+          "name": "Nhung",
+          "position": [
+            -0.45962127478890524,
+            0,
+            2.3453355857343716
+          ],
+          "worldPosition": [
+            -0.45962127478890524,
+            0,
+            2.3453355857343716
+          ],
+          "parent": "",
+          "visible": true,
+          "inIzakaya": true,
+          "inRamen": false,
+          "indoors": "izakaya",
+          "activity": "walking to a seat",
+          "roomTransition": true
+        },
+        {
+          "name": "Thao",
+          "position": [
+            0.00046941511457783826,
+            0,
+            1.6850920280993298
+          ],
+          "worldPosition": [
+            0.00046941511457783826,
+            0,
+            1.6850920280993298
+          ],
+          "parent": "",
+          "visible": true,
+          "inIzakaya": true,
+          "inRamen": false,
+          "indoors": "izakaya",
+          "activity": "walking to work",
+          "roomTransition": true
+        }
+      ],
+      "room": "izakaya",
+      "exit": [
+        0,
+        1.1,
+        3.4
+      ],
+      "standing": [
+        0,
+        0,
+        2.88
+      ],
+      "probe": {
+        "x": 0,
+        "z": 2.88,
+        "y": 0,
+        "radius": 0.28,
+        "room": "izakaya",
+        "bounds": false,
+        "staticBlocked": false,
+        "residentBlocked": false,
+        "solids": [],
+        "residents": [],
+        "route": {
+          "id": "shop-pavement",
+          "surface": "stone"
+        }
+      },
+      "wait": {
+        "milliseconds": 2954,
+        "attempts": 7,
+        "firstBlockers": [
+          {
+            "name": "Nhung",
+            "position": [
+              -0.2895423154722164,
+              0,
+              2.5875075616401206
+            ],
+            "worldPosition": [
+              -0.2895423154722164,
+              0,
+              2.5875075616401206
+            ],
+            "parent": "",
+            "visible": true,
+            "inIzakaya": true,
+            "inRamen": false,
+            "indoors": "izakaya",
+            "activity": "walking to a seat",
+            "roomTransition": true
+          },
+          {
+            "name": "Thao",
+            "position": [
+              0.06051031496093294,
+              0,
+              2.20027745443404
+            ],
+            "worldPosition": [
+              0.06051031496093294,
+              0,
+              2.20027745443404
+            ],
+            "parent": "",
+            "visible": true,
+            "inIzakaya": true,
+            "inRamen": false,
+            "indoors": "izakaya",
+            "activity": "walking to work",
+            "roomTransition": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Sato door after Izakaya exit",
+      "seconds": 150.58,
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 1424,
+            "end": 1507
+          },
+          "code": {
+            "start": 1508,
+            "end": 4414
+          },
+          "accessories": {
+            "start": 4416,
+            "end": 4614
+          },
+          "graphics": {
+            "start": 4615,
+            "end": 4742
+          },
+          "town": {
+            "start": 4992,
+            "end": 8353
+          },
+          "residents": {
+            "start": 8467,
+            "end": 9926
+          },
+          "shaders": {
+            "start": 10634,
+            "end": 11879
+          },
+          "walking": {
+            "start": 11943,
+            "end": 12668
+          },
+          "preview": {
+            "start": 12669,
+            "end": 16916
+          },
+          "frame": {
+            "start": 24826,
+            "end": 31198
+          }
+        }
+      },
+      "room": "ramen",
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        3.47,
+        0,
+        2.78
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 197,
+        "calls": 403,
+        "triangles": 395621,
+        "geometries": 1427,
+        "textures": 259,
+        "releasedCanvases": 244
+      },
+      "frames": 287,
+      "canvas": {
+        "width": 585,
+        "height": 1266
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793408771726,
+        "previousStage": "Page left normally",
+        "previousAttempts": [
+          {
+            "startedAt": 1793408695554,
+            "stage": "Page left normally"
+          }
+        ],
+        "events": [
+          {
+            "at": 1793408772030,
+            "stage": "Creating graphics context"
+          },
+          {
+            "at": 1793408772455,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793408779392,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793408783453,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793408784226,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793408784458,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793408785499,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793408786548,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793408787112,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793408788813,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793408793046,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793408797812,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793408798509,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 192,
+              "geometries": 1082,
+              "programs": 129,
+              "drawCalls": 916,
+              "triangles": 918732,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          },
+          {
+            "at": 1793408803683,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 199,
+              "geometries": 1127,
+              "programs": 132,
+              "drawCalls": 1003,
+              "triangles": 974148,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          },
+          {
+            "at": 1793408805726,
+            "stage": "Loading detail: kissa-higa-models"
+          },
+          {
+            "at": 1793408829490,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 213,
+              "geometries": 1151,
+              "programs": 178,
+              "drawCalls": 193,
+              "triangles": 646427,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "approach authored dining exit",
+      "seconds": 152.03,
+      "navigation": {
+        "id": "ramen",
+        "title": "Sato Ramen",
+        "bounds": {
+          "minX": -4.08,
+          "maxX": 5.86,
+          "minZ": -3.75,
+          "maxZ": 3.45
+        },
+        "spawn": [
+          3.47,
+          0,
+          2.88
+        ],
+        "exit": [
+          3.47,
+          1.1,
+          3.4
+        ],
+        "yaw": 0
+      },
+      "player": {
+        "position": [
+          3.47,
+          0,
+          2.78
+        ],
+        "yaw": -3.9269908169872414,
+        "room": "ramen"
+      },
+      "layout": {
+        "bounds": {
+          "minX": -4.08,
+          "maxX": 5.86,
+          "minZ": -3.75,
+          "maxZ": 3.45
+        },
+        "spawn": [
+          3.47,
+          0,
+          2.88
+        ],
+        "exit": [
+          3.47,
+          1.1,
+          3.4
+        ]
+      },
+      "candidates": [
+        {
+          "standing": [
+            3.47,
+            0,
+            2.88
+          ],
+          "distance": 0.52,
+          "probe": {
+            "x": 3.47,
+            "z": 2.88,
+            "y": 0,
+            "radius": 0.28,
+            "room": "ramen",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "ramen",
+          "clear": true
+        },
+        {
+          "standing": [
+            3.47,
+            0,
+            2.75
+          ],
+          "distance": 0.6499999999999999,
+          "probe": {
+            "x": 3.47,
+            "z": 2.75,
+            "y": 0,
+            "radius": 0.28,
+            "room": "ramen",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "ramen",
+          "clear": true
+        },
+        {
+          "standing": [
+            3.27,
+            0,
+            2.75
+          ],
+          "distance": 0.6800735254367721,
+          "probe": {
+            "x": 3.27,
+            "z": 2.75,
+            "y": 0,
+            "radius": 0.28,
+            "room": "ramen",
+            "bounds": false,
+            "staticBlocked": true,
+            "residentBlocked": false,
+            "solids": [
+              {
+                "id": "solid",
+                "x": 2.91,
+                "z": 2.35,
+                "w": 0.5,
+                "d": 0.4,
+                "yaw": 0
+              }
+            ],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "ramen",
+          "clear": false
+        },
+        {
+          "standing": [
+            3.6700000000000004,
+            0,
+            2.75
+          ],
+          "distance": 0.6800735254367721,
+          "probe": {
+            "x": 3.6700000000000004,
+            "z": 2.75,
+            "y": 0,
+            "radius": 0.28,
+            "room": "ramen",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "ramen",
+          "clear": true
+        },
+        {
+          "standing": [
+            3.47,
+            0,
+            2.55
+          ],
+          "distance": 0.8500000000000001,
+          "probe": {
+            "x": 3.47,
+            "z": 2.55,
+            "y": 0,
+            "radius": 0.28,
+            "room": "ramen",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "ramen",
+          "clear": true
+        },
+        {
+          "standing": [
+            3.27,
+            0,
+            2.55
+          ],
+          "distance": 0.8732124598286491,
+          "probe": {
+            "x": 3.27,
+            "z": 2.55,
+            "y": 0,
+            "radius": 0.28,
+            "room": "ramen",
+            "bounds": false,
+            "staticBlocked": true,
+            "residentBlocked": false,
+            "solids": [
+              {
+                "id": "solid",
+                "x": 2.91,
+                "z": 2.35,
+                "w": 0.5,
+                "d": 0.4,
+                "yaw": 0
+              }
+            ],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "ramen",
+          "clear": false
+        },
+        {
+          "standing": [
+            3.6700000000000004,
+            0,
+            2.55
+          ],
+          "distance": 0.8732124598286491,
+          "probe": {
+            "x": 3.6700000000000004,
+            "z": 2.55,
+            "y": 0,
+            "radius": 0.28,
+            "room": "ramen",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "ramen",
+          "clear": true
+        },
+        {
+          "standing": [
+            3.47,
+            0,
+            2.3499999999999996
+          ],
+          "distance": 1.0500000000000003,
+          "probe": {
+            "x": 3.47,
+            "z": 2.3499999999999996,
+            "y": 0,
+            "radius": 0.28,
+            "room": "ramen",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "ramen",
+          "clear": true
+        },
+        {
+          "standing": [
+            3.27,
+            0,
+            2.3499999999999996
+          ],
+          "distance": 1.0688779163215978,
+          "probe": {
+            "x": 3.27,
+            "z": 2.3499999999999996,
+            "y": 0,
+            "radius": 0.28,
+            "room": "ramen",
+            "bounds": false,
+            "staticBlocked": true,
+            "residentBlocked": false,
+            "solids": [
+              {
+                "id": "solid",
+                "x": 2.91,
+                "z": 2.35,
+                "w": 0.5,
+                "d": 0.4,
+                "yaw": 0
+              }
+            ],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "ramen",
+          "clear": false
+        },
+        {
+          "standing": [
+            3.6700000000000004,
+            0,
+            2.3499999999999996
+          ],
+          "distance": 1.0688779163215978,
+          "probe": {
+            "x": 3.6700000000000004,
+            "z": 2.3499999999999996,
+            "y": 0,
+            "radius": 0.28,
+            "room": "ramen",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "ramen",
+          "clear": true
+        },
+        {
+          "standing": [
+            3.47,
+            0,
+            2.2
+          ],
+          "distance": 1.1999999999999997,
+          "probe": {
+            "x": 3.47,
+            "z": 2.2,
+            "y": 0,
+            "radius": 0.28,
+            "room": "ramen",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "ramen",
+          "clear": true
+        },
+        {
+          "standing": [
+            3.27,
+            0,
+            2.2
+          ],
+          "distance": 1.2165525060596436,
+          "probe": {
+            "x": 3.27,
+            "z": 2.2,
+            "y": 0,
+            "radius": 0.28,
+            "room": "ramen",
+            "bounds": false,
+            "staticBlocked": true,
+            "residentBlocked": false,
+            "solids": [
+              {
+                "id": "solid",
+                "x": 2.91,
+                "z": 2.35,
+                "w": 0.5,
+                "d": 0.4,
+                "yaw": 0
+              }
+            ],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "ramen",
+          "clear": false
+        },
+        {
+          "standing": [
+            3.6700000000000004,
+            0,
+            2.2
+          ],
+          "distance": 1.2165525060596436,
+          "probe": {
+            "x": 3.6700000000000004,
+            "z": 2.2,
+            "y": 0,
+            "radius": 0.28,
+            "room": "ramen",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "ramen",
+          "clear": true
+        }
+      ],
+      "blockingResidents": [],
+      "room": "ramen",
+      "exit": [
+        3.47,
+        1.1,
+        3.4
+      ],
+      "standing": [
+        3.47,
+        0,
+        2.88
+      ],
+      "probe": {
+        "x": 3.47,
+        "z": 2.88,
+        "y": 0,
+        "radius": 0.28,
+        "room": "ramen",
+        "bounds": false,
+        "staticBlocked": false,
+        "residentBlocked": false,
+        "solids": [],
+        "residents": [],
+        "route": {
+          "id": "shop-pavement",
+          "surface": "stone"
+        }
+      },
+      "wait": {
+        "milliseconds": 823,
+        "attempts": 1,
+        "firstBlockers": []
+      }
+    },
+    {
+      "name": "Izakaya re-entry after Sato exit",
+      "seconds": 164.84,
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 1424,
+            "end": 1507
+          },
+          "code": {
+            "start": 1508,
+            "end": 4414
+          },
+          "accessories": {
+            "start": 4416,
+            "end": 4614
+          },
+          "graphics": {
+            "start": 4615,
+            "end": 4742
+          },
+          "town": {
+            "start": 4992,
+            "end": 8353
+          },
+          "residents": {
+            "start": 8467,
+            "end": 9926
+          },
+          "shaders": {
+            "start": 10634,
+            "end": 11879
+          },
+          "walking": {
+            "start": 11943,
+            "end": 12668
+          },
+          "preview": {
+            "start": 12669,
+            "end": 16916
+          },
+          "frame": {
+            "start": 24826,
+            "end": 31198
+          }
+        }
+      },
+      "room": "izakaya",
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        0,
+        0,
+        1.68
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 209,
+        "calls": 158,
+        "triangles": 333059,
+        "geometries": 1433,
+        "textures": 265,
+        "releasedCanvases": 244
+      },
+      "frames": 394,
+      "canvas": {
+        "width": 526,
+        "height": 1139
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793408771726,
+        "previousStage": "Page left normally",
+        "previousAttempts": [
+          {
+            "startedAt": 1793408695554,
+            "stage": "Page left normally"
+          }
+        ],
+        "events": [
+          {
+            "at": 1793408772455,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793408779392,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793408783453,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793408784226,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793408784458,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793408785499,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793408786548,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793408787112,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793408788813,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793408793046,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793408797812,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793408798509,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 192,
+              "geometries": 1082,
+              "programs": 129,
+              "drawCalls": 916,
+              "triangles": 918732,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          },
+          {
+            "at": 1793408803683,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 199,
+              "geometries": 1127,
+              "programs": 132,
+              "drawCalls": 1003,
+              "triangles": 974148,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          },
+          {
+            "at": 1793408805726,
+            "stage": "Loading detail: kissa-higa-models"
+          },
+          {
+            "at": 1793408829490,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 213,
+              "geometries": 1151,
+              "programs": 178,
+              "drawCalls": 193,
+              "triangles": 646427,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          },
+          {
+            "at": 1793408846930,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 262,
+              "geometries": 1409,
+              "programs": 205,
+              "drawCalls": 194,
+              "triangles": 635911,
+              "bufferWidth": 526,
+              "bufferHeight": 1139
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "approach authored dining exit",
+      "seconds": 165.92,
+      "navigation": {
+        "id": "izakaya",
+        "title": "Minato Izakaya",
+        "bounds": {
+          "minX": -4.08,
+          "maxX": 5.86,
+          "minZ": -3.75,
+          "maxZ": 3.45
+        },
+        "spawn": [
+          0,
+          0,
+          2.88
+        ],
+        "exit": [
+          0,
+          1.1,
+          3.4
+        ],
+        "yaw": 0
+      },
+      "player": {
+        "position": [
+          0,
+          0,
+          1.68
+        ],
+        "yaw": -3.141592653589793,
+        "room": "izakaya"
+      },
+      "layout": {
+        "bounds": {
+          "minX": -4.08,
+          "maxX": 5.86,
+          "minZ": -3.75,
+          "maxZ": 3.45
+        },
+        "spawn": [
+          0,
+          0,
+          2.88
+        ],
+        "exit": [
+          0,
+          1.1,
+          3.4
+        ]
+      },
+      "candidates": [
+        {
+          "standing": [
+            0,
+            0,
+            2.88
+          ],
+          "distance": 0.52,
+          "probe": {
+            "x": 0,
+            "z": 2.88,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            0,
+            0,
+            2.75
+          ],
+          "distance": 0.6499999999999999,
+          "probe": {
+            "x": 0,
+            "z": 2.75,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            -0.2,
+            0,
+            2.75
+          ],
+          "distance": 0.6800735254367721,
+          "probe": {
+            "x": -0.2,
+            "z": 2.75,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            0.2,
+            0,
+            2.75
+          ],
+          "distance": 0.6800735254367721,
+          "probe": {
+            "x": 0.2,
+            "z": 2.75,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            0,
+            0,
+            2.55
+          ],
+          "distance": 0.8500000000000001,
+          "probe": {
+            "x": 0,
+            "z": 2.55,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            -0.2,
+            0,
+            2.55
+          ],
+          "distance": 0.8732124598286491,
+          "probe": {
+            "x": -0.2,
+            "z": 2.55,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            0.2,
+            0,
+            2.55
+          ],
+          "distance": 0.8732124598286491,
+          "probe": {
+            "x": 0.2,
+            "z": 2.55,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            0,
+            0,
+            2.3499999999999996
+          ],
+          "distance": 1.0500000000000003,
+          "probe": {
+            "x": 0,
+            "z": 2.3499999999999996,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            -0.2,
+            0,
+            2.3499999999999996
+          ],
+          "distance": 1.0688779163215978,
+          "probe": {
+            "x": -0.2,
+            "z": 2.3499999999999996,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            0.2,
+            0,
+            2.3499999999999996
+          ],
+          "distance": 1.0688779163215978,
+          "probe": {
+            "x": 0.2,
+            "z": 2.3499999999999996,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            0,
+            0,
+            2.2
+          ],
+          "distance": 1.1999999999999997,
+          "probe": {
+            "x": 0,
+            "z": 2.2,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            -0.2,
+            0,
+            2.2
+          ],
+          "distance": 1.2165525060596436,
+          "probe": {
+            "x": -0.2,
+            "z": 2.2,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        },
+        {
+          "standing": [
+            0.2,
+            0,
+            2.2
+          ],
+          "distance": 1.2165525060596436,
+          "probe": {
+            "x": 0.2,
+            "z": 2.2,
+            "y": 0,
+            "radius": 0.28,
+            "room": "izakaya",
+            "bounds": false,
+            "staticBlocked": false,
+            "residentBlocked": false,
+            "solids": [],
+            "residents": [],
+            "route": {
+              "id": "shop-pavement",
+              "surface": "stone"
+            }
+          },
+          "exitSite": "izakaya",
+          "clear": true
+        }
+      ],
+      "blockingResidents": [],
+      "room": "izakaya",
+      "exit": [
+        0,
+        1.1,
+        3.4
+      ],
+      "standing": [
+        0,
+        0,
+        2.88
+      ],
+      "probe": {
+        "x": 0,
+        "z": 2.88,
+        "y": 0,
+        "radius": 0.28,
+        "room": "izakaya",
+        "bounds": false,
+        "staticBlocked": false,
+        "residentBlocked": false,
+        "solids": [],
+        "residents": [],
+        "route": {
+          "id": "shop-pavement",
+          "surface": "stone"
+        }
+      },
+      "wait": {
+        "milliseconds": 597,
+        "attempts": 1,
+        "firstBlockers": []
+      }
+    },
+    {
+      "name": "Sakura upstairs office with the two selected posters",
+      "seconds": 177.83,
+      "prints": [
+        {
+          "name": "UMINEKO Black",
+          "present": true
+        },
+        {
+          "name": "KITANO 12 pure malt",
+          "present": true
+        }
+      ],
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 1424,
+            "end": 1507
+          },
+          "code": {
+            "start": 1508,
+            "end": 4414
+          },
+          "accessories": {
+            "start": 4416,
+            "end": 4614
+          },
+          "graphics": {
+            "start": 4615,
+            "end": 4742
+          },
+          "town": {
+            "start": 4992,
+            "end": 8353
+          },
+          "residents": {
+            "start": 8467,
+            "end": 9926
+          },
+          "shaders": {
+            "start": 10634,
+            "end": 11879
+          },
+          "walking": {
+            "start": 11943,
+            "end": 12668
+          },
+          "preview": {
+            "start": 12669,
+            "end": 16916
+          },
+          "frame": {
+            "start": 24826,
+            "end": 31198
+          }
+        }
+      },
+      "room": "sakura-office",
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        -1.2000000000000002,
+        0,
+        -2.75
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 219,
+        "calls": 22,
+        "triangles": 32272,
+        "geometries": 1428,
+        "textures": 264,
+        "releasedCanvases": 244
+      },
+      "frames": 501,
+      "canvas": {
+        "width": 526,
+        "height": 1139
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793408771726,
+        "previousStage": "Page left normally",
+        "previousAttempts": [
+          {
+            "startedAt": 1793408695554,
+            "stage": "Page left normally"
+          }
+        ],
+        "events": [
+          {
+            "at": 1793408779392,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793408783453,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793408784226,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793408784458,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793408785499,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793408786548,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793408787112,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793408788813,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793408793046,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793408797812,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793408798509,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 192,
+              "geometries": 1082,
+              "programs": 129,
+              "drawCalls": 916,
+              "triangles": 918732,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          },
+          {
+            "at": 1793408803683,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 199,
+              "geometries": 1127,
+              "programs": 132,
+              "drawCalls": 1003,
+              "triangles": 974148,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          },
+          {
+            "at": 1793408805726,
+            "stage": "Loading detail: kissa-higa-models"
+          },
+          {
+            "at": 1793408829490,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 213,
+              "geometries": 1151,
+              "programs": 178,
+              "drawCalls": 193,
+              "triangles": 646427,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          },
+          {
+            "at": 1793408846930,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 262,
+              "geometries": 1409,
+              "programs": 205,
+              "drawCalls": 194,
+              "triangles": 635911,
+              "bufferWidth": 526,
+              "bufferHeight": 1139
+            }
+          },
+          {
+            "at": 1793408859235,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 262,
+              "geometries": 1412,
+              "programs": 208,
+              "drawCalls": 193,
+              "triangles": 646427,
+              "bufferWidth": 526,
+              "bufferHeight": 1139
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "room resource warmup 0 sakura-office",
+      "seconds": 195.9,
+      "phase": "warmup",
+      "cycle": 0,
+      "venue": "sakura-office",
+      "indoor": {
+        "programs": 268,
+        "calls": 2162,
+        "triangles": 4011181,
+        "geometries": 1487,
+        "textures": 268,
+        "releasedCanvases": 246
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "gpuError": 0,
+        "render": {
+          "programs": 271,
+          "calls": 6469,
+          "triangles": 9423989,
+          "geometries": 1518,
+          "textures": 270,
+          "releasedCanvases": 249
+        }
+      },
+      "stream": {
+        "active": null,
+        "loaded": [
+          "cargo-berth-cad",
+          "harbour-park-bench",
+          "kissa-higa-models",
+          "park-onsen",
+          "sakura-interior",
+          "warehouse"
+        ],
+        "failed": [],
+        "retries": 0
+      }
+    },
+    {
+      "name": "room resource warmup 0 izakaya",
+      "seconds": 203.5,
+      "phase": "warmup",
+      "cycle": 0,
+      "venue": "izakaya",
+      "indoor": {
+        "programs": 280,
+        "calls": 9860,
+        "triangles": 14299010,
+        "geometries": 1642,
+        "textures": 277,
+        "releasedCanvases": 249
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "gpuError": 0,
+        "render": {
+          "programs": 271,
+          "calls": 14458,
+          "triangles": 20129746,
+          "geometries": 1525,
+          "textures": 271,
+          "releasedCanvases": 249
+        }
+      },
+      "stream": {
+        "active": null,
+        "loaded": [
+          "cargo-berth-cad",
+          "harbour-park-bench",
+          "kissa-higa-models",
+          "park-onsen",
+          "sakura-interior",
+          "warehouse"
+        ],
+        "failed": [],
+        "retries": 0
+      }
+    },
+    {
+      "name": "room resource warmup 1 sakura-office",
+      "seconds": 210.79,
+      "phase": "warmup",
+      "cycle": 1,
+      "venue": "sakura-office",
+      "indoor": {
+        "programs": 275,
+        "calls": 17698,
+        "triangles": 24116823,
+        "geometries": 1556,
+        "textures": 273,
+        "releasedCanvases": 249
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "gpuError": 0,
+        "render": {
+          "programs": 271,
+          "calls": 22005,
+          "triangles": 29529631,
+          "geometries": 1525,
+          "textures": 272,
+          "releasedCanvases": 249
+        }
+      },
+      "stream": {
+        "active": null,
+        "loaded": [
+          "cargo-berth-cad",
+          "harbour-park-bench",
+          "kissa-higa-models",
+          "park-onsen",
+          "sakura-interior",
+          "warehouse"
+        ],
+        "failed": [],
+        "retries": 0
+      }
+    },
+    {
+      "name": "room resource warmup 1 izakaya",
+      "seconds": 223.54,
+      "phase": "warmup",
+      "cycle": 1,
+      "venue": "izakaya",
+      "indoor": {
+        "programs": 280,
+        "calls": 25396,
+        "triangles": 34404652,
+        "geometries": 1642,
+        "textures": 277,
+        "releasedCanvases": 249
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "gpuError": 0,
+        "render": {
+          "programs": 327,
+          "calls": 29994,
+          "triangles": 40235388,
+          "geometries": 1525,
+          "textures": 271,
+          "releasedCanvases": 249
+        }
+      },
+      "stream": {
+        "active": null,
+        "loaded": [
+          "cargo-berth-cad",
+          "harbour-park-bench",
+          "kissa-higa-models",
+          "park-onsen",
+          "sakura-interior",
+          "warehouse"
+        ],
+        "failed": [],
+        "retries": 0
+      }
+    },
+    {
+      "name": "room resource baseline 0 sakura-office",
+      "seconds": 228.59,
+      "phase": "baseline",
+      "cycle": 0,
+      "venue": "sakura-office",
+      "indoor": {
+        "programs": 330,
+        "calls": 35233,
+        "triangles": 46903549,
+        "geometries": 1547,
+        "textures": 272,
+        "releasedCanvases": 249
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "gpuError": 0,
+        "render": {
+          "programs": 327,
+          "calls": 36653,
+          "triangles": 48650931,
+          "geometries": 1525,
+          "textures": 272,
+          "releasedCanvases": 249
+        }
+      },
+      "stream": {
+        "active": null,
+        "loaded": [
+          "cargo-berth-cad",
+          "harbour-park-bench",
+          "kissa-higa-models",
+          "park-onsen",
+          "sakura-interior",
+          "warehouse"
+        ],
+        "failed": [],
+        "retries": 0
+      }
+    },
+    {
+      "name": "room resource baseline 0 izakaya",
+      "seconds": 231.53,
+      "phase": "baseline",
+      "cycle": 0,
+      "venue": "izakaya",
+      "indoor": {
+        "programs": 334,
+        "calls": 36953,
+        "triangles": 49146677,
+        "geometries": 1619,
+        "textures": 277,
+        "releasedCanvases": 249
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "gpuError": 0,
+        "render": {
+          "programs": 327,
+          "calls": 38347,
+          "triangles": 50897393,
+          "geometries": 1525,
+          "textures": 271,
+          "releasedCanvases": 249
+        }
+      },
+      "stream": {
+        "active": null,
+        "loaded": [
+          "cargo-berth-cad",
+          "harbour-park-bench",
+          "kissa-higa-models",
+          "park-onsen",
+          "sakura-interior",
+          "warehouse"
+        ],
+        "failed": [],
+        "retries": 0
+      }
+    },
+    {
+      "name": "room resource check 0 sakura-office",
+      "seconds": 234.42,
+      "phase": "check",
+      "cycle": 0,
+      "venue": "sakura-office",
+      "indoor": {
+        "programs": 330,
+        "calls": 38693,
+        "triangles": 51273835,
+        "geometries": 1547,
+        "textures": 272,
+        "releasedCanvases": 249
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "gpuError": 0,
+        "render": {
+          "programs": 327,
+          "calls": 40113,
+          "triangles": 53021217,
+          "geometries": 1525,
+          "textures": 272,
+          "releasedCanvases": 249
+        }
+      },
+      "stream": {
+        "active": null,
+        "loaded": [
+          "cargo-berth-cad",
+          "harbour-park-bench",
+          "kissa-higa-models",
+          "park-onsen",
+          "sakura-interior",
+          "warehouse"
+        ],
+        "failed": [],
+        "retries": 0
+      }
+    },
+    {
+      "name": "room resource check 0 izakaya",
+      "seconds": 236.99,
+      "phase": "check",
+      "cycle": 0,
+      "venue": "izakaya",
+      "indoor": {
+        "programs": 334,
+        "calls": 40413,
+        "triangles": 53516963,
+        "geometries": 1619,
+        "textures": 277,
+        "releasedCanvases": 249
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "gpuError": 0,
+        "render": {
+          "programs": 327,
+          "calls": 41807,
+          "triangles": 55267679,
+          "geometries": 1525,
+          "textures": 271,
+          "releasedCanvases": 249
+        }
+      },
+      "stream": {
+        "active": null,
+        "loaded": [
+          "cargo-berth-cad",
+          "harbour-park-bench",
+          "kissa-higa-models",
+          "park-onsen",
+          "sakura-interior",
+          "warehouse"
+        ],
+        "failed": [],
+        "retries": 0
+      }
+    },
+    {
+      "name": "room resource check 1 sakura-office",
+      "seconds": 239.87,
+      "phase": "check",
+      "cycle": 1,
+      "venue": "sakura-office",
+      "indoor": {
+        "programs": 330,
+        "calls": 42153,
+        "triangles": 55644121,
+        "geometries": 1547,
+        "textures": 272,
+        "releasedCanvases": 249
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "gpuError": 0,
+        "render": {
+          "programs": 327,
+          "calls": 43573,
+          "triangles": 57391503,
+          "geometries": 1525,
+          "textures": 272,
+          "releasedCanvases": 249
+        }
+      },
+      "stream": {
+        "active": null,
+        "loaded": [
+          "cargo-berth-cad",
+          "harbour-park-bench",
+          "kissa-higa-models",
+          "park-onsen",
+          "sakura-interior",
+          "warehouse"
+        ],
+        "failed": [],
+        "retries": 0
+      }
+    },
+    {
+      "name": "room resource check 1 izakaya",
+      "seconds": 242.39,
+      "phase": "check",
+      "cycle": 1,
+      "venue": "izakaya",
+      "indoor": {
+        "programs": 334,
+        "calls": 43873,
+        "triangles": 57887249,
+        "geometries": 1619,
+        "textures": 277,
+        "releasedCanvases": 249
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "gpuError": 0,
+        "render": {
+          "programs": 327,
+          "calls": 45267,
+          "triangles": 59637965,
+          "geometries": 1525,
+          "textures": 271,
+          "releasedCanvases": 249
+        }
+      },
+      "stream": {
+        "active": null,
+        "loaded": [
+          "cargo-berth-cad",
+          "harbour-park-bench",
+          "kissa-higa-models",
+          "park-onsen",
+          "sakura-interior",
+          "warehouse"
+        ],
+        "failed": [],
+        "retries": 0
+      }
+    },
+    {
+      "name": "room resource check 2 sakura-office",
+      "seconds": 245.22,
+      "phase": "check",
+      "cycle": 2,
+      "venue": "sakura-office",
+      "indoor": {
+        "programs": 330,
+        "calls": 45613,
+        "triangles": 60014407,
+        "geometries": 1547,
+        "textures": 272,
+        "releasedCanvases": 249
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "gpuError": 0,
+        "render": {
+          "programs": 327,
+          "calls": 47033,
+          "triangles": 61761789,
+          "geometries": 1525,
+          "textures": 272,
+          "releasedCanvases": 249
+        }
+      },
+      "stream": {
+        "active": null,
+        "loaded": [
+          "cargo-berth-cad",
+          "harbour-park-bench",
+          "kissa-higa-models",
+          "park-onsen",
+          "sakura-interior",
+          "warehouse"
+        ],
+        "failed": [],
+        "retries": 0
+      }
+    },
+    {
+      "name": "room resource check 2 izakaya",
+      "seconds": 247.78,
+      "phase": "check",
+      "cycle": 2,
+      "venue": "izakaya",
+      "indoor": {
+        "programs": 334,
+        "calls": 47333,
+        "triangles": 62257535,
+        "geometries": 1619,
+        "textures": 277,
+        "releasedCanvases": 249
+      },
+      "exterior": {
+        "roomChildren": 0,
+        "roomVisible": false,
+        "portalBytes": 0,
+        "gpuError": 0,
+        "render": {
+          "programs": 327,
+          "calls": 48727,
+          "triangles": 64008251,
+          "geometries": 1525,
+          "textures": 271,
+          "releasedCanvases": 249
+        }
+      },
+      "stream": {
+        "active": null,
+        "loaded": [
+          "cargo-berth-cad",
+          "harbour-park-bench",
+          "kissa-higa-models",
+          "park-onsen",
+          "sakura-interior",
+          "warehouse"
+        ],
+        "failed": [],
+        "retries": 0
+      }
+    },
+    {
+      "name": "room resource growth after all checked cycles",
+      "seconds": 247.78,
+      "baseline": {
+        "sakura-office": {
+          "textures": 272,
+          "geometries": 1525,
+          "releasedCanvases": 249
+        },
+        "izakaya": {
+          "textures": 271,
+          "geometries": 1525,
+          "releasedCanvases": 249
+        }
+      },
+      "growth": [
+        {
+          "cycle": 0,
+          "venue": "sakura-office",
+          "delta": {
+            "textures": 0,
+            "geometries": 0,
+            "releasedCanvases": 0
+          }
+        },
+        {
+          "cycle": 0,
+          "venue": "izakaya",
+          "delta": {
+            "textures": 0,
+            "geometries": 0,
+            "releasedCanvases": 0
+          }
+        },
+        {
+          "cycle": 1,
+          "venue": "sakura-office",
+          "delta": {
+            "textures": 0,
+            "geometries": 0,
+            "releasedCanvases": 0
+          }
+        },
+        {
+          "cycle": 1,
+          "venue": "izakaya",
+          "delta": {
+            "textures": 0,
+            "geometries": 0,
+            "releasedCanvases": 0
+          }
+        },
+        {
+          "cycle": 2,
+          "venue": "sakura-office",
+          "delta": {
+            "textures": 0,
+            "geometries": 0,
+            "releasedCanvases": 0
+          }
+        },
+        {
+          "cycle": 2,
+          "venue": "izakaya",
+          "delta": {
+            "textures": 0,
+            "geometries": 0,
+            "releasedCanvases": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "saved room discovery survives reload",
+      "seconds": 281.38,
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 1441,
+            "end": 1527
+          },
+          "code": {
+            "start": 1528,
+            "end": 4375
+          },
+          "accessories": {
+            "start": 4376,
+            "end": 4571
+          },
+          "graphics": {
+            "start": 4571,
+            "end": 4687
+          },
+          "town": {
+            "start": 4950,
+            "end": 8633
+          },
+          "residents": {
+            "start": 8737,
+            "end": 10666
+          },
+          "shaders": {
+            "start": 11512,
+            "end": 13032
+          },
+          "walking": {
+            "start": 13102,
+            "end": 14212
+          },
+          "preview": {
+            "start": 14212,
+            "end": 17147
+          },
+          "frame": {
+            "start": 24860,
+            "end": 29463
+          }
+        }
+      },
+      "room": null,
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        -1.5,
+        0.098,
+        -72.7
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 131,
+        "calls": 919,
+        "triangles": 894246,
+        "geometries": 1089,
+        "textures": 192,
+        "releasedCanvases": 236
+      },
+      "frames": 87,
+      "canvas": {
+        "width": 585,
+        "height": 1266
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793408942097,
+        "previousStage": "Page left normally",
+        "previousAttempts": [
+          {
+            "startedAt": 1793408695554,
+            "stage": "Page left normally"
+          },
+          {
+            "startedAt": 1793408771726,
+            "stage": "Page left normally"
+          }
+        ],
+        "events": [
+          {
+            "at": 1793408942097,
+            "stage": "Loading game code"
+          },
+          {
+            "at": 1793408942385,
+            "stage": "Creating graphics context"
+          },
+          {
+            "at": 1793408942816,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793408951261,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793408954110,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793408954868,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793408955090,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793408956159,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793408957270,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793408957799,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793408959328,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793408963494,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793408966490,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793408967185,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 192,
+              "geometries": 1089,
+              "programs": 131,
+              "drawCalls": 918,
+              "triangles": 894210,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "real context loss during startup recovers",
+      "seconds": 316.22,
+      "recovery": {
+        "supported": true,
+        "lost": 1,
+        "restored": 1,
+        "prevented": true
+      },
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 1342,
+            "end": 1425
+          },
+          "code": {
+            "start": 1425,
+            "end": 4261
+          },
+          "accessories": {
+            "start": 4262,
+            "end": 4460
+          },
+          "graphics": {
+            "start": 4460,
+            "end": 4581
+          },
+          "town": {
+            "start": 4833,
+            "end": 8208
+          },
+          "residents": {
+            "start": 8306,
+            "end": 10206
+          },
+          "shaders": {
+            "start": 11027,
+            "end": 11604
+          },
+          "walking": {
+            "start": 11676,
+            "end": 12929
+          },
+          "preview": {
+            "start": 12929,
+            "end": 16735
+          },
+          "frame": {
+            "start": 24597,
+            "end": 30406
+          }
+        }
+      },
+      "room": null,
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "player": [
+        -1.5,
+        0.098,
+        -72.7
+      ],
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "render": {
+        "programs": 115,
+        "calls": 908,
+        "triangles": 892886,
+        "geometries": 1090,
+        "textures": 192,
+        "releasedCanvases": 236
+      },
+      "frames": 90,
+      "canvas": {
+        "width": 585,
+        "height": 1266
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793408975430,
+        "previousStage": "Page left normally",
+        "previousAttempts": [
+          {
+            "startedAt": 1793408695554,
+            "stage": "Page left normally"
+          },
+          {
+            "startedAt": 1793408771726,
+            "stage": "Page left normally"
+          },
+          {
+            "startedAt": 1793408942097,
+            "stage": "Page left normally"
+          }
+        ],
+        "events": [
+          {
+            "at": 1793408975430,
+            "stage": "Loading game code"
+          },
+          {
+            "at": 1793408975723,
+            "stage": "Creating graphics context"
+          },
+          {
+            "at": 1793408976143,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793408980027,
+            "stage": "Graphics context lost"
+          },
+          {
+            "at": 1793408983012,
+            "stage": "Graphics context restored"
+          },
+          {
+            "at": 1793408983451,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793408987029,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793408987904,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793408989080,
+            "stage": "Loading detail: harbour-park-bench"
+          },
+          {
+            "at": 1793408990360,
+            "stage": "Loading detail: cargo-berth-cad"
+          },
+          {
+            "at": 1793408991224,
+            "stage": "Loading detail: sakura-interior"
+          },
+          {
+            "at": 1793408991802,
+            "stage": "Loading detail: park-onsen"
+          },
+          {
+            "at": 1793408993885,
+            "stage": "Loading detail: warehouse"
+          },
+          {
+            "at": 1793408996671,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793409000889,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793409001575,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 192,
+              "geometries": 1090,
+              "programs": 115,
+              "drawCalls": 907,
+              "triangles": 892850,
+              "bufferWidth": 585,
+              "bufferHeight": 1266
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ordinary URL with twelve-hour absence and natural opening",
+      "seconds": 402.79,
+      "enteringMs": 55161,
+      "running": true,
+      "safe": false,
+      "loading": {
+        "completed": 10,
+        "total": 10,
+        "percent": 100,
+        "target": 100,
+        "seconds": 0.3,
+        "ready": true,
+        "label": "Island ready",
+        "error": null,
+        "assets": {
+          "completed": 47,
+          "total": 47,
+          "failed": 0
+        },
+        "timings": {
+          "controls": {
+            "start": 1283,
+            "end": 1364
+          },
+          "code": {
+            "start": 1365,
+            "end": 4181
+          },
+          "accessories": {
+            "start": 4182,
+            "end": 4381
+          },
+          "graphics": {
+            "start": 4382,
+            "end": 4500
+          },
+          "town": {
+            "start": 4752,
+            "end": 8151
+          },
+          "residents": {
+            "start": 8250,
+            "end": 9748
+          },
+          "shaders": {
+            "start": 10470,
+            "end": 11728
+          },
+          "walking": {
+            "start": 11794,
+            "end": 12542
+          },
+          "preview": {
+            "start": 12543,
+            "end": 15240
+          },
+          "frame": {
+            "start": 21433,
+            "end": 76594
+          }
+        }
+      },
+      "room": null,
+      "graphics": {
+        "ink": true,
+        "grade": true,
+        "fxaa": true,
+        "scale": 1,
+        "samples": 4,
+        "hdr": true,
+        "look": "none",
+        "focusDistance": 0,
+        "focusRange": 3,
+        "focusMode": 0
+      },
+      "canvas": {
+        "width": 526,
+        "height": 1139
+      },
+      "launch": {
+        "version": 1,
+        "build": "ios-full-cel-20261018",
+        "startedAt": 1793409016883,
+        "previousStage": "Page left normally",
+        "previousAttempts": [
+          {
+            "startedAt": 1793408695554,
+            "stage": "Page left normally"
+          },
+          {
+            "startedAt": 1793408771726,
+            "stage": "Page left normally"
+          },
+          {
+            "startedAt": 1793408942097,
+            "stage": "Page left normally"
+          },
+          {
+            "startedAt": 1793408975430,
+            "stage": "Page left normally"
+          }
+        ],
+        "events": [
+          {
+            "at": 1793409016883,
+            "stage": "Loading game code"
+          },
+          {
+            "at": 1793409017176,
+            "stage": "Creating graphics context"
+          },
+          {
+            "at": 1793409017614,
+            "stage": "Building town"
+          },
+          {
+            "at": 1793409024635,
+            "stage": "Preparing walking surface"
+          },
+          {
+            "at": 1793409027246,
+            "stage": "Rendering title preview"
+          },
+          {
+            "at": 1793409027941,
+            "stage": "Ready to enter town"
+          },
+          {
+            "at": 1793409034869,
+            "stage": "Entering town"
+          },
+          {
+            "at": 1793409035558,
+            "stage": "Rendering first gameplay frame"
+          },
+          {
+            "at": 1793409089297,
+            "stage": "Playing",
+            "metrics": {
+              "textures": 143,
+              "geometries": 1031,
+              "programs": 160,
+              "drawCalls": 204,
+              "triangles": 350224,
+              "bufferWidth": 526,
+              "bufferHeight": 1139
+            }
+          },
+          {
+            "at": 1793409089370,
+            "stage": "Loading detail: harbour-park-bench"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [
+    "Viewport argument key \"interactive-widget\" not recognized and ignored.",
+    "Viewport argument key \"interactive-widget\" not recognized and ignored.",
+    "Viewport argument key \"interactive-widget\" not recognized and ignored.",
+    "Viewport argument key \"interactive-widget\" not recognized and ignored.",
+    "Viewport argument key \"interactive-widget\" not recognized and ignored."
+  ],
+  "failedRequests": [
+    {
+      "url": "http://127.0.0.1:36413/johansson-town/assets/video/izakaya-ad.mp4",
+      "failure": "Load request cancelled"
+    }
+  ],
+  "roomLifetime": {
+    "warmupCycles": 2,
+    "checkedCycles": 3,
+    "warmups": [
+      {
+        "phase": "warmup",
+        "cycle": 0,
+        "venue": "sakura-office",
+        "indoor": {
+          "programs": 268,
+          "calls": 2162,
+          "triangles": 4011181,
+          "geometries": 1487,
+          "textures": 268,
+          "releasedCanvases": 246
+        },
+        "exterior": {
+          "roomChildren": 0,
+          "roomVisible": false,
+          "portalBytes": 0,
+          "gpuError": 0,
+          "render": {
+            "programs": 271,
+            "calls": 6469,
+            "triangles": 9423989,
+            "geometries": 1518,
+            "textures": 270,
+            "releasedCanvases": 249
+          }
+        },
+        "stream": {
+          "active": null,
+          "loaded": [
+            "cargo-berth-cad",
+            "harbour-park-bench",
+            "kissa-higa-models",
+            "park-onsen",
+            "sakura-interior",
+            "warehouse"
+          ],
+          "failed": [],
+          "retries": 0
+        }
+      },
+      {
+        "phase": "warmup",
+        "cycle": 0,
+        "venue": "izakaya",
+        "indoor": {
+          "programs": 280,
+          "calls": 9860,
+          "triangles": 14299010,
+          "geometries": 1642,
+          "textures": 277,
+          "releasedCanvases": 249
+        },
+        "exterior": {
+          "roomChildren": 0,
+          "roomVisible": false,
+          "portalBytes": 0,
+          "gpuError": 0,
+          "render": {
+            "programs": 271,
+            "calls": 14458,
+            "triangles": 20129746,
+            "geometries": 1525,
+            "textures": 271,
+            "releasedCanvases": 249
+          }
+        },
+        "stream": {
+          "active": null,
+          "loaded": [
+            "cargo-berth-cad",
+            "harbour-park-bench",
+            "kissa-higa-models",
+            "park-onsen",
+            "sakura-interior",
+            "warehouse"
+          ],
+          "failed": [],
+          "retries": 0
+        }
+      },
+      {
+        "phase": "warmup",
+        "cycle": 1,
+        "venue": "sakura-office",
+        "indoor": {
+          "programs": 275,
+          "calls": 17698,
+          "triangles": 24116823,
+          "geometries": 1556,
+          "textures": 273,
+          "releasedCanvases": 249
+        },
+        "exterior": {
+          "roomChildren": 0,
+          "roomVisible": false,
+          "portalBytes": 0,
+          "gpuError": 0,
+          "render": {
+            "programs": 271,
+            "calls": 22005,
+            "triangles": 29529631,
+            "geometries": 1525,
+            "textures": 272,
+            "releasedCanvases": 249
+          }
+        },
+        "stream": {
+          "active": null,
+          "loaded": [
+            "cargo-berth-cad",
+            "harbour-park-bench",
+            "kissa-higa-models",
+            "park-onsen",
+            "sakura-interior",
+            "warehouse"
+          ],
+          "failed": [],
+          "retries": 0
+        }
+      },
+      {
+        "phase": "warmup",
+        "cycle": 1,
+        "venue": "izakaya",
+        "indoor": {
+          "programs": 280,
+          "calls": 25396,
+          "triangles": 34404652,
+          "geometries": 1642,
+          "textures": 277,
+          "releasedCanvases": 249
+        },
+        "exterior": {
+          "roomChildren": 0,
+          "roomVisible": false,
+          "portalBytes": 0,
+          "gpuError": 0,
+          "render": {
+            "programs": 327,
+            "calls": 29994,
+            "triangles": 40235388,
+            "geometries": 1525,
+            "textures": 271,
+            "releasedCanvases": 249
+          }
+        },
+        "stream": {
+          "active": null,
+          "loaded": [
+            "cargo-berth-cad",
+            "harbour-park-bench",
+            "kissa-higa-models",
+            "park-onsen",
+            "sakura-interior",
+            "warehouse"
+          ],
+          "failed": [],
+          "retries": 0
+        }
+      }
+    ],
+    "settledExterior": {
+      "roomChildren": 0,
+      "roomVisible": false,
+      "portalBytes": 0,
+      "gpuError": 0,
+      "render": {
+        "programs": 327,
+        "calls": 34887,
+        "triangles": 46527107,
+        "geometries": 1525,
+        "textures": 271,
+        "releasedCanvases": 249
+      }
+    },
+    "baselines": {
+      "sakura-office": {
+        "phase": "baseline",
+        "cycle": 0,
+        "venue": "sakura-office",
+        "indoor": {
+          "programs": 330,
+          "calls": 35233,
+          "triangles": 46903549,
+          "geometries": 1547,
+          "textures": 272,
+          "releasedCanvases": 249
+        },
+        "exterior": {
+          "roomChildren": 0,
+          "roomVisible": false,
+          "portalBytes": 0,
+          "gpuError": 0,
+          "render": {
+            "programs": 327,
+            "calls": 36653,
+            "triangles": 48650931,
+            "geometries": 1525,
+            "textures": 272,
+            "releasedCanvases": 249
+          }
+        },
+        "stream": {
+          "active": null,
+          "loaded": [
+            "cargo-berth-cad",
+            "harbour-park-bench",
+            "kissa-higa-models",
+            "park-onsen",
+            "sakura-interior",
+            "warehouse"
+          ],
+          "failed": [],
+          "retries": 0
+        }
+      },
+      "izakaya": {
+        "phase": "baseline",
+        "cycle": 0,
+        "venue": "izakaya",
+        "indoor": {
+          "programs": 334,
+          "calls": 36953,
+          "triangles": 49146677,
+          "geometries": 1619,
+          "textures": 277,
+          "releasedCanvases": 249
+        },
+        "exterior": {
+          "roomChildren": 0,
+          "roomVisible": false,
+          "portalBytes": 0,
+          "gpuError": 0,
+          "render": {
+            "programs": 327,
+            "calls": 38347,
+            "triangles": 50897393,
+            "geometries": 1525,
+            "textures": 271,
+            "releasedCanvases": 249
+          }
+        },
+        "stream": {
+          "active": null,
+          "loaded": [
+            "cargo-berth-cad",
+            "harbour-park-bench",
+            "kissa-higa-models",
+            "park-onsen",
+            "sakura-interior",
+            "warehouse"
+          ],
+          "failed": [],
+          "retries": 0
+        }
+      }
+    },
+    "cycles": [
+      {
+        "phase": "check",
+        "cycle": 0,
+        "venue": "sakura-office",
+        "indoor": {
+          "programs": 330,
+          "calls": 38693,
+          "triangles": 51273835,
+          "geometries": 1547,
+          "textures": 272,
+          "releasedCanvases": 249
+        },
+        "exterior": {
+          "roomChildren": 0,
+          "roomVisible": false,
+          "portalBytes": 0,
+          "gpuError": 0,
+          "render": {
+            "programs": 327,
+            "calls": 40113,
+            "triangles": 53021217,
+            "geometries": 1525,
+            "textures": 272,
+            "releasedCanvases": 249
+          }
+        },
+        "stream": {
+          "active": null,
+          "loaded": [
+            "cargo-berth-cad",
+            "harbour-park-bench",
+            "kissa-higa-models",
+            "park-onsen",
+            "sakura-interior",
+            "warehouse"
+          ],
+          "failed": [],
+          "retries": 0
+        }
+      },
+      {
+        "phase": "check",
+        "cycle": 0,
+        "venue": "izakaya",
+        "indoor": {
+          "programs": 334,
+          "calls": 40413,
+          "triangles": 53516963,
+          "geometries": 1619,
+          "textures": 277,
+          "releasedCanvases": 249
+        },
+        "exterior": {
+          "roomChildren": 0,
+          "roomVisible": false,
+          "portalBytes": 0,
+          "gpuError": 0,
+          "render": {
+            "programs": 327,
+            "calls": 41807,
+            "triangles": 55267679,
+            "geometries": 1525,
+            "textures": 271,
+            "releasedCanvases": 249
+          }
+        },
+        "stream": {
+          "active": null,
+          "loaded": [
+            "cargo-berth-cad",
+            "harbour-park-bench",
+            "kissa-higa-models",
+            "park-onsen",
+            "sakura-interior",
+            "warehouse"
+          ],
+          "failed": [],
+          "retries": 0
+        }
+      },
+      {
+        "phase": "check",
+        "cycle": 1,
+        "venue": "sakura-office",
+        "indoor": {
+          "programs": 330,
+          "calls": 42153,
+          "triangles": 55644121,
+          "geometries": 1547,
+          "textures": 272,
+          "releasedCanvases": 249
+        },
+        "exterior": {
+          "roomChildren": 0,
+          "roomVisible": false,
+          "portalBytes": 0,
+          "gpuError": 0,
+          "render": {
+            "programs": 327,
+            "calls": 43573,
+            "triangles": 57391503,
+            "geometries": 1525,
+            "textures": 272,
+            "releasedCanvases": 249
+          }
+        },
+        "stream": {
+          "active": null,
+          "loaded": [
+            "cargo-berth-cad",
+            "harbour-park-bench",
+            "kissa-higa-models",
+            "park-onsen",
+            "sakura-interior",
+            "warehouse"
+          ],
+          "failed": [],
+          "retries": 0
+        }
+      },
+      {
+        "phase": "check",
+        "cycle": 1,
+        "venue": "izakaya",
+        "indoor": {
+          "programs": 334,
+          "calls": 43873,
+          "triangles": 57887249,
+          "geometries": 1619,
+          "textures": 277,
+          "releasedCanvases": 249
+        },
+        "exterior": {
+          "roomChildren": 0,
+          "roomVisible": false,
+          "portalBytes": 0,
+          "gpuError": 0,
+          "render": {
+            "programs": 327,
+            "calls": 45267,
+            "triangles": 59637965,
+            "geometries": 1525,
+            "textures": 271,
+            "releasedCanvases": 249
+          }
+        },
+        "stream": {
+          "active": null,
+          "loaded": [
+            "cargo-berth-cad",
+            "harbour-park-bench",
+            "kissa-higa-models",
+            "park-onsen",
+            "sakura-interior",
+            "warehouse"
+          ],
+          "failed": [],
+          "retries": 0
+        }
+      },
+      {
+        "phase": "check",
+        "cycle": 2,
+        "venue": "sakura-office",
+        "indoor": {
+          "programs": 330,
+          "calls": 45613,
+          "triangles": 60014407,
+          "geometries": 1547,
+          "textures": 272,
+          "releasedCanvases": 249
+        },
+        "exterior": {
+          "roomChildren": 0,
+          "roomVisible": false,
+          "portalBytes": 0,
+          "gpuError": 0,
+          "render": {
+            "programs": 327,
+            "calls": 47033,
+            "triangles": 61761789,
+            "geometries": 1525,
+            "textures": 272,
+            "releasedCanvases": 249
+          }
+        },
+        "stream": {
+          "active": null,
+          "loaded": [
+            "cargo-berth-cad",
+            "harbour-park-bench",
+            "kissa-higa-models",
+            "park-onsen",
+            "sakura-interior",
+            "warehouse"
+          ],
+          "failed": [],
+          "retries": 0
+        }
+      },
+      {
+        "phase": "check",
+        "cycle": 2,
+        "venue": "izakaya",
+        "indoor": {
+          "programs": 334,
+          "calls": 47333,
+          "triangles": 62257535,
+          "geometries": 1619,
+          "textures": 277,
+          "releasedCanvases": 249
+        },
+        "exterior": {
+          "roomChildren": 0,
+          "roomVisible": false,
+          "portalBytes": 0,
+          "gpuError": 0,
+          "render": {
+            "programs": 327,
+            "calls": 48727,
+            "triangles": 64008251,
+            "geometries": 1525,
+            "textures": 271,
+            "releasedCanvases": 249
+          }
+        },
+        "stream": {
+          "active": null,
+          "loaded": [
+            "cargo-berth-cad",
+            "harbour-park-bench",
+            "kissa-higa-models",
+            "park-onsen",
+            "sakura-interior",
+            "warehouse"
+          ],
+          "failed": [],
+          "retries": 0
+        }
+      }
+    ],
+    "growth": [
+      {
+        "cycle": 0,
+        "venue": "sakura-office",
+        "delta": {
+          "textures": 0,
+          "geometries": 0,
+          "releasedCanvases": 0
+        }
+      },
+      {
+        "cycle": 0,
+        "venue": "izakaya",
+        "delta": {
+          "textures": 0,
+          "geometries": 0,
+          "releasedCanvases": 0
+        }
+      },
+      {
+        "cycle": 1,
+        "venue": "sakura-office",
+        "delta": {
+          "textures": 0,
+          "geometries": 0,
+          "releasedCanvases": 0
+        }
+      },
+      {
+        "cycle": 1,
+        "venue": "izakaya",
+        "delta": {
+          "textures": 0,
+          "geometries": 0,
+          "releasedCanvases": 0
+        }
+      },
+      {
+        "cycle": 2,
+        "venue": "sakura-office",
+        "delta": {
+          "textures": 0,
+          "geometries": 0,
+          "releasedCanvases": 0
+        }
+      },
+      {
+        "cycle": 2,
+        "venue": "izakaya",
+        "delta": {
+          "textures": 0,
+          "geometries": 0,
+          "releasedCanvases": 0
+        }
+      }
+    ]
+  },
+  "passed": true
+}

@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "rebuild": "fresh isolated directory from supplied source",
+  "byte_identical_outputs": {
+    "Johansson_House_Architecture.glb": true,
+    "Johansson_House_Services.glb": true,
+    "collision.json": true,
+    "Room_Schedule.csv": true,
+    "Opening_Schedule.csv": true,
+    "Route_Schedule.csv": true,
+    "Electrical_Load_Schedule.csv": true
+  },
+  "validation_checks": 62,
+  "simulation_tests": 31
+}

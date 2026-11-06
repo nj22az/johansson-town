@@ -1,0 +1,43 @@
+{
+  "revision": "H1-F1",
+  "date": "2026-10-31",
+  "authoring": "Blender only, per owner instruction; Meshy superseded",
+  "units": "metres",
+  "geometry_basis": "CAD C-H1 / shared geometry-h1.json",
+  "constraints": {
+    "source_components": 1290,
+    "working_clearance": 2.4,
+    "service_openings": 0.8,
+    "retain_equipment_counts_axes_and_envelopes": true,
+    "additional_machinery_or_pipe_routes": false,
+    "camera_changes": false
+  },
+  "edge_detail": {
+    "equipment_box_bevel_max": 0.006,
+    "bevel_fraction_of_smallest_dimension": 0.1,
+    "bevel_segments": 2,
+    "minimum_box_dimension": 0.04,
+    "excluded_names": ["floor", "deckhead", "side", "trunk", "casing", "bulkhead", "partition"],
+    "cylinder_segments": 24,
+    "bar_segments": 12,
+    "method": "Cut corners inside source envelopes; outward normals; smooth round sides, flat end faces"
+  },
+  "materials": {
+    "paint": {"roughness": 0.58, "metallic": 0.05},
+    "metal": {"roughness": 0.42, "metallic": 0.55},
+    "rubber": {"roughness": 0.95, "metallic": 0.0},
+    "retain_source_colours": true,
+    "contact_shading_radius": 0.22,
+    "contact_shading_strength": 0.22,
+    "contact_shading_rays": 12
+  },
+  "render_only": ["Existing source maker plates", "43 source dial faces with source readings", "Existing booth glass", "Source chequer plate surface relief", "CAD luminaire light sources"],
+  "runtime": {
+    "file": "minato-engine-room-h1-f1.glb",
+    "max_material_groups": 2,
+    "max_triangles": 100000,
+    "max_bytes": 4000000,
+    "vertex_colour_bits": 8,
+    "live_gauges_and_labels": "Retained game planes; omit Blender render-only details from GLB"
+  }
+}

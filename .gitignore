@@ -1,0 +1,24 @@
+node_modules/
+dist/
+
+# Reproducible intermediate Blender builds; final packed source is tracked.
+/art/characters/kenji/kenji-source.blend
+/art/characters/kenji/kenji-review.blend
+*.blend1
+/art/izakaya/supplied/exterior-uncompressed.glb
+
+/art/characters/yui/yui-source.blend
+/art/characters/yui/yui-review.blend
+
+/art/tea-house/supplied/exterior-uncompressed.glb
+/art/yuri-home/japanese_residential_home_02.glb
+
+# Johansson: reproducible from tools/blender/build-johansson.py and animate-johansson.py.
+/art/characters/johansson/*.blend
+# Thuan: reproducible from tools/blender/build-thuan.py and animate-johansson.py --character thuan.
+/art/characters/thuan/*.blend
+__pycache__/
+
+# Unpublished Studio drafts and the active writer's lock stay local.
+/data/studio/draft/
+/data/studio/.lock

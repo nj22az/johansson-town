@@ -1,0 +1,11 @@
+{
+  "source_name": "Meshy_AI_Corner_Tea_House_0908175409_texture.glb",
+  "source_sha256": "0f2549681e85ebdedb83ecbfdcf0947c496fdc4471a2de4ba5a7b253fc3310a6",
+  "source_bytes": 101733180,
+  "source_triangles": 2966634,
+  "target_triangles": 60000,
+  "output_triangles": 60000,
+  "scale": 4.0,
+  "ground_offset": -0.08,
+  "front_offset": 0.4
+}

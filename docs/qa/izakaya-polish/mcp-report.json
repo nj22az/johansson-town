@@ -1,0 +1,2694 @@
+{
+  "normalControls": true,
+  "fixturePlacement": false,
+  "start": "20:30",
+  "walks": [
+    {
+      "label": "lounge aisle",
+      "goal": [
+        -3.8,
+        4.55
+      ],
+      "reached": true,
+      "legs": [
+        {
+          "goal": [
+            -3.8,
+            4.55
+          ],
+          "path": [
+            {
+              "x": -3.799999999999999,
+              "z": -0.5999999999999996
+            },
+            {
+              "x": -1.799999999999999,
+              "z": -0.5999999999999996
+            },
+            {
+              "x": -1.799999999999999,
+              "z": 4.2
+            },
+            {
+              "x": -3.799999999999999,
+              "z": 4.2
+            },
+            {
+              "x": -3.799999999999999,
+              "z": 4.6000000000000005
+            }
+          ],
+          "reached": true
+        }
+      ],
+      "player": [
+        -3.808658281433763,
+        0,
+        4.7780886556386415
+      ]
+    },
+    {
+      "label": "calendar approach",
+      "goal": [
+        -4.35,
+        5.7
+      ],
+      "reached": true,
+      "legs": [
+        {
+          "goal": [
+            -4.35,
+            5.7
+          ],
+          "path": [
+            {
+              "x": -3.799999999999999,
+              "z": 4.6000000000000005
+            },
+            {
+              "x": -3.799999999999999,
+              "z": 5.8
+            },
+            {
+              "x": -4.199999999999999,
+              "z": 5.8
+            }
+          ],
+          "reached": true
+        }
+      ],
+      "player": [
+        -4.386123236044995,
+        0,
+        5.8102735541035795
+      ]
+    },
+    {
+      "label": "middle dining aisle",
+      "goal": [
+        0,
+        4.4
+      ],
+      "reached": true,
+      "legs": [
+        {
+          "goal": [
+            0,
+            4.4
+          ],
+          "path": [
+            {
+              "x": -4.199999999999999,
+              "z": 5.8
+            },
+            {
+              "x": -2.999999999999999,
+              "z": 5.8
+            },
+            {
+              "x": -2.999999999999999,
+              "z": 5.400000000000001
+            },
+            {
+              "x": -0.1999999999999993,
+              "z": 5.400000000000001
+            },
+            {
+              "x": -0.1999999999999993,
+              "z": 4.6000000000000005
+            }
+          ],
+          "reached": true
+        }
+      ],
+      "player": [
+        -0.20184407421767736,
+        0,
+        4.413605334533825
+      ]
+    },
+    {
+      "label": "front of counter",
+      "goal": [
+        0,
+        -0.35
+      ],
+      "reached": true,
+      "legs": [
+        {
+          "goal": [
+            0,
+            -0.35
+          ],
+          "path": [
+            {
+              "x": -0.1999999999999993,
+              "z": 4.6000000000000005
+            },
+            {
+              "x": -0.1999999999999993,
+              "z": -0.20000000000000018
+            }
+          ],
+          "reached": true
+        }
+      ],
+      "player": [
+        -0.19996550938061408,
+        0,
+        -0.436795350581392
+      ]
+    },
+    {
+      "label": "counter east passage",
+      "goal": [
+        3.88,
+        -1.1
+      ],
+      "reached": true,
+      "legs": [
+        {
+          "goal": [
+            3.88,
+            -1.1
+          ],
+          "path": [
+            {
+              "x": -0.1999999999999993,
+              "z": -0.5999999999999996
+            },
+            {
+              "x": 3.8000000000000007,
+              "z": -0.5999999999999996
+            },
+            {
+              "x": 3.8000000000000007,
+              "z": -1
+            }
+          ],
+          "reached": true
+        }
+      ],
+      "player": [
+        3.7798539764328845,
+        0,
+        -1.1876376172232765
+      ]
+    },
+    {
+      "label": "shared kitchen aisle",
+      "goal": [
+        4.35,
+        -3.95
+      ],
+      "reached": true,
+      "legs": [
+        {
+          "goal": [
+            4.35,
+            -3.95
+          ],
+          "path": [
+            {
+              "x": 3.8000000000000007,
+              "z": -1
+            },
+            {
+              "x": 3.8000000000000007,
+              "z": -1.3999999999999995
+            },
+            {
+              "x": 4.200000000000001,
+              "z": -1.3999999999999995
+            },
+            {
+              "x": 4.200000000000001,
+              "z": -3.8
+            }
+          ],
+          "reached": true
+        }
+      ],
+      "player": [
+        4.203789650536073,
+        0,
+        -3.9974990011206213
+      ]
+    },
+    {
+      "label": "Sato shared kitchen",
+      "goal": [
+        7.1,
+        -4.25
+      ],
+      "reached": true,
+      "legs": [
+        {
+          "goal": [
+            7.1,
+            -4.25
+          ],
+          "path": [
+            {
+              "x": 4.200000000000001,
+              "z": -3.8
+            },
+            {
+              "x": 7.000000000000002,
+              "z": -3.8
+            },
+            {
+              "x": 7.000000000000002,
+              "z": -4.2
+            }
+          ],
+          "reached": true
+        }
+      ],
+      "player": [
+        6.9861666906902125,
+        0,
+        -4.388077100403967
+      ]
+    },
+    {
+      "label": "return from kitchen",
+      "goal": [
+        4,
+        -0.5
+      ],
+      "reached": true,
+      "legs": [
+        {
+          "goal": [
+            4,
+            -0.5
+          ],
+          "path": [
+            {
+              "x": 7.000000000000002,
+              "z": -4.2
+            },
+            {
+              "x": 4.200000000000001,
+              "z": -4.2
+            },
+            {
+              "x": 4.200000000000001,
+              "z": -3
+            },
+            {
+              "x": 3.8000000000000007,
+              "z": -3
+            },
+            {
+              "x": 3.8000000000000007,
+              "z": -0.5999999999999996
+            }
+          ],
+          "reached": true
+        }
+      ],
+      "player": [
+        3.7997210155601104,
+        0,
+        -0.3828945787490982
+      ]
+    },
+    {
+      "label": "table seat approach",
+      "goal": [
+        3.3,
+        0.25
+      ],
+      "reached": true,
+      "legs": [
+        {
+          "goal": [
+            3.3,
+            0.25
+          ],
+          "path": [
+            {
+              "x": 3.8000000000000007,
+              "z": -0.20000000000000018
+            },
+            {
+              "x": 3.400000000000002,
+              "z": -0.20000000000000018
+            },
+            {
+              "x": 3.400000000000002,
+              "z": 0.20000000000000018
+            }
+          ],
+          "reached": true
+        }
+      ],
+      "player": [
+        3.3626190826154425,
+        0,
+        0.3676581140824872
+      ]
+    },
+    {
+      "label": "door approach",
+      "goal": [
+        0,
+        5.65
+      ],
+      "reached": true,
+      "legs": [
+        {
+          "goal": [
+            0,
+            5.65
+          ],
+          "path": [
+            {
+              "x": 3.400000000000002,
+              "z": 0.20000000000000018
+            },
+            {
+              "x": 0.20000000000000107,
+              "z": 0.20000000000000018
+            },
+            {
+              "x": 0.20000000000000107,
+              "z": 5.8
+            }
+          ],
+          "reached": true
+        }
+      ],
+      "player": [
+        0.2013218259812556,
+        0,
+        5.919966072504023
+      ]
+    }
+  ],
+  "checks": [
+    "normal forward control stands from counter",
+    "full shared dining navigation grid",
+    "calendar date, full date dialogue and Stockholm timezone",
+    "customer aisle, counter end and shared kitchen crossing",
+    "normal dining seat",
+    "normal walk back and return outside"
+  ],
+  "warnings": [
+    "Optional order/drink did not complete in the bounded menu probe."
+  ],
+  "initial": {
+    "player": [
+      -3.8,
+      0,
+      -1.42
+    ],
+    "seated": true,
+    "calendar": {
+      "title": "Future Calendar",
+      "dateKey": "2026-10-05",
+      "dateLabel": "Monday, 5 October 2026",
+      "timeZone": "Europe/Stockholm",
+      "calendarYear": 2026,
+      "calendarMonth": 10,
+      "highlightedDay": 5,
+      "daysInMonth": 31
+    }
+  },
+  "navigation": {
+    "bounds": {
+      "minX": -6.2,
+      "maxX": 11.2,
+      "minZ": -6.2,
+      "maxZ": 6.2
+    },
+    "width": 17.4,
+    "depth": 12.4,
+    "cell": 0.4,
+    "columns": 44,
+    "rows": 32,
+    "cells": 1408,
+    "components": [
+      {
+        "id": 0,
+        "cells": 543
+      },
+      {
+        "id": 1,
+        "cells": 14
+      }
+    ],
+    "reachableCells": 0
+  },
+  "observedErrors": [],
+  "calendar": {
+    "target": {
+      "label": "Read Future Calendar",
+      "position": [
+        -5.55,
+        2.03,
+        6.21
+      ],
+      "distance": 2.373876650802092,
+      "inside": true
+    },
+    "actual": {
+      "title": "Future Calendar",
+      "dateKey": "2026-10-05",
+      "dateLabel": "Monday, 5 October 2026",
+      "timeZone": "Europe/Stockholm",
+      "calendarYear": 2026,
+      "calendarMonth": 10,
+      "highlightedDay": 5,
+      "daysInMonth": 31
+    },
+    "expected": {
+      "year": 2026,
+      "month": 10,
+      "monthName": "October",
+      "daysInMonth": 31,
+      "startColumn": 3,
+      "weeks": [
+        [
+          null,
+          null,
+          null,
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        [
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25
+        ],
+        [
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          null
+        ]
+      ],
+      "day": 5,
+      "weekday": "Monday",
+      "dateKey": "2026-10-05",
+      "dateLabel": "Monday, 5 October 2026",
+      "timeZone": "Europe/Stockholm"
+    },
+    "activity": {
+      "title": "Future Calendar",
+      "body": "Monday, 5 October 2026\nToday’s real date · Europe/Stockholm. This calendar turns a page every real day.",
+      "actions": [
+        {
+          "index": 0,
+          "label": "Close"
+        }
+      ]
+    },
+    "player": [
+      -4.386123236044995,
+      0,
+      5.8102735541035795
+    ]
+  },
+  "table": {
+    "seated": true,
+    "player": [
+      3.3,
+      0,
+      0.9
+    ]
+  },
+  "exitButton": {
+    "accepted": true,
+    "state": {
+      "game": {
+        "coordinates": "x/z in metres; y is height; interiors use local coordinates",
+        "room": null,
+        "home": null,
+        "calendar": {
+          "title": "Future Calendar",
+          "dateKey": "2026-10-05",
+          "dateLabel": "Monday, 5 October 2026",
+          "timeZone": "Europe/Stockholm",
+          "calendarYear": 2026,
+          "calendarMonth": 10,
+          "highlightedDay": 5,
+          "daysInMonth": 31
+        },
+        "minutes": 29853870.619996637,
+        "player": [
+          -6.45,
+          0,
+          -10.43
+        ],
+        "customers": [],
+        "island": {
+          "location": "town",
+          "automaticFerry": null,
+          "crossing": null,
+          "ticket": null,
+          "checked": false,
+          "projects": [],
+          "treasury": 90000
+        },
+        "arrival": {
+          "active": false,
+          "id": null,
+          "seconds": 0,
+          "action": null,
+          "bird": false,
+          "reason": "input",
+          "shot": {
+            "origin": [
+              -3.8000000000000003,
+              0.26867417960865014,
+              -1.42
+            ],
+            "target": [
+              -3.8000000000000003,
+              1.6695013716726503,
+              -1.42
+            ],
+            "lens": [
+              -5.410544218094228,
+              2.15896369683105,
+              -3.332105468211221
+            ]
+          }
+        }
+      },
+      "ui": {
+        "running": true,
+        "place": "JOHANSSON TOWN",
+        "placeDetail": "Johansson Town · HARBOUR DISTRICT",
+        "time": "20:30",
+        "wallet": "¥1,200",
+        "nearbyAction": "",
+        "subtitle": "Johansson Street",
+        "activity": null,
+        "directoryOpen": false,
+        "directoryDestinations": [],
+        "knownDestinations": {
+          "frontrow": "Front-Row Books",
+          "form3d": "Dock Electrical & Repair Workshop",
+          "office": "Johansson Harbour Office",
+          "market": "Sakura Shōten",
+          "school": "Town Hall Classroom",
+          "community-kitchen": "Community Kitchen",
+          "mayor-office": "Mayor’s Office",
+          "clinic": "Minato Clinic",
+          "mayor-home": "Mayor’s House",
+          "onsen": "Umi-no-yu",
+          "resident-home-aya": "Aya & Reiko’s home",
+          "resident-home-kenji": "Kenji & Tetsuo’s home",
+          "koban": "Minato Police Box",
+          "resident-home-thuan": "Thuan & Nao’s home",
+          "resident-home-mrs-sato": "Mrs Sato’s home",
+          "home-kitahama-3": "Kōji’s home",
+          "home-kitahama-4": "Postman Tōma’s home",
+          "home-kitahama-5": "House to let",
+          "home-kitahama-6": "Grandfather Taira & Grandmother Taira’s home",
+          "home-kitahama-7": "Mr Chinen & Mrs Chinen’s home",
+          "home-kitahama-8": "Ms Uezu’s home",
+          "home-kitahama-9": "Grandmother Gushiken’s home",
+          "home-kitahama-10": "Mr Tamashiro & Mrs Tamashiro’s home",
+          "home-kitahama-11": "Mr Iha’s home",
+          "home-kitahama-12": "Mrs Kohagura’s home",
+          "izakaya": "Minato Izakaya",
+          "ramen": "Sato Ramen",
+          "warehouse": "Harbour Warehouse",
+          "ferry-terminal": "Minato Port Terminal",
+          "aoba-viewpoint": "Aoba Radio Station & Lookout",
+          "hoshizaki": "Hoshizaki Fishing Village",
+          "west-lighthouse": "West Cape Lighthouse",
+          "rainflower-lane": "Rainflower Shopping Lane",
+          "aoba-garden": "Aoba Traditional Garden",
+          "airport-island": "Kitano-jima Airport"
+        },
+        "controls": {
+          "jump": true,
+          "interact": true,
+          "move": true,
+          "look": true,
+          "directoryTravel": true,
+          "activityChoice": true
+        },
+        "webmcp": {
+          "status": "unsupported",
+          "registered": 0,
+          "api": null,
+          "tools": []
+        }
+      },
+      "view": {
+        "walking": false,
+        "destination": null,
+        "yaw": -2.194107409120971,
+        "pitch": 0,
+        "thirdPerson": false
+      },
+      "blocked": {
+        "catchingUp": false,
+        "roomLoading": false,
+        "camera": false,
+        "inspector": false,
+        "viewer": false,
+        "creator": false,
+        "photo": false,
+        "directory": false,
+        "started": true,
+        "hidden": false
+      },
+      "paused": false,
+      "seated": false,
+      "nearby": [
+        [
+          "Talk to Nao",
+          0.6,
+          false,
+          false
+        ],
+        [
+          "Talk to Barfly",
+          0.6,
+          false,
+          false
+        ],
+        [
+          "Come into Minato Izakaya",
+          1.34,
+          true,
+          false
+        ]
+      ],
+      "sites": [
+        {
+          "id": "frontrow",
+          "title": "Front-Row Books",
+          "x": -7.8,
+          "z": 1.6,
+          "door": [
+            -6.8999999999999995,
+            0,
+            1.6
+          ],
+          "entryFacing": 1.5707963267948966,
+          "exitPosition": [
+            -6.8999999999999995,
+            0,
+            1.6
+          ],
+          "approachPosition": [
+            -6.35,
+            0,
+            1.6
+          ]
+        },
+        {
+          "id": "form3d",
+          "title": "Dock Electrical & Repair Workshop",
+          "x": -25,
+          "z": -44,
+          "door": [
+            -25,
+            0,
+            -39.65
+          ],
+          "entryFacing": 0,
+          "exitPosition": [
+            -25,
+            0,
+            -39.65
+          ]
+        },
+        {
+          "id": "office",
+          "title": "Johansson Harbour Office",
+          "x": 13.3,
+          "z": -42,
+          "door": [
+            13.3,
+            0,
+            -37.55
+          ],
+          "entryFacing": 0,
+          "exitPosition": [
+            13.3,
+            0,
+            -37.55
+          ]
+        },
+        {
+          "id": "market",
+          "title": "Sakura Shōten",
+          "x": -7.45,
+          "z": -28.5,
+          "door": [
+            -5.5,
+            0,
+            -27.3
+          ],
+          "entryFacing": 1.5707963267948966,
+          "approachPosition": [
+            -6.9,
+            0,
+            -27.3
+          ]
+        },
+        {
+          "id": "school",
+          "title": "Town Hall Classroom",
+          "x": 20.5,
+          "z": 39.8,
+          "door": [
+            20.5,
+            0,
+            39.8
+          ],
+          "entryFacing": 3.141592653589793,
+          "exitPosition": [
+            20.5,
+            0,
+            39.1
+          ],
+          "approachPosition": [
+            20.5,
+            0,
+            39.1
+          ]
+        },
+        {
+          "id": "community-kitchen",
+          "title": "Community Kitchen",
+          "x": 27,
+          "z": 39.8,
+          "door": [
+            27,
+            0,
+            39.8
+          ],
+          "entryFacing": 3.141592653589793,
+          "exitPosition": [
+            27,
+            0,
+            39.1
+          ],
+          "approachPosition": [
+            27,
+            0,
+            39.1
+          ]
+        },
+        {
+          "id": "mayor-office",
+          "title": "Mayor’s Office",
+          "x": 30.6,
+          "z": 39.8,
+          "door": [
+            30.6,
+            0,
+            39.8
+          ],
+          "entryFacing": 3.141592653589793,
+          "exitPosition": [
+            30.6,
+            0,
+            39.1
+          ],
+          "approachPosition": [
+            30.6,
+            0,
+            39.1
+          ]
+        },
+        {
+          "id": "clinic",
+          "title": "Minato Clinic",
+          "x": 34.1,
+          "z": 39.8,
+          "door": [
+            34.1,
+            0,
+            39.8
+          ],
+          "entryFacing": 3.141592653589793,
+          "exitPosition": [
+            34.1,
+            0,
+            39.1
+          ],
+          "approachPosition": [
+            34.1,
+            0,
+            39.1
+          ]
+        },
+        {
+          "id": "mayor-home",
+          "title": "Mayor’s House",
+          "x": 37.7,
+          "z": 39.8,
+          "door": [
+            37.7,
+            0,
+            39.8
+          ],
+          "entryFacing": 3.141592653589793,
+          "exitPosition": [
+            37.7,
+            0,
+            39.1
+          ],
+          "approachPosition": [
+            37.7,
+            0,
+            39.1
+          ]
+        },
+        {
+          "id": "onsen",
+          "title": "Umi-no-yu",
+          "x": -17.2,
+          "z": 44.7,
+          "door": [
+            -17.2,
+            0,
+            44.7
+          ],
+          "entryFacing": -1.5707963267948966,
+          "exitPosition": [
+            -18.6,
+            0,
+            44.7
+          ],
+          "approachPosition": [
+            -18.6,
+            0,
+            44.7
+          ]
+        },
+        {
+          "id": "resident-home-aya",
+          "title": "Aya & Reiko’s home",
+          "x": -18.9,
+          "z": 1.05,
+          "door": [
+            -18.9,
+            0.02,
+            1.05
+          ],
+          "entryFacing": 0,
+          "exitPosition": [
+            -18.9,
+            0.02,
+            1.05
+          ]
+        },
+        {
+          "id": "resident-home-kenji",
+          "title": "Kenji & Tetsuo’s home",
+          "x": -18.9,
+          "z": 2.15,
+          "door": [
+            -18.9,
+            0.02,
+            2.15
+          ],
+          "entryFacing": 3.141592653589793,
+          "exitPosition": [
+            -18.9,
+            0.02,
+            2.15
+          ]
+        },
+        {
+          "id": "koban",
+          "title": "Minato Police Box",
+          "x": 5.75,
+          "z": 21.9,
+          "door": [
+            5.75,
+            0.02,
+            21.9
+          ],
+          "entryFacing": -1.5707963267948966,
+          "exitPosition": [
+            5.75,
+            0.02,
+            21.9
+          ]
+        },
+        {
+          "id": "resident-home-thuan",
+          "title": "Thuan & Nao’s home",
+          "x": 37.55,
+          "z": 64.7,
+          "door": [
+            37.55,
+            -0.38,
+            64.7
+          ],
+          "entryFacing": 0,
+          "exitPosition": [
+            37.55,
+            -0.38,
+            64.7
+          ]
+        },
+        {
+          "id": "resident-home-mrs-sato",
+          "title": "Mrs Sato’s home",
+          "x": 49.5,
+          "z": 64.7,
+          "door": [
+            49.5,
+            -0.38,
+            64.7
+          ],
+          "entryFacing": 0,
+          "exitPosition": [
+            49.5,
+            -0.38,
+            64.7
+          ]
+        },
+        {
+          "id": "home-kitahama-3",
+          "title": "Kōji’s home",
+          "x": 37.65,
+          "z": 67.3,
+          "door": [
+            37.65,
+            -0.38,
+            67.3
+          ],
+          "entryFacing": 3.141592653589793,
+          "exitPosition": [
+            37.65,
+            -0.38,
+            67.3
+          ]
+        },
+        {
+          "id": "home-kitahama-4",
+          "title": "Postman Tōma’s home",
+          "x": 46.45,
+          "z": 67.3,
+          "door": [
+            46.45,
+            -0.38,
+            67.3
+          ],
+          "entryFacing": 3.141592653589793,
+          "exitPosition": [
+            46.45,
+            -0.38,
+            67.3
+          ]
+        },
+        {
+          "id": "home-kitahama-5",
+          "title": "House to let",
+          "x": 55.25,
+          "z": 67.3,
+          "door": [
+            55.25,
+            -0.38,
+            67.3
+          ],
+          "entryFacing": 3.141592653589793,
+          "exitPosition": [
+            55.25,
+            -0.38,
+            67.3
+          ]
+        },
+        {
+          "id": "home-kitahama-6",
+          "title": "Grandfather Taira & Grandmother Taira’s home",
+          "x": 8.5,
+          "z": 67.3,
+          "door": [
+            8.5,
+            -0.38,
+            67.3
+          ],
+          "entryFacing": 3.141592653589793,
+          "exitPosition": [
+            8.5,
+            -0.38,
+            67.3
+          ]
+        },
+        {
+          "id": "home-kitahama-7",
+          "title": "Mr Chinen & Mrs Chinen’s home",
+          "x": 17.25,
+          "z": 67.3,
+          "door": [
+            17.25,
+            -0.38,
+            67.3
+          ],
+          "entryFacing": 3.141592653589793,
+          "exitPosition": [
+            17.25,
+            -0.38,
+            67.3
+          ]
+        },
+        {
+          "id": "home-kitahama-8",
+          "title": "Ms Uezu’s home",
+          "x": 29.25,
+          "z": 67.3,
+          "door": [
+            29.25,
+            -0.38,
+            67.3
+          ],
+          "entryFacing": 3.141592653589793,
+          "exitPosition": [
+            29.25,
+            -0.38,
+            67.3
+          ]
+        },
+        {
+          "id": "home-kitahama-9",
+          "title": "Grandmother Gushiken’s home",
+          "x": 17.5,
+          "z": 64.7,
+          "door": [
+            17.5,
+            -0.38,
+            64.7
+          ],
+          "entryFacing": 0,
+          "exitPosition": [
+            17.5,
+            -0.38,
+            64.7
+          ]
+        },
+        {
+          "id": "home-kitahama-10",
+          "title": "Mr Tamashiro & Mrs Tamashiro’s home",
+          "x": 27.4,
+          "z": 64.7,
+          "door": [
+            27.4,
+            -0.38,
+            64.7
+          ],
+          "entryFacing": 0,
+          "exitPosition": [
+            27.4,
+            -0.38,
+            64.7
+          ]
+        },
+        {
+          "id": "home-kitahama-11",
+          "title": "Mr Iha’s home",
+          "x": 24.8,
+          "z": 82.5,
+          "door": [
+            24.8,
+            -0.38,
+            82.5
+          ],
+          "entryFacing": -1.5707963267948966,
+          "exitPosition": [
+            24.8,
+            -0.38,
+            82.5
+          ]
+        },
+        {
+          "id": "home-kitahama-12",
+          "title": "Mrs Kohagura’s home",
+          "x": 24.8,
+          "z": 90,
+          "door": [
+            24.8,
+            -0.38,
+            90
+          ],
+          "entryFacing": -1.5707963267948966,
+          "exitPosition": [
+            24.8,
+            -0.38,
+            90
+          ]
+        },
+        {
+          "id": "izakaya",
+          "title": "Minato Izakaya",
+          "x": -12.5,
+          "z": -10.43,
+          "door": [
+            -7.05,
+            0,
+            -10.43
+          ],
+          "entryFacing": 1.5707963267948966,
+          "exitPosition": [
+            -7.05,
+            0,
+            -10.43
+          ],
+          "approachPosition": [
+            -6.35,
+            0,
+            -10.43
+          ]
+        },
+        {
+          "id": "ramen",
+          "title": "Sato Ramen",
+          "x": -7.05,
+          "z": -13.9,
+          "door": [
+            -7.05,
+            0,
+            -13.9
+          ],
+          "entryFacing": 1.5707963267948966,
+          "exitPosition": [
+            -7.05,
+            0,
+            -13.9
+          ]
+        }
+      ],
+      "targets": [
+        {
+          "label": "Enter Front-Row Books",
+          "position": [
+            -6.8999999999999995,
+            1.25,
+            1.6
+          ],
+          "distance": 12.103135957263305,
+          "inside": false
+        },
+        {
+          "label": "Enter Dock Electrical & Repair Workshop",
+          "position": [
+            -25,
+            1.1,
+            -39.65
+          ],
+          "distance": 34.628325111099436,
+          "inside": false
+        },
+        {
+          "label": "Enter Johansson Harbour Office",
+          "position": [
+            13.3,
+            1.25,
+            -37.75
+          ],
+          "distance": 33.73436526748354,
+          "inside": false
+        },
+        {
+          "label": "Enter Sakura Shōten",
+          "position": [
+            -6.6000000000000005,
+            1.2,
+            -27.3
+          ],
+          "distance": 16.913290631926124,
+          "inside": false
+        },
+        {
+          "label": "Use payphone",
+          "position": [
+            -7.1,
+            1,
+            18.2
+          ],
+          "distance": 28.654832053250633,
+          "inside": false
+        },
+        {
+          "label": "Board the Kitano-jima ferry",
+          "position": [
+            4.7,
+            1,
+            -43.199999999999996
+          ],
+          "distance": 34.6294008033636,
+          "inside": false
+        },
+        {
+          "label": "Enter Minato Port Terminal",
+          "position": [
+            5.1499999999999995,
+            1.3,
+            -42.6
+          ],
+          "distance": 34.222198935778515,
+          "inside": false
+        },
+        {
+          "label": "Enter Harbour Warehouse",
+          "position": [
+            -9.45,
+            1.25,
+            -38.65
+          ],
+          "distance": 28.406529179046142,
+          "inside": false
+        },
+        {
+          "label": "Inspect Tetsuo’s kei truck",
+          "position": [
+            0.3,
+            1.2,
+            -40.9
+          ],
+          "distance": 31.23176908213814,
+          "inside": false
+        },
+        {
+          "label": "Inspect Harbour master’s car",
+          "position": [
+            2.25,
+            1.2,
+            -40.3
+          ],
+          "distance": 31.134336350723775,
+          "inside": false
+        },
+        {
+          "label": "Look into the garden pond",
+          "position": [
+            26.349999999999998,
+            1.2,
+            -6
+          ],
+          "distance": 33.1195546467642,
+          "inside": false
+        },
+        {
+          "label": "Read the Higa nameplate",
+          "position": [
+            -32.25,
+            1,
+            -26.7
+          ],
+          "distance": 30.518074972055494,
+          "inside": false
+        },
+        {
+          "label": "Read the Kinjō nameplate",
+          "position": [
+            -29.450000000000003,
+            1,
+            0.8000000000000007
+          ],
+          "distance": 25.614700857124998,
+          "inside": false
+        },
+        {
+          "label": "Read the Ōshiro nameplate",
+          "position": [
+            -32.25,
+            1,
+            2.3000000000000007
+          ],
+          "distance": 28.7870265918521,
+          "inside": false
+        },
+        {
+          "label": "Sit on the seawall bench",
+          "position": [
+            -37.75,
+            1,
+            -20
+          ],
+          "distance": 32.745608865922776,
+          "inside": false
+        },
+        {
+          "label": "Sit on the seawall bench",
+          "position": [
+            -37.75,
+            1,
+            4
+          ],
+          "distance": 34.48064529558575,
+          "inside": false
+        },
+        {
+          "label": "Fish from the seawall",
+          "position": [
+            -38.6,
+            1,
+            -10
+          ],
+          "distance": 32.168422404588014,
+          "inside": false
+        },
+        {
+          "label": "Look at the fish",
+          "position": [
+            -7.1,
+            1.1,
+            12.55
+          ],
+          "distance": 23.015492608241086,
+          "inside": false
+        },
+        {
+          "label": "Look into the coin laundry",
+          "position": [
+            -7.1,
+            1.1,
+            16.95
+          ],
+          "distance": 27.409795694240408,
+          "inside": false
+        },
+        {
+          "label": "Look at the goya trellis",
+          "position": [
+            -20.4,
+            1,
+            -3.4000000000000004
+          ],
+          "distance": 15.653223310232304,
+          "inside": false
+        },
+        {
+          "label": "Buy a zenzai",
+          "position": [
+            4.8,
+            1.1,
+            -10.899999999999999
+          ],
+          "distance": 11.313416813677467,
+          "inside": false
+        },
+        {
+          "label": "Buy sata andagi",
+          "position": [
+            4.8,
+            1.1,
+            -9.599999999999998
+          ],
+          "distance": 11.33408134786406,
+          "inside": false
+        },
+        {
+          "label": "Look into the post office",
+          "position": [
+            4.8,
+            1.1,
+            -4
+          ],
+          "distance": 13.00451460070694,
+          "inside": false
+        },
+        {
+          "label": "Buy a bottle of awamori",
+          "position": [
+            4.8,
+            1.1,
+            8.75
+          ],
+          "distance": 22.263083793580797,
+          "inside": false
+        },
+        {
+          "label": "Look at the old sweet shop",
+          "position": [
+            4.8,
+            1.1,
+            14.45
+          ],
+          "distance": 27.32740199872648,
+          "inside": false
+        },
+        {
+          "label": "Read the Nakasone nameplate",
+          "position": [
+            19,
+            1,
+            9.399999999999999
+          ],
+          "distance": 32.278962189017165,
+          "inside": false
+        },
+        {
+          "label": "Read the Tamaki nameplate",
+          "position": [
+            21.599999999999998,
+            1,
+            -2.5999999999999996
+          ],
+          "distance": 29.13951612501484,
+          "inside": false
+        },
+        {
+          "label": "Look at the ice-cream mural",
+          "position": [
+            -9.65,
+            1.2,
+            -18.970000000000002
+          ],
+          "distance": 9.198456392243214,
+          "inside": false
+        },
+        {
+          "label": "Buy a drink",
+          "position": [
+            -6.05,
+            1,
+            -32.73
+          ],
+          "distance": 22.325993818865037,
+          "inside": false
+        },
+        {
+          "label": "Return empty cans",
+          "position": [
+            -6.45,
+            1,
+            -29.400000000000002
+          ],
+          "distance": 18.996339120999078,
+          "inside": false
+        },
+        {
+          "label": "Buy a Blue Coral ice cream",
+          "position": [
+            -6.35,
+            1,
+            -21.270000000000003
+          ],
+          "distance": 10.886487036689111,
+          "inside": false
+        },
+        {
+          "label": "Read the tide board",
+          "position": [
+            11.2,
+            1.2,
+            -37.6
+          ],
+          "distance": 32.42177354803404,
+          "inside": false
+        },
+        {
+          "label": "Look at the big-catch flags",
+          "position": [
+            10.1,
+            1.4,
+            -38.1
+          ],
+          "distance": 32.272145884647955,
+          "inside": false
+        },
+        {
+          "label": "Browse the ¥100 cart",
+          "position": [
+            -6.7299999999999995,
+            1,
+            4.6
+          ],
+          "distance": 15.065832204030416,
+          "inside": false
+        },
+        {
+          "label": "Sit on neighbourhood bench",
+          "position": [
+            2.05,
+            1,
+            16.65
+          ],
+          "distance": 28.40028873092666,
+          "inside": false
+        },
+        {
+          "label": "Inspect post box",
+          "position": [
+            1.75,
+            1,
+            16.4
+          ],
+          "distance": 28.072921116264336,
+          "inside": false
+        },
+        {
+          "label": "Read Thuan’s shop flyer · harbour notice board",
+          "position": [
+            5.5,
+            1,
+            -36.6
+          ],
+          "distance": 28.786653157322753,
+          "inside": false
+        },
+        {
+          "label": "Inspect utility cabinet",
+          "position": [
+            2.9,
+            1,
+            13.2
+          ],
+          "distance": 25.432251178375854,
+          "inside": false
+        },
+        {
+          "label": "Ride Thuan’s bicycle",
+          "position": [
+            -4.8,
+            0.9,
+            -23.2
+          ],
+          "distance": 12.907571421456478,
+          "inside": false
+        },
+        {
+          "label": "Inspect traffic mirror",
+          "position": [
+            -6.85,
+            1,
+            5.7
+          ],
+          "distance": 16.16591785207385,
+          "inside": false
+        },
+        {
+          "label": "Inspect recycling bins",
+          "position": [
+            4.55,
+            1,
+            -21.2
+          ],
+          "distance": 15.427018506503451,
+          "inside": false
+        },
+        {
+          "label": "Work the hand pump",
+          "position": [
+            -5.9,
+            1,
+            -42.4
+          ],
+          "distance": 31.990364174232216,
+          "inside": false
+        },
+        {
+          "label": "Read the island freight board",
+          "position": [
+            -21,
+            1,
+            -35.1
+          ],
+          "distance": 28.65853101608664,
+          "inside": false
+        },
+        {
+          "label": "Sit and look at Sakura",
+          "position": [
+            4.351090076402234,
+            1,
+            -19.84063769715117
+          ],
+          "distance": 14.360489152727267,
+          "inside": false
+        },
+        {
+          "label": "Sit on the staff bench",
+          "position": [
+            -20.05,
+            1.05,
+            -23
+          ],
+          "distance": 18.549053884228165,
+          "inside": false
+        },
+        {
+          "label": "Visit Aya & Reiko’s home",
+          "position": [
+            -18.9,
+            1.3,
+            1.05
+          ],
+          "distance": 16.98478436719171,
+          "inside": false
+        },
+        {
+          "label": "Visit Kenji & Tetsuo’s home",
+          "position": [
+            -18.9,
+            1.3,
+            2.15
+          ],
+          "distance": 17.74679971149728,
+          "inside": false
+        },
+        {
+          "label": "Read the police notices",
+          "position": [
+            6.1000000000000005,
+            1.4,
+            21.25
+          ],
+          "distance": 34.104030553587066,
+          "inside": false
+        },
+        {
+          "label": "Inspect the police bicycle",
+          "position": [
+            5.300000000000001,
+            1,
+            19.1
+          ],
+          "distance": 31.7975376405155,
+          "inside": false
+        },
+        {
+          "label": "Enter Minato Police Box",
+          "position": [
+            6.1000000000000005,
+            1.3,
+            21.9
+          ],
+          "distance": 34.704774887614526,
+          "inside": false
+        },
+        {
+          "label": "Review island development projects",
+          "position": [
+            13.3,
+            1,
+            -37.55
+          ],
+          "distance": 33.564220533180865,
+          "inside": false
+        },
+        {
+          "label": "Complete the airport radio service",
+          "position": [
+            -25,
+            1,
+            -39.65
+          ],
+          "distance": 34.62529277854557,
+          "inside": false
+        },
+        {
+          "label": "Read the Aoba Garden direction sign",
+          "position": [
+            0.9,
+            1,
+            15.5
+          ],
+          "distance": 26.97012050399479,
+          "inside": false
+        },
+        {
+          "label": "Talk to Thuan",
+          "position": [
+            -3.0000000000000013,
+            0,
+            2.4696677346164058
+          ],
+          "distance": 13.353049376958941,
+          "inside": false
+        },
+        {
+          "label": "Come into Minato Izakaya",
+          "position": [
+            -7.05,
+            1.2,
+            -10.43
+          ],
+          "distance": 1.3416407864998736,
+          "inside": false
+        },
+        {
+          "label": "Come into Sato Ramen",
+          "position": [
+            -7.05,
+            1.2,
+            -13.9
+          ],
+          "distance": 3.7203360063306112,
+          "inside": false
+        },
+        {
+          "label": "Sit and watch the town and harbour",
+          "position": [
+            16.080000000000002,
+            2.887432,
+            -23.8
+          ],
+          "distance": 26.357068569069362,
+          "inside": false
+        },
+        {
+          "label": "Read the park board",
+          "position": [
+            7.808000000000002,
+            1.7681820800000003,
+            -25.032
+          ],
+          "distance": 20.48500514688813,
+          "inside": false
+        },
+        {
+          "label": "Talk to Emi Kado",
+          "position": [
+            -23.1,
+            0,
+            -35.1
+          ],
+          "distance": 29.76291988364045,
+          "inside": false
+        },
+        {
+          "label": "Pick up returnable glass bottle",
+          "position": [
+            3.1,
+            0,
+            -23.1
+          ],
+          "distance": 15.866045506048446,
+          "inside": false
+        },
+        {
+          "label": "Pick up bundle of empty cans",
+          "position": [
+            -2.8,
+            0,
+            -41
+          ],
+          "distance": 30.787130428151304,
+          "inside": false
+        },
+        {
+          "label": "Pick up returnable glass bottle",
+          "position": [
+            4.8,
+            0,
+            18
+          ],
+          "distance": 30.57494726078853,
+          "inside": false
+        },
+        {
+          "label": "Pick up salvaged metal parts",
+          "position": [
+            -3,
+            0.0020000000949949026,
+            -32
+          ],
+          "distance": 21.844161782957027,
+          "inside": false
+        },
+        {
+          "label": "Pick up bundle of empty cans",
+          "position": [
+            3,
+            0,
+            -12
+          ],
+          "distance": 9.579530259882265,
+          "inside": false
+        },
+        {
+          "label": "Pick up salvaged metal parts",
+          "position": [
+            3.2,
+            0,
+            -18
+          ],
+          "distance": 12.264884834355357,
+          "inside": false
+        }
+      ],
+      "roomNavigation": null,
+      "landmarks": [
+        {
+          "id": "warehouse",
+          "title": "Harbour Warehouse",
+          "x": -13.6,
+          "z": -42.4,
+          "door": [
+            -8.6,
+            0,
+            -38.65
+          ]
+        },
+        {
+          "id": "ferry-terminal",
+          "title": "Minato Port Terminal",
+          "x": 7.6499999999999995,
+          "z": -43.8,
+          "door": [
+            4.8999999999999995,
+            0,
+            -42.6
+          ]
+        },
+        {
+          "id": "aoba-viewpoint",
+          "title": "Aoba Radio Station & Lookout",
+          "x": 40,
+          "z": 158
+        },
+        {
+          "id": "hoshizaki",
+          "title": "Hoshizaki Fishing Village",
+          "x": 132,
+          "z": 190
+        },
+        {
+          "id": "west-lighthouse",
+          "title": "West Cape Lighthouse",
+          "x": -54,
+          "z": 204
+        },
+        {
+          "id": "rainflower-lane",
+          "title": "Rainflower Shopping Lane",
+          "x": 3.3,
+          "z": 30
+        },
+        {
+          "id": "aoba-garden",
+          "title": "Aoba Traditional Garden",
+          "x": -23.4,
+          "z": 34.6
+        },
+        {
+          "id": "airport-island",
+          "title": "Kitano-jima Airport",
+          "x": 151.16013155508168,
+          "z": -101.93301392832637
+        }
+      ],
+      "residents": [
+        {
+          "name": "Aya",
+          "position": [
+            -18.9,
+            0.019999999552965164,
+            1.05
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "sleeping at home",
+          "indoors": "home"
+        },
+        {
+          "name": "Kenji",
+          "position": [
+            3.5,
+            0,
+            -47
+          ],
+          "visible": true,
+          "parent": "",
+          "activity": "looking over the harbour machinery"
+        },
+        {
+          "name": "Mrs Sato",
+          "position": [
+            49.5,
+            -0.3449999845027924,
+            64.7
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "having tea at home",
+          "indoors": "home"
+        },
+        {
+          "name": "Harbour master",
+          "position": [
+            13.3,
+            0.03999999910593033,
+            -37.55
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "having tea at home",
+          "indoors": "home"
+        },
+        {
+          "name": "Reiko",
+          "position": [
+            -6.8999999999999995,
+            0,
+            1.6
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "newspaper editor",
+          "indoors": "work"
+        },
+        {
+          "name": "Tetsuo",
+          "position": [
+            -25,
+            0.05999999865889549,
+            -39.65
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "radio repairer",
+          "indoors": "work"
+        },
+        {
+          "name": "Officer Mori",
+          "position": [
+            5.75,
+            0.05999999865889549,
+            21.9
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "at the front desk of the police box",
+          "indoors": "work"
+        },
+        {
+          "name": "Nao",
+          "position": [
+            -7.05,
+            0,
+            -10.43
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "tidying the Minato counter",
+          "indoors": "izakaya"
+        },
+        {
+          "name": "Thuan",
+          "position": [
+            -3.0000000000000013,
+            0,
+            2.4696677346164058
+          ],
+          "visible": true,
+          "parent": "",
+          "activity": "walking home after closing Sakura"
+        },
+        {
+          "name": "Barfly",
+          "position": [
+            -7.05,
+            0,
+            -10.43
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "drinking beer at Minato",
+          "indoors": "izakaya"
+        },
+        {
+          "name": "Riku",
+          "position": [
+            -35.49666666666666,
+            0.05999999865889549,
+            -38.3
+          ],
+          "visible": true,
+          "parent": "",
+          "activity": "checking the cargo yard",
+          "pose": null
+        },
+        {
+          "name": "Emi Kado",
+          "position": [
+            -23.1,
+            0,
+            -35.1
+          ],
+          "visible": true,
+          "parent": "",
+          "activity": "checking island freight manifests",
+          "pose": "Think"
+        },
+        {
+          "name": "Haru",
+          "position": [
+            127,
+            -0.4,
+            182
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "at home",
+          "pose": null
+        },
+        {
+          "name": "Mina",
+          "position": [
+            126,
+            -0.4,
+            205.5
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "at home",
+          "pose": null
+        },
+        {
+          "name": "Jun",
+          "position": [
+            141.4448029863918,
+            0.56,
+            -104.3104896490012
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "off duty",
+          "pose": null
+        },
+        {
+          "name": "Grandmother Higa",
+          "position": [
+            -29.8,
+            0.47,
+            -20.7
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "on her verandah",
+          "pose": "Interact"
+        },
+        {
+          "name": "Mr Ōshiro",
+          "position": [
+            -24.6,
+            0,
+            -45.2
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "scraping his sabani",
+          "pose": "Interact"
+        },
+        {
+          "name": "Uncle Kinjō",
+          "position": [
+            -38.3,
+            0,
+            7.2
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "fishing off the seawall",
+          "pose": "Idle"
+        },
+        {
+          "name": "Mrs Nakamura",
+          "position": [
+            7.35,
+            0.08,
+            -10.55
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "at the zenzai counter",
+          "pose": "Idle"
+        },
+        {
+          "name": "Mr Shimabukuro",
+          "position": [
+            20.7,
+            0,
+            31.2
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "minding the generators",
+          "pose": "Idle"
+        },
+        {
+          "name": "Mrs Yonamine",
+          "position": [
+            -9.95,
+            0.08,
+            10.25
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "behind the fish counter",
+          "pose": "Interact"
+        },
+        {
+          "name": "Mrs Miyagi",
+          "position": [
+            -30.8,
+            0,
+            21.6
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "praying at the utaki",
+          "pose": "Interact"
+        },
+        {
+          "name": "Mr Tamaki",
+          "position": [
+            30,
+            0,
+            -44.8
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "loading ice",
+          "pose": "Interact"
+        },
+        {
+          "name": "Kōji",
+          "position": [
+            23.4,
+            0,
+            -41.7
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "sorting the catch",
+          "pose": "Interact"
+        },
+        {
+          "name": "Mrs Kinjō",
+          "position": [
+            10.5,
+            0,
+            32.22
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "arranging flowers at Rainflower Florist",
+          "pose": "Interact"
+        },
+        {
+          "name": "Postman Tōma",
+          "position": [
+            2.6,
+            0,
+            12.646187962465898
+          ],
+          "visible": false,
+          "parent": "",
+          "activity": "on his round",
+          "pose": null
+        }
+      ],
+      "shop": {
+        "customers": [],
+        "stock": {
+          "tea": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "coffee": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "rice": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "biscuit": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "soap": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "notebook": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "postcard": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "battery": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "cola": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "water": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "beer": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "noodles": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "milk": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "chips": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "crackers": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "chocolate": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "candy": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "curry": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "soy": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "soup": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "peaches": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "tuna": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "detergent": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "tissues": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "toothpaste": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "orange": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "soda": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "yogurt": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "bread": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "bento": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "sandwich": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "pudding": {
+            "shelf": 24,
+            "reserve": 48
+          },
+          "bun": {
+            "shelf": 12,
+            "reserve": 24
+          }
+        }
+      },
+      "vehicles": [
+        {
+          "id": "owned-car-1",
+          "owner": "Tetsuo",
+          "driver": "Tetsuo",
+          "purpose": "Collect airport cargo for the workshop",
+          "location": "quay",
+          "shore": "town",
+          "destination": null,
+          "driving": false,
+          "occupied": false,
+          "transfer": null,
+          "position": [
+            0.3,
+            0,
+            -40.9
+          ]
+        },
+        {
+          "id": "owned-car-2",
+          "owner": "Harbour master",
+          "driver": "Harbour master",
+          "purpose": "Inspect airport cargo manifests",
+          "location": "quay",
+          "shore": "town",
+          "destination": null,
+          "driving": false,
+          "occupied": false,
+          "transfer": null,
+          "position": [
+            2.25,
+            0,
+            -40.3
+          ]
+        },
+        {
+          "id": "owned-car-3",
+          "owner": "Kenji",
+          "driver": "Kenji",
+          "purpose": "Deliver airport repair freight to Main Street",
+          "location": "airport",
+          "shore": "airport",
+          "destination": null,
+          "driving": false,
+          "occupied": false,
+          "transfer": null,
+          "position": [
+            140.02631043636615,
+            0.66,
+            -97.96715622835225
+          ]
+        },
+        {
+          "id": "owned-car-4",
+          "owner": "Reiko",
+          "driver": "Reiko",
+          "purpose": "Deliver airport newspapers to Main Street",
+          "location": "airport",
+          "shore": "airport",
+          "destination": null,
+          "driving": false,
+          "occupied": false,
+          "transfer": null,
+          "position": [
+            132.2191308417213,
+            0.66,
+            -99.7129932129992
+          ]
+        },
+        {
+          "id": "owned-car-5",
+          "owner": "Mrs Sato",
+          "driver": "Mrs Sato",
+          "purpose": "Deliver airport kitchen supplies to Main Street",
+          "location": "airport",
+          "shore": "airport",
+          "destination": null,
+          "driving": false,
+          "occupied": false,
+          "transfer": null,
+          "position": [
+            124.41195124707646,
+            0.66,
+            -101.45883019764615
+          ]
+        },
+        {
+          "id": "owned-car-6",
+          "owner": "Aya",
+          "driver": "Aya",
+          "purpose": "Deliver airport book orders to Main Street",
+          "location": "airport",
+          "shore": "airport",
+          "destination": null,
+          "driving": false,
+          "occupied": false,
+          "transfer": null,
+          "position": [
+            122.42606167704054,
+            0.66,
+            -92.57816340873764
+          ]
+        }
+      ],
+      "ferry": {
+        "phase": "waiting",
+        "berth": "town",
+        "loading": 0
+      },
+      "playerClearance": {
+        "x": -6.45,
+        "z": -10.43,
+        "y": 0,
+        "radius": 0.28,
+        "room": null,
+        "bounds": false,
+        "staticBlocked": false,
+        "residentBlocked": false,
+        "solids": [],
+        "residents": [],
+        "route": {
+          "id": "main-street-pavement",
+          "surface": "stone"
+        }
+      },
+      "invalidTransforms": [],
+      "errors": [],
+      "recentInputs": [
+        {
+          "control": "look",
+          "degrees": 100.71449318673054,
+          "verticalDegrees": 0
+        },
+        {
+          "control": "forward",
+          "durationMs": 750,
+          "run": false,
+          "from": [
+            3.359958948007051,
+            0,
+            0.23064640680809478
+          ],
+          "to": [
+            1.2096129845551462,
+            0,
+            0.20979170800339822
+          ],
+          "fromRoom": "izakaya",
+          "toRoom": "izakaya",
+          "displacement": 2.150447088629742,
+          "coordinateFrameChanged": false
+        },
+        {
+          "control": "forward",
+          "durationMs": 336.5534885881971,
+          "run": false,
+          "from": [
+            1.2096129845551462,
+            0,
+            0.20979170800339822
+          ],
+          "to": [
+            0.15977405597639394,
+            0,
+            0.19961005583157326
+          ],
+          "fromRoom": "izakaya",
+          "toRoom": "izakaya",
+          "displacement": 1.0498882997730428,
+          "coordinateFrameChanged": false
+        },
+        {
+          "control": "look",
+          "degrees": 90.96718575465201,
+          "verticalDegrees": 0
+        },
+        {
+          "control": "forward",
+          "durationMs": 750,
+          "run": false,
+          "from": [
+            0.16006321945939267,
+            0,
+            0.23986828189657544
+          ],
+          "to": [
+            0.17579211052211421,
+            0,
+            2.429692687067386
+          ],
+          "fromRoom": "izakaya",
+          "toRoom": "izakaya",
+          "displacement": 2.18988089253634,
+          "coordinateFrameChanged": false
+        },
+        {
+          "control": "forward",
+          "durationMs": 750,
+          "run": false,
+          "from": [
+            0.17579211052211421,
+            0,
+            2.429692687067386
+          ],
+          "to": [
+            0.1919523034439752,
+            0,
+            4.679564258524281
+          ],
+          "fromRoom": "izakaya",
+          "toRoom": "izakaya",
+          "displacement": 2.24992960776225,
+          "coordinateFrameChanged": false
+        },
+        {
+          "control": "forward",
+          "durationMs": 373.4882143308022,
+          "run": false,
+          "from": [
+            0.1919523034439752,
+            0,
+            4.679564258524281
+          ],
+          "to": [
+            0.19985308881450628,
+            0,
+            5.779535804859843
+          ],
+          "fromRoom": "izakaya",
+          "toRoom": "izakaya",
+          "displacement": 1.099999920526051,
+          "coordinateFrameChanged": false
+        },
+        {
+          "control": "wait",
+          "durationMs": 1000
+        },
+        {
+          "control": "wait",
+          "durationMs": 100
+        },
+        {
+          "control": "wait",
+          "durationMs": 100
+        },
+        {
+          "control": "wait",
+          "durationMs": 100
+        },
+        {
+          "control": "wait",
+          "durationMs": 100
+        },
+        {
+          "control": "look",
+          "degrees": -36.124623390188695,
+          "verticalDegrees": 0
+        },
+        {
+          "control": "forward",
+          "durationMs": 650,
+          "run": false,
+          "from": [
+            0.2013218259812556,
+            0,
+            5.919966072504023
+          ],
+          "to": [
+            -0.7571176752474834,
+            0,
+            5.919966072504023
+          ],
+          "fromRoom": "izakaya",
+          "toRoom": "izakaya",
+          "displacement": 0.958439501228739,
+          "coordinateFrameChanged": false
+        },
+        {
+          "control": "wait",
+          "durationMs": 1000
+        },
+        {
+          "control": "wait",
+          "durationMs": 100
+        },
+        {
+          "control": "wait",
+          "durationMs": 100
+        },
+        {
+          "control": "wait",
+          "durationMs": 100
+        },
+        {
+          "control": "wait",
+          "durationMs": 100
+        },
+        {
+          "control": "ui",
+          "button": "exit_room"
+        }
+      ]
+    }
+  },
+  "final": {
+    "room": null,
+    "player": [
+      -6.45,
+      0,
+      -10.43
+    ],
+    "errors": [],
+    "invalidTransforms": []
+  },
+  "passed": true,
+  "runtimeClean": true,
+  "calls": 129,
+  "captures": 8
+}

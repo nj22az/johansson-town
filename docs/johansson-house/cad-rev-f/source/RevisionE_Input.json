@@ -1,0 +1,3004 @@
+{
+  "project": "Johansson House / Johansson World",
+  "revision": "E - geometry and service-routing prototype",
+  "units": "mm",
+  "footprint_mm": [
+    12000,
+    10000
+  ],
+  "levels_mm": {
+    "B1": -2800,
+    "G0": 0,
+    "L1": 2800
+  },
+  "rooms": {
+    "B1": [
+      {
+        "name": "Electrical workshop",
+        "bounds_mm": [
+          200,
+          200,
+          4800,
+          4900
+        ]
+      },
+      {
+        "name": "Club reading room",
+        "bounds_mm": [
+          200,
+          5100,
+          4800,
+          9800
+        ]
+      },
+      {
+        "name": "Stair hall",
+        "bounds_mm": [
+          5000,
+          3600,
+          7200,
+          6400
+        ]
+      },
+      {
+        "name": "Boiler and pumps",
+        "bounds_mm": [
+          7400,
+          200,
+          11800,
+          3400
+        ]
+      },
+      {
+        "name": "Sauna and shower",
+        "bounds_mm": [
+          7400,
+          3600,
+          11800,
+          6400
+        ]
+      },
+      {
+        "name": "Storage",
+        "bounds_mm": [
+          5000,
+          6600,
+          11800,
+          9800
+        ]
+      }
+    ],
+    "G0": [
+      {
+        "name": "Living room",
+        "bounds_mm": [
+          200,
+          200,
+          4800,
+          4900
+        ]
+      },
+      {
+        "name": "Kitchen and dining",
+        "bounds_mm": [
+          200,
+          5100,
+          4800,
+          9800
+        ]
+      },
+      {
+        "name": "Stair hall",
+        "bounds_mm": [
+          5000,
+          3600,
+          7200,
+          6400
+        ]
+      },
+      {
+        "name": "Thuan sewing studio",
+        "bounds_mm": [
+          7400,
+          200,
+          11800,
+          4900
+        ]
+      },
+      {
+        "name": "Entry and genkan",
+        "bounds_mm": [
+          5000,
+          200,
+          7200,
+          3400
+        ]
+      },
+      {
+        "name": "WC and utility",
+        "bounds_mm": [
+          7400,
+          5100,
+          11800,
+          7000
+        ]
+      },
+      {
+        "name": "Covered terrace access",
+        "bounds_mm": [
+          7400,
+          7200,
+          11800,
+          9800
+        ]
+      }
+    ],
+    "L1": [
+      {
+        "name": "Primary bedroom",
+        "bounds_mm": [
+          200,
+          200,
+          4800,
+          4900
+        ]
+      },
+      {
+        "name": "Guest bedroom",
+        "bounds_mm": [
+          200,
+          5100,
+          4800,
+          9800
+        ]
+      },
+      {
+        "name": "Stair hall",
+        "bounds_mm": [
+          5000,
+          3600,
+          7200,
+          6400
+        ]
+      },
+      {
+        "name": "Bathroom",
+        "bounds_mm": [
+          7400,
+          200,
+          11800,
+          3400
+        ]
+      },
+      {
+        "name": "Study",
+        "bounds_mm": [
+          7400,
+          3600,
+          11800,
+          7000
+        ]
+      },
+      {
+        "name": "Linen and landing",
+        "bounds_mm": [
+          5000,
+          6600,
+          11800,
+          9800
+        ]
+      }
+    ]
+  },
+  "openings": {
+    "B1": [
+      {
+        "id": "D-BEXT",
+        "side": "south",
+        "start_mm": 8800,
+        "end_mm": 9800,
+        "type": "door",
+        "sill_mm": 0,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-B1",
+        "side": "west",
+        "start_mm": 5900,
+        "end_mm": 6900,
+        "type": "window",
+        "sill_mm": 1100,
+        "head_mm": 2100
+      }
+    ],
+    "G0": [
+      {
+        "id": "D-ENTRY",
+        "side": "south",
+        "start_mm": 5550,
+        "end_mm": 6550,
+        "type": "door",
+        "sill_mm": 0,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-LIVING",
+        "side": "south",
+        "start_mm": 1400,
+        "end_mm": 3400,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-SEW",
+        "side": "east",
+        "start_mm": 1200,
+        "end_mm": 3000,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-KITCHEN",
+        "side": "west",
+        "start_mm": 6900,
+        "end_mm": 8500,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      },
+      {
+        "id": "D-TERRACE",
+        "side": "north",
+        "start_mm": 8800,
+        "end_mm": 9800,
+        "type": "door",
+        "sill_mm": 0,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-DINING",
+        "side": "north",
+        "start_mm": 1600,
+        "end_mm": 3400,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      }
+    ],
+    "L1": [
+      {
+        "id": "W-BED",
+        "side": "south",
+        "start_mm": 1300,
+        "end_mm": 3200,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-BATH",
+        "side": "east",
+        "start_mm": 900,
+        "end_mm": 1800,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-STUDY",
+        "side": "east",
+        "start_mm": 4400,
+        "end_mm": 6100,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-GUEST",
+        "side": "west",
+        "start_mm": 6500,
+        "end_mm": 8300,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      },
+      {
+        "id": "W-LANDING",
+        "side": "north",
+        "start_mm": 8600,
+        "end_mm": 10400,
+        "type": "window",
+        "sill_mm": 850,
+        "head_mm": 2100
+      }
+    ]
+  },
+  "wall_thickness_mm": {
+    "exterior": 200,
+    "partition": 120
+  },
+  "stair": {
+    "footprint_mm": [
+      5100,
+      3700,
+      7100,
+      6300
+    ],
+    "rise_between_floors_mm": 2800,
+    "risers": 16,
+    "riser_mm": 175,
+    "tread_mm": 250,
+    "configuration": "two flights and intermediate landing; provisional game geometry"
+  },
+  "notes": [
+    "Game asset design; not suitable for actual construction",
+    "Structural spans, foundations and basement access need engineering review",
+    "Window and door rough openings are represented as real wall gaps in plans and mesh",
+    "Basement daylight and egress remain unresolved; do not imply real-world code compliance"
+  ],
+  "geometry_elements": [
+    {
+      "name": "B1 external south",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        0,
+        -2700,
+        8800,
+        200,
+        -200
+      ]
+    },
+    {
+      "name": "B1 external south",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        9800,
+        0,
+        -2700,
+        12000,
+        200,
+        -200
+      ]
+    },
+    {
+      "name": "B1 external north",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        9800,
+        -2700,
+        12000,
+        10000,
+        -200
+      ]
+    },
+    {
+      "name": "B1 external west",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        0,
+        -2700,
+        200,
+        5900,
+        -200
+      ]
+    },
+    {
+      "name": "B1 external west",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        6900,
+        -2700,
+        200,
+        10000,
+        -200
+      ]
+    },
+    {
+      "name": "B1 external east",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        0,
+        -2700,
+        12000,
+        10000,
+        -200
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        200,
+        -2700,
+        4960,
+        4100,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        4900,
+        -2700,
+        4960,
+        5700,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        6500,
+        -2700,
+        4960,
+        9800,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        200,
+        -2700,
+        7360,
+        4000,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        4800,
+        -2700,
+        7360,
+        7600,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        8400,
+        -2700,
+        7360,
+        9800,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        200,
+        4940,
+        -2700,
+        4900,
+        5060,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4900,
+        3440,
+        -2700,
+        7300,
+        3560,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4900,
+        6440,
+        -2700,
+        7300,
+        6560,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7300,
+        4940,
+        -2700,
+        9400,
+        5060,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        10200,
+        4940,
+        -2700,
+        11800,
+        5060,
+        -250
+      ]
+    },
+    {
+      "name": "B1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7300,
+        7040,
+        -2700,
+        11800,
+        7160,
+        -250
+      ]
+    },
+    {
+      "name": "D-BEXT lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        8800,
+        0,
+        -700,
+        9800,
+        200,
+        -200
+      ]
+    },
+    {
+      "name": "W-B1 sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        5900,
+        -2700,
+        200,
+        6900,
+        -1700
+      ]
+    },
+    {
+      "name": "W-B1 lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        5900,
+        -700,
+        200,
+        6900,
+        -200
+      ]
+    },
+    {
+      "name": "B1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        0,
+        -2980,
+        12000,
+        3700,
+        -2700
+      ]
+    },
+    {
+      "name": "B1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        6300,
+        -2980,
+        12000,
+        10000,
+        -2700
+      ]
+    },
+    {
+      "name": "B1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        3700,
+        -2980,
+        5100,
+        6300,
+        -2700
+      ]
+    },
+    {
+      "name": "B1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        7100,
+        3700,
+        -2980,
+        12000,
+        6300,
+        -2700
+      ]
+    },
+    {
+      "name": "G0 external south",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        0,
+        100,
+        1400,
+        200,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external south",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        3400,
+        0,
+        100,
+        5550,
+        200,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external south",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        6550,
+        0,
+        100,
+        12000,
+        200,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external north",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        9800,
+        100,
+        1600,
+        10000,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external north",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        3400,
+        9800,
+        100,
+        8800,
+        10000,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external north",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        9800,
+        9800,
+        100,
+        12000,
+        10000,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external west",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        0,
+        100,
+        200,
+        6900,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external west",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        8500,
+        100,
+        200,
+        10000,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external east",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        0,
+        100,
+        12000,
+        1200,
+        2600
+      ]
+    },
+    {
+      "name": "G0 external east",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        3000,
+        100,
+        12000,
+        10000,
+        2600
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        200,
+        100,
+        4960,
+        4100,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        4900,
+        100,
+        4960,
+        5700,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        6500,
+        100,
+        4960,
+        9800,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        200,
+        100,
+        7360,
+        4000,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        4800,
+        100,
+        7360,
+        5800,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        6600,
+        100,
+        7360,
+        9800,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        200,
+        4940,
+        100,
+        900,
+        5060,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        1700,
+        4940,
+        100,
+        4900,
+        5060,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4900,
+        3440,
+        100,
+        5400,
+        3560,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        6200,
+        3440,
+        100,
+        7300,
+        3560,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4900,
+        6440,
+        100,
+        7300,
+        6560,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7300,
+        4940,
+        100,
+        11800,
+        5060,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7300,
+        7040,
+        100,
+        9200,
+        7160,
+        2550
+      ]
+    },
+    {
+      "name": "G0 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        10000,
+        7040,
+        100,
+        11800,
+        7160,
+        2550
+      ]
+    },
+    {
+      "name": "D-ENTRY lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        5550,
+        0,
+        2100,
+        6550,
+        200,
+        2600
+      ]
+    },
+    {
+      "name": "W-LIVING sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        1400,
+        0,
+        100,
+        3400,
+        200,
+        850
+      ]
+    },
+    {
+      "name": "W-LIVING lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        1400,
+        0,
+        2100,
+        3400,
+        200,
+        2600
+      ]
+    },
+    {
+      "name": "W-SEW sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        1200,
+        100,
+        12000,
+        3000,
+        850
+      ]
+    },
+    {
+      "name": "W-SEW lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        1200,
+        2100,
+        12000,
+        3000,
+        2600
+      ]
+    },
+    {
+      "name": "W-KITCHEN sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        6900,
+        100,
+        200,
+        8500,
+        850
+      ]
+    },
+    {
+      "name": "W-KITCHEN lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        6900,
+        2100,
+        200,
+        8500,
+        2600
+      ]
+    },
+    {
+      "name": "D-TERRACE lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        8800,
+        9800,
+        2100,
+        9800,
+        10000,
+        2600
+      ]
+    },
+    {
+      "name": "W-DINING sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        1600,
+        9800,
+        100,
+        3400,
+        10000,
+        850
+      ]
+    },
+    {
+      "name": "W-DINING lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        1600,
+        9800,
+        2100,
+        3400,
+        10000,
+        2600
+      ]
+    },
+    {
+      "name": "G0 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        0,
+        -180,
+        12000,
+        3700,
+        100
+      ]
+    },
+    {
+      "name": "G0 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        6300,
+        -180,
+        12000,
+        10000,
+        100
+      ]
+    },
+    {
+      "name": "G0 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        3700,
+        -180,
+        5100,
+        6300,
+        100
+      ]
+    },
+    {
+      "name": "G0 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        7100,
+        3700,
+        -180,
+        12000,
+        6300,
+        100
+      ]
+    },
+    {
+      "name": "L1 external south",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        0,
+        2900,
+        1300,
+        200,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external south",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        3200,
+        0,
+        2900,
+        12000,
+        200,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external north",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        9800,
+        2900,
+        8600,
+        10000,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external north",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        10400,
+        9800,
+        2900,
+        12000,
+        10000,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external west",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        0,
+        2900,
+        200,
+        6500,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external west",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        8300,
+        2900,
+        200,
+        10000,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external east",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        0,
+        2900,
+        12000,
+        900,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external east",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        1800,
+        2900,
+        12000,
+        4400,
+        5400
+      ]
+    },
+    {
+      "name": "L1 external east",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        6100,
+        2900,
+        12000,
+        10000,
+        5400
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        200,
+        2900,
+        4960,
+        4100,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        4900,
+        2900,
+        4960,
+        5700,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4840,
+        6500,
+        2900,
+        4960,
+        9800,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        200,
+        2900,
+        7360,
+        4000,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        4800,
+        2900,
+        7360,
+        5800,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7240,
+        6600,
+        2900,
+        7360,
+        9800,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        200,
+        4940,
+        2900,
+        1000,
+        5060,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        1800,
+        4940,
+        2900,
+        4900,
+        5060,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4900,
+        3440,
+        2900,
+        7300,
+        3560,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        4900,
+        6440,
+        2900,
+        5400,
+        6560,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        6200,
+        6440,
+        2900,
+        7300,
+        6560,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7300,
+        4940,
+        2900,
+        11800,
+        5060,
+        5350
+      ]
+    },
+    {
+      "name": "L1 partition",
+      "layer": "A-PARTITION",
+      "bounds_mm": [
+        7300,
+        7040,
+        2900,
+        11800,
+        7160,
+        5350
+      ]
+    },
+    {
+      "name": "W-BED sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        1300,
+        0,
+        2900,
+        3200,
+        200,
+        3650
+      ]
+    },
+    {
+      "name": "W-BED lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        1300,
+        0,
+        4900,
+        3200,
+        200,
+        5400
+      ]
+    },
+    {
+      "name": "W-BATH sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        900,
+        2900,
+        12000,
+        1800,
+        3650
+      ]
+    },
+    {
+      "name": "W-BATH lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        900,
+        4900,
+        12000,
+        1800,
+        5400
+      ]
+    },
+    {
+      "name": "W-STUDY sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        4400,
+        2900,
+        12000,
+        6100,
+        3650
+      ]
+    },
+    {
+      "name": "W-STUDY lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        11800,
+        4400,
+        4900,
+        12000,
+        6100,
+        5400
+      ]
+    },
+    {
+      "name": "W-GUEST sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        6500,
+        2900,
+        200,
+        8300,
+        3650
+      ]
+    },
+    {
+      "name": "W-GUEST lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        0,
+        6500,
+        4900,
+        200,
+        8300,
+        5400
+      ]
+    },
+    {
+      "name": "W-LANDING sill",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        8600,
+        9800,
+        2900,
+        10400,
+        10000,
+        3650
+      ]
+    },
+    {
+      "name": "W-LANDING lintel",
+      "layer": "A-EXT-WALL",
+      "bounds_mm": [
+        8600,
+        9800,
+        4900,
+        10400,
+        10000,
+        5400
+      ]
+    },
+    {
+      "name": "L1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        0,
+        2620,
+        12000,
+        3700,
+        2900
+      ]
+    },
+    {
+      "name": "L1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        6300,
+        2620,
+        12000,
+        10000,
+        2900
+      ]
+    },
+    {
+      "name": "L1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        0,
+        3700,
+        2620,
+        5100,
+        6300,
+        2900
+      ]
+    },
+    {
+      "name": "L1 floor slab",
+      "layer": "A-FLOOR",
+      "bounds_mm": [
+        7100,
+        3700,
+        2620,
+        12000,
+        6300,
+        2900
+      ]
+    },
+    {
+      "name": "roof eaves slab",
+      "layer": "A-ROOF",
+      "bounds_mm": [
+        -400,
+        -400,
+        5600,
+        12400,
+        10400,
+        5800
+      ]
+    }
+  ],
+  "status": "Validated game-development prototype; NOT construction documentation",
+  "systems": {
+    "electrical": {
+      "nodes": {
+        "POLE": [
+          800,
+          7800
+        ],
+        "METER": [
+          3200,
+          7800
+        ],
+        "MAIN": [
+          5500,
+          7800
+        ],
+        "G0_DB": [
+          7900,
+          9000
+        ],
+        "L1_DB": [
+          7900,
+          6500
+        ],
+        "B1_DB": [
+          7900,
+          4000
+        ],
+        "LIGHT_G": [
+          10500,
+          9600
+        ],
+        "SOCKET_G": [
+          10500,
+          8400
+        ],
+        "SEWING": [
+          10500,
+          7500
+        ],
+        "LIGHT_L": [
+          10500,
+          6600
+        ],
+        "AC_L": [
+          10500,
+          5700
+        ],
+        "WORKSHOP": [
+          10500,
+          4500
+        ],
+        "SAUNA": [
+          10500,
+          3600
+        ],
+        "PUMP": [
+          10500,
+          2700
+        ]
+      },
+      "edges": [
+        [
+          "POLE",
+          "METER",
+          "overhead service / 100 V 60 Hz nominal"
+        ],
+        [
+          "METER",
+          "MAIN",
+          "service entrance"
+        ],
+        [
+          "MAIN",
+          "G0_DB",
+          "feeder F-G"
+        ],
+        [
+          "MAIN",
+          "L1_DB",
+          "feeder F-L"
+        ],
+        [
+          "MAIN",
+          "B1_DB",
+          "feeder F-B"
+        ],
+        [
+          "G0_DB",
+          "LIGHT_G",
+          "C-G01"
+        ],
+        [
+          "G0_DB",
+          "SOCKET_G",
+          "C-G02"
+        ],
+        [
+          "G0_DB",
+          "SEWING",
+          "C-G03"
+        ],
+        [
+          "L1_DB",
+          "LIGHT_L",
+          "C-L01"
+        ],
+        [
+          "L1_DB",
+          "AC_L",
+          "C-L02"
+        ],
+        [
+          "B1_DB",
+          "WORKSHOP",
+          "C-B01"
+        ],
+        [
+          "B1_DB",
+          "SAUNA",
+          "C-B02"
+        ],
+        [
+          "B1_DB",
+          "PUMP",
+          "C-B03"
+        ]
+      ]
+    },
+    "water": {
+      "nodes": {
+        "ISLAND_WATER": [
+          800,
+          7800
+        ],
+        "METER": [
+          3000,
+          7800
+        ],
+        "SHUTOFF": [
+          5000,
+          7800
+        ],
+        "COLD_MANIFOLD": [
+          7300,
+          7800
+        ],
+        "HEATER": [
+          7300,
+          4800
+        ],
+        "KITCHEN": [
+          10500,
+          9000
+        ],
+        "G0_WC": [
+          10500,
+          7900
+        ],
+        "L1_BATH": [
+          10500,
+          6800
+        ],
+        "LAUNDRY": [
+          10500,
+          5700
+        ],
+        "SAUNA_SHOWER": [
+          10500,
+          4600
+        ]
+      },
+      "edges": [
+        [
+          "ISLAND_WATER",
+          "METER",
+          "underground potable main"
+        ],
+        [
+          "METER",
+          "SHUTOFF",
+          "service"
+        ],
+        [
+          "SHUTOFF",
+          "COLD_MANIFOLD",
+          "cold feed"
+        ],
+        [
+          "COLD_MANIFOLD",
+          "HEATER",
+          "heater supply"
+        ],
+        [
+          "COLD_MANIFOLD",
+          "KITCHEN",
+          "cold"
+        ],
+        [
+          "COLD_MANIFOLD",
+          "G0_WC",
+          "cold"
+        ],
+        [
+          "COLD_MANIFOLD",
+          "L1_BATH",
+          "cold"
+        ],
+        [
+          "COLD_MANIFOLD",
+          "LAUNDRY",
+          "cold"
+        ],
+        [
+          "COLD_MANIFOLD",
+          "SAUNA_SHOWER",
+          "cold"
+        ],
+        [
+          "HEATER",
+          "KITCHEN",
+          "hot"
+        ],
+        [
+          "HEATER",
+          "L1_BATH",
+          "hot"
+        ],
+        [
+          "HEATER",
+          "SAUNA_SHOWER",
+          "hot"
+        ]
+      ]
+    },
+    "drainage": {
+      "nodes": {
+        "KITCHEN": [
+          800,
+          8500
+        ],
+        "G0_WC": [
+          800,
+          7000
+        ],
+        "L1_BATH": [
+          800,
+          5500
+        ],
+        "B1_SHOWER": [
+          800,
+          4000
+        ],
+        "B1_PUMP": [
+          3400,
+          4000
+        ],
+        "SOIL_STACK": [
+          5800,
+          7000
+        ],
+        "INSPECTION": [
+          8300,
+          7000
+        ],
+        "SEWER_MAIN": [
+          11000,
+          7000
+        ],
+        "RAINWATER": [
+          5800,
+          2500
+        ],
+        "STORM_DRAIN": [
+          11000,
+          2500
+        ]
+      },
+      "edges": [
+        [
+          "KITCHEN",
+          "SOIL_STACK",
+          "waste"
+        ],
+        [
+          "G0_WC",
+          "SOIL_STACK",
+          "soil"
+        ],
+        [
+          "L1_BATH",
+          "SOIL_STACK",
+          "soil"
+        ],
+        [
+          "B1_SHOWER",
+          "B1_PUMP",
+          "below-grade waste"
+        ],
+        [
+          "B1_PUMP",
+          "SOIL_STACK",
+          "pumped discharge"
+        ],
+        [
+          "SOIL_STACK",
+          "INSPECTION",
+          "gravity sewer"
+        ],
+        [
+          "INSPECTION",
+          "SEWER_MAIN",
+          "island wastewater collection"
+        ],
+        [
+          "RAINWATER",
+          "STORM_DRAIN",
+          "separate storm system"
+        ]
+      ]
+    },
+    "hvac": {
+      "nodes": {
+        "OUTDOOR_AIR": [
+          800,
+          8000
+        ],
+        "G0_AC": [
+          4000,
+          8000
+        ],
+        "L1_AC": [
+          7000,
+          8000
+        ],
+        "OUTDOOR_UNITS": [
+          10500,
+          8000
+        ],
+        "B1_FRESH": [
+          4000,
+          5000
+        ],
+        "B1_EXHAUST": [
+          7000,
+          5000
+        ],
+        "SAUNA_EXHAUST": [
+          10500,
+          5000
+        ],
+        "SMOKING_EXHAUST": [
+          10500,
+          3000
+        ]
+      },
+      "edges": [
+        [
+          "OUTDOOR_AIR",
+          "B1_FRESH",
+          "filtered make-up air"
+        ],
+        [
+          "B1_FRESH",
+          "B1_EXHAUST",
+          "basement ventilation"
+        ],
+        [
+          "B1_EXHAUST",
+          "SAUNA_EXHAUST",
+          "separate wet extract path"
+        ],
+        [
+          "G0_AC",
+          "OUTDOOR_UNITS",
+          "refrigerant and condensate"
+        ],
+        [
+          "L1_AC",
+          "OUTDOOR_UNITS",
+          "refrigerant and condensate"
+        ],
+        [
+          "B1_EXHAUST",
+          "SMOKING_EXHAUST",
+          "independent smoke extract concept"
+        ]
+      ]
+    }
+  },
+  "game_assets": [
+    {
+      "id": "B1-ROOM-01",
+      "kind": "room",
+      "level": "B1",
+      "name": "Electrical workshop",
+      "bounds_mm": [
+        200,
+        200,
+        -2800,
+        4800,
+        4900,
+        -250
+      ]
+    },
+    {
+      "id": "B1-ROOM-02",
+      "kind": "room",
+      "level": "B1",
+      "name": "Club reading room",
+      "bounds_mm": [
+        200,
+        5100,
+        -2800,
+        4800,
+        9800,
+        -250
+      ]
+    },
+    {
+      "id": "B1-ROOM-03",
+      "kind": "room",
+      "level": "B1",
+      "name": "Stair hall",
+      "bounds_mm": [
+        5000,
+        3600,
+        -2800,
+        7200,
+        6400,
+        -250
+      ]
+    },
+    {
+      "id": "B1-ROOM-04",
+      "kind": "room",
+      "level": "B1",
+      "name": "Boiler and pumps",
+      "bounds_mm": [
+        7400,
+        200,
+        -2800,
+        11800,
+        3400,
+        -250
+      ]
+    },
+    {
+      "id": "B1-ROOM-05",
+      "kind": "room",
+      "level": "B1",
+      "name": "Sauna and shower",
+      "bounds_mm": [
+        7400,
+        3600,
+        -2800,
+        11800,
+        6400,
+        -250
+      ]
+    },
+    {
+      "id": "B1-ROOM-06",
+      "kind": "room",
+      "level": "B1",
+      "name": "Storage",
+      "bounds_mm": [
+        5000,
+        6600,
+        -2800,
+        11800,
+        9800,
+        -250
+      ]
+    },
+    {
+      "id": "G0-ROOM-01",
+      "kind": "room",
+      "level": "G0",
+      "name": "Living room",
+      "bounds_mm": [
+        200,
+        200,
+        0,
+        4800,
+        4900,
+        2550
+      ]
+    },
+    {
+      "id": "G0-ROOM-02",
+      "kind": "room",
+      "level": "G0",
+      "name": "Kitchen and dining",
+      "bounds_mm": [
+        200,
+        5100,
+        0,
+        4800,
+        9800,
+        2550
+      ]
+    },
+    {
+      "id": "G0-ROOM-03",
+      "kind": "room",
+      "level": "G0",
+      "name": "Stair hall",
+      "bounds_mm": [
+        5000,
+        3600,
+        0,
+        7200,
+        6400,
+        2550
+      ]
+    },
+    {
+      "id": "G0-ROOM-04",
+      "kind": "room",
+      "level": "G0",
+      "name": "Thuan sewing studio",
+      "bounds_mm": [
+        7400,
+        200,
+        0,
+        11800,
+        4900,
+        2550
+      ]
+    },
+    {
+      "id": "G0-ROOM-05",
+      "kind": "room",
+      "level": "G0",
+      "name": "Entry and genkan",
+      "bounds_mm": [
+        5000,
+        200,
+        0,
+        7200,
+        3400,
+        2550
+      ]
+    },
+    {
+      "id": "G0-ROOM-06",
+      "kind": "room",
+      "level": "G0",
+      "name": "WC and utility",
+      "bounds_mm": [
+        7400,
+        5100,
+        0,
+        11800,
+        7000,
+        2550
+      ]
+    },
+    {
+      "id": "G0-ROOM-07",
+      "kind": "room",
+      "level": "G0",
+      "name": "Covered terrace access",
+      "bounds_mm": [
+        7400,
+        7200,
+        0,
+        11800,
+        9800,
+        2550
+      ]
+    },
+    {
+      "id": "L1-ROOM-01",
+      "kind": "room",
+      "level": "L1",
+      "name": "Primary bedroom",
+      "bounds_mm": [
+        200,
+        200,
+        2800,
+        4800,
+        4900,
+        5350
+      ]
+    },
+    {
+      "id": "L1-ROOM-02",
+      "kind": "room",
+      "level": "L1",
+      "name": "Guest bedroom",
+      "bounds_mm": [
+        200,
+        5100,
+        2800,
+        4800,
+        9800,
+        5350
+      ]
+    },
+    {
+      "id": "L1-ROOM-03",
+      "kind": "room",
+      "level": "L1",
+      "name": "Stair hall",
+      "bounds_mm": [
+        5000,
+        3600,
+        2800,
+        7200,
+        6400,
+        5350
+      ]
+    },
+    {
+      "id": "L1-ROOM-04",
+      "kind": "room",
+      "level": "L1",
+      "name": "Bathroom",
+      "bounds_mm": [
+        7400,
+        200,
+        2800,
+        11800,
+        3400,
+        5350
+      ]
+    },
+    {
+      "id": "L1-ROOM-05",
+      "kind": "room",
+      "level": "L1",
+      "name": "Study",
+      "bounds_mm": [
+        7400,
+        3600,
+        2800,
+        11800,
+        7000,
+        5350
+      ]
+    },
+    {
+      "id": "L1-ROOM-06",
+      "kind": "room",
+      "level": "L1",
+      "name": "Linen and landing",
+      "bounds_mm": [
+        5000,
+        6600,
+        2800,
+        11800,
+        9800,
+        5350
+      ]
+    },
+    {
+      "id": "ELECTRICAL-POLE-METER",
+      "kind": "network_edge",
+      "system": "electrical",
+      "from": "POLE",
+      "to": "METER",
+      "designation": "overhead service / 100 V 60 Hz nominal",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": true
+      }
+    },
+    {
+      "id": "ELECTRICAL-METER-MAIN",
+      "kind": "network_edge",
+      "system": "electrical",
+      "from": "METER",
+      "to": "MAIN",
+      "designation": "service entrance",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": true
+      }
+    },
+    {
+      "id": "ELECTRICAL-MAIN-G0_DB",
+      "kind": "network_edge",
+      "system": "electrical",
+      "from": "MAIN",
+      "to": "G0_DB",
+      "designation": "feeder F-G",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": true
+      }
+    },
+    {
+      "id": "ELECTRICAL-MAIN-L1_DB",
+      "kind": "network_edge",
+      "system": "electrical",
+      "from": "MAIN",
+      "to": "L1_DB",
+      "designation": "feeder F-L",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": true
+      }
+    },
+    {
+      "id": "ELECTRICAL-MAIN-B1_DB",
+      "kind": "network_edge",
+      "system": "electrical",
+      "from": "MAIN",
+      "to": "B1_DB",
+      "designation": "feeder F-B",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": true
+      }
+    },
+    {
+      "id": "ELECTRICAL-G0_DB-LIGHT_G",
+      "kind": "network_edge",
+      "system": "electrical",
+      "from": "G0_DB",
+      "to": "LIGHT_G",
+      "designation": "C-G01",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": true
+      }
+    },
+    {
+      "id": "ELECTRICAL-G0_DB-SOCKET_G",
+      "kind": "network_edge",
+      "system": "electrical",
+      "from": "G0_DB",
+      "to": "SOCKET_G",
+      "designation": "C-G02",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": true
+      }
+    },
+    {
+      "id": "ELECTRICAL-G0_DB-SEWING",
+      "kind": "network_edge",
+      "system": "electrical",
+      "from": "G0_DB",
+      "to": "SEWING",
+      "designation": "C-G03",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": true
+      }
+    },
+    {
+      "id": "ELECTRICAL-L1_DB-LIGHT_L",
+      "kind": "network_edge",
+      "system": "electrical",
+      "from": "L1_DB",
+      "to": "LIGHT_L",
+      "designation": "C-L01",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": true
+      }
+    },
+    {
+      "id": "ELECTRICAL-L1_DB-AC_L",
+      "kind": "network_edge",
+      "system": "electrical",
+      "from": "L1_DB",
+      "to": "AC_L",
+      "designation": "C-L02",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": true
+      }
+    },
+    {
+      "id": "ELECTRICAL-B1_DB-WORKSHOP",
+      "kind": "network_edge",
+      "system": "electrical",
+      "from": "B1_DB",
+      "to": "WORKSHOP",
+      "designation": "C-B01",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": true
+      }
+    },
+    {
+      "id": "ELECTRICAL-B1_DB-SAUNA",
+      "kind": "network_edge",
+      "system": "electrical",
+      "from": "B1_DB",
+      "to": "SAUNA",
+      "designation": "C-B02",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": true
+      }
+    },
+    {
+      "id": "ELECTRICAL-B1_DB-PUMP",
+      "kind": "network_edge",
+      "system": "electrical",
+      "from": "B1_DB",
+      "to": "PUMP",
+      "designation": "C-B03",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": true
+      }
+    },
+    {
+      "id": "WATER-ISLAND_WATER-METER",
+      "kind": "network_edge",
+      "system": "water",
+      "from": "ISLAND_WATER",
+      "to": "METER",
+      "designation": "underground potable main",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "WATER-METER-SHUTOFF",
+      "kind": "network_edge",
+      "system": "water",
+      "from": "METER",
+      "to": "SHUTOFF",
+      "designation": "service",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "WATER-SHUTOFF-COLD_MANIFOLD",
+      "kind": "network_edge",
+      "system": "water",
+      "from": "SHUTOFF",
+      "to": "COLD_MANIFOLD",
+      "designation": "cold feed",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "WATER-COLD_MANIFOLD-HEATER",
+      "kind": "network_edge",
+      "system": "water",
+      "from": "COLD_MANIFOLD",
+      "to": "HEATER",
+      "designation": "heater supply",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "WATER-COLD_MANIFOLD-KITCHEN",
+      "kind": "network_edge",
+      "system": "water",
+      "from": "COLD_MANIFOLD",
+      "to": "KITCHEN",
+      "designation": "cold",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "WATER-COLD_MANIFOLD-G0_WC",
+      "kind": "network_edge",
+      "system": "water",
+      "from": "COLD_MANIFOLD",
+      "to": "G0_WC",
+      "designation": "cold",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "WATER-COLD_MANIFOLD-L1_BATH",
+      "kind": "network_edge",
+      "system": "water",
+      "from": "COLD_MANIFOLD",
+      "to": "L1_BATH",
+      "designation": "cold",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "WATER-COLD_MANIFOLD-LAUNDRY",
+      "kind": "network_edge",
+      "system": "water",
+      "from": "COLD_MANIFOLD",
+      "to": "LAUNDRY",
+      "designation": "cold",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "WATER-COLD_MANIFOLD-SAUNA_SHOWER",
+      "kind": "network_edge",
+      "system": "water",
+      "from": "COLD_MANIFOLD",
+      "to": "SAUNA_SHOWER",
+      "designation": "cold",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "WATER-HEATER-KITCHEN",
+      "kind": "network_edge",
+      "system": "water",
+      "from": "HEATER",
+      "to": "KITCHEN",
+      "designation": "hot",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "WATER-HEATER-L1_BATH",
+      "kind": "network_edge",
+      "system": "water",
+      "from": "HEATER",
+      "to": "L1_BATH",
+      "designation": "hot",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "WATER-HEATER-SAUNA_SHOWER",
+      "kind": "network_edge",
+      "system": "water",
+      "from": "HEATER",
+      "to": "SAUNA_SHOWER",
+      "designation": "hot",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "DRAINAGE-KITCHEN-SOIL_STACK",
+      "kind": "network_edge",
+      "system": "drainage",
+      "from": "KITCHEN",
+      "to": "SOIL_STACK",
+      "designation": "waste",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "DRAINAGE-G0_WC-SOIL_STACK",
+      "kind": "network_edge",
+      "system": "drainage",
+      "from": "G0_WC",
+      "to": "SOIL_STACK",
+      "designation": "soil",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "DRAINAGE-L1_BATH-SOIL_STACK",
+      "kind": "network_edge",
+      "system": "drainage",
+      "from": "L1_BATH",
+      "to": "SOIL_STACK",
+      "designation": "soil",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "DRAINAGE-B1_SHOWER-B1_PUMP",
+      "kind": "network_edge",
+      "system": "drainage",
+      "from": "B1_SHOWER",
+      "to": "B1_PUMP",
+      "designation": "below-grade waste",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "DRAINAGE-B1_PUMP-SOIL_STACK",
+      "kind": "network_edge",
+      "system": "drainage",
+      "from": "B1_PUMP",
+      "to": "SOIL_STACK",
+      "designation": "pumped discharge",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "DRAINAGE-SOIL_STACK-INSPECTION",
+      "kind": "network_edge",
+      "system": "drainage",
+      "from": "SOIL_STACK",
+      "to": "INSPECTION",
+      "designation": "gravity sewer",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "DRAINAGE-INSPECTION-SEWER_MAIN",
+      "kind": "network_edge",
+      "system": "drainage",
+      "from": "INSPECTION",
+      "to": "SEWER_MAIN",
+      "designation": "island wastewater collection",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "DRAINAGE-RAINWATER-STORM_DRAIN",
+      "kind": "network_edge",
+      "system": "drainage",
+      "from": "RAINWATER",
+      "to": "STORM_DRAIN",
+      "designation": "separate storm system",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "HVAC-OUTDOOR_AIR-B1_FRESH",
+      "kind": "network_edge",
+      "system": "hvac",
+      "from": "OUTDOOR_AIR",
+      "to": "B1_FRESH",
+      "designation": "filtered make-up air",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "HVAC-B1_FRESH-B1_EXHAUST",
+      "kind": "network_edge",
+      "system": "hvac",
+      "from": "B1_FRESH",
+      "to": "B1_EXHAUST",
+      "designation": "basement ventilation",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "HVAC-B1_EXHAUST-SAUNA_EXHAUST",
+      "kind": "network_edge",
+      "system": "hvac",
+      "from": "B1_EXHAUST",
+      "to": "SAUNA_EXHAUST",
+      "designation": "separate wet extract path",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "HVAC-G0_AC-OUTDOOR_UNITS",
+      "kind": "network_edge",
+      "system": "hvac",
+      "from": "G0_AC",
+      "to": "OUTDOOR_UNITS",
+      "designation": "refrigerant and condensate",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "HVAC-L1_AC-OUTDOOR_UNITS",
+      "kind": "network_edge",
+      "system": "hvac",
+      "from": "L1_AC",
+      "to": "OUTDOOR_UNITS",
+      "designation": "refrigerant and condensate",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    },
+    {
+      "id": "HVAC-B1_EXHAUST-SMOKING_EXHAUST",
+      "kind": "network_edge",
+      "system": "hvac",
+      "from": "B1_EXHAUST",
+      "to": "SMOKING_EXHAUST",
+      "designation": "independent smoke extract concept",
+      "gameplay": {
+        "can_fail": true,
+        "requires_isolation": false
+      }
+    }
+  ],
+  "drawing_index": [
+    "A_B1_Coordinated.dxf",
+    "A_G0_Coordinated.dxf",
+    "A_L1_Coordinated.dxf",
+    "A104_Roof.dxf",
+    "A201_Elevations.dxf",
+    "A301_Section.dxf",
+    "C101_Site_Utilities.dxf",
+    "E101_One_Line.dxf",
+    "P101_Potable_Water.dxf",
+    "P102_Sanitary_Storm.dxf",
+    "M101_HVAC.dxf"
+  ],
+  "design_holds": [
+    "Room rectangles in Rev C overlap conceptual partitions; require full room-by-room geometric reconciliation",
+    "Rev C GLB roof remains a flat placeholder and does not match Rev D roof elevation",
+    "Stair riser/tread geometry must be checked against actual available run and landing",
+    "Basement egress, exterior stair, daylight, flood risk and waterproofing unresolved",
+    "No engineering load calculations, electrical cable sizes, breaker ratings, pipe sizing or real construction compliance",
+    "Elevations and section are diagrammatic and not fully synchronized with opening schedules",
+    "No detailed construction assemblies or manufacturer equipment selections",
+    "Rev E service routes are preliminary 3D polylines, NOT clash-free or sized for installation",
+    "Roof mesh added as overlay: inherited flat roof geometry may still be present and must be removed after mesh audit",
+    "Stair prototype does not establish headroom, landing, handrails or compliant egress",
+    "Room bounds do not prove closed watertight architectural partitions"
+  ],
+  "spatial_networks_mm": {
+    "electrical": {
+      "service": [
+        [
+          0,
+          2500,
+          2100
+        ],
+        [
+          5000,
+          2500,
+          2100
+        ],
+        [
+          5000,
+          3600,
+          2100
+        ]
+      ],
+      "G0_lighting": [
+        [
+          5000,
+          3600,
+          2300
+        ],
+        [
+          4700,
+          3600,
+          2300
+        ],
+        [
+          2500,
+          3600,
+          2300
+        ]
+      ],
+      "G0_sewing": [
+        [
+          5000,
+          3600,
+          2300
+        ],
+        [
+          7200,
+          3600,
+          2300
+        ],
+        [
+          8000,
+          3600,
+          2300
+        ],
+        [
+          8000,
+          2600,
+          450
+        ]
+      ],
+      "L1_lighting": [
+        [
+          5000,
+          3600,
+          5100
+        ],
+        [
+          5000,
+          4500,
+          5100
+        ],
+        [
+          2500,
+          4500,
+          5100
+        ]
+      ],
+      "B1_workshop": [
+        [
+          5000,
+          3600,
+          -500
+        ],
+        [
+          5000,
+          3000,
+          -500
+        ],
+        [
+          4000,
+          3000,
+          -500
+        ],
+        [
+          4000,
+          2000,
+          -2350
+        ]
+      ]
+    },
+    "potable_cold": {
+      "incoming": [
+        [
+          0,
+          5500,
+          -1400
+        ],
+        [
+          5000,
+          5500,
+          -1400
+        ],
+        [
+          7600,
+          5500,
+          -1400
+        ],
+        [
+          8000,
+          5000,
+          -1400
+        ]
+      ],
+      "kitchen": [
+        [
+          8000,
+          5000,
+          -1400
+        ],
+        [
+          8000,
+          5400,
+          200
+        ],
+        [
+          4600,
+          5400,
+          200
+        ],
+        [
+          4300,
+          6000,
+          200
+        ]
+      ],
+      "upper_bath": [
+        [
+          8000,
+          5000,
+          -1400
+        ],
+        [
+          8000,
+          5000,
+          3000
+        ],
+        [
+          9000,
+          3000,
+          3000
+        ]
+      ]
+    },
+    "potable_hot": {
+      "heater_kitchen": [
+        [
+          9000,
+          1500,
+          -1800
+        ],
+        [
+          9000,
+          5000,
+          -1800
+        ],
+        [
+          9000,
+          5400,
+          200
+        ],
+        [
+          4300,
+          5400,
+          200
+        ],
+        [
+          4300,
+          6000,
+          200
+        ]
+      ],
+      "heater_bath": [
+        [
+          9000,
+          1500,
+          -1800
+        ],
+        [
+          9000,
+          5000,
+          -1800
+        ],
+        [
+          9000,
+          5000,
+          3000
+        ],
+        [
+          9000,
+          3000,
+          3000
+        ]
+      ]
+    },
+    "sanitary": {
+      "soil_stack": [
+        [
+          10500,
+          6000,
+          3100
+        ],
+        [
+          10500,
+          6000,
+          -1600
+        ],
+        [
+          12000,
+          6000,
+          -1600
+        ]
+      ],
+      "basement_lift": [
+        [
+          9000,
+          5200,
+          -2550
+        ],
+        [
+          10000,
+          5200,
+          -2550
+        ],
+        [
+          10000,
+          6000,
+          -1600
+        ],
+        [
+          10500,
+          6000,
+          -1600
+        ]
+      ]
+    },
+    "storm": {
+      "roof_downpipe": [
+        [
+          12000,
+          9800,
+          5900
+        ],
+        [
+          12000,
+          9800,
+          -500
+        ],
+        [
+          16000,
+          9800,
+          -900
+        ]
+      ]
+    },
+    "hvac": {
+      "ground_ac": [
+        [
+          11500,
+          4500,
+          2400
+        ],
+        [
+          12000,
+          4500,
+          2400
+        ],
+        [
+          12500,
+          4500,
+          1500
+        ]
+      ],
+      "basement_extract": [
+        [
+          8200,
+          6200,
+          -400
+        ],
+        [
+          8200,
+          9800,
+          -400
+        ],
+        [
+          12000,
+          9800,
+          1800
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,471 @@
+{
+  "verified_utc": "2026-10-31T01:17:41.199284+00:00",
+  "publication_commit": "4a06f5fcc9f60ce447a6a28b915b3f8d087a087c",
+  "query": "?repair=4a06f5fc",
+  "total": 63,
+  "matched": 63,
+  "files": [
+    {
+      "path": "avatar-creator/world-library.json",
+      "expected_git_blob": "7c2b34358cc14fca910f4256df584b1bac212c6c",
+      "actual_git_blob": "7c2b34358cc14fca910f4256df584b1bac212c6c",
+      "bytes": 281088,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/asagao-rouge-models-r1-small.webp",
+      "expected_git_blob": "1780db5c6813bbfbe72cdb5eb8df4edf686c0c08",
+      "actual_git_blob": "1780db5c6813bbfbe72cdb5eb8df4edf686c0c08",
+      "bytes": 26258,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/asagao-rouge-models-r1.webp",
+      "expected_git_blob": "75133d9ce0a362515b2105e942c6d623f44b843c",
+      "actual_git_blob": "75133d9ce0a362515b2105e942c6d623f44b843c",
+      "bytes": 993358,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/asagao-uv-models-r1-small.webp",
+      "expected_git_blob": "9711a01850895b8efec390f77a0e98a5d328ebac",
+      "actual_git_blob": "9711a01850895b8efec390f77a0e98a5d328ebac",
+      "bytes": 23928,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/asagao-uv-models-r1.webp",
+      "expected_git_blob": "7474569cd34f6504375a3bf0f3b9a0fb0ef2310e",
+      "actual_git_blob": "7474569cd34f6504375a3bf0f3b9a0fb0ef2310e",
+      "bytes": 149638,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/kitano-12-models-r1-small.webp",
+      "expected_git_blob": "e0c15b05fab3dd870c6f66b870430fe8cd29f942",
+      "actual_git_blob": "e0c15b05fab3dd870c6f66b870430fe8cd29f942",
+      "bytes": 21420,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/kitano-12-models-r1.webp",
+      "expected_git_blob": "6a6913d90c547f058e80a225e0df63c63d6da434",
+      "actual_git_blob": "6a6913d90c547f058e80a225e0df63c63d6da434",
+      "bytes": 1163582,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/minato-tsuru-models-r1-small.webp",
+      "expected_git_blob": "f73a39060b93021afba238cc21ea580ddaec3d17",
+      "actual_git_blob": "f73a39060b93021afba238cc21ea580ddaec3d17",
+      "bytes": 30640,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/minato-tsuru-models-r1.webp",
+      "expected_git_blob": "c5bc86c992f8af701c8d9d65582bb55d6af9ae48",
+      "actual_git_blob": "c5bc86c992f8af701c8d9d65582bb55d6af9ae48",
+      "bytes": 266182,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/nami-sour-models-r1-small.webp",
+      "expected_git_blob": "d4c9ea3670e459730071297555f5a9dd93c6cd6d",
+      "actual_git_blob": "d4c9ea3670e459730071297555f5a9dd93c6cd6d",
+      "bytes": 31448,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/nami-sour-models-r1.webp",
+      "expected_git_blob": "71b4a24afeb9cd6b260fb40d65e0a610246a5a8a",
+      "actual_git_blob": "71b4a24afeb9cd6b260fb40d65e0a610246a5a8a",
+      "bytes": 910690,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/shimakaze-models-r1-small.webp",
+      "expected_git_blob": "32a6390ec810bfe82d5c784ad8b09adf8a990b37",
+      "actual_git_blob": "32a6390ec810bfe82d5c784ad8b09adf8a990b37",
+      "bytes": 36174,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/shimakaze-models-r1.webp",
+      "expected_git_blob": "163fe51b739a5eb4dc010f10ec1dca39719a30e0",
+      "actual_git_blob": "163fe51b739a5eb4dc010f10ec1dca39719a30e0",
+      "bytes": 834694,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/umineko-black-models-r1-small.webp",
+      "expected_git_blob": "121ba3e95bf57b122f1ec087111a3ae61a940670",
+      "actual_git_blob": "121ba3e95bf57b122f1ec087111a3ae61a940670",
+      "bytes": 24772,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/umineko-black-models-r1.webp",
+      "expected_git_blob": "d108d34676e7e48b244b9fca8b1dbd6c14d27a28",
+      "actual_git_blob": "d108d34676e7e48b244b9fca8b1dbd6c14d27a28",
+      "bytes": 1305194,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/umineko-draft-models-r1-small.webp",
+      "expected_git_blob": "ba30a33a0fef2193592b7092c56f1b577addc1b7",
+      "actual_git_blob": "ba30a33a0fef2193592b7092c56f1b577addc1b7",
+      "bytes": 30136,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/umineko-draft-models-r1.webp",
+      "expected_git_blob": "5f8db606c0486ff163df521b8fce0db7ab480d9b",
+      "actual_git_blob": "5f8db606c0486ff163df521b8fce0db7ab480d9b",
+      "bytes": 1073284,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/umineko-gift-models-r1-small.webp",
+      "expected_git_blob": "dca755ff070e965cdaf69da1e9b1178e80b9437a",
+      "actual_git_blob": "dca755ff070e965cdaf69da1e9b1178e80b9437a",
+      "bytes": 22814,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/graphics/sakura-trade/umineko-gift-models-r1.webp",
+      "expected_git_blob": "5ab9a14446d9879ae3e574793f461d088d715ac0",
+      "actual_git_blob": "5ab9a14446d9879ae3e574793f461d088d715ac0",
+      "bytes": 1138704,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/assets/models/izakaya/minato-interior-compact.glb",
+      "expected_git_blob": "d96e766faa87232508a46d83dba4abbe281fbc5c",
+      "actual_git_blob": "d96e766faa87232508a46d83dba4abbe281fbc5c",
+      "bytes": 3872380,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/guide/portraits.json",
+      "expected_git_blob": "d2a1fb11d18c5af4d6612eea2f6f73f7f0c0e803",
+      "actual_git_blob": "d2a1fb11d18c5af4d6612eea2f6f73f7f0c0e803",
+      "bytes": 753,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/guide/residents.json",
+      "expected_git_blob": "0dff889aa5f209259b526d39abd66a11135bb351",
+      "actual_git_blob": "0dff889aa5f209259b526d39abd66a11135bb351",
+      "bytes": 93706,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/index.html",
+      "expected_git_blob": "e23c13ec3a8161d63ceeab24b754eb1fe00bd86a",
+      "actual_git_blob": "e23c13ec3a8161d63ceeab24b754eb1fe00bd86a",
+      "bytes": 46314,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/resident-guide.js",
+      "expected_git_blob": "6139e5b487e39289403ad4fa7ff417d8d8f4f7f6",
+      "actual_git_blob": "6139e5b487e39289403ad4fa7ff417d8d8f4f7f6",
+      "bytes": 86786,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/.vite/manifest.json",
+      "expected_git_blob": "381d5989fc7e74a3977648bc618027f74c9134f9",
+      "actual_git_blob": "381d5989fc7e74a3977648bc618027f74c9134f9",
+      "bytes": 10946,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/actors-uyEUiSkd.js",
+      "expected_git_blob": "7f2fc7be1f7e287303f353ca6997fcc7d45b9388",
+      "actual_git_blob": "7f2fc7be1f7e287303f353ca6997fcc7d45b9388",
+      "bytes": 93260,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/animate-BX9iDI20.js",
+      "expected_git_blob": "bbbe8537495facac63f5166fbe22f2abe865acdd",
+      "actual_git_blob": "bbbe8537495facac63f5166fbe22f2abe865acdd",
+      "bytes": 644411,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/audio-BASudbp7.js",
+      "expected_git_blob": "8c4aa3ad00608d92d4f3590d2cf8f699544cc368",
+      "actual_git_blob": "8c4aa3ad00608d92d4f3590d2cf8f699544cc368",
+      "bytes": 101,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/boot-YKl8eog2.js",
+      "expected_git_blob": "5f75c6fb0baf908b0900123d103ba4842f89047b",
+      "actual_git_blob": "5f75c6fb0baf908b0900123d103ba4842f89047b",
+      "bytes": 4746,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/catalog-CDeVBzZu.js",
+      "expected_git_blob": "ae151cdcff70711ceb0b0d1725885d521ae88d31",
+      "actual_git_blob": "ae151cdcff70711ceb0b0d1725885d521ae88d31",
+      "bytes": 4958,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/compact-shops-HRLOIi1Y.js",
+      "expected_git_blob": "baf9dd6fe38b9482ea0a2abc02f848c48ce512ae",
+      "actual_git_blob": "baf9dd6fe38b9482ea0a2abc02f848c48ce512ae",
+      "bytes": 835694,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/concert-m6Cv5kjw.js",
+      "expected_git_blob": "b0e84b60edc859a8189193cf56e3245a266d64d2",
+      "actual_git_blob": "b0e84b60edc859a8189193cf56e3245a266d64d2",
+      "bytes": 33951,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/feed-4Hc-wfOC.js",
+      "expected_git_blob": "92dcd78261527320742996b67a2f689cc7cc232c",
+      "actual_git_blob": "92dcd78261527320742996b67a2f689cc7cc232c",
+      "bytes": 25889,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/ferry-ship-BlnVoovY.js",
+      "expected_git_blob": "7d2a253ea359e2cdcad3f7eea5697b64bf7d2358",
+      "actual_git_blob": "7d2a253ea359e2cdcad3f7eea5697b64bf7d2358",
+      "bytes": 35799,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/fish-QS-LRVQF.js",
+      "expected_git_blob": "92393fd1f728d5bc9c940d24bd307774c6abaca3",
+      "actual_git_blob": "92393fd1f728d5bc9c940d24bd307774c6abaca3",
+      "bytes": 330767,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/friendship-DqXHyFL0.js",
+      "expected_git_blob": "1b99a187c2638e5a3e20eb7b9d8e1914cf8fc3bb",
+      "actual_git_blob": "1b99a187c2638e5a3e20eb7b9d8e1914cf8fc3bb",
+      "bytes": 3421,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/game-CKxverAo.js",
+      "expected_git_blob": "0ba0e23e7d0313259e90836c2a8d452c446fd9fc",
+      "actual_git_blob": "0ba0e23e7d0313259e90836c2a8d452c446fd9fc",
+      "bytes": 889493,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/halloween-Buo41LRJ.js",
+      "expected_git_blob": "c3fc77e814740bf99617977663f62d51ea673054",
+      "actual_git_blob": "c3fc77e814740bf99617977663f62d51ea673054",
+      "bytes": 1231893,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/harbour-park-plan-CU8IGfsI.js",
+      "expected_git_blob": "7b1156bc75280a6051b3e84f737706e750e58c87",
+      "actual_git_blob": "7b1156bc75280a6051b3e84f737706e750e58c87",
+      "bytes": 53396,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/hat-models-BltfS9Th.js",
+      "expected_git_blob": "6b35202b48a90af5f0c3cbc35286da468e516f7e",
+      "actual_git_blob": "6b35202b48a90af5f0c3cbc35286da468e516f7e",
+      "bytes": 48044,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/onsen-DdlFB1K2.js",
+      "expected_git_blob": "080298d546539172880d79f5b1a414d66a4be625",
+      "actual_git_blob": "080298d546539172880d79f5b1a414d66a4be625",
+      "bytes": 189552,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/pixar-DC4sRsqH.js",
+      "expected_git_blob": "4c3962d5f16f8fd90bb23ac1bee7f52d375d943b",
+      "actual_git_blob": "4c3962d5f16f8fd90bb23ac1bee7f52d375d943b",
+      "bytes": 115946,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/portraits-h0W4hcIF.js",
+      "expected_git_blob": "58306c862c5b7da82444daa546ac62e9a2064f8c",
+      "actual_git_blob": "58306c862c5b7da82444daa546ac62e9a2064f8c",
+      "bytes": 2671,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/preload-helper-PPVm8Dsz.js",
+      "expected_git_blob": "f5001933e3a3f30e3d2fa7bd5fce0feb914c409b",
+      "actual_git_blob": "f5001933e3a3f30e3d2fa7bd5fce0feb914c409b",
+      "bytes": 1232,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/sakura-interior-DYeixllV.js",
+      "expected_git_blob": "fa063ff6e72ac49d95cea6a7adba1f75c58c65f4",
+      "actual_git_blob": "fa063ff6e72ac49d95cea6a7adba1f75c58c65f4",
+      "bytes": 179291,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/sato-ramen-DLbOVO5c.js",
+      "expected_git_blob": "71aa27fee7c6538ca069cfd017180b488df87dad",
+      "actual_git_blob": "71aa27fee7c6538ca069cfd017180b488df87dad",
+      "bytes": 543,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/scene-world-C4dZPQz-.js",
+      "expected_git_blob": "a039310432205c79b31d8a882c6d8bf135bdb3ed",
+      "actual_git_blob": "a039310432205c79b31d8a882c6d8bf135bdb3ed",
+      "bytes": 39379,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/shopping-lane-plan-D0DhEU8_.js",
+      "expected_git_blob": "edc2202d379b16caabbbd81c6116b845b9ee92a6",
+      "actual_git_blob": "edc2202d379b16caabbbd81c6116b845b9ee92a6",
+      "bytes": 606,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/source.json",
+      "expected_git_blob": "fd1b146b6399aaa875a11cca26b3a75ae583e010",
+      "actual_git_blob": "fd1b146b6399aaa875a11cca26b3a75ae583e010",
+      "bytes": 83,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/spector.bundle-_JPoFEkN.js",
+      "expected_git_blob": "b6e41beeed13e14220e0f416e82d1761f5bbcb01",
+      "actual_git_blob": "b6e41beeed13e14220e0f416e82d1761f5bbcb01",
+      "bytes": 1199203,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/staff-bench-DSC0Cxar.js",
+      "expected_git_blob": "086035a1491fb7b0af1d3b550865988723ff3389",
+      "actual_git_blob": "086035a1491fb7b0af1d3b550865988723ff3389",
+      "bytes": 223909,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/startup-recovery-CIJ7HiTu.js",
+      "expected_git_blob": "871591d38ee38a019af0cd525c85d929efa5cb54",
+      "actual_git_blob": "871591d38ee38a019af0cd525c85d929efa5cb54",
+      "bytes": 8783,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/storyteller-CZDQqH4D.js",
+      "expected_git_blob": "e5f526a0fff44afad9a22043eb2bbf440d72e596",
+      "actual_git_blob": "e5f526a0fff44afad9a22043eb2bbf440d72e596",
+      "bytes": 67194,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/studio-handoff-dU-3hwmR.js",
+      "expected_git_blob": "f075b12bd9b91134c1eb167c587132f238713d54",
+      "actual_git_blob": "f075b12bd9b91134c1eb167c587132f238713d54",
+      "bytes": 6099,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/thuan-voice-Dz-XGNqd.js",
+      "expected_git_blob": "3b89f1cb51fab1cf9d79b94706aea30420191edf",
+      "actual_git_blob": "3b89f1cb51fab1cf9d79b94706aea30420191edf",
+      "bytes": 5832,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/title-menu-bXbo70HQ.js",
+      "expected_git_blob": "05a85e4a5c120e9860cec1ebd8d98067d344befa",
+      "actual_git_blob": "05a85e4a5c120e9860cec1ebd8d98067d344befa",
+      "bytes": 3993,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/touch-ui-D34cMzo7.js",
+      "expected_git_blob": "c1148b35c9d5e34fd9966a5b43f6e4ac5e4551ff",
+      "actual_git_blob": "c1148b35c9d5e34fd9966a5b43f6e4ac5e4551ff",
+      "bytes": 2413,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/town-hall-CecJUXvJ.js",
+      "expected_git_blob": "96fcb7774d03ab045ed30d098b7e688cf4e43299",
+      "actual_git_blob": "96fcb7774d03ab045ed30d098b7e688cf4e43299",
+      "bytes": 57946,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/tree-design-data-iR1qvQBH.js",
+      "expected_git_blob": "9723aba20952a688c3a5f376e0b4b49f2db28414",
+      "actual_git_blob": "9723aba20952a688c3a5f376e0b4b49f2db28414",
+      "bytes": 633139,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/webmcp-CxSkO4VH.js",
+      "expected_git_blob": "73cf94bb8d7c5060fd7d9f0ecba9eabd1558dd55",
+      "actual_git_blob": "73cf94bb8d7c5060fd7d9f0ecba9eabd1558dd55",
+      "bytes": 15824,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/runtime/webmcp-characters-BkXkAGJZ.js",
+      "expected_git_blob": "320f0b03fbbdf8f33730e39d08a88564dbc7fce3",
+      "actual_git_blob": "320f0b03fbbdf8f33730e39d08a88564dbc7fce3",
+      "bytes": 3130,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/src/commerce/products-data.js",
+      "expected_git_blob": "04a35d09053d3ba9f5097b8248a8991f22e6044c",
+      "actual_git_blob": "04a35d09053d3ba9f5097b8248a8991f22e6044c",
+      "bytes": 48210,
+      "matches": true
+    },
+    {
+      "path": "johansson-town/sw.js",
+      "expected_git_blob": "b7824ba92c7aa2292f25ad536426f5505919f3a9",
+      "actual_git_blob": "b7824ba92c7aa2292f25ad536426f5505919f3a9",
+      "bytes": 2308,
+      "matches": true
+    }
+  ],
+  "unversioned_entry_and_worker": {
+    "verified_utc": "2026-10-31T01:21:49.367895+00:00",
+    "files": [
+      {
+        "path": "johansson-town/index.html",
+        "expected_git_blob": "e23c13ec3a8161d63ceeab24b754eb1fe00bd86a",
+        "actual_git_blob": "e23c13ec3a8161d63ceeab24b754eb1fe00bd86a",
+        "matches": true,
+        "bytes": 46314
+      },
+      {
+        "path": "johansson-town/sw.js",
+        "expected_git_blob": "b7824ba92c7aa2292f25ad536426f5505919f3a9",
+        "actual_git_blob": "b7824ba92c7aa2292f25ad536426f5505919f3a9",
+        "matches": true,
+        "bytes": 2308
+      }
+    ],
+    "matched": 2,
+    "total": 2
+  }
+}

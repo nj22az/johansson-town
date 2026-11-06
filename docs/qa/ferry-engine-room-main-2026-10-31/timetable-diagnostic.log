@@ -1,0 +1,84 @@
+✔ one timetable from the Harbour Line: three calls at Minato, the first boat out and the last boat back, overnight at Minato (1.494702ms)
+✔ ashore, she sails at her time: the gangway closes at 08:45 and nothing asks him (14694.94347ms)
+✖ two minutes before: the horn, the 出港 sign and the Go ashore / Stay aboard prompt; Go ashore lands him on the quay and she leaves without him (356.432181ms)
+✖ Stay aboard: he crosses on his own feet, lands at the advertised time at Kitano-jima, and goes ashore down her ramp (273.166852ms)
+✖ on the gangway as it closes, he is walked to the nearer end (pier) before it moves; she does not wait for him (1591.393344ms)
+✖ on the gangway as it closes, he is walked to the nearer end (deck) before it moves; she does not wait for him (1700.366749ms)
+✔ the chief’s watch: Mac’s while Johansson is ashore or off duty, Johansson’s aboard in working hours, and the ship never waits for him (6875.594785ms)
+✔ an old save holding a requested or held crossing comes back on the timetable (362.671221ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 4
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26841.484934
+
+✖ failing tests:
+
+test at tests/ferry-timetable.test.mjs:62:1
+✖ two minutes before: the horn, the 出港 sign and the Go ashore / Stay aboard prompt; Go ashore lands him on the quay and she leaves without him (356.432181ms)
+  Error: Missing menu action Go aboard
+      at Object.choose (file:///workspace/scratch/d916a0d6443b/ferry-main-release/johansson-town/tests/ferry-service-fixture.mjs:41:101)
+      at TestContext.<anonymous> (file:///workspace/scratch/d916a0d6443b/ferry-main-release/johansson-town/tests/ferry-timetable.test.mjs:64:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/ferry-timetable.test.mjs:80:1
+✖ Stay aboard: he crosses on his own feet, lands at the advertised time at Kitano-jima, and goes ashore down her ramp (273.166852ms)
+  Error: Missing menu action Go aboard
+      at Object.choose (file:///workspace/scratch/d916a0d6443b/ferry-main-release/johansson-town/tests/ferry-service-fixture.mjs:41:101)
+      at TestContext.<anonymous> (file:///workspace/scratch/d916a0d6443b/ferry-main-release/johansson-town/tests/ferry-timetable.test.mjs:82:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/ferry-timetable.test.mjs:96:2
+✖ on the gangway as it closes, he is walked to the nearer end (pier) before it moves; she does not wait for him (1591.393344ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  true !== false
+
+      at TestContext.<anonymous> (file:///workspace/scratch/d916a0d6443b/ferry-main-release/johansson-town/tests/ferry-timetable.test.mjs:104:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/ferry-timetable.test.mjs:96:2
+✖ on the gangway as it closes, he is walked to the nearer end (deck) before it moves; she does not wait for him (1700.366749ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  true !== false
+
+      at TestContext.<anonymous> (file:///workspace/scratch/d916a0d6443b/ferry-main-release/johansson-town/tests/ferry-timetable.test.mjs:104:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

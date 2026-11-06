@@ -1,0 +1,58 @@
+[
+  {
+    "path": "materials/oga-concrete.jpg",
+    "source": "https://opengameart.org/content/concrete-textures-seamless-1k",
+    "author": "YCbCr",
+    "license": "CC0-1.0",
+    "download": "https://opengameart.org/sites/default/files/concrete2_seamless_diffuse_1k.png",
+    "sourceSHA256": "eed25ae5048aef3f0fe1de7badc9f555bb13fc4c902c597bc3e43c5d290a7891",
+    "sha256": "b6caf8445fbd704918e2f7aa3c2e05479cf2fc992327f3c784c46a19fd2f17b1",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "changes": "JPEG compression; downsample to at most 1024px"
+  },
+  {
+    "path": "materials/oga-paving.jpg",
+    "source": "https://opengameart.org/content/ground-pavement-texture-pack",
+    "author": "para",
+    "license": "CC0-1.0",
+    "download": "https://opengameart.org/sites/default/files/ground%20pavement%20pack.zip",
+    "sourceSHA256": "8268a5cab449204a8c5a989836e92a0a966674d6a44f4d55d42527ccd1277da7",
+    "sha256": "13ec0328dec9ccf9220c70501cb77e895b0e0c2d8b67e405c7385199fbb7dfed",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "changes": "JPEG compression; downsample to at most 1024px"
+  },
+  {
+    "path": "materials/oga-bamboo.jpg",
+    "source": "https://opengameart.org/content/bamboo-wood-seamless-1k",
+    "author": "YCbCr",
+    "license": "CC0-1.0",
+    "download": "https://opengameart.org/sites/default/files/bamboo_seamless_1k_c.png",
+    "sourceSHA256": "2baef74777986df45b661225ac5bba8e4fd01fbef0626b2915c794c56b4fcd49",
+    "sha256": "7d910eb549ca9ccb70889b00c7fd6453737538fcc24ede78d6848378e4c218ad",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "changes": "JPEG compression; downsample to at most 1024px"
+  },
+  {
+    "path": "materials/oga-bamboo-normal.jpg",
+    "source": "https://opengameart.org/content/bamboo-wood-seamless-1k",
+    "author": "YCbCr",
+    "license": "CC0-1.0",
+    "download": "https://opengameart.org/sites/default/files/bamboo_seamless_1k_n.png",
+    "sourceSHA256": "b296c926605e677e0dc56aa93f977d5b697e34b0ade32fe332c0f41e1bdc13b1",
+    "sha256": "b69ff147c48d151114756ff297e308214c2477455e8ea6e1e827cae79933eac5",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "changes": "JPEG compression; downsample to at most 1024px"
+  }
+]

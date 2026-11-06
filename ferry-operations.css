@@ -1,0 +1,27 @@
+/* A compact, optional crew report. The ship continues working while it is open. */
+#hud .ferry-operations{position:fixed;top:112px;left:max(16px,env(safe-area-inset-left));width:min(340px,calc(100vw - 100px));max-height:calc(100dvh - 224px);color:#283631;background:#fff;border:1px solid #d9e1dc;border-radius:12px;box-shadow:0 3px 14px #122a1914;pointer-events:auto;overflow:auto;overscroll-behavior:contain;font:400 14px/1.45 var(--line-font,system-ui,sans-serif)}
+#hud .ferry-operations[hidden]{display:none!important}
+/* The transparent touch-stick capture area must not intercept the open report. The HUD itself still passes input through. */
+.touch-controls #hud:has(.ferry-operations[open]:not([hidden])){z-index:15}
+#hud:has(#waypoint:not(.hidden)) .ferry-operations{top:166px}
+.ferry-operations-summary{min-height:44px;padding:10px 14px;cursor:pointer;list-style:none}
+.ferry-operations-summary::-webkit-details-marker{display:none}
+.ferry-operations-summary::after{content:'＋';position:absolute;top:18px;right:14px;font-size:17px}
+.ferry-operations[open]>.ferry-operations-summary::after{content:'−'}
+.ferry-operations-brand{display:block;text-transform:uppercase;letter-spacing:.06em;font-size:10px;color:#566b60;padding-right:28px}
+.ferry-operations-title{display:block;font-size:14px;line-height:1.35;padding-right:28px}
+.ferry-operations-body{padding:0 14px 14px;border-top:1px solid #e3e9e5}
+.ferry-operations-close{display:block;margin:8px 0 0 auto;min-height:44px;min-width:56px;padding:7px 12px;font:600 13px/1.4 var(--line-font,system-ui,sans-serif);border:1px solid #b6c6bb;border-radius:8px;color:#274c37;background:white;cursor:pointer}
+.ferry-operations-detail{margin:8px 0;font-size:13px;color:#52675b}
+.ferry-operations-radio{padding:10px 12px;margin:10px 0;background:#eef5ef;border-left:3px solid #397754;border-radius:4px;font-size:14px;overflow-wrap:anywhere}
+.ferry-operations-progress{display:block;width:100%;height:7px;accent-color:#28794c;margin:8px 0}
+.ferry-operations-progress[hidden]{display:none}
+.ferry-operations-checks{display:grid;grid-template-columns:1fr 1.35fr;gap:5px 8px;margin:12px 0;font-size:12px}
+.ferry-operations-checks dt{font-weight:650}.ferry-operations-checks dd{margin:0}
+.ferry-operations-section{border-top:1px solid #e3e9e5;margin-top:8px}
+.ferry-operations-section>summary{padding:12px 0;min-height:44px;box-sizing:border-box;font-weight:650;cursor:pointer}
+.ferry-procedure,.ferry-reports{padding-left:22px;margin:2px 0 12px}.ferry-procedure li,.ferry-reports li{margin:0 0 10px}.ferry-procedure span{display:block;margin-top:3px;font-size:12px;color:#52675b}
+.ferry-crew-list{margin:0}.ferry-crew-list dt{font-weight:650;margin-top:12px}.ferry-crew-list dd{margin:4px 0 12px;font-size:13px}
+.ferry-operations-note{font-size:12px;color:#52675b;margin:8px 0 12px}
+@media(max-width:600px){#hud .ferry-operations{top:112px;width:calc(100vw - 92px);max-height:calc(100dvh - 296px)}#hud:has(#waypoint:not(.hidden)) .ferry-operations{top:174px;max-height:calc(100dvh - 358px)}}
+@media(max-height:540px){#hud .ferry-operations{top:72px!important;width:min(310px,40vw);max-height:calc(100dvh - 152px)!important}.ferry-operations-summary{padding:8px 12px}}

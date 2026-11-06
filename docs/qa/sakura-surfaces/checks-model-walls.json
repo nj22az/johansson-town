@@ -1,0 +1,137 @@
+[
+  {
+    "check": "office-front/umineko-black: supported inside wall",
+    "ok": true
+  },
+  {
+    "check": "umineko-black clear of town window",
+    "ok": true,
+    "gap_mm": 162.5
+  },
+  {
+    "check": "umineko-black clear of ledger shelf",
+    "ok": true,
+    "gap_mm": 121.0
+  },
+  {
+    "check": "umineko-black clear of filing and archive tube",
+    "ok": true,
+    "gap_mm": 3457.5
+  },
+  {
+    "check": "umineko-black clear of calendar",
+    "ok": true,
+    "gap_mm": 4452.5
+  },
+  {
+    "check": "office-front/kitano-12: supported inside wall",
+    "ok": true
+  },
+  {
+    "check": "kitano-12 clear of town window",
+    "ok": true,
+    "gap_mm": 92.5
+  },
+  {
+    "check": "kitano-12 clear of ledger shelf",
+    "ok": true,
+    "gap_mm": 3337.5
+  },
+  {
+    "check": "kitano-12 clear of filing and archive tube",
+    "ok": true,
+    "gap_mm": 116.0
+  },
+  {
+    "check": "kitano-12 clear of calendar",
+    "ok": true,
+    "gap_mm": 482.5
+  },
+  {
+    "check": "stockroom-rear/minato-tsuru: supported inside wall",
+    "ok": true
+  },
+  {
+    "check": "minato-tsuru clear of stairwell",
+    "ok": true,
+    "gap_mm": 242.5
+  },
+  {
+    "check": "minato-tsuru clear of delivery door",
+    "ok": true,
+    "gap_mm": 2842.5
+  },
+  {
+    "check": "minato-tsuru clear of low stock cartons and crates",
+    "ok": true,
+    "gap_mm": 336.0
+  },
+  {
+    "check": "minato-tsuru clear of cola standee",
+    "ok": true,
+    "gap_mm": 1042.5
+  },
+  {
+    "check": "minato-tsuru clear of Jaga-bo standee",
+    "ok": true,
+    "gap_mm": 1742.5
+  },
+  {
+    "check": "stockroom-rear/nami-sour: supported inside wall",
+    "ok": true
+  },
+  {
+    "check": "nami-sour clear of stairwell",
+    "ok": true,
+    "gap_mm": 1942.5
+  },
+  {
+    "check": "nami-sour clear of delivery door",
+    "ok": true,
+    "gap_mm": 1142.5
+  },
+  {
+    "check": "nami-sour clear of low stock cartons and crates",
+    "ok": true,
+    "gap_mm": 636.0
+  },
+  {
+    "check": "nami-sour clear of cola standee",
+    "ok": true,
+    "gap_mm": 146.24
+  },
+  {
+    "check": "nami-sour clear of Jaga-bo standee",
+    "ok": true,
+    "gap_mm": 394.89
+  },
+  {
+    "check": "stockroom-rear/asagao-uv: supported inside wall",
+    "ok": true
+  },
+  {
+    "check": "asagao-uv clear of stairwell",
+    "ok": true,
+    "gap_mm": 2692.5
+  },
+  {
+    "check": "asagao-uv clear of delivery door",
+    "ok": true,
+    "gap_mm": 392.5
+  },
+  {
+    "check": "asagao-uv clear of low stock cartons and crates",
+    "ok": true,
+    "gap_mm": 692.5
+  },
+  {
+    "check": "asagao-uv clear of cola standee",
+    "ok": true,
+    "gap_mm": 146.24
+  },
+  {
+    "check": "asagao-uv clear of Jaga-bo standee",
+    "ok": true,
+    "gap_mm": 394.89
+  }
+]

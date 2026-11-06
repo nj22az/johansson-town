@@ -1,0 +1,37 @@
+# Minato Maru engine room — main release, 31 October 2026
+
+Owner instruction: **“Implement and push to main.”** This authorises promoting this ferry room from the Blender H1-F1 prototype. It supersedes the development-only status in the [asset handover](HANDOFF-FERRY-ENGINE-ROOM-H1-2026-10-31.md). It does not promote other development prototypes.
+
+**Published to main on the owner’s instruction.** Implementation commit [2bb7bb35](https://github.com/nj22az/nj22az.github.io/commit/2bb7bb35aab07b5859b6124559f435146c8b57f2), verified source tree 88b7b1e427bacc78711dcb50bcb78447e736ae4f. All changed source/artifact blobs and the complete tree match local Git objects. This implementation and its publication metadata are delivered together. Hosted checks, public-byte verification and game captures are recorded in the root index after deployment.
+
+The release was tested against main `83783c93448d1be251a61c213959448e1d21c971`, then rebased onto current main `93519733462cd7b88c43f7639bae4124ca3ff8f6`. The later Pocket Camera publication and session tool are retained; the tested game source tree is identical after this rebase, using the verified Blender assets from development `a443706edada96233e1fb46fc22098d0f588ea76` / asset source `091b24d31a808854740c59da920ed0771f5d2133`. Current publication, workflow and live-file status is recorded in the [root handover index](../../HANDOVER.md) and release evidence linked there.
+
+## Delivered behaviour
+
+The measured engine room is enabled in ordinary play. `?engine-room-h1` is no longer required. It retains the 2,400 mm working envelope, raised decks, coordinated 4,000 mm gangway, relocated engine-room doorway and 1,150 mm top landing. Native Blender source, sixteen-sheet CAD, 43 source dial faces and all eight saved cameras are included. Machinery counts/axes and the verified H1-F1 GLB remain unchanged: two material groups, 80,376 triangles, 3,587,152 bytes. No Meshy account step is required.
+
+The GLB remains lazy-loaded from its versioned filename on the first machinery/access view. Loading failure retains the source fallback. Successful loading disposes it. Game gauges and controls remain live. Fixed ship-local cameras follow full ship motion, cycle with V/the view button and preserve movement direction across cuts. Normal camera preference, FOV and zoom restore on exit. Drinking uses the visible third-person body while the room's camera is active.
+
+Main's current Sakura/izakaya loading and resource repairs, two-office-poster selection, retired Nakamura family, shared artwork ownership, current avatars, Kissa Higa, fish-market work and Pocket Camera remain inherited from main. The import conflict in `game.js` retained main's poster/Blue Coral imports and added only the ferry imports. No seawall-photo, attention, wardrobe, tree or other development prototype is included.
+
+The former vessel-walk fixture used the old doorway at X6,900. It now approaches the CAD doorway at X5,850, preserving its collision, no-height-jump, engine obstruction, room progression and return-climb assertions. Separate normal-URL checks verify that the revised arrangement runs without a feature flag.
+
+Main integration also exposed four real boarding/clearing regressions from the longer gangway. The shore waiting/arrival points are now beyond the full gangway sweep; the passenger queue uses three columns within the pier. Access guards measure feet in the actual gangway/ramp/flap frames, including the low end of the raised-deck ramp, and clear to the nearer end before movement. Timetable and physical-voyage assertions remain intact. The control-booth review placement was moved into a verified clear standing cell without changing its locked camera.
+
+The first hosted phone run passed boot/reload but failed its initial engine-room fixture: 10:00 is an airport dwell, so normal simulation immediately moved the manually Town-parked ship. A focused real-controller experiment reproduced this and confirmed the 08:35 Town dwell plus normal floor-cache update keeps the player aboard and activates `engines-aft`. The phone/review setup now uses that timetable dwell. All GLB, movement, camera and GPU assertions remain. This follow-up also aligns the normal ferry opening with the safe shore waiting point and both ladder prompt/return positions with the relocated CAD doorway. Focused camera/arrival/opening checks **12/12** and runtime package **4/4** pass; see `arrival-followup.json`. The full 569-test guard cited above belongs to the initial release source; the hosted follow-up result is recorded in the root publication evidence.
+
+All previous production hashed runtime files are retained byte-for-byte alongside the new manifest. This protects existing tabs and cached entry pages during publication. `production-cache.json` records the count. No new Linux package is published.
+
+## Verification and evidence
+
+Final local World guard: **569/569 pass, 110 files, 611 s**, 6,144 MB heap / concurrency 2. Runtime/camera checks **11/11**, final package **4/4**, physical vessel routes **12/12** and corrected boarding/voyage tests **10/10** pass. The moving gangway top and eight clear/framed standing placements pass their focused checks.
+
+The follow-up hosted guard again passed **569/569** (224 s). Its actual WebKit engine-room section also passed GLB loading/two meshes/80,376 triangles, GPU error zero, normal keyboard movement, V, all eight locked cameras and ordinary view restoration. The later Izakaya exit exposed the shared touch layout's invisible movement zone above the centred action button. A minimal CSS correction raises the touch HUD above that zone; the HUD keeps `pointer-events:none`, so ground touches still reach movement outside controls. Quiet-HUD/context/package checks **15/15** pass. The native test explicitly checks the exit button receives a real hit before tapping, and retains the room/resource tests. See `touch-layer-followup.json`; final hosted status is in the root publication evidence.
+
+Local release results are under `docs/qa/ferry-engine-room-main-2026-10-31/`. The native iPhone WebKit workflow now also visits the default engine room, requires the real GLB to load with two meshes/80,376 triangles, checks all eight camera selections and V cycling, verifies preference/FOV/zoom restoration and captures phone/tablet-viewport views. This runs the actual compiled game and graphics path; it is not a physical-device test. Hosted results and captured images are recorded after publication in the root index.
+
+The original Blender/CAD checks and preview images remain in `docs/qa/ferry-engine-room-h1/`. Their older development test counts are historical; use the main-release evidence for this integration. Local Chromium installation returned an invalid/truncated archive, so no local WebGL success is claimed. The ordinary full-game CPU smoke in the guard substitutes rendering while executing the actual controller, geometry, simulation, rooms and saves.
+
+Real-vessel structure, stability/KG, tides/berths, hoist/stow restraints, protected escape, ventilation/fire volumes, full pipe routes and OEM lifting/overhaul remain engineering holds. Publishing the fictional game room does not close them. Physical iPhone/iPad/Safari performance remains unverified.
+
+Next: review the published room on physical devices and use the real game captures to assess any remaining visual or camera issue. Continue using the measured CAD and shared source data for future spatial changes.

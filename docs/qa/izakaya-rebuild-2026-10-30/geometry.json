@@ -1,0 +1,12 @@
+{
+  "revision": 9,
+  "verification": "Loaded game geometry; no GPU or physical-device claim",
+  "meshes": 194,
+  "triangles": 108355,
+  "toleranceMetres": 0.002,
+  "minimumAreaM2": 0.0005,
+  "findings": [],
+  "openDoorFindings": [],
+  "invalid": [],
+  "passed": true
+}

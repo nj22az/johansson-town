@@ -1,0 +1,112 @@
+1280 town
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+warning WARNING: Multiple instances of Three.js being imported.
+1280 loaded
+warning Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+warning THREE.WebGLRenderer: KHR_parallel_shader_compile extension not supported.
+1280 clicked
+warning Harbour bench unavailable; using its measured local fallback. Harbour bench asset timeout
+warning Detail fallback: harbour-park-bench Detail unavailable
+1280 ready
+warning Street plant unavailable: Failed to fetch
+warning Detail fallback: street-plants Detail unavailable
+error Failed to load resource: net::ERR_FAILED
+1280 storage
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+warning WARNING: Multiple instances of Three.js being imported.
+1280 loaded
+warning Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+warning THREE.WebGLRenderer: KHR_parallel_shader_compile extension not supported.
+1280 clicked
+1280 ready
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+warning WARNING: Multiple instances of Three.js being imported.
+warning Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+warning THREE.WebGLRenderer: KHR_parallel_shader_compile extension not supported.
+1280 returned
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+warning WARNING: Multiple instances of Three.js being imported.
+1280 loaded
+1280 clicked
+warning Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+warning THREE.WebGLRenderer: KHR_parallel_shader_compile extension not supported.
+1280 ready
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+warning WARNING: Multiple instances of Three.js being imported.
+warning Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+warning THREE.WebGLRenderer: KHR_parallel_shader_compile extension not supported.
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+warning WARNING: Multiple instances of Three.js being imported.
+1280 loaded
+1280 clicked
+warning Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+warning THREE.WebGLRenderer: KHR_parallel_shader_compile extension not supported.
+1280 ready
+warning Harbour bench unavailable; using its measured local fallback. Harbour bench asset timeout
+warning Detail fallback: harbour-park-bench Detail unavailable
+1280 passed
+390 town
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+warning WARNING: Multiple instances of Three.js being imported.
+390 loaded
+390 clicked
+warning Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+warning THREE.WebGLRenderer: KHR_parallel_shader_compile extension not supported.
+390 ready
+warning Street plant unavailable: Failed to fetch
+warning Detail fallback: street-plants Detail unavailable
+error Failed to load resource: net::ERR_FAILED
+390 storage
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+warning WARNING: Multiple instances of Three.js being imported.
+390 loaded
+390 clicked
+warning Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+warning THREE.WebGLRenderer: KHR_parallel_shader_compile extension not supported.
+390 ready
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+warning WARNING: Multiple instances of Three.js being imported.
+warning Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+warning THREE.WebGLRenderer: KHR_parallel_shader_compile extension not supported.
+390 returned
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+warning WARNING: Multiple instances of Three.js being imported.
+390 loaded
+390 clicked
+warning Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+warning THREE.WebGLRenderer: KHR_parallel_shader_compile extension not supported.
+390 ready
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+warning WARNING: Multiple instances of Three.js being imported.
+warning Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+warning THREE.WebGLRenderer: KHR_parallel_shader_compile extension not supported.
+warning Sakura bench unavailable; using a local stand-in. Failed to fetch
+warning Detail fallback: sakura-bench Detail unavailable
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+warning WARNING: Multiple instances of Three.js being imported.
+390 loaded
+warning Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently
+warning THREE.WebGLRenderer: KHR_parallel_shader_compile extension not supported.
+390 clicked
+390 ready
+390 passed
