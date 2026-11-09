@@ -1,7 +1,7 @@
 # Handoff: the title's wordmark in one typeface, the Studio link readable at night, the title above the fold — 9 November 2026
 
-**Branch** `claude/laughing-brahmagupta-ybyndm` (this repository). **On `main`** since the owner's "Push to main"
-(9 November 2026): `fc7281f` → `4deb767`. The first deployment did not go live: see "Publication" at the end.
+**Branch** `claude/laughing-brahmagupta-ybyndm` (this repository). **Published** on the owner's "Push to main"
+(9 November 2026): `main` `fc7281f` → `4deb767` → `fcbcae9`, live at the second deployment. See "Publication" at the end.
 
 ## The owner's words
 
@@ -67,12 +67,24 @@ looked at: `nj22az.github.io`, `camera/HANDOVER-LANDING-2026-11-09.md`).
 
 ## Publication
 
-- `main` was fast-forwarded to `4deb767` on the owner's "Push to main". The guard workflow's `guard` job passed (the
-  tests of `tests/ci-guard.txt`). Its `iphone-startup` job failed at "authored dining exit approach failed" in the
-  Izakaya, after cold start, landscape, warm reload, the ferry's asset and entering the Izakaya had passed: a walk to a
-  room's exit, which no font or title stylesheet reaches. That workflow had never completed in this repository (its
-  only earlier run, on the first commit, was cancelled), so there is no green run to compare with. Not looked into.
+- `main` was fast-forwarded to `4deb767` on the owner's "Push to main".
 - **The first deployment timed out.** `actions/deploy-pages` waits ten minutes; Pages was still `syncing_files` then,
   and the action cancelled the deployment, so the live site stayed the old one. The session could neither re-run the
   job nor dispatch the workflow (403 for its integration), so `pages.yml` now gives the deployment thirty minutes
-  (`timeout: 1800000`) and that commit, pushed to `main`, started the publish again.
+  (`timeout: 1800000`); that commit, `fcbcae9`, pushed to `main`, started the publish again, and the second
+  deployment took 47 seconds.
+- **Live, checked:** the page, `line-ui.css`, `title-screen.css`, `creator/index.html`, the font file and its licence
+  match the repository byte for byte. The live title on a phone, by the browser's own account of the glyphs:
+  JOHANSSON LINE Seed JP ExtraBold × 9, WORLD × 5, the tag × 32, the stamp × 16, Load × 4; "Sakura Shōten, Kōji,
+  Ōshiro" LINE Seed JP × 24 and Figtree × 3. Nothing under the fold at 390 × 664; the Studio link on its backing; no
+  Google Figtree link; no page errors. Johansson Studio (`/avatar-creator/`, published after the Town) draws "Sakura
+  Shōten, Kōji" with LINE Seed JP × 17 and Figtree × 2.
+- **The guard workflow** (`johansson-world.yml`), two runs:
+  - `4deb767`: `guard` (the tests of `tests/ci-guard.txt`) passed; `iphone-startup` failed at "authored dining exit
+    approach failed" in the Izakaya, after cold start, landscape, warm reload, the ferry's asset and entering the
+    Izakaya had passed; the run was then cancelled by the next push.
+  - `fcbcae9`: `guard`, `iphone-startup`, `ferry-exploration (desktop)` and `(ipad-portrait)` passed, so the Izakaya
+    step's failure did not repeat; `ferry-exploration (ipad-landscape)` was cancelled when its time ran out, fifteen
+    minutes after it started, as the whole run on the repository's first commit was (6 November). Neither the Izakaya
+    walk nor the ferry's time limit was looked into: no font or title stylesheet reaches either.
+- Not seen on a physical iPhone.
