@@ -67,12 +67,24 @@ test('the catch story reads right with every pier fish', async () => {
  for(const f of fishAt('pier'))assert.equal(expand('I caught {a $fish} last night.',{vars:{fish:f.name}},seeded(f.id)),`I caught ${aFish(f)} last night.`);
 });
 
-test('the long vowels draw right: Figtree supplies ā ē ī ō ū, which LINE Seed JP draws with the bar beside the letter', () => {
+test('the long vowels draw right: Figtree supplies ā ē ī ō ū, which LINE Seed JP draws with the bar beside the letter, and no other letter', () => {
  const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
- const page=read('index.html'),subset=decodeURIComponent(page.match(/family=Figtree[^"]*text=([^&"]+)/)?.[1]||'');
- for(const c of 'āēīōūĀĒĪŌŪ')assert.ok(subset.includes(c),'the Figtree subset has '+c);
- assert.ok(page.indexOf('family=Figtree')>page.indexOf('family=LINE+Seed+JP'),'loaded beside LINE Seed JP');
- assert.match(read('line-ui.css'),/--line-font:Figtree,"LINE Seed JP",/);
+ const page=read('index.html'),css=read('line-ui.css');
+ // The face is the island's own: one file, one range, the ten letters. Google's text= subset also declared the plain
+ // vowels, and with Figtree first in the lists every A E I O U was drawn in it (9 November 2026: JoHaNSSoN WoRLD).
+ const face=css.match(/@font-face\{[^}]*font-family:"Figtree"[^}]*\}/)?.[0]||'';
+ assert.ok(face,'line-ui.css declares the Figtree face');
+ assert.match(face,/src:url\("\.\/assets\/fonts\/figtree-macrons\.woff2"\) format\("woff2"\)/);
+ const range=face.match(/unicode-range:([^;}]+)/)?.[1]||'',drawn=new Set();
+ for(const part of range.split(',')){const [a,b]=part.trim().replace(/^U\+/i,'').split('-').map(h=>parseInt(h,16));for(let c=a;c<=(b??a);c++)drawn.add(String.fromCodePoint(c));}
+ assert.deepEqual([...drawn].sort().join(''),[...'āēīōūĀĒĪŌŪ'].sort().join(''),'the range is the ten long vowels and nothing else');
+ for(const c of 'AEIOUaeiou')assert.ok(!drawn.has(c),c+' stays with LINE Seed JP');
+ // The file itself maps only those ten: read its character map (WOFF2 is compressed, so ask for the size and the
+ // range above; tools/font-audit.mjs reads the map in a browser).
+ assert.ok(readFileSync(new URL('../assets/fonts/figtree-macrons.woff2',import.meta.url)).length<4096,'a file of ten letters is small');
+ for(const p of ['index.html','creator/index.html'])assert.doesNotMatch(read(p),/family=Figtree/,p+' no longer links Google\'s subset, which took the plain vowels');
+ assert.match(page,/family=LINE\+Seed\+JP/,'LINE Seed JP is still loaded');
+ assert.match(css,/--line-font:Figtree,"LINE Seed JP",/);
  assert.match(read('src/feed/comic.js'),/const FONT='Figtree,"LINE Seed JP",/);
- for(const f of FISH)for(const c of f.name.normalize('NFC'))if(c.charCodeAt(0)>0x7f)assert.ok(subset.includes(c),`${f.name}: ${c} is drawn by Figtree`);
+ for(const f of FISH)for(const c of f.name.normalize('NFC'))if(c.charCodeAt(0)>0x7f)assert.ok(drawn.has(c),`${f.name}: ${c} is drawn by Figtree`);
 });

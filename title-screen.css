@@ -9,7 +9,10 @@
 #start .logo-main{margin:0;font:800 clamp(28px,6.9vw,52px)/1.12 var(--line-font);letter-spacing:.035em;color:var(--title-text)}
 #start .logo-town{margin:0;padding:0;font:800 clamp(24px,5.6vw,40px)/1.1 var(--line-font);letter-spacing:.18em;text-indent:.18em;color:var(--title-green);background:none;border:0;border-radius:0;box-shadow:none}
 #start .title-tag{margin:12px 0 0;font:400 14px/1.5 var(--line-font);color:var(--title-text);animation:none}
-#start .title-world-space{flex:1;min-height:230px;width:100%;pointer-events:none}
+/* The scenery's window between the title and the menu: 230 where the screen has the room, less on a phone's browser
+   (an iPhone's Safari leaves 664 or 629 of height), so the whole title fits and the footer is not cut at the fold.
+   466 is everything else on the screen, measured (9 November 2026: the copyright pill sat half under the fold). */
+#start .title-world-space{flex:1;min-height:230px;min-height:clamp(120px,calc(100dvh - 466px - env(safe-area-inset-top) - env(safe-area-inset-bottom)),230px);width:100%;pointer-events:none}
 #start .title-menu{display:flex;flex-direction:column;gap:12px;width:min(352px,100%);padding:16px;margin:0;border:1px solid #f5f5ec70;border-radius:18px;background:#f5f5eceb;box-shadow:0 4px 20px #263d3912;box-sizing:border-box}
 #start .title-player{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;width:100%;font:400 12px/1.4 var(--line-font);color:var(--title-text)}
 #start .title-player b{font-size:15px;max-width:45%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -29,7 +32,10 @@
 #start #installTown{min-height:44px;padding:8px 12px;font-size:13px;background:transparent;color:var(--title-text);border-radius:12px}
 #start [hidden]{display:none!important}
 #start .title-foot{position:static;display:flex;flex-direction:column;gap:0;align-items:center;justify-content:center;padding:8px 16px calc(env(safe-area-inset-bottom) + 12px);background:transparent;border:0;color:var(--title-text);font:400 10px/1.5 var(--line-font);text-shadow:none}
-#start #openStudio.title-studio{border:0;background:transparent;padding:0;display:flex;align-items:center;gap:8px;justify-content:center;min-height:44px;font:700 12px/1.4 var(--line-font);color:var(--title-text);text-decoration:none}
+/* The Studio link sits on the scenery too, so it has the footer's light backing (below): without it the link was dark
+   ink on the night harbour. The pill is 32 high in a 44-point target (the ::after reaches the rest). */
+#start #openStudio.title-studio{position:relative;border:0;background:#f5f5ecd9;padding:0 12px;margin:6px 0;border-radius:999px;display:flex;align-items:center;gap:8px;justify-content:center;min-height:32px;font:700 12px/1.4 var(--line-font);color:var(--title-text);text-decoration:none}
+#start #openStudio.title-studio::after{content:"";position:absolute;inset:-6px 0}
 #start .title-loading{width:min(352px,100%);margin:0;padding:16px;box-sizing:border-box;border-radius:18px;background:var(--title-surface)}
 #start .title-screen :is(button,a,summary):focus-visible{outline:3px solid var(--title-green);outline-offset:3px}
 #start.guide-open{background:var(--title-surface)}

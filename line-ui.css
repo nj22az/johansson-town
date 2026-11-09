@@ -1,4 +1,10 @@
 /* Canonical LINE presentation. Layout/input mechanics remain in the existing sheets. */
+/* Figtree, for ā ē ī ō ū and their capitals and nothing else: LINE Seed JP draws their bars beside the letter. The
+   file holds just those ten letters and the range names just those ten. Google's `text=` subset, loaded here until
+   9 November 2026, also declared A E I O U a e i o u (it reaches ā as a plus a combining macron), so with Figtree
+   first in the lists every plain vowel on the island was drawn in Figtree among LINE Seed JP's consonants: the title
+   read JoHaNSSoN WoRLD, with small light vowels (the owner: "Johansson Worlds landing page is a bit off"). */
+@font-face{font-family:"Figtree";font-style:normal;font-weight:300 900;font-display:swap;src:url("./assets/fonts/figtree-macrons.woff2") format("woff2");unicode-range:U+100-101,U+112-113,U+12A-12B,U+14C-14D,U+16A-16B}
 :root{
  --line-green:#06c755;--line-green-hover:#05b34c;--line-white:#fff;
  --line-surface:#f7f8f9;--line-text:#000;--line-secondary:#666;
@@ -278,7 +284,8 @@ body>.shm .shm-share{background:var(--line-overlay)}body>.shm .shm-share>div{box
 }
 
 /* One typeface for every piece of interface text: LINE Seed JP, with the LINE stack behind it. (Figtree comes
-   first only for ā ē ī ō ū and their capitals, which LINE Seed JP draws wrongly: index.html loads just those.)
+   first only for ā ē ī ō ū and their capitals, which LINE Seed JP draws wrongly: the face at the top of this sheet
+   holds and names just those.)
    Product packaging, shop signs and other in-world artwork are painted into their own textures
    and keep their own lettering. */
 body,body :is(div,p,span,a,b,i,em,strong,small,h1,h2,h3,h4,h5,h6,li,dt,dd,label,legend,summary,button,input,select,textarea,th,td,caption,figcaption,blockquote,time,output,kbd,code){font-family:var(--line-font)!important;letter-spacing:normal}
@@ -289,7 +296,7 @@ body,body :is(div,p,span,a,b,i,em,strong,small,h1,h2,h3,h4,h5,h6,li,dt,dd,label,
    chats share the same placement, which protects faces, replies and screen margins.
    The full sentence reserves its footprint while the visible words appear.
    Figtree comes first only for
-   the macron letters it was subset to (index.html); everything else is M PLUS Rounded 1c,
+   the macron letters it is limited to (the face at the top of this sheet); everything else is M PLUS Rounded 1c,
    loaded by tomodachi-ui.css. */
 :root{
  --balloon-font:Figtree,"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Arial Rounded MT Bold","LINE Seed JP",system-ui,sans-serif;
