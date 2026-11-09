@@ -41,5 +41,10 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # GitHub can take longer than this action's ten minutes to copy a site of this size (about 800 MB). On
+      # 9 November 2026 a deployment was still "syncing_files" when the action gave up and cancelled it, and the
+      # title's font fix stayed unpublished; three days earlier the same copy had taken under two minutes.
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 1800000

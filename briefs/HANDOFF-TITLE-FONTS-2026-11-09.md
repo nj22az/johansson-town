@@ -1,6 +1,7 @@
 # Handoff: the title's wordmark in one typeface, the Studio link readable at night, the title above the fold — 9 November 2026
 
-**Branch** `claude/laughing-brahmagupta-ybyndm` (this repository). **Not on `main`**: the owner publishes.
+**Branch** `claude/laughing-brahmagupta-ybyndm` (this repository). **On `main`** since the owner's "Push to main"
+(9 November 2026): `fc7281f` → `4deb767`. The first deployment did not go live: see "Publication" at the end.
 
 ## The owner's words
 
@@ -63,3 +64,15 @@ looked at: `nj22az.github.io`, `camera/HANDOVER-LANDING-2026-11-09.md`).
 - LINE Seed JP is still loaded from Google Fonts; the game needs that host for its typeface.
 - The full guard (`node tools/ci-guard.mjs`) was not run in this checkout (no `npm ci`); the three tests that read the
   changed files were.
+
+## Publication
+
+- `main` was fast-forwarded to `4deb767` on the owner's "Push to main". The guard workflow's `guard` job passed (the
+  tests of `tests/ci-guard.txt`). Its `iphone-startup` job failed at "authored dining exit approach failed" in the
+  Izakaya, after cold start, landscape, warm reload, the ferry's asset and entering the Izakaya had passed: a walk to a
+  room's exit, which no font or title stylesheet reaches. That workflow had never completed in this repository (its
+  only earlier run, on the first commit, was cancelled), so there is no green run to compare with. Not looked into.
+- **The first deployment timed out.** `actions/deploy-pages` waits ten minutes; Pages was still `syncing_files` then,
+  and the action cancelled the deployment, so the live site stayed the old one. The session could neither re-run the
+  job nor dispatch the workflow (403 for its integration), so `pages.yml` now gives the deployment thirty minutes
+  (`timeout: 1800000`) and that commit, pushed to `main`, started the publish again.
