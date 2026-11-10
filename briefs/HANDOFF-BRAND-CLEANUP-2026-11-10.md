@@ -1,7 +1,7 @@
 # Handoff: the older toy title deleted, the World's brand written down, the WebKit checks' time limit — 10 November 2026
 
-**Branch** `claude/laughing-brahmagupta-ybyndm` (this repository). **Not published**: it waits for the owner's "Push to
-main". The camera's half of the same round is in `nj22az.github.io`, `camera/HANDOVER-GREEN-2026-11-10.md`.
+**Branch** `claude/laughing-brahmagupta-ybyndm` (this repository). **Published** on the owner's "Push to main"
+(10 November 2026): `main` `fcbcae9` → `8a9b2e0`. See "Publication" at the end. The camera's half of the same round is in `nj22az.github.io`, `camera/HANDOVER-GREEN-2026-11-10.md`.
 
 ## The owner's words
 
@@ -89,9 +89,28 @@ installed on this machine, and they run on a push to `main` or a pull request.
 
 ## Open
 
-1. Publishing is the owner's word. A push to `main` publishes (`pages.yml`) and runs the guard workflow, where the
-   new 25-minute limit will show whether the iPad in landscape now reports its pass.
-2. `iphone-startup` failed once on 9 November at "authored dining exit approach failed" in the Izakaya and passed on
+1. `iphone-startup` failed once on 9 November at "authored dining exit approach failed" in the Izakaya and passed on
    the next run. Not looked into.
-3. LINE Seed JP is still loaded from Google Fonts by the World (`index.html`). Pocket Camera carries its own copy of
+2. LINE Seed JP is still loaded from Google Fonts by the World (`index.html`). Pocket Camera carries its own copy of
    the Latin letters (7 KB a weight); the World could do the same and load nothing from another host.
+
+## Publication
+
+The owner: "Push to main" (10 November 2026). A fast-forward of four commits at 05:27 UTC, `main` `fcbcae9` →
+`8a9b2e0`.
+
+- **Published**: run 42762203354 of `pages.yml` succeeded in 4 min 15 s (the deployment itself about three and a half
+  minutes, inside the thirty it now has); the new `brand/brand.json` answered 200 at 05:31:18.
+- **Live**: 9 files match the repository byte for byte (`index.html`, `landing.css`, `base.css`, `title-screen.css`,
+  `line-ui.css`, `brand/brand.json`, `brand/wordmark.svg`, `brand/README.md`, `WHERE-TO-EDIT.md`); the live
+  `landing.css` has none of `logo-jp`, `letter-drop`, `--ts-sun`.
+- **The live title, by the browser's own account**, at 390 × 664 and 1440 × 900: JOHANSSON `rgb(38,61,57)`, weight
+  800, 28 px and 52 px, tracked .98 px and 1.82 px; WORLD `rgb(22,129,94)`, 24 px and 40 px, tracked 4.32 px and
+  7.2 px; both `display:flex`, centred, WORLD `position:relative`; no animation, transform, shadow, box or border;
+  `#start` with no ground of its own; the three restamped stylesheets loaded; no page errors. The fonts as on
+  9 November: the wordmark LINE Seed JP ExtraBold × 9 and × 5, "Sakura Shōten, Kōji, Ōshiro" LINE Seed JP × 24 and
+  Figtree × 3, nothing under the fold on a phone.
+- **The guard workflow (run 42762203444) completed for the first time, every job green.** Its three earlier runs
+  were all cancelled at the 15-minute limit. This time: the guard tests passed; `ferry-exploration` on the iPad in
+  landscape 7 min 34 s, in portrait 7 min 46 s, on the desktop 11 min 18 s; `iphone-startup` 14 min 6 s, which the old
+  limit would barely have let through. The Izakaya's "authored dining exit approach" passed this time.
