@@ -137,3 +137,5 @@ ferry-exterior.test.mjs
 ferry-accommodation.test.mjs
 ferry-walk.test.mjs
 ferry-z-fighting.test.mjs
+# The World's brand (brand/brand.json) and the title that shows it say the same thing; the older toy title stays gone.
+brand.test.mjs

@@ -1,0 +1,24 @@
+{
+ "name": "Johansson World",
+ "town": "Minato Machi",
+ "readFrom": "The drawn title screen: title-screen.css and line-ui.css, the last stylesheets of index.html.",
+ "colours": {
+  "ink": {"hex": "#263d39", "token": "--title-text", "use": "JOHANSSON in the wordmark; words on the title"},
+  "green": {"hex": "#16815e", "token": "--title-green", "use": "WORLD in the wordmark; Start"},
+  "cream": {"hex": "#f5f5ec", "token": "--title-surface", "use": "the title's surfaces"},
+  "interfaceGreen": {"hex": "#06c755", "token": "--line-green", "use": "buttons and marks inside the game; the old names --gold and --rust resolve to it"}
+ },
+ "typeface": {
+  "family": "LINE Seed JP",
+  "weights": [400, 700, 800],
+  "licence": "SIL Open Font License 1.1",
+  "stack": "Figtree,\"LINE Seed JP\",-apple-system,BlinkMacSystemFont,\"SF Pro Text\",Arial,\"Noto Sans JP\",\"Noto Sans KR\",sans-serif",
+  "longVowels": "Figtree draws ā ē ī ō ū and their capitals, and nothing else (assets/fonts/figtree-macrons.woff2)"
+ },
+ "wordmark": {
+  "main": {"text": "JOHANSSON", "weight": 800, "size": [28, 52], "spacing": 0.035, "line": 1.12, "colour": "ink"},
+  "town": {"text": "WORLD", "weight": 800, "size": [24, 40], "spacing": 0.18, "line": 1.1, "colour": "green"},
+  "gap": 4,
+  "outlines": "brand/wordmark.svg"
+ }
+}

@@ -6,8 +6,10 @@
 #start .title-center{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;width:100%;box-sizing:border-box;padding:calc(env(safe-area-inset-top) + 64px) max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left));min-height:0}
 #start .title-logo,#start .title-logo *{animation:none;transform:none;text-shadow:none}
 #start .title-logo{margin:0;gap:4px}
+/* The wordmark, and nothing else decides it (brand/ records it; tests/brand.test.mjs holds the two together). */
+#start :is(.logo-main,.logo-town){display:flex;justify-content:center}
 #start .logo-main{margin:0;font:800 clamp(28px,6.9vw,52px)/1.12 var(--line-font);letter-spacing:.035em;color:var(--title-text)}
-#start .logo-town{margin:0;padding:0;font:800 clamp(24px,5.6vw,40px)/1.1 var(--line-font);letter-spacing:.18em;text-indent:.18em;color:var(--title-green);background:none;border:0;border-radius:0;box-shadow:none}
+#start .logo-town{position:relative;margin:0;padding:0;font:800 clamp(24px,5.6vw,40px)/1.1 var(--line-font);letter-spacing:.18em;text-indent:.18em;color:var(--title-green);background:none;border:0;border-radius:0;box-shadow:none}
 #start .title-tag{margin:12px 0 0;font:400 14px/1.5 var(--line-font);color:var(--title-text);animation:none}
 /* The scenery's window between the title and the menu: 230 where the screen has the room, less on a phone's browser
    (an iPhone's Safari leaves 664 or 629 of height), so the whole title fits and the footer is not cut at the fold.
@@ -80,3 +82,5 @@
 #start .title-loading #bootStatus{margin:0;padding:0;border:0;border-radius:0;background:none;font:inherit;letter-spacing:normal;color:inherit;text-shadow:none}
 #start .title-loading .title-bar{height:16px;padding:0;border:0;border-radius:999px;background:#dfe5dc;box-shadow:inset 0 0 0 1px #263d3920;overflow:hidden}
 #start .title-loading .title-bar span{display:block;width:100%;height:100%;border-radius:999px;background:var(--title-green);opacity:1;animation:none;transform-origin:left;transform:scaleX(0);transition:none}
+/* While the World loads on a short screen the wordmark gives its room to the island fact (from landing.css, unchanged). */
+@media(max-height:620px){#start.booting .logo-main{font-size:clamp(1.6rem,9vh,3rem)}#start.booting .logo-town{font-size:clamp(1.2rem,6vh,2rem)}}

@@ -3,7 +3,7 @@
 /* 1997 harbour edition: a restrained game HUD over the actual 3D town. */
 :root{--ink:#142d37;--paper:#ece3c9;--gold:#e2b665;--rust:#b65940}
 button{font-family:inherit;font-size:14px;line-height:1.2;font-weight:700;cursor:pointer;min-height:40px;letter-spacing:.05em}button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}button:disabled{opacity:.5;cursor:default}
-#start{background:radial-gradient(ellipse at 75% 15%,#526f78,transparent 60%),linear-gradient(155deg,#263f4b,#111f2b)}.jp{font-size:24px;color:#d7d6bc}#enter{font-size:16px;padding:18px 28px;min-width:220px;background:var(--paper);box-shadow:none;border:none}
+.jp{font-size:24px;color:#d7d6bc}#enter{font-size:16px;padding:18px 28px;min-width:220px;background:var(--paper);box-shadow:none;border:none}
 #hud{padding:20px}.placard{background:#142d37ed;color:var(--paper);border:0;border-left:3px solid var(--gold);box-shadow:none;padding:10px 15px}.placard b{font-size:15px;letter-spacing:.11em}.placard small{display:block;margin-top:5px;font-size:12px;opacity:.75}.status-stack{display:flex;gap:8px;align-items:center}#clock,#wallet{border:0;background:#142d37e8;box-shadow:none;padding:10px 13px;font:700 21px/1.2 monospace}#wallet{color:var(--gold);font-size:17px}
 #fullscreenButton{right:20px;box-shadow:none;border:1px solid #b8c4b055;background:#142d37e8;color:var(--paper);font-size:12px;padding:9px 12px}#fullscreenButton{top:130px}
 #townControls{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:5px;pointer-events:auto;padding:5px;background:#142d37df}#townControls button{font-size:12px;padding:10px 12px;background:transparent;color:var(--paper);border:1px solid #c5c9b62a;white-space:nowrap}#townControls button:hover{background:#547078}

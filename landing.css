@@ -397,8 +397,6 @@
 #start {
   --ts-navy: #06c755;
   --ts-ink: #000000;
-  --ts-sun: #ffd54a;
-  --ts-orange: #ff9f1c;
   --ts-red: #d7263d;
   --ts-cream: #ffffff;
   --ts-pop: var(--gothic);
@@ -421,43 +419,8 @@
   animation: splash-out .45s ease-in 2.5s forwards;
 }
 .splash.done { display: none; }
-.splash-mark {
-  display: flex;
-  align-items: center;
-  gap: .9rem;
-  color: var(--ts-navy);
-  animation: splash-drop 1.15s cubic-bezier(.3, 0, .3, 1) both;
-}
-.splash-seal {
-  display: grid;
-  place-items: center;
-  width: 3.4rem;
-  height: 3.4rem;
-  border: 3px solid var(--ts-red);
-  border-radius: .7rem;
-  color: var(--ts-red);
-  font: 700 2rem/1 var(--mincho);
-  transform: rotate(-6deg);
-}
-.splash-word {
-  position: relative;
-  overflow: hidden;
-  font: 400 clamp(2rem, 8vw, 3.4rem)/1.1 var(--ts-pop);
-  letter-spacing: .01em;
-}
-.splash-word em { font-style: normal; color: var(--ts-red); margin-left: .12em; }
-/* A single glint passes over the name once it lands. */
-.splash-word::after {
-  content: "";
-  position: absolute;
-  inset: -20% auto -20% -40%;
-  width: 30%;
-  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .9), transparent);
-  transform: skewX(-18deg);
-  animation: splash-glint .6s ease-out 1.35s both;
-}
-@keyframes splash-drop { 0% { transform: translateY(-60vh); } 100% { transform: translateY(0); } }
-@keyframes splash-glint { from { left: -40%; } to { left: 120%; } }
+/* The splash's mark, seal and word (and their drop and glint) were deleted on 10 November 2026: the element is
+   empty and always "done" (index.html), so nothing matched them. */
 @keyframes splash-out { to { opacity: 0; visibility: hidden; } }
 
 /* ---------- Title screen ---------- */
@@ -567,62 +530,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: logo-bob 3.2s ease-in-out 2s infinite;
 }
-.logo-jp {
-  display: inline-block;
-  padding: .3rem .9rem .35rem;
-  border: 3px solid var(--ts-navy);
-  border-radius: 2rem;
-  background: var(--ts-cream);
-  color: var(--ts-red);
-  font: 700 clamp(.85rem, 2.6vw, 1.15rem)/1.2 var(--ts-pop);
-  letter-spacing: .3em;
-  text-indent: .3em;
-  box-shadow: 0 4px 0 var(--ts-navy);
-  animation: pop-flat .5s cubic-bezier(.2, 1.6, .4, 1) .2s both;
-}
-.logo-main, .logo-town { display: flex; justify-content: center; }
-.logo-main span, .logo-town span {
-  display: inline-block;
-  animation: letter-drop .7s cubic-bezier(.25, 1.5, .45, 1) calc(.35s + var(--i) * .06s) both;
-}
-.logo-main {
-  margin-top: .35rem;
-  font: 400 clamp(2rem, 10.4vw, 7.5rem)/1.05 var(--ts-pop);
-  letter-spacing: .01em;
-}
-/* Outline and extrusion are stacked shadows, so the yellow fill stays whole. */
-.logo-main span {
-  color: var(--ts-sun);
-  text-shadow:
-    .035em 0 0 var(--ts-navy), -.035em 0 0 var(--ts-navy), 0 .035em 0 var(--ts-navy), 0 -.035em 0 var(--ts-navy),
-    .025em .025em 0 var(--ts-navy), -.025em .025em 0 var(--ts-navy), .025em -.025em 0 var(--ts-navy), -.025em -.025em 0 var(--ts-navy),
-    0 .06em 0 var(--ts-navy), 0 .085em 0 var(--ts-navy), .02em .1em 0 var(--ts-navy),
-    0 .14em .12em rgba(16, 32, 43, .35);
-}
-.logo-main span:nth-child(odd) { color: #ffe066; }
-.logo-main span:nth-child(3n) { color: var(--ts-orange); }
-.logo-town {
-  position: relative;
-  margin-top: -.1em;
-  padding: .12em .5em .2em;
-  font: 400 clamp(1.6rem, 6.5vw, 3.6rem)/1 var(--ts-pop);
-  letter-spacing: .18em;
-  text-indent: .18em;
-  color: #fff;
-  background: var(--ts-red);
-  border: 4px solid var(--ts-navy);
-  border-radius: .45em;
-  box-shadow: 0 6px 0 var(--ts-navy);
-  transform: rotate(-3deg);
-  animation: pop-in .5s cubic-bezier(.2, 1.6, .4, 1) 1s both;
-}
-.logo-town span { text-shadow: 0 .05em 0 var(--ts-navy); animation-delay: calc(.5s + var(--i) * .06s); }
-@keyframes letter-drop { 0% { transform: translateY(-120%) scale(.6); opacity: 0; } 60% { opacity: 1; } 100% { transform: none; opacity: 1; } }
-@keyframes pop-in { 0% { transform: scale(0) rotate(-3deg); } 100% { transform: scale(1) rotate(-3deg); } }
-@keyframes pop-flat { 0% { transform: scale(0); } 100% { transform: scale(1); } }
-@keyframes logo-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+/* The wordmark's rules were here: yellow and orange letters dropping in one by one, WORLD in a tilted red box,
+   a kana pill. title-screen.css has overridden every one of them since the LINE look, and on 9 November 2026
+   Pocket Camera's brand was copied from them by mistake. They were deleted on 10 November 2026, the two that
+   still decided something (display and position) moved to title-screen.css; tools/title-style-proof.mjs shows
+   the title computes the same styles without them. The look is recorded in brand/. */
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 
 /* The game is not finished (the creator, 2026-10-12): a stamp under the tag line says so on every visit. */
@@ -853,8 +766,6 @@
 #loadingFact { margin: 0; font: 600 clamp(.95rem, 2.5vw, 1.1rem)/1.55 system-ui, sans-serif; min-height: 4.65em; }
 @media (max-height: 620px) { #start.booting .title-tag, #start.booting .title-foot { display: none; }
   #start.booting .title-center { padding-top: .75rem; padding-bottom: .75rem; }
-  #start.booting .logo-main { font-size: clamp(1.6rem, 9vh, 3rem); }
-  #start.booting .logo-town { font-size: clamp(1.2rem, 6vh, 2rem); }
   .island-fact { padding: .65rem 1rem; margin-bottom: .75rem; }
   #start .title-loading { margin-top: .75rem; }
 }
@@ -873,11 +784,6 @@
 #start .title-menu #enter:hover{background:#05b34c}
 #start .title-menu #enter b{animation:none}
 #start .title-cursor{display:none}
-#start .logo-small{color:#666;font:700 16px/1.4 var(--gothic);letter-spacing:normal;text-shadow:none}
-#start .logo-main{font:700 clamp(32px,7vw,70px)/1.15 var(--gothic);letter-spacing:normal}
-#start .logo-main span,#start .logo-main span:nth-child(n){color:#000;text-shadow:none}
-#start .logo-town{font:700 clamp(24px,4vw,40px)/1.2 var(--gothic);letter-spacing:normal;text-indent:0;color:#06c755;background:transparent;border:0;border-radius:0;box-shadow:none;transform:none}
-#start .logo-town span{text-shadow:none}
 #start .title-tag{font:400 20px/1.5 var(--gothic);color:#666}
 #start .title-foot{font:400 14px/1.5 var(--gothic);letter-spacing:normal;text-shadow:none;color:#000;background:#fff;border-top:1px solid #e5e5e5}
 #start .title-loading #bootStatus{font:400 16px/1.5 var(--gothic);letter-spacing:normal;background:#fff;color:#666;text-shadow:none}

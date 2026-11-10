@@ -15,7 +15,8 @@ concurrency:
 jobs:
   iphone-startup:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    # 12 min 41 s on 9 November 2026 (run 42716075691), of the 15 it had: the same margin the iPad check ran out of.
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
@@ -54,7 +55,12 @@ jobs:
       matrix:
         profile: [ipad-portrait, ipad-landscape, desktop]
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    # The limit was 15 minutes and the iPad in landscape needs more: on 9 November 2026 (run 42716075691) its
+    # exploration passed every step in 818.7 s, after a minute and a half of set-up, and the job was cancelled in
+    # the same second it finished (15 min 10 s); on 6 November it was cancelled the same way. The hosted runner
+    # draws WebKit in software at about 1.5 s a frame, and the wider screen has the most to draw. Portrait took
+    # 12 min 9 s and the desktop 10 min 47 s. A check that passes must not be reported as cancelled.
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
