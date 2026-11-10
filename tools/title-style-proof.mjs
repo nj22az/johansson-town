@@ -7,6 +7,7 @@
 //       PROOF_ONLY='logo|splash'   examine only rules whose selector matches (default: every title rule)
 //       PROOF_QUICK=1              three sizes, not six (a first look; delete nothing on it)
 //       PROOF_STILL=1              the first pass only (see below)
+//       PROOF_LOADED=1             the second pass only
 //
 // Why it exists (9 and 10 November 2026): the title is drawn by title-screen.css and line-ui.css, which come last and
 // override an older, toy-coloured title in landing.css and base.css. Pocket Camera's brand was first copied from
@@ -97,6 +98,13 @@ try{
    for(const state of states){
     const label=`${size[0]}×${size[1]} ${state}${live?' (the game loaded)':''}`,st=state==='reduced'?'title':state;
     await a.page.evaluate(enter,st);await b.page.evaluate(enter,st);
+    // The guide's town feed mounts when the guide opens (landing.js) and draws its residents one by one: wait until
+    // it has its stories and has stood still for two seconds, on both sides.
+    if(live&&st==='guide')await Promise.all([a,b].map(side=>side.page.evaluate(()=>new Promise(done=>{
+     const list=document.getElementById('townFeed');let quiet=null,limit=setTimeout(done,90000);
+     const settle=()=>{clearTimeout(quiet);if(list.children.length)quiet=setTimeout(()=>{clearTimeout(limit);watch.disconnect();done();},2000);};
+     const watch=new MutationObserver(settle);watch.observe(list,{childList:true,subtree:true,attributes:true,characterData:true});settle();
+    }))));
     const [before,after]=await Promise.all([a.page.evaluate(snapshot),b.page.evaluate(snapshot)]);
     const keys=new Set([...Object.keys(before.boxes),...Object.keys(after.boxes)]);let differences=0;
     for(const key of keys){
@@ -110,7 +118,7 @@ try{
    }
    await a.context.close();await b.context.close();
   };
-  for(const size of SIZES)for(const reduced of [false,true])await compare(size,reduced,false,reduced?['reduced']:STATES.filter(s=>s!=='reduced'));
+  if(!process.env.PROOF_LOADED)for(const size of SIZES)for(const reduced of [false,true])await compare(size,reduced,false,reduced?['reduced']:STATES.filter(s=>s!=='reduced'));
   if(!process.env.PROOF_STILL)for(const size of [ALL_SIZES[0],ALL_SIZES[5]])await compare(size,false,true,['title','guide']);
   now.close();then.close();
  }else{
