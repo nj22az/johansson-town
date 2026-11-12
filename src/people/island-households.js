@@ -26,13 +26,13 @@ export const ISLAND_HOMES=Object.freeze([
  // Retired on 22 October 2026 with Dr Kakazu (roster.js): Nhung, the doctor now, lives at 3 Kitahama. No door, no site;
  // RETIRED_HOMES lands `clinic` on itself, since the id also names the clinic, which stays.
  home('clinic','Former doctor’s flat, Town Hall Clinic','Town Hall','home-clinic',{retired:true}),
- home('ferry-chief-cabin','Johansson’s duty cabin, Minato Maru','Harbour','ferry-chief-cabin',{aboard:true,secondaryOnly:true}),
- home('ferry-engineer-duty-berth','Relief engineer’s duty berth, Minato Maru','Harbour','ferry-engineer-duty-berth',{aboard:true,secondaryOnly:true}),
+ home('ferry-chief-cabin','Johansson’s place in the crew lounge, Minato Maru','Harbour','ferry-chief-cabin',{aboard:true,secondaryOnly:true}),
+ home('ferry-engineer-duty-berth','Relief engineer’s settee, Minato Maru lounge','Harbour','ferry-engineer-duty-berth',{aboard:true,secondaryOnly:true}),
  // The supporting crew's quarters aboard (roster.js QUARTERS; world/ferry-ship.js FERRY_GA mate-cabin, deckhand-cabin and
  // crew-cabin): their primary accommodation, registered so the directory and the nameplates know where they sleep, and
  // flagged `quarters` so the housing code never counts a cabin as a shore household or invents a house for them.
- home('ferry-officer-cabin','Chief officer’s cabin, Minato Maru','Harbour','ferry-officer-cabin',{aboard:true,quarters:true}),
- home('ferry-crew-cabin','Crew accommodation, Minato Maru','Harbour','ferry-crew-cabin',{aboard:true,quarters:true}),
+ home('ferry-officer-cabin','Chief officer’s place in the lounge, Minato Maru','Harbour','ferry-officer-cabin',{aboard:true,quarters:true}),
+ home('ferry-crew-cabin','Crew lounge, Minato Maru','Harbour','ferry-crew-cabin',{aboard:true,quarters:true}),
  home('ferry','Former chief engineer home identity','Harbour','ferry-terminal',{retired:true}),
  home('koban','Officer Mori’s quarters, Minato Police Station','Main Street','koban'),
  // Barfly's registration retired in phase 4 (brief §6, §8): the izakaya is a business only; the room is Thao's store.

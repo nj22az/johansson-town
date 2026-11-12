@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from '../vendor/three.module.js';
 import {FERRY_SHIP,FERRY_HEIGHTS,FERRY_GA,FERRY_ACCESS,FERRY_CAR_PLACES,FERRY_TRUCK_PLAN,FERRY_MACHINERY,FERRY_ELECTRICS,FERRY_LOADS,FERRY_CONDITIONS,FERRY_SUPPLY,
- FERRY_SAFETY,FERRY_MANNING,FERRY_SCENARIOS,ferryDemand,ferrySupplyKW,thrusterMayStart,preferenceShed,motorAmps,gaSpace,toShip,rollPeriod} from '../src/world/ferry-ship.js';
+ FERRY_SAFETY,FERRY_MANNING,FERRY_SAFE_MANNING,FERRY_SCENARIOS,ferryDemand,ferrySupplyKW,thrusterMayStart,preferenceShed,motorAmps,gaSpace,toShip,rollPeriod} from '../src/world/ferry-ship.js';
 import {buildFerryModel,halfBreadth,keelY,WL,FERRY_RAMP,FERRY_HULL,FERRY_DECKS,FERRY_WALK,GANGWAY_Z} from '../src/world/ferry-model.js';
 import {FERRY_CREW,FERRY_SHORE,FERRY_WATCH,crewFor,crewDoing,crewOnDuty,deckHandFor,FERRY_PEOPLE} from '../src/people/ferry-crew.js';
 import {ISLAND_HOUSEHOLDS} from '../src/people/island-households.js';
@@ -130,7 +130,8 @@ test('lifesaving and fire appliances for 108 persons',()=>{
  assert.ok(gaSpace(F.muster.A)&&gaSpace(F.muster.B));assert.ok(gaSpace(F.rescueBoat.where));
 });
 
-test('the crew: eight posts by her safe manning, named islanders and Johansson as chief engineer',()=>{
+test('the crew: a skipper and an engineer are the safe minimum; eight posts still sail, Johansson as chief engineer',()=>{
+ assert.deepEqual(FERRY_SAFE_MANNING.map(m=>m.post),['master','chief']);
  const posts=new Set(FERRY_MANNING.map(m=>m.post));assert.equal(FERRY_MANNING.length,FERRY_SHIP.crew);
  for(const c of FERRY_CREW)assert.ok(posts.has(c.post),c.post+' is a post of her manning');
  const living=new Map(ISLAND_HOUSEHOLDS.flatMap(h=>h.members.map(m=>[m.name,h])));

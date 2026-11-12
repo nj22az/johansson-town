@@ -53,8 +53,8 @@
 /* The canonical current-game Sakura capture also used on the World page. Keep it local to the game so the
    offline package has the same title. The content hash changes its URL when the capture changes. Day/night
    shading and cover cropping share this one verified view; the current live world replaces it when ready. */
-#start .title-backdrop{position:absolute;inset:0;z-index:-2;background:#cfd9d2 url(assets/images/title/sakura-current-119667983af8.webp) center/cover no-repeat;transition:opacity 1.2s ease;pointer-events:none}
-:root[data-title-light=night] #start .title-backdrop{background-color:#1d2a36;background-image:linear-gradient(#13243b88,#101e3066),url(assets/images/title/sakura-current-119667983af8.webp)}
+#start .title-backdrop{position:absolute;inset:0;z-index:-2;background:#cfd9d2 url(assets/images/title/sakura-current-6c1f25329a59.webp) center/cover no-repeat;transition:opacity 1.2s ease;pointer-events:none}
+:root[data-title-light=night] #start .title-backdrop{background-color:#1d2a36;background-image:linear-gradient(#13243b88,#101e3066),url(assets/images/title/sakura-current-6c1f25329a59.webp)}
 @media (orientation:portrait){#start .title-backdrop{background-position:50% center}}
 #start .title-screen[data-scene=ready] .title-backdrop{opacity:0}
 /* The footer and the work-in-progress stamp sit on the scenery at every hour: a light backing keeps them readable at night. */

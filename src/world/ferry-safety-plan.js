@@ -31,7 +31,7 @@ export const FERRY_SAFETY_ITEMS=Object.freeze([
  at('liferaft','passenger',4.5,2.6),at('liferaft','passenger',11,3.3),at('liferaft','passenger',17,3.3),at('liferaft','passenger',11,-3.3),at('liferaft','passenger',17,-3.3),
  at('rescue-boat','passenger',3.2,-1.2,'rescue boat'),
  at('lifebuoy','passenger',7,3.9),at('lifebuoy','passenger',14,3.9),at('lifebuoy','passenger',20,3.9),at('lifebuoy','passenger',22,3.9),at('lifebuoy','passenger',7,-3.9),at('lifebuoy','passenger',14,-3.9),at('lifebuoy','passenger',20,-3.9),at('lifebuoy','passenger',22,-3.9),
- at('lifejackets','passenger',19,0,'saloon lockers'),at('lifejackets','passenger',13.5,0,'carpet room'),at('lifejackets','passenger',9,-1.5,'lobby'),at('lifejackets','bridge',12,1.8,'crew cabins'),
+ at('lifejackets','passenger',19,0,'saloon lockers'),at('lifejackets','passenger',13.5,0,'carpet room'),at('lifejackets','passenger',9,-1.5,'lobby'),at('lifejackets','bridge',12,1.8,'crew lounge'),
  at('pyro','bridge',21,1.0,'rockets · flares · EPIRB · SART'),
  // Muster stations A (the saloon) and B (the open deck), and the escapes.
  at('muster','passenger',...centre('saloon'),'A'),at('muster','passenger',...centre('open-deck'),'B'),

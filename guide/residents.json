@@ -59,7 +59,7 @@
   "secondaryHomes": [
    {
     "id": "ferry-chief-cabin",
-    "address": "Johansson’s duty cabin, Minato Maru",
+    "address": "Johansson’s place in the crew lounge, Minato Maru",
     "residents": [
      "Johansson"
     ],
@@ -921,7 +921,7 @@
   "secondaryHomes": [
    {
     "id": "ferry-engineer-duty-berth",
-    "address": "Relief engineer’s duty berth, Minato Maru",
+    "address": "Relief engineer’s settee, Minato Maru lounge",
     "residents": [
      "Mac"
     ],
@@ -1161,7 +1161,7 @@
   },
   "home": {
    "id": "ferry-officer-cabin",
-   "address": "Chief officer’s cabin, Minato Maru",
+   "address": "Chief officer’s place in the lounge, Minato Maru",
    "residents": [
     "Ryo"
    ],
@@ -1221,7 +1221,7 @@
   },
   "home": {
    "id": "ferry-crew-cabin",
-   "address": "Crew accommodation, Minato Maru",
+   "address": "Crew lounge, Minato Maru",
    "residents": [
     "Ren",
     "Aya",
@@ -1283,7 +1283,7 @@
   },
   "home": {
    "id": "ferry-crew-cabin",
-   "address": "Crew accommodation, Minato Maru",
+   "address": "Crew lounge, Minato Maru",
    "residents": [
     "Ren",
     "Aya",
@@ -1345,7 +1345,7 @@
   },
   "home": {
    "id": "ferry-crew-cabin",
-   "address": "Crew accommodation, Minato Maru",
+   "address": "Crew lounge, Minato Maru",
    "residents": [
     "Ren",
     "Aya",

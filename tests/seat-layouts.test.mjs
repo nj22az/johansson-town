@@ -66,8 +66,8 @@ test('every outdoor public seat has physical support and a clear standing point'
   // 2026; the stools and the far chair are the regulars', commerce/kissa-higa.js KISSA_SEATS).
   'higa-yuntaku-bench','coin-laundry-bench','kissa-chair-0',
   // Aboard the Minato Maru (3 November 2026, ferry-interior.js FERRY_PASSENGER_SEATS): the saloon's front row by the bow
-  // windows, a port window seat and a cushion in the carpet room; each moves with her (game.js pinAboardSeat).
-  'Sit by the bow windows','Take the window seat','Sit on a cushion',
+  // windows, a port window seat and a bench on the old carpet-room platform; each moves with her (game.js pinAboardSeat).
+  'Sit by the bow windows','Take the window seat','Sit on a bench',
  ];
  assert.deepEqual(seats.map(t=>t.object.userData.seat.id||t.label).sort(),expected.sort(),'Every retained public bench, bath seat and airport gate offers its seat');
  // Kissa Higa's chair is a streamed Meshy model (kissa-higa-props.js): its seat height is measured on the model itself in
@@ -76,8 +76,8 @@ test('every outdoor public seat has physical support and a clear standing point'
  // Every public bench seats two side by side (the owner, 21 October 2026), or more by its length; where its front edge is
  // goes with it (seatFront). Higa Liquor's bench is two places already (YUNTAKU: Tetsuo's and this), the footbath's rim,
  // the beach chairs and Umi-no-yu's bench are single seats.
- // The ferry's are one place each: a seat in the saloon's rows, a cushion in the carpet room (FERRY_PASSENGER_SEATS).
- const single=new Set(['beach-chair-0','beach-chair-1','Soak your feet in the footbath','Cool off on the bench','higa-yuntaku-bench','Sit on the staff bench','kissa-chair-0','Sit by the bow windows','Take the window seat','Sit on a cushion']);
+ // The ferry's are one place each: a seat in the saloon's rows, a bench on the old carpet-room platform (FERRY_PASSENGER_SEATS).
+ const single=new Set(['beach-chair-0','beach-chair-1','Soak your feet in the footbath','Cool off on the bench','higa-yuntaku-bench','Sit on the staff bench','kissa-chair-0','Sit by the bow windows','Take the window seat','Sit on a bench']);
  for(const t of seats){const s=t.object.userData.seat,key=s.id||t.label;if(single.has(key))continue;
   assert.ok(s.slots?.length>=2,key+' seats two side by side');assert.ok(s.front>0&&s.front<.35,key+' says where its front edge is');}
  assert.equal(PARK_BENCH.yaw,Math.PI/2,'Harbour bench faces away from its east backrest');

@@ -146,10 +146,10 @@ export const HOUSEHOLDS=Object.freeze([
 
 /** Accommodation that is not a household: duty berths aboard and the supporting workers’ quarters (brief §5, §7, §10). */
 export const QUARTERS=Object.freeze([
- Object.freeze({id:'ferry-chief-cabin',who:['nils'],aboard:true,registered:true,what:'the chief engineer’s duty cabin'}),
- Object.freeze({id:'ferry-engineer-duty-berth',who:['mac'],aboard:true,registered:true,what:'the relief engineer’s separate duty berth'}),
- Object.freeze({id:'ferry-officer-cabin',who:['ryo'],aboard:true,registered:true,what:'the chief officer’s cabin aboard (FERRY_GA mate-cabin)'}),
- Object.freeze({id:'ferry-crew-cabin',who:['ren','aya','jun'],aboard:true,registered:true,what:'the crew accommodation aboard: the deckhand’s cabin (Ren) and the crew cabin; the crew cabin is drawn with one two-tier bunk, the bosun’s week-on berth and the relief engineer’s duty berth, so the purser’s and the cook’s berths are two more bunks for the docks-and-boats job'}),
+ Object.freeze({id:'ferry-chief-cabin',who:['nils'],aboard:true,registered:true,what:'the engineer’s place in the crew lounge; his home is on Kitano-jima'}),
+ Object.freeze({id:'ferry-engineer-duty-berth',who:['mac'],aboard:true,registered:true,what:'the relief engineer’s settee in the crew lounge'}),
+ Object.freeze({id:'ferry-officer-cabin',who:['ryo'],aboard:true,registered:true,what:'the chief officer’s place in the crew lounge (FERRY_GA mate-cabin, the sitting alcove)'}),
+ Object.freeze({id:'ferry-crew-cabin',who:['ren','aya','jun'],aboard:true,registered:true,what:'the crew lounge aboard (the old deckhand’s cabin and the crew cabin are one room now): Ren, Aya and Jun, with a bench for the bosun’s week on and the relief engineer. No bunks'}),
  Object.freeze({id:'kitano-2',who:['kai'],aboard:false,registered:true,what:'the Shiroma house on Kitano-jima, rented from the Shiromas in Naha: its gate on the hamlet lane, a bed, a table and a door, 25 m from the pier (phase 2 inspected it)'}),
 ]);
 

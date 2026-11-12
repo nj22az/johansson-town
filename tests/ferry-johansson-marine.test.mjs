@@ -44,8 +44,9 @@ test('the main engines and generator sets are built as machines, in the livery, 
  const solids=FERRY_INTERIOR.boxes.filter(b=>b.solid&&b.name&&/sea chest|strainer|fuel service tank|oily-water separator|air compressor|local control stand|air bottles|workbench|pump$/.test(b.name));
  const lo=(b,i)=>Math.min(b.a[i],b.b[i]),hi=(b,i)=>Math.max(b.a[i],b.b[i]);
  for(let i=0;i<solids.length;i++)for(let j=i+1;j<solids.length;j++){const A=solids[i],B=solids[j];const overlap=[0,1,2].every(k=>lo(A,k)<hi(B,k)-.01&&lo(B,k)<hi(A,k)-.01);assert.ok(!overlap,A.name+' stands inside '+B.name);}
- // Every cylinder stands inside the engine room, below the car deck.
- for(const c of FERRY_INTERIOR.cyls)assert.ok(c.pos[1]<2.2&&c.pos[1]>-1.25&&Math.abs(c.pos[0])<4,'in the engine room: '+c.name+' '+JSON.stringify(c.pos));
+ // Machinery cylinders stay inside the engine room, below the car deck. The saloon's plant is a pot, not a machine.
+ for(const c of FERRY_INTERIOR.cyls){if(c.name==='plant pot'||c.name==='pothos')continue;
+  assert.ok(c.pos[1]<2.2&&c.pos[1]>-1.25&&Math.abs(c.pos[0])<4,'in the engine room: '+c.name+' '+JSON.stringify(c.pos));}
 });
 
 test('the model draws the cylinders and hangs the plates on her; the prompts name the brand',()=>{
@@ -54,4 +55,7 @@ test('the model draws the cylinders and hangs the plates on her; the prompts nam
  assert.equal(plates.length,FERRY_INTERIOR.plates.length+FERRY_DECK_SIGNS.length,'every plate and deck sign is a textured plane on the ship');
  const metal=run.ferry.getObjectByName('Minato Maru metal');assert.ok(metal,'the metal class carries the machine parts');
  for(const id of ['main-engine','gearbox','generator']){const p=FERRY_INSPECT.find(p=>p.id===id);assert.match(p.title+' '+p.text,/Johansson Marine J[A-Z]/,id);}
+ // The sets moved into the auxiliary room (z 15.20–16.05). The prompts stand just aft of them, not at the old engine-room spot.
+ const yardZ=p=>p.pos[2]+34.5/2;
+ for(const id of ['generator-1','generator']){const z=yardZ(FERRY_INSPECT.find(p=>p.id===id));assert.ok(z>14.7&&z<15.3,id+' is by the auxiliary-room sets ('+z.toFixed(2)+')');}
 });

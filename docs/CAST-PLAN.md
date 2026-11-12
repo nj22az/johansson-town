@@ -14,6 +14,11 @@ proposed (Vy 11 and Thao 34; Kōji and Riku; Miss Higa single; the cut list goes
 change: **Mr Higa Jr stays**, as Miss Higa's elder brother, because the Minato Maru's safe manning needs her oiler and
 the ship is built true (CLAUDE.md). Batch 1 is done (section 6). The cast is 31 people, in `src/people/cast.js`.
 
+*(12 November 2026: the Minato Maru's safe minimum is a skipper and an engineer — Fujita, and Johansson with Mac when
+the chief is ashore (`FERRY_SAFE_MANNING`). Mr Higa Jr was already retired by the consolidation. The eight posts stay
+signed on, because those people still live in the town; this note does not delete them and does not bring the Chisum
+into the town. The private cabins are one crew lounge, and the old carpet room is simple benches.)*
+
 ## 1. What is there today, and why it feels empty
 
 The island has grown four separate lists of people, and they don't agree:

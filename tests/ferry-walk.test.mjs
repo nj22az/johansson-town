@@ -206,7 +206,7 @@ test('down into the engine room: the casing P door, the ladder through the car d
  assert.notEqual(stroll(walk,colliders,[e.x,e.z,walk.floorBelow(e.x,e.z,e.y+.1).y],[[into.x,into.z]]).stopped,null,'the port main engine');
 });
 
-test('the crew house: in from the bridge deck\'s aft platform, along the corridor, into a cabin, the mess and the wheelhouse',()=>{
+test('the crew house: in from the bridge deck\'s aft platform, along the corridor, into the lounge and the wheelhouse',()=>{
  const {run,walk,colliders}=alongside();const Zs=zy=>zy-HALF,br=FERRY_DECKS.bridge.y;
  const W=(x,zy)=>{const p=world(run,x,br,Zs(zy));return [p.x,p.z];};
  const start=world(run,0,br,Zs(5.5));
