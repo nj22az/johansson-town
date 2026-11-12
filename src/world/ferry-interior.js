@@ -143,7 +143,7 @@ export const FERRY_PASSENGER_SEATS=Object.freeze([
   anchor:[SAL_ROWS.aisle+.25,PASS+.9,z0+.3],position:[DW-T-.06-w/2,PASS,z0+.33],stand:[0,PASS,z0+.3],surface:.45,yaw:Math.PI,eyeY:1.15};})(),
  {id:'carpet-cushion',label:'Sit on a bench',title:'The passenger benches',
   text:'A plain bench on the raised floor. Shoes off on the shelf if you like. The engines hum, and the crossing is twenty-two minutes.',
-  anchor:[1.25,PASS+F.carpet+.7,Z(14.2)],position:[1.25,PASS+F.carpet,Z(14.2)],stand:[.5,PASS+F.carpet,Z(14.2)],surface:.42,yaw:-Math.PI/2,eyeY:1.15},
+  anchor:[2.0,PASS+F.carpet+.75,Z(14.4)],position:[2.0,PASS+F.carpet,Z(14.4)],stand:[.5,PASS+F.carpet,Z(14.4)],surface:.38,yaw:-Math.PI/2,eyeY:1.15},
 ].map(p=>Object.freeze({...p,anchor:Object.freeze(p.anchor),position:Object.freeze(p.position),stand:Object.freeze(p.stand)})));
 
 const sorted=(a,b)=>a<b?[a,b]:[b,a];
