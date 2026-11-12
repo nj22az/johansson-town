@@ -26,28 +26,28 @@ export const onWatch=minutes=>{const m=minute(minutes);return m>=FERRY_WORKING_D
 const people={
  master:{known:'the master',
   why:'Fujita, the master: forty years on the island boats, the last ten on the Harbour Line, and the fourth-grade ticket he sat for at fifty. He cons every berthing himself and keeps the log. Sober on watch, from the generators at ten past six to the shore power at a quarter past ten; the shed, the television and the beer are for after he signs off.',
-  lives:'Shiosai, his houseboat at the west pier; the master’s cabin aboard is his day cabin'},
+  lives:'Shiosai, his houseboat at the west pier; aboard he uses the lounge, not a cabin'},
  mate:{known:'the chief officer',
   why:'Ryo, 41, chief officer, from Itoman: a fifth-grade deck licence and six years on the Kerama ferries before the Minato Maru. He keeps the lookout, supervises access and works the ramp controls, and checks the berth from the wing while the master stays at the conning position.',
-  lives:'The chief officer’s cabin aboard'},
+  lives:'The crew lounge aboard'},
  chief:{known:'the chief engineer',
   why:'Chief engineer of the Minato Maru; responsible for the machinery, engineering watches and maintenance alongside his relief engineer, Mac Turner, who takes the working watch whenever the chief is ashore.',
-  lives:'Duty cabin aboard; primary home with Thuan on Kitano-jima',trait:'Careful engineer and patient mentor'},
+  lives:'The lounge aboard between watches; primary home with Thuan on Kitano-jima',trait:'Careful engineer and patient mentor'},
  oiler:{known:'the motorman',
   why:'Chin, the motorman: Thao’s husband and the island’s mechanical repairman, who took the engine-room rating post when it came free. He tends the diesels, the bilges and the lubricating oil under the chief, and keeps the workshop with Tetsuo between watches; while she sails, Tetsuo keeps the bench alone.',
   lives:'1 Kitahama, with Thao and Vy'},
  bosun:{known:'the bosun',
   why:'The bosun supervises the deck work, the aft mooring lines and vehicle securing. Ferry work runs in her family; she does a week on and a week off, with Kōji covering her relief week.',
-  lives:'8 Kitahama; aboard in the crew cabin on her week on'},
+  lives:'8 Kitahama; the crew lounge on her week on'},
  deck:{known:'the deck hand',
   why:'Ren, 23, deck hand, from Nago, on his first ship. He works the forward mooring station and the passenger gangway, then makes the passenger-deck rounds. Keeping this post separate leaves the bosun free to work aft.',
-  lives:'The deckhand’s cabin aboard'},
+  lives:'The crew lounge aboard'},
  purser:{known:'the purser',
   why:'Aya, 31, the sailing purser, who came from the Kume line for the short crossings. She counts the passengers, checks that drivers leave the vehicle deck and answers questions in the lobby. The passenger count goes to the bridge before departure.',
-  lives:'The crew accommodation aboard'},
+  lives:'The crew lounge aboard'},
  cook:{known:'the cook-steward',
   why:'Jun, 52, cook-steward, after twenty years in the galleys of the cargo boats out of Naha. He prepares the crew’s meals on the three-plate range and attends to refreshments at the kiosk. Before departure the galley equipment and loose stores are secured for the crossing.',
-  lives:'The crew accommodation aboard'},
+  lives:'The crew lounge aboard'},
 };
 const holder=post=>SHIP_POSTS.find(p=>p.key===shipPostKey(post));
 /** The live name of a roster holder: the body the cast gives them today (Mr Fujita for Fuji until phase 5 renames him). */
@@ -60,7 +60,7 @@ export const FERRY_CREW=Object.freeze(FERRY_MANNING.map(({post,title,jp,licence}
 const bosunRelief=Object.freeze({name:live(holder('bosun').relief),why:'He knows the island boats, lines and weather, and covers Ms Uezu’s relief week as bosun.'});
 export const FERRY_RELIEF=Object.freeze({
  bosun:bosunRelief,
- chief:Object.freeze({name:live(holder('chief').relief),why:'Mac Turner, the relief engineer: takes the chief’s working watch in the engine room whenever Johansson is ashore, and keeps a duty berth aboard.'}),
+ chief:Object.freeze({name:live(holder('chief').relief),why:'Mac Turner, the relief engineer: takes the chief’s working watch in the engine room whenever Johansson is ashore, and keeps a settee in the crew lounge.'}),
  // The old deck rota lookup remains an alias; the signed-on post is correctly called bosun.
  deck:bosunRelief,
 });
@@ -71,8 +71,8 @@ const shore={
  linesman:{where:'The Harbour Office and the ferry bitts on the outer pier',does:'Walks from the office to the bitts before every call to handle the shore end of each line, and keeps the berth radio between calls',
   why:'Jack Reed, the harbour agent: an American who came to Okinawa as a merchant seaman in the sixties, paid off in Naha and never went home; thirty years on this quay, the berth and the office radio, the freight book, and the shore end of every line since Fujita went to the bridge.'},
  port:{where:'The Harbour Office',does:'Gives the berth and keeps the port radio'},
- 'relief-engineer':{where:'Minato Maru and Kitahama Heights A',does:'Relieves Johansson on machinery watches; keeps a separate duty berth aboard',
-  why:'Mac Turner, 61, relief engineer: an American who came to the island with the diesels, Caterpillars for the Naha fishing boats in the seventies, and stayed for the quiet; a house in Kitahama Heights and a duty berth aboard.'},
+ 'relief-engineer':{where:'Minato Maru and Kitahama Heights A',does:'Relieves Johansson on machinery watches; rests in the crew lounge',
+  why:'Mac Turner, 61, relief engineer: an American who came to the island with the diesels, Caterpillars for the Naha fishing boats in the seventies, and stayed for the quiet; a house in Kitahama Heights and a settee in the crew lounge.'},
  electrician:{where:'The electrical workshop aboard, alongside at Minato',does:'Maintains the ferry’s electrical equipment while she is in port'},
  'airport-linesman':{where:'Kitano-jima ferry pier',does:'Handles the shore eyes at the Kitano berth',
   why:'Kai, 47, the Kitano line hand: born in the hamlet, a deckhand on the Naha boats until his knees, and back on the pier he grew up beside; the shore end of every line at Kitano, and the Shiroma house across the lane, rented from the family in Naha.'},
@@ -111,7 +111,7 @@ export const FERRY_WATCH=Object.freeze(Object.fromEntries(Object.entries({
  waiting,arriving:manoeuvring,reversing:manoeuvring,swinging:manoeuvring,leaving:crossing,crossing,
  // After the shore power goes on: the chief sleeps aboard in his duty cabin, the bosun in the crew cabin on her week on
  // (her relief goes home to 3 Kitahama); the four who live aboard have turned in and are not drawn.
- night:{chief:['mess','Aboard on shore power, checking the machinery before bed'],bosun:['cabin','Resting in the crew cabin during the working week']},
+ night:{chief:['mess','Aboard on shore power, checking the machinery before bed'],bosun:['cabin','Resting in the crew lounge during the working week']},
 }).map(([key,value])=>[key,Object.freeze(value)])));
 const DAY=1440;
 export const rotaWeek=minutes=>((Math.floor(Math.floor(minutes/DAY)/7)%2)+2)%2;

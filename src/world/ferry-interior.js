@@ -13,7 +13,7 @@ import {PLANT_ALARMS} from './ferry-plant.js';
  * The way up from the car deck: the walkway beside casing P to stair P's door (casing P, shipyard z 11.3–12.3), the
  * stair rising aft at 48° in the casing to the lobby (z 6–9.5, full breadth), whose stair heads P and S are its wings.
  * From the lobby: aft through its door to the open deck and up its two ladders to the bridge deck's aft platform;
- * forward along the corridor between the toilets, up two steps into the carpet room, down two into the saloon. From the
+ * forward along the corridor between the toilets, up two steps into the passenger benches, down two into the saloon. From the
  * saloon's cross passage (z 16.5–17.6) the side doors give onto the walkways, and at the walkways' forward ends a
  * ladder rises to each bridge wing, whose door opens into the wheelhouse.
  *
@@ -141,9 +141,9 @@ export const FERRY_PASSENGER_SEATS=Object.freeze([
  (()=>{const z0=SAL_ROWS.rows[1],w=(DW-T-.06-SAL_ROWS.aisle)/4;return {id:'window-seat',label:'Take the window seat',title:'The window seat',
   text:'Port side, by the curtains. The islands go by at the speed of a bicycle.',
   anchor:[SAL_ROWS.aisle+.25,PASS+.9,z0+.3],position:[DW-T-.06-w/2,PASS,z0+.33],stand:[0,PASS,z0+.3],surface:.45,yaw:Math.PI,eyeY:1.15};})(),
- {id:'carpet-cushion',label:'Sit on a cushion',title:'The carpet room',
-  text:'Shoes off on the shelf, a zabuton by the low table. The engines hum through the floor, and nobody minds if you lie down.',
-  anchor:[1.25,PASS+F.carpet+.6,Z(14.2)],position:[1.25,PASS+F.carpet,Z(14.2)],stand:[.5,PASS+F.carpet,Z(14.2)],surface:.08,yaw:-Math.PI/2,eyeY:.85},   // on the zabuton, 0.08 m thick
+ {id:'carpet-cushion',label:'Sit on a bench',title:'The passenger benches',
+  text:'A plain bench on the raised floor. Shoes off on the shelf if you like. The engines hum, and the crossing is twenty-two minutes.',
+  anchor:[1.25,PASS+F.carpet+.7,Z(14.2)],position:[1.25,PASS+F.carpet,Z(14.2)],stand:[.5,PASS+F.carpet,Z(14.2)],surface:.42,yaw:-Math.PI/2,eyeY:1.15},
 ].map(p=>Object.freeze({...p,anchor:Object.freeze(p.anchor),position:Object.freeze(p.position),stand:Object.freeze(p.stand)})));
 
 const sorted=(a,b)=>a<b?[a,b]:[b,a];
@@ -373,8 +373,8 @@ export const FERRY_INTERIOR=(()=>{
  deco([-F.corridor,PASS+.003,LB1-T/2],[F.corridor,PASS+.008,TB1+T/2],VINYL);
  floor('corridor',[-F.corridor,F.corridor],[LB1-.5,TB1+.16],PASS,(x,z,r)=>Math.abs(x)<=F.corridor-r+.08);
 
- // The carpet room: a platform 0.3 m up, carpeted, two steps at each end of the middle; the shoe shelves at the aft
- // step; life-jacket lockers and the blanket rack along the sides; a television on its bracket over the forward door.
+ // The old carpet room, now plain seating: a platform 0.3 m up, two steps at each end of the middle, the shoe
+ // shelves at the aft step, life-jacket lockers along the sides, and a television over the forward door.
  {const P=F.carpet,c0=TB1+T/2,c1=CR1-T/2,st=.15;
   box([-(DW-T),PASS,c0+2*st],[DW-T,PASS+P,c1-2*st],CARPET,{solid:false,camera:false,name:'carpet platform'});
   for(const [z0,z1] of [[c0+st,c0+2*st],[c1-2*st,c1-st]])deco([-F.corridor,PASS,z0],[F.corridor,PASS+P/2,z1],0x8a7356);
@@ -382,23 +382,19 @@ export const FERRY_INTERIOR=(()=>{
    const X=sorted(s*(F.corridor+.05),s*(DW-T));
    box([X[0],PASS,c0],[X[1],PASS+P,c0+2*st],0x8a7356,{name:'shoe shelf'});box([X[0],PASS+P,c0],[X[1],PASS+P+.15,c0+.3],0x8a7356,{name:'shoe shelf'});
    const L=sorted(s*(DW-T-.45),s*(DW-T));box([L[0],PASS+P,Z(12.6)],[L[1],PASS+P+1.0,Z(14.4)],ORANGE,{name:'life-jacket locker'});
-   box([L[0],PASS+P,Z(14.8)],[L[1],PASS+P+1.2,Z(15.9)],0xd8cdb6,{name:'blanket rack'});
-   for(let i=0;i<4;i++)deco([s*(1.2+i*.45)-.18,PASS+P,Z(13.0)+(i%2)*.2],[s*(1.2+i*.45)+.18,PASS+P+.1,Z(13.0)+(i%2)*.2+.45],[0xd9c27a,0x8fb3c9,0xc98f7a,0xa7c08a][i]);
   }
   box([-.45,top-.55,c1-.4],[.45,top-.05,c1],DARK,{solid:false,camera:true,name:'television'});
-  // Somewhere to settle for the crossing (3 November 2026): a round low table (chabudai) each side with a zabuton on
-  // three sides of it, for a family's bento or a game of cards; pillows (makura) and folded blankets at the aft end for
-  // whoever lies down; all in the room's own colours. One of the cushions is FERRY_PASSENGER_SEATS' carpet-cushion.
-  {const y0=PASS+P,ZT=Z(14.2),zab=[0xd9c27a,0x8fb3c9,0xc98f7a,0xa7c08a,0xe0a87a];
-   for(const s of [1,-1]){const xt=s*1.85;
-    box([xt-.42,y0,ZT-.42],[xt+.42,y0+.34,ZT+.42],TEAK,{camera:false,draw:false,name:'low table'});
-    cyl(.42,.42,.04,[xt,y0+.32,ZT],TEAK,{cls:'paint',seg:20,name:'low table'});
-    for(const [dx,dz] of [[-.25,-.25],[.25,-.25],[-.25,.25],[.25,.25]])cyl(.025,.025,.3,[xt+dx,y0+.15,ZT+dz],0x6f5a40,{cls:'paint',seg:6,name:'low table leg'});
-    cyl(.05,.045,.09,[xt+.12,y0+.385,ZT-.1],0xf0ece0,{cls:'paint',seg:10,name:'tea cup'});cyl(.05,.045,.09,[xt-.14,y0+.385,ZT+.08],0xf0ece0,{cls:'paint',seg:10,name:'tea cup'});
-    for(const [i,[cx,cz]] of [[xt-s*.6,ZT],[xt,ZT-.62],[xt,ZT+.62]].entries())deco([cx-.22,y0,cz-.22],[cx+.22,y0+.08,cz+.22],zab[(i+(s>0?0:2))%zab.length]);
-    // Pillows and blankets, folded, for lying down.
-    const X=sorted(s*.95,s*1.75);deco([X[0],y0,Z(12.05)],[X[1],y0+.14,Z(12.45)],s>0?0x8fb3c9:0xc98f7a);deco([X[0]+.04,y0+.14,Z(12.08)],[X[1]-.04,y0+.26,Z(12.42)],0xe8e2d0);
-    for(let k=0;k<2;k++)deco([X[0]+.05+k*.4,y0+.26,Z(12.12)],[X[0]+.38+k*.4,y0+.36,Z(12.38)],0xf4f2ec);}}
+  // Simple benches (12 November 2026): a small ferry does not keep a lie-down cabin. Two a side, clear of the
+  // aisle, the life-jacket lockers and the reading rack. One place is FERRY_PASSENGER_SEATS' carpet-cushion.
+   // Slatted wooden benches, the small-ferry pattern in the Chisum's photograph note E7
+   // (nj22az/nj22az.github.io ferry/yard/reference/owner-photographs-2026-11-11.md). The seat stays open between the slats.
+   {const y0=PASS+P,bench=(x0,x1,z0,z1)=>{
+    box([x0,y0,z0],[x1,y0+.38,z1],TEAK,{name:'passenger bench'});
+    for(let i=0;i<4;i++){const z=z0+.08+i*((z1-z0-.2)/3);deco([x0+.04,y0+.384,z],[x1-.04,y0+.42,z+.04],0x6f5a40);}
+    deco([x0,y0+.424,z1-.08],[x1,y0+.84,z1],TEAK);
+   };
+   bench(1.55,2.45,Z(12.4),Z(13.5));bench(1.55,2.45,Z(14.15),Z(15.35));
+   bench(-2.45,-1.55,Z(12.4),Z(13.5));bench(-2.45,-1.55,Z(14.15),Z(15.55));}
   // The reading rack against the forward partition, to port of the doorway, facing the cushions from the platform's
   // edge: the town paper (printed at Front-Row) and manga and paperbacks from Sakura, which sells the island's books.
   // Read them aboard, leave them aboard.
@@ -611,19 +607,25 @@ export const FERRY_INTERIOR=(()=>{
 
  // ---- The crew house on the bridge deck (shipyard z 6–19.5, 6 m wide): aft, the emergency-generator room (port)
  // and the CO₂ room (starboard), each opening only aft onto the bridge deck's platform; between them the crew's own
- // door from the platform (they come up the open deck's ladders) into the corridor down the middle to the wheelhouse,
- // the crew's rooms either side of it. (The general arrangement had a crew stair down to the lobby; there was no room
- // for one there that a passenger would not walk into. Since 3 November 2026 the crew stair comes up from the saloon,
- // behind its crew-only door, into the wheelhouse: FERRY_CREW_STAIR. The platform's ladders and the wing ladders stay.)
+ // door from the platform (they come up the open deck's ladders) into the corridor down the middle to the wheelhouse.
+ // To port the old cabins are one lounge, open from a single doorway (12 November 2026). To starboard: a sitting
+ // alcove, the WC, and the pantry opening into the skipper's corner. (The general arrangement had a crew stair down
+ // to the lobby; there was no room for one there that a passenger would not walk into. Since 3 November 2026 the crew
+ // stair comes up from the saloon, behind its crew-only door, into the wheelhouse: FERRY_CREW_STAIR. The platform's
+ // ladders and the wing ladders stay.)
  {const HT=F.houseTop,ceil=HT-.08,CW=.45;
   const rooms=[
-   // [side, from, to, id, name]
-   [1,Z(9),Z(11.5),'crew-cabin','Crew cabin · Uezu and Nakandakari duty berths'],[-1,Z(9),Z(11.5),'mate-cabin','Chief officer’s cabin'],
-   [1,Z(11.5),Z(14),'deckhand-cabin','Deckhand’s cabin'],[-1,Z(11.5),Z(14),'crew-wc','Crew WC and shower'],
-   [1,Z(14),Z(16.5),'mess','Mess room'],[-1,Z(14),Z(16.5),'galley','Galley'],
-   [1,Z(16.5),WH0,'chief-cabin','Johansson · chief engineer’s duty cabin'],[-1,Z(16.5),WH0,'master-cabin','Master’s cabin'],
+   // [side, from, to, id]. Port is one lounge; starboard keeps the WC as its own room.
+   [1,Z(9),Z(11.5),'crew-cabin'],[-1,Z(9),Z(11.5),'mate-cabin'],
+   [1,Z(11.5),Z(14),'deckhand-cabin'],[-1,Z(11.5),Z(14),'crew-wc'],
+   [1,Z(14),Z(16.5),'mess'],[-1,Z(14),Z(16.5),'galley'],
+   [1,Z(16.5),WH0,'chief-cabin'],[-1,Z(16.5),WH0,'master-cabin'],
   ];
   const doorZ=(a,b)=>a+.55;
+  // A bulkhead stays only around the WC. Everywhere else the old cabin walls are gone.
+  const bulkhead=(s,z)=>s<0&&(Math.abs(z-Z(11.5))<1e-4||Math.abs(z-Z(14))<1e-4);
+  const joinedAft=(s,z0)=>s>0?z0>Z(9)+.01:Math.abs(z0-Z(16.5))<1e-4;
+  const joinedFore=(s,z1)=>s>0?z1<WH0-.01:Math.abs(z1-Z(16.5))<1e-4;
   // The house's outer walls: aft (the two rooms' doors), the sides with a square port in each room.
   wall('x',-BH,BH,DH0,DH0+T,BRIDGE,HT,[doorAt(1.6,.8,BRIDGE,1.92),doorAt(-1.6,.8,BRIDGE,1.92),doorAt(0,.8,BRIDGE,1.92)]);
   deco([-.4,BRIDGE+1.95,DH0-.02],[.4,BRIDGE+2.1,DH0],0xb03a2a);
@@ -639,22 +641,28 @@ export const FERRY_INTERIOR=(()=>{
   wall('x',-BH,-CW,Z(9)-T/2,Z(9)+T/2,BRIDGE,HT);wall('x',CW,BH,Z(9)-T/2,Z(9)+T/2,BRIDGE,HT);
   for(const s of [1,-1]){
    wall('z',DH0+T,Z(9)-T/2,...sorted(s*CW,s*(CW+T)),BRIDGE,HT);   // (to the cross wall's face, not into its end)
-   const doors=rooms.filter(r=>r[0]===s).map(r=>doorAt(doorZ(r[1],r[2]),.7,BRIDGE,1.92));
+   // Port: one opening into the lounge. Starboard: a door to each room, as before.
+   const doors=s>0?[doorAt(Z(14.25),Z(18.8)-Z(9.7),BRIDGE,1.92)]:rooms.filter(r=>r[0]===s).map(r=>doorAt(doorZ(r[1],r[2]),.7,BRIDGE,1.92));
    wall('z',Z(9)+T/2,WH0,...sorted(s*CW,s*(CW+T)),BRIDGE,HT,doors,CREAM);
-   for(const r of rooms.filter(r=>r[0]===s).slice(1))wall('x',...sorted(s*(CW+T),s*(BH-T)),r[1]-T/2,r[1]+T/2,BRIDGE,HT,[],CREAM);
+   for(const r of rooms.filter(r=>r[0]===s).slice(1))if(bulkhead(s,r[1]))wall('x',...sorted(s*(CW+T),s*(BH-T)),r[1]-T/2,r[1]+T/2,BRIDGE,HT,[],CREAM);
   }
   // Floors: the corridor, linoleum; the rooms.
   deco([-CW,BRIDGE+.003,DH0+T],[CW,BRIDGE+.008,WH0],0x8a6f55);
   floor('crew-corridor',[-CW,CW],[DH0-.45,WH0+.4],BRIDGE,(x,z,r)=>Math.abs(x)<=CW-r+.1&&(z<WH0-T/2-r||Math.abs(x)<=.4-r+.08));
   const room=(s,z0,z1,id,doorAt0)=>{
-   const X=sorted(s*(CW+T),s*(BH-T)),col=id==='crew-wc'?0xd9dfe0:id==='galley'?0xc9c2ae:0x9a8466;
-   // (The master's cabin's floor stops at the crew stair's trunk.)
-   if(id==='master-cabin'){deco([CS.wall,BRIDGE+.003,z0+T/2],[X[1],BRIDGE+.008,z1-T/2],col);deco([X[0],BRIDGE+.003,z0+T/2],[CS.wall,BRIDGE+.008,CS.well[0]-.04],col);}
-   else deco([X[0],BRIDGE+.003,z0+T/2],[X[1],BRIDGE+.008,z1-T/2],col);
+   const X=sorted(s*(CW+T),s*(BH-T));
+   // Dark blue carpet in the lounge (the Chisum wardroom note, A1). The WC and the pantry keep their own floors.
+   const col=id==='crew-wc'?0xd9dfe0:id==='galley'?0xc9c2ae:0x24324a;
+   const zA=joinedAft(s,z0)?z0:z0+T/2,zB=joinedFore(s,z1)?z1-.002:z1-T/2;
+   // (The master's corner stops at the crew stair's trunk. A 2 mm gap at an open join keeps the floors from fighting.)
+   if(id==='master-cabin'){deco([CS.wall,BRIDGE+.003,zA],[X[1],BRIDGE+.008,zB],col);deco([X[0],BRIDGE+.003,zA],[CS.wall,BRIDGE+.008,CS.well[0]-.04],col);}
+   else deco([X[0],BRIDGE+.003,zA],[X[1],BRIDGE+.008,zB],col);
+   const loungeDoor=s>0;
    floor(id,sorted(s*(CW-.35),s*(BH-T)),[z0,z1],BRIDGE,(x,z,r)=>{const a=Math.abs(x);
-    if(a<CW+T+r)return a>CW-.35&&Math.abs(z-doorAt0)<=.35-r+.06;
+    if(a<CW+T+r)return a>CW-.35&&(loungeDoor?z>=z0+r-.05&&z<=z1-r+.05:Math.abs(z-doorAt0)<=.35-r+.06);
     if(id==='master-cabin'&&x<CS.wall+r&&z>CS.well[0]-.04-r)return false;   // the crew stair's trunk
-    return a<=BH-T-r&&z>=z0+T/2+r&&z<=z1-T/2-r;});
+    const zLo=joinedAft(s,z0)?z0-r:z0+T/2+r,zHi=joinedFore(s,z1)?z1+r:z1-T/2-r;
+    return a<=BH-T-r&&z>=zLo&&z<=zHi;});
   };
   for(const [s,z0,z1,id] of rooms)room(s,z0,z1,id,doorZ(z0,z1));
   // The emergency-generator and CO₂ rooms, from the platform aft.
@@ -677,24 +685,42 @@ export const FERRY_INTERIOR=(()=>{
    box([-2.95,BRIDGE,Z(6.2)],[-2.35,BRIDGE+1.9,Z(7.2)],0x9aa3a2,{name:'firemen’s outfit locker'});
    box([-1.1,BRIDGE+1.0,DH0+T],[-.6,BRIDGE+1.6,DH0+T+.15],0xd8d2c0,{name:'fan stops'});}
 
-  // The cabins: a bunk (two in the crew cabin), a locker, a fold-down desk or a desk; the master's safe and papers.
-  const bunk=(s,z0,z1,y=BRIDGE,two=false)=>{const X=S2(s,BH-T-.85,BH-T);box([X[0],y,z0],[X[1],y+(two?1.7:.5),z1],TEAK,{name:'bunk'});
-   deco([X[0]+.04,y+.45,z0+.05],[X[1]-.04,y+.55,z1-.05],0xe8e4d8);if(two)deco([X[0]+.04,y+1.3,z0+.05],[X[1]-.04,y+1.4,z1-.05],0xe8e4d8);};
-  const locker=(s,z0,x0=CW+T,w=.55)=>box([S2(s,x0,x0+w)[0],BRIDGE,z0],[S2(s,x0,x0+w)[1],BRIDGE+1.9,z0+.5],0xb9b3a0,{name:'locker'});
+  // The lounge, scaled down from the Chisum's crew-lounge notes (nj22az/nj22az.github.io
+  // ferry/yard/reference/owner-photographs-2026-11-11.md, A1 and C5): tan leather settees, a wardroom
+  // table, a short bookshelf, a ship's clock, a brass lamp, a letter rack and one framed print. No bunks,
+  // and the Chisum herself is not aboard.
+  const LEATHER=0xc4a06a,BUTTON=0x8d6a3e;
+  const bench=(x0,x1,z0,z1,name='crew lounge bench')=>{
+   box([x0,BRIDGE,z0],[x1,BRIDGE+.42,z1],LEATHER,{name});
+   deco([x0,BRIDGE+.424,z1-.1],[x1,BRIDGE+.78,z1],LEATHER);
+   for(let i=0;i<3;i++)deco([x0+.08,BRIDGE+.5,z0+.12+i*(z1-z0-.3)/2],[x0+.14,BRIDGE+.56,z0+.18+i*(z1-z0-.3)/2],BUTTON);
+  };
+  bench(2.15,2.82,Z(9.4),Z(11.15));bench(2.15,2.82,Z(12.4),Z(13.7));
+  bench(2.15,2.82,Z(17.55),Z(18.85));
+  bench(-2.82,-2.2,Z(9.45),Z(11.05));
+  {const xt=1.35,zt=Z(10.55);box([xt-.04,BRIDGE,zt-.04],[xt+.04,BRIDGE+.7,zt+.04],0xc5c8c6,{name:'lounge table'});
+   box([xt-.28,BRIDGE+.7,zt-.28],[xt+.28,BRIDGE+.74,zt+.28],TEAK,{name:'lounge table'});}
+  {const spines=[0xc94f3d,0x3f6fa0,0xe0b93a,0x4f8f5f,0xf0ece0,0x8a4f8f];
+   box([.62,BRIDGE,Z(9.12)],[1.05,BRIDGE+1.45,Z(9.42)],TEAK,{name:'crew lounge bookshelf'});
+   for(const [k,y] of [[0,.28],[1,.62],[2,.96]]){deco([.64,BRIDGE+y,Z(9.12)-.012],[1.03,BRIDGE+y+.02,Z(9.16)],0x6f5a40);
+    for(let i=0;i<4;i++)deco([.66+i*.09,BRIDGE+y+.02,Z(9.1)],[.66+i*.09+.07,BRIDGE+y+.2,Z(9.118)],spines[(i+k)%spines.length]);}}
+  plate(['SHIP’S CLOCK'],.18,.18,[2.86,BRIDGE+1.45,Z(10.3)],-Math.PI/2,{name:'ship’s clock',bg:'#f4f1e8',fg:'#1f2224'});
+  deco([2.84,BRIDGE+1.25,Z(12.05)],[2.9,BRIDGE+1.7,Z(12.35)],0x6f5a40,{name:'framed print'});
+  deco([2.86,BRIDGE+1.32,Z(12.1)],[2.905,BRIDGE+1.62,Z(12.3)],0x7fa9c9);
+  for(let i=0;i<4;i++)deco([2.7,BRIDGE+1.15+i*.08,Z(11.35)],[2.88,BRIDGE+1.18+i*.08,Z(11.85)],TEAK,{name:'letter rack'});
+  bar([2.55,BRIDGE+1.7,Z(13.2)],[2.55,BRIDGE+1.95,Z(13.2)],.012,0xb08a4a,'paint');
+  deco([2.48,BRIDGE+1.9,Z(13.12)],[2.62,BRIDGE+1.98,Z(13.28)],0xe0b93a,{name:'brass lamp'});
+  plate(['乗組員休憩室','CREW LOUNGE'],.86,.18,[CW-.02,BRIDGE+2.12,Z(14.2)],-Math.PI/2,{name:'crew lounge sign',bg:'#24585c',fg:'#f4f1e8'});
   const desk=(s,z0,z1)=>{const X=S2(s,BH-T-.55,BH-T);box([X[0],BRIDGE+.72,z0],[X[1],BRIDGE+.77,z1],TEAK,{name:'desk'});box([X[0],BRIDGE,z0],[X[1],BRIDGE+.72,z0+.4],TEAK,{name:'desk'});};
-  bunk(1,Z(9)+T/2+.05,Z(9)+2.0,BRIDGE,true);
-  plate(['UEZU · DUTY BERTH','NAKANDAKARI · RELIEF ENGINEER'],.7,.18,[CW+T+.05,BRIDGE+1.6,Z(9)+.8],Math.PI/2,{name:'Named engineering relief berth'});locker(1,Z(11.5)-T/2-.55);
-  bunk(-1,Z(9)+T/2+.05,Z(9)+2.0);desk(-1,Z(11.5)-.75,Z(11.5)-T/2-.05);locker(-1,Z(11.5)-T/2-.52,CW+T,.5);
-  bunk(1,Z(11.5)+T/2+.05,Z(11.5)+2.0);locker(1,Z(14)-T/2-.52);
   // Crew WC and shower: the WC, the basin, the shower tray and its curtain.
   deco([-(BH-T),BRIDGE+.009,Z(11.5)+.1],[-(BH-T-.9),BRIDGE+.02,Z(11.5)+1.0],0xe6eef0);deco([-(BH-T-.9),BRIDGE+1.95,Z(11.5)+.1],[-(BH-T-.92),BRIDGE+1.97,Z(11.5)+1.0],STEEL);
   box([-(BH-T),BRIDGE,Z(13.4)-.2],[-(BH-T-.55),BRIDGE+.42,Z(13.4)+.2],0xf4f4f0,{name:'WC'});box([-(CW+T+.45),BRIDGE+.7,Z(12.9)-.25],[-(CW+T),BRIDGE+.85,Z(12.9)+.25],0xf4f4f0,{name:'basin'});
   // Mess room: a table for six with benches, the television, the kettle, the duty board and the muster list.
   box([1.35,BRIDGE,Z(15.0)],[2.35,BRIDGE+.72,Z(16.2)],TEAK,{name:'mess table'});
   for(const x of [[1.08,1.28],[2.42,2.62]])box([x[0],BRIDGE,Z(15.0)],[x[1],BRIDGE+.42,Z(16.2)],0x8a7356,{name:'mess bench'});
-  box([BH-T-.45,BRIDGE+1.3,Z(16.5)-.6],[BH-T,BRIDGE+1.7,Z(16.5)-T/2-.05],DARK,{camera:false,name:'mess television'});
+  box([BH-T-.14,BRIDGE+1.25,Z(15.35)],[BH-T-.04,BRIDGE+1.65,Z(15.95)],DARK,{camera:false,name:'mess television'});
   box([BH-T-.5,BRIDGE,Z(14)+T/2+.05],[BH-T,BRIDGE+.9,Z(14)+.7],0xd8d2c0,{name:'sideboard'});bar([2.55,BRIDGE+.9,Z(14.35)],[2.55,BRIDGE+1.1,Z(14.35)],.07,STEEL);
-  deco([.6,BRIDGE+1.2,Z(16.5)-T/2-.02],[1.6,BRIDGE+1.8,Z(16.5)-T/2],0xf4f0e2);
+  deco([BH-T-.06,BRIDGE+1.15,Z(14.15)],[BH-T-.02,BRIDGE+1.75,Z(14.7)],0xf4f0e2);
   // Galley: the three-plate range and its hood, the rice cooker, the fridge-freezer, the sink, the provision locker.
   box([-(BH-T),BRIDGE,Z(14.2)],[-(BH-T-.6),BRIDGE+.9,Z(15.0)],0x9aa3a2,{name:'range'});box([-(BH-T),BRIDGE+1.55,Z(14.2)],[-(BH-T-.6),BRIDGE+1.9,Z(15.0)],STEEL,{camera:false,name:'hood'});
   box([-(BH-T),BRIDGE,Z(15.0)],[-(BH-T-.6),BRIDGE+.9,Z(15.9)],0xc8c8c0,{name:'sink'});bar([-(BH-T-.3),BRIDGE+.9,Z(15.45)],[-(BH-T-.3),BRIDGE+1.1,Z(15.45)],.09,0xf0ece0);
@@ -702,15 +728,12 @@ export const FERRY_INTERIOR=(()=>{
   // Keep the locker aft of the doorway's turning space: its former .55 m end
   // left only a centimetre between the door jamb and an adult's clearance.
   box([-(CW+T+.6),BRIDGE,Z(14)+T/2+.05],[-(CW+T),BRIDGE+1.9,Z(14)+.30],0xb9b3a0,{name:'provision locker'});
-  // Chief engineer's and master's cabins.
-  bunk(1,WH0-T/2-2.0,WH0-T/2-.05);desk(1,Z(16.5)+.1,Z(16.5)+.9);locker(1,Z(16.5)+T/2+.02);
-  // The master's cabin, round the crew stair's trunk: the bunk along the corridor's wall forward of the door, the desk
-  // aft under the port with the safe under it, the locker in the forward corner between the bunk and the trunk.
-  box([-(CW+T+.85),BRIDGE,Z(17.5)],[-(CW+T),BRIDGE+.5,WH0-T/2-.05],TEAK,{name:'bunk'});deco([-(CW+T+.81),BRIDGE+.45,Z(17.55)],[-(CW+T+.04),BRIDGE+.55,WH0-T/2-.1],0xe8e4d8);
-  desk(-1,Z(16.5)+.1,Z(16.5)+1.1);
-  box([-(BH-T-.02),BRIDGE,Z(17.1)],[-(BH-T-.47),BRIDGE+.55,Z(17.55)],DARK,{name:'safe'});   // under the desk
+  // The engineer's writing table, forward in the lounge, and the skipper's papers: a desk and the safe, no bunk.
+  desk(1,Z(16.6),Z(17.35));
+  desk(-1,Z(16.6),Z(17.5));
+  box([-(BH-T-.02),BRIDGE,Z(17.15)],[-(BH-T-.47),BRIDGE+.55,Z(17.55)],DARK,{name:'safe'});
   box([CS.wall+.04,BRIDGE,WH0-T/2-.55],[CS.wall+.6,BRIDGE+1.9,WH0-T/2-.03],0xb9b3a0,{name:'locker'});
-  for(const [s,z0,z1] of rooms)deco([Math.min(s*(CW+T),s*(CW+T+.01)),BRIDGE+2.0,doorZ(z0,z1)-.15],[Math.max(s*(CW+T),s*(CW+T+.01)),BRIDGE+2.12,doorZ(z0,z1)+.15],0xf4f0e2);
+  for(const [s,z0,z1] of rooms)if(s<0)deco([Math.min(s*(CW+T),s*(CW+T+.01)),BRIDGE+2.0,doorZ(z0,z1)-.15],[Math.max(s*(CW+T),s*(CW+T+.01)),BRIDGE+2.12,doorZ(z0,z1)+.15],0xf4f0e2);
   // A grab rail down each side of the corridor, at 0.95 m: a ship's corridor in a seaway.
   for(const s of [1,-1])bar([s*(CW-.03),BRIDGE+.95,Z(9.3)],[s*(CW-.03),BRIDGE+.95,WH0-.3],.016,STEEL);
   // Ceiling lights down the corridor.

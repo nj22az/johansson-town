@@ -46,6 +46,18 @@ test('the crew stair: 45°, 0.8 m clear, its well opened where the head needs it
  const chart=FERRY_INTERIOR.boxes.find(b=>b.name==='chart table');assert.ok(Math.max(Math.abs(chart.a[0]),Math.abs(chart.b[0]))<2.42-.3,'clear of both wing doors');
 });
 
+test('passenger benches replace the lie-down carpet, and the bridge deck is a lounge with no bunk',()=>{
+ assert.ok(FERRY_INTERIOR.boxes.some(b=>b.name==='passenger bench'),'simple benches on the raised floor');
+ assert.ok(FERRY_INTERIOR.boxes.some(b=>b.name==='crew lounge bench'),'a crew lounge');
+ assert.ok(FERRY_INTERIOR.boxes.some(b=>b.name==='crew lounge bookshelf'),'the lounge keeps a short library');
+ assert.ok(FERRY_INTERIOR.boxes.some(b=>b.name==='lounge table'));
+ assert.ok(FERRY_INTERIOR.plates.some(p=>p.name==='ship’s clock'));
+ assert.ok(FERRY_INTERIOR.plates.some(p=>p.name==='crew lounge sign'&&p.lines[0]==='乗組員休憩室'));
+ assert.equal(FERRY_PASSENGER_SEATS.find(p=>p.id==='carpet-cushion').label,'Sit on a bench');
+ assert.ok(!FERRY_INTERIOR.boxes.some(b=>b.name==='bunk'),'no cabin bunks');
+ assert.ok(!FERRY_INTERIOR.boxes.some(b=>/zabuton|blanket|pillow/i.test(b.name||'')));
+});
+
 test('the seats anyone may take are reached from the floor, and move with her',()=>{
  const parent=new THREE.Group(),colliders=[],anchors=[];
  const run=createFerryRun({parent,colliders,register:(o,label,fn)=>anchors.push({o,label,fn})});run.parkAt('town');run.update(1/60,600,0);

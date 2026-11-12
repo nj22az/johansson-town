@@ -198,7 +198,7 @@ export function createFerryRun({parent,shadows=false,colliders,register=null,onA
  if(register)for(const p of FERRY_INSPECT){const a=new THREE.Object3D();a.name='Ferry: '+p.title;a.position.set(...p.pos);a.userData.sameLevel=true;a.userData.reach=p.reach??2.2;a.userData.facing=p.facing??.55;ferry.add(a);
   register(a,p.label,()=>onAction('inspect',p.title,p.text));}
  // Seats anyone may take (ferry-interior.js FERRY_PASSENGER_SEATS): the front row by the bow windows, a window seat, a
- // cushion in the carpet room. Each moves with her: where it is, where he stands up and the way it faces are read from
+ // bench on the raised passenger floor. Each moves with her: where it is, where he stands up and the way it faces are read from
  // her pose when he sits, and `aboard` keeps them in her frame so game.js carries him on it while she sails.
  if(register)for(const p of FERRY_PASSENGER_SEATS){const a=new THREE.Object3D();a.name='Ferry seat: '+p.title;a.position.set(...p.anchor);
   a.userData.sameLevel=true;a.userData.reach=1.6;a.userData.facing=.4;a.userData.npcInteraction=false;ferry.add(a);

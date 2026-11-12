@@ -6,7 +6,8 @@ import {FERRY_H1_ENABLED,FERRY_H1} from './ferry-engine-room-plan.js';
  *
  * The creator chose the bigger ship and the bigger harbour (2026-10-11): a 199-ton class island car
  * ferry of 34.5 m, the size that worked 15–30 minute crossings in Okinawa in the 1990s, carrying
- * six cars (or an 8-tonne truck and two cars) and a hundred passengers, with a crew of eight.
+ * six cars (or an 8-tonne truck and two cars) and a hundred passengers. Her safe minimum is a skipper and an
+ * engineer (FERRY_SAFE_MANNING); the eight posts still signed on are the town's people, who keep sailing with her.
  * Built in 1994 by Johansson Shipyard on Innoshima in the Seto Inland Sea (hull No. 127); refitted for GMDSS in 1998.
  *
  * Everything is data first, so the model (ferry-model.js, drawn from these numbers since batch 5), the
@@ -114,7 +115,7 @@ export const FERRY_GA=Object.freeze([
  space('open-deck','passenger',[0,6],[-4.1,4.1],[H.passengerDeck,H.bridgeDeck],'Open deck: benches for 22 under an awning, one liferaft (port, aft), the rescue boat and its davit (starboard, aft), the stern flagstaff, two lifebuoys, the sign for muster station B','Fresh air, the view, and where people embark the liferafts',{exits:['lobby','platform-ladders'],seats:22}),
  space('lobby','passenger',[6,9.5],[-4.1,4.1],[H.passengerDeck,H.bridgeDeck],'Lobby, the deckhouse’s full breadth: the stair heads P and S in its wings; the purser’s window (S: ticket rack, cash box, punch, PA microphone, first-aid kit, lost property); the kiosk (P counter); the vending corner (two drink machines and a hot-water dispenser for cup noodles); timetable and fare boards; the capacity sign and the ship’s certificate; an ashtray stand by the aft door; a teak bench either side of the aft door (6 places)','Tickets and snacks; everyone passes through',{exits:['open-deck','stair-p','stair-s'],seats:6}),
  space('toilets','passenger',[9.5,11.5],[-3.4,3.4],[H.passengerDeck,H.bridgeDeck],'Toilets: men’s to port (a WC, two urinals, a basin), women’s to starboard (two WCs, a basin); sea-water flushing','',{exits:['lobby']}),
- space('carpet-room','passenger',[11.5,16.5],[-3.4,3.4],[H.passengerDeck+.3,H.bridgeDeck],'Carpet room, raised 0.3 m: carpet, a rack of cushions and blankets, the shoe shelf at the step, a television on a bracket, life-jacket lockers; a low table each side with its zabuton, pillows and folded blankets; the reading rack at the forward partition (the town paper, manga and paperbacks from Sakura); 38 places (0.87 m² each on its 33 m² of carpet)','Lie down for twenty-two minutes, as everyone does',{exits:['lobby','saloon'],seats:38}),
+ space('carpet-room','passenger',[11.5,16.5],[-3.4,3.4],[H.passengerDeck+.3,H.bridgeDeck],'Passenger seating, on the old carpet-room platform (12 November 2026: a small ferry has no passenger cabins and nowhere to lie down): simple teak benches either side of the aisle, the shoe shelf at the step, a television on a bracket, life-jacket lockers, and the reading rack at the forward partition (the town paper, manga and paperbacks from Sakura); 38 places','A bench for twenty-two minutes, and the view when she lifts',{exits:['lobby','saloon'],seats:38}),
  space('saloon','passenger',[16.5,23],[-3.4,3.4],[H.passengerDeck,H.bridgeDeck],'Seated saloon: a cross passage at its aft end to the side doors and the crew stair’s door (z 16.5–17.7), then 34 reclining seats in terracotta moquette, 0.7 m a place with wooden arms and white head covers, in five rows at 0.88 m facing the bow (four a row each side, two to starboard beside the crew stair); a teak ledge under the six windows forward over the car deck and the sea; curtains at the side windows; a pothos from Sakura; the sign for muster station A (3 November 2026: seven rows of three at 0.85 m did not fit)','The forward view, and somewhere warm to do nothing for twenty-two minutes',{exits:['carpet-room','walkway-p','walkway-s'],seats:34}),
  space('crew-stair','passenger',[17.6,20.35],[-3.4,-2.04],[H.passengerDeck,H.bridgeDeck],'Crew stair to the wheelhouse: a straight flight 0.8 m clear, 13 risers of 0.2 m at 45°, in a trunk on the saloon’s starboard side behind a door marked 乗組員専用 (crew only) from the cross passage; its well rises through the master’s cabin’s outboard forward corner, walled off, into the wheelhouse’s aft starboard corner beside the wing door, railed (the owner, 3 November 2026)','The watch reaches the bridge from inside, out of the rain, and the master is a flight from the passengers',{within:'saloon',exits:['saloon','wheelhouse']}),
  space('walkway-p','passenger',[9.5,23],[3.4,4.1],[H.passengerDeck,H.bridgeDeck],'Side walkway, port, 0.7 m: rails, two liferafts in cradles outboard of the rail, a hydrant, and the ladder up to the bridge wing at its forward end (z 17.6–19.5)','Crew and escape',{exits:['saloon','wing-p']}),
@@ -122,15 +123,17 @@ export const FERRY_GA=Object.freeze([
  // ---- The bridge deck (10.0 m): the deckhouse z 6–23, 6.0 m wide, a 0.9 m corridor down the middle and a crew stair to the lobby.
  space('eg-room','bridge',[6,9],[.45,3],[H.bridgeDeck,H.compassDeck],'Emergency-generator room: the 40 kVA emergency generator, the emergency switchboard, the 24 V batteries and their chargers, a 60 L day tank, louvres','Power when the main board is dead; its door opens to the open deck only',{exits:['open-deck']}),
  space('co2-room','bridge',[6,9],[-3,-.45],[H.bridgeDeck,H.compassDeck],'CO₂ room and fire-control station: four 45 kg CO₂ bottles, the release cabinet, the remote fan stops and fuel quick-closing valves, two firemen’s outfits','Fire in the engine room is fought from outside it; its door opens to the open deck only',{exits:['open-deck']}),
- space('crew-cabin','bridge',[9,11.5],[.45,3],[H.bridgeDeck,H.compassDeck],'Crew cabin, two berths: the bosun and the oiler; bunk beds, lockers, a fold-down desk','',{exits:['corridor']}),
- space('mate-cabin','bridge',[9,11.5],[-3,-.45],[H.bridgeDeck,H.compassDeck],'Chief officer’s cabin','',{exits:['corridor']}),
- space('deckhand-cabin','bridge',[11.5,14],[.45,3],[H.bridgeDeck,H.compassDeck],'Deckhand’s cabin','On her weeks aboard',{exits:['corridor']}),
+ // The old private cabins are one crew lounge (12 November 2026). The floor ids stay, so a walk, a save or a
+ // quarter that still names a cabin lands in the right part of the open room.
+ space('crew-cabin','bridge',[9,11.5],[.45,3],[H.bridgeDeck,H.compassDeck],'Crew lounge, aft port: a bench along the side. The bosun’s and the relief engineer’s old berths were here; nobody has a cabin','',{exits:['corridor','deckhand-cabin']}),
+ space('mate-cabin','bridge',[9,11.5],[-3,-.45],[H.bridgeDeck,H.compassDeck],'Sitting alcove off the lounge, starboard aft: one bench. The chief officer’s cabin was here','',{exits:['corridor']}),
+ space('deckhand-cabin','bridge',[11.5,14],[.45,3],[H.bridgeDeck,H.compassDeck],'Crew lounge, port, open into the mess: a bench. The deckhand’s cabin was here','',{exits:['corridor','crew-cabin','mess']}),
  space('crew-wc','bridge',[11.5,14],[-3,-.45],[H.bridgeDeck,H.compassDeck],'Crew WC and shower','',{exits:['corridor']}),
- space('mess','bridge',[14,16.5],[.45,3],[H.bridgeDeck,H.compassDeck],'Mess room: a table for six, a television, a kettle, the duty board and the muster list','Where the crew eat and the watch is handed over',{exits:['corridor']}),
- space('galley','bridge',[14,16.5],[-3,-.45],[H.bridgeDeck,H.compassDeck],'Galley: a three-plate range, the rice cooker, a fridge-freezer, a sink, a hood, the provision locker, a hatch to the mess','The cook’s; the kiosk’s hot water too',{exits:['corridor']}),
- space('chief-cabin','bridge',[16.5,19.5],[.45,3],[H.bridgeDeck,H.compassDeck],'Johansson’s chief engineer duty cabin','Primary home with Thuan on Kitano-jima',{exits:['corridor']}),
- space('master-cabin','bridge',[16.5,19.5],[-3,-.45],[H.bridgeDeck,H.compassDeck],'Master’s cabin: a desk, a bunk along the corridor’s wall, the ship’s papers and the safe; the crew stair’s trunk walled off in its outboard forward corner','',{exits:['corridor']}),
- space('corridor','bridge',[6,19.5],[-.45,.45],[H.bridgeDeck,H.compassDeck],'The crew’s corridor down the middle, from their own door aft onto the bridge deck’s platform (they come up the open deck’s ladders) to the wheelhouse','The crew’s way to their rooms and to the bridge, apart from the passengers',{exits:['crew-door','wheelhouse']}),
+ space('mess','bridge',[14,16.5],[.45,3],[H.bridgeDeck,H.compassDeck],'Crew lounge, the table: a table for six, benches, a television, a kettle, the duty board and the muster list. Open aft and forward; there is no cabin bulkhead','Where the crew eat and the watch is handed over',{exits:['corridor','deckhand-cabin','chief-cabin']}),
+ space('galley','bridge',[14,16.5],[-3,-.45],[H.bridgeDeck,H.compassDeck],'Pantry off the lounge: a three-plate range, the rice cooker, a fridge-freezer, a sink, a hood and the provision locker, open forward into the skipper’s corner','The cook’s; the kiosk’s hot water too',{exits:['corridor','master-cabin']}),
+ space('chief-cabin','bridge',[16.5,19.5],[.45,3],[H.bridgeDeck,H.compassDeck],'Crew lounge, forward port: a settee and a writing table for the engineer between watches. Johansson’s home is with Thuan on Kitano-jima; this is not a cabin','',{exits:['corridor','mess']}),
+ space('master-cabin','bridge',[16.5,19.5],[-3,-.45],[H.bridgeDeck,H.compassDeck],'Skipper’s corner of the lounge: the ship’s papers, a desk and the safe; the crew stair’s trunk walled off in its outboard forward corner. No bunk. Fujita sleeps on Shiosai','',{exits:['corridor','galley']}),
+ space('corridor','bridge',[6,19.5],[-.45,.45],[H.bridgeDeck,H.compassDeck],'The crew’s corridor down the middle, from their own door aft onto the bridge deck’s platform (they come up the open deck’s ladders) to the wheelhouse, with the lounge open off it','The crew’s way to the lounge and to the bridge, apart from the passengers',{exits:['crew-door','wheelhouse']}),
  space('wheelhouse','bridge',[19.5,23],[-3,3],[H.bridgeDeck,H.compassDeck],'Wheelhouse: the steering stand (wheel, non-follow-up lever, autopilot); two engine levers and the thruster lever at the centre and on both wing consoles; the radar; the magnetic compass periscope; VHF with DSC; the ship’s telephone; the NAVTEX printer; the echo sounder; the GPS display; the chart table with its drawers and red lamp; the navigation-light panel; the fire panel; the PA and general alarm; the ramp lamps; the whistle button; the searchlight control; the wipers; a clock, a barometer, an inclinometer; the log desk; the master’s high chair','She is conned from here and from the wings',{exits:['corridor','wing-p','wing-s','crew-stair']}),
  space('wing-p','bridge',[19.5,23],[3,4.1],[H.bridgeDeck,H.compassDeck],'Bridge wing, port, open: a wing console with the engine and thruster levers, the port sidelight at its end','Berthing port side to',{exits:['wheelhouse','walkway-p']}),
  space('wing-s','bridge',[19.5,23],[-4.1,-3],[H.bridgeDeck,H.compassDeck],'Bridge wing, starboard, open: a wing console, the starboard sidelight at its end, the float-free EPIRB','Berthing starboard side to',{exits:['wheelhouse','walkway-s']}),
@@ -308,7 +311,7 @@ export const FERRY_SAFETY=Object.freeze({
   where:Object.freeze(['open-deck','walkway-p','walkway-p','walkway-s','walkway-s']),serviced:'Yearly in Naha'}),
  rescueBoat:Object.freeze({length:4,persons:6,outboard:15,davitKW:3.7,where:'open-deck',launch:'Under five minutes',why:'A rescue boat on a small passenger ship; also the island’s only boat with radar and a crew at night'}),
  lifebuoys:Object.freeze({count:8,perSide:4,withLightAndSmoke:2,withLine:2,line:27.5,lettered:'みなと丸 · 港町'}),
- lifeJackets:Object.freeze({adult:110,child:10,where:'Lockers in the saloon, the carpet room and the lobby; the crew’s in their cabins'}),
+ lifeJackets:Object.freeze({adult:110,child:10,where:'Lockers in the saloon, the passenger benches and the lobby; the crew’s in the lounge'}),
  pyrotechnics:Object.freeze({rockets:4,handFlares:6,smoke:2,lineThrower:1,epirb:1,sart:1,portableVHF:3}),
  muster:Object.freeze({A:'saloon',B:'open-deck',alarm:'Seven short and one long blast on the whistle and the bells'}),
  extinguishers:Object.freeze({powder:Object.freeze({car:4,passenger:4,engine:4}),foam45:1,co2:Object.freeze(['wheelhouse','galley','eg-room','bow-house-s'])}),
@@ -317,9 +320,21 @@ export const FERRY_SAFETY=Object.freeze({
 });
 
 /**
- * Safe manning (§5): eight posts for a passenger ship of her size and area, with the licences of the
- * period (海技士). people/ferry-crew.js signs people on to them; all eight posts are represented
- * aboard, with the deck and machinery departments reporting to the master.
+ * Safe manning for this small ferry (the owner, 12 November 2026: "Minato Maru only needs a crew of two,
+ * an engineer and a skipper"). The skipper is the master. The engineer is the chief, and Mac takes that
+ * watch when the chief is ashore. She can sail with these two: the skipper cons and counts, the engineer
+ * keeps the plant and the ramp, and the shore hands take the lines.
+ */
+export const FERRY_SAFE_MANNING=Object.freeze([
+ Object.freeze({post:'master',title:'Skipper',who:'The master (Fujita)'}),
+ Object.freeze({post:'chief',title:'Engineer',who:'The chief engineer (Johansson), or Mac when he is ashore'}),
+]);
+/**
+ * The company still signed on (§5, as the town plays her): eight posts, with the licences of the
+ * period (海技士). people/ferry-crew.js signs the roster’s people on to them. The six besides the
+ * skipper and the engineer are people of the town, with days and friendships; they are not deleted
+ * by the smaller safe minimum, and the Chisum is not part of this town. The deck and machinery
+ * departments still report to the master.
  */
 export const FERRY_MANNING=Object.freeze([
  Object.freeze({post:'master',title:'Master',jp:'senchō',licence:'Fourth-grade deck officer (yon-kyū kaigishi, navigation)'}),

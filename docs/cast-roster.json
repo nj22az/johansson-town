@@ -810,7 +810,7 @@
    ],
    "aboard": true,
    "registered": true,
-   "what": "the chief engineer’s duty cabin"
+   "what": "the engineer’s place in the crew lounge; his home is on Kitano-jima"
   },
   {
    "id": "ferry-engineer-duty-berth",
@@ -819,7 +819,7 @@
    ],
    "aboard": true,
    "registered": true,
-   "what": "the relief engineer’s separate duty berth"
+   "what": "the relief engineer’s settee in the crew lounge"
   },
   {
    "id": "ferry-officer-cabin",
@@ -828,7 +828,7 @@
    ],
    "aboard": true,
    "registered": true,
-   "what": "the chief officer’s cabin aboard (FERRY_GA mate-cabin)"
+   "what": "the chief officer’s place in the crew lounge (FERRY_GA mate-cabin, the sitting alcove)"
   },
   {
    "id": "ferry-crew-cabin",
@@ -839,7 +839,7 @@
    ],
    "aboard": true,
    "registered": true,
-   "what": "the crew accommodation aboard: the deckhand’s cabin (Ren) and the crew cabin; the crew cabin is drawn with one two-tier bunk, the bosun’s week-on berth and the relief engineer’s duty berth, so the purser’s and the cook’s berths are two more bunks for the docks-and-boats job"
+   "what": "the crew lounge aboard (the old deckhand’s cabin and the crew cabin are one room now): Ren, Aya and Jun, with a bench for the bosun’s week on and the relief engineer. No bunks"
   },
   {
    "id": "kitano-2",

@@ -96,7 +96,7 @@ export function createFerryCrewAboard({run,characters,register,onAction,townBody
    // Johansson on watch: his tasks are kept by the watch itself (no second body); Mac rests in his duty berth.
    if(watch.post==='chief'&&holder==='player'){
     for(const t of active.filter(t=>t.post==='chief'))if(!records.has(t.id))records.set(t.id,{task:t,b:null,elapsed:0,done:false,player:true});
-    const rest={...watch,name:FERRY_RELIEF.chief.name,title:'Relief engineer · off watch',where:'cabin',doing:'Off watch in his duty berth while the chief is aboard',...CREW_POSTS.cabin};
+    const rest={...watch,name:FERRY_RELIEF.chief.name,title:'Relief engineer · off watch',where:'cabin',doing:'Off watch in the crew lounge while the chief is aboard',...CREW_POSTS.cabin};
     const b=body(rest);aboard.add(rest.name);b.g.visible=true;b.post='relief';b.title=rest.title;b.taskId=null;b.where='cabin';b.doing=rest.doing;
     if(!b.initialised){b.g.position.set(...rest.pos);b.g.rotation.y=rest.yaw;b.initialised=true;b.actor?.last?.copy(b.g.position);}
     destination(b,CREW_POSTS.cabin,'off-watch:'+d);b.text=rest.name+', relief engineer: '+rest.doing.toLowerCase()+'. '+FERRY_RELIEF.chief.why;b.g.userData.activity=rest.doing;
