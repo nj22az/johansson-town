@@ -45,4 +45,6 @@ The owner, of the first photograph of Thuan: "Remove grandmother samurai from th
 Proved: the probe of the running game puts her there, on the pavement (ground +0.04, not blocked), 11.6 m from Thuan;
 photographed with `tools/pixar-shots.mjs --name "Mrs Sato"`; the guard green (295 s, before the move from x −4.2 to the
 pavement at −6.1; the focused tests and the runtime check after it).
-**Left:** Thuan's own spot (-4, -25.5) is in the carriageway, a step off the kerb (ground −0.11). Not changed: ask the owner.
+**Thuan's spot (same day, the owner: "Yes"):** it was in the carriageway, a step off the kerb (-4, -25.5, ground −0.11).
+`THUAN_PROFILE.work` is now (-6.1, -25.5), on Sakura's pavement where she sweeps at opening (ground +0.04, not blocked);
+photographed in front of the shop window by the fruit trestle; the guard green (283 s).

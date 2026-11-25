@@ -21,7 +21,9 @@ const WORKPLACE_HOMES={
 // Thuan lives on Kitano-jima with Johansson and commutes by the ferry (the Harbour Line's boats, commuter-schedule.js):
 // her weekday room at 1 Kitahama was dropped (docs/CAST-CONSOLIDATION.md addendum 4), so she has no room ashore to be
 // put to bed in, and her home record is the Kitano house (kitano-residents.js).
-export const THUAN_PROFILE={...residentialHome('Thuan'),"name":"Thuan","age":25,"role":"Sakura owner","height":1.64,"work":[-4,-25.5],"evening":restaurantApproach('izakaya'),"friend":"Thao","start":540,"close":1200,"retire":1410,"supperStart":null,"supperEnd":null};
+// Thuan's work spot is the pavement in front of Sakura (x −6.1, where she sweeps at opening, stand-sequences.js), not the
+// carriageway a step off the kerb at x −4 where it was (the owner, 25 November 2026).
+export const THUAN_PROFILE={...residentialHome('Thuan'),"name":"Thuan","age":25,"role":"Sakura owner","height":1.64,"work":[-6.1,-25.5],"evening":restaurantApproach('izakaya'),"friend":"Thao","start":540,"close":1200,"retire":1410,"supperStart":null,"supperEnd":null};
 // The walking residents. Reiko, the Bus driver and Barfly were retired in phase 4 of the consolidation (roster.js
 // RETIRED): Nhung prints the paper, the Harbour master keeps his own stories, and Minato's regulars are the residents.
 // Dr Kakazu retired into Nhung on 22 October 2026: she is the island doctor (clinic-hours.js), the clinic her work.
