@@ -246,3 +246,13 @@ capsule, a flattened sphere cap over the joint and a capsule sleeve over that, f
 ink hull). Tuning the shells does not make a clean shoulder. The fix is structural: one continuous surface from the
 neck over the shoulder into the sleeve (the torso lathe extended into a sleeve tube per side, skinned across chest and
 shoulder), with the cap and separate sleeve removed. That touches every top in the wardrobe and their tests.
+
+## Dolls wearing clothes: the first garments (same day; the ruling is in AGENTS.md)
+- `sleeveTube` (build.js): every short sleeve is an open tube of cloth: a hem 7 mm thick round an opening 1.4 times the
+  arm (1.5 for a kariyushi), the cloth's darker inside up it, no ink on the lining; 14 sides, 6 rows (the wardrobe's
+  vertex budget). The arm under it is skin from 0.3 of the upper arm down.
+- T-shirts and polos hang over the waistband: a hem 4 cm below the waist, 3 mm clear (10 and 5 mm were pressed 8 and
+  6 mm into the other body in a hug; pair-poses allows 5), with its edge and lining. A T-shirt has a ribbed neck.
+- Guide portraits regenerated; runtime rebuilt; guard green (289 s). Not published.
+- **Still painted:** long sleeves, jackets, blouses' hems, every bottom's waist, collars other than the kariyushi's.
+  The doll's own shoulder (cap sphere over arm capsule) is unchanged under the cloth.

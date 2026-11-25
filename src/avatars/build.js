@@ -216,6 +216,29 @@ function limb(list,a,b,r0,r1,hex,{bone,joints=[],root=null,soft=.13,segments=14,
  };
  part(list,g,share,hex,new THREE.Matrix4().compose(A.clone().add(B).multiplyScalar(.5),q,new THREE.Vector3(1,1,1)),uvAt);
 }
+/**
+ * A sleeve that is worn, not painted (the owner, 25 November 2026: "they should be dolls wearing clothes, not dolls wearing
+ * paint"): a tube of cloth from a (closed and round, inside the shoulder) to b, where it is open: a hem `th` thick round
+ * an opening wider than the arm, and the cloth's inside a little way up it (darker, with no ink line of its own), so a
+ * look at the cuff finds the arm standing in a sleeve. Shared between its bone and `root`, as a limb is.
+ */
+function sleeveTube(list,a,b,r0,r1,hex,{bone,root=null,segments=14,uvAt=null,th=.006,depth=.04,inside=null}={}){
+ const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),d=B.clone().sub(A),len=d.length(),dir=d.clone().normalize();
+ const q=new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,-1,0),dir),at=new THREE.Matrix4().compose(A.clone().add(B).multiplyScalar(.5),q,new THREE.Vector3(1,1,1));
+ const rel=new THREE.Vector3();
+ const share=p=>{const t=rel.copy(p).sub(A).dot(dir)/len;if(!root)return [[bone,1]];const w=root[1]*(1-THREE.MathUtils.smoothstep(t,-.04,root[2]??.2));return [[bone,1-w],[root[0],w]];};
+ // The cloth's outside: the hem's edge (its inner corner, its outer corner), the wall, and the round top.
+ const outer=[new THREE.Vector2(r1-th,-len/2),new THREE.Vector2(r1,-len/2)],rows=6,cap=4;
+ for(let i=1;i<=rows;i++)outer.push(new THREE.Vector2(THREE.MathUtils.lerp(r1,r0,i/rows),-len/2+i/rows*len));
+ for(let i=1;i<=cap;i++){const t=i/cap*Math.PI/2;outer.push(new THREE.Vector2(Math.cos(t)*r0,len/2+Math.sin(t)*r0));}
+ outer.at(-1).x=0;
+ const shell=part(list,new THREE.LatheGeometry(outer,segments),share,hex,at,uvAt);
+ // Its inside, from the hem up `depth`: facing the arm.
+ const lining=[new THREE.Vector2(r1-th-.0005,-len/2+depth),new THREE.Vector2(r1-th-.0005,-len/2+depth*.5),new THREE.Vector2(r1-th,-len/2)];
+ const dark=inside??('#'+new THREE.Color(typeof hex==='function'?hex(B):hex).multiplyScalar(.68).getHexString());
+ part(list,new THREE.LatheGeometry(lining,segments),share,dark,at).attributes.ink.array.fill(0);
+ return shell;
+}
 const ball=(list,r,at,bone,hex,s=[1,1,1],w=12,h=8)=>part(list,new THREE.SphereGeometry(r,w,h),bone,hex,M(at[0],at[1],at[2],0,0,0,...s));
 /**
  * A foot's shape (a shoe's upper or its sole, or a bare foot): where `ball` gave a squashed sphere of twelve sides, whose
@@ -1036,7 +1059,7 @@ function addBody(list,recipe,m,swim=false){
   // forearm.
   const sleeve=coveredSleeve&&(SHIRT_SLEEVES.includes(o.top)||ACCENT_SLEEVES.includes(o.top))?o.accent:top,below=coveredSleeve&&UNDERSHIRT_ARMS.includes(o.top)?o.accent:skin;
   const ends=longSleeve&&SLEEVE_END[o.top]?sh[1]-(m.upper+m.fore)*SLEEVE_END[o.top]:null;
-  const armColour=coveredSleeve?(longSleeve?(ends===null?sleeve:p=>p.y>=ends?sleeve:skin):p=>p.y>=sh[1]-m.upper*.58?sleeve:below):skin;
+  const armColour=coveredSleeve?(longSleeve?(ends===null?sleeve:p=>p.y>=ends?sleeve:skin):p=>p.y>=sh[1]-m.upper*.3?sleeve:below):skin;
   limb(list,sh,hd,m.armR*1.04,m.armR*.86,armColour,longSleeve?{...arm,uvAt:p=>sleeveUV(p,sh,hd,sx)}:arm);
   // The shoulder: a rounded cap over the joint, in the shirt, that joins the arm to the
   // torso. Its inner side stays with the chest and its outer side goes with the arm, so
@@ -1050,7 +1073,7 @@ function addBody(list,recipe,m,swim=false){
   // Its print and its hem band are painted (garment.js), not separate pieces.
   if(!swim&&!longSleeve&&!tank&&!running&&o.top!=='sundress'){
    const roomy=o.top==='kariyushi',a0=[sh[0]-sx*m.armR*.05,sh[1]+m.armR*.08,0],a1=[sh[0]+sx*.008,sh[1]-m.upper*(roomy?.52:.56),0];
-   limb(list,a0,a1,m.armR*(roomy?1.20:1.16),m.armR*(roomy?1.16:1.12),sleeve,{...arm,joints:[],root:['chest',.55,.3],uvAt:p=>sleeveUV(p,a0,a1,sx)});
+   sleeveTube(list,a0,a1,m.armR*(roomy?1.2:1.16),m.armR*(roomy?1.5:1.4),sleeve,{bone:'shoulder'+s,root:['chest',.55,.3],uvAt:p=>sleeveUV(p,a0,a1,sx),th:.007*m.k,depth:m.upper*.22});
   }
   if(coveredSleeve){
    // A closed underarm gusset shared by every sleeved top. The chest end
@@ -1062,6 +1085,18 @@ function addBody(list,recipe,m,swim=false){
   // so a wave or a point reads as a hand rather than a ball on a stick.
   ball(list,m.hand,[hd[0],hd[1]-m.hand*.55,0],'hand'+s,skin,[.9,1.15,.78],12,10);
   ball(list,m.hand*.42,[hd[0]-sx*m.hand*.55,hd[1]-m.hand*.35,m.hand*.42],'hand'+s,skin,[1,1.2,1],8,6);
+ }
+// A T-shirt or polo is worn over the waistband, not painted down to it: its hem hangs a few centimetres below the
+ // waist, a finger clear of the body, with the cloth's edge and its inside to be seen; and a T-shirt has its ribbed neck.
+ if(!swim&&['tee','polo','contrastpolo'].includes(o.top)){
+  const k=m.k,tW=(waist-hipY)/m.torso,drop=.04*k/m.torso,rW=latheRadius(prof,tW),gx=g=>g/(W/2);
+  // (3 mm clear at the hem: at 10 a hug pressed it 8 mm into the other body, and at 5, 6 mm: pair-poses.js allows 5)
+  const rows=[[rW+gx(.001*k),tW+.05],[rW+gx(.002*k),tW+.02],[rW+gx(.003*k),tW-drop*.5],[rW+gx(.003*k),tW-drop]];
+  const outer=[new THREE.Vector2(rows.at(-1)[0]-gx(.0028*k),rows.at(-1)[1]),...rows.slice().reverse().map(([r,y])=>new THREE.Vector2(r,y))];
+  part(list,new THREE.LatheGeometry(outer,24),'hips',top,M(0,hipY,0,0,0,0,W/2,m.torso,D/2),p=>torsoUV(p,m));
+  const inR=rows.at(-1)[0]-gx(.0029*k),lining=[new THREE.Vector2(inR,tW),new THREE.Vector2(inR,tW-drop)];
+  part(list,new THREE.LatheGeometry(lining,24),'hips','#'+new THREE.Color(top).multiplyScalar(.68).getHexString(),M(0,hipY,0,0,0,0,W/2,m.torso,D/2)).attributes.ink.array.fill(0);
+  if(o.top==='tee')part(list,new THREE.TorusGeometry(m.armR*1.08+.007*k,.007*k,8,24),'chest',top,M(0,m.neckY+.002*k,0,Math.PI/2,0,0,1,1,1)).attributes.ink.array.fill(.5);
  }
  // An island shirt worn out over the shorts: the hem below the waist is its own short skirt of
  // shirt, printed like the rest of it, and it swings on the hem quarters (springs.js).

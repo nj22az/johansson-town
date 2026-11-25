@@ -4,6 +4,25 @@
 
 Read the repository's [AGENTS.md](../AGENTS.md) and [CLAUDE.md](../CLAUDE.md). Their working discipline applies here.
 
+## Owner's decision — 25 November 2026: the cast are dolls wearing clothes
+
+The owner, in order: "the feet are ugly elbows and shoulders I see only the faces are so so Thuận looks best"; "Esthetically
+we should aim for something that would work in a Nintendo game"; "they should be dolls wearing clothes, not dolls wearing
+paint"; "Follow Disney animation principles"; "Make them feel beautiful, low cortisol, I am thinking you need to use
+blender to fine tune them"; "Give them personality and still look like flat 2d cartoons but really 3d".
+
+- **Clothes are garments on a body, never colour on the body:** each has its own edge (hem, cuff, neckline), its
+  thickness and its inside, standing clear of the doll. Started in `src/avatars/build.js` (`sleeveTube`, the T-shirt and
+  polo hem and the T-shirt's neck rib); every other top, the trousers, shorts and skirts' waists are still to follow.
+- **The bar:** clean, round, friendly and calm ("low cortisol"): soft shapes, quiet colour, nothing jagged or noisy;
+  original characters that would not look out of place in a Nintendo game, never copies of anybody's.
+- **Flat 2D cartoon that is really 3D:** flat cel bands and an even ink line (Kikkou), no photographic shading on people.
+- **Motion and design follow Disney's twelve principles** (appeal and solid drawing for the design; squash and stretch,
+  anticipation, follow-through, arcs and the rest for every move). The site's ANIMATION_DIRECTION.md stands beside this.
+- **Personality:** each resident's face, posture and habits should say who they are (their recipe's profile dials exist).
+- **Blender** is the owner's suggested tool for fine tuning (`bpy` 5.3 runs in a cloud session from pip: see the
+  handover of this date). The creator must still be what makes a character.
+
 ## Owner's decision — 25 November 2026: the web game stands alone
 
 The owner: "I want the web game to be standalone it's new rules, it should be just as fun or even more fun than the Linux
