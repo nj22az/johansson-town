@@ -154,3 +154,14 @@ surfaces, then `ferry-look.mjs` in her own frame.
   `--source`, no errors.
 - **Still open (task list):** the machinery's own shapes (block-built engines), the plain exterior surfaces, and
   `tools/ferry-look.mjs` in her own frame.
+
+## Published, then the main engines as castings (same day, the owner: "Push to main then proceed with item 1")
+- **Published:** `main` fast-forwarded to `576acc6` (everything above), after restoring the 203 older runtime chunks the
+  builds had pruned (as earlier releases did) and a green guard. The live page serves the new boot chunk (checked).
+- **After that, on the branch only (not published):** the main engines' blocks (`ferry-interior.js`, by the oil filler):
+  on the outboard face a frame rib at each cylinder boundary and a bolted inspection cover per cylinder; four stud nuts
+  on each head; holding-down bolts along the bedplate flanges. Small unbevelled `deco` boxes. GLB rebuilt (H1-F2 file,
+  1,512 components, 83,040 triangles, 3,636,188 bytes; budget 100,000 / 4,000,000). Guard green (321 s); ferry
+  z-fighting 4/4. Builds now restore pruned chunks from `origin/main` before committing.
+- **Next for item 1:** the generators in the auxiliary room (same treatment), the gearboxes, pumps and the switchboard's
+  cabinet; about 17,000 triangles and 360 kB of budget remain.

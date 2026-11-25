@@ -830,6 +830,20 @@ export const FERRY_INTERIOR=(()=>{
      cyl(.055,.055,.012,[cx+inb*.38,y0+1.125,(z0+z1)/2],0x2a2d2f,{seg:6,name:'sensor box'});                              // a sensor box on each head, cabled along the block
      bar([cx+inb*.6,y0+1.2,(z0+z1)/2],[cx+inb*.1,y0+1.36,(z0+z1)/2],.012,0xd8d4c4);
      bar([cx+out*.5,y0+1.22,(z0+z1)/2],[cx+out*.95,y0+1.3,(z0+z1)/2],.045,LAG);}
+    // The block as a casting, not a box (the owner, 25 November 2026: "Engine room doesn't look realistic"; then "proceed
+    // with item 1", the machinery's shapes). On the outboard face, which the side walkway looks at: a frame rib at each
+    // cylinder's boundary, a bolted inspection cover to each cylinder between them, 12 mm proud with a bolt at each corner.
+    // On each head four stud nuts outside the rocker cover; along the bedplate's flanges the holding-down bolts. All
+    // small unbevelled boxes (under 40 mm one way), 5 mm into what they stand on, none in another's plane.
+    {const face=cx+out,dir=Math.sign(out),NUT=0x9a9ea0,span=(x0,x1)=>[Math.min(x0,x1),Math.max(x0,x1)];
+     for(let i=0;i<=heads;i++){const z=E0+.25+i*pitch,[xa,xb]=span(face-dir*.005,face+dir*.025);
+      deco([xa,y0+.57,z-.015],[xb,y0+1.1,z+.015],GRND,{name:'block frame rib'});}
+     for(let i=0;i<heads;i++){const z=E0+.25+i*pitch+pitch/2,[xa,xb]=span(face-dir*.005,face+dir*.012),[na,nb]=span(face+dir*.007,face+dir*.03);
+      deco([xa,y0+.7,z-.1],[xb,y0+.95,z+.1],GRND,{name:'crankcase inspection cover'});
+      for(const dy of [.725,.925])for(const dz of [-.08,.08])deco([na,y0+dy-.011,z+dz-.011],[nb,y0+dy+.011,z+dz+.011],NUT,{cls:'metal',name:'cover bolt'});}
+     for(let i=0;i<heads;i++){const z0=E0+.25+i*pitch+.03,z1=z0+pitch-.06;
+      for(const k of [-.27,.27])for(const z of [z0+.04,z1-.04])deco([cx+k-.014,y0+1.295,z-.014],[cx+k+.014,y0+1.328,z+.014],NUT,{cls:'metal',name:'cylinder head nut'});}
+     for(const x of [X[0],X[1]])for(let z=Z(9.0)+.2;z<E1;z+=.3)deco([x-.018,y0+.215,z-.018],[x+.018,y0+.25,z+.018],NUT,{cls:'metal',name:'holding-down bolt'});}
     cyl(.045,.045,.05,[cx+.1,y0+1.49,E0+.3],0xe0b93a,{seg:10,name:'oil filler'});
     bar([cx+inb*.38,y0+1.125,E0+.25],[cx+inb*.38,y0+1.125,E1-.2],.006,0x2a2d2f);                                             // the sensor cable
     plate([WORDMARK],.22,.05,[cx+inb*.245,y0+1.37,E0+.25+2*pitch+pitch/2],s>0?-Math.PI/2:Math.PI/2,{bg:'#c9ccc8',fg:'#1f2224',name:'badge'});  // the silver badge on the cover

@@ -1,10 +1,10 @@
 {
   "revision": "H1-F2",
   "workflow": "Blender only",
-  "source_components": 1350,
+  "source_components": 1512,
   "bevelled_equipment_boxes": 221,
   "bevelled_source_envelopes_checked": 221,
-  "outward_faces_checked": 29628,
+  "outward_faces_checked": 30600,
   "outward_faces_failed": 0,
   "dial_faces": 43,
   "source_glass_panes": 1,
@@ -13,8 +13,8 @@
     1.0
   ],
   "runtime_file": "minato-engine-room-h1-f2.glb",
-  "runtime_bytes": 3519548,
-  "runtime_triangles": 81096,
+  "runtime_bytes": 3636188,
+  "runtime_triangles": 83040,
   "runtime_primitives": 2,
   "colour_quantization": "normalized unsigned byte; positions and normals unchanged",
   "tonemapping": "AgX / medium high contrast"
