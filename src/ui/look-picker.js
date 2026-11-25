@@ -25,6 +25,7 @@ const PALETTES={
  watercolour:{sky:'#bcdcf0',ground:'#bfe0a8',wall:'#fbf4e6',roof:'#f08a7a',door:'#c49a7c',sun:'#ffe08a'},
  flat:{sky:'#6fc3ff',ground:'#7ed957',wall:'#fff6d8',roof:'#ff5a3c',door:'#8a5a2b',sun:'#ffd93b'},
  sketchbook:{sky:'#dce6df',ground:'#b9c6a1',wall:'#f5ead5',roof:'#c8a191',door:'#958778',sun:'#f2e6bd'},
+ vy:{sky:'#bfe0f2',ground:'#bfe3a8',wall:'#fbe9c8',roof:'#f2a7a0',door:'#c98a6b',sun:'#ffd96b'},
  riso:{sky:'#cbe0da',ground:'#73a7a4',wall:'#fbefd5',roof:'#d8594f',door:'#274b58',sun:'#f3baa1'},
  pencilManga:{sky:'#fff',ground:'#eeece7',wall:'#fff',roof:'#646069',door:'#38353d',sun:'#fff'},
  brushOil:{sky:'#81a1c6',ground:'#648048',wall:'#e5bf95',roof:'#b55732',door:'#433a37',sun:'#f1cc6b'},
@@ -34,7 +35,7 @@ const PALETTES={
 
 /** The little scene in one look, as an SVG string (48×48). Every swatch is the same house, so the style is the difference. */
 export function lookSwatch(id,uid=id){
- const media={sketchbook:'crayon',pencilManga:'crayon',brushOil:'oil',riso:'print',stamp:'lines'}[id]||id;
+ const media={vy:'crayon',sketchbook:'crayon',pencilManga:'crayon',brushOil:'oil',riso:'print',stamp:'lines'}[id]||id;
  const p=PALETTES[id]||PALETTES.none,pixel=media==='pocket'||media==='snes';
  const ink=media==='lines'?'#2b2b33':media==='flat'?'#2b2121':media==='manga'||media==='print'?'#141418':media==='crayon'?'#6c6670':media==='watercolour'?'#9a8f88':null;
  const line=ink?` stroke="${ink}" stroke-width="${media==='flat'?2.6:media==='manga'||media==='print'?2:media==='crayon'||media==='watercolour'?1.2:1.5}" stroke-linejoin="round"${media==='watercolour'?' stroke-opacity=".55"':''}`:'';

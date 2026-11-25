@@ -284,3 +284,14 @@ shoulder), with the cap and separate sleeve removed. That touches every top in t
   lower and closer (1.08 of the arm at the top), so the shoulder slopes from the neck into the sleeve.
 - Guard green (252 s); portraits regenerated. `tests/onsen-seats.test.mjs` still fails one test (pre-existing).
 - **Left:** bare shoulders (tank, swimwear) still show the cap; elbows; faces; proportions.
+
+## Vy's drawing (same day, the owner, of kevintngo.github.io/procedural-rpg, "Brushwild": "If choosing to play with Vy can you make the island look like this ?", then "Yes make it")
+- **`vy` look** (`render/looks.js`, after `sketchbook`; our own shader, nothing of Brushwild's): coloured-pencil hatching on
+  every surface with the paper showing, pastel pigment, a second stroke layer in the darks, wobbly outlines in a darker
+  pencil of the thing's own colour. Strokes lie on the surfaces (140 units a metre), the sky's on the page; no time.
+  It uses the normals buffer (`lookNormals`). A swatch in `ui/look-picker.js`; `tests/looks.test.mjs` lists it.
+- **Playing as Vy sets it; playing as anybody else from it sets Natural** (`game.js` `applyIdentity`). The one exception
+  to "every start is Natural" (22 October). "Play as" already works on the web (Town book, People): checked in the web
+  edition in Chromium: "Play as Vy" → `look now vy`, no page errors.
+- Known: up close (her own hair in third person, a post beside the lens) the strokes are large, being a fixed size on
+  the surface. Guard green (259 s). On the branch, not published.

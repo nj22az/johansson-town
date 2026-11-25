@@ -2128,6 +2128,9 @@ if(window.johanssonDesktop)setInterval(desktopCheckpoint,30000);
   getPose:()=>({x:(current?doors.get(current.id):player.position)?.x??0,z:(current?doors.get(current.id):player.position)?.z??0,yaw,atHome:!!current?.linuxResidence}),
   getEntityPose:name=>{const g=canonicalEntity(name);if(!g||g.userData.hit?.inside||g.userData.indoors||g.userData.inVehicle)return null;const p=g.getWorldPosition(new THREE.Vector3());return {x:p.x,z:p.z,yaw:g.rotation.y};},
   applyIdentity:name=>{
+   // Playing as Vy, the island is her drawing (render/looks.js `vy`); as anybody else it is as it was. The one exception
+   // to "every start is Natural" (22 October): the owner's, 25 November 2026.
+   if(name==='Vy')setLook('vy');else if(look==='vy')setLook('none');
    for(const [g,was] of linuxBorrowed){g.userData.playerControlled=was.controlled;g.visible=was.visible;}linuxBorrowed.clear();
    const actor=ensureJohansson();actor.setRecipe(name==='Johansson'?playerRecipe():recipeFor(name));actor.express('neutral',0);actor.root.name=name+' (controlled)';
    for(const g of allEntities())if(g!==player&&canonicalResidentName(g.userData.name)===name){linuxBorrowed.set(g,{visible:g.visible,controlled:g.userData.playerControlled});g.userData.playerControlled=true;g.visible=false;}

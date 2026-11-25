@@ -38,6 +38,9 @@ export const LOOKS=Object.freeze({
  flat:{label:'Cartoon',short:'Cartoon',hint:'Flat colours and thick outlines, like a TV cartoon.',flatten:0},
  oil:{label:'Oil painting',short:'Oil',hint:'Thick brushwork on canvas, with faces and lettering kept.'},
  sketchbook:{label:'Architectural sketchbook',short:'Sketch',hint:'Warm wash, broken pencil and porous graphite.'},
+ // The island as Vy would draw it (the owner, 25 November 2026: "If choosing to play with Vy can you make the island look
+ // like this", of a world drawn in a child's coloured pencils): chosen for you while you play as her (game.js).
+ vy:{label:'Vy’s drawing',short:'Vy',hint:'The island in a child’s coloured pencils: hatching on everything, soft wobbly lines.'},
  riso:{label:'Risograph',short:'Riso',hint:'Experimental: coral and teal ink plates, grain and slight misregistration.',experimental:true},
  pencilManga:{label:'Pencil manga',short:'Pencil',hint:'Experimental: clean manga contours with broken graphite strokes in deep shadows.',experimental:true},
  brushOil:{label:'Heavy brush oil',short:'Brush',hint:'Experimental: broad directional paint dabs, with facial features and contours retained.',experimental:true},
@@ -340,6 +343,51 @@ void main(){
  col=mix(col,graphite,clamp(e,0.0,1.0)*mix(.85,1.0,uComic));
  gl_FragColor=vec4(col,1.0);
 }`,
+ // Vy's drawing: every surface filled with coloured-pencil hatching that leaves the paper showing between the strokes,
+ // pastel pigment, a second layer of strokes across the first in the darks, and outlines in a darker pencil of the
+ // thing's own colour that wobble as a child's line does. The strokes lie on the surfaces (their own coordinates), so
+ // they stay put as the lens moves; the sky's lie on the page. Nothing is driven by time.
+ vy:`
+float vyStroke(vec2 p,vec2 dir,float spacing){
+ float along=dot(p,vec2(-dir.y,dir.x));
+ float across=dot(p,dir)+noise(vec2(along*0.03,dot(p,dir)*0.06))*5.0;
+ float lane=floor(across/spacing);
+ float pressure=0.6+0.4*hash(vec2(lane,7.0));
+ float body=1.0-abs(fract(across/spacing)-0.5)*2.0;
+ float phase=fract(along/40.0+hash(vec2(lane,11.0)));
+ float run=smoothstep(.02,.12,phase)*(1.0-smoothstep(.8,.97,phase));
+ return smoothstep(0.08,0.6,body)*pressure*mix(.55,1.0,run);
+}
+void main(){
+ float u=unit();
+ vec2 p=vUv*uResolution/u;
+ vec3 c=texture2D(tDiffuse,vUv).rgb;
+ float l=luma(c);
+#ifdef HAS_DEPTH
+ if(viewDepth(vUv)<uSkyDepth){
+  vec3 surface=surfacePosition(vUv);
+  vec3 n=vec3(0.0,0.0,1.0);
+#ifdef HAS_NORMALS
+  n=abs((uCameraWorld*vec4(texture2D(tNormal,vUv).rgb*2.0-1.0,0.0)).xyz);
+#endif
+  p=(n.z>n.x&&n.z>n.y?surface.xy:n.y>n.x?surface.xz:surface.zy)*140.0;
+ }
+#endif
+ // Pastel: a child's box of pencils is bright and a little chalky.
+ vec3 pigment=clamp(mix(vec3(l),c,1.3)*0.84+0.13,0.0,1.0);
+ float tooth=noise(p*0.9)*0.6+noise(p*2.3)*0.4;
+ vec3 paper=vec3(0.985,0.965,0.925)-0.04*tooth;
+ float first=vyStroke(p,vec2(.7071,.7071),5.0);
+ float second=vyStroke(p+31.0,vec2(.5,-.866),4.5)*(1.0-smoothstep(.3,.62,l));
+ // Under the strokes a light rub of the same pencil, so a colour reads from across the street.
+ float cover=mix(.42,1.0,clamp(max(first,second),0.0,1.0))*mix(.8,1.0,smoothstep(.2,.7,tooth));
+ vec3 col=mix(paper,pigment,cover);
+ vec2 wobble=(vec2(noise(p*0.04),noise(p*0.04+17.0))-0.5)*uTexel*4.0*u;
+ float e=edges(vUv+wobble,2.0*u,0.6)*(0.6+0.4*noise(p*0.25));
+ vec3 pencil=mix(vec3(.38,.26,.22),pigment*0.42,0.5);
+ col=mix(col,pencil,clamp(e,0.0,1.0)*0.88);
+ gl_FragColor=vec4(col,1.0);
+}`,
  // Tilt-shift: a sharp band across the middle and a growing blur above and below it, with the colour lifted a
  // little, as a photograph of a model railway. The blur is a golden-angle disc of 24 taps.
  tilt:`
@@ -573,7 +621,7 @@ export function lookFragment(name,{light=false,depth=true,normals=false,surfaceS
  return body?(light?'#define LIGHT\n':'')+(surfaceStrokes?'#define SURFACE_STROKES\n':'')+(depth?'#define HAS_DEPTH\n':'')+(normals?'#define HAS_NORMALS\n':'')+COMMON+SPOT+body:null;
 }
 
-export const lookNormals=name=>['lines','manga','crayon','flat','print','sketchbook','riso','pencilManga','brushOil','stamp'].includes(name);
+export const lookNormals=name=>['lines','manga','crayon','vy','flat','print','sketchbook','riso','pencilManga','brushOil','stamp'].includes(name);
 export const lookSurfaceStrokes=name=>['crayon','sketchbook'].includes(name);
 
 /** Whether a look samples the scene's depth (and so must be fed the depth texture). */

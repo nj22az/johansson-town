@@ -18,7 +18,7 @@ function fakeRenderer(){
 const renders=renderer=>renderer.calls.filter(([kind])=>kind==='render');
 
 test('every look but Natural has a shader of its own, and the menu offers the requested set',()=>{
- assert.deepEqual(Object.keys(LOOKS),['none','mono','sepia','pocket','snes','lines','crt','manga','crayon','tilt','print','watercolour','flat','oil','sketchbook','riso','pencilManga','brushOil','stamp']);
+ assert.deepEqual(Object.keys(LOOKS),['none','mono','sepia','pocket','snes','lines','crt','manga','crayon','tilt','print','watercolour','flat','oil','sketchbook','vy','riso','pencilManga','brushOil','stamp']);
  assert.equal(lookFragment('none'),null);
  for(const name of Object.keys(LOOKS).filter(n=>n!=='none')){
   const source=lookFragment(name);
