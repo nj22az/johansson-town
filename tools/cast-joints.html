@@ -4,7 +4,7 @@ import * as THREE from '../vendor/three.module.js';
 import {buildAvatar} from '../src/avatars/build.js';
 import {recipeFor,RESIDENT_NAMES} from '../src/avatars/cast.js';
 import {createAvatarAnimator} from '../src/avatars/animate.js';
-const names=['Johansson','Thuan','Thao','Chin','Harbour master','Vy'];
+const names=(new URLSearchParams(location.search).get('only')||'Johansson,Thuan,Thao,Chin,Harbour master,Vy').split(',');
 const VIEWS=[['feet',(h)=>({pos:[.55,.22,1.15],at:[0,.07,0],yaw:.35})],['feet from the side',(h)=>({pos:[1.3,.3,.25],at:[0,.1,.05],yaw:0})],['shoulder and arm',(h)=>({pos:[.25,h*.72,1.25],at:[0,h*.62,0],yaw:.25})],['elbow bent',(h)=>({pos:[.9,h*.7,1.25],at:[.1,h*.62,0],yaw:.5,gesture:'Wave'})],['waist and hem',(h)=>({pos:[.5,h*.42,1.3],at:[0,h*.38,0],yaw:.3})],['whole',(h)=>({pos:[.6,h*.55,h*2.6+1.2],at:[0,h*.5,0],yaw:.35})]];
 const TW=300,TH=300,COLS=VIEWS.length,rows=names.length;
 const out=document.createElement('canvas');out.width=TW*COLS;out.height=TH*rows;const g=out.getContext('2d');

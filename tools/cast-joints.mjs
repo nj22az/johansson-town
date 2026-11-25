@@ -10,7 +10,7 @@ const server=createServer(async(q,r)=>{let body;try{const f=resolve(root,'.'+dec
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
 const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium',args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--no-sandbox']});
 try{const p=await b.newPage({viewport:{width:1820,height:1000}});p.on('pageerror',e=>console.log('PAGEERROR',e.message));p.on('console',m=>{if(/FAIL/.test(m.text()))console.log(m.text());});
- await p.goto(`http://127.0.0.1:${server.address().port}/tools/cast-joints.html?pixar=0`);await p.waitForFunction(()=>window.__SHEET__?.done,null,{timeout:300000});
+ await p.goto(`http://127.0.0.1:${server.address().port}/tools/cast-joints.html?pixar=0${process.argv[3]?'&only='+encodeURIComponent(process.argv[3]):''}`);await p.waitForFunction(()=>window.__SHEET__?.done,null,{timeout:300000});
  const info=await p.evaluate(()=>window.__SHEET__);console.log(JSON.stringify(info));
  await p.locator('canvas').screenshot({path:process.argv[2]});
 }finally{await b.close();server.close();}

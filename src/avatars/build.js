@@ -1061,6 +1061,12 @@ function addBody(list,recipe,m,swim=false){
   const ends=longSleeve&&SLEEVE_END[o.top]?sh[1]-(m.upper+m.fore)*SLEEVE_END[o.top]:null;
   const armColour=coveredSleeve?(longSleeve?(ends===null?sleeve:p=>p.y>=ends?sleeve:skin):p=>p.y>=sh[1]-m.upper*.3?sleeve:below):skin;
   limb(list,sh,hd,m.armR*1.04,m.armR*.86,armColour,longSleeve?{...arm,uvAt:p=>sleeveUV(p,sh,hd,sx)}:arm);
+  // A long sleeve ends in a cuff: cloth standing off the wrist, open, with its inside (sleeveTube). It grows out of the
+  // sleeve from under its surface two thirds of the way down the forearm, so there is no seam where it starts.
+  if(longSleeve&&o.top!=='lantern'){   // (the lantern costume is at its vertex budget, and its globe hides the wrists)
+   const L=m.upper+m.fore,t1=ends===null?.965:(sh[1]-ends)/L,t0=t1-.2,at=t=>[sh[0]+(hd[0]-sh[0])*t,sh[1]+(hd[1]-sh[1])*t,0],rAt=t=>m.armR*(1.04-.18*t);
+   sleeveTube(list,at(t0),at(t1),rAt(t0)*.9,rAt(t1)*1.3,sleeve,{bone:'elbow'+s,th:.006*m.k,depth:m.fore*.2,segments:12});
+  }
   // The shoulder: a rounded cap over the joint, in the shirt, that joins the arm to the
   // torso. Its inner side stays with the chest and its outer side goes with the arm, so
   // it stretches over a raised arm rather than coming apart from the body.
@@ -1088,12 +1094,14 @@ function addBody(list,recipe,m,swim=false){
  }
 // A T-shirt or polo is worn over the waistband, not painted down to it: its hem hangs a few centimetres below the
  // waist, a finger clear of the body, with the cloth's edge and its inside to be seen; and a T-shirt has its ribbed neck.
- if(!swim&&['tee','polo','contrastpolo'].includes(o.top)){
+ if(!swim&&['tee','polo','contrastpolo','blouse','shirt','jacket','cardigan','hoodie'].includes(o.top)){
   const k=m.k,tW=(waist-hipY)/m.torso,drop=.04*k/m.torso,rW=latheRadius(prof,tW),gx=g=>g/(W/2);
   // (3 mm clear at the hem: at 10 a hug pressed it 8 mm into the other body, and at 5, 6 mm: pair-poses.js allows 5)
   const rows=[[rW+gx(.001*k),tW+.05],[rW+gx(.002*k),tW+.02],[rW+gx(.003*k),tW-drop*.5],[rW+gx(.003*k),tW-drop]];
   const outer=[new THREE.Vector2(rows.at(-1)[0]-gx(.0028*k),rows.at(-1)[1]),...rows.slice().reverse().map(([r,y])=>new THREE.Vector2(r,y))];
-  part(list,new THREE.LatheGeometry(outer,24),'hips',top,M(0,hipY,0,0,0,0,W/2,m.torso,D/2),p=>torsoUV(p,m));
+  // (an open jacket's front shows the shirt under it down to the hem, as the torso's front does)
+  const hemColour=['jacket','cardigan'].includes(o.top)?p=>p.z>D*.18&&Math.abs(Math.atan2(p.x*D,p.z*W))<Math.PI/14?o.accent:top:top;
+  part(list,new THREE.LatheGeometry(outer,28),'hips',hemColour,M(0,hipY,0,0,0,0,W/2,m.torso,D/2),p=>torsoUV(p,m));
   const inR=rows.at(-1)[0]-gx(.0029*k),lining=[new THREE.Vector2(inR,tW),new THREE.Vector2(inR,tW-drop)];
   part(list,new THREE.LatheGeometry(lining,24),'hips','#'+new THREE.Color(top).multiplyScalar(.68).getHexString(),M(0,hipY,0,0,0,0,W/2,m.torso,D/2)).attributes.ink.array.fill(0);
   if(o.top==='tee')part(list,new THREE.TorusGeometry(m.armR*1.08+.007*k,.007*k,8,24),'chest',top,M(0,m.neckY+.002*k,0,Math.PI/2,0,0,1,1,1)).attributes.ink.array.fill(.5);
@@ -1123,7 +1131,9 @@ function addBody(list,recipe,m,swim=false){
   limb(list,hp,an,m.legR*(b==='widepants'?1.32:1.02),m.legR*.86,trousers?cloth:skin,leg);
   if(b==='cropped'||b==='culottes'){const end=b==='cropped'?m.foot+m.shin*.35:hipY-m.thigh*1.12;limb(list,hp,[hp[0],end,0],m.legR*(b==='culottes'?1.55:1.12),m.legR*(b==='culottes'?1.7:1.16),cloth,leg);}
   // Shorts and trunks: a wider piece over the top of the thigh.
-  if(b==='shorts'||b==='swim'&&!bare)limb(list,[hp[0],hp[1]+m.legR*.3,0],[hp[0]*1.04,hipY-m.thigh*(b==='swim'?(onePiece?SWIMSUIT.legs:SWIMSUIT.trunks):.55),0],m.legR*1.2,m.legR*1.26,bottom,{...leg,joints:[]});
+  // (Shorts are worn: each leg an open tube of cloth, the thigh standing in it. Swimwear stays close to the skin.)
+  if(b==='shorts')sleeveTube(list,[hp[0],hp[1]+m.legR*.3,0],[hp[0]*1.04,hipY-m.thigh*.55,0],m.legR*1.2,m.legR*1.27,bottom,{bone:'thigh'+s,th:.007*m.k,depth:m.thigh*.2,segments:14});
+  if(b==='swim'&&!bare)limb(list,[hp[0],hp[1]+m.legR*.3,0],[hp[0]*1.04,hipY-m.thigh*(onePiece?SWIMSUIT.legs:SWIMSUIT.trunks),0],m.legR*1.2,m.legR*1.26,bottom,{...leg,joints:[]});
   // Long cotton drawers (ステテコ) after the bath: loose, from the waist to just below the knee, bending there.
   if(b==='suteteko'){const top=[hp[0],hp[1]+m.legR*.3,0],end=[hp[0]*1.04,hipY-m.thigh-m.shin*.18,0],len=top[1]-end[1];
    limb(list,top,end,m.legR*1.3,m.legR*1.22,bottom,{bone:'thigh'+s,joints:[[(top[1]-(hipY-m.thigh))/len,'thigh'+s,'knee'+s]]});}

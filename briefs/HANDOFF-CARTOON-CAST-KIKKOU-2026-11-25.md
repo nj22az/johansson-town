@@ -256,3 +256,14 @@ shoulder), with the cap and separate sleeve removed. That touches every top in t
 - Guide portraits regenerated; runtime rebuilt; guard green (289 s). Not published.
 - **Still painted:** long sleeves, jackets, blouses' hems, every bottom's waist, collars other than the kariyushi's.
   The doll's own shoulder (cap sphere over arm capsule) is unchanged under the cloth.
+
+## Dolls wearing clothes, second step: cuffs, jackets' hems, shorts (same day, the owner: "Proceed")
+- **Long sleeves end in a cuff** (`sleeveTube` on the forearm, bone `elbow`): it grows from under the sleeve two thirds
+  down the forearm and stands 1.3 times the wrist, open. Not on the lantern costume (at its vertex budget).
+- **Hems over the waistband** now also on blouse, shirt, jacket, cardigan and hoodie; an open jacket's front shows the
+  shirt down to the hem.
+- **Shorts** are open tubes round the thighs (hem radius 1.27 of the leg: at 1.36 the floor sit, which rests on the
+  drawn surface, tipped the toes down). Swimwear stays close to the skin.
+- 256 character tests, guard green (286 s); portraits regenerated. Not published.
+- **Still painted:** trousers' ankles and every waist under a tucked top, smocks, aprons, sailor tops, the police
+  jacket's cuffs are from this step but its body is its own module, collars other than the kariyushi's and the tee's.
