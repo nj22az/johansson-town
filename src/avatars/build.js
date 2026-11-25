@@ -1072,14 +1072,15 @@ function addBody(list,recipe,m,swim=false){
   // it stretches over a raised arm rather than coming apart from the body.
   const capShare=p=>{const w=THREE.MathUtils.smoothstep(Math.abs(p.x),m.shoulderX-m.armR*1.1,m.shoulderX+m.armR*.3);return [['chest',1-w],['shoulder'+s,w]];};
   // Flattened on top so the shoulder slopes from the neck rather than standing up in a pad.
-  part(list,new THREE.SphereGeometry(m.armR*1.18,16,12),capShare,swim||tank||running||o.top==='sundress'?skin:sleeve,M(sh[0]-sx*m.armR*.12,sh[1]-m.armR*.05,0,0,0,0,1,.62,Math.min(1.1,D/W*1.6)));
+  // (Smaller and lower than it was, 1.18 of the arm and .62 high: it stood up as a ball on the shoulder. The owner, 25 November 2026.)
+  part(list,new THREE.SphereGeometry(m.armR*1.07,16,12),capShare,swim||tank||running||o.top==='sundress'?skin:sleeve,M(sh[0]-sx*m.armR*.16,sh[1]-m.armR*.12,0,0,0,0,1,.55,Math.min(1.1,D/W*1.6)));
   // A short sleeve: one closed, rounded sleeve over the top of the arm, starting inside the
   // shoulder cap and lent to the chest at its top, so the shirt runs from the neck to the
   // hem without a seam. A kariyushi's is a little roomier and boxier, as real ones are.
   // Its print and its hem band are painted (garment.js), not separate pieces.
   if(!swim&&!longSleeve&&!tank&&!running&&o.top!=='sundress'){
-   const roomy=o.top==='kariyushi',a0=[sh[0]-sx*m.armR*.05,sh[1]+m.armR*.08,0],a1=[sh[0]+sx*.008,sh[1]-m.upper*(roomy?.52:.56),0];
-   sleeveTube(list,a0,a1,m.armR*(roomy?1.2:1.16),m.armR*(roomy?1.5:1.4),sleeve,{bone:'shoulder'+s,root:['chest',.55,.3],uvAt:p=>sleeveUV(p,a0,a1,sx),th:.007*m.k,depth:m.upper*.22});
+   const roomy=o.top==='kariyushi',a0=[sh[0]-sx*m.armR*.1,sh[1]-m.armR*.04,0],a1=[sh[0]+sx*.008,sh[1]-m.upper*(roomy?.52:.56),0];
+   sleeveTube(list,a0,a1,m.armR*(roomy?1.12:1.08),m.armR*(roomy?1.5:1.4),sleeve,{bone:'shoulder'+s,root:['chest',.55,.3],uvAt:p=>sleeveUV(p,a0,a1,sx),th:.007*m.k,depth:m.upper*.22});
   }
   if(coveredSleeve){
    // A closed underarm gusset shared by every sleeved top. The chest end
@@ -1094,7 +1095,7 @@ function addBody(list,recipe,m,swim=false){
  }
 // A T-shirt or polo is worn over the waistband, not painted down to it: its hem hangs a few centimetres below the
  // waist, a finger clear of the body, with the cloth's edge and its inside to be seen; and a T-shirt has its ribbed neck.
- if(!swim&&['tee','polo','contrastpolo','blouse','shirt','jacket','cardigan','hoodie'].includes(o.top)){
+ if(!swim&&['tee','polo','contrastpolo','blouse','shirt','jacket','cardigan','hoodie','smock'].includes(o.top)){   // (not the sailor tops: the academy set is at its vertex budget)
   const k=m.k,tW=(waist-hipY)/m.torso,drop=.04*k/m.torso,rW=latheRadius(prof,tW),gx=g=>g/(W/2);
   // (3 mm clear at the hem: at 10 a hug pressed it 8 mm into the other body, and at 5, 6 mm: pair-poses.js allows 5)
   const rows=[[rW+gx(.001*k),tW+.05],[rW+gx(.002*k),tW+.02],[rW+gx(.003*k),tW-drop*.5],[rW+gx(.003*k),tW-drop]];

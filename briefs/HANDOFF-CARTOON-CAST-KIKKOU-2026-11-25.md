@@ -275,3 +275,12 @@ shoulder), with the cap and separate sleeve removed. That touches every top in t
 - `build.js`: trousers end in an open hem over the shoe (`sleeveTube` on the shin, bone `knee`).
 - Guard green (300 s); portraits regenerated. Not published. The shop-surface tests named `sakura-surfaces` and the
   stockroom's failed in a wide local run and were not checked against the base (they are not avatar tests).
+
+## Published a fourth time; smocks' hems and a sloping shoulder (same day)
+- **Published** (the owner: "Push to main"): `main` at `d95ea69`, checked live (`boot-CRvKFyEj.js`): shoes, the walrus
+  moustache, every garment step so far.
+- **After it, on the branch:** the hem over the waistband also on smocks (not the sailor tops: the academy set is at its
+  vertex budget). The shoulder cap is 1.07 of the arm, .55 high and lower (was 1.18, .62), and the short sleeve starts
+  lower and closer (1.08 of the arm at the top), so the shoulder slopes from the neck into the sleeve.
+- Guard green (252 s); portraits regenerated. `tests/onsen-seats.test.mjs` still fails one test (pre-existing).
+- **Left:** bare shoulders (tank, swimwear) still show the cap; elbows; faces; proportions.
