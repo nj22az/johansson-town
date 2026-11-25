@@ -154,7 +154,8 @@ export function drawWithoutHulls(renderer,draw){
 /** Where Kikkou is on: `?kikkou=1` everywhere, `?kikkou=0` nowhere, otherwise in the rooms it has reached (Sakura first). */
 // (Sakura Shōten's room is 'market': world/businesses.js)
 // Sakura first (25 November 2026), then the two dining rooms on Main Street the same day: Minato Izakaya and Sato Ramen.
-export const KIKKOU_ROOMS=Object.freeze(new Set(['market','izakaya','ramen']));
+// (and Sakura's upper floor, its office: the owner, 25 November 2026, "the upper floor need kikkou style too")
+export const KIKKOU_ROOMS=Object.freeze(new Set(['market','sakura-office','izakaya','ramen']));
 /** Aboard the Minato Maru (ferry-interior.js floors): her indoor floors, from the saloon to the engine room. Her open decks,
  *  walkways and wings stay with the street (the owner, 25 November 2026: "Work through the Minato Maru"). */
 export const KIKKOU_SHIP_FLOORS=Object.freeze(new Set(['stair-p','stair-s','lobby','toilet-p','toilet-s','corridor','carpet-step-aft',

@@ -177,3 +177,17 @@ owner's screenshot was not reproduced here (the page fills the viewport in Chrom
 `ferry-interior.js`, the JG-125 sets: frame ribs and bolted inspection covers on both long faces, head nuts, bed bolts.
 GLB rebuilt: 1,664 components, 84,864 triangles, 3,745,628 bytes (budget 100,000 / 4,000,000). Guard green (318 s),
 ferry z-fighting 4/4. On the branch, not published. Left of item 1: gearboxes, pumps, the switchboard's cabinet.
+
+## Z-fighting into Sakura from the street; Kikkou upstairs (same day)
+- **The owner: "There is Z fighting when looking inside from the street to the Sakura konbini".** Measured in the running
+  game: the town's storefront slab (`world/storefront.js`, top at y 0.180) and the shop's own floor drawn through the
+  window (the stand-in's `sakura-floor`, y 0.180) lay in one plane, both facing up. The slab is now 0.16 high, 20 mm
+  under the floor. A test in `tests/kikkou-ink.test.mjs` holds it there. `tools/z-fighting.mjs` did **not** report the
+  pair in the live scene (0 findings even at 30 mm with decals and identical faces kept): it does not see the street
+  stand-in against the merged town props; not looked into. Not ruled out: other causes of flicker there on a phone (the
+  flicker itself cannot be seen in software Chromium).
+- (The "stand-in" is not a double: while it shows, its sources are on layer 31, `render/static-props.js` `show`.)
+- **The owner: "Also the upper floor need kikkou style too".** `KIKKOU_ROOMS` gains `sakura-office`.
+  `tools/kikkou-shots.mjs --room sakura-office` goes in at the shop and up the stair (stepping the frozen game until the
+  room changes). Its lenses there start inside the player's head; the room behind is right.
+- Guard green (294 s). On the branch, not published.

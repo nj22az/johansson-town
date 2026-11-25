@@ -7,7 +7,7 @@ import {kikkouWanted,idSkips,KIKKOU_ROOMS,KIKKOU_SHIP_FLOORS} from '../src/rende
 // composite in src/render/ink-pipeline.js.
 
 test('Kikkou is on in Sakura (room "market") and the two dining rooms, and nowhere else yet, unless the address asks', () => {
- for(const room of ['market','izakaya','ramen'])assert.ok(KIKKOU_ROOMS.has(room),room);
+ for(const room of ['market','sakura-office','izakaya','ramen'])assert.ok(KIKKOU_ROOMS.has(room),room);
  assert.equal(kikkouWanted('market',''),true);
  assert.equal(kikkouWanted(null,''),false);
  assert.equal(kikkouWanted('onsen',''),false);
@@ -45,4 +45,11 @@ test('aboard the Minato Maru, Kikkou is on indoors (her rooms, the engine room) 
  for(const f of KIKKOU_SHIP_FLOORS)assert.ok(ids.has(f),'a floor she has: '+f);
  for(const f of ['saloon','wheelhouse','engine-room','control-booth'])assert.equal(kikkouWanted(null,'',f),true,f);
  for(const f of ['open-deck','walkway-p','wing-s',null])assert.equal(kikkouWanted(null,'',f),false,String(f));
+});
+
+test('the town\u2019s Sakura storefront slab lies under the shop\u2019s own floor, not in its plane (z-fighting from the street)', () => {
+ // The shop's floor is drawn through the window at y 0.18 (measured in the running game); the storefront's slab was 0.18 high.
+ const src=readFileSync(new URL('../src/world/storefront.js',import.meta.url),'utf8');
+ const m=src.match(/box\(\[width,(\.\d+),depth\],\[0,(\.\d+),mid\]/);
+ assert.ok(m,'the slab');assert.ok(+m[1]<=.165,'its top at least 15 mm under 0.18');assert.equal(+m[2],+m[1]/2,'standing on the ground');
 });

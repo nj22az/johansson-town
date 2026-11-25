@@ -69,7 +69,10 @@ export function buildStorefront({parent,site,register,enter,label,placement,span
  const group=new THREE.Group();group.name='Sakura glass storefront';group.position.set(x,0,z);group.rotation.y=yaw;group.scale.set(sx,sy,sz);parent.add(group);
  buildSakuraDetails(group,{width,depth,doorX});
  const surfaces=createMaterials(),materials=new Map();function box(size,pos,color,kind=null){if(!materials.has(color))materials.set(color,new THREE.MeshStandardMaterial({color,roughness:.67}));const o=new THREE.Mesh(new THREE.BoxGeometry(...size),kind?surfaces.material(kind,color):materials.get(color));o.position.set(...pos);o.castShadow=true;o.receiveShadow=true;o.userData.staticProp=true;group.add(o);return o;}
- box([width,.18,depth],[0,.09,mid],0xdad9c8,'plaster');box([width,3.7,.18],[0,1.85,back-.09],0xeee7d1,'plaster');
+ // The slab's top is 20 mm under the shop's own floor (y 0.18, people/sakura-shop.js), which is drawn over it from the
+ // street: at one height the two flashed against each other through the window (the owner, 25 November 2026: "There is Z
+ // fighting when looking inside from the street to the Sakura konbini").
+ box([width,.16,depth],[0,.08,mid],0xdad9c8,'plaster');box([width,3.7,.18],[0,1.85,back-.09],0xeee7d1,'plaster');
  for(const wall of [-1,1])box([.18,3.8,depth],[wall*(half+.09),1.9,mid],0xd9d7c9,'plaster');
  box([width+.5,.22,depth+.5],[0,3.9,mid],0xd5d0bd);
  // A family shop's signboard, not a chain's band: a long board of dark wood with the

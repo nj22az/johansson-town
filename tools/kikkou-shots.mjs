@@ -1,7 +1,7 @@
 // Photographs Sakura with the Kikkou ink and without it (render/kikkou-ids.js): boots World in a cloud session's software
 // Chromium, enters Sakura through the audit harness, and photographs the shop from the door and three lenses into it,
 // and Thuan at work, each with ?kikkou=1 and then ?kikkou=0 on the same frame (the page reads the address every frame).
-//   node tools/kikkou-shots.mjs [--source] [--room market|izakaya|ramen|ship] [--time 12:20] [out-dir]
+//   node tools/kikkou-shots.mjs [--source] [--room market|sakura-office|izakaya|ramen|ship] [--time 12:20] [out-dir]
 // --room ship: aboard the Minato Maru, through the engine room's eight fixed cameras, Kikkou as the game decides it
 // (`kikkou=auto`: on because the player stands on her indoor floor) and off.
 // The built runtime by default (npm run build:runtime first); --source serves the source modules. Run it alone.
@@ -67,7 +67,9 @@ try{
   }
   throw Object.assign(new Error('done'),{done:true});
  }
- await page.evaluate(async r=>{await window.__JOHANSSON_AUDIT__.enter(r);},ROOM);
+ // (Sakura's office is reached by the shop's stair: in at the shop, then up)
+ await page.evaluate(async r=>{const a=window.__JOHANSSON_AUDIT__;await a.enter(r==='sakura-office'?'market':r);},ROOM);
+ if(ROOM==='sakura-office'){await page.waitForFunction(()=>!window.__JOHANSSON_AUDIT__.blocked.roomLoading);await page.evaluate(()=>window.__JOHANSSON_AUDIT__.stair('up'));for(let i=0;i<120&&await page.evaluate(()=>window.__JOHANSSON_AUDIT__.player.room)!=='sakura-office';i++){await page.evaluate(()=>window.__JOHANSSON_AUDIT__.step(400));await page.waitForTimeout(400);}await page.waitForFunction(()=>!window.__JOHANSSON_AUDIT__.blocked.roomLoading);await page.evaluate(()=>window.__JOHANSSON_AUDIT__.step(800));}
  await page.waitForFunction(()=>!window.__JOHANSSON_AUDIT__.blocked.roomLoading);
  const room=await page.evaluate(()=>window.__JOHANSSON_AUDIT__.room);step('in '+ROOM,{room:typeof room==='object'?room?.id??null:room,player:await page.evaluate(()=>window.__JOHANSSON_AUDIT__.player)});
  const p=await page.evaluate(()=>window.__JOHANSSON_AUDIT__.player);
