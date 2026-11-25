@@ -34,7 +34,7 @@ const t0=Date.now(),at=()=>+((Date.now()-t0)/1000).toFixed(1),report={source:SOU
 const step=(name,extra={})=>{report.steps.push({name,s:at(),...extra});console.log(at()+'s',name,Object.keys(extra).length?JSON.stringify(extra):'');};
 try{
  const context=await browser.newContext({viewport:{width:900,height:900},serviceWorkers:'block'});
- await context.addInitScript(t=>{localStorage.setItem('johansson-town-clock',JSON.stringify({start:t,speed:1}));localStorage.setItem('johansson-town-view','third');Element.prototype.requestFullscreen=async()=>{};},TIME);
+  await context.addInitScript(t=>{localStorage.setItem('johansson-town-clock',JSON.stringify({start:t,speed:1}));localStorage.setItem('johansson-town-view','third');Element.prototype.requestFullscreen=async()=>{};},TIME);
  const page=await context.newPage();page.setDefaultTimeout(900000);
  page.on('pageerror',e=>report.errors.push(e.message));
  page.on('console',m=>{if(m.type()==='warning'||m.type()==='error')report.warnings.push(m.text().slice(0,300));});

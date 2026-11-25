@@ -243,6 +243,8 @@ function plateMesh(pl,{deferred=false}={}){
  if(repeat){tex.wrapS=tex.wrapT=THREE.RepeatWrapping;tex.repeat.set(repeat[0],repeat[1]);}
  if(!pl.live)releaseAfterUpload(tex,still,{width:W,height:H,deferred});
  const flat=repeat!==null,mat=new THREE.MeshStandardMaterial({map:tex,roughness:flat?.62:.5,metalness:flat?.35:.3,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-4});
+ // Floor plate lies under the deckhead lamps, a metre or two below them: at full colour the steel washed out to tile white.
+ if(flat)mat.color.setScalar(.6);
  const geo=kind==='dial'?new THREE.CircleGeometry(pl.w/2,24):new THREE.PlaneGeometry(pl.w,pl.h);
  const mesh=new THREE.Mesh(geo,mat);
  mesh.position.set(...pl.pos);mesh.rotation.order='YXZ';mesh.rotation.y=pl.rotY;mesh.rotation.x=pl.rotX||0;mesh.name=pl.name;mesh.userData.plate=kind;
@@ -591,7 +593,10 @@ export function buildFerryModel({shadows=false}={}){
  // them (and first uploads their pictures) only with the camera aboard (updateBelowDeck), not every frame she is in view.
  const belowDeck=new THREE.Group();belowDeck.name='Engine room plates';ferry.add(belowDeck);
  ferry.userData.belowDeck={plates:belowDeck,halfBeam:HB,halfLength:HALF,carDeck:CAR};
- const livePlates=[];for(const pl of FERRY_INTERIOR.plates){if(FERRY_H1_ENABLED&&['chequer','grating'].includes(pl.kind)&&h1Point(pl.pos))continue;const hidden=pl.pos[1]+Math.max(pl.w,pl.h)/2<CAR,m=plateMesh(pl,{deferred:hidden});if(m){(hidden?belowDeck:ferry).add(m);if(m.userData.live)livePlates.push(m.userData.live);}}
+ // The engine room's floor plates and gratings are drawn over the Blender room's plain floor too (the owner, 25 November
+ // 2026: "Engine room doesn't look realistic"): chequer plate and gratings are most of what an engine room's floor is, and
+ // the GLB carries none (its chequer relief is render-only). Decals with polygon offset, as every plate aboard.
+ const livePlates=[];for(const pl of FERRY_INTERIOR.plates){const hidden=pl.pos[1]+Math.max(pl.w,pl.h)/2<CAR,m=plateMesh(pl,{deferred:hidden});if(m){(hidden?belowDeck:ferry).add(m);if(m.userData.live)livePlates.push(m.userData.live);}}
  /** Shows the plant's readings (ferry-plant.js readings()) on every live dial and the alarm matrix; returns how many were redrawn. */
  const bridgeEquipment=buildFerryBridge(ferry,kit,{floor:BRIDGE,fore:FERRY_HOUSE.fore,aft:FERRY_HOUSE.wheelhouseAft});
  ferry.userData.bridgeEquipment=bridgeEquipment;

@@ -119,3 +119,16 @@ only). Cost while on: one more draw of the scene in Sakura and a 32-tap test per
 
 **Next:** the engine room's realism (the two-material GLB; Blender 5 in a venv, or the GLB split per part), then the plain
 surfaces, then `ferry-look.mjs` in her own frame.
+
+## The engine room's floor (same day)
+- Its chequer plates and gratings (`ferry-interior.js` `floorPlate`) were left out where the Blender room stands
+  (`ferry-model.js`: `['chequer','grating']…&&h1Point(…)` → skipped), so the room stood on plain grey paint: the GLB has
+  none (its chequer relief is render-only, `tools/blender/build-ferry-engine-room-h1.py`). They are drawn again, decals
+  with polygon offset as every plate aboard; `tests/ferry-z-fighting.test.mjs` passes 4/4.
+- Floor plate and grating materials are at 0.6 of their colour: under the deckhead lamps a metre or two above, the
+  steel washed out to tile white.
+- **Pre-existing, not touched:** `tests/ferry-johansson-marine.test.mjs` fails 2 tests on the branch's base too (not in
+  the guard).
+- **Left for a decision:** the machinery itself is one merged Blender mesh in two colours (paint, metal) with baked
+  contact shade; real realism (castings, pipework detail, wear, labels on parts) is a Blender rebuild. Blender 5.3 runs
+  here as `pip install bpy==5.3.0` in a venv; the builder was written for 4.0.2 (e.g. `calc_normals_split` is gone in 4.1+).
