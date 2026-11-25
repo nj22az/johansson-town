@@ -3,6 +3,7 @@ import {drawWithLookMaterials} from './look-materials.js';
 import * as THREE from '../../vendor/three.module.js';
 import {lookFragment,lookNormals,lookSurfaceStrokes} from './looks.js';
 import {SKIN_MARK,markSkin} from '../avatars/pixar-skin.js';
+import {createKikkouIds,drawWithoutHulls} from './kikkou-ids.js';
 
 /**
  * The 3D-to-2D pass: what turns a lit 3D town into a drawn one.
@@ -65,6 +66,23 @@ uniform float uNear,uFar,uInkEnabled;
 uniform vec3 uInk;
 uniform float uThickness,uSens,uConcave,uConcaveAmount;
 uniform float uFadeStart,uFadeEnd,uStrength,uSkyDepth;
+// Kikkou (kikkou-ids.js): every object's own colour; a line wherever it changes, sixteen ways round at two radii.
+uniform sampler2D tId,tIdDepth;
+uniform float uIdOn,uIdRadius,uIdNear;
+float idEdge(vec2 uv){
+ vec3 c=texture2D(tId,uv).rgb;
+ // Full weight up to uIdNear metres, then thinner with distance (to two fifths), as an inker draws what is further off:
+ // a shelf of small packs across the shop keeps its colours instead of drowning in line.
+ float z=-perspectiveDepthToViewZ(texture2D(tIdDepth,uv).x,uNear,uFar);
+ float r=uIdRadius*clamp(uIdNear/max(z,0.01),0.4,1.0);
+ for(int i=0;i<16;i++){
+  float a=float(i)*0.39269908;
+  vec2 d=vec2(cos(a),sin(a))*uTexel*r;
+  if(any(greaterThan(abs(texture2D(tId,uv+d).rgb-c),vec3(0.001))))return 1.0;
+  if(any(greaterThan(abs(texture2D(tId,uv+d*0.5).rgb-c),vec3(0.001))))return 1.0;
+ }
+ return 0.0;
+}
 // A modelled character's skin marks itself in the scene's alpha (SKIN_MARK, avatars/pixar-skin.js): its soft curves get no
 // inside-corner ink (which on a face draws grey smudges under the cheekbones and beside the nose), and its darks are
 // toned warm rather than violet (the grade's split tone): skin in shadow is light under the skin, not a bruise.
@@ -80,8 +98,15 @@ vec3 inkColour(vec2 uv){
  vec3 col=texture2D(tDiffuse,uv).rgb;
  if(uInkEnabled<0.5)return col;
  vec2 t=uTexel*uThickness;
+ // (?kikkou=edge, ?kikkou=ids: what the Kikkou line is drawn from, for looking at; kikkou-ids.js)
+ if(uIdOn>2.5)return vec3(idEdge(uv));
+ if(uIdOn>1.5){vec3 i=texture2D(tId,uv).rgb*255.0;return fract(vec3(i.x*0.137+i.y*0.71+i.z*0.29,i.x*0.311+i.z*0.53,i.x*0.071+i.y*0.37))*step(0.5,i.z);}
+ // Kikkou's line needs no depth: it is drawn wherever the IDs change, even where the depth reads far (a room's last
+ // pass can clear it, and then the depth ink below sees nothing).
+ // (at its own full strength: the town turns uStrength, its depth ink, down where that ink is busy)
+ float idE=uIdOn>0.5?idEdge(uv):0.0;
  float dc=linearDepth(uv);
- if(dc>uSkyDepth){return col;}
+ if(dc>uSkyDepth){return mix(col,mix(uInk,col*0.42,0.22),clamp(idE,0.0,1.0));}
 
  float dl=linearDepth(uv-vec2(t.x,0.0));
  float dr=linearDepth(uv+vec2(t.x,0.0));
@@ -99,6 +124,7 @@ vec3 inkColour(vec2 uv){
  edge=max(edge,smoothstep(uConcave,uConcave*3.4,concave)*uConcaveAmount*(1.0-0.9*gSkin));
  edge*=1.0-smoothstep(uFadeStart,uFadeEnd,dc);
  edge*=uStrength;
+ edge=max(edge,idE);
 
  // The line keeps a whisper of the colour under it, so it never looks pasted on.
  vec3 line=mix(uInk,col*0.42,0.22);
@@ -271,6 +297,7 @@ export function createInkPipeline(renderer,{superScale=1.5,pixelBudget=4.6e6,fxa
   uFadeEnd:{value:settings.fadeEnd},
   uStrength:{value:settings.strength},
   uSkyDepth:{value:settings.skyDepth},
+  tId:{value:null},tIdDepth:{value:null},uIdOn:{value:0},uIdRadius:{value:1.6},uIdNear:{value:2.2},
   uShadowTint:{value:new THREE.Color(grading.shadowTint)},
   uLightTint:{value:new THREE.Color(grading.lightTint)},
   uSkinShadowTint:{value:new THREE.Color(grading.skinShadowTint)},
@@ -285,7 +312,9 @@ export function createInkPipeline(renderer,{superScale=1.5,pixelBudget=4.6e6,fxa
  let shrinkPass=null;
 
  const size=new THREE.Vector2(0,0);
- const state={ink:true,grade:true,fxaa,scale:superScale,samples:msaa,hdr:halfFloat,look:'none',focusDistance:0,focusRange:3,focusMode:0};
+ const state={ink:true,grade:true,fxaa,scale:superScale,samples:msaa,hdr:halfFloat,look:'none',focusDistance:0,focusRange:3,focusMode:0,kikkou:false};
+ // Kikkou's object IDs (kikkou-ids.js): their target is made the first time Kikkou is on.
+ const kikkouIds=createKikkouIds(renderer);
  // One pass per look, compiled the first time it is chosen; the target only once a look needs it.
  const lookPasses=new Map();const auxiliary=createLookBuffers(renderer);let view=null;
  let rtLook=null;
@@ -319,6 +348,8 @@ export function createInkPipeline(renderer,{superScale=1.5,pixelBudget=4.6e6,fxa
   fxaaPass.material.uniforms.uTexel.value.copy(texel);
   // Keep the line roughly two device pixels wide whatever we are rendering at.
   compositePass.material.uniforms.uThickness.value=(settings.thickness/1.35)*(1.05+0.55*Math.max(1,scale))*Math.min(1,scale);
+  // Kikkou's line: about two device pixels each side of the change (a bold line, as the shark's), whatever the target's scale.
+  compositePass.material.uniforms.uIdRadius.value=2.2*Math.max(1,scale);
   return true;
  }
 
@@ -364,8 +395,12 @@ export function createInkPipeline(renderer,{superScale=1.5,pixelBudget=4.6e6,fxa
     renderer.clear();
     // (a modelled character's skin marks itself only here, where this pass reads the mark: SKIN_MARK)
     markSkin(true);
-    try{drawWithLookMaterials(renderer,state.look,draw);}finally{markSkin(false);}
+    const kikkou=!!state.kikkou&&state.ink;
+    try{drawWithLookMaterials(renderer,state.look,kikkou?r=>drawWithoutHulls(r,draw):draw);}finally{markSkin(false);}
     if(view&&lookNormals(state.look))auxiliary.render(draw,width,height);
+    compositePass.material.uniforms.uIdOn.value=kikkou?(state.kikkou==='edge'?3:state.kikkou==='ids'?2:1):0;
+    const ids=kikkou?kikkouIds.render(draw,width,height):null;
+    compositePass.material.uniforms.tId.value=ids?.texture??null;compositePass.material.uniforms.tIdDepth.value=ids?.depthTexture??null;
 
     // Ink and grade share one draw and one sample of the scene colour. A
     // disabled ink/grade changes uniforms, never the linear -> sRGB conversion.
@@ -439,7 +474,7 @@ export function createInkPipeline(renderer,{superScale=1.5,pixelBudget=4.6e6,fxa
   /** The target the town is drawn into: shaders compiled ahead of time are compiled for it (game.js compileTown). */
   get sceneTarget(){return rtScene;},
   dispose(){
-   auxiliary.dispose();
+   auxiliary.dispose();kikkouIds.dispose();
    [rtScene,rtColour,rtLook].forEach(rt=>rt?.dispose());
    [compositePass,fxaaPass,shrinkPass,...lookPasses.values()].forEach(p=>p?.dispose());
   }

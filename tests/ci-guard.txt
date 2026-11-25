@@ -139,3 +139,5 @@ ferry-walk.test.mjs
 ferry-z-fighting.test.mjs
 # The World's brand (brand/brand.json) and the title that shows it say the same thing; the older toy title stays gone.
 brand.test.mjs
+# Kikkou ink: the ID line in Sakura first (render/kikkou-ids.js, the composite in ink-pipeline.js).
+kikkou-ink.test.mjs

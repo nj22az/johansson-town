@@ -159,6 +159,7 @@ import { circleHitsRect,circleHitsCircle,standingHitsRect,canStepBetween,roomBou
 import {useTownColour} from './render/single-pass-colour.js';
 import { createCelPass } from './render/cel.js?snappy=1';
 import { createInkPipeline, GRADE_DEFAULTS } from './render/ink-pipeline.js?snappy=1';
+import {kikkouWanted} from './render/kikkou-ids.js';
 import {LOOKS,isLook,clearSavedLook,lookCSS,lookNeedsPipeline,lookFlatten} from './render/looks.js';
 import {createFreeCamera} from './input/free-camera.js';
 import {createLookPicker,lookSwatch} from './ui/look-picker.js';
@@ -474,6 +475,8 @@ function present(draw,view=camera){
   if(!pipeline){draw(renderer);firstFrameReady();return;}
  }
  pipeline.setCamera(view);
+ // Kikkou ink (render/kikkou-ids.js): in the rooms it has reached, Sakura first; ?kikkou=1 everywhere, ?kikkou=0 nowhere.
+ pipeline.state.kikkou=kikkouWanted(current?.id);
  try{pipeline.render(draw);firstFrameReady();}
  catch(error){
   const again=inkRecovery.failed();

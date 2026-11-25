@@ -48,3 +48,30 @@ pavement at −6.1; the focused tests and the runtime check after it).
 **Thuan's spot (same day, the owner: "Yes"):** it was in the carriageway, a step off the kerb (-4, -25.5, ground −0.11).
 `THUAN_PROFILE.work` is now (-6.1, -25.5), on Sakura's pavement where she sweeps at opening (ground +0.04, not blocked);
 photographed in front of the shop window by the fruit trestle; the guard green (283 s).
+
+## Kikkou ink: Sakura first (same day, the owner: "Start kikkou make the konbini first")
+- **`src/render/kikkou-ids.js`** (new): the ID pass. The same draw run again (as `look-buffers.js` does for normals) with each
+  visible mesh's material swapped for an ID material: the object's own ID (a WeakMap counter, 16 bits in red/green), the
+  instance number in blue (each tin of an InstancedMesh its own), skinning/morphs/instancing by three's chunks, cut-outs by
+  their map's alpha (a transparent mapped picture is cut by its alpha, not drawn as its rectangle). Left out (`idSkips`):
+  opacity under ½, depthWrite off, colorWrite off, faint see-through without a map, `userData.noInk`, and the cartoon's
+  hull outlines (`userData.outline`), which are also hidden from the picture while Kikkou is on (`drawWithoutHulls`). It has
+  its own depth texture.
+- **`src/render/ink-pipeline.js`**: `state.kikkou`; the composite draws a line where the ID changes (16 directions, two
+  radii, ~2.2 device px each side), at full strength whatever the town's `uStrength`, and thinner with distance by the ID
+  pass's own depth (full to 2.2 m, never under ⅖). It is found before the far-depth early return.
+- **`src/game.js` `present`**: `pipeline.state.kikkou=kikkouWanted(current?.id)`. On in **Sakura (room id `market`)** only;
+  `?kikkou=1` everywhere, `?kikkou=0` nowhere, `?kikkou=ids` / `?kikkou=edge` show what the line is drawn from.
+- **`tools/kikkou-shots.mjs`** (new): boots, enters Sakura, photographs door/left/right/shelves/Thuan with and without.
+- **`tests/kikkou-ink.test.mjs`** (new, in the guard).
+
+**Found on the way (not changed):**
+1. Inside a room the picture's depth target reads "far" over much of the frame (something in the room's draw clears or
+   overwrites depth last), so the town's existing depth ink draws almost nothing indoors. Kikkou does not depend on it.
+2. **The doubled shop front:** through Sakura's window the town's own Sakura storefront (`Sakura glass storefront`,
+   mullions at x ≈ −7.38) stands just behind the room's window. In the plain picture a mullion is a faint hairline; Kikkou
+   inks it as a rectangle in the glass. Fix by hiding the town's copy of the frontage while inside Sakura. Next step.
+
+**Proved:** ci-guard 119 files green (310 s); `tools/kikkou-shots.mjs` on the built runtime and on `--source`, no errors;
+`tools/cloud-boot-smoke.mjs` street boot no errors. Not measured: frame time on a phone or any GPU (software Chromium
+only). Cost while on: one more draw of the scene in Sakura and a 32-tap test per pixel in the composite.
