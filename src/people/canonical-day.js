@@ -32,7 +32,8 @@ const points={izakaya:IZAKAYA_DOOR,sakura:MARKET_THRESHOLD,market:MARKET_THRESHO
  port:[8,-38],ferry:[8,-38],office:[8,-38],koban:[5.05,20.3],
  'sato-ramen':RAMEN_DOOR,books:TOWN_DESTINATIONS.books,workshop:TOWN_DESTINATIONS.workshop,
  zenzai:NAKAMURA_DESSERTS.staffAt,'blue-coral':NAKAMURA_DESSERTS.staffAt,
- 'fish-auction':[25,-39.6],'ice-plant':ICE_DOOR,boatyard:[-31.8,-45],sea:[-31.8,-45],
+ 'fish-auction':[25,-39.6],'ice-plant':ICE_DOOR,boatyard:[-33,-43.5],sea:[-33,-43.5],   // at his sabani's side, not in the middle of the lane past it
+ 
  'higa-bench':YUNTAKU.seats.mac.stand,'kissa-higa':KISSA_KEEPER.at,'coin-laundry':LAUNDRY_STANDS.W2.at,clinic:[34.1,35.1],'cargo-yard':[17,-40],
  'power-station':[SCHOOL.powerHouse.door[0]+.6,SCHOOL.powerHouse.door[1]-.9],quay:[20,-40],
  'main-street':[1,0],seawall:[-36.7,-20],'net-ground':[-28.4,7.6],'kitano-pier':airportWorld(...KITANO_PIER_STAND)};

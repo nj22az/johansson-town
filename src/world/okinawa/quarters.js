@@ -279,10 +279,12 @@ function buildWestQuay(kit,solid,{inspect,anchor,onAction,vending}){
  // the lane to the hoist and the quay edge. (The red one used to lie inside the Dock
  // Electrical building and the blue one's bow ran into its wall: both were here before
  // the workshop was built. So were a net pile and a stack of fish boxes, inside it.)
- solid(sabani(kit,-34,-44.5,{ry:Math.PI/2}));
+ // (1 m further from the quay edge than it lay: the freight hoist was since stood behind its stern, and boat and hoist
+ // together shut the way along the water. The owner, 25 November 2026, on the quay: "Make this way traversable".)
+ solid(sabani(kit,-34,-43.5,{ry:Math.PI/2}));
 
  solid(fishCrates(kit,-36.6,-41.6,{rows:2,cols:3,seed:3}));
- inspect(-31.8,1,-45,'Inspect the sabani','Sabani',
+ inspect(-31.8,1,-44,'Inspect the sabani','Sabani',
   'A narrow island fishing boat, cedar planked and painted, up on blocks for its bottom to be scraped. The sail is rolled along the thwarts. Old men still race these in the summer.');
  anchor(-29,1,Q.minZ+.9,'Fish from the west quay',()=>onAction?.('fishing'));
 }

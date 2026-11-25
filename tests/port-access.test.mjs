@@ -26,6 +26,8 @@ test('you can walk from the quay yard onto the pier and into Mr Fujita’s shed'
  // From the yard along the seawall, past the sterns of the two sabani hauled out there,
  // then out along the pier.
  for(const [px,pz] of [[-38,-41],[-38,-43.8],[-37.9,-46.1],[-37.6,-46.6]])assert.ok(!blocked(px,pz),`the way from the yard is blocked at ${px},${pz}`);
+ // Along the water, between the blue sabani's stern and the freight hoist behind it (shut until 25 November 2026).
+ for(let px=-36;px<=-31;px+=.25)assert.ok(!blocked(px,-47.25),`the way along the quay is blocked at ${px},-47.25`);
  for(let z=-46.2;z>=PORT_SHED.z+PORT_SHED.width/2+.4;z-=.4)assert.ok(!blocked(x,z),`the pier is blocked at ${x.toFixed(2)},${z.toFixed(1)}`);
  // And in at the shed's open end.
  for(let z=PORT_SHED.z+PORT_SHED.width/2+.8;z>=PORT_SHED.z+.4;z-=.3)assert.ok(!blocked(PORT_SHED.x-.55,z),'the shed doorway is blocked at z='+z.toFixed(1));

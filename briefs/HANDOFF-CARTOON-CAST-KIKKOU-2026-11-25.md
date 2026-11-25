@@ -197,3 +197,11 @@ ferry z-fighting 4/4. On the branch, not published. Left of item 1: gearboxes, p
 slab under Sakura's floor, Kikkou in Sakura's office. Checked live: the page serves `boot-B3RGc1u6.js`,
 `town-book.css?h=61d9ed28` and the F2 engine-room model (HTTP 200). Left of item 1: gearboxes, pumps, the switchboard's
 cabinet; then the plain exterior surfaces and `tools/ferry-look.mjs` in her own frame.
+
+## The way along the west quay (same day, the owner, with a phone screenshot: "Make this way traversable I hate that he takes up the whole walkway")
+Mapped with the game's own collision probe (0.25 m grid): the blue sabani (`okinawa/quarters.js` `buildWestQuay`) and the
+freight hoist's footing behind its stern made one wall from the fish boxes to the quay edge. The sabani lies 1 m further
+north (z −43.5); the gap behind its stern is three clear rows (z −47.0 to −47.5). Kōji's `boatyard`/`sea` point
+(`people/canonical-day.js`) is at his boat's side (−33, −43.5), not mid-lane (−31.8, −45). `tests/port-access.test.mjs`
+holds the gap open. Guard green (308 s). `tests/housing-consolidation.test.mjs` fails one test with and without this
+change (pre-existing, not in the guard). On the branch, not published.
