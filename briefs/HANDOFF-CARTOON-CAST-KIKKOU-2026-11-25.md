@@ -36,3 +36,13 @@ Plan for the World:
 2. Ink where the ID changes (16 directions, 2×2 resolve), plus the existing depth second difference only inside one
    object (arms over a body), replacing the hull outlines (`build.js addOutline`) while the look is on.
 3. Behind a look first, measured on a phone (frame time in a street and a room), then the default if the owner agrees.
+
+## Mrs Sato off Thuan's spot (same day)
+The owner, of the first photograph of Thuan: "Remove grandmother samurai from the opening shot seems to be an error"
+(it was Mrs Sato, misnamed in the session as Grandmother Sakurai). Her work spot in `src/people/profiles.js` was still
+(-4.2, -26), Sakura's doorstep, half a metre from Thuan's (-4, -25.5), so the town stood them one inside the other.
+`src/people/residents.js` now gives her `SATO_RAMEN_STEP`, the pavement in front of Sato Ramen's door (-6.1, -13.9).
+Proved: the probe of the running game puts her there, on the pavement (ground +0.04, not blocked), 11.6 m from Thuan;
+photographed with `tools/pixar-shots.mjs --name "Mrs Sato"`; the guard green (295 s, before the move from x −4.2 to the
+pavement at −6.1; the focused tests and the runtime check after it).
+**Left:** Thuan's own spot (-4, -25.5) is in the carriageway, a step off the kerb (ground −0.11). Not changed: ask the owner.

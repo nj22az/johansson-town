@@ -3,7 +3,7 @@ import {ISLAND_RESIDENT_NAMES,kitahamaHomeFor} from '../world/kitahama-layout.js
 import {KITANO_RESIDENT_NAMES,kitanoHomeFor} from './kitano-residents.js';
 import {HARBOUR_OFFICE} from '../world/business-layout.js';
 import {TOWN_DESTINATIONS} from '../world/town-grid.js';
-import {restaurantApproach,IZAKAYA_DOOR} from '../world/dining-layout.js';
+import {restaurantApproach,IZAKAYA_DOOR,SATO_RAMEN_DOOR} from '../world/dining-layout.js';
 import {residentialHome} from '../world/residential-layout.js';
 import {PROFILES} from './profiles.js';
 import {YARD_RESIDENT_NAMES,YARD_HOMES} from '../world/yard-homes-layout.js';
@@ -37,12 +37,17 @@ const NEIGHBOURHOOD={
  'Officer Mori':{clue:'Main Street leads straight to the harbour. I follow it on the night patrol.'},
  Chin:{clue:'Star Port is inside our repair shop. Beat my score and I will show you around.'},
 };
+// Mrs Sato works at her own ramen shop: her spot is the pavement in front of Sato Ramen's door (x −6.1, the pavement line
+// Thuan sweeps in front of Sakura, stand-sequences.js; x −4 is already the carriageway). Her old spot in profiles.js
+// (-4.2, -26) was Sakura's doorstep, half a metre from Thuan's own, so the two stood one inside the other wherever the
+// town put them at work (the owner, 25 November 2026).
+const SATO_RAMEN_STEP=Object.freeze([-6.1,SATO_RAMEN_DOOR[1]]);
 // Existing identities and saved routines use the supplied street’s shared entrances.
 export const RESIDENTS=ACTIVE_RESIDENT_NAMES.map(name=>{
  const source=name==='Thuan'?THUAN_PROFILE:PROFILES.find(p=>p.name===name);
  const diningPoint=point=>point&&point[0]===24&&point[1]>=18&&point[1]<=25?restaurantApproach('izakaya'):point;
  const shopFloor={Chin:'workshop',Tetsuo:'workshop'}[name];
- const profile={...source,...NEIGHBOURHOOD[name],work:({'Harbour master':[HARBOUR_OFFICE.door[0],HARBOUR_OFFICE.door[2]],'Officer Mori':[...KOBAN.door],Thao:IZAKAYA_DOOR,Nhung:CLINIC_STEP})[name]||diningPoint(source.work),evening:({Nhung:[.15,18.7],Chin:[.15,17.6], 'Mrs Sato':TOWN_DESTINATIONS.bus,'Harbour master':[0,-48],Tetsuo:[.15,16.5],'Officer Mori':[0,28],Thao:IZAKAYA_DOOR})[name]||diningPoint(source.evening),...residentialHome(name)};
+ const profile={...source,...NEIGHBOURHOOD[name],work:({'Harbour master':[HARBOUR_OFFICE.door[0],HARBOUR_OFFICE.door[2]],'Officer Mori':[...KOBAN.door],Thao:IZAKAYA_DOOR,Nhung:CLINIC_STEP,'Mrs Sato':SATO_RAMEN_STEP})[name]||diningPoint(source.work),evening:({Nhung:[.15,18.7],Chin:[.15,17.6], 'Mrs Sato':TOWN_DESTINATIONS.bus,'Harbour master':[0,-48],Tetsuo:[.15,16.5],'Officer Mori':[0,28],Thao:IZAKAYA_DOOR})[name]||diningPoint(source.evening),...residentialHome(name)};
  // The shop staff stand at their own shop's door, and where that door is depends on
  // the layout, which is not known yet. Read it when somebody asks.
  if(shopFloor)Object.defineProperty(profile,'work',{get:()=>TOWN_DESTINATIONS[shopFloor],enumerable:true,configurable:true});
