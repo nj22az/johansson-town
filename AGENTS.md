@@ -4,6 +4,21 @@
 
 Read the repository's [AGENTS.md](../AGENTS.md) and [CLAUDE.md](../CLAUDE.md). Their working discipline applies here.
 
+## Owner's decision — 25 November 2026: the web game stands alone
+
+The owner: "I want the web game to be standalone it's new rules, it should be just as fun or even more fun than the Linux
+game"; before it, "make npc interactions more interesting, I want it to feel like they live in this cartoon island" and
+"more lived in like a gta, shenmue, yakuza small island".
+
+- **This supersedes the 19 October ruling that the web is "a gorgeous demo for the Linux game"** with "simple behaviour"
+  and "not too much dialogue" (the section of that date below is history where it says the web simulates less by design).
+  The web edition's budgets (`src/edition.js`) are raised stage by stage, each tested in the web edition before the next.
+- **Stage 1, done:** `conversations` and `pouring` are on for the web: the full conversations (topics, favours, gifts, the
+  day's happenings) and Thao's pour.
+- **Still to come:** `trade`, `machinery`, `countedMoney`, `liveDocuments` (web saves carry the 999,999 yen purse: decide
+  what a counted wallet starts with), and residents' life beyond `residentRadius` if phones keep their frame rate.
+- Performance is the limit, not a design choice: measure before widening what far-away residents do.
+
 ## Owner's decision — 25 November 2026: cartoon cast online, Kikkou ink for the World
 
 The owner: "I just know I want the kikkou style for Johansson World and I want to simplify the characters there again the

@@ -205,3 +205,12 @@ north (z −43.5); the gap behind its stern is three clear rows (z −47.0 to �
 (`people/canonical-day.js`) is at his boat's side (−33, −43.5), not mid-lane (−31.8, −45). `tests/port-access.test.mjs`
 holds the gap open. Guard green (308 s). `tests/housing-consolidation.test.mjs` fails one test with and without this
 change (pre-existing, not in the guard). On the branch, not published.
+
+## The web game stands alone: stage 1, conversations (same day)
+The owner's new ruling is in AGENTS.md (25 November 2026: the web game stands alone), superseding 19 October's "demo".
+`src/edition.js`: the web's `conversations` and `pouring` are on; `tests/edition.test.mjs` follows. Checked in the web
+edition in Chromium (`--source`): "Talk to Harbour master" opens the full conversation (greeting by name, a line, a
+favour asked, four topics, "Sell a catch"), no page errors. Guard green (307 s). On the branch, not published.
+`JOHANSSON_EDITION=web node --test tests/edition.test.mjs` fails one test with and without this change (pre-existing).
+The owner also asked about google-gemini/gemini-api-cli: a CLI for Gemini models (text, image, speech, music, video),
+needing a third-party binary and the owner's API key; not used. Recommended only for voices or art, if asked.

@@ -51,13 +51,16 @@ export const BUDGETS=Object.freeze({
   detourRetryMinutes:.5,
   /** One nearby, turn-taking exchange at a time; distant residents still use the reduced timetable. */
   neighbourChats:true,
-  /** One short line for the moment (people/greetings.js shortGreeting) and whatever they sell or serve. */
-  conversations:false,
+  /** The full conversation, as on Linux: topics, favours, gifts, the day's happenings. (Until 25 November 2026 the web
+   *  gave one short line; the owner then: "I want the web game to be standalone it's new rules, it should be just as fun
+   *  or even more fun than the Linux game". AGENTS.md.) */
+  conversations:true,
   trade:false,
   machinery:false,
   countedMoney:false,
   liveDocuments:false,
-  pouring:false,
+  /** Thao's pour as it is done, as on Linux (the same ruling). */
+  pouring:true,
  }),
 });
 

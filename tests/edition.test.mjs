@@ -22,7 +22,10 @@ test('Linux keeps every system; the web cuts only what is simulated, never what 
  const linux=BUDGETS.linux,web=BUDGETS.web;
  for(const key of ['residentsEverywhere','neighbourChats','conversations','trade','machinery','countedMoney','liveDocuments','pouring'])assert.equal(linux[key],true,'Linux keeps '+key);
  assert.equal(web.neighbourChats,true,'nearby residents converse on the web');
- for(const key of ['residentsEverywhere','conversations','trade','machinery','countedMoney','liveDocuments','pouring'])assert.equal(web[key],false,'the web cuts '+key);
+ // The owner, 25 November 2026: the web game stands alone and is as much fun as Linux. Stage 1: the full conversations
+ // and Thao's pour are the web's too. Still cut, until their own stage: trade, machinery, counted money, live documents.
+ for(const key of ['conversations','pouring'])assert.equal(web[key],true,'the web has '+key);
+ for(const key of ['residentsEverywhere','trade','machinery','countedMoney','liveDocuments'])assert.equal(web[key],false,'the web cuts '+key);
  assert.ok(web.residentRadius>=30,'residents near the player live in full on the web');
  // Nothing in the budgets touches the look (the graphics ruling of 19 October: no device class drops it).
  for(const key of Object.keys(web))assert.doesNotMatch(key,/shadow|sample|hdr|ink|grade|dpr|resolution|stream/i);
