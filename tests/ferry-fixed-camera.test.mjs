@@ -92,7 +92,7 @@ test('the shipped Blender GLB keeps CAD units, source bounds and finite normals 
  for(const [i,v]of meshes.map(m=>m.material.metalness).sort().entries())assert.ok(Math.abs(v-[.05,.55][i])<1e-6);
  assert.ok(bounds.getSize(new THREE.Vector3()).x>7.9);assert.ok(bytes.length<4_000_000);
  const audit=JSON.parse(readFileSync(new URL('../docs/qa/ferry-engine-room-h1/blender-finish-audit.json',import.meta.url)));
- assert.equal(audit.outward_faces_failed,0);assert.ok(audit.outward_faces_checked>10_000);assert.equal(audit.source_components,1512);
+ assert.equal(audit.outward_faces_failed,0);assert.ok(audit.outward_faces_checked>10_000);assert.equal(audit.source_components,1664);
 });
 
 test('raised-deck boarding meets the pier and the forward crew station remains on its actual floor',()=>{

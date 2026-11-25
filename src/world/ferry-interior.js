@@ -898,6 +898,18 @@ export const FERRY_INTERIOR=(()=>{
     box([X[0],y0,GZ(12.55)],[X[1],y0+.2,GZ(13.4)],0x3a3f41,{name:'generator bed'});
     box([ex[0],y0+.2,GZ(12.7)],[ex[1],y0+.52,GZ(13.25)],GRND,{name:'generator sump'});box([ex[0],y0+.52,GZ(12.65)],[ex[1],y0+.95,GZ(13.3)],GRN,{name:'generator engine'});
     for(let i=0;i<4;i++){const x0=Math.min(ex[0],ex[1])+.12+i*.26;deco([x0,y0+.95,zc-.2],[x0+.2,y0+1.08,zc+.2],GRN);deco([x0+.02,y0+1.08,zc-.16],[x0+.18,y0+1.18,zc+.16],COV);}
+    // The set's engine as a casting, like the main engines (25 November 2026): on both long faces a frame rib at each
+    // cylinder boundary and a bolted inspection cover per cylinder; two stud nuts a side on each head; holding-down
+    // bolts along the bed. Small unbevelled boxes, 5 mm into what they stand on.
+    {const NUT=0x9a9ea0,xe=Math.min(ex[0],ex[1]),zA=Math.min(GZ(12.65),GZ(13.3)),zB=Math.max(GZ(12.65),GZ(13.3));
+     for(const [zf,dir] of [[zA,-1],[zB,1]]){const zs=(d0,d1)=>[Math.min(zf+dir*d0,zf+dir*d1),Math.max(zf+dir*d0,zf+dir*d1)];
+      for(let i=0;i<=4;i++){const x=xe+.09+i*.26,[z0,z1]=zs(-.005,.022);deco([x-.013,y0+.54,z0],[x+.013,y0+.93,z1],GRND,{name:'block frame rib'});}
+      for(let i=0;i<4;i++){const x=xe+.22+i*.26,[z0,z1]=zs(-.005,.011),[n0,n1]=zs(.006,.027);
+       deco([x-.085,y0+.63,z0],[x+.085,y0+.84,z1],GRND,{name:'crankcase inspection cover'});
+       for(const dy of [.652,.818])for(const dx of [-.066,.066])deco([x+dx-.01,y0+dy-.01,n0],[x+dx+.01,y0+dy+.01,n1],NUT,{cls:'metal',name:'cover bolt'});}}
+     for(let i=0;i<4;i++){const x=xe+.22+i*.26;for(const dz of [-.18,.18])for(const dx of [-.07,.07])deco([x+dx-.012,y0+1.075,zc+dz-.012],[x+dx+.012,y0+1.105,zc+dz+.012],NUT,{cls:'metal',name:'cylinder head nut'});}
+     const bz=[Math.min(GZ(12.55),GZ(13.4))+.05,Math.max(GZ(12.55),GZ(13.4))-.05];
+     for(const z of bz)for(let x=Math.min(X[0],X[1])+.15;x<Math.max(X[0],X[1])-.1;x+=.32)deco([x-.016,y0+.195,z-.016],[x+.016,y0+.228,z+.016],NUT,{cls:'metal',name:'holding-down bolt'});}
     bar([ex[0],y0+1.05,zc+.28],[ex[1],y0+1.05,zc+.28],.05,LAG,'paint');cyl(.11,.11,.16,[s*1.7,y0+1.05,zc+.28],CAST,{rot:[0,0,Math.PI/2],seg:14,name:'generator turbocharger'});
     bar([s*1.75,y0+1.1,zc+.28],[s*1.75,y1-.15,zc+.28],.09,LAG,'paint');
     cyl(.32,.32,.6,[s*2.05,y0+.6,zc],L.alternator,{rot:[0,0,Math.PI/2],seg:18,name:'alternator'});for(const k of [-.2,-.1,0,.1,.2])cyl(.335,.335,.02,[s*(2.05+k),y0+.6,zc],0x1f2f52,{rot:[0,0,Math.PI/2],seg:18});

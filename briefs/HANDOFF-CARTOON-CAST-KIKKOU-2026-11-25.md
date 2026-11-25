@@ -172,3 +172,8 @@ surfaces, then `ferry-look.mjs` in her own frame.
 `height:60px` with its `min-height`. Measured at iPhone 14 Pro size: the icon's centre 89.5 of 90 px (3×) down the
 circle. `index.html`'s `?h=` stamp updated. Guard green (325 s). Not published yet. The white strip under the game in the
 owner's screenshot was not reproduced here (the page fills the viewport in Chromium's phone emulation); not looked into.
+
+## The generators as castings (same day, the owner: "Proceed")
+`ferry-interior.js`, the JG-125 sets: frame ribs and bolted inspection covers on both long faces, head nuts, bed bolts.
+GLB rebuilt: 1,664 components, 84,864 triangles, 3,745,628 bytes (budget 100,000 / 4,000,000). Guard green (318 s),
+ferry z-fighting 4/4. On the branch, not published. Left of item 1: gearboxes, pumps, the switchboard's cabinet.
