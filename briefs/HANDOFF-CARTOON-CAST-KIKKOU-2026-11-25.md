@@ -191,3 +191,9 @@ ferry z-fighting 4/4. On the branch, not published. Left of item 1: gearboxes, p
   `tools/kikkou-shots.mjs --room sakura-office` goes in at the shop and up the stair (stepping the frozen game until the
   room changes). Its lenses there start inside the player's head; the room behind is right.
 - Guard green (294 s). On the branch, not published.
+
+## Published again (same day, the owner: "Publish")
+`main` fast-forwarded to `d68747f`: the menu button's icon, the main engines' and generators' detail, the storefront
+slab under Sakura's floor, Kikkou in Sakura's office. Checked live: the page serves `boot-B3RGc1u6.js`,
+`town-book.css?h=61d9ed28` and the F2 engine-room model (HTTP 200). Left of item 1: gearboxes, pumps, the switchboard's
+cabinet; then the plain exterior surfaces and `tools/ferry-look.mjs` in her own frame.
