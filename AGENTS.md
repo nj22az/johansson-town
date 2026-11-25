@@ -4,6 +4,21 @@
 
 Read the repository's [AGENTS.md](../AGENTS.md) and [CLAUDE.md](../CLAUDE.md). Their working discipline applies here.
 
+## Owner's decision — 25 November 2026: cartoon cast online, Kikkou ink for the World
+
+The owner: "I just know I want the kikkou style for Johansson World and I want to simplify the characters there again the
+blender avatars are better for Godot and Sakura world, the online game should use these cartoony characters even
+Johansson and Thuan".
+
+- **The online World draws every resident as the cartoon (the Shimanchu built by `src/avatars/build.js`), Johansson and
+  Thuan included.** `src/boot.js` no longer loads the Blender (Pixar) bodies; `?pixar=1`, or `?pixar=thuan,johansson`,
+  still loads them on a page to compare. The bodies, their files and `src/avatars/pixar.js` stay: they belong to the
+  Godot and Sakura world (and Studio, which loads its own). Do not make them the web default again without the owner.
+- **The World's look is to be the Kikkou style** (studied from kuraneko1.github.io/blahaj-kikkou-3d): an even ink line
+  wherever one object meets another, found from an object-ID buffer rather than an inverted hull or depth alone, over
+  the cel bands. To be built in `src/render/ink-pipeline.js` and measured on a phone before it becomes the default.
+  The test pages that settled it are recorded in [the handover](briefs/HANDOFF-CARTOON-CAST-KIKKOU-2026-11-25.md).
+
 ## Owner's decision — 31 October 2026: facilities before population
 
 The owner: “remove the ice cream family now there are too much unimportant people on the island we need to build facilities before we populate them”.
