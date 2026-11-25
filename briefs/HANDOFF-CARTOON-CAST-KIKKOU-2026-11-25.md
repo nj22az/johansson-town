@@ -267,3 +267,11 @@ shoulder), with the cap and separate sleeve removed. That touches every top in t
 - 256 character tests, guard green (286 s); portraits regenerated. Not published.
 - **Still painted:** trousers' ankles and every waist under a tucked top, smocks, aprons, sailor tops, the police
   jacket's cuffs are from this step but its body is its own module, collars other than the kariyushi's and the tee's.
+
+## The walrus moustache, and trousers' hems (same day, the owner: "pls fix harbour masters moustache so it looks better")
+- `avatars/face-objects.js`: a walrus moustache is one full sweep (two strands a side from under the nose, out over the
+  lip and drooping past the mouth's corners, a tuft in the middle), where it was two small tufts. Everybody with
+  `walrus` gets it. The Harbour master's is size .9, width .7.
+- `build.js`: trousers end in an open hem over the shoe (`sleeveTube` on the shin, bone `knee`).
+- Guard green (300 s); portraits regenerated. Not published. The shop-surface tests named `sakura-surfaces` and the
+  stockroom's failed in a wide local run and were not checked against the base (they are not avatar tests).

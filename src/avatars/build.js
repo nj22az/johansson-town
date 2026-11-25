@@ -1129,6 +1129,10 @@ function addBody(list,recipe,m,swim=false){
   // when the feet are up (a floor sit), instead of showing through it.
   const cloth=stripes?p=>stripes(p,hp[0],14):bottom;
   limb(list,hp,an,m.legR*(b==='widepants'?1.32:1.02),m.legR*.86,trousers?cloth:skin,leg);
+  // Trousers end in a hem standing off the ankle, open, as a long sleeve ends in a cuff (sleeveTube): it grows out of
+  // the leg from under its surface and stops over the shoe.
+  if(b==='trousers'){const L=hipY-m.foot,at=t=>[hp[0],hipY-L*t,0],rAt=t=>m.legR*(1.02-.16*t),t1=.93,t0=.74;
+   sleeveTube(list,at(t0),at(t1),rAt(t0)*.9,rAt(t1)*1.24,cloth,{bone:'knee'+s,th:.006*m.k,depth:m.shin*.16,segments:12});}
   if(b==='cropped'||b==='culottes'){const end=b==='cropped'?m.foot+m.shin*.35:hipY-m.thigh*1.12;limb(list,hp,[hp[0],end,0],m.legR*(b==='culottes'?1.55:1.12),m.legR*(b==='culottes'?1.7:1.16),cloth,leg);}
   // Shorts and trunks: a wider piece over the top of the thigh.
   // (Shorts are worn: each leg an open tube of cloth, the thigh standing in it. Swimwear stays close to the skin.)

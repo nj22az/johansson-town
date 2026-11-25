@@ -59,8 +59,17 @@ export function buildFaceObjects(recipe,m,{shadows=false}={}){
  const f=recipe.facial,k=L.facialS,dy=L.facialDY,wk=.6+(f.width??.5)*.8;   // the moustache stretches with facial.width
  const hairMaterial=()=>new THREE.MeshStandardMaterial({color:f.colour,roughness:.92});
  const moustache=[],beard=[],fy=(L.noseY+L.mouthY)/2+3+dy;
- if(f.moustache==='moustache'||f.moustache==='walrus'){
-  for(const side of [-1,1])tuft(moustache,128+side*10*k*wk,fy+(f.moustache==='walrus'?2:0),.085*k,(f.moustache==='walrus'?.05:.028)*k,.045*k);
+ if(f.moustache==='walrus'){
+  // A walrus moustache is one full sweep, not two dabs under the nose (the owner, 25 November 2026, of the Harbour
+  // master's: "out of place too small"; then "fix harbour masters moustache so it looks better"): from under the nose
+  // each side sweeps out over the lip and droops past the corner of the mouth, two strands thick, fuller in the middle.
+  for(const side of [-1,1]){
+   tube(moustache,[[0,0],[7,-1],[14,1],[20,6],[24,13],[25,19]].map(([x,y])=>at(128+side*x*k*wk,fy+y*k,.05)),.034*k);
+   tube(moustache,[[0,5],[7,5],[13,7],[18,12],[21,17]].map(([x,y])=>at(128+side*x*k*wk,fy+y*k,.045)),.03*k);
+  }
+  tuft(moustache,128,fy+2*k,.06*k,.04*k,.05*k);
+ }else if(f.moustache==='moustache'){
+  for(const side of [-1,1])tuft(moustache,128+side*10*k*wk,fy,.085*k,.028*k,.045*k);
  }else if(f.moustache==='pencil'){
   tube(moustache,Array.from({length:9},(_,i)=>at(128+(i-4)*4*k*wk,fy-2+Math.abs(i-4)*.5,.035)),.012*k);
  }else if(f.moustache==='handlebar'){

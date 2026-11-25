@@ -121,7 +121,7 @@ export const CAST_RECIPES=castSet({
  'Harbour master':R({name:'Harbour master',body:{height:.52,build:.68,skin:'#d2a17c'},head:{size:.52,shape:.55,form:'round',jaw:.6,cheeks:.6},
   hair:{style:'horseshoe',colour:'#b9b7b0'},eyes:{style:'gentle',colour:'#2a1d16',size:.6},
   brows:{style:'bushy',colour:'#cfcdc6',size:.6},nose:{style:'wide',size:.5},mouth:{style:'smile',size:.72,width:.62,height:.42},
-  glasses:{style:'round',colour:'#2b2b2b'},facial:{style:'walrus',colour:'#e6e3db',size:1,width:1,height:.5},wrinkles:.45,blush:.35,
+  glasses:{style:'round',colour:'#2b2b2b'},facial:{style:'walrus',colour:'#e6e3db',size:.9,width:.7,height:.5},wrinkles:.45,blush:.35,
   outfit:{top:'jacket',topColour:'#2c3e5c',bottom:'trousers',bottomColour:'#27304d',shoes:'#1c1c24',hat:'captain',hatColour:'#f4f1ea',accent:'#e0b93a'}}),
  'Officer Mori':R({name:'Officer Mori',body:{height:.7,build:.48,skin:'#c79872'},head:{size:.48,shape:.46,form:'oval',jaw:.5,cheeks:.4},
   hair:{style:'crop',colour:'#4a4845'},eyes:{style:'round',colour:'#2a1d16',size:.62},
