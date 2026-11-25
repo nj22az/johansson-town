@@ -214,3 +214,25 @@ favour asked, four topics, "Sell a catch"), no page errors. Guard green (307 s).
 `JOHANSSON_EDITION=web node --test tests/edition.test.mjs` fails one test with and without this change (pre-existing).
 The owner also asked about google-gemini/gemini-api-cli: a CLI for Gemini models (text, image, speech, music, video),
 needing a third-party binary and the owner's API key; not used. Recommended only for voices or art, if asked.
+
+## Published a third time; the cast's restyle begun (same day)
+- **Published** (the owner: "Publish and start the restyle"): `main` at `9ee3c2f` (the west quay, the web conversations).
+- **The owner on the cast:** "the feet are ugly elbows and shoulders I see only the faces are so so Thuận looks best";
+  then "The faces need to be able to be more interesting the harbour master looks too brown and his mouth and moustache
+  is out of place too small and the soles of the shoes you made looks like they can be removed that would look nicer";
+  then **"Esthetically we should aim for something that would work in a Nintendo game"** (the bar for the restyle:
+  clean, round, friendly, readable; original characters, never copies of anybody's).
+- **Shoes** (`avatars/build.js` `footShape`, `footprint`, `addShoe`): one rounded piece, 18 sides, a lower toe, no sole
+  drawn. The sole's footprint is kept as points that draw nothing (each triangle folded flat), because the poses, the
+  floor seat, the kneels, `foot-ground.js` and `pair-poses.js`'s own model are all made to the foot that stood on it: a
+  shorter or sole-less foot broke the floor-contact, floor-sit, pair-pose and wardrobe (vertex budget, popping) tests.
+  Bare feet use the same rounder shape; sandals keep their sole (a sandal is one).
+- **Harbour master** (`avatars/cast.js`): skin `#d2a17c` (was `#b5805d`), walrus moustache at full size and width, a
+  smiling mouth, eyes a size up, fewer wrinkles.
+- **Guide portraits regenerated** (`tools/render-resident-guide.mjs`, needs `TOWN_CHROMIUM_PATH=/opt/pw-browsers/chromium`
+  in the cloud): the guard requires it after any avatar source change.
+- Tools: `tools/cast-sheet.mjs [out.png] ["Name,Name"]`, `tools/cast-variants.mjs`, `tools/cast-joints.mjs` (feet,
+  shoulders, a bent elbow, the side).
+- Guard green (300 s). `tests/onsen-seats.test.mjs` fails one test with and without this change (pre-existing).
+- **Next:** shoulders (the short sleeve ends in a round cap that reads as a ball) and elbows; then a consistent, more
+  expressive face set (eyes, mouths, moustaches that scale properly); then proportions.

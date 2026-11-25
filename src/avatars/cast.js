@@ -116,10 +116,12 @@ export const CAST_RECIPES=castSet({
   nose:{style:'line',size:.4},mouth:{style:'smile',colour:'#b8544a',size:.45},glasses:{style:'square',colour:'#3b3f45'},blush:.2,
   outfit:{top:'blouse',topColour:'#e9e4d6',bottom:'longskirt',bottomColour:'#3a4a5e',shoes:'#3a2a1e',accent:'#f4f1ea'}}),
  // The harbour master, who lives in his office, and Officer Mori at the police box.
- 'Harbour master':R({name:'Harbour master',body:{height:.52,build:.68,skin:'#b5805d'},head:{size:.52,shape:.55,form:'round',jaw:.6,cheeks:.5},
-  hair:{style:'horseshoe',colour:'#b9b7b0'},eyes:{style:'gentle',colour:'#2a1d16',size:.45},
-  brows:{style:'bushy',colour:'#cfcdc6',size:.6},nose:{style:'wide',size:.55},mouth:{style:'flat',size:.5},
-  glasses:{style:'round',colour:'#2b2b2b'},facial:{style:'walrus',colour:'#dedbd3'},wrinkles:.55,
+ // (The owner, 25 November 2026: he "looks too brown and his mouth and moustache is out of place too small": a weathered
+ // tan, lighter than it was; a walrus moustache broad enough to be his, a mouth under it that smiles, eyes a size up.)
+ 'Harbour master':R({name:'Harbour master',body:{height:.52,build:.68,skin:'#d2a17c'},head:{size:.52,shape:.55,form:'round',jaw:.6,cheeks:.6},
+  hair:{style:'horseshoe',colour:'#b9b7b0'},eyes:{style:'gentle',colour:'#2a1d16',size:.6},
+  brows:{style:'bushy',colour:'#cfcdc6',size:.6},nose:{style:'wide',size:.5},mouth:{style:'smile',size:.72,width:.62,height:.42},
+  glasses:{style:'round',colour:'#2b2b2b'},facial:{style:'walrus',colour:'#e6e3db',size:1,width:1,height:.5},wrinkles:.45,blush:.35,
   outfit:{top:'jacket',topColour:'#2c3e5c',bottom:'trousers',bottomColour:'#27304d',shoes:'#1c1c24',hat:'captain',hatColour:'#f4f1ea',accent:'#e0b93a'}}),
  'Officer Mori':R({name:'Officer Mori',body:{height:.7,build:.48,skin:'#c79872'},head:{size:.48,shape:.46,form:'oval',jaw:.5,cheeks:.4},
   hair:{style:'crop',colour:'#4a4845'},eyes:{style:'round',colour:'#2a1d16',size:.62},

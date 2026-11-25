@@ -4,8 +4,9 @@ import * as THREE from '../vendor/three.module.js';
 import {buildAvatar} from '../src/avatars/build.js';
 import {recipeFor,RESIDENT_NAMES} from '../src/avatars/cast.js';
 import {createAvatarAnimator} from '../src/avatars/animate.js';
-const names=['Johansson','Thuan',...RESIDENT_NAMES.filter(n=>!['Johansson','Thuan'].includes(n))];
-const TW=260,TH=420,COLS=7,rows=Math.ceil(names.length/COLS);
+const only=new URLSearchParams(location.search).get('only');
+const names=only?only.split(','):['Johansson','Thuan',...RESIDENT_NAMES.filter(n=>!['Johansson','Thuan'].includes(n))];
+const TW=only?520:260,TH=only?840:420,COLS=only?Math.min(4,names.length):7,rows=Math.ceil(names.length/COLS);
 const out=document.createElement('canvas');out.width=TW*COLS;out.height=TH*rows;const g=out.getContext('2d');g.fillStyle='#f3efe6';g.fillRect(0,0,out.width,out.height);
 const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(TW,TH);renderer.setPixelRatio(1);renderer.outputColorSpace=THREE.SRGBColorSpace;
 const scene=new THREE.Scene();scene.background=new THREE.Color(0xf3efe6);
@@ -20,7 +21,7 @@ for(const [i,name] of names.entries()){
  // full body in the upper 62%, face close-up in the lower 38%
  renderer.setSize(TW,Math.round(TH*.62));cam.aspect=TW/(TH*.62);cam.updateProjectionMatrix();cam.position.set(0,h*.52,h*2.9+1.4);cam.lookAt(0,h*.5,0);renderer.render(scene,cam);
  g.drawImage(renderer.domElement,(i%COLS)*TW,Math.floor(i/COLS)*TH);
- renderer.setSize(TW,Math.round(TH*.38)-22);cam.aspect=TW/(TH*.38-22);cam.updateProjectionMatrix();holder.rotation.y=Math.PI+.2;cam.position.set(0,h*.84,1.55);cam.lookAt(0,h*.83,0);renderer.render(scene,cam);
+ renderer.setSize(TW,Math.round(TH*.38)-22);cam.aspect=TW/(TH*.38-22);cam.updateProjectionMatrix();holder.rotation.y=Math.PI+.2;cam.position.set(0,h*.84,only?1.25:1.55);cam.lookAt(0,h*.83,0);renderer.render(scene,cam);
  g.drawImage(renderer.domElement,(i%COLS)*TW,Math.floor(i/COLS)*TH+Math.round(TH*.62));
  g.fillStyle='#1f2a2e';g.font='600 15px sans-serif';g.textAlign='center';g.fillText(name,(i%COLS)*TW+TW/2,Math.floor(i/COLS)*TH+TH-6);
  scene.remove(holder);built.push(name);

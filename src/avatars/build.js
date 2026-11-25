@@ -217,6 +217,29 @@ function limb(list,a,b,r0,r1,hex,{bone,joints=[],root=null,soft=.13,segments=14,
  part(list,g,share,hex,new THREE.Matrix4().compose(A.clone().add(B).multiplyScalar(.5),q,new THREE.Vector3(1,1,1)),uvAt);
 }
 const ball=(list,r,at,bone,hex,s=[1,1,1],w=12,h=8)=>part(list,new THREE.SphereGeometry(r,w,h),bone,hex,M(at[0],at[1],at[2],0,0,0,...s));
+/**
+ * A foot's shape (a shoe's upper or its sole, or a bare foot): where `ball` gave a squashed sphere of twelve sides, whose
+ * edge showed its corners and whose toe was as tall as its heel (the owner, 25 November 2026: "the feet are ugly"), this
+ * is the same ellipsoid, as big and in the same place, drawn round (24 sides) and shaped as a foot is: broader at the
+ * toes than at the heel, and (an upper, `toe` > 0) falling from the instep to a low, rounded toe box.
+ */
+function footShape(list,r,at,bone,hex,s,{toe=0,rings=10,sides=20,under=1}={}){
+ const g=new THREE.SphereGeometry(r,sides,rings),P=g.attributes.position;
+ for(let i=0;i<P.count;i++){
+  const x=P.getX(i),y=P.getY(i),z=P.getZ(i),t=z/r;                       // t: −1 at the heel, 1 at the toe
+  // (`under`: how much of the ellipsoid's lower half is kept; under 1 the foot stands on a flatter underside)
+  const wide=1+.09*t,low=y>0?1-toe*THREE.MathUtils.smoothstep(t,-.15,.95):under;
+  P.setXYZ(i,x*wide,y*low,z);
+ }
+ g.computeVertexNormals();
+ return part(list,g,bone,hex,M(at[0],at[1],at[2],0,0,0,...s));
+}
+/** An ellipsoid's points with nothing of it drawn: each triangle folded onto one of its own edges (a, b, b). */
+function footprint(list,r,at,bone,hex,s){
+ const g=new THREE.SphereGeometry(r,12,6).toNonIndexed(),P=g.attributes.position,N=g.attributes.normal;
+ for(let i=0;i<P.count;i+=3){P.setXYZ(i+2,P.getX(i+1),P.getY(i+1),P.getZ(i+1));N.setXYZ(i+2,N.getX(i+1),N.getY(i+1),N.getZ(i+1));}
+ return part(list,g,bone,hex,M(at[0],at[1],at[2],0,0,0,...s));
+}
 /** The builder's own tools, for the wardrobe pieces built in their own modules (police-uniform.js, kerchief.js). */
 const avatarKit=()=>({part,ball,tube,limb,M,HAIR,latheRadius,torsoProfile,bodyVolume,laidFrames,clothStrip});
 /**
@@ -713,10 +736,16 @@ function hatLayer(layers,{skinned=true,shadows=true}={}){
 /** A shoe (or boot) on the foot of side s ('L' or 'R'): its upper and its sole, tagged so it can come off. */
 function addShoe(list,recipe,m,s,wear){
  const o=recipe.outfit,sx=s==='L'?1:-1;
- ball(list,m.legR*1.25,[sx*m.hipX,m.foot*.62,m.legR*.55],'foot'+s,o.shoes,[1,.6,wear==='shoes'?1.85:1.75],12,8).userData.shoe=s;
+ // The shoe in one piece, with no sole drawn (the owner, 25 November 2026: the soles "can be removed that would look
+ // nicer"): the same ellipsoid as before, as big and in the same place, drawn round (18 sides, not 12), falling to a
+ // lower toe, and reaching down to where the sole stood on the floor.
+ {const R=m.legR*1.25,sy=.6*R,under=(m.foot*.46+m.legR*.317)/sy;
+  footShape(list,R,[sx*m.hipX,m.foot*.62,m.legR*.55],'foot'+s,o.shoes,[1,.6,wear==='shoes'?1.85:1.75],{toe:.3,sides:18,under}).userData.shoe=s;}
+ // Where the sole was: its footprint, kept as points that are not drawn (every triangle folded flat). The poses, the
+ // floor seat's heels, the kneels' toes and the foot grounder (foot-ground.js) are all made to the foot that stood on
+ // that sole: they read these points, so everybody still stands, kneels and sits exactly as they did.
+ footprint(list,m.legR*1.32,[sx*m.hipX,m.foot*.16,m.legR*.6],'foot'+s,o.shoes,[1,.24,1.8]).userData.shoe=s;
  if(wear==='boots')limb(list,[sx*m.hipX,m.foot,0],[sx*m.hipX,m.foot+m.shin*.65,0],m.legR*1.08,m.legR*1.05,o.shoes,{bone:'knee'+s,joints:[]});
- // The sole: white rubber on a sneaker, dark under a leather shoe or an elder's.
- ball(list,m.legR*1.32,[sx*m.hipX,m.foot*.16,m.legR*.6],'foot'+s,wear==='shoes'?'#2b2622':recipe.age==='elder'?'#6b4a32':'#f2efe6',[1,.24,1.8],12,6).userData.shoe=s;
 }
 /** The sock left on a foot whose shoe has come off: pale, and a little smaller than the shoe was. */
 export const SOCK=Object.freeze({colour:'#e7e1d3',size:.84});
@@ -1068,12 +1097,12 @@ function addBody(list,recipe,m,swim=false){
   // Feet: bare (and at the beach, and after the bath), or in sandals, sneakers or leather shoes.
   const wear=swim?'barefoot':o.footwear;
   if(wear==='barefoot'||wear==='sandals'){
-   ball(list,m.legR*1.12,[sx*m.hipX,m.foot*.55,m.legR*.5],'foot'+s,skin,[1,.55,1.7],12,8);
+   footShape(list,m.legR*1.12,[sx*m.hipX,m.foot*.55,m.legR*.5],'foot'+s,skin,[1,.55,1.7],{toe:.3,sides:18});
    if(wear==='sandals'){
     // Setta: a flat sole and a thong strap over the top of the foot.
     // Deep enough that the bare foot above never shows through its underside (a broad adult's foot reaches 0.9 cm down).
-    ball(list,m.legR*1.24,[sx*m.hipX,m.foot*.12,m.legR*.55],'foot'+s,recipe.age==='elder'?'#6b4a32':'#c8a878',[1,.24,1.8],12,6);
-    ball(list,m.legR*.42,[sx*m.hipX,m.foot*.55+m.legR*.55,m.legR*.95],'foot'+s,o.shoes,[2.3,.5,.8],10,6);
+    footShape(list,m.legR*1.24,[sx*m.hipX,m.foot*.12,m.legR*.55],'foot'+s,recipe.age==='elder'?'#6b4a32':'#c8a878',[1,.24,1.8],{rings:6,sides:12});
+    ball(list,m.legR*.42,[sx*m.hipX,m.foot*.55+m.legR*.6,m.legR*.95],'foot'+s,o.shoes,[2.3,.5,.8],10,6);
    }
   }else addShoe(list,recipe,m,s,wear);
  }
