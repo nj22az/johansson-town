@@ -25,6 +25,7 @@ const ID_VERTEX=`
 #include <common>
 #include <morphtarget_pars_vertex>
 #include <skinning_pars_vertex>
+#include <clipping_planes_pars_vertex>
 uniform mat3 uIdMapTransform;
 varying vec2 vIdUv;
 varying float vIdInstance;
@@ -41,9 +42,11 @@ void main(){
  #include <morphtarget_vertex>
  #include <skinning_vertex>
  #include <project_vertex>
+ #include <clipping_planes_vertex>
 }`;
 
 const ID_FRAGMENT=`
+#include <clipping_planes_pars_fragment>
 uniform vec3 uId;
 uniform sampler2D uIdMap;
 uniform float uIdTest;
@@ -51,6 +54,7 @@ uniform bool uIdHasMap;
 varying vec2 vIdUv;
 varying float vIdInstance;
 void main(){
+ #include <clipping_planes_fragment>
  if(uIdHasMap&&texture2D(uIdMap,vIdUv).a<uIdTest)discard;
  // (blue is never 0 on a drawn surface, so nothing drawn matches the cleared background)
  gl_FragColor=vec4(uId.xy,(mod(vIdInstance,254.0)+1.0)/255.0,1.0);
@@ -64,6 +68,8 @@ export function createKikkouIds(renderer){
  const ids=new WeakMap();let next=1;
  const idOf=o=>{let v=ids.get(o);if(v==null){v=next;next=next>=65535?1:next+1;ids.set(o,v);}return v;};
  const cache=new WeakMap(),made=new Set();
+ // (?kikkou=ids only: which object drew which ID in the last frame, so a stray line can be traced to what it is drawn round)
+ let debugDrawn=null;
  const blank=new THREE.Matrix3();
  function idFor(m){
   if(!m)return m;
@@ -77,11 +83,14 @@ export function createKikkouIds(renderer){
     uniforms:{uId:{value:new THREE.Vector3()},uIdMap:{value:cut},uIdHasMap:{value:!!cut},uIdTest:{value:Math.max(m.alphaTest||0,.5)},
      uIdMapTransform:{value:new THREE.Matrix3()}},
     visible:!idSkips(m),
+    // Clipped as the picture is (a ShaderMaterial is not, unless asked): the street seen through Sakura's window is
+    // clipped beyond the glass, and without this the IDs drew the town's own shop front there, inked in the glass.
+    clipping:true,
    });
    n.name='Kikkou ID';
    // Each object writes its own ID: set just before it draws (three calls a material's onBeforeRender per object).
    n.onBeforeRender=function(_r,_s,_c,_g,object){
-    const v=idOf(object);this.uniforms.uId.value.set((v%256)/255,Math.floor(v/256)/255,0);
+    const v=idOf(object);this.uniforms.uId.value.set((v%256)/255,Math.floor(v/256)/255,0);debugDrawn?.set(v,object);
     const t=this.uniforms.uIdMap.value;if(t){if(t.matrixAutoUpdate)t.updateMatrix();this.uniforms.uIdMapTransform.value.copy(t.matrix);}else this.uniforms.uIdMapTransform.value.copy(blank);
     this.uniformsNeedUpdate=true;
    };
@@ -93,7 +102,9 @@ export function createKikkouIds(renderer){
  }
  return {
   /** Runs `draw` again into the ID target (the size of the picture's own target). */
-  render(draw,width,height){
+  /** Keeps (true) or drops (false) the last frame's ID → object map, and returns it: for tools/kikkou-shots.mjs. */
+  debug(on){debugDrawn=on?(debugDrawn||new Map()):null;return debugDrawn;},
+  render(draw,width,height){debugDrawn?.clear();
    if(!target){
     target=new THREE.WebGLRenderTarget(width,height,{colorSpace:THREE.NoColorSpace,depthBuffer:true,stencilBuffer:false,
      minFilter:THREE.NearestFilter,magFilter:THREE.NearestFilter,generateMipmaps:false});
@@ -141,7 +152,8 @@ export function drawWithoutHulls(renderer,draw){
 
 /** Where Kikkou is on: `?kikkou=1` everywhere, `?kikkou=0` nowhere, otherwise in the rooms it has reached (Sakura first). */
 // (Sakura Shōten's room is 'market': world/businesses.js)
-export const KIKKOU_ROOMS=Object.freeze(new Set(['market']));
+// Sakura first (25 November 2026), then the two dining rooms on Main Street the same day: Minato Izakaya and Sato Ramen.
+export const KIKKOU_ROOMS=Object.freeze(new Set(['market','izakaya','ramen']));
 let askedSearch=null,asked=null;
 export function kikkouWanted(roomId,search=globalThis.location?.search||''){
  // (asked every frame: the address is read again only when it changes)

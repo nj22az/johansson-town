@@ -399,6 +399,7 @@ export function createInkPipeline(renderer,{superScale=1.5,pixelBudget=4.6e6,fxa
     try{drawWithLookMaterials(renderer,state.look,kikkou?r=>drawWithoutHulls(r,draw):draw);}finally{markSkin(false);}
     if(view&&lookNormals(state.look))auxiliary.render(draw,width,height);
     compositePass.material.uniforms.uIdOn.value=kikkou?(state.kikkou==='edge'?3:state.kikkou==='ids'?2:1):0;
+    if(state.kikkou==='ids'){const drawn=kikkouIds.debug(true);globalThis.__JOHANSSON_KIKKOU__={renderer,get target(){return kikkouIds.target;},drawn};}
     const ids=kikkou?kikkouIds.render(draw,width,height):null;
     compositePass.material.uniforms.tId.value=ids?.texture??null;compositePass.material.uniforms.tIdDepth.value=ids?.depthTexture??null;
 

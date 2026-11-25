@@ -75,3 +75,17 @@ photographed in front of the shop window by the fruit trestle; the guard green (
 **Proved:** ci-guard 119 files green (310 s); `tools/kikkou-shots.mjs` on the built runtime and on `--source`, no errors;
 `tools/cloud-boot-smoke.mjs` street boot no errors. Not measured: frame time on a phone or any GPU (software Chromium
 only). Cost while on: one more draw of the scene in Sakura and a 32-tap test per pixel in the composite.
+
+## Kikkou: the stray line in Sakura's glass fixed, and the two dining rooms (same day, the owner: "Proceed")
+- **The rectangle in Sakura's glass was the ID pass's own bug, not the town's**: a ShaderMaterial is not clipped by
+  `renderer.clippingPlanes` unless `clipping:true`, so the ID pass drew town geometry (a merged `static-props` batch) that
+  the street-through-the-window pass (`render/shop-street-view.js`) clips away 13 cm beyond the glass. The ID material now
+  clips (the clipping chunks are in its shaders). Item 2 of "Found on the way" above is therefore withdrawn: there is no
+  doubled shop front to hide.
+- `KIKKOU_ROOMS` is now Sakura (`market`), **Minato Izakaya (`izakaya`) and Sato Ramen (`ramen`)**.
+- `tools/kikkou-shots.mjs --room <id>`; `KIKKOU_VIEWS=a,b` narrows the views; `KIKKOU_PROBE=x,y` (with
+  `KIKKOU_MODES=ids:ids`) names the object drawn at a pixel (`?kikkou=ids` keeps the last frame's ID → object map in
+  `globalThis.__JOHANSSON_KIKKOU__`).
+- **Left:** through Sato Ramen's frosted door glass the street's lines come through crisp, not softened by the glass.
+- **Proved:** guard 119 files green (294 s); shots in izakaya and ramen on `--source` and ramen on the built runtime, no
+  errors. Z-fighting was not worked on: Kikkou neither fixes nor hides a surface drawn in another's plane.

@@ -6,11 +6,11 @@ import {kikkouWanted,idSkips,KIKKOU_ROOMS} from '../src/render/kikkou-ids.js';
 // Kikkou ink (the owner, 25 November 2026: "Start kikkou make the konbini first"): src/render/kikkou-ids.js and the
 // composite in src/render/ink-pipeline.js.
 
-test('Kikkou is on in Sakura (room "market") and nowhere else yet, unless the address asks', () => {
- assert.ok(KIKKOU_ROOMS.has('market'));
+test('Kikkou is on in Sakura (room "market") and the two dining rooms, and nowhere else yet, unless the address asks', () => {
+ for(const room of ['market','izakaya','ramen'])assert.ok(KIKKOU_ROOMS.has(room),room);
  assert.equal(kikkouWanted('market',''),true);
  assert.equal(kikkouWanted(null,''),false);
- assert.equal(kikkouWanted('izakaya',''),false);
+ assert.equal(kikkouWanted('onsen',''),false);
  assert.equal(kikkouWanted(null,'?kikkou=1'),true);
  assert.equal(kikkouWanted('market','?kikkou=0'),false);
  assert.equal(kikkouWanted('market','?kikkou=ids'),'ids');

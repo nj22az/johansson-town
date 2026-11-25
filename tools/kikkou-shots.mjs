@@ -1,11 +1,12 @@
 // Photographs Sakura with the Kikkou ink and without it (render/kikkou-ids.js): boots World in a cloud session's software
 // Chromium, enters Sakura through the audit harness, and photographs the shop from the door and three lenses into it,
 // and Thuan at work, each with ?kikkou=1 and then ?kikkou=0 on the same frame (the page reads the address every frame).
-//   node tools/kikkou-shots.mjs [--source] [--time 12:20] [out-dir]
+//   node tools/kikkou-shots.mjs [--source] [--room market|izakaya|ramen] [--time 12:20] [out-dir]
 // The built runtime by default (npm run build:runtime first); --source serves the source modules. Run it alone.
 // KIKKOU_MODES=kikkou:1,plain:0 (the default) names the passes and their ?kikkou= value: `ids` shows the IDs, `edge` the
 // line alone. KIKKOU_LIST=<metres> lists the see-through and cut-out surfaces that near (with KIKKOU_TOWN=1, the town's
-// round Sakura's frontage instead of the room's) into report.json, to find what a stray line is drawn round.
+// round Sakura's frontage instead of the room's) into report.json, to find what a stray line is drawn round; with
+// KIKKOU_MODES=ids:ids, KIKKOU_PROBE=x,y names the object at that pixel of the last shot.
 import {chromium} from 'playwright';
 import {createServer} from 'node:http';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
@@ -13,8 +14,8 @@ import {resolve,dirname,extname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),site=resolve(root,'..');
 const args=process.argv.slice(2),flag=k=>{const i=args.indexOf(k);return i>=0?args[i+1]:null;};
-const SOURCE=args.includes('--source'),TIME=flag('--time')||'12:20';
-const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--time'].includes(args[i-1]))||resolve(root,'output/kikkou-shots'));await mkdir(out,{recursive:true});
+const SOURCE=args.includes('--source'),TIME=flag('--time')||'12:20',ROOM=flag('--room')||'market';
+const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--time','--room'].includes(args[i-1]))||resolve(root,'output/kikkou-shots'));await mkdir(out,{recursive:true});
 const TYPES={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.glb':'model/gltf-binary','.svg':'image/svg+xml','.hdr':'application/octet-stream','.wasm':'application/wasm'};
 const sourcePage=html=>html.replace(/<link rel="modulepreload" data-town-runtime[^>]*>\n?/g,'')
  .replace(/import\(['"]\.\/runtime\/boot-[^'"]+['"]\)/g,"import('./src/boot.js')")
@@ -41,9 +42,9 @@ try{
  await page.waitForFunction(()=>window.__JOHANSSON_RUNNING__&&window.__JOHANSSON_AUDIT__&&!window.__JOHANSSON_AUDIT__.blocked.catchingUp);step('playing');
  await page.addStyleTag({content:'body>*:not(#game){visibility:hidden!important}#game{visibility:visible!important}'});
  await page.evaluate(()=>window.__JOHANSSON_AUDIT__.hud.photo(true));
- await page.evaluate(async()=>{await window.__JOHANSSON_AUDIT__.enter('market');});
+ await page.evaluate(async r=>{await window.__JOHANSSON_AUDIT__.enter(r);},ROOM);
  await page.waitForFunction(()=>!window.__JOHANSSON_AUDIT__.blocked.roomLoading);
- const room=await page.evaluate(()=>window.__JOHANSSON_AUDIT__.room);step('in Sakura',{room:typeof room==='object'?room?.id??null:room,player:await page.evaluate(()=>window.__JOHANSSON_AUDIT__.player)});
+ const room=await page.evaluate(()=>window.__JOHANSSON_AUDIT__.room);step('in '+ROOM,{room:typeof room==='object'?room?.id??null:room,player:await page.evaluate(()=>window.__JOHANSSON_AUDIT__.player)});
  const p=await page.evaluate(()=>window.__JOHANSSON_AUDIT__.player);
  const [px,,pz]=p.position,fx=-Math.sin(p.yaw),fz=-Math.cos(p.yaw);
  // From the door, eye high, into the shop: straight ahead and to either side; then lower, at the shelves.
@@ -58,6 +59,7 @@ try{
   if(!t)return null;t.updateWorldMatrix(true,true);const e=t.matrixWorld.elements,l=Math.hypot(e[8],e[10]);return {p:[e[12],e[13],e[14]],f:[e[8]/l,e[10]/l]};});
  if(thuan){const a=.6,c=Math.cos(a),s=Math.sin(a),dx=thuan.f[0]*c-thuan.f[1]*s,dz=thuan.f[0]*s+thuan.f[1]*c;
   views.thuan={pos:[thuan.p[0]+dx*1.9,thuan.p[1]+1.25,thuan.p[2]+dz*1.9],at:[thuan.p[0],thuan.p[1]+.95,thuan.p[2]]};}
+ if(process.env.KIKKOU_VIEWS){const keep=new Set(process.env.KIKKOU_VIEWS.split(','));for(const k of Object.keys(views))if(!keep.has(k))delete views[k];}
  step('views',{thuan:!!thuan});
  if(process.env.KIKKOU_LIST){report.list=await page.evaluate(([cx,cz,RADIUS,town])=>{const a=window.__JOHANSSON_AUDIT__;let scene=town?(a.world?.group||a.world?.scene||null):a.scene;if(town&&scene){cx=-8;cz=-28;}if(!scene){scene=window.__JOHANSSON_MODEL__?.avatar?.root;while(scene?.parent)scene=scene.parent;}
   const out=[];scene.traverseVisible(o=>{if(!o.isMesh)return;const ms=Array.isArray(o.material)?o.material:[o.material];if(!ms.some(m=>m&&(m.transparent||m.opacity<1||m.alphaTest>0||m.transmission>0||m.alphaHash||/glass|pane|window/i.test((o.name||'')+(o.parent?.name||'')))))return;
@@ -70,6 +72,14 @@ try{
   await page.evaluate(q=>history.replaceState(null,'','?audit&visual-audit&kikkou='+q),query);
   for(const [k,cam] of Object.entries(views))await shot(k+'-'+mode,cam);
  }
+ // KIKKOU_PROBE=x,y (screen pixels of the last shot, in ids mode): the object whose ID is there, and its parents.
+ if(process.env.KIKKOU_PROBE){const [qx,qy]=process.env.KIKKOU_PROBE.split(',').map(Number);
+  report.probe=await page.evaluate(([qx,qy])=>{const k=globalThis.__JOHANSSON_KIKKOU__;if(!k?.target)return 'no ids';const t=k.target,c=document.querySelector('#game canvas')||document.querySelector('canvas');
+   const r=c.getBoundingClientRect(),x=Math.floor(qx/r.width*t.width),y=Math.floor((1-qy/r.height)*t.height),px=new Uint8Array(4);k.renderer.readRenderTargetPixels(t,x,y,1,1,px);
+   const v=px[0]+256*px[1],o=k.drawn.get(v);const chain=[];for(let p=o;p;p=p.parent)chain.push(p.name||p.type);
+   let pos=null;if(o){o.updateWorldMatrix(true,false);const e=o.matrixWorld.elements;pos=[e[12],e[13],e[14]].map(n=>+n.toFixed(2));}
+   const m=o?(Array.isArray(o.material)?o.material[0]:o.material):null;
+   return {pixel:[...px],id:v,chain,pos,material:m&&{type:m.type,name:m.name,transparent:m.transparent,opacity:m.opacity,map:!!m.map}};},[qx,qy]);}
  report.renderInfo=await page.evaluate(()=>window.__JOHANSSON_AUDIT__.renderInfo);
 }catch(error){report.errors.push(String(error?.stack||error));}
 finally{await writeFile(resolve(out,'report.json'),JSON.stringify(report,null,1));console.log(JSON.stringify({steps:report.steps.length,errors:report.errors}));await browser.close();server.close();}
