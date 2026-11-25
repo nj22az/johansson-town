@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {kikkouWanted,idSkips,KIKKOU_ROOMS} from '../src/render/kikkou-ids.js';
+import {kikkouWanted,idSkips,KIKKOU_ROOMS,KIKKOU_SHIP_FLOORS} from '../src/render/kikkou-ids.js';
 
 // Kikkou ink (the owner, 25 November 2026: "Start kikkou make the konbini first"): src/render/kikkou-ids.js and the
 // composite in src/render/ink-pipeline.js.
@@ -36,4 +36,13 @@ test('the composite draws the ID line without the depth gate, at its own strengt
  assert.match(src.slice(gate,gate+120),/idE/,'and the early return still draws it');
  assert.match(src,/clamp\(uIdNear\/max\(z,0\.01\),0\.4,1\.0\)/,'thinner with distance, never under two fifths');
  assert.match(src,/drawWithoutHulls/,'the cartoon hulls are hidden while Kikkou draws the line');
+});
+
+test('aboard the Minato Maru, Kikkou is on indoors (her rooms, the engine room) and off on her open decks', async () => {
+ globalThis.location??=new URL('https://example.test/');
+ const {FERRY_INTERIOR}=await import('../src/world/ferry-interior.js');
+ const ids=new Set(FERRY_INTERIOR.floors.map(f=>f.id));
+ for(const f of KIKKOU_SHIP_FLOORS)assert.ok(ids.has(f),'a floor she has: '+f);
+ for(const f of ['saloon','wheelhouse','engine-room','control-booth'])assert.equal(kikkouWanted(null,'',f),true,f);
+ for(const f of ['open-deck','walkway-p','wing-s',null])assert.equal(kikkouWanted(null,'',f),false,String(f));
 });

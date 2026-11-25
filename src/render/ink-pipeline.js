@@ -69,16 +69,21 @@ uniform float uFadeStart,uFadeEnd,uStrength,uSkyDepth;
 // Kikkou (kikkou-ids.js): every object's own colour; a line wherever it changes, sixteen ways round at two radii.
 uniform sampler2D tId,tIdDepth;
 uniform float uIdOn,uIdRadius,uIdNear;
+float idViewZ(vec2 uv){return -perspectiveDepthToViewZ(texture2D(tIdDepth,uv).x,uNear,uFar);}
 float idEdge(vec2 uv){
  vec3 c=texture2D(tId,uv).rgb;
  // Full weight up to uIdNear metres, then thinner with distance (to two fifths), as an inker draws what is further off:
  // a shelf of small packs across the shop keeps its colours instead of drowning in line.
- float z=-perspectiveDepthToViewZ(texture2D(tIdDepth,uv).x,uNear,uFar);
+ float z=idViewZ(uv);
  float r=uIdRadius*clamp(uIdNear/max(z,0.01),0.4,1.0);
+ // Within one object a line too where a part of it stands well in front of the part beside it: what was modelled as
+ // one mesh (the engine room's machinery, merged in Blender) still has its outlines, and an arm across a body its own.
+ float tol=0.05+0.03*z;
  for(int i=0;i<16;i++){
   float a=float(i)*0.39269908;
   vec2 d=vec2(cos(a),sin(a))*uTexel*r;
   if(any(greaterThan(abs(texture2D(tId,uv+d).rgb-c),vec3(0.001))))return 1.0;
+  if(abs(idViewZ(uv+d)-z)>tol)return 1.0;
   if(any(greaterThan(abs(texture2D(tId,uv+d*0.5).rgb-c),vec3(0.001))))return 1.0;
  }
  return 0.0;

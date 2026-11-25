@@ -118,7 +118,8 @@ export function createKikkouIds(renderer){
     const changed=[],hidden=[],bg=scene.background,fog=scene.fog,override=scene.overrideMaterial;
     scene.background=null;scene.fog=null;scene.overrideMaterial=null;
     scene.traverseVisible(o=>{
-     if(o.isLine||o.isPoints||o.isSprite||o.userData?.outline){hidden.push(o);o.visible=false;return;}
+     // (a lettered plate is print on what it is fixed to: inked round, a small label's words were crowded out by its frame)
+     if(o.isLine||o.isPoints||o.isSprite||o.userData?.outline||o.userData?.plate==='text'){hidden.push(o);o.visible=false;return;}
      if(!o.isMesh||!o.material)return;
      const old=o.material;o.material=Array.isArray(old)?old.map(idFor):idFor(old);changed.push([o,old]);
     });
@@ -154,8 +155,14 @@ export function drawWithoutHulls(renderer,draw){
 // (Sakura Shōten's room is 'market': world/businesses.js)
 // Sakura first (25 November 2026), then the two dining rooms on Main Street the same day: Minato Izakaya and Sato Ramen.
 export const KIKKOU_ROOMS=Object.freeze(new Set(['market','izakaya','ramen']));
+/** Aboard the Minato Maru (ferry-interior.js floors): her indoor floors, from the saloon to the engine room. Her open decks,
+ *  walkways and wings stay with the street (the owner, 25 November 2026: "Work through the Minato Maru"). */
+export const KIKKOU_SHIP_FLOORS=Object.freeze(new Set(['stair-p','stair-s','lobby','toilet-p','toilet-s','corridor','carpet-step-aft',
+ 'carpet-step-fore','carpet-room','carpet-door-aft','carpet-door-fore','saloon','crew-stair-door','crew-stair','wheelhouse','crew-corridor',
+ 'crew-cabin','mate-cabin','deckhand-cabin','crew-wc','mess','galley','chief-cabin','master-cabin','eg-room','co2-room','er-ladder',
+ 'er-ladder-foot','er-entrance','control-booth','engine-room','aux-room','workshop','electrical-workshop']));
 let askedSearch=null,asked=null;
-export function kikkouWanted(roomId,search=globalThis.location?.search||''){
+export function kikkouWanted(roomId,search=globalThis.location?.search||'',shipFloor=null){
  // (asked every frame: the address is read again only when it changes)
  if(search!==askedSearch){askedSearch=search;try{asked=new URLSearchParams(search).get('kikkou');}catch{asked=null;}}
  const q=asked;
@@ -163,5 +170,5 @@ export function kikkouWanted(roomId,search=globalThis.location?.search||''){
  if(q==='1')return true;
  // (`?kikkou=ids` shows the IDs themselves instead of the picture, to see what the ink is drawn from)
  if(q==='ids'||q==='edge')return q;
- return KIKKOU_ROOMS.has(roomId);
+ return KIKKOU_ROOMS.has(roomId)||KIKKOU_SHIP_FLOORS.has(shipFloor);
 }

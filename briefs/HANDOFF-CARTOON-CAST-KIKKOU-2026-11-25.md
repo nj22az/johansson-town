@@ -89,3 +89,33 @@ only). Cost while on: one more draw of the scene in Sakura and a 32-tap test per
 - **Left:** through Sato Ramen's frosted door glass the street's lines come through crisp, not softened by the glass.
 - **Proved:** guard 119 files green (294 s); shots in izakaya and ramen on `--source` and ramen on the built runtime, no
   errors. Z-fighting was not worked on: Kikkou neither fixes nor hides a surface drawn in another's plane.
+
+## The Minato Maru (same day, the owner: "Work through the Minato Maru now I think it's problematic"; then, asked what:
+## "Flicker / glitches, Looks plain / unfinished, Walking aboard / camera, Kikkou ink on her, Engine room doesn't look realistic")
+**Found:**
+- **Flicker:** her model passes `tests/ferry-z-fighting.test.mjs` (2 mm/4 cm² aboard, 5 mm/0.01 m² from the quay). Nothing
+  new found in the running game in software Chromium; a phone's flicker has not been reproduced here.
+- **Walking aboard:** `tools/ferry-exploration-check.mjs` run through Chromium (its smoke runner wants WebKit, absent in
+  the cloud): all 11 steps pass, no page errors. The first engine-room explore view faces the aft bulkhead because that
+  is where you stand at the ladder's foot.
+- **`tools/ferry-look.mjs` (not changed):** its views are world offsets from her position, not her own frame, so at the
+  present berth 02 (pier gangway) looks into her side and 06/12 (bow ramp) sit inside the port bow house, filling the
+  frame with its cream wall. Her ramp is deck green with eleven anti-skid bars (`ferry-model.js` k2), not a blank slab.
+- **The engine room** is `assets/models/ferry-engine-room/minato-engine-room-h1-f1.glb`, built in Blender from
+  `ferry-interior.js` (README: `art/ferry-engine-room/`). It is two meshes (paint, metal), which is why it reads flat.
+  Blender is not installed in the cloud; `pip install bpy==5.3.0` (Python 3.13) works in a venv, the scripts were written
+  for 4.0.2 and have not been run on it yet.
+
+**Done:**
+- **Kikkou aboard her:** on whenever the player stands on one of her indoor floors (`KIKKOU_SHIP_FLOORS`: saloon to
+  engine room), off on her open decks, walkways and wings (they stay with the street).
+- **Lines within one object:** the ID line also falls where a part of the same object stands well in front of the part
+  beside it (ID-pass depth, `|Δz| > 0.05 + 0.03 z`), both sides. The merged engine-room GLB gets its silhouettes from it.
+- **Lettered plates** (`userData.plate==='text'`) are left out of the IDs: their frame crowded out a small label's words.
+  Dials keep their rings.
+- `tools/kikkou-shots.mjs --room ship`: the eight engine-room cameras, Kikkou as the game decides (`kikkou=auto`) and off.
+
+**Proved:** guard 119 files green (329 s); `kikkou-ink.test.mjs` 4 tests; ship, Sakura shots on `--source`, no errors.
+
+**Next:** the engine room's realism (the two-material GLB; Blender 5 in a venv, or the GLB split per part), then the plain
+surfaces, then `ferry-look.mjs` in her own frame.

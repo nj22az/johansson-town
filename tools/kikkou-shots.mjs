@@ -1,7 +1,9 @@
 // Photographs Sakura with the Kikkou ink and without it (render/kikkou-ids.js): boots World in a cloud session's software
 // Chromium, enters Sakura through the audit harness, and photographs the shop from the door and three lenses into it,
 // and Thuan at work, each with ?kikkou=1 and then ?kikkou=0 on the same frame (the page reads the address every frame).
-//   node tools/kikkou-shots.mjs [--source] [--room market|izakaya|ramen] [--time 12:20] [out-dir]
+//   node tools/kikkou-shots.mjs [--source] [--room market|izakaya|ramen|ship] [--time 12:20] [out-dir]
+// --room ship: aboard the Minato Maru, through the engine room's eight fixed cameras, Kikkou as the game decides it
+// (`kikkou=auto`: on because the player stands on her indoor floor) and off.
 // The built runtime by default (npm run build:runtime first); --source serves the source modules. Run it alone.
 // KIKKOU_MODES=kikkou:1,plain:0 (the default) names the passes and their ?kikkou= value: `ids` shows the IDs, `edge` the
 // line alone. KIKKOU_LIST=<metres> lists the see-through and cut-out surfaces that near (with KIKKOU_TOWN=1, the town's
@@ -42,6 +44,29 @@ try{
  await page.waitForFunction(()=>window.__JOHANSSON_RUNNING__&&window.__JOHANSSON_AUDIT__&&!window.__JOHANSSON_AUDIT__.blocked.catchingUp);step('playing');
  await page.addStyleTag({content:'body>*:not(#game){visibility:hidden!important}#game{visibility:visible!important}'});
  await page.evaluate(()=>window.__JOHANSSON_AUDIT__.hud.photo(true));
+ if(ROOM==='ship'){
+  // Aboard the Minato Maru: parked at Minato, the player stood on each engine-space floor in turn, photographed through the
+  // engine room's own eight fixed cameras (ferry-engine-room-plan.js FERRY_H1_SHOTS; H1 metres: X forward, Y port, Z up).
+  const {FERRY_H1_SHOTS}=await import('/home/user/johansson-town/src/world/ferry-engine-room-plan.js');
+  await page.evaluate(()=>{const a=window.__JOHANSSON_AUDIT__;a.activities.close();a.frozen=true;a.camera=null;a.setTime(515);a.world.ferry.parkAt('town');a.world.ferry.update(0,515,0);a.step(50);});
+  const at=([X,Y,Z])=>[Y,Z-1.9,X-17.25];
+  const place=async H=>page.evaluate(([x,y,z])=>{const a=window.__JOHANSSON_AUDIT__;a.camera=null;a.step(30);const ship=a.world.ferry.ferry;ship.updateMatrixWorld(true);
+   const p=ship.localToWorld(ship.position.clone().set(x,y,z));a.stand(p.x,p.y,p.z,0);a.step(30);return a.probe(p.x,p.y+1,p.z).deck;},at(H));
+  step('stood in the engine room',{deck:await place([11.1,0,.9])});
+  await page.waitForFunction(()=>{const s=window.__JOHANSSON_AUDIT__.world.ferry.ferry.userData.engineRoomH1;return s.loaded||s.error;},null,{timeout:120000});
+  const shotsAboard=[];
+  for(const sh of FERRY_H1_SHOTS){if(process.env.KIKKOU_VIEWS&&!process.env.KIKKOU_VIEWS.split(',').includes(sh.id))continue;
+   const deck=await place([sh.pos[0],sh.pos[1],.9]);
+   const cam=await page.evaluate(([p,t])=>{const ship=window.__JOHANSSON_AUDIT__.world.ferry.ferry;ship.updateMatrixWorld(true);
+    const w=v=>ship.localToWorld(ship.position.clone().set(...v)).toArray();return {pos:w(p),at:w(t)};},[at(sh.pos),at(sh.at)]);
+   for(const [mode,query] of (process.env.KIKKOU_MODES||'kikkou:1,plain:0').split(',').map(x=>x.split(':'))){
+    await page.evaluate(q=>history.replaceState(null,'','?audit&visual-audit&kikkou='+(q==='1'?'auto':q)),query);
+    await page.evaluate(c=>{const a=window.__JOHANSSON_AUDIT__;a.camera=c;a.render();},cam);await page.waitForTimeout(300);
+    await page.locator('#game').screenshot({path:resolve(out,sh.id+'-'+mode+'.png')});step('photographed '+sh.id+'-'+mode,{deck});
+   }
+  }
+  throw Object.assign(new Error('done'),{done:true});
+ }
  await page.evaluate(async r=>{await window.__JOHANSSON_AUDIT__.enter(r);},ROOM);
  await page.waitForFunction(()=>!window.__JOHANSSON_AUDIT__.blocked.roomLoading);
  const room=await page.evaluate(()=>window.__JOHANSSON_AUDIT__.room);step('in '+ROOM,{room:typeof room==='object'?room?.id??null:room,player:await page.evaluate(()=>window.__JOHANSSON_AUDIT__.player)});
@@ -81,5 +106,5 @@ try{
    const m=o?(Array.isArray(o.material)?o.material[0]:o.material):null;
    return {pixel:[...px],id:v,chain,pos,material:m&&{type:m.type,name:m.name,transparent:m.transparent,opacity:m.opacity,map:!!m.map}};},[qx,qy]);}
  report.renderInfo=await page.evaluate(()=>window.__JOHANSSON_AUDIT__.renderInfo);
-}catch(error){report.errors.push(String(error?.stack||error));}
+}catch(error){if(!error?.done)report.errors.push(String(error?.stack||error));}
 finally{await writeFile(resolve(out,'report.json'),JSON.stringify(report,null,1));console.log(JSON.stringify({steps:report.steps.length,errors:report.errors}));await browser.close();server.close();}

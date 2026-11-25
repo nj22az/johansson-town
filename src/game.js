@@ -475,8 +475,9 @@ function present(draw,view=camera){
   if(!pipeline){draw(renderer);firstFrameReady();return;}
  }
  pipeline.setCamera(view);
- // Kikkou ink (render/kikkou-ids.js): in the rooms it has reached, Sakura first; ?kikkou=1 everywhere, ?kikkou=0 nowhere.
- pipeline.state.kikkou=kikkouWanted(current?.id);
+ // Kikkou ink (render/kikkou-ids.js): in the rooms it has reached (Sakura first) and aboard the Minato Maru indoors;
+ // ?kikkou=1 everywhere, ?kikkou=0 nowhere.
+ pipeline.state.kikkou=kikkouWanted(current?.id,undefined,current?null:deckUnder()?.floor?.id);
  try{pipeline.render(draw);firstFrameReady();}
  catch(error){
   const again=inkRecovery.failed();
