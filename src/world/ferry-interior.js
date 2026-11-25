@@ -1352,6 +1352,44 @@ export const FERRY_INTERIOR=(()=>{
   for(const b of pipePreviewBends(preview)){const r=pipeRadius(b.dn)*1.3;cyl(r,r,r*2,b.p,parseInt(b.colour.slice(1),16),{seg:6,cls:'paint',name:'pipe bend'});}
   pipes.push(...preview);
  }
+ // Her side frames, bare where nothing is fitted (the owner, 25 November 2026: "Engine room doesn't look realistic"): a
+ // ship's machinery space is plating on frames, and flat walls read as a room in a house. A bar 100 mm deep at each
+ // 600 mm frame station on both sides, from the engine room's aft bulkhead to the electrical workshop's forward one, with
+ // a stringer along each side at 1.25 m. A frame is left out wherever anything aboard (a box, a pipe, a fitting, a plate)
+ // lies within 40 mm of where it would stand (so a frame shows in the clear lengths above, below and between what is
+ // fitted to her side), and at the bulkheads between the rooms, so none cuts through a fitting.
+ if(FERRY_H1_ENABLED){
+  const y0=ER.floor+.06,y1=ER.deckhead-.06,W=ER.side,D=.1,TH=.03,M=.04,FRAME=0xc4c1b4;
+  const hits=(lo,hi)=>{
+   const over=(a,b)=>lo.every((v,i)=>Math.min(a[i],b[i])<hi[i]+M&&Math.max(a[i],b[i])>v-M);
+   // (the side lining itself is what a frame stands on, and the floor and deckhead what it runs between)
+   for(const q of boxes){if(/ side$|deckhead|^floor|^side frame$/.test(q.name||''))continue;if(over(q.a,q.b))return true;}
+   for(const q of bars)if(over(q.a.map(v=>v-q.r),q.b.map(v=>v+q.r))&&over(q.a.map(v=>v+q.r),q.b.map(v=>v-q.r)))return true;
+   for(const q of cyls){const r=Math.max(q.rt,q.rb,q.h/2);if(over(q.pos.map(v=>v-r),q.pos.map(v=>v+r)))return true;}
+   for(const q of plates){const r=Math.max(q.w,q.h)/2;if(q.kind!=='chequer'&&q.kind!=='grating'&&over(q.pos.map(v=>v-r),q.pos.map(v=>v+r)))return true;}
+   return false;
+  };
+  const walls=[ER.aft,ER.fore,MS.auxFore,MS.storeFore,MS.ewFore];
+  for(const s of [1,-1]){
+   const x=[Math.min(s*(W-D),s*(W+.005)),Math.max(s*(W-D),s*(W+.005))];
+   for(let z=ER.aft+.3;z<MS.ewFore-.2;z+=.6){
+    if(walls.some(w=>Math.abs(z-w)<.2))continue;
+    // In clear lengths: the frame shows above, below and between what is fitted to the side, 0.3 m at the least.
+    const STEP=.1;let from=null;
+    for(let y=y0;y<y1+STEP;y+=STEP){
+     const top=Math.min(y+STEP,y1),clear=y<y1&&!hits([x[0],y,z-TH/2],[x[1],top,z+TH/2]);
+     if(clear&&from===null)from=y;
+     if(!clear&&from!==null){if(y-from>=.3)deco([x[0],from,z-TH/2],[x[1],Math.min(y,y1),z+TH/2],FRAME,{name:'side frame'});from=null;}
+    }
+   }
+   // The stringer, in lengths between frames that are clear along their whole run (it stops short of anything fitted).
+   for(let z=ER.aft+.3;z<MS.ewFore-.8;z+=.6){
+    const lo=[Math.min(s*(W-D+.01),s*(W+.005)),1.25+ER.floor-TH/2,z+TH],hi=[Math.max(s*(W-D+.01),s*(W+.005)),1.25+ER.floor+TH/2,z+.6-TH];
+    if(walls.some(w=>w>z-.2&&w<z+.8))continue;
+    if(!hits(lo,hi))deco(lo,hi,FRAME,{name:'side stringer'});
+   }
+  }
+ }
  return Object.freeze({boxes:Object.freeze(boxes),bars:Object.freeze(bars),glass:Object.freeze(glass),floors:Object.freeze(floors),cyls:Object.freeze(cyls),plates:Object.freeze(plates),pipes:Object.freeze(pipes),get engineeringPipes(){return routeAudit().routes;},get pipeRouteIssues(){return routeAudit().issues;},anchors:Object.freeze(anchors)});
 })();
 

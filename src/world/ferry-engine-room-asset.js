@@ -4,7 +4,7 @@ import {assetURL} from '../assets.js';
 /** Loaded on the first machinery/access view aboard the ferry. */
 export async function loadFerryEngineRoomH1(parent,fallback,state){
  try{
-  const gltf=await new GLTFLoader().loadAsync(assetURL('models/ferry-engine-room/minato-engine-room-h1-f1.glb'));
+  const gltf=await new GLTFLoader().loadAsync(assetURL('models/ferry-engine-room/minato-engine-room-h1-f2.glb'));
   const bounds=new THREE.Box3().setFromObject(gltf.scene);
   if(bounds.isEmpty()||!bounds.min.toArray().concat(bounds.max.toArray()).every(Number.isFinite))throw Error('Invalid H1 mesh bounds');
   gltf.scene.name='Minato Maru H1-F1 / Blender CAD';

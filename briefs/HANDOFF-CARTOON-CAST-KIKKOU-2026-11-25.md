@@ -132,3 +132,25 @@ surfaces, then `ferry-look.mjs` in her own frame.
 - **Left for a decision:** the machinery itself is one merged Blender mesh in two colours (paint, metal) with baked
   contact shade; real realism (castings, pipework detail, wear, labels on parts) is a Blender rebuild. Blender 5.3 runs
   here as `pip install bpy==5.3.0` in a venv; the builder was written for 4.0.2 (e.g. `calc_normals_split` is gone in 4.1+).
+
+## The engine room rebuilt in Blender: H1-F2 (same day, the owner: "Use your recommendations. And proceed")
+- **Blender in the cloud:** `python3 -m venv … && pip install bpy==5.3.0` (Python 3.13); run the builder with that python
+  (`python tools/blender/build-ferry-engine-room-h1.py`, no `blender -b`). The builder is ported: `calc_normals_split`
+  guarded (gone in 4.1+), the colour quantizer accepts float, ushort or byte colours (5 exports normalized ushorts). Run
+  unchanged it reproduced F1 exactly (80,376 triangles, 1,290 components) before anything was altered.
+- **`geometry-h1.json` was stale** against `ferry-interior.js` (one line); re-exported.
+- **Side frames** (`ferry-interior.js`, before the return of `FERRY_INTERIOR`): a 100 × 30 mm bar at each 600 mm station
+  on both sides, aft bulkhead to the electrical workshop, drawn only in clear lengths (≥ 0.3 m, nothing within 40 mm), not
+  at the room bulkheads; stringer lengths where a whole bay is clear. `deco` boxes: not solid, not camera-blocking.
+  Honest result: they show mainly in the store and above fittings; the rooms' big bare walls are transverse bulkheads and
+  partitions, which got none.
+- **Contact shade:** radius 0.22 → 0.32, strength 0.22 → 0.42 (`cad/finish-h1-f1.json`); baked range now 0.58–1.0.
+- **File:** `minato-engine-room-h1-f2.glb` (81,720-odd triangles, ~3.5 MB; the audit JSON has the exact figures); F1
+  removed; loader, tests, review page and check tool point to F2; `source_components` 1350 in the finish schedule and
+  `tests/ferry-fixed-camera.test.mjs`. The scene's name in the game stays "Minato Maru H1-F1 / Blender CAD" (tools find it).
+- Not re-run: `tools/ferry-engine-room-cad-h1.py` (the PDF/DXF sheets) and the Blender renders in `art/…/renders/`; both
+  still show F1.
+- **Proved:** guard 119 files green (323 s); ferry-exploration, fixed-camera and z-fighting tests 22/22; ship shots on
+  `--source`, no errors.
+- **Still open (task list):** the machinery's own shapes (block-built engines), the plain exterior surfaces, and
+  `tools/ferry-look.mjs` in her own frame.

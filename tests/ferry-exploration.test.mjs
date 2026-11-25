@@ -75,7 +75,7 @@ test('guidance never invents a floor-level shortcut from halfway up the ladder o
 });
 
 test('a real visible Blender machinery surface resolves to inspection data at phone, iPad and desktop aspect ratios',async()=>{
- const bytes=readFileSync(new URL('../assets/models/ferry-engine-room/minato-engine-room-h1-f1.glb',import.meta.url));
+ const bytes=readFileSync(new URL('../assets/models/ferry-engine-room/minato-engine-room-h1-f2.glb',import.meta.url));
  const {scene}=await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'');scene.updateMatrixWorld(true);
  for(const aspect of [390/844,744/1133,1133/744,1280/800]){
   const c=new T.PerspectiveCamera(65,aspect,.055,200);c.position.set(0,.65,11.1-17.25);c.rotation.set(0,-1.5,0,'YXZ');c.updateMatrixWorld(true);

@@ -30,8 +30,8 @@
     "file": "ferry-ship-DfhHmc7y.js",
     "name": "ferry-ship"
   },
-  "_fish-CQlsdwsG.js": {
-    "file": "fish-CQlsdwsG.js",
+  "_fish-DKjnPmBq.js": {
+    "file": "fish-DKjnPmBq.js",
     "name": "fish",
     "imports": [
       "_staff-bench-CXKq2cGc.js",
@@ -46,21 +46,21 @@
       "src/world/ferry-engine-room-asset.js"
     ]
   },
-  "_friendship-DZUCmnyS.js": {
-    "file": "friendship-DZUCmnyS.js",
+  "_friendship-hvI-7qdq.js": {
+    "file": "friendship-hvI-7qdq.js",
     "name": "friendship",
     "imports": [
-      "_fish-CQlsdwsG.js",
+      "_fish-DKjnPmBq.js",
       "_harbour-park-plan-BjDVKF9F.js"
     ]
   },
-  "_halloween-DYMuxzrH.js": {
-    "file": "halloween-DYMuxzrH.js",
+  "_halloween-BzLDevUX.js": {
+    "file": "halloween-BzLDevUX.js",
     "name": "halloween",
     "isDynamicEntry": true,
     "imports": [
       "_compact-shops-BKdMS2U6.js",
-      "_fish-CQlsdwsG.js",
+      "_fish-DKjnPmBq.js",
       "_animate-CsKgrGQr.js",
       "_hat-models-Dq64WB2Y.js",
       "_harbour-park-plan-BjDVKF9F.js",
@@ -86,16 +86,16 @@
       "_compact-shops-BKdMS2U6.js"
     ]
   },
-  "_onsen-Rf8zVkO4.js": {
-    "file": "onsen-Rf8zVkO4.js",
+  "_onsen-CTWmoN6t.js": {
+    "file": "onsen-CTWmoN6t.js",
     "name": "onsen",
     "isDynamicEntry": true,
     "imports": [
       "_compact-shops-BKdMS2U6.js",
-      "_fish-CQlsdwsG.js",
+      "_fish-DKjnPmBq.js",
       "_animate-CsKgrGQr.js",
       "_hat-models-Dq64WB2Y.js",
-      "_halloween-DYMuxzrH.js"
+      "_halloween-BzLDevUX.js"
     ]
   },
   "_pixar-CWCdbQwH.js": {
@@ -110,15 +110,15 @@
     "file": "preload-helper-PPVm8Dsz.js",
     "name": "preload-helper"
   },
-  "_sakura-interior-lXHlaaGp.js": {
-    "file": "sakura-interior-lXHlaaGp.js",
+  "_sakura-interior-BZQVi2Ub.js": {
+    "file": "sakura-interior-BZQVi2Ub.js",
     "name": "sakura-interior",
     "isDynamicEntry": true,
     "imports": [
-      "_halloween-DYMuxzrH.js",
+      "_halloween-BzLDevUX.js",
       "_compact-shops-BKdMS2U6.js",
       "_harbour-park-plan-BjDVKF9F.js",
-      "_fish-CQlsdwsG.js",
+      "_fish-DKjnPmBq.js",
       "_hat-models-Dq64WB2Y.js"
     ]
   },
@@ -197,7 +197,7 @@
     ]
   },
   "src/boot.js": {
-    "file": "boot-DCJMwb01.js",
+    "file": "boot-CFYhphvJ.js",
     "name": "boot",
     "src": "src/boot.js",
     "isEntry": true,
@@ -214,7 +214,7 @@
     ]
   },
   "src/feed/mount.js": {
-    "file": "feed-DJTL-UDV.js",
+    "file": "feed-D3pblr3e.js",
     "name": "feed",
     "src": "src/feed/mount.js",
     "isEntry": true,
@@ -234,16 +234,16 @@
     ]
   },
   "src/game.js?snappy=1": {
-    "file": "game-DBbeCWRg.js",
+    "file": "game-C-J8BZk3.js",
     "name": "game",
     "src": "src/game.js?snappy=1",
     "isDynamicEntry": true,
     "imports": [
       "_preload-helper-PPVm8Dsz.js",
-      "_halloween-DYMuxzrH.js",
+      "_halloween-BzLDevUX.js",
       "_ferry-ship-DfhHmc7y.js",
       "_compact-shops-BKdMS2U6.js",
-      "_fish-CQlsdwsG.js",
+      "_fish-DKjnPmBq.js",
       "_harbour-park-plan-BjDVKF9F.js",
       "_staff-bench-CXKq2cGc.js",
       "_startup-recovery-CIJ7HiTu.js",
@@ -252,10 +252,10 @@
       "_animate-CsKgrGQr.js",
       "_pixar-CWCdbQwH.js",
       "_shopping-lane-plan-D0DhEU8_.js",
-      "_onsen-Rf8zVkO4.js",
-      "_sakura-interior-lXHlaaGp.js",
+      "_onsen-CTWmoN6t.js",
+      "_sakura-interior-BZQVi2Ub.js",
       "src/world/interiors/sato-ramen.js",
-      "_friendship-DZUCmnyS.js",
+      "_friendship-hvI-7qdq.js",
       "src/world/interiors/town-hall.js",
       "_studio-handoff-D2Od3tev.js",
       "_storyteller-B7_FViTr.js",
@@ -280,16 +280,16 @@
     ]
   },
   "src/scene/scene-world.js": {
-    "file": "scene-world-DnHzgXf_.js",
+    "file": "scene-world-D_pzw9rE.js",
     "name": "scene-world",
     "src": "src/scene/scene-world.js",
     "isDynamicEntry": true,
     "imports": [
       "_preload-helper-PPVm8Dsz.js",
       "_compact-shops-BKdMS2U6.js",
-      "_halloween-DYMuxzrH.js",
+      "_halloween-BzLDevUX.js",
       "_staff-bench-CXKq2cGc.js",
-      "_fish-CQlsdwsG.js",
+      "_fish-DKjnPmBq.js",
       "_actors-fWn-iiQL.js",
       "_animate-CsKgrGQr.js",
       "_pixar-CWCdbQwH.js",
@@ -300,20 +300,20 @@
       "_ferry-ship-DfhHmc7y.js"
     ],
     "dynamicImports": [
-      "_sakura-interior-lXHlaaGp.js",
-      "_halloween-DYMuxzrH.js",
+      "_sakura-interior-BZQVi2Ub.js",
+      "_halloween-BzLDevUX.js",
       "src/world/interiors/sato-ramen.js",
       "_actors-fWn-iiQL.js",
       "_compact-shops-BKdMS2U6.js",
       "_compact-shops-BKdMS2U6.js",
       "_compact-shops-BKdMS2U6.js",
       "_compact-shops-BKdMS2U6.js",
-      "_onsen-Rf8zVkO4.js",
+      "_onsen-CTWmoN6t.js",
       "src/world/interiors/town-hall.js"
     ]
   },
   "src/world/ferry-engine-room-asset.js": {
-    "file": "ferry-engine-room-asset-DZpga16V.js",
+    "file": "ferry-engine-room-asset-LX1kqLj3.js",
     "name": "ferry-engine-room-asset",
     "src": "src/world/ferry-engine-room-asset.js",
     "isDynamicEntry": true,
@@ -322,14 +322,14 @@
     ]
   },
   "src/world/interiors/sato-ramen.js": {
-    "file": "sato-ramen-DDM7VBGZ.js",
+    "file": "sato-ramen-CC4DOyy_.js",
     "name": "sato-ramen",
     "src": "src/world/interiors/sato-ramen.js",
     "isDynamicEntry": true,
     "imports": [
       "_compact-shops-BKdMS2U6.js",
-      "_halloween-DYMuxzrH.js",
-      "_fish-CQlsdwsG.js",
+      "_halloween-BzLDevUX.js",
+      "_fish-DKjnPmBq.js",
       "_staff-bench-CXKq2cGc.js",
       "_harbour-park-plan-BjDVKF9F.js",
       "_shopping-lane-plan-D0DhEU8_.js",
@@ -343,16 +343,16 @@
     ]
   },
   "src/world/interiors/town-hall.js": {
-    "file": "town-hall-B3QrTWDm.js",
+    "file": "town-hall-BxLcTIyu.js",
     "name": "town-hall",
     "src": "src/world/interiors/town-hall.js",
     "isDynamicEntry": true,
     "imports": [
       "_compact-shops-BKdMS2U6.js",
-      "_fish-CQlsdwsG.js",
+      "_fish-DKjnPmBq.js",
       "_animate-CsKgrGQr.js",
       "_hat-models-Dq64WB2Y.js",
-      "_halloween-DYMuxzrH.js",
+      "_halloween-BzLDevUX.js",
       "_staff-bench-CXKq2cGc.js",
       "_ferry-ship-DfhHmc7y.js",
       "_preload-helper-PPVm8Dsz.js",
@@ -370,18 +370,18 @@
     "isDynamicEntry": true
   },
   "title-menu.js": {
-    "file": "title-menu-CKkmJwHa.js",
+    "file": "title-menu-fiaqQrtR.js",
     "name": "title-menu",
     "src": "title-menu.js",
     "isEntry": true,
     "imports": [
       "_staff-bench-CXKq2cGc.js",
-      "_friendship-DZUCmnyS.js",
+      "_friendship-hvI-7qdq.js",
       "_compact-shops-BKdMS2U6.js",
       "_harbour-park-plan-BjDVKF9F.js",
       "_shopping-lane-plan-D0DhEU8_.js",
       "_preload-helper-PPVm8Dsz.js",
-      "_fish-CQlsdwsG.js",
+      "_fish-DKjnPmBq.js",
       "_ferry-ship-DfhHmc7y.js"
     ]
   },

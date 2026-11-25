@@ -5,7 +5,7 @@
   "units": "metres",
   "geometry_basis": "CAD C-H1 / shared geometry-h1.json",
   "constraints": {
-    "source_components": 1290,
+    "source_components": 1350,
     "working_clearance": 2.4,
     "service_openings": 0.8,
     "retain_equipment_counts_axes_and_envelopes": true,
@@ -27,13 +27,13 @@
     "metal": {"roughness": 0.42, "metallic": 0.55},
     "rubber": {"roughness": 0.95, "metallic": 0.0},
     "retain_source_colours": true,
-    "contact_shading_radius": 0.22,
-    "contact_shading_strength": 0.22,
+    "contact_shading_radius": 0.32,
+    "contact_shading_strength": 0.42,
     "contact_shading_rays": 12
   },
   "render_only": ["Existing source maker plates", "43 source dial faces with source readings", "Existing booth glass", "Source chequer plate surface relief", "CAD luminaire light sources"],
   "runtime": {
-    "file": "minato-engine-room-h1-f1.glb",
+    "file": "minato-engine-room-h1-f2.glb",
     "max_material_groups": 2,
     "max_triangles": 100000,
     "max_bytes": 4000000,

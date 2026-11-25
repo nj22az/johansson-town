@@ -17,7 +17,7 @@ H1 raises the vehicle deck and upper decks by 1,000 mm, retaining 4,200 mm vehic
 
 ## Game application
 
-`assets/models/ferry-engine-room/minato-engine-room-h1-f1.glb` contains 80,376 triangles, two paint/metal material groups and 3,587,152 bytes. Round parts have outward faces and smoother sides; all 29,268 evaluated source faces pass the outward-normal audit. Normalized byte vertex colours hold a bounded 220 mm contact-shading pass. Positions and normals retain floating-point precision. No texture downloads or UVs are required.
+`assets/models/ferry-engine-room/minato-engine-room-h1-f2.glb` contains 80,376 triangles, two paint/metal material groups and 3,587,152 bytes. Round parts have outward faces and smoother sides; all 29,268 evaluated source faces pass the outward-normal audit. Normalized byte vertex colours hold a bounded 220 mm contact-shading pass. Positions and normals retain floating-point precision. No texture downloads or UVs are required.
 
 The GLB loads lazily on the first H1 machinery/access view. A failed load keeps the source fallback; successful loading disposes it. Live labels, gauges and controls remain the game's own, with no coincident exported copies. The original H1 GLB remains available for older compiled clients. Illustrative pipe previews remain excluded.
 

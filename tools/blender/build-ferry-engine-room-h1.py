@@ -309,7 +309,7 @@ radius, strength, rays = FINISH['contact_shading_radius'], FINISH['contact_shadi
 shade_min, shade_max = 1, 0
 for o in copies:
     mesh = o.data
-    mesh.calc_normals_split()
+    if hasattr(mesh, 'calc_normals_split'): mesh.calc_normals_split()  # (gone in Blender 4.1+: corner normals are always there)
     attr = mesh.color_attributes.new(name='Color', type='FLOAT_COLOR', domain='CORNER')
     col = mesh.materials[0].diffuse_color
     cache = {}
@@ -371,7 +371,8 @@ colour_views = {}
 for mesh in gltf['meshes']:
     for primitive in mesh['primitives']:
         accessor = gltf['accessors'][primitive['attributes']['COLOR_0']]
-        assert accessor['componentType'] == 5126 and accessor['type'] == 'VEC4'
+        # (Blender 4.0 wrote float colours; 4.2+ and 5 write normalized unsigned shorts, or bytes already)
+        assert accessor['componentType'] in (5126, 5123, 5121) and accessor['type'] in ('VEC4', 'VEC3'), accessor
         colour_views[accessor['bufferView']] = accessor
 newbin = bytearray()
 for index, view in enumerate(gltf['bufferViews']):
@@ -380,8 +381,13 @@ for index, view in enumerate(gltf['bufferViews']):
     if index in colour_views:
         accessor = colour_views[index]
         assert accessor.get('byteOffset',0) == 0 and not view.get('byteStride')
-        values = struct.unpack('<'+'f'*(size//4), data)
-        data = bytes(max(0,min(255,round(v*255))) for v in values)
+        kind = accessor['componentType']
+        if kind == 5126:
+            values = struct.unpack('<'+'f'*(size//4), data)
+            data = bytes(max(0,min(255,round(v*255))) for v in values)
+        elif kind == 5123:
+            values = struct.unpack('<'+'H'*(size//2), data)
+            data = bytes(round(v/257) for v in values)
         accessor['componentType'], accessor['normalized'] = 5121, True
     while len(newbin)%4:
         newbin.append(0)
@@ -402,7 +408,7 @@ bpy.data.objects.remove(merged,do_unlink=True)
 bpy.ops.object.select_all(action='DESELECT')
 # Save editable originals, source-labelled detail and cameras, not the merged export.
 bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'Minato_Maru_Engine_Room_H1.blend'),compress=True)
-audit = {'revision':'H1-F1','workflow':'Blender only','source_components':len(objects),'bevelled_equipment_boxes':bevelled,
+audit = {'revision':'H1-F2','workflow':'Blender only','source_components':len(objects),'bevelled_equipment_boxes':bevelled,
     'bevelled_source_envelopes_checked':envelope_checks,
     'outward_faces_checked':normal_faces,'outward_faces_failed':0,'dial_faces':sum(p.get('kind')=='dial' for p in D['plates']),
     'source_glass_panes':len(D.get('glass',[])),'contact_shade_range':[shade_min,shade_max],
