@@ -165,3 +165,10 @@ surfaces, then `ferry-look.mjs` in her own frame.
   z-fighting 4/4. Builds now restore pruned chunks from `origin/main` before committing.
 - **Next for item 1:** the generators in the auxiliary room (same treatment), the gearboxes, pumps and the switchboard's
   cabinet; about 17,000 triangles and 360 kB of budget remain.
+
+## The menu button's book, centred (same day, the owner, with a phone screenshot: "The ui icons needs to be centred now they are offset")
+`town-book.css`: `#directoryButton` was `display:grid`, and its own word "Menu" (font-size 0) took a second grid row
+(43 px + 15 px in the 60 px phone button), so the book sat 7 pt high. Now flex, centred both ways; the phone rule sets
+`height:60px` with its `min-height`. Measured at iPhone 14 Pro size: the icon's centre 89.5 of 90 px (3×) down the
+circle. `index.html`'s `?h=` stamp updated. Guard green (325 s). Not published yet. The white strip under the game in the
+owner's screenshot was not reproduced here (the page fills the viewport in Chromium's phone emulation); not looked into.
