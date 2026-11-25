@@ -145,7 +145,7 @@ surfaces, then `ferry-look.mjs` in her own frame.
   Honest result: they show mainly in the store and above fittings; the rooms' big bare walls are transverse bulkheads and
   partitions, which got none.
 - **Contact shade:** radius 0.22 → 0.32, strength 0.22 → 0.42 (`cad/finish-h1-f1.json`); baked range now 0.58–1.0.
-- **File:** `minato-engine-room-h1-f2.glb` (81,720-odd triangles, ~3.5 MB; the audit JSON has the exact figures); F1
+- **File:** `minato-engine-room-h1-f2.glb` (81096 triangles, 3519548 bytes: docs/qa/ferry-engine-room-h1/blender-finish-audit.json); F1
   removed; loader, tests, review page and check tool point to F2; `source_components` 1350 in the finish schedule and
   `tests/ferry-fixed-camera.test.mjs`. The scene's name in the game stays "Minato Maru H1-F1 / Blender CAD" (tools find it).
 - Not re-run: `tools/ferry-engine-room-cad-h1.py` (the PDF/DXF sheets) and the Blender renders in `art/…/renders/`; both
