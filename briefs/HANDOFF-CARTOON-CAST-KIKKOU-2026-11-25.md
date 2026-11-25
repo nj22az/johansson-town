@@ -236,3 +236,13 @@ needing a third-party binary and the owner's API key; not used. Recommended only
 - Guard green (300 s). `tests/onsen-seats.test.mjs` fails one test with and without this change (pre-existing).
 - **Next:** shoulders (the short sleeve ends in a round cap that reads as a ball) and elbows; then a consistent, more
   expressive face set (eyes, mouths, moustaches that scale properly); then proportions.
+
+## Shoulders and sleeves: tried, made worse, reverted (same day, the owner: "Proceed")
+Tried in `build.js`: the short sleeve closer to the arm and wider at its opening, ending in a flat cuff (`limb` with a
+`cuff` option), first as a shallow cone, then flat and with the arm's 18 sides. Both left a ragged, toothed line where
+the sleeve's end and its ink hull cross the arm: worse than the round end it replaced. Reverted; nothing committed.
+What it showed: the "ball" shoulder is how the body is built (a torso lathe with square shoulders, a separate arm
+capsule, a flattened sphere cap over the joint and a capsule sleeve over that, four overlapping shells each with an
+ink hull). Tuning the shells does not make a clean shoulder. The fix is structural: one continuous surface from the
+neck over the shoulder into the sleeve (the torso lathe extended into a sleeve tube per side, skinned across chest and
+shoulder), with the cap and separate sleeve removed. That touches every top in the wardrobe and their tests.
