@@ -267,12 +267,14 @@ export function buildPoliceStationInterior({site,room,reg,collider=()=>{},action
  solid(st.x0-.06,st.x0+.02,st.z0,st.z1+.06,y2,y2+1.04);solid(st.x0,st.x1,st.z1-.02,st.z1+.06,y2,y2+1.04);
  // The partition between his room and the back room, open at its end, by the stair well.
  U.block(B.minX,2.0,y2,CEIL2,.56,.64,C.wall);solid(B.minX,2.02,.54,.66,y2,CEIL2);
+ // (What stands on the tatami starts on its face, y2 + 0.012, not under it: its underside lay in the mat's, and the
+ // boot rack's shelf stands 4 mm proud of the rack it was flush with; tools/near-coplanar.mjs, 26 November 2026.)
  // His futon along the street wall, laid out in the morning and folded away in the afternoon (the routine keeps it
  // laid: he is in it from seven till three), so the rest of his room stays a room to walk through.
- U.block(.2,2.0,y2,y2+.14,2.25,3.2,C.futon);U.box(1.1,.05,1.05,1.38,y2+.165,2.72,C.quilt);U.box(.4,.12,.75,.62,y2+.2,2.72,0xf3e8d2);solid(.2,2.0,2.25,3.2,y2,y2+.14);
+ U.block(.2,2.0,y2+.012,y2+.14,2.25,3.2,C.futon);U.box(1.1,.05,1.05,1.38,y2+.165,2.72,C.quilt);U.box(.4,.12,.75,.62,y2+.2,2.72,0xf3e8d2);solid(.2,2.0,2.25,3.2,y2,y2+.14);
  spot(upper,[1.1,y2+.5,1.85],'Inspect Officer Mori’s futon','inspect','Officer Mori’s futon','Laid out at seven in the morning, after the night patrol, and slept in until three. If he is asleep, let him be.');
  // The extension telephone by his pillow: after ten the station's calls ring up here too.
- U.box(.2,.1,.18,-.15,y2+.05,2.75,0xe8e1c7);U.box(.22,.05,.07,-.15,y2+.12,2.75,0xe8e1c7);
+ U.box(.2,.1,.18,-.15,y2+.062,2.75,0xe8e1c7);U.box(.22,.05,.07,-.15,y2+.132,2.75,0xe8e1c7);
  spot(upper,[-.15,y2+.4,2.35],'Inspect the extension telephone','inspect','Extension telephone','A cream telephone on the tatami by his pillow, wired to the station’s line. In the morning, while he sleeps, it rings through to the prefectural headquarters in Naha instead.');
  // His desk at the plaza window, with the notebook he keeps his days in, and the chair he sits in.
  U.block(3.3,3.8,y2+.7,y2+.74,1.8,3.0,C.timber);for(const z of [1.85,2.95])U.block(3.32,3.78,y2,y2+.7,z-.04,z+.04,C.timberDark);solid(3.3,3.8,1.8,3.0,y2,y2+.74);
@@ -287,10 +289,10 @@ export function buildPoliceStationInterior({site,room,reg,collider=()=>{},action
  U.box(.1,.1,.03,1.0,y2+1.72,.655,C.timberDark);U.box(.035,.035,.14,1.0,y2+1.7,.71,C.timberDark);
  spot(upper,[-2.9,y2+1.3,1.4],'Inspect the spare uniform','inspect','Spare uniform','A pressed summer shirt and the trousers on a hanger, ready for the night patrol. His cap hangs on the peg by the door when he is home; MORI is written inside it in marker pen.');
  // The portable television on a low cabinet, for the late news and the baseball.
- U.block(-3.75,-3.05,y2,y2+.45,2.2,3.15,C.timberDark);U.box(.45,.38,.4,-3.35,y2+.64,2.7,0x3b3f45);U.box(.01,.28,.32,-3.12,y2+.66,2.7,0x21302c);solid(-3.78,-3.05,2.2,3.15,y2,y2+.85);
+ U.block(-3.75,-3.05,y2+.012,y2+.45,2.2,3.15,C.timberDark);U.box(.45,.38,.4,-3.35,y2+.64,2.7,0x3b3f45);U.box(.01,.28,.32,-3.12,y2+.66,2.7,0x21302c);solid(-3.78,-3.05,2.2,3.15,y2,y2+.85);
  spot(upper,[-2.6,y2+.9,2.7],'Inspect the television','inspect','Portable television','A small portable set with a bent aerial. The channel knob is stuck between the late news and the baseball, which suits him.');
  // The stair head is the door of his home: the rack where his patrol boots come off and the slippers go on.
- U.block(2.3,2.9,y2,y2+.4,-3.25,-3.0,C.timber);U.block(2.3,2.9,y2+.2,y2+.22,-3.25,-3.0,C.timberDark);U.box(.28,.12,.24,2.45,y2+.46,-3.12,C.black);U.box(.22,.05,.24,2.75,y2+.43,-3.12,C.navy);solid(2.3,2.9,-3.25,-3.0,y2,y2+.4);
+ U.block(2.3,2.9,y2,y2+.4,-3.25,-3.0,C.timber);U.block(2.296,2.904,y2+.2,y2+.22,-3.254,-2.996,C.timberDark);U.box(.28,.12,.24,2.45,y2+.46,-3.12,C.black);U.box(.22,.05,.24,2.75,y2+.43,-3.12,C.navy);solid(2.3,2.9,-3.25,-3.0,y2,y2+.4);
  spot(upper,[2.6,y2+.8,-2.6],'Look at the shoe rack','inspect','At the top of the stairs','His patrol boots, polished, on the rack, and a pair of navy slippers. Upstairs is his home, so the boots stop here.');
  // The back room: the kitchenette along the north wall, with the kettle on the gas ring and the rice cooker.
  U.block(-3.8,-3.25,y2,y2+.85,-2.2,.4,C.white);U.block(-3.82,-3.23,y2+.85,y2+.89,-2.22,.42,C.counterTop);solid(-3.82,-3.23,-2.22,.42,y2,y2+.89);

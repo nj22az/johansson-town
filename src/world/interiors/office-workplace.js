@@ -127,7 +127,9 @@ export function buildOfficeShell(parent){
   const g=new THREE.Group();g.name=name;g.position.set(...pos);g.rotation.y=yaw;shell.add(g);
   const part=(n,size,p,c)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(...size),mat(c));m.name=n;m.position.set(...p);m.receiveShadow=true;g.add(m);return m;};
   part(name+' dado',[w,.9,.04],[0,.45,0],0x9fb8a4);part(name+' plaster',[w,H-.9,.04],[0,.9+(H-.9)/2,0],0xeee6cf);
-  part(name+' skirting',[w,.08,.06],[0,.04,.01],0x5f7466);part(name+' dado rail',[w,.04,.06],[0,.9,.01],0x6f8a76);
+  // The skirting and the rail stand on the dado's face (z 0.02 to 0.04), not through to the wall's back, where their back
+  // faces lay in the dado's and the plaster's (tools/near-coplanar.mjs).
+  part(name+' skirting',[w,.08,.02],[0,.04,.03],0x5f7466);part(name+' dado rail',[w,.04,.02],[0,.9,.03],0x6f8a76);
   return g;
  };
  wall('Back wall',W,[0,0,-hd-.02],0);
