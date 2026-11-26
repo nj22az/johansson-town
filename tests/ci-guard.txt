@@ -147,3 +147,5 @@ sakura-restroom.test.mjs
 rugged-head.test.mjs
 # The Harbour Warehouse inside: the bay, the walked mezzanine and stair, its stock and its surfaces.
 warehouse-port.test.mjs
+# The modular body kit, sculpted in Blender: limbs, torso lines, the foot and the shoes that are worn on it.
+body-kit.test.mjs

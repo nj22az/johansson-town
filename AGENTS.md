@@ -27,6 +27,13 @@ critique what still looks too soft/chibi, and iterate"; then "When happy redraw 
   should look like her but a cute cartoon"; "more feminine ... but still a cartoon don't be restricted by the avatar
   creator"; "the eyes need to fit her"; "mouth ... very expressive like Miis and eyes too"). `cast.js THUAN_REDRAWN` is
   every value that differs from her Studio design; a kite-shaped head with round doll eyes was rejected as grotesque.
+- **Bodies are modular** (the owner: "these bodies needs to ve modular so we can reuse them for all characters"; "The shoes
+  shouldn't be fused on their feet they should be rigged so you can wear different shoes"): one body kit sculpted in Blender
+  (`tools/blender/build-body-kit.py`, `src/avatars/sculpts/body-kit.js`) gives every resident their limbs, torso line and
+  feet; shoes are kit shapes worn on the foot (`avatar.wearShoes`). New shapes go in the kit, never into one character.
+  What a body sits on (the back of the thigh, the hip end) keeps the old thickness: poses are made to it.
+- **Thuan's figure** must read cute and feminine without a shelf or a straight in it (the owner, of a wide straight band at
+  the hips: "she still has a barrel for hips ... use Disney audit"): one soft line, hips to neck.
 - The owner's photographs are not kept in the repository (it is public).
 
 ## Owner's decision — 25 November 2026: the cast are dolls wearing clothes

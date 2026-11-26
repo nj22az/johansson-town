@@ -1,0 +1,50 @@
+{
+ "source": "Original Johansson Town body kit, sculpted in Blender for the game's generator",
+ "generator": "tools/blender/build-body-kit.py",
+ "blender": "5.3.0",
+ "limbs": {
+  "arm": {
+   "standard": {
+    "min": 0.665,
+    "max": 1.0
+   },
+   "sturdy": {
+    "min": 0.692,
+    "max": 1.0
+   },
+   "graceful": {
+    "min": 0.594,
+    "max": 1.0
+   }
+  },
+  "leg": {
+   "standard": {
+    "min": 0.61,
+    "max": 1.0
+   },
+   "sturdy": {
+    "min": 0.624,
+    "max": 1.0
+   },
+   "graceful": {
+    "min": 0.578,
+    "max": 1.0
+   }
+  }
+ },
+ "feet": {
+  "points": 242,
+  "triangles": 480,
+  "shapes": [
+   "foot",
+   "sneaker",
+   "shoe",
+   "boot",
+   "slipper"
+  ]
+ },
+ "torso": [
+  "sturdy",
+  "graceful"
+ ]
+}

@@ -115,7 +115,7 @@ test('Thuan\'s face is drawn from her photograph on Disney\'s terms; everything 
  // More feminine, still a cartoon: the graceful frame is slimmer in the limb and the neck, narrower in the shoulder, and has a waist.
  assert.equal(T.body.frame,'graceful');
  const slim=measure(T),plain=measure({...T,body:{...T.body,frame:'standard'}});
- assert.ok(slim.armR<plain.armR*.85&&slim.legR<plain.legR*.92&&slim.width<plain.width&&slim.waistRatio<plain.waistRatio&&slim.hips/slim.width>plain.hips/plain.width);
+ assert.ok(slim.armR<plain.armR*.85&&slim.legR<plain.legR*.92&&slim.width<plain.width&&slim.waistRatio<plain.waistRatio&&slim.depth<plain.depth);   // (her hips and her line: tests/body-kit.test.mjs)
  // Her mouth and eyes act: every expression the face has paints on her.
  const {EXPRESSION_NAMES}=await import('../src/avatars/face.js');assert.ok(EXPRESSION_NAMES.length>=46);
  assert.ok(existsSync(file('art/characters/thuan/review/expressions.png')));

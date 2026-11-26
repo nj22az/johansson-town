@@ -169,3 +169,49 @@ see"; "Oh Johansson isn't fat he should have a neck and a maybe smaller face"; "
 - The warehouse's outside is unchanged; its clerestory windows and roll-up door are not drawn on the outside wall.
 - Thuan's Blender (Pixar) body for Godot and Sakura world is untouched (`nj22az/jojo`, not reachable here).
 - The owner's and Thuan's photographs are not in the repository (it is public).
+
+---
+
+# Last: published, then the modular body kit
+
+**Published:** everything above went to `main` by fast-forward (`bec637b`), the owner: "Yes". What follows is on the branch only.
+
+## The owner's words
+"can you redraw Johansson and Thuan's body's in blender too? And arms and legs? The shoes shouldn't be fused on their feet they
+should be rigged so you can wear different shoes, these bodies needs to ve modular so we can reuse them for all characters";
+"Make her look more feminine and cute in the body too but still cartoon"; "But look at the body she still has a barrel for
+hips she needs to look cute use Disney audit".
+
+## Done
+- **`tools/blender/build-body-kit.py`** -> `src/avatars/sculpts/body-kit.js` and `art/characters/body-kit/body-kit.blend`:
+  one kit, worn by every resident through the generator.
+  - `LIMBS`: an arm and a leg for the standard, sturdy and graceful frames: thickness along and round the limb as a share
+    of the old taper, never over 1 (so every sleeve, trouser leg and pose still fits). Elbow, forearm, wrist; knee, calf
+    behind, shin in front, ankle. Bare arms and legs wear it (`build.js limb` `shape`); a long sleeve or a trouser leg is
+    cloth and stays straight. **What is sat on is untouched**: the back of the thigh and the hip end are the taper's own
+    (a first kit thinned them and sat everybody 7 mm into the floor: `seat-support.js` seats a body on them).
+  - `TORSO`: the sturdy frame's shoulders, and the graceful frame's whole line, hips to neck, as one soft curve.
+  - `FEET`: one mesh layout (242 points, 480 triangles) in five shapes: bare foot, sneaker, leather shoe, boot's foot,
+    slipper, with a zone per point (upper, sole, toe cap, collar) along the mesh's own lines.
+- **Shoes are worn** (`build.js`): a shoe is a kit shape laid in the box the old ellipsoid filled. `avatar.wearShoes(kind,
+  {colour, side})` writes another shape into the same points on a finished body; `setShoe(side,false)` shows the kit's
+  foot in its sock; `shoeWorn(side)`; `SHOE_SHAPES`. No extra draw call. Barefoot and sandalled bodies get the kit's bare
+  foot (heel, arch, toes); the sandal's strap lies on its instep.
+- **Thuan's figure** (the graceful frame): hips 1.03 of her width (were 1.24 on a straight band: the "barrel"), depth 0.84,
+  a waist at 0.68, legs half of her body's height (were 0.47), slim limbs.
+- `tools/avatar-turnaround.mjs`: `--feet`, `--focus height,distance`.
+
+## Proved
+- Guard: 123 files, 649 tests, all green (557 s), with the new `tests/body-kit.test.mjs` (4).
+- One pose check loosened: in `pair-poses`, a hugging mitten must lie on the partner's near side by 0.35 of the way to
+  the shoulder joint (was 0.5); with slimmer arms a boy's mitten on a small child lay 11 mm nearer her middle.
+- Sheets: `art/characters/*/review/` (`game-turnaround-body.png`, `game-legs-and-feet.png`, Thuan's `game-figure.png`),
+  and both rigged `.blend` files regenerated. Not checked: a phone or a GPU browser.
+
+## Not done
+- **The torso is still turned on a lathe** (one line, the same front, back and sides), and hands are still mittens: the
+  kit shapes the limbs, the line and the feet, not yet a sculpted chest, back or hand.
+- Somebody built barefoot or in sandals cannot be given shoes at run time (their foot has no shoe range); it takes their
+  recipe. Boots' shafts are still a separate piece built with the body, so `wearShoes('boots')` gives the foot only.
+- Nothing in the game calls `wearShoes` yet: no shop sells shoes and the creator's footwear list is as it was.
+- Trouser legs and long sleeves are not shaped.

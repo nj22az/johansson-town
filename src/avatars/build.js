@@ -15,6 +15,7 @@ import {buildEyes3d,eyes3dOn} from './eyes3d.js';
 import {pixarBody,dressPixar} from './pixar.js';
 import {beardSpec,curve as lineThrough,ellipse as insideEllipse} from './beard-mesh.js';
 import {headProfile,shapeHeadPoint} from './head-profile.js';
+import {LIMBS,TORSO,FEET} from './sculpts/body-kit.js';
 import {longBraidPoints} from './braid-path.js';
 import {pleatedSkirtGeometry} from './pleated-skirt.js';
 import {celFrom} from '../render/cel.js';
@@ -65,7 +66,8 @@ export function measure(recipe){
  const rounded=r.body.proportion==='rounded';
  // (A sturdy frame has a neck that shows: the owner, 26 November 2026, of Johansson: "he should have a neck".)
  const neck=.055*k*(r.body.frame==='sturdy'?1.9:1),body=H-Rh*2*headSY-neck;
- const leg=body*(studio?.60:rounded?.37:.47),torso=body-leg;
+ // (A graceful frame is a little longer in the leg.)
+ const leg=body*(studio?.60:rounded?.37:r.body.frame==='graceful'?.5:.47),torso=body-leg;
  const foot=.07*k,thigh=(leg-foot)*.5,shin=thigh;
  // A sturdy frame (the owner, 26 November 2026, of Johansson: "widen the neck to ~60% of jaw width so it flows solidly into
  // broader, squared-off shoulders and a barrel chest"; then, of the first result, "Johansson isn't fat he should have a
@@ -78,8 +80,8 @@ export function measure(recipe){
  const graceful=r.body.frame==='graceful';
  const legR=(.058+build*.024)*k*(studio?.9:1)*(sturdy?1.04:graceful?.88:1),armR=(.045+build*.016)*k*(studio?.85:1)*(sturdy?1.06:graceful?.8:1);
  const feminine=r.body.silhouette==='feminine',masculine=r.body.silhouette==='masculine';
- const width=(.3+build*.15)*k*(rounded?1.20:1)*(feminine?.94:masculine?1.08:1)*(studio?.84:1)*(sturdy?1.07:graceful?.9:1),depth=(.2+build*.09)*k*(rounded?1.15:1)*(studio?.87:1)*(sturdy?1.06:graceful?.94:1);
- const hips=width*(graceful?1.2:feminine?1.13:masculine?.9:1),waistRatio=graceful?.7:studio?(feminine?.76:.88):feminine?.79:masculine?.98:.96;
+ const width=(.3+build*.15)*k*(rounded?1.20:1)*(feminine?.94:masculine?1.08:1)*(studio?.84:1)*(sturdy?1.07:graceful?.9:1),depth=(.2+build*.09)*k*(rounded?1.15:1)*(studio?.87:1)*(sturdy?1.06:graceful?.84:1);
+ const hips=width*(graceful?1.03:feminine?1.13:masculine?.9:1),waistRatio=graceful?.68:studio?(feminine?.76:.88):feminine?.79:masculine?.98:.96;
  const upper=(rounded?.18:.22)*k*(studio?.92:1),fore=(rounded?.16:.2)*k*(studio?.92:1),hand=.056*k*(studio?.9:1);
  const hipY=leg,chestY=hipY+torso*.5,neckY=hipY+torso,headY=neckY+neck;
  return {studio,sturdy,graceful,neckR:armR*(sturdy?1.72:graceful?1.16:1.08),panelSkirt:r.outfit.bottom==='skirt'&&r.outfit.skirtCut==='panel',skirtLength:r.outfit.skirtLength,skirtFlare:r.outfit.skirtFlare,H,k,Rh,headSX,headSY,profile,neck,torso,leg,foot,thigh,shin,legR,armR,width,hips,waistRatio,depth,upper,fore,hand,hipY,chestY,neckY,headY,
@@ -199,7 +201,7 @@ function tube(list,a,b,r,bone,hex,segments=10){
  * from one bone to the next over a soft band -- and `root` lends the top of the limb to
  * the body, so a shoulder or hip rounds off instead of hinging on a seam.
  */
-function limb(list,a,b,r0,r1,hex,{bone,joints=[],root=null,soft=.13,segments=14,uvAt=null}={}){
+function limb(list,a,b,r0,r1,hex,{bone,joints=[],root=null,soft=.13,segments=14,uvAt=null,shape=null}={}){
  const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),d=B.clone().sub(A),len=d.length(),dir=d.clone().normalize();
  // A capsule with rings all along it (three's own has none between its caps), so the
  // skin has somewhere to bend.
@@ -211,9 +213,13 @@ function limb(list,a,b,r0,r1,hex,{bone,joints=[],root=null,soft=.13,segments=14,
  const g=new THREE.LatheGeometry(prof,segments),pos=g.attributes.position;
  for(let i=0;i<pos.count;i++){
   const y=pos.getY(i),t=THREE.MathUtils.clamp(.5-y/len,0,1),k=THREE.MathUtils.lerp(r0,r1,t)/r0;
-  pos.setXYZ(i,pos.getX(i)*k,y+(y>len/2?0:y<-len/2?(y+len/2)*(k-1):0),pos.getZ(i)*k);
+  // (`shape`: the body kit's limb, sculpted in Blender: how thick at each point along and round, as a share of the taper.)
+  const f=shape?limbShare(shape,t,Math.atan2(pos.getX(i),pos.getZ(i))):1;
+  pos.setXYZ(i,pos.getX(i)*k*f,y+(y>len/2?0:y<-len/2?(y+len/2)*(k-1):0),pos.getZ(i)*k*f);
  }
- // The lathe's own normals are kept: recomputing them would crease its seam.
+ // A shaped limb's normals follow its shape, joined across the lathe's seam (its first and last column are one line).
+ if(shape){g.computeVertexNormals();const N=g.attributes.normal,cols=segments+1;for(let r=0;r<N.count/cols;r++){const i=r*cols,j=i+segments,x=N.getX(i)+N.getX(j),yy=N.getY(i)+N.getY(j),z=N.getZ(i)+N.getZ(j),l=Math.hypot(x,yy,z)||1;N.setXYZ(i,x/l,yy/l,z/l);N.setXYZ(j,x/l,yy/l,z/l);}}
+ // (A plain limb keeps the lathe's own normals: recomputing them would crease its seam.)
  // Capsules run along +y; this one runs from a down to b.
  const q=new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,-1,0),dir);
  const rel=new THREE.Vector3();
@@ -249,6 +255,61 @@ function sleeveTube(list,a,b,r0,r1,hex,{bone,root=null,segments=14,uvAt=null,th=
  part(list,new THREE.LatheGeometry(lining,segments),share,dark,at).attributes.ink.array.fill(0);
  return shell;
 }
+/** The body kit's limb for a frame (sculpts/body-kit.js LIMBS), and its share of the taper at t along and a round (0 the front). */
+const kitLimb=(kind,m)=>LIMBS[kind][m.sturdy?'sturdy':m.graceful?'graceful':'standard'];
+function limbShare(table,t,a){
+ const nt=table.length,na=table[0].length,ft=THREE.MathUtils.clamp(t,0,1)*(nt-1),it=Math.min(nt-2,Math.floor(ft)),ut=ft-it;
+ const fa=((a/(Math.PI*2))%1+1)%1*na,ia=Math.floor(fa)%na,ja=(ia+1)%na,ua=fa-Math.floor(fa);
+ return (table[it][ia]*(1-ua)+table[it][ja]*ua)*(1-ut)+(table[it+1][ia]*(1-ua)+table[it+1][ja]*ua)*ut;
+}
+/** The kit's feet and shoes, decoded once: every shape's points in the unit box, their triangles and each point's zone. */
+let kitFeet=null;
+function feetKit(){
+ if(kitFeet)return kitFeet;
+ const bytes=text=>Uint8Array.from(atob(text),c=>c.charCodeAt(0));
+ const shapes={},zones={};
+ for(const [name,text] of Object.entries(FEET.shapes))shapes[name]=new Float32Array(bytes(text).buffer);
+ for(const [name,text] of Object.entries(FEET.zones))zones[name]=bytes(text);
+ return kitFeet={shapes,zones,index:new Uint16Array(bytes(FEET.index).buffer),points:FEET.points};
+}
+/** The shoes the kit has (a bare foot is its 'foot'). */
+export const SHOE_SHAPES=Object.freeze({sneakers:'sneaker',shoes:'shoe',boots:'boot',slippers:'slipper'});
+/**
+ * A foot or a shoe from the kit, as geometry in model space: `shape` laid in `box` ({x, hx across; y0 the underside, y1
+ * the top; z, hz along}), mirrored for the right foot (side -1), smooth-shaded. Every shape has the same points in the
+ * same order, so one can be written over another on a finished body (buildAvatar wearShoes, setShoe).
+ * `colours`: [upper, sole, toe cap, collar]; each triangle takes the colour of what most of it is part of.
+ */
+function kitFootGeometry(shape,box,side){
+ const K=feetKit(),P=K.shapes[shape],n=K.points,pos=new Float32Array(n*3);
+ for(let i=0;i<n;i++){pos[i*3]=box.x+side*P[i*3]*box.hx;pos[i*3+1]=box.y0+P[i*3+1]*(box.y1-box.y0);pos[i*3+2]=box.z+P[i*3+2]*box.hz;}
+ const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+ // (Mirrored, a triangle is wound the other way: its last two corners change places.)
+ // (The kit's triangles are wound for its own frame, whose z runs the other way: as laid here the left foot's are
+ // turned, the mirrored right foot's are not.)
+ const I=side<0?K.index:K.index.map((v,i,a)=>i%3===1?a[i+1]:i%3===2?a[i-1]:v);
+ g.setIndex(new THREE.BufferAttribute(I,1));g.computeVertexNormals();
+ // (A triangle is a zone's when all three of its points are: the kit's zones follow the mesh's lines, so an edge between two colours is clean.)
+ g.userData.zones=Uint8Array.from({length:I.length/3},(_,t)=>{const z=[0,1,2].map(k=>K.zones[shape][I[t*3+k]]);return z[0]===z[1]&&z[1]===z[2]?z[0]:0;});
+ return g;
+}
+/** How high a kit shape stands at z along it, laid in `box` (its highest point within a tenth of its length there). */
+function kitFootTop(shape,box,z){const K=feetKit(),P=K.shapes[shape],u=(z-box.z)/box.hz;let top=0;for(let i=0;i<K.points;i++)if(Math.abs(P[i*3+2]-u)<.1)top=Math.max(top,P[i*3+1]);return box.y0+top*(box.y1-box.y0);}
+function kitFoot(list,shape,box,side,bone,colours){
+ const g=kitFootGeometry(shape,box,side),zones=g.userData.zones,piece=part(list,g,bone,colours[0]),C=piece.attributes.color,c=new THREE.Color();
+ for(let t=0;t<zones.length;t++){c.set(colours[zones[t]]??colours[0]);for(let k=0;k<3;k++)C.setXYZ(t*3+k,c.r,c.g,c.b);}
+ return piece;
+}
+/** Where a shoe stands on a foot, and a bare foot: the boxes the old ellipsoids filled, so every pose made to them still fits. */
+function shoeBox(m,sx,wear){const R=m.legR*1.25;return {x:sx*m.hipX,hx:R*1.06,y0:m.foot*.16-m.legR*.317,y1:m.foot*.62+R*.6,z:m.legR*.55,hz:R*(wear==='shoes'?1.85:1.75)};}
+function bareFootBox(m,sx){const R=m.legR*1.12;return {x:sx*m.hipX,hx:R*1.06,y0:m.foot*.55-R*.55,y1:m.foot*.55+R*.55,z:m.legR*.5,hz:R*1.7};}
+/** A shoe's colours by zone: one colour, as the owner asked of soles; a sneaker's rubber sole and toe cap a paler tint of it. */
+function shoeColours(colour,shape){
+ const c=new THREE.Color(colour),pale='#'+c.clone().lerp(new THREE.Color('#ffffff'),.45).getHexString(),deep='#'+c.clone().multiplyScalar(.8).getHexString();
+ // (On a shoe that is nearly white already, the rubber is a shade down instead, so the sole and the toe cap still read.)
+ const light=.3*c.r+.59*c.g+.11*c.b>.6,rubber=light?'#'+c.clone().multiplyScalar(.84).getHexString():pale;
+ return shape==='sneaker'?[colour,rubber,rubber,deep]:[colour,colour,colour,colour];
+}
 const ball=(list,r,at,bone,hex,s=[1,1,1],w=12,h=8)=>part(list,new THREE.SphereGeometry(r,w,h),bone,hex,M(at[0],at[1],at[2],0,0,0,...s));
 /**
  * A foot's shape (a shoe's upper or its sole, or a bare foot): where `ball` gave a squashed sphere of twelve sides, whose
@@ -256,8 +317,8 @@ const ball=(list,r,at,bone,hex,s=[1,1,1],w=12,h=8)=>part(list,new THREE.SphereGe
  * is the same ellipsoid, as big and in the same place, drawn round (24 sides) and shaped as a foot is: broader at the
  * toes than at the heel, and (an upper, `toe` > 0) falling from the instep to a low, rounded toe box.
  */
-function footShape(list,r,at,bone,hex,s,{toe=0,rings=10,sides=20,under=1}={}){
- const g=new THREE.SphereGeometry(r,sides,rings),P=g.attributes.position;
+function footShape(list,r,at,bone,hex,s,{toe=0,rings=10,sides=20,under=1,ghost=false}={}){
+ let g=new THREE.SphereGeometry(r,sides,rings);const P=g.attributes.position;
  for(let i=0;i<P.count;i++){
   const x=P.getX(i),y=P.getY(i),z=P.getZ(i),t=z/r;                       // t: −1 at the heel, 1 at the toe
   // (`under`: how much of the ellipsoid's lower half is kept; under 1 the foot stands on a flatter underside)
@@ -265,6 +326,8 @@ function footShape(list,r,at,bone,hex,s,{toe=0,rings=10,sides=20,under=1}={}){
   P.setXYZ(i,x*wide,y*low,z);
  }
  g.computeVertexNormals();
+ // (`ghost`: its points with nothing of it drawn, each triangle folded onto one of its own edges, as footprint's are.)
+ if(ghost){const solid=g;g=solid.toNonIndexed();solid.dispose();const Q=g.attributes.position,N=g.attributes.normal;for(let i=0;i<Q.count;i+=3){Q.setXYZ(i+2,Q.getX(i+1),Q.getY(i+1),Q.getZ(i+1));N.setXYZ(i+2,N.getX(i+1),N.getY(i+1),N.getZ(i+1));}}
  return part(list,g,bone,hex,M(at[0],at[1],at[2],0,0,0,...s));
 }
 /** An ellipsoid's points with nothing of it drawn: each triangle folded onto one of its own edges (a, b, b). */
@@ -799,8 +862,9 @@ function addShoe(list,recipe,m,s,wear){
  // The shoe in one piece, with no sole drawn (the owner, 25 November 2026: the soles "can be removed that would look
  // nicer"): the same ellipsoid as before, as big and in the same place, drawn round (18 sides, not 12), falling to a
  // lower toe, and reaching down to where the sole stood on the floor.
- {const R=m.legR*1.25,sy=.6*R,under=(m.foot*.46+m.legR*.317)/sy;
-  footShape(list,R,[sx*m.hipX,m.foot*.62,m.legR*.55],'foot'+s,o.shoes,[1,.6,wear==='shoes'?1.85:1.75],{toe:.3,sides:18,under}).userData.shoe=s;}
+ // (Since 26 November 2026 the shoe is the body kit's, modelled in Blender, in the box that ellipsoid filled: a shape of
+ // the kit's one foot layout, so it is put on, changed and taken off a finished body: wearShoes, setShoe.)
+ {const shape=SHOE_SHAPES[wear]||'sneaker',piece=kitFoot(list,shape,shoeBox(m,sx,wear),sx,'foot'+s,shoeColours(o.shoes,shape));piece.userData.shoe=s;piece.userData.shoeShape=shape;}
  // Where the sole was: its footprint, kept as points that are not drawn (every triangle folded flat). The poses, the
  // floor seat's heels, the kneels' toes and the foot grounder (foot-ground.js) are all made to the foot that stood on
  // that sole: they read these points, so everybody still stands, kneels and sits exactly as they did.
@@ -916,8 +980,9 @@ function torsoProfile(recipe,m){
  const belly=1+(recipe.body.build-.5)*.12,hipRatio=m.hips/m.width;
  const lower=[[0,-.1],[hipRatio*.86,-.08],[hipRatio,.05],[hipRatio,.13],[hipRatio,.15],[m.waistRatio*belly,.3],[m.waistRatio*(1+(belly-1)*.6),.5]];
  // The shoulders: sloping away to the neck, or (a sturdy frame) carried out square to the arm before they turn in.
- if(m.graceful)return [...lower,[.97,.66],[.95,.73],[.89,.8],[.8,.87],[.67,.93],[.5,.98],[.32,1.01],[.16,1.03],[0,1.04]];
- return [...lower,...(m.sturdy?[[1,.64],[1,.76],[.995,.85],[.975,.91],[.92,.96],[.78,.995],[.54,1.02],[.27,1.035],[0,1.04]]:[[1,.66],[.985,.74],[.95,.8],[.88,.87],[.76,.93],[.58,.98],[.38,1.01],[.19,1.03],[0,1.04]])];
+ // (The sturdy and the graceful frames' lines are the body kit's: sculpts/body-kit.js TORSO.)
+ if(m.graceful)return TORSO.graceful;   // the whole of her line, hips to neck, in half-widths
+ return [...lower,...(m.sturdy?TORSO.sturdy:[[1,.66],[.985,.74],[.95,.8],[.88,.87],[.76,.93],[.58,.98],[.38,1.01],[.19,1.03],[0,1.04]])];
 }
 /**
  * The body's material, carrying the painted garment. The texture is mixed over the
@@ -1100,7 +1165,9 @@ function addBody(list,recipe,m,swim=false){
   const sleeve=coveredSleeve&&(SHIRT_SLEEVES.includes(o.top)||ACCENT_SLEEVES.includes(o.top))?o.accent:top,below=coveredSleeve&&UNDERSHIRT_ARMS.includes(o.top)?o.accent:skin;
   const ends=longSleeve&&SLEEVE_END[o.top]?sh[1]-(m.upper+m.fore)*SLEEVE_END[o.top]:null;
   const armColour=coveredSleeve?(longSleeve?(ends===null?sleeve:p=>p.y>=ends?sleeve:skin):p=>p.y>=sh[1]-m.upper*.3?sleeve:below):skin;
-  limb(list,sh,hd,m.armR*1.04,m.armR*.86,armColour,longSleeve?{...arm,uvAt:p=>sleeveUV(p,sh,hd,sx)}:arm);
+  // (Bare, or under a short sleeve, the arm is the kit's: a round shoulder, an elbow, a forearm and a wrist. A long sleeve
+  // is cloth and hangs straight.)
+  limb(list,sh,hd,m.armR*1.04,m.armR*.86,armColour,longSleeve?{...arm,uvAt:p=>sleeveUV(p,sh,hd,sx)}:{...arm,shape:kitLimb('arm',m)});
   // A long sleeve ends in a cuff: cloth standing off the wrist, open, with its inside (sleeveTube). It grows out of the
   // sleeve from under its surface two thirds of the way down the forearm, so there is no seam where it starts.
   if(longSleeve&&o.top!=='lantern'){   // (the lantern costume is at its vertex budget, and its globe hides the wrists)
@@ -1169,7 +1236,8 @@ function addBody(list,recipe,m,swim=false){
   // Wide trousers are gathered at the ankle, as monpe are, so their rounded end stays inside the shoe or the sandal's sole
   // when the feet are up (a floor sit), instead of showing through it.
   const cloth=stripes?p=>stripes(p,hp[0],14):bottom;
-  limb(list,hp,an,m.legR*(b==='widepants'?1.32:1.02),m.legR*.86,trousers?cloth:skin,leg);
+  // (A bare leg is the kit's: a knee, a calf behind and a shin in front, an ankle. A trouser leg is cloth.)
+  limb(list,hp,an,m.legR*(b==='widepants'?1.32:1.02),m.legR*.86,trousers?cloth:skin,trousers?leg:{...leg,shape:kitLimb('leg',m)});
   // Trousers end in a hem standing off the ankle, open, as a long sleeve ends in a cuff (sleeveTube): it grows out of
   // the leg from under its surface and stops over the shoe.
   if(b==='trousers'){const L=hipY-m.foot,at=t=>[hp[0],hipY-L*t,0],rAt=t=>m.legR*(1.02-.16*t),t1=.93,t0=.74;
@@ -1187,12 +1255,14 @@ function addBody(list,recipe,m,swim=false){
   // Feet: bare (and at the beach, and after the bath), or in sandals, sneakers or leather shoes.
   const wear=swim?'barefoot':o.footwear;
   if(wear==='barefoot'||wear==='sandals'){
-   footShape(list,m.legR*1.12,[sx*m.hipX,m.foot*.55,m.legR*.5],'foot'+s,skin,[1,.55,1.7],{toe:.3,sides:18});
+   // (The kit's bare foot, modelled in Blender: a heel, an arch, the ball and the toes.)
+   kitFoot(list,'foot',bareFootBox(m,sx),sx,'foot'+s,[skin]);
    if(wear==='sandals'){
     // Setta: a flat sole and a thong strap over the top of the foot.
     // Deep enough that the bare foot above never shows through its underside (a broad adult's foot reaches 0.9 cm down).
     footShape(list,m.legR*1.24,[sx*m.hipX,m.foot*.12,m.legR*.55],'foot'+s,recipe.age==='elder'?'#6b4a32':'#c8a878',[1,.24,1.8],{rings:6,sides:12});
-    ball(list,m.legR*.42,[sx*m.hipX,m.foot*.55+m.legR*.6,m.legR*.95],'foot'+s,o.shoes,[2.3,.5,.8],10,6);
+    // (The strap lies on the kit foot's instep there, not where the old ball of a foot was highest.)
+    {const box=bareFootBox(m,sx),z=m.legR*.95;ball(list,m.legR*.42,[sx*m.hipX,kitFootTop('foot',box,z)-m.legR*.03,z],'foot'+s,o.shoes,[2.25,.36,.62],10,6);}
    }
   }else addShoe(list,recipe,m,s,wear);
  }
@@ -1961,7 +2031,11 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
  if(bodyFit.some(f=>f>0))geometry.setAttribute('towelFit',new THREE.BufferAttribute(bodyFit,1));
  const hasHat=geometry.attributes.position.count>hatStart;
  const shoeOn={L:true,R:true},shoeSaved={};
- for(const side of ['L','R'])for(const [at,n] of shoeRanges[side])(shoeSaved[side]??=[]).push({at,n,position:geometry.attributes.position.array.slice(at*3,(at+n)*3),colour:geometry.attributes.color.array.slice(at*3,(at+n)*3)});
+ for(const side of ['L','R'])for(const [at,n] of shoeRanges[side])(shoeSaved[side]??=[]).push({at,n,position:geometry.attributes.position.array.slice(at*3,(at+n)*3),colour:geometry.attributes.color.array.slice(at*3,(at+n)*3),normal:geometry.attributes.normal.array.slice(at*3,(at+n)*3)});
+ // What is on each foot (a kit shape), and a kit shape's points laid for this body, as the body's own arrays hold them.
+ const worn={L:null,R:null};{const kinds={};for(const g of parts)if(g.userData.shoeShape)kinds[g.userData.shoe]=g.userData.shoeShape;Object.assign(worn,kinds);}
+ const laidShoe=(shape,box,sx,colours)=>{const list=[];kitFoot(list,shape,box,sx,'foot'+(sx>0?'L':'R'),colours);const g=list[0],out={position:g.attributes.position.array.slice(),normal:g.attributes.normal.array.slice(),colour:g.attributes.color.array.slice()};g.dispose();return out;};
+ const writeShoe=(r,data)=>{for(const [key,name] of [['position','position'],['normal','normal'],['colour','color']]){geometry.attributes[name].array.set(data[key],r.at*3);geometry.attributes[name].needsUpdate=true;}};
  geometry.computeBoundingSphere();
  const material=bodyMaterial(recipe,m);
  const body=new THREE.SkinnedMesh(geometry,material);body.name='Shimanchu body';
@@ -2091,16 +2165,30 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
    *  else's to show (buildShoeProp). */
   setShoe(side,on){
    on=!!on;if(!shoeSaved[side]||shoeOn[side]===on)return;shoeOn[side]=on;
-   const P=geometry.attributes.position.array,C=geometry.attributes.color.array,sock=new THREE.Color(SOCK.colour),mid=new THREE.Vector3(),q=new THREE.Vector3();
-   // the sock: the shoe drawn in towards the middle of its upper (the first piece), in the sock's colour
-   const upper=shoeSaved[side][0];for(let i=0;i<upper.n;i++)mid.add(q.fromArray(upper.position,i*3));mid.multiplyScalar(1/upper.n);
-   for(const r of shoeSaved[side])for(let i=0;i<r.n;i++){
-    const j=(r.at+i)*3;
-    if(on){P.set(r.position.subarray(i*3,i*3+3),j);C.set(r.colour.subarray(i*3,i*3+3),j);continue;}
-    q.fromArray(r.position,i*3).sub(mid).multiplyScalar(SOCK.size).add(mid);P[j]=q.x;P[j+1]=q.y;P[j+2]=q.z;C[j]=sock.r;C[j+1]=sock.g;C[j+2]=sock.b;
-   }
-   geometry.attributes.position.needsUpdate=true;geometry.attributes.color.needsUpdate=true;
+   // The shoe is the foot's first piece (the kit's layout). Off, the kit's own foot is there in its sock, a little
+   // smaller than the shoe was; on, the shoe as it was.
+   const upper=shoeSaved[side][0],sx=side==='L'?1:-1;
+   if(on){writeShoe(upper,upper);return;}
+   const box=shoeBox(m,sx,recipe.outfit.footwear),cy=(box.y0+box.y1)/2,k=SOCK.size;
+   writeShoe(upper,laidShoe('foot',{x:box.x,hx:box.hx*k,y0:cy-(cy-box.y0)*k,y1:cy+(box.y1-cy)*k,z:box.z,hz:box.hz*k},sx,[SOCK.colour]));
   },
+  /**
+   * Put another shoe on a foot that wears one ('L', 'R' or both): `kind` a footwear the kit has (SHOE_SHAPES: sneakers,
+   * shoes, boots' foot, slippers), in `colour` (theirs unless given). The shoes are worn, not part of the foot: the same
+   * points take the new shape. Returns false for somebody built barefoot or in sandals (their foot has no shoe to change).
+   */
+  wearShoes(kind,{colour=recipe.outfit.shoes,side=null}={}){
+   const shape=SHOE_SHAPES[kind];if(!shape)return false;let done=false;
+   for(const s of side?[side]:['L','R']){
+    if(!shoeSaved[s])continue;
+    const upper=shoeSaved[s][0],sx=s==='L'?1:-1,data=laidShoe(shape,shoeBox(m,sx,kind),sx,shoeColours(colour,shape));
+    Object.assign(upper,data);worn[s]=shape;done=true;
+    if(shoeOn[s])writeShoe(upper,data);
+   }
+   return done;
+  },
+  /** The kit shape on a foot ('sneaker', 'shoe', 'boot', 'slipper'), or null for a bare or sandalled foot. */
+  shoeWorn(side){return worn[side];},
   shoeOn(side){return shoeOn[side];},
   faceState:{expression:'neutral',blink:0,talk:0,look:[0,0]},
   /** Repaint the face if what it is doing has changed. */
