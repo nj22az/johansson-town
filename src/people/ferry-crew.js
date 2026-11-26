@@ -31,7 +31,7 @@ const people={
   why:'Ryo, 41, chief officer, from Itoman: a fifth-grade deck licence and six years on the Kerama ferries before the Minato Maru. He keeps the lookout, supervises access and works the ramp controls, and checks the berth from the wing while the master stays at the conning position.',
   lives:'The chief officer’s cabin aboard'},
  chief:{known:'the chief engineer',
-  why:'Chief engineer of the Minato Maru; responsible for the machinery, engineering watches and maintenance alongside his relief engineer, Mac Turner, who takes the working watch whenever the chief is ashore.',
+  why:'Chief engineer of the Minato Maru; responsible for the machinery, engineering watches and maintenance alongside his relief engineer, Erik Turner, who takes the working watch whenever the chief is ashore.',
   lives:'Duty cabin aboard; primary home with Thuan on Kitano-jima',trait:'Careful engineer and patient mentor'},
  oiler:{known:'the motorman',
   why:'Chin, the motorman: Thao’s husband and the island’s mechanical repairman, who took the engine-room rating post when it came free. He tends the diesels, the bilges and the lubricating oil under the chief, and keeps the workshop with Tetsuo between watches; while she sails, Tetsuo keeps the bench alone.',
@@ -56,11 +56,11 @@ export const FERRY_CREW=Object.freeze(FERRY_MANNING.map(({post,title,jp,licence}
  const p=holder(post);
  return Object.freeze({post,title,jp,name:live(p.holder),...people[post],supporting:!!p&&['mate','deck','purser','cook'].includes(post),licence:'Game manning plan: '+licence});
 }));
-/** The reliefs the roster has: Kōji for the bosun's week off, Mac for the chief whenever the player is ashore. */
+/** The reliefs the roster has: Kōji for the bosun's week off, Erik for the chief whenever the player is ashore. */
 const bosunRelief=Object.freeze({name:live(holder('bosun').relief),why:'He knows the island boats, lines and weather, and covers Ms Uezu’s relief week as bosun.'});
 export const FERRY_RELIEF=Object.freeze({
  bosun:bosunRelief,
- chief:Object.freeze({name:live(holder('chief').relief),why:'Mac Turner, the relief engineer: takes the chief’s working watch in the engine room whenever Johansson is ashore, and keeps a duty berth aboard.'}),
+ chief:Object.freeze({name:live(holder('chief').relief),why:'Erik Turner, the relief engineer: takes the chief’s working watch in the engine room whenever Johansson is ashore, and keeps a duty berth aboard.'}),
  // The old deck rota lookup remains an alias; the signed-on post is correctly called bosun.
  deck:bosunRelief,
 });
@@ -69,10 +69,10 @@ export const FERRY_RELIEF=Object.freeze({
 const shore={
  tickets:{where:'The Port Building’s waiting hall',does:'Sells tickets, keeps the post and parcel counter and gives the passenger count to the purser'},
  linesman:{where:'The Harbour Office and the ferry bitts on the outer pier',does:'Walks from the office to the bitts before every call to handle the shore end of each line, and keeps the berth radio between calls',
-  why:'Jack Reed, the harbour agent: an American who came to Okinawa as a merchant seaman in the sixties, paid off in Naha and never went home; thirty years on this quay, the berth and the office radio, the freight book, and the shore end of every line since Fujita went to the bridge.'},
+  why:'Sverker Reed, the harbour agent: an American who came to Okinawa as a merchant seaman in the sixties, paid off in Naha and never went home; thirty years on this quay, the berth and the office radio, the freight book, and the shore end of every line since Fujita went to the bridge.'},
  port:{where:'The Harbour Office',does:'Gives the berth and keeps the port radio'},
  'relief-engineer':{where:'Minato Maru and Kitahama Heights A',does:'Relieves Johansson on machinery watches; keeps a separate duty berth aboard',
-  why:'Mac Turner, 61, relief engineer: an American who came to the island with the diesels, Caterpillars for the Naha fishing boats in the seventies, and stayed for the quiet; a house in Kitahama Heights and a duty berth aboard.'},
+  why:'Erik Turner, 61, relief engineer: an American who came to the island with the diesels, Caterpillars for the Naha fishing boats in the seventies, and stayed for the quiet; a house in Kitahama Heights and a duty berth aboard.'},
  electrician:{where:'The electrical workshop aboard, alongside at Minato',does:'Maintains the ferry’s electrical equipment while she is in port'},
  'airport-linesman':{where:'Kitano-jima ferry pier',does:'Handles the shore eyes at the Kitano berth',
   why:'Kai, 47, the Kitano line hand: born in the hamlet, a deckhand on the Naha boats until his knees, and back on the pier he grew up beside; the shore end of every line at Kitano, and the Shiroma house across the lane, rented from the family in Naha.'},

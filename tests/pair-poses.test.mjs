@@ -22,7 +22,7 @@ installDOM();
  * buddy-film poster BackToBack of 2026-10-20), both stand on the floor, and each role plays alone as
  * any move does, smoothly and the same every time.
  */
-const PAIRS=[['Thuan','Nils Johansson'],['Thao','Vy'],['Mr Fujita','Kōji'],['Riku','Vy'],['Grandmother Higa','Mai']];
+const PAIRS=[['Thuan','Nils Johansson'],['Thao','Vy'],['Mr Fujita','Kōji'],['Riku','Vy'],['Christina','Mai']];
 const NAMES=Object.keys(PAIR_POSES);
 /** A few millimetres: how far one body's drawn surface may go into the other's core. A mitten laid on a shirt that the core
  *  does not have (the core is the bare body) may press as far as the shirt's thickness. */

@@ -1,0 +1,33 @@
+{
+ "source": "Original Johansson Town head, sculpted in Blender for the game's generator",
+ "character": "Sverker",
+ "form": "broad",
+ "generator": "tools/blender/build-sverker-head.py",
+ "blender": "5.3.0",
+ "halfAxes": {
+  "width": 1.08,
+  "height": 1.0,
+  "depth": 0.98,
+  "heightOverWidth": 0.926
+ },
+ "radius": {
+  "min": 0.9137,
+  "max": 1.0586
+ },
+ "features_deg": {
+  "brow": 79.93,
+  "eye": 92.81,
+  "nose": 105.05,
+  "mouth": 116.97,
+  "eyeA": 16.16
+ },
+ "profile": {
+  "brow": 0.989,
+  "eyeSocket": 0.9654,
+  "noseTip": 0.9722,
+  "upperLip": 0.9849,
+  "chin": 1.0215
+ },
+ "jawCorner": 1.044,
+ "temple": 1.0126
+}

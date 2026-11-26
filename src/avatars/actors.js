@@ -6,6 +6,7 @@ import * as THREE from '../../vendor/three.module.js';
 import {buildAvatar,measure} from './build.js';
 import {createAvatarAnimator,GESTURES} from './animate.js';
 import {recipeFor} from './cast.js';
+import {APPEARANCE_REVISIONS} from './wardrobe.js';
 import {normalizeRecipe,decodeRecipe,encodeRecipe} from './recipe.js';
 import {fitAvatarHeldProp,gripWheel} from './consume.js';
 import {workHands} from './work-hands.js';
@@ -39,14 +40,18 @@ export function playerRecipe(storage=globalThis.localStorage){
  try{
   const r=decodeRecipe(storage?.getItem(playerRecipeKey(storage)))||decodeRecipe(readSave(storage)?.avatarRecipe);
   if(r){
-   if(r.name==='Vy'&&Number(storage?.getItem(playerRecipeKey(storage)+'.appearance-revision')||0)<1){const adopted=normalizeRecipe({...recipeFor('Vy'),profile:r.profile});savePlayerRecipe(adopted,storage);return adopted;}
+   // A drawing redone since this look was saved is adopted once (wardrobe.js APPEARANCE_REVISIONS); a later edit is kept.
+   const who=r.name||'Johansson',revision=APPEARANCE_REVISIONS[who];
+   if(revision&&Number(storage?.getItem(revisionKey(who,storage))||0)<revision){const adopted=normalizeRecipe({...recipeFor(who),profile:r.profile});savePlayerRecipe(adopted,storage);return adopted;}
    return {...r,outfit:appropriateOutfit(r.name||'Johansson',r.outfit)};
   }
  }catch{}
  return recipeFor('Johansson');
 }
+/** Where a player's slot records which drawing of `name` it has adopted (Vy's is the key it has always been). */
+const revisionKey=(name,storage)=>playerRecipeKey(storage)+'.appearance-revision'+(name==='Vy'?'':'.'+name);
 export function savePlayerRecipe(recipe,storage=globalThis.localStorage){
- const code=encodeRecipe({...recipe,outfit:appropriateOutfit(recipe.name||'Johansson',recipe.outfit)});try{const key=playerRecipeKey(storage);storage?.setItem(key,code);if(recipe.name==='Vy')storage?.setItem(key+'.appearance-revision','1');}catch{}return code;
+ const code=encodeRecipe({...recipe,outfit:appropriateOutfit(recipe.name||'Johansson',recipe.outfit)});try{const key=playerRecipeKey(storage);storage?.setItem(key,code);const who=recipe.name||'Johansson';if(APPEARANCE_REVISIONS[who])storage?.setItem(revisionKey(who,storage),String(APPEARANCE_REVISIONS[who]));}catch{}return code;
 }
 
 

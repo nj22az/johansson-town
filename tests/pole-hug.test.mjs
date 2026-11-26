@@ -41,7 +41,7 @@ for(const side of ['L','R'])test(`every resident hugs a real pole before the che
 });
 
 test('the pole stands ahead of the chest, by the cheek, clear of the turned head, within the arms\' reach', ()=>{
- for(const who of ['Officer Mori','Thuan','Mr Fujita','Harbour master']){
+ for(const who of ['Officer Mori','Thuan','Mr Fujita','Sverker']){
   const avatar=buildAvatar(CAST_RECIPES[who]),m=avatar.measure,[x,z]=poleHugPole(m,POLE_RADIUS,avatar);
   assert.ok(x<0&&Math.abs(x)<.1,`${who}: by the right cheek (PoleHug turns the face out to the left), not beside the head`);
   assert.deepEqual(poleHugPole(m,POLE_RADIUS,avatar,'R'),[-x,z],'the left cheek\'s pole is the right\'s mirrored');

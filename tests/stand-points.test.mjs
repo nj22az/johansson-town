@@ -54,7 +54,7 @@ test('stand sequences belong to the residents the owner named, 3–12 rows each,
  const rows=new Map();
  for(const r of STANDING_RESIDENTS){const s=STAND_SEQUENCES[r.stand];assert.ok(s,r.stand+' exists');rows.set(r.name,new Set([...(rows.get(r.name)||[]),r.stand]));}
  // Ms Ganaha's coin-laundry round: the owner's decision of 21 October 2026 gave the laundry its keeper (commerce/coin-laundry.js).
- assert.deepEqual([...rows.keys()].sort(),['Grandmother Higa','Harbour master','Kōji','Mrs Sato','Ms Ganaha','Nhung','Officer Mori','Thuan'].sort());
+ assert.deepEqual([...rows.keys()].sort(),['Christina','Sverker','Kōji','Mrs Sato','Ms Ganaha','Nhung','Officer Mori','Thuan'].sort());
  for(const [name,ids] of rows){const n=[...ids].reduce((t,id)=>t+STAND_SEQUENCES[id].points.length,0);assert.ok(n>=3&&n<=12,name+' has '+n+' stand rows');}
  for(const p of CAST)for(const row of p.day)assert.ok(row.length===3||row[3]?.stand,p.name+': a fourth element is only a stand sequence');
 });
@@ -77,7 +77,7 @@ test('the seeded clock decides where they are: the same on every run, never Math
 test('the timeline walks at 1.25 m/s between points and stays at each for its drawn wait, in order, looping',()=>{
  const seq=STAND_SEQUENCES['higa-garden'];let last=null;
  for(let s=0;s<6000;s+=5){
-  const at=standAt(seq,DAY+420,DAY+420+s/60,'Grandmother Higa');
+  const at=standAt(seq,DAY+420,DAY+420+s/60,'Christina');
   if(last&&at.index!==last.index){
    assert.equal(at.index,(last.index+1)%seq.points.length,'points in order, looping');
    const a=seq.points[last.index],b=seq.points[at.index],walk=at.arrive-last.leave;
@@ -86,8 +86,8 @@ test('the timeline walks at 1.25 m/s between points and stays at each for its dr
   if(at.waiting){const w=at.leave-at.arrive,p=seq.points[at.index];assert.ok(w>=p.wait[0]&&w<=p.wait[1]);}
   last=at;
  }
- assert.equal(dayPhase('Grandmother Higa',DAY+430).stand,'higa-garden');
- assert.equal(standNow('Grandmother Higa',DAY+10*60,'world'),null,'only in the phase that names it');
+ assert.equal(dayPhase('Christina',DAY+430).stand,'higa-garden');
+ assert.equal(standNow('Christina',DAY+10*60,'world'),null,'only in the phase that names it');
 });
 
 // ── The rooms ──
@@ -151,7 +151,7 @@ test('the street’s stand points stand clear of every solid and doorway, and ea
   });
  }
 });
-for(const name of ['Grandmother Higa','Kōji'])test(name+' walks the stand points of the day in order, faces each and takes its pose, never through anything',()=>{
+for(const name of ['Christina','Kōji'])test(name+' walks the stand points of the day in order, faces each and takes its pose, never through anything',()=>{
  const parent=new THREE.Group();parent.visible=false;
  const system=createNeighbours({parent,blocked,register(o){o.userData.hit={inside:false};}});
  const person=system.people.find(p=>p.spec.name===name);system.people.splice(0,system.people.length,person);
@@ -179,11 +179,11 @@ test('one switch (full-life.js) turns stand points and quay breaks off for a lig
  const {quayLedger,quayClaim}=await import('../src/people/quay-breaks.js');
  const b=quayLedger(20740).find(b=>b.spot),m=20740*1440+7*60+40;
  assert.equal(fullLife(),true,'on by default');
- assert.ok(standNow('Grandmother Higa',m,'world')&&quayClaim(b.name,b.start+1));
+ assert.ok(standNow('Christina',m,'world')&&quayClaim(b.name,b.start+1));
  setFullLife(false);
  try{
-  assert.equal(standNow('Grandmother Higa',m,'world'),null);assert.equal(quayClaim(b.name,b.start+1),null);
-  const plan=canonicalDay('Grandmother Higa',m);assert.equal(plan.stand,undefined,'one target for the phase');
+  assert.equal(standNow('Christina',m,'world'),null);assert.equal(quayClaim(b.name,b.start+1),null);
+  const plan=canonicalDay('Christina',m);assert.equal(plan.stand,undefined,'one target for the phase');
  }finally{setFullLife(true);}
- assert.ok(standNow('Grandmother Higa',m,'world'));
+ assert.ok(standNow('Christina',m,'world'));
 });

@@ -129,11 +129,11 @@ export function buildPark(world,options={}){
  const {materials}=kit.finish(group,'Harbour Park furnishings');
  const p=HARBOUR_POND,water=new THREE.Mesh(new THREE.CircleGeometry(1,64),new THREE.MeshStandardMaterial({color:0x587f76,roughness:.25,transparent:true,opacity:.88,depthWrite:false}));water.rotation.x=-Math.PI/2;water.scale.set(p.rx,p.rz,1);water.position.set(p.x,p.waterY,p.z);water.name='Harbour Park koi pond';group.add(water);
  const basin=new THREE.Mesh(new THREE.CircleGeometry(1,64),new THREE.MeshStandardMaterial({color:0x586455,roughness:1}));basin.rotation.x=-Math.PI/2;basin.scale.set(p.rx,p.rz,1);basin.position.set(p.x,p.bedY+.012,p.z);basin.name='Harbour pond bed';group.add(basin);
- const pondView=anchor(30.3,-31,'Look into the koi pond','inspect','Garden pond','Koi turn under the lily pads: red and white, gold and black, and one old orange one that comes up for anyone. Grandmother Higa keeps them; the bathhouse is across the lawn.');pondView.name='harbour-pond-view';
+ const pondView=anchor(30.3,-31,'Look into the koi pond','inspect','Garden pond','Koi turn under the lily pads: red and white, gold and black, and one old orange one that comes up for anyone. Christina keeps them; the bathhouse is across the lawn.');pondView.name='harbour-pond-view';
  const koi=createKoi(group);let feedAsked=false,feedStart=-1e9;
  anchor(...KOI_FEED.stand,'Feed the koi','read','Feeding the koi',m=>{
-  if(!onsenOpen(m))return 'The tin of fu is not on its post: Grandmother Higa takes it in when she shuts the bath at ten at night. The koi are down among the stones until morning.';
-  feedAsked=true;return 'You take a pinch of fu from Grandmother Higa’s tin on the post and scatter it on the water. The koi come in a crowd, mouths open, the old orange one first. One pinch each, the tin says.';});
+  if(!onsenOpen(m))return 'The tin of fu is not on its post: Christina takes it in when she shuts the bath at ten at night. The koi are down among the stones until morning.';
+  feedAsked=true;return 'You take a pinch of fu from Christina’s tin on the post and scatter it on the water. The koi come in a crowd, mouths open, the old orange one first. One pinch each, the tin says.';});
  // Kanhizakura petals, in the weeks it flowers only (cherry-tree.js CHERRY_SEASONS): they drift down and settle in the grass.
  const petals=createPetals(group,cherry);
  const pools=createLightPools(world.group,LAMP_POSITIONS.map(([x,z])=>({x,z,y:0,radius:2.5})));
@@ -173,7 +173,7 @@ function guideText(){
  return 'Minato Harbour Park. Straight on from the gate is Umi-no-yu, the sea-water bath (10:00–22:00), with its footbath beside the porch: free for residents in the bath’s hours. '
   +'On the right of the gate, the dessert counter is closed pending a keeper; its bench remains a public seat. '
   +'On the left, the walk under the harbour cherry to the garden shrine, the koi pond and the quay. From the footbath the walk goes on to the beach and the gajumaru’s bench. '
-  +'Grandmother Higa keeps the koi and the gettō by the bath, and Thuan the border along Main Street, with plants from Sakura. The entrance bed has no assigned keeper.';
+  +'Christina keeps the koi and the gettō by the bath, and Thuan the border along Main Street, with plants from Sakura. The entrance bed has no assigned keeper.';
 }
 function bedText(bed,minutes){
  const {flowering,leaf}=bedNow(bed,minutes),name=k=>PARK_PLANTS[k].name;

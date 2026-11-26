@@ -97,7 +97,7 @@ test('indoor visitors lower into chairs and finish standing before returning to 
 });
 
 test('home reading uses the furnished cushion height and releases before walking out',()=>{
- const street=new THREE.Group(),room=new THREE.Group(),profile=RESIDENTS.find(p=>p.name==='Harbour master'),g=new THREE.Group();street.add(g);
+ const street=new THREE.Group(),room=new THREE.Group(),profile=RESIDENTS.find(p=>p.name==='Sverker'),g=new THREE.Group();street.add(g);
  g.userData={name:profile.name,hit:{inside:false},indoors:'home'};g.position.set(profile.home[0],0,profile.home[1]);
  const minute=Array.from({length:1440},(_,m)=>m).find(m=>residentPlan(profile,m).place==='home'&&homeRoutine(profile,m).pose==='Read');
  assert.ok(Number.isFinite(minute));
@@ -115,7 +115,7 @@ test('home reading uses the furnished cushion height and releases before walking
 
 
 test('a home resident waits until the player releases their household seat',()=>{
- const street=new THREE.Group(),room=new THREE.Group(),profile=RESIDENTS.find(p=>p.name==='Harbour master'),g=new THREE.Group();street.add(g);
+ const street=new THREE.Group(),room=new THREE.Group(),profile=RESIDENTS.find(p=>p.name==='Sverker'),g=new THREE.Group();street.add(g);
  g.userData={name:profile.name,hit:{inside:false},indoors:'home'};g.position.set(profile.home[0],0,profile.home[1]);
  const minute=Array.from({length:1440},(_,m)=>m).find(m=>residentPlan(profile,m).place==='home'&&homeRoutine(profile,m).pose==='Read');
  const layout={table:[0,0,0],tableStand:[0,0,.4],tableSeatHeight:.075,tableSeatYaw:0,door:[0,0,1],bedside:[0,0,0],bed:[0,.6,-1]};

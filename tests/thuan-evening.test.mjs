@@ -38,7 +38,7 @@ test('Thuan locks up, has an occasional beer, and takes the last boat home',()=>
 
 test('the beer is a commuter habit, not something bolted onto every layout',()=>{
  // Somebody without a shift is not given one.
- assert.equal(thuanAtMinato({name:'Harbour master'},shift.finish+5,false),false);
+ assert.equal(thuanAtMinato({name:'Sverker'},shift.finish+5,false),false);
 });
 
 

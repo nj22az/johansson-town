@@ -35,7 +35,7 @@ const ALL_NEIGHBOURS=Object.freeze([
    'Dad sorts the catch on the quay. I can watch the boats, but I am not allowed out on one until I can swim to the buoy.',
    'The open lawn beside Harbour Park is our football place. We keep the ball away from the pond and the bathhouse windows.']},
 
- {name:'Grandmother Higa',look:'Fumiko',height:1.46,role:'on her verandah',at:[-29.8,-20.7],y:.47,face:[0,-1],pose:'Interact',hours:[[H(7),H(18,30)]],
+ {name:'Christina',look:'Fumiko',height:1.46,role:'on her verandah',at:[-29.8,-20.7],y:.47,face:[0,-1],pose:'Interact',hours:[[H(7),H(18,30)]],
   lines:[
    "Hey, welcome.\nSit a moment. You are the one who talks to the girl at Sakura every day. She is a good girl. She counts my change twice so I do not have to.",
    'These are shima-rakkyō beans — no, you are right, rakkyō is an onion. I have been saying it wrong for seventy years and nobody corrects a grandmother.',
@@ -55,7 +55,7 @@ const ALL_NEIGHBOURS=Object.freeze([
    'The pond is right beside the bathhouse now. I can finish my homework while everybody goes for a soak.']},
 ]);
 /** Who is about today. Everyone here is in the cast (cast.js); the plan's batch 2 moves them onto its schedules. */
-const walking=new Set(['Johansson','Thuan','Thao','Chin','Nhung','Tetsuo','Mrs Sato','Officer Mori','Harbour master','Mr Fujita',
+const walking=new Set(['Johansson','Thuan','Thao','Chin','Nhung','Tetsuo','Mrs Sato','Officer Mori','Sverker','Mr Fujita',
  // The supporting crew's bodies are the ship's (ferry-crew-aboard.js) and the Kitano pier's (ferry-shore-crew.js).
  ...CAST.filter(p=>p.supporting).map(p=>p.name)]);
 // Named shore residents and off-watch crew all use their canonical household and day.
@@ -235,7 +235,7 @@ export function createNeighbours({parent,register,onAction,characters,blocked=()
      if(!p.initialised){
       const saved=getState().residentLocations?.[spec.name],at=saved?.position;
       // A remembered spot nobody can walk out of (the first save can hold a neighbour's old verandah point, inside the
-      // house's solid: Grandmother Higa stood there all day, 21 October 2026) is not a start: the day's own target is.
+      // house's solid: Christina stood there all day, 21 October 2026) is not a start: the day's own target is.
       const valid=Array.isArray(at)&&at.length===2&&at.every(Number.isFinite)&&Math.abs(at[0])<300&&Math.abs(at[1])<300&&!blocked(at[0],at[1],.3);
       const start=valid?at:phase.target;g.position.set(start[0],groundAt(...start),start[1]);p.initialised=true;
      }
@@ -252,7 +252,7 @@ export function createNeighbours({parent,register,onAction,characters,blocked=()
       if(len<.06)p.path.shift();else {const x=g.position.x+dx/len*step,z=g.position.z+dz/len*step;if(!blocked(x,z,.3)){g.position.set(x,groundAt(x,z),z);faceAlong(g,dx,dz);}}
      }
      const arrived=Math.hypot(g.position.x-phase.target[0],g.position.z-phase.target[1])<.35;
-     // Indoors on arriving: at home, or behind a counter she keeps (Grandmother Higa at Johansson Mart's till,
+     // Indoors on arriving: at home, or behind a counter she keeps (Christina at Johansson Mart's till,
      // world/okinawa/kitahama-shop.js; the shop's room draws her there, interiors/kitahama-shop-room.js).
      const goesIn=phase.place==='home'||phase.place==='kitahama-shop';
      if(arrived&&goesIn)g.userData.indoors=phase.place;else delete g.userData.indoors;

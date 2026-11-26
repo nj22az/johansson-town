@@ -298,7 +298,7 @@ export const TOOLS=[
    approval:'Preview and validate first. Only after creator approval call the relevant publish tool with dryRun:false. This writes local data only. Build runtime, validate, review the exact diff and deploy separately. Never infer approval from a successful check.',
    guide:'avatar-creator/docs/STUDIO-WORKFLOW.md',limits:['Static self-contained GLB only; rigs, animation and unsupported compression are refused.','World publication is implemented only for the Dock Workshop adapter.','Physical Safari and native desktop Qt acceptance remain required.']
   };}},
- {name:'character_list',readOnly:true,description:'List the people Studio can draw: World\'s cast, its neighbours, the ferry\'s crew and the port clerk (by the names World calls them: Mac, Ms Ganaha), the townsfolk (drawn from their name and personality), and Studio-only characters. Says whose look Studio has changed, and which changes are still only in Studio\'s draft (unpublished).',
+ {name:'character_list',readOnly:true,description:'List the people Studio can draw: World\'s cast, its neighbours, the ferry\'s crew and the port clerk (by the names World calls them: Erik, Ms Ganaha), the townsfolk (drawn from their name and personality), and Studio-only characters. Says whose look Studio has changed, and which changes are still only in Studio\'s draft (unpublished).',
   input:object({group:{enum:['cast','neighbour','crew','townsfolk','studio']},query:{type:'string',maxLength:40,description:'Part of a name or role (accents and capitals may be left out).'}}),
   async run({group,query},ctx){
    const {c,looks,resident,studio}=await people(ctx),q=query===undefined?null:c.rules.foldName(query);

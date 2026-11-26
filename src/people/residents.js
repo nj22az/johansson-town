@@ -15,7 +15,7 @@ import {activeHomeForResident,homeForResident} from './island-households.js';
  * his office, Officer Mori in the tatami room behind the police box.
  */
 const WORKPLACE_HOMES={
- 'Harbour master':()=>({door:[HARBOUR_OFFICE.door[0],HARBOUR_OFFICE.door[2]],address:'Johansson Harbour Office (the bed behind the screen)'}),
+ 'Sverker':()=>({door:[HARBOUR_OFFICE.door[0],HARBOUR_OFFICE.door[2]],address:'Johansson Harbour Office (the bed behind the screen)'}),
  'Officer Mori':()=>({door:[...KOBAN.door],address:KOBAN.address}),
 };
 // Thuan lives on Kitano-jima with Johansson and commutes by the ferry (the Harbour Line's boats, commuter-schedule.js):
@@ -25,16 +25,16 @@ const WORKPLACE_HOMES={
 // carriageway a step off the kerb at x −4 where it was (the owner, 25 November 2026).
 export const THUAN_PROFILE={...residentialHome('Thuan'),"name":"Thuan","age":25,"role":"Sakura owner","height":1.64,"work":[-6.1,-25.5],"evening":restaurantApproach('izakaya'),"friend":"Thao","start":540,"close":1200,"retire":1410,"supperStart":null,"supperEnd":null};
 // The walking residents. Reiko, the Bus driver and Barfly were retired in phase 4 of the consolidation (roster.js
-// RETIRED): Nhung prints the paper, the Harbour master keeps his own stories, and Minato's regulars are the residents.
+// RETIRED): Nhung prints the paper, Sverker keeps his own stories, and Minato's regulars are the residents.
 // Dr Kakazu retired into Nhung on 22 October 2026: she is the island doctor (clinic-hours.js), the clinic her work.
 // Her work is the clinic's step (school.js: the Minato Clinic door at x 34.1, approached from B.minZ-1.4; canonical-day.js
 // `clinic`). The profile's [4.3,34] was nobody's door, thirty metres west of the town hall, where she walked to open up.
 const CLINIC_STEP=Object.freeze([34.1,SCHOOL.building.minZ-1.4]);
-export const ACTIVE_RESIDENT_NAMES=Object.freeze(['Nhung','Chin','Mrs Sato','Harbour master','Tetsuo','Officer Mori','Thao','Thuan']);
+export const ACTIVE_RESIDENT_NAMES=Object.freeze(['Nhung','Chin','Mrs Sato','Sverker','Tetsuo','Officer Mori','Thao','Thuan']);
 const NEIGHBOURHOOD={
  Nhung:{friend:'Thao',role:'the island doctor',gossip:'I put Tama in the paper. He has been sitting on the entire edition ever since.',clue:'Surgery is nine to twelve and two to five. In the evening I set the town’s paper at the old Front-Row shop; Sakura sells the books now.'},
  'Mrs Sato':{friend:'Thuan',gossip:'Thuan calls her plant the assistant manager. I am still waiting for it to help with the stock.'},
- 'Harbour master':{friend:'Mrs Sato',gossip:'Ms Ganaha sends the sailing list up from the terminal every morning. I check it against the harbour clock.'},
+ 'Sverker':{friend:'Mrs Sato',gossip:'Ms Ganaha sends the sailing list up from the terminal every morning. I check it against the harbour clock.'},
  Thao:{friend:'Thuan',gossip:'Thuan is my little sister; she takes the last boat home to Kitano-jima every night and is back on the half past eight. Nhung says I am stubborn. I say I am right.'},
  'Officer Mori':{clue:'Main Street leads straight to the harbour. I follow it on the night patrol.'},
  Chin:{clue:'Star Port is inside our repair shop. Beat my score and I will show you around.'},
@@ -49,7 +49,7 @@ export const RESIDENTS=ACTIVE_RESIDENT_NAMES.map(name=>{
  const source=name==='Thuan'?THUAN_PROFILE:PROFILES.find(p=>p.name===name);
  const diningPoint=point=>point&&point[0]===24&&point[1]>=18&&point[1]<=25?restaurantApproach('izakaya'):point;
  const shopFloor={Chin:'workshop',Tetsuo:'workshop'}[name];
- const profile={...source,...NEIGHBOURHOOD[name],work:({'Harbour master':[HARBOUR_OFFICE.door[0],HARBOUR_OFFICE.door[2]],'Officer Mori':[...KOBAN.door],Thao:IZAKAYA_DOOR,Nhung:CLINIC_STEP,'Mrs Sato':SATO_RAMEN_STEP})[name]||diningPoint(source.work),evening:({Nhung:[.15,18.7],Chin:[.15,17.6], 'Mrs Sato':TOWN_DESTINATIONS.bus,'Harbour master':[0,-48],Tetsuo:[.15,16.5],'Officer Mori':[0,28],Thao:IZAKAYA_DOOR})[name]||diningPoint(source.evening),...residentialHome(name)};
+ const profile={...source,...NEIGHBOURHOOD[name],work:({'Sverker':[HARBOUR_OFFICE.door[0],HARBOUR_OFFICE.door[2]],'Officer Mori':[...KOBAN.door],Thao:IZAKAYA_DOOR,Nhung:CLINIC_STEP,'Mrs Sato':SATO_RAMEN_STEP})[name]||diningPoint(source.work),evening:({Nhung:[.15,18.7],Chin:[.15,17.6], 'Mrs Sato':TOWN_DESTINATIONS.bus,'Sverker':[0,-48],Tetsuo:[.15,16.5],'Officer Mori':[0,28],Thao:IZAKAYA_DOOR})[name]||diningPoint(source.evening),...residentialHome(name)};
  // The shop staff stand at their own shop's door, and where that door is depends on
  // the layout, which is not known yet. Read it when somebody asks.
  if(shopFloor)Object.defineProperty(profile,'work',{get:()=>TOWN_DESTINATIONS[shopFloor],enumerable:true,configurable:true});
@@ -76,7 +76,7 @@ export const HOME_OWNERS=RESIDENTS.filter(p=>p.homeEntry);
 // the Front-Row staff followed with their own homes in the yard behind the shop, then
 // the harbour master and Officer Mori, who live at the office and the police box, and
 // Mrs Sato, who comes in on the morning bus to cook the lunch ramen.
-export const STREET_CAST_NAMES=Object.freeze(['Thuan','Thao','Nhung','Chin','Tetsuo','Harbour master','Officer Mori','Mrs Sato']);
+export const STREET_CAST_NAMES=Object.freeze(['Thuan','Thao','Nhung','Chin','Tetsuo','Sverker','Officer Mori','Mrs Sato']);
 export const STREET_CAST=RESIDENTS.filter(p=>STREET_CAST_NAMES.includes(p.name));
 /** Everybody the town builds: the street cast. (Minato's live-in regular was retired in phase 4; nobody lives in the bar.) */
 export const WORLD_CAST=[...STREET_CAST];

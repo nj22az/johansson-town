@@ -62,7 +62,7 @@ const SHOTS=[
  {name:'07b-fujita-uncurl',minutes:NIGHT,power:'last-straw',cam:[[2.85,.85,3.35],[4.35,.95,3.55]],people:[{who:'Mr Fujita',outfit:'afterbath',pose:'ChairUncurl',uncurl:.45,...sitAt}]},
  {name:'07c-fujita-frozen',minutes:NIGHT,power:'restored',cam:[[2.85,.85,3.35],[4.35,.95,3.55]],people:[{who:'Mr Fujita',outfit:'afterbath',pose:'FrozenAbsurd',...sitAt}]},
  {name:'07d-fujita-side',minutes:NIGHT,power:'quiet',cam:[[3.55,1.05,4.6],[4.4,.75,3.6]],people:[{who:'Mr Fujita',outfit:'afterbath',pose:'ChairUncurl',uncurl:.45,...sitAt}]},
- {name:'08a-harbour-master',minutes:NIGHT,power:'quiet',cam:LEFT,people:[{who:'Harbour master',outfit:'afterbath',pose:'Sit',...sitAt}]},
+ {name:'08a-sverker',minutes:NIGHT,power:'quiet',cam:LEFT,people:[{who:'Sverker',outfit:'afterbath',pose:'Sit',...sitAt}]},
  {name:'08b-fumiko',minutes:NIGHT,power:'quiet',cam:LEFT,people:[{who:'Fumiko',outfit:'afterbath',pose:'Sit',...sitAt}]},
  {name:'08c-fumiko-side',minutes:NIGHT,power:'quiet',cam:RIGHT,people:[{who:'Fumiko',outfit:'afterbath',pose:'Sit',...sitAt}]},
  {name:'09-player-seated',minutes:NIGHT,power:'quiet',player:true},

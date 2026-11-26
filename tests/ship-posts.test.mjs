@@ -21,7 +21,7 @@ test('all eight posts are held by the roster’s holders, under the names the li
  assert.deepEqual(FERRY_CREW.map(c=>c.post+':'+c.name),['master:Mr Fujita','mate:Ryo','chief:Johansson','oiler:Chin','bosun:Ms Uezu','deck:Ren','purser:Aya','cook:Jun']);
  assert.equal(FERRY_CREW.find(c=>c.post==='oiler').title,'Motorman');assert.equal(crewFor('motorman'),'Chin');
  assert.equal(new Set(FERRY_CREW.map(c=>c.name)).size,8);
- assert.equal(FERRY_RELIEF.chief.name,'Mac');assert.equal(FERRY_RELIEF.bosun.name,'Kōji');
+ assert.equal(FERRY_RELIEF.chief.name,'Erik');assert.equal(FERRY_RELIEF.bosun.name,'Kōji');
  for(const c of FERRY_CREW){assert.ok(c.why.length>80,c.name+' has a biography');assert.ok(c.lives.length>10,c.name+' lives somewhere');}
  // The five who were job roles are people now, drawn and named, each in exactly one place: the ship or the Kitano pier.
  for(const [old,now] of [['Chief officer','Ryo'],['Deck hand','Ren'],['Purser','Aya'],['Cook-steward','Jun'],['Kitano line hand','Kai']]){
@@ -32,13 +32,13 @@ test('all eight posts are held by the roster’s holders, under the names the li
  assert.equal(ROSTER.length,23);assert.equal(new Set(ROSTER.map(p=>p.name)).size,23,'23 unique display names');
 });
 
-test('the shore roles: Jack holds the berth and Minato’s lines, Kai the Kitano lines, Mika the tickets; Tetsu is contract, never crew; Mac the relief',()=>{
+test('the shore roles: Sverker holds the berth and Minato’s lines, Kai the Kitano lines, Mika the tickets; Tetsu is contract, never crew; Erik the relief',()=>{
  for(const r of SHORE_ROLES){const s=FERRY_SHORE.find(s=>s.post===r.key);assert.equal(s.name,liveNameFor(r.holder),r.key);assert.equal(s.title,r.title);}
- assert.equal(crewFor('linesman'),'Harbour master');assert.equal(crewFor('port'),'Harbour master');assert.equal(identityOf('Harbour master').id,'jack');
- assert.equal(crewFor('airport-linesman'),'Kai');assert.equal(crewFor('tickets'),'Ms Ganaha');assert.equal(crewFor('relief-engineer'),'Mac');
+ assert.equal(crewFor('linesman'),'Sverker');assert.equal(crewFor('port'),'Sverker');assert.equal(identityOf('Sverker').id,'jack');
+ assert.equal(crewFor('airport-linesman'),'Kai');assert.equal(crewFor('tickets'),'Ms Ganaha');assert.equal(crewFor('relief-engineer'),'Erik');
  assert.equal(crewFor('electrician'),'Tetsuo');assert.ok(!FERRY_CREW.some(c=>c.name==='Tetsuo'),'Tetsuo is not sailing crew');
- for(const ashore of ['Ms Ganaha','Mrs Sato','Harbour master','Tetsuo','Mr Fujita'===null])if(ashore)assert.ok(!FERRY_CREW.some(c=>c.name===ashore)||ashore==='Mr Fujita',ashore+' stays ashore');
- assert.ok(FERRY_SHORE.find(s=>s.post==='linesman').why.includes('Jack Reed'));assert.ok(FERRY_SHORE.find(s=>s.post==='relief-engineer').why.includes('Mac Turner'));
+ for(const ashore of ['Ms Ganaha','Mrs Sato','Sverker','Tetsuo','Mr Fujita'===null])if(ashore)assert.ok(!FERRY_CREW.some(c=>c.name===ashore)||ashore==='Mr Fujita',ashore+' stays ashore');
+ assert.ok(FERRY_SHORE.find(s=>s.post==='linesman').why.includes('Sverker Reed'));assert.ok(FERRY_SHORE.find(s=>s.post==='relief-engineer').why.includes('Erik Turner'));
  assert.ok(FERRY_SHORE.find(s=>s.post==='airport-linesman').why.includes('Shiroma'));
  assert.ok(FERRY_PEOPLE.every(name=>castMember(name)),'everyone the ship signs on is in the cast');
 });

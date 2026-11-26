@@ -19,7 +19,7 @@ test('the migration is versioned and idempotent: a second pass changes nothing, 
  const saved={friendship:{'Mr Nakandakari':{points:4},'Mr Fujita':{points:2},Thuan:{points:9}},notes:['Met Mr Nakandakari.'],homeTarget:'home-kitahama-4',yen:500,inventory:['tea']};
  migrateCast(saved);assert.equal(saved.castRevision,CAST_REVISION);
  const once=JSON.stringify(saved);migrateCast(saved);assert.equal(JSON.stringify(saved),once);
- assert.deepEqual(saved.friendship,{'Mr Fujita':{points:2},Thuan:{points:9},Mac:{points:4}});assert.deepEqual(saved.notes,['Met Mac.']);
+ assert.deepEqual(saved.friendship,{'Mr Fujita':{points:2},Thuan:{points:9},Erik:{points:4}});assert.deepEqual(saved.notes,['Met Erik.']);
  assert.equal(saved.yen,500);assert.deepEqual(saved.inventory,['tea']);
  assert.equal(migrateCast({castRevision:7}).castRevision,7,'a newer revision is never lowered');
  assert.equal(migrateCast(null),null);
@@ -27,7 +27,7 @@ test('the migration is versioned and idempotent: a second pass changes nothing, 
 
 test('old names move to the live identity; a record already under the live name wins; strangers are left alone',()=>{
  assert.equal(castKey('Yonamine-sensei'),'Miss Higa');assert.equal(castKey('Mrs Higa'),'Miss Higa');assert.equal(castKey('Nakamura Mai'),null);assert.equal(castKey('Kenji'),'Chin');
- assert.equal(castKey('mac'),'Mac');assert.equal(castKey('Mr Nakandakari'),'Mac');assert.equal(castKey('jack'),'Harbour master');assert.equal(castKey('fuji'),'Mr Fujita');
+ assert.equal(castKey('mac'),'Erik');assert.equal(castKey('Mr Nakandakari'),'Erik');assert.equal(castKey('jack'),'Sverker');assert.equal(castKey('fuji'),'Mr Fujita');
  // The live names are the current ones, so nothing that walks today moves.
  for(const name of CAST_NAMES)assert.equal(castKey(name),name,name);
  for(const p of RETIRED)assert.equal(castKey(p.name),null,p.name+' is retired (phase 4): the record is dropped');
@@ -35,18 +35,18 @@ test('old names move to the live identity; a record already under the live name 
  // Phase 2 gave the supporting crew bodies, so their old job-role names move to them.
  assert.equal(castKey('Chief officer'),'Ryo');assert.equal(castKey('Kitano line hand'),'Kai');
  // Unclaimed display names and strangers remain untouched; retired aliases are checked separately.
- for(const name of ['Fuji','Jack','Ryo','Kai','Harbour visitor','Hana','Kinjo Yui'])assert.equal(castKey(name),name,name);
+ for(const name of ['Fuji','Sverker','Ryo','Kai','Harbour visitor','Hana','Kinjo Yui'])assert.equal(castKey(name),name,name);
  const saved={friendship:{'Yonamine-sensei':{points:1},'Miss Higa':{points:8}},treats:{'Mr Nakandakari':2},greeted:{'Mrs Higa':3},impressions:{Kenji:'kind'},
   relationships:{'Mr Nakandakari|Vy':{totals:{chat:1}},'Mrs Higa|Yonamine-sensei':{totals:{}},'Thao|Yonamine-sensei':{totals:{}}},
   bookshop:{completed:{'3:Mr Nakandakari':true}},errand:{from:'Mr Nakandakari',kind:'fetch'},residentLife:{'Mr Nakandakari':{day:1,yen:100,activities:['Mr Nakandakari is at the harbour.']}},
   sakura:{journal:[{buyer:'Mr Nakandakari',yen:120}]},documentArchive:[{author:'Yonamine-sensei',title:'Marks'}]};
  migrateCast(saved);
  assert.deepEqual(saved.friendship,{'Miss Higa':{points:8}},'the live record wins over the old one');
- assert.deepEqual(saved.treats,{Mac:2});assert.deepEqual(saved.greeted,{'Miss Higa':3});assert.deepEqual(saved.impressions,{Chin:'kind'});
- assert.deepEqual(Object.keys(saved.relationships).sort(),['Mac|Vy','Miss Higa|Thao'],'a pair of one person collapses and goes');
- assert.deepEqual(saved.bookshop.completed,{'3:Mac':true});assert.equal(saved.errand.from,'Mac');
- assert.deepEqual(saved.residentLife,{Mac:{day:1,yen:100,activities:['Mac is at the harbour.']}});
- assert.equal(saved.sakura.journal[0].buyer,'Mac');assert.equal(saved.documentArchive[0].author,'Miss Higa');
+ assert.deepEqual(saved.treats,{Erik:2});assert.deepEqual(saved.greeted,{'Miss Higa':3});assert.deepEqual(saved.impressions,{Chin:'kind'});
+ assert.deepEqual(Object.keys(saved.relationships).sort(),['Erik|Vy','Miss Higa|Thao'],'a pair of one person collapses and goes');
+ assert.deepEqual(saved.bookshop.completed,{'3:Erik':true});assert.equal(saved.errand.from,'Erik');
+ assert.deepEqual(saved.residentLife,{Erik:{day:1,yen:100,activities:['Erik is at the harbour.']}});
+ assert.equal(saved.sakura.journal[0].buyer,'Erik');assert.equal(saved.documentArchive[0].author,'Miss Higa');
 });
 
 test('the player’s surname stays in prose: Johansson Harbour Office is not renamed with him',()=>{

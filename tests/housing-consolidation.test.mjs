@@ -149,7 +149,7 @@ test('the Heights’ two residents walk continuously from their own front doors 
  const grid=createColliderGrid(world.colliders),blocked=(x,z,r=.3)=>townBoundsBlocked(x,z,r)||grid.some(x,z,r,c=>standingHitsRect(x,z,r,groundHeight(x,z),c));
  const neighbours=createNeighbours({parent:world.group,blocked,register(o){o.userData.hit={inside:false};}});
  try{
-  neighbours.update(0,0);const names=['Mac','Ms Ganaha'];
+  neighbours.update(0,0);const names=['Erik','Ms Ganaha'];
   for(const clock of [600,23*60]){
    const targets=new Map(names.map(name=>[name,canonicalDay(name,clock).target]));
    let arrived=false;
@@ -167,7 +167,7 @@ test('the Heights’ two residents walk continuously from their own front doors 
    assert.ok(arrived,'both residents complete the '+(clock===600?'outward':'homeward')+' walk');
   }
   // Their homes are the two ground-level front doors (kitahama-layout.js KITAHAMA_HEIGHTS), nothing above them.
-  for(const [name,id] of [['Mac','kitahama-flat-3'],['Ms Ganaha','kitahama-flat-4']]){
+  for(const [name,id] of [['Erik','kitahama-flat-3'],['Ms Ganaha','kitahama-flat-4']]){
    const house=KITAHAMA_HEIGHTS.houses.find(h=>h.id===id),home=canonicalDay(name,23*60);
    assert.deepEqual(home.target,[house.approachPosition[0],house.approachPosition[2]]);assert.equal(house.door[1],KITAHAMA.y+.02,'a door at ground level');
    assert.ok(!world.colliders.some(c=>standingHitsRect(house.door[0],house.door[2],.28,groundHeight(house.door[0],house.door[2]),c)),id+' front door is clear');
@@ -270,5 +270,5 @@ test('the retired neighbours have no body: nobody walks the postman’s round, t
  const neighbours=createNeighbours({parent:new THREE.Group()});neighbours.update(0,540);
  for(const r of RETIRED)assert.ok(!neighbours.people.some(p=>p.spec.name===r.name),r.name+' has no street body');
  assert.ok(NEIGHBOURS.every(n=>!isRetired(n.name)&&!n.walk),'no neighbour walks a round the roster retired');
- assert.deepEqual(NEIGHBOURS.map(n=>n.name),['Vy','Kōji','Riku','Miss Higa','Grandmother Higa','Mac','Ms Uezu','Ms Ganaha']);
+ assert.deepEqual(NEIGHBOURS.map(n=>n.name),['Vy','Kōji','Riku','Miss Higa','Christina','Erik','Ms Uezu','Ms Ganaha']);
 });

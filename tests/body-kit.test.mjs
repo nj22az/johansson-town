@@ -112,3 +112,19 @@ test('nobody has a ball for a nose: every nose style wears a nose from the kit, 
   assert.ok(front>m.Rh*.9&&front<m.Rh*1.5,`${name}: a nose stands ${(front/m.Rh).toFixed(2)} head radii forward`);a.dispose();
  }
 });
+
+test('a bare leg has no line down it: the sculpted limb\'s seam is one surface, its two columns sharing their normals',()=>{
+ // The owner, 26 November 2026, of Vy in her own look on his phone: "Why does Vy have lines on her legs no one should
+ // have it in any shader". The looks that draw from the normals (Vy's drawing, the pencil crayon, the sketchbook) drew
+ // the lathe's seam, which the kit's limb had joined on the wrong points.
+ const r=recipeFor('Vy'),m=measure(r),a=buildAvatar(r,{shadows:false,eyes3d:false}),P=a.body.geometry.attributes.position,N=a.body.geometry.attributes.normal,seen=new Map();
+ let pairs=0;
+ for(let i=0;i<P.count;i++){
+  const y=P.getY(i);if(y<m.hipY*.25||y>m.hipY*.8)continue;                                  // her legs, shoe to skirt
+  const k=[P.getX(i),y,P.getZ(i)].map(v=>Math.round(v*1e5)).join(',');
+  if(!seen.has(k)){seen.set(k,i);continue;}
+  const j=seen.get(k),d=N.getX(i)*N.getX(j)+N.getY(i)*N.getY(j)+N.getZ(i)*N.getZ(j);pairs++;
+  assert.ok(d>.999,`a crease at ${k}: the two normals agree to ${d.toFixed(3)}`);
+ }
+ assert.ok(pairs>20,'the seam was looked at');a.dispose();
+});

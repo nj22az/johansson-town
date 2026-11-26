@@ -3,7 +3,7 @@
 
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const result=(ok,data={})=>JSON.stringify({ok,...data});
-const allowed=new Set(['Nhung','Chin','Mrs Sato','Harbour master','Thao']);
+const allowed=new Set(['Nhung','Chin','Mrs Sato','Sverker','Thao']);
 
 function controller(){return window.__JOHANSSON_CHARACTER_CONTROL__||null;}
 function list(){const c=controller();return c?c.list():[];}
@@ -46,12 +46,12 @@ const tools=[
     inputSchema:{
       type:'object',
       properties:{
-        name:{type:'string',enum:['Nhung','Chin','Mrs Sato','Harbour master','Thao']},
+        name:{type:'string',enum:['Nhung','Chin','Mrs Sato','Sverker','Thao']},
         action:{type:'string',enum:['move','face','gesture','release']},
         direction:{type:'string',enum:['north','south','east','west','harbour','inland']},
         distance:{type:'number',minimum:.1,maximum:4},
         seconds:{type:'number',minimum:.5,maximum:15},
-        target:{type:'string',enum:['Johansson','Nhung','Chin','Mrs Sato','Harbour master','Thao']}
+        target:{type:'string',enum:['Johansson','Nhung','Chin','Mrs Sato','Sverker','Thao']}
       },
       required:['name','action'],
       additionalProperties:false

@@ -320,7 +320,7 @@ const SHOPS=Object.freeze({
   buy:{label:'Buy a zenzai',title:"Nakamura Zenzai · Nakamura Zenzai",cost:250,item:'Zenzai',text:'Okinawan zenzai: a mountain of shaved ice over sweet kintoki beans and little white mochi, in a glass bowl that sweats on the counter.'},
   // The island's one sweet counter: when Aragaki Confectionery shut, Mrs Nakamura took on the sata andagi.
   more:[{label:'Buy sata andagi',title:"Nakamura Zenzai · sata andagi",cost:120,item:'Sata andagi',text:'Okinawan doughnuts, fried in the back in the morning until they crack open and smile, to the recipe from the old sweet shop over the road. Three to a paper bag, still warm, sugar on your fingers.',dz:1.3}]},
- // Kissa Higa in the old Higa Liquor (commerce/kissa-higa.js, 30 October 2026): Grandmother Higa's morning coffee shop,
+ // Kissa Higa in the old Higa Liquor (commerce/kissa-higa.js, 30 October 2026): Christina's morning coffee shop,
  // weekdays 07:00–09:30, under its own green canvas awning (higa-liquor-dressing.js). The liquor shop stays shut and the
  // drink is Sakura's (22 October 2026); the fascia is repainted with the kissaten's name.
  'higa-saketen':{interior:'kissaten',awning:false,jp:"Kissa Higa",en:'Kissa Higa · morning coffee',bg:'#f2ead6',accent:'#2f5d46',upright:"Coffee",uprightBg:'#2f5d46',
@@ -360,11 +360,11 @@ function kissaFront(minutes,onAction,{front=null,people=[]}={}){
  if(!kissaOpen(minutes)){
   if(down===1)return onAction?.('read','Kissa Higa · the paper on the shutter',KISSA_NOTICE.en);
   return onAction?.('read','Kissa Higa · '+(minutes%1440<KISSA.open?'opening up':'closing up'),
-   (minutes%1440<KISSA.open?'Grandmother Higa is opening up. ':'Morning service has finished; Grandmother Higa waits until everyone is out before closing. ')+KISSA_NOTICE.en);
+   (minutes%1440<KISSA.open?'Christina is opening up. ':'Morning service has finished; Christina waits until everyone is out before closing. ')+KISSA_NOTICE.en);
  }
  const present=people.filter(g=>g.visible&&!g.userData.indoors&&!g.userData.inHome&&inKissaHiga(g.position)).map(g=>g.userData.name||g.name);
  const keeper=present.includes(KISSA.keeper),regulars=present.filter(n=>n!==KISSA.keeper);
- onAction?.('inspect','Kissa Higa',`Through the open doors: the coffee counter, two siphons on their spirit lamps and the smell of toast. ${keeper?'Grandmother Higa is behind the counter. ':''}${regulars.length?regulars.join(' and ')+(regulars.length>1?' are':' is')+' in.':'The customer seats are free.'} Morning set, blend or iced coffee, ¥300 each, until half past nine.`);
+ onAction?.('inspect','Kissa Higa',`Through the open doors: the coffee counter, two siphons on their spirit lamps and the smell of toast. ${keeper?'Christina is behind the counter. ':''}${regulars.length?regulars.join(' and ')+(regulars.length>1?' are':' is')+' in.':'The customer seats are free.'} Morning set, blend or iced coffee, ¥300 each, until half past nine.`);
 }
 /**
  * The bench out front (commerce/higa-liquor.js YUNTAKU), a seat at any hour; and inside Kissa Higa, in its hours
@@ -383,7 +383,7 @@ function higaPrompts({anchor,onAction,getMinutes,getHiga,kissaPrompts}){
  const passable=()=>{const h=getHiga();return h?h.shutterSolid.minY>100:kissaPassable(getMinutes());};
  const inside=(x,z,y,label,fn)=>{const [wx,wz]=higaPoint(x,z),a=private_(anchor(wx,y,wz,label,()=>passable()?fn():closed()));
   if(a){a.visible=passable();kissaPrompts.push(a);}return a;};
- const closed=()=>onAction?.('read','Kissa Higa is closed','Grandmother Higa serves from 7:00 to 9:30, Monday to Friday. '+KISSA_NOTICE.en);
+ const closed=()=>onAction?.('read','Kissa Higa is closed','Christina serves from 7:00 to 9:30, Monday to Friday. '+KISSA_NOTICE.en);
  KISSA_MENU.forEach((item,i)=>inside(-.1+i*.3,.3,1.1,item.label,()=>kissaOpen(getMinutes())?onAction?.('buy','Kissa Higa · '+item.name,{cost:item.cost,item:item.item,text:item.text}):closed()));
  // The table's near chair is the player's (Ms Uezu takes the far one on her weeks off: KISSA_SEATS chair-1).
  const C=KISSA_SEATS['chair-0'],chair=inside(.8,1.5,1,'Sit at the table in Kissa Higa',()=>onAction?.('seat','Kissa Higa · the table','A bentwood chair at the round table by the wall, under the photograph of the island bus. The cane seat creaks the way they all do.'));
@@ -430,8 +430,8 @@ function buildEastRow(kit,solid,{anchor,inspect,onAction,vending,getMinutes,getH
  const liquor=EAST_ROW.plots.find(p=>p.id==='higa-saketen');
  // Moved again on 21 October 2026 for the yuntaku bench (higa-liquor-dressing.js): nose-in to the pier at the Kitano Road
  // corner, beside the empties, clear of the door.
- solid(bicycle(kit,EAST_ROW.minX-.95,liquor.minZ+.42,{ry:0,colour:0x2b2d30,basket:false,id:'higa-liquor-bicycle',owner:'Grandmother Higa',
-  why:'The shop’s old black delivery bicycle with the big carrier, from the days her husband did the rounds. Nobody has ridden it since the shop shut, and Grandmother Higa will not sell it: it leans against its own shopfront, clear of the shutter and the footway, and the bench’s regulars lean their bags on it.'}));
+ solid(bicycle(kit,EAST_ROW.minX-.95,liquor.minZ+.42,{ry:0,colour:0x2b2d30,basket:false,id:'higa-liquor-bicycle',owner:'Christina',
+  why:'The shop’s old black delivery bicycle with the big carrier, from the days her husband did the rounds. Nobody has ridden it since the shop shut, and Christina will not sell it: it leans against its own shopfront, clear of the shutter and the footway, and the bench’s regulars lean their bags on it.'}));
 }
 
 function buildYardRow(kit,solid,{anchor,inspect,onAction,getMinutes}){
@@ -680,7 +680,7 @@ function buildKitahama(kit,solid,ctx){
 
 /** What the nameplates say when you stop to read one. */
 const NAMEPLATES=Object.freeze({
- higa:'The Higas. Grandmother Higa sits on the verandah every evening shelling beans into a bowl and knows the time of every ferry by the sound of its horn off the breakwater. The shisa on the left gatepost has its mouth open to let luck in; the one on the right has it shut, to keep it.',
+ higa:'The Higas. Christina sits on the verandah every evening shelling beans into a bowl and knows the time of every ferry by the sound of its horn off the breakwater. The shisa on the left gatepost has its mouth open to let luck in; the one on the right has it shut, to keep it.',
  nakasone:'An empty red-tile house facing the lawn in front of Umi-no-yu. The shutters are down and the shisa still sit on the gateposts.',
  miyagi:'An empty red-tile house, the oldest on this side. A typhoon took the roof off everything else here, but not this one. The shisa on the ridge is older than the house.',
  kamiya:'An empty red-tile house, swept, with the water off at the main.',

@@ -25,7 +25,7 @@ import {voiceOf} from '../avatars/personality.js';
  */
 export const SPEAKER_COLOURS=Object.freeze({
  Johansson:'#ffffff',Thuan:'#ffd56b',Thao:'#ffa585',Nhung:'#cdb0ff','Mrs Sato':'#ff9ec0',Yoshiko:'#b9e59a',
- Chin:'#8fd3ff',Reiko:'#ffb3c7',Emi:'#ffc9a8','Harbour master':'#9fd8ff',Masaru:'#ffbf80'
+ Chin:'#8fd3ff',Reiko:'#ffb3c7',Emi:'#ffc9a8','Sverker':'#9fd8ff',Masaru:'#ffbf80'
 });
 /** One beat of a line's timing, in 22 ms typing ticks (about a fifth of a second). */
 export const BEAT_TICKS=8;

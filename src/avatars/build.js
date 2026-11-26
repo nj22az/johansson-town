@@ -17,6 +17,9 @@ import {beardSpec,curve as lineThrough,ellipse as insideEllipse} from './beard-m
 import {headProfile,shapeHeadPoint} from './head-profile.js';
 import {LIMBS,TORSO,FEET,NOSES} from './sculpts/body-kit.js';
 import {SOFTBOB_HAIR} from './sculpts/softbob-hair.js';
+import {TIEDBACK_HAIR} from './sculpts/tiedback-hair.js';
+import {SOFTWAVE_HAIR} from './sculpts/softwave-hair.js';
+import {SWEPTMOP_HAIR} from './sculpts/sweptmop-hair.js';
 import {longBraidPoints} from './braid-path.js';
 import {pleatedSkirtGeometry} from './pleated-skirt.js';
 import {celFrom} from '../render/cel.js';
@@ -79,13 +82,16 @@ export function measure(recipe){
  // restricted by the avatar creator"): slim arms and legs, a slender neck, narrower shoulders that slope, and a waist
  // between a soft bust line and rounder hips (torsoProfile).
  const graceful=r.body.frame==='graceful';
- const legR=(.058+build*.024)*k*(studio?.9:1)*(sturdy?1.04:graceful?.88:1),armR=(.045+build*.016)*k*(studio?.85:1)*(sturdy?1.06:graceful?.8:1);
+ // A stout frame (Sverker's, from his photograph, 26 November 2026): a big man heavy in the middle. Deeper than he is
+ // wide through a belly that is the widest of him, on thicker legs and arms; his shoulders are the standard ones.
+ const stout=r.body.frame==='stout';
+ const legR=(.058+build*.024)*k*(studio?.9:1)*(sturdy?1.04:graceful?.88:stout?1.12:1),armR=(.045+build*.016)*k*(studio?.85:1)*(sturdy?1.06:graceful?.8:stout?1.1:1);
  const feminine=r.body.silhouette==='feminine',masculine=r.body.silhouette==='masculine';
- const width=(.3+build*.15)*k*(rounded?1.20:1)*(feminine?.94:masculine?1.08:1)*(studio?.84:1)*(sturdy?1.07:graceful?.9:1),depth=(.2+build*.09)*k*(rounded?1.15:1)*(studio?.87:1)*(sturdy?1.06:graceful?.84:1);
- const hips=width*(graceful?1.03:feminine?1.13:masculine?.9:1),waistRatio=graceful?.68:studio?(feminine?.76:.88):feminine?.79:masculine?.98:.96;
+ const width=(.3+build*.15)*k*(rounded?1.20:1)*(feminine?.94:masculine?1.08:1)*(studio?.84:1)*(sturdy?1.07:graceful?.9:stout?1.08:1),depth=(.2+build*.09)*k*(rounded?1.15:1)*(studio?.87:1)*(sturdy?1.06:graceful?.84:stout?1.3:1);
+ const hips=width*(graceful?1.03:stout?1:feminine?1.13:masculine?.9:1),waistRatio=graceful?.68:stout?1.12:studio?(feminine?.76:.88):feminine?.79:masculine?.98:.96;
  const upper=(rounded?.18:.22)*k*(studio?.92:1),fore=(rounded?.16:.2)*k*(studio?.92:1),hand=.056*k*(studio?.9:1);
  const hipY=leg,chestY=hipY+torso*.5,neckY=hipY+torso,headY=neckY+neck;
- return {studio,sturdy,graceful,neckR:armR*(sturdy?1.72:graceful?1.16:1.08),panelSkirt:r.outfit.bottom==='skirt'&&r.outfit.skirtCut==='panel',skirtLength:r.outfit.skirtLength,skirtFlare:r.outfit.skirtFlare,H,k,Rh,headSX,headSY,profile,neck,torso,leg,foot,thigh,shin,legR,armR,width,hips,waistRatio,depth,upper,fore,hand,hipY,chestY,neckY,headY,
+ return {studio,sturdy,graceful,stout,neckR:armR*(sturdy?1.72:graceful?1.16:1.08),panelSkirt:r.outfit.bottom==='skirt'&&r.outfit.skirtCut==='panel',skirtLength:r.outfit.skirtLength,skirtFlare:r.outfit.skirtFlare,H,k,Rh,headSX,headSY,profile,neck,torso,leg,foot,thigh,shin,legR,armR,width,hips,waistRatio,depth,upper,fore,hand,hipY,chestY,neckY,headY,
   // The arm hangs from just inside the torso's edge, below its top, so the shoulder
   // rounds over it instead of the arm standing clear of the body.
   headCentre:headY+Rh*headSY*.94,shoulderX:width/2-armR*.2,shoulderY:neckY-.075*k,hipX:hips*.24,
@@ -219,7 +225,10 @@ function limb(list,a,b,r0,r1,hex,{bone,joints=[],root=null,soft=.13,segments=14,
   pos.setXYZ(i,pos.getX(i)*k*f,y+(y>len/2?0:y<-len/2?(y+len/2)*(k-1):0),pos.getZ(i)*k*f);
  }
  // A shaped limb's normals follow its shape, joined across the lathe's seam (its first and last column are one line).
- if(shape){g.computeVertexNormals();const N=g.attributes.normal,cols=segments+1;for(let r=0;r<N.count/cols;r++){const i=r*cols,j=i+segments,x=N.getX(i)+N.getX(j),yy=N.getY(i)+N.getY(j),z=N.getZ(i)+N.getZ(j),l=Math.hypot(x,yy,z)||1;N.setXYZ(i,x/l,yy/l,z/l);N.setXYZ(j,x/l,yy/l,z/l);}}
+ // (A lathe's points are stored a column at a time: the seam's two columns are the first `prof.length` points and the last.
+ // Joining the wrong pairs left the seam creased: a line down the front of every bare leg in the looks that draw from the
+ // normals. The owner, 26 November 2026, of Vy's legs in her own look: "no one should have it in any shader".)
+ if(shape){g.computeVertexNormals();const N=g.attributes.normal,n=prof.length,last=segments*n;for(let i=0;i<n;i++){const j=last+i,x=N.getX(i)+N.getX(j),yy=N.getY(i)+N.getY(j),z=N.getZ(i)+N.getZ(j),l=Math.hypot(x,yy,z)||1;N.setXYZ(i,x/l,yy/l,z/l);N.setXYZ(j,x/l,yy/l,z/l);}}
  // (A plain limb keeps the lathe's own normals: recomputing them would crease its seam.)
  // Capsules run along +y; this one runs from a down to b.
  const q=new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,-1,0),dir);
@@ -403,6 +412,8 @@ function sculptedHair(S,radius){
  // (the field is in degrees; the cap's own measures are in head radii: a hundredth to the degree)
  return Object.freeze({radius,fine:true,field:v=>at(load().field,v)*.01,radiusAt:v=>at(load().radius,v)});
 }
+/** The hairstyles sculpted in Blender (sculptedHair): a soft line round them, and a band of gloss. */
+const SCULPTED_HAIR=new Set(['softbob','tiedback','softwave','sweptmop']);
 const HAIR=Object.freeze({
  crop:{front:.46,side:.02,back:-.5,radius:1.07,faceHalf:.78},
  sidepart:{front:.4,swoop:.28,side:0,back:-.5,radius:1.08,faceHalf:.78},
@@ -420,6 +431,11 @@ const HAIR=Object.freeze({
  horseshoe:HORSESHOE,
  // A chin-length bob with a wispy fringe (Vy's, from her photograph: tools/blender/build-vy-head.py).
  softbob:sculptedHair(SOFTBOB_HAIR,1.12),
+ // Tied back off the forehead to a low bun, cut round the ears, a wisp by each (Thao's: tools/blender/build-thao-head.py).
+ tiedback:sculptedHair(TIEDBACK_HAIR,1.05),
+ // Soft full hair swept up off the forehead and over the ears (Christina's), and a thick straight mop swept across the
+ // forehead from a side parting (Sverker's): build-christina-head.py, build-sverker-head.py.
+ softwave:sculptedHair(SOFTWAVE_HAIR,1.12),sweptmop:sculptedHair(SWEPTMOP_HAIR,1.12),
  bald:null,
  pixie:{front:.36,swoop:.2,side:-.04,back:-.42,radius:1.06,faceHalf:.78},
  shoulder:{front:.28,side:-.42,back:-.56,radius:1.1,faceHalf:.66},
@@ -552,7 +568,7 @@ function addHair(list,recipe,m){
   // The cap's own field, laid out the way part() lays out its triangles (one vertex per corner, in index order).
   const hf=cap.userData.hairField,index=cap.index;
   // (A sculpted bob has a gloss: a paler band on the crown, as a cartoon draws shining hair.)
-  const gloss=style==='softbob'?'#'+new THREE.Color(c).lerp(new THREE.Color('#fff4e0'),.26).getHexString():null;
+  const gloss=SCULPTED_HAIR.has(style)?'#'+new THREE.Color(c).lerp(new THREE.Color('#fff4e0'),.26).getHexString():null;
   // (Along the cap's own rings and columns, so its edges are clean.)
   const capColour=gloss?p=>{const y=(p.y-(m.headY+cy))/S[1],a=Math.atan2(p.x,p.z);return Math.abs(y-.54)<.04&&a>-1.3&&a<.7?gloss:c;}:c;
   const piece=part(list,cap,'head',capColour,M(cx,m.headY+cy,0,0,0,0,...S));
@@ -637,7 +653,7 @@ function addHair(list,recipe,m){
  // other full hats everything above the line y = 0.3.
  const tuck=recipe.outfit.hat==='police'?policeCapTuck:recipe.outfit.hat==='kerchief'?kerchiefTuck:(x,y)=>y>.3?1:0;
  if(style==='longfringe')for(const g of list.slice(hairStart))g.attributes.ink.array.fill(.35);
- if(style==='softbob')for(const g of list.slice(hairStart))g.attributes.ink.array.fill(.5);   // a soft line round soft hair
+ if(SCULPTED_HAIR.has(style))for(const g of list.slice(hairStart))g.attributes.ink.array.fill(.5);   // a soft line round soft hair
  if(!HAIR_OUT_HATS.includes(recipe.outfit.hat))for(const g of list.slice(hairStart)){
   const pos=g.attributes.position;g.userData.hatHair={position:pos.array.slice(),normal:g.attributes.normal.array.slice()};for(let i=0;i<pos.count;i++){
    const x=pos.getX(i)/S[0],y=(pos.getY(i)-m.headCentre)/S[1],z=pos.getZ(i)/S[2],r=Math.hypot(x,y,z);
@@ -670,7 +686,7 @@ function hairReach(style,flip,v){
  const low=THREE.MathUtils.lerp(spec.side,spec.back,THREE.MathUtils.smoothstep(-v.z,-.2,.7));
  const f=spec.field?spec.field(v):Math.min(outFace,v.y-low);
  // Curls stand proud of the radius, and a lifted style (the afro) rises off it.
- const full=spec.radius*(1+(spec.lift&&v.y>0?v.y*spec.lift:0))+(spec.bumps?.05:0)+(spec.lift?spec.lift*.25:0);
+ const full=spec.radiusAt?spec.radiusAt(v):spec.radius*(1+(spec.lift&&v.y>0?v.y*spec.lift:0))+(spec.bumps?.05:0)+(spec.lift?spec.lift*.25:0);
  return THREE.MathUtils.lerp(skin,Math.max(skin,full),THREE.MathUtils.smoothstep(f,-.035,.035));
 }
 
@@ -691,7 +707,7 @@ function headband(style,profile){
   if(spec&&!spec.ring){
    const outFace=Math.max(.18-v.z,Math.abs(v.x)-spec.faceHalf,v.y-spec.front);
    const low=THREE.MathUtils.lerp(spec.side,spec.back,THREE.MathUtils.smoothstep(-v.z,-.2,.7));
-   const f=Math.min(outFace,v.y-low),hair=spec.radius*(1+(spec.lift&&v.y>0?v.y*spec.lift:0))+.03;
+   const f=spec.field?spec.field(v):Math.min(outFace,v.y-low),hair=(spec.radiusAt?spec.radiusAt(v):spec.radius*(1+(spec.lift&&v.y>0?v.y*spec.lift:0)))+.03;
    r=THREE.MathUtils.lerp(1.035,Math.max(1.035,hair),THREE.MathUtils.smoothstep(f,-.06,.06));
   }else if(spec?.ring&&back>.3)r=spec.radius+.03;
   v.multiplyScalar(r);shapeHeadPoint(v,profile);
@@ -988,7 +1004,7 @@ function addNecklace(list,recipe,m,colour){
 }
 
 /** Long hair, a lipstick or no beard and a slight build: a swimming costume, not trunks. */
-export const wearsSwimTop=recipe=>recipe.facial.style==='none'&&(['longfringe','softbob','bob','long','ponytail','sweptponytail','braids','longbraids','bun','perm','shoulder','pigtails','twinbuns'].includes(recipe.hair.style)||recipe.mouth.colour!=='#b8544a');
+export const wearsSwimTop=recipe=>recipe.facial.style==='none'&&(['longfringe','softbob','tiedback','bob','long','ponytail','sweptponytail','braids','longbraids','bun','perm','shoulder','pigtails','twinbuns'].includes(recipe.hair.style)||recipe.mouth.colour!=='#b8544a');
 /**
  * Swimwear (wear('swim')), modest, for Umi-no-yu's shared rock bath and the beach: a one-piece costume from the hips to
  * straight across above the bust, on two straps, with short legs, for anyone who would wear a swimsuit top; bath trunks to
@@ -1725,7 +1741,7 @@ function addTenugui(list,recipe,m){
  * - the end tucked in at the back of the crown, a flap with its band near the edge, coming out from under that turn.
  * Long hair needs more towel round it: a fuller dome (LONG_HAIR).
  */
-const LONG_HAIR=new Set(['longfringe','softbob','bob','long','ponytail','braids','longbraids','bun','perm','shoulder','pigtails','twinbuns','afro','mullet','curtains']);
+const LONG_HAIR=new Set(['longfringe','softbob','tiedback','bob','long','ponytail','braids','longbraids','bun','perm','shoulder','pigtails','twinbuns','afro','mullet','curtains']);
 export const TURBAN=Object.freeze({front:.54,side:.3,back:-.48,lift:.16,radius:1.17,longRadius:1.23,snug:1.05,swell:.3,inner:.96,tuck:.08,
  twist:Object.freeze({reach:1.45,radius:.11,turns:1.5,band:Object.freeze([.5,.63])}),
  hem:Object.freeze({rows:Object.freeze([-.03,0,.03,.06,.09,.13,.17,.2]),band:Object.freeze([.09,.17])}),flap:Object.freeze({from:2.38,to:2.95,band:Object.freeze([.6,.78])})});
@@ -1855,6 +1871,11 @@ function buildHead(recipe,m,faceSize){
   shapeHeadPoint(v,m.profile);pos.setXYZ(i,v.x,v.y,v.z);
  }
  g.scale(m.Rh*m.headSX,m.Rh*m.headSY,m.Rh*.98);g.computeVertexNormals();
+ // A sphere's crown, its chin and its seam are several points in one place, each with the normal of its own triangle: one
+ // normal for each place, or the looks and the ink that draw from the normals put a little mark on a bald crown (seen on
+ // Johansson from the game's high camera, 26 November 2026) and a line down the side of the head.
+ {const N=g.attributes.normal,W=g.parameters.widthSegments,H=g.parameters.heightSegments,cols=W+1,join=ids=>{let x=0,y=0,z=0;for(const i of ids){x+=N.getX(i);y+=N.getY(i);z+=N.getZ(i);}const l=Math.hypot(x,y,z)||1;for(const i of ids)N.setXYZ(i,x/l,y/l,z/l);};
+  join(Array.from({length:cols},(_,i)=>i));join(Array.from({length:cols},(_,i)=>H*cols+i));for(let r=1;r<H;r++)join([r*cols,r*cols+W]);}
  // The face is shaded as if it were flat and tipped up to the light, as a drawn face
  // is: a sphere's own normals put a hard shadow line straight across the cheeks.
  const nrm=g.attributes.normal,n=new THREE.Vector3(),toward=new THREE.Vector3(0,.4,.92).normalize();
@@ -2059,7 +2080,7 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
  addNose(parts,recipe,m);
  // Ears.
  const ears=list=>{
-  const visible=recipe.hair.style==='braids';
+  const visible=['braids','tiedback'].includes(recipe.hair.style);   // hair that leaves the ears to be seen
   for(const s of [-1,1]){
    // (Where the ear shows, with the braids, it is a small one: the owner, 26 November 2026, of Thuan's: "Make her ear smaller
    // and cuter". It was as big as her eye and its brow together.)

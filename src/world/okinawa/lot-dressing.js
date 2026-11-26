@@ -12,7 +12,7 @@ import {buildParkedVehicle,parkedVehicleFit,KEI_TRUCK_BED} from '../road-vehicle
 /**
  * What stands on the cleared lots (okinawa/lots.js CLEARED_LOTS, each lot's `dressing`): the lane garden and the monthly
  * parking behind Kitahama's cross lane, the bicycle shed and the hoop on the footpath, the youth association's store and
- * eisa ground, Mac's garden, the association's cane, Gran Higa's garden and Kōji's net ground on the seawall walk, Tetsu's
+ * eisa ground, Erik's garden, the association's cane, Christina's garden and Kōji's net ground on the seawall walk, Tetsu's
  * store in the Front-Row yard and the drinks corner on Main Street.
  *
  * Everything is drawn into the quarter's kit (one draw call per finish and cell, okinawa/kit.js), in the town's own
@@ -130,7 +130,7 @@ export const PARKING=Object.freeze({lines:Object.freeze([28.1,30.5,32.9,35.3]),b
 export const PARKED_CARS=Object.freeze([
  Object.freeze({prop:'bay-1-truck',bay:1,kind:'kei truck',colour:0xf2f0ea,owner:'Kōji',load:'ice chest and rope'}),
  Object.freeze({prop:'bay-2-car',bay:2,kind:'kei car',colour:0xb8d0d8,owner:'Nhung'}),
- Object.freeze({prop:'bay-3-hatchback',bay:3,kind:'car',colour:0xd8a83a,owner:'Mac',bonnet:'open'}),
+ Object.freeze({prop:'bay-3-hatchback',bay:3,kind:'car',colour:0xd8a83a,owner:'Erik',bonnet:'open'}),
 ]);
 /** Where a parked car's centre stands (its nose along -z, to the lane), from its wheels and its length (tail, local z). */
 export function parkedCarPlace(car,{wheel,r,tail}){
@@ -208,7 +208,7 @@ function northBlock({kit,solid,read},lot,put){
  const {bays,stopZ}=PARKING;
  for(const x of bays)for(const k of [-1,1])kit.block(x+k*.55-.27,x+k*.55+.27,PAD_TOP,PAD_TOP+.12,stopZ-.07,stopZ+.07,P.stop);
  for(const car of PARKED_CARS){put(lot,car.prop);parkedCar(kit,car,parkedVehicleFit(car.kind,{bonnet:car.bonnet}));}
- // Mac's toolbox on the gravel by his front wheel, inside his bay.
+ // Erik's toolbox on the gravel by his front wheel, inside his bay.
  {const [x,z]=mid(put(lot,'mac-toolbox').rect);kit.box(.2,.2,.42,x,PAD_TOP+.1,z,0xc8432f,{finish:'metal'});kit.box(.21,.012,.43,x,PAD_TOP+.2,z,0x9e3326,{finish:'metal'});
   kit.box(.03,.04,.26,x,PAD_TOP+.226,z,P.black);for(const k of [-1,1])kit.box(.03,.03,.03,x,PAD_TOP+.215,z+k*.13,P.black);}
  const sign=put(lot,'parking-sign').rect;
@@ -216,9 +216,9 @@ function northBlock({kit,solid,read},lot,put){
  read(24.0,61.8,'Look at the lane garden','The lane garden',
   'Four beds of red earth and a gōyā curtain, on the ground where 4 Kitahama stood. Thao’s herbs by the lane: lemongrass, rau răm and purple perilla, which nobody on the island sells. Mrs Sato’s spring onions next to them, for her own kitchen. Nhung’s handama behind, and Riku’s sunflowers, measured every Sunday against the shed. The standpipe is turned on at six.');
  read(31.7,62.0,'Read the monthly parking sign','Kitahama monthly parking',
-  'Monthly parking. No bays free. Contract holders only. Kitahama residents’ association.\n\nBay 1 is Kōji’s white kei truck, for the outboard and the ice chests. Bay 2 is Nhung’s little car, the doctor’s, for house calls at the far end of the island. Bay 3 is Mac’s old yellow hatchback. The bay that was to let is under Johansson Mart now.','read');
- read(34.1,62.2,'Look under Mac’s bonnet','Mac’s hatchback',
-  'An old yellow hatchback with its bonnet up on the stay and a red toolbox by the front wheel. Mac keeps it running for the pleasure of it, and it is opened more often than it is driven. The air cleaner on top of the engine is new; the battery is not.');
+  'Monthly parking. No bays free. Contract holders only. Kitahama residents’ association.\n\nBay 1 is Kōji’s white kei truck, for the outboard and the ice chests. Bay 2 is Nhung’s little car, the doctor’s, for house calls at the far end of the island. Bay 3 is Erik’s old yellow hatchback. The bay that was to let is under Johansson Mart now.','read');
+ read(34.1,62.2,'Look under Erik’s bonnet','Erik’s hatchback',
+  'An old yellow hatchback with its bonnet up on the stay and a red toolbox by the front wheel. Erik keeps it running for the pleasure of it, and it is opened more often than it is driven. The air cleaner on top of the engine is new; the battery is not.');
 }
 
 /* ------------------------- Kitahama: 9, 7 and 6 ------------------------- */
@@ -257,7 +257,7 @@ function lot9({kit,solid,read},lot,put){
  read(6.4,52.2,'Look at the bicycle shed','The footpath bicycle shed',
   'Five bicycles under a tin roof by the footpath: Thao’s, Chin’s and Vy’s from 1 Kitahama, whose yard is all hinpun and herb pots; Riku’s blue one; and Mrs Sato’s with the big basket, which she cannot lift over her gate step. They go out at a quarter to eight.');
  read(px,pz+1.2,'Shoot a basket','The hoop',
-  'A hoop on a blue post and a concrete pad with the key painted on it, between Vy’s house and Riku’s. The rule is first to ten, and the loser fetches the ball out of the garden across the lane. Mac showed them a hook shot; neither of them can do it yet.');
+  'A hoop on a blue post and a concrete pad with the key painted on it, between Vy’s house and Riku’s. The rule is first to ten, and the loser fetches the ball out of the garden across the lane. Erik showed them a hook shot; neither of them can do it yet.');
 }
 
 function lot7({kit,read},lot,put){
@@ -270,7 +270,7 @@ function lot7({kit,read},lot,put){
  kit.box(.42,.06,b.maxZ-b.minZ,bx,.44,bz,P.timber);kit.box(.06,.3,b.maxZ-b.minZ,b.maxX-.05,.72,bz,P.timber);
  for(const k of [-1,1])kit.box(.38,.42,.06,bx,.21,bz+k*(b.maxZ-b.minZ)/2.6,P.steel);
  read(-15,47.9,'Look at the eisa practice ground','The eisa ground',
-  'A square of swept coral with the youth association’s store at the back. In the weeks before Obon the drummers practise here from seven, and you can hear the big drum from the harbour. Gran Higa comes up to supervise, loudly, and sits on the bench.');
+  'A square of swept coral with the youth association’s store at the back. In the weeks before Obon the drummers practise here from seven, and you can hear the big drum from the harbour. Christina comes up to supervise, loudly, and sits on the bench.');
  read((store.minX+store.maxX)/2,store.minZ-1.2,'Read the store sign','The association’s store',
   'Kitahama residents’ association. Youth association store. Eisa things.\n\nInside: the drums, the festival tent that never goes up first time, and the cane knives, which come out in January.','read');
 }
@@ -287,8 +287,8 @@ function lot6({kit,read},lot,put){
  const tb=put(lot,'tomato-bed').rect,y=bed(kit,tb,{seed:64}),r=rng(65);
  rows(tb,{rows:2,step:.55,inset:.3},(x,z,i)=>{kit.rod([x,y,z],[x,y+1.1,z],.012,0x8a7a4a);kit.sphere(.18,x,y+.6+r.next()*.3,z,P.leaf,{sy:1.6,detail:0});
   if(i%2)kit.sphere(.05,x+.1,y+.5,z+.08,0xd9412b,{detail:0});else kit.sphere(.035,x-.08,y+.35,z+.1,0xc8302a,{sy:2,detail:0});});
- read(-28,47.95,'Look at Mac’s barbecue','Mac’s garden',
-  'A hibiscus hedge with a gap facing the Heights, a picnic table for six at a squeeze, a kettle grill and a bed of tomatoes and island chillies. Mac grills on Sunday on his week ashore, and whoever smells it comes. Mika waters the tomatoes when he is aboard.');
+ read(-28,47.95,'Look at Erik’s barbecue','Erik’s garden',
+  'A hibiscus hedge with a gap facing the Heights, a picnic table for six at a squeeze, a kettle grill and a bed of tomatoes and island chillies. Erik grills on Sunday on his week ashore, and whoever smells it comes. Mika waters the tomatoes when he is aboard.');
 }
 
 /* ----------------------------- Kitahama: the cane ----------------------------- */
@@ -357,8 +357,8 @@ function kinjo({kit,solid,read},lot,put){
   kit.rod([x+.1,.84,z],[x+.38,.95,z+.05],.012,0x8a6a45);kit.sphere(.06,x+.06,.85,z,0x8a6a45,{sy:.5,detail:0});}
  {const [x,z]=mid(put(lot,'papaya').rect);papaya(kit,x,z,{seed:910,h:2.9});}
  {const st=put(lot,'stool').rect,[x,z]=mid(st);kit.box(.36,.04,.3,x,.32,z,P.timber);for(const k of [-1,1])kit.box(.04,.3,.26,x+k*.14,.15,z,P.timber);}
- read((sw.maxX+se.minX)/2,-11.9,'Look over Gran Higa’s garden wall','Gran Higa’s garden',
-  'Over a low coral wall across the lane from the Higa house: gōyā on an A-frame against the west wall, handama purple under green, island greens and chillies, a papaya in the corner and a big water jar with a ladle on the lid. The chrysanthemums along the north wall were Mrs Kinjō’s; Gran Higa keeps them for the family altar. She is out here from six until the bath opens.');
+ read((sw.maxX+se.minX)/2,-11.9,'Look over Christina’s garden wall','Christina’s garden',
+  'Over a low coral wall across the lane from the Higa house: gōyā on an A-frame against the west wall, handama purple under green, island greens and chillies, a papaya in the corner and a big water jar with a ladle on the lid. The chrysanthemums along the north wall were Mrs Kinjō’s; Christina keeps them for the family altar. She is out here from six until the bath opens.');
  void solid;
 }
 

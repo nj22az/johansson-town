@@ -2,7 +2,7 @@ import {FURNITURE_HEIGHTS,setFurnitureSurface} from '../furniture-standards.js';
 import * as THREE from '../../../vendor/three.module.js';
 import {createPlanKit} from './house-plan.js';
 
-export const OFFICE_STAFF={'Harbour master':[-1.85,0,-1.20]};
+export const OFFICE_STAFF={'Sverker':[-1.85,0,-1.20]};
 // (`front`: how far ahead of the mark the seat's front edge is, seat-slots.js; the chairs' seats are .46 square, the tea stool .36)
 export const OFFICE_DESK_SEAT={position:[-2.52,0,-2.02],stand:[-1.85,0,-1.20],surfaceY:FURNITURE_HEIGHTS.seat,eyeY:1.18,yaw:0,pitch:0,front:.23};
 /**
@@ -20,7 +20,7 @@ export function buildOfficeWorkplace({room:parent,reg,action,collider=()=>{}}){
  const palette=new Map(),mat=c=>{if(!palette.has(c))palette.set(c,new THREE.MeshStandardMaterial({color:c,roughness:.8}));return palette.get(c);};
  function box(name,size,pos,material){const m=new THREE.Mesh(new THREE.BoxGeometry(...size),typeof material==='number'?mat(material):material);m.name=name;m.position.set(...pos);room.add(m);return m;}
  function label(text,pos,width=.7,height=.18,yaw=0){const canvas=document.createElement('canvas');canvas.width=512;canvas.height=128;const ctx=canvas.getContext('2d');ctx.fillStyle='#e7dfc7';ctx.fillRect(0,0,512,128);ctx.fillStyle='#33483e';ctx.textAlign='center';ctx.font='bold 46px sans-serif';ctx.fillText(text,256,82,485);const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;const mesh=new THREE.Mesh(new THREE.PlaneGeometry(width,height),new THREE.MeshBasicMaterial({map:texture}));mesh.name=text;mesh.position.set(...pos);mesh.rotation.y=yaw;room.add(mesh);}
- function records(pos,title,id,task){const o=new THREE.Object3D();o.name=title;o.position.set(...pos);room.add(o);o.userData.workers=['Harbour master'];o.userData.npcInteraction=!!task;if(task){o.userData.officeTask=task;if(task.seated)o.userData.seat=OFFICE_DESK_SEAT;}reg(o,title,()=>action('office-records','Harbour office records',id),true);return o;}
+ function records(pos,title,id,task){const o=new THREE.Object3D();o.name=title;o.position.set(...pos);room.add(o);o.userData.workers=['Sverker'];o.userData.npcInteraction=!!task;if(task){o.userData.officeTask=task;if(task.seated)o.userData.seat=OFFICE_DESK_SEAT;}reg(o,title,()=>action('office-records','Harbour office records',id),true);return o;}
  // One period workstation fits the original desk; the baked duplicate PCs were
  // removed from the source asset. All desk equipment follows the shared table surface.
  box('Clerk computer base',[.50,.08,.38],[-2.52,.945,-2.90],0xb9baa5);
@@ -29,7 +29,7 @@ export function buildOfficeWorkplace({room:parent,reg,action,collider=()=>{}}){
  for(let i=0;i<6;i++)box('Computer record line',[.29-(i%2)*.06,.009,.008],[-2.54,1.33-i*.04,-2.642],0xa2bb88);
  box('Clerk keyboard',[.52,.035,.19],[-2.52,.921,-2.40],0xb7b7a2);
  for(let row=0;row<3;row++)for(let key=0;key<9;key++)box('Keyboard key',[.042,.010,.032],[-2.72+key*.05,.944,-2.46+row*.04],0x5b665a);
- box('Harbour master nameplate base',[.67,.045,.12],[-1.48,.925,-2.43],0x66563f);
+ box('Sverker nameplate base',[.67,.045,.12],[-1.48,.925,-2.43],0x66563f);
  label('HARBOUR MASTER',[-1.48,.994,-2.365],.62,.12);
  label('SEPTEMBER 1997',[-1.22,1.35,-3.298],.48,.28);
  const computer=records([-2.52,1.20,-2.55],'Open harbour spreadsheets','berth-register',{pose:'Type',activity:'typing berth records',seated:true});
@@ -60,16 +60,16 @@ export function buildOfficeWorkplace({room:parent,reg,action,collider=()=>{}}){
   kit.wetRoom(-3.33,-2.24,1.44,3.33,'Toilet',true,'x1');}
  const visitorSeat=new THREE.Object3D();visitorSeat.position.set(1.14,.7,-2.05);visitorSeat.userData.npcInteraction=false;visitorSeat.userData.seat={position:[1.14,0,-2.0],stand:[1.14,0,-1.1],surfaceY:FURNITURE_HEIGHTS.seat,eyeY:1.2,yaw:0,pitch:0,front:.23};room.add(visitorSeat);reg(visitorSeat,'Sit at the visitor desk',()=>action('seat','Visitor desk','A clean writing pad and the harbour ledgers are ready.'),true);
  for(const [id,x,z,top,yaw,sx,sz,label,front] of [['office-stool',2.91,-1.39,FURNITURE_HEIGHTS.seat,0,2.25,-.7,'Sit on the office stool',.23],['office-tea-stool',-.9,1.35,FURNITURE_HEIGHTS.seat,0,-1.65,1.35,'Sit in the tea corner',.18]]){const seat=new THREE.Object3D();seat.position.set(sx,.9,sz);seat.userData.npcInteraction=false;seat.userData.seat={id,position:[x,0,z],stand:[sx,0,sz],surfaceY:top,eyeY:top+.72,yaw,pitch:0,front};room.add(seat);reg(seat,label,()=>action('seat',label,'A quiet moment in the harbour office.'),true);}
- setFurnitureSurface(room,{from:.9,to:FURNITURE_HEIGHTS.table,props:/^(Clerk computer|Clerk CRT|Clerk green|Computer record|Clerk keyboard|Keyboard key|Harbour master nameplate|HARBOUR MASTER)/});
+ setFurnitureSurface(room,{from:.9,to:FURNITURE_HEIGHTS.table,props:/^(Clerk computer|Clerk CRT|Clerk green|Computer record|Clerk keyboard|Keyboard key|Sverker nameplate|HARBOUR MASTER)/});
  return {computer,staff:OFFICE_STAFF};
 }
 
 function buildBedNook({room,box,reg,action,collider,mat}){
  // A low tatami platform with the futon, head to the screen, feet to the door.
- box('Harbour master tatami mat',[1.3,.1,2.3],[2.1,.05,.87],0xcbc38c);
+ box('Sverker tatami mat',[1.3,.1,2.3],[2.1,.05,.87],0xcbc38c);
  for(const z of [-.27,2.01])box('Tatami edge',[1.3,.012,.05],[2.1,.106,z],0x3f4a3a);
- const futon=box('Harbour master futon',[1.1,.12,2.15],[2.1,.16,.87],0xe9dfc8);futon.userData.bed=true;
- box('Harbour master quilt',[1.05,.05,1.5],[2.1,.245,1.2],0x2c3e5c);box('Harbour master pillow',[.8,.12,.4],[2.1,.28,.35],0xf3e8d2);
+ const futon=box('Sverker futon',[1.1,.12,2.15],[2.1,.16,.87],0xe9dfc8);futon.userData.bed=true;
+ box('Sverker quilt',[1.05,.05,1.5],[2.1,.245,1.2],0x2c3e5c);box('Sverker pillow',[.8,.12,.4],[2.1,.28,.35],0xf3e8d2);
  collider(2.1,.87,1.3,2.3,.3);
  // The folding screen: four leaves, paper on timber, zig-zagging along the west side.
  const paper=new THREE.MeshStandardMaterial({color:0xf2ead2,roughness:.95});
@@ -82,7 +82,7 @@ function buildBedNook({room,box,reg,action,collider,mat}){
  box('Alarm clock',[.14,.12,.08],[1.55,.16,-.1],0xd7263d);box('Tide table',[.2,.02,.28],[1.55,.23,1.7],0xe8e1c7);
  // Coat stand with the harbour master's jacket and cap, by the foot of the bed.
  box('Coat stand pole',[.05,1.75,.05],[2.9,.88,-.45],0x6d5238);box('Coat stand foot',[.4,.04,.4],[2.9,.02,-.45],0x6d5238);
- box('Harbour master jacket',[.42,.7,.14],[2.9,1.3,-.38],0x2c3e5c);// his cap goes on top when he is home
+ box('Sverker jacket',[.42,.7,.14],[2.9,1.3,-.38],0x2c3e5c);// his cap goes on top when he is home
  collider(2.9,-.45,.4,.4,1.8);
  // A tea stool and a little table at the open side of the room.
  box('Tea stool',[.36,FURNITURE_HEIGHTS.seat,.36],[-.9,FURNITURE_HEIGHTS.seat/2,1.35],0x6d5238);

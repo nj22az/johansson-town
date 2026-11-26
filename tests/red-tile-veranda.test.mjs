@@ -21,10 +21,10 @@ function house(yaw=0){
 }
 
 test('Higa’s veranda keeps the floor, cushion and resident at their established heights',()=>{
- const {hits,colliders}=house(Math.PI),higa=NEIGHBOURS.find(n=>n.name==='Grandmother Higa');
+ const {hits,colliders}=house(Math.PI),higa=NEIGHBOURS.find(n=>n.name==='Christina');
  for(const [x,z] of [[-1.05,2.5],[.7,2.35],[2.1,2.75]]){
   const surfaces=hits([x,.8,z],[0,-1,0]).filter(h=>h.point.y>.3);
-  near(surfaces[0].point.y,higa.y,'The visible timber meets Grandmother Higa’s feet');
+  near(surfaces[0].point.y,higa.y,'The visible timber meets Christina’s feet');
   const underlying=surfaces.filter(h=>h.point.y<surfaces[0].point.y-1e-5);
   assert.ok(underlying.every(h=>surfaces[0].point.y-h.point.y>=.015),'The timber clears every upward-facing support');
  }

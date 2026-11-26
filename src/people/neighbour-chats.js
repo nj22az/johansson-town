@@ -11,7 +11,7 @@ const EXCHANGES=[
  ['Nhung','Emi',['Did Tama agree to the apron?','He has asked for a larger salary.','Payment in sardines, presumably.']],
  ['Chin','Tetsuo',['Yo, bro! Fixed that crackling on your radio.','That was the music, Chin.','Totally improved it, then, dude.']],
  ['Mrs Sato','Fumiko',['You said you were only coming for tea.','I am. The rice ball is keeping it company.','I shall fetch a second cup.']],
- ['Harbour master','Mr Fujita',['How large was the fish today?','Larger than yesterday.','Your hands say that every day.']],
+ ['Sverker','Mr Fujita',['How large was the fish today?','Larger than yesterday.','Your hands say that every day.']],
  ['Hana','Daichi',['Hold still. I am drawing you.','Is this my heroic side?','It is your only still side.']],
  ['Officer Mori','Nhung',['Nothing suspicious on my rounds.','What about the cat in the fish crate?','An ongoing investigation. Not for the paper.']],
  ['Kenta','Cold-storage kid',['I practised saying hello to Emi.','The freezer heard every word.','Was it convincing?']],

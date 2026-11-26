@@ -27,7 +27,7 @@ GitHub Pages supplies the required HTTPS secure context.
 ## Character tools
 
 - `johansson_list_characters` — read Johansson and the four named residents with current positions.
-- `johansson_control_npc` — temporarily move Nhung, Chin, Mrs Sato or the Harbour master, make them face another character, trigger a restrained gesture, or release AI control.
+- `johansson_control_npc` — temporarily move Nhung, Chin, Mrs Sato or Sverker, make them face another character, trigger a restrained gesture, or release AI control.
 
 NPC movement is deliberately bounded to the playable street and limited in distance/time. Johansson himself is moved through the normal game input/collision path rather than direct position writes.
 

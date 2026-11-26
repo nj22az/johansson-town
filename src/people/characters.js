@@ -10,7 +10,7 @@ const CAST=Object.freeze({
   Nhung:{source:'local-authored',height:1.62,identity:'Nhung'},
   Chin:{source:'local-authored',height:1.76,identity:'Chin'},
   'Mrs Sato':{source:'local-authored',height:1.55,identity:'Mrs Sato'},
-  'Harbour master':{source:'local-authored',height:1.74,identity:'Harbour master'}
+  'Sverker':{source:'local-authored',height:1.74,identity:'Sverker'}
 });
 
 

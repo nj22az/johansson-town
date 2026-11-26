@@ -14,7 +14,7 @@ export const ARTICLES={
   headline:'The chief engineer who reads the island like a wiring diagram',
   standfirst:'Johansson keeps the Minato Maru’s machinery running, with a duty cabin aboard and his home with Thuan on Kitano-jima.',
   body:[
-   'Johansson is chief engineer of the Minato Maru. His notebooks hold machinery readings, maintenance jobs and the small details that make a reliable crossing: the generators on at ten past six, the shore power at a quarter past ten, and everything in between. Mac Turner, the relief engineer, takes the watch whenever he is ashore; Tetsuo maintains the electrical equipment under contract and is watched near the switchboard like a hawk.',
+   'Johansson is chief engineer of the Minato Maru. His notebooks hold machinery readings, maintenance jobs and the small details that make a reliable crossing: the generators on at ten past six, the shore power at a quarter past ten, and everything in between. Erik Turner, the relief engineer, takes the watch whenever he is ashore; Tetsuo maintains the electrical equipment under contract and is watched near the switchboard like a hawk.',
    'He and Thuan live on Kitano-jima, across the water, and he has a duty cabin aboard for the nights the ship needs him. Lunch is often at Sato Ramen with the harbour’s other regulars. A broken radio still brings him to Chin and Tetsuo’s bench on a quiet afternoon, and an evening meal brings him to Minato, where his sister-in-law keeps his plate warm and tells him he works too late.',
    'He carries a second notebook that is not the ship’s. The harbour has one notebook; everything else, the island included, goes in this one.',
   ],
@@ -37,7 +37,7 @@ export const ARTICLES={
   standfirst:'Thao’s izakaya opens at four. The pink telephone, the bottle keep and the karaoke all answer to her.',
   body:[
    'At four o’clock Thao hangs the noren and the evening begins: lanterns, the pink ¥10 telephone by the door, a laserdisc karaoke that takes its time finding the disc. Regulars keep their own bottles on the shelf behind the counter, each with a tag in Thao’s careful hand. Keep one yourself and she will warn you that being a regular is worse for you than it sounds.',
-   'The regulars are the town. Mr Fujita comes in once the ship’s shore power is on and not a minute before; Mac has his one beer at half past seven and Officer Mori, passing on the night patrol, counts it. Nhung comes in with her sisters on Thuan’s Minato nights, Ren comes down from the ship for a late bowl, and Chin, her husband of twelve years, has won the last-Friday karaoke contest three times running. The police notice by the door asks drivers not to drink; Mori put it up himself and then sat under it with a beer. He walked home. Thao tells this story more often than Mori would like.',
+   'The regulars are the town. Mr Fujita comes in once the ship’s shore power is on and not a minute before; Erik has his one beer at half past seven and Officer Mori, passing on the night patrol, counts it. Nhung comes in with her sisters on Thuan’s Minato nights, Ren comes down from the ship for a late bowl, and Chin, her husband of twelve years, has won the last-Friday karaoke contest three times running. The police notice by the door asks drivers not to drink; Mori put it up himself and then sat under it with a beer. He walked home. Thao tells this story more often than Mori would like.',
    'Nobody lives at the bar. After last orders the cushions are stacked, Thao wipes the counter down and mops the floor herself, and walks home to 1 Kitahama, where Chin and their daughter Vy are asleep. She sleeps until late morning, buys for the izakaya at Sakura, has lunch in the park with her sisters and is back at her station to prep. The amber corner by the window is kept for unhurried conversations. She will not turn it into a hurried table, however full the room.',
   ],
   quote:'The spare chair is for whoever arrives last. Somebody always does.',
@@ -58,7 +58,7 @@ export const ARTICLES={
   headline:'The island doctor who still marks the funny parts, and prints the paper',
   standfirst:'Morning surgery at nine, house calls in the afternoon, and in the evening the town’s small paper coming off the bench at the back of the old Front-Row shop: Nhung is Minato’s doctor.',
   body:[
-   'Surgery is at nine, in the clinic at the town hall, and the town comes in with its blood pressure, its backs and its opinions. Nhung knows that Grandmother Higa will ignore her advice and that Mr Fujita will not rest his back, and writes it all down anyway, in the same pencil she once used for slips in other people’s books. House calls are in the afternoon, in the little car in bay 2 of the Kitahama parking, with the bag. On Saturday the clinic shuts at noon; on Sunday she keeps Sakura’s counter while Thuan stays on Kitano-jima.',
+   'Surgery is at nine, in the clinic at the town hall, and the town comes in with its blood pressure, its backs and its opinions. Nhung knows that Christina will ignore her advice and that Mr Fujita will not rest his back, and writes it all down anyway, in the same pencil she once used for slips in other people’s books. House calls are in the afternoon, in the little car in bay 2 of the Kitahama parking, with the bag. On Saturday the clinic shuts at noon; on Sunday she keeps Sakura’s counter while Thuan stays on Kitano-jima.',
    'The books went to Sakura when she took the clinic, but the paper did not. In the evening she sets it at the printing bench at the back of the old Front-Row shop: the ferry timetable, the tide table, the typhoon map and whatever Officer Mori’s three-page reports contain, which is mostly his lunch. The reading copies stayed on the shelves, with her slips still in them, and Tama the shop cat stayed with them; he has refused, on principle and permanently, to wear the tiny apron she once made him.',
    'The eldest of three sisters, she still checks that Thao has eaten and that Thuan has slept, now with a stethoscope to back her up. Home is 3 Kitahama, with her husband Kōji, who comes in smelling of the auction, and their son Riku, who is not allowed to borrow the stethoscope. Mrs Sato sends a bowl over when surgery runs late and will not take her money.',
   ],
@@ -81,8 +81,8 @@ export const ARTICLES={
   standfirst:'The workshop’s electrician treats static as conversation, keeps the ferry’s switchboard honest and the island’s lights on.',
   body:[
    'Tetsuo turns a tuning knob as though the radio might answer back, and on a good day it does. Old valve sets, ship receivers, the counter radio at Minato: he handles them gently, and he will not be rushed. His mother was a Chinen, from the old house on Kitano-jima, and the gentleness is hers.',
-   'Chin has repaired Tetsuo’s own radio twice. Tetsuo keeps finding extra screws. Their disagreement about volume began at the workbench when they were at school together, and it has never been settled. After lunch he crosses to the Minato Maru, where he is the ferry’s electrician under contract, and Mac guards the switchboard from him like a hawk. The power house’s switchboard is his too, since it lost its keeper: two diesels, one running, one resting, and the logbook on the clipboard by the door.',
-   'At six he goes to Umi-no-yu to tend the boiler and the pumps, and stays to close up. He takes his time over the gauges. Grandmother Higa sends him in past the bandai; he does not complain. A clear broadcast after a difficult repair is, he says, the best sound on the island, though the boiler running sweet comes close. Home is 2 Front-Row Yard, behind the bookshop, with the yard to himself.',
+   'Chin has repaired Tetsuo’s own radio twice. Tetsuo keeps finding extra screws. Their disagreement about volume began at the workbench when they were at school together, and it has never been settled. After lunch he crosses to the Minato Maru, where he is the ferry’s electrician under contract, and Erik guards the switchboard from him like a hawk. The power house’s switchboard is his too, since it lost its keeper: two diesels, one running, one resting, and the logbook on the clipboard by the door.',
+   'At six he goes to Umi-no-yu to tend the boiler and the pumps, and stays to close up. He takes his time over the gauges. Christina sends him in past the bandai; he does not complain. A clear broadcast after a difficult repair is, he says, the best sound on the island, though the boiler running sweet comes close. Home is 2 Front-Row Yard, behind the bookshop, with the yard to himself.',
   ],
   quote:'Static is just a station that has not said its name yet.',
   photos:[shot('Think','thinking','cream','sepia','Tuning in to something only he can hear.'),shot('Shrug','grumpy','mint','film','“He left another screw.”',{with:'Chin'})],
@@ -91,18 +91,18 @@ export const ARTICLES={
   headline:'Night patrol with the island’s most thorough policeman',
   standfirst:'Officer Mori keeps the desk at Minato Police Station from four, walks Main Street after dark, writes everything down and still cannot get the cat to respect him.',
   body:[
-   'Mori takes the ordinary safety of the streets seriously. The desk at the police station is his from four in the afternoon until ten, with the lost property tagged in his careful handwriting and a thermos of barley tea for anybody who comes in upset. Then the night patrol, slow and exact: Main Street, the seawall, the lanes behind the shops, a stop at Minato to count Mac’s one beer, a look in on an elderly neighbour. He wants the streets to feel safe without feeling watched.',
+   'Mori takes the ordinary safety of the streets seriously. The desk at the police station is his from four in the afternoon until ten, with the lost property tagged in his careful handwriting and a thermos of barley tea for anybody who comes in upset. Then the night patrol, slow and exact: Main Street, the seawall, the lanes behind the shops, a stop at Minato to count Erik’s one beer, a look in on an elderly neighbour. He wants the streets to feel safe without feeling watched.',
    'His reports are three pages long and supply Nhung’s town paper with more detail than incident; she wants his stories, and he wants her to print fewer of them. The cat outside Sakura declines to acknowledge his authority, a long-running difficulty he records conscientiously. Lunch is the same shoyu ramen at Sato Ramen at one o’clock, every day of the year.',
    'The drink-driving notice at Minato is his. He put it up himself and then, off duty, sat under it with a beer. He walked home, which is upstairs at the station, where he sleeps until three after the patrol. He would like that to be in the paper too, as an example.',
   ],
   quote:'Nothing happened tonight. I wrote it down so we will know.',
   photos:[shot('Bow','neutral','night','film','Off on patrol at ten.'),shot('Wave','smile','sky','warm','Morning, after the night shift.')],
  },
- 'Harbour master':{
-  headline:'Jack Reed trusts the tide board more than the radio',
+ 'Sverker':{
+  headline:'Sverker Reed trusts the tide board more than the radio',
   standfirst:'Cargo, the ferry’s lines, a changing forecast and a lunch delivered by okamochi: a day with the harbour agent everybody calls the harbour master.',
   body:[
-   'Jack Reed came to the island as a merchant seaman out of Seattle, paid off here in the seventies and never signed on again. The town calls him the harbour master, and the title stuck to the man rather than the job. He checks the tide board before the radio forecast and his knees before either. The harbour office desk holds the manifests, the freight book and the berth radio, on which Ryo, the ferry’s chief officer, gives him distance off at every call.',
+   'Sverker Reed came to the island as a merchant seaman out of Seattle, paid off here in the seventies and never signed on again. The town calls him the harbour master, and the title stuck to the man rather than the job. He checks the tide board before the radio forecast and his knees before either. The harbour office desk holds the manifests, the freight book and the berth radio, on which Ryo, the ferry’s chief officer, gives him distance off at every call.',
    'When the Minato Maru calls he walks to the bitts himself and takes her lines, bow and stern, the way the old linesman did before he went to the bridge. At noon Mrs Sato arrives with two bowls in her aluminium delivery box. She delivers to the harbour only, which he takes as a professional courtesy and never asks about. They are widow and widower; he eats her ramen every day and never says why.',
    'A working harbour teaches patience with tides and with people. When equipment misbehaves he sends for the dock workshop; when a visitor is lost he points them to the right door. Every crate on the cargo quay gets a line in the freight book, and every line gets his initials. He lives behind the screen at the back of the office, likes watching the morning cargo come in, and likes it more when it arrives on time.',
   ],
@@ -115,17 +115,17 @@ export const ARTICLES={
   body:[
    'The island school is one room and one small mixed class, and Miss Higa teaches all of it. Vy asks the most questions. Riku talks, and is moved to the front row every week. Miss Higa is twenty-nine, marks until five, and then walks down to the bath.',
    'The bandai is a raised seat by the door of Umi-no-yu, the island’s bathhouse. From up there you can see over the counter, which is the point of a bandai. Three hundred yen, swimwear in the bath, please: it is a family bath. In the evenings and at weekends she keeps it, with the marking on her knee and the crossword under the marking.',
-   'The bath is her grandmother’s, and so is the opinion that Miss Higa should be married by now. Grandmother Higa says it at breakfast and again over supper. After hours Tetsuo comes to tend the boiler and the pumps. He fixes things; she does the till and pretends not to watch. He takes longer over the pressure gauge than any gauge needs. Neither of them has said a word about it, and the whole of Nishi-machi is waiting.',
+   'The bath is her grandmother’s, and so is the opinion that Miss Higa should be married by now. Christina says it at breakfast and again over supper. After hours Tetsuo comes to tend the boiler and the pumps. He fixes things; she does the till and pretends not to watch. He takes longer over the pressure gauge than any gauge needs. Neither of them has said a word about it, and the whole of Nishi-machi is waiting.',
   ],
   quote:'Wash first. Then soak. Then tell me why the homework is late.',
   photos:[shot('Think','content','mint','sepia','At the bandai, marking between customers.'),shot('Coy','shy','peach','warm','The boiler is fixed. She was not watching.',{with:'Tetsuo'})],
  },
- 'Grandmother Higa':{
-  headline:'Grandmother Higa has a seat for you and an opinion about your onions',
+ 'Christina':{
+  headline:'Christina has a seat for you and an opinion about your onions',
   standfirst:'She owns the bath, and she knows the ferry by its whistle. Her old liquor shop on Main Street is Kissa Higa now, coffee and thick toast on weekday mornings; from her verandah in Nishi-machi she keeps an eye on the rest.',
   body:[
-   'Sit a moment, she says, and you will. Grandmother Higa offers a seat, an observation about Sakura, and practical advice on preparing a house for typhoon season, in that order. She keeps the bandai at Umi-no-yu by day. Her liquor shop on Main Street shut when the drink went to Sakura, and every bottle on the island, at Minato, Sato Ramen or the master’s crate on the pier, comes from Thuan’s depot now; she has an opinion about that too. But the room was hers, and so were the mornings before the bath opens: from seven on weekdays the shutter is up and it is Kissa Higa, two siphons on spirit lamps, toast cut thick and a boiled egg with the coffee, her husband’s records on the player. Yui has her breakfast at the counter before school. The family kusu is still behind it, and still not for sale.',
-   'Her granddaughter teaches the island school and keeps the bandai in the evenings. Grandmother Higa would like her married, and says so. She has noticed that Tetsuo, who keeps her boiler running for a bath and his supper, takes his time over the pumps. She sends him through the front way, past the bandai, on purpose.',
+   'Sit a moment, she says, and you will. Christina offers a seat, an observation about Sakura, and practical advice on preparing a house for typhoon season, in that order. She keeps the bandai at Umi-no-yu by day. Her liquor shop on Main Street shut when the drink went to Sakura, and every bottle on the island, at Minato, Sato Ramen or the master’s crate on the pier, comes from Thuan’s depot now; she has an opinion about that too. But the room was hers, and so were the mornings before the bath opens: from seven on weekdays the shutter is up and it is Kissa Higa, two siphons on spirit lamps, toast cut thick and a boiled egg with the coffee, her husband’s records on the player. Yui has her breakfast at the counter before school. The family kusu is still behind it, and still not for sale.',
+   'Her granddaughter teaches the island school and keeps the bandai in the evenings. Christina would like her married, and says so. She has noticed that Tetsuo, who keeps her boiler running for a bath and his supper, takes his time over the pumps. She sends him through the front way, past the bandai, on purpose.',
    'Mr Fujita soaks his back whenever the sailings let him and tells her the water is never hot enough. She tells Nhung, the doctor, the same about her advice on her blood pressure. Her husband drove the island bus for thirty years; when the Minato Maru is late she hears it in the whistle, and the master hears about it at the bandai.',
   ],
   quote:'You are the one who talks to the girl at Sakura every day. Good. Somebody should.',
@@ -164,13 +164,13 @@ export const ARTICLES={
   quote:'Homework is easier with guava. That is not an opinion, it is research.',
   photos:[shot('Peace','happy','mint','vivid','After school, on the park walk.'),shot('Think','thinking','cream','film','The hard half first. Probably.')],
  },
- Mac:{
-  headline:'Mac Turner came with the diesels and stayed',
+ Erik:{
+  headline:'Erik Turner came with the diesels and stayed',
   standfirst:'The Minato Maru’s relief engineer is an American who arrived with the Caterpillar engines in the seventies, married the island’s weather and never left.',
   body:[
-   'Mac Turner is sixty-one and came to the island from Oregon with the Caterpillar diesels, to commission them and go home. He is still here. He is the ferry’s relief engineer: whenever the chief is ashore Mac takes the working watch, and the engine room runs to his standards, which are high and loudly held. He guards his switchboard from Tetsuo, the contract electrician, like a hawk.',
+   'Erik Turner is sixty-one and came to the island from Oregon with the Caterpillar diesels, to commission them and go home. He is still here. He is the ferry’s relief engineer: whenever the chief is ashore Erik takes the working watch, and the engine room runs to his standards, which are high and loudly held. He guards his switchboard from Tetsuo, the contract electrician, like a hawk.',
    'He lives in Kitahama Heights A on Fukugi Lane, the north house of the pair, with Ms Ganaha through the party wall, who hears his generator stories whether she wants them or not. He keeps a duty berth aboard in the crew cabin for the nights the ship needs him, and he and Ms Uezu, the bosun, have the ferry’s oldest argument, deck against engine room, every day.',
-   'At half past seven he has his one beer at Minato. Officer Mori, passing on the night patrol, counts it. Mac says the timetable runs the engines too hard. The master says the timetable runs everything.',
+   'At half past seven he has his one beer at Minato. Officer Mori, passing on the night patrol, counts it. Erik says the timetable runs the engines too hard. The master says the timetable runs everything.',
   ],
   quote:'An engine tells you everything. You just have to be there when it talks.',
   photos:[shot('HandsOnHips','content','cream','sepia','The engine room, his standards.'),shot('Laugh','laugh','night','warm','One beer. Counted.',{with:'Officer Mori'})],
@@ -180,11 +180,11 @@ export const ARTICLES={
   standfirst:'Ms Uezu is the Minato Maru’s bosun. Ferry work runs in her family, and the aft lines, the ramp and the car lashings run through her hands.',
   body:[
    'The bosun supervises the deck: the aft mooring lines, the ramp orders from the port wing, the vehicle deck lashed down before every crossing. Ms Uezu is forty-four and ferry work runs in her family; she does a week on, living aboard in the crew cabin, and a week off at 8 Kitahama, with Kōji covering her relief week. She checks Ren’s coils forward and does not pretend otherwise.',
-   'With Mac in the engine room she keeps the ferry’s oldest argument going, deck against engine room, every day. With Kai at the Kitano berth it is the after spring, which he says she pays out too fast. With Ryo on the wing it is who counts the cars. She wins most of these.',
+   'With Erik in the engine room she keeps the ferry’s oldest argument going, deck against engine room, every day. With Kai at the Kitano berth it is the after spring, which he says she pays out too fast. With Ryo on the wing it is who counts the cars. She wins most of these.',
    'On her week off she has supper at Sato Ramen at seven and is home by half past eight, and the ship, she says, manages. She says it in a way that suggests it only just manages.',
   ],
   quote:'The ramp does not care whose week it is.',
-  photos:[shot('Salute','neutral','sky','film','The aft station, lines ready.'),shot('HandsOnHips','smug','sunset','warm','Deck against engine room. Deck wins.',{with:'Mac'})],
+  photos:[shot('Salute','neutral','sky','film','The aft station, lines ready.'),shot('HandsOnHips','smug','sunset','warm','Deck against engine room. Deck wins.',{with:'Erik'})],
  },
  'Ms Ganaha':{
   headline:'One window: tickets, parcels, the post and the islands',
@@ -192,7 +192,7 @@ export const ARTICLES={
   body:[
    'The mailbag comes off the morning boat and by half past nine Ms Ganaha has the parcels on the shelf behind her window and the letters in the pigeonholes. From noon the window is open: tickets for the Minato Maru, letters and parcels handed in by half past four for the evening boat to Naha, and the ferry desk telephone, which she picks up on the fourth ring. She is twenty-seven, and the old post office counter on Main Street is shut because of her.',
    'Everybody going to the islands passes her window, so she is the one who knows: the timetable, the fare, the strait map, what is actually built on Kitano-jima and what is only talked about. Aya, the sailing purser, radios her the passenger count before every departure, and the two counts do not always match. The harbour master gets the sailing list from her every morning and checks it against his clock.',
-   'An early lunch at Sato Ramen at a quarter past eleven, before the window opens. Home is Kitahama Heights B on Fukugi Lane, the south house of the pair, with Mac’s generator stories through the party wall.',
+   'An early lunch at Sato Ramen at a quarter past eleven, before the window opens. Home is Kitahama Heights B on Fukugi Lane, the south house of the pair, with Erik’s generator stories through the party wall.',
   ],
   quote:'Where are you off to, love? The half past two is in, and the parcel shelf is behind me.',
   photos:[shot('Wave','smile','cream','film','The window opens at noon.'),shot('Point','happy','sky','warm','The last boat is alongside. Where are you off to?',{with:'Aya'})],
@@ -201,9 +201,9 @@ export const ARTICLES={
   headline:'The master of the Minato Maru, sober on watch, and the shed after',
   standfirst:'Mr Fujita has forty years on the island boats and the fourth-grade ticket he sat for at fifty. He cons every berthing himself, and the television and the beer wait until the shore power is on.',
   body:[
-   'Fujita is sixty-three, the master of the Minato Maru, and on the bridge from the generators at ten past six to the shore power at a quarter past ten, every day the ship sails. He brings her alongside from the wing himself, with Ms Uezu aft, Ren forward and Jack Reed on the quay to take the lines, and he keeps the log. Ryo, his chief officer, would like the afternoon berthings. Ryo can keep wanting them.',
+   'Fujita is sixty-three, the master of the Minato Maru, and on the bridge from the generators at ten past six to the shore power at a quarter past ten, every day the ship sails. He brings her alongside from the wing himself, with Ms Uezu aft, Ren forward and Sverker Reed on the quay to take the lines, and he keeps the log. Ryo, his chief officer, would like the afternoon berthings. Ryo can keep wanting them.',
    'He is sober for the whole of it. At twenty past ten he signs off, walks the pier to his shed and sits down with the first bottle of Umineko; Sakura Trading’s round swaps his crate twice a week, and at six every morning he stands the empties back in it. The set is on, the remote is his, and a variety show gets a laugh out of him every half a minute. After the last station signs off he walks aboard Shiosai, his houseboat at the west pier, and sleeps it off.',
-   'He keeps the old seamen’s stories, the sabani race of 1979 included, and tells them to anybody at Minato who sits still. Nhung, his doctor, would like him to rest his back. Grandmother Higa says the bath is hot enough and he says it never is. Vy has told him she will be a ferry captain. He has told her the bridge is not for passengers, and that she should keep asking.',
+   'He keeps the old seamen’s stories, the sabani race of 1979 included, and tells them to anybody at Minato who sits still. Nhung, his doctor, would like him to rest his back. Christina says the bath is hot enough and he says it never is. Vy has told him she will be a ferry captain. He has told her the bridge is not for passengers, and that she should keep asking.',
   ],
   quote:'The ship sails sober. The shed does not have to.',
   photos:[shot('Salute','neutral','sky','film','Ten past six. The generators are on.'),shot('Laugh','laugh','night','warm','Twenty past ten. Signed off.')],
@@ -212,7 +212,7 @@ export const ARTICLES={
   headline:'The chief officer who wants the afternoon berthings',
   standfirst:'Ryo is forty-one, from Itoman, with six years on the Kerama ferries before the Minato Maru. He keeps the lookout, works the ramp and checks the berth from the wing while the master cons.',
   body:[
-   'The chief officer keeps the lookout, supervises access and works the ramp controls; at every call Ryo is on the port wing with the berth in view, giving Jack Reed distance off on the radio while the master brings her alongside. He holds a fifth-grade deck licence from his Kerama years and would like to con the afternoon berthings himself. Mr Fujita cons every berthing himself. The matter is open.',
+   'The chief officer keeps the lookout, supervises access and works the ramp controls; at every call Ryo is on the port wing with the berth in view, giving Sverker Reed distance off on the radio while the master brings her alongside. He holds a fifth-grade deck licence from his Kerama years and would like to con the afternoon berthings himself. Mr Fujita cons every berthing himself. The matter is open.',
    'He is up in his cabin at twenty to six and signs on at five past, with the log, the weather and the berth. With Ms Uezu, the bosun, the ramp orders go down from the wing and the argument about who counts the cars comes back up. Lunch is in the mess at half past twelve, Jun’s two sittings, and the last log entry is written with the master at twenty past ten.',
    'He lives aboard, in the chief officer’s cabin. Itoman is a telephone call and a ferry away, and most evenings he says he will go next week.',
   ],
@@ -298,7 +298,7 @@ export const RETIRED_ARTICLES={
   headline:'The doctor who is not allowed to pay for lunch',
   standfirst:'Dr Kakazu came from Naha for a two-year posting at the town hall clinic. He has learned that on this island the patients feed the doctor.',
   body:[
-   'Morning surgery is at nine, in the clinic at the town hall, and the town comes in with its blood pressure, its backs and its opinions. Dr Kakazu is thirty-four, posted from Naha for two years, and already knows that Grandmother Higa will ignore his advice and Mr Fujita will not rest his back. He writes it all down anyway.',
+   'Morning surgery is at nine, in the clinic at the town hall, and the town comes in with its blood pressure, its backs and its opinions. Dr Kakazu is thirty-four, posted from Naha for two years, and already knows that Christina will ignore his advice and Mr Fujita will not rest his back. He writes it all down anyway.',
    'Lunch is at Sato Ramen at half past twelve. Mrs Sato will not let him pay, and has not let him pay since his first week. House calls are in the afternoon, on foot, with the bag. Supper is at Minato, where Thao keeps him a stool and the evening crowd asks him things they would not ask at the clinic.',
    'He lives in the doctor’s flat behind the clinic and is on call at night; after dark he and Officer Mori are the two telephones that still answer. He has decided, privately, that two years will not be long enough.',
   ],
@@ -334,7 +334,7 @@ export const RETIRED_ARTICLES={
    'When the Harbour Line became the ferry he did not want to give up the route. He sat his deck licence on the cargo boats out of Naha, came home as her mate, and has been master of the Minato Maru since 1994. He is aboard by a quarter past seven and ashore after the last call.',
    'He brings her alongside from the port wing, where he can see the pier, with Ms Uezu forward on the bow line and Mr Fujita on the quay to take it. Mr Nakandakari, the relief engineer, says he runs her engines too hard. He says the timetable runs them. Ms Ganaha at the ticket window has to explain any late departure, and makes sure he hears about it.',
    'He still notices who is carrying groceries, who has missed lunch and who just wants a little company on the crossing, and he knows the regulars by the way they wave from the quay. At seven he takes the day’s log to the harbour master, an old friend, and they read it over the harbour clock.',
-   'Grandmother Higa’s husband drove the island bus for thirty years. She can still tell the ferry is late by its whistle. He considers that the highest standard in his profession, and keeps time accordingly.',
+   'Christina’s husband drove the island bus for thirty years. She can still tell the ferry is late by its whistle. He considers that the highest standard in his profession, and keeps time accordingly.',
   ],
   quote:'People tell a bus driver how their story begins. On a ferry you have twenty minutes to hear how it ends.',
   photos:[shot('Wave','smile','sunset','warm','The last crossing of the day.'),shot('Bow','happy','cream','film','Mind the step. Mind the ramp.')],
@@ -368,7 +368,7 @@ export const RETIRED_ARTICLES={
   body:[
    'Buckets of fresh stems, leafy pots and hand-made wreaths fill the open front of the flower shop on Rainflower Lane. The morning stems come in at half past eight; by the afternoon she is out on deliveries. Thuan comes after closing, and the bouquets for Sakura’s counter are chosen with care on both sides.',
    'She is the town’s decorator as well as its florist. The bunting at the harbour, the paper lanterns at Minato and the flowers on Thao’s counter all come from her back room. Thao says the lanterns cost more than the sake. Mrs Kinjō says that is because the lanterns last.',
-   'She shares the walkway with Mrs Nakamura’s zenzai counter. They eat lunch at each other’s counters and argue about whose customers block whose doorway, usually in the same conversation. On Sundays she takes tea with Grandmother Sakurai, an old friend, and they agree about almost everything except Grandmother Higa.',
+   'She shares the walkway with Mrs Nakamura’s zenzai counter. They eat lunch at each other’s counters and argue about whose customers block whose doorway, usually in the same conversation. On Sundays she takes tea with Grandmother Sakurai, an old friend, and they agree about almost everything except Christina.',
    'She wraps everything in plain brown paper, because the flowers should be the bright part.',
   ],
   quote:'The flowers are the bright part. Everything else should get out of their way. Including that queue.',

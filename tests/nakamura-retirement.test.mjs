@@ -35,7 +35,7 @@ test('only the two Nakamura identities retire, without new residents or successo
   assert.ok(!FEED_PLACES.some(p=>p.regulars.includes(name)));
  }
  for(const id of ['emi','mai'])assert.deepEqual(identityOf(id).transfer.to,[],'no successor is invented');
- for(const name of ['Vy','Riku','Nhung','Thao','Chin','Thuan','Miss Higa','Grandmother Higa'])assert.ok(castMember(name),name+' remains');
+ for(const name of ['Vy','Riku','Nhung','Thao','Chin','Thuan','Miss Higa','Christina'])assert.ok(castMember(name),name+' remains');
  assert.equal(RELATIONSHIPS.find(p=>p.a==='Vy'&&p.b==='Riku')?.kind,'cousins and classmates','their existing relationship is unchanged');
  assert.equal(ARTICLES.Vy.photos.some(p=>p.with==='Riku'),false,'the retired friendship is not reassigned');
 });

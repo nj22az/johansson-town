@@ -1,13 +1,13 @@
 import {PROFILES} from './profiles.js';
 import {homeRoutine} from './home-life.js';
 export const RAMEN_VISITS=Object.freeze({
- Chin:[555,660], 'Harbour master':[615,720], 'Mrs Sato':[675,780],
+ Chin:[555,660], 'Sverker':[615,720], 'Mrs Sato':[675,780],
  Thao:[780,840], Tetsuo:[795,900], Nhung:[855,960],
  'Officer Mori':[1140,1255],
 });
 // A small, repeatable daily shuffle. Loading a save or opening the shop does not
 // reroll customers. Long gaps leave Thuan time for the player and her counter.
-const CUSTOMERS=['Mrs Sato','Nhung','Chin','Tetsuo','Harbour master'];
+const CUSTOMERS=['Mrs Sato','Nhung','Chin','Tetsuo','Sverker'];
 const cache=new Map();
 export function marketVisitsForDay(minutes){
  const day=Math.floor(minutes/1440);if(cache.has(day))return cache.get(day);

@@ -76,7 +76,7 @@ test('the anchored cast: everybody who walks has a home, a job, an evening, a da
   assert.ok(c.work.at.every(Number.isFinite)&&c.work.until>c.work.from,c.name+' has a job and hours');
   assert.ok(c.evening.at.every(Number.isFinite),c.name+' has an evening');
   assert.ok(c.dayOff&&c.leisure?.length,c.name+' has a day off and a leisure place');
-  assert.ok(c.bed>=c.work.until||c.bed>=1440||c.name==='Harbour master',c.name+' goes to bed after work');
+  assert.ok(c.bed>=c.work.until||c.bed>=1440||c.name==='Sverker',c.name+' goes to bed after work');
  }
  // Fewer, anchored people: the walking cast stays small until the core is right.
  assert.ok(cast.length<=10);

@@ -29,9 +29,9 @@ test('Kitahama’s windows follow the people who live there',()=>{
  assert.deepEqual(lights.homes.map(h=>h.id),['kitahama-1','kitahama-2','kitahama-3','kitahama-8','kitahama-flat-3','kitahama-flat-4']);
  // Ms Ganaha's is lit until she is home from the last boat's window.
  assert.equal(homeLightLevel(slot('kitahama-flat-4')),1);
- // The Heights' two houses are lit one by one: Mac has turned in for the generators.
- assert.equal(homeLightLevel(slot('kitahama-flat-3')),0,'Mac has retired for the night');assert.ok(!lights.homes.some(h=>/^flat-|kitahama-flat-[12]$/.test(h.id)),'no flat of the old block has a light');
- lights.update(4*day+H(20));assert.equal(homeLightLevel(slot('kitahama-flat-3')),1,'Mac’s house is lit at eight');
+ // The Heights' two houses are lit one by one: Erik has turned in for the generators.
+ assert.equal(homeLightLevel(slot('kitahama-flat-3')),0,'Erik has retired for the night');assert.ok(!lights.homes.some(h=>/^flat-|kitahama-flat-[12]$/.test(h.id)),'no flat of the old block has a light');
+ lights.update(4*day+H(20));assert.equal(homeLightLevel(slot('kitahama-flat-3')),1,'Erik’s house is lit at eight');
  const uezuHome=[0,7].map(d=>d*day+H(20)).find(m=>!HOME_ROUTINES['kitahama-8'].away(Math.floor(m/day)));lights.update(uezuHome);assert.equal(homeLightLevel(slot('kitahama-8')),1,'Ms Uezu’s house is lit at eight on her week ashore');
  // 3 Kitahama: Kōji and Riku's routine lights it while Nhung is still at the bookshop, and Nhung lights it herself after their bedtime.
  people=[person('Nhung',{})];lights.update(4*day+H(19));assert.equal(homeLightLevel(slot('kitahama-3')),1,'the household’s routine lights 3 Kitahama');

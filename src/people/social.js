@@ -295,7 +295,7 @@ function yardResidentPlan(profile,minutes,rain=false,state=null){
  return {place:'home',target:profile.home,activity:rain?'sheltering at home':livesInYard(profile)?'at home in the yard':'at home at 3 Kitahama'};
 }
 /**
- * The two who live at their work. The harbour master (Jack, the harbour agent: docs/CAST-CONSOLIDATION.md §4, §9)
+ * The two who live at their work. The harbour master (Sverker, the harbour agent: docs/CAST-CONSOLIDATION.md §4, §9)
  * keeps the office through the ship's day, six until the last boat is fast at half past ten: the berth radio and the
  * freight book between calls, and the shore end of every line at each call (ferry-shore-crew.js takes him to the
  * bitts; shore-duty.js lets the day's plan and any room he is in release him). After the last boat he walks the quay to
@@ -309,7 +309,7 @@ const QUAY_LINES=Object.freeze({place:'quay-lines',target:[0,-48],activity:'taki
 export const MORI_DAY=Object.freeze({desk:960,patrol:1320,patrolEnd:360});
 function workplaceResidentPlan(profile,minutes,rain=false,state=null){
  const m=minuteOfDay(minutes),home={place:'home',target:profile.home};
- if(profile.name==='Harbour master'){
+ if(profile.name==='Sverker'){
   const day=HARBOUR_MASTER_DAY;
   if(calledToQuay(profile.name))return {...QUAY_LINES};
   const lunch=satoLunch(profile,minutes);if(lunch)return lunch;
@@ -410,7 +410,7 @@ function commuterPlanOn(profile,minutes,rain=false,state=null){
   if(shiftActive(profile,minutes))return {place:'ramen',target:RAMEN_DOOR,activity:minuteOfDay(minutes)>=SATO_RAMEN.close?'washing up after the lunch shift':'cooking the lunch ramen at Sato Ramen'};
   if(minuteOfDay(minutes-SATO_SHIFT.arrival)<SATO_SHIFT.start-SATO_SHIFT.arrival)return {place:'stroll',target:[3.2,-44],activity:'buying fish for the stock at the harbour'};
  }
- if(profile.name==='Harbour master')return calledToQuay(profile.name)?{...QUAY_LINES}:{place:'work',target:profile.work,activity:'on duty at the harbour office'};
+ if(profile.name==='Sverker')return calledToQuay(profile.name)?{...QUAY_LINES}:{place:'work',target:profile.work,activity:'on duty at the harbour office'};
  if(profile.name==='Officer Mori')return shiftActive(profile,minutes)?{place:'patrol',target:(NIGHT_PATROL)[0],activity:'night patrol'}:bus('waiting for the night shift bus');
  if(profile.name==='Thao'){
   const morning=naoBeforeShift(profile,minutes,rain);
@@ -463,7 +463,7 @@ export function residentPlan(profile,minutes,rain=false,state=null){
  {const breakfast=shopDayPlan(profile?.name,minutes);if(breakfast?.place==='kissa-higa')return breakfast;}
  // A worker straight off the ship takes a break on the quay's shared spots (quay-breaks.js: Chin, after he signs off);
  // the harbour agent's is read inside his own day, below the ferry's call for her lines.
- if(!rain&&profile?.name!=='Harbour master'){const quayBreak=quayBreakPlan(profile?.name,minutes);if(quayBreak)return quayBreak;}
+ if(!rain&&profile?.name!=='Sverker'){const quayBreak=quayBreakPlan(profile?.name,minutes);if(quayBreak)return quayBreak;}
  // Thuan sweeps her pavement when the shutter goes up (stand-sequences.js sakura-doorstep), on her own weekday shift.
  if(profile?.name==='Thuan'&&!rain&&onSakuraShift('Thuan',minutes)){const sweep=standPlan('Thuan',minutes,'doorstep');if(sweep)return sweep;}
  // These homes remain playable after the island expansion. A night worker must
@@ -504,7 +504,7 @@ export const GOSSIP=[
  {id:'yuri-evening',a:'Thuan',b:'Thao',line:'Thuan: I told the assistant manager I would be on the last ferry.\nThao: The plant?\nThuan: He looked very disappointed. I watered him twice.',clue:'Thuan leaves Sakura for the Harbour Line after closing. Check the terminal timetable for her evening service.'},
  {id:'apron',a:'Nhung',b:'Chin',line:'Nhung: Tama needs his own column.\nChin: What would he write, bro?\nNhung: Strong opinions about the window chair.',clue:'Nhung prints a page of town news at the old bookshop in the evenings.'},
  {id:'radio',a:'Chin',b:'Tetsuo',line:'Chin: Hey, bro, I fixed the crackling.\nTetsuo: That was the music.\nChin: Totally improved it, then, dude.',clue:'Find the street radio and try the other stations.'},
- {id:'fish',a:'Harbour master',b:'Tetsuo',line:'Tetsuo: The harbour radio crackled at nine.\nHarbour master: That was the weather.\nTetsuo: The weather has never crackled before.',clue:'The harbour master keeps the office radio; Tetsuo keeps every radio on the island.'},
+ {id:'fish',a:'Sverker',b:'Tetsuo',line:'Tetsuo: The harbour radio crackled at nine.\nSverker: That was the weather.\nTetsuo: The weather has never crackled before.',clue:'The harbour master keeps the office radio; Tetsuo keeps every radio on the island.'},
  {id:'special',a:'Thao',b:'Mrs Sato',line:'Mrs Sato: Is that a proper supper?\nThao: You taught me the portions.\nMrs Sato: Good. Then there will be seconds.',clue:'Try Thao’s supper special at the counter.'}
 ];
 export function gossipAt(minutes,names){return GOSSIP.filter(g=>names.includes(g.a)&&names.includes(g.b))[Math.floor(minutes/7)%Math.max(1,GOSSIP.filter(g=>names.includes(g.a)&&names.includes(g.b)).length)]||{id:'welcome',line:'Thao: Pull up a chair. Nobody leaves this table a stranger.\nA gull outside offers a surprisingly firm objection.',clue:'Neighbours arrive after their shifts. Visit again later for different conversations.'};}

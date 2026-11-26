@@ -30,7 +30,7 @@ export const SAKURA_TRADE_POSTERS=Object.freeze([
  {id:'umineko-black',brand:'UMINEKO',kind:'beer',why:'The same brewery’s black lager, new this autumn: the rep wants it in Minato’s fridge.'},
  {id:'umineko-gift',brand:'UMINEKO',kind:'gift',why:'The year-end gift set: Sakura takes the orders now, so the poster says 承ります (orders taken here).'},
  {id:'kitano-12',brand:'KITANO 12',kind:'whisky',why:'A pure malt for the Coral Bay Bar’s shelf and the gift orders; the distiller’s poster came with the case.'},
- {id:'shimakaze',brand:'SHIMAKAZE',kind:'awamori',why:'The island’s awamori: Minato and Mr Fujita’s shed take it, and Grandmother Higa still asks after it.'},
+ {id:'shimakaze',brand:'SHIMAKAZE',kind:'awamori',why:'The island’s awamori: Minato and Mr Fujita’s shed take it, and Christina still asks after it.'},
  {id:'minato-tsuru',brand:'MINATO-TSURU',kind:'sake',why:'Junmai sake for Sato Ramen and the New Year: the brewer’s winter poster.'},
  {id:'nami-sour',brand:'NAMI SOUR',kind:'chuhai',why:'A lemon can chūhai, the young drinkers’ choice; it came with a sample case.'},
  {id:'asagao-rouge',brand:'ASAGAO',kind:'cosmetics',why:'Asagao’s autumn lipstick campaign: the rep hopes Thuan will take a counter of them.'},

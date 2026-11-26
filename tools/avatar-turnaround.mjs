@@ -58,7 +58,9 @@ try{
     ctx.drawImage(renderer.domElement,(i%cols)*F,Math.floor(i/cols)*F,F,F);ctx.fillStyle='#253b3d';ctx.font='17px sans-serif';ctx.fillText(e,(i%cols)*F+10,Math.floor(i/cols)*F+24);});
    return sheet.toDataURL('image/png');
   }
-  const all=[['front',0,0],['three-quarter',.7,.05],['side',Math.PI/2,0],['back three-quarter',2.4,.05],['back',Math.PI,0],['above',.5,.9]];
+  const all=[['front',0,0],['three-quarter',.7,.05],['side',Math.PI/2,0],['back three-quarter',2.4,.05],['back',Math.PI,0],['above',.5,.9],
+   // The game's own camera: high over the street, looking down on the head. Every character is seen like this first.
+   ['game',.3,.72],['game front',0,.6]];
   const views=only?all.filter(v=>only.split(',').includes(v[0])):all,cols=Math.min(3,views.length);
   const sheet=document.createElement('canvas');sheet.width=S*cols;sheet.height=S*Math.ceil(views.length/cols);const ctx=sheet.getContext('2d');
   views.forEach(([label,yaw,pitch],i)=>{

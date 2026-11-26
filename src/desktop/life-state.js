@@ -23,7 +23,7 @@ export function shouldSleep(name,minutes){
  return m>=1380||m<wake;
 }
 /** A save's names are read as the consolidated cast reads them (people/cast.js `was`): a 0.2.9 save playing as
- * Mr Nakandakari goes on as Mac at his own checkpoint; a retired resident's record has nobody to go to and is dropped. */
+ * Mr Nakandakari goes on as Erik at his own checkpoint; a retired resident's record has nobody to go to and is dropped. */
 export function restoreLife(raw,roster){
  const names=new Set(roster.map(p=>p.name)),people={},saved=raw?.people&&typeof raw.people==='object'?raw.people:{};
  const savedFor=name=>saved[name]??saved[Object.keys(saved).find(key=>canonicalResidentName(key)===name)];

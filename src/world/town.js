@@ -366,7 +366,7 @@ export function createTown(options){
   buildIzakaya(world,options);
   buildPark(world,options);
   world.blueCoral=buildBlueCoralShop({world,group:world.group,register:options.register,onAction:options.onAction,sites:options.sites,shadows:options.shadows});
-  // Johansson Mart at the entrance to Kitahama (okinawa/kitahama-shop.js; the owner, 27 October 2026), Grandmother Higa's
+  // Johansson Mart at the entrance to Kitahama (okinawa/kitahama-shop.js; the owner, 27 October 2026), Christina's
   // corner shop: standing and solid in this batch, walked into in the next.
   world.kitahamaShop=buildKitahamaShop({world,group:world.group,register:options.register,onAction:options.onAction,enter:options.enter,sites:options.sites,shadows:options.shadows});
   const plants=buildStreetPlants(world.group,world.plantSites,options);

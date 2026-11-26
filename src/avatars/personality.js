@@ -113,7 +113,7 @@ export const TOWN_DIALS=Object.freeze(Object.fromEntries(Object.entries({
  Nhung:[.6,.65,.4,.75],             // Joker: the eldest sister, playful mischief behind the doctor’s desk
  Chin:[.7,.4,.75,.7],             // Festival friend: enthusiastic tinkerer
  'Mrs Sato':[.4,.75,.7,.3],        // Big heart: affectionately formidable
- 'Harbour master':[.3,.7,.3,.65],  // Easy neighbour: dry wit, soft heart
+ 'Sverker':[.3,.7,.3,.65],  // Easy neighbour: dry wit, soft heart
  'Bus driver':[.25,.35,.7,.3],     // Old storyteller: patient storyteller
  'Cold-storage kid':[.4,.25,.35,.7],// Porch sitter: shy, unexpectedly funny
  'Officer Mori':[.7,.3,.4,.6],     // Helping hand: earnest, easily teased

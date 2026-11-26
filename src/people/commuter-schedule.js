@@ -18,7 +18,7 @@ const shifts={
  // Minato opens. Her return service is the next morning after the night shift.
  Thao:{arrival:510,start:960,finish:1620,departure:1950},
  'Officer Mori':{arrival:870,start:1200,finish:1800,departure:1950},
- 'Harbour master':{permanent:true},
+ 'Sverker':{permanent:true},
 };
 export const COMMUTER_SHIFTS=Object.freeze(Object.fromEntries(Object.entries(shifts).map(([name,shift])=>[name,Object.freeze(shift)])));
 const minuteOfDay=m=>((m%1440)+1440)%1440;
@@ -96,7 +96,7 @@ export function townPhase(profile,minutes,rain=false){
  return livesInKitahama(profile)&&['away','arriving'].includes(phase)?'town':phase;
 }
 /** And two people live where they work: the harbour master in his office, Officer Mori at the police box. */
-export const LIVES_AT_WORK=Object.freeze(['Harbour master','Officer Mori']);
+export const LIVES_AT_WORK=Object.freeze(['Sverker','Officer Mori']);
 export const livesAtWork=profile=>LIVES_AT_WORK.includes(typeof profile==='string'?profile:profile?.name);
 export function commuterPhase(profile,minutes,rain=false){
  if(livesInYard(profile)||livesAtWork(profile))return 'town';

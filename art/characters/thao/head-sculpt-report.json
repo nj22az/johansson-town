@@ -1,0 +1,33 @@
+{
+ "source": "Original Johansson Town head, sculpted in Blender for the game's generator",
+ "character": "Thao",
+ "form": "serene",
+ "generator": "tools/blender/build-thao-head.py",
+ "blender": "5.3.0",
+ "halfAxes": {
+  "width": 0.9,
+  "height": 1.12,
+  "depth": 0.98,
+  "heightOverWidth": 1.244
+ },
+ "radius": {
+  "min": 0.9103,
+  "max": 1.0177
+ },
+ "features_deg": {
+  "brow": 80.9,
+  "eye": 94.18,
+  "nose": 105.83,
+  "mouth": 117.41,
+  "eyeA": 16.77
+ },
+ "profile": {
+  "brow": 0.9883,
+  "eyeSocket": 0.9666,
+  "noseTip": 0.974,
+  "upperLip": 0.9885,
+  "chin": 0.9985
+ },
+ "jawCorner": 0.9972,
+ "temple": 1.0095
+}

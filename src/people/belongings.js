@@ -42,11 +42,11 @@ export const BELONGINGS=Object.freeze({
   tale:'Chin repaired it twice. Tetsuo is still finding screws.'}],
  'Officer Mori':[{what:'report book',from:'sakura',keeps:'on the kōban desk',canon:true,
   tale:'Three pages in it about a night when nothing happened.'}],
- 'Harbour master':[{what:'pocket tide table',from:'work',keeps:'in his breast pocket',canon:false,
-  tale:'The Harbour master trusts it over the radio forecast.'}],
+ 'Sverker':[{what:'pocket tide table',from:'work',keeps:'in his breast pocket',canon:false,
+  tale:'Sverker trusts it over the radio forecast.'}],
  'Miss Higa':[{what:'crossword book',from:'sakura',keeps:'on the bandai',canon:true,
   tale:'Miss Higa finishes a clue in it before taking coins.'}],
- 'Grandmother Higa':[{what:'old bus cap',from:'family',keeps:'on the hook inside her front door',canon:false,
+ 'Christina':[{what:'old bus cap',from:'family',keeps:'on the hook inside her front door',canon:false,
   tale:'Her husband wore it for thirty years on the island bus.'}],
  Kōji:[{what:'tally board',from:'work',keeps:'on his sorting bench',canon:false,
   tale:'Kōji marks every sorted crate on it before dawn.'}],
@@ -56,7 +56,7 @@ export const BELONGINGS=Object.freeze({
   tale:'It is full of kanji, minus the ten Vy has not learned.'}],
  // The eleven who joined the guide in phase 5 of docs/CAST-CONSOLIDATION.md: the ship's people, the port clerk, the
  // doctor and the relief engineer, each with the one thing their work or their day puts in their hand.
- Mac:[{what:'reading glasses',from:'own',keeps:'in his boiler-suit breast pocket',canon:false,
+ Erik:[{what:'reading glasses',from:'own',keeps:'in his boiler-suit breast pocket',canon:false,
   tale:'He needs them for the gauges and denies it.'}],
  'Ms Uezu':[{what:'marlinspike',from:'work',keeps:'on her belt, aft',canon:false,
   tale:'Every splice on the ferry’s lines is hers.'}],

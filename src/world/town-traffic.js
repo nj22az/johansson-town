@@ -143,7 +143,7 @@ export function createTownTraffic({parent,colliders=null,ferry=null,getPlayerPos
  const reserve=(shore)=>{const set=shore==='airport'?airportTaken:townTaken,order=shore==='airport'?[0,1,2,3,4,5]:[1,0];for(const i of order)if(!set.has(i)){set.add(i);return i;}return null;};
  const quayBay=i=>{const [x,z]=QUAY_BAYS[i];return {where:'quay',bay:i,x,y:wheelsAt(x,z),z,yaw:0};};
  const serviceBay=i=>{const [x,z]=SERVICE_BAYS[i];return {where:'service',bay:i,x,y:wheelsAt(x,z),z,yaw:Math.PI};};
- const islanders=[make('kei truck',0x5f8f5a,'islander','Tetsuo','Collect airport cargo for the workshop'),make('car',0xe9e6dc,'islander','Harbour master','Inspect airport cargo manifests')];
+ const islanders=[make('kei truck',0x5f8f5a,'islander','Tetsuo','Collect airport cargo for the workshop'),make('car',0xe9e6dc,'islander','Sverker','Inspect airport cargo manifests')];
  // (each errand on the Minato Maru's own sailings, ferry-timetable.js, one car a sailing: she sails to her timetable and
  // takes the one car on her deck; the errands still ran at the times set before it (11:30, 16:00, 10:00, 13:00), when she
  // lay at Kitano-jima, and a car waited at the ramp with no boat. Wanted on the far shore from 11 minutes before its boat

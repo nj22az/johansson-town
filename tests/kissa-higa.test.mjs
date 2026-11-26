@@ -28,7 +28,7 @@ import {shopHouse} from '../src/world/okinawa/houses.js';
 import {HIGA_FRAME,HIGA_ATLAS,KISSA_MODELS,KISSA_CHAIRS,higaPoint} from '../src/world/okinawa/higa-liquor-dressing.js';
 
 /**
- * Kissa Higa, Grandmother Higa's morning coffee shop in the old Higa Liquor (the owner, 30 October 2026;
+ * Kissa Higa, Christina's morning coffee shop in the old Higa Liquor (the owner, 30 October 2026;
  * commerce/kissa-higa.js, briefs/higa-kissaten/progress.md): its hours and its shutter, her morning round it, the
  * regulars from their own days, the seats they sit on and the room they are drawn in, the menu, where its bread comes
  * from, its Meshy models and its place in the storyteller. Every number is the data's, so the world, the residents and
@@ -62,16 +62,16 @@ test('the shutter goes up while she is at the front, and comes down only once sh
  assert.ok(kissaPassable(at(tue,0,KISSA.open))&&kissaPassable(at(tue,0,KISSA.close-1)),'open the whole time it serves');
 });
 
-test('Grandmother Higa’s weekday: the garden, the front, the counter, the front again, the bath; at the weekend no kissaten',()=>{
+test('Christina’s weekday: the garden, the front, the counter, the front again, the bath; at the weekend no kissaten',()=>{
  const mon=dayWith(1),sun=dayWith(0),sat=dayWith(6);
- const plan=(day,h,m=0)=>canonicalDay('Grandmother Higa',at(day,h,m));
+ const plan=(day,h,m=0)=>canonicalDay('Christina',at(day,h,m));
  assert.equal(plan(mon,6,30).place,'higa','the garden round after breakfast');assert.ok(plan(mon,6,30).stand,'on her garden stand round');
  const front=plan(mon,6,47);assert.equal(front.place,'kissa-higa');assert.deepEqual(front.target,[...KISSA_KEEPER.front],'at the shutter');
  const counter=plan(mon,7,30);assert.deepEqual(counter.target,[...KISSA_KEEPER.at],'behind the counter');assert.equal(counter.stand.pose,'CounterIdle');
  assert.deepEqual(plan(mon,9,42).target,[...KISSA_KEEPER.front],'out on the pavement while the shutter comes down');
  assert.equal(plan(mon,9,55).place,'onsen','up Kitano Road to the bath');assert.equal(plan(mon,10,30).place,'onsen');
  for(const day of [sat,sun])for(const h of [6.75,7.5,9])assert.notEqual(plan(day,h).place,'kissa-higa');
- assert.equal(castMember('Grandmother Higa').work,'onsen','the bath is still her work');
+ assert.equal(castMember('Christina').work,'onsen','the bath is still her work');
 });
 
 test('the regulars come from their own days: free and near at the hour, and on to what they were doing next',()=>{

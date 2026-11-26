@@ -11,7 +11,7 @@ import {namesOf} from './roster.js';
  *   4. at least three people they love, like, tease or can't stand (RELATIONSHIPS), one of them with some tension.
  *
  * `was` names the figures in the world that become this person (Mrs Higa and Yonamine-sensei become Miss Higa).
- * `alsoAt` is a second home: only duty berths aboard now (Johansson's cabin, Mac's berth), since Thuan's weekday room
+ * `alsoAt` is a second home: only duty berths aboard now (Johansson's cabin, Erik's berth), since Thuan's weekday room
  * was dropped (phase 3, addendum 4). Ages are numbers; Johansson, the player, has none.
  * The registry (island-households.js) builds its households from this list; the rest of the code moves over batch by
  * batch (the plan's section 6), and the test names who is still to follow.
@@ -19,8 +19,8 @@ import {namesOf} from './roster.js';
  * The consolidation (docs/CAST-CONSOLIDATION.md, roster.js) is switching this list over phase by phase. Phase 2 (the
  * ship): the five supporting crew are people here, with the ship's cabins and Kai's rented house as their homes
  * (`supporting`, so the registry counts them as quarters, not households); Mr Fujita is the master, Chin the
- * motorman, Mac the relief engineer. Phase 3 (the households): Nhung lives at 3 Kitahama with Kōji and Riku; Thuan
- * lives on Kitano-jima only and commutes by the ferry; Kitahama Heights is two ground-floor houses, Mac's and
+ * motorman, Erik the relief engineer. Phase 3 (the households): Nhung lives at 3 Kitahama with Kōji and Riku; Thuan
+ * lives on Kitano-jima only and commutes by the ferry; Kitahama Heights is two ground-floor houses, Erik's and
  * Ms Ganaha's; Thuan owns Sakura outright, which now keeps shop hours; Sakura supplies the flowers and the Port
  * Terminal the post. Phase 4 (the retirements): the ten retired identities of roster.js RETIRED (the Bus driver,
  * Mr Higa Jr, Grandmother Sakurai, Grandmother Chinen, Postman Tōma, Mr Shimabukuro, Mr Ōshiro, Mrs Kinjō, Barfly
@@ -31,7 +31,7 @@ import {namesOf} from './roster.js';
  * themselves. Dr Kakazu retired on 22 October 2026 (the owner): Nhung is the island doctor in his place, and prints the
  * paper in the evenings; Front-Row's books and stationery are Sakura's. Only compatible history stays (Tetsuo's mother was a Chinen; Mr Fujita keeps the old seamen's
  * stories). Phase 5 (the stories and directories): the guide, the feed's places and the Studio tools list exactly this
- * cast; the short display names of the brief (Fuji, Jack, Nao, Koji, Mika, Yui, Tetsu, Aki, Emi, Nils) are the
+ * cast; the short display names of the brief (Fuji, Sverker, Nao, Koji, Mika, Yui, Tetsu, Aki, Emi, Nils) are the
  * roster's and resolve through castMember, while this list keeps the names the world, its saves and its drawings use.
  */
 const person=(name,o)=>Object.freeze({name,sex:o.sex,age:o.age??null,home:o.home,alsoAt:Object.freeze(o.alsoAt||[]),
@@ -76,7 +76,7 @@ export const CAST=Object.freeze([
  // from 06:45 to 09:50 on weekdays (commerce/kissa-higa.js; canonical-day.js puts her behind its counter), so her garden
  // round starts after her breakfast (up at half past five, canonical-rest.js) and on weekdays ends when she goes down to
  // open the shutter.
- person('Grandmother Higa',{sex:'f',age:78,home:'higa',work:'onsen',family:'Higa',purpose:'owns Umi-no-yu and keeps its bandai by day, 10:00–17:00; keeps Kissa Higa, the morning coffee shop in her old liquor shop on Main Street, 07:00–09:30 on weekdays (the drink is Sakura’s); since 27 October 2026 she keeps the till at Johansson Mart in Kitahama on weekday evenings and Saturdays, when Sakura is shut',
+ person('Christina',{sex:'f',age:78,home:'higa',work:'onsen',family:'Higa',purpose:'owns Umi-no-yu and keeps its bandai by day, 10:00–17:00; keeps Kissa Higa, the morning coffee shop in her old liquor shop on Main Street, 07:00–09:30 on weekdays (the drink is Sakura’s); since 27 October 2026 she keeps the till at Johansson Mart in Kitahama on weekday evenings and Saturdays, when Sakura is shut',
   day:[['06:00','higa','the garden across the lane: the vines, the beds and the altar flowers',{stand:'higa-garden'}],['08:30','higa','the verandah'],['10:00','onsen','the bandai at Umi-no-yu, the bath’s opening'],['12:00','higa','lunch'],['13:00','onsen','the bandai at Umi-no-yu'],['17:00','higa','home to the verandah']]}),
  // The Front-Row yard. Tetsuo keeps the island's electrics since the power house lost its keeper (roster.js RETIRED).
  person('Tetsuo',{sex:'m',age:40,home:'resident-home-kenji',work:'workshop',family:'Chinen',purpose:'radio repairer at the Chin & Tetsuo workshop; the ferry’s electrician under contract; tends the onsen’s boiler and pumps and the power house’s switchboard',
@@ -86,15 +86,15 @@ export const CAST=Object.freeze([
   day:[['05:30','fish-auction','the morning auction'],['07:00','sato-ramen','the stock pot',{stand:'ramen-stock'}],['11:00','sato-ramen','lunch service',{stand:'ramen-lunch'}],['21:00','kitahama-2','home']]}),
  person('Officer Mori',{sex:'m',age:45,home:'koban',work:'koban',family:'Mori',purpose:'the island’s police officer: the desk at Minato Police Station from four, the night patrol',
   day:[['09:00','koban','asleep after the night patrol'],['13:00','sato-ramen','lunch'],['16:00','koban','the desk',{stand:'station-desk'}],['21:00','main-street','the night patrol'],['02:00','koban','home upstairs at the station']]}),
-  // Jack Reed (roster.js: the Harbour master's keys and Mr Fujita's Minato linesman duty since phase 2): the harbour
+  // Sverker Reed (roster.js: the old Harbour master's keys and Mr Fujita's Minato linesman duty since phase 2): the harbour
  // agent, an American former merchant seaman long settled here; the town still calls him the harbour master.
- person('Harbour master',{sex:'m',age:58,home:'office',work:'office',family:'Reed',purpose:'harbour agent: runs the harbour office, the berth radio, the moorings, the cargo yard and the freight book, and takes the Minato Maru’s lines at every call; an American former merchant seaman, long settled here',
+ person('Sverker',{sex:'m',age:58,home:'office',work:'office',family:'Reed',purpose:'harbour agent: runs the harbour office, the berth radio, the moorings, the cargo yard and the freight book, and takes the Minato Maru’s lines at every call; an American former merchant seaman, long settled here',
   day:[['06:00','office','the morning boats'],['12:00','sato-ramen','ramen, every day'],['13:00','quay','the quay round with the freight book',{stand:'harbour-round'}],['15:00','office','the freight book and the berth radio'],['18:00','office','the evening boat'],['21:00','office','home behind the screen']]}),
  // The ferry and the port.
- // Mac Turner (docs/CAST-CONSOLIDATION.md §4): the relief engineer, renamed from Mr Nakandakari in phase 2 with his new
+ // Erik Turner (docs/CAST-CONSOLIDATION.md §4): the relief engineer, renamed from Mr Nakandakari in phase 2 with his new
  // biography; an American who came with the diesels in the seventies and stayed. Kitahama Heights A (the logical id
  // kitahama-flat-3 kept for his saves, addendum 6) and a duty berth aboard.
- person('Mac',{sex:'m',age:61,home:'kitahama-flat-3',alsoAt:['ferry-engineer-duty-berth'],work:'ferry',family:'Turner',was:['Mr Nakandakari'],purpose:'relief engineer of the Minato Maru, an American who came to the island with the Caterpillar diesels in the seventies and stayed; takes the chief’s watch whenever Johansson is ashore; lives in Kitahama Heights A and keeps a duty berth aboard',
+ person('Erik',{sex:'m',age:61,home:'kitahama-flat-3',alsoAt:['ferry-engineer-duty-berth'],work:'ferry',family:'Turner',was:['Mr Nakandakari'],purpose:'relief engineer of the Minato Maru, an American who came to the island with the Caterpillar diesels in the seventies and stayed; takes the chief’s watch whenever Johansson is ashore; lives in Kitahama Heights A and keeps a duty berth aboard',
   day:[['05:30','ferry','the engine room'],['12:00','ferry','lunch in the mess'],['13:00','ferry','the engine room'],['19:30','higa-bench','half an hour on a crate outside the shut Higa Liquor'],['20:00','izakaya','one beer at Minato'],['21:00','kitahama-flat-3','home']]}),
  person('Ms Uezu',{sex:'f',age:44,home:'kitahama-8',work:'ferry',family:'Uezu',purpose:'bosun of the Minato Maru, a week on (living aboard) and a week off',
   day:[['06:00','ferry','the deck and the ramp'],['12:00','ferry','lunch in the mess'],['13:00','ferry','the deck and the ramp'],['19:00','sato-ramen','supper'],['20:30','kitahama-8','home (in her week off)']]}),
@@ -159,34 +159,34 @@ export const RELATIONSHIPS=Object.freeze([
  pair('Kōji','Riku','father and son','Riku wants to go out on the boat.','Riku is not allowed on the boat until he can swim to the buoy.'),
  pair('Vy','Riku','cousins and classmates','The only two in the class with the same grandmother.','A rivalry at school.'),
  pair('Miss Higa','Tetsuo','a slow spark','At the onsen after hours: he fixes the boiler, she pretends not to watch.','Neither will say it.'),
- pair('Miss Higa','Grandmother Higa','granddaughter and grandmother','The Higa house and the bath.','Grandmother wants her married.'),
+ pair('Miss Higa','Christina','granddaughter and grandmother','The Higa house and the bath.','Grandmother wants her married.'),
  pair('Miss Higa','Vy','teacher and pupil','Vy asks the most questions.'),
  pair('Miss Higa','Riku','teacher and pupil','Riku talks in class.','He is moved to the front row every week.'),
- pair('Grandmother Higa','Tetsuo','employer','He keeps her boiler running for a bath and supper.','She pushes her granddaughter at him.'),
- pair('Mrs Sato','Harbour master','old flames','Widow and widower; he eats her ramen every day and never says why.','The thing they never say.'),
+ pair('Christina','Tetsuo','employer','He keeps her boiler running for a bath and supper.','She pushes her granddaughter at him.'),
+ pair('Mrs Sato','Sverker','old flames','Widow and widower; he eats her ramen every day and never says why.','The thing they never say.'),
  pair('Thao','Mrs Sato','rivals','The evening crowd: izakaya against ramen.','They fall out, then make up over a delivery.'),
  pair('Chin','Tetsuo','partners','The workshop, since school; Tetsuo keeps the bench while Chin is aboard.','The odd quarrel over a botched job.'),
  pair('Kōji','Ms Uezu','deck hands','He relieves her every other week.'),
- pair('Mac','Tetsuo','relief engineer and contract electrician','The ship’s switchboard.','Mac guards his switchboard.'),
- pair('Mac','Ms Uezu','engine room and deck','The ferry’s two halves.','Deck against engine room, every day.'),
+ pair('Erik','Tetsuo','relief engineer and contract electrician','The ship’s switchboard.','Erik guards his switchboard.'),
+ pair('Erik','Ms Uezu','engine room and deck','The ferry’s two halves.','Deck against engine room, every day.'),
  pair('Ms Ganaha','Mr Fujita','the port','The ticket window and the lines.'),
- pair('Mr Fujita','Grandmother Higa','an onsen regular','A soak for his back whenever the sailings let him.','He says the bath is never hot enough.'),
+ pair('Mr Fujita','Christina','an onsen regular','A soak for his back whenever the sailings let him.','He says the bath is never hot enough.'),
  // Dr Kakazu's patients are Nhung's since 22 October 2026.
  pair('Mr Fujita','Nhung','patient and doctor','His back.','He will not rest it.'),
  pair('Nhung','Mrs Sato','the doctor everyone feeds','The bowl Mrs Sato sends over when surgery runs late, which Nhung is not allowed to pay for.'),
- pair('Nhung','Grandmother Higa','doctor and patient','Her blood pressure.','She ignores Nhung’s advice.'),
- pair('Harbour master','Mr Fujita','harbour master and linesman','Every call of the Minato Maru.'),
+ pair('Nhung','Christina','doctor and patient','Her blood pressure.','She ignores Nhung’s advice.'),
+ pair('Sverker','Mr Fujita','harbour master and linesman','Every call of the Minato Maru.'),
  // Phase 4 (roster.js RETIRED): the pairs that replace the retired people's. Nhung's paper takes Reiko's place with
- // Officer Mori; Mac is the night patrol's beer count at Minato; the two Heights neighbours; the port's two clerks.
+ // Officer Mori; Erik is the night patrol's beer count at Minato; the two Heights neighbours; the port's two clerks.
  pair('Nhung','Officer Mori','the paper, the law and the night telephone','She wants his stories for the town’s paper; after dark both are on call.','He wants her to print fewer of them.'),
- pair('Officer Mori','Mac','the late hours','Mori stops at Minato on the night patrol; Mac has his one beer there.','Mori counts it.'),
+ pair('Officer Mori','Erik','the late hours','Mori stops at Minato on the night patrol; Erik has his one beer there.','Mori counts it.'),
  pair('Officer Mori','Mrs Sato','lunch at one','The same shoyu ramen every day of the year.','She wants him to try the miso once.'),
- pair('Ms Ganaha','Harbour master','the ferry desk and the office radio','The sailing list and the berth, every call.','Who tells the passengers why she is late.'),
- pair('Ms Ganaha','Mac','next door at the Heights','A and B, one roof.','His generator stories through the party wall.'),
+ pair('Ms Ganaha','Sverker','the ferry desk and the office radio','The sailing list and the berth, every call.','Who tells the passengers why she is late.'),
+ pair('Ms Ganaha','Erik','next door at the Heights','A and B, one roof.','His generator stories through the party wall.'),
  // The supporting crew (phase 2): the ship's two departments and the shore ends of her lines.
  pair('Ryo','Mr Fujita','master and chief officer','The log and the lookout, every call.','Fujita cons every berthing himself; Ryo wants the afternoon ones.'),
  pair('Ryo','Ms Uezu','bridge and deck','The ramp orders from the port wing.','Who counts the cars.'),
- pair('Ryo','Harbour master','the berth on the radio','Distance off and the berth, every call.'),
+ pair('Ryo','Sverker','the berth on the radio','Distance off and the berth, every call.'),
  pair('Ren','Ms Uezu','deck hand and bosun','Forward and aft.','She checks his coils.'),
  pair('Ren','Kōji','the forward station on Kōji’s weeks','Kōji ties a fisherman’s knot and Ren unties it.'),
  pair('Ren','Aya','the gangway and the count','The last passenger, counted twice.','Whose count is right.'),
@@ -214,12 +214,12 @@ export const PLACES=Object.freeze({
  // The shop floor closed on 22 October 2026 (its stock is Sakura's); the back bench prints the paper in the evenings.
  books:{name:'The town’s paper, at the old Front-Row shop',keepers:['Nhung']},
  workshop:{name:'Chin & Tetsuo Repairs',keepers:['Chin','Tetsuo']},
- office:{name:'Harbour Office, the cargo yard and the freight book',keepers:['Harbour master']},
+ office:{name:'Harbour Office, the cargo yard and the freight book',keepers:['Sverker']},
  koban:{name:'Minato Koban',keepers:['Officer Mori']},
  clinic:{name:'Town hall clinic',keepers:['Nhung']},
  'town-hall':{name:'Town hall',keepers:['Nhung']},
  school:{name:'The island school',keepers:['Miss Higa']},
- onsen:{name:'Umi-no-yu',keepers:['Grandmother Higa','Miss Higa','Tetsuo']},
+ onsen:{name:'Umi-no-yu',keepers:['Christina','Miss Higa','Tetsuo']},
  // The owner, 21 October 2026: the coin laundry gets a keeper from the cast (commerce/coin-laundry.js LAUNDRY_KEEPER).
  'coin-laundry':{name:'Coin laundry',keepers:['Ms Ganaha']},
  zenzai:{name:'Nakamura Zenzai',closed:'The dessert counter is vacant until it has a keeper'},
@@ -229,14 +229,14 @@ export const PLACES=Object.freeze({
  // Kōji's own sabani on the west quay; Chin mends the boats between watches.
  boatyard:{name:'Boatyard',keepers:['Kōji','Chin']},
  'fish-auction':{name:'Fish auction and the ice plant',keepers:['Kōji']},
- ferry:{name:'Minato Maru',keepers:['Johansson','Mr Fujita','Mac','Chin','Ms Uezu','Kōji','Tetsuo','Ryo','Ren','Aya','Jun']},
+ ferry:{name:'Minato Maru',keepers:['Johansson','Mr Fujita','Erik','Chin','Ms Uezu','Kōji','Tetsuo','Ryo','Ren','Aya','Jun']},
  // The post and the parcels are Ms Ganaha's window (phase 3); the round went with the postman (phase 4).
  port:{name:'Port Terminal',keepers:['Ms Ganaha','Mr Fujita']},
  'kitano-pier':{name:'Kitano-jima ferry pier',keepers:['Kai']},
- warehouse:{name:'Quay Warehouse and the Sakura depot',keepers:['Harbour master','Thuan']},
+ warehouse:{name:'Quay Warehouse and the Sakura depot',keepers:['Sverker','Thuan']},
  // The owner, 22 October 2026: Higa Liquor closes; Sakura sells and supplies all the alcohol (commerce/higa-liquor.js).
- // 30 October 2026: the room is Kissa Higa, Grandmother Higa's in the mornings (commerce/kissa-higa.js).
- 'kissa-higa':{name:'Kissa Higa',keepers:['Grandmother Higa']},
+ // 30 October 2026: the room is Kissa Higa, Christina's in the mornings (commerce/kissa-higa.js).
+ 'kissa-higa':{name:'Kissa Higa',keepers:['Christina']},
  // Nobody keeps these any more (docs/CAST-PLAN.md section 3, who goes).
  'yonamine-fish':{name:'Yonamine Fresh Fish',closed:'Mrs Yonamine has gone; the morning catch is sold at the auction'},
  'aragaki-sweets':{name:'Aragaki Confectionery',closed:'Mr Arakaki has gone'},

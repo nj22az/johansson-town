@@ -24,7 +24,7 @@ export const TRADE_ROUND=Object.freeze({
  why:'Kōji is on the quay from half past four and asleep from noon: the round fits between the ice for the boats and his sleep, on his weeks ashore, and the truck he already has for the ice chests carries twenty crates.',
  // Where he loads and where he leaves the empties: the depot's door in the Quay Warehouse (the canonical day's
  // 'warehouse' point, canonical-day.js; tests/higa-liquor-laundry.test.mjs holds the two the same), and the crate yard
- // across Main Street that Sakura Trading rents from Grandmother Higa since her shop closed (lots.js).
+ // across Main Street that Sakura Trading rents from Christina since her shop closed (lots.js).
  load:Object.freeze({place:'warehouse',at:Object.freeze([-9.7,-41.4]),what:'loading the round at Sakura Trading’s depot in the Quay Warehouse'}),
  stops:Object.freeze([
   Object.freeze({account:'izakaya',days:Object.freeze([2,5]),at:'10:42',where:'Minato’s door',place:'izakaya',

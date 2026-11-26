@@ -48,7 +48,7 @@
   };
   const RESIDENTS = (window.JOHANSSON_RESIDENT_GUIDE || []).map(r => ({
     ...r, start: DUTIES[r.name]?.[0], end: DUTIES[r.name]?.[1],
-    always: r.name === "Harbour master" || r.name === "Bus driver"
+    always: r.name === "Sverker" || r.name === "Bus driver"
   }));
 
 

@@ -148,7 +148,7 @@ test('a throwaway copy of the products: a designed label for the beer changes on
   assert.equal(flavour.applied,true,JSON.stringify(flavour));
   const mints=await call('product_add',{as:'product',from:'candy',product:{id:'mints',name:'Harbour mints',jp:'Mints',price:100,text:'KAZEMARU · Harbour mints',
    brand:{name:'KAZEMARU',jp:'Kazemaru',line:'Peppermints',paper:'#d9eef0',ink:'#1f4f6b',accent:'#5fa8c4',symbol:'wave'},pack:{shape:'box',size:[.06,.09,.02],net:'30g',flash:'Strong',tag:'For the ferry',art:'candy'},
-   purpose:{zone:'daily',for:['Bus driver','Harbour master'],why:'Peppermints for a long shift at the wheel or on the quay.',placed:'Beside the batteries, by the till, where a driver pays.'}},
+   purpose:{zone:'daily',for:['Bus driver','Sverker'],why:'Peppermints for a long shift at the wheel or on the quay.',placed:'Beside the batteries, by the till, where a driver pays.'}},
    place:{mode:'share',target:'battery'},note:'Peppermints for the drivers and the harbour master.',dryRun:false});
   assert.notEqual(mints.isError,true,JSON.stringify(mints.content));assert.equal(json(mints).applied,true,JSON.stringify(json(mints)));
   const shelf=await call('render_product',{id:'beer',view:'shelf',size:256});assert.notEqual(shelf.isError,true,JSON.stringify(shelf.content));

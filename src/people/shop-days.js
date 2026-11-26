@@ -7,7 +7,7 @@ import {KISSA,KISSA_KEEPER,KISSA_MENU,kissaDay,kissaOnDuty,kissaVisitAt} from '.
  * Where the shops of 21 October 2026 put the residents (the owner's decision: no new people; commerce/coin-laundry.js,
  * commerce/higa-liquor.js): on Sakura Trading's round (Higa Liquor's until the shop closed on 22 October 2026;
  * commerce/trade-round.js), on the bench outside the old Higa Liquor of an evening, and at the coin laundry's machines
- * on their washing day; and since 30 October 2026 at Kissa Higa of a weekday morning, Grandmother Higa behind its
+ * on their washing day; and since 30 October 2026 at Kissa Higa of a weekday morning, Christina behind its
  * counter and the regulars on its stools (commerce/kissa-higa.js). A pure function of the clock, read by the canonical
  * day (canonical-day.js) and the walking residents' planner (social.js residentPlan) before their ordinary rows, so the
  * street, the stories and the tests ask the same question.
@@ -43,7 +43,7 @@ export function shopDayPlan(name,minutes,{pointFor=()=>null,kissaClosingHeld=fal
  const m=minute(minutes);
  // Sakura Trading's round, Kōji's on his weeks ashore.
  if(name==='Kōji'){const leg=roundAt(minutes);if(leg){const target=leg.point?[...leg.point]:pointFor(leg.place);if(target)return {place:'trade-round',target,activity:leg.activity};}}
- // Kissa Higa of a weekday morning: Grandmother Higa behind the counter, then up Kitano Road to open the bath at ten.
+ // Kissa Higa of a weekday morning: Christina behind the counter, then up Kitano Road to open the bath at ten.
  if(name===KISSA.keeper){
   if(kissaClosingHeld)return {place:'kissa-higa',target:[...KISSA_KEEPER.front],activity:'waiting for the last customer, then closing Kissa Higa',
    stand:Object.freeze({yaw:KISSA_KEEPER.frontYaw,pose:'Interact',why:'Nobody is shut inside: she waits outside until the room and doorway are clear.'})};

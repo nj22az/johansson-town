@@ -52,7 +52,7 @@ test('fishing at night lands a pier fish; the harbour master buys the best, Tama
  assert.equal(acts.state.fish,2);
  assert.equal(acts.state.inventory.length,2,'the second catch is still the waterlogged page');assert.match(acts.state.inventory[1],/^Waterlogged page/);
  acts.state.inventory.push('Taman','Mijun');
- const yen=acts.state.yen;acts.action('resident','Harbour master');dom.button('Sell a catch');
+ const yen=acts.state.yen;acts.action('resident','Sverker');dom.button('Sell a catch');
  assert.deepEqual(dom.labels().filter(l=>/^Sell/.test(l)),['Sell your taman · +¥320',`Sell your ${first.name} · +¥${first.pierPrice}`,'Sell your mijun · +¥60'],'each kind offered, dearest first: the player chooses');
  dom.button('Sell your taman · +¥320');
  assert.equal(acts.state.yen,yen+320);assert.ok(!acts.state.inventory.includes('Taman'));

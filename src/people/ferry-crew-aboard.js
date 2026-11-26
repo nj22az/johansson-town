@@ -51,7 +51,7 @@ export function crewPlaces(phase,minutes=0){
 /** One body per signed-on post, moving through the real ship before it can report a task complete. */
 /**
  * Who keeps the chief engineer's watch (the owner, 21 October 2026, briefs/ferry-timetable.md): Johansson, the player,
- * only while he is aboard in the crew's working hours; otherwise Mac, the relief engineer. The ship's day never waits
+ * only while he is aboard in the crew's working hours; otherwise Erik, the relief engineer. The ship's day never waits
  * for either: with Johansson on watch his tasks are done on the watch's own time, whatever the player is doing.
  */
 export const chiefWatchHolder=({minutes,playerAboard,playerIsChief=true})=>playerIsChief&&playerAboard&&onWatch(minutes)?'player':'relief';
@@ -93,7 +93,7 @@ export function createFerryCrewAboard({run,characters,register,onAction,townBody
    if(watch.post==='chief'&&watch.name===playerIdentity()&&p==='night')continue;
    // The bosun's relief has a family at 3 Kitahama and sleeps there; only the signed-on bosun lives aboard on her week on.
    if(watch.post==='bosun'&&p==='night'&&watch.name===FERRY_RELIEF.bosun.name)continue;
-   // Johansson on watch: his tasks are kept by the watch itself (no second body); Mac rests in his duty berth.
+   // Johansson on watch: his tasks are kept by the watch itself (no second body); Erik rests in his duty berth.
    if(watch.post==='chief'&&holder==='player'){
     for(const t of active.filter(t=>t.post==='chief'))if(!records.has(t.id))records.set(t.id,{task:t,b:null,elapsed:0,done:false,player:true});
     const rest={...watch,name:FERRY_RELIEF.chief.name,title:'Relief engineer · off watch',where:'cabin',doing:'Off watch in his duty berth while the chief is aboard',...CREW_POSTS.cabin};
@@ -162,7 +162,7 @@ export function createFerryCrewAboard({run,characters,register,onAction,townBody
    for(const name of FERRY_PEOPLE){const town=townBody(name);if(town?.userData.aboardFerry)town.visible=false;}
   },
   get phase(){return phase;},
-  /** Who has the chief's watch now: 'player' (Johansson aboard in working hours) or 'relief' (Mac). */
+  /** Who has the chief's watch now: 'player' (Johansson aboard in working hours) or 'relief' (Erik). */
   get chiefWatch(){return chiefHolder;},
   snapshot(){
    const ship=[...bodies.values()].filter(b=>b.g.visible).map(b=>{

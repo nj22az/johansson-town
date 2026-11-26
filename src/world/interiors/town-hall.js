@@ -82,7 +82,7 @@ function plate(group,text,{w,h,at,ry=0,bg='#f3f0e4',fg='#23302a',font=GOTHIC,siz
  */
 export const PETITIONS=Object.freeze([
  'From Tetsuo, for the power house next door: The second diesel set needs new injectors before typhoon season. The parts come on the Thursday ferry if the town pays this week.',
- 'From the Higa household, Nishi-machi: May the children use the town hall field on Sunday for eisa practice? Grandmother Higa will supervise. Loudly.',
+ 'From the Higa household, Nishi-machi: May the children use the town hall field on Sunday for eisa practice? Christina will supervise. Loudly.',
  'From the ferry company: The new cargo trucks are heavier. We ask the town to strengthen the quay apron where the ramp lands.',
  'From Thuan, Sakura Shōten: A request for a bench at the bus stop by the ferry. People wait there with their shopping.',
 ]);

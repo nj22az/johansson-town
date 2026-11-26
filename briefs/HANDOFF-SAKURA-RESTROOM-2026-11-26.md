@@ -269,3 +269,65 @@ cartoon"; "How would Disney draw her ? Or Tomodachi life work towards this"; "A 
   and a **clothes kit** (each top and bottom a sculpted shell skinned to the rig), then the remaining heads, family by
   family. Thao, Chin and Nhung next: they are Thuan's sisters and Vy's parents, and should look related.
 - Vy's fringe covers her brows; her painted brows show only when they lift.
+
+# After that: Thao, three renamings from photographs, and three faults seen on the owner's phone
+
+Not on `main`: on `claude/dreamy-ritchie-cxufpl`, waiting for the owner's word.
+
+## The owner's words, in order
+- "This is Thao but cartoon Thao should wear short pants" (her photograph)
+- "This is Mrs Higa who should be renamed to Christina and she should not have a wheelchair" (her photograph)
+- "This is Mac who should be renamed Erik" (his photograph)
+- "This is the harbour master Sverker" (his photograph)
+- "Why does Vy have lines on her legs no one should have it in any shader" (a phone screenshot, Vy's own look)
+- "Johansson's face??" (a phone screenshot, from the game's high camera)
+
+## Done
+- **Thao**: `tools/blender/build-thao-head.py` sculpts her head (form `serene`: a long oval, a high forehead, a round chin)
+  and her hair (`tiedback`: off the forehead, cut round the ears, which show, a round low bun). `cast.js`: the graceful
+  frame, a yellow tee, cream **shorts**, pale sneakers; narrow dark eyes, tapered brows, a closed smile, gold studs.
+- **Christina, Erik, Sverker** (were Gran Higa / Grandmother Higa, Mac, Jack / Harbour master). One sweep over `src`,
+  `tests`, `tools`, `guide`, the generated guide and catalogues (158 files); `roster.js` keeps the old names as `was`,
+  the ids stay. Portrait and shoot files renamed with them. Each has a Blender head: `kindly` (round and soft), `burly`
+  (broad, a heavy bearded jaw), `broad` (wider than tall, jowls); Christina's `softwave` and Sverker's `sweptmop` hair
+  are sculpted too. Christina: white hair, the navy spotted dress, a white pendant for her pearls, no glasses, no
+  wheelchair. Erik: a painted full grey beard, his olive cap, a blue **checked** shirt (a new top pattern, `check`,
+  appended and not dealt by the dice). Sverker: white-blond hair and no cap over it, a grey-blue cardigan, and a new body
+  frame, **`stout`** (`build.js measure`): a belly that is the widest of him, deeper than wide, on thicker limbs.
+- **Lines down bare legs** (every look that draws from the normals): the kit limb joined its lathe seam on the wrong
+  points (`build.js limb`). Fixed, with a test on Vy's legs.
+- **The mark on a bald crown**: the sculpts' pieces are written by angle round the head and met at the crown in a crease.
+  `head_sculpt.fair_poles` fades them out toward both poles; all sculpted heads were rebuilt. The head sphere's own crown,
+  chin and seam now share one normal each as well.
+- **The phone showed an old Johansson**: the player's look is saved on the device (`actors.js playerRecipe`), and a
+  resident's if it was edited (`wardrobe.js`). `APPEARANCE_REVISIONS` (Johansson, Thuan, Tetsuo, Thao 1; Vy 2) makes each
+  redrawn character replace the saved copy once; later edits are kept.
+- **Hats on sculpted hair** never worked (the kerchief threw, the police cap and headband were NaN): `head-cover.js
+  headReach`, `build.js hairReach` and the headband now read a sculpted style's own field and height.
+  `avatar-wardrobe.test.mjs` is in the guard now.
+- **A hand in the house dress**: sitting on the floor, the hand-rest counted only a skirt's cloth on the lap, not the
+  wrapped house dress; a slim body whose hands reach its thighs laid them 2 cm in the cloth (`animate.js floorShape`).
+- `tools/avatar-turnaround.mjs` has the views `game` and `game front` (the game's high camera).
+
+## Proved
+- `tests/sculpted-cast.test.mjs` (Thao; the three renamed), `body-kit.test.mjs` (the seam), `avatar-wardrobe.test.mjs`
+  (redrawn looks adopted once; every hairstyle under every hat). The 49 test files that name the three people were run
+  before the renaming, in a clean copy, and after: nothing passes before that fails after.
+- Sheets in `art/characters/{thao,christina,erik,sverker}/review/` (Blender contact sheet, game turnarounds from eye level
+  and from the game's camera, the body, every expression); `art/characters/cast/christina-erik-sverker.png`.
+- Software Chromium only: no phone, no GPU.
+
+## Not done, and questions for the owner
+- **Their stories were not changed.** Sverker's surname is still Reed and Erik's Turner, both are recorded as Americans
+  (Seattle; Oregon), Christina is recorded as Japanese and is Yui Higa's grandmother, and Kissa Higa keeps its name. If
+  they should be Swedes, or related to Johansson, the owner has to say so: `roster.js`, `people/cast.js`,
+  `guide/residents.json`.
+- Sverker no longer wears the harbour master's cap or navy jacket, nor Erik his boiler suit: they wear what the photographs
+  show. Nothing gives them work clothes on duty.
+- Christina's shawl is not drawn (no such garment), and her pearls are a white pendant on a fine chain.
+- Erik's cap sits low and hides his brows from eye level and his face from the game's camera, as any cap does.
+- From the game's high camera Johansson's sculpted nose still draws heavily; his face was made at eye level.
+- `stout` has no kit torso line of its own (it is the standard shoulders over a belly), and is tried on Sverker only.
+- Historical documents (`docs/`, `briefs/`, dated notes in `AGENTS.md`) keep the old names.
+- Still owed from "everyone remodelled in Blender": the other heads (Chin and Nhung next), the remaining hairstyles, the
+  clothes, a sculpted torso and hands.

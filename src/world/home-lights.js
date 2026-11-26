@@ -28,7 +28,7 @@ export const HOME_ROUTINES=Object.freeze({
  'fumoto-2':{wake:H(6),bed:H(22)},
  'fumoto-3':{wake:H(3,45),bed:H(21)},
  'fumoto-4':{wake:H(5,45),bed:H(22)},
- // Kitahama Heights (addendum 6 of docs/CAST-CONSOLIDATION.md): Mac in A, up for the generators and in bed by ten;
+ // Kitahama Heights (addendum 6 of docs/CAST-CONSOLIDATION.md): Erik in A, up for the generators and in bed by ten;
  // Ms Ganaha in B, home from the last boat's window after half past ten.
  'kitahama-flat-3':{wake:H(5),bed:H(22)},
  'kitahama-flat-4':{wake:H(6,30),bed:H(23)},

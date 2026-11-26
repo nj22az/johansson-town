@@ -112,7 +112,7 @@ test('refuses unknown keys and steps, names that are nobody, ages, real brands, 
   [change([{...captain,set:{'outfit.hat':'tophat'}}]),/"tophat" is not a choice for outfit.hat/],
   [change([{...captain,set:{'hair.colour':'red'},was:{'hair.colour':fujita.hair.colour}}]),/colour written #rrggbb/],
   [change([age('Mr Fujita')]),/Mr Fujita is 73 in World, so is drawn as an elder; a look cannot make them a child/],
-  ...['Grandmother Higa','Thuan','Nhung','Johansson'].map(name=>[change([age(name)]),new RegExp(`${name} is (\\d+ in World, so is )?drawn as an (adult|elder)( in World)?; a look cannot make them a child`)]),
+  ...['Christina','Thuan','Nhung','Johansson'].map(name=>[change([age(name)]),new RegExp(`${name} is (\\d+ in World, so is )?drawn as an (adult|elder)( in World)?; a look cannot make them a child`)]),
   [change([{...captain,was:{}}]),/was is empty/],
   [change([{...captain,was:{'hair.colour':fujita.hair.colour}}]),/was must give today's value/],
   [change([{...captain,note:'hat'}]),/at least 4 words/],
@@ -419,7 +419,7 @@ test('products: a flavour gets its own cell, a new line shares a bay and gets ce
    brand:{name:'KAZEMARU',jp:'Kazemaru',line:'Peppermints',paper:'#d9eef0',ink:'#1f4f6b',accent:'#5fa8c4',symbol:'wave'},
    pack:{shape:'box',size:[.06,.09,.02],net:'30g',flash:'Strong',tag:'For the ferry',art:'candy',back:{ingredients:'Sugar, peppermint oil',unit:'pack',recycle:'PLA',food:true}},
    label:{source:'designed',spec,image:'labels/mints.r1.webp',sha256:'a'.repeat(64),bakedOn:'Chromium'},
-   purpose:{zone:'daily',for:['Nhung','Harbour master'],why:'Peppermints for a long shift at the wheel or on the quay.',placed:'Beside the batteries, by the till, where a driver pays.'},
+   purpose:{zone:'daily',for:['Nhung','Sverker'],why:'Peppermints for a long shift at the wheel or on the quay.',placed:'Beside the batteries, by the till, where a driver pays.'},
    capacity:24,supplier:'sakura'};
   const added=await applyChange(change([{op:'product.add',product:mints,place:{mode:'share',target:'battery'}}]),{repo:shopRepo,dryRun:false});
   assert.equal(added.applied,true,sentences(added));

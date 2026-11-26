@@ -25,7 +25,7 @@ const GOTHIC='"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP",sans-se
 export const BOTTLE_KEEP=Object.freeze([
  {name:'Chin',drink:'Zuisen awamori',colour:0x5a3b22},{name:'Mr Higa',drink:'Kumesen awamori',colour:0x2c4a33},
  {name:'Officer Mori',drink:'Shochu, barley',colour:0xd8dccf},{name:'Hiroshi',drink:'Awamori, 10 years',colour:0x5a3b22},
- {name:'Tetsuo',drink:'Shochu, sweet potato',colour:0x34465a},{name:'Harbour master',drink:'Awamori, 5 years',colour:0x2c4a33},
+ {name:'Tetsuo',drink:'Shochu, sweet potato',colour:0x34465a},{name:'Sverker',drink:'Awamori, 5 years',colour:0x2c4a33},
  {name:'Mr Fujita',drink:'Shochu, rice',colour:0xd8dccf},{name:'Masaru',drink:'Awamori',colour:0x5a3b22},
  {name:'Ms Uezu',drink:'Plum wine',colour:0x7a2b2b},{name:'Mr Tanabe',drink:'Awamori, 3 years',colour:0x34465a},
  {name:'Nhung',drink:'Plum wine',colour:0x7a2b2b},{name:'Daichi',drink:'Shochu, barley',colour:0xd8dccf},

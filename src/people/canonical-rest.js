@@ -3,10 +3,10 @@
 const H=(sleep,wake)=>Object.freeze({sleep,wake});
 export const CANONICAL_REST=Object.freeze({
  Vy:H(1260,420),'Kōji':H(1260,225),Riku:H(1260,420),
- // Grandmother Higa is up at half past five: breakfast, then the garden before she opens Kissa Higa at seven
+ // Christina is up at half past five: breakfast, then the garden before she opens Kissa Higa at seven
  // (commerce/kissa-higa.js, 30 October 2026).
- 'Miss Higa':H(1380,420),'Grandmother Higa':H(1260,330),
- Mac:H(1320,285),
+ 'Miss Higa':H(1380,420),'Christina':H(1260,330),
+ Erik:H(1320,285),
  // Ms Ganaha keeps the port window until 22:15 (ganaha.js) and is home by half past.
  'Ms Uezu':H(1320,315),'Ms Ganaha':H(1380,420),
 });

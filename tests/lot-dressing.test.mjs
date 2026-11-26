@@ -96,10 +96,10 @@ test('every dressed lot can be walked into from Main Street, and what it offers 
  const nav=createNavigation(playerBlocked,{step:.5});
  // The inside of each: the lane garden's middle path, Johansson Mart's forecourt at its door (where the to-let bay was,
  // 27 October 2026), the gap between Kōji's and Nhung's cars to the parking sign, the bicycle shed's
- // front, the hoop's free-throw line, the eisa ground, Mac's table, Gran Higa's path, between Kōji's rails, Tetsu's
+ // front, the hoop's free-throw line, the eisa ground, Erik's table, Christina's path, between Kōji's rails, Tetsu's
  // table and the drinks corner's bench.
  const goals={'the lane garden':[24.0,65.0],'Johansson Mart’s door':[40.4,62.6],'the parking sign':[30.52,63.2],'the bicycle shed':[6.8,52.2],'the hoop':[12.5,53.2],
-  'the eisa ground':[-15,52],'Mac’s table':[-29.6,50.4],'Gran Higa’s garden':[-30.9,-5],'Kōji’s nets':[-31.5,8.6],'Tetsu’s table':[-20.5,-.2],'the drinks corner':[7.0,-2.3]};
+  'the eisa ground':[-15,52],'Erik’s table':[-29.6,50.4],'Christina’s garden':[-30.9,-5],'Kōji’s nets':[-31.5,8.6],'Tetsu’s table':[-20.5,-.2],'the drinks corner':[7.0,-2.3]};
  for(const [name,[x,z]] of Object.entries(goals)){
   assert.equal(playerBlocked(x,z,.32),false,name+' is open ground');
   const route=nav.path({x:0,z:0},{x,z});assert.ok(route.length,'a route to '+name);
@@ -127,7 +127,7 @@ test('the parked cars are the traffic’s family, on the ground, inside their pa
  const {buildVehicle,parkedVehicleFit,VEHICLE_SIZE}=await import('../src/world/road-vehicles.js');
  const {createKit}=await import('../src/world/okinawa/kit.js');
  const north=clearedLot('kitahama-north-block').dressing;
- assert.deepEqual(PARKED_CARS.map(c=>c.owner),['Kōji','Nhung','Mac']);
+ assert.deepEqual(PARKED_CARS.map(c=>c.owner),['Kōji','Nhung','Erik']);
  for(const car of PARKED_CARS){
   const p=north.props.find(q=>q.id===car.prop),fit=parkedVehicleFit(car.kind,{bonnet:car.bonnet}),at=parkedCarPlace(car,fit);
   assert.equal(p.owner,car.owner,car.prop+' is its owner’s');assert.ok(VEHICLE_SIZE[car.kind],car.kind+' is a kind the traffic has');

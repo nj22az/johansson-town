@@ -69,14 +69,14 @@ try{
  const closingHeld=await census('kissa-higa');
  const safety=await page.evaluate(()=>{const h=window.__JOHANSSON_AUDIT__.world.quarters.higa;return {held:h.closingHeld,shutterVisible:h.shutter.visible,shutterMinY:h.shutterSolid.minY,doorMinY:h.doorSolid.minY};});
  assert.ok(safety.held&&!safety.shutterVisible&&safety.shutterMinY>100&&safety.doorMinY>100,'an occupant has a visible, collidable way out');
- assert.ok(closingHeld.some(p=>p.name==='Grandmother Higa'),'she waits to finish closing');
+ assert.ok(closingHeld.some(p=>p.name==='Christina'),'she waits to finish closing');
  const closeShot=async name=>{await page.evaluate(()=>{const a=window.__JOHANSSON_AUDIT__;a.camera={pos:[1.4,1.7,8.6],at:[8.6,1.2,8.2]};a.hud.photo(true);if(a.johansson?.root)a.johansson.root.visible=false;a.render();});await page.locator('canvas').first().screenshot({path:`${out}/${name}.jpg`,type:'jpeg',quality:92});};
  await closeShot('closing-held-0952');
  await page.evaluate(()=>{const a=window.__JOHANSSON_AUDIT__;a.teleport(4.9,8.4);a.setTime(11*1440+593);a.step(1000);a.setTime(11*1440+597);a.step(1000);});
  await closeShot('closing-clear-0957');
  assert.equal(await page.evaluate(()=>window.__JOHANSSON_AUDIT__.world.quarters.higa.closingHeld),false,'she finishes after the customer leaves');
  // The baseline: the bench out front at 19:41, Tetsuo on the town's existing 0.44 m bench, measured the same way.
- // Mac's attendance follows his rota; this case does not require him to occupy his 0.31 m crate.
+ // Erik's attendance follows his rota; this case does not require him to occupy his 0.31 m crate.
  await run(11*1440+19*60+40,24);
  const evening=await census('higa-bench');
  await page.evaluate(()=>{const a=window.__JOHANSSON_AUDIT__;a.camera={pos:[3.0,.9,11.6],at:[5.0,.4,9.8]};a.render();});

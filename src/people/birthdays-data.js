@@ -4,6 +4,6 @@
  */
 export const BIRTHDAYS=Object.freeze({
  Johansson:'01-30',Thuan:'03-15',
- 'Officer Mori':'02-18',Nhung:'05-08','Harbour master':'06-14',
+ 'Officer Mori':'02-18',Nhung:'05-08','Sverker':'06-14',
  Chin:'09-03',Thao:'10-24','Mrs Sato':'11-22',Tetsuo:'12-04',
 });

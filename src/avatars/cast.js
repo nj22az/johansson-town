@@ -29,7 +29,7 @@ export const ORIGINAL_THUAN_RECIPE=R({name:'Thuan',
  nose:{style:'dot',size:.35,height:.5},mouth:{style:'smile',colour:'#cc3d52',size:.42,height:.5},
  glasses:{style:'round',colour:'#e06a7a'},blush:.65,
  outfit:HARBOUR_POLO_OUTFIT,swim:{colour:'#e98aa6'}});
-const FEMALE_NEIGHBOURS=new Set(['Thuan','Miss Higa','Grandmother Higa','Grandmother Chinen','Mrs Nakamura','Mrs Kinjō']);
+const FEMALE_NEIGHBOURS=new Set(['Thuan','Miss Higa','Christina','Grandmother Chinen','Mrs Nakamura','Mrs Kinjō']);
 /** The birthday the town keeps (people/birthdays.js) is the one the profile shows, in World and in Studio. */
 function withBirthday(recipe,name){
  const date=BIRTHDAYS[name];if(!recipe||!date)return recipe;
@@ -100,11 +100,17 @@ export const CAST_RECIPES=castSet({
  Thuan:R({...THUAN_STUDIO_DESIGN,...Object.fromEntries(Object.entries(THUAN_REDRAWN).map(([part,values])=>[part,typeof values==='object'?{...THUAN_STUDIO_DESIGN[part],...values}:values]))}),
  // Thuan's middle sister: slim, a high ponytail, a plain white tee and blue shorts.
  // Stubborn but friendly: the flat set mouth and straight brows, and the grin under them.
- Thao:R({name:'Thao',body:{height:.44,build:.3,silhouette:'feminine',skin:'#ecc6a0'},head:{size:.46,shape:.4,form:'oval',jaw:.3,cheeks:.4},
-  hair:{style:'ponytail',colour:'#1c1714'},eyes:{style:'almond',colour:'#2a1d16',size:.5,spacing:.5,height:.5,tilt:.55},
-  brows:{style:'straight',colour:'#1c1714',size:.45,tilt:.42},nose:{style:'button',size:.35},mouth:{style:'flat',colour:'#b8544a',size:.42},blush:.2,
+ // Thao, from her photograph (the owner, 26 November 2026: "This is Thao but cartoon Thao should wear short pants"). Her
+ // head and hair are sculpted in Blender (tools/blender/build-thao-head.py): a long serene oval with a high forehead
+ // (head form 'serene'), her hair tied back to a low bun with a wisp by each ear ('tiedback'), her ears showing. Slim,
+ // on the graceful frame. Long narrow dark eyes set higher than her sister Thuan's, thin arched brows on the clear
+ // forehead, a small straight nose, a closed smile. The yellow tee of the photograph, and short pants in the cream of
+ // its trousers, with pale sneakers.
+ Thao:R({name:'Thao',body:{height:.5,build:.3,silhouette:'feminine',frame:'graceful',skin:'#f0cfae'},head:{size:.4,scale:.9,shape:.5,form:'serene'},
+  hair:{style:'tiedback',colour:'#2a1f1a'},eyes:{style:'almond',colour:'#33211a',size:.5,width:.86,spacing:.54,height:.44,tilt:.56},
+  brows:{style:'tapered',colour:'#2a1f1a',size:.5,height:.4,tilt:.5},nose:{style:'button',size:.3,height:.46},mouth:{style:'smile',colour:'#c4686a',size:.46,height:.42},blush:.28,
   accessories:{earrings:'studs',colour:'#e0b93a'},
-  outfit:{top:'tee',topColour:'#f4f1ea',bottom:'shorts',bottomColour:'#7fb0d8',footwear:'sandals',shoes:'#f4f1ea',accent:'#7fb0d8'}}),
+  outfit:{top:'tee',topColour:'#efcd5e',bottom:'shorts',bottomColour:'#efe6d0',footwear:'sneakers',shoes:'#f1ead9',accent:'#7fb0d8'}}),
  // Nhung, the eldest of the three sisters (Nhung, Thao, Thuan), is the island doctor since 22 October 2026 (the owner:
  // "Have this female doctor replace Nhung"): the look the clinic's doctor had at her desk (world/interiors/town-hall.js,
  // the room's own drawing until then) is hers everywhere. A white coat over a sage shirt (her own colour; the clinic drew it pale blue, Thao's), round half-rim glasses,
@@ -148,11 +154,17 @@ export const CAST_RECIPES=castSet({
  // The harbour master, who lives in his office, and Officer Mori at the police box.
  // (The owner, 25 November 2026: he "looks too brown and his mouth and moustache is out of place too small": a weathered
  // tan, lighter than it was; a walrus moustache broad enough to be his, a mouth under it that smiles, eyes a size up.)
- 'Harbour master':R({name:'Harbour master',body:{height:.52,build:.68,skin:'#d2a17c'},head:{size:.52,shape:.55,form:'round',jaw:.6,cheeks:.6},
-  hair:{style:'horseshoe',colour:'#b9b7b0'},eyes:{style:'gentle',colour:'#2a1d16',size:.6},
-  brows:{style:'bushy',colour:'#cfcdc6',size:.6},nose:{style:'wide',size:.5},mouth:{style:'smile',size:.72,width:.62,height:.42},
-  glasses:{style:'round',colour:'#2b2b2b'},facial:{style:'walrus',colour:'#e6e3db',size:.9,width:.7,height:.5},wrinkles:.45,blush:.35,
-  outfit:{top:'jacket',topColour:'#2c3e5c',bottom:'trousers',bottomColour:'#27304d',shoes:'#1c1c24',hat:'captain',hatColour:'#f4f1ea',accent:'#e0b93a'}}),
+ // Sverker, the harbour master, from his photograph (the owner, 26 November 2026: "This is the harbour master Sverker").
+ // His head and hair are sculpted in Blender (tools/blender/build-sverker-head.py): broad and round, full cheeks and heavy
+ // soft jowls (head form 'broad'), and thick straight white-blond hair swept across the forehead ('sweptmop'), which is
+ // why he wears no cap now. A big man, heavy in the middle; fair and ruddy; small pale eyes; clean-shaven. The grey-blue knitted
+ // cardigan (the photograph's jersey, in the wardrobe's nearest) and dark trousers: what a man wears on a quay. He is
+ // on the stout frame (build.js measure).
+ 'Sverker':R({name:'Sverker',body:{height:.55,build:.8,silhouette:'masculine',frame:'stout',skin:'#f3c8b0'},head:{size:.46,scale:.9,shape:.5,form:'broad'},
+  hair:{style:'sweptmop',colour:'#f0ede2'},eyes:{style:'gentle',colour:'#62798c',size:.38,spacing:.5,height:.5},
+  brows:{style:'straight',colour:'#cdbf9c',size:.5,height:.45},nose:{style:'wide',size:.5,height:.5},mouth:{style:'smile',size:.5,width:.6,height:.44},
+  wrinkles:.4,blush:.55,
+  outfit:{top:'cardigan',topColour:'#5f7479',bottom:'trousers',bottomColour:'#2d3138',footwear:'shoes',shoes:'#1c1c24',hat:'none',accent:'#4d6066'}}),
  'Officer Mori':R({name:'Officer Mori',body:{height:.7,build:.48,skin:'#c79872'},head:{size:.48,shape:.46,form:'oval',jaw:.5,cheeks:.4},
   hair:{style:'crop',colour:'#4a4845'},eyes:{style:'round',colour:'#2a1d16',size:.62},
   brows:{style:'worried',colour:'#3a3835',size:.55},nose:{style:'button',size:.45},mouth:{style:'smile',size:.45},
@@ -187,7 +199,17 @@ export const NEIGHBOUR_RECIPES=castSet({
  'Dr Kakazu':R({name:'Dr Kakazu',age:'adult',body:{height:.5,build:.4,silhouette:'masculine',skin:'#dfb58f'},hair:{style:'sidepart',colour:'#24201c'},eyes:{style:'gentle'},brows:{style:'straight'},mouth:{style:'small'},outfit:{top:'smock',topColour:'#efeee6',bottom:'trousers',bottomColour:'#3b4c52',shoes:'#2d3030'}}),
  Mai:R({name:'Mai',age:'child',body:{height:.45,build:.35,silhouette:'feminine',skin:'#e8bf98'},hair:{style:'bob',colour:'#2c211b'},eyes:{style:'round'},brows:{style:'thin'},mouth:{style:'smile'},outfit:{top:'tee',topColour:'#e59c72',bottom:'skirt',bottomColour:'#2d3a52',shoes:'#3f6fb0'}}),
  'Grandmother Chinen':R({head:{size:.48,shape:.5,form:'round',jaw:0.65,cheeks:0.8},body:{height:.15,build:.55,silhouette:'feminine',skin:'#d6a67c'},hair:{style:'bun',colour:'#c9c7c1'},eyes:{style:'gentle',size:.4},brows:{style:'arched',colour:'#c9c7c1'},nose:{style:'dot'},mouth:{style:'smile'},wrinkles:.85,outfit:{top:'blouse',topColour:'#6f8aa6',bottom:'widepants',bottomColour:'#3b3f4a',shoes:'#e9e2d2',hat:'none'}}),
- 'Grandmother Higa':R({head:{size:.48,shape:.5,form:'round',jaw:0.7,cheeks:0.85},body:{height:.2,build:.6,skin:'#dca97e'},hair:{style:'perm',colour:'#d8d6d0'},eyes:{style:'gentle',size:.4},brows:{style:'thin',colour:'#9a9a96'},nose:{style:'button',size:.55},mouth:{style:'smile',size:.45},glasses:{style:'half',colour:'#8a4a3a'},wrinkles:1,blush:.4,outfit:{top:'blouse',topColour:'#8a4ab8',pattern:'flowers',bottom:'longskirt',bottomColour:'#6d7478',shoes:'#2b2b2b'}}),
+ // Christina, from her photograph (the owner, 26 November 2026: "This is Mrs Higa who should be renamed to Christina and
+ // she should not have a wheelchair": she stands and walks, as she always has here). Her head and hair are sculpted in
+ // Blender (tools/blender/build-christina-head.py): round and soft with full cheeks (head form 'kindly'), and soft full
+ // white hair swept up off her forehead ('softwave'). Fair and rosy, pale gentle eyes, a warm closed smile; the navy
+ // dress with white spots of the photograph, and its pearls (a white pendant on a fine white chain).
+ 'Christina':R({name:'Christina',body:{height:.22,build:.55,silhouette:'feminine',skin:'#f6d6c6'},head:{size:.46,scale:.92,shape:.5,form:'kindly'},
+  hair:{style:'softwave',colour:'#eff0f1'},eyes:{style:'gentle',colour:'#6f8799',size:.42,spacing:.52,height:.48},
+  brows:{style:'thin',colour:'#c9c4bb',size:.5,height:.44},nose:{style:'button',size:.45,height:.5},mouth:{style:'smile',colour:'#cc7570',size:.5,height:.44},
+  wrinkles:.8,blush:.6,marks:{finecrows:true},
+  accessories:{neckwear:'pendant',necklaceColour:'#f6f3ec',earrings:'none'},
+  outfit:{top:'blouse',topColour:'#1f2742',pattern:'dots',bottom:'longskirt',bottomColour:'#1f2742',footwear:'shoes',shoes:'#2b2b2b',accent:'#f4f1ea'}}),
  'Mr Ōshiro':R({head:{size:.48,shape:.5,form:'narrow',jaw:0.45,cheeks:0.3},body:{height:.4,build:.4,skin:'#b27449'},hair:{style:'buzz',colour:'#d8d6d0'},eyes:{style:'narrow'},brows:{style:'bushy',colour:'#d8d6d0'},nose:{style:'hook',size:.6},mouth:{style:'flat'},facial:{style:'stubble',colour:'#d8d6d0'},wrinkles:.9,outfit:{top:'tee',topColour:'#f4f1ea',bottom:'trousers',bottomColour:'#6d7478',shoes:'#2b2b2b',hat:'straw',hatColour:'#e0c078'}}),
  'Mrs Nakamura':R({head:{size:.48,shape:.5,form:'round',jaw:0.55,cheeks:0.8},body:{height:.25,build:.6,skin:'#e8bf98'},hair:{style:'bun',colour:'#5a3a22'},eyes:{style:'round',size:.55},brows:{style:'arched'},nose:{style:'button'},mouth:{style:'grin',colour:'#cc3d52'},blush:.5,wrinkles:.4,outfit:{top:'apron',topColour:'#3fa0c8',bottom:'skirt',bottomColour:'#27304d',shoes:'#f4f1ea',hat:'kerchief',hatColour:'#f4f1ea',accent:'#f4f1ea'}}),
  'Mr Shimabukuro':R({head:{size:.48,shape:.5,form:'narrow',jaw:0.5,cheeks:0.35},body:{height:.5,build:.45,skin:'#dca97e'},hair:{style:'sidepart',colour:'#1c1714'},eyes:{style:'almond'},brows:{style:'straight'},nose:{style:'line'},mouth:{style:'smirk'},facial:{style:'moustache',colour:'#1c1714'},wrinkles:.3,outfit:{top:'smock',topColour:'#f4f1ea',bottom:'trousers',bottomColour:'#2b2b2b',shoes:'#2b2b2b'}}),
@@ -217,7 +239,7 @@ const aged=(recipe,name)=>{const age=ageClass(AGE_OF.get(name)),named=name&&!rec
 export function recipeFor(name='',{looks=LOOKS}={}){
  const look=Object.hasOwn(looks,name)?looks[name]:null;
  const canonical=look?.set?normalizeRecipe(applyLook(baseRecipe(name),look.set)):baseRecipe(name);
- return name==='Vy'?adoptResidentAppearance(name,canonical):residentRecipe(name)||canonical;
+ return adoptResidentAppearance(name,canonical);   // a look saved on this device, unless the drawing has been redone since
 }
 
 
@@ -230,7 +252,15 @@ export function recipeFor(name='',{looks=LOOKS}={}){
  */
 export const CREW_LOOKS=Object.freeze({
  // The chief, 61: grey side-parted hair, a square jaw, reading glasses, the ship's navy boiler suit.
- 'Mr Nakandakari':R({name:'Mr Nakandakari',age:'elder',head:{size:.5,shape:.5,form:'square',jaw:0.78,cheeks:0.5},body:{height:.5,build:.6,silhouette:'masculine',skin:'#c99a72'},hair:{style:'sidepart',colour:'#9a9a96'},eyes:{style:'gentle'},brows:{style:'bushy',colour:'#9a9a96'},nose:{style:'wide'},mouth:{style:'small'},glasses:{style:'round',colour:'#2b2b2b'},wrinkles:.6,outfit:{top:'overalls',topColour:'#2a3f6b',bottom:'trousers',bottomColour:'#2a3f6b',shoes:'#1c1c24',hat:'none'}}),
+ // Erik, the relief engineer, from his photograph (the owner, 26 November 2026: "This is Mac who should be renamed
+ // Erik"). His head is sculpted in Blender (tools/blender/build-erik-head.py): broad and heavy, a wide jaw under full
+ // cheeks (head form 'burly'). A full grey beard, painted; heavy grey brows over pale eyes creased by a smile; a big
+ // round nose; fair and weathered. The olive cap and the blue checked shirt of the photograph. A big man.
+ Erik:R({name:'Erik',age:'elder',body:{height:.56,build:.9,silhouette:'masculine',skin:'#efc4a8'},head:{size:.46,scale:.9,shape:.5,form:'burly'},
+  hair:{style:'buzz',colour:'#9d9891'},eyes:{style:'gentle',colour:'#5f7888',size:.36,spacing:.5,height:.52},
+  brows:{style:'bushy',colour:'#7f7a73',size:.6,height:.46},nose:{style:'bulb',size:.62,height:.5},mouth:{style:'smile',size:.5,width:.6,height:.44},
+  facial:{style:'none',paint:'full',colour:'#a9a49c'},wrinkles:.5,blush:.45,marks:{finecrows:true},
+  outfit:{top:'shirt',topColour:'#7fa2d2',pattern:'check',bottom:'trousers',bottomColour:'#4b5059',footwear:'shoes',shoes:'#3a2c22',hat:'cap',hatColour:'#8c9072',accent:'#5b4a3a'}}),
  // The oiler, Mr Higa Jr, 24: a buzz cut, a round face, the boiler suit with the sleeves rolled, a kerchief.
  'Mr Higa Jr':R({name:'Mr Higa Jr',age:'adult',head:{size:.48,shape:.45,form:'round',jaw:0.55,cheeks:0.6},body:{height:.6,build:.45,silhouette:'masculine',skin:'#b27449'},hair:{style:'buzz',colour:'#1c1714'},eyes:{style:'round'},brows:{style:'straight'},nose:{style:'button'},mouth:{style:'grin'},outfit:{top:'overalls',topColour:'#2a3f6b',bottom:'trousers',bottomColour:'#2a3f6b',shoes:'#1c1c24',hat:'kerchief',hatColour:'#d8342c'}}),
  // The deck hand, Ms Uezu, 38: a swept ponytail under a white cap, a work jacket over cropped trousers.
@@ -260,7 +290,7 @@ export const CREW_LOOKS=Object.freeze({
  * Who may have a published Studio look: the residents World draws, by how they are drawn. Harbour visitor is in
  * CAST_RECIPES only as a starting template for the maker (creator.js), not as a resident, so it is not among them.
  * Nobody the roster retired is among them either (RETIRED_RECIPES, below): their drawings stay, their names do not
- * stand in any live list. The crew group is the people drawn in CREW_LOOKS, by the name the live cast uses (Mac, not
+ * stand in any live list. The crew group is the people drawn in CREW_LOOKS, by the name the live cast uses (Erik, not
  * Mr Nakandakari), so Studio finds the relief engineer and the port clerk by the names World calls them.
  */
 const TEMPLATES=new Set(['Harbour visitor']);
@@ -291,7 +321,7 @@ function drawnRecipe(name){
  if(NEIGHBOUR_RECIPES[name])return aged(normalizeRecipe(withTownDials(NEIGHBOUR_RECIPES[name],name)),name);
  if(CREW_LOOKS[name])return aged(CREW_LOOKS[name],name);
  // A person the consolidated roster knows (people/roster.js `avatar`) is drawn as the name World draws them under today:
- // recipeFor('Fuji') is Mr Fujita's drawing, and Jack's is the Harbour master's, until phase 5 renames them; a former
+ // recipeFor('Fuji') is Mr Fujita's drawing until phase 5 renames him; a former
  // job-role name ('Deck hand') is its holder's own drawing.
  const authored=authoredNameFor(name)||bearerOf(name);if(authored)return drawnRecipe(authored);
  const style=residentPersonality(name),r=seeded(name),any=list=>list[Math.floor(r()*list.length)];

@@ -46,7 +46,9 @@ function lapSurface(avatar){
  for(const mesh of avatar.root.children.filter(o=>o.isSkinnedMesh&&o.visible&&!o.name.includes('outline'))){
   const g=mesh.geometry,P=g.attributes.position,I=g.attributes.skinIndex,F=g.attributes.towelFit,fit=F&&mesh.towelFit,names=mesh.skeleton.bones.map(b=>b.name);
   if(fit)fit.refresh();
-  for(let i=0;i<P.count;i++){const cloth=!!fit&&F.getX(i)>1.5;if(fit&&!cloth&&F.getX(i)>.5)continue;if(!cloth&&!/^thigh[LR]$/.test(names[I.getX(i)]))continue;
+  // (and the house dress worn after the bath, which wraps the body and lies on the lap as a dress does: the mittens rest on
+  // it there, seated-pose.test.mjs; a bath towel's cloth is not counted, it goes up the body)
+  for(let i=0;i<P.count;i++){const cloth=!!fit&&(F.getX(i)>1.5||(avatar.outfit==='afterbath'&&F.getX(i)>.5));if(fit&&!cloth&&F.getX(i)>.5)continue;if(!cloth&&!/^thigh[LR]$/.test(names[I.getX(i)]))continue;
    mesh.getVertexPosition(i,p);if(cloth)fit.fitPoint(p,F.getX(i),rest.fromBufferAttribute(P,i));out.push(p.clone().applyMatrix4(mesh.matrixWorld));}
  }
  return out;

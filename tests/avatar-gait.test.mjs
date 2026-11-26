@@ -23,11 +23,11 @@ function walk(name,seconds=4){
 }
 
 test('residents can be told apart by how they walk',()=>{
- const vy=walk('Vy'),higa=walk('Grandmother Higa'),mori=walk('Officer Mori');
- assert.ok(vy.bounce>higa.bounce*1.3,`Vy bounces (${vy.bounce.toFixed(4)}) and Grandmother Higa does not (${higa.bounce.toFixed(4)})`);
- assert.ok(higa.behind>.8,'Grandmother Higa walks with her hands behind her back');
+ const vy=walk('Vy'),higa=walk('Christina'),mori=walk('Officer Mori');
+ assert.ok(vy.bounce>higa.bounce*1.3,`Vy bounces (${vy.bounce.toFixed(4)}) and Christina does not (${higa.bounce.toFixed(4)})`);
+ assert.ok(higa.behind>.8,'Christina walks with her hands behind her back');
  assert.equal(mori.gait.carry,'stiff','Officer Mori marches');
- assert.ok(higa.gait.stride<vy.gait.stride*.85,'Grandmother Higa takes shorter steps');
+ assert.ok(higa.gait.stride<vy.gait.stride*.85,'Christina takes shorter steps');
  // Everyone in town has a gait, and the town is not one walk.
  const names=[...RESIDENTS.map(r=>r.name),...NEIGHBOURS.map(n=>n.name)];
  const gaits=names.map(n=>gaitOf(recipeFor(n),()=>.5));

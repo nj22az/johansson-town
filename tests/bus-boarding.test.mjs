@@ -111,7 +111,7 @@ test('nobody who was already away is left standing at the terminus',async()=>{
   // and that they are standing in a heap on one spot at the terminus.
   const out=people.filter(p=>p.g.visible!==false);
   const named=out.map(p=>p.profile.name+' ('+p.g.userData.place+')').join(', ');
-  const working=['Officer Mori','Harbour master','Bus driver','Thao','Reiko','Tetsuo'];
+  const working=['Officer Mori','Sverker','Bus driver','Thao','Reiko','Tetsuo'];
   const loitering=out.filter(p=>!working.includes(p.profile.name))
    .map(p=>p.profile.name+' at '+p.g.position.x.toFixed(1)+','+p.g.position.z.toFixed(1));
   assert.deepEqual(loitering,[],'People are standing about in the middle of the night: '+named);

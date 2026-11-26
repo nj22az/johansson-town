@@ -44,7 +44,7 @@ test('all 23 cast members have one canonical primary home; shared households map
  for(const id of ['resident-home-aya','izakaya','kitahama-4','kitahama-5','kitahama-6','kinjo','oshiro','shimabukuro','kitano-3']){const h=householdAtHome(id);assert.equal(h.status,'retired',id);assert.deepEqual([...h.residents],[]);assert.ok(!targets.some(t=>t.homeId===id),id+' is no home pin');}
  assert.equal(homeNameplate('kitahama-3').owners,'Nhung · Kōji · Riku');assert.equal(homeNameplate('kitahama-11'),null);assert.equal(homeNameplate('kitahama-1').secondary,'');
  // Kitahama Heights: two houses, A and B, the ids kept for the saves; the old flats retired.
- assert.deepEqual(homeUnits('kitahama-flats').map(h=>[h.id,h.unit,h.address,[...h.residents]]),[['kitahama-flat-3','A','Kitahama Heights A, Fukugi Lane',['Mac']],['kitahama-flat-4','B','Kitahama Heights B, Fukugi Lane',['Ms Ganaha']]]);
+ assert.deepEqual(homeUnits('kitahama-flats').map(h=>[h.id,h.unit,h.address,[...h.residents]]),[['kitahama-flat-3','A','Kitahama Heights A, Fukugi Lane',['Erik']],['kitahama-flat-4','B','Kitahama Heights B, Fukugi Lane',['Ms Ganaha']]]);
  assert.equal(homeNameplate('kitahama-flat-3').address,'Kitahama Heights A');assert.equal(homeNameplate('kitahama-flat-1'),null);
  assert.equal(householdAtHome('kitahama-flats').residents.length,2);
  assert.ok(HOUSEHOLDS.every(h=>!h.address.includes('Main Street')),'legacy street-entry numbers do not become displayed addresses');
@@ -67,8 +67,8 @@ test('Find person uses live world transforms, exterior doors for indoor actors, 
  thuan.userData={name:'Thuan',inHome:true};
  const atHome=residentCards({sites,people:[{g:thuan}],minutes:1380}).find(c=>c.name==='Thuan');
  assert.equal(atHome.personTarget.homeId,'kitano-1');assert.equal(atHome.homeTarget.homeId,'kitano-1');assert.notDeepEqual(atHome.personTarget.door,[1,0,1]);
- const aboard=new THREE.Group();aboard.userData={name:'Mac',ferryCrew:true};
- const crew=residentCards({sites,neighbours:[{g:aboard}],minutes:600}).find(c=>c.name==='Mac');
+ const aboard=new THREE.Group();aboard.userData={name:'Erik',ferryCrew:true};
+ const crew=residentCards({sites,neighbours:[{g:aboard}],minutes:600}).find(c=>c.name==='Erik');
  assert.equal(crew.personTarget.id,'ferry-terminal');assert.equal(crew.current.aboard,true);assert.equal(crew.home.id,'kitahama-flat-3');assert.equal(crew.home.unit,'A');
  vy.userData.scheduledAway=true;vy.visible=false;
  const pupil=residentCards({sites,neighbours:[{g:vy,spec:{name:'Vy',routine:[{from:495,away:true,role:'at school'}]}}],minutes:600}).find(c=>c.name==='Vy');
@@ -99,7 +99,7 @@ test('Kitahama Heights: two ground-level front doors behind their own gates on F
   for(let x=(KITAHAMA.fukugiLane.minX+KITAHAMA.fukugiLane.maxX)/2;x>=house.door[0];x-=.1)check([x,height(x,house.z),house.z]);
   assert.ok(Math.abs(height(house.door[0],house.door[2])-KITAHAMA.y)<.1,'the front door stands on the ground, not on a corridor');
   assert.ok(house.gate[0]<house.z&&house.z<house.gate[1],'the gate is in front of the door');
-  const c=residentHome(house.id==='kitahama-flat-3'?'Mac':'Ms Ganaha',{landmarks:world.landmarks});assert.deepEqual(c.target.entrancePosition,house.door);assert.deepEqual(c.target.door,house.approachPosition);assert.match(c.target.directions,/own gate and front door/);
+  const c=residentHome(house.id==='kitahama-flat-3'?'Erik':'Ms Ganaha',{landmarks:world.landmarks});assert.deepEqual(c.target.entrancePosition,house.door);assert.deepEqual(c.target.door,house.approachPosition);assert.match(c.target.directions,/own gate and front door/);
  }
  // Nothing of the old block: no stair, landing or corridor, no upper floor over the doors, no Flat 1 or 2.
  assert.ok(!colliders.some(c=>/flats-(stair|landing|corridor|post)/.test(c.id)));

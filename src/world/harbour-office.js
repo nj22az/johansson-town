@@ -16,6 +16,6 @@ export function buildHarbourOffice({parent,site,register,enter,label,shadows,onA
  Object.assign(site,{x:O.x,z:O.z,door:[...O.door],exitPosition:[...O.door],entryFacing:0,streetFrontage:{position:[O.x,0,O.frontZ],yaw:0}});
  // On the island it is also the harbour master's home: he sleeps behind the screen
  // (office-workplace.js), and walking in at night finds him there.
- Object.assign(site,{homeOwner:'Harbour master',homeOwners:['Harbour master'],ownRoom:true,homeLayouts:{'Harbour master':OFFICE_HOME_LAYOUT}});
+ Object.assign(site,{homeOwner:'Sverker',homeOwners:['Sverker'],ownRoom:true,homeLayouts:{'Sverker':OFFICE_HOME_LAYOUT}});
  return {id:site.id,lod:group,entrance,shutter:door.pane,source:'Quay office',nearTriangles:0,farTriangles:0,collider:{x:O.x,z:(PORT_BUILDING.office.minZ+PORT_BUILDING.office.maxZ)/2,w:O.width,d:PORT_BUILDING.office.maxZ-PORT_BUILDING.office.minZ,height:6.8},colliders:portBuildingColliders(),port,update:door.update};
 }

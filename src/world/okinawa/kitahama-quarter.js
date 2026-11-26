@@ -54,7 +54,7 @@ export function buildKitahamaQuarter(kit,solid,{anchor,onAction,vending},{across
 /** Each Heights house's bicycle: who rides it and where to (CLAUDE.md: nothing is random). */
 const HEIGHTS_BICYCLES=Object.freeze({
  'kitahama-flat-3':Object.freeze({id:'heights-a-bicycle',colour:0x3d6f8f,basket:false,
-  why:'Mac’s, a plain blue commuter for the ride to the gangway when the ship calls the relief engineer, and for the hardware shelf at Sakura. No basket: he carries his tools in a shoulder bag.'}),
+  why:'Erik’s, a plain blue commuter for the ride to the gangway when the ship calls the relief engineer, and for the hardware shelf at Sakura. No basket: he carries his tools in a shoulder bag.'}),
  'kitahama-flat-4':Object.freeze({id:'heights-b-bicycle',colour:0xd8b13c,frame:'step',
   why:'Ms Ganaha’s mamachari, which takes her to the post and parcel counter at the Port Terminal by half past eight and brings the evening’s shopping home in its basket.'}),
 });
@@ -127,7 +127,7 @@ export const KITAHAMA_PARK=Object.freeze({
  * wall for their cords; the bin at their north end on the corner of the lanes.
  */
 export const KITAHAMA_DRINKS=Object.freeze({
- host:'Kitahama Heights A (Mac)',operator:'Minato Drinks',
+ host:'Kitahama Heights A (Erik)',operator:'Minato Drinks',
  machines:Object.freeze([Object.freeze({x:-23.45,z:42.95,ry:Math.PI/2}),Object.freeze({x:-23.45,z:44.0,ry:Math.PI/2})]),
  bin:Object.freeze({x:-23.42,z:44.82}),
  feed:Object.freeze({socket:Object.freeze([-26.6,.45,43.72]),wallIn:-24.15,wallOut:-23.85,wallTop:1.4,
@@ -204,7 +204,7 @@ function buildHeightsDrinks(kit,solid,{anchor,onAction,vending}){
  for(const k of [-1,1])kit.cyl(.07,.07,.02,B.x+.24,.62,B.z+k*.11,0x15181a,{rz:Math.PI/2,segments:10});
  solid(kit.rect(B.x-.25,B.x+.25,B.z-.25,B.z+.25,.9,'kitahama-can-bin'));
  anchor(B.x+.7,1,B.z,'Look at the drinks machines',()=>onAction?.('inspect','Drinks machines on Fukugi Lane',
-  'Two Minato Drinks machines with their backs to the Heights’ front wall, humming. Mac lets the bottler have the wall and the power from his kitchen socket, and the commission pays his electricity. The children from the park come over the lane with their coins; the empties go in the blue bin at the end.'));
+  'Two Minato Drinks machines with their backs to the Heights’ front wall, humming. Erik lets the bottler have the wall and the power from his kitchen socket, and the commission pays his electricity. The children from the park come over the lane with their coins; the empties go in the blue bin at the end.'));
 }
 
 /** The rubbish point and notice board at the end of Well Lane. */

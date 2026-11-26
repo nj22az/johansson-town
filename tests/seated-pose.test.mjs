@@ -32,7 +32,7 @@ const BODIES=[
  ['Vy (pleated skirt)',recipeFor('Vy'),'clothes','skirt'],
  ['Ms Ganaha (skirt)',recipeFor('Ms Ganaha'),'clothes','skirt'],
  ['Mai (skirt, a child)',recipeFor('Mai'),'clothes','skirt'],
- ['Grandmother Higa (long skirt)',recipeFor('Grandmother Higa'),'clothes','dress'],
+ ['Christina (long skirt)',recipeFor('Christina'),'clothes','dress'],
  ['a sundress',dressed('Sundress sitter',sundress),'clothes','dress'],
  ['Thao after the bath (house dress)',recipeFor('Thao'),'afterbath','dress'],
  ['Kōji (shorts)',recipeFor('Kōji'),'clothes','shorts'],

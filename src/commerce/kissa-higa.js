@@ -2,9 +2,9 @@ import {townCalendarAt} from '../town-clock.js';
 import {rotaWeek} from '../people/ferry-crew.js';
 
 /**
- * Kissa Higa (喫茶ひが): Grandmother Higa's morning coffee shop in the shut Higa Liquor on Main Street. The owner,
+ * Kissa Higa (喫茶ひが): Christina's morning coffee shop in the shut Higa Liquor on Main Street. The owner,
  * 30 October 2026: "Since the liquor store is closed maybe it can be replaced by one of the buildings maybe the cafe",
- * Grandmother Higa to keep it in the mornings; then "work accordingly to your own recommendations"
+ * Christina to keep it in the mornings; then "work accordingly to your own recommendations"
  * (briefs/higa-kissaten/progress.md: the name, Monday to Friday, her garden round before opening, Yui's breakfast at the
  * counter, her husband's records).
  *
@@ -20,7 +20,7 @@ const minute=m=>((m%1440)+1440)%1440;
 const local=(x,z)=>Object.freeze([+(9.55-z).toFixed(3),+(8.4+x).toFixed(3)]);
 
 export const KISSA=Object.freeze({
- id:'kissa-higa',name:'Kissa Higa',jp:'喫茶ひが',keeper:'Grandmother Higa',
+ id:'kissa-higa',name:'Kissa Higa',jp:'喫茶ひが',keeper:'Christina',
  /** Monday to Friday (Date weekdays). On Saturdays she opens Johansson Mart at 08:45 (kitahama-shop.js SHOP_DUTY); Sunday is her morning off. */
  days:Object.freeze([1,2,3,4,5]),
  /**
@@ -31,7 +31,7 @@ export const KISSA=Object.freeze({
  arrive:405,shutterUp:410,open:420,close:570,out:580,shutterDown:584,leave:590,
  /** The shutter takes nine seconds up or down, by hand (the same steel as Nakamura's). */
  roll:.15,
- why:'The shop stood shut with its counter and its jar inside, and the mornings before the bath opens at ten were Grandmother Higa’s own. Nobody on the island could sit over a coffee: Sato Ramen pours urn coffee with lunch. So the shutter goes up at seven on weekdays, and the counter has her behind it again.',
+ why:'The shop stood shut with its counter and its jar inside, and the mornings before the bath opens at ten were Christina’s own. Nobody on the island could sit over a coffee: Sato Ramen pours urn coffee with lunch. So the shutter goes up at seven on weekdays, and the counter has her behind it again.',
  period:'Morning service (モーニング): from the 1950s a kissaten gave toast and a boiled egg free with the morning coffee, for people on their way to work.',
 });
 
@@ -40,7 +40,7 @@ const weekday=minutes=>townCalendarAt(minutes).weekday;
 export const kissaDay=minutes=>KISSA.days.includes(weekday(minutes));
 /** Open for customers: 07:00 to 09:30 on its days. */
 export function kissaOpen(minutes){const m=minute(minutes);return kissaDay(minutes)&&m>=KISSA.open&&m<KISSA.close;}
-/** Grandmother Higa's time at the kissaten, at its front or behind its counter: 06:45 to 09:50 on its days. */
+/** Christina's time at the kissaten, at its front or behind its counter: 06:45 to 09:50 on its days. */
 export function kissaOnDuty(minutes){const m=minute(minutes);return kissaDay(minutes)&&m>=KISSA.arrive&&m<KISSA.leave;}
 /**
  * How far down the shutter is, 1 down and 0 up: up from 06:50 over nine seconds, down from 09:44 over nine seconds, down all day
@@ -94,14 +94,14 @@ export function createKissaClosing(){
  */
 export const KISSA_NOTICE=Object.freeze({jp:'喫茶ひが',jpLines:Object.freeze(['モーニング 朝7時〜9時半','月曜〜金曜','お酒は さくら商店へ']),
  en:'Kissa Higa. Morning coffee and the morning set, 7:00 to 9:30, Monday to Friday. For beer, awamori and sake, please go to Sakura Shōten, down Main Street towards the harbour. The Higa family',
- who:'Grandmother Higa',
+ who:'Christina',
  why:'The shutter is down outside the kissaten’s hours. The paper says when it opens, and keeps the old notice’s last line: the drink is Sakura’s.',
  period:'A hand-written paper on the shutter is how a small shop gave its hours and pointed its customers on.'});
 
 /** What she serves: the coffee at one price, the morning set at the coffee's price (morning service). No alcohol: it is Sakura's. */
 export const KISSA_MENU=Object.freeze([
  Object.freeze({id:'morning-set',label:'Order the morning set',name:'Morning set',jp:'モーニング',cost:300,item:'Morning set',
-  text:'A blend coffee from the siphon, a slice of milk bread toasted thick and buttered, and a boiled egg in a cup with salt beside it: all for the coffee’s price, as morning service is. Grandmother Higa cuts the toast in two without asking.',
+  text:'A blend coffee from the siphon, a slice of milk bread toasted thick and buttered, and a boiled egg in a cup with salt beside it: all for the coffee’s price, as morning service is. Christina cuts the toast in two without asking.',
   why:'The kissaten’s morning: the toast and the egg come with the coffee, for anyone on the way to work.'}),
  Object.freeze({id:'blend',label:'Order a blend coffee',name:'Blend coffee',jp:'ブレンド',cost:300,item:'Blend coffee',
   text:'Brewed a cup at a time in the siphon: the water climbs into the top bowl over the spirit lamp, she stirs it, and it falls back dark. In a white cup on a saucer, sugar and milk if you want them.',
@@ -132,7 +132,7 @@ export const KISSA_SUPPLY=Object.freeze([
 export const KISSA_RECORDS=Object.freeze({
  what:'A teak-cased record player and a box of 45s: Okinawan min’yō and enka',
  whose:'Her late husband’s. He drove the island bus for thirty years and did the shop’s rounds on the black bicycle (higa-liquor.js HIGA_KUSU).',
- text:'A teak-cased record player on its own cabinet, and beside it a box of 45s in paper sleeves, the corners soft with handling: Okinawan min’yō and old enka, her husband’s. One of them has his writing on the sleeve. Grandmother Higa puts one on when the shop is quiet.',
+ text:'A teak-cased record player on its own cabinet, and beside it a box of 45s in paper sleeves, the corners soft with handling: Okinawan min’yō and old enka, her husband’s. One of them has his writing on the sleeve. Christina puts one on when the shop is quiet.',
  hook:'Somebody asks for the one with the writing on the sleeve.'});
 
 /**
@@ -152,7 +152,7 @@ export const KISSA_SEATS=Object.freeze({
  'chair-1':Object.freeze({at:local(1.3,2.7),stand:local(.66,2.7),height:.42,yaw:-Math.PI/2,front:.25}),
 });
 /**
- * Where Grandmother Higa stands behind the counter, facing the ledge (round the counter's open end); and on the pavement
+ * Where Christina stands behind the counter, facing the ledge (round the counter's open end); and on the pavement
  * before the door, facing the shutter, while she lifts it and pulls it down.
  */
 export const KISSA_KEEPER=Object.freeze({at:local(-.9,-1.15),yaw:Math.PI/2,front:local(.3,4.12),frontYaw:-Math.PI/2});
@@ -167,7 +167,7 @@ export const KISSA_REGULARS=Object.freeze([
  Object.freeze({name:'Ms Ganaha',seat:'stool-0',from:452,to:480,order:'blend',
   why:'A blend at the end of the ledge before she opens up the coin laundry across Main Street at eight.'}),
  Object.freeze({name:'Tetsuo',seat:'stool-2',from:460,to:505,order:'morning-set',days:Object.freeze([1,3,5]),
-  why:'Three mornings a week he takes his breakfast here instead of at home: the bath’s boiler is up the road, and the stool next to Yui’s is the one Grandmother Higa sets his cup at.'}),
+  why:'Three mornings a week he takes his breakfast here instead of at home: the bath’s boiler is up the road, and the stool next to Yui’s is the one Christina sets his cup at.'}),
  Object.freeze({name:'Officer Mori',seat:'stool-2',from:510,to:540,order:'morning-set',
   why:'Next door from the station after the night patrol: the morning set on the stool nearest the station, Tetsuo’s until 08:25, with five minutes to clear it before Mori, then upstairs to sleep at nine.'}),
  Object.freeze({name:'Ms Uezu',seat:'chair-1',from:480,to:540,order:'iced',offWatch:true,

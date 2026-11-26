@@ -97,14 +97,14 @@ try{
  await stage('koban','Sit on the waiting bench',[['Ms Ganaha'],['Kai']],[['police-bench',{d:2.3,turn:-.35}],['police-bench-side',{d:2.4,turn:-1.35,h:.8,lift:.45}]]);
  // 3. Naha's domestic arrivals: three on one bench.
  await enter('naha-airport-arrivals');
- await stage('arrivals','Sit in domestic arrivals',[['Grandmother Higa'],['sundress'],['Jun']],[['arrivals-bench',{d:2.8,turn:.2,h:1.3}],['arrivals-bench-side',{d:2.8,turn:1.3,h:.8,lift:.45}]]);
+ await stage('arrivals','Sit in domestic arrivals',[['Christina'],['sundress'],['Jun']],[['arrivals-bench',{d:2.8,turn:.2,h:1.3}],['arrivals-bench-side',{d:2.8,turn:1.3,h:.8,lift:.45}]]);
  // 4. Umi-no-yu: the changing-room bench (after the bath), and the tatami's edge in the lobby.
  await enter('onsen');
  await stage('onsen','Sit on the changing-room bench',[['Thao','afterbath'],['Kōji']],[['onsen-changing-bench',{d:2.2,turn:0}],['onsen-changing-bench-side',{d:2.4,turn:1.35,h:.8,lift:.45}]]);
  await stage('onsen','Sit on the tatami',[['sundress']],[['onsen-tatami',{d:1.9,turn:.5}],['onsen-tatami-side',{d:2.2,turn:1.4,h:.8,lift:.45}]]);
  // 5. Minato: two at the counter, on its stools.
  await enter('izakaya');
- await stage('izakaya','Sit at the counter',[['Grandmother Higa']],[['minato-stool',{d:2.2,turn:.5}],['minato-stool-side',{d:2.2,turn:-1.45,h:1.05,lift:.7}],['minato-stool-other-side',{d:2.2,turn:-1.45,h:.85,lift:.45}]]);
+ await stage('izakaya','Sit at the counter',[['Christina']],[['minato-stool',{d:2.2,turn:.5}],['minato-stool-side',{d:2.2,turn:-1.45,h:1.05,lift:.7}],['minato-stool-other-side',{d:2.2,turn:-1.45,h:.85,lift:.45}]]);
  await stage('izakaya','Minato booth',[['Nhung'],['Kōji']],[['minato-booth',{d:2.8,turn:1.2}],['minato-booth-side',{d:2.5,turn:1.3,h:.85,lift:.45}]]);
  // 6. A family home: a dining chair (a skirt) and a zabuton at the tea table (shorts).
  await enter('home-kitahama-3');

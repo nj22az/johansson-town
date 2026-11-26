@@ -15,8 +15,8 @@ import {HARBOUR_OFFICE} from '../src/world/business-layout.js';
 export function ferryServiceFixture({minute=600,identity=null,state:saved=null}={}){
  installDOM();const group=new THREE.Group(),colliders=[],player=new THREE.Object3D(),camera=new THREE.PerspectiveCamera(),people=[];
  const shed=buildPortShed({parent:group,colliders,register(){},onAction(){}}),run=createFerryRun({parent:group,colliders});
- // The Harbour master, outside his office door on the quay, as the street would have him (people/residents.js).
- const agent=new THREE.Group();agent.name='Harbour master';agent.userData.name='Harbour master';agent.position.set(HARBOUR_OFFICE.door[0],0,HARBOUR_OFFICE.door[2]+.7);group.add(agent);people.push({profile:{name:'Harbour master'},g:agent});
+ // Sverker, outside his office door on the quay, as the street would have him (people/residents.js).
+ const agent=new THREE.Group();agent.name='Sverker';agent.userData.name='Sverker';agent.position.set(HARBOUR_OFFICE.door[0],0,HARBOUR_OFFICE.door[2]+.7);group.add(agent);people.push({profile:{name:'Sverker'},g:agent});
  const state=saved||{yen:1000,inventory:['Saved keepsake'],island:{v:1,projects:[],treasury:43210,repair:false,flights:0,visits:0,journey:{location:'town',roundTrip:false,ticket:null,checked:false}}};
  let menu=null,minutes=minute,clock=0;const arrivals=[],anchors=[],timePasses=[];
  const activities={state,save(){},close(){menu=null;},menu(title,text,buttons){menu={title,text,buttons};}};

@@ -123,7 +123,7 @@
     "homeAddress": "3 Willow Alley"
   },
   {
-    "name": "Harbour master",
+    "name": "Sverker",
     "age": 58,
     "role": "harbour master",
     "female": false,
@@ -391,7 +391,7 @@
     "close": 1080,
     "retire": 1260,
     "personality": "Cheerful embellisher",
-    "friend": "Harbour master",
+    "friend": "Sverker",
     "look": "Sea-green vest, white hair and round spectacles",
     "hairStyle": "receding",
     "outfit": "sweater",

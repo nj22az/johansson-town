@@ -20,7 +20,7 @@ const READER_POSITION=[MAGAZINE_RACK.x,0,MAGAZINE_RACK.z-MAGAZINE_RACK.depth/2-.
 const DT=1/60;
 // The shopper is a live resident whose errand that day really takes him to Sakura (people/social.js residentPlan):
 // Reiko, who these routes were first written for, retired in the cast consolidation (AGENTS.md, phase 4).
-const SHOPPER='Harbour master';
+const SHOPPER='Sverker';
 const START=marketVisitsForDay(0)[SHOPPER][0]+5;
 
 function savedVisit(item,{phase='browse',position=SAKURA_LAYOUT.entrance,picked=false}={}){

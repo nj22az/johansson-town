@@ -12,7 +12,7 @@ import {STREET_CAST_NAMES,RESIDENTS} from './residents.js';
  */
 export const CAST_TIERS=Object.freeze({
  core:Object.freeze(['Johansson','Thuan']),
- key:Object.freeze(['Thao','Mrs Sato','Officer Mori','Harbour master']),
+ key:Object.freeze(['Thao','Mrs Sato','Officer Mori','Sverker']),
  // Kept for now (you asked to keep Nhung and Chin); Tetsuo in his yard home.
  kept:Object.freeze(['Nhung','Chin','Tetsuo']),
 });
@@ -22,7 +22,7 @@ const LIFE=Object.freeze({
  Thao:{dayOff:'Monday',leisure:['the morning market','Umi-no-yu']},
  'Mrs Sato':{dayOff:'Sunday',leisure:['the fish auction at nine','Kitahama pocket park bench']},
  'Officer Mori':{dayOff:'Thursday',leisure:['the seawall with a fishing rod','Sato Ramen at lunch']},
- 'Harbour master':{dayOff:'Sunday',leisure:['Mr Fujita’s shed on the pier, for the ballgame','the quay at dusk']},
+ 'Sverker':{dayOff:'Sunday',leisure:['Mr Fujita’s shed on the pier, for the ballgame','the quay at dusk']},
  Nhung:{dayOff:'Saturday afternoon',leisure:['the window chair at Front-Row','the beach']},
  Chin:{dayOff:'Sunday',leisure:['Star Port at the arcade cabinet','Minato']},
  Tetsuo:{dayOff:'Monday',leisure:['the pier with his radio','Minato']},

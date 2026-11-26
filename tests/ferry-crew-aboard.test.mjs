@@ -72,12 +72,12 @@ test('the bosun’s relief sleeps at home: the crew cabin is the signed-on bosun
  crew.update(1/60,7*1440+600);assert.equal(crew.snapshot().find(c=>c.post==='bosun').name,'Kōji','and holds the post by day on his week');
 });
 
-test('Johansson as player is never duplicated: Mac keeps the day watch while he is ashore and returns ashore at night',()=>{
+test('Johansson as player is never duplicated: Erik keeps the day watch while he is ashore and returns ashore at night',()=>{
  const {run}=alongside(),shore=new THREE.Group();
- const crew=createFerryCrewAboard({run,playerIdentity:()=> 'Johansson',townBody:name=>name==='Mac'?shore:null,characters:{attach(){}},register(){},onAction(){}});
+ const crew=createFerryCrewAboard({run,playerIdentity:()=> 'Johansson',townBody:name=>name==='Erik'?shore:null,characters:{attach(){}},register(){},onAction(){}});
  crew.update(1/60,600);
  assert.equal(crew.snapshot().length,8);assert.ok(!crew.snapshot().some(p=>p.name==='Johansson'));
- const relief=crew.snapshot().find(p=>p.post==='chief');assert.equal(relief.name,'Mac');assert.equal(shore.userData.aboardFerry,true);
- assert.match(crew.bodies.get('Mac').text,/Mac Turner/,'the prompt tells his own biography');
+ const relief=crew.snapshot().find(p=>p.post==='chief');assert.equal(relief.name,'Erik');assert.equal(shore.userData.aboardFerry,true);
+ assert.match(crew.bodies.get('Erik').text,/Erik Turner/,'the prompt tells his own biography');
  crew.update(1/60,1410);assert.equal(shore.userData.aboardFerry,false);
 });

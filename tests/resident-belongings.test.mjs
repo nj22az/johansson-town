@@ -34,7 +34,7 @@ test('the guide names every canon thing',()=>{
  const key={'second notebook':'notebook','notebook of supplier names':'notebook','pad of bookmark slips':'slips','tool roll':'tools','pocket radio':'radio',
   'report book':'report','notebook of opening sentences':'opening sentences','crossword book':'crossword','1979 race pennant':'1979','aluminium delivery box':'aluminium delivery box',
   'bicycle bell':'bicycle bell','ratchet strap':'strap','red pencil':'pencil','net needle':'nets','little notebook':'notebook','offering tray':'rice, salt and incense','bait box':'bait'};
- // Their own entry, or another resident's that tells of them (the Harbour master's lunch is Mrs Sato's box).
+ // Their own entry, or another resident's that tells of them (Sverker's lunch is Mrs Sato's box).
  for(const r of catalogue)for(const b of BELONGINGS[r.name]||[])if(b.canon){
   const text=catalogue.filter(o=>o===r||JSON.stringify(o).includes(r.name)).map(o=>JSON.stringify(o)).join(' ').toLowerCase(),word=(key[b.what]||b.what).toLowerCase();
   assert.ok(text.includes(word),r.name+'’s '+b.what+' is marked canon but the guide never mentions “'+word+'”');

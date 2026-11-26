@@ -197,7 +197,7 @@
     "Miss Higa"
    ],
    "avatar": "Miss Higa",
-   "role": "the island’s schoolteacher; Gran Higa’s granddaughter; helps at the bathhouse after school and at weekends",
+   "role": "the island’s schoolteacher; Christina’s granddaughter; helps at the bathhouse after school and at weekends",
    "post": null,
    "relief": null,
    "shore": [],
@@ -209,16 +209,17 @@
   },
   {
    "id": "gran-higa",
-   "name": "Gran Higa",
-   "fullName": "Grandmother Higa",
+   "name": "Christina",
+   "fullName": "Christina Higa",
    "category": "core",
    "sex": "f",
    "age": 78,
    "nationality": "Japanese",
    "was": [
+    "Gran Higa",
     "Grandmother Higa"
    ],
-   "avatar": "Grandmother Higa",
+   "avatar": "Christina",
    "role": "owns Umi-no-yu and keeps it by day; her liquor shop is shut, its trade Sakura’s (the owner, 22 October 2026), and its room is Kissa Higa, her morning coffee shop on weekdays (30 October 2026); the family’s ties in town",
    "post": null,
    "relief": null,
@@ -321,16 +322,18 @@
   },
   {
    "id": "jack",
-   "name": "Jack",
-   "fullName": "Jack Reed",
+   "name": "Sverker",
+   "fullName": "Sverker Reed",
    "category": "core",
    "sex": "m",
    "age": 58,
    "nationality": "American",
    "was": [
+    "Jack",
+    "Jack Reed",
     "Harbour master"
    ],
-   "avatar": "Harbour master",
+   "avatar": "Sverker",
    "role": "harbour agent: berth communications, freight and Minato’s shore-side mooring; an American former merchant seaman, long settled here",
    "post": null,
    "relief": null,
@@ -346,16 +349,18 @@
   },
   {
    "id": "mac",
-   "name": "Mac",
-   "fullName": "Mac Turner",
+   "name": "Erik",
+   "fullName": "Erik Turner",
    "category": "core",
    "sex": "m",
    "age": 61,
    "nationality": "American",
    "was": [
+    "Mac",
+    "Mac Turner",
     "Mr Nakandakari"
    ],
-   "avatar": "Mr Nakandakari",
+   "avatar": "Erik",
    "role": "relief engineer of the Minato Maru; an older American engineer, an established island resident; a shore home and a separate duty berth",
    "post": null,
    "relief": "chief",

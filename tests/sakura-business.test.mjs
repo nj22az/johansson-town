@@ -23,7 +23,7 @@ test('a month of shopping keeps five errands without waking night workers or can
    const [,one]=entries[a],[,two]=entries[b];assert.ok(one[1]<=two[0]||two[1]<=one[0],'visits keep room for the counter and player');
   }
  }
- const hm=RESIDENTS.find(p=>p.name==='Harbour master'),[start,end]=marketVisitsForDay(0)['Harbour master'];
+ const hm=RESIDENTS.find(p=>p.name==='Sverker'),[start,end]=marketVisitsForDay(0)['Sverker'];
  assert.equal(residentPlan(hm,start+5).place,'market','the harbour master actually reaches Sakura in his slot');
  assert.ok(end>start,'the errand has a length');
 });

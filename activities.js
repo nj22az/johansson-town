@@ -147,7 +147,7 @@ export function createActivities({say,onLaundry=()=>{},onKaraoke=null,getResiden
   state.townMode='peninsula';
   seedArchive(state,getMinutes());
 
-  const commuterDescription=name=>name==='Harbour master'?'The harbour office is staffed around the clock. I stay on the quay.':name==='Bus driver'?'I work the Harbour Line and stay at the northern terminal.':'I commute into the shopping district on the Harbour Line and leave by bus after my shift.';
+  const commuterDescription=name=>name==='Sverker'?'The harbour office is staffed around the clock. I stay on the quay.':name==='Bus driver'?'I work the Harbour Line and stay at the northern terminal.':'I commute into the shopping district on the Harbour Line and leave by bus after my shift.';
 
   const characterControl=()=>window.__JOHANSSON_CHARACTER_CONTROL__;
   const modal=$('#activity'),heading=$('#activityTitle'),body=$('#activityBody'),actions=$('#activityActions');
@@ -876,7 +876,7 @@ export function createActivities({say,onLaundry=()=>{},onKaraoke=null,getResiden
     if(name==='Chin'&&state.kenjiEscort&&state.kenjiEscort!=='done')buttons.push(['Show me the workshop',()=>{onEscort();close();say('Chin: Come on, bro. I’ll show you the way.',4);}]);
     if(name==='Mrs Sato')buttons.push(['Umeboshi rice ball · ¥80',()=>{if(spend(80)){state.sprintUntil=performance.now()+20000;note('Umeboshi rice ball. Ready to move.');close();}}]);
     if(name==='Cold-storage kid')buttons.push(['Ice · ¥20',()=>{if(spend(20)){addItem('Ice');receipt(name,'Keep it out of the sun. That is the entire manual.');}}]);
-    if(name==='Harbour master')buttons.push(['Sell a catch',()=>legacyResident(name)]);
+    if(name==='Sverker')buttons.push(['Sell a catch',()=>legacyResident(name)]);
     // Friendship: a little for talking each day, more for presents, most for what they
     // wanted today (src/people/friendship.js).
     const minutesNow=getMinutes(),pool=wantPool();
@@ -1157,10 +1157,10 @@ export function createActivities({say,onLaundry=()=>{},onKaraoke=null,getResiden
     const lines={
       Chin:'The Star Port cabinet is outside the workshop. Stop the signal in the illuminated zone three times to win. It costs ¥100; a perfect round pays ¥250.',
       'Mrs Sato':'Ramen is ¥300 today. The payphone near the bookshop still works, and the Harbour Line timetable is at the northern terminal.',
-      'Harbour master':'Mībai bite at any hour; ēgwā by day, and mijun when the shoals come in. Taman and tachinuiyu after dark: that is when the old men come out. Cast a line, wait for the float to dip, and reel in while the signal reads BITE. I buy what you land.'
+      'Sverker':'Mībai bite at any hour; ēgwā by day, and mijun when the shoals come in. Taman and tachinuiyu after dark: that is when the old men come out. Cast a line, wait for the float to dip, and reel in while the signal reads BITE. I buy what you land.'
     };
     show(name,lines[name]||'The resident nods politely.',[
-      ...(name==='Harbour master'?[...(pierFishInBag().sort((a,b)=>b.pierPrice-a.pierPrice).map(f=>[`Sell your ${f.name} · +¥${f.pierPrice}`,()=>{if(!state.inventory.includes(fishItem(f))){say('That fish is no longer in your bag.');return;}takeOne(fishItem(f));state.yen+=f.pierPrice;save();receipt('Harbour master',`${aFish(f).replace(/^a/,'A')}. ${f.pierPrice>=300?'Now that is a fish.':f.pierPrice<100?'Bait, mostly, but I will take it.':'A fair fish.'} Here is ¥${f.pierPrice}.`);}])),...(pierFishInBag().length?[]:[['Sell a fish',()=>say('Catch a fish at the pier first.'),true]])]:[]),
+      ...(name==='Sverker'?[...(pierFishInBag().sort((a,b)=>b.pierPrice-a.pierPrice).map(f=>[`Sell your ${f.name} · +¥${f.pierPrice}`,()=>{if(!state.inventory.includes(fishItem(f))){say('That fish is no longer in your bag.');return;}takeOne(fishItem(f));state.yen+=f.pierPrice;save();receipt('Sverker',`${aFish(f).replace(/^a/,'A')}. ${f.pierPrice>=300?'Now that is a fish.':f.pierPrice<100?'Bait, mostly, but I will take it.':'A fair fish.'} Here is ¥${f.pierPrice}.`);}])),...(pierFishInBag().length?[]:[['Sell a fish',()=>say('Catch a fish at the pier first.'),true]])]:[]),
       ['Goodbye',close]
     ]);
   }

@@ -89,7 +89,7 @@ function sitAt(who,outfit,slot,parent){
 }
 
 test('two bodies on neighbouring places do not touch: broad and slim, a skirt beside a dress, a child beside a grown-up',()=>{
- const PAIRS=[[['Jun','clothes'],['Officer Mori','clothes']],[['Kai','clothes'],['Jun','clothes']],[['Yoshiko','clothes'],['Mr Fujita','clothes']],[['Vy','clothes'],['Thao','afterbath']],[['Grandmother Higa','clothes'],['Kōji','clothes']],[['Mai','clothes'],['Ms Ganaha','clothes']],[['Johansson','clothes'],['Thuan','clothes']]];
+ const PAIRS=[[['Jun','clothes'],['Officer Mori','clothes']],[['Kai','clothes'],['Jun','clothes']],[['Yoshiko','clothes'],['Mr Fujita','clothes']],[['Vy','clothes'],['Thao','afterbath']],[['Christina','clothes'],['Kōji','clothes']],[['Mai','clothes'],['Ms Ganaha','clothes']],[['Johansson','clothes'],['Thuan','clothes']]];
  for(const [[a,wa],[b,wb]] of PAIRS){
   const parent=new THREE.Group(),A=sitAt(a,wa,BENCH.slots[0],parent),B=sitAt(b,wb,BENCH.slots[1],parent);
   const ab=intrusion(surface(A),core(B)),ba=intrusion(surface(B),core(A)),into=Math.max(ab.depth,ba.depth);

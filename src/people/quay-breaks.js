@@ -13,7 +13,7 @@ import {fullLife} from './full-life.js';
  * walked to by one while another stands on it.
  *
  * The breakers are the harbour's people when they are ashore: Kōji at lunch between the ice plant and home to sleep (not
- * on his relief week, when he is the ship's bosun), Jack after his ramen and before the afternoon round, Chin straight off the gangway after
+ * on his relief week, when he is the ship's bosun), Sverker after his ramen and before the afternoon round, Chin straight off the gangway after
  * the motorman signs off and before his supper at Minato, and Kai on Kitano's pier at lunch between calls. Fuji and Ren
  * are signed on from the generators to the shore power with every meal in the mess (ferry-crew.js FERRY_WORKING_DAY), so
  * the ship's day leaves them no time ashore at a shared spot: Fuji's own time ashore is his shed and his chair, Ren's a
@@ -27,7 +27,7 @@ export const QUAY_BREAKERS=Object.freeze([
  Object.freeze({name:'Kōji',quay:'minato',window:Object.freeze([720,750]),activity:'his lunch on the quay, thawing out after the ice plant',
   why:'Three hours of loading ice for the boats since the auction: the ice men thaw out on the quay at lunch, and then he goes home to sleep.',
   takes:minutes=>rotaWeek(minutes)===0}),
- Object.freeze({name:'Harbour master',quay:'minato',window:Object.freeze([765,770]),activity:'a coffee on the quay after his ramen',
+ Object.freeze({name:'Sverker',quay:'minato',window:Object.freeze([765,770]),activity:'a coffee on the quay after his ramen',
   why:'Ramen at Sato’s at twelve, every day, then a coffee in the air before the afternoon round with the freight book.'}),
  Object.freeze({name:'Chin',quay:'minato',window:Object.freeze([FERRY_WORKING_DAY.signOff,FERRY_WORKING_DAY.signOff+5]),activity:'a cold coffee on the quay, straight off the gangway',
   why:'Sixteen hours in the engine room: ten minutes of air on the quay before the workshop bench and Thao’s counter.',

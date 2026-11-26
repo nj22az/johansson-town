@@ -54,11 +54,11 @@ export const FAVOURS=Object.freeze([
   // Phase 4 of docs/CAST-CONSOLIDATION.md retired the Bus driver this favour went to. It is Mrs Sato's delivery box
   // now, the one that carries his noon bowls up from Sato Ramen (people/belongings.js); the id is kept, so a save in
   // the middle of it carries on. The favour calendar (one-day-slice) asks that both ends walk the town: she does.
-  id:'harbour-timetable',kind:'deliver',from:'Harbour master',to:'Mrs Sato',item:'Delivery box',at:'the harbour office',
+  id:'harbour-timetable',kind:'deliver',from:'Sverker',to:'Mrs Sato',item:'Delivery box',at:'the harbour office',
   why:[
    'Mrs Sato (people/belongings.js): her aluminium delivery box "at noon carries two bowls to the harbour office".',
-   'Harbour master and Mrs Sato (people/cast.js RELATIONSHIPS): old flames; "he eats her ramen every day and never says why".',
-   'Harbour master (activities.js): "The harbour office is staffed around the clock. I stay on the quay." So he cannot take it back himself.',
+   'Sverker and Mrs Sato (people/cast.js RELATIONSHIPS): old flames; "he eats her ramen every day and never says why".',
+   'Sverker (activities.js): "The harbour office is staffed around the clock. I stay on the quay." So he cannot take it back himself.',
    'Hours (profiles.json): the harbour master 5:00 to 14:00, Mrs Sato at Sato Ramen 9:00 to 21:00.',
   ],
   // Asked before the harbour master goes off at two; handed over at Sato Ramen before six.
@@ -83,14 +83,14 @@ export const FAVOURS=Object.freeze([
     news:'Mrs Sato’s delivery box is back at Sato Ramen from the harbour office. The noon bowls will go up tomorrow as usual; nobody at either end has said why.'},
    late:{text:'I promised the harbour master I would take the delivery box to Mrs Sato, and the day ran out.',kind:'note'},
   }),
-  friendship:Object.freeze({'Harbour master':10,'Mrs Sato':3}),
+  friendship:Object.freeze({'Sverker':10,'Mrs Sato':3}),
  }),
  Object.freeze({
-  id:'nhung-rain-book',kind:'return',from:'Nhung',to:'Harbour master',item:'Rain-stained book',at:'Minato Clinic',
+  id:'nhung-rain-book',kind:'return',from:'Nhung',to:'Sverker',item:'Rain-stained book',at:'Minato Clinic',
   why:[
    'Nhung (profiles.json, her clue): "A rain-stained book is drying at the harbour office."',
    'Nhung (profiles.json, hello): "I bookmark the funny parts — apparently that is not how a lending library works."',
-   'Harbour master (profiles.json, hello): "I can predict rain by my knees."; he stays on the quay (activities.js).',
+   'Sverker (profiles.json, hello): "I can predict rain by my knees."; he stays on the quay (activities.js).',
    'Hours (clinic-hours.js, profiles.json): Nhung at the clinic 9:00 to 17:00, the harbour master 5:00 to 14:00.',
   ],
   // The book is with the harbour master, who goes off at two: asked in the morning.
@@ -117,7 +117,7 @@ export const FAVOURS=Object.freeze([
     news:'A book left out in the rain is back on the shelves of Front-Row Books, dried at the harbour office. Staff say it is wavy but readable.'},
    late:{text:'I promised Nhung I would fetch the book from the harbour office, and the day ran out.',kind:'note'},
   }),
-  friendship:Object.freeze({Nhung:6,'Harbour master':3}),
+  friendship:Object.freeze({Nhung:6,'Sverker':3}),
  }),
 ]);
 export const favourById=id=>FAVOURS.find(f=>f.id===id)||null;

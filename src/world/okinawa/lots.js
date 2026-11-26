@@ -20,7 +20,7 @@ export const STREET_LOTS=Object.freeze([
  Object.freeze({
   id:'higa-crate-yard',formerly:'yonamine',use:'crate-yard',name:'Higa Liquor’s crate yard',
   rect:rect(-15.9,-8.25,9.35,15.25),walls:Object.freeze({north:'block',south:'block',east:'block',west:'block'}),gates:Object.freeze({east:Object.freeze([[10.8,13.2]])}),
-  owner:'Grandmother Higa (her old liquor shop across Main Street is Kissa Higa in the mornings)',users:'Sakura Trading, which rents it since Higa Liquor closed (22 October 2026)',
+  owner:'Christina (her old liquor shop across Main Street is Kissa Higa in the mornings)',users:'Sakura Trading, which rents it since Higa Liquor closed (22 October 2026)',
   why:'The drink trade is Sakura Trading’s now, and its depot on the quay has no room for empties. The round’s empties come back in crates and wait here, stacked, for the brewery’s boat, as they did for the Higas.',
   hours:'The round’s empties stacked at half past eleven on Tuesdays and Fridays (commerce/trade-round.js).',
   stories:['children counting bottles','the clink at half past eleven on a round day','a crate tower after a festival'],
@@ -73,11 +73,11 @@ const partOf=(block,part)=>dress({status:'part',partOf:block,what:part});
  */
 const NORTH_BLOCK=dress({
  status:'dressed',name:'The lane garden and Kitahama monthly parking',use:Object.freeze(['vegetable-garden','monthly-parking']),
- for:'1, 2 and 3 Kitahama (the garden); Kōji, Nhung and Mac (the parking); the Kitahama residents’ association, which lets both',
+ for:'1, 2 and 3 Kitahama (the garden); Kōji, Nhung and Erik (the parking); the Kitahama residents’ association, which lets both',
  why:'Kitahama’s houses are walled plots with a pedestrian gate and no drive, and their yards are full (1 Kitahama’s hinpun and herb pots, Mrs Sato’s stock pot on the back step, Kōji’s fish boxes), so the lane wanted ground to grow on and somewhere to leave a car off the 3 m lanes. Cars come up the approach from the beach, so the bays are at its end; the garden is where the households are.',
  ground:'grass, as every Kitahama lot; crushed coral under the three bays; concrete under Johansson Mart and its forecourt',
  hours:'The garden is busiest from six to eight in the morning and after five, out of the sun. The cars hardly move: everything on Minato is a walk away.',
- stories:Object.freeze(['the first gōyā of the summer, and whose turn it is','Mac under his bonnet on his week ashore, Chin and Tetsu leaning on the wing','Nhung’s car going out at night for a house call','crows and the negi','Thao teaching Riku the Vietnamese names of the herbs','the bay to let']),
+ stories:Object.freeze(['the first gōyā of the summer, and whose turn it is','Erik under his bonnet on his week ashore, Chin and Tetsu leaning on the wing','Nhung’s car going out at night for a house call','crows and the negi','Thao teaching Riku the Vietnamese names of the herbs','the bay to let']),
  props:[
   prop('herb-bed','Thao’s herb bed: lemongrass, rau răm and perilla',R(18.4,23.4,62.8,64.0),1.3,'1 Kitahama is across the lane; the herbs her family cooks with are not sold on the island'),
   prop('negi-bed','Mrs Sato’s spring onions',R(24.6,27.8,62.8,64.0),.8,'for her own kitchen at 2 Kitahama; she likes to pull them the minute she needs them (shortened on 27 October 2026, when the parking moved west for Johansson Mart)'),
@@ -93,15 +93,15 @@ const NORTH_BLOCK=dress({
   prop('parking-sign','the monthly parking sign (月極駐車場) on its posts',R(31.05,32.35,67.22,67.38),1.9,'at the back of the bays, read from the lane'),
   prop('bay-1-truck','Kōji’s white kei truck, reversed into bay 1',R(28.5,30.1,63.6,67.05),1.99,'for the outboard, the ice chests and the nets when the boat comes out of the water',{owner:'Kōji',bay:1}),
   prop('bay-2-car','Nhung’s little kei car, in bay 2',R(30.95,32.45,63.55,67.0),1.82,'for house calls to Kitahama and the far end of the island; the clinic has no bay of its own',{owner:'Nhung',bay:2}),
-  prop('bay-3-hatchback','Mac’s old yellow hatchback, its bonnet up, in bay 3',R(33.23,34.97,63.15,67.1),1.86,'an engineer keeps an old engine running for the pleasure of it: the bonnet is up more often than the car is driven',{owner:'Mac',bay:3}),
-  prop('mac-toolbox','Mac’s red toolbox, on the gravel by his front wheel',R(35.04,35.24,63.25,63.67),.3,'the spanners for the job in hand, in reach of the open bonnet and inside his own bay, off the lane',{owner:'Mac',bay:3}),
+  prop('bay-3-hatchback','Erik’s old yellow hatchback, its bonnet up, in bay 3',R(33.23,34.97,63.15,67.1),1.86,'an engineer keeps an old engine running for the pleasure of it: the bonnet is up more often than the car is driven',{owner:'Erik',bay:3}),
+  prop('mac-toolbox','Erik’s red toolbox, on the gravel by his front wheel',R(35.04,35.24,63.25,63.67),.3,'the spanners for the job in hand, in reach of the open bonnet and inside his own bay, off the lane',{owner:'Erik',bay:3}),
  ],
  flat:[
   flat('parking-gravel','crushed coral under the three bays, the white lines and the wheel stops',R(27.9,35.45,62.2,67.55),'cars on grass rut it in the rains'),
   flat('shop-apron','Johansson Mart’s concrete: its floor slab and the forecourt in front, where the machines, the bins and the A-board stand',R(35.5,42.0,62.0,70.3),'a shop stands on concrete, and the forecourt is swept every evening (okinawa/kitahama-shop.js)'),
  ],
  signs:[{name:'Kitahama monthly parking sign',says:'月極駐車場 · 空きなし · 契約車以外駐車禁止 · 北浜自治会',english:'Monthly parking. No bays free. Contract holders only. Kitahama residents’ association.'}],
- prompts:['Look at the lane garden','Read the monthly parking sign','Look under Mac’s bonnet'],
+ prompts:['Look at the lane garden','Read the monthly parking sign','Look under Erik’s bonnet'],
 });
 
 /** 9 Kitahama, between 8 and 1 on the footpath that is Main Street's line through the quarter. */
@@ -111,7 +111,7 @@ const LOT_9=dress({
  why:'The footpath is the way into town, so the bicycles live beside it: 1 Kitahama’s red-tile yard is all hinpun, herbs and step and has no room for three bicycles, Mrs Sato cannot lift hers over the gate step, and Riku’s stays here because his mother’s fills their own yard. The hoop is between Vy’s house and Riku’s, across the lane from both, and away from the pocket park’s swing (its sign asks for ball games before six).',
  ground:'grass; a concrete pad under the hoop',
  hours:'The bicycles go out at a quarter to eight and come back from five. The hoop is busy after school until the light goes or somebody is called in for supper.',
- stories:Object.freeze(['Vy against Riku, first to ten','the ball in the garden across the lane','Mac shows them a hook shot','Mrs Sato’s bicycle bell']),
+ stories:Object.freeze(['Vy against Riku, first to ten','the ball in the garden across the lane','Erik shows them a hook shot','Mrs Sato’s bicycle bell']),
  props:[
   prop('bicycle-shed','the bicycle shed: a tin roof on posts, five bicycles under it',R(7.3,9.5,49.2,55.2),2.25,'open to the footpath; Thao’s, Chin’s, Vy’s, Riku’s and Mrs Sato’s bicycles'),
   prop('hoop','the basketball hoop on its post, the ball at its foot',R(12.3,12.85,48.45,48.95),3.4,'at the south end of the pad, the backboard facing the cross lane'),
@@ -127,7 +127,7 @@ const LOT_7=dress({
  why:'The youth association’s Eisa (the poster at Sakura) needs its drums kept dry and a level piece of ground to practise on in the evenings before Obon; the association needs a store for the cane knives and the festival tent. Across the lane from the pocket park and its notice board, where the lane already meets.',
  ground:'grass round a square of crushed coral, swept for the dancing',
  hours:'Practice is from seven on summer evenings in the weeks before Obon; the store is opened for the cane cut in January and the festival.',
- stories:Object.freeze(['eisa practice and the drum you can hear from the harbour','Gran Higa supervises, loudly','the tent that will not go up','the cane knives come out in January']),
+ stories:Object.freeze(['eisa practice and the drum you can hear from the harbour','Christina supervises, loudly','the tent that will not go up','the cane knives come out in January']),
  props:[
   prop('association-store','the association’s store: two steel sheds side by side',R(-18.4,-14.4,55.1,56.5),2.1,'the eisa drums, the festival tent and the cane knives; doors open onto the practice ground'),
   prop('watching-bench','a bench for the elders who watch',R(-12.25,-11.75,50.5,52.1),.85,'on the ground’s east edge, facing the dancers'),
@@ -139,21 +139,21 @@ const LOT_7=dress({
 
 /** 6 Kitahama, across the north lane from Kitahama Heights. */
 const LOT_6=dress({
- status:'dressed',name:'Mac’s garden',use:Object.freeze(['garden','barbecue']),
- for:'Mac at Kitahama Heights A, and Mika next door at B, who is asked to everything',
- why:'The Heights’ two houses have a strip of garden each, not room for a table, and Mac is an American who grills. He took the lot across the lane for a table, a kettle grill and his tomatoes and chillies, behind a hibiscus hedge with its gap facing the Heights.',
+ status:'dressed',name:'Erik’s garden',use:Object.freeze(['garden','barbecue']),
+ for:'Erik at Kitahama Heights A, and Mika next door at B, who is asked to everything',
+ why:'The Heights’ two houses have a strip of garden each, not room for a table, and Erik is an American who grills. He took the lot across the lane for a table, a kettle grill and his tomatoes and chillies, behind a hibiscus hedge with its gap facing the Heights.',
  ground:'grass, behind the hedge',
  hours:'The grill is lit on his week ashore, Sunday about four; the tomatoes are watered morning and evening by whoever is home.',
- stories:Object.freeze(['Mac’s ribs on Sunday and who turns up','the chilli that was too hot','Fuji’s beer, only after he signs off','Mika minding the tomatoes while Mac is aboard']),
+ stories:Object.freeze(['Erik’s ribs on Sunday and who turns up','the chilli that was too hot','Fuji’s beer, only after he signs off','Mika minding the tomatoes while Erik is aboard']),
  props:[
   prop('hedge-south-west','the hibiscus hedge on the lane',R(-31.6,-28.6,48.4,49.0),1.0,'along the north lane, with its gap facing the Heights'),
   prop('hedge-south-east','the hibiscus hedge on the lane',R(-27.4,-24.4,48.4,49.0),1.0,'along the north lane'),
   prop('hedge-east','the hibiscus hedge on Fukugi Lane',R(-25.0,-24.4,49.0,56.6),1.0,'along Fukugi Lane'),
   prop('picnic-table','a picnic table and its benches',R(-30.6,-28.6,51.15,53.25),.8,'for six, at a squeeze'),
-  prop('kettle-grill','Mac’s kettle grill',R(-26.95,-26.25,51.25,51.95),1.0,'downwind of the table, with the sea wind'),
+  prop('kettle-grill','Erik’s kettle grill',R(-26.95,-26.25,51.25,51.95),1.0,'downwind of the table, with the sea wind'),
   prop('tomato-bed','tomatoes on canes and island chillies',R(-31.4,-26.4,55.0,56.2),1.5,'at the back, in the sun'),
  ],
- prompts:['Look at Mac’s barbecue'],
+ prompts:['Look at Erik’s barbecue'],
 });
 
 /** 10, 11 and 12 Kitahama, the north row west of the footpath: one block of cane, the association's. */
@@ -178,12 +178,12 @@ const LOT_12=caneLot(12,R(-5.6,1.6,62.5,70.5),{
 
 /** The Kinjō lot on the seawall walk, across the lane from the Higa house. */
 const KINJO=dress({
- status:'dressed',name:'Gran Higa’s garden',use:Object.freeze(['vegetable-garden']),
- for:'Gran Higa (Grandmother Higa), across the lane at the Higa house; Yui carries the water jar in the typhoon season',
- why:'An obaa of 78 with a garden over the lane is the oldest thing on an Okinawan street. Gran Higa keeps Umi-no-yu by day, so she works it from six until the bath opens: gōyā on an A-frame, handama and island greens, a papaya, and a big water jar, inside a low coral wall against the salt wind off the walk. The bed of chrysanthemums along the north wall was Mrs Kinjō’s, and Gran Higa keeps it for the family altar.',
+ status:'dressed',name:'Christina’s garden',use:Object.freeze(['vegetable-garden']),
+ for:'Christina (Christina), across the lane at the Higa house; Yui carries the water jar in the typhoon season',
+ why:'An obaa of 78 with a garden over the lane is the oldest thing on an Okinawan street. Christina keeps Umi-no-yu by day, so she works it from six until the bath opens: gōyā on an A-frame, handama and island greens, a papaya, and a big water jar, inside a low coral wall against the salt wind off the walk. The bed of chrysanthemums along the north wall was Mrs Kinjō’s, and Christina keeps it for the family altar.',
  ground:'the quarter’s coral sand, with beds of red earth in it',
  hours:'From six to half past eight in the morning, and a look round after supper.',
- stories:Object.freeze(['Mrs Kinjō’s chrysanthemums','gōyā for the whole street','Gran Higa and the crows','the water jar before a typhoon']),
+ stories:Object.freeze(['Mrs Kinjō’s chrysanthemums','gōyā for the whole street','Christina and the crows','the water jar before a typhoon']),
  props:[
   prop('wall-west','the garden’s coral wall on the seawall walk',R(-34.7,-34.1,-10.6,-.8),1.1,'the salt wind off the sea'),
   prop('wall-north','the coral wall on the lane to 2 Front-Row Yard',R(-34.7,-27.0,-.8,-.2),1.1,'the garden’s north side'),
@@ -198,7 +198,7 @@ const KINJO=dress({
   prop('papaya','a papaya',R(-28.65,-28.15,-1.85,-1.35),3.2,'in the corner, out of the beds’ light'),
   prop('stool','her low stool',R(-29.6,-29.2,-3.6,-3.2),.35,'for weeding, by the greens'),
  ],
- prompts:['Look over Gran Higa’s garden wall'],
+ prompts:['Look over Christina’s garden wall'],
 });
 
 /** The Ōshiro lot on the seawall walk, between the lane to 2 Front-Row Yard and the utaki's. */
@@ -301,7 +301,7 @@ export const LOT_PROPS=Object.freeze(CLEARED_LOTS.flatMap(l=>l.dressing.props.ma
  * The retained Kitahama plots' planting (addendum 2: hedges round plots 1, 2, 3, 8 and the Heights): what is on or over
  * their walls, kept to the walls' own footprints so no gate, nameplate or gutter changes. 8 Kitahama's nameplate says a
  * neighbour waters the bougainvillea while Nao is on the ferry: this is it, spilling over her front wall either side of
- * the gate. The Heights' hedge is Mac's, round lot 6 across the lane.
+ * the gate. The Heights' hedge is Erik's, round lot 6 across the lane.
  */
 export const PLOT_PLANTING=Object.freeze([
  Object.freeze({plot:'kitahama-8',what:'bougainvillea over the front wall',wall:'north',at:Object.freeze([-5.15,-4.05,.75,1.5]),why:'its nameplate: “A neighbour waters the bougainvillea”'}),

@@ -20,7 +20,7 @@ export const KITAHAMA_SHOP_ROOM=Object.freeze({
  // Just inside the door, facing into the shop (yaw π faces +z, as in the town).
  spawn:Object.freeze([(door.from+door.to)/2,0,.95]),exit:Object.freeze([(door.from+door.to)/2,1.1,.35]),yaw:Math.PI,
  // Where the keeper stands behind the till, facing the shop floor (west, -x): read by the keeper's day (batch 3).
- staff:Object.freeze({'Grandmother Higa':Object.freeze([5.25,0,2.6])}),
+ staff:Object.freeze({'Christina':Object.freeze([5.25,0,2.6])}),
  ceiling:CE,
 });
 
@@ -59,24 +59,24 @@ export function buildKitahamaShopRoom({site,room,reg,collider=()=>{},action,exit
  const anchor=(x,y,z,label,fn)=>{const a=new THREE.Object3D();a.position.set(x,y,z);group.add(a);reg?.(a,label,fn);};
  const F=id=>FIXTURES.find(f=>f.id===id),mid=f=>[(f.min[0]+f.max[0])/2,(f.min[1]+f.max[1])/2];
  const say=(title,text)=>()=>action?.('read',title,text);
- {const [,z]=mid(F('F1'));anchor(F('F1').min[0]-.45,1.1,2.3,'Look at the till',say(SHOP.name+' · the till','A cash register with a green pole display, the hot case beside it, and at the customer’s end a tray of gōyā and island greens from Grandmother Higa’s garden, picked that morning.'));}
+ {const [,z]=mid(F('F1'));anchor(F('F1').min[0]-.45,1.1,2.3,'Look at the till',say(SHOP.name+' · the till','A cash register with a green pole display, the hot case beside it, and at the customer’s end a tray of gōyā and island greens from Christina’s garden, picked that morning.'));}
  {const [x,z]=mid(F('F3'));anchor(x,1.2,F('F3').min[1]-.5,'Look in the drinks cooler',say('The drinks cooler','Three glass doors: tea, water, milk coffee and sports drinks, and the beer and chūhai that are sold here when Sakura is shut.'));}
  {const [x,z]=mid(F('F5'));anchor(F('F5').max[0]+.45,1.2,z,'Look at the chiller',say('The chiller','Bento, onigiri and sandwiches on the stepped shelves, milk and tofu at the top: supper for whoever finishes late.'));}
  {const [x,z]=mid(F('F7'));anchor(x,1.1,F('F7').max[1]+.45,'Look at the magazines',say('The magazine rack','The island paper, printed by Nhung, the weeklies, manga and puzzle books, read by the window.'));}
  {const [x,z]=mid(F('F8'));anchor(F('F8').max[0]+.35,1.0,z,'Look at the copier',say('The copier','¥10 a copy. The residents’ association copies its notices here.'));}
  anchor(KITAHAMA_SHOP_ROOM.exit[0],KITAHAMA_SHOP_ROOM.exit[1],KITAHAMA_SHOP_ROOM.exit[2],'Go out to the lane',()=>exit?.());
- // The keeper: Grandmother Higa behind the till while the shop has her (SHOP_DUTY), facing the shop floor (west, -x).
+ // The keeper: Christina behind the till while the shop has her (SHOP_DUTY), facing the shop floor (west, -x).
  // She is a neighbour of the town (people/neighbours.js), drawn here by the room itself; in the street she is indoors.
- const keeperAt=KITAHAMA_SHOP_ROOM.staff['Grandmother Higa'];
- const keeperBody=new THREE.Group();keeperBody.name='Grandmother Higa at the till';keeperBody.position.set(keeperAt[0],0,keeperAt[2]);
+ const keeperAt=KITAHAMA_SHOP_ROOM.staff['Christina'];
+ const keeperBody=new THREE.Group();keeperBody.name='Christina at the till';keeperBody.position.set(keeperAt[0],0,keeperAt[2]);
  // An avatar faces +z at rotation 0; a quarter turn the positive way faces it to -x, the shop floor (seen in the game).
  keeperBody.rotation.y=Math.PI/2;group.add(keeperBody);
  let keeper=null;
  const onDuty=()=>kitahamaShopOnDuty(getMinutes());
- const showKeeper=()=>{const on=onDuty();if(on&&!keeper)keeper=createAvatarActor(keeperBody,'Grandmother Higa');keeperBody.visible=on;};
+ const showKeeper=()=>{const on=onDuty();if(on&&!keeper)keeper=createAvatarActor(keeperBody,'Christina');keeperBody.visible=on;};
  showKeeper();
- anchor(F('F1').min[0]-.45,1.3,keeperAt[2],'Talk to Grandmother Higa',()=>onDuty()?action?.('read','Grandmother Higa',KEEPER_GREETING)
-  :action?.('read',SHOP.name,'Nobody at the till: Grandmother Higa is not in yet.'));
+ anchor(F('F1').min[0]-.45,1.3,keeperAt[2],'Talk to Christina',()=>onDuty()?action?.('read','Christina',KEEPER_GREETING)
+  :action?.('read',SHOP.name,'Nobody at the till: Christina is not in yet.'));
  return {...KITAHAMA_SHOP_ROOM,solids,colliders:[],
   hours:HOURS.signEnglish,
   /** Each frame in the room: the keeper breathes and looks about; she comes and goes with her duty. */

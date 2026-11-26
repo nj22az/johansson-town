@@ -91,8 +91,8 @@ test('a resident’s drink is made the same way and set down at their place',()=
 
 test('a drink for someone who has gone goes down the sink, and her hands give back what they took',()=>{
  const {nao,bar,service}=room();let got='never';
- service.request({kind:'awamori',table:IZAKAYA_PLAYER_SEATS.counter0.table,tag:'Mac',onServed:p=>{got=p;}});
- for(let i=0;i<30*12;i++)service.update(1/30);service.cancel('Mac');
+ service.request({kind:'awamori',table:IZAKAYA_PLAYER_SEATS.counter0.table,tag:'Erik',onServed:p=>{got=p;}});
+ for(let i=0;i<30*12;i++)service.update(1/30);service.cancel('Erik');
  const trail=run(service);
  assert.ok(trail.includes('sink'),'down the sink: '+trail.join(' '));assert.equal(got,'never','nobody is served');
  assert.ok(bar.bottle.piece.position.distanceTo(new THREE.Vector3(...MINATO_BAR.shelf.inUse))<1e-6,'the bottle is back on the back counter');assert.equal(nao.userData.workHeld,undefined);

@@ -9,7 +9,7 @@ export function sleepHours(profile){
  // Kissa Higa (30 October 2026): his morning set is before bed at nine, not in the middle of a seven-o'clock sleep.
  if(profile.name==='Officer Mori')return {sleep:540,wake:900};
  // On the island he lives in the office and keeps the ship's day, the last boat fast by half past ten (social.js HARBOUR_MASTER_DAY).
- if((profile.name==='Harbour master'))return {sleep:1380,wake:330};
+ if((profile.name==='Sverker'))return {sleep:1380,wake:330};
  if(profile.name==='Thao')return {sleep:240,wake:720};
  // His authored cast day has the radio bench from nine and home at 22:30; the old 17:00–midnight shift left him asleep
  // through the decided Kissa Higa breakfasts. Keep eight hours overnight, then breakfast at home or at her counter.

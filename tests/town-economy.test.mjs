@@ -59,11 +59,11 @@ test('the town has its ups and downs and balances over the year',()=>{
  for(const id of Object.keys(BUSINESSES))assert.ok(s.biz[id].cash>0,id+' is trading at the end');
 });
 
-test('every business in the economy is kept by somebody in the cast, and Umi-no-yu by its owner, Grandmother Higa',async()=>{
+test('every business in the economy is kept by somebody in the cast, and Umi-no-yu by its owner, Christina',async()=>{
  const {CAST_NAMES}=await import('../src/people/cast.js');
  for(const [id,b] of Object.entries(BUSINESSES))assert.ok(CAST_NAMES.includes(b.owner),id+': '+b.owner+' is in the cast');
  // Higa Liquor closed on 22 October 2026: she keeps the bath only, and the bars buy their drink from Sakura.
- assert.equal(BUSINESSES.onsen.owner,'Grandmother Higa');assert.equal(BUSINESSES.higa,undefined,'Higa Liquor trades no more');
+ assert.equal(BUSINESSES.onsen.owner,'Christina');assert.equal(BUSINESSES.higa,undefined,'Higa Liquor trades no more');
  for(const [id,b] of Object.entries(BUSINESSES))if(b.supplier)assert.equal(b.supplier,'sakura',id+' buys from Sakura');
  const s=createEconomy();for(const id of Object.keys(ALCOHOL))assert.ok(s.biz.sakura.stock[id]>0,'Sakura keeps '+id+' in its stock room');
 });

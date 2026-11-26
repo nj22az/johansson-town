@@ -19,7 +19,7 @@ test('actual ambient neighbours block the player and appear in the same MCP navi
   // (outdoors: no room's walk, so a resident blocks at any height, game.js residentsAt)
   roomWalk:()=>null,player:{position:new THREE.Vector3()}};
  vm.runInNewContext(source.slice(start,end)+'\nglobalThis.audit={'+navigation+'route(){return null;}};',context);
- // (Mr Ōshiro retired in phase 4: the first neighbour out at 14:00, Grandmother Higa, people/neighbours.js.)
+ // (Mr Ōshiro retired in phase 4: the first neighbour out at 14:00, Christina, people/neighbours.js.)
  const fisherman=neighbours.entities.find(g=>g.visible);assert.ok(fisherman,'a neighbour is out at 14:00');const p=fisherman.getWorldPosition(new THREE.Vector3()),name=fisherman.userData.name;
  assert.equal(context.residentBlocked(p.x,p.z),true,'Player cannot walk through the live '+name);
  assert.ok(context.audit.navigation(p.x,p.z).residents.includes(name),'MCP reports that same real body');

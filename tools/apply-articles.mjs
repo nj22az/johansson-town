@@ -22,7 +22,7 @@ const FIX={
  // Nhung is the island doctor since 22 October 2026 (the owner): Dr Kakazu's post, look and patients are hers.
  Nhung:{friend:'Officer Mori',role:'Island doctor and editor of the town paper',place:'The town hall clinic, and the printing bench of the old Front-Row shop in the evenings',
   dailyLife:'Next, please. And then the paper.'},
- 'Harbour master':{friend:'Mrs Sato',role:'Harbour agent',place:'Harbour Office and the Minato berth'},
+ 'Sverker':{friend:'Mrs Sato',role:'Harbour agent',place:'Harbour Office and the Minato berth'},
  Chin:{friend:'Tetsuo',role:'Motorman of the Minato Maru and workshop repairman',place:'The engine room and the Chin & Tetsuo workshop',
   islandPersonality:{title:'The careful maker',traits:['Inventive','patient','dry-witted'],habit:'Lines up his tools before touching a new repair.',ambition:'Keep the ship’s diesels and the town’s boats running on the same bench.',favourite:'A finished repair that looks effortless'}},
  Tetsuo:{friend:'Chin',role:'Electrician and radio repairer',place:'Dock Electrical & Repair Workshop, the ferry and the power house'},
@@ -33,13 +33,13 @@ const FIX={
   islandPersonality:{title:'Teacher by day, keeper of the bandai by night',traits:['Patient','observant','dry'],habit:'Marks the class’s homework at the bandai between customers.',ambition:'Send every pupil in her class on to the mainland high school able to read, reckon and swim.',favourite:'The rock bath after dark, once the boiler is running sweet'}},
  // Her liquor shop shut on 22 October 2026 (the owner; commerce/higa-liquor.js); its room is Kissa Higa on weekday
  // mornings since 30 October (commerce/kissa-higa.js), and the bath is hers by day.
- 'Grandmother Higa':{friend:'Mr Fujita',role:'Owner of Umi-no-yu and Kissa Higa',place:'Umi-no-yu, Kissa Higa on weekday mornings, and her Nishi-machi verandah'},
+ 'Christina':{friend:'Mr Fujita',role:'Owner of Umi-no-yu and Kissa Higa',place:'Umi-no-yu, Kissa Higa on weekday mornings, and her Nishi-machi verandah'},
  'Kōji':{friend:'Ms Uezu',role:'Fisherman and relief bosun',place:'The fish auction quay and his sabani on the west quay',
   islandPersonality:{title:'The keen-eyed sorter',traits:['Quick','observant','ambitious'],habit:'Can spot a mixed crate before it reaches his sorting bench.',ambition:'Bring the sabani in with a catch worth the auction’s first call.',favourite:'The moment the morning catch is laid out'}},
  Riku:{friend:'Vy'},
  Vy:{friend:null,place:'Island school and Harbour Park'},
  // The eleven who joined the guide in phase 5: the ship's people, the port clerk, the doctor and the relief engineer.
- Mac:{friend:'Ms Ganaha',role:'Relief engineer of the Minato Maru',place:'The engine room, and Kitahama Heights A',portrait:'assets/images/residents/mac.webp',
+ Erik:{friend:'Ms Ganaha',role:'Relief engineer of the Minato Maru',place:'The engine room, and Kitahama Heights A',portrait:'assets/images/residents/erik.webp',
   dailyLife:'She is running fine. She is running my way, which is the same thing.',
   islandPersonality:{title:'The engineer who stayed',traits:['Exacting','loud','loyal'],habit:'Puts his reading glasses on for the gauges and takes them off before anybody sees.',ambition:'Hand the engine room over one day in better order than he found it.',favourite:'The one beer at Minato, counted'}},
  'Ms Uezu':{friend:'Kōji',role:'Bosun of the Minato Maru',place:'The aft deck and the ramp; 8 Kitahama on her week off',portrait:'assets/images/residents/ms-uezu.webp',
@@ -48,7 +48,7 @@ const FIX={
  'Ms Ganaha':{friend:'Aya',role:'Port clerk',place:'The ticket, parcel and post window at the Port Terminal',portrait:'assets/images/residents/ms-ganaha.webp',
   dailyLife:'Where are you off to, love? Tickets here, parcels behind me, letters by half past four.',
   islandPersonality:{title:'The window that knows',traits:['Brisk','exact','kind under it'],habit:'Has the parcel shelf sorted before the window opens at noon.',ambition:'Send every traveller to the right island with the right ticket.',favourite:'The early lunch at Sato Ramen before the window opens'}},
- 'Mr Fujita':{friend:'Grandmother Higa',role:'Master of the Minato Maru',place:'The bridge; the pier shed and Shiosai after he signs off',portrait:'assets/images/residents/mr-fujita.webp',
+ 'Mr Fujita':{friend:'Christina',role:'Master of the Minato Maru',place:'The bridge; the pier shed and Shiosai after he signs off',portrait:'assets/images/residents/mr-fujita.webp',
   dailyLife:'Shore power on. Signed off. Now the set goes on.',
   islandPersonality:{title:'Sober on watch, loud in the shed',traits:['Steady','stubborn','a cheerful embellisher'],habit:'Cons every berthing himself and keeps the log in his own hand.',ambition:'Bring her alongside on time every day until somebody takes the wheel from him.',favourite:'The first bottle after the shore power goes on'}},
  Ryo:{friend:'Mr Fujita',role:'Chief officer of the Minato Maru',place:'The port wing and the ramp controls',portrait:'assets/images/residents/ryo.webp',

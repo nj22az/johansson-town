@@ -70,3 +70,69 @@ test('Tetsuo has a lean man\'s head: long and narrow, cheekbones over hollow che
  assert.equal(T.R.glasses.style,'half');assert.equal(T.R.nose.style,'none','his nose is the sculpt\'s');assert.equal(T.R.hair.style,'horseshoe');
  for(const k of ['creases','nostrils','cheeks'])assert.equal(T.R.marks[k],true,k);
 });
+
+test('Thao, from her photograph: a long serene oval, her hair tied back to a low bun with her ears showing, and short pants',async()=>{
+ // The owner, 26 November 2026: "This is Thao but cartoon Thao should wear short pants".
+ const T=head('Thao'),{measure}=await import('../src/avatars/build.js');
+ assert.equal(T.R.head.form,'serene');assert.ok(HEAD_FORMS.includes('serene'));
+ const ratio=T.P.height/T.P.width;assert.ok(ratio>1.18&&ratio<1.3,'a long oval: '+ratio.toFixed(2));
+ // An oval, never a kite: the jaw stays full and the chin is a round end, with no corner on the way down.
+ const cheek=T.half(96);assert.ok(T.half(130)>cheek*.72,'a full jaw: '+(T.half(130)/cheek).toFixed(2));assert.ok(T.half(150)>cheek*.4,'a round chin: '+(T.half(150)/cheek).toFixed(2));
+ for(let t=95;t<=150;t+=5)assert.ok(T.half(t)-T.half(t+10)<cheek*.2,'no corner at θ '+t);
+ assert.equal(T.P.sculpt.nose,false,'her nose is the kit\'s, not the sculpt\'s');
+ // Short pants, as asked, with the photograph's yellow top; slim, on the graceful frame.
+ assert.equal(T.R.outfit.bottom,'shorts');assert.equal(T.R.outfit.top,'tee');assert.equal(measure(T.R).graceful,true);
+ const rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)),[r,g,b]=rgb(T.R.outfit.topColour);assert.ok(r>200&&g>170&&b<140,'a yellow top');
+ // Her hair (tiedback), sculpted: off the forehead, over the crown, down to the nape, cut round each ear, a bun behind.
+ assert.equal(T.R.hair.style,'tiedback');
+ const {TIEDBACK_HAIR:S}=await import('../src/avatars/sculpts/tiedback-hair.js');
+ const table=K=>{const raw=atob(K.data);return (a,t)=>{const i=Math.round(t/180*(S.nt-1))*S.na+Math.round((a+180)/360*(S.na-1));return K.min+(K.max-K.min)*(raw.charCodeAt(i*2)|raw.charCodeAt(i*2+1)<<8)/65535;};};
+ const field=table(S.field),radius=table(S.radius);
+ assert.ok(field(0,30)>0&&field(180,100)>0&&field(120,70)>0,'over the crown and down the back');
+ assert.ok(field(0,60)<0&&field(0,T.brow)<0&&field(30,T.eye)<0,'a clear forehead and an open face');
+ assert.ok(field(89,94)<0&&field(-89,94)<0,'cut round the ears');assert.ok(field(180,130)<0,'the nape is bare below the bun');
+ assert.ok(radius(180,108)>radius(180,60)+.15&&radius(180,108)>radius(140,108)+.12,'a round bun at the nape, proud of the head');
+ // Her sisters' sister, and nobody's copy: her head, her hair and her mouth are her own.
+ for(const other of ['Thuan','Vy']){const o=recipeFor(other);assert.notEqual(T.R.head.form,o.head.form);assert.notEqual(T.R.hair.style,o.hair.style);assert.notEqual(T.R.mouth.style,o.mouth.style);assert.notEqual(T.R.nose.style,o.nose.style);}
+ // Fully rigged, with every expression.
+ const a=buildAvatar(T.R,{shadows:false,eyes3d:false});assert.ok(a.body.skeleton.bones.length>=28);for(const e of EXPRESSION_NAMES)a.paintFace({expression:e,blink:0,talk:0,look:[0,0]});a.dispose();
+ for(const f of ['tools/blender/build-thao-head.py','art/characters/thao/thao-head.blend','art/characters/thao/thao-rigged.blend','art/characters/thao/review/contact-sheet.png','art/characters/thao/review/expressions.png'])assert.ok(existsSync(file(f)),f);
+});
+
+test('Christina, Erik and Sverker: renamed by the owner, drawn from their photographs, sculpted in Blender and fully rigged',async()=>{
+ // The owner, 26 November 2026: "This is Mrs Higa who should be renamed to Christina and she should not have a wheelchair",
+ // "This is Mac who should be renamed Erik", "This is the harbour master Sverker".
+ const {identityOf,ROSTER}=await import('../src/people/roster.js'),{castMember}=await import('../src/people/cast.js');
+ const {measure}=await import('../src/avatars/build.js'),{PATTERNS}=await import('../src/avatars/recipe.js');
+ const WAS={Christina:['Gran Higa','Grandmother Higa'],Erik:['Mac','Mac Turner','Mr Nakandakari'],Sverker:['Jack','Jack Reed','Harbour master']};
+ const ID={Christina:'gran-higa',Erik:'mac',Sverker:'jack'},FORM={Christina:'kindly',Erik:'burly',Sverker:'broad'};
+ for(const [name,old] of Object.entries(WAS)){
+  const who=identityOf(name);assert.equal(who.id,ID[name]);assert.equal(who.name,name);assert.equal(who.avatar,name);
+  assert.equal(castMember(name).name,name,name+' is the name the town uses');
+  for(const o of old){assert.equal(identityOf(o).id,ID[name],o+' still finds '+name);assert.equal(castMember(o).name,name);assert.deepEqual(recipeFor(o).head,recipeFor(name).head);}
+  assert.ok(!ROSTER.some(p=>old.includes(p.name)),'nobody is shown by an old name');
+  // A head of their own, sculpted in Blender; rigged, with every expression; their sheets kept.
+  const H=head(name);assert.equal(H.R.head.form,FORM[name]);assert.ok(H.P.sculpt,name+' wears a sculpted head');
+  const a=buildAvatar(H.R,{shadows:false,eyes3d:false});assert.ok(a.body.skeleton.bones.length>=28);for(const e of EXPRESSION_NAMES)a.paintFace({expression:e,blink:0,talk:0,look:[0,0]});a.dispose();
+  const slug=name.toLowerCase();
+  for(const f of [`tools/blender/build-${slug}-head.py`,`art/characters/${slug}/${slug}-head.blend`,`art/characters/${slug}/${slug}-rigged.blend`,`art/characters/${slug}/review/contact-sheet.png`,`art/characters/${slug}/review/expressions.png`])assert.ok(existsSync(file(f)),f);
+ }
+ const lum=h=>{const n=parseInt(h.slice(1),16);return (.3*(n>>16)+.59*(n>>8&255)+.11*(n&255))/255;};
+ // Christina: round and soft, white hair of her own (softwave), the spotted navy dress; she stands and walks, and there
+ // is no wheelchair in the town's people or their drawings.
+ const C=head('Christina');assert.ok(C.P.width/C.P.height>.94,'a round head');assert.equal(C.R.hair.style,'softwave');assert.ok(lum(C.R.hair.colour)>.9,'white hair');
+ assert.equal(C.R.outfit.pattern,'dots');assert.ok(lum(C.R.outfit.topColour)<.2);assert.equal(C.R.glasses.style,'none');
+ const {readdirSync}=await import('node:fs');
+ for(const dir of ['src/people','src/avatars'])for(const f of readdirSync(file(dir)).filter(f=>f.endsWith('.js'))){
+  // (in the code and its data; the owner's words are quoted in the notes)
+  const code=readFileSync(file(dir+'/'+f),'utf8').split('\n').filter(l=>!/^\s*(\*|\/\/|\/\*)/.test(l)).join('\n');assert.ok(!/wheelchair/i.test(code),dir+'/'+f);}
+ // Erik: broad and heavy, a full grey beard, his olive cap and the blue checked shirt.
+ const E=head('Erik');assert.ok(E.P.width>=1.04,'a broad head');assert.equal(E.R.facial.paint,'full');assert.equal(E.R.outfit.hat,'cap');
+ assert.equal(E.R.outfit.pattern,'check');assert.ok(PATTERNS.includes('check'));assert.equal(PATTERNS.indexOf('check'),4,'appended: no saved look moves');
+ // Sverker: broader than tall, thick pale hair swept across (sweptmop), no cap over it, and a big man's belly.
+ const S=head('Sverker');assert.ok(S.P.width>S.P.height,'broader than tall');assert.equal(S.R.hair.style,'sweptmop');assert.ok(lum(S.R.hair.colour)>.85,'white-blond');assert.equal(S.R.outfit.hat,'none');
+ const m=measure(S.R),plain=measure({...S.R,body:{...S.R.body,frame:'standard'}});
+ assert.equal(m.stout,true);assert.ok(m.waistRatio>1,'his belly is the widest of him');assert.ok(m.depth>plain.depth*1.2,'deep through the middle');assert.ok(m.legR>plain.legR,'on thicker legs');
+ // Nobody's head is anybody else's.
+ const forms=['Johansson','Thuan','Tetsuo','Vy','Thao','Christina','Erik','Sverker'].map(n=>recipeFor(n).head.form);assert.equal(new Set(forms).size,forms.length);
+});

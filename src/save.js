@@ -57,7 +57,7 @@ export function migrateThuan(saved){
  * (housingRevision 1): the four people it rehoused then lose their saved home fields so the registry's homes of that
  * day apply, and a saved home target goes through the registry's aliases. The names are the names of that day: two of
  * them (Grandmother Chinen, Grandmother Sakurai) retired a day later in the consolidation and Mr Nakandakari became
- * Mac, which migrateCast (castRevision 2, below) handles after this has run; a save from before 18 October still needs
+ * Erik, which migrateCast (castRevision 2, below) handles after this has run; a save from before 18 October still needs
  * this step first, so the list is kept as it was. Never treats a shop visit as an old home visit.
  */
 export function migrateHousing(saved){

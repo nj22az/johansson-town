@@ -13,7 +13,7 @@ test('street has no transparent canopy sheets and phones retain bounded night li
  const pier=world.group.getObjectByName('pier-concrete-surface');
  assert.equal(groundHeight(0,-56),pier.position.y,'Physics and visible pier share the same height');
  // Whoever keeps the harbour office stands on the relocated workplace ground once back in the cast.
- const master=world.people.find(p=>p.g.userData.name==='Harbour master');if(STREET_CAST_NAMES.includes('Harbour master'))assert.equal(master.g.position.y,groundHeight(master.g.position.x,master.g.position.z),'Initial resident is grounded at the relocated workplace');
+ const master=world.people.find(p=>p.g.userData.name==='Sverker');if(STREET_CAST_NAMES.includes('Sverker'))assert.equal(master.g.position.y,groundHeight(master.g.position.x,master.g.position.z),'Initial resident is grounded at the relocated workplace');
  assert.equal(groundHeight(0,-38),0,'Boardwalk remains flush');
  assert.equal(groundHeight(0,-46),0,'Approach is not raised with the pier');
  for(const z of [-50,-56,-64])assert.equal(groundHeight(2,z),OUTER_PIER.height);

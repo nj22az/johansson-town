@@ -44,7 +44,7 @@ export const HARBOUR_PARK_BEDS=Object.freeze([
   plants:Object.freeze([['bougainvillea',6.8,-27.9],['hibiscus',6.8,-29.3],['bougainvillea',6.8,-30.7],['hibiscus',6.8,-32.2]].map(Object.freeze))}),
  Object.freeze({id:'bath-screen',title:'Gettō screen',bounds:rect(20.6,29.6,-25.7,-25),
   keeper:'gran-higa',tends:'09:45, before the bath opens',
-  why:'Gettō along the bath’s south fence, so the pond walk does not look into the bath yard; Grandmother Higa cuts its leaves for mūchī in December.',
+  why:'Gettō along the bath’s south fence, so the pond walk does not look into the bath yard; Christina cuts its leaves for mūchī in December.',
   plants:Object.freeze([21.4,23.0,24.6,26.2,27.8,29.0].map(x=>Object.freeze(['getto',x,-25.35])))}),
 ]);
 

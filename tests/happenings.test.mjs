@@ -31,7 +31,7 @@ test('every happening is well formed and names only people who exist',()=>{
 test('the Sunday fish auction puts Mrs Sato and the harbour master on the quay, rain or not',()=>{
  const m=on(10,5,9,20);
  assert.ok(happeningsOn(m).some(h=>h.id==='fish-auction'));
- for(const name of ['Mrs Sato','Harbour master']){
+ for(const name of ['Mrs Sato','Sverker']){
   const plan=residentPlan(who(name),m,false,{});assert.equal(plan.happening,'fish-auction');assert.match(plan.activity,/auction/);
   assert.equal(residentPlan(who(name),m,true,{}).happening,'fish-auction','the auction is under the roof');
  }

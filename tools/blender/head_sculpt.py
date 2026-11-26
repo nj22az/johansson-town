@@ -68,6 +68,23 @@ def to_blender(x, y, z):
     return np.stack([x, -z, y], axis=-1)
 
 
+def fair_poles(gy, px, py, pz, crown=26.0, under=18.0):
+    """A sculpt's pieces are written by the angle round the head (the temples, the jaw's sides), and an angle round means
+    nothing at the crown: where they did not fade out before it they met there in a crease, front to back, which the
+    game's ink drew as a little mark on a bald head (Johansson's, from the game's high camera, 26 November 2026). So what
+    varies round each ring is faded out toward the crown and the underside: every ring comes to one radius at the pole."""
+    r = np.sqrt(px * px + py * py + pz * pz)
+    th = np.degrees(np.arccos(np.clip(gy, -1, 1)))
+    out = r.copy()
+    for ring in np.unique(np.round(th, 4)):
+        on = np.abs(th - ring) < 1e-3
+        w = smooth(ring, 0, crown) if ring < 90 else smooth(180 - ring, 0, under)
+        mean = r[on].mean()
+        out[on] = mean + (r[on] - mean) * w
+    k = out / r
+    return px * k, py * k, pz * k
+
+
 def build_head(C, F):
     bpy.ops.wm.read_factory_settings(use_empty=True)
     bpy.context.scene.unit_settings.system = 'METRIC'
@@ -81,6 +98,7 @@ def build_head(C, F):
     n = co / np.linalg.norm(co, axis=1, keepdims=True)
     gx, gy, gz = n[:, 0], n[:, 2], -n[:, 1]                                 # Blender to the game frame
     px, py, pz = C['points'](gx, gy, gz, F)
+    px, py, pz = fair_poles(gy, px, py, pz)
     mesh.vertices.foreach_set('co', to_blender(px, py, pz).ravel())
     mesh.update()
     # Melt the seams between the sculpt's pieces, as a smoothing brush would; the mesh, not the formula, is what counts.

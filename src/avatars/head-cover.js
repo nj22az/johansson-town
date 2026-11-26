@@ -37,7 +37,8 @@ export function headReach(spec,d,tuck=0,flip=false,scale=1){
   if(spec.centre)front-=spec.centre*smoothstep(Math.abs(d.x),.04,.42);
   const outFace=Math.max(.18-d.z,Math.abs(d.x)-spec.faceHalf,d.y-front);
   const low=lerp(spec.side,spec.back,smoothstep(-d.z,-.2,.7));
-  const f=Math.min(outFace,d.y-low),full=spec.radius*(1+(spec.lift&&d.y>0?d.y*spec.lift:0));
+  // (hair sculpted in Blender carries its own hairline and its own height: build.js sculptedHair)
+  const f=spec.field?spec.field(d):Math.min(outFace,d.y-low),full=spec.radiusAt?spec.radiusAt(d):spec.radius*(1+(spec.lift&&d.y>0?d.y*spec.lift:0));
   r=lerp(1,Math.max(1,full),smoothstep(f,-.035,.035));
  }
  // Tucked hair is drawn in to TUCK_R after the head's shaping (build.js addHair), which scales a direction by `scale`

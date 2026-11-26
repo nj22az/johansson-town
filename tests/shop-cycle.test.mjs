@@ -17,8 +17,8 @@ import {SAVE_KEY} from '../src/save.js';
 
 function fixture({visible=true,saved=null}={}){
  installDOM();const scene=new T.Scene(),street=new T.Group();scene.add(street);
- const state=saved||{yen:1200,inventory:[],sakura:restoreSakura()},world={people:[]};let minutes=marketVisitsForDay(0)['Harbour master'][0]+5;
- for(const name of ['Thuan','Harbour master']){const profile=RESIDENTS.find(p=>p.name===name),g=new T.Group();g.userData={name,hit:{inside:false},indoors:'market',justArrived:name==='Harbour master',visualReady:false};g.position.set(...[profile.work[0],0,profile.work[1]]);street.add(g);world.people.push({profile,g});}
+ const state=saved||{yen:1200,inventory:[],sakura:restoreSakura()},world={people:[]};let minutes=marketVisitsForDay(0)['Sverker'][0]+5;
+ for(const name of ['Thuan','Sverker']){const profile=RESIDENTS.find(p=>p.name===name),g=new T.Group();g.userData={name,hit:{inside:false},indoors:'market',justArrived:name==='Sverker',visualReady:false};g.position.set(...[profile.work[0],0,profile.work[1]]);street.add(g);world.people.push({profile,g});}
  const ledger=createResidentLedger(()=>state),hits=[];
  const shop=createSakuraShop({world,scene,state,ledger,register:(o,label,fn,inside)=>{o.userData.hit={inside,fn,label};hits.push({o,label,fn});},action(){},exit(){},getMinutes:()=>minutes,getPlayerSeat:()=>null,getPlayerPosition:()=>new T.Vector3(5,0,5),isInside:()=>visible,pay:()=>{throw Error('NPC must pay from their own wallet');},say(){}});
  shop.group.visible=visible;const step=(seconds,check=()=>{})=>{for(let f=0;f<seconds*30;f++){minutes+=1/30;shop.update(1/30);check();}};
@@ -60,18 +60,18 @@ test('a customer picks visible goods, waits for the till, pays once and funds an
  const capacity=stockSpec('notebook').capacity,original=visibleInstances(f.shop.group),phases=new Set();let picked=false,paid=false,hiddenLabels=false;
  const packaging=f.shop.group.getObjectByName('Sakura notebook packaging'),matrix=new T.Matrix4();const nonzero=()=>{let count=0;for(let i=0;i<packaging.count;i++){packaging.getMatrixAt(i,matrix);if(Math.abs(matrix.determinant())>1e-8)count++;}return count;},labelsBefore=nonzero();
  f.step(135,()=>{
-  phases.add(f.shop.service.phase);const r=f.state.residentLife['Harbour master']?.shopping;
+  phases.add(f.shop.service.phase);const r=f.state.residentLife['Sverker']?.shopping;
   if(r?.picked&&!r.paid){picked=true;assert.equal(f.state.sakura.stock.notebook.shelf,capacity-1);assert.equal(f.state.sakura.sales,0,'Taking an item is not yet a sale');assert.equal(customer.g.userData.heldItem,'shop-notebook');assert.ok(visibleInstances(f.shop.group)<original,'The actual instanced product disappears');hiddenLabels ||= nonzero()<labelsBefore;}
   if(r?.paid)paid=true;
   // At the till she stands 0.75 m behind the counter's front (sakura-queue.js): her body (TILL_BODY) is what clears it there.
   if(['checkout','stock-fetch','stock-carry','stock-place'].includes(f.shop.service.phase))assert.equal(f.shop.blocked(clerk.position.x,clerk.position.z,inTillPocket(clerk,f.shop.layout)?TILL_BODY:.25),false,'Work stays outside furniture at '+clerk.position.toArray()+' '+f.shop.service.phase);
   for(const item of Object.values(f.state.sakura.stock))assert.ok(item.shelf>=0&&item.reserve>=0);
  });
- const spec=stockSpec('notebook');assert.ok(picked&&paid&&hiddenLabels);assert.ok(f.state.residentLife['Harbour master'].shopping.finished);assert.equal(f.state.sakura.sales,spec.cost);assert.equal(f.state.sakura.profit,spec.cost-spec.unitCost);
+ const spec=stockSpec('notebook');assert.ok(picked&&paid&&hiddenLabels);assert.ok(f.state.residentLife['Sverker'].shopping.finished);assert.equal(f.state.sakura.sales,spec.cost);assert.equal(f.state.sakura.profit,spec.cost-spec.unitCost);
  assert.equal(f.shop.service.phase,'counter');// Between customers she keeps her stand points (stand-sequences.js sakura-floor): the till's relaxed pose, or the cooler's or the window's.
  {const stand=standNow('Thuan',f.minutes,'sakura','sakura-floor');const on=Math.hypot(clerk.position.x-stand.point.x,clerk.position.z-stand.point.z)<.13;
   assert.equal(clerk.userData.socialPose,on?stand.point.pose:undefined,'The actual retail controller selects the stand point’s pose after serving, and none while she walks to it');}
- assert.equal(f.state.sakura.stockSpent,spec.unitCost);assert.equal(f.state.sakura.cash,spec.cost-spec.unitCost);assert.equal(f.ledger.account('Harbour master',f.minutes).yen,2400-spec.cost);
+ assert.equal(f.state.sakura.stockSpent,spec.unitCost);assert.equal(f.state.sakura.cash,spec.cost-spec.unitCost);assert.equal(f.ledger.account('Sverker',f.minutes).yen,2400-spec.cost);
  assert.equal(f.state.sakura.stock.notebook.shelf,capacity-1,'The shelf stays depleted during the day');assert.equal(f.state.sakura.stock.notebook.reserve,1);assert.ok(!f.state.sakura.journal.some(r=>r.kind==='Restocked'));
  f.time(1200);f.step(110,()=>{phases.add(f.shop.service.phase);if(['stock-fetch','stock-carry','stock-place'].includes(f.shop.service.phase)){assert.notEqual(clerk.userData.socialPose,'CounterIdle','Release the counter pose before walking or handling goods');assert.equal(f.shop.blocked(clerk.position.x,clerk.position.z,.25),false,'Restock route '+clerk.position.toArray());}});
  assert.equal(f.state.sakura.stock.notebook.shelf,capacity);assert.equal(f.state.sakura.stock.notebook.reserve,0);assert.equal(visibleInstances(f.shop.group),original);
@@ -89,11 +89,11 @@ test('the same stock, purchases and restocking run with the shop hidden and mode
 });
 
 test('an unpaid picked item survives a save and is paid once, while closing returns unpaid goods',()=>{
- const f=fixture();let record;for(let i=0;i<400&&!record?.picked;i++){f.step(.1);record=f.state.residentLife['Harbour master']?.shopping;}
+ const f=fixture();let record;for(let i=0;i<400&&!record?.picked;i++){f.step(.1);record=f.state.residentLife['Sverker']?.shopping;}
  assert.ok(record.picked&&!record.paid);const saved=JSON.parse(JSON.stringify(f.state));saved.sakura=restoreSakura(saved.sakura);saved.residentLife=restoreResidentLife(saved.residentLife);
  const resumed=fixture({saved});resumed.time(f.minutes);resumed.world.people[1].g.userData.justArrived=false;resumed.step(100);
  assert.equal(resumed.state.sakura.journal.filter(r=>r.kind==='Sale').length,1);assert.equal(resumed.state.sakura.sales,stockSpec(record.item).cost);
- const closing=fixture();let r;for(let i=0;i<400&&!r?.picked;i++){closing.step(.1);r=closing.state.residentLife['Harbour master']?.shopping;}assert.ok(r.picked&&!r.paid);closing.time(1200);closing.step(2);
+ const closing=fixture();let r;for(let i=0;i<400&&!r?.picked;i++){closing.step(.1);r=closing.state.residentLife['Sverker']?.shopping;}assert.ok(r.picked&&!r.paid);closing.time(1200);closing.step(2);
  assert.equal(closing.state.sakura.sales,0);assert.equal(closing.state.sakura.stock[r.item].shelf,stockSpec(r.item).capacity);
 });
 
@@ -110,7 +110,7 @@ test('the readable spreadsheet shows actual sales and stock and updates while op
  const f=fixture();f.step(80);const dom=installDOM({[SAVE_KEY]:JSON.stringify({...f.state,minutes:f.minutes})});
  const acts=createActivities({say(){},onWeather(){},onTime(){},getMinutes:()=>f.minutes,getSocialContext:()=>({inside:'market'})});acts.action('shop-ledger');
  const text=node=>[node.textContent||'',...node.children.map(text)].join(' ');const body=document.querySelector('#activityBody');
- assert.match(text(body),/Gross profit/);assert.match(text(body),/Harbour master/);assert.match(text(body),/Pocket notebook/);
+ assert.match(text(body),/Gross profit/);assert.match(text(body),/Sverker/);assert.match(text(body),/Pocket notebook/);
  const root=body.firstChild;root.children[1].children[1].onclick();assert.match(text(body),/On shelf/);assert.match(text(body),/Radio batteries/);
  acts.state.sakura.stock.battery.shelf=0;acts.tick(1/30);assert.match(text(body),new RegExp('0 / '+stockSpec('battery').capacity));dom.button('Close ledger');assert.equal(acts.paused,false);
 });
@@ -118,7 +118,7 @@ test('the readable spreadsheet shows actual sales and stock and updates while op
 test('sold-out goods get Thuan’s apology, no charge and no daytime refill, even with reserve stock',()=>{
  const f=fixture(),spec=stockSpec('notebook');f.state.sakura.stock.notebook.shelf=0;let apologised=false;
  f.step(100,()=>{apologised ||= /Please come back tomorrow/.test(f.world.people[0].g.userData.residentSpeech?.text||'');});
- assert.equal(f.state.sakura.stock.notebook.shelf,0);assert.equal(f.state.sakura.stock.notebook.reserve,spec.capacity*2);assert.equal(f.state.sakura.sales,0);assert.ok(f.state.residentLife['Harbour master'].shopping.finished);
+ assert.equal(f.state.sakura.stock.notebook.shelf,0);assert.equal(f.state.sakura.stock.notebook.reserve,spec.capacity*2);assert.equal(f.state.sakura.sales,0);assert.ok(f.state.residentLife['Sverker'].shopping.finished);
  assert.equal(apologised,true,'Thuan gives the apology while serving, before her scheduled afternoon break');
  f.time(1200);f.step(130);assert.equal(f.state.sakura.stock.notebook.shelf,spec.capacity);assert.equal(f.state.sakura.restockedDay,0);
  const rows=f.state.sakura.journal.filter(r=>r.kind==='Restocked');assert.equal(rows.length,1);assert.ok(rows.every(r=>r.minute>=1200));

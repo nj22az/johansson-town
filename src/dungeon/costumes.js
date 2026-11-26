@@ -16,7 +16,7 @@ export const COSTUMES=Object.freeze({
  'Mrs Sato':{animal:'donkey',colour:'#8b8580',belly:'#e8e0cf',lines:['Hee-haw! No ramen today — only ramen!','The broth is cold and the stools are sold out.','Lunch is served at midnight, as always.']},
  Thuan:{animal:'tanuki',colour:'#8a6440',belly:'#e3cfa8',lines:['Welcome to Sakura, we are closed forever! See you tomorrow!','Everything is free. That will be ¥800.','The plant manages me now.']},
  Thao:{animal:'octopus',colour:'#d9607f',belly:'#f2b0c0',lines:['Last orders! Doors open in an hour.','Eight arms and not one beer.','Sit down, you are standing up.']},
- 'Harbour master':{animal:'seagull',colour:'#f2f0ea',belly:'#b9bec2',lines:['All ships must sink on time.','The tide is out, so it is in.','Permission to leave port: denied, go ahead.']},
+ 'Sverker':{animal:'seagull',colour:'#f2f0ea',belly:'#b9bec2',lines:['All ships must sink on time.','The tide is out, so it is in.','Permission to leave port: denied, go ahead.']},
  Chin:{animal:'shark',colour:'#5f7f95',belly:'#e8eef0',lines:['Beat my score and I will lose it for you, bro.','Star Port is a boat, bro. Everybody knows.','Nobody swims faster backwards than me.']},
  Nhung:{animal:'owl',colour:'#8a6a4a',belly:'#e8d8b8',lines:['Shh! This is the loud section.','All our books are blank this week.','Who? Who? Not me. Who?']},
  Tetsuo:{animal:'bear',colour:'#5a3d2b',belly:'#b58a64',lines:['I only break radios now.','Grr. Welcome. Grr.','Every clock in the shop is right twice a year.']},

@@ -150,7 +150,7 @@ function nishiGates(){
   if(p.kind==='grove')out.push({z:p.minZ,gap:[-30.8-1,-30.8+1]});
   else if(p.gate==='south')out.push({z:p.minZ,gap:[cx-.95,cx+.95]});
   else if(p.gate==='north')out.push({z:p.maxZ,gap:[cx-.95,cx+.95]});}
- // The cleared lots' gates on the lanes (lots.js: Gran Higa's garden faces the Higa gate across the lane).
+ // The cleared lots' gates on the lanes (lots.js: Christina's garden faces the Higa gate across the lane).
  for(const l of CLEARED_LOTS.filter(l=>l.district==='Nishi-machi')){
   const props=l.dressing.props.filter(q=>/^wall-south/.test(q.id)).map(q=>q.rect).sort((a,b)=>a.minX-b.minX);
   if(props.length===2)out.push({z:l.rect.minZ,gap:[props[0].maxX,props[1].minX]});

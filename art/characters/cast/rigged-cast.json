@@ -10,13 +10,13 @@
   "Chin",
   "Tetsuo",
   "Officer Mori",
-  "Harbour master",
+  "Sverker",
   "Miss Higa",
-  "Grandmother Higa",
+  "Christina",
   "Kōji",
   "Riku",
   "Vy",
-  "Mac",
+  "Erik",
   "Ms Uezu",
   "Ms Ganaha",
   "Mr Fujita",
@@ -266,8 +266,8 @@
    ],
    "megabytes": 0.84
   },
-  "Harbour master": {
-   "file": "harbour-master.blend",
+  "Sverker": {
+   "file": "sverker.blend",
    "bones": 28,
    "skinnedPieces": 40,
    "piecesByBone": {
@@ -324,8 +324,8 @@
    ],
    "megabytes": 0.8
   },
-  "Grandmother Higa": {
-   "file": "grandmother-higa.blend",
+  "Christina": {
+   "file": "christina.blend",
    "bones": 28,
    "skinnedPieces": 57,
    "piecesByBone": {
@@ -440,7 +440,7 @@
    ],
    "megabytes": 2.57
   },
-  "Mac": {
+  "Erik": {
    "file": "mac.blend",
    "bones": 28,
    "skinnedPieces": 35,

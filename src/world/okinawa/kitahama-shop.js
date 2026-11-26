@@ -1,6 +1,6 @@
 /**
  * Johansson Mart, Kitahama (ヨハンソンマート 北浜店): a one-room corner shop at the entrance to Kitahama, kept by
- * Grandmother Higa in the evenings and on Saturdays (the owner, 27 October 2026: "We need a resident we have already, maybe
+ * Christina in the evenings and on Saturdays (the owner, 27 October 2026: "We need a resident we have already, maybe
  * bring grandma higa as the attendant"; "draw the shop in cad and I'll drop a Meshy for you after, exterior and interior").
  *
  * DESIGN DATA, NOT YET BUILT INTO THE WORLD. Drawing KS-001 (docs/qa/kitahama-shop/) is drawn from this; the Meshy
@@ -29,8 +29,8 @@ export const toWorld=(u,v)=>[+(WORLD[0]+u).toFixed(3),+(WORLD[1]+v).toFixed(3)];
 export const SHOP=F({
  name:'Johansson Mart',jp:'ヨハンソンマート',branch:'北浜店',branchEnglish:'Kitahama',
  company:'Johansson Mart (a Johansson company; this universe’s Acme)',
- keeper:'Grandmother Higa',
- why:'Sakura is the island’s shop and shuts on Saturdays (the owner, 22 October 2026) and at 20:30. The town wanted somewhere for milk, bread, a bento and a beer when Sakura is shut, and Grandmother Higa, whose liquor shop on Main Street had shut when its trade went to Sakura, wanted a counter again (since 30 October 2026 its room is hers again in the mornings, as Kissa Higa). The chain lets a franchise keep its own hours on a small island.',
+ keeper:'Christina',
+ why:'Sakura is the island’s shop and shuts on Saturdays (the owner, 22 October 2026) and at 20:30. The town wanted somewhere for milk, bread, a bento and a beer when Sakura is shut, and Christina, whose liquor shop on Main Street had shut when its trade went to Sakura, wanted a counter again (since 30 October 2026 its room is hers again in the mornings, as Kissa Higa). The chain lets a franchise keep its own hours on a small island.',
  site:'the east end of the north block (lots.js kitahama-north-block): the corner of the cross lane and the approach, the one road a car comes into Kitahama by, so the van unloads at the door and nothing drives further in.',
 });
 
@@ -88,7 +88,7 @@ export const INNER_DOORS=F([
 const fl=BUILDING.floor;
 export const FIXTURES=F([
  box('F1','till counter (with the cash register and the hot case)',4.30,1.60,4.90,4.40,fl,fl+.95,
-  'along the east wall, beside the door: the keeper sees who comes in and the whole floor; 950 mm, a counter’s height. It runs on to the stockroom wall, its last 600 mm the lift-up flap the keeper comes through (27 October 2026: the keeper’s aisle was open to the shop floor)',{flap:F([3.80,4.40]),parts:F(['till: a cash register with a pole display facing the customer','hot case for nikuman and fried chicken, 450 mm wide, south of the flap','a tray of island gōyā and greens from Grandmother Higa’s own garden at the customer’s end','the lift-up flap and the gate under it, at the north end, against the stockroom wall'])}),
+  'along the east wall, beside the door: the keeper sees who comes in and the whole floor; 950 mm, a counter’s height. It runs on to the stockroom wall, its last 600 mm the lift-up flap the keeper comes through (27 October 2026: the keeper’s aisle was open to the shop floor)',{flap:F([3.80,4.40]),parts:F(['till: a cash register with a pole display facing the customer','hot case for nikuman and fried chicken, 450 mm wide, south of the flap','a tray of island gōyā and greens from Christina’s own garden at the customer’s end','the lift-up flap and the gate under it, at the north end, against the stockroom wall'])}),
  box('F12','counter return',4.90,1.45,5.60,1.60,fl,fl+.95,
   'closes the keeper’s aisle at its south end, by the door: nobody walks in behind the till'),
  box('F2','cigarette and spirits shelf, behind the counter',5.60,1.60,OU-W,3.80,fl,fl+.95,
@@ -126,7 +126,7 @@ export const OUTSIDE=F([
   'keeps the rain off the door and the bins’ users; underside 2.45 m'),
  box('X6','signboard (fascia), lit from inside, south and east faces',0,-.15,OU+.15,OV,2.80,3.50,
   'the shop’s name round the corner, read from the cross lane and from the approach'),
- box('X7','A-board for Grandmother Higa’s vegetables',2.85,-1.20,3.35,-.80,0,.90,
+ box('X7','A-board for Christina’s vegetables',2.85,-1.20,3.35,-.80,0,.90,
   'chalked: what is in from her garden today'),
  box('X8','downpipe and gutter outlet',OU-.10,OV-.10,OU+.02,OV+.02,0,BUILDING.parapetTop,'the roof falls to the north-east corner, away from the door'),
 ]);
@@ -139,7 +139,7 @@ export const LIVERY=F({
  inside:'white walls, grey-speckled vinyl tiles on the floor, white fittings with green shelf edges; fluorescent troffers in four rows',
 });
 
-/** Grandmother Higa's week with the shop in it (the bath's hours are cast.js's). */
+/** Christina's week with the shop in it (the bath's hours are cast.js's). */
 export const HOURS=F({
  weekdays:F([['06:00','08:00','her garden on the seawall walk (lots.js kinjo-lot)'],['10:00','17:00','the bandai at Umi-no-yu'],
   ['17:00','17:30','the walk to Kitahama; the van’s cases into the stockroom'],['17:30','21:00','the shop']]),
@@ -151,9 +151,9 @@ export const HOURS=F({
 });
 
 /** Open, at an absolute town minute: weekdays 17:30–21:00, Saturdays 9:00–21:00, shut on Sundays (HOURS; the device's
- *  calendar, town-clock.js). The one rule the door, the town's hours and Grandmother Higa's day all read. */
+ *  calendar, town-clock.js). The one rule the door, the town's hours and Christina's day all read. */
 export const SHOP_OPEN=F({weekday:F([1050,1260]),saturday:F([540,1260])});
-/** When Grandmother Higa is at the shop: from the 17:00 van on weekdays and a quarter of an hour before the Saturday
+/** When Christina is at the shop: from the 17:00 van on weekdays and a quarter of an hour before the Saturday
  *  opening, to closing. Her plan (people/canonical-day.js) and the till read it. */
 export const SHOP_DUTY=F({weekday:F([1020,1260]),saturday:F([525,1260])});
 export function kitahamaShopOnDuty(minutes){
@@ -174,12 +174,12 @@ export const DELIVERY=F({by:'Sakura Trading’s van, on its round (commerce/trad
 /** What is sold, by fixture, and why it is here when Sakura is shut. */
 export const STOCK=F([
  F({fixture:'F5',goods:'bento, onigiri, sandwiches, milk, tofu, natto, yoghurt',why:'supper and tomorrow’s breakfast for whoever finishes late: the crew off the last boat, Kōji back from the sea'}),
- F({fixture:'F3',goods:'tea, water, sports drinks, milk coffee, beer, chūhai',why:'cold drinks; beer and chūhai on Saturdays when Sakura, the island’s only licence, is shut (Grandmother Higa held a liquor licence for fifty years)'}),
- F({fixture:'F4',goods:'ice cream, ice lollies, bagged ice',why:'after school on Saturdays; ice for the boats and Mac’s grill'}),
+ F({fixture:'F3',goods:'tea, water, sports drinks, milk coffee, beer, chūhai',why:'cold drinks; beer and chūhai on Saturdays when Sakura, the island’s only licence, is shut (Christina held a liquor licence for fifty years)'}),
+ F({fixture:'F4',goods:'ice cream, ice lollies, bagged ice',why:'after school on Saturdays; ice for the boats and Erik’s grill'}),
  F({fixture:'F6',goods:'bread, instant noodles, snacks, sweets; rice, oil, soy sauce, canned goods; batteries, tissues, toilet paper, toothbrushes, shampoo, plasters',why:'the things run out of in an evening'}),
  F({fixture:'F7',goods:'the island paper (printed by Nhung), weekly magazines, manga, puzzle books',why:'read by the window'}),
  F({fixture:'F2',goods:'cigarettes, awamori, whisky',why:'asked for at the till'}),
- F({fixture:'F1',goods:'nikuman, fried chicken; Grandmother Higa’s gōyā, handama and island greens',why:'the hot case is the smell at the door; the greens are from her garden that morning'}),
+ F({fixture:'F1',goods:'nikuman, fried chicken; Christina’s gōyā, handama and island greens',why:'the hot case is the smell at the door; the greens are from her garden that morning'}),
  F({fixture:'F11',goods:'long umbrellas (navy)',why:'in the rains, for whoever is caught out'}),
 ]);
 
@@ -187,13 +187,13 @@ export const STOCK=F([
 export const SITE_CHANGES=F([
  F({what:'the shop takes the east end of the monthly parking (old bays 3 and 4) and stands on its own concrete (lots.js shop-apron)',
   touches:'lots.js NORTH_BLOCK, ground-plan-quarters.js KITAHAMA_PADS; done 27 October 2026 (batch 1)'}),
- F({what:'the parking moves west and keeps three bays in the same order (1 Kōji, 2 Nhung, 3 Mac); the to-let bay goes',
+ F({what:'the parking moves west and keeps three bays in the same order (1 Kōji, 2 Nhung, 3 Erik); the to-let bay goes',
   touches:'lot-dressing.js PARKING, the car and toolbox rectangles in lots.js; the sign now reads 空きなし (none free); done (batch 1)'}),
  F({what:'Mrs Sato’s spring onions and Riku’s sunflowers are shortened to x 24.6–27.8, clear of the gravel',
   touches:'lots.js negi-bed, sunflower-bed; done (batch 1)'}),
  F({what:'the hedge runs x 28.0–35.4 and the gōyā curtain x 29.8–35.4, short of the garden shed; the parking sign stands at x 31.7',
   touches:'lots.js parking-hedge, goya-curtain, parking-sign; done (batch 1)'}),
- F({what:'Grandmother Higa’s week gains the shop (HOURS); the bath’s hours do not change',
+ F({what:'Christina’s week gains the shop (HOURS); the bath’s hours do not change',
   touches:'people/cast.js her day and purpose, residents’ routines and walking routes (her home to Kitahama), the storyteller’s places (feed/places.js), the resident guide (batch 3)'}),
  F({what:'Sakura Trading’s round gains a stop at 17:00 on the approach',
   touches:'commerce/trade-round.js, the van’s route on the approach (batch 3)'}),
@@ -202,6 +202,6 @@ export const SITE_CHANGES=F([
 /** Open questions, written down rather than guessed (the repository's "if a part is not built yet, record it"). */
 export const OPEN=F([
  'The Meshy models of the exterior and the interior (the owner, 27 October 2026), to this drawing.',
- 'Who keeps the shop when Grandmother Higa is ill: nobody is planned; the shop would stay shut.',
+ 'Who keeps the shop when Christina is ill: nobody is planned; the shop would stay shut.',
  'The chain’s logo: the drawing gives the wordmark only; a mark of its own is to be designed in Studio.',
 ]);

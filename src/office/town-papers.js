@@ -292,7 +292,7 @@ export const TOWN_PAPERS=[
     "title": "Requests to the town assembly",
     "type": "Notice",
     "organisation": "Community Hall",
-    "text": "From Tetsuo, for the power house next door: The second diesel set needs new injectors before typhoon season. The parts come on the Thursday ferry if the town pays this week.\n\nFrom the Higa household, Nishi-machi: May the children use the town hall field on Sunday for eisa practice? Grandmother Higa will supervise. Loudly.\n\nFrom the ferry company: The new cargo trucks are heavier. We ask the town to strengthen the quay apron where the ramp lands.\n\nFrom Thuan, Sakura Shōten: A request for a bench at the bus stop by the ferry. People wait there with their shopping.",
+    "text": "From Tetsuo, for the power house next door: The second diesel set needs new injectors before typhoon season. The parts come on the Thursday ferry if the town pays this week.\n\nFrom the Higa household, Nishi-machi: May the children use the town hall field on Sunday for eisa practice? Christina will supervise. Loudly.\n\nFrom the ferry company: The new cargo trucks are heavier. We ask the town to strengthen the quay apron where the ramp lands.\n\nFrom Thuan, Sakura Shōten: A request for a bench at the bus stop by the ferry. People wait there with their shopping.",
     "source": "notice:Requests to the town assembly"
   },
   {
@@ -454,6 +454,6 @@ export const TOWN_PAPERS=[
     "title": "Marine service work log",
     "organisation": "Harbour Office",
     "source": "workbook:service-work-log",
-    "text": "Job ID | Equipment | Work requested | Owner | Due date | Planned hours | Worked hours | Hours left | Closed date | State\nSV-001 | Quay light 2 | Replace lamp and test | Tetsuo | 32399 | 2 | 1 | 1 |  | Overdue\nSV-002 | Harbour launch | Check instrument panel | Kenji | 32400 | 4 | 2.5 | 1.5 |  | Open\nSV-003 | Office printer | Clean feed rollers | Tetsuo | 32400 | 1.5 | 1.5 | 0 | 32400 | Closed\nSV-004 | Warehouse trolley | Replace wheel bearing | Kenji | 32402 | 3 | 0 | 3 |  | Open\nSV-005 | Vessel records | File service certificates | Harbour master | 32401 | 2 | 1 | 1 |  | Open\nSV-006 | Quay hand pump | Inspect seals | Kenji | 32403 | 2.5 | 0 | 2.5 |  | Open"
+    "text": "Job ID | Equipment | Work requested | Owner | Due date | Planned hours | Worked hours | Hours left | Closed date | State\nSV-001 | Quay light 2 | Replace lamp and test | Tetsuo | 32399 | 2 | 1 | 1 |  | Overdue\nSV-002 | Harbour launch | Check instrument panel | Kenji | 32400 | 4 | 2.5 | 1.5 |  | Open\nSV-003 | Office printer | Clean feed rollers | Tetsuo | 32400 | 1.5 | 1.5 | 0 | 32400 | Closed\nSV-004 | Warehouse trolley | Replace wheel bearing | Kenji | 32402 | 3 | 0 | 3 |  | Open\nSV-005 | Vessel records | File service certificates | Sverker | 32401 | 2 | 1 | 1 |  | Open\nSV-006 | Quay hand pump | Inspect seals | Kenji | 32403 | 2.5 | 0 | 2.5 |  | Open"
   }
 ];

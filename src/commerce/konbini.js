@@ -246,7 +246,7 @@ export const HOT_SNACKS=Object.freeze([
 const HOT_BY_ID=new Map(HOT_SNACKS.map(s=>[s.id,s]));
 /**
  * The bottles over the counter (the owner, 22 October 2026: Higa Liquor has closed, and Sakura sells all the alcohol): what
- * Grandmother Higa's counter sold, kept in the stock room behind the till and handed over by whoever has it, at the
+ * Christina's counter sold, kept in the stock room behind the till and handed over by whoever has it, at the
  * Higas' prices, and rung in at what they cost Sakura to land (economy/goods.js, by the millilitre). The cans of lager
  * stay in the cold cabinet's column nearest the till (products-data.js beer).
  */

@@ -207,7 +207,7 @@ export const ONSEN_CIRCUITS=Object.freeze([
    plain({id:'andon',en:'Andon on the bandai',watts:25,atRest:'on',by:'Miss Higa at opening time',meshes:['Andon'],lights:['Andon light'],
     light:plain({at:[-3.92,1.06,1.92],colour:0xffcf98,kelvin:2400,intensity:3.5,range:1.25,
      why:'A 25 W bulb in paper on the counter: warm light up the wall behind her, so the board at her back is lit from below at the bandai. Its reach is the keeper’s corner: the board, her face, her book.'}),
-    purpose:'The paper lamp Grandmother Higa put on the bandai in the seventies; it says the bath is open from the street.'}),
+    purpose:'The paper lamp Christina put on the bandai in the seventies; it says the bath is open from the street.'}),
    plain({id:'television',en:'Lobby television',watts:80,atRest:'on',by:'Miss Higa, for the night game',screens:['Lobby CRT'],
     purpose:'The night game for people cooling down on the tatami.'}),
    plain({id:'fan',en:'Changing-room fan',watts:30,atRest:'on',by:'Miss Higa at opening time',socket:'Fan socket',
@@ -1204,7 +1204,7 @@ export function buildOnsenElectrics({room,rect,anchor,action,sun=null,sunAtNoon=
   const down=ALL_SWITCHES.filter(id=>!on.get(id)).map(id=>'the '+nameOf(id));
   const list=ONSEN_CIRCUITS.map(c=>`${c.no}, ${lower(c.en)}`).join('; '),K=contractNow(),R=ONSEN_UPGRADED_CIRCUITS.find(c=>c.id===U.relabel.id);
   action('inspect','Breaker board · Distribution board',
-   'Grandmother Higa’s breaker board, grey steel, on the wall behind the bandai at Higa-san’s back. Its door is shut, with a printed card on it: 関係者以外さわらないでください, staff only. She can open it and reach every lever from her stool without getting up, and nobody else can reach it at all. Inside, lever up is on. '+
+   'Christina’s breaker board, grey steel, on the wall behind the bandai at Higa-san’s back. Its door is shut, with a printed card on it: 関係者以外さわらないでください, staff only. She can open it and reach every lever from her stool without getting up, and nobody else can reach it at all. Inside, lever up is on. '+
    `At the top, the ${B.main.amps} A main breaker, which protects the cable from the pole, and the earth-leakage breaker, which switches everything off in a blink if ${B.elcb.milliamps} thousandths of an amp leak away to earth, through wet tiles or through a person. In a building full of water it is the most important switch here. `+
    `Below, eight ${ONSEN_CIRCUITS[0].amps} A breakers, one for each circuit: ${list}. The last two are whiter than the rest, in the ways that were spare, and labelled by hand on masking tape: each mirror has a circuit of its own. `+
    (upgraded?`Circuit 1 has new tape over its old: ${R.tape.jp}, the chair alone. Under the board hangs a small grey box with a ninth breaker, the newest and whitest, taped ${U.circuit.no} ${U.circuit.tape.jp}: the left mirror’s dryer, moved off the chair’s circuit onto one of its own. `:'')+

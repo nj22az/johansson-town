@@ -15,10 +15,10 @@ const {createBusinesses}=await import('../src/world/businesses.js');
 const world=createTown({scene:new THREE.Scene(),sites:createBusinesses(),mobile:false,shadows:false,register(){},enter(){},onAction(){},getPlayerPosition:()=>new THREE.Vector3()});
 world.group.updateMatrixWorld(true);
 // The harbour agent's street body, at his office door, the way the street has him (people/residents.js).
-const agent=new THREE.Group();agent.name='Harbour master';agent.userData.name='Harbour master';agent.position.set(HARBOUR_OFFICE.door[0],0,HARBOUR_OFFICE.door[2]+.7);world.group.add(agent);
+const agent=new THREE.Group();agent.name='Sverker';agent.userData.name='Sverker';agent.position.set(HARBOUR_OFFICE.door[0],0,HARBOUR_OFFICE.door[2]+.7);world.group.add(agent);
 const DOOR=agent.position.clone();
 const attached=[];
-const shore=createFerryShoreCrew({shoreParent:world.group,shoreColliders:world.colliders,characters:{attach(g,name){attached.push(name);}},register(){},onAction(){},townBody:name=>name==='Harbour master'?agent:null});
+const shore=createFerryShoreCrew({shoreParent:world.group,shoreColliders:world.colliders,characters:{attach(g,name){attached.push(name);}},register(){},onAction(){},townBody:name=>name==='Sverker'?agent:null});
 const position=g=>g.getWorldPosition(new THREE.Vector3());
 const NOON=720;
 
@@ -45,11 +45,11 @@ function perform(port,line,minutes=NOON){
 test('the harbour agent’s own street body walks from the office door to all four Minato bitts, works, and returns to the door',()=>{
  for(const line of FERRY_MOORINGS.town){
   const b=perform('town',line);assert.equal(b.g,agent,'the street body, not a second one');
-  assert.equal(agent.userData.ferryShoreTask,true);assert.equal(calledToQuay('Harbour master'),true,'his day and any room let him go while he is out');
+  assert.equal(agent.userData.ferryShoreTask,true);assert.equal(calledToQuay('Sverker'),true,'his day and any room let him go while he is out');
  }
- assert.ok(!attached.includes('Harbour master'),'no second harbour agent avatar was created');
+ assert.ok(!attached.includes('Sverker'),'no second harbour agent avatar was created');
  for(let i=0;i<4000&&agent.userData.ferryShoreTask;i++)shore.update(.2,[],true,NOON);
- assert.equal(agent.userData.ferryShoreTask,false,JSON.stringify(shore.snapshot()));assert.equal(calledToQuay('Harbour master'),false);
+ assert.equal(agent.userData.ferryShoreTask,false,JSON.stringify(shore.snapshot()));assert.equal(calledToQuay('Sverker'),false);
  assert.ok(position(agent).distanceTo(DOOR)<.04,'returns to the office door he was taken from');
  assert.equal(agent.userData.walking,false);
 });
@@ -58,7 +58,7 @@ test('a room keeps him until it lets him out: called at once, moved only when fr
  const line=FERRY_MOORINGS.town[0],task={id:'lunch:'+line.id,post:'shore',station:'shore-town',action:'Make the head line fast',seconds:2,target:line.shoreTarget};
  agent.userData.inRamen=true;
  for(let i=0;i<20;i++)shore.update(.2,[task],true,NOON);
- assert.equal(agent.userData.ferryShoreTask,true,'called');assert.equal(calledToQuay('Harbour master'),true,'his plan lets him out of the counter');
+ assert.equal(agent.userData.ferryShoreTask,true,'called');assert.equal(calledToQuay('Sverker'),true,'his plan lets him out of the counter');
  assert.ok(position(agent).distanceTo(DOOR)<.001,'not moved while the room has him');assert.equal(shore.taskAtStation(task.id),false);
  delete agent.userData.inRamen;
  for(let i=0;i<4000&&!shore.taskReady(task.id);i++)shore.update(.2,[task],true,NOON);

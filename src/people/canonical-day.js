@@ -63,10 +63,10 @@ export function canonicalDay(name,minutes,rain=false,{kissaClosingHeld=false}={}
  const rest=canonicalRest(name,minutes);
  // Breakfast at Kissa Higa's counter instead of at home, for a regular whose morning it is (Yui on weekdays; shop-days.js).
  if(rest&&!(rest.id==='breakfast'&&kissaVisitAt(name,minutes)))return {...homePlan(rest.activity),rest:rest.id};
- // Johansson Mart, Kitahama (world/okinawa/kitahama-shop.js; the owner, 27 October 2026): Grandmother Higa keeps its till
+ // Johansson Mart, Kitahama (world/okinawa/kitahama-shop.js; the owner, 27 October 2026): Christina keeps its till
  // on weekday evenings and Saturdays, when Sakura is shut and Miss Higa has the bandai. It comes before the shops below:
  // while the shop has her, she is behind its counter (its hours and Kissa Higa's mornings never meet).
- if(name==='Grandmother Higa'&&kitahamaShopOnDuty(minutes))return {place:'kitahama-shop',target:[...KITAHAMA_SHOP_DOOR],
+ if(name==='Christina'&&kitahamaShopOnDuty(minutes))return {place:'kitahama-shop',target:[...KITAHAMA_SHOP_DOOR],
   activity:kitahamaShopOpen(minutes)?'the till at Johansson Mart':'taking in the van’s cases at Johansson Mart',rain:!!rain};
  // Sakura Trading's round, Kissa Higa's mornings, the bench outside it of an evening, and washing day at the coin laundry
  // (shop-days.js).

@@ -2,7 +2,14 @@ import {normalizeRecipe,encodeRecipe,decodeRecipe} from './recipe.js';
 import {formerNames} from '../people/renamed.js';
 export const WARDROBE_KEY='johansson-town-resident-wardrobes';
 export const APPEARANCE_REVISION_KEY='johansson-town-resident-appearance-revisions';
-const REVISIONS={Vy:1};
+/**
+ * Whose drawing has been redone since a device may have saved a copy of it: the number goes up each time, and the new
+ * drawing is adopted once (below, and for the player in actors.js playerRecipe). 26 November 2026: Johansson, Thuan,
+ * Tetsuo, Vy and Thao were redrawn in Blender, and the owner's phone went on showing the Johansson it had saved before
+ * ("Johansson's face??").
+ */
+export const APPEARANCE_REVISIONS=Object.freeze({Vy:2,Johansson:1,Thuan:1,Tetsuo:1,Thao:1});
+const REVISIONS=APPEARANCE_REVISIONS;
 function revisionMap(storage){try{return JSON.parse(storage?.getItem(APPEARANCE_REVISION_KEY)||'{}')||{};}catch{return {};}}
 /** Adopt an owner-approved default once, preserving the resident's voice and
  * personality. Later deliberate wardrobe edits remain theirs. */

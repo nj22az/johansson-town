@@ -139,6 +139,17 @@ export function paintGarment(ctx,recipe,m,radiusAt){
   ctx.fillStyle='#f4f1ea';for(let y=to-band;y>from;y-=band*2)ctx.fillRect(0,Math.max(from,y-band),TW,Math.min(band,y-from));
   marks.push('stripes');
  }
+ // A checked shirt: pale bands across and down, a fine line of the accent through each.
+ if(o.pattern==='check'&&!['tank','overalls','sundress'].includes(o.top)){
+  const band=m.torso*.085*pxPerY,from=Y(1.0),to=Y(hem),step=band*2.3;
+  ctx.save();ctx.globalAlpha=.5;ctx.fillStyle='#f4f1ea';
+  for(let y=to-band;y>from;y-=step)ctx.fillRect(0,Math.max(from,y-band),TW,Math.min(band,y-from));
+  for(let x=step*.25;x<TW;x+=step)ctx.fillRect(x,from,band,to-from);
+  ctx.globalAlpha=.55;ctx.fillStyle=o.accent;
+  for(let y=to-band*1.5;y>from;y-=step)ctx.fillRect(0,y,TW,Math.max(1,band*.14));
+  for(let x=step*.25+band*.43;x<TW;x+=step)ctx.fillRect(x,from,Math.max(1,band*.14),to-from);
+  ctx.restore();marks.push('check');
+ }
  if(o.pattern==='flowers'||o.pattern==='dots'){
   const flowers=o.pattern==='flowers',big=o.top==='kariyushi';
   const r=k*(flowers?(big?.05:.036):.016),petal=flowers?'#f8f6ef':o.accent,centre='#f4c83c';
@@ -408,6 +419,13 @@ export function paintGarment(ctx,recipe,m,radiusAt){
   ctx.save();ctx.beginPath();ctx.rect(0,yTop,TW,end-yTop);ctx.clip();
   if(col==='stripedvest'){ctx.fillStyle=o.topColour;const step=h/9;for(let y=yTop+step*.5;y<end;y+=step)ctx.fillRect(0,y,TW,Math.min(step*.22,end-y));marks.push('striped sleeves');}
   if(o.pattern==='stripes'&&!shirtSleeve){ctx.fillStyle='#f4f1ea';const band=m.torso*.12*pxV;for(let y=yTop+band;y<end;y+=band*2)ctx.fillRect(0,y,TW,Math.min(band,end-y));}
+  if(o.pattern==='check'&&!shirtSleeve){
+   const band=m.torso*.085*pxV,step=band*2.3;ctx.save();ctx.globalAlpha=.5;ctx.fillStyle='#f4f1ea';
+   for(let y=yTop+band;y<end;y+=step)ctx.fillRect(0,y,TW,Math.min(band,end-y));for(let x=step*.25;x<TW;x+=step)ctx.fillRect(x,yTop,band,end-yTop);
+   ctx.globalAlpha=.55;ctx.fillStyle=o.accent;
+   for(let y=yTop+band*1.43;y<end;y+=step)ctx.fillRect(0,y,TW,Math.max(1,band*.14));for(let x=step*.25+band*.43;x<TW;x+=step)ctx.fillRect(x,yTop,Math.max(1,band*.14),end-yTop);
+   ctx.restore();
+  }
   if((o.pattern==='flowers'||o.pattern==='dots')&&!shirtSleeve){
    const flowers=o.pattern==='flowers',r=m.k*(flowers?(col==='kariyushi'?.05:.036):.016),petal=flowers?'#f8f6ef':o.accent;
    const cols=flowers?4:8,rows=Math.max(1,Math.round(sleeveLen/(r*4)));

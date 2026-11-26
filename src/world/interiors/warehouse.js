@@ -40,7 +40,7 @@ export const WAREHOUSE_BAY=Object.freeze({
 export const WAREHOUSE_STOCK=Object.freeze([
  {id:'fishing-gear',what:'Net floats, shackles and spare fittings in boxes',floor:'ground',at:[-1.75,-4.7],who:'The evening boats',why:'Issued over the ledger bench; under the mezzanine because they are heavy and asked for daily.'},
  {id:'bait',what:'Hooks, bait tins and line, sorted by boat',floor:'ground',at:[.55,-4.7],who:'Kōji and the other boats',why:'Beside the gear, a step from the bench where it is signed for.'},
- {id:'ledger-bench',what:'The quay’s ledger bench: the carbon book, a vice, the tool box, a lamp',floor:'ground',at:[2.5,-3.4],who:'Jack Reed, the harbour agent',why:'Under the mezzanine by the stair’s head: everything that leaves passes it.'},
+ {id:'ledger-bench',what:'The quay’s ledger bench: the carbon book, a vice, the tool box, a lamp',floor:'ground',at:[2.5,-3.4],who:'Sverker Reed, the harbour agent',why:'Under the mezzanine by the stair’s head: everything that leaves passes it.'},
  {id:'depot-drinks',what:'Sakura Trading’s cases: jasmine tea, bottled beer, tinned pork',floor:'ground',at:[-2.45,-.55],who:'Thuan; Kōji on the round',why:'On the west wall nearest the shutter: the heaviest stock moves the least distance.'},
  {id:'depot-dry',what:'Sakura Trading’s paper goods, batteries and washing things in totes',floor:'ground',at:[-2.45,1.8],who:'Thuan; Kōji on the round',why:'Totes keep the quay’s damp out of paper and batteries.'},
  {id:'lamp-oil',what:'Four drums on a spill pallet: lamp oil, engine oil, diesel',floor:'ground',at:[-2.15,4.2],who:'The boats; Tetsuo for the power house',why:'By the door on a pallet that holds a leak, away from the timber and the paper.'},

@@ -73,7 +73,7 @@ const PART_ENTRIES={
   // in (put on in the first), and plain, without a print; the accent is the shirt under a vest, the class colour on a PE
   // shirt, the jersey's piping.
   shirt:{label:'Open-collar shirt',category:'Work & uniform',tags:['office','school','summer school','town hall','power station','clinic','pen','collar'],
-   who:'Jack Reed at the harbour office, Nhung under her white coat at the clinic, and Daichi at summer school',why:'The island’s office and school shirt: short sleeves, the top button open, and a pen in the pocket.',
+   who:'Sverker Reed at the harbour office, Nhung under her white coat at the clinic, and Daichi at summer school',why:'The island’s office and school shirt: short sleeves, the top button open, and a pen in the pocket.',
    colourways:[{name:'Paper white',colours:{'outfit.topColour':'#f4f1ea','outfit.accent':'#2f4f7f','outfit.pattern':'none'}},{name:'Sky',colours:{'outfit.topColour':'#8fbfe0','outfit.accent':'#2f4f7f','outfit.pattern':'none'}}]},
   vest:{label:'Vest over a shirt',category:'Work & uniform',tags:['uniform','waistcoat','harbour office','bus','police','ticket window','port terminal','1990s'],
    who:'the harbour master, Officer Mori, Tetsuo, Aya at the purser’s window and Ms Ganaha at the ticket window',why:'The 1990s service uniform their own looks describe: a vest over a short-sleeved shirt.',
@@ -103,8 +103,8 @@ const PART_ENTRIES={
   shorts:{label:'Shorts',category:'Trousers & shorts',tags:['summer','beach','school'],who:'Johansson, Thao, Chin, Kōji and the schoolboys',why:'Knees out from May to October.'},
   trousers:{label:'Trousers',category:'Trousers & shorts',tags:['work','uniform'],who:'most of the island at work: Thuan, Nhung, Mrs Sato, Officer Mori and the harbour master',why:'Cotton trousers for work, and for the sun on the legs.'},
   skirt:{label:'Tailored skirt',category:'Skirts',tags:['summer','school'],who:'Miss Higa, Mrs Nakamura, Ms Ganaha and the schoolgirls',why:'A fitted waistband and rounded hips with a gently opened hem, tailored to the wearer.'},
-  longskirt:{label:'Long skirt',category:'Skirts',tags:['shrine','verandah'],who:'Nhung, Miss Higa, Grandmother Higa and Yoshiko',why:'A long skirt that keeps the sun and the mosquitoes off.'},
-  widepants:{label:'Wide trousers',category:'Trousers & shorts',tags:['monpe','work','garden','quay'],who:'the harbour day shift; Grandmother Higa in her garden',why:'Loose trousers that let the air in on a hot shift.'},
+  longskirt:{label:'Long skirt',category:'Skirts',tags:['shrine','verandah'],who:'Nhung, Miss Higa, Christina and Yoshiko',why:'A long skirt that keeps the sun and the mosquitoes off.'},
+  widepants:{label:'Wide trousers',category:'Trousers & shorts',tags:['monpe','work','garden','quay'],who:'the harbour day shift; Christina in her garden',why:'Loose trousers that let the air in on a hot shift.'},
   cropped:{label:'Cropped trousers',category:'Trousers & shorts',tags:['rain','rainy season'],who:'Kenta and the Cold-storage kid in the rainy season',why:'Hems clear of the puddles in May and June.'},
   culottes:{label:'Culottes',category:'Skirts',tags:['bookshop','ladder'],who:'Nhung at Front-Row Books, before she became the island doctor',why:'As cool as a skirt, and easy on the ladder to the top shelves.'},
   pleatedskirt:{label:'Pleated skirt',category:'Skirts',tags:['school uniform','ferry','pleats'],who:'Vy and Hana with the sailor uniform; Thuan; the harbour visitor',why:'Pleats that swing on the walk to the ferry and fall back neat.'},
@@ -167,7 +167,7 @@ const PART_ENTRIES={
   round:{label:'Round',category:'Everyday',tags:['spectacles','reading'],who:'Thuan in rose frames; Mrs Sato and the harbour master',why:'Round frames, for reading and for seeing.'},
   square:{label:'Square',category:'Everyday',tags:['spectacles','reading'],who:'Mr Fujita, Mr Tanabe and Fumiko',why:'Square frames that sit firm through a day of fishing.'},
   sun:{label:'Shades',category:'Sun',tags:['sunglasses','glare','sea','boat'],who:'Kōji out on the water at noon',why:'Against the glare off the sea.'},
-  half:{label:'Half-rim',category:'Everyday',tags:['reading glasses','reading'],who:'Tetsuo, Miss Higa and Grandmother Higa',why:'Reading glasses to look over.'},
+  half:{label:'Half-rim',category:'Everyday',tags:['reading glasses','reading'],who:'Tetsuo, Miss Higa and Christina',why:'Reading glasses to look over.'},
  },
 };
 

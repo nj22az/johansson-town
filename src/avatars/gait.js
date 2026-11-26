@@ -50,14 +50,14 @@ const BY_AGE=Object.freeze({
 
 /** Residents whose walk is part of who they are. */
 export const PERSONAL_GAITS=Object.freeze({
- 'Grandmother Higa':{stride:.72,bounce:.45,lift:.55,lean:.16,carry:'behind',tics:['nod','sky'],ticEvery:[10,20]},
+ 'Christina':{stride:.72,bounce:.45,lift:.55,lean:.16,carry:'behind',tics:['nod','sky'],ticEvery:[10,20]},
  'Officer Mori':{stride:1.15,bounce:.6,arms:1.2,elbow:.2,swagger:.5,lean:-.02,carry:'stiff',tics:['glance','glance','watch'],ticEvery:[6,12]},
  Vy:{bounce:1.5,lift:1.3,arms:1.1,headBob:.04,tics:['skip','hum','hair'],ticEvery:[5,10]},
  Thuan:{stride:1.05,bounce:1.1,arms:1,lean:.03,tics:['glance','hum','hair'],ticEvery:[8,15]},
  Thao:{stride:1.08,bounce:.9,swagger:1.4,sway:.05,carry:'pockets',tics:['glance','hum'],ticEvery:[9,16]},
  Nhung:{stride:.9,bounce:.9,arms:.7,headBob:.02,tics:['sky','hair'],ticEvery:[9,18]},
  Johansson:{stride:1.12,bounce:.85,arms:.9,lean:.03,tics:['sky','watch','glance'],ticEvery:[10,20]},
- 'Harbour master':{stride:1.05,bounce:.7,arms:.8,toe:.12,carry:'behind',tics:['sky','watch']},
+ 'Sverker':{stride:1.05,bounce:.7,arms:.8,toe:.12,carry:'behind',tics:['sky','watch']},
  // (awkward, the owner, 28 October 2026: "can you make Tetsuo look more awkward": a stooped, head-first, bouncy walk, the
  // arms held stiff and close, no swagger, the feet a little turned in, and nervous glances and a rub of his bald head)
  Tetsuo:{stride:.88,bounce:1.25,lift:1.2,arms:.42,elbow:.22,swagger:.25,lean:.08,headBob:.04,toe:-.06,carry:'swing',

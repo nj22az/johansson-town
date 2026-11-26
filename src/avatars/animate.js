@@ -1055,7 +1055,9 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // (the top of whatever is drawn there, over [x, z]: the lap, or a skirt spread on the seat beside the hips)
   // (`cloth`: only a skirt's or a dress's cloth lying on the lap (towel-fit.js kind 2), not the legs of shorts or trousers,
   // nor a bath wrap, which rises round the body to the chest)
-  const topAt=(x,z,y,cloth=false)=>{for(const [px,py,pz,c] of lapPoints)if(py>y&&(c>1.5||!cloth)&&Math.hypot(px-x,pz-z)<m.hand*1.1)y=py;return y;};
+  // (`ceiling`: nothing above it counts: the part of a wrap or a dress that has left the lap to go up the body; `within`:
+  // how far round the place to look, a mitten's own width for what lies under it)
+  const topAt=(x,z,y,cloth=false,ceiling=Infinity,within=m.hand*1.1)=>{for(const [px,py,pz,c] of lapPoints)if(py>y&&py<ceiling&&(c>1.5||!cloth)&&Math.hypot(px-x,pz-z)<within)y=py;return y;};
   const lap=(f,cloth=false)=>{const c=hip.clone().lerp(knee,f);return {top:topAt(c.x,c.z,c.y+leg,cloth),axis:c};};
   return {shins,leg,lap,topAt,cloth:onLap};
  }
@@ -1125,7 +1127,12 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   JOINTS.forEach(j=>bones[j].rotation.set(...(joints[j]||[0,0,0])));root.updateMatrixWorld(true);supportSeat(0);const rest=-root.position.y;
   // where on the thighs the mittens rest: as far toward the knees as `hands`, nearer the hips for arms too short for that;
   // on top of whatever lies on the lap (a skirt's or a dress's cloth), not in it
-  const S=seatedScan(joints,0),onLap=f=>{const L=S.lap(f,true);return Math.max(0,L.top-L.axis.y-m.legR*1.15);};
+  // (and a dress that wraps the body, the house dress after the bath, lies on the lap too, as far up as a mitten's height
+  // over the thigh: above that it is going up the body. A slim body, whose mittens do reach its thighs, laid them 2 cm
+  // inside that cloth: Thao on a cushion, 26 November 2026. Not a bath towel, which lies close on the thighs and whose
+  // cloth over a round belly is not a lap: Mr Fujita's mittens were held up in the air to it.)
+  const S=seatedScan(joints,0),onLap=f=>{const L=S.lap(f,true),lying=S.cloth&&avatar.outfit==='afterbath'?S.topAt(L.axis.x,L.axis.z,L.axis.y+S.leg,false,L.axis.y+m.legR*1.15+m.hand*1.3,m.hand*.7):L.top;
+   return Math.max(0,Math.max(L.top,lying)-L.axis.y-m.legR*1.15);};
   const place=f=>[-m.hipX,m.hipY-m.thigh*f,m.legR*1.15+onLap(f)+m.hand*.85],reachArm=(m.upper+m.fore+m.hand*.55)*.97;
   const put=J=>{JOINTS.forEach(j=>bones[j].rotation.set(...(J[j]||[0,0,0])));root.updateMatrixWorld(true);};
   put({});const local=[1,.85,.7,.55,.4].map(u=>u*FLOOR_SIT.hands).map(f=>[f,bones.thighR.worldToLocal(root.localToWorld(new THREE.Vector3(...place(f))))]);

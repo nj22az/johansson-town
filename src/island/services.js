@@ -15,7 +15,7 @@ export function islandState(state){return state.island??=restoreIsland();}
 export function flightTimes(state){return islandState(state).projects.includes('guesthouse')?[...FLIGHT_TIMES,660].sort((a,b)=>a-b):FLIGHT_TIMES;}
 export function nextFlight(now,state){const day=Math.floor(now/1440)*1440,times=flightTimes(state);return times.map(t=>day+t).find(t=>t>=now)??day+1440+times[0];}
 export function stamp(m){const n=((m%1440)+1440)%1440;return String(Math.floor(n/60)).padStart(2,'0')+':'+String(Math.floor(n%60)).padStart(2,'0');}
-function paper(state,spec,now){state.documentArchive??=restoreArchive();return fileDocument(state,{organisation:'Island Transport Office',author:'Harbour master',...spec},now);}
+function paper(state,spec,now){state.documentArchive??=restoreArchive();return fileDocument(state,{organisation:'Island Transport Office',author:'Sverker',...spec},now);}
 /** The return fare. 0 while the game is in development (the creator, 2026-10-12: Johansson sails for free); ¥400 when it is done. */
 export const FERRY_FARE=0;
 export function buyFerry(state,now){const s=islandState(state);if(s.journey.roundTrip)return {ok:true,already:true};if(FERRY_FARE===0){s.journey.roundTrip=true;return {ok:true,free:true};}if(state.yen<FERRY_FARE)return {ok:false,message:'The return ferry ticket costs ¥'+FERRY_FARE+'.'};state.yen-=FERRY_FARE;s.journey.roundTrip=true;paper(state,{type:'Receipt',title:'Airport ferry return ticket',source:'FERRY-'+now,amount:400,text:'AIRPORT FERRY\nOne return passenger fare: ¥400\nRoute: Minato — Kitano-jima\nThe return crossing remains valid until used.'},now);return {ok:true};}

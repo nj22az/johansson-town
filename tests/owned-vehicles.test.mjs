@@ -20,12 +20,12 @@ import {QUICK_CROSSING} from '../src/world/ferry-quick-crossing.js';
 const MON=4*1440,WED=6*1440,TETSUO_OUT=7*60+30-11,TETSUO_BACK=8*60+8-20;
 /** The first minute of an appointment on a day it runs (a weekdays list, or every day). */
 const onItsDay=(a,minute=a.leave)=>{for(let d=0;d<7;d++)if(!a.weekdays||a.weekdays.includes((4+d)%7))return d*1440+minute;};
-function fixture(){installDOM();const parent=new T.Group(),people=['Tetsuo','Harbour master','Thao','Mrs Sato','Nhung'].map(name=>{const g=new T.Group();g.userData.name=name;parent.add(g);return {g,profile:{name}};});const ferry=createFerryRun({parent});ferry.parkAt('town');const cars=createTownTraffic({parent,ferry,people:()=>people});return {parent,people,cars,ferry};}
+function fixture(){installDOM();const parent=new T.Group(),people=['Tetsuo','Sverker','Thao','Mrs Sato','Nhung'].map(name=>{const g=new T.Group();g.userData.name=name;parent.add(g);return {g,profile:{name}};});const ferry=createFerryRun({parent});ferry.parkAt('town');const cars=createTownTraffic({parent,ferry,people:()=>people});return {parent,people,cars,ferry};}
 /** The ferry, crew, borrowed shore hand and cars all advance on the same ordinary clock. */
 function cargoFixture(){
  const s=ferryServiceFixture({minute:MON+TETSUO_OUT}),q=QUICK_CROSSING.town;
  s.player.position.set(q.stand[0],q.ground,q.stand[1]);
- const people=['Tetsuo','Harbour master','Thao','Mrs Sato','Nhung'].map(name=>{const g=new T.Group();g.userData.name=name;g.position.set(-30,0,30);s.group.add(g);return {g,profile:{name}};});
+ const people=['Tetsuo','Sverker','Thao','Mrs Sato','Nhung'].map(name=>{const g=new T.Group();g.userData.name=name;g.position.set(-30,0,30);s.group.add(g);return {g,profile:{name}};});
  s.world.people.push(...people);
  const cars=createTownTraffic({parent:s.group,colliders:s.world.colliders,ferry:s.run,people:()=>s.world.people,getPlayerPosition:()=>s.player.position});
  s.world.traffic=cars;return Object.assign(s,{cars,people});

@@ -1,0 +1,61 @@
+{
+ "source": "The game's generator (src/avatars/build.js) wearing the Blender sculpt, exported by tools/export-avatar-glb.mjs",
+ "blender": "5.3.0",
+ "armature": "Shimanchu \u00b7 Sverker",
+ "bones": [
+  "root",
+  "hips",
+  "spine",
+  "chest",
+  "neck",
+  "head",
+  "hairA",
+  "hairB",
+  "braidL1",
+  "braidL2",
+  "braidR1",
+  "braidR2",
+  "shoulderL",
+  "elbowL",
+  "handL",
+  "shoulderR",
+  "elbowR",
+  "handR",
+  "thighL",
+  "kneeL",
+  "footL",
+  "thighR",
+  "kneeR",
+  "footR",
+  "skirtF",
+  "skirtB",
+  "skirtL",
+  "skirtR"
+ ],
+ "meshes": {
+  "Shimanchu body": {
+   "vertices": 68892,
+   "skinned": true,
+   "parentBone": null,
+   "shapeKeys": []
+  },
+  "Shimanchu head": {
+   "vertices": 59760,
+   "skinned": false,
+   "parentBone": "head",
+   "shapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ]
+  },
+  "Icosphere": {
+   "vertices": 42,
+   "skinned": false,
+   "parentBone": null,
+   "shapeKeys": []
+  }
+ }
+}

@@ -112,10 +112,10 @@ export const ACCOUNTS=Object.freeze({
   school:{name:'the island school',contact:'the head teacher',lines:['milk','tissues'],decor:['sports day bunting','graduation flowers'],stationery:['exercise books','pencils','glue'],
    why:'School milk, and tissues every hay-fever season. Bunting for sports day in the autumn and flowers for the graduation in March. A new term’s exercise books, and the glue that is always running out.',
    delivery:'First thing on Mondays, by the school gate; the bunting and the flowers the day before, with the children helping to carry.'},
-  // Kissa Higa, Grandmother Higa's morning coffee shop in the old liquor shop (commerce/kissa-higa.js KISSA_SUPPLY,
+  // Kissa Higa, Christina's morning coffee shop in the old liquor shop (commerce/kissa-higa.js KISSA_SUPPLY,
   // 30 October 2026): Sakura's milk bread and milk, and the beans and eggs Sakura Trading buys in for her (named goods,
   // not shelf lines: Sakura sells neither).
-  'kissa-higa':{name:'Kissa Higa',owner:'Grandmother Higa',lines:['bread','milk'],goods:['coffee beans, roasted in Naha, a kilo a week','eggs, a tray a week','butter, a block a week'],
+  'kissa-higa':{name:'Kissa Higa',owner:'Christina',lines:['bread','milk'],goods:['coffee beans, roasted in Naha, a kilo a week','eggs, a tray a week','butter, a block a week'],
    why:'A loaf of milk bread a morning for the toast, cut thick, and milk for the coffee; the beans come over from a Naha roaster with Sakura’s order, the eggs for the morning set’s boiled egg and the butter for the toast.',
    delivery:'Sakura is shut before nine, so she takes the next morning’s loaf and milk at the till at five the afternoon before, on the account, crossing the park from the bandai (on Sundays, Monday’s); the beans, the eggs and the butter come with Sakura Trading’s order off the ferry on Mondays.'},
   clinic:{name:'the clinic',owner:'Nhung',lines:['tissues','soap','water','peaches'],

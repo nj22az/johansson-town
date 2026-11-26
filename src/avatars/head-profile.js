@@ -3,6 +3,10 @@ import {RUGGED_HEAD} from './sculpts/rugged-head.js';
 import {GENTLE_HEAD} from './sculpts/gentle-head.js';
 import {CHILD_HEAD} from './sculpts/child-head.js';
 import {LEAN_HEAD} from './sculpts/lean-head.js';
+import {SERENE_HEAD} from './sculpts/serene-head.js';
+import {KINDLY_HEAD} from './sculpts/kindly-head.js';
+import {BURLY_HEAD} from './sculpts/burly-head.js';
+import {BROAD_HEAD} from './sculpts/broad-head.js';
 export const HEAD_FORMS=Object.freeze(['oval','round','square','narrow','heart','soft-square','oblong','diamond','pear','wide','soft-round','teardrop','egg','acorn','bell','pentagon','box','block','sculpted',
  // Appended (no saved id moves): a strong head, broad and square-jawed with rounded corners, between 'square' (a ball
  // with a jaw) and 'block' (a box). First worn by Johansson (26 November 2026).
@@ -16,15 +20,20 @@ export const HEAD_FORMS=Object.freeze(['oval','round','square','narrow','heart',
  'gentle',
  // A child's (tools/blender/build-vy-head.py: a big round cranium, full cheeks, a small round chin, a button nose) and a
  // lean man's (build-tetsuo-head.py: long and narrow, cheekbones over hollow cheeks, a long hooked nose).
- 'child','lean']);
+ 'child','lean',
+ // Thao's (build-thao-head.py): a long serene oval with a high forehead and a small chin.
+ 'serene',
+ // Christina's (round and soft), Erik's (broad and heavy, a bearded jaw) and Sverker's (broad and round, jowls):
+ // tools/blender/build-christina-head.py, build-erik-head.py, build-sverker-head.py.
+ 'kindly','burly','broad']);
 /** A sculpted head's radius table, decoded once. */
-const SCULPTS={rugged:RUGGED_HEAD,gentle:GENTLE_HEAD,child:CHILD_HEAD,lean:LEAN_HEAD},decoded=new Map();
+const SCULPTS={rugged:RUGGED_HEAD,gentle:GENTLE_HEAD,child:CHILD_HEAD,lean:LEAN_HEAD,serene:SERENE_HEAD,kindly:KINDLY_HEAD,burly:BURLY_HEAD,broad:BROAD_HEAD},decoded=new Map();
 function sculptOf(form){
  const S=SCULPTS[form];if(!S)return null;
  if(!decoded.has(form)){const raw=atob(S.data),n=raw.length/2,r=new Float32Array(n),k=(S.max-S.min)/65535;
   for(let i=0;i<n;i++)r[i]=S.min+k*(raw.charCodeAt(i*2)|raw.charCodeAt(i*2+1)<<8);decoded.set(form,Object.freeze({na:S.na,nt:S.nt,r,width:S.width,height:S.height,
-   // (the child's head is sculpted without a nose: she wears one of the body kit's, as the unsculpted heads do)
-   nose:form!=='child'}));}
+   // (only the first three were sculpted with a nose: the others wear one of the body kit's, as the unsculpted heads do)
+   nose:['rugged','gentle','lean'].includes(form)}));}
  return decoded.get(form);
 }
 /** The sculpt's radius along a unit direction: between the four measured directions round it. */

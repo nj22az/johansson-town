@@ -103,7 +103,7 @@ test('activity saves restore relationship memories in the correct player slot',(
 test('directory record capability keeps Thuan and only offers existing readable records',()=>{
  const dom=installDOM(),a=createActivities({say(){},onWeather(){},onTime(){}});
  for(const name of ['Thuan','Chin','Mr Fujita'])assert.equal(a.canResidentRecord(name),true,name+' already has a record');
- for(const name of ['Vy','Grandmother Higa','Johansson','Not a resident'])assert.equal(a.canResidentRecord(name),false,name+' has no established record data');
+ for(const name of ['Vy','Christina','Johansson','Not a resident'])assert.equal(a.canResidentRecord(name),false,name+' has no established record data');
  const saved=JSON.stringify(a.state);
  a.residentRecords(['Chin','Thuan','Vy','Chin','Mr Fujita']);
  const body=document.querySelector('#activityBody'),names=()=>body.children.find(e=>e.className==='resident-list').children.map(b=>b.textContent);

@@ -9,7 +9,7 @@ import {FERRY_TIMETABLE} from '../world/ferry-timetable.js';
 
 /**
  * One real shore body at each berth, the roster's line hands (people/roster.js SHORE_ROLES; ferry-crew.js FERRY_SHORE):
- *  - at Minato, the harbour agent (the Harbour master's street body, Jack's), who keeps the berth radio in the Harbour
+ *  - at Minato, the harbour agent (Sverker), who keeps the berth radio in the Harbour
  *    Office between calls and walks from wherever his day has him to each bitt when the ship calls for her lines;
  *  - at Kitano-jima, Kai, the line hand, whose only body is this one: he stands by on the pier through the ship's day
  *    and goes home to the Shiroma house across the lane for the night (KITANO_HOME).

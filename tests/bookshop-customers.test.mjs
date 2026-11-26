@@ -18,7 +18,7 @@ import {circleHitsRect} from '../physics.js';
 test('nobody browses at Front-Row any more: the visits leave every plan as it was',()=>{
  assert.deepEqual(Object.keys(BOOKSHOP_VISITS),[]);
  const work={place:'work',target:[0,0]};
- for(const name of ['Mrs Sato','Thao','Tetsuo','Harbour master','Nhung'])for(let m=0;m<7*1440;m+=15)assert.equal(bookshopVisitPlan({name},m,work),work,name+' at '+m);
+ for(const name of ['Mrs Sato','Thao','Tetsuo','Sverker','Nhung'])for(let m=0;m<7*1440;m+=15)assert.equal(bookshopVisitPlan({name},m,work),work,name+' at '+m);
 });
 
 test('over a week no resident’s plan takes them into the bookshop, and the customer service borrows nobody',()=>{

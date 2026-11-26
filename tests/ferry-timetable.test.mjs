@@ -117,15 +117,15 @@ for(const [end,part,fraction,height]of [['deck','ramp',.2,.07],['pier','flap',.8
   const sails=stageAt(f,'passage');assert.ok(sails<DEPARTS+5,'Clearing preserves the sailing time');
  });
 
-test('the chief’s watch: Mac’s while Johansson is ashore or off duty, Johansson’s aboard in working hours, and the ship never waits for him',()=>{
+test('the chief’s watch: Erik’s while Johansson is ashore or off duty, Johansson’s aboard in working hours, and the ship never waits for him',()=>{
  assert.equal(chiefWatchHolder({minutes:10*60,playerAboard:false}),'relief');
  assert.equal(chiefWatchHolder({minutes:10*60,playerAboard:true}),'player');
  assert.equal(chiefWatchHolder({minutes:23*60+30,playerAboard:true}),'relief');
  const f=ferryServiceFixture({minute:DEPARTS-5,identity:'Johansson'});
  f.player.position.set(port.town.landing[0]+6,port.town.height,port.town.landing[1]-12);f.tick(.2);
- assert.equal(f.crew.chiefWatch,'relief');assert.ok(f.crew.snapshot().some(c=>c.name===FERRY_RELIEF.chief.name&&c.post==='chief'),'Mac keeps the working watch');
+ assert.equal(f.crew.chiefWatch,'relief');assert.ok(f.crew.snapshot().some(c=>c.name===FERRY_RELIEF.chief.name&&c.post==='chief'),'Erik keeps the working watch');
  f.anchors.find(a=>/Board the Minato/.test(a.label)).fn();f.choose('Go aboard');f.tick(.2);
- assert.equal(f.crew.chiefWatch,'player');assert.ok(!f.crew.snapshot().some(c=>c.post==='chief'),'no second Johansson and no Mac at the chief’s station');
+ assert.equal(f.crew.chiefWatch,'player');assert.ok(!f.crew.snapshot().some(c=>c.post==='chief'),'no second Johansson and no Erik at the chief’s station');
  // He does nothing at all: she still prepares and sails at her time.
  const closing=stageAt(f,'closing-access');assert.ok(closing>=DEPARTS&&closing<DEPARTS+.5);
 });

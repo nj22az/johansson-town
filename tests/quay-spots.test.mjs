@@ -78,8 +78,8 @@ test('Minato’s spots stand clear of every solid and doorway, on ground the tow
 });
 
 const dayWith=name=>{for(let d=20000;d<20400;d++){const b=quayLedger(d).find(b=>b.name===name&&b.spot);if(b)return b;}return null;};
-test('Jack walks out to his spot after his ramen, faces the harbour, and walks back to his day when the break ends',()=>{
- const profile=WORLD_CAST.find(p=>p.name==='Harbour master'),b=dayWith('Harbour master');
+test('Sverker walks out to his spot after his ramen, faces the harbour, and walks back to his day when the break ends',()=>{
+ const profile=WORLD_CAST.find(p=>p.name==='Sverker'),b=dayWith('Sverker');
  const parent=new THREE.Group();parent.visible=false;const g=new THREE.Group();g.userData={name:profile.name,hit:{inside:false}};parent.add(g);
  const state={inventory:[],residentLocations:{}},person={g,profile};
  g.position.set(9,groundHeight(9,-36),-36);
@@ -91,7 +91,7 @@ test('Jack walks out to his spot after his ramen, faces the harbour, and walks b
   const before=g.position.clone();system.update(.1,m,false);m+=.1/60;
   if(g.visible)assert.ok(g.position.distanceTo(before)<.25,'walks, never jumps');
   if(g.visible)assert.equal(blocked(g.position.x,g.position.z,.2),false,'never inside anything');
-  const claim=quayClaim('Harbour master',m),d=Math.hypot(g.position.x-b.spot.x,g.position.z-b.spot.z);
+  const claim=quayClaim('Sverker',m),d=Math.hypot(g.position.x-b.spot.x,g.position.z-b.spot.z);
   if(claim&&d<.14&&g.userData.standPose){on++;assert.equal(g.userData.socialPose,b.spot.pose);}
   if(!claim&&on&&d>1.5){left=true;if(!g.userData.standPose)assert.equal(g.userData.socialPose,undefined,'the pose is put down on the way');}
  }

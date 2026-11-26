@@ -26,7 +26,7 @@ test('18 core and 5 supporting identities; 23 unique short display names; ids ar
  }
  for(const p of CORE)assert.equal(p.category,'core');for(const p of SUPPORTING)assert.equal(p.category,'supporting');
  // The brief's display names, in its order (§4 and §5).
- assert.deepEqual(CORE.map(p=>p.name),['Nils','Thuan','Thao','Chin','Vy','Nhung','Koji','Riku','Yui','Gran Higa','Tetsu','Aki','Mori','Fuji','Jack','Mac','Nao','Mika']);
+ assert.deepEqual(CORE.map(p=>p.name),['Nils','Thuan','Thao','Chin','Vy','Nhung','Koji','Riku','Yui','Christina','Tetsu','Aki','Mori','Fuji','Sverker','Erik','Nao','Mika']);
  assert.deepEqual(SUPPORTING.map(p=>p.name),['Ryo','Ren','Aya','Jun','Kai']);
  // Ages are the source's (cast.js); children keep theirs.
  assert.equal(identityOf('vy').age,11);assert.equal(identityOf('riku').age,9);assert.ok(isRetired('mai'));
@@ -40,7 +40,7 @@ test('every name, full name, historical name and id maps to exactly one identity
  }
  assert.equal(identityOf('Harbour visitor'),null);assert.equal(identityOf('Emi Kado'),null);assert.equal(identityOf(''),null);
  // The brief's previous identities (§4) all resolve to the new person.
- for(const [old,now] of [['Johansson','nils'],['Kōji','koji'],['Miss Higa','yui'],['Mrs Higa','yui'],['Yonamine-sensei','yui'],['Grandmother Higa','gran-higa'],['Tetsuo','tetsu'],['Mrs Sato','aki'],['Officer Mori','mori'],['Mrs Nakamura','emi'],['Nakamura Mai','mai'],['Mr Fujita','fuji'],['Harbour master','jack'],['Mr Nakandakari','mac'],['Ms Uezu','nao'],['Ms Ganaha','mika'],['Chief officer','ryo'],['Deck hand','ren'],['Purser','aya'],['Cook-steward','jun'],['Kitano line hand','kai']])
+ for(const [old,now] of [['Johansson','nils'],['Kōji','koji'],['Miss Higa','yui'],['Mrs Higa','yui'],['Yonamine-sensei','yui'],['Christina','gran-higa'],['Tetsuo','tetsu'],['Mrs Sato','aki'],['Officer Mori','mori'],['Mrs Nakamura','emi'],['Nakamura Mai','mai'],['Mr Fujita','fuji'],['Sverker','jack'],['Mr Nakandakari','mac'],['Ms Uezu','nao'],['Ms Ganaha','mika'],['Chief officer','ryo'],['Deck hand','ren'],['Purser','aya'],['Cook-steward','jun'],['Kitano line hand','kai']])
   assert.equal(identityOf(old)?.id,now,old);
 });
 
@@ -99,7 +99,7 @@ test('the eight ship posts are the manning plan’s keys, each with a holder, re
  assert.equal(SHIP_POSTS.find(p=>p.key==='chief').relief,'mac');assert.equal(SHIP_POSTS.find(p=>p.key==='bosun').relief,'koji');
  for(const p of SHIP_POSTS)if(p.relief){assert.ok(!holders.includes(p.relief),p.relief+' relieves and holds no post of their own');assert.equal(identityOf(p.relief).relief,p.key);}
  assert.equal(holderOf('motorman').id,'chin');assert.equal(shipPostOf('Mr Fujita').key,'master');
- // Shore roles are ferry-crew.js keys; Jack takes the office and Minato's lines, Mika the counter, Kai stays at Kitano.
+ // Shore roles are ferry-crew.js keys; Sverker takes the office and Minato's lines, Mika the counter, Kai stays at Kitano.
  assert.deepEqual(new Set(SHORE_ROLES.map(r=>r.key)),new Set(FERRY_SHORE.map(s=>s.post)));
  assert.equal(holderOf('port').id,'jack');assert.equal(holderOf('linesman').id,'jack');assert.equal(holderOf('tickets').id,'mika');assert.equal(holderOf('airport-linesman').id,'kai');assert.equal(holderOf('relief-engineer').id,'mac');assert.equal(holderOf('electrician').id,'tetsu');
  for(const r of SHORE_ROLES)assert.ok(identityOf(r.holder).shore.includes(r.key),r.holder+' knows the shore role '+r.key);
@@ -117,9 +117,9 @@ test('retiring homes resolve to a retained public place; a home that stays resol
 
 test('phase 2: every person resolves to one body in cast.js; the supporting crew have bodies; old-name lookups draw the same person',()=>{
  for(const p of ROSTER){const live=liveNameFor(p.id);assert.ok(CAST_NAMES.includes(live),p.id+' → '+live);assert.equal(liveNameFor(p.name),live);for(const w of p.was)assert.equal(liveNameFor(w),live,w);}
- // The short display names of Fuji, Jack, Nao and Koji wait for phase 5's sweep; Mac is renamed with his biography.
- assert.equal(castMember('Fuji').name,'Mr Fujita');assert.equal(castMember('Jack').name,'Harbour master');assert.equal(castMember('Nao').name,'Ms Uezu');assert.equal(castMember('Koji').name,'Kōji');
- assert.equal(castMember('Mac').name,'Mac');assert.equal(castMember('Mr Nakandakari').name,'Mac');
+ // The short display names of Fuji, Sverker, Nao and Koji wait for phase 5's sweep; Erik is renamed with his biography.
+ assert.equal(castMember('Fuji').name,'Mr Fujita');assert.equal(castMember('Sverker').name,'Sverker');assert.equal(castMember('Nao').name,'Ms Uezu');assert.equal(castMember('Koji').name,'Kōji');
+ assert.equal(castMember('Erik').name,'Erik');assert.equal(castMember('Mr Nakandakari').name,'Erik');
  for(const p of SUPPORTING){const live=castMember(p.name);assert.equal(live?.name,p.name,p.name+' has a body of their own');assert.ok(live.supporting,p.name+' is marked supporting in the cast');for(const w of p.was)assert.equal(castMember(w)?.name,p.name,w+' resolves to '+p.name);}
  for(const p of RETIRED)for(const name of [p.name,p.id,...p.was])assert.equal(castMember(name),null,name+' has no body (phase 4)');
  for(const name of CAST_NAMES)assert.equal(castMember(name).name,name,'cast.js lookups are untouched');

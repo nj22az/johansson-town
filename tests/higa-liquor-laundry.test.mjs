@@ -27,7 +27,7 @@ import {seatEdge} from './seat-edge.mjs';
  * Higa Liquor and the coin laundry (the owner, 21 October 2026; AGENTS.md): the laundry's keeper, its washing days, the
  * machines turning on the clock and the noticeboard's story hooks, and the bench of an evening. Higa Liquor is shut for
  * good as a liquor shop since 22 October 2026 (the owner: Sakura sells and supplies all the alcohol, Kōji's round is
- * Sakura Trading's); since 30 October its room is Kissa Higa, Grandmother Higa's on weekday mornings (commerce/kissa-higa.js;
+ * Sakura Trading's); since 30 October its room is Kissa Higa, Christina's on weekday mornings (commerce/kissa-higa.js;
  * tests/kissa-higa.test.mjs): the round, the paper on the shutter and the front on the kissaten's clock are checked here
  * too. Every number here is the data's, so the world and the stories read the same.
  */
@@ -46,25 +46,25 @@ test('Higa Liquor stays shut as a liquor shop: no hours of its own, no alcohol a
  // (30 October 2026: the closing notice is the kissaten's paper now, which keeps its last line.)
  assert.equal(KISSA_NOTICE.jp,'喫茶ひが');assert.ok(KISSA_NOTICE.jpLines.some(l=>/さくら商店/.test(l)),'the paper on the shutter points to Sakura');
  assert.match(KISSA_NOTICE.en,/Sakura Shōten/);assert.ok(!/[぀-ヿ一-龯]/.test(KISSA_NOTICE.en),'the player reads English');
- assert.equal(KISSA_NOTICE.who,'Grandmother Higa');
+ assert.equal(KISSA_NOTICE.who,'Christina');
  for(const item of KISSA_MENU)assert.doesNotMatch(item.name+item.text,/beer|lager|awamori|sake|shōchū|whisky/i,item.name+' is not drink: the drink is Sakura’s');
  // What the counter sold, Sakura sells at its till, at the Higas' prices.
  assert.deepEqual(SAKURA_BOTTLES.map(b=>[b.id,b.cost]),[['awamori-mini',600],['umineko-large',330],['sake-cup',220]]);
 });
 
-// Higa Liquor stays shut (22 October 2026). Since 27 October Grandmother Higa also keeps Johansson Mart's till in Kitahama on
+// Higa Liquor stays shut (22 October 2026). Since 27 October Christina also keeps Johansson Mart's till in Kitahama on
 // weekday evenings and Saturdays, when Sakura is shut and Miss Higa has the bandai (world/okinawa/kitahama-shop.js); since
 // 30 October she keeps Kissa Higa in the old shop's room on weekday mornings (commerce/kissa-higa.js).
-test('nobody keeps the liquor counter: Grandmother Higa keeps Kissa Higa on weekday mornings, the bath and Johansson Mart’s till, and Yui no counter on Saturdays',()=>{
+test('nobody keeps the liquor counter: Christina keeps Kissa Higa on weekday mornings, the bath and Johansson Mart’s till, and Yui no counter on Saturdays',()=>{
  const wed=dayWith(3),sat=dayWith(6),sun=dayWith(0);
- for(const [name,day,h,place] of [['Grandmother Higa',wed,7.5,'kissa-higa'],['Grandmother Higa',wed,9,'kissa-higa'],['Grandmother Higa',wed,10,'onsen'],['Grandmother Higa',wed,14,'onsen'],['Grandmother Higa',wed,18,'kitahama-shop'],['Grandmother Higa',wed,21,'home'],
-  ['Grandmother Higa',sat,10,'kitahama-shop'],['Grandmother Higa',sat,18,'kitahama-shop'],['Grandmother Higa',sun,18,'home'],['Miss Higa',sat,10,'onsen'],['Miss Higa',sat,18,'onsen']])
+ for(const [name,day,h,place] of [['Christina',wed,7.5,'kissa-higa'],['Christina',wed,9,'kissa-higa'],['Christina',wed,10,'onsen'],['Christina',wed,14,'onsen'],['Christina',wed,18,'kitahama-shop'],['Christina',wed,21,'home'],
+  ['Christina',sat,10,'kitahama-shop'],['Christina',sat,18,'kitahama-shop'],['Christina',sun,18,'home'],['Miss Higa',sat,10,'onsen'],['Miss Higa',sat,18,'onsen']])
   assert.equal(canonicalDay(name,at(day,h)).place,place,`${name} at ${h} on ${townCalendarAt(day).weekday}`);
  for(let d=10000;d<10007;d++)for(const p of CAST)for(let m=0;m<DAY;m+=30)assert.notEqual(canonicalDay(p.name,d*DAY+m)?.place,'higa-liquor',p.name+' is never behind the shut counter');
  for(const p of CAST)assert.ok(!p.day.some(r=>r[1]==='higa-liquor'),p.name+'’s day has no counter');
- for(const [day,h] of [[sat,7.5],[sun,7.5],[wed,12],[wed,18]])assert.notEqual(canonicalDay('Grandmother Higa',at(day,h)).place,'kissa-higa','Kissa Higa is a weekday morning’s');
- assert.equal(PLACES['higa-liquor'],undefined,'the liquor shop is no place to go');assert.deepEqual(PLACES['kissa-higa'].keepers,['Grandmother Higa']);
- assert.equal(castMember('Grandmother Higa').work,'onsen');
+ for(const [day,h] of [[sat,7.5],[sun,7.5],[wed,12],[wed,18]])assert.notEqual(canonicalDay('Christina',at(day,h)).place,'kissa-higa','Kissa Higa is a weekday morning’s');
+ assert.equal(PLACES['higa-liquor'],undefined,'the liquor shop is no place to go');assert.deepEqual(PLACES['kissa-higa'].keepers,['Christina']);
+ assert.equal(castMember('Christina').work,'onsen');
 });
 
 test('the round is Sakura Trading’s, Kōji’s on his weeks ashore only, between the ice plant and his sleep',()=>{
@@ -103,17 +103,17 @@ test('the family kusu is never sold, and is a story hook',()=>{
  assert.ok(castMember('Miss Higa')&&HIGA_KUSU.laidDown===1997-castMember('Miss Higa').age,'laid down the year Yui was born');
 });
 
-test('the bench: Tetsuo and Mac by their own days in the evening opening, Mr Fujita’s crate empty while he is on watch',()=>{
+test('the bench: Tetsuo and Erik by their own days in the evening opening, Mr Fujita’s crate empty while he is on watch',()=>{
  const wed=dayWith(3);
- assert.ok(yuntakuSeatAt('Tetsuo',at(wed,18,45)));assert.ok(yuntakuSeatAt('Mac',at(wed,19,45)));
- assert.equal(yuntakuSeatAt('Mac',at(wed,19)),null,'Mac is still aboard at seven');assert.equal(yuntakuSeatAt('Tetsuo',at(wed,20,5)),null,'everyone goes at eight');
+ assert.ok(yuntakuSeatAt('Tetsuo',at(wed,18,45)));assert.ok(yuntakuSeatAt('Erik',at(wed,19,45)));
+ assert.equal(yuntakuSeatAt('Erik',at(wed,19)),null,'Erik is still aboard at seven');assert.equal(yuntakuSeatAt('Tetsuo',at(wed,20,5)),null,'everyone goes at eight');
  // The bench no longer keeps the shop's hours: Saturday's sitters are there too.
  assert.ok(yuntakuSeatAt('Tetsuo',at(dayWith(6),18,45)));
  assert.equal(yuntakuSeatAt('Mr Fujita',at(wed,19,45)),null);
  const fuji=canonicalDay('Mr Fujita',at(wed,19,45));assert.notEqual(fuji?.place,'higa-bench','sober on the bridge until 22:20');
- const mac=canonicalDay('Mac',at(wed,19,45));assert.equal(mac.place,'higa-bench');assert.equal(mac.stand.seat.height,YUNTAKU.seats.mac.height);assert.equal(mac.stand.held,'beer');
- assert.equal(canonicalDay('Mac',at(wed,20,15)).place,'izakaya','his one beer is still Minato’s');
- for(const p of CAST.filter(p=>['Tetsuo','Mac'].includes(p.name)))assert.ok(p.day.some(r=>r[1]==='higa-bench'),p.name+'’s day says so');
+ const mac=canonicalDay('Erik',at(wed,19,45));assert.equal(mac.place,'higa-bench');assert.equal(mac.stand.seat.height,YUNTAKU.seats.mac.height);assert.equal(mac.stand.held,'beer');
+ assert.equal(canonicalDay('Erik',at(wed,20,15)).place,'izakaya','his one beer is still Minato’s');
+ for(const p of CAST.filter(p=>['Tetsuo','Erik'].includes(p.name)))assert.ok(p.day.some(r=>r[1]==='higa-bench'),p.name+'’s day says so');
 });
 
 test('a seat: they sit back onto it from the point in front, and stand up onto that point again',()=>{
@@ -205,9 +205,9 @@ test('every place somebody stands is clear of every solid, and every seat is on 
  const stands=[['Kōji loading at the depot',TRADE_ROUND.load.at],['the crate yard',TRADE_ROUND.empties.point],
   ...Object.entries(YUNTAKU.seats).map(([k,s])=>['bench '+k,s.stand]),...Object.entries(LAUNDRY_STANDS).map(([k,s])=>['laundry '+k,s.at]),
   ...LAUNDRY_SEATS.map(s=>['laundry bench',s.stand]),
-  // Kissa Higa (30 October 2026): where Grandmother Higa stands behind the counter and at the shutter, and where each
+  // Kissa Higa (30 October 2026): where Christina stands behind the counter and at the shutter, and where each
   // regular stands up to from their stool or chair.
-  ['Grandmother Higa behind the counter',KISSA_KEEPER.at],['Grandmother Higa at the shutter',KISSA_KEEPER.front],
+  ['Christina behind the counter',KISSA_KEEPER.at],['Christina at the shutter',KISSA_KEEPER.front],
   ...Object.entries(KISSA_SEATS).map(([k,s])=>['Kissa Higa '+k,s.stand])];
  for(const [what,[x,z]] of stands)assert.deepEqual(solidAt(x,z).map(c=>c.id),[],what+' is clear');
  for(const [k,s] of Object.entries(YUNTAKU.seats))assert.ok(solidAt(...s.at,.05).some(c=>/higa-bench|higa-crate-stool/.test(c.id)),k+' sits on the bench or a crate');

@@ -75,7 +75,7 @@ export const ISLAND_OUTFITS=Object.freeze([
  {id:'ticket-window',name:'Ticket window',label:'Ticket window',category:'Work',tags:['port terminal','tickets','ferry','Minato Maru','uniform','vest','waiting hall'],
   who:'Ms Ganaha at the Port Terminal’s ticket window',why:'The terminal’s terracotta vest over a white shirt, so the passengers in the waiting hall know whom to ask.',
   outfit:{top:'vest',topColour:'#b4583c',accent:'#f4f1ea',bottom:'skirt',bottomColour:'#27304d',footwear:'shoes',shoes:'#2b2b2b',pattern:'none'}},
- {id:'harbour-summer',name:'Harbour master’s summer',label:'Harbour summer',category:'Work',tags:['harbour master','harbour office','ferry','berth','summer','captain','shirt'],
+ {id:'harbour-summer',name:'Sverker’s summer',label:'Harbour summer',category:'Work',tags:['harbour master','harbour office','ferry','berth','summer','captain','shirt'],
   who:'the harbour master, from June to September',why:'Too hot for his jacket on the quay: a sky-blue shirt with a pen for the berth log, and the white cap the ferry looks for.',
   outfit:{top:'shirt',topColour:'#8fbfe0',accent:'#2f4f7f',bottom:'trousers',bottomColour:'#27304d',footwear:'shoes',shoes:'#2b2b2b',hat:'captain',hatColour:'#f4f1ea',pattern:'none'}},
  // Cute everyday wear (the creator, 2026-10-14: "characters need to … have cute clothes"): the raglan tee, the pinafore,

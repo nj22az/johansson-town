@@ -94,7 +94,7 @@ function fixture(names){
 }
 
 test('four customers with their goods at once: the queue fills, the fourth browses, each moves up and pays, nobody shares a spot or waits in the doorway',()=>{
- const names=['Harbour master','Tetsuo','Mrs Sato','Officer Mori'];
+ const names=['Sverker','Tetsuo','Mrs Sato','Officer Mori'];
  const f=fixture(names),clerk=f.world.people[0].g,customers=f.world.people.slice(1);
  f.step(20);// Thuan in at her till first.
  const spots=[[2.6,-1.3],[0,-.4],[-2.8,.3],[-1.5,2.4]];

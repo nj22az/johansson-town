@@ -4,7 +4,7 @@ const DEFAULT={interests:['read','inspect','seat','shop'],snack:'rice',drink:'te
 export const RESIDENT_PERSONALITIES=Object.freeze(Object.fromEntries(Object.entries({
  Chin:{source:'casual_2',top:'#477697',trousers:'#334b55',hair:'#24272b',skin:'#bd8b65',width:.96,accessory:'tool-pouch',interests:['arcade','machine','radio','inspect'],snack:'bun',drink:'beer',meal:'yakitori'},
  'Mrs Sato':{source:'female_formal',top:'#96566d',trousers:'#96566d',hair:'#c5c0ae',skin:'#c69c7c',width:1.06,accessory:'glasses',interests:['read','shop','seat','post'],snack:'tea',drink:'tea',meal:'rice'},
- 'Harbour master':{source:'suit',top:'#455b6b',trousers:'#374653',hair:'#92958d',skin:'#b5805d',width:1.10,accessory:'captain',shopping:'notebook',interests:['office','fish','read','machine','phone'],snack:'rice',drink:'beer',meal:'fish'},
+ 'Sverker':{source:'suit',top:'#455b6b',trousers:'#374653',hair:'#92958d',skin:'#b5805d',width:1.10,accessory:'captain',shopping:'notebook',interests:['office','fish','read','machine','phone'],snack:'rice',drink:'beer',meal:'fish'},
  Tetsuo:{source:'worker',top:'#698071',trousers:'#4a5146',hair:'#444035',skin:'#ba895d',helmet:'#737768',width:1.03,accessory:'glasses',interests:['radio','machine','arcade','inspect'],snack:'bun',drink:'beer',meal:'yakitori'},
  'Officer Mori':{source:'suit',top:'#3c5780',trousers:'#303e57',hair:'#202528',skin:'#c79872',width:.98,accessory:'police',interests:['read','phone','post','inspect'],snack:'rice',drink:'tea',meal:'rice'},
  'Bus driver':{source:'suit',top:'#437f78',trousers:'#3b514e',hair:'#61564b',skin:'#b88968',width:1.04,accessory:'driver',interests:['seat','read','phone','shop'],snack:'tea',drink:'tea',meal:'fish'},

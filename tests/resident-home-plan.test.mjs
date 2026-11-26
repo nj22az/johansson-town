@@ -75,7 +75,7 @@ test('the harbour office has the harbour master’s WC, and he still walks to hi
  buildOfficeWorkplace({room,reg(){},action(){},collider:(x,z,w,d)=>cols.push({x,z,w,d})});
  const names=new Set();room.traverse(o=>{if(o.name)names.add(o.name);});assert.ok(names.has('Toilet'),'the office has no WC');
  const B=L.bounds,blocked=(x,z,rr)=>x<B.minX+rr||x>B.maxX-rr||z<B.minZ+rr||z>B.maxZ-rr||cols.some(c=>Math.abs(c.x-x)<c.w/2+rr&&Math.abs(c.z-z)<c.d/2+rr);
- const person={g:new THREE.Object3D(),profile:{name:'Harbour master',age:60}};person.g.position.set(...L.door);
+ const person={g:new THREE.Object3D(),profile:{name:'Sverker',age:60}};person.g.position.set(...L.door);
  const walk=createRoomWalk(blocked);
  for(const [label,target] of [['tea table',L.table],['futon',L.bedside],['WC',[-1.85,0,2.0]],['door',L.door]]){
   let done=false;for(let i=0;i<1600&&!done;i++)done=walk.move(person,target,1/20);

@@ -67,7 +67,7 @@ export const PRODUCTS=freeze([
   "purpose": {
    "zone": "drinks",
    "for": [
-    "Grandmother Higa",
+    "Christina",
     "Thuan"
    ],
    "why": "The everyday bottle: with lunch, on a hot walk, on the verandah.",
@@ -146,9 +146,9 @@ export const PRODUCTS=freeze([
   "purpose": {
    "zone": "drinks",
    "for": [
-    "Harbour master",
+    "Sverker",
     "Ms Ganaha",
-    "Mac"
+    "Erik"
    ],
    "why": "A sweet canned coffee before a dawn shift or between rounds.",
    "placed": "Under the tea, where a working hand reaches without looking."
@@ -607,7 +607,7 @@ export const PRODUCTS=freeze([
   "purpose": {
    "zone": "drinks",
    "for": [
-    "Mac",
+    "Erik",
     "Tetsuo",
     "Johansson"
    ],
@@ -766,7 +766,7 @@ export const PRODUCTS=freeze([
   "purpose": {
    "zone": "fresh",
    "for": [
-    "Harbour master",
+    "Sverker",
     "Tetsuo"
    ],
    "why": "A proper lunch for people who cannot leave their work: the power house, the workshop, the office.",
@@ -991,7 +991,7 @@ export const PRODUCTS=freeze([
    "for": [
     "Vy",
     "Nhung",
-    "Grandmother Higa"
+    "Christina"
    ],
    "why": "A small treat: after homework, after a long shelf, after the bath.",
    "placed": "Top deck of the last bay: the treat at eye level, where it is hard to walk past."
@@ -1143,7 +1143,7 @@ export const PRODUCTS=freeze([
    "zone": "pantry",
    "for": [
     "Kōji",
-    "Mac",
+    "Erik",
     "Riku"
    ],
    "why": "Cup noodles for a late night or a typhoon day indoors.",
@@ -1217,7 +1217,7 @@ export const PRODUCTS=freeze([
   "purpose": {
    "zone": "pantry",
    "for": [
-    "Mac",
+    "Erik",
     "Ms Uezu",
     "Thao"
    ],
@@ -1419,7 +1419,7 @@ export const PRODUCTS=freeze([
    "zone": "pantry",
    "for": [
     "Nhung",
-    "Mac"
+    "Erik"
    ],
    "why": "Tinned tuna for onigiri at home and for the cat that is not officially fed.",
    "placed": "Back face, with the other tins."
@@ -1481,7 +1481,7 @@ export const PRODUCTS=freeze([
   "purpose": {
    "zone": "pantry",
    "for": [
-    "Grandmother Higa",
+    "Christina",
     "Miss Higa"
    ],
    "why": "Tinned peaches for visiting someone who is ill, as one does.",
@@ -1634,7 +1634,7 @@ export const PRODUCTS=freeze([
   "purpose": {
    "zone": "sweets",
    "for": [
-    "Grandmother Higa",
+    "Christina",
     "Mrs Sato",
     "Nhung"
    ],
@@ -2221,7 +2221,7 @@ export const PRODUCTS=freeze([
    "for": [
     "Chin",
     "Tetsuo",
-    "Harbour master"
+    "Sverker"
    ],
    "why": "Dry cells for radios, torches and the harbour lamp.",
    "placed": "Back face, nearest the till: small, dear and easy to pocket, so Thuan can see them."

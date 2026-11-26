@@ -42,6 +42,23 @@ critique what still looks too soft/chibi, and iterate"; then "When happy redraw 
   cartoon in 3d", "The clothes need to be rigged too", "And all hairstyles", "in a sweep but keep their personalities".
   `tools/blender/rig-cast.py` makes every resident a rigged Blender character from the generator; what is hand-made in
   Blender is listed in the handover of this date, and what is not (19 heads, 23 hairstyles, the clothes) is the work left.
+- **Thao** (the owner, with her photograph: "This is Thao but cartoon Thao should wear short pants"): a long serene oval
+  head and her hair tied back to a low bun, both sculpted in Blender (`build-thao-head.py`: head form `serene`, hair
+  `tiedback`), the photograph's yellow tee, and **short pants**. She is her sisters' sister and nobody's copy.
+- **Three people renamed, each drawn from a photograph** (the owner): "This is Mrs Higa who should be renamed to Christina
+  and she should not have a wheelchair", "This is Mac who should be renamed Erik", "This is the harbour master Sverker".
+  **Christina** was Gran Higa / Grandmother Higa, **Erik** was Mac, **Sverker** was Jack / the Harbour master: one name
+  each now, everywhere the game shows or uses one (`src/people/roster.js`, whose ids `gran-higa`, `mac`, `jack` stay as
+  machine keys and whose `was` keeps every old name resolving for saves and saved looks). Christina stands and walks:
+  there is no wheelchair. Only the names and the drawings changed: their posts, homes, families, surnames, recorded
+  nationalities and written biographies are as they were until the owner says otherwise. Kissa Higa keeps its name.
+  Dated notes below this one keep the names they were written with.
+- **A saved copy of a look does not outlive a redrawing.** A device keeps the player's look, and any resident's edited in
+  the wardrobe; when a character is redrawn, raise its number in `avatars/wardrobe.js APPEARANCE_REVISIONS` so the new
+  drawing is adopted once (the owner's phone went on showing the Johansson it had saved: "Johansson's face??").
+- **Look at every character from the game's own camera** (`avatar-turnaround.mjs` views `game`, `game front`) as well as at
+  eye level, and in the looks that draw from the normals (`--look vy`): the owner sees them from above, on a phone
+  ("Why does Vy have lines on her legs no one should have it in any shader").
 - The owner's photographs are not kept in the repository (it is public).
 
 ## Owner's decision — 25 November 2026: the cast are dolls wearing clothes

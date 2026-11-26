@@ -1,0 +1,33 @@
+{
+ "source": "Original Johansson Town head, sculpted in Blender for the game's generator",
+ "character": "Erik",
+ "form": "burly",
+ "generator": "tools/blender/build-erik-head.py",
+ "blender": "5.3.0",
+ "halfAxes": {
+  "width": 1.05,
+  "height": 1.05,
+  "depth": 0.98,
+  "heightOverWidth": 1.0
+ },
+ "radius": {
+  "min": 0.9263,
+  "max": 1.0494
+ },
+ "features_deg": {
+  "brow": 79.73,
+  "eye": 92.36,
+  "nose": 105.05,
+  "mouth": 116.97,
+  "eyeA": 16.16
+ },
+ "profile": {
+  "brow": 0.9981,
+  "eyeSocket": 0.9634,
+  "noseTip": 0.9724,
+  "upperLip": 0.9852,
+  "chin": 1.0299
+ },
+ "jawCorner": 1.0364,
+ "temple": 1.0087
+}

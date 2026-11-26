@@ -81,7 +81,7 @@ const LABEL={
  ...PAINTED_MOUSTACHES,...PAINTED_BEARDS,
  towel:'Bath towel',swimwear:'Swimwear',
  inkoval:'Ink ovals',studio:'Studio proportions',sculpted:'Soft sculpted',panel:'Panel skirt',classic:'Classic',
- crop:'Crop',sidepart:'Side part',bob:'Bob',long:'Long',longfringe:'Long with fringe',softbob:'Soft bob with fringe',sweptponytail:'Swept low ponytail',ponytail:'Ponytail',braids:'Original Thuận braids',longbraids:'Twin braids · Thuan',bun:'Bun',spiky:'Spiky',perm:'Perm',buzz:'Buzz',afro:'Afro',horseshoe:'Horseshoe',bald:'Bald',
+ crop:'Crop',sidepart:'Side part',bob:'Bob',long:'Long',longfringe:'Long with fringe',softbob:'Soft bob with fringe',tiedback:'Tied back, low bun',softwave:'Soft and full, swept back',sweptmop:'Thick, swept across',sweptponytail:'Swept low ponytail',ponytail:'Ponytail',braids:'Original Thuận braids',longbraids:'Twin braids · Thuan',bun:'Bun',spiky:'Spiky',perm:'Perm',buzz:'Buzz',afro:'Afro',horseshoe:'Horseshoe',bald:'Bald',
  pixie:'Pixie',shoulder:'Shoulder',curtains:'Centre part',slick:'Slicked back',mullet:'Mullet',topknot:'Topknot',pigtails:'Pigtails',twinbuns:'Twin buns',
  round:'Round',dot:'Dot',almond:'Almond',sleepy:'Sleepy',lashes:'Lashes',narrow:'Narrow',sparkle:'Sparkle',gentle:'Gentle',
  doe:'Doe',cat:'Cat',droopy:'Droopy',heavy:'Heavy-lidded',bright:'Bright',tired:'Tired',squint:'Squint',starry:'Starry',

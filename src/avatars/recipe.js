@@ -36,7 +36,12 @@ export const PARTS=Object.freeze({
  head:HEAD_FORMS,
  hair:Object.freeze(['crop','sidepart','bob','long','ponytail','sweptponytail','braids','longbraids','bun','spiky','perm','buzz','afro','horseshoe','bald','pixie','shoulder','curtains','slick','mullet','topknot','pigtails','twinbuns','longfringe',
   // Appended (no saved id moves): a chin-length bob with a wispy fringe, sculpted in Blender (build.js SOFTBOB).
-  'softbob']),
+  'softbob',
+  // Appended: tied back off the forehead to a low bun, a loose wisp by each ear (build.js, tools/blender/build-thao-head.py).
+  'tiedback',
+  // Appended: soft full white hair swept up off the forehead (Christina's), and a thick straight mop swept across it
+  // from a side parting (Sverker's): tools/blender/build-christina-head.py, build-sverker-head.py.
+  'softwave','sweptmop']),
  eyes:Object.freeze(['round','dot','almond','sleepy','lashes','narrow','sparkle','gentle','doe','cat','droopy','heavy','bright','tired','squint','starry','inkoval',
   // Appended (no saved id moves): drawn for Vy (eyes3d.js): a big warm iris under a soft lid.
   'dewy']),
@@ -75,7 +80,9 @@ export const PARTS=Object.freeze({
 });
 
 /** The prints a top can carry (garment.js), in the order the maker offers them. */
-export const PATTERNS=Object.freeze(['none','flowers','stripes','dots']);
+export const PATTERNS=Object.freeze(['none','flowers','stripes','dots',
+ // Appended: a checked shirt (Erik's). Not dealt by the dice, so no stranger's look changes.
+ 'check']);
 /** The patterns a bottom can carry: plaid on a skirt, stripes down trousers (build.js), in the order the maker offers them. */
 export const BOTTOM_PATTERNS=Object.freeze(['none','plaid','stripes']);
 /** Bottoms that are skirts: they hang from the waist as cloth on springs (build.js, springs.js), not as two legs. */
@@ -144,7 +151,8 @@ export function normalizeRecipe(input={}){
   body:sub('body',{height:num,build:num,proportion:(v)=>pick(['classic','rounded','studio'],v,'classic'),silhouette:(v)=>pick(PARTS.silhouette,v,'neutral'),skin:col,
    // 'sturdy': a thick neck, square shoulders and a barrel chest; 'graceful': a slender neck, narrow sloping shoulders, a
    // waist, slim arms and legs (build.js measure, torsoProfile). Absent from older recipes: standard.
-   frame:(v)=>pick(['standard','sturdy','graceful'],v,'standard')}),
+   // 'stout' (appended): a big man heavy in the middle, a belly the widest of him.
+   frame:(v)=>pick(['standard','sturdy','graceful','stout'],v,'standard')}),
   head:sub('head',{size:num,shape:num,form:(v,f)=>pick(HEAD_FORMS,v,f),jaw:num,cheeks:num,roundness:num,
    // A head smaller or larger than the size slider reaches (0.7 to 1.3 of it; absent: 1). Not a creator dial.
    scale:(v)=>Number.isFinite(+v)&&v!==undefined&&v!==null?Math.min(1.3,Math.max(.7,+v)):1}),
@@ -239,7 +247,7 @@ export function randomRecipe(seed=Math.random().toString(36)){
   glasses:{style:r()<.25?any(PARTS.glasses.slice(1)):'none',colour:any(['#2b2b2b','#8a4a3a','#c8a060','#e06a7a']),size:.35+r()*.3,height:.4+r()*.2},
   facial:{moustache:age==='adult'&&!feminine&&r()<.22?any(PARTS.moustache.slice(1,5)):'none',beard:age==='adult'&&!feminine&&r()<.2?any(PARTS.beard.slice(1)):'none',colour:'#3a2618',size:.35+r()*.3,height:.4+r()*.2},
   blush:feminine?.3+r()*.4:r()*.2,freckles:r()<.12,mole:r()<.1,moleSpot:{x:r(),height:r(),size:.3+r()*.4},wrinkles:older?.5+r()*.5:0,
-  outfit:{top:any(DICE.tops),topColour:any(pal.cloth),pattern:r()<.3?any(PATTERNS.slice(1)):'none',
+  outfit:{top:any(DICE.tops),topColour:any(pal.cloth),pattern:r()<.3?any(PATTERNS.slice(1,4)):'none',
    bottom:feminine&&r()<.4?any(DICE.skirtsAndWide):any(DICE.trousers),bottomColour:any(DICE.bottomColours),shoes:any(DICE.shoes),footwear:any(DICE.footwear),hat:'none',hatColour:'#f4f1ea',accent:any(pal.cloth)},
   profile:{pace:r(),talk:r(),show:r(),outlook:r(),pitch:feminine?.45+r()*.5:r()*.6,speed:r(),month:1+Math.floor(r()*12),day:1+Math.floor(r()*28),favourite:any(pal.cloth)},
  });

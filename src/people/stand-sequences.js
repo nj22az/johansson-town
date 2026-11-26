@@ -62,8 +62,8 @@ export const STAND_SEQUENCES=Object.freeze(Object.fromEntries([
   pt(-1.8,2.2,S,[120,600],'at the counter window, for people who come up to ask the way','the window desk in the bay where the police box’s window is now',{pose:'CounterIdle'}),
   pt(.55,1.95,W,[120,300],'pinning the week’s notices on the lobby board','the lobby notice board on the partition: lost property, the traffic-safety week, the typhoon notice',{pose:'Interact'}),
  ]),
- // ── Gran Higa's garden (the dressed Kinjō lot, world/okinawa/lots.js KINJO; world frame) ──
- seq('higa-garden','world','Grandmother Higa','An obaa’s morning garden round before the bath: the vines, the water, the beds and the altar flowers (the lot’s hours: from six to half past eight).',[
+ // ── Christina's garden (the dressed Kinjō lot, world/okinawa/lots.js KINJO; world frame) ──
+ seq('higa-garden','world','Christina','An obaa’s morning garden round before the bath: the vines, the water, the beds and the altar flowers (the lot’s hours: from six to half past eight).',[
   pt(-31.4,-8.4,W,[300,900],'tying up the gōyā vines on the A-frame','the gōyā frame against the west wall, out of the salt wind',{pose:'Interact'}),
   pt(-30.1,-10.0,E,[120,300],'filling the watering can from the water jar','the kame by the gate, filled from the hose so the water is warm for the beds',{pose:'Interact'}),
   pt(-30.5,-6.6,E,[300,900],'weeding the island greens','the greens and chillies east of the path, in the morning sun',{pose:'Interact'}),
@@ -86,7 +86,7 @@ export const STAND_SEQUENCES=Object.freeze(Object.fromEntries([
   pt(-12.45,20.95,W,[120,300],'pinning up the new notices','the noticeboard over the bench, where the street reads while its washing goes round',{pose:'Interact'}),
  ]),
  // ── The harbour agent's round of the quay (world frame) ──
- seq('harbour-round','world','Harbour master','Between the lunch and the evening boat Jack walks the quay with the freight book: the sailing list, the boats’ lines, the fuel and the east quay’s boats.',[
+ seq('harbour-round','world','Sverker','Between the lunch and the evening boat Sverker walks the quay with the freight book: the sailing list, the boats’ lines, the fuel and the east quay’s boats.',[
   pt(5.0,-45.0,E,[120,300],'checking the sailing list under the canopy','the timetable poster on the hall’s pier between the tower and the glass (port-building.js), which he keeps up to date, clear of the hall’s doors',{pose:'Think'}),
   pt(15,-48.6,N,[120,480],'looking over the fishing boat’s head line','the fishing boat’s bow bollard (minato-berth.js QUAY_FISHING_BOAT)',{pose:'Think'}),
   pt(18.2,-48.6,N,[120,300],'reading the diesel meter for the freight book','the co-op’s fuel point on the kerb (quay-dressing.js)',{pose:'Interact'}),

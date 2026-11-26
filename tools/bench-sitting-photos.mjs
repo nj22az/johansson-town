@@ -99,7 +99,7 @@ try{
  {const [x,,z]=park.seat.position;await shot('skirt-and-trousers',{pos:[x-2.2,1.2,z+.3],at:[x,.6,z]});await shot('skirt-and-trousers-side',{pos:[x-1.2,.75,z-2.2],at:[x+.05,.5,z]});}
  await page.evaluate(()=>window.__bench.clear());
  const shade=await page.evaluate(()=>window.__bench.places('Sit under the gajumaru'));console.log('gajumaru bench',JSON.stringify(shade));
- await page.evaluate(()=>{window.__bench.sit('Sit under the gajumaru',0,'Grandmother Higa');window.__bench.sit('Sit under the gajumaru',1,'sundress');});
+ await page.evaluate(()=>{window.__bench.sit('Sit under the gajumaru',0,'Christina');window.__bench.sit('Sit under the gajumaru',1,'sundress');});
  {const [x,,z]=shade.seat.position;await shot('long-skirt-and-dress',{pos:[x+.2,1.2,z-2.2],at:[x,.6,z]});await shot('long-skirt-and-dress-side',{pos:[x+2.2,.75,z-1.1],at:[x,.5,z]});}
 }finally{await writeFile(resolve(out,'report.json'),JSON.stringify(report,null,2)+'\n');await browser.close();server.close();}
 console.log(JSON.stringify({shots:report.shots.length,errors:report.errors}));

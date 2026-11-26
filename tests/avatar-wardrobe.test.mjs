@@ -4,7 +4,7 @@ import * as THREE from '../vendor/three.module.js';
 import {installDOM} from './fixtures.mjs';
 import {normalizeRecipe,PARTS} from '../src/avatars/recipe.js';
 import {CAST_RECIPES,recipeFor} from '../src/avatars/cast.js';
-import {residentRecipe,saveResidentRecipe,adoptResidentAppearance,WARDROBE_KEY,APPEARANCE_REVISION_KEY} from '../src/avatars/wardrobe.js';
+import {residentRecipe,saveResidentRecipe,adoptResidentAppearance,WARDROBE_KEY,APPEARANCE_REVISION_KEY,APPEARANCE_REVISIONS} from '../src/avatars/wardrobe.js';
 import {buildAvatar,buildHatProp} from '../src/avatars/build.js';
 import {createLocalCharacters} from '../src/people/models.js';
 
@@ -36,7 +36,7 @@ test('shared wardrobe preserves every character’s chosen outfit across save an
  const values=new Map(),storage={getItem:k=>values.get(k),setItem:(k,v)=>values.set(k,v)};
  const outfit={...CAST_RECIPES.Johansson.outfit,top:'sundress',bottom:'pleatedskirt'};
  assert.equal(outfitAllowedFor('Johansson',outfit),true);assert.equal(outfitAllowedFor('Thuan',outfit),true);
- storage.setItem(PLAYER_RECIPE_KEY,encodeRecipe({...CAST_RECIPES.Johansson,outfit}));
+ savePlayerRecipe({...CAST_RECIPES.Johansson,outfit},storage);assert.ok(storage.getItem(PLAYER_RECIPE_KEY));
  assert.equal(playerRecipe(storage).outfit.bottom,'pleatedskirt');assert.equal(playerRecipe(storage).outfit.top,'sundress');assert.equal(normalizeRecipe(playerRecipe(storage)).outfit.bottom,'pleatedskirt','Chosen wardrobe must survive the renderer’s recipe normalization');
  savePlayerRecipe({...CAST_RECIPES.Johansson,outfit},storage);assert.equal(outfitAllowedFor('Johansson',playerRecipe(storage).outfit),true);
 });
@@ -51,7 +51,7 @@ test('Vy adopts the approved appearance once, keeps her profile and respects lat
  const adopted=adoptResidentAppearance('Vy',canonical,storage);
  assert.deepEqual(adopted.head,canonical.head);assert.deepEqual(adopted.body,canonical.body);assert.deepEqual(adopted.outfit,canonical.outfit);assert.deepEqual(adopted.profile,old.profile);
  assert.deepEqual(residentRecipe('Vy',storage),adopted);assert.deepEqual(residentRecipe('Thuan',storage),other);
- assert.equal(JSON.parse(storage.getItem(APPEARANCE_REVISION_KEY)).Vy,1);
+ assert.equal(JSON.parse(storage.getItem(APPEARANCE_REVISION_KEY)).Vy,APPEARANCE_REVISIONS.Vy);
  const edited=saveResidentRecipe('Vy',{...adopted,outfit:{...adopted.outfit,bottomColour:'#ffcc00'}},storage);
  assert.deepEqual(adoptResidentAppearance('Vy',canonical,storage),edited,'later deliberate edits survive repeated startup');
  assert.deepEqual(adoptResidentAppearance('Vy',canonical,null),canonical,'works when browser storage is unavailable');
@@ -67,4 +67,23 @@ test('a saved player using old Vy upgrades once and keeps later wardrobe edits',
  const adopted=playerRecipe(storage);assert.equal(adopted.body.proportion,'studio');assert.equal(adopted.outfit.skirtCut,'panel');
  savePlayerRecipe({...adopted,outfit:{...adopted.outfit,bottomColour:'#ffcc00'}},storage);
  assert.equal(playerRecipe(storage).outfit.bottomColour,'#ffcc00');
+});
+
+test('a drawing redone since a device saved its copy replaces that copy once: the player\'s Johansson and the residents',async()=>{
+ // The owner, 26 November 2026, with his phone showing the Johansson it had saved before he was redrawn: "Johansson's face??".
+ const {playerRecipe,savePlayerRecipe,PLAYER_RECIPE_KEY}=await import('../src/avatars/actors.js');
+ const {encodeRecipe}=await import('../src/avatars/recipe.js');
+ for(const name of ['Johansson','Thuan','Tetsuo','Vy','Thao'])assert.ok(APPEARANCE_REVISIONS[name]>=1,name+' was redrawn');
+ const values=new Map(),storage={getItem:k=>values.get(k),setItem:(k,v)=>values.set(k,v)};
+ const canonical=recipeFor('Johansson'),stale=normalizeRecipe({...canonical,body:{...canonical.body,skin:'#c98f63',frame:'standard'},head:{...canonical.head,form:'round',scale:1},brows:{...canonical.brows,style:'thin',colour:'#8b8782'}});
+ storage.setItem(PLAYER_RECIPE_KEY,encodeRecipe(stale));
+ const now=playerRecipe(storage);
+ assert.deepEqual(now.head,canonical.head);assert.equal(now.body.skin,canonical.body.skin);assert.equal(now.brows.style,canonical.brows.style);
+ // What the player then chooses is kept.
+ savePlayerRecipe({...now,outfit:{...now.outfit,topColour:'#aa3322'}},storage);assert.equal(playerRecipe(storage).outfit.topColour,'#aa3322');
+ // A resident's saved copy, the same.
+ const thao=recipeFor('Thao'),old=normalizeRecipe({...thao,hair:{...thao.hair,style:'ponytail'},head:{...thao.head,form:'oval'}});
+ storage.setItem(WARDROBE_KEY,JSON.stringify({Thao:encodeRecipe(old)}));
+ assert.equal(adoptResidentAppearance('Thao',thao,storage).hair.style,thao.hair.style);
+ assert.equal(adoptResidentAppearance('Thao',thao,storage).head.form,thao.head.form);
 });

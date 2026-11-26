@@ -14,7 +14,8 @@
  * phase that renames the person. `home` is the primary home (a registry id, island-households.js), `berth` duty
  * accommodation aboard, `room` a secondary shore room (none now: Thuan's weekday room is dropped, addendum 4), and
  * `oldHomes` the home ids the person no longer has, for the save migration. `avatar` names the authored look World
- * draws them as until a later phase decides otherwise (Jack and Mac keep the looks of the people they replace; the
+ * draws them as until a later phase decides otherwise (Sverker and Erik, Jack and Mac then, kept the looks of the people they replaced until they were drawn from the owner's
+ * photographs, 26 November 2026; the
  * supporting crew have recipes of their own since phase 2, avatars/cast.js CREW_LOOKS).
  *
  * Reconciled against the source, 19 October 2026 (the brief asks for one plan, not two):
@@ -26,14 +27,14 @@
  *  - The manning plan's post key stays `oiler` (world/ferry-ship.js FERRY_MANNING; ferry-operations.js tasks and
  *    scenarios key on it). The post's title is Motorman; SHIP_POST_ALIASES maps `motorman` to it, the brief's
  *    compatibility layer, so no machinery task or safe-departure check changes with the label.
- *  - Jack takes both of the Harbour master's shore keys (`port`: the berth and the office radio) and Mr Fujita's
+ *  - Sverker (Jack then) takes both of the old Harbour master's shore keys (`port`: the berth and the office radio) and Mr Fujita's
  *    `linesman` at Minato, since Fuji goes to the bridge. Kai keeps `airport-linesman`.
  *  - Kai's home: the brief (§10) recommends kitano-2, the vacant Shiroma house, if its access and interior suit. Phase 2
  *    inspected it (world/kitano-hamlet.js): a walled plot with its gate on the hamlet lane, a concrete house with the
  *    family-home interior every Kitahama house has (world/interiors/family-home.js: a bed, a table, a door), its
  *    nameplate and visit prompt, 25 m from the pier he works. He rents it from the Shiromas in Naha. It is recorded
  *    as supporting accommodation (QUARTERS, the registry's `quarters` flag), outside the core households.
- *  - Ages and sexes come from cast.js. Jack and Mac carry the ages of the identities they replace (58 and 61); the
+ *  - Ages and sexes come from cast.js. Sverker and Erik carry the ages of the identities they replace (58 and 61); the
  *    brief gives none. Dr Ken's full name joins the brief's display name to the source's surname Kakazu. The
  *    supporting crew's ages are phase 2's (cast.js gives everybody one).
  *  - The aboard quarters of the supporting crew (QUARTERS) are the brief's "existing officer/crew accommodation
@@ -41,9 +42,16 @@
  *    drawn she has berths for the mate (his cabin), the deck hand (the deckhand's cabin) and two in the crew cabin,
  *    the bosun's on her week on and the relief engineer's duty berth; the purser's and the cook's berths are two more
  *    bunks in the crew cabin that the docks-and-boats job draws (recorded in QUARTERS, not invented here).
- *  - Display names: the live cast still calls Fuji, Jack, Nao and Koji by their former names (castMember resolves
- *    both); phase 5's directory and story sweep renames them with the rest of the cast. Mac is renamed in phase 2,
+ *  - Display names: the live cast still calls Fuji, Nao and Koji by their former names (castMember resolves
+ *    both); phase 5's directory and story sweep renames them with the rest of the cast. Erik is renamed in phase 2,
  *    since a Japanese surname on an American relief engineer's prompt would contradict his biography.
+ *
+ * Renamed by the owner, 26 November 2026, each with a photograph to be drawn from: "This is Mrs Higa who should be renamed
+ * to Christina and she should not have a wheelchair", "This is Mac who should be renamed Erik", "This is the harbour master
+ * Sverker". Gran Higa (Grandmother Higa in the live cast) is Christina, Mac is Erik, and Jack (the Harbour master in the
+ * live cast) is Sverker: one name each now, in the roster, the live cast and the drawings. The ids stay (`gran-higa`,
+ * `mac`, `jack`: machine keys, never shown), the old names are `was`, so saves and saved looks written under them still
+ * resolve, and nothing else about them is changed: their posts, homes, families and written biographies are as they were.
  */
 const who=(id,o)=>Object.freeze({id,name:o.name,fullName:o.fullName||o.name,category:o.category||'core',sex:o.sex,
  age:o.age??null,nationality:o.nationality||null,was:Object.freeze(o.was||[]),avatar:o.avatar||null,role:o.role,
@@ -67,8 +75,8 @@ export const CORE=Object.freeze([
   role:'fisherman and the bosun’s relief; drives Sakura Trading’s round in his kei truck on his weeks ashore, paid by the round (Higa Liquor’s until it closed, 22 October 2026); Nhung’s husband and Riku’s father'}),
  who('riku',{name:'Riku',sex:'m',age:9,avatar:'Riku',home:'kitahama-3',role:'Nhung and Koji’s son; a pupil at the island school; Vy’s cousin'}),
  who('yui',{name:'Yui',fullName:'Yui Higa',sex:'f',age:29,nationality:'Japanese',was:['Yonamine-sensei','Mrs Higa','Miss Higa'],avatar:'Miss Higa',home:'higa',
-  role:'the island’s schoolteacher; Gran Higa’s granddaughter; helps at the bathhouse after school and at weekends'}),
- who('gran-higa',{name:'Gran Higa',fullName:'Grandmother Higa',sex:'f',age:78,nationality:'Japanese',was:['Grandmother Higa'],avatar:'Grandmother Higa',home:'higa',
+  role:'the island’s schoolteacher; Christina’s granddaughter; helps at the bathhouse after school and at weekends'}),
+ who('gran-higa',{name:'Christina',fullName:'Christina Higa',sex:'f',age:78,nationality:'Japanese',was:['Gran Higa','Grandmother Higa'],avatar:'Christina',home:'higa',
   role:'owns Umi-no-yu and keeps it by day; her liquor shop is shut, its trade Sakura’s (the owner, 22 October 2026), and its room is Kissa Higa, her morning coffee shop on weekdays (30 October 2026); the family’s ties in town'}),
  who('tetsu',{name:'Tetsu',fullName:'Tetsuo Chinen',sex:'m',age:40,nationality:'Japanese',was:['Tetsuo'],avatar:'Tetsuo',shore:['electrician'],home:'resident-home-kenji',
   role:'electrician; workshop partner of Chin; maintains the ship’s electrical equipment, the bathhouse’s plant and the island’s electrical systems'}),
@@ -78,9 +86,9 @@ export const CORE=Object.freeze([
   role:'the island’s police officer; the desk and the night patrol; his accommodation moves into the police station to come (addendum 1), koban staying his home id'}),
  who('fuji',{name:'Fuji',fullName:'Fujita',sex:'m',age:63,nationality:'Japanese',was:['Mr Fujita'],avatar:'Mr Fujita',post:'master',home:'fujita-houseboat',
   role:'master of the Minato Maru; sober on watch, the shed and the beer only after he signs off; lives aboard Shiosai'}),
- who('jack',{name:'Jack',fullName:'Jack Reed',sex:'m',age:58,nationality:'American',was:['Harbour master'],avatar:'Harbour master',shore:['port','linesman'],home:'office',
+ who('jack',{name:'Sverker',fullName:'Sverker Reed',sex:'m',age:58,nationality:'American',was:['Jack','Jack Reed','Harbour master'],avatar:'Sverker',shore:['port','linesman'],home:'office',
   role:'harbour agent: berth communications, freight and Minato’s shore-side mooring; an American former merchant seaman, long settled here'}),
- who('mac',{name:'Mac',fullName:'Mac Turner',sex:'m',age:61,nationality:'American',was:['Mr Nakandakari'],avatar:'Mr Nakandakari',relief:'chief',shore:['relief-engineer'],home:'kitahama-flat-3',berth:'ferry-engineer-duty-berth',oldHomes:['ferry'],
+ who('mac',{name:'Erik',fullName:'Erik Turner',sex:'m',age:61,nationality:'American',was:['Mac','Mac Turner','Mr Nakandakari'],avatar:'Erik',relief:'chief',shore:['relief-engineer'],home:'kitahama-flat-3',berth:'ferry-engineer-duty-berth',oldHomes:['ferry'],
   role:'relief engineer of the Minato Maru; an older American engineer, an established island resident; a shore home and a separate duty berth'}),
  who('nao',{name:'Nao',fullName:'Nao Uezu',sex:'f',age:44,nationality:'Japanese',was:['Ms Uezu'],avatar:'Ms Uezu',post:'bosun',home:'kitahama-8',
   role:'bosun of the Minato Maru; a shore home and a credible relief rota with Koji'}),

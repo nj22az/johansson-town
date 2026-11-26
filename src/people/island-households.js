@@ -7,7 +7,7 @@ const home=(id,address,district,entranceSiteId,extra={})=>Object.freeze({
 });
 /**
  * Kitahama Heights (docs/CAST-CONSOLIDATION.md addendum 6): two attached ground-floor houses on Fukugi Lane, each with
- * its own front door, gate and garden, no corridor, no stair, no upper storey. The logical ids kitahama-flat-3 (Mac)
+ * its own front door, gate and garden, no corridor, no stair, no upper storey. The logical ids kitahama-flat-3 (Erik)
  * and kitahama-flat-4 (Mika) are kept for the save migration; the houses are shown as Kitahama Heights A (the north
  * house) and B (the south house), letters so that no former flat number is mistaken for a door. Flats 1 and 2 were
  * retired with their occupants (roster.js RETIRED_HOMES); kitahama-layout.js draws the geometry from this list.
@@ -108,7 +108,7 @@ export const householdTitle=id=>{
 export function homeNameplate(id){
  const h=householdAtHome(id);if(!h||h.retired)return null;
  const address=h.address.replace(/,.*$/,'');
- // The only secondary homes left are duty berths aboard (Johansson's cabin, Mac's berth).
+ // The only secondary homes left are duty berths aboard (Johansson's cabin, Erik's berth).
  return {title:householdTitle(h),address,owners:h.toLet?'To let':h.members.filter(m=>!m.secondary).map(m=>m.name).join(' · '),
   secondary:h.members.filter(m=>m.secondary).map(m=>m.name+' · duty berth').join('; '),vacant:h.toLet};
 }

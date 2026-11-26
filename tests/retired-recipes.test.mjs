@@ -1,6 +1,6 @@
 // The retired identities (people/roster.js RETIRED: phase 5 of docs/CAST-CONSOLIDATION.md's ten, and Dr Kakazu, retired
 // into Nhung on 22 October 2026) keep their drawings, walks and costumes for Studio and for a history story, and nothing
-// live lists or spawns them; the live cast of 25 is what every live list names, by the names World calls them (Mac,
+// live lists or spawns them; the live cast of 25 is what every live list names, by the names World calls them (Erik,
 // Ms Ganaha), and Studio finds them so.
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
@@ -38,18 +38,19 @@ test('every live list is exactly the 23, by the names World uses, and Studio gro
  assert.equal(CAST_NAMES.length,23);assert.equal(CORE.length+SUPPORTING.length,23);
  for(const name of CAST_NAMES)assert.ok(RESIDENT_NAMES.includes(name),name+' is missing from the Studio lists');
  for(const name of RESIDENT_NAMES)assert.ok(!retired.includes(name));
- assert.deepEqual([...RESIDENT_GROUPS.crew].sort(),['Aya','Jun','Kai','Mac','Ms Ganaha','Ms Uezu','Ren','Ryo'],'the crew group names the people, not the job roles or the old surname');
+ assert.deepEqual([...RESIDENT_GROUPS.crew].sort(),['Aya','Erik','Jun','Kai','Ms Ganaha','Ms Uezu','Ren','Ryo'],'the crew group names the people, not the job roles or the old surname');
  assert.ok(!RESIDENT_NAMES.includes('Mr Nakandakari')&&!RESIDENT_NAMES.includes('Emi')&&!RESIDENT_NAMES.includes('Chief officer'));
- assert.ok(CREW_LOOKS['Mr Nakandakari']&&recipeFor('Mac').hair.colour===CREW_LOOKS['Mr Nakandakari'].hair.colour,'Mac keeps the relief engineer’s drawing');
+ assert.ok(CREW_LOOKS.Erik&&recipeFor('Erik').hair.colour===CREW_LOOKS.Erik.hair.colour,'Erik is drawn as the crew drawing that is his');
+ for(const old of ['Mac','Mr Nakandakari'])assert.equal(recipeFor(old).head.form,recipeFor('Erik').head.form,old+' still finds him');
  assert.ok(recipeFor('Ms Ganaha').outfit&&recipeFor('Mika').outfit.top===recipeFor('Ms Ganaha').outfit.top,'the roster name and the live name draw the same person');
 });
 
-test('the Studio tools resolve the live names Mac and Ms Ganaha, in the crew group',async()=>{
+test('the Studio tools resolve the live names Erik and Ms Ganaha, in the crew group',async()=>{
  const {context,callTool}=await import('../tools/studio/tools.mjs');const ctx=await context();
  try{
-  const mac=await callTool('character_get',{name:'Mac'},ctx);assert.equal(mac.error,undefined);assert.equal(mac.group,'crew');assert.equal(mac.home.id,'kitahama-flat-3');assert.match(mac.source,/CREW_LOOKS/);
+  const mac=await callTool('character_get',{name:'Erik'},ctx);assert.equal(mac.error,undefined);assert.equal(mac.group,'crew');assert.equal(mac.home.id,'kitahama-flat-3');assert.match(mac.source,/CREW_LOOKS/);
   const ganaha=await callTool('character_get',{name:'Ms Ganaha'},ctx);assert.equal(ganaha.group,'crew');assert.equal(ganaha.home.id,'kitahama-flat-4');
-  const crew=await callTool('character_list',{group:'crew'},ctx);assert.deepEqual(crew.characters.map(c=>c.name).sort(),['Aya','Jun','Kai','Mac','Ms Ganaha','Ms Uezu','Ren','Ryo']);
+  const crew=await callTool('character_list',{group:'crew'},ctx);assert.deepEqual(crew.characters.map(c=>c.name).sort(),['Aya','Erik','Jun','Kai','Ms Ganaha','Ms Uezu','Ren','Ryo']);
   const all=await callTool('character_list',{},ctx);for(const name of retired)assert.ok(!all.characters.some(c=>c.name===name),name+' is listed by Studio');
   for(const name of CAST_NAMES)assert.ok(all.characters.some(c=>c.name===name),name+' is missing from Studio’s list');
  }finally{await ctx.close();}

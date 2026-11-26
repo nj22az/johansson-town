@@ -46,7 +46,7 @@ export const ISLAND_PLACES=Object.freeze([
 
  // Johansson Island, beyond Main Street.
  {id:'umi-no-yu',name:'Umi-no-yu',island:'johansson',kind:'bath',
-  says:'The sea-water bath in Harbour Park, opposite Sakura. Follow the park path straight on from the gate to its door. Ten in the morning till ten at night, ¥300 for adults and ¥150 for children. The footbath keeps the bath’s hours and is free for residents. Grandmother Higa owns it and keeps the counter by day; her granddaughter, Miss Higa, has it in the evenings.',
+  says:'The sea-water bath in Harbour Park, opposite Sakura. Follow the park path straight on from the gate to its door. Ten in the morning till ten at night, ¥300 for adults and ¥150 for children. The footbath keeps the bath’s hours and is free for residents. Christina owns it and keeps the counter by day; her granddaughter, Miss Higa, has it in the evenings.',
   checks:[['src/world/island-plan.js','The park opposite Sakura: Umi-no-yu'],['src/world/park.js','Straight on from the gate is Umi-no-yu'],['src/world/park-onsen.js','Bath 10:00–22:00, adults ¥300, children ¥150'],['src/world/park-onsen.js','The footbath keeps the bath’s hours and is free for residents'],['src/people/cast.js','owns Umi-no-yu and keeps its bandai by day'],['src/people/cast.js','keeps the bandai at Umi-no-yu in the evenings']]},
 
 ]);

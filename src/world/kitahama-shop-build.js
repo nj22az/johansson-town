@@ -12,7 +12,7 @@ import {kitahamaShopFrontage} from './interiors/kitahama-shop-room.js';
  * (lots.js 'shop-apron', ground-plan-quarters.js KITAHAMA_PADS).
  *
  * Batch 1 of bringing it in (the owner, 27 October 2026: "So bring the new shop to the island?"): the building stands, the
- * inside shows through the glass, and it is solid. Walking in is batch 2, Grandmother Higa behind the till batch 3
+ * inside shows through the glass, and it is solid. Walking in is batch 2, Christina behind the till batch 3
  * (briefs/HANDOFF-KITAHAMA-SHOP-2026-10-27.md); until then the door is shut and says when it opens.
  *
  * Streamed in near the player like the other model buildings (detail-stream.js); until it has loaded, a cream stand-in
@@ -82,14 +82,14 @@ export function buildKitahamaShop({world,group=world.group,register,onAction,ent
  // The shop as a place you go into (game.js roomShell 'kitahama-shop'): its door on the lane, its front glazing on the
  // real street (interiors/kitahama-shop-room.js).
  const site={id:'kitahama-shop',title:SHOP.name,jp:SHOP.jp+' '+SHOP.branch,sub:'CORNER SHOP · KITAHAMA',color:0x2e7a4e,accent:'#2e7a4e',
-  line:'Grandmother Higa’s corner shop · '+HOURS.signEnglish,opens:'17:30',x:dx,z:dz,
+  line:'Christina’s corner shop · '+HOURS.signEnglish,opens:'17:30',x:dx,z:dz,
   // On the forecourt, a stride clear of the glass (the walls' collider starts at the glass), so you come out onto it.
   door:[dx,0,dz-.45],exitPosition:[dx,0,dz-.45],approachPosition:[dx,0,dz-1.2],entryFacing:Math.PI,
   streetFrontage:kitahamaShopFrontage(WORLD,SHOP_PAD_TOP)};
  sites?.push(site);
  anchor((door.from+door.to)/2,-.5,1.3,'Go into Johansson Mart',()=>{
   if(kitahamaShopOpen(minutes))return enter?.(site);
-  onAction?.('read',SHOP.name+' · '+SHOP.branchEnglish,'The hours on the door: '+HOURS.signEnglish+'\n\nShut. Grandmother Higa keeps the till here when Sakura is shut: weekday evenings and Saturdays.');
+  onAction?.('read',SHOP.name+' · '+SHOP.branchEnglish,'The hours on the door: '+HOURS.signEnglish+'\n\nShut. Christina keeps the till here when Sakura is shut: weekday evenings and Saturdays.');
  });
  const vm=OUTSIDE.find(o=>o.id==='X1');
  anchor((vm.min[0]+vm.max[0])/2,vm.min[1]-.4,1.1,'Look at the drinks machines',()=>onAction?.('read','Minato Drinks · Kitahama',
