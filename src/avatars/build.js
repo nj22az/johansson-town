@@ -318,9 +318,11 @@ const HAND_WEAR=Object.freeze({wrist:.08,length:1.8});
  *   middle that far off it; `reach`: how far anything of it does on that side, the thumb too;
  * - `palm`: the way the palm faces ([-1, 0, 0]: at rest, toward the body);
  * - `touch`: points of its drawn surface (the solver's envelope): in five bands from the wrist to the fingertips, the
- *   farthest out toward the palm, the back, either side and the four ways between, then the fingertip, the thumb's tip, and every finger's tip and
+ *   farthest out toward the palm, the back and either side, then the fingertip, the thumb's tip, and every finger's tip and
  *   the farthest of it toward the palm; `inset`: how far that
- *   envelope stands inside the drawn surface (metres for a body of 1.6 m: none, they are its points);
+ *   envelope stands inside the drawn surface (metres for a body of 1.6 m: none, they are its points); `gap`: how far it is
+ *   kept off what the hand is laid on (a few millimetres: resting on it; the mitten's, whose envelope was its round, a
+ *   centimetre);
  * - `fist`: the tip, centre, half-sizes, lie and envelope of the hand closed (the kit's grip shape): a fist, a hand round a
  *   handle or a collar; `hold`: the closed hand's hollow, the round bar it closes on ({at, radius}: its axis, across the
  *   hand, and its radius).
@@ -345,7 +347,7 @@ export const HAND=(()=>{
   // its fingers and the heel of the palm; a fist, on its curled fingers)
   const lie=Math.max(...flat.map(p=>-p[0]));
   const touch=[];
-  for(const u of [.7,.35,0,-.35,-.7]){const b=band(u);for(const f of [p=>-p[0],p=>p[0],p=>p[2],p=>-p[2],p=>p[2]-p[0],p=>-p[2]-p[0],p=>p[2]+p[0],p=>p[0]-p[2]])touch.push(far(b,f).slice(0,3));}
+  for(const u of [.7,.35,0,-.35,-.7]){const b=band(u);for(const f of [p=>-p[0],p=>p[0],p=>p[2],p=>-p[2]])touch.push(far(b,f).slice(0,3));}
   touch.push(far(P,p=>-p[1]).slice(0,3),far(P,p=>p[2]).slice(0,3));
   // (and every finger's tip and its palm's side: a fingertip curled over a thigh's side went into the cloth hung there)
   for(const f of fingers){const F=f.map(i=>P[i]);touch.push(far(F,p=>-p[1]).slice(0,3),far(F,p=>-p[0]).slice(0,3));}
@@ -361,13 +363,13 @@ export const HAND=(()=>{
    if(round>20&&lo>(hold?.radius||0))hold={at:Object.freeze([r(cx),r(y),0]),radius:r(lo)};}}
  // (where a fingertip pushes: the middle finger's half-thickness up from its end, three quarters down it)
  const finger=rest.filter(p=>Math.abs(p[3]+.75)<.06&&Math.abs(p[2]-.19*S)<.2*S),end=open.tip+(Math.max(...finger.map(p=>p[0]))-Math.min(...finger.map(p=>p[0])))/2;
- return Object.freeze({inset:0,top,knuckles:r(knuckles),...open,end:r(end),middle:Object.freeze([0,r(knuckles/2),0]),palm:Object.freeze([-1,0,0]),hold:hold&&Object.freeze(hold),
+ return Object.freeze({inset:0,gap:.003,top,knuckles:r(knuckles),...open,end:r(end),middle:Object.freeze([0,r(knuckles/2),0]),palm:Object.freeze([-1,0,0]),hold:hold&&Object.freeze(hold),
   // the same, closed (the kit's grip): a fist, or a hand round a handle
   fist:K.grip?Object.freeze(measure(K.grip)):null});
 })();
 /** The mitten's shape in the same terms (HAND), for the Pixar bodies (pixar.js: a hand of their own, `realHand`), whose
  *  poses were made to the mitten's volume with their own hands drawn thin (animate.js `flat`). */
-export const MITTEN=Object.freeze({inset:.008,top:.6,knuckles:-1.1,tip:-1.7,end:-1.45,middle:Object.freeze([0,-.55,0]),centre:Object.freeze([0,-.55,0]),half:Object.freeze([.9,1.15,.78]),lie:.9,palm:null,
+export const MITTEN=Object.freeze({inset:.008,gap:.009,top:.6,knuckles:-1.1,tip:-1.7,end:-1.45,middle:Object.freeze([0,-.55,0]),centre:Object.freeze([0,-.55,0]),half:Object.freeze([.9,1.15,.78]),lie:.9,palm:null,
  touch:Object.freeze([[0,-1.65,0],[.9,-.6,0],[-.9,-.6,0],[0,-.6,.8],[0,-.6,-.8],[.85,-1.2,0],[-.85,-1.2,0],[0,-1.2,.7],[0,-1.2,-.7],[.9,0,0],[-.9,0,0],[0,0,.8],[0,0,-.8],
   ...[[1,1],[1,-1],[-1,1],[-1,-1]].flatMap(([x,z])=>[[.85*x,-.35,.72*z],[.8*x,-1.2,.6*z]])].map(p=>Object.freeze(p)))});
 /** The hand a body poses with: the kit's (closed: a `fist`), or the mitten's for a body with a hand of its own (a Pixar body). */

@@ -429,7 +429,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    return new THREE.Vector3(u.x*S[0],u.y*S[1]+hc,u.z*S[2]).addScaledVector(headNormal([dx,dy,dz]),off*k).applyQuaternion(qHead).add(headAt);};
   const headR=p=>{const q=_p[4].copy(p).sub(headAt).applyQuaternion(qInv);return Math.hypot(q.x/S[0],(q.y-hc)/S[1],q.z/S[2]);};
   const hairAt=p=>{if(!shell)return 1;const q=_p[4].copy(p).sub(headAt).applyQuaternion(qInv);return shell(q.x/S[0],(q.y-hc)/S[1],q.z/S[2]);};
-  const out={};
+  const out={},solved={};
   // A place carried by a bone, with the body in the move's pose: where it is in the chest's frame then.
   const posed=spec.pose?posedPlaces(spec.pose(m)):null,hipsM=spec.pose?chestToHips(spec.pose(m)):null,_h=new THREE.Vector3();
   // how far a point (in the chest's frame) is from the torso: bent, from the hips' part or the chest's, whichever is nearer
@@ -459,6 +459,9 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    // (press), under a load, unless the move says (palm: false). The mitten had no palm, so a body that poses with it (a
    // Pixar body) turns no wrist.)
    const palmWay=H.palm?(want.palm??(want.touch||want.press||want.under?'in':false)):false,wrists=palmWay?3:0;
+   // (a palm, or the back of the hand, laid on the head: its place was set off the face as far as the mitten's middle lay,
+   // which the hand's thinner middle would hold in the air; as far as the hand's lies)
+   if(want.head&&palmWay)target.copy(onHead(flipX([...want.head.slice(0,3),want.head[3]-(MITTEN.lie-H.lie)*m.hand/k])));
    // (the move's own turn of the hand; turning the palm, no further than a wrist goes: a mitten's turns were made to a ball)
    const hand=(want.hand?mirror(want.hand):[0,0,0]).map((v,i)=>{if(!wrists)return v;const b=PALM.wrist[i],f=i?sg:1;return THREE.MathUtils.clamp(v*f,b[0],b[1])*f;});
    const seed=mirror([...(spec.seedFrom?reachFor(spec.seedFrom)[side]:[...want.seed,0]).slice(0,5),...[0,0,0].slice(0,wrists)]);
@@ -549,12 +552,20 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
     else if(!want.cover)for(const q of touch){const p=_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W),r=headR(p),near=hairAt(p);if(r<near)c+=(near-r)**2*300;}
     // (cover: the whole mitten outside the head and its hair, not only its middle, by `cover` metres (6 mm unless said): a
     // mitten laid on the face or the crown)
-    if(want.cover){const gap=(want.cover===true?.006:want.cover)*k/m.Rh;for(const q of touch){const p=_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W),r=headR(p),near=hairAt(p)+gap;if(r<near)c+=(near-r)**2*3000;}}
+    // (and on it, not in the air short of it: the mitten's round reached the face from its place; the hand, thinner, is
+    // kept on the face or the hair as a hand laid on the body is, a few millimetres past the `cover` it keeps off them)
+    if(want.cover){const gap=(want.cover===true?.006:want.cover)*k/m.Rh;let close=Infinity;
+     for(const q of touch){const p=_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W),r=headR(p),near=hairAt(p)+gap;if(r<near)c+=(near-r)**2*3000;if(r-near<close)close=r-near;}
+     if(H!==MITTEN&&close>.004*k/m.Rh)c+=((close-.004*k/m.Rh)*m.Rh/k)**2*CONTACT;}
     // (the middle kept off the body: laid on it, nearly as far as the hand lies (the mitten's share of its own thickness,
     // 0.7 of 0.9); otherwise its own thickness, and the rest of the hand out of it)
     const dm=torso(M),clear=want.touch?m.hand*(want.clear??H.lie*.7/MITTEN.lie):m.hand*H.lie;if(dm<clear)c+=((clear-dm)/k)**2*400;
     // laid on the body, the whole hand stays on it, not in it: its tip and the backs of its sides
-    if(want.touch)for(const q of touch){const d=torso(_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W));if(d<.009*k)c+=((.009*k-d)/k)**2*2000;}
+    // (a lap's cloth lies in folds a few millimetres high that the legs' round does not see: there the mitten's centimetre)
+    if(want.touch){const gap=(spec.ground?MITTEN.gap:H.gap)*k;let near=Infinity;for(const q of touch){const d=torso(_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W));if(d<gap)c+=((gap-d)/k)**2*2000;if(d<near)near=d;}
+     // (and on it, not over it, where the body is what it lies on (a back, a belly, a hip): on a lap the cloth lies between,
+     // and the lap's own surface holds it, below)
+     if(H!==MITTEN&&!spec.ground&&near>(H.gap+.004)*k)c+=((near-(H.gap+.004)*k)/k)**2*CONTACT;}
     // (not laid on it, the whole hand out of it all the same, firmly: where its place is out of reach, it stops at the body)
     else if(H!==MITTEN)for(const q of touch){const d=torso(_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W));if(d<.002*k&&(hipsM||_t.y+chestAt.y>m.hipY+.1*k))c+=((.002*k-d)/k)**2*20000;}
     // (ground: what the hand lies on as it is drawn, a height over [x, z] in the body's frame: a lap and the cloth on it, or
@@ -598,8 +609,18 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    let x=solve(seed);
    if(want.multiStart){for(const candidate of [[-.7,-.45,.4,-1.3,0],[-.7,.45,-.4,-1.3,0],[-1.6,-.3,-.3,-1,.2],[0,0,-.3,-1,0]]){const probe=solve([...candidate,...[0,0,0].slice(0,wrists)]);if(cost(probe)<cost(x))x=probe;}}
    // (the arm's angles, and the hand's turn with the wrist's bend on it, in the right arm's terms)
-   const xr=mirror(x),h=wrists?mirror(hand):want.hand||[0,0,0];
-   out[side]=xr.slice(0,5);out['hand'+side]=wrists?[h[0]+xr[5],h[1]+xr[7],h[2]+xr[6]]:want.hand||null;
+   const finish=x=>{const xr=mirror(x),h=wrists?mirror(hand):want.hand||[0,0,0];
+    out[side]=xr.slice(0,5);out['hand'+side]=wrists?[h[0]+xr[5],h[1]+xr[7],h[2]+xr[6]]:want.hand||null;};
+   // (a side that is the other's mirror ends as its mirror: each arm is solved on its own, and an arm just long enough can
+   // find two places, an elder's one hand on the top of the thigh and the other down its outer side; each is tried from
+   // the other's, and the better of the two kept for both. `mirror` takes either arm's terms to the other's.)
+   const R=solved.R;
+   if(!own&&R&&x.some((v,i)=>Math.abs(v-mirror(R.x)[i])>.05)){
+    const fromR=solve(mirror(R.x));
+    if(cost(fromR)<cost(x))x=fromR;
+    else{const fromL=R.solve(mirror(x));if(R.cost(fromL)<R.cost(R.x))R.finish(R.x=fromL);}
+   }
+   solved[side]={x,cost,solve,finish};finish(x);
   }
   reached.set(name,out);return out;
  }
@@ -1175,20 +1196,25 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // below the hips and a hand over them (above that a dress is going up the body); what a hand laid on the lap lies on)
   // (smooth: each point's height falls away a centimetre at a cell's width from it, so the field has no steps for the
   // solver to catch on, and a body drawn bigger or smaller finds the same hands)
-  const cell=.012*m.k,ceiling=hip.y+leg+m.hand,cells=new Map(),fall=.01*m.k/(cell*cell);
-  for(const [x,y,z] of lapPoints)if(y<ceiling){const key=Math.floor(x/cell)+','+Math.floor(z/cell);(cells.get(key)||cells.set(key,[]).get(key)).push([x,y,z]);}
+  // (a hand over the thigh: over the nearer thigh's line where the point is, which rises to the knee when the knees are up
+  // on the floor; over the hips' height alone, Miss Higa's house dress at her knees was left out and her hands went into it)
+  const _a=new THREE.Vector3(),low=lapPoints.filter(([x,y,z])=>{_a.set(x,y,z);let d=Infinity,ay=hip.y;
+   for(const l of [thigh,thighL]){const e=l.closestPointToPoint(_a,true,near).distanceToSquared(_a);if(e<d){d=e;ay=near.y;}}return y<Math.max(hip.y,ay)+leg+m.hand;});
+  const cell=.012*m.k,cells=new Map(),fall=.01*m.k/(cell*cell);
+  for(const [x,y,z] of low){const key=Math.floor(x/cell)+','+Math.floor(z/cell);(cells.get(key)||cells.set(key,[]).get(key)).push([x,y,z]);}
   const groundAt=(x,z)=>{const i=Math.floor(x/cell),j=Math.floor(z/cell);let h=-Infinity;
    for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++)for(const [px,py,pz] of cells.get((i+a)+','+(j+b))||[]){const v=py-fall*((px-x)**2+(pz-z)**2);if(v>h)h=v;}return h;};
   // (and how far a point is under the cloth that hangs off the lap (a dress draped over a thigh's side, or into the valley
   // between the thighs): nearer the thighs' lines than the nearest of the cloth, within a hand of it, is under it (negative:
   // outside it); the height field sees the cloth only from above)
   const legsAt=[thigh,thighL],fromLeg=p=>Math.min(...legsAt.map(l=>l.closestPointToPoint(p,true,near).distanceTo(p)));
-  const bin=.03*m.k,drape=new Map(),key3=(x,y,z)=>Math.round(x/bin)+','+Math.round(y/bin)+','+Math.round(z/bin);
-  for(const [x,y,z,c] of lapPoints)if(c>.5&&y<ceiling){const k3=key3(x,y,z),q=new THREE.Vector3(x,y,z);q.leg=fromLeg(q);(drape.get(k3)||drape.set(k3,[]).get(k3)).push(q);}
-  const _u=new THREE.Vector3(),fallD=.02*m.k/(bin*bin);
-  // (smooth as the height field is: each of the cloth near the point, its depth less as it is further away)
-  const underCloth=drape.size?p=>{const i=Math.round(p.x/bin),j=Math.round(p.y/bin),l=Math.round(p.z/bin),own=fromLeg(_u.copy(p));let u=-Infinity;
-   for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++)for(let c=-1;c<=1;c++)for(const q of drape.get((i+a)+','+(j+b)+','+(l+c))||[]){const v=q.leg-own-fallD*q.distanceToSquared(p);if(v>u)u=v;}
+  // (as a field over [x, z] too: in each column a centimetre and a half across, how near the cloth there comes to the thighs'
+  // lines; a point nearer them than that is under it. Smooth as the height field is.)
+  const bin=.015*m.k,drape=new Map(),fallD=.02*m.k/(bin*bin);
+  for(const [x,y,z,c] of low)if(c>.5){const key=Math.floor(x/bin)+','+Math.floor(z/bin),q=new THREE.Vector3(x,y,z),d=fromLeg(q),was=drape.get(key);if(!was||d<was[0])drape.set(key,[d,x,z]);}
+  const _u=new THREE.Vector3();
+  const underCloth=drape.size?p=>{const i=Math.floor(p.x/bin),j=Math.floor(p.z/bin),own=fromLeg(_u.copy(p));let u=-Infinity;
+   for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++){const e=drape.get((i+a)+','+(j+b));if(!e)continue;const v=e[0]-own-fallD*((e[1]-p.x)**2+(e[2]-p.z)**2);if(v>u)u=v;}
    return u;}:null;
   return {shins,leg,lap,topAt,groundAt,underCloth,cloth:onLap};
  }
@@ -1296,10 +1322,11 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    // just long enough can bring one mitten to the thigh and leave the other in the air), and the mitten's skin rather
    // than its envelope (TOUCH), which stands off the drawn mitten by a centimetre; to the lap as it is drawn (shorts, or a
    // skirt's cloth on it), which the mitten lies on
-   const q=new THREE.Vector3();let off=-Infinity;
+   // (the lap's top found once: the hand is thousands of points, and finding it for each took most of a floor sit's time)
+   const q=new THREE.Vector3(),lap=onLap(along);let off=-Infinity;
    for(const s of ['R','L']){
     const thigh=new THREE.Line3(inBody(bones['thigh'+s].getWorldPosition(new THREE.Vector3())),inBody(bones['knee'+s].getWorldPosition(new THREE.Vector3())));
-    let near=Infinity;for(const p of posedPoints(avatar,root,()=>true,1,new Set(['hand'+s])))near=Math.min(near,thigh.closestPointToPoint(p,true,q).distanceTo(p)-m.legR*1.15-onLap(along));
+    let near=Infinity;for(const p of posedPoints(avatar,root,()=>true,1,new Set(['hand'+s])))near=Math.min(near,thigh.closestPointToPoint(p,true,q).distanceTo(p)-m.legR*1.15-lap);
     off=Math.max(off,near);
    }
    JOINTS.forEach((j,i)=>bones[j].rotation.set(...was[i]));root.updateMatrixWorld(true);
@@ -1746,7 +1773,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
     const u=Number.isFinite(s.uncurl)?THREE.MathUtils.clamp(s.uncurl,0,1):UNCURL.half*smooth(t/UNCURL.time),J=chairJoints(1-u);
     for(const j of ['spine','chest','neck','head'])toward(j,...J[j],w);
     const A=reachFor('ChairCurl'),B=reachFor('ChairHalf'),f=u/UNCURL.half;
-    armTo('R',mix(A.R,B.R,f),w,A.handR);armTo('L',mix(A.L,B.L,f),w,A.handL);break;}
+    // (and the hand's turn between the two: each place has its own, the palm laid on the thigh)
+    const turn=h=>mix(A[h]||[0,0,0],B[h]||[0,0,0],f);armTo('R',mix(A.R,B.R,f),w,turn('handR'));armTo('L',mix(A.L,B.L,f),w,turn('handL'));break;}
    // Stuck in the chair in a new shape when the lights come back (7a, 7c, 7f): see ABSURD. Seated, the left knee is its own.
    case 'FrozenAbsurd':{const A=ABSURD;
     for(const j of ['spine','chest','neck','head'])toward(j,...A[j],w);
