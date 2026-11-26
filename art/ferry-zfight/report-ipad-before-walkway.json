@@ -1,0 +1,93 @@
+{
+ "profile": "ipad",
+ "source": true,
+ "src": "git archive e4cdcdc src (the commit before this work)",
+ "minutes": 720,
+ "threshold": {
+  "camera": 40,
+  "shadow": 16
+ },
+ "physicalDevice": false,
+ "renderer": "swiftshader",
+ "views": [
+  {
+   "id": "starboard-walkway",
+   "variant": "game",
+   "note": "outside: the starboard walkway along the deckhouse\u2019s side, turned from the noon sun",
+   "eye": [
+    -3.7799999999999727,
+    8.2,
+    -7.40000000000002
+   ],
+   "at": [
+    -3.3000000000000114,
+    7.300000000000001,
+    0.5
+   ],
+   "near": 0.15,
+   "far": 640,
+   "fov": 65,
+   "deck": "lobby",
+   "player": [
+    180.39064130834123,
+    5.920916854033224,
+    -274.6868123378617
+   ],
+   "size": [
+    744,
+    1133
+   ],
+   "camera": {
+    "per10k": 14.92,
+    "moves": [
+     9.98,
+     0.78,
+     1.27,
+     4.76
+    ]
+   },
+   "shadow": {
+    "per10k": 5.94,
+    "moves": [
+     0.39,
+     0.3,
+     5.54
+    ]
+   }
+  }
+ ],
+ "errors": [],
+ "graphics": {
+  "shadows": true,
+  "shadowType": 1,
+  "shadowSize": [
+   1024,
+   1024
+  ],
+  "bias": -0.00035,
+  "normalBias": 0.045,
+  "shadowCamera": [
+   -26,
+   26,
+   0.5,
+   120
+  ],
+  "state": {
+   "ink": true,
+   "grade": true,
+   "fxaa": true,
+   "scale": 1,
+   "samples": 4,
+   "hdr": true,
+   "look": "none",
+   "focusDistance": 0,
+   "focusRange": 3,
+   "focusMode": 0,
+   "kikkou": false
+  },
+  "buffer": [
+   744,
+   1133
+  ]
+ }
+}

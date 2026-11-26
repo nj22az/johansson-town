@@ -53,3 +53,22 @@ test('the town\u2019s Sakura storefront slab lies under the shop\u2019s own floo
  const m=src.match(/box\(\[width,(\.\d+),depth\],\[0,(\.\d+),mid\]/);
  assert.ok(m,'the slab');assert.ok(+m[1]<=.165,'its top at least 15 mm under 0.18');assert.equal(+m[2],+m[1]/2,'standing on the ground');
 });
+
+test('a decal keeps its polygon offset in the IDs, so its ID never fights its backing’s', async () => {
+ // (26 November 2026, the z-fighting audits: the ID material dropped the offset, so a floor marking, a plate or a poster
+ // was drawn at its backing's depth here, the two IDs fought, and the line drawn where the ID changes scribbled across it.)
+ const THREE=await import('../vendor/three.module.js');
+ const {createKikkouIds}=await import('../src/render/kikkou-ids.js');
+ const seen=new Map(),renderer={getRenderTarget:()=>null,setRenderTarget(){},getClearColor:c=>c,getClearAlpha:()=>1,setClearColor(){},clear(){},
+  autoClear:true,shadowMap:{autoUpdate:true,needsUpdate:false},render(scene){scene.traverse(o=>{if(o.isMesh)seen.set(o.name,o.material);});}};
+ const scene=new THREE.Scene(),plane=new THREE.PlaneGeometry(1,1);
+ const decal=new THREE.Mesh(plane,new THREE.MeshStandardMaterial({polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-4}));decal.name='decal';
+ const backing=new THREE.Mesh(plane,new THREE.MeshStandardMaterial());backing.name='backing';scene.add(decal,backing);
+ const ids=createKikkouIds(renderer);ids.render(r=>r.render(scene,new THREE.PerspectiveCamera()),8,8);
+ const d=seen.get('decal'),b=seen.get('backing');
+ assert.equal(d.name,'Kikkou ID');assert.notEqual(d,b,'one ID material per source material');
+ assert.deepEqual([d.polygonOffset,d.polygonOffsetFactor,d.polygonOffsetUnits],[true,-1,-4]);
+ assert.deepEqual([b.polygonOffset,b.polygonOffsetFactor,b.polygonOffsetUnits],[false,0,0]);
+ assert.equal(decal.material.isMeshStandardMaterial,true,'the picture’s own materials are put back');
+ ids.dispose();
+});

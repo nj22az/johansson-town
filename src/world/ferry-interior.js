@@ -744,7 +744,11 @@ export const FERRY_INTERIOR=(()=>{
   box([CAS_IN-.06,CAR+.02,ER.door[0]-.85],[CAS_IN-.02,CAR+1.98,ER.door[0]-.05],DOOR,{name:'engine room door'});
   // The way down is marked as on any ship: yellow-and-black hazard stripes on the walkway at the door, a lit sign over
   // the door (the 機関室 ENGINE ROOM decal: ferry-model.js), ear defenders on their hook and the escape sign inside.
-  for(let i=0;i<5;i++)deco([CAS_IN-.5+i*.1,CAR+.004,ER.door[0]-.02],[CAS_IN-.42+i*.1,CAR+.008,ER.door[1]+.02],i%2?DARK:YELLOW);
+  // The stripes are painted on the lower lobby's vinyl (CAR+.003 to +.008, above): they lie on its top as a 4 mm layer
+  // (JSY-STD-403 rule 4). Drawn inside it, from +.004 to +.008, their tops shared the vinyl's plane and its one
+  // polygon offset, and the vinyl's long triangles cut saw-toothed wedges through them (the owner's iPad, 26 November
+  // 2026: "Lots of z fighting I thought we eliminated it").
+  for(let i=0;i<5;i++)deco([CAS_IN-.5+i*.1,CAR+.008,ER.door[0]-.02],[CAS_IN-.42+i*.1,CAR+.012,ER.door[1]+.02],i%2?DARK:YELLOW);
   deco([CAS_IN-.16,CAR+2.46,ER.door[0]-.04],[CAS_IN+.03,CAR+2.52,ER.door[1]+.04],0x3a4244);
   deco([CAS_IN-.15,CAR+2.44,ER.door[0]-.02],[CAS_IN-.02,CAR+2.46,ER.door[1]+.02],0xf6f1e2);
   deco([CAS_IN+.03,CAR+1.5,ER.entrance[0]+.1],[CAS_IN+.2,CAR+1.75,ER.entrance[0]+.3],0xe0b93a);
