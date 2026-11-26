@@ -5,29 +5,29 @@
  "generator": "tools/blender/build-thuan-head.py",
  "blender": "5.3.0",
  "halfAxes": {
-  "width": 0.962065,
-  "height": 1.089946,
+  "width": 0.94,
+  "height": 1.07,
   "depth": 0.98,
-  "heightOverWidth": 1.133
+  "heightOverWidth": 1.138
  },
  "radius": {
-  "min": 0.9204,
-  "max": 1.1305
+  "min": 0.8523,
+  "max": 1.0251
  },
  "features_deg": {
-  "brow": 77.88,
-  "eye": 95.04,
-  "nose": 104.97,
-  "mouth": 116.55,
-  "eyeA": 15.06
+  "brow": 81.69,
+  "eye": 98.75,
+  "nose": 108.18,
+  "mouth": 121.38,
+  "eyeA": 17.69
  },
  "profile": {
-  "brow": 0.9507,
-  "eyeSocket": 0.931,
-  "noseTip": 1.0574,
-  "upperLip": 0.9747,
-  "chin": 1.0226
+  "brow": 0.989,
+  "eyeSocket": 0.9621,
+  "noseTip": 1.0144,
+  "upperLip": 0.9839,
+  "chin": 1.0227
  },
- "jawCorner": 0.9471,
- "temple": 1.0594
+ "jawCorner": 0.9413,
+ "temple": 1.0187
 }

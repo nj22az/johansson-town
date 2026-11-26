@@ -92,7 +92,8 @@ test('the painter leaves out the eyes the discs draw, and only those',()=>{
  const a=buildAvatar(recipe,{shadows:false,eyes3d:true});
  for(const expression of EXPRESSION_NAMES){
   a.paintFace({expression,blink:0,look:[0,0]});
-  const drawn=eyesShow(recipe.eyes.style,eyesOf({expression}).eyes);
+  // (A wink is the rigged eyes' own, one of them shut: eyes3d.js update, the owner, 26 November 2026.)
+  const eyes=eyesOf({expression}).eyes,drawn=eyesShow(recipe.eyes.style,eyes)||eyes==='wink'&&recipe.eyes.style!=='squint';
   assert.equal(a.eyes3d.showing,drawn,expression);assert.equal(a.eyes3d.mesh.visible,drawn,expression);
   assert.equal(a.faceKey.includes('|3d|'),drawn,expression+': the canvas skips the eyes exactly when the discs show');
  }

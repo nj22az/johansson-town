@@ -313,6 +313,9 @@ export function rigEyes(geometry,{iris,style,own=null,cel=true,make=(g,m)=>new T
    let {eyes,look}=eyesOf(state),wink=false;
    if(state.eyesAs)eyes=state.eyesAs;   // a body's own acting can draw a feeling with another eye (face-acting.js)
    if(stand&&!eyesShow(style,eyes)){wink=eyes==='wink';eyes=stand[eyes]||'open';}
+   // A wink is their own two eyes, one of them shut (the owner, 26 November 2026, of Thuan's: "The wink was a wrong as you can
+   // see": the painter drew a second, bigger eye as an arch beside the open one). Rigged eyes shut the one they have.
+   else if(eyes==='wink'&&style!=='squint'){wink=true;eyes='open';}
    const show=eyesShow(style,eyes);
    mesh.visible=eyes3d.showing=show;
    if(!show)return false;

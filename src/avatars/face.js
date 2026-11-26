@@ -181,7 +181,7 @@ export function drawFace(ctx,recipe,state={}){
   ctx.strokeStyle=`rgba(214,60,100,${.9*flush})`;ctx.lineWidth=3;ctx.lineCap='round';
   for(let i=0;i<5;i++){const hx=x-14+i*7;ctx.beginPath();ctx.moveTo(hx-3.2,y+6);ctx.lineTo(hx+3.2,y-6);ctx.stroke();}
  }
- drawFaceMarks(ctx,L,recipe);
+ drawFaceMarks(ctx,L,recipe,mood.browLift+(mood.oneBrow||0)*.5);
  // The cartoon marks that go under the parts: a face going red, gloom lines, puffed-out cheeks.
  const fx=mood.fx||[];drawMarks(ctx,L,skin,fx.filter(f=>UNDER_MARKS.has(f)));
  // Eyes. Symbol eyes (stars, hearts, a wink...) are a drawing, not a lid: a blink leaves them be. Rigged eyes
@@ -531,7 +531,7 @@ export const FACE_MARKS=Object.freeze({
  // Appended (no saved id moves). For a sculpted head and an open collar (Johansson, 26 November 2026).
  creases:'Three forehead creases',nostrils:'Nose wings and nostrils',folds:'Nose-to-cheek folds',chesthair:'Chest hair in an open collar',finecrows:'Subtle crow’s feet',
 });
-function drawFaceMarks(ctx,L,recipe){
+function drawFaceMarks(ctx,L,recipe,browLift=0){
  const m=recipe.marks||{},skin=recipe.body.skin,ink=shade(skin,.42);
  ctx.save();ctx.lineCap='round';ctx.lineJoin='round';
  // Stubble first, under everything: a shadow of the beard's colour over the jaw and the upper lip, and a fine tooth to it.
@@ -570,7 +570,8 @@ function drawFaceMarks(ctx,L,recipe){
  }
  if(m.cleft)line([[128,L.mouthY+30],[129.5,L.mouthY+35,128,L.mouthY+40]]);
  // Three clean creases across the forehead, the longest lowest.
- if(m.creases){ctx.lineWidth=2.5;for(let i=0;i<3;i++){const y=fy-1-i*8.5,w=31-i*5;line([[128-w,y+1.5],[128-w*.35,y-1.6,128,y-.6],[128+w*.35,y-1.6,128+w,y+1.5]]);}ctx.lineWidth=3.2;}
+ // (They ride up with the brows and close together, as a forehead does when the brows lift: never under them.)
+ if(m.creases){const up=Math.max(0,browLift),gap=8.5-Math.min(3,up*.16);ctx.lineWidth=2.5;for(let i=0;i<3;i++){const y=fy-1-up-i*gap,w=31-i*5;line([[128-w,y+1.5],[128-w*.35,y-1.6,128,y-.6],[128+w*.35,y-1.6,128+w,y+1.5]]);}ctx.lineWidth=3.2;}
  // A sculpted nose's wings and nostrils (the head form carries its bridge and tip): what makes it read from the front.
  if(m.nostrils){const nx=L.noseX,ny=L.noseY-3,k=L.noseS/1.05;ctx.lineWidth=2.8;
   for(const s of [-1,1]){line([[nx+s*17*k,ny-8*k],[nx+s*25*k,ny-4*k,nx+s*23.5*k,ny+3*k],[nx+s*22*k,ny+7.5*k,nx+s*15*k,ny+7*k]]);

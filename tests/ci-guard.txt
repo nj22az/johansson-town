@@ -145,3 +145,5 @@ kikkou-ink.test.mjs
 sakura-restroom.test.mjs
 # Johansson's head, sculpted in Blender and worn by the generator; his sturdy frame and his face.
 rugged-head.test.mjs
+# The Harbour Warehouse inside: the bay, the walked mezzanine and stair, its stock and its surfaces.
+warehouse-port.test.mjs

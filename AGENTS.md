@@ -21,6 +21,12 @@ critique what still looks too soft/chibi, and iterate"; then "When happy redraw 
   pass; and `node tools/avatar-turnaround.mjs` for the same in the game's own shader, which is the final judge.
 - Fair skin, dark brows, dark eyes, a five-o'clock shadow in grey; warm, dry and deadpan, never angry. Stylised and
   heavy, not realistic: no pores, no photographic shading, no high-poly sculpt.
+- **Not fat** (the owner, of the first result: "Johansson isn't fat he should have a neck and a maybe smaller face", "Make the
+  head even smaller"): a small head, a neck that shows, a trim strong build.
+- **Thuan** is drawn from her photograph on Disney's terms (the owner: "use Disney art design this is real life Thuan it
+  should look like her but a cute cartoon"; "more feminine ... but still a cartoon don't be restricted by the avatar
+  creator"; "the eyes need to fit her"; "mouth ... very expressive like Miis and eyes too"). `cast.js THUAN_REDRAWN` is
+  every value that differs from her Studio design; a kite-shaped head with round doll eyes was rejected as grotesque.
 - The owner's photographs are not kept in the repository (it is public).
 
 ## Owner's decision — 25 November 2026: the cast are dolls wearing clothes

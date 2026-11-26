@@ -70,7 +70,8 @@ test('on every pair at the still: in nothing of the other body, the hands where 
   const s=still(a,b,name),{A,B,fit}=s,tag=`${name}, ${a} + ${b}`;
   const sA=surface(A.avatar,{stride:2}),sB=surface(B.avatar,{stride:2}),cA=core(A.avatar),cB=core(B.avatar);
   const intoB=intrusion(sA,cB),intoA=intrusion(sB,cA);
-  const limit=o=>o.bone?.startsWith('hand')?PRESS:INTO;
+  // (A braid hangs on its springs and is laid against whoever is hugged, as a mitten is: the still does not push it aside.)
+  const limit=o=>o.bone?.startsWith('hand')||o.bone?.startsWith('braid')?PRESS:INTO;
   if(intoB.depth>limit(intoB))wrong.push(`${tag}: ${a}’s ${intoB.bone} ${(intoB.depth*1000).toFixed(0)} mm into ${b}`);
   if(intoA.depth>limit(intoA))wrong.push(`${tag}: ${b}’s ${intoA.bone} ${(intoA.depth*1000).toFixed(0)} mm into ${a}`);
   for(const [who,sf] of [[a,sA],[b,sB]]){const l=low(sf);if(Math.abs(l)>.004)wrong.push(`${tag}: ${who} ${l<0?'through':'off'} the floor (${(l*1000).toFixed(0)} mm)`);}

@@ -110,8 +110,62 @@ used to look at and are not in the repository.
   the game's `game-turnaround-head.png` and `-body.png`). `tools/pixar-shots.mjs --name Johansson --cartoon` in the street: no errors.
 - Not checked: a phone or a GPU browser; his head is 20 160 triangles where the others' are 1 872.
 
-## Not done
+## Not done (Johansson)
 - The upper neck carries no stubble tone (the neck is the body's mesh, not the shell's).
-- Eyes are 22% smaller, not 30%: the recipe's size dial ends there.
 - The Blender (Pixar) Johansson of Godot and Sakura world (`nj22az/jojo`) is untouched: this session cannot reach it.
-- Thuan in Blender: asked for, see below if a section follows; otherwise still to do.
+
+---
+
+# Later still: Johansson leaner, Thuan redrawn, the warehouse
+
+## The owner's words, in order
+"When happy redraw Thuan in Blender too"; "Make her ear smaller and cuter"; "The blender thuan is the inspiration"; "She looks
+grotesque can you use Disney art design this is real life Thuan it should look like her but a cute cartoon" (with her
+photograph); "Also bring this warehouse to the island" (with a three.js storage bay of his: mezzanine, stair, racks);
+"Make her look more feminine and fully rigged but still a cartoon don't be restricted by the avatar creator"; "I want her
+mouth to be very expressive like Miis and eyes too"; "Ok but the eyes need to fit her"; "The wink was a wrong as you can
+see"; "Oh Johansson isn't fat he should have a neck and a maybe smaller face"; "Make the head even smaller".
+
+## Done
+- **The Blender head tool is shared**: `tools/blender/head_sculpt.py` (sculpt, measure, the game's module, the sheet, the
+  rigged `.blend`); `build-johansson-head.py` and `build-thuan-head.py` each define one head and call `run()`.
+- **Johansson, leaner**: `head.scale` (recipe.js, 0.7 to 1.3, not a creator dial) 0.84 with size 0.3; build 0.58; the sturdy
+  frame's neck is 1.9 x as long and 1.72 x the arm's radius (was 1.95), its chest 7% wider and 6% deeper (was 10% and 17%);
+  the sculpt's jaw flare cut by more than half (the jaw now equals the temples), half-axes 0.90 x 1.12.
+- **Thuan** (`cast.js THUAN_REDRAWN`: every value that differs from the Studio design, which is unchanged):
+  head form `gentle` (a soft oval with a small round chin and a low soft nose, sculpted; the first attempt kept her
+  kite-shaped head and was rejected); dark almond eyes, long and a little lifted, set wide and low; soft straight brows;
+  her red lips in a small smile; a blush; fair skin; a drawn nose curve; the `graceful` frame (slim limbs, a slender neck,
+  narrow sloping shoulders, a waist). Her ear, where the braids show it, is two thirds the size and sits on the head's
+  surface (`build.js ears`, the braid cap's opening to match). `art/characters/thuan/`: sculpt, rigged `.blend` (28 bones,
+  both braids skinned, four face shape keys), the Blender sheet, the game's turnarounds, and `review/expressions.png`,
+  all 46 expressions on her.
+- **The wink** (`eyes3d.js`): rigged eyes shut one of their own; the painter's wink drew a second, bigger eye as an arch.
+  Everybody's wink changes.
+- **The Harbour Warehouse inside** (`src/world/interiors/warehouse.js`, replacing it and `warehouse-port.js`): the owner's
+  bay at the tin shed's own size (5.8 x 10.4 m, eave 4.2, ridge 5.6): concrete floor with aisle lines, block and tin
+  walls, collar-tie trusses, clerestory windows, a roll-up door where the shutter is outside; a timber mezzanine at 2.6 m
+  on steel columns with a guardrail and a pallet gate under a chain hoist; a steel stair of 13 risers along the east
+  wall. The stair and the mezzanine are walked (`house-walk.js`). `WAREHOUSE_STOCK`: fourteen pieces, each with what, who
+  and why: the quay's stores and the ledger bench, Sakura Trading's depot, the town's decorations and the festival drum
+  upstairs. One light, 44 batches, 14 872 triangles. `tools/warehouse-shots.mjs` (new) photographs it in the game.
+- `tools/avatar-turnaround.mjs`: `--views`, `--set path=value;...` (try a recipe without editing it), `--expressions`.
+
+- **Johansson's expressions** (the owner: "Give the expressions to Johansson as well"): all 46 checked on his face,
+  `art/characters/johansson/review/expressions.png`. His forehead creases now ride up with the brows and close together
+  (`face.js drawFaceMarks`, the `creases` mark): lifted brows used to cover them.
+- **Three tests' assumptions updated**: `floor-sit` builds its generic bodies on the standard frame (it borrowed Thuan's
+  recipe and so her graceful frame); `eyes3d` expects the rigged eyes to draw a wink; `pair-poses` lets a braid, which
+  hangs on springs, lie against the other body as a mitten does (16 mm, was 6).
+
+## Proved
+- `tests/warehouse-port.test.mjs` (4), `tests/rugged-head.test.mjs` (8, with Thuan's), `tests/thuan-studio-design.test.mjs`.
+- Guard: 122 files, 645 tests, all green (535 s), before the creases' change; after it the face, eye, sitting, pair and
+  portrait tests were run again and pass. `tools/warehouse-shots.mjs --source`: no page errors, the player
+  stood half way up the stair (y 1.3) and on the mezzanine (y 2.6); photographs in `art/warehouse/review/`.
+- Not checked: a phone or a GPU browser.
+
+## Not done
+- The warehouse's outside is unchanged; its clerestory windows and roll-up door are not drawn on the outside wall.
+- Thuan's Blender (Pixar) body for Godot and Sakura world is untouched (`nj22az/jojo`, not reachable here).
+- The owner's and Thuan's photographs are not in the repository (it is public).

@@ -138,9 +138,12 @@ export function normalizeRecipe(input={}){
  return {
   v:1,name:String(r.name||'').slice(0,24),age:pick(AGES,r.age,'adult'),
   body:sub('body',{height:num,build:num,proportion:(v)=>pick(['classic','rounded','studio'],v,'classic'),silhouette:(v)=>pick(PARTS.silhouette,v,'neutral'),skin:col,
-   // 'sturdy': a thick neck, square shoulders and a barrel chest (build.js measure, torsoProfile). Absent from older recipes: standard.
-   frame:(v)=>pick(['standard','sturdy'],v,'standard')}),
-  head:sub('head',{size:num,shape:num,form:(v,f)=>pick(HEAD_FORMS,v,f),jaw:num,cheeks:num,roundness:num}),
+   // 'sturdy': a thick neck, square shoulders and a barrel chest; 'graceful': a slender neck, narrow sloping shoulders, a
+   // waist, slim arms and legs (build.js measure, torsoProfile). Absent from older recipes: standard.
+   frame:(v)=>pick(['standard','sturdy','graceful'],v,'standard')}),
+  head:sub('head',{size:num,shape:num,form:(v,f)=>pick(HEAD_FORMS,v,f),jaw:num,cheeks:num,roundness:num,
+   // A head smaller or larger than the size slider reaches (0.7 to 1.3 of it; absent: 1). Not a creator dial.
+   scale:(v)=>Number.isFinite(+v)&&v!==undefined&&v!==null?Math.min(1.3,Math.max(.7,+v)):1}),
   hair:sub('hair',{style:(v,f)=>pick(PARTS.hair,v,f),colour:col,flip:flag,length:num,volume:num,tieColour:(v,f)=>col(v,r.hair?.style==='braids'?col(r.outfit?.accent,f):f)}),
   eyes:sub('eyes',{style:(v,f)=>pick(PARTS.eyes,v,f),colour:col,size:num,width:num,spacing:num,height:num,tilt:num,
    // How big the eye's highlight is, 0 (a small understated glint) to 1 (the full sparkle; absent: 1).

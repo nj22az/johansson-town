@@ -34,7 +34,9 @@ test('the sculpt is Blender\'s: a measured table, its source and the rigged char
 
 test('the head is taller and blockier: flat temples, a jaw wider than them, a squared chin',()=>{
  const ratio=profile.height/profile.width;assert.ok(ratio>=1.15&&ratio<=1.25,'height '+ratio.toFixed(3)+' x width');
- const temple=Math.abs(at(88,82).x),jaw=Math.abs(at(72,128).x);assert.ok(jaw>temple,'the jaw ('+jaw.toFixed(3)+') is wider than the temples ('+temple.toFixed(3)+')');
+ // A strong jaw, as wide as the temples to within a few hundredths (a ball's would be a fifth narrower); not a heavy one
+ // (the owner: "Johansson isn't fat he should have a neck and a maybe smaller face").
+ const temple=Math.abs(at(88,82).x),jaw=Math.abs(at(72,128).x);assert.ok(jaw>temple*.97&&jaw<temple*1.04,'the jaw ('+jaw.toFixed(3)+') against the temples ('+temple.toFixed(3)+')');
  // The chin's base: nearly level from its middle to its corners, not a point.
  const mid=at(0,150).y,corner=at(24,150).y;assert.ok(Math.abs(mid-corner)<.06,'a flat base');
  // Symmetrical, and one surface: the seam at the back closes.
@@ -57,6 +59,8 @@ test('his frame is sturdy and his face is dark-featured, fair and dry, never the
  const jawWidth=2*Math.abs(at(72,128).x)*m.Rh;
  assert.ok(2*m.neckR/jawWidth>.5&&2*m.neckR/jawWidth<.7,'the neck is about 60% of the jaw: '+(2*m.neckR/jawWidth).toFixed(2));
  assert.ok(m.width>plain.width&&m.depth>plain.depth&&m.neckR>plain.neckR*1.6);
+ // He has a neck that shows, and his head is not the biggest thing about him.
+ assert.ok(m.neck>plain.neck*1.8,'a neck');assert.ok(R.head.size<.4&&R.body.build<.62,'a smaller head, a trim build');
  assert.equal(normalizeRecipe({}).body.frame,'standard','older recipes keep the standard frame');
  assert.equal(R.brows.style,'strong');assert.equal(R.mouth.style,'dry');assert.equal(R.facial.paint,'shadow');assert.equal(R.nose.style,'none');
  assert.ok(R.eyes.shine<.5&&R.eyes.size<.2);
@@ -68,25 +72,56 @@ test('his frame is sturdy and his face is dark-featured, fair and dry, never the
  assert.ok(lum(R.body.skin)>.78,'fair');assert.ok(lum(R.brows.colour)<.15&&lum(R.eyes.colour)<.2,'dark features');
 });
 
-/** Thuan (the owner, the same day: "When happy redraw Thuan in Blender too"): her approved design, its head sculpted. */
-test('Thuan\'s head is sculpted in Blender over her own approved silhouette: her face is not changed, her nose is real',async()=>{
+/**
+ * Thuan (the owner, the same day): "redraw Thuan in Blender too"; "The blender thuan is the inspiration"; and of the first
+ * attempt, "She looks grotesque can you use Disney art design this is real life Thuan it should look like her but a cute
+ * cartoon". A soft oval head with a round chin, sculpted in Blender; a face drawn from her photograph on Disney's terms.
+ */
+test('Thuan: a soft oval head with a small round chin and a small nose, sculpted in Blender, never a kite',async()=>{
  const {THUAN_STUDIO_DESIGN}=await import('../src/avatars/thuan-studio-design.js');
- const T=recipeFor('Thuan'),sculpted=headProfile(T.head),approved=headProfile(THUAN_STUDIO_DESIGN.head);
- assert.equal(T.head.form,'gentle');assert.ok(sculpted.sculpt);assert.equal(THUAN_STUDIO_DESIGN.head.form,'diamond','the approved design is as it was');
- assert.ok(Math.abs(sculpted.width-approved.width)<1e-5&&Math.abs(sculpted.height-approved.height)<1e-5,'the same half-axes');
- for(const part of ['eyes','brows','mouth','hair','outfit'])assert.deepEqual(T[part],recipeFor('Thuan')[part]);
- for(const [k,v] of Object.entries(THUAN_STUDIO_DESIGN.eyes))assert.deepEqual(T.eyes[k],v,'eyes.'+k);
- for(const [k,v] of Object.entries(THUAN_STUDIO_DESIGN.mouth))assert.deepEqual(T.mouth[k],v,'mouth.'+k);
- const surface=(P,a,t)=>shapeHeadPoint({x:Math.sin(t*DEG)*Math.sin(a*DEG),y:Math.cos(t*DEG),z:Math.sin(t*DEG)*Math.cos(a*DEG)},P);
- const len=p=>Math.hypot(p.x,p.y,p.z);
- // From the crown to the eyes, and round the back, her head is the approved one to within a hair.
- for(const [a,t] of [[0,30],[60,50],[120,70],[180,90],[-90,60],[30,70]])assert.ok(Math.abs(len(surface(sculpted,a,t))-len(surface(approved,a,t)))<.02,`unchanged at a ${a}, θ ${t}`);
+ const T=recipeFor('Thuan'),P=headProfile(T.head);
+ assert.equal(T.head.form,'gentle');assert.ok(P.sculpt);assert.equal(THUAN_STUDIO_DESIGN.head.form,'diamond','the Studio design file is as it was');
+ const surface=(a,t)=>{const p=shapeHeadPoint({x:Math.sin(t*DEG)*Math.sin(a*DEG),y:Math.cos(t*DEG),z:Math.sin(t*DEG)*Math.cos(a*DEG)},P);return {x:p.x*P.width,y:p.y*P.height,z:p.z*.98};};
+ const half=t=>{let m=0;for(let a=40;a<=140;a+=2)m=Math.max(m,Math.abs(surface(a,t).x));return m;};
+ assert.ok(P.height/P.width>1.05&&P.height/P.width<1.2,'a little taller than wide');
+ // It narrows from the cheekbones to the chin, gently: the jaw at the mouth's height is still most of the cheek's width.
+ const cheek=half(95),jaw=half(125),chin=half(150);
+ assert.ok(jaw<cheek&&jaw>cheek*.7,`a soft narrowing: cheek ${cheek.toFixed(3)}, jaw ${jaw.toFixed(3)}`);
+ assert.ok(chin>cheek*.42,'the chin is round and has width: '+(chin/cheek).toFixed(2)+' of the cheek');
+ // One curve, no corner: the width never drops by more than a fifth of the cheek in any ten degrees.
+ for(let t=95;t<=150;t+=5)assert.ok(half(t)-half(t+10)<cheek*.2,'no corner at θ '+t);
  const LT=faceLayout(T),tip=theta(LT.noseY),mouth=theta(LT.mouthY);
- assert.ok(surface(sculpted,0,tip-1.4).z-surface(approved,0,tip-1.4).z>.06,'a nose stands on it');
- assert.ok(surface(sculpted,0,tip-1.4).z>surface(sculpted,0,mouth-5).z+.04,'forward of the upper lip');
- // The chin is round, not a point: at the same height the lower face is wider than the approved kite's.
- assert.ok(Math.abs(surface(sculpted,90,150).x)>Math.abs(surface(approved,90,150).x)+.02);
+ // A small soft nose: forward of the upper lip and of the cheek beside it, but low, so the ink line does not catch its edge in dashes.
+ assert.ok(surface(0,tip-1.6).z>surface(0,mouth-5).z+.012,'forward of the upper lip');
+ assert.ok(surface(0,tip-1.6).z-surface(14,tip-1.6).z>.012,'and of the cheek beside it');
+ assert.equal(T.nose.style,'curve','its line is drawn');
  for(const f of ['tools/blender/build-thuan-head.py','tools/blender/head_sculpt.py','art/characters/thuan/thuan-head.blend','art/characters/thuan/thuan-rigged.blend','art/characters/thuan/review/contact-sheet.png'])assert.ok(existsSync(file(f)),f);
  const rig=JSON.parse(readFileSync(file('art/characters/thuan/rig-report.json'),'utf8'));
  assert.equal(rig.meshes['Shimanchu body'].skinned,true);assert.ok(rig.bones.includes('braidL1')&&rig.bones.includes('braidR2'),'her braids are rigged');
+});
+
+test('Thuan\'s face is drawn from her photograph on Disney\'s terms; everything else is the Studio design',async()=>{
+ const {THUAN_STUDIO_DESIGN}=await import('../src/avatars/thuan-studio-design.js'),{THUAN_REDRAWN}=await import('../src/avatars/cast.js');
+ const T=recipeFor('Thuan'),lum=h=>{const n=parseInt(h.slice(1),16);return (.3*(n>>16)+.59*(n>>8&255)+.11*(n&255))/255;};
+ // Her eyes are hers: dark, almond, longer than they are tall, the outer corner a little up, set wide and low.
+ assert.equal(T.eyes.style,'almond');assert.ok(T.eyes.width>.7&&T.eyes.tilt>.55,'long, a little lifted');assert.ok(lum(T.eyes.colour)<.25,'dark');
+ assert.ok(T.eyes.spacing>.55&&T.eyes.height<.3,'set wide and low');
+ assert.equal(T.brows.style,'straight');assert.equal(T.mouth.style,'soft');
+ const m=parseInt(T.mouth.colour.slice(1),16);assert.ok((m>>16)>180&&(m>>8&255)<90,'her red lips');
+ assert.ok(T.blush>=.4);assert.ok(lum(T.body.skin)>.8,'fair');
+ for(const [part,values] of Object.entries(THUAN_REDRAWN)){if(typeof values==='object')for(const [k,v] of Object.entries(values))assert.deepEqual(T[part][k],v,part+'.'+k);else assert.equal(T[part],values,part);}
+ for(const part of ['hair','outfit'])for(const [k,v] of Object.entries(THUAN_STUDIO_DESIGN[part]))assert.deepEqual(T[part][k],v,part+'.'+k);
+ assert.equal(T.hair.style,'braids','her two braids');
+ // More feminine, still a cartoon: the graceful frame is slimmer in the limb and the neck, narrower in the shoulder, and has a waist.
+ assert.equal(T.body.frame,'graceful');
+ const slim=measure(T),plain=measure({...T,body:{...T.body,frame:'standard'}});
+ assert.ok(slim.armR<plain.armR*.85&&slim.legR<plain.legR*.92&&slim.width<plain.width&&slim.waistRatio<plain.waistRatio&&slim.hips/slim.width>plain.hips/plain.width);
+ // Her mouth and eyes act: every expression the face has paints on her.
+ const {EXPRESSION_NAMES}=await import('../src/avatars/face.js');assert.ok(EXPRESSION_NAMES.length>=46);
+ assert.ok(existsSync(file('art/characters/thuan/review/expressions.png')));
+});
+
+test('a wink shuts one of the resident\'s own rigged eyes; it does not draw another eye',async()=>{
+ const src=readFileSync(file('src/avatars/eyes3d.js'),'utf8');
+ assert.match(src,/else if\(eyes==='wink'&&style!=='squint'\)\{wink=true;eyes='open';\}/);
 });

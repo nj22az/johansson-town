@@ -20,7 +20,9 @@ installDOM();
  * below the floor (the cloth of a skirt, a wrap or a dress lies on it, as drawn). A chair or a bench is sat on as before.
  * Getting down onto the floor and up again goes through a squat, smoothly, never through the floor.
  */
-const base=recipeFor('Thuan');
+// (Her face and clothes on every build the creator can make: the creator has no frame, so these are the standard one.
+// Her own graceful frame, cast.js THUAN_REDRAWN, is hers alone.)
+const thuan=recipeFor('Thuan'),base={...thuan,body:{...thuan.body,frame:'standard'}};
 const BODIES=[];
 for(const age of ['child','teen','adult','elder'])for(const build of [0,1])for(const proportion of ['classic','rounded'])
  BODIES.push([`${age}, build ${build}, ${proportion}`,normalizeRecipe({...base,name:`Sitter ${age} ${build} ${proportion}`,age,body:{...base.body,build,proportion,height:build}}),'clothes']);

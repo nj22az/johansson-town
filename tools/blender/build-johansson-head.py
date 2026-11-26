@@ -16,8 +16,8 @@ import numpy as np                                                         # noq
 import head_sculpt as H                                                    # noqa: E402
 from head_sculpt import bell, plateau, smooth                              # noqa: E402
 
-# The head's half-axes as multiples of its radius (the game keeps its depth at 0.98): height about 1.22 x width.
-WIDTH, HEIGHT = .92, 1.12
+# The head's half-axes as multiples of its radius (the game keeps its depth at 0.98): height about 1.24 x width.
+WIDTH, HEIGHT = .9, 1.12
 
 
 def radius(x, y, z, F):
@@ -36,8 +36,8 @@ def radius(x, y, z, F):
     # Flat temples: the sides between the brow and the cheekbone drawn in.
     r -= .055 * bell(a - 84, 26) * bell(t - 80, 17)
     # The jaw: wide, with a corner under each ear, and a chin that is a squared base, not a point.
-    r += .075 * bell(a - 60, 15) * bell(t - 131, 10)
-    r += .1 * bell(a - 88, 28) * bell(t - 126, 13)                       # the jaw carried out at the sides: the head is widest here
+    r += .06 * bell(a - 60, 15) * bell(t - 131, 10)
+    r += .045 * bell(a - 88, 28) * bell(t - 124, 13)                     # the jaw carried out at the sides, a little: strong, not heavy
     r += .07 * bell(a, 26) * bell(t - 140, 8)
     r += .03 * bell(a - 22, 9) * bell(t - 143, 7)                        # the chin's two corners
     # Cheekbones.

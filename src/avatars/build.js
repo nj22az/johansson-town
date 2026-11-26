@@ -61,22 +61,28 @@ export function measure(recipe){
  const stage=STAGES[r.age]||STAGES.adult;
  const studio=r.body.proportion==='studio';
  const H=stage.base+r.body.height*stage.span,k=H/1.6,build=r.body.build;
- const profile=headProfile(r.head),Rh=(.19+r.head.size*.055)*k*stage.head*(studio?.82:1)*(r.body.proportion==='rounded'?1.30:1),headSX=profile.width,headSY=profile.height;
+ const profile=headProfile(r.head),Rh=(.19+r.head.size*.055)*k*stage.head*(studio?.82:1)*(r.body.proportion==='rounded'?1.30:1)*(r.head.scale??1),headSX=profile.width,headSY=profile.height;
  const rounded=r.body.proportion==='rounded';
- const neck=.055*k,body=H-Rh*2*headSY-neck;
+ // (A sturdy frame has a neck that shows: the owner, 26 November 2026, of Johansson: "he should have a neck".)
+ const neck=.055*k*(r.body.frame==='sturdy'?1.9:1),body=H-Rh*2*headSY-neck;
  const leg=body*(studio?.60:rounded?.37:.47),torso=body-leg;
  const foot=.07*k,thigh=(leg-foot)*.5,shin=thigh;
  // A sturdy frame (the owner, 26 November 2026, of Johansson: "widen the neck to ~60% of jaw width so it flows solidly into
- // broader, squared-off shoulders and a barrel chest"): wider and deeper through the chest, thicker in the arm, a neck twice
- // as thick; its shoulders are squared in torsoProfile.
+ // broader, squared-off shoulders and a barrel chest"; then, of the first result, "Johansson isn't fat he should have a
+ // neck and a maybe smaller face"): a little wider and deeper through the chest, a strong neck long enough to be seen,
+ // square shoulders (torsoProfile). Strong, not heavy.
  const sturdy=r.body.frame==='sturdy';
- const legR=(.058+build*.024)*k*(studio?.9:1)*(sturdy?1.06:1),armR=(.045+build*.016)*k*(studio?.85:1)*(sturdy?1.12:1);
+ // A graceful frame (the owner, 26 November 2026, of Thuan: "Make her look more feminine ... but still a cartoon don't be
+ // restricted by the avatar creator"): slim arms and legs, a slender neck, narrower shoulders that slope, and a waist
+ // between a soft bust line and rounder hips (torsoProfile).
+ const graceful=r.body.frame==='graceful';
+ const legR=(.058+build*.024)*k*(studio?.9:1)*(sturdy?1.04:graceful?.88:1),armR=(.045+build*.016)*k*(studio?.85:1)*(sturdy?1.06:graceful?.8:1);
  const feminine=r.body.silhouette==='feminine',masculine=r.body.silhouette==='masculine';
- const width=(.3+build*.15)*k*(rounded?1.20:1)*(feminine?.94:masculine?1.08:1)*(studio?.84:1)*(sturdy?1.1:1),depth=(.2+build*.09)*k*(rounded?1.15:1)*(studio?.87:1)*(sturdy?1.17:1);
- const hips=width*(feminine?1.13:masculine?.9:1),waistRatio=studio?(feminine?.76:.88):feminine?.79:masculine?.98:.96;
+ const width=(.3+build*.15)*k*(rounded?1.20:1)*(feminine?.94:masculine?1.08:1)*(studio?.84:1)*(sturdy?1.07:graceful?.9:1),depth=(.2+build*.09)*k*(rounded?1.15:1)*(studio?.87:1)*(sturdy?1.06:graceful?.94:1);
+ const hips=width*(graceful?1.2:feminine?1.13:masculine?.9:1),waistRatio=graceful?.7:studio?(feminine?.76:.88):feminine?.79:masculine?.98:.96;
  const upper=(rounded?.18:.22)*k*(studio?.92:1),fore=(rounded?.16:.2)*k*(studio?.92:1),hand=.056*k*(studio?.9:1);
  const hipY=leg,chestY=hipY+torso*.5,neckY=hipY+torso,headY=neckY+neck;
- return {studio,sturdy,neckR:armR*(sturdy?1.95:1.08),panelSkirt:r.outfit.bottom==='skirt'&&r.outfit.skirtCut==='panel',skirtLength:r.outfit.skirtLength,skirtFlare:r.outfit.skirtFlare,H,k,Rh,headSX,headSY,profile,neck,torso,leg,foot,thigh,shin,legR,armR,width,hips,waistRatio,depth,upper,fore,hand,hipY,chestY,neckY,headY,
+ return {studio,sturdy,graceful,neckR:armR*(sturdy?1.72:graceful?1.16:1.08),panelSkirt:r.outfit.bottom==='skirt'&&r.outfit.skirtCut==='panel',skirtLength:r.outfit.skirtLength,skirtFlare:r.outfit.skirtFlare,H,k,Rh,headSX,headSY,profile,neck,torso,leg,foot,thigh,shin,legR,armR,width,hips,waistRatio,depth,upper,fore,hand,hipY,chestY,neckY,headY,
   // The arm hangs from just inside the torso's edge, below its top, so the shoulder
   // rounds over it instead of the arm standing clear of the body.
   headCentre:headY+Rh*headSY*.94,shoulderX:width/2-armR*.2,shoulderY:neckY-.075*k,hipX:hips*.24,
@@ -368,7 +374,7 @@ function hairCap(style,flip,spec=HAIR[style]){
   const low=THREE.MathUtils.lerp(spec.side,spec.back,THREE.MathUtils.smoothstep(-v.z,-.2,.7));
   // Leave a small curved opening around the ears on the original braid cap.
   // The fringe and plaits keep their original silhouette.
-  const earOpening=style==='braids'&&v.z>-.32?Math.hypot((v.y+.035)/.25,(v.z-.04)/.30)-1:1;
+  const earOpening=style==='braids'&&v.z>-.32?Math.hypot((v.y+.055)/.19,(v.z-.03)/.215)-1:1;
   const f=spec.field?spec.field(v):Math.min(outFace,v.y-low,earOpening*.1),keep=f>0;
   // Bare scalp is tucked just inside the head; a close crop needs only a short step.
   // (A towel turban is snug at its edge and swells behind it: spec.snug, spec.swell; its edge goes in gently, spec.inner
@@ -406,7 +412,7 @@ function cutHairCap(style,flip,spec){
   const outFace=Math.max(.18-v.z,Math.max(a,b)+h*h*k*.25);
   const c=v.y-lowAt(v),kk=.16,hh=Math.max(kk-Math.abs(outFace-c),0)/kk;
   // A small curved opening round the ears on the braids.
-  const ear=style==='braids'&&v.z>-.32?Math.hypot((v.y+.035)/.25,(v.z-.04)/.30)-1:1;
+  const ear=style==='braids'&&v.z>-.32?Math.hypot((v.y+.055)/.19,(v.z-.03)/.215)-1:1;
   return Math.min(Math.min(outFace,c)-hh*hh*kk*.25,ear*.1);
  };
  // (A piece that covers only part of the head, a beard, takes a finer patch of the sphere: spec.patch.)
@@ -910,6 +916,7 @@ function torsoProfile(recipe,m){
  const belly=1+(recipe.body.build-.5)*.12,hipRatio=m.hips/m.width;
  const lower=[[0,-.1],[hipRatio*.86,-.08],[hipRatio,.05],[hipRatio,.13],[hipRatio,.15],[m.waistRatio*belly,.3],[m.waistRatio*(1+(belly-1)*.6),.5]];
  // The shoulders: sloping away to the neck, or (a sturdy frame) carried out square to the arm before they turn in.
+ if(m.graceful)return [...lower,[.97,.66],[.95,.73],[.89,.8],[.8,.87],[.67,.93],[.5,.98],[.32,1.01],[.16,1.03],[0,1.04]];
  return [...lower,...(m.sturdy?[[1,.64],[1,.76],[.995,.85],[.975,.91],[.92,.96],[.78,.995],[.54,1.02],[.27,1.035],[0,1.04]]:[[1,.66],[.985,.74],[.95,.8],[.88,.87],[.76,.93],[.58,.98],[.38,1.01],[.19,1.03],[0,1.04]])];
 }
 /**
@@ -1931,9 +1938,13 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
  const ears=list=>{
   const visible=recipe.hair.style==='braids';
   for(const s of [-1,1]){
-   const at=[s*m.Rh*m.headSX*(visible?1.025:.97),m.headCentre-m.Rh*(visible?.025:.08),m.Rh*(visible?.08:-.05)];
-   ball(list,m.Rh*(visible?.22:.2),at,'head',recipe.body.skin,[.55,1,.8],10,8);
-   if(visible)ball(list,m.Rh*.105,[at[0]+s*m.Rh*.018,at[1],at[2]+m.Rh*.145],'head',new THREE.Color(recipe.body.skin).multiplyScalar(.91).getStyle(),[.55,1,.22],8,6);
+   // (Where the ear shows, with the braids, it is a small one: the owner, 26 November 2026, of Thuan's: "Make her ear smaller
+   // and cuter". It was as big as her eye and its brow together.)
+   // It sits on the head's own surface there (a full cheek is wider than the head's half-axis), just proud of it.
+   const on=visible?shapeHeadPoint(new THREE.Vector3(s,-.06,.04).normalize(),m.profile):null;
+   const at=visible?[on.x*m.Rh*m.headSX*1.012,m.headCentre+on.y*m.Rh*m.headSY,on.z*m.Rh*.98]:[s*m.Rh*m.headSX*.97,m.headCentre-m.Rh*.08,m.Rh*-.05];
+   ball(list,m.Rh*(visible?.145:.2),at,'head',recipe.body.skin,visible?[.5,1,.74]:[.55,1,.8],visible?14:10,visible?10:8);
+   if(visible)ball(list,m.Rh*.066,[at[0]+s*m.Rh*.014,at[1]-m.Rh*.008,at[2]+m.Rh*.088],'head',new THREE.Color(recipe.body.skin).multiplyScalar(.9).getStyle(),[.5,1,.22],8,6);
   }
  };
  ears(parts);

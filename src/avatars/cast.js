@@ -46,6 +46,14 @@ export const FORMER_NHUNG_RECIPE=R({name:'Nhung',accessories:{earrings:'hoops',p
   brows:{style:'arched',colour:'#2e211b',size:.45},nose:{style:'button',size:.35},mouth:{style:'small',colour:'#c4485a',size:.45},
   blush:.45,
   outfit:{hat:'beret',hatColour:'#5f8f6a',top:'jacket',topColour:'#5f8f6a',pattern:'dots',bottom:'longskirt',bottomColour:'#e6d3b0',shoes:'#6b4a2e',accent:'#f4e4c8'}});
+/** What the Blender Thuan changed in the cartoon one (the owner, 26 November 2026); the rest is the Studio design, exactly. */
+export const THUAN_REDRAWN=Object.freeze({
+ head:{form:'gentle'},body:{skin:'#f6d8c2',frame:'graceful'},nose:{style:'curve',size:.3,height:.34},
+ // Her eyes are hers ("the eyes need to fit her"): dark, almond, longer than they are tall, the outer corner a little up.
+ eyes:{style:'almond',colour:'#3a2315',size:.62,width:.78,spacing:.6,height:.24,tilt:.62},
+ brows:{style:'straight',colour:'#2a1e19',size:.6,height:.36,tilt:.46},
+ mouth:{style:'soft',colour:'#c9304a',size:.6,height:.24},blush:.5,
+});
 export const CAST_RECIPES=castSet({
  // Photo reference: a blonde adult with shoulder-length hair, arched brows,
  // almond eyes and berry lips. A neutral editable name, not an invented identity.
@@ -67,7 +75,7 @@ export const CAST_RECIPES=castSet({
  // of the 120 raised bristles the ink line drew as a rash of dots round his mouth. His hair is the horseshoe round a bald
  // crown (build.js HORSESHOE), a shade darker than the beard it runs into at the sideburn.
  Johansson:R({name:'Johansson',
-  body:{height:.72,build:.72,silhouette:'masculine',frame:'sturdy',skin:'#f1cdb4'},head:{size:.46,shape:.5,form:'rugged',jaw:.5,cheeks:.5},
+  body:{height:.72,build:.58,silhouette:'masculine',frame:'sturdy',skin:'#f1cdb4'},head:{size:.3,scale:.84,shape:.5,form:'rugged',jaw:.5,cheeks:.5},
   hair:{style:'horseshoe',colour:'#8b8782'},
   eyes:{style:'heavy',colour:'#2b1f17',size:0,spacing:.5,height:.6,tilt:.45,shine:.2},
   brows:{style:'strong',colour:'#241c17',size:.78,height:.38,tilt:.4},
@@ -81,7 +89,15 @@ export const CAST_RECIPES=castSet({
  // (26 November 2026, the owner: "redraw Thuan in Blender too". Her approved design, with her head sculpted in Blender over
  // its own silhouette, head form 'gentle', and a small drawn curve under the sculpted nose in place of the ball that
  // read as a ring. Nothing else of the design is changed: tests/thuan-studio-design.test.mjs.)
- Thuan:R({...THUAN_STUDIO_DESIGN,head:{...THUAN_STUDIO_DESIGN.head,form:'gentle'},nose:{...THUAN_STUDIO_DESIGN.nose,style:'curve',size:.3}}),
+ // Then: "The blender thuan is the inspiration"; and, of an attempt that kept her old kite-shaped head with round doll
+ // eyes, "She looks grotesque can you use Disney art design this is real life Thuan it should look like her but a cute
+ // cartoon", with her photograph. So she is designed from it on Disney's terms: a soft oval head with a small round chin
+ // (the sculpt), large dark almond eyes with a lash line set low and wide, soft straight brows, a small nose, her red
+ // lips in a small smile, a blush, fair skin, her two braids. Then: "Make her look more feminine and fully rigged but still a
+ // cartoon don't be restricted by the avatar creator": the graceful frame (build.js measure). And "I want her mouth to be
+ // very expressive like Miis and eyes too": every one of the face's 46 expressions is checked on her
+ // (art/characters/thuan/review/expressions.png). THUAN_REDRAWN is every value that differs from the Studio design.
+ Thuan:R({...THUAN_STUDIO_DESIGN,...Object.fromEntries(Object.entries(THUAN_REDRAWN).map(([part,values])=>[part,typeof values==='object'?{...THUAN_STUDIO_DESIGN[part],...values}:values]))}),
  // Thuan's middle sister: slim, a high ponytail, a plain white tee and blue shorts.
  // Stubborn but friendly: the flat set mouth and straight brows, and the grin under them.
  Thao:R({name:'Thao',body:{height:.44,build:.3,silhouette:'feminine',skin:'#ecc6a0'},head:{size:.46,shape:.4,form:'oval',jaw:.3,cheeks:.4},
