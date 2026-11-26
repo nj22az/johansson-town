@@ -4,7 +4,7 @@
 
 The owner, 26 November 2026, with his photograph: "This is the harbour master Sverker". From the photograph, as a cartoon:
 - THE HEAD  broad and round: wider than it is tall, full cheeks, heavy soft jowls, a short chin with a second one under
-            it. His nose is the body kit's.
+            it; small eyes under heavy lids; a broad soft nose. All of it is in the mesh.
 - THE HAIR  thick, straight and white-blond: a full mop swept across the forehead from his right, over the
             tops of his ears, full at the back.
 Writes src/avatars/sculpts/broad-head.js (head form 'broad') and sweptmop-hair.js (hair style 'sweptmop'), and
@@ -16,7 +16,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import numpy as np                                                         # noqa: E402
 import head_sculpt as H                                                    # noqa: E402
-from head_sculpt import bell, smooth                                       # noqa: E402
+from head_sculpt import bell, plateau, smooth                                       # noqa: E402
 
 WIDTH, HEIGHT = 1.08, 1.0
 
@@ -25,21 +25,38 @@ def radius(x, y, z, F):
     A = np.degrees(np.arctan2(x, z))
     a = np.abs(A)
     t = np.degrees(np.arccos(np.clip(y, -1, 1)))
-    te, tn, tm = F['eye'], F['nose'], F['mouth']
+    tb, te, tn, tm = F['brow'], F['eye'], F['nose'], F['mouth']
     side = np.abs(np.sin(np.radians(A)))
     r = np.ones_like(x)
     r += .04 * bell(a - 80, 32) * bell(t - 108, 24)                          # broad across the cheeks
-    r -= .035 * smooth(t, 110, 160) * side ** 2
-    r -= .07 * smooth(t, 150, 180)
-    r += .055 * bell(a - 50, 24) * bell(t - 130, 15)                         # heavy soft jowls
-    r += .03 * bell(a, 26) * bell(t - 146, 10)                               # a short chin
-    r += .02 * bell(a, 40) * bell(t - 158, 8)                                # and a second under it
-    r -= .03 * bell(a, 44) * bell(t - (te + 4), 26)
-    r += .045 * bell(a - 40, 15) * bell(t - (tn + 6), 12)                    # full cheeks
-    r += .016 * bell(a, 11) * bell(t - (tm + .5), 5)
-    r += .01 * bell(t - F['brow'], 5) * smooth(-a, -50, -28)
+    r -= .035 * smooth(t, 112, 160) * side ** 2
+    r -= .06 * smooth(t, 152, 180)
+    # Heavy soft jowls, hanging a little below the jaw's line either side of the chin.
+    r += .075 * bell(a - 47, 20) * bell(t - 134, 13)
+    # A short round chin between them, and a second one under it.
+    r += .04 * bell(a, 20) * bell(t - 145, 8)
+    r += .035 * plateau(a, 34) * bell(t - 159, 7)
+    # Full cheeks, and the fold from the nose round each.
+    r += .055 * bell(a - 39, 15) * bell(t - (tn + 3), 11)
     for s in (-1, 1):
-        r -= .01 * bell(A - s * F['eyeA'], 11) * bell(t - (te + 1), 7)
+        fold = s * (16 + 10 * smooth(t, tn - 4, tm + 6))
+        r -= .022 * bell(A - fold, 3.4) * plateau(t - (tn + tm) / 2 - 2, 10)
+    # A soft brow, and small eyes back under heavy lids.
+    r += .028 * bell(t - (tb + 1), 5.5) * smooth(-a, -54, -30)
+    for s in (-1, 1):
+        r -= .034 * bell(A - s * F['eyeA'], 10.5) * bell(t - (te + 1.5), 6.4)
+        r += .014 * bell(A - s * F['eyeA'], 12) * bell(t - (te - 5), 2.8)   # the lid's weight over each
+    # The nose: broad and soft, a round tip, a wing each side.
+    t0, tc = tb + 3, tn - 2.0
+    u = np.clip((t - t0) / (tc - t0), 0, 1)
+    rise = (.022 + .075 * u ** 1.5) * smooth(t, t0 - 3.5, t0 + 2)
+    end = np.where(t > tc, plateau(t - tc, 5.6), 1)
+    r += rise * end * bell(A, 5.4 + 5.0 * u)
+    r += .1 * plateau(a, 10.2) * plateau(t - (tc + .2), 5.6)
+    r += .065 * bell(a - 12.4, 4.6) * bell(t - (tc + 1.6), 3.9)
+    # The mouth's ground and a full lower lip.
+    r += .02 * bell(a, 17) * bell(t - (tm - 1), 7)
+    r += .014 * bell(a, 11) * bell(t - (tm + 3.5), 3.5)
     return r
 
 
@@ -66,7 +83,12 @@ def hair_height(A, t):
     return np.where(f > 0, h, .02)
 
 
-CONFIG = {'name': 'Sverker', 'slug': 'sverker', 'form': 'broad', 'const': 'BROAD_HEAD', 'width': WIDTH, 'height': HEIGHT, 'points': points, 'melt': 8}
+# His eye: small and pale under a heavy lid that comes a third of the way down and slopes to the outside, a line
+# under it.
+EYE = dict(rx=10.4, ry=9.0, topAmp=9.0, botAmp=7.0, pTop=.5, pBot=.6, cut=.33, slant=-.2, irx=6.2, iry=6.2, iy=-.4,
+           pupil=.46, lash=3.6, flick=0, lower=1, highlight=.7, lidShadow=1)
+
+CONFIG = {'eye': EYE, 'name': 'Sverker', 'slug': 'sverker', 'form': 'broad', 'const': 'BROAD_HEAD', 'width': WIDTH, 'height': HEIGHT, 'points': points, 'melt': 8}
 
 
 def with_hair(F):

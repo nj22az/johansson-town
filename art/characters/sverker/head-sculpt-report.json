@@ -11,23 +11,23 @@
   "heightOverWidth": 0.926
  },
  "radius": {
-  "min": 0.9137,
-  "max": 1.0586
+  "min": 0.9236,
+  "max": 1.1874
  },
  "features_deg": {
   "brow": 79.93,
   "eye": 92.81,
   "nose": 105.05,
-  "mouth": 116.97,
+  "mouth": 117.41,
   "eyeA": 16.16
  },
  "profile": {
-  "brow": 0.989,
-  "eyeSocket": 0.9654,
-  "noseTip": 0.9722,
-  "upperLip": 0.9849,
-  "chin": 1.0215
+  "brow": 1.0254,
+  "eyeSocket": 0.9721,
+  "noseTip": 1.1814,
+  "upperLip": 1.0175,
+  "chin": 1.03
  },
- "jawCorner": 1.044,
- "temple": 1.0126
+ "jawCorner": 1.043,
+ "temple": 1.0136
 }

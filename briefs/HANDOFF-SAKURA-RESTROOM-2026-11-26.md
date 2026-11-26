@@ -331,3 +331,72 @@ Not on `main`: on `claude/dreamy-ritchie-cxufpl`, waiting for the owner's word.
 - Historical documents (`docs/`, `briefs/`, dated notes in `AGENTS.md`) keep the old names.
 - Still owed from "everyone remodelled in Blender": the other heads (Chin and Nhung next), the remaining hairstyles, the
   clothes, a sculpted torso and hands.
+
+# Then: their heads again, their eyes, their bodies, feet and hands, all in Blender
+
+Not on `main`. The owner asked (a phone screenshot of the live game) "Why isn't Johansson's new face in the game": the
+live game is `main`, his phone holds a saved copy of the old look, and the fix (`APPEARANCE_REVISIONS`, above) is only on
+`claude/dreamy-ritchie-cxufpl` until he says to publish.
+
+## The owner's words, in order
+- "Christina needs to look like an adorable elderly woman not like a man, redraw all their heads they need to be drawn in
+  Blender"
+- "Then after their bodies and feet"
+- "Their eyes too no need avatar creator eyes draw the characters in blender I have said it many times"
+- "Why isn't Johansson's new face in the game"
+- "Omg they have mitten hands"
+
+## Done
+- **Heads with their features in the mesh.** Christina (`kindly`): apple cheeks standing out of the face, the fold round
+  each, a small round nose, a little chin; her hair (`softwave`) is set curls, lobes with valleys between, curled on to
+  the forehead and down over the ears. Erik (`burly`): a brow ridge, a big round nose with wings, cheeks pushed up, and
+  the mass of his beard (jaw, chin, moustache) for the painted beard to lie on. Sverker (`broad`): heavy jowls, a second
+  chin, a broad soft nose, lids with weight. Their noses are the sculpts' own now (`nose:'none'` or the drawn line).
+- **Eyes drawn with the head** (`head_sculpt.py eye_curves`, `EYE` in each script; Thao, Christina, Erik, Sverker): lids,
+  iris and pupil as curves on the sculpt, in the `.blend` and on the clay sheet; their numbers are written into the head's
+  module (`eye:`) and are the whole open shape of the game's eye (`eyes3d.js eyeShape(…, drawn)`), which still blinks,
+  looks and takes every expression; the painter draws the same eye on baked faces (`face.js paintedEyes`). Recipe:
+  `eyes.style:'drawn'`. Johansson, Thuan, Tetsuo and Vy still have the eyes the owner approved earlier, which are styles
+  (`heavy`, `almond`, `sleepy`, `dewy`): to be moved to their own heads the same way.
+- **Bodies** (`build-body-kit.py`): two more frames, each a whole torso line and limbs of its own: `stout` (Sverker, Erik:
+  the belly the widest of him) and `soft` (Christina: narrow rounded shoulders, a slight neck, round hips).
+- **Feet**: two more shoe shapes in the kit's one layout: `court` (cut low, the instep showing, a small heel) worn as
+  `shoes` on the soft frame, `broad` (wide, a toe cap) on the stout one (`build.js shoeShapeFor`).
+- **Hands: not done.** Two modelled hands were tried and both were rejected by the owner ("Draw the hand properly not
+  like a balloon with sausages on it"; "The hands look awful, make them Disney quality"). Everybody still has the mitten.
+  See "Not done" below.
+- **Two pose faults the soft frame showed up** (the guard): seated, Christina's mitten lay 5.5 mm in her long skirt (the
+  soft frame was 4 % deeper than the standard; now it is not); and in the Hug, Mai's arm (a child's) could not reach round
+  Christina's back from beside her (2 cm short at the hug's comfortable 90 % stretch), so her hand had always rested on
+  Christina's flank, 2.03 cm behind her middle against a 2 cm check: passing by a third of a millimetre. The hug now lets
+  an arm that cannot reach round at 90 % use its whole reach (`pair-poses.js fitHug`): Mai's hand is 5.8 cm round
+  Christina's back, and every other pair is as it was.
+
+## Proved
+- `tests/sculpted-cast.test.mjs` (eyes, the women's cues, noses in the mesh, frames, shoes), `pair-poses`, `seated-pose`,
+  `floor-sit` and the guard.
+- Sheets: `art/characters/{thao,christina,erik,sverker}/review/` now also `game-feet.png`.
+
+## Not done
+- **The hands** (the owner: "Omg they have mitten hands", then "make them Disney quality"). What was learned:
+  - `tools/blender/hand_model.py` is the second try (a flat palm, jointed tapered fingers, a thumb, one voxel-remeshed
+    skin, about 1,300 points). It is not worn. The owner called it awful: it is anatomically a hand but has no appeal:
+    no rhythm in the fingers, no fleshy pads, a mechanical palm. A Disney hand is designed, not assembled: a clear
+    silhouette, fingers that taper and fan with the little finger leading the curl, a soft square palm, a thumb with a
+    real base, and it is drawn in poses (relaxed, pointing, open, gripping), not one frozen shape.
+  - **Every pose is made to the mitten's volume** (an ellipsoid of half-sizes 0.9 x 1.15 x 0.78 hand lengths, its middle
+    0.55 below the wrist, its top up inside the forearm): `animate.js TOUCH` and `reachFor`, the lap rests, `pair-poses.js`,
+    and the tests `seated-pose`, `floor-sit`, `pair-poses` measure the drawn hand. A hand that is longer, wider or
+    thicker than the mitten goes into clothes; one that is thinner floats off what it rests on (measured: 7 to 25 mm
+    into cloth, 32 to 62 mm off a chest in Fight and Shove). So the hand and the poses have to be done together: the
+    solver's envelope made the hand's (there is already a thin-hand path for Pixar bodies, `want.flat`), then the tests'
+    numbers re-derived.
+  - The forearm ends in a round cap that hid the top of a hand placed where the mitten was: a hand needs a wrist (the
+    kit arm tapered into it), and long sleeves' cuffs end at the mitten's top.
+- **Z-fighting** (the owner, with two screenshots from the ferry: "Lots of z fighting I thought we eliminated it", "no z
+  fighting allowed"): two helpers were started on it in their own worktrees, `zfight/ferry` (the ferry and any global
+  renderer cause) and `zfight/town` (a stronger near-coplanar audit of the town and every interior, and fixes). Their
+  handovers are `briefs/HANDOFF-ZFIGHT-FERRY-2026-11-26.md` and `briefs/HANDOFF-ZFIGHT-TOWN-2026-11-26.md` on those branches.
+- The `court` and `broad` shoes are fitted by frame, not chosen: the wardrobe has no entry for them.
+- The resident photo shoots (`assets/images/residents/shoot/`) and the Blender cast sheet (`tools/blender/rig-cast.py`)
+  were rendered before the hands changed, except the four people of this section's.

@@ -110,8 +110,8 @@ def limb_shape(kind, frame, t, a):
     front, back, side = np.cos(a), -np.cos(a), np.abs(np.sin(a))
     k = np.ones_like(t)
     if kind == 'arm':
-        tone = {'standard': .55, 'sturdy': 1.0, 'graceful': .15}[frame]
-        slim = {'standard': 0, 'sturdy': 0, 'graceful': .05}[frame]
+        tone = {'standard': .55, 'sturdy': 1.0, 'graceful': .15, 'stout': .8, 'soft': .2}[frame]
+        slim = {'standard': 0, 'sturdy': 0, 'graceful': .05, 'stout': 0, 'soft': .03}[frame]
         k -= .06 * (1 - bell(t - .25, .2)) * (1 - tone * .4)                # the upper arm fullest a quarter down
         k -= (.1 - .03 * tone) * bell(t - .5, .07)                           # the elbow
         k -= .05 * smooth(t, .5, .62) * (1 - bell(t - .64, .1) * (.6 + .4 * tone))   # the forearm swells below it
@@ -119,8 +119,8 @@ def limb_shape(kind, frame, t, a):
         k += .03 * tone * bell(t - .25, .12) * np.maximum(front, 0)          # a biceps to the front
         k -= slim
     else:
-        tone = {'standard': .5, 'sturdy': 1.0, 'graceful': .35}[frame]
-        slim = {'standard': 0, 'sturdy': 0, 'graceful': .03}[frame]
+        tone = {'standard': .5, 'sturdy': 1.0, 'graceful': .35, 'stout': .85, 'soft': .3}[frame]
+        slim = {'standard': 0, 'sturdy': 0, 'graceful': .03, 'stout': 0, 'soft': .02}[frame]
         # What is sat on keeps its thickness: the back of the thigh, hip to knee, is the taper's own, so everybody sits on
         # the floor and on a chair exactly as they did (the seat is made to the thigh's underside).
         seat = 1 - np.maximum(back, 0) ** .5 * (1 - smooth(t, .5, .6))
@@ -139,7 +139,8 @@ def build_limbs():
     out, x0 = {}, 0
     for kind in ('arm', 'leg'):
         out[kind] = {}
-        for frame in ('standard', 'sturdy', 'graceful'):
+        # (stout: a big man's limbs, full with little waist at the elbow, the knee or the ankle; soft: an old lady's, slight)
+        for frame in ('standard', 'sturdy', 'graceful', 'stout', 'soft'):
             t = np.linspace(0, 1, NT)[:, None] * np.ones((1, NA))
             a = np.linspace(0, 2 * math.pi, NA, endpoint=False)[None, :] * np.ones((NT, 1))
             k = limb_shape(kind, frame, t, a)
@@ -170,6 +171,15 @@ def build_torso():
         # neck. (The owner, of a first try whose hips were a wide straight band: "she still has a barrel for hips".)
         'graceful': [[0, -.1], [.5, -.095], [.8, -.062], [.95, -.01], [1.02, .06], [1.03, .12], [.98, .19], [.88, .27], [.77, .35], [.7, .43],
                      [.68, .5], [.71, .56], [.8, .63], [.88, .69], [.89, .74], [.83, .8], [.72, .86], [.58, .925], [.43, .975], [.28, 1.008], [.14, 1.03], [0, 1.04]],
+        # A big man heavy in the middle (Sverker, Erik: the owner, 26 November 2026, "Then after their bodies and feet"): the
+        # whole of him in one line: the belly is the widest of him, a third of the way up, and rounds over the belt below
+        # it; the chest goes in a little above it; ordinary shoulders, sloping to the neck.
+        'stout': [[0, -.1], [.5, -.095], [.82, -.06], [.96, -.005], [1.03, .06], [1.09, .14], [1.15, .23], [1.18, .32], [1.17, .41], [1.12, .5],
+                  [1.06, .58], [1.02, .66], [.995, .74], [.955, .81], [.88, .87], [.76, .93], [.58, .98], [.38, 1.01], [.19, 1.03], [0, 1.04]],
+        # An old lady, small and soft (Christina): round hips under a soft middle with hardly a waist, a low full bust, and
+        # narrow rounded shoulders that fall away to a slight neck. Nothing square or straight in her.
+        'soft': [[0, -.1], [.5, -.095], [.82, -.06], [.97, -.008], [1.05, .06], [1.08, .13], [1.065, .2], [1.02, .28], [.97, .36], [.93, .44],
+                 [.92, .5], [.935, .56], [.965, .62], [.97, .68], [.93, .74], [.85, .8], [.73, .86], [.58, .92], [.43, .97], [.28, 1.005], [.14, 1.03], [0, 1.04]],
     }
     out = {}
     for i, (frame, line) in enumerate(lines.items()):
@@ -204,6 +214,10 @@ def foot_points(shape):
         'shoe':    dict(heel=.78, ball=.95, toe=.76, ankle=.96, low=.5, crown=.65, flat=.26),
         'boot':    dict(heel=.84, ball=1.0, toe=.9, ankle=1.0, low=.7, crown=.55, flat=.26),
         'slipper': dict(heel=.8, ball=1.0, toe=.95, ankle=.5, low=.46, crown=.6, flat=.3),
+        # A lady's court shoe (Christina's): narrow, a rounded toe that comes in, cut low, on a small heel.
+        'court':   dict(heel=.66, ball=.86, toe=.6, ankle=.98, low=.33, crown=.72, flat=.26),
+        # A broad work shoe for a big man (Sverker's, Erik's): wide all the way, a full round toe, a thick sole.
+        'broad':   dict(heel=.9, ball=1.0, toe=.97, ankle=1.0, low=.6, crown=.6, flat=.24),
     }[shape]
     w = (P['heel'] + (P['ball'] - P['heel']) * smooth(z, -.75, .3) + (P['toe'] - P['ball']) * smooth(z, .35, 1.0)) * (.35 + .65 * end)
     # The top: the ankle's dome a third of the way from the heel (where the leg goes in), falling to the toe.
@@ -215,8 +229,8 @@ def foot_points(shape):
     bottom = np.zeros_like(z)
     if shape == 'foot':
         bottom = bottom + .07 * bell(z + .1, .28) * np.maximum(-sx, 0)        # the arch, on the inner side
-    if shape == 'shoe':
-        bottom = bottom + .05 * smooth(z, -.42, -.3) * (1 - smooth(z, .0, .14))   # a heel block and a waist under the arch
+    if shape in ('shoe', 'court'):
+        bottom = bottom + (.09 if shape == 'court' else .05) * smooth(z, -.42, -.3) * (1 - smooth(z, .0, .14))   # a heel block and a waist under the arch
     up = np.where(cy >= 0, np.abs(cy) ** P['crown'], -np.abs(cy) ** P['flat'])     # a round top, a flat sole
     y = bottom + (top - bottom) * (.5 + .5 * up) + (1 - end) * .04
     x = w * sx * (1 - .1 * np.maximum(cy, 0) ** 2)
@@ -240,14 +254,18 @@ def foot_zones(shape, pts):
         zone[(z > .55) & ~under & (cy < .75)] = 2
         zone[(np.abs(z + .3) < .34) & (cy > .9)] = 3
         zone[under] = 1
-    elif shape in ('shoe', 'boot', 'slipper'):
+    elif shape in ('shoe', 'boot', 'slipper', 'court', 'broad'):
         zone[cy < -.6] = 1
+        if shape == 'court':                                                 # cut low: the instep shows in the shoe's opening
+            zone[(cy > .5) & (z > -.66) & (z < .34)] = 3
+        if shape == 'broad':                                                 # a toe cap
+            zone[(z > .6) & (cy >= -.6)] = 2
     return zone
 
 
 def build_feet():
     shapes, zones, index = {}, {}, None
-    for i, shape in enumerate(('foot', 'sneaker', 'shoe', 'boot', 'slipper')):
+    for i, shape in enumerate(('foot', 'sneaker', 'shoe', 'boot', 'slipper', 'court', 'broad')):
         pts = foot_points(shape)
         # Blender: X across, -Y the toe's way, Z up; a tenth of a metre to the unit.
         obj = grid_mesh(f'foot-{shape}', np.stack([pts[..., 0] * .05, -pts[..., 2] * .12, pts[..., 1] * .09], axis=-1), RJ, RS, at=(4 + i * .2, 0, 0))

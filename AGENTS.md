@@ -59,6 +59,19 @@ critique what still looks too soft/chibi, and iterate"; then "When happy redraw 
 - **Look at every character from the game's own camera** (`avatar-turnaround.mjs` views `game`, `game front`) as well as at
   eye level, and in the looks that draw from the normals (`--look vy`): the owner sees them from above, on a phone
   ("Why does Vy have lines on her legs no one should have it in any shader").
+- **A character is drawn in Blender, all of it** (the owner, repeatedly; of the first Christina, Erik and Sverker, which had
+  plain round heads and eyes chosen from the avatar creator's list: "Christina needs to look like an adorable elderly woman
+  not like a man, redraw all their heads they need to be drawn in Blender", "Then after their bodies and feet", "Their eyes
+  too no need avatar creator eyes draw the characters in blender I have said it many times", "Omg they have mitten hands").
+  For anybody redrawn that means, with nothing taken from the creator's lists where a part of their own is wanted:
+  the **head** with its features in the mesh (cheeks, nose, brow, jaw, a beard's mass); the **hair**; the **eyes** (`EYE`
+  in the character's `build-<name>-head.py`: drawn on the sculpt as curves, kept in the `.blend`, written with the head and
+  drawn by the game's rigged eyes and by the painter: recipe `eyes.style:'drawn'`); the **body** (a frame of the kit's:
+  `standard`, `sturdy`, `graceful`, `stout`, `soft`); the **feet and shoes** (kit shapes; `court` and `broad` are fitted by
+  frame); and the **hands**, which are still mittens and are owed: "make them Disney quality" (two modelled hands were
+  rejected: a balloon with sausages, then a stiff anatomical one; the handover of this date says what a hand has to be and
+  why the poses must be remade with it).
+  A woman must read as a woman at a glance: lashes, lips, hair that is hers, shoulders and a neck that are not a man's.
 - The owner's photographs are not kept in the repository (it is public).
 
 ## Owner's decision — 25 November 2026: the cast are dolls wearing clothes

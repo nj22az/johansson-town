@@ -222,10 +222,7 @@ function fitHug(ctx){
  const down=clamp((A.m.shoulderY-B.m.shoulderY)/.3,0,1)*.25;
  const pA={hips:[0,0,0],spine:[.02,.1,0],chest:[.04,.18,-down],neck:[.02,0,0],head:[.06,.1,-.12],thighL:[0,0,.06],thighR:[0,0,-.06],kneeL:[.03,0,0],kneeR:[.03,0,0]};
  const pB={hips:[0,0,0],spine:[.02,0,0],chest:[.04,0,0],neck:[.02,0,0],head:[.06,-.22,.08],thighL:[0,0,.06],thighR:[0,0,-.06],kneeL:[.03,0,0],kneeR:[.03,0,0]};
- const dz=0;
- const dx=bisect(.2,1.2,v=>{const M=pairMatrix({dx:v,dz,yawB});return headGap(A,pA,B,pB,M)>=PAIR_GAP.heads&&bodyGap(A,pA,B,pB,M)>=PAIR_GAP.bodies;});
- const PM=pairMatrix({dx,dz,yawB}),PMi=PM.clone().invert(),FA=posed(A,pA),FB=posed(B,pB);
- const shA=FA.pos('shoulderL'),shB=FB.pos('shoulderR'),shBinA=shB.clone().applyMatrix4(PM);
+ const FA=posed(A,pA),FB=posed(B,pB),shA=FA.pos('shoulderL'),shB=FB.pos('shoulderR');
  // a mitten on the partner's back, as far round it from the near side as the arm reaches (phi: from the far side of the
  // spine toward the near flank); `side` +1 when the partner's near side is its left, -1 its right; `from` where the arm
  // reaches from (the shoulder, or an elbow held over the partner's shoulder) and how far it reaches from there
@@ -240,8 +237,15 @@ function fitHug(ctx){
  // reach of A, and B's arm, solved first, is kept out of; the hand itself does not depend on it.
  const frontB=new THREE.Vector3(Math.sin(yawB),0,Math.cos(yawB));   // B's front, in A's frame
  const overOf=()=>shBinA.clone().addScaledVector(frontB,B.m.armR*1.1+B.cloth+A.m.hand*.85-PAIR_GAP.press*B.m.k).add(new THREE.Vector3(0,-.05*B.m.k,0));
- // B's right arm round A's waist: the mitten on A's back, from B's shoulder
- const under=backOf(B,A,FA,inB,shBinA,B.reach*.9,tAt(A,clamp(shB.y-.3*B.m.k,A.m.hipY+.08*A.m.k,A.m.chestY)),1);
+ const dz=0;
+ const dx=bisect(.2,1.2,v=>{const M=pairMatrix({dx:v,dz,yawB});return headGap(A,pA,B,pB,M)>=PAIR_GAP.heads&&bodyGap(A,pA,B,pB,M)>=PAIR_GAP.bodies;});
+ const PM=pairMatrix({dx,dz,yawB}),PMi=PM.clone().invert(),shBinA=shB.clone().applyMatrix4(PM);
+ // B's right arm round A's waist: the mitten on A's back, from B's shoulder, the arm not quite straight; and, if nothing
+ // round A's back is within that, stretched as far as it goes (a child's arm round her grandmother's soft middle: Mai's
+ // round Christina's, 26 November 2026, was 2 cm short, and her hand rested on Christina's flank instead of her back).
+ const tUnder=tAt(A,clamp(shB.y-.3*B.m.k,A.m.hipY+.08*A.m.k,A.m.chestY));
+ let under=backOf(B,A,FA,inB,shBinA,B.reach*.9,tUnder,1);
+ if(under.d!==undefined){const stretched=backOf(B,A,FA,inB,shBinA,B.reach,tUnder,1);if(stretched.d===undefined)under=stretched;}
  const keepA=field(B,pB,PM),keepB=field(A,pA,PMi);
  const A_near=armsB=>{const p=overOf(armsB),elbow=shA.clone().lerp(p,.5).add(new THREE.Vector3(0,.06*A.m.k,0));
   return armSpec('L',pA,pA.head,p.toArray(),field(B,pB,PM,armsB),[-1.3,.3,-.6,-1.1,0],{elbow:elbow.toArray()});};

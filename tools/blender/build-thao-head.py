@@ -77,7 +77,12 @@ def hair_height(A, t):
     return np.where(np.minimum(main, ear) > 0, close + bun, .02)
 
 
-CONFIG = {'name': 'Thao', 'slug': 'thao', 'form': 'serene', 'const': 'SERENE_HEAD', 'width': WIDTH, 'height': HEIGHT, 'points': points, 'melt': 8}
+# Her eye: long and narrow, coming to a point at each end, its outer corner a little lifted; a clean dark lash line
+# with a flick; a dark iris.
+EYE = dict(rx=12.6, ry=8.4, topAmp=7.0, botAmp=5.0, pTop=1, pBot=1, corner=1.7, off=.5, cut=.05, slant=0, irx=7.0, iry=7.0, iy=-.2,
+           pupil=.5, lash=3.4, flick=4.6, lower=0, highlight=1, lidShadow=1, warmIris=1)
+
+CONFIG = {'eye': EYE, 'name': 'Thao', 'slug': 'thao', 'form': 'serene', 'const': 'SERENE_HEAD', 'width': WIDTH, 'height': HEIGHT, 'points': points, 'melt': 8}
 
 
 def with_hair(F):

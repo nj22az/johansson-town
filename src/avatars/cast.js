@@ -107,7 +107,7 @@ export const CAST_RECIPES=castSet({
  // forehead, a small straight nose, a closed smile. The yellow tee of the photograph, and short pants in the cream of
  // its trousers, with pale sneakers.
  Thao:R({name:'Thao',body:{height:.5,build:.3,silhouette:'feminine',frame:'graceful',skin:'#f0cfae'},head:{size:.4,scale:.9,shape:.5,form:'serene'},
-  hair:{style:'tiedback',colour:'#2a1f1a'},eyes:{style:'almond',colour:'#33211a',size:.5,width:.86,spacing:.54,height:.44,tilt:.56},
+  hair:{style:'tiedback',colour:'#2a1f1a'},eyes:{style:'drawn',colour:'#33211a',size:.5,width:.6,spacing:.54,height:.44,tilt:.5},
   brows:{style:'tapered',colour:'#2a1f1a',size:.5,height:.4,tilt:.5},nose:{style:'button',size:.3,height:.46},mouth:{style:'smile',colour:'#c4686a',size:.46,height:.42},blush:.28,
   accessories:{earrings:'studs',colour:'#e0b93a'},
   outfit:{top:'tee',topColour:'#efcd5e',bottom:'shorts',bottomColour:'#efe6d0',footwear:'sneakers',shoes:'#f1ead9',accent:'#7fb0d8'}}),
@@ -161,9 +161,9 @@ export const CAST_RECIPES=castSet({
  // cardigan (the photograph's jersey, in the wardrobe's nearest) and dark trousers: what a man wears on a quay. He is
  // on the stout frame (build.js measure).
  'Sverker':R({name:'Sverker',body:{height:.55,build:.8,silhouette:'masculine',frame:'stout',skin:'#f3c8b0'},head:{size:.46,scale:.9,shape:.5,form:'broad'},
-  hair:{style:'sweptmop',colour:'#f0ede2'},eyes:{style:'gentle',colour:'#62798c',size:.38,spacing:.5,height:.5},
-  brows:{style:'straight',colour:'#cdbf9c',size:.5,height:.45},nose:{style:'wide',size:.5,height:.5},mouth:{style:'smile',size:.5,width:.6,height:.44},
-  wrinkles:.4,blush:.55,
+  hair:{style:'sweptmop',colour:'#f0ede2'},eyes:{style:'drawn',colour:'#62798c',size:.44,width:.5,spacing:.5,height:.5,tilt:.5},
+  brows:{style:'straight',colour:'#cdbf9c',size:.5,height:.45},nose:{style:'none'},mouth:{style:'smile',size:.46,width:.6,height:.42},
+  wrinkles:.4,blush:.6,marks:{nostrils:true,rosy:true},
   outfit:{top:'cardigan',topColour:'#5f7479',bottom:'trousers',bottomColour:'#2d3138',footwear:'shoes',shoes:'#1c1c24',hat:'none',accent:'#4d6066'}}),
  'Officer Mori':R({name:'Officer Mori',body:{height:.7,build:.48,skin:'#c79872'},head:{size:.48,shape:.46,form:'oval',jaw:.5,cheeks:.4},
   hair:{style:'crop',colour:'#4a4845'},eyes:{style:'round',colour:'#2a1d16',size:.62},
@@ -204,11 +204,11 @@ export const NEIGHBOUR_RECIPES=castSet({
  // Blender (tools/blender/build-christina-head.py): round and soft with full cheeks (head form 'kindly'), and soft full
  // white hair swept up off her forehead ('softwave'). Fair and rosy, pale gentle eyes, a warm closed smile; the navy
  // dress with white spots of the photograph, and its pearls (a white pendant on a fine white chain).
- 'Christina':R({name:'Christina',body:{height:.22,build:.55,silhouette:'feminine',skin:'#f6d6c6'},head:{size:.46,scale:.92,shape:.5,form:'kindly'},
-  hair:{style:'softwave',colour:'#eff0f1'},eyes:{style:'gentle',colour:'#6f8799',size:.42,spacing:.52,height:.48},
-  brows:{style:'thin',colour:'#c9c4bb',size:.5,height:.44},nose:{style:'button',size:.45,height:.5},mouth:{style:'smile',colour:'#cc7570',size:.5,height:.44},
-  wrinkles:.8,blush:.6,marks:{finecrows:true},
-  accessories:{neckwear:'pendant',necklaceColour:'#f6f3ec',earrings:'none'},
+ 'Christina':R({name:'Christina',body:{height:.22,build:.5,silhouette:'feminine',frame:'soft',skin:'#f8dccf'},head:{size:.46,scale:.94,shape:.5,form:'kindly'},
+  hair:{style:'softwave',colour:'#e8edf5'},eyes:{style:'drawn',colour:'#6f8ba0',size:.5,width:.5,spacing:.54,height:.46,tilt:.5},
+  brows:{style:'thin',colour:'#bdb8b0',size:.5,height:.56,tilt:.56},nose:{style:'curve',size:.3,height:.5},mouth:{style:'smile',colour:'#d9727a',size:.56,width:.56,height:.42},
+  wrinkles:.5,blush:.75,marks:{finecrows:true},
+  accessories:{neckwear:'pendant',necklaceColour:'#f6f3ec',earrings:'studs',colour:'#f6f3ec'},
   outfit:{top:'blouse',topColour:'#1f2742',pattern:'dots',bottom:'longskirt',bottomColour:'#1f2742',footwear:'shoes',shoes:'#2b2b2b',accent:'#f4f1ea'}}),
  'Mr Ōshiro':R({head:{size:.48,shape:.5,form:'narrow',jaw:0.45,cheeks:0.3},body:{height:.4,build:.4,skin:'#b27449'},hair:{style:'buzz',colour:'#d8d6d0'},eyes:{style:'narrow'},brows:{style:'bushy',colour:'#d8d6d0'},nose:{style:'hook',size:.6},mouth:{style:'flat'},facial:{style:'stubble',colour:'#d8d6d0'},wrinkles:.9,outfit:{top:'tee',topColour:'#f4f1ea',bottom:'trousers',bottomColour:'#6d7478',shoes:'#2b2b2b',hat:'straw',hatColour:'#e0c078'}}),
  'Mrs Nakamura':R({head:{size:.48,shape:.5,form:'round',jaw:0.55,cheeks:0.8},body:{height:.25,build:.6,skin:'#e8bf98'},hair:{style:'bun',colour:'#5a3a22'},eyes:{style:'round',size:.55},brows:{style:'arched'},nose:{style:'button'},mouth:{style:'grin',colour:'#cc3d52'},blush:.5,wrinkles:.4,outfit:{top:'apron',topColour:'#3fa0c8',bottom:'skirt',bottomColour:'#27304d',shoes:'#f4f1ea',hat:'kerchief',hatColour:'#f4f1ea',accent:'#f4f1ea'}}),
@@ -256,10 +256,10 @@ export const CREW_LOOKS=Object.freeze({
  // Erik"). His head is sculpted in Blender (tools/blender/build-erik-head.py): broad and heavy, a wide jaw under full
  // cheeks (head form 'burly'). A full grey beard, painted; heavy grey brows over pale eyes creased by a smile; a big
  // round nose; fair and weathered. The olive cap and the blue checked shirt of the photograph. A big man.
- Erik:R({name:'Erik',age:'elder',body:{height:.56,build:.9,silhouette:'masculine',skin:'#efc4a8'},head:{size:.46,scale:.9,shape:.5,form:'burly'},
-  hair:{style:'buzz',colour:'#9d9891'},eyes:{style:'gentle',colour:'#5f7888',size:.36,spacing:.5,height:.52},
-  brows:{style:'bushy',colour:'#7f7a73',size:.6,height:.46},nose:{style:'bulb',size:.62,height:.5},mouth:{style:'smile',size:.5,width:.6,height:.44},
-  facial:{style:'none',paint:'full',colour:'#a9a49c'},wrinkles:.5,blush:.45,marks:{finecrows:true},
+ Erik:R({name:'Erik',age:'elder',body:{height:.56,build:.62,silhouette:'masculine',frame:'stout',skin:'#efc4a8'},head:{size:.46,scale:.9,shape:.5,form:'burly'},
+  hair:{style:'buzz',colour:'#9d9891'},eyes:{style:'drawn',colour:'#5f7888',size:.46,width:.5,spacing:.5,height:.52,tilt:.5},
+  brows:{style:'bushy',colour:'#7f7a73',size:.62,height:.44},nose:{style:'none'},mouth:{style:'smile',size:.46,width:.6,height:.44},
+  facial:{style:'none',paint:'full',colour:'#a9a49c'},wrinkles:.5,blush:.5,marks:{finecrows:true,nostrils:true,rosy:true},
   outfit:{top:'shirt',topColour:'#7fa2d2',pattern:'check',bottom:'trousers',bottomColour:'#4b5059',footwear:'shoes',shoes:'#3a2c22',hat:'cap',hatColour:'#8c9072',accent:'#5b4a3a'}}),
  // The oiler, Mr Higa Jr, 24: a buzz cut, a round face, the boiler suit with the sleeves rolled, a kerchief.
  'Mr Higa Jr':R({name:'Mr Higa Jr',age:'adult',head:{size:.48,shape:.45,form:'round',jaw:0.55,cheeks:0.6},body:{height:.6,build:.45,silhouette:'masculine',skin:'#b27449'},hair:{style:'buzz',colour:'#1c1714'},eyes:{style:'round'},brows:{style:'straight'},nose:{style:'button'},mouth:{style:'grin'},outfit:{top:'overalls',topColour:'#2a3f6b',bottom:'trousers',bottomColour:'#2a3f6b',shoes:'#1c1c24',hat:'kerchief',hatColour:'#d8342c'}}),

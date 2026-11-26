@@ -34,7 +34,7 @@
  ],
  "meshes": {
   "Shimanchu body": {
-   "vertices": 71598,
+   "vertices": 74004,
    "skinned": true,
    "parentBone": null,
    "shapeKeys": []

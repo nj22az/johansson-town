@@ -136,3 +136,43 @@ test('Christina, Erik and Sverker: renamed by the owner, drawn from their photog
  // Nobody's head is anybody else's.
  const forms=['Johansson','Thuan','Tetsuo','Vy','Thao','Christina','Erik','Sverker'].map(n=>recipeFor(n).head.form);assert.equal(new Set(forms).size,forms.length);
 });
+
+test('their eyes are drawn with their heads in Blender, their bodies and feet are the kit\'s own for them',async()=>{
+ // The owner, 26 November 2026: "Christina needs to look like an adorable elderly woman not like a man, redraw all their heads
+ // they need to be drawn in Blender", "Then after their bodies and feet", "Their eyes too no need avatar creator eyes draw the
+ // characters in blender I have said it many times".
+ const {eyeShape,drawnEye}=await import('../src/avatars/eyes3d.js'),{measure,shoeShapeFor}=await import('../src/avatars/build.js');
+ const {LIMBS,TORSO,FEET}=await import('../src/avatars/sculpts/body-kit.js'),{PARTS}=await import('../src/avatars/recipe.js');
+ const names=['Thao','Christina','Erik','Sverker'],eyes={};
+ for(const name of names){
+  const R=recipeFor(name),m=measure(R),E=drawnEye(R,m);
+  assert.equal(R.eyes.style,'drawn',name+': no creator\'s eye style');assert.ok(E&&E.rx>8&&E.topAmp>4&&E.irx>4,name+' has an eye of the head\'s own');
+  // The game's eye is that eye: its open shape is the drawn one, and it still shuts, widens and frowns.
+  const open=eyeShape('drawn','open',null,E);for(const k of ['rx','topAmp','botAmp','pTop','cut','slant','irx','lash','flick'])assert.equal(open[k],E[k],name+' '+k);
+  assert.equal(eyeShape('drawn','closed',null,E).closed,1);assert.ok(eyeShape('drawn','wide',null,E).ry>E.ry);assert.ok(eyeShape('drawn','angry',null,E).slant>0);
+  eyes[name]=[E.rx,E.topAmp,E.botAmp,E.cut,E.slant,E.corner].join();
+  assert.match(readFileSync(file(`tools/blender/build-${name.toLowerCase()}-head.py`),'utf8'),/^EYE = dict\(/m,name+'\'s eye is drawn in her or his Blender script');
+ }
+ assert.equal(new Set(Object.values(eyes)).size,names.length,'four different eyes');assert.equal(PARTS.eyes.at(-1),'drawn','appended: no saved look moves');
+ // Christina reads as a woman: lashes, a lid that slopes kindly, coloured lips, and a sculpted face (her cheeks stand out
+ // of it, her nose is in the mesh); her hair is curls, with a valley between one and the next.
+ const C=head('Christina'),CE=drawnEye(C.R,measure(C.R));assert.equal(CE.lashes,1);assert.ok(CE.slant<0&&CE.botAmp<CE.topAmp);assert.notEqual(C.R.mouth.colour,'#b8544a');
+ assert.ok(Math.hypot(C.at(37,C.tip+1.5).x,C.at(37,C.tip+1.5).z)>Math.hypot(C.at(37,C.tip+16).x,C.at(37,C.tip+16).z)*1.03,'apple cheeks');
+ assert.equal(C.P.sculpt.nose,true);assert.ok(C.at(0,C.tip-1.4).z>C.at(12,C.tip-1.4).z+.02,'a small nose in the mesh');
+ const {SOFTWAVE_HAIR:S}=await import('../src/avatars/sculpts/softwave-hair.js'),raw=atob(S.radius.data);
+ const hairR=(a,t)=>{const i=Math.round(t/180*(S.nt-1))*S.na+Math.round((a+180)/360*(S.na-1));return S.radius.min+(S.radius.max-S.radius.min)*(raw.charCodeAt(i*2)|raw.charCodeAt(i*2+1)<<8)/65535;};
+ const ring=[];for(let a=-170;a<=170;a+=2)ring.push(hairR(a,90));let turns=0;for(let i=2;i<ring.length;i++)if((ring[i]-ring[i-1])*(ring[i-1]-ring[i-2])<0)turns++;
+ assert.ok(turns>=6&&Math.max(...ring)-Math.min(...ring)>.03,'curls round her head: '+turns+' turns');
+ // Erik and Sverker have noses, brows and jaws in the mesh.
+ for(const n of ['Erik','Sverker']){const H=head(n);assert.equal(H.P.sculpt.nose,true);assert.ok(H.at(0,H.tip-2).z>H.at(20,H.tip-2).z+.1,n+': a big nose stands out of the face');}
+ // Their bodies and feet: the kit has a stout frame and a soft one, each a whole line of its own and limbs of its own, and
+ // a shoe for each.
+ for(const frame of ['stout','soft']){assert.ok(TORSO[frame].length>=18,frame);assert.ok(LIMBS.arm[frame]&&LIMBS.leg[frame],frame);}
+ const widest=line=>line.reduce((b,p)=>p[0]>b[0]?p:b);
+ assert.ok(widest(TORSO.stout)[1]>.25&&widest(TORSO.stout)[1]<.45&&widest(TORSO.stout)[0]>1.12,'a stout man is widest at his belly');
+ assert.ok(widest(TORSO.soft)[1]<.2,'a soft frame is widest at the hips');const shoulder=line=>line.find(p=>p[1]>=.8)[0];assert.ok(shoulder(TORSO.soft)<shoulder(TORSO.stout)-.08,'narrow shoulders');
+ assert.equal(measure(recipeFor('Christina')).soft,true);assert.equal(measure(recipeFor('Erik')).stout,true);assert.equal(measure(recipeFor('Sverker')).stout,true);
+ assert.ok(FEET.shapes.court&&FEET.shapes.broad);assert.equal(shoeShapeFor('shoes',measure(recipeFor('Christina'))),'court');assert.equal(shoeShapeFor('shoes',measure(recipeFor('Sverker'))),'broad');
+ assert.equal(shoeShapeFor('shoes',measure(recipeFor('Johansson'))),'shoe');assert.equal(shoeShapeFor('sneakers',measure(recipeFor('Sverker'))),'sneaker');
+ for(const n of names.slice(1)){const a=buildAvatar(recipeFor(n),{shadows:false,eyes3d:false});assert.equal(a.shoeWorn('L'),n==='Christina'?'court':'broad');a.dispose();}
+});

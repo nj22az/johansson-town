@@ -5,29 +5,29 @@
  "generator": "tools/blender/build-christina-head.py",
  "blender": "5.3.0",
  "halfAxes": {
-  "width": 1.0,
-  "height": 1.02,
+  "width": 0.97,
+  "height": 1.0,
   "depth": 0.98,
-  "heightOverWidth": 1.02
+  "heightOverWidth": 1.031
  },
  "radius": {
-  "min": 0.9069,
-  "max": 1.046
+  "min": 0.8792,
+  "max": 1.0663
  },
  "features_deg": {
-  "brow": 80.12,
-  "eye": 93.27,
+  "brow": 77.77,
+  "eye": 93.73,
   "nose": 105.05,
-  "mouth": 116.97,
-  "eyeA": 16.47
+  "mouth": 117.41,
+  "eyeA": 16.77
  },
  "profile": {
-  "brow": 0.9876,
-  "eyeSocket": 0.9659,
-  "noseTip": 0.972,
-  "upperLip": 0.9845,
-  "chin": 1.0134
+  "brow": 0.9948,
+  "eyeSocket": 0.9581,
+  "noseTip": 1.0275,
+  "upperLip": 1.0003,
+  "chin": 1.025
  },
- "jawCorner": 1.0007,
- "temple": 1.011
+ "jawCorner": 0.9772,
+ "temple": 0.9872
 }

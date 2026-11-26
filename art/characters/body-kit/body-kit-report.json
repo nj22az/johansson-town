@@ -15,6 +15,14 @@
    "graceful": {
     "min": 0.594,
     "max": 1.0
+   },
+   "stout": {
+    "min": 0.68,
+    "max": 1.0
+   },
+   "soft": {
+    "min": 0.633,
+    "max": 1.0
    }
   },
   "leg": {
@@ -28,6 +36,14 @@
    },
    "graceful": {
     "min": 0.578,
+    "max": 1.0
+   },
+   "stout": {
+    "min": 0.62,
+    "max": 1.0
+   },
+   "soft": {
+    "min": 0.586,
     "max": 1.0
    }
   }
@@ -50,11 +66,15 @@
    "sneaker",
    "shoe",
    "boot",
-   "slipper"
+   "slipper",
+   "court",
+   "broad"
   ]
  },
  "torso": [
   "sturdy",
-  "graceful"
+  "graceful",
+  "stout",
+  "soft"
  ]
 }

@@ -85,7 +85,7 @@ const LABEL={
  pixie:'Pixie',shoulder:'Shoulder',curtains:'Centre part',slick:'Slicked back',mullet:'Mullet',topknot:'Topknot',pigtails:'Pigtails',twinbuns:'Twin buns',
  round:'Round',dot:'Dot',almond:'Almond',sleepy:'Sleepy',lashes:'Lashes',narrow:'Narrow',sparkle:'Sparkle',gentle:'Gentle',
  doe:'Doe',cat:'Cat',droopy:'Droopy',heavy:'Heavy-lidded',bright:'Bright',tired:'Tired',squint:'Squint',starry:'Starry',
- angled:'Angled',short:'Short',rounded:'Rounded',tapered:'Tapered',feathered:'Feathered',maro:'Maro',strong:'Strong',dry:'Dry half-smile',dewy:'Dewy',bud:'Rosebud lips',shadow:'Five-o’clock shadow',
+ angled:'Angled',short:'Short',rounded:'Rounded',tapered:'Tapered',feathered:'Feathered',maro:'Maro',strong:'Strong',dry:'Dry half-smile',dewy:'Dewy',drawn:'Drawn with the head',bud:'Rosebud lips',shadow:'Five-o’clock shadow',
  pointed:'Pointed',snub:'Snub',bulb:'Bulb',ridge:'Ridge',
  teeth:'Teeth',open:'Open',lopsided:'Lopsided',tongue:'Tongue out',buck:'Buck teeth',soft:'Soft',
  handlebar:'Handlebar',pencil:'Pencil',chinstrap:'Chinstrap',

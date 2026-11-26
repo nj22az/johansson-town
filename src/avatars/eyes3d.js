@@ -50,7 +50,7 @@ export const EYE_PARAMS=Object.freeze(['kind','rx','ry','topAmp','botAmp','pTop'
  * (0 none, .5 to the middle), `slant` tips it (+ down to the nose: cross; - down to the outside: sad), `smile` lifts the
  * lower lid, `closed` shuts both onto the closed line (`arch` 0: the ∪ of a shut eye, 1: the ∩ of a happy one).
  */
-export function eyeShape(style,eyes,own=null){
+export function eyeShape(style,eyes,own=null,drawn=null){
  const s={kind:0,rx:11.5,ry:13.5,topAmp:13.5,botAmp:13.5,pTop:.5,pBot:.5,corner:0,off:0,cut:0,slant:0,smile:0,arch:0,closed:0,
   irx:7.4,iry:7.4,iy:-1,pupil:.5,highlight:1,star:0,lash:3.4,flick:3,lower:1,lidLine:0,bright:0,tired:0,lashes:0,tear:0,dryLine:0,
   ovalX:0,ovalY:0,gainX:4,gainY:3,follow:0,still:0,depth:0,caruncle:0,squeeze:0,crow:0,lidShadow:0,warmIris:0};
@@ -81,6 +81,10 @@ export function eyeShape(style,eyes,own=null){
   if(style==='dewy')Object.assign(s,{cut:.15,slant:-.05,lash:3.0,flick:3.4,lower:0,pupil:.42,lidShadow:1,warmIris:1});
   if(style==='heavy')Object.assign(s,{cut:.41,lash:4});   // the lid's line where the painter draws it, a third of the way up
   if(style==='droopy')Object.assign(s,{cut:.21,slant:-.43});
+  // An eye drawn with its head in Blender (the head's own: sculpts/<form>-head.js `eye`, tools/blender/head_sculpt.py
+  // eye_curves): the whole of its open shape, its lids, iris and lashes, and nothing of a creator's style. (The owner,
+  // 26 November 2026: "Their eyes too no need avatar creator eyes draw the characters in blender".)
+  if(drawn)Object.assign(s,drawn);
  }
  // The big reaction eyes are the same for every style, as painted: wide whites, a coloured iris (shock: a dot of a pupil).
  const big=own?{wide:[own.rx*1.06,own.ry*1.4,own.iris*.97,own.iris*.97,.46],worry:[own.rx*1.03,own.ry*1.22,own.iris,own.iris,.52],
@@ -246,8 +250,10 @@ const GRID=[10,12];
  * The eyes for this recipe on its head (measure `m`). Returns the mesh (to add to the head bone), `update(faceState)`
  * (true while the discs draw the eyes) and `dispose()`.
  */
+/** The eye drawn with this head in Blender, for a recipe whose eyes are 'drawn' (null for a creator's style). */
+export const drawnEye=(recipe,m)=>recipe.eyes.style==='drawn'?m?.profile?.sculpt?.eye||null:null;
 export function buildEyes3d(recipe,m){
- const L=faceLayout(recipe),rest=eyeShape(recipe.eyes.style,'open');
+ const drawn=drawnEye(recipe,m),L=faceLayout(recipe),rest=eyeShape(recipe.eyes.style,'open',null,drawn);
  const pos=[],nrm=[],local=[],index=[];
  const toward=new THREE.Vector3(0,.4,.92).normalize(),a=new THREE.Vector3(),b=new THREE.Vector3(),n=new THREE.Vector3();
  for(const side of [-1,1]){
@@ -277,7 +283,7 @@ export function buildEyes3d(recipe,m){
  geometry.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));geometry.setAttribute('normal',new THREE.Float32BufferAttribute(nrm,3));
  geometry.setAttribute('eyeLocal',new THREE.Float32BufferAttribute(local,3));
  geometry.setIndex(index);geometry.computeBoundingSphere();
- return rigEyes(geometry,{iris:recipe.eyes.colour,style:recipe.eyes.style});
+ return rigEyes(geometry,{iris:recipe.eyes.colour,style:recipe.eyes.style,drawn});
 }
 
 /**
@@ -288,7 +294,7 @@ export function buildEyes3d(recipe,m){
  * skinned one for a skinned face); `stand` names drawn eyes to stand in for the ones only the painter draws (a face with
  * no painted eyes under it: {star: 'wide', …}; a wink is the open eyes with her left one shut).
  */
-export function rigEyes(geometry,{iris,style,own=null,cel=true,make=(g,m)=>new THREE.Mesh(g,m),stand=null,nearer=0}){
+export function rigEyes(geometry,{iris,style,own=null,drawn=null,cel=true,make=(g,m)=>new THREE.Mesh(g,m),stand=null,nearer=0}){
  // Lit as the face is (build.js buildHead: cel, high-key, a little self-lit, a floor on dim light). Blended onto the skin
  // and writing no depth: the ink, which reads depth, and the Looks' normals (look-buffers.js) see the head as it was.
  const params=new Float32Array(EYE_PARAMS.length),uniforms={...shared,uEye:{value:params},uEyeIris:{value:new THREE.Color(iris)}};
@@ -321,7 +327,7 @@ export function rigEyes(geometry,{iris,style,own=null,cel=true,make=(g,m)=>new T
    const show=eyesShow(style,eyes);
    mesh.visible=eyes3d.showing=show;
    if(!show)return false;
-   if(!shapes.has(eyes))shapes.set(eyes,eyeShape(style,eyes,own));
+   if(!shapes.has(eyes))shapes.set(eyes,eyeShape(style,eyes,own,drawn));
    const s=shapes.get(eyes),blink=THREE.MathUtils.clamp(+state.blink||0,0,1);
    EYE_PARAMS.forEach((name,i)=>{params[i]=s[name]??0;});
    params[EYE_PARAMS.indexOf('lookX')]=THREE.MathUtils.clamp(+look[0]||0,-1,1);params[EYE_PARAMS.indexOf('lookY')]=THREE.MathUtils.clamp(+look[1]||0,-1,1);

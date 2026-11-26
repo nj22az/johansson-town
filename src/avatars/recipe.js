@@ -44,7 +44,9 @@ export const PARTS=Object.freeze({
   'softwave','sweptmop']),
  eyes:Object.freeze(['round','dot','almond','sleepy','lashes','narrow','sparkle','gentle','doe','cat','droopy','heavy','bright','tired','squint','starry','inkoval',
   // Appended (no saved id moves): drawn for Vy (eyes3d.js): a big warm iris under a soft lid.
-  'dewy']),
+  'dewy',
+  // Appended: the eye drawn with the head in Blender (head-profile.js sculpt.eye, eyes3d.js): no creator's style at all.
+  'drawn']),
  brows:Object.freeze(['straight','arched','thick','thin','worried','bushy','angled','short','rounded','tapered','feathered','maro','none',
   // Appended (no saved id moves): a heavy bar of a brow, thickest at its inner end.
   'strong']),
@@ -152,7 +154,8 @@ export function normalizeRecipe(input={}){
    // 'sturdy': a thick neck, square shoulders and a barrel chest; 'graceful': a slender neck, narrow sloping shoulders, a
    // waist, slim arms and legs (build.js measure, torsoProfile). Absent from older recipes: standard.
    // 'stout' (appended): a big man heavy in the middle, a belly the widest of him.
-   frame:(v)=>pick(['standard','sturdy','graceful','stout'],v,'standard')}),
+   // 'soft' (appended): an old lady, small and soft: narrow rounded shoulders, a slight neck, round hips.
+   frame:(v)=>pick(['standard','sturdy','graceful','stout','soft'],v,'standard')}),
   head:sub('head',{size:num,shape:num,form:(v,f)=>pick(HEAD_FORMS,v,f),jaw:num,cheeks:num,roundness:num,
    // A head smaller or larger than the size slider reaches (0.7 to 1.3 of it; absent: 1). Not a creator dial.
    scale:(v)=>Number.isFinite(+v)&&v!==undefined&&v!==null?Math.min(1.3,Math.max(.7,+v)):1}),

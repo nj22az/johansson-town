@@ -85,13 +85,17 @@ export function measure(recipe){
  // A stout frame (Sverker's, from his photograph, 26 November 2026): a big man heavy in the middle. Deeper than he is
  // wide through a belly that is the widest of him, on thicker legs and arms; his shoulders are the standard ones.
  const stout=r.body.frame==='stout';
- const legR=(.058+build*.024)*k*(studio?.9:1)*(sturdy?1.04:graceful?.88:stout?1.12:1),armR=(.045+build*.016)*k*(studio?.85:1)*(sturdy?1.06:graceful?.8:stout?1.1:1);
+ // A soft frame (Christina's): an old lady, small and soft: narrow rounded shoulders, a slight neck, slight limbs, round
+ // hips under a soft middle (the body kit's line, torsoProfile). (No deeper than the standard: 4 % deeper put her lap, and
+ // a seated hand resting on it, 5.5 mm into her long skirt.)
+ const soft=r.body.frame==='soft';
+ const legR=(.058+build*.024)*k*(studio?.9:1)*(sturdy?1.04:graceful?.88:stout?1.12:soft?.92:1),armR=(.045+build*.016)*k*(studio?.85:1)*(sturdy?1.06:graceful?.8:stout?1.1:soft?.86:1);
  const feminine=r.body.silhouette==='feminine',masculine=r.body.silhouette==='masculine';
- const width=(.3+build*.15)*k*(rounded?1.20:1)*(feminine?.94:masculine?1.08:1)*(studio?.84:1)*(sturdy?1.07:graceful?.9:stout?1.08:1),depth=(.2+build*.09)*k*(rounded?1.15:1)*(studio?.87:1)*(sturdy?1.06:graceful?.84:stout?1.3:1);
- const hips=width*(graceful?1.03:stout?1:feminine?1.13:masculine?.9:1),waistRatio=graceful?.68:stout?1.12:studio?(feminine?.76:.88):feminine?.79:masculine?.98:.96;
+ const width=(.3+build*.15)*k*(rounded?1.20:1)*(feminine?.94:masculine?1.08:1)*(studio?.84:1)*(sturdy?1.07:graceful?.9:stout?1.08:soft?.93:1),depth=(.2+build*.09)*k*(rounded?1.15:1)*(studio?.87:1)*(sturdy?1.06:graceful?.84:stout?1.3:soft?1:1);
+ const hips=width*(graceful?1.03:stout?1.03:soft?1.08:feminine?1.13:masculine?.9:1),waistRatio=graceful?.68:stout?1.15:soft?.92:studio?(feminine?.76:.88):feminine?.79:masculine?.98:.96;
  const upper=(rounded?.18:.22)*k*(studio?.92:1),fore=(rounded?.16:.2)*k*(studio?.92:1),hand=.056*k*(studio?.9:1);
  const hipY=leg,chestY=hipY+torso*.5,neckY=hipY+torso,headY=neckY+neck;
- return {studio,sturdy,graceful,stout,neckR:armR*(sturdy?1.72:graceful?1.16:1.08),panelSkirt:r.outfit.bottom==='skirt'&&r.outfit.skirtCut==='panel',skirtLength:r.outfit.skirtLength,skirtFlare:r.outfit.skirtFlare,H,k,Rh,headSX,headSY,profile,neck,torso,leg,foot,thigh,shin,legR,armR,width,hips,waistRatio,depth,upper,fore,hand,hipY,chestY,neckY,headY,
+ return {studio,sturdy,graceful,stout,soft,neckR:armR*(sturdy?1.72:graceful?1.16:soft?1.14:1.08),panelSkirt:r.outfit.bottom==='skirt'&&r.outfit.skirtCut==='panel',skirtLength:r.outfit.skirtLength,skirtFlare:r.outfit.skirtFlare,H,k,Rh,headSX,headSY,profile,neck,torso,leg,foot,thigh,shin,legR,armR,width,hips,waistRatio,depth,upper,fore,hand,hipY,chestY,neckY,headY,
   // The arm hangs from just inside the torso's edge, below its top, so the shoulder
   // rounds over it instead of the arm standing clear of the body.
   headCentre:headY+Rh*headSY*.94,shoulderX:width/2-armR*.2,shoulderY:neckY-.075*k,hipX:hips*.24,
@@ -266,7 +270,7 @@ function sleeveTube(list,a,b,r0,r1,hex,{bone,root=null,segments=14,uvAt=null,th=
  return shell;
 }
 /** The body kit's limb for a frame (sculpts/body-kit.js LIMBS), and its share of the taper at t along and a round (0 the front). */
-const kitLimb=(kind,m)=>LIMBS[kind][m.sturdy?'sturdy':m.graceful?'graceful':'standard'];
+const kitLimb=(kind,m)=>LIMBS[kind][m.sturdy?'sturdy':m.graceful?'graceful':m.stout?'stout':m.soft?'soft':'standard'];
 function limbShare(table,t,a){
  const nt=table.length,na=table[0].length,ft=THREE.MathUtils.clamp(t,0,1)*(nt-1),it=Math.min(nt-2,Math.floor(ft)),ut=ft-it;
  const fa=((a/(Math.PI*2))%1+1)%1*na,ia=Math.floor(fa)%na,ja=(ia+1)%na,ua=fa-Math.floor(fa);
@@ -284,6 +288,11 @@ function feetKit(){
 }
 /** The shoes the kit has (a bare foot is its 'foot'). */
 export const SHOE_SHAPES=Object.freeze({sneakers:'sneaker',shoes:'shoe',boots:'boot',slippers:'slipper'});
+/**
+ * The kit's shape for a footwear on this body: a leather shoe is a lady's court shoe on the soft frame and a broad work
+ * shoe on the stout one, as a shop would fit them (sculpts/body-kit.js FEET: court, broad).
+ */
+export const shoeShapeFor=(wear,m)=>wear==='shoes'&&m?.soft?'court':wear==='shoes'&&m?.stout?'broad':SHOE_SHAPES[wear];
 /**
  * A foot or a shoe from the kit, as geometry in model space: `shape` laid in `box` ({x, hx across; y0 the underside, y1
  * the top; z, hz along}), mirrored for the right foot (side -1), smooth-shaded. Every shape has the same points in the
@@ -314,10 +323,13 @@ function kitFoot(list,shape,box,side,bone,colours){
 function shoeBox(m,sx,wear){const R=m.legR*1.25;return {x:sx*m.hipX,hx:R*1.06,y0:m.foot*.16-m.legR*.317,y1:m.foot*.62+R*.6,z:m.legR*.55,hz:R*(wear==='shoes'?1.85:1.75)};}
 function bareFootBox(m,sx){const R=m.legR*1.12;return {x:sx*m.hipX,hx:R*1.06,y0:m.foot*.55-R*.55,y1:m.foot*.55+R*.55,z:m.legR*.5,hz:R*1.7};}
 /** A shoe's colours by zone: one colour, as the owner asked of soles; a sneaker's rubber sole and toe cap a paler tint of it. */
-function shoeColours(colour,shape){
+function shoeColours(colour,shape,skin=null){
  const c=new THREE.Color(colour),pale='#'+c.clone().lerp(new THREE.Color('#ffffff'),.45).getHexString(),deep='#'+c.clone().multiplyScalar(.8).getHexString();
  // (On a shoe that is nearly white already, the rubber is a shade down instead, so the sole and the toe cap still read.)
  const light=.3*c.r+.59*c.g+.11*c.b>.6,rubber=light?'#'+c.clone().multiplyScalar(.84).getHexString():pale;
+ // (a court shoe is cut low: the instep shows in its opening, in the wearer's skin; a broad shoe has a toe cap)
+ if(shape==='court')return [colour,deep,colour,skin||colour];
+ if(shape==='broad')return [colour,deep,deep,colour];
  return shape==='sneaker'?[colour,rubber,rubber,deep]:[colour,colour,colour,colour];
 }
 const ball=(list,r,at,bone,hex,s=[1,1,1],w=12,h=8)=>part(list,new THREE.SphereGeometry(r,w,h),bone,hex,M(at[0],at[1],at[2],0,0,0,...s));
@@ -903,7 +915,7 @@ function addShoe(list,recipe,m,s,wear){
  // lower toe, and reaching down to where the sole stood on the floor.
  // (Since 26 November 2026 the shoe is the body kit's, modelled in Blender, in the box that ellipsoid filled: a shape of
  // the kit's one foot layout, so it is put on, changed and taken off a finished body: wearShoes, setShoe.)
- {const shape=SHOE_SHAPES[wear]||'sneaker',piece=kitFoot(list,shape,shoeBox(m,sx,wear),sx,'foot'+s,shoeColours(o.shoes,shape));piece.userData.shoe=s;piece.userData.shoeShape=shape;}
+ {const shape=shoeShapeFor(wear,m)||'sneaker',piece=kitFoot(list,shape,shoeBox(m,sx,wear),sx,'foot'+s,shoeColours(o.shoes,shape,recipe.body.skin));piece.userData.shoe=s;piece.userData.shoeShape=shape;}
  // Where the sole was: its footprint, kept as points that are not drawn (every triangle folded flat). The poses, the
  // floor seat's heels, the kneels' toes and the foot grounder (foot-ground.js) are all made to the foot that stood on
  // that sole: they read these points, so everybody still stands, kneels and sits exactly as they did.
@@ -1021,6 +1033,8 @@ function torsoProfile(recipe,m){
  // The shoulders: sloping away to the neck, or (a sturdy frame) carried out square to the arm before they turn in.
  // (The sturdy and the graceful frames' lines are the body kit's: sculpts/body-kit.js TORSO.)
  if(m.graceful)return TORSO.graceful;   // the whole of her line, hips to neck, in half-widths
+ if(m.stout)return TORSO.stout;         // and of a big man's, and of an old lady's
+ if(m.soft)return TORSO.soft;
  return [...lower,...(m.sturdy?TORSO.sturdy:[[1,.66],[.985,.74],[.95,.8],[.88,.87],[.76,.93],[.58,.98],[.38,1.01],[.19,1.03],[0,1.04]])];
 }
 /**
@@ -1236,6 +1250,9 @@ function addBody(list,recipe,m,swim=false){
   }
   // A mitten hand: the palm, a little flattened, and a thumb on its front inner side,
   // so a wave or a point reads as a hand rather than a ball on a stick.
+  // (The owner, 26 November 2026: "Omg they have mitten hands", and of two tries at a modelled hand, "The hands look awful,
+  // make them Disney quality". A hand is being modelled in Blender, tools/blender/hand_model.py; it is not worn until it
+  // is good enough and the poses, which are all made to the mitten's volume, are made to it.)
   ball(list,m.hand,[hd[0],hd[1]-m.hand*.55,0],'hand'+s,skin,[.9,1.15,.78],12,10);
   ball(list,m.hand*.42,[hd[0]-sx*m.hand*.55,hd[1]-m.hand*.35,m.hand*.42],'hand'+s,skin,[1,1.2,1],8,6);
  }
@@ -2252,10 +2269,10 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
    * points take the new shape. Returns false for somebody built barefoot or in sandals (their foot has no shoe to change).
    */
   wearShoes(kind,{colour=recipe.outfit.shoes,side=null}={}){
-   const shape=SHOE_SHAPES[kind];if(!shape)return false;let done=false;
+   const shape=shoeShapeFor(kind,m);if(!shape)return false;let done=false;
    for(const s of side?[side]:['L','R']){
     if(!shoeSaved[s])continue;
-    const upper=shoeSaved[s][0],sx=s==='L'?1:-1,data=laidShoe(shape,shoeBox(m,sx,kind),sx,shoeColours(colour,shape));
+    const upper=shoeSaved[s][0],sx=s==='L'?1:-1,data=laidShoe(shape,shoeBox(m,sx,kind),sx,shoeColours(colour,shape,recipe.body.skin));
     Object.assign(upper,data);worn[s]=shape;done=true;
     if(shoeOn[s])writeShoe(upper,data);
    }

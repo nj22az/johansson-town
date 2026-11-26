@@ -32,8 +32,10 @@ function sculptOf(form){
  const S=SCULPTS[form];if(!S)return null;
  if(!decoded.has(form)){const raw=atob(S.data),n=raw.length/2,r=new Float32Array(n),k=(S.max-S.min)/65535;
   for(let i=0;i<n;i++)r[i]=S.min+k*(raw.charCodeAt(i*2)|raw.charCodeAt(i*2+1)<<8);decoded.set(form,Object.freeze({na:S.na,nt:S.nt,r,width:S.width,height:S.height,
-   // (only the first three were sculpted with a nose: the others wear one of the body kit's, as the unsculpted heads do)
-   nose:['rugged','gentle','lean'].includes(form)}));}
+   // (the child's and the serene head are sculpted without a nose: they wear one of the body kit's, as the unsculpted heads do)
+   nose:!['child','serene'].includes(form),
+   // (the eye drawn with the head, for a recipe whose eyes are 'drawn': eyes3d.js)
+   eye:S.eye?Object.freeze({...S.eye}):null}));}
  return decoded.get(form);
 }
 /** The sculpt's radius along a unit direction: between the four measured directions round it. */

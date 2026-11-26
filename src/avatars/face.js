@@ -1,3 +1,4 @@
+import {headProfile} from './head-profile.js';
 /**
  * Faces, painted. A face is flat shapes on the front of a round head -- which is what
  * makes a crowd of these read as one family -- so it is drawn on a canvas in a 256-unit
@@ -190,7 +191,7 @@ export function drawFace(ctx,recipe,state={}){
  const eyesState=blink>.5&&!['happy','spiral',...SYMBOL_EYES].includes(mood.eyes)?'closed':mood.eyes;
  // A face that looks somewhere of its own (a sideways smirk, a drowsy look down) looks there, unless told where to gaze.
  const look=state.gaze||mood.look||state.look||[0,0];
- if(!state.skipEyes)for(const s of [-1,1]){const captured=s<0?state.blinkLeft:state.blinkRight;const eye=Number.isFinite(captured)?(captured>.5?'closed':mood.eyes):eyesState;drawEye(ctx,128+s*L.spread,L.eyeY,L.eyeS,s,recipe.eyes,eye,look,L.eyeTilt,L.eyeW);}
+ if(!state.skipEyes)for(const s of [-1,1]){const captured=s<0?state.blinkLeft:state.blinkRight;const eye=Number.isFinite(captured)?(captured>.5?'closed':mood.eyes):eyesState;drawEye(ctx,128+s*L.spread,L.eyeY,L.eyeS,s,paintedEyes(recipe),eye,look,L.eyeTilt,L.eyeW);}
  // Brows (oneBrow: the viewer's right one goes up on its own, the smug brow).
  if(recipe.brows.style!=='none')for(const s of [-1,1])drawBrow(ctx,128+s*L.browSpread,L.browY-mood.browLift-(s>0?(mood.oneBrow||0)+(recipe.marks?.cocked?7:0):0),L.browS,s,recipe.brows,L.browTilt,mood.brow);
  drawNose(ctx,L.noseX,L.noseY,L.noseS,recipe.nose.style,skin,line);
@@ -204,6 +205,36 @@ export function drawFace(ctx,recipe,state={}){
  ctx.restore();
 }
 
+/**
+ * A recipe's eyes for the painter: with the eye drawn with its head in Blender (`drawn`: head-profile.js sculpt.eye) when
+ * the eyes are the head's own, so a painted face (a baked one, a sticker, a face with the rigged eyes off) shows the same
+ * eye the rigged eyes draw.
+ */
+export const paintedEyes=recipe=>recipe.eyes.style==='drawn'?{...recipe.eyes,drawn:headProfile(recipe.head).sculpt?.eye||null}:recipe.eyes;
+/** The head's own eye, open (and narrowed for the feelings that lower or tip the lid), in the painter's units. */
+function drawnOpenEye(ctx,side,eyes,state,look){
+ const E=eyes.drawn,line='#2b2623',N=24;
+ let cut=E.cut,slant=E.slant;
+ if(state==='angry'){cut=Math.max(cut,.2375);slant=.475;}else if(state==='sad'){cut=Math.max(cut,.225);slant=-.45;}else if(state==='shy')cut=Math.max(cut,.45);
+ // (x toward the outer corner, y up: the eye shader's own lid curves, eyes3d.js)
+ const lid=x=>{const t=Math.max(-1,Math.min(1,x/E.rx)),q=Math.max(0,1-t*t),lift=E.corner*t+E.off;let top=E.topAmp*Math.pow(q,E.pTop)+lift;
+  if(cut>0||slant!==0)top=Math.min(top,E.ry*(1-2*cut)+slant*E.ry*x/E.rx);return [top,-E.botAmp*Math.pow(q,E.pBot)+lift+(state==='smiling'?E.botAmp*.5*q:0)];};
+ const xs=Array.from({length:N+1},(_,i)=>-E.rx+2*E.rx*i/N),P=(x,y)=>[side*x,-y];
+ const outline=()=>{ctx.beginPath();xs.forEach((x,i)=>{const [px,py]=P(x,Math.max(lid(x)[0],lid(x)[1]));i?ctx.lineTo(px,py):ctx.moveTo(px,py);});for(let i=N;i>=0;i--){const [px,py]=P(xs[i],lid(xs[i])[1]);ctx.lineTo(px,py);}ctx.closePath();};
+ ctx.save();outline();ctx.fillStyle='#fbfaf6';ctx.fill();ctx.clip();
+ const ix=side*look[0]*3,iy=-E.iy+look[1]*3;
+ ctx.fillStyle=eyes.colour;ctx.beginPath();ctx.ellipse(ix,iy,E.irx,E.iry,0,0,TAU);ctx.fill();
+ ctx.fillStyle=line;ctx.beginPath();ctx.ellipse(ix,iy,E.irx*E.pupil,E.iry*E.pupil,0,0,TAU);ctx.fill();
+ if(E.highlight>0&&!['angry','sad','shy'].includes(state)){ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(ix+2.4,iy-E.iry*.42,1.9*E.highlight,0,TAU);ctx.fill();}
+ ctx.restore();
+ // The lash line along the upper lid, its flick at the outer corner, painted lashes, and a line under the eye.
+ ctx.strokeStyle=line;ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=E.lash;
+ ctx.beginPath();xs.forEach((x,i)=>{const [px,py]=P(x,Math.max(lid(x)[0],lid(x)[1]));i?ctx.lineTo(px,py):ctx.moveTo(px,py);});ctx.stroke();
+ const [ox,oy]=P(E.rx,lid(E.rx)[0]);
+ if(E.flick>0){ctx.lineWidth=E.lash*.8;ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ox+side*E.flick,oy-E.flick*.45);ctx.stroke();}
+ if(E.lashes>0){ctx.lineWidth=2.2;for(let i=0;i<2;i++){const x=E.rx*(.55+.25*i),[px,py]=P(x,lid(x)[0]);ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(px+side*(3.5+i),py-4.5-i);ctx.stroke();}}
+ if(E.lower>0){ctx.lineWidth=1.6;ctx.globalAlpha=.6;ctx.beginPath();xs.slice(5,N-4).forEach((x,i)=>{const [px,py]=P(x,lid(x)[1]-1.2);i?ctx.lineTo(px,py):ctx.moveTo(px,py);});ctx.stroke();ctx.globalAlpha=1;}
+}
 /** One eye, as drawFace draws it (also Pocket Camera's face stickers, camera/face-stamps.js). */
 export function drawEye(ctx,x,y,s,side,eyes,state,look,tilt,width=1){
  // The funny faces' eyes: the person's own eye under a lid or with a twinkle, or a symbol in its place.
@@ -252,6 +283,8 @@ export function drawEye(ctx,x,y,s,side,eyes,state,look,tilt,width=1){
   ctx.restore();return;
  }
  if(state==='happy'){ctx.lineWidth=5.2;ctx.beginPath();ctx.moveTo(-13,4);ctx.quadraticCurveTo(0,-21,13,4);ctx.stroke();ctx.restore();return;}
+ // The head's own eye (drawn with it in Blender), open or narrowed: every other state above is drawn as everybody's is.
+ if(eyes.drawn&&['open','angry','sad','shy','smiling'].includes(state)){drawnOpenEye(ctx,side,eyes,state,look);ctx.restore();return;}
  const wide=state==='wide'?1.3:1;
  const rx=(style==='narrow'?12:(style==='dot'||style==='inkoval')?6:style==='sparkle'?13:style==='doe'?12.5:style==='cat'||style==='heavy'?12:11.5)*wide,
   ry=(style==='narrow'?4.2:(style==='dot'||style==='inkoval')?9:style==='almond'?9.5:style==='cat'?9:style==='sparkle'?15:style==='doe'?15:style==='heavy'?12:13.5)*wide;
