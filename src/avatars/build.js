@@ -15,7 +15,7 @@ import {buildEyes3d,eyes3dOn} from './eyes3d.js';
 import {pixarBody,dressPixar} from './pixar.js';
 import {beardSpec,curve as lineThrough,ellipse as insideEllipse} from './beard-mesh.js';
 import {headProfile,shapeHeadPoint} from './head-profile.js';
-import {LIMBS,TORSO,FEET,NOSES} from './sculpts/body-kit.js';
+import {LIMBS,TORSO,FEET,NOSES,HANDS} from './sculpts/body-kit.js';
 import {SOFTBOB_HAIR} from './sculpts/softbob-hair.js';
 import {TIEDBACK_HAIR} from './sculpts/tiedback-hair.js';
 import {SOFTWAVE_HAIR} from './sculpts/softwave-hair.js';
@@ -299,6 +299,27 @@ export const shoeShapeFor=(wear,m)=>wear==='shoes'&&m?.soft?'court':wear==='shoe
  * same order, so one can be written over another on a finished body (buildAvatar wearShoes, setShoe).
  * `colours`: [upper, sole, toe cap, collar]; each triangle takes the colour of what most of it is part of.
  */
+/** The kit's hand, decoded once. */
+let kitHand=null;
+function handKit(){
+ if(kitHand)return kitHand;
+ const bytes=text=>Uint8Array.from(atob(text),c=>c.charCodeAt(0));
+ return kitHand={points:HANDS.points,pos:new Float32Array(bytes(HANDS.hand).buffer),index:new Uint32Array(bytes(HANDS.index).buffer)};
+}
+/**
+ * The kit's hand (sculpts/body-kit.js HANDS, tools/blender/hand_model.py), `s` long from the wrist to the middle
+ * fingertip, its wrist at `at`: hanging down the forearm's line, its back facing out from the body (`side` 1 the left
+ * hand, -1 the right), the thumb forward.
+ */
+function kitHandGeometry(at,s,side){
+ const K=handKit(),n=K.points,pos=new Float32Array(n*3),k=s/2;
+ for(let i=0;i<n;i++){pos[i*3]=at[0]+side*K.pos[i*3]*k;pos[i*3+1]=at[1]+(K.pos[i*3+1]-1)*k;pos[i*3+2]=at[2]+K.pos[i*3+2]*k;}
+ const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+ // (Mirrored, a triangle is wound the other way: its last two corners change places.)
+ const I=side>0?K.index:K.index.map((v,i,a)=>i%3===1?a[i+1]:i%3===2?a[i-1]:v);
+ g.setIndex(new THREE.BufferAttribute(I,1));g.computeVertexNormals();
+ return g;
+}
 function kitFootGeometry(shape,box,side){
  const K=feetKit(),P=K.shapes[shape],n=K.points,pos=new Float32Array(n*3);
  for(let i=0;i<n;i++){pos[i*3]=box.x+side*P[i*3]*box.hx;pos[i*3+1]=box.y0+P[i*3+1]*(box.y1-box.y0);pos[i*3+2]=box.z+P[i*3+2]*box.hz;}
@@ -1253,8 +1274,7 @@ function addBody(list,recipe,m,swim=false){
   // (The owner, 26 November 2026: "Omg they have mitten hands", and of two tries at a modelled hand, "The hands look awful,
   // make them Disney quality". A hand is being modelled in Blender, tools/blender/hand_model.py; it is not worn until it
   // is good enough and the poses, which are all made to the mitten's volume, are made to it.)
-  ball(list,m.hand,[hd[0],hd[1]-m.hand*.55,0],'hand'+s,skin,[.9,1.15,.78],12,10);
-  ball(list,m.hand*.42,[hd[0]-sx*m.hand*.55,hd[1]-m.hand*.35,m.hand*.42],'hand'+s,skin,[1,1.2,1],8,6);
+  part(list,kitHandGeometry([hd[0],hd[1]+m.hand*.08,0],m.hand*1.8,sx),'hand'+s,skin).attributes.ink.array.fill(.5);
  }
 // A T-shirt or polo is worn over the waistband, not painted down to it: its hem hangs a few centimetres below the
  // waist, a finger clear of the body, with the cloth's edge and its inside to be seen; and a T-shirt has its ribbed neck.
