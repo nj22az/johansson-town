@@ -3,6 +3,7 @@
 // cloud session's software Chromium.
 //   node tools/avatar-turnaround.mjs [--name Johansson] [--look flat] [--body] [--views front,side] [--set eyes.style=almond;eyes.size=.6] [out.png]
 // --expressions smile,laugh,sad (or `all`): the face from the front in each expression instead of the six views.
+// --cast: every resident's face on one sheet (three-quarter), in the order of the cast.
 // --set tries values on the resident's recipe without editing it (a design pass); --views keeps only those views.
 // --body frames the whole figure instead of the head; --feet the legs and feet; --focus h,d a height (a share of the
 // head's) from a distance (the same). Default out: output/turnaround-<name>.png
@@ -13,7 +14,7 @@ import {resolve,dirname,extname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),site=resolve(root,'..');
 const args=process.argv.slice(2),flag=k=>{const i=args.indexOf(k);return i>=0?args[i+1]:null;};
-const NAME=flag('--name')||'Johansson',LOOK=flag('--look')||'none',BODY=args.includes('--body'),FEET=args.includes('--feet')?'.13,1.15':flag('--focus')||'',SET=flag('--set')||'',VIEWS=flag('--views')||'',FACES=flag('--expressions')||'';
+const NAME=flag('--name')||'Johansson',LOOK=flag('--look')||'none',BODY=args.includes('--body'),FEET=args.includes('--feet')?'.13,1.15':flag('--focus')||'',CAST=args.includes('--cast'),SET=flag('--set')||'',VIEWS=flag('--views')||'',FACES=flag('--expressions')||'';
 const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--look','--set','--views','--expressions','--focus'].includes(args[i-1]))||resolve(root,'output/turnaround-'+NAME.toLowerCase().replace(/\W+/g,'-')+'.png'));
 await mkdir(dirname(out),{recursive:true});
 const TYPES={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.glb':'model/gltf-binary'};
@@ -26,8 +27,19 @@ let errors=[];
 try{
  const page=await browser.newPage();page.on('pageerror',e=>errors.push(e.message));
  await page.goto(`http://127.0.0.1:${server.address().port}/blank`);
- const data=await page.evaluate(async([name,look,body,set,only,faces,feet])=>{
+ const data=await page.evaluate(async([name,look,body,set,only,faces,feet,cast])=>{
   const base='/johansson-town/',T=await import(base+'vendor/three.module.js'),{buildAvatar}=await import(base+'src/avatars/build.js'),{recipeFor}=await import(base+'src/avatars/cast.js'),{createInkPipeline}=await import(base+'src/render/ink-pipeline.js');
+  if(cast){
+   const names=(await (await fetch(base+'guide/residents.json')).json()).map(r=>r.name),F=300,cols=6;
+   const renderer=new T.WebGLRenderer({preserveDrawingBuffer:true,antialias:true});renderer.setSize(F,F);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.NoToneMapping;
+   const pipeline=createInkPipeline(renderer,{superScale:1,samples:0,fxaa:true});pipeline.setLook(look);
+   const sheet=document.createElement('canvas');sheet.width=F*cols;sheet.height=F*Math.ceil(names.length/cols);const ctx=sheet.getContext('2d'),camera=new T.PerspectiveCamera(28,1,.05,60);
+   names.forEach((n,i)=>{const scene=new T.Scene();scene.background=new T.Color('#cfe3ee');const a=buildAvatar(recipeFor(n),{shadows:false});a.root.rotation.y=0;a.paintFace({expression:'neutral',blink:0,talk:0});scene.add(a.root);
+    scene.add(new T.HemisphereLight(0xffffff,0xd8cdbd,2.4));const sun=new T.DirectionalLight(0xffffff,2.2);sun.position.set(2,5,4);scene.add(sun);scene.updateMatrixWorld(true);
+    const m=a.measure,R=m.Rh,target=new T.Vector3(0,m.headCentre-R*.1,0),d=R*6.6;camera.position.set(Math.sin(.5)*d,target.y+R*.3,Math.cos(.5)*d);camera.lookAt(target);camera.updateProjectionMatrix();camera.updateMatrixWorld();
+    pipeline.setCamera(camera);pipeline.render(r=>r.render(scene,camera));ctx.drawImage(renderer.domElement,(i%cols)*F,Math.floor(i/cols)*F,F,F);ctx.fillStyle='#253b3d';ctx.font='16px sans-serif';ctx.fillText(n,(i%cols)*F+8,Math.floor(i/cols)*F+20);a.dispose();});
+   return sheet.toDataURL('image/png');
+  }
   const S=520,renderer=new T.WebGLRenderer({preserveDrawingBuffer:true,antialias:true});renderer.setSize(S,S);
   const scene=new T.Scene();scene.background=new T.Color('#cfe3ee');
   const recipe=JSON.parse(JSON.stringify(recipeFor(name)));
@@ -56,7 +68,7 @@ try{
    pipeline.setCamera(camera);pipeline.render(r=>r.render(scene,camera));
    ctx.drawImage(renderer.domElement,(i%cols)*S,Math.floor(i/cols)*S,S,S);ctx.fillStyle='#253b3d';ctx.font='18px sans-serif';ctx.fillText(label,(i%cols)*S+12,Math.floor(i/cols)*S+26);});
   return sheet.toDataURL('image/png');
- },[NAME,LOOK,BODY,SET,VIEWS,FACES,FEET]);
+ },[NAME,LOOK,BODY,SET,VIEWS,FACES,FEET,CAST]);
  await writeFile(out,Buffer.from(data.split(',')[1],'base64'));console.log('wrote',out);
 }catch(e){errors.push(String(e?.stack||e));}
 finally{await browser.close();server.close();}

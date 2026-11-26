@@ -5,29 +5,29 @@
  "generator": "tools/blender/build-vy-head.py",
  "blender": "5.3.0",
  "halfAxes": {
-  "width": 0.93,
-  "height": 1.06,
+  "width": 0.92,
+  "height": 1.09,
   "depth": 0.98,
-  "heightOverWidth": 1.14
+  "heightOverWidth": 1.185
  },
  "radius": {
-  "min": 0.8674,
-  "max": 1.0252
+  "min": 0.8129,
+  "max": 1.0233
  },
  "features_deg": {
-  "brow": 80.51,
-  "eye": 96.47,
-  "nose": 107.79,
-  "mouth": 120.05,
-  "eyeA": 17.38
+  "brow": 80.9,
+  "eye": 97.38,
+  "nose": 108.37,
+  "mouth": 121.16,
+  "eyeA": 17.69
  },
  "profile": {
-  "brow": 0.9821,
+  "brow": 0.983,
   "eyeSocket": 0.9683,
-  "noseTip": 1.012,
-  "upperLip": 0.9874,
-  "chin": 1.0214
+  "noseTip": 0.9712,
+  "upperLip": 0.9853,
+  "chin": 1.0201
  },
- "jawCorner": 0.9608,
- "temple": 1.0098
+ "jawCorner": 0.9358,
+ "temple": 1.0099
 }

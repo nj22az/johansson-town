@@ -32,6 +32,16 @@
    }
   }
  },
+ "noses": [
+  "soft",
+  "button",
+  "snub",
+  "bulb",
+  "wide",
+  "hook",
+  "pointed",
+  "ridge"
+ ],
  "feet": {
   "points": 242,
   "triangles": 480,

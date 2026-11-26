@@ -39,7 +39,8 @@ test('Vy, from her photograph: a soft oval head that is not a balloon, a round c
  const ratio=V.P.height/V.P.width;assert.ok(ratio>1.08&&ratio<1.2,'a soft oval: '+ratio.toFixed(2));
  // Not a balloon: her head is smaller than the child's default by a sixth.
  const m=measure(V.R),plain=measure(normalizeRecipe({...V.R,head:{...V.R.head,scale:1,size:.55}}));assert.ok(m.Rh<plain.Rh*.86,'a smaller head');
- const cheek=V.half(100),chin=V.half(150);assert.ok(V.half(128)>cheek*.7&&chin>cheek*.44,'full low down, and a chin with width, never a point');
+ // A heart: the jaw narrows to a small chin that is still round (it has width a fifth of the way up from its point).
+ const cheek=V.half(100),chin=V.half(150);assert.ok(V.half(128)>cheek*.6&&V.half(128)<cheek*.8&&chin>cheek*.34,`a heart with a small round chin: jaw ${(V.half(128)/cheek).toFixed(2)}, chin ${(chin/cheek).toFixed(2)}`);
  for(let t=95;t<=150;t+=5)assert.ok(V.half(t)-V.half(t+10)<cheek*.2,'no corner at θ '+t);
  const nose=V.at(0,V.tip-1.5).z-V.at(14,V.tip-1.5).z;assert.ok(nose>.008&&nose<.08,'a small soft nose: '+nose.toFixed(3));
  // Her hair: a chin-length bob with a fringe to the brows, sculpted (softbob), fair brown; and her face as the photograph has it.

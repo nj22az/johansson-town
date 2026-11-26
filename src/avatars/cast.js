@@ -170,13 +170,13 @@ export const NEIGHBOUR_RECIPES=castSet({
  // tools/blender/build-vy-head.py, head form 'child', hair style 'softbob'. From the photograph: a soft oval head, not
  // large; a chin-length ash-brown bob with a wispy fringe to the brows; soft straight brows; a small nose; small pink
  // lips; the little mole by her chin. And "Make her face more unique she shouldn't be a clone of Thuan": her eyes are her
- // own, drawn for her ('dewy', eyes3d.js: a big warm brown iris under a soft calm lid; Thuan's are almond), her nose two
- // small dots, her lips a small rosebud ('bud', face.js). "Disregard the avatar creator it's only for prototype", "Have
+ // own, drawn for her ('dewy', eyes3d.js: a big warm brown iris under a soft calm lid; Thuan's are almond), her nose the
+ // body kit's small upturned one ("Vy needs a cute nose"), her lips a small rosebud ('bud', face.js). "Disregard the avatar creator it's only for prototype", "Have
  // full artistic freedom creating her", "She needs to be cute like the real Vy": parts are made for her where the
  // creator's list has none.)
  Vy:R({name:'Vy',age:'child',body:{proportion:'studio',silhouette:'feminine',height:.42,build:.3,skin:'#f3d3b8'},head:{size:.5,scale:.84,shape:.5,form:'child'},
-  hair:{style:'softbob',colour:'#8a6f58'},eyes:{style:'dewy',colour:'#7a4f2e',size:.7,width:.5,spacing:.6,height:.33,tilt:.46},brows:{style:'thin',colour:'#7a6250',size:.5,height:.4,tilt:.46},
-  nose:{style:'dot',size:.3,height:.36},mouth:{style:'bud',colour:'#e58b93',size:.42,height:.29},blush:.45,mole:true,moleSpot:{x:.42,height:.1,size:.4},
+  hair:{style:'softbob',colour:'#8a6f58'},eyes:{style:'dewy',colour:'#80532f',size:.72,width:.56,spacing:.6,height:.3,tilt:.5},brows:{style:'thin',colour:'#7a6250',size:.5,height:.4,tilt:.46},
+  nose:{style:'snub',size:.4,height:.33},mouth:{style:'bud',colour:'#e58b93',size:.5,height:.25},blush:.42,mole:true,moleSpot:{x:.42,height:.1,size:.4},
   outfit:{skirtCut:'panel',top:'stripedvest',topColour:'#24252b',bottom:'skirt',bottomColour:'#24252b',footwear:'sneakers',shoes:'#f4f1ea',accent:'#f4f1ea'}}),
  Riku:R({body:{silhouette:'masculine',height:.56,build:.55,skin:'#c89a74'},hair:{style:'crop',colour:'#33271f'},eyes:{style:'round'},brows:{style:'thick'},mouth:{style:'smile'},outfit:{top:'polo',topColour:'#587d83',bottom:'trousers',bottomColour:'#505f65',hat:'helmet',hatColour:'#dabb55'}}),
 

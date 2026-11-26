@@ -34,7 +34,7 @@ export function eyesShow(style,eyes){return style!=='squint'&&DRAWN.has(eyes);}
 // The painter's dark ovals ([half width, half height] of the oval, face.js drawEye) and its white eyes ([rx, ry, iris]).
 const DARK={round:[9,12],gentle:[9,9],lashes:[9,12],sleepy:[9,6],bright:[10,13.5],tired:[9,11],starry:[9,12],dot:[6,9],inkoval:[6,9],narrow:[12,4.2]};
 // (dewy: Vy's, drawn for her: a big warm iris that nearly fills a round eye under a soft, calm lid.)
-const WHITE={dewy:[12.2,13.4,9.6],sparkle:[13,15,10],doe:[12.5,15,8.6],cat:[12,9,7.4],heavy:[12,12,7.4],almond:[11.5,9.5,7.4],droopy:[11.5,13.5,7.4]};
+const WHITE={dewy:[12.8,11.6,9.0],sparkle:[13,15,10],doe:[12.5,15,8.6],cat:[12,9,7.4],heavy:[12,12,7.4],almond:[11.5,9.5,7.4],droopy:[11.5,13.5,7.4]};
 // Catchlight size against the painter's 1.8 (dot 2.2, bright 3); none for an ink oval or a narrow slit, as painted.
 const SHINE={dot:1.22,bright:1.67,inkoval:0,narrow:0};
 
@@ -78,7 +78,7 @@ export function eyeShape(style,eyes,own=null){
   if(own){for(const k of ['cut','slant'])if(Number.isFinite(own[k]))s[k]=own[k];
    if(own.shape!=='almond'&&Number.isFinite(own.corner))Object.assign(s,{corner:own.corner,off:own.corner*.3});}
  if(style==='cat')Object.assign(s,{corner:3,off:1,flick:7});
-  if(style==='dewy')Object.assign(s,{cut:.09,lash:4.2,flick:1.4,pupil:.44,lidShadow:1,warmIris:1});
+  if(style==='dewy')Object.assign(s,{cut:.15,slant:-.05,lash:3.0,flick:3.4,lower:0,pupil:.42,lidShadow:1,warmIris:1});
   if(style==='heavy')Object.assign(s,{cut:.41,lash:4});   // the lid's line where the painter draws it, a third of the way up
   if(style==='droopy')Object.assign(s,{cut:.21,slant:-.43});
  }

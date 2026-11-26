@@ -356,6 +356,8 @@ const BACK_CLOTH=.006;
 export const BACK_TO_BACK_VIEW=-(Math.PI/2-BACK_TURN);
 function fitBackToBack(ctx){
  const {A,B}=ctx,yawB=Math.PI-2*BACK_TURN,flowingHair=A.avatar.recipe.hair.style==='longfringe'||B.avatar.recipe.hair.style==='longfringe';
+ // (a bob has body behind the head: the heads lean a little further apart before the backs can meet)
+ const fullHair=[A,B].some(P=>P.avatar.recipe.hair.style==='softbob');
  const panelClearance=(A.avatar.recipe.outfit.skirtCut==='panel'||B.avatar.recipe.outfit.skirtCut==='panel')?.01*Math.max(A.m.k,B.m.k):0;
  // B's place: behind A and to A's left, along the line between the two fronts (A's front +z, B's at yawB), so B's back
  // faces A's; s metres along it
@@ -375,7 +377,7 @@ function fitBackToBack(ctx){
   return {hips:[x,0,z],spine:[-.02,k*.08,0],chest:[-.04+fw*out*.15,k*.14,k*sd*out*.15],neck:[-.04+fw*out*.15,0,k*sd*out*.15],head:[-.14-fw*out,k*.38,k*sd*out*.3],...lower};
  };
  let best=null;
- for(let out=0;out<=(flowingHair?1.2:.8);out+=.04){
+ for(let out=0;out<=(flowingHair||fullHair?1.2:.8);out+=.04){
   const pA=body(1,out),pB=body(-1,out);
   const ok=heads=>s=>{const M=pairMatrix(at(s));return (!heads||headGap(A,pA,B,pB,M)>=PAIR_GAP.heads)&&bodyGap(A,pA,B,pB,M,null,null,heads,true,flowingHair?.012:0)>=PAIR_GAP.bodies+panelClearance+(A.skirt.length||B.skirt.length?BACK_CLOTH*Math.max(A.m.k,B.m.k):0);};
   const s=bisect(.05,1.4,ok(true)),bodies=bisect(.05,s,ok(false));

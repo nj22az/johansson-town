@@ -15,7 +15,7 @@ import {buildEyes3d,eyes3dOn} from './eyes3d.js';
 import {pixarBody,dressPixar} from './pixar.js';
 import {beardSpec,curve as lineThrough,ellipse as insideEllipse} from './beard-mesh.js';
 import {headProfile,shapeHeadPoint} from './head-profile.js';
-import {LIMBS,TORSO,FEET} from './sculpts/body-kit.js';
+import {LIMBS,TORSO,FEET,NOSES} from './sculpts/body-kit.js';
 import {SOFTBOB_HAIR} from './sculpts/softbob-hair.js';
 import {longBraidPoints} from './braid-path.js';
 import {pleatedSkirtGeometry} from './pleated-skirt.js';
@@ -551,7 +551,11 @@ function addHair(list,recipe,m){
  if(cap){const p=cap.attributes.position,v=new THREE.Vector3();for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);if(capInk)capInk[i]=THREE.MathUtils.smoothstep(v.length()-1.004,.006,.022);shapeHeadPoint(v,m.profile);p.setXYZ(i,v.x,v.y,v.z);}cap.computeVertexNormals();
   // The cap's own field, laid out the way part() lays out its triangles (one vertex per corner, in index order).
   const hf=cap.userData.hairField,index=cap.index;
-  const piece=part(list,cap,'head',c,M(cx,m.headY+cy,0,0,0,0,...S));
+  // (A sculpted bob has a gloss: a paler band on the crown, as a cartoon draws shining hair.)
+  const gloss=style==='softbob'?'#'+new THREE.Color(c).lerp(new THREE.Color('#fff4e0'),.26).getHexString():null;
+  // (Along the cap's own rings and columns, so its edges are clean.)
+  const capColour=gloss?p=>{const y=(p.y-(m.headY+cy))/S[1],a=Math.atan2(p.x,p.z);return Math.abs(y-.54)<.04&&a>-1.3&&a<.7?gloss:c;}:c;
+  const piece=part(list,cap,'head',capColour,M(cx,m.headY+cy,0,0,0,0,...S));
   // Hair that rises from nothing at its edge (a cropped horseshoe) is inked only where it stands off the head, as a
   // beard is: an outline along its rooted edge would be a hard line across the temple.
   if(capInk&&index)for(let k=0;k<index.count;k++)piece.attributes.ink.setX(k,capInk[index.getX(k)]);
@@ -1942,6 +1946,36 @@ function inkNoseBump(recipe,m,material,{PHI0,PHI,TH0,TH}){
  const bump=new THREE.Mesh(g,material);bump.name='Shimanchu nose';return bump;
 }
 
+/** Which of the kit's noses a nose style wears (the drawn dots and line sit on a small soft one). */
+export const NOSE_SHAPES=Object.freeze({button:'button',dot:'soft',line:'soft',wide:'wide',hook:'hook',pointed:'pointed',snub:'snub',bulb:'bulb',ridge:'ridge'});
+let kitNoses=null;
+/**
+ * The kit's nose laid on a face: its patch stood on the head's surface where the nose is (`at`: the head's unit point
+ * there, shaped), facing along the face's own normal, its tip at the nose's height, its edge sunk a little into the
+ * skin so it grows out of the face. Skin, with a faint ink line of its own.
+ */
+function kitNose(parts,recipe,m,at){
+ const shape=NOSE_SHAPES[recipe.nose.style]||'soft',{cols,rows}=NOSES;
+ kitNoses??=Object.fromEntries(Object.entries(NOSES.shapes).map(([k,t])=>[k,new Float32Array(Uint8Array.from(atob(t),c=>c.charCodeAt(0)).buffer)]));
+ const H=kitNoses[shape],[sx,sy,sz]=NOSES.size[shape],unit=m.Rh*(.07+recipe.nose.size*.055),W=unit*sx,L=unit*sy,D=unit*1.55*sz,sink=m.Rh*.035;
+ const S=[m.Rh*m.headSX,m.Rh*m.headSY,m.Rh*.98],centre=new THREE.Vector3(at.x*S[0],at.y*S[1],at.z*S[2]);
+ const out=centre.clone().divide(new THREE.Vector3(S[0]*S[0],S[1]*S[1],S[2]*S[2])).normalize();
+ const q=new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,0,1),out);
+ // Where the tip is down the patch, so that it lands on the nose's own height.
+ let tipRow=0,best=0;for(let r=0;r<rows;r++){const h=H[r*cols+(cols>>1)];if(h>best){best=h;tipRow=r;}}
+ const vTip=tipRow/(rows-1)*2-1,pos=new Float32Array(cols*rows*3),index=[],p=new THREE.Vector3();
+ for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+  const u=c/(cols-1)*2-1,v=r/(rows-1)*2-1,i=r*cols+c,edge=r===0||c===0||r===rows-1||c===cols-1;
+  // (the face curves away under the patch: its edge follows the head a little, and sinks into it)
+  p.set(u*W,-(v-vTip)*L,H[i]*D-sink*(edge?1.6:1)-(u*u*W*W+(v-vTip)*(v-vTip)*L*L)/(2*m.Rh)).applyQuaternion(q).add(centre);
+  pos[i*3]=p.x;pos[i*3+1]=m.headCentre+p.y;pos[i*3+2]=p.z;
+ }
+ for(let r=0;r<rows-1;r++)for(let c=0;c<cols-1;c++){const a=r*cols+c;index.push(a,a+cols,a+1,a+1,a+cols,a+cols+1);}
+ const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));g.setIndex(index);g.computeVertexNormals();
+ const piece=part(parts,g,'head',recipe.body.skin);piece.attributes.ink.array.fill(.3);
+ return piece;
+}
+
 /** A built beard (beard-mesh.js): cut from the head's sphere like the hair, shaped with the head, worn on every body. */
 function addBeard(parts,recipe,m){
  const spec=beardSpec(recipe);if(!spec)return;
@@ -1961,13 +1995,12 @@ function addBeard(parts,recipe,m){
 function addNose(parts,recipe,m){
  addBeard(parts,recipe,m);   // (every body that has a nose has the beard too)
  if(recipe.nose.style==='none'||INK_NOSES[recipe.nose.style])return;   // an ink nose is all drawn on the face
- if(m.profile.sculpt)return;   // a sculpted head has its nose in its own surface: what is drawn lies on that, with no ball
+ if(m.profile.sculpt?.nose)return;   // a sculpted head with its nose in its own surface: what is drawn lies on that
  const layout=faceLayout(recipe),theta=Math.PI*.28+layout.noseY/256*Math.PI*.58,phi=Math.PI/2-.95+layout.noseX/256*1.9;
  const v=shapeHeadPoint(new THREE.Vector3(-Math.cos(phi)*Math.sin(theta),Math.cos(theta),Math.sin(phi)*Math.sin(theta)),m.profile);
- const hook=recipe.nose.style==='hook',wide=recipe.nose.style==='wide';
- const radius=m.Rh*(.065+recipe.nose.size*.055);
- ball(parts,radius,[v.x*m.Rh*m.headSX,m.headCentre+v.y*m.Rh*m.headSY,v.z*m.Rh*.98+radius*.55],'head',recipe.body.skin,
-  [wide?1.45:.85,hook?1.55:.85,hook?1.65:1.2],12,10);
+ // (Until 26 November 2026 this was a ball: the owner's sweep, "do all of them ... but keep their personalities". Now it is
+ // the body kit's nose for their own style, sculpted in Blender: a bridge, a tip and wings, grown out of the face.)
+ kitNose(parts,recipe,m,v);
 }
 
 /**

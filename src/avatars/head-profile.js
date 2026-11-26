@@ -22,7 +22,9 @@ const SCULPTS={rugged:RUGGED_HEAD,gentle:GENTLE_HEAD,child:CHILD_HEAD,lean:LEAN_
 function sculptOf(form){
  const S=SCULPTS[form];if(!S)return null;
  if(!decoded.has(form)){const raw=atob(S.data),n=raw.length/2,r=new Float32Array(n),k=(S.max-S.min)/65535;
-  for(let i=0;i<n;i++)r[i]=S.min+k*(raw.charCodeAt(i*2)|raw.charCodeAt(i*2+1)<<8);decoded.set(form,Object.freeze({na:S.na,nt:S.nt,r,width:S.width,height:S.height}));}
+  for(let i=0;i<n;i++)r[i]=S.min+k*(raw.charCodeAt(i*2)|raw.charCodeAt(i*2+1)<<8);decoded.set(form,Object.freeze({na:S.na,nt:S.nt,r,width:S.width,height:S.height,
+   // (the child's head is sculpted without a nose: she wears one of the body kit's, as the unsculpted heads do)
+   nose:form!=='child'}));}
  return decoded.get(form);
 }
 /** The sculpt's radius along a unit direction: between the four measured directions round it. */

@@ -11,8 +11,8 @@ import {installDOM} from './fixtures.mjs';
  * worn by the generator: one kit, every resident.
  */
 installDOM();globalThis.self=globalThis;
-const {LIMBS,TORSO,FEET}=await import('../src/avatars/sculpts/body-kit.js');
-const {buildAvatar,buildShoeProp,measure,SHOE_SHAPES,SOCK}=await import('../src/avatars/build.js');
+const {LIMBS,TORSO,FEET,NOSES}=await import('../src/avatars/sculpts/body-kit.js');
+const {buildAvatar,buildShoeProp,measure,SHOE_SHAPES,SOCK,NOSE_SHAPES}=await import('../src/avatars/build.js');
 const {recipeFor,CAST_RECIPES}=await import('../src/avatars/cast.js');
 const file=p=>new URL('../'+p,import.meta.url);
 const bytes=text=>Uint8Array.from(atob(text),c=>c.charCodeAt(0));
@@ -91,4 +91,24 @@ test('one kit, every resident: each builds, stands on the floor, and wears the f
  assert.ok(rAt(.9)<.7,'sloping shoulders');
  const t=measure(recipeFor('Thuan')),plain=measure({...recipeFor('Thuan'),body:{...recipeFor('Thuan').body,frame:'standard'}});
  assert.ok(t.depth<plain.depth*.9,'slim from the side');assert.ok(t.leg/t.H>plain.leg/plain.H,'a little longer in the leg');
+});
+
+test('nobody has a ball for a nose: every nose style wears a nose from the kit, each its own shape, grown out of the face',()=>{
+ // (The owner, 26 November 2026, of the whole cast: "Can you do all of them in a sweep but keep their personalities".)
+ const shapes=Object.fromEntries(Object.entries(NOSES.shapes).map(([k,t])=>[k,new Float32Array(bytes(t).buffer)]));
+ for(const [style,shape] of Object.entries(NOSE_SHAPES)){
+  const H=shapes[shape];assert.ok(H,style);assert.equal(H.length,NOSES.cols*NOSES.rows);assert.equal(NOSES.size[shape].length,3);
+  let max=0;for(const v of H){assert.ok(v>=0&&v<=1);max=Math.max(max,v);}assert.ok(Math.abs(max-1)<1e-6,'its tip is its height');
+  for(let c=0;c<NOSES.cols;c++)assert.ok(H[c]===0&&H[(NOSES.rows-1)*NOSES.cols+c]===0,'nothing at its edge');
+  for(let r=0;r<NOSES.rows;r++)assert.ok(H[r*NOSES.cols]===0&&H[r*NOSES.cols+NOSES.cols-1]===0);
+ }
+ const tipRow=H=>{let best=0,row=0;for(let r=0;r<NOSES.rows;r++){const v=H[r*NOSES.cols+(NOSES.cols>>1)];if(v>best){best=v;row=r;}}return row;};
+ assert.ok(tipRow(shapes.hook)>tipRow(shapes.snub),'a hooked nose points down, a snub one is turned up');
+ assert.ok(NOSES.size.hook[1]>NOSES.size.button[1]*1.5&&NOSES.size.wide[0]>NOSES.size.button[0]*1.3,'long, and broad');
+ // On a body: the nose is skin on the head bone, in front of the face, and the build has no sphere where the ball was.
+ for(const name of ['Thao','Mrs Sato','Chin','Officer Mori','Vy']){
+  const r=recipeFor(name),a=buildAvatar(r,{shadows:false,eyes3d:false}),m=a.measure,P=a.body.geometry.attributes.position;
+  let front=-9;for(let i=0;i<P.count;i++)if(Math.abs(P.getX(i))<m.Rh*.2&&Math.abs(P.getY(i)-(m.headCentre-m.Rh*.2))<m.Rh*.25)front=Math.max(front,P.getZ(i));   // (under a cap's peak)
+  assert.ok(front>m.Rh*.9&&front<m.Rh*1.5,`${name}: a nose stands ${(front/m.Rh).toFixed(2)} head radii forward`);a.dispose();
+ }
 });
