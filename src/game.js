@@ -12,6 +12,7 @@ import {BUDGET} from './edition.js';
 import {createAttention} from './people/attention.js';
 import {setStandFilter} from './people/full-life.js';
 import {createStartupRecovery,graphicsProfile,drawingDpr} from './render/startup-recovery.js';
+import {sunShadowBias} from './render/sun-shadow.js';
 import {withVisibleMaterials} from './render/compile-visible.js';
 import {createResolutionGovernor} from './render/resolution-governor.js';
 import {redrawReleasedCanvases,paintBack,releasedCanvasCount} from './render/canvas-release.js';
@@ -514,7 +515,9 @@ const UPLIGHT=.35,uplight=new THREE.DirectionalLight(0xc9b9e0,UPLIGHT);uplight.p
 /** How far the sun (and the moon) stand from the shadow camera's target, at every hour. */
 const SUN_REACH=46;
 const sun=new THREE.DirectionalLight(0xffdca8,highTier?2.6:2.3);sun.position.set(-28,38,18);sun.castShadow=shadows;
-if(shadows){sun.shadow.mapSize.set(graphics.shadowSize,graphics.shadowSize);sun.shadow.camera.left=-graphics.shadowRadius;sun.shadow.camera.right=graphics.shadowRadius;sun.shadow.camera.top=graphics.shadowRadius;sun.shadow.camera.bottom=-graphics.shadowRadius;sun.shadow.camera.near=.5;sun.shadow.camera.far=120;sun.shadow.bias=-.00035;sun.shadow.normalBias=.045}scene.add(sun);
+if(shadows){sun.shadow.mapSize.set(graphics.shadowSize,graphics.shadowSize);sun.shadow.camera.left=-graphics.shadowRadius;sun.shadow.camera.right=graphics.shadowRadius;sun.shadow.camera.top=graphics.shadowRadius;sun.shadow.camera.bottom=-graphics.shadowRadius;sun.shadow.camera.near=.5;sun.shadow.camera.far=120;
+ // The biases in texels of this map, the same on every device (render/sun-shadow.js: the bands on the ferry's walls).
+ const b=sunShadowBias(graphics);sun.shadow.bias=b.bias;sun.shadow.normalBias=b.normalBias;}scene.add(sun);
 
 // Separate bookshop, dock workshop and harbour office keep their own addresses.
 const SITES=createIslandBusinesses();
