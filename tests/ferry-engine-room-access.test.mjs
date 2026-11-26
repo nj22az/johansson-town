@@ -63,6 +63,8 @@ const crewWhere=(name,phase)=>crewPlaces(phase,12*60).find(c=>c.name===name)?.wh
 test('the crew are drawn, not generated: no two look alike, and Ms Uezu is a woman',()=>{
  const seen=new Map();
  for(const c of FERRY_CREW){const r=recipeFor(c.name),key=JSON.stringify([r.hair,r.outfit,r.head]);assert.ok(!seen.has(key),c.name+' looks like '+seen.get(key));seen.set(key,c.name);}
- for(const name of ['Mr Nakandakari','Mr Higa Jr','Ms Uezu'])assert.ok(CREW_LOOKS[name]&&recipeFor(name).outfit.top===CREW_LOOKS[name].outfit.top,name+' has a drawn look');
+ // (the relief engineer's crew drawing is Erik's since the owner renamed Mac, 26 November 2026; his old names still find it)
+ for(const name of ['Erik','Mr Higa Jr','Ms Uezu'])assert.ok(CREW_LOOKS[name]&&recipeFor(name).outfit.top===CREW_LOOKS[name].outfit.top,name+' has a drawn look');
+ assert.equal(recipeFor('Mr Nakandakari').outfit.top,CREW_LOOKS.Erik.outfit.top);
  assert.equal(recipeFor('Ms Uezu').body.silhouette,'feminine');
 });
