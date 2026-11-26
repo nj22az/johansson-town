@@ -1,0 +1,79 @@
+{
+ "source": "The game's generator (src/avatars/build.js) wearing the Blender sculpt, exported by tools/export-avatar-glb.mjs",
+ "blender": "5.3.0",
+ "armature": "Shimanchu \u00b7 Tetsuo",
+ "bones": [
+  "root",
+  "hips",
+  "spine",
+  "chest",
+  "neck",
+  "head",
+  "hairA",
+  "hairB",
+  "braidL1",
+  "braidL2",
+  "braidR1",
+  "braidR2",
+  "shoulderL",
+  "elbowL",
+  "handL",
+  "shoulderR",
+  "elbowR",
+  "handR",
+  "thighL",
+  "kneeL",
+  "footL",
+  "thighR",
+  "kneeR",
+  "footR",
+  "skirtF",
+  "skirtB",
+  "skirtL",
+  "skirtR"
+ ],
+ "meshes": {
+  "Shimanchu body": {
+   "vertices": 45642,
+   "skinned": true,
+   "parentBone": null,
+   "shapeKeys": []
+  },
+  "Shimanchu head": {
+   "vertices": 59760,
+   "skinned": false,
+   "parentBone": "head",
+   "shapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ]
+  },
+  "Glasses frames and temples": {
+   "vertices": 763,
+   "skinned": false,
+   "parentBone": null,
+   "shapeKeys": []
+  },
+  "Glasses glints": {
+   "vertices": 364,
+   "skinned": false,
+   "parentBone": null,
+   "shapeKeys": []
+  },
+  "Glasses lenses": {
+   "vertices": 192,
+   "skinned": false,
+   "parentBone": null,
+   "shapeKeys": []
+  },
+  "Icosphere": {
+   "vertices": 42,
+   "skinned": false,
+   "parentBone": null,
+   "shapeKeys": []
+  }
+ }
+}

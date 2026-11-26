@@ -12,7 +12,9 @@ import {labelFor} from '../src/avatars/wardrobe-catalogue.js';
 installDOM();
 
 test('Vy is an editable child preset; hair and clothes survive sharing',()=>{
- const r=recipeFor('Vy');assert.equal(r.age,'child');assert.equal(r.hair.style,'longfringe');assert.equal(r.outfit.top,'stripedvest');assert.equal(r.outfit.skirtCut,'panel');assert.equal(r.body.proportion,'studio');assert.equal(r.head.form,'sculpted');
+ // (Her hair is her own bob since 26 November 2026, from her photograph; the long hair with a fringe stays a style anyone can wear.)
+ const vy=recipeFor('Vy');assert.equal(vy.hair.style,'softbob');
+ const r=normalizeRecipe({...vy,hair:{...vy.hair,style:'longfringe',length:.65,volume:.6}});assert.equal(r.age,'child');assert.equal(r.hair.style,'longfringe');assert.equal(r.outfit.top,'stripedvest');assert.equal(r.outfit.skirtCut,'panel');assert.equal(r.body.proportion,'studio');assert.equal(r.head.form,'child');   // (sculpted in Blender since 26 November 2026: tools/blender/build-vy-head.py)
  assert.deepEqual(decodeRecipe(encodeRecipe(r)),r);
  assert.equal(normalizeRecipe({hair:{style:'bob'}}).hair.style,'bob');
  assert.equal(labelFor('top','stripedvest'),'Striped tee & vest');
@@ -30,7 +32,9 @@ test('loose hair length and volume change a bounded closed shell at every life s
 });
 
 test('Vy uses the shared hair springs and remains finite through walks, runs and seated poses',()=>{
- const a=buildAvatar(recipeFor('Vy'),{shadows:false,faceSize:64}),anim=createAvatarAnimator(a);
+ // (in the long hair with a fringe she wore until 26 November 2026: her bob has nothing that swings)
+ const long=normalizeRecipe({...recipeFor('Vy'),hair:{...recipeFor('Vy').hair,style:'longfringe',length:.65,volume:.6}});
+ const a=buildAvatar(long,{shadows:false,faceSize:64}),anim=createAvatarAnimator(a);
  assert.ok(a.springSetup.chains.some(c=>c.kind==='hair'));
  assert.ok(a.body.geometry.attributes.position.count<150000);
  for(const [pose,state] of [['Idle',{}],['walk',{walking:true,speed:.8}],['run',{walking:true,running:true,speed:1.4}],['sit',{seated:true}],['Wave',{}],['Bow',{}]]){

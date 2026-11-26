@@ -14,7 +14,7 @@ installDOM();
 
 test('panel skirt, controls, sculpted head and studio proportions round-trip; old recipes stay classic',()=>{
  const old=normalizeRecipe({});assert.equal(old.body.proportion,'classic');assert.equal(old.outfit.skirtCut,'classic');
- const r=recipeFor('Vy');assert.equal(r.head.form,'sculpted');assert.equal(r.eyes.style,'inkoval');assert.equal(r.body.proportion,'studio');
+ const r=recipeFor('Vy');assert.equal(r.head.form,'child');assert.equal(r.body.proportion,'studio');
  assert.deepEqual(decodeRecipe(encodeRecipe(r)),r);
  const set=ISLAND_OUTFITS.find(s=>s.id==='vy-monochrome');assert.ok(set);
  assert.equal(putOnSet(old.outfit,set).skirtCut,'panel');

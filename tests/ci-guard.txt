@@ -149,3 +149,5 @@ rugged-head.test.mjs
 warehouse-port.test.mjs
 # The modular body kit, sculpted in Blender: limbs, torso lines, the foot and the shoes that are worn on it.
 body-kit.test.mjs
+# Vy and Tetsuo: heads sculpted in Blender, rigged, every expression.
+sculpted-cast.test.mjs

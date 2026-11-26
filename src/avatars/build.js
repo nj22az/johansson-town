@@ -16,6 +16,7 @@ import {pixarBody,dressPixar} from './pixar.js';
 import {beardSpec,curve as lineThrough,ellipse as insideEllipse} from './beard-mesh.js';
 import {headProfile,shapeHeadPoint} from './head-profile.js';
 import {LIMBS,TORSO,FEET} from './sculpts/body-kit.js';
+import {SOFTBOB_HAIR} from './sculpts/softbob-hair.js';
 import {longBraidPoints} from './braid-path.js';
 import {pleatedSkirtGeometry} from './pleated-skirt.js';
 import {celFrom} from '../render/cel.js';
@@ -387,6 +388,21 @@ const HORSESHOE=(()=>{
  // `ring`: hats and covers sit as on a bare crown (head-cover.js); `radius` is its height for what is worn over it.
  return Object.freeze({ring:true,radius:1.04,fine:true,field,radiusAt});
 })();
+/**
+ * Hair sculpted in Blender (tools/blender/head_sculpt.py hair_shell): its hairline's field and how far it stands off the
+ * head, measured over the head's sphere; cut along the field as every cap is (cutHairCap) and carried on the head's own
+ * shape, so it fits whoever wears it.
+ */
+function sculptedHair(S,radius){
+ let T=null;
+ const table=t=>{const raw=atob(t.data),n=raw.length/2,v=new Float32Array(n),k=(t.max-t.min)/65535;for(let i=0;i<n;i++)v[i]=t.min+k*(raw.charCodeAt(i*2)|raw.charCodeAt(i*2+1)<<8);return v;};
+ const load=()=>T??={field:table(S.field),radius:table(S.radius)};
+ const at=(V,v)=>{const l=Math.hypot(v.x,v.y,v.z)||1,a=(Math.atan2(v.x,v.z)/Math.PI+1)*.5*(S.na-1),t=Math.acos(THREE.MathUtils.clamp(v.y/l,-1,1))/Math.PI*(S.nt-1);
+  const ia=Math.min(S.na-2,Math.floor(a)),it=Math.min(S.nt-2,Math.floor(t)),fa=a-ia,ft=t-it,o=it*S.na+ia;
+  return (V[o]*(1-fa)+V[o+1]*fa)*(1-ft)+(V[o+S.na]*(1-fa)+V[o+S.na+1]*fa)*ft;};
+ // (the field is in degrees; the cap's own measures are in head radii: a hundredth to the degree)
+ return Object.freeze({radius,fine:true,field:v=>at(load().field,v)*.01,radiusAt:v=>at(load().radius,v)});
+}
 const HAIR=Object.freeze({
  crop:{front:.46,side:.02,back:-.5,radius:1.07,faceHalf:.78},
  sidepart:{front:.4,swoop:.28,side:0,back:-.5,radius:1.08,faceHalf:.78},
@@ -402,6 +418,8 @@ const HAIR=Object.freeze({
  buzz:{front:.52,side:.06,back:-.36,radius:1.025,faceHalf:.8},
  afro:{front:.48,side:-.12,back:-.5,radius:1.34,faceHalf:.74,lift:.18},
  horseshoe:HORSESHOE,
+ // A chin-length bob with a wispy fringe (Vy's, from her photograph: tools/blender/build-vy-head.py).
+ softbob:sculptedHair(SOFTBOB_HAIR,1.12),
  bald:null,
  pixie:{front:.36,swoop:.2,side:-.04,back:-.42,radius:1.06,faceHalf:.78},
  shoulder:{front:.28,side:-.42,back:-.56,radius:1.1,faceHalf:.66},
@@ -615,6 +633,7 @@ function addHair(list,recipe,m){
  // other full hats everything above the line y = 0.3.
  const tuck=recipe.outfit.hat==='police'?policeCapTuck:recipe.outfit.hat==='kerchief'?kerchiefTuck:(x,y)=>y>.3?1:0;
  if(style==='longfringe')for(const g of list.slice(hairStart))g.attributes.ink.array.fill(.35);
+ if(style==='softbob')for(const g of list.slice(hairStart))g.attributes.ink.array.fill(.5);   // a soft line round soft hair
  if(!HAIR_OUT_HATS.includes(recipe.outfit.hat))for(const g of list.slice(hairStart)){
   const pos=g.attributes.position;g.userData.hatHair={position:pos.array.slice(),normal:g.attributes.normal.array.slice()};for(let i=0;i<pos.count;i++){
    const x=pos.getX(i)/S[0],y=(pos.getY(i)-m.headCentre)/S[1],z=pos.getZ(i)/S[2],r=Math.hypot(x,y,z);
@@ -965,7 +984,7 @@ function addNecklace(list,recipe,m,colour){
 }
 
 /** Long hair, a lipstick or no beard and a slight build: a swimming costume, not trunks. */
-export const wearsSwimTop=recipe=>recipe.facial.style==='none'&&(['longfringe','bob','long','ponytail','sweptponytail','braids','longbraids','bun','perm','shoulder','pigtails','twinbuns'].includes(recipe.hair.style)||recipe.mouth.colour!=='#b8544a');
+export const wearsSwimTop=recipe=>recipe.facial.style==='none'&&(['longfringe','softbob','bob','long','ponytail','sweptponytail','braids','longbraids','bun','perm','shoulder','pigtails','twinbuns'].includes(recipe.hair.style)||recipe.mouth.colour!=='#b8544a');
 /**
  * Swimwear (wear('swim')), modest, for Umi-no-yu's shared rock bath and the beach: a one-piece costume from the hips to
  * straight across above the bust, on two straps, with short legs, for anyone who would wear a swimsuit top; bath trunks to
@@ -1702,7 +1721,7 @@ function addTenugui(list,recipe,m){
  * - the end tucked in at the back of the crown, a flap with its band near the edge, coming out from under that turn.
  * Long hair needs more towel round it: a fuller dome (LONG_HAIR).
  */
-const LONG_HAIR=new Set(['longfringe','bob','long','ponytail','braids','longbraids','bun','perm','shoulder','pigtails','twinbuns','afro','mullet','curtains']);
+const LONG_HAIR=new Set(['longfringe','softbob','bob','long','ponytail','braids','longbraids','bun','perm','shoulder','pigtails','twinbuns','afro','mullet','curtains']);
 export const TURBAN=Object.freeze({front:.54,side:.3,back:-.48,lift:.16,radius:1.17,longRadius:1.23,snug:1.05,swell:.3,inner:.96,tuck:.08,
  twist:Object.freeze({reach:1.45,radius:.11,turns:1.5,band:Object.freeze([.5,.63])}),
  hem:Object.freeze({rows:Object.freeze([-.03,0,.03,.06,.09,.13,.17,.2]),band:Object.freeze([.09,.17])}),flap:Object.freeze({from:2.38,to:2.95,band:Object.freeze([.6,.78])})});
@@ -1942,6 +1961,7 @@ function addBeard(parts,recipe,m){
 function addNose(parts,recipe,m){
  addBeard(parts,recipe,m);   // (every body that has a nose has the beard too)
  if(recipe.nose.style==='none'||INK_NOSES[recipe.nose.style])return;   // an ink nose is all drawn on the face
+ if(m.profile.sculpt)return;   // a sculpted head has its nose in its own surface: what is drawn lies on that, with no ball
  const layout=faceLayout(recipe),theta=Math.PI*.28+layout.noseY/256*Math.PI*.58,phi=Math.PI/2-.95+layout.noseX/256*1.9;
  const v=shapeHeadPoint(new THREE.Vector3(-Math.cos(phi)*Math.sin(theta),Math.cos(theta),Math.sin(phi)*Math.sin(theta)),m.profile);
  const hook=recipe.nose.style==='hook',wide=recipe.nose.style==='wide';

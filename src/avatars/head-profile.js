@@ -1,6 +1,8 @@
 /** Original console-avatar silhouettes, shared by the face, hair and accessories. */
 import {RUGGED_HEAD} from './sculpts/rugged-head.js';
 import {GENTLE_HEAD} from './sculpts/gentle-head.js';
+import {CHILD_HEAD} from './sculpts/child-head.js';
+import {LEAN_HEAD} from './sculpts/lean-head.js';
 export const HEAD_FORMS=Object.freeze(['oval','round','square','narrow','heart','soft-square','oblong','diamond','pear','wide','soft-round','teardrop','egg','acorn','bell','pentagon','box','block','sculpted',
  // Appended (no saved id moves): a strong head, broad and square-jawed with rounded corners, between 'square' (a ball
  // with a jaw) and 'block' (a box). First worn by Johansson (26 November 2026).
@@ -11,9 +13,12 @@ export const HEAD_FORMS=Object.freeze(['oval','round','square','narrow','heart',
  'rugged',
  // Thuan's (tools/blender/build-thuan-head.py): her own approved silhouette (the 'diamond' with her sliders) with a small
  // sculpted nose, cheeks, lips and a chin.
- 'gentle']);
+ 'gentle',
+ // A child's (tools/blender/build-vy-head.py: a big round cranium, full cheeks, a small round chin, a button nose) and a
+ // lean man's (build-tetsuo-head.py: long and narrow, cheekbones over hollow cheeks, a long hooked nose).
+ 'child','lean']);
 /** A sculpted head's radius table, decoded once. */
-const SCULPTS={rugged:RUGGED_HEAD,gentle:GENTLE_HEAD},decoded=new Map();
+const SCULPTS={rugged:RUGGED_HEAD,gentle:GENTLE_HEAD,child:CHILD_HEAD,lean:LEAN_HEAD},decoded=new Map();
 function sculptOf(form){
  const S=SCULPTS[form];if(!S)return null;
  if(!decoded.has(form)){const raw=atob(S.data),n=raw.length/2,r=new Float32Array(n),k=(S.max-S.min)/65535;

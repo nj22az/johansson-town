@@ -66,7 +66,7 @@ test('his frame is sturdy and his face is dark-featured, fair and dry, never the
  assert.ok(R.eyes.shine<.5&&R.eyes.size<.2);
  for(const k of ['creases','nostrils','folds','finecrows','chesthair'])assert.equal(R.marks[k],true,k);
  for(const k of ['creases','nostrils','folds','finecrows','chesthair'])assert.ok(FACE_MARKS[k]);
- assert.ok(PARTS.brows.at(-1)==='strong'&&PARTS.mouth.at(-1)==='dry'&&Object.keys(PAINTED_BEARDS).at(-1)==='shadow','new parts are appended: no saved id moves');
+ assert.ok(PARTS.brows.indexOf('strong')>PARTS.brows.indexOf('none')&&PARTS.mouth.indexOf('dry')>PARTS.mouth.indexOf('soft')&&Object.keys(PAINTED_BEARDS).at(-1)==='shadow','new parts are appended: no saved id moves');
  // Fair skin, dark brows and eyes.
  const lum=h=>{const n=parseInt(h.slice(1),16);return (.3*(n>>16)+.59*(n>>8&255)+.11*(n&255))/255;};
  assert.ok(lum(R.body.skin)>.78,'fair');assert.ok(lum(R.brows.colour)<.15&&lum(R.eyes.colour)<.2,'dark features');

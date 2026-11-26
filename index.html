@@ -46,19 +46,19 @@
 <link rel="modulepreload" data-town-runtime href="./runtime/preload-helper-PPVm8Dsz.js">
 <link rel="modulepreload" data-town-runtime href="./runtime/fish-CDzKFCCC.js">
 <link rel="modulepreload" data-town-runtime href="./runtime/ferry-ship-DfhHmc7y.js">
-<link rel="modulepreload" data-town-runtime href="./runtime/boot-Chg_sJ0j.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/boot-CzW8-CPA.js">
 <link rel="modulepreload" data-town-runtime href="./runtime/startup-recovery-CIJ7HiTu.js">
 <link rel="modulepreload" data-town-runtime href="./runtime/touch-ui-D34cMzo7.js">
-<link rel="modulepreload" data-town-runtime href="./runtime/game-Bveq8WnR.js">
-<link rel="modulepreload" data-town-runtime href="./runtime/halloween-BYGKXEr0.js">
-<link rel="modulepreload" data-town-runtime href="./runtime/hat-models-Bp9qKlgU.js">
-<link rel="modulepreload" data-town-runtime href="./runtime/actors-1OarvJAV.js">
-<link rel="modulepreload" data-town-runtime href="./runtime/animate-D4bqnt9K.js">
-<link rel="modulepreload" data-town-runtime href="./runtime/pixar-DrqglUgY.js">
-<link rel="modulepreload" data-town-runtime href="./runtime/onsen-Bcdvo1t4.js">
-<link rel="modulepreload" data-town-runtime href="./runtime/sakura-interior-Civl4gOH.js">
-<link rel="modulepreload" data-town-runtime href="./runtime/sato-ramen-DEhopW5e.js">
-<link rel="modulepreload" data-town-runtime href="./runtime/town-hall-CfJXqWiI.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/game-D5cQ4DeG.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/halloween-C8mMzcSr.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/hat-models-DEYe4RJG.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/actors-p0T3jTq3.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/animate-3UX5asfO.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/pixar-DYUxEfwG.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/onsen-B4whkhGT.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/sakura-interior-BFVCDs4z.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/sato-ramen-Dbx_NH-x.js">
+<link rel="modulepreload" data-town-runtime href="./runtime/town-hall-Bqkn04YD.js">
 <link rel="modulepreload" data-town-runtime href="./runtime/studio-handoff-B8ojF09_.js">
 <link rel="modulepreload" data-town-runtime href="./runtime/storyteller-C6p56tyo.js">
 <link rel="modulepreload" data-town-runtime href="./runtime/thuan-voice-Dz-XGNqd.js">
@@ -403,8 +403,8 @@
 <div id="fatal" class="modal hidden"><div class="modal-card"><h2>JOHANSSON WORLD</h2><p>Unable to start the graphics engine.</p><button id="retry">RETRY</button></div></div>
 <div id="iosFullscreen" class="modal hidden"><div class="modal-card"><h2>INSTALL JOHANSSON WORLD</h2><p>On iPhone or iPad, open this page in Safari. Tap Share, then Add to Home Screen, and turn on Open as Web App if offered. Open the town from its new icon. Your save stays on this device; installed apps and Safari may have separate saves. Reopen while online to get the latest town updates. Previously visited content can load offline.</p><button id="closeFullscreenHelp">CLOSE</button></div></div>
 <script src="./resident-guide.js?h=18755153"></script>
-<script>window.JOHANSSON_FEED_MODULE="./runtime/feed-TNJJQiHK.js";</script>
-<script>window.JOHANSSON_PORTRAIT_MODULE="./runtime/portraits-DWCKNyKf.js";</script>
+<script>window.JOHANSSON_FEED_MODULE="./runtime/feed-CRrVBZYe.js";</script>
+<script>window.JOHANSSON_PORTRAIT_MODULE="./runtime/portraits-DoBdItR0.js";</script>
 <script src="./landing.js?h=ee7b1d7f"></script>
 <script>
 // Title screen: the Johansson Co. splash, the START menu, and the town guide page
@@ -637,7 +637,7 @@ import {unlockTownAudio} from './runtime/audio-DRJoS2l9.js';
   if(window.johanssonDesktop)document.getElementById('installTown').hidden=true;
   window.__JOHANSSON_TITLE_PREVIEW__=true;
   async function loadPreview(){
-    try { await import('./runtime/boot-Chg_sJ0j.js'); } catch (error) {
+    try { await import('./runtime/boot-CzW8-CPA.js'); } catch (error) {
         if (!/fetch|module|import|404/i.test(error.message||'')) throw error;
         const response=await fetch('./index.html',{cache:'no-store'});
         if(!response.ok)throw error;

@@ -124,10 +124,14 @@ export const CAST_RECIPES=castSet({
   hair:{style:'buzz',colour:'#1c1714'},eyes:{style:'narrow',colour:'#2a1d16',size:.45},
   brows:{style:'straight',colour:'#1c1714',size:.45},nose:{style:'line',size:.45},mouth:{style:'soft',size:.45},
   outfit:{top:'tee',topColour:'#a9c3df',bottom:'shorts',bottomColour:'#2b2b2b',footwear:'sandals',shoes:'#6d4a32',hat:'cap',hatColour:'#1f2228',accent:'#e8742a'}}),
- Tetsuo:R({name:'Tetsuo',accessories:{pin:true,colour:'#e0b93a'},body:{height:.62,build:.5,skin:'#dca97e'},head:{size:.5,shape:.5,form:'narrow',jaw:.55,cheeks:.35},
-  hair:{style:'horseshoe',colour:'#8a8680'},eyes:{style:'sleepy',colour:'#2a1d16',size:.45},
-  brows:{style:'bushy',colour:'#8a8680',size:.6},nose:{style:'hook',size:.55},mouth:{style:'flat',size:.8,width:1},
-  glasses:{style:'half',colour:'#2b2b2b'},wrinkles:.6,
+ // (26 November 2026, with Vy: his head is sculpted in Blender, a lean man's: tools/blender/build-tetsuo-head.py, head form
+ // 'lean'. Long and narrow with cheekbones over hollow cheeks and a long hooked nose his half-glasses sit on, where an egg
+ // wore a ball. Deep-set tired eyes, straight grey brows that come down a little in the middle, a wide flat mouth:
+ // a pessimist who is usually right.)
+ Tetsuo:R({name:'Tetsuo',accessories:{pin:true,colour:'#e0b93a'},body:{height:.62,build:.42,skin:'#e6bd97'},head:{size:.42,shape:.5,form:'lean'},
+  hair:{style:'horseshoe',colour:'#8a8680'},eyes:{style:'sleepy',colour:'#2a1d16',size:.3,spacing:.47,height:.54,shine:.3},
+  brows:{style:'thick',colour:'#6f6a64',size:.62,height:.44,tilt:.6},nose:{style:'none',size:.5,height:.5},mouth:{style:'flat',size:.62,width:.8,height:.4},
+  glasses:{style:'half',colour:'#2b2b2b'},marks:{creases:true,nostrils:true,cheeks:true},wrinkles:0,
   outfit:{top:'jacket',topColour:'#6b6f4a',bottom:'trousers',bottomColour:'#4a4238',shoes:'#3a2a1e',accent:'#e8d7b0'}}),
  // Mrs Sato, who cooks the lunch ramen at the corner of Minato's building.
  'Mrs Sato':R({name:'Mrs Sato',body:{height:.22,build:.6,skin:'#e2b48c'},head:{size:.5,shape:.56,form:'round',jaw:.4,cheeks:.6},
@@ -160,9 +164,19 @@ export const CAST_RECIPES=castSet({
 export const NEIGHBOUR_RECIPES=castSet({
  // Vy, eleven: the owner's 24 October GLB reference, rebuilt as editable shared parts.
  // Long loose dark hair and a fringe, oval eyes and monochrome everyday clothes.
- Vy:R({name:'Vy',age:'child',body:{proportion:'studio',silhouette:'feminine',height:.42,build:.3,skin:'#f1cfae'},head:{size:.55,shape:.52,form:'sculpted',jaw:.32,cheeks:.65,roundness:.12},
-  hair:{style:'longfringe',colour:'#1c1c24',length:.65,volume:.6},eyes:{style:'inkoval',colour:'#2a1d16',size:.72,width:.35,spacing:.53,tilt:.5},brows:{style:'rounded',colour:'#1c1c24',size:.4},
-  nose:{style:'drawn',size:.42},mouth:{style:'smile',colour:'#b8544a',size:.42},blush:.3,
+ // (26 November 2026, the owner: "rework Vy, and Tetsuo give them expressions and fully rigged in blender"; then, with her
+ // photograph, "This is the real Vy can you make cartoon Vy look more like her? Sculpt in blender from clay", and "Her
+ // head doesn't have to look like a balloon make her cute". Her head and her hair are sculpted in Blender:
+ // tools/blender/build-vy-head.py, head form 'child', hair style 'softbob'. From the photograph: a soft oval head, not
+ // large; a chin-length ash-brown bob with a wispy fringe to the brows; soft straight brows; a small nose; small pink
+ // lips; the little mole by her chin. And "Make her face more unique she shouldn't be a clone of Thuan": her eyes are her
+ // own, drawn for her ('dewy', eyes3d.js: a big warm brown iris under a soft calm lid; Thuan's are almond), her nose two
+ // small dots, her lips a small rosebud ('bud', face.js). "Disregard the avatar creator it's only for prototype", "Have
+ // full artistic freedom creating her", "She needs to be cute like the real Vy": parts are made for her where the
+ // creator's list has none.)
+ Vy:R({name:'Vy',age:'child',body:{proportion:'studio',silhouette:'feminine',height:.42,build:.3,skin:'#f3d3b8'},head:{size:.5,scale:.84,shape:.5,form:'child'},
+  hair:{style:'softbob',colour:'#8a6f58'},eyes:{style:'dewy',colour:'#7a4f2e',size:.7,width:.5,spacing:.6,height:.33,tilt:.46},brows:{style:'thin',colour:'#7a6250',size:.5,height:.4,tilt:.46},
+  nose:{style:'dot',size:.3,height:.36},mouth:{style:'bud',colour:'#e58b93',size:.42,height:.29},blush:.45,mole:true,moleSpot:{x:.42,height:.1,size:.4},
   outfit:{skirtCut:'panel',top:'stripedvest',topColour:'#24252b',bottom:'skirt',bottomColour:'#24252b',footwear:'sneakers',shoes:'#f4f1ea',accent:'#f4f1ea'}}),
  Riku:R({body:{silhouette:'masculine',height:.56,build:.55,skin:'#c89a74'},hair:{style:'crop',colour:'#33271f'},eyes:{style:'round'},brows:{style:'thick'},mouth:{style:'smile'},outfit:{top:'polo',topColour:'#587d83',bottom:'trousers',bottomColour:'#505f65',hat:'helmet',hatColour:'#dabb55'}}),
 

@@ -634,6 +634,10 @@ function drawMouth(ctx,x,y,s,mouth,moodMouth,talk,line,width=1){
   case 'tongue':ctx.moveTo(-15,-1);ctx.quadraticCurveTo(0,13,15,-1);ctx.stroke();ctx.fillStyle=tongue;ctx.beginPath();ctx.ellipse(4,8,5,5.5,0,0,Math.PI);ctx.fill();ctx.lineWidth=2;ctx.stroke();break;
   case 'buck':ctx.moveTo(-14,-1);ctx.quadraticCurveTo(0,10,14,-1);ctx.stroke();ctx.fillStyle=teeth;ctx.lineWidth=1.6;for(const x of [-4.5,0]){ctx.beginPath();ctx.rect(x,4,4.5,5.5);ctx.fill();ctx.stroke();}break;
   case 'soft':ctx.moveTo(-9,0);ctx.quadraticCurveTo(0,7,9,0);ctx.stroke();break;
+  // Rosebud lips: a small full pair, the upper with its bow, the corners a little up, a soft line between them.
+  case 'bud':{ctx.fillStyle=lips;ctx.moveTo(-7.5,-.4);ctx.quadraticCurveTo(-4.5,-3.6,-2.2,-3.3);ctx.quadraticCurveTo(0,-1.9,2.2,-3.3);ctx.quadraticCurveTo(4.5,-3.6,7.5,-.4);ctx.quadraticCurveTo(4,5.6,0,5.6);ctx.quadraticCurveTo(-4,5.6,-7.5,-.4);ctx.closePath();ctx.fill();
+   ctx.strokeStyle=shade(lips,.62);ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(-7.5,-.4);ctx.quadraticCurveTo(0,2.2,7.5,-.4);ctx.stroke();
+   ctx.fillStyle='rgba(255,255,255,.4)';ctx.beginPath();ctx.ellipse(1.5,2.9,2.2,1,0,0,TAU);ctx.fill();break;}
   // The funny faces' mouths.
   case 'jawdrop':{const path=()=>{ctx.beginPath();ctx.moveTo(-15,-3);ctx.quadraticCurveTo(0,-8,15,-3);ctx.lineTo(17,22);ctx.quadraticCurveTo(0,36,-17,22);ctx.closePath();};
    path();ctx.fillStyle=inside;ctx.fill();ctx.save();ctx.clip();ctx.fillStyle=teeth;ctx.fillRect(-18,-9,36,8);ctx.fillStyle=tongue;ctx.beginPath();ctx.ellipse(0,27,12,7,0,0,TAU);ctx.fill();ctx.restore();path();ctx.stroke();break;}

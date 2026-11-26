@@ -1,0 +1,33 @@
+{
+ "source": "Original Johansson Town head, sculpted in Blender for the game's generator",
+ "character": "Tetsuo",
+ "form": "lean",
+ "generator": "tools/blender/build-tetsuo-head.py",
+ "blender": "5.3.0",
+ "halfAxes": {
+  "width": 0.85,
+  "height": 1.15,
+  "depth": 0.98,
+  "heightOverWidth": 1.353
+ },
+ "radius": {
+  "min": 0.8725,
+  "max": 1.32
+ },
+ "features_deg": {
+  "brow": 80.12,
+  "eye": 91.9,
+  "nose": 105.05,
+  "mouth": 117.85,
+  "eyeA": 15.7
+ },
+ "profile": {
+  "brow": 1.0614,
+  "eyeSocket": 0.9685,
+  "noseTip": 1.32,
+  "upperLip": 1.0562,
+  "chin": 1.1208
+ },
+ "jawCorner": 1.0767,
+ "temple": 0.9669
+}

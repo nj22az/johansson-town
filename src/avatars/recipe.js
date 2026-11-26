@@ -34,15 +34,19 @@ export const ageClass=years=>!Number.isFinite(+years)?'adult':years<13?'child':y
 export const PARTS=Object.freeze({
  silhouette:Object.freeze(['neutral','feminine','masculine']),
  head:HEAD_FORMS,
- hair:Object.freeze(['crop','sidepart','bob','long','ponytail','sweptponytail','braids','longbraids','bun','spiky','perm','buzz','afro','horseshoe','bald','pixie','shoulder','curtains','slick','mullet','topknot','pigtails','twinbuns','longfringe']),
- eyes:Object.freeze(['round','dot','almond','sleepy','lashes','narrow','sparkle','gentle','doe','cat','droopy','heavy','bright','tired','squint','starry','inkoval']),
+ hair:Object.freeze(['crop','sidepart','bob','long','ponytail','sweptponytail','braids','longbraids','bun','spiky','perm','buzz','afro','horseshoe','bald','pixie','shoulder','curtains','slick','mullet','topknot','pigtails','twinbuns','longfringe',
+  // Appended (no saved id moves): a chin-length bob with a wispy fringe, sculpted in Blender (build.js SOFTBOB).
+  'softbob']),
+ eyes:Object.freeze(['round','dot','almond','sleepy','lashes','narrow','sparkle','gentle','doe','cat','droopy','heavy','bright','tired','squint','starry','inkoval',
+  // Appended (no saved id moves): drawn for Vy (eyes3d.js): a big warm iris under a soft lid.
+  'dewy']),
  brows:Object.freeze(['straight','arched','thick','thin','worried','bushy','angled','short','rounded','tapered','feathered','maro','none',
   // Appended (no saved id moves): a heavy bar of a brow, thickest at its inner end.
   'strong']),
  nose:Object.freeze(['button','dot','line','wide','hook','pointed','snub','bulb','ridge',...Object.keys(INK_NOSES),'none']),   // then the ink noses (face.js)
  mouth:Object.freeze(['smile','flat','grin','small','wide','smirk','pout','cat','teeth','open','lopsided','tongue','buck','soft',
-  // Appended: a wide, nearly flat line with one corner a little up; a dry half-smile.
-  'dry']),
+  // Appended: a wide, nearly flat line with one corner a little up; a dry half-smile. And a small full pair of lips.
+  'dry','bud']),
  glasses:Object.freeze(['none','round','square','sun','half']),
  // Moustache and beard are worn together or apart, as in any face maker; `facial` is
  // every style either can be, the single name older recipes gave.
