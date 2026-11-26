@@ -295,3 +295,7 @@ shoulder), with the cap and separate sleeve removed. That touches every top in t
   edition in Chromium: "Play as Vy" → `look now vy`, no page errors.
 - Known: up close (her own hair in third person, a post beside the lens) the strokes are large, being a fixed size on
   the surface. Guard green (259 s). On the branch, not published.
+
+## Published a fifth time (26 November 2026, the owner: "Publish")
+`main` at `c4be00f`: Vy's drawing, the sloping shoulders, smocks' hems. Checked on the live site itself in Chromium:
+`boot-DzyhBX9G.js` served; Town book → People → "Play as Vy" → the look is `vy`, no page errors.
