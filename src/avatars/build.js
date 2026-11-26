@@ -319,7 +319,8 @@ const HAND_WEAR=Object.freeze({wrist:.08,length:1.8});
  * - `palm`: the way the palm faces ([-1, 0, 0]: at rest, toward the body);
  * - `touch`: points of its drawn surface (the solver's envelope): in five bands from the wrist to the fingertips, the
  *   farthest out toward the palm, the back and either side, then the fingertip, the thumb's tip, and every finger's tip and
- *   the farthest of it toward the palm; `inset`: how far that
+ *   the farthest of it toward the palm; `round`: more of it for the head, which has a nose and lips (the bands' farthest
+ *   the four ways between, and the palm and the back in a grid); `inset`: how far that
  *   envelope stands inside the drawn surface (metres for a body of 1.6 m: none, they are its points); `gap`: how far it is
  *   kept off what the hand is laid on (a few millimetres: resting on it; the mitten's, whose envelope was its round, a
  *   centimetre);
@@ -351,7 +352,15 @@ export const HAND=(()=>{
   touch.push(far(P,p=>-p[1]).slice(0,3),far(P,p=>p[2]).slice(0,3));
   // (and every finger's tip and its palm's side: a fingertip curled over a thigh's side went into the cloth hung there)
   for(const f of fingers){const F=f.map(i=>P[i]);touch.push(far(F,p=>-p[1]).slice(0,3),far(F,p=>-p[0]).slice(0,3));}
-  return {tip:r(tip),centre:Object.freeze([0,r((top+tip)/2),0]),half:Object.freeze([r(thick),r((top-tip)/2),r(width)]),lie:r(lie),reach:r(Math.max(...P.map(p=>-p[0]))),touch:Object.freeze(touch.map(p=>Object.freeze(p.map(r))))};};
+  // (round: the same bands' farthest the four ways between, for a hand laid on the face: turned edge-on to it, the little
+  // finger's side of a hand before the lips went into the chin between the envelope's points)
+  const round=[];for(const u of [.7,.35,0,-.35,-.7]){const b=band(u);for(const f of [p=>p[2]-p[0],p=>-p[2]-p[0],p=>p[2]+p[0],p=>p[0]-p[2]])round.push(far(b,f).slice(0,3));}
+  // (and the palm and the back of it in a grid, eight down by five across: laid on a face, its nose or lips came up between
+  // the bands' points into the fingers)
+  for(const u of [.8,.55,.3,.05,-.2,-.45,-.7,-.9])for(const z of [-.55,-.27,0,.27,.55]){const c=band(u,.13).filter(p=>Math.abs(p[2]-z)<.14);
+   if(c.length)round.push(far(c,p=>-p[0]).slice(0,3),far(c,p=>p[0]).slice(0,3));}
+  const freeze=list=>Object.freeze(list.map(p=>Object.freeze(p.map(r))));
+  return {tip:r(tip),centre:Object.freeze([0,r((top+tip)/2),0]),half:Object.freeze([r(thick),r((top-tip)/2),r(width)]),lie:r(lie),reach:r(Math.max(...P.map(p=>-p[0]))),touch:freeze(touch),round:freeze(round)};};
  const open=measure(K.pos),knuckles=top+(HANDS.knuckles-1)*S;
  // The closed hand's hollow (the kit's grip): the biggest round bar that lies along the palm, touching it, with the curled
  // fingers come round its far side (along the hand's breadth, over the middle two fingers): where a held thing's axis is.

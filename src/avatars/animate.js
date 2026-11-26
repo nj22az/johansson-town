@@ -484,6 +484,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    // (flat: a hand drawn thin, a Pixar body's, sampled as one, [across its thickness, across its width] of the mitten's
    // round, so it can lie on a thigh; round, the mitten's middle kept its 9 cm off the lap and the hand floated over it)
    const touch=want.flat?touch0.map(q=>[q[0]*want.flat[0],q[1],q[2]*want.flat[1]]):touch0;
+   // (and laid on the head, more of it: build.js `round`; the face has a nose and lips)
+   const headTouch=H.round?touch.concat(side==='R'?H.round.map(q=>[-q[0],q[1],q[2]]):H.round):touch;
    // The way the palm is to face, in the chest's frame: into what it is laid on, against the way out of it there (the head's,
    // the partner's or the body's own surface at the place; up into a load); and the palm's own way in the hand's frame.
    const palmIn=new THREE.Vector3(),palmOwn=new THREE.Vector3(...handPalm(H,side)),_pw=new THREE.Vector3();
@@ -519,7 +521,9 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
      if(armBoxes.length){const b=inBox(p,armBoxes);if(b>0)c+=((b+.004*k)/k)**2*2000;}
      if(keep)c+=outside(p,keepArm);}
     // the forearm and the hand out of the head and the chest
-    for(let i=0;i<=4;i++){const p=_p[3].copy(E).lerp(W,i/4),r=headR(p),near=hairAt(p)+m.armR*1.15/m.Rh;if(r<near)c+=(near-r)**2*40;
+    // (a hand laid on the head, firmly: kept on the face (cover), the hand drew Tetsuo's forearm into his jaw)
+    const foreHead=want.cover&&H!==MITTEN?400:40;
+    for(let i=0;i<=4;i++){const p=_p[3].copy(E).lerp(W,i/4),r=headR(p),near=hairAt(p)+m.armR*1.15/m.Rh;if(r<near)c+=(near-r)**2*foreHead;
      // (a hand laid on the body (touch) brings its wrist to it: there only the forearm's upper part is kept off; a forearm
      // that rests on the body too (rest) only out of it; and its wrist end rests on it, never in it: the mitten's round held
      // it off, a flat hand lays it on a lap's cloth)
@@ -555,7 +559,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
     // (and on it, not in the air short of it: the mitten's round reached the face from its place; the hand, thinner, is
     // kept on the face or the hair as a hand laid on the body is, a few millimetres past the `cover` it keeps off them)
     if(want.cover){const gap=(want.cover===true?.006:want.cover)*k/m.Rh;let close=Infinity;
-     for(const q of touch){const p=_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W),r=headR(p),near=hairAt(p)+gap;if(r<near)c+=(near-r)**2*3000;if(r-near<close)close=r-near;}
+     for(const q of headTouch){const p=_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W),r=headR(p),near=hairAt(p)+gap;if(r<near)c+=(near-r)**2*3000;if(r-near<close)close=r-near;}
      if(H!==MITTEN&&close>.004*k/m.Rh)c+=((close-.004*k/m.Rh)*m.Rh/k)**2*CONTACT;}
     // (the middle kept off the body: laid on it, nearly as far as the hand lies (the mitten's share of its own thickness,
     // 0.7 of 0.9); otherwise its own thickness, and the rest of the hand out of it)
