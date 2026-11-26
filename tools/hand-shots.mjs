@@ -6,6 +6,8 @@
 //   node tools/hand-shots.mjs --poses Facepalm,Huff,Scold [--name Thao] [out.png]
 //   node tools/hand-shots.mjs --sit chair,floor [--name Thao] [--outfit afterbath] [out.png]
 //   node tools/hand-shots.mjs --hold draft,can,bottle [--name Johansson] [out.png]     a drink in the hand, held and at the lips
+//   node tools/hand-shots.mjs --drive car,"kei truck" [--name Johansson] [out.png]      both hands on the steering wheel
+//   node tools/hand-shots.mjs --ride 0,.25 [--name Thuan] [out.png]                     on a bicycle, at those turns of the crank
 // Software Chromium (TOWN_CHROMIUM_PATH, or /opt/pw-browsers/chromium). Default out: output/hands-<what>.png
 import {chromium} from 'playwright';
 import {createServer} from 'node:http';
@@ -14,9 +16,9 @@ import {resolve,dirname,extname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),site=resolve(root,'..');
 const args=process.argv.slice(2),flag=k=>{const i=args.indexOf(k);return i>=0?args[i+1]:null;};
-const HOLD=flag('--hold')||'',OUTFIT=flag('--outfit')||'clothes',NAME=flag('--name')||'Thao',PAIRS=flag('--pairs')||'',POSES=flag('--poses')||'',SIT=flag('--sit')||'',WHO=flag('--who')||'Thuan,Nils Johansson',GRIP=flag('--grip');
-const what=PAIRS?'pairs':POSES?'poses':SIT?'sit':HOLD?'hold':'rest';
-const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--pairs','--poses','--sit','--who','--grip','--outfit','--hold'].includes(args[i-1]))||resolve(root,`output/hands-${what}.png`));
+const RIDE=flag('--ride')||'',DRIVE=flag('--drive')||'',HOLD=flag('--hold')||'',OUTFIT=flag('--outfit')||'clothes',NAME=flag('--name')||'Thao',PAIRS=flag('--pairs')||'',POSES=flag('--poses')||'',SIT=flag('--sit')||'',WHO=flag('--who')||'Thuan,Nils Johansson',GRIP=flag('--grip');
+const what=PAIRS?'pairs':POSES?'poses':SIT?'sit':HOLD?'hold':DRIVE?'drive':RIDE?'ride':'rest';
+const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--pairs','--poses','--sit','--who','--grip','--outfit','--hold','--drive','--ride'].includes(args[i-1]))||resolve(root,`output/hands-${what}.png`));
 await mkdir(dirname(out),{recursive:true});
 const TYPES={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.glb':'model/gltf-binary'};
 const server=createServer(async(req,res)=>{try{const path=decodeURIComponent(new URL(req.url,'http://x').pathname),file=resolve(site,'.'+path);if(!file.startsWith(site))throw Error('outside');
@@ -28,7 +30,7 @@ const errors=[];
 try{
  const page=await browser.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
  await page.goto(`http://127.0.0.1:${server.address().port}/blank`);
- const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold])=>{
+ const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold,drive,ride])=>{
   const base='/johansson-town/',T=await import(base+'vendor/three.module.js'),{buildAvatar}=await import(base+'src/avatars/build.js'),{recipeFor}=await import(base+'src/avatars/cast.js');
   const {createAvatarAnimator,GESTURES,STILL_AT,playPair}=await import(base+'src/avatars/animate.js'),{createInkPipeline}=await import(base+'src/render/ink-pipeline.js');
   const S=360,renderer=new T.WebGLRenderer({preserveDrawingBuffer:true,antialias:true});renderer.setSize(S,S);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.NoToneMapping;
@@ -72,6 +74,27 @@ try{
     const sc=scene(),P=body(name,sc),prop=createDrinkProp(kind);P.a.bones.handR.add(prop);const state={pose:'DrinkStanding',heldProp:prop,consumeElapsed:lift?1.2:0};
     P.step(60,state);fitAvatarHeldProp(P.a,prop,lift);P.holder.updateMatrixWorld(true);
     const h=handAt(P.a,'R'),y=frontYaw(P.a);for(const turn of [-1.2,-.4,.6,2.2])shoot(sc,h,y+turn,.2,P.a.measure.hand*10,`${kind} ${lift?'at the lips':'held'} · grip ${P.a.gripOf?.('R')}`);P.a.dispose();}}
+  }else if(ride){
+   // on the town's bicycle (world/bicycle.js), as tests/bicycle-rider.test.mjs rides it
+   const {buildBicycle}=await import(base+'src/world/bicycle.js'),{bicycleRiderFit}=await import(base+'src/world/bicycle-fit.js');
+   for(const phase of ride.split(',').map(Number)){
+    const sc=scene(),entity=new T.Group();sc.add(entity);const P=body(name,sc),bike=buildBicycle({animated:true});sc.remove(P.holder);entity.add(P.holder,bike.object);
+    const fit=bicycleRiderFit(P.a.measure);bike.setRiderFit(fit);P.step(120,{riding:true,ridePhase:phase,bicycleFit:fit});bike.animateRide(phase,true);sc.updateMatrixWorld(true);
+    const y=frontYaw(P.a),c=P.a.bones.chest.getWorldPosition(new T.Vector3());shoot(sc,c,y+1.2,.2,2.6,'ride '+phase);
+    for(const side of ['L','R']){const h=handAt(P.a,side),o=side==='L'?1:-1;for(const [turn,pitch] of [[0,.3],[o*1.4,.2],[o*.4,1.2]])shoot(sc,h,y+turn,pitch,P.a.measure.hand*9,`ride ${phase} · ${side} · grip ${P.a.gripOf?.(side)}`);}
+    P.a.dispose();
+   }
+  }else if(drive){
+   // in the driver's seat, both hands on the wheel at nine and three (consume.js gripWheel, as actors.js drives a body)
+   const {buildVehicle}=await import(base+'src/world/road-vehicles.js'),{gripWheel}=await import(base+'src/avatars/consume.js');
+   for(const kind of drive.split(',')){
+    const sc=scene(),v=buildVehicle(kind,'#d8342c'),seat=v.userData.driverSeat,wheel=v.userData.steeringWheel;v.visible=true;sc.add(v);
+    const P=body(name,sc);sc.remove(P.holder);v.add(P.holder);P.holder.position.set(seat.x,0,seat.z);P.holder.rotation.set(0,Math.PI,0);
+    P.step(60,{seated:true,seatHeight:seat.y,driving:true,pose:'Sit',floorHeight:.22});gripWheel(P.a,v,wheel,1.3);sc.updateMatrixWorld(true);
+    const y=frontYaw(P.a),c=P.a.bones.chest.getWorldPosition(new T.Vector3());shoot(sc,c,y+.9,.3,2.4,kind);
+    for(const side of ['L','R']){const h=handAt(P.a,side);for(const [turn,pitch] of [[0,.3],[side==='L'?1.3:-1.3,.2],[side==='L'?-.5:.5,1.1]])shoot(sc,h,y+turn,pitch,P.a.measure.hand*9,`${kind} · ${side} · grip ${P.a.gripOf?.(side)}`);}
+    P.a.dispose();
+   }
   }else if(sit){
    for(const kind of sit.split(',')){
     const sc=scene(),P=body(name,sc),h=kind==='floor'?0:kind==='cushion'?.075:kind==='stool'?.62:.45,state={seated:true,seatHeight:h};
@@ -92,7 +115,7 @@ try{
   const cols=Math.min(6,tiles.length),sheet=document.createElement('canvas');sheet.width=S*cols;sheet.height=S*Math.ceil(tiles.length/cols);const ctx=sheet.getContext('2d');
   tiles.forEach(({c,label},i)=>{ctx.drawImage(c,(i%cols)*S,Math.floor(i/cols)*S);ctx.fillStyle='#253b3d';ctx.font='15px sans-serif';ctx.fillText(label,(i%cols)*S+8,Math.floor(i/cols)*S+20);});
   return sheet.toDataURL('image/png');
- },[NAME,PAIRS,POSES,SIT,WHO,GRIP,OUTFIT,HOLD]);
+ },[NAME,PAIRS,POSES,SIT,WHO,GRIP,OUTFIT,HOLD,DRIVE,RIDE]);
  await writeFile(out,Buffer.from(data.split(',')[1],'base64'));console.log('wrote',out);
 }catch(e){errors.push(String(e?.stack||e));}
 finally{await browser.close();server.close();}

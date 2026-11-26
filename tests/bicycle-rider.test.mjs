@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from '../vendor/three.module.js';
 import {installDOM} from './fixtures.mjs';
-import {buildAvatar} from '../src/avatars/build.js';
+import {buildAvatar,handleAt} from '../src/avatars/build.js';
 import {CAST_RECIPES} from '../src/avatars/cast.js';
 import {createAvatarAnimator} from '../src/avatars/animate.js';
 import {bicycleRiderFit} from '../src/world/bicycle-fit.js';
@@ -25,9 +25,12 @@ test('Thuan reaches both grips and pedals throughout a complete crank revolution
    const foot=avatar.bones['foot'+side].getWorldPosition(new THREE.Vector3());entity.worldToLocal(foot);
    const pedal=bike.pedals.find(p=>p.side===sign).pedal.getWorldPosition(new THREE.Vector3());entity.worldToLocal(pedal);pedal.y+=avatar.measure.foot;
    assert.ok(foot.distanceTo(pedal)<.004,`Foot ${side} on pedal at ${phase}: ${foot.distanceTo(pedal)}`);
-   const hand=avatar.bones['hand'+side].getWorldPosition(new THREE.Vector3());entity.worldToLocal(hand);hand.y-=avatar.measure.hand*.55;
-   const grip=new THREE.Vector3(sign*.25*fit.scale,1.04*fit.scale,-.25*fit.scale);
-   assert.ok(hand.distanceTo(grip)<.006,`Hand ${side} on grip: ${hand.distanceTo(grip)}`);
+   // (the closed hand's hollow on the grip's line, within the grip (build.js handleAt; world/bicycle.js, the rubber grips 21 mm
+   // round from [.17, 1.06, -.33] to [.26, 1.04, -.25]): until 26 November 2026 the mitten's middle, 0.55 of a hand under the
+   // wrist, at the grip's end; the hand's middle is in its palm)
+   const hand=entity.worldToLocal(avatar.bones['hand'+side].localToWorld(new THREE.Vector3(...handleAt(avatar.measure,side,.021*fit.scale))));
+   const grip=new THREE.Line3(new THREE.Vector3(sign*.17,1.06,-.33).multiplyScalar(fit.scale),new THREE.Vector3(sign*.26,1.04,-.25).multiplyScalar(fit.scale)),on=grip.closestPointToPoint(hand,true,new THREE.Vector3());
+   assert.ok(hand.distanceTo(on)<.006,`Hand ${side} on grip: ${hand.distanceTo(on)}`);
   }
  }
  bike.animateRide(0,false);assert.equal(bike.stand.rotation.z,0);

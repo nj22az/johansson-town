@@ -2,7 +2,7 @@ import * as THREE from '../../vendor/three.module.js';
 import {faceLayout} from './face.js';
 import {shapeHeadPoint} from './head-profile.js';
 import {sampleCycle,CYCLE_DURATION} from '../drinking/cycle.js';
-import {handHold} from './build.js';
+import {handHold,handleAt} from './build.js';
 
 /** A single lift, pause at the lips, then return; shared by every avatar. */
 export function consumptionPhase(t,duration=2.4){
@@ -102,10 +102,14 @@ export function reach(avatar,target,side='R',lift=-.25){
  aim(shoulder,elbow,start.clone().addScaledVector(dir,along).addScaledVector(pole,height));
  aim(elbow,hand,start.clone().addScaledVector(dir,d));
 }
+/** The steering wheel's rim, round: the tube's radius (road-vehicles.js, its torus). */
+const RIM=.022;
 /**
  * Both hands on a steering wheel, at nine and three on its rim. `wheel` is {x,y,z,r} in
- * `vehicle`'s frame (world/road-vehicles.js steeringWheel). The wrist goes to the rim, so
- * the mitten closes over it. A gentle drift of the wheel keeps it from looking welded.
+ * `vehicle`'s frame (world/road-vehicles.js steeringWheel). The closed hand's hollow goes to the
+ * rim (build.js handleAt), so the fist is round it; a body with a hand of its own (a Pixar body)
+ * puts its wrist there, as the mitten did. A gentle drift of the wheel keeps it from looking welded.
+ * (The wrist on the rim left the kit's fist beyond it and the rim through the wrist.)
  */
 export function gripWheel(avatar,vehicle,wheel,time=0){
  avatar.root.updateWorldMatrix(true,true);vehicle.updateWorldMatrix(true,false);
@@ -116,8 +120,12 @@ export function gripWheel(avatar,vehicle,wheel,time=0){
  // vehicle has turned the body.
  const left=avatar.bones.shoulderL.getWorldPosition(new THREE.Vector3());
  const leftTakesThree=left.distanceTo(three)<left.distanceTo(nine);
- reach(avatar,leftTakesThree?three:nine,'L');
- reach(avatar,leftTakesThree?nine:three,'R');
+ for(const [side,at] of [['L',leftTakesThree?three:nine],['R',leftTakesThree?nine:three]]){
+  reach(avatar,at,side);if(avatar.measure.realHand)continue;
+  // (the wrist moved by as far as the hollow is off the rim, twice: the hand turns a little as it moves)
+  const hand=avatar.bones['hand'+side],to=at.clone(),hold=new THREE.Vector3();
+  for(let i=0;i<2;i++){hand.localToWorld(hold.set(...handleAt(avatar.measure,side,RIM)));to.add(at.clone().sub(hold));reach(avatar,to,side);}
+ }
 }
 /** Keep the rim/morsel at the measured mouth, independent of height or head shape. */
 export function poseAvatarConsumption(avatar,lift,food=false,prop=null){

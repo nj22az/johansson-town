@@ -1,6 +1,7 @@
 import * as THREE from '../../vendor/three.module.js';
 import {createAvatarActor,updateAvatarActor} from '../avatars/actors.js';
 import {reach} from '../avatars/consume.js';
+import {handHold,handleAt} from '../avatars/build.js';
 import {buildBeerBottle} from '../people/izakaya-serving-visuals.js';
 import {fujitaBeer,laughingAt,seeded,tvProgramme} from './fujita-day.js';
 import {buildFujitaHouseboat,HOUSEBOAT} from './fujita-houseboat.js';
@@ -270,6 +271,22 @@ export function buildPortShed({parent,colliders,register,onAction,shadows=false,
   * into the glass. Both hands reach their grips (consume.js reach), so the props are in the hands, not near them.
   */
  const Y=new THREE.Vector3(0,1,0),BOTTLE_LENGTH=.278,BOTTLE_RADIUS=.038,GRIP_UP=.12;
+ /**
+  * A hand closed round a round thing (a glass, a bottle): the thing's line `way` across the hand (its z, the forefinger's
+  * and the thumb's side that way), the palm against it and the wrist straight (the fingers along the forearm, turned round
+  * the thing to wherever the arm comes from), the closed hand's hollow on its line at `on` (build.js handleAt), the thing
+  * `radius` round; `elbowTo`, the way the elbow goes ([out, up, ahead] in the body's frame: consume.js reach's). Three times:
+  * the forearm moves as the hand does.
+  */
+ function holdRound(av,side,on,way,radius,elbowTo=null){const lift=elbowTo?[(side==='R'?-1:1)*elbowTo[0],elbowTo[1],elbowTo[2]]:undefined;
+  const bones=av.bones,hand=bones['hand'+side],elbow=bones['elbow'+side],z=way.clone().normalize(),f=new THREE.Vector3(),x=new THREE.Vector3(),y=new THREE.Vector3(),q=new THREE.Quaternion(),basis=new THREE.Matrix4();
+  for(let i=0;i<3;i++){
+   f.copy(hand.getWorldPosition(new THREE.Vector3())).sub(elbow.getWorldPosition(new THREE.Vector3()));f.addScaledVector(z,-f.dot(z)).normalize();
+   x.crossVectors(z,f).normalize();y.crossVectors(z,x);q.setFromRotationMatrix(basis.makeBasis(x,y,z));
+   reach(av,on.clone().sub(new THREE.Vector3(...handleAt(av.measure,side,radius)).applyQuaternion(q)),side,lift);
+   hand.quaternion.copy(hand.parent.getWorldQuaternion(new THREE.Quaternion()).invert().multiply(q));hand.updateWorldMatrix(false,true);
+  }
+ }
  function pour(b){
   const av=actor.avatar,glass=actor.heldProp,m=av.measure,bones=av.bones;
   av.root.updateWorldMatrix(true,true);
@@ -279,19 +296,31 @@ export function buildPortShed({parent,colliders,register,onAction,shadows=false,
   const sR=bones.shoulderR.getWorldPosition(new THREE.Vector3()),sL=bones.shoulderL.getWorldPosition(new THREE.Vector3());
   const base=sR.clone().add(sL).multiplyScalar(.5).add(dir(-.05*m.k,-m.upper*1.05,m.fore*.9));
   const gr=glass?.userData.grip?.radius??.03,gh=glass?.userData.grip?.height??.04,rim=glass?.userData.rimHeight??.11;
-  // The right palm round the glass's outside (his right), level; the wrist above the palm (build.js, the mitten hand).
-  const palmR=base.clone().add(dir(-(gr+m.hand*.85),gh,0));
-  reach(av,palmR.clone().addScaledVector(Y,m.hand*.55),'R');level(bones.handR);
+  // The right palm round the glass's outside (his right): the hand round its grip, the thumb up (holdRound; the animator
+  // closes the hand round it, consume.js heldGrip). (A body with a hand of its own, a Pixar body, as the mitten was: level,
+  // its middle 0.85 of a hand off the glass, the wrist above it.)
+  if(m.realHand){const palmR=base.clone().add(dir(-(gr+m.hand*.85),gh,0));reach(av,palmR.clone().addScaledVector(Y,m.hand*.55),'R');level(bones.handR);}
+  else holdRound(av,'R',base.clone().addScaledVector(Y,gh),dir(0,1,0),gr);
   if(glass){const world=new THREE.Matrix4().compose(base,rq,new THREE.Vector3(1,1,1));glass.matrixAutoUpdate=false;glass.matrix.copy(bones.handR.matrixWorld).invert().multiply(world);glass.matrixWorldNeedsUpdate=true;}
   // The bottle: from his left, tipped past the horizontal (more as it empties), its mouth just over the rim.
   const tip=THREE.MathUtils.degToRad(100+35*(1-(b.bottle??.5))),axis=dir(-Math.sin(tip),Math.cos(tip),0);
   const mouth=base.clone().addScaledVector(Y,rim+.03).add(dir(gr*.4,0,0)),bottleBase=mouth.clone().addScaledVector(axis,-BOTTLE_LENGTH);
-  // The left palm on top of the bottle's body, the mitten closing round it.
+  // The left palm on the bottle's body, the hand closed round it as far as its curve lets the fingers come, the thumb
+  // toward the mouth (holdRound). (A Pixar body, as the mitten was: its middle over the bottle, pointed at it; the hand
+  // pointed at it put its fingers into the bottle.)
   const n=Y.clone().addScaledVector(axis,-Y.dot(axis)).normalize();
-  const palmL=bottleBase.clone().addScaledVector(axis,GRIP_UP).addScaledVector(n,BOTTLE_RADIUS+m.hand*.6);
-  reach(av,palmL.clone().addScaledVector(n,m.hand*.55),'L');
-  const hq=new THREE.Quaternion().setFromUnitVectors(Y,n).multiply(rq);
-  bones.handL.quaternion.copy(bones.handL.parent.getWorldQuaternion(new THREE.Quaternion()).invert().multiply(hq));bones.handL.updateWorldMatrix(false,true);
+  if(m.realHand){
+   const palmL=bottleBase.clone().addScaledVector(axis,GRIP_UP).addScaledVector(n,BOTTLE_RADIUS+m.hand*.6);
+   reach(av,palmL.clone().addScaledVector(n,m.hand*.55),'L');
+   const hq=new THREE.Quaternion().setFromUnitVectors(Y,n).multiply(rq);
+   bones.handL.quaternion.copy(bones.handL.parent.getWorldQuaternion(new THREE.Quaternion()).invert().multiply(hq));bones.handL.updateWorldMatrix(false,true);
+  }else{
+   // (the elbow out, a little down and back: out to the side alone, his forearm lay along the bottle and the wrist bent
+   // 69 degrees to hold it across the hand; tucked in, it went into his belly)
+   holdRound(av,'L',bottleBase.clone().addScaledVector(axis,GRIP_UP),axis,BOTTLE_RADIUS,[1,-.5,-.5]);
+   // (closed after the animator's frame, which has nothing in this hand: every frame he pours)
+   av.grip?.('L',handHold(m,BOTTLE_RADIUS).grip);
+  }
   // Into the shed's frame for the bottle and the stream.
   g.updateWorldMatrix(true,false);
   const gq=g.getWorldQuaternion(new THREE.Quaternion()).invert();
