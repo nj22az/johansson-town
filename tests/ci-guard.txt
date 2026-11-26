@@ -152,3 +152,5 @@ body-kit.test.mjs
 # Vy and Tetsuo: heads sculpted in Blender, rigged, every expression.
 sculpted-cast.test.mjs
 avatar-wardrobe.test.mjs
+near-coplanar.test.mjs
+sakura-surfaces.test.mjs
