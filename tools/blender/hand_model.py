@@ -19,7 +19,20 @@ P = dict(palm_len=1.0, palm_w=1.44, palm_t=.6, fingers=[  # z centre, length, wi
     (+.19, .78, .39, .15, +.02),     # middle
     (-.19, .72, .38, .19, -.04),     # ring
     (-.56, .54, .35, .25, -.11),     # little
-], gap=.012, thumb=dict(len=.7))
+], gap=.012, thumb=dict(len=.7, steps=[  # each step out of the palm's side: its way (x, y, z), its share of the length, taper
+    ((-.4, -.55, .75), .3, 1.0), ((-.45, -.9, .32), .32, .97), ((-.3, -1.0, .02), .26, .9), ((-.2, -1.0, -.05), .12, .55)]))
+
+# The same hand closed round a handle (a mug's, a torch, an umbrella's crook, a bar), the power grip: every finger curled at
+# each of its three joints (a tuple: knuckle, middle, end), the little finger most, drawn together; the thumb brought round
+# in front of the palm and laid across the forefinger and the middle finger. The same cage, so the same points in the same
+# order: the game blends the resting hand into this one (build.js grip).
+# (Curled further, the ring and little fingers' tips go into the palm: tools/blender checks the skin never passes through itself.)
+GRIP = dict(P, fingers=[(z, l, w, (c0, c1, c2), sp * .3) for (z, l, w, _, sp), (c0, c1, c2) in zip(P['fingers'], [
+    (.8, .9, .4), (.8, .95, .4), (.7, 1.0, .45), (.75, 1.0, .45)])],
+    thumb=dict(len=.7, steps=[((-.4, -.55, .75), .3, 1.0), ((-.7, -.65, .25), .32, .97), ((-.5, -.55, -.5), .26, .9), ((-.2, -.4, -.9), .12, .55)]))
+
+# The knuckle line, in the cage's frame: where the fingers leave the palm (at the middle finger, the top of the arc).
+KNUCKLES = -.06
 
 
 def build(P=P, levels=3):
@@ -35,7 +48,7 @@ def build(P=P, levels=3):
         widen = .62 + .38 * min(1, u / .62) ** .7        # the palm narrows to a round wrist
         thin = .78 + .22 * min(1, u / .62)
         for j, z in enumerate(zs):
-            arc = .06 * (1 - (z / (W / 2)) ** 2) * (1 - y / L)   # the knuckle line an arc, highest at the middle
+            arc = -KNUCKLES * (1 - (z / (W / 2)) ** 2) * (1 - y / L)   # the knuckle line an arc, highest at the middle
             for k, x in enumerate(xs):
                 V[i, j, k] = bm.verts.new((x * thin, y - arc, z * widen))
     F = lambda *vs: bm.faces.new(vs)
@@ -55,14 +68,16 @@ def build(P=P, levels=3):
     knuckles = sorted([f for f in bm.faces if all(abs(v.co.y - (0 - .06 * (1 - (v.co.z / (W / 2)) ** 2))) < .02 for v in f.verts) and f.normal.y < -.5],
                       key=lambda f: f.calc_center_median().z)
     # Each finger: the knuckle face inset (a gap between fingers), then three joints, each shorter, slimmer and curled.
-    for (zc, length, w, curl, splay), face in zip(sorted(P['fingers'], key=lambda f: f[0]), knuckles):
+    for (zc, length, w, curls, splay), face in zip(sorted(P['fingers'], key=lambda f: f[0]), knuckles):
         inset = bmesh.ops.inset_individual(bm, faces=[face], thickness=P['gap'], depth=0)
         f = face
         direction = Vector((0, -1, 0))
         ang = 0.0
         segs = (.42, .32, .26)
+        curls = curls if isinstance(curls, tuple) else (curls,) * 3
         for s, share in enumerate(segs):
             ext = bmesh.ops.extrude_discrete_faces(bm, faces=[f])['faces'][0]
+            curl = curls[s]
             ang += curl
             d = Vector((-math.sin(ang), -math.cos(ang), math.sin(splay)))
             c = ext.calc_center_median()
@@ -89,8 +104,8 @@ def build(P=P, levels=3):
     if base:
         bmesh.ops.inset_region(bm, faces=base, thickness=.025, depth=0)
         region = base
-        steps = [(Vector((-.4, -.55, .75)), .3, 1.0), (Vector((-.45, -.9, .32)), .32, .97), (Vector((-.3, -1.0, .02)), .26, .9), (Vector((-.2, -1.0, -.05)), .12, .55)]
-        for dv, share, taper in steps:
+        for dv, share, taper in th['steps']:
+            dv = Vector(dv)
             out = bmesh.ops.extrude_face_region(bm, geom=region)
             bmesh.ops.delete(bm, geom=region, context='FACES')
             region = [g for g in out['geom'] if isinstance(g, bmesh.types.BMFace)]
