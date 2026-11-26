@@ -1,11 +1,13 @@
 import * as THREE from '../vendor/three.module.js';
-import {bodyVolume} from '../src/avatars/build.js';
+import {bodyVolume,handShape} from '../src/avatars/build.js';
 
 /**
  * Contact between people's bodies, for poses where they touch or come close (a carry, a hug): the drawn surface of a body as
  * it is posed (every visible skinned mesh but the ink outlines, every `stride`-th point, in the world), and a body's core
  * as a signed distance (negative inside): its torso as bodyVolume has it (where the hips and the chest have taken it), its
- * head, a round limb along each bone of the arms and legs, the mittens and the shoes. Clothes and hair lie outside the core,
+ * head, a round limb along each bone of the arms and legs, the hands and the shoes. A hand is the ellipsoid of its flat (palm
+ * and fingers) as build.js HAND measures it from the kit's hand: the contact shape the poses are made to, not a size of its
+ * own here (until 26 November 2026 the mitten's ball, 0.9 x 1.15 x 0.78 hand lengths 0.55 under the wrist). Clothes and hair lie outside the core,
  * so a point of another body found inside it has gone through that body, not just brushed its sleeve.
  */
 export function surface(avatar,{stride=1,only=null}={}){
@@ -29,6 +31,8 @@ export function core(avatar){
  const frames=[['hips',m.hipY],['chest',m.chestY]].map(([n,y])=>[inv(n),y]),head=inv('head'),hands=['handL','handR'].map(inv),feet=['footL','footR'].map(inv);
  const limbs=[];for(const s of ['L','R'])limbs.push([at('shoulder'+s),at('elbow'+s),m.armR],[at('elbow'+s),at('hand'+s),m.armR*.9],[at('thigh'+s),at('knee'+s),m.legR],[at('knee'+s),at('foot'+s),m.legR*.9]);
  const S=[m.Rh*m.headSX,m.Rh*m.headSY,m.Rh*.98],hc=m.headCentre-m.headY,q=new THREE.Vector3();
+ // (each hand as it is now: closed (build.js grip) past half way, the fist's shape)
+ const handCore=side=>{const H=handShape(m,avatar.gripOf?.(side)>.5);return {c:H.centre.map(v=>v*m.hand),s:H.half.map(v=>v*m.hand)};},hand=['L','R'].map(handCore);
  // (a bent torso is its lower half carried by the hips and its upper half by the chest, never the whole of it by both:
  // the whole torso carried by the hips would stand where a chest that leans back has gone from, and a fist at the collar
  // of the real chest would read as inside it)
@@ -38,7 +42,7 @@ export function core(avatar){
   if(d===Infinity)for(const [M,y] of frames){q.copy(p).applyMatrix4(M);q.y+=y;d=Math.min(d,vol.sdf(q));}
   d=Math.min(d,ellipsoid(q.copy(p).applyMatrix4(head),[0,hc,0],S));
   for(const [a,c,r] of limbs)d=Math.min(d,segment(p,a,c,r));
-  for(const M of hands)d=Math.min(d,ellipsoid(q.copy(p).applyMatrix4(M),[0,-m.hand*.55,0],[m.hand*.9,m.hand*1.15,m.hand*.78]));
+  hands.forEach((M,i)=>{d=Math.min(d,ellipsoid(q.copy(p).applyMatrix4(M),hand[i].c,hand[i].s));});
   for(const M of feet)d=Math.min(d,ellipsoid(q.copy(p).applyMatrix4(M),[0,m.foot*.62-m.foot,m.legR*.55],[m.legR*1.25,m.legR*.75,m.legR*2.3]));
   return d;};
 }

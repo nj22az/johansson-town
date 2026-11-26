@@ -1,5 +1,5 @@
 import * as THREE from '../../vendor/three.module.js';
-import {bodyVolume} from './build.js';
+import {bodyVolume,handShape,handOff,MITTEN} from './build.js';
 import {createSoleFinder} from './foot-ground.js';
 import {both,leg,matchKnee} from './fun-poses.js';
 /**
@@ -26,11 +26,16 @@ const clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
  *  lips from a cheek; and how far clothes stand off the body's own volume (build.js bodyVolume is the bare torso), kept
  *  from the partner too. */
 export const PAIR_GAP=Object.freeze({heads:.012,bodies:.01,lips:.004,cloth:.012,
- /** How far a mitten laid on the partner presses into the clothes: the reach solver's mitten envelope (animate.js TOUCH)
-  *  stands about a centimetre off the drawn mitten, so this much of it may go into the shirt for the drawn mitten to rest on it. */
+ /** How far a hand laid on the partner presses into the clothes: the reach solver keeps the hand's envelope (build.js
+  *  HAND.touch) a little off what it is kept out of, so this much of it may go into the shirt for the drawn hand to rest on it. */
  press:.008});
-/** How far a straight arm puts the middle of its mitten from the shoulder, and the share of it a pose may use. */
-const reachOf=m=>m.upper+m.fore+m.hand*.55,USABLE=.95;
+/** How far a straight arm puts the middle of its hand from the shoulder, and the share of it a pose may use. */
+const reachOf=m=>m.upper+m.fore-m.hand*handShape(m).middle[1],USABLE=.95;
+/** A hand as an ellipsoid (its flat: build.js HAND.half, at HAND.centre) in a frame where the hand bone is at `at`: its centre
+ *  and half-sizes, for keeping it out of a partner and a partner out of it. */
+const handBox=(m,at)=>{const H=handShape(m);return {c:[at[0],at[1]+H.centre[1]*m.hand,at[2]],s:H.half.map(v=>v*m.hand)};};
+/** An ellipsoid's signed distance, roughly (exact on its axes): q in its own frame. */
+const ellipsoid=(q,c,s)=>(Math.hypot((q.x-c[0])/s[0],(q.y-c[1])/s[1],(q.z-c[2])/s[2])-1)*Math.min(...s);
 const segment=(p,a,b,r)=>{const ab=_ab.subVectors(b,a),t=clamp(_ap.subVectors(p,a).dot(ab)/(ab.lengthSq()||1),0,1);return _ap.copy(a).addScaledVector(ab,t).distanceTo(p)-r;};
 const _ab=new THREE.Vector3(),_ap=new THREE.Vector3(),_v=new THREE.Vector3();
 /** The matrix that places B in A's frame: B's own frame turned `yaw` about the vertical and set at (dx, 0, dz). */
@@ -113,7 +118,7 @@ function bodyPoints(body,arms=false,skirt=false){
  if(arms)for(const s of ['L','R']){const sx=s==='L'?1:-1,x=sx*m.shoulderX;
   for(const [bone,y0,y1,r] of [['shoulder'+s,m.shoulderY-.01,m.shoulderY-m.upper+.01,m.armR],['elbow'+s,m.shoulderY-m.upper-.01,m.shoulderY-m.upper-m.fore+.01,m.armR*.9]])
    for(let j=0;j<=3;j++)for(let i=0;i<8;i++){const t=i/8*Math.PI*2,y=y0+(y1-y0)*j/3;push(bone,new THREE.Vector3(x+r*Math.sin(t),y,r*Math.cos(t)));}
-  const w=m.shoulderY-m.upper-m.fore;for(let i=0;i<8;i++)for(let j=1;j<3;j++){const t=i/8*Math.PI*2,f=j/3*Math.PI;push('hand'+s,new THREE.Vector3(x+.015*sx+m.hand*.9*Math.sin(f)*Math.cos(t),w-m.hand*.55+m.hand*1.15*Math.cos(f),m.hand*.78*Math.sin(f)*Math.sin(t)));}}
+  const {c,s:hs}=handBox(m,[x+.015*sx,m.shoulderY-m.upper-m.fore,0]);for(let i=0;i<8;i++)for(let j=1;j<3;j++){const t=i/8*Math.PI*2,f=j/3*Math.PI;push('hand'+s,new THREE.Vector3(c[0]+hs[0]*Math.sin(f)*Math.cos(t),c[1]+hs[1]*Math.cos(f),c[2]+hs[2]*Math.sin(f)*Math.sin(t)));}}
  for(let i=0;i<24;i++)for(let j=0;j<=10;j++){const p=body.vol.surf(i/24*Math.PI*2,j/10*1.02);push(torsoBone(m,p.y),p);}
  for(const sx of [1,-1])for(let i=0;i<12;i++)for(let j=1;j<4;j++){const t=i/12*Math.PI*2,f=j/4*Math.PI,r=m.armR*1.18;
   push('chest',new THREE.Vector3(sx*m.shoulderX-sx*m.armR*.12+r*Math.sin(f)*Math.cos(t),m.shoulderY-m.armR*.05+r*.62*Math.cos(f),r*Math.min(1.1,m.depth/m.width*1.6)*Math.sin(f)*Math.sin(t)));}
@@ -141,12 +146,11 @@ function field(body,pose,M,arms=null,heads=true,sleeves=true){
  const {m,vol,cloth}=body,full=withArms(pose,arms);
  const F=posed(body,full),place=n=>new THREE.Matrix4().multiplyMatrices(M,F.bone(n)),inv=n=>place(n).invert();
  const frames=[['hips',m.hipY,true],['chest',m.chestY,false]].map(([n,y,lower])=>[inv(n),y,lower]),head=inv('head'),at=n=>new THREE.Vector3().setFromMatrixPosition(place(n));
- const limbs=[],feet=['L','R'].map(s=>inv('foot'+s)),foot=[m.legR*1.25,m.legR*.75,m.legR*2.3],footAt=[0,m.foot*.62-m.foot,m.legR*.55];
+ const limbs=[],hands=[],hand=handBox(m,[0,0,0]),feet=['L','R'].map(s=>inv('foot'+s)),foot=[m.legR*1.25,m.legR*.75,m.legR*2.3],footAt=[0,m.foot*.62-m.foot,m.legR*.55];
  // (and the sleeves, for an arm laid over a shoulder: a shoulder in a shirt stands off its cap by more than the shirt
  // stands off the chest; not for hands on the chest, where on a narrow body the sleeves would hold them off)
  for(const s of ['L','R']){limbs.push([at('thigh'+s),at('knee'+s),m.legR*1.05],[at('knee'+s),at('foot'+s),m.legR*.95]);if(sleeves)limbs.push([at('shoulder'+s),at('shoulder'+s),m.armR*1.25+.006*m.k]);
-  if(arms?.[s]){const hand=place('hand'+s),mit=new THREE.Vector3(0,-m.hand*.55,0).applyMatrix4(hand),tip=new THREE.Vector3(0,-m.hand*1.3,0).applyMatrix4(hand);
-   limbs.push([at('shoulder'+s),at('elbow'+s),m.armR*1.08],[at('elbow'+s),at('hand'+s),m.armR],[mit,tip,m.hand*.8]);}}
+  if(arms?.[s]){limbs.push([at('shoulder'+s),at('elbow'+s),m.armR*1.08],[at('elbow'+s),at('hand'+s),m.armR]);hands.push(inv('hand'+s));}}
  const q=new THREE.Vector3();
  // (a bent torso is its lower half carried by the hips and its upper half by the chest, not the whole of it by both: the
  // whole torso carried by the hips would stand where a chest that leans back has gone from)
@@ -155,6 +159,8 @@ function field(body,pose,M,arms=null,heads=true,sleeves=true){
  const sleeve=.006*m.k;
  return p=>{let d=Infinity;for(const [Mi,y,lower] of frames){q.copy(p).applyMatrix4(Mi);q.y+=y;if(lower?q.y>m.chestY+half:q.y<m.chestY-half)continue;d=Math.min(d,vol.sdf(q));}
   d-=cloth;for(const [a,b,r] of limbs)d=Math.min(d,segment(p,a,b,r)-sleeve);
+  // (the hands the pose places, as the hand's own shape: build.js HAND)
+  for(const Mi of hands){q.copy(p).applyMatrix4(Mi);d=Math.min(d,ellipsoid(q,hand.c,hand.s)-sleeve);}
   for(const Mi of feet){q.copy(p).applyMatrix4(Mi);d=Math.min(d,(Math.hypot((q.x-footAt[0])/foot[0],(q.y-footAt[1])/foot[1],(q.z-footAt[2])/foot[2])-1)*foot[1]);}
   // (the head and its hair stand that much further off: a mitten may press into a shirt (PAIR_GAP.press), never into hair)
   if(!heads)return d;q.copy(p).applyMatrix4(head);return Math.min(d,body.gap(q)+PAIR_GAP.press*m.k);};
@@ -184,9 +190,9 @@ function bodyGap(A,poseA,B,poseB,M,armsA=null,armsB=null,heads=true,skirts=false
  return g;
 }
 /** A point on the partner's torso surface (angle `a` round it: 0 its front, π its back, +π/2 its left; `t` up it), the
- *  partner's clothes and a mitten's thickness off it (a mitten laid on the shirt), in the partner's frame at rest, with the
- *  bone that carries it. */
-const onPartner=(body,a,t,hand,off=.95)=>{const p=body.vol.surf(a,t);return {bone:torsoBone(body.m,p.y),p:p.addScaledVector(body.vol.normal(p),hand*off+body.cloth-PAIR_GAP.press*body.m.k).toArray()};};
+ *  partner's clothes and a hand laid on them off it (build.js handOff for the hand of `mine`, a body's measures; `off` hand
+ *  lengths further, or nearer for a push), in the partner's frame at rest, with the bone that carries it. */
+const onPartner=(body,a,t,mine,off=.05,fist=false)=>{const p=body.vol.surf(a,t);return {bone:torsoBone(body.m,p.y),p:p.addScaledVector(body.vol.normal(p),handOff(mine,off,fist)+body.cloth-PAIR_GAP.press*body.m.k).toArray()};};
 /** The height t up the partner's torso at which a point stands `y` above the floor (0.08 to 0.96 of it). */
 const tAt=(body,y)=>clamp((y-body.m.hipY)/body.m.torso,.08,.96);
 
@@ -198,8 +204,8 @@ const tAt=(body,y)=>clamp((y-body.m.hipY)/body.m.torso,.08,.96);
 /** How far an arm reaching for a partner may turn: forward and up to overhead, out to the side or across the chest, never
  *  wound round backward or windmilled over the head (the right arm's terms: x forward negative, z out to the right negative). */
 const ARM_BOUNDS=Object.freeze([[-2.4,.6],[-1.2,1.2],[-1.6,1],[-2.3,0],[-1.2,1.2]]);
-const armSpec=(side,joints,head,target,keepOut,seed,{elbow=null,hand=[0,0,0],twist=.4,upper=true,touch=false,multiStart=false}={})=>({pose:()=>joints,hair:true,head,only:side,
- [side]:{root:target,keepOut,seed,hand,upper,twist,touch,multiStart,press:true,bounds:ARM_BOUNDS,...(elbow?{elbow:()=>elbow}:{})}});
+const armSpec=(side,joints,head,target,keepOut,seed,{elbow=null,hand=[0,0,0],twist=.4,upper=true,touch=false,multiStart=false,palm,fist=false}={})=>({pose:()=>joints,hair:true,head,only:side,
+ [side]:{root:target,keepOut,seed,hand,upper,twist,touch,multiStart,press:true,fist,bounds:ARM_BOUNDS,...(elbow?{elbow:()=>elbow}:{}),...(palm!==undefined?{palm}:{})}});
 
 /** The stance of a fight: the left foot forward with the knee bent, the right braced back, both soles flat. */
 const stance=(front,knee,back,spread=.14)=>({thighL:[front,0,spread],kneeL:[knee,0,0],footL:[-(front+knee),0,-spread],thighR:[back,0,-spread],kneeR:[matchKnee(front,knee,back),0,0],footR:[-(back+matchKnee(front,knee,back)),0,spread]});
@@ -227,7 +233,7 @@ function fitHug(ctx){
  // spine toward the near flank); `side` +1 when the partner's near side is its left, -1 its right; `from` where the arm
  // reaches from (the shoulder, or an elbow held over the partner's shoulder) and how far it reaches from there
  const backOf=(me,other,F,toMe,from,reach,t0,side)=>{let best=null;
-  for(let t=t0;t<=.96;t+=.05)for(let phi=-.5;phi<=1.5;phi+=.05){const place=onPartner(other,Math.PI-side*phi,t,me.m.hand),p=toMe(F,place),d=p.distanceTo(from);
+  for(let t=t0;t<=.96;t+=.05)for(let phi=-.5;phi<=1.5;phi+=.05){const place=onPartner(other,Math.PI-side*phi,t,me.m),p=toMe(F,place),d=p.distanceTo(from);
    if(d<=reach)return {place,p};if(!best||d<best.d)best={place,p,d};}
   return best;};
  const inA=(F,place)=>F.at(place.bone,place.p).applyMatrix4(PM),inB=(F,place)=>F.at(place.bone,place.p);
@@ -236,7 +242,13 @@ function fitHug(ctx){
  // found it when sent behind the shoulder, where a big head leaning this way overhangs everything on top). Within a short
  // reach of A, and B's arm, solved first, is kept out of; the hand itself does not depend on it.
  const frontB=new THREE.Vector3(Math.sin(yawB),0,Math.cos(yawB));   // B's front, in A's frame
- const overOf=()=>shBinA.clone().addScaledVector(frontB,B.m.armR*1.1+B.cloth+A.m.hand*.85-PAIR_GAP.press*B.m.k).add(new THREE.Vector3(0,-.05*B.m.k,0));
+ // (a hand laid flat there is out of the hair that hangs over that shoulder (a bob, braids): as high as it can be, 5 cm
+ // under the joint or lower, until the hand from its middle to the wrist is a hand's thickness clear of it; a mitten
+ // stood off the shoulder by its own round and was held off the chest by the hair)
+ const headB=FB.bone('head').clone().invert(),inHeadB=p=>p.clone().applyMatrix4(PMi).applyMatrix4(headB),wristAbove=-handShape(A.m).middle[1]*A.m.hand;
+ const overAt=d=>shBinA.clone().addScaledVector(frontB,B.m.armR*1.1+B.cloth+handOff(A.m,-.05)-PAIR_GAP.press*B.m.k).add(new THREE.Vector3(0,-d*B.m.k,0));
+ const clearOfHair=p=>[0,.5,1].every(u=>B.gap(inHeadB(p.clone().add(new THREE.Vector3(0,wristAbove*u,0))))>=handOff(A.m)+PAIR_GAP.press*B.m.k);
+ let overDown=null;const overOf=()=>{if(overDown===null){overDown=.05;while(overDown<.12&&!clearOfHair(overAt(overDown)))overDown+=.005;}return overAt(overDown);};
  const dz=0;
  const dx=bisect(.2,1.2,v=>{const M=pairMatrix({dx:v,dz,yawB});return headGap(A,pA,B,pB,M)>=PAIR_GAP.heads&&bodyGap(A,pA,B,pB,M)>=PAIR_GAP.bodies;});
  const PM=pairMatrix({dx,dz,yawB}),PMi=PM.clone().invert(),shBinA=shB.clone().applyMatrix4(PM);
@@ -248,7 +260,9 @@ function fitHug(ctx){
  if(under.d!==undefined){const stretched=backOf(B,A,FA,inB,shBinA,B.reach,tUnder,1);if(stretched.d===undefined)under=stretched;}
  const keepA=field(B,pB,PM),keepB=field(A,pA,PMi);
  const A_near=armsB=>{const p=overOf(armsB),elbow=shA.clone().lerp(p,.5).add(new THREE.Vector3(0,.06*A.m.k,0));
-  return armSpec('L',pA,pA.head,p.toArray(),field(B,pB,PM,armsB),[-1.3,.3,-.6,-1.1,0],{elbow:elbow.toArray()});};
+  // (the palm on the front of B's shoulder, facing back into it: the way out of B's body there is up into the hair and
+  // the head, which a palm would turn to)
+  return armSpec('L',pA,pA.head,p.toArray(),field(B,pB,PM,armsB),[-1.3,.3,-.6,-1.1,0],{elbow:elbow.toArray(),palm:frontB.clone().negate().toArray()});};
  const B_near=armSpec('R',pB,pB.head,under.p.applyMatrix4(PMi).toArray(),keepB,[-.6,.3,.5,-1.3,.3]);
  // the free hand up beside the cheek, fingers up (the peace sign of every photo), clear of the head and the hair
  // (a side's own place is not mirrored by the solver: the left hand's is written for the left cheek)
@@ -305,7 +319,7 @@ function fitKiss(ctx){
  * A's mittens flat on B's chest, pushing; B reels back, a foot back to catch the fall, the arms up. The two stand face to
  * face as near as the heads allow, B leaning back as far as it takes for the arms to reach.
  */
-function fitFacing(ctx,{grabT,wide,leanA,armsB,reel,handA,off=.95}){
+function fitFacing(ctx,{grabT,wide,leanA,armsB,reel,handA,off=.05,fist=false}){
  const {A,B}=ctx,yawB=Math.PI;
  // A lunges, the left foot forward between B's feet, the face in B's; B stands with the feet wide and braced (its own
  // feet clear of A's), leaning back, the arms thrown up and out (shoulder high, so the elbows are above A's reaching arms)
@@ -324,9 +338,9 @@ function fitFacing(ctx,{grabT,wide,leanA,armsB,reel,handA,off=.95}){
   const PM=pairMatrix({dx:0,dz,yawB}),FA=posed(A,pA),FB=posed(B,pB);
   for(let t=t0;t>=.5;t-=.06){
    // (A's left fist on B's right collar: B's right is at A's left once B faces A)
-   const targets=['L','R'].map(s=>{const k=s==='L'?1:-1,o=onPartner(B,-k*wide,t,A.m.hand,off);return {side:s,p:FB.at(o.bone,o.p).applyMatrix4(PM),shoulder:FA.pos('shoulder'+s)};});
-   const fit=()=>{const keepA=field(B,pB,PM,armsB,true,false),specs=targets.map(o=>armSpec(o.side,pA,pA.head,o.p.toArray(),keepA,[-1.25,.15,-.05,-.45,0],{hand:handA,upper:true,multiStart:B.m.studio}));
-    return {dx:0,dz,yawB,A:{joints:pA,near:specs[0],far:()=>specs[1],keep:()=>keepA},B:{joints:pB}};};
+   const targets=['L','R'].map(s=>{const k=s==='L'?1:-1,o=onPartner(B,-k*wide,t,A.m,off,fist);return {side:s,p:FB.at(o.bone,o.p).applyMatrix4(PM),shoulder:FA.pos('shoulder'+s)};});
+   const fit=()=>{const keepA=field(B,pB,PM,armsB,true,false),specs=targets.map(o=>armSpec(o.side,pA,pA.head,o.p.toArray(),keepA,[-1.25,.15,-.05,-.45,0],{hand:handShape(A.m)===MITTEN?handA:[0,0,0],upper:true,multiStart:B.m.studio,fist}));
+    return {dx:0,dz,yawB,A:{joints:pA,near:specs[0],far:()=>specs[1],keep:()=>keepA,...(fist?{grip:{L:1,R:1}}:{})},B:{joints:pB}};};
    if(targets.every(o=>o.p.distanceTo(o.shoulder)<=A.reach*.82))return fit();
    last=fit;
   }
@@ -391,7 +405,7 @@ function fitBackToBack(ctx){
  const {s,pA,pB}=best,place=at(s),PM=pairMatrix(place),PMi=PM.clone().invert();
  // arms folded across the chest (fun-poses Huff's: each mitten on the front of the torso, on the other side), on the body
  // as this pose turns it, kept out of the partner and never wound round to get there
- const onFront=(side,t)=>(m,v)=>{const p=v.surf(side*.3,t);return p.addScaledVector(v.normal(p),m.hand*.9).toArray();};
+ const onFront=(side,t)=>(m,v)=>{const p=v.surf(side*.3,t);return p.addScaledVector(v.normal(p),handOff(m)).toArray();};
  const arm=(keep,side,t)=>({touch:true,on:['spine',onFront(side,t)],keepOut:keep,seed:[-.6,.3,.35,-2.1,0],hand:[0,0,0],bounds:ARM_BOUNDS,twist:.4});
  const folded=(joints,keep)=>({pose:()=>joints,hair:true,head:joints.head,R:arm(keep,1,.72),L:arm(keep,-1,.62)});
  return {dx:place.dx,dz:place.dz,yawB,out:best.out,
@@ -408,11 +422,11 @@ export const PAIR_POSES=Object.freeze({
   fit:fitKiss,life:(P,role)=>{if(role==='B')P.add('head',0,0,Math.sin(P.t*24)*.006*P.w);}}),
  Fight:Object.freeze({label:'Fight',d:3,ramp:.6,faces:Object.freeze({A:'raging',B:'pain'}),
   use:'The squabble: A has B by the collar with both fists, leaning in and yelling; B, yanked forward, leans back from it with both arms flung up.',
-  fit:ctx=>fitFacing(ctx,{grabT:.9,wide:.26,leanA:.16,handA:[0,0,0],armsB:{L:[-1.9,.1,-.75,-.7,0],R:[-1.9,.1,-.75,-.7,0],handL:[0,0,.3],handR:[0,0,-.3]}}),
+  fit:ctx=>fitFacing(ctx,{grabT:.9,wide:.26,leanA:.16,handA:[0,0,0],fist:true,armsB:{L:[-1.9,.1,-.75,-.7,0],R:[-1.9,.1,-.75,-.7,0],handL:[0,0,.3],handR:[0,0,-.3]}}),
   life:(P,role)=>{P.add('chest',Math.sin(P.t*16)*(role==='A'?.012:.02)*P.w);}}),
  Shove:Object.freeze({label:'Shove',d:2.6,ramp:.5,faces:Object.freeze({A:'angry',B:'shock'}),
   use:'The push: both of A’s mittens flat on B’s chest; B reels back, a foot back to catch the fall, the arms up and the eyes wide.',
-  fit:ctx=>fitFacing(ctx,{grabT:.66,wide:.32,leanA:.22,handA:[-1.5,0,0],off:.78,reel:true,armsB:{L:[-.5,.2,-1.35,-.5,0],R:[-.5,.2,-1.35,-.5,0],handL:[0,0,.3],handR:[0,0,-.3]}}),life:()=>{}}),
+  fit:ctx=>fitFacing(ctx,{grabT:.66,wide:.32,leanA:.22,handA:[-1.5,0,0],off:-.12,reel:true,armsB:{L:[-.5,.2,-1.35,-.5,0],R:[-.5,.2,-1.35,-.5,0],handL:[0,0,.3],handR:[0,0,-.3]}}),life:()=>{}}),
  BackToBack:Object.freeze({label:'Back to back',d:3.2,ramp:.8,faces:Object.freeze({A:'smug',B:'focus'}),view:BACK_TO_BACK_VIEW,
   use:'Partners facing trouble together, a standoff or a team-up: back to back like a buddy-film poster, both turned to the lens with the chins up and the arms folded; A smug, B determined.',
   fit:fitBackToBack,life:(P,role)=>{P.add('chest',Math.sin(P.t*1.6)*.006*P.w);}}),

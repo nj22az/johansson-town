@@ -117,7 +117,7 @@ export function updateAvatarActor(actor,dt,now=performance.now()){
  if(actor.umbrellaColour!==umbrella){actor.umbrellaProp?.removeFromParent();actor.umbrellaProp=umbrella===null?null:buildUmbrella({canopy:umbrella});actor.umbrellaColour=umbrella;if(actor.umbrellaProp)avatar.bones.handR.add(actor.umbrellaProp);}
  actor.animator.update(dt,{
   speed:actor.moving?actor.speed:0,running:actor.speed>3.2,seated,seatHeight:u.seatHeight,seatFront:u.seatFront,chairBlend:u.chairBlend,floorHeight:Number(u.floorHeight)||0,
-  pose:u.socialPose,seat:u.socialPose,climbing:!!u.climbing,driving:!!u.inVehicle,riding,ridePhase:u.bicyclePhase||0,bicycleFit:u.bicycleFit,carrying:!!u.carrying,heldProp:actor.heldProp,umbrella:!!actor.umbrellaProp,
+  pose:u.socialPose,seat:u.socialPose,climbing:!!u.climbing,driving:!!u.inVehicle,riding,ridePhase:u.bicyclePhase||0,bicycleFit:u.bicycleFit,carrying:!!u.carrying,heldProp:actor.heldProp,umbrella:!!actor.umbrellaProp,workHeld:u.workHeld,tool:!!actor.toolProp,dish:!!actor.dishProp,
   waving:!!(u.chat?.greeting||actor.gestureTime>0&&!actor.waved),
   talking:!!(u.chat?.speaking||u.speakingUntil>now),
   expression:u.thuanExpression||feeling||(engaged?'smile':'neutral'),

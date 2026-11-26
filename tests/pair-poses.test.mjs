@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from '../vendor/three.module.js';
 import {installDOM} from './fixtures.mjs';
-import {buildAvatar} from '../src/avatars/build.js';
+import {buildAvatar,handShape} from '../src/avatars/build.js';
 import {recipeFor} from '../src/avatars/cast.js';
 import {createAvatarAnimator,GESTURES,STORY_POSES,STILL_AT,PAIR_POSES,playPair} from '../src/avatars/animate.js';
 import {PAIR_ROLES,PAIR_GAP,fitPair,placePair,headsApart} from '../src/avatars/pair-poses.js';
@@ -49,8 +49,8 @@ function still(a,b,name){
 }
 const hands=(s,side)=>s.filter(p=>p.bone==='hand'+side);
 const low=s=>Math.min(...s.map(p=>p.p.y));
-/** The mitten's middle, in the world. */
-const mitten=(b,side)=>b.avatar.bones['hand'+side].localToWorld(new THREE.Vector3(0,-b.m.hand*.55,0));
+/** The hand's middle, in the world (build.js HAND: where a reach puts it). */
+const mitten=(b,side)=>b.avatar.bones['hand'+side].localToWorld(new THREE.Vector3(...handShape(b.m).middle.map(v=>v*b.m.hand)));
 /** A world point in the other body's own frame (x to its left, z ahead of it). */
 const inFrame=(b,p)=>b.avatar.root.worldToLocal(p.clone());
 

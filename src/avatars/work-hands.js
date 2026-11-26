@@ -1,5 +1,6 @@
 import * as THREE from '../../vendor/three.module.js';
 import {reach,drinkGrip} from './consume.js';
+import {handHold} from './build.js';
 
 /**
  * Hands at work behind a counter (people/izakaya-bar.js): each hand goes to what it is working on and holds what it
@@ -20,7 +21,8 @@ import {reach,drinkGrip} from './consume.js';
  */
 const X=new THREE.Vector3(1,0,0),_q=new THREE.Quaternion(),_p=new THREE.Quaternion(),_t=new THREE.Quaternion(),_m=new THREE.Matrix4();
 const _a=new THREE.Vector3(),_b=new THREE.Vector3(),_c=new THREE.Vector3();
-const palm=m=>new THREE.Vector3(0,-m.hand*.55,0);
+/** Where a held thing's grip is measured from (build.js handHold: level with the closed hand's hollow). */
+const palm=m=>new THREE.Vector3(...handHold(m).at);
 /** The hand's world rotation: the body's facing, tipped forward by `tilt` to pour. */
 function handRotation(avatar,tilt=0,out=new THREE.Quaternion()){return avatar.root.getWorldQuaternion(out).multiply(_t.setFromAxisAngle(X,tilt));}
 /** Where the wrist goes for the palm to close on `object` standing as it is. */
