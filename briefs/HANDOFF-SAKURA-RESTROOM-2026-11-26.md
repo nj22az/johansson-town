@@ -215,3 +215,57 @@ hips she needs to look cute use Disney audit".
   recipe. Boots' shafts are still a separate piece built with the body, so `wearShoes('boots')` gives the foot only.
 - Nothing in the game calls `wearShoes` yet: no shop sells shoes and the creator's footwear list is as it was.
 - Trouser legs and long sleeves are not shaped.
+
+---
+
+# Last of the day: published, Vy and Tetsuo, the sweep, the cast in Blender
+
+**Published:** the body kit went to `main` by fast-forward (`a0e9ed7`), the owner: "Push to main , then rework Vy , and Tetsuo
+give them expressions and fully rigged in blender". What follows is on the branch only.
+
+## The owner's words, in order
+"What's the next recommended character to tackle"; "Can you do all of them in a sweep but keep their personalities"; with a
+photograph, "This is the real Vy can you make cartoon Vy look more like her ? Sculpt in blender from clay"; "Her head doesn't
+have to look like a balloon make her cute"; "Make her face more unique she shouldn't be a clone of Thuan"; "Draw in blender";
+"Disregard the avatar creator it's only for prototype"; "Have full artistic freedom creating her"; "She needs to be cute like
+the real Vy"; "Vy needs a cute nose"; "I want everyone to be remodelled in blender so they are fully rigged and look like 2d
+characters from a cartoon in 3d"; "The clothes need to be rigged too"; "And all hairstyles"; "Vy needs to look cuter but still
+like a cartoon aim to replicate her"; "The photo of Vy is what her face should look like but more like a cute gorgeous
+cartoon"; "How would Disney draw her ? Or Tomodachi life work towards this"; "A gorgeous young lady with a lovable appearance".
+
+## Done
+- **Tetsuo**: head form `lean` sculpted in Blender (`tools/blender/build-tetsuo-head.py`): long and narrow, cheekbones over
+  hollow cheeks, a long hooked nose his half-glasses sit on; deep-set eyes, straight grey brows, creases; a paler skin and
+  a leaner build. `art/characters/tetsuo/`.
+- **Vy**, from her photograph (seven passes; `tools/blender/build-vy-head.py`, `art/characters/vy/`):
+  head form `child`, a heart-shaped oval with a small round chin, head scale 0.84 (not a balloon); hair style `softbob`,
+  **sculpted in Blender** as a shell over the head (new `head_sculpt.py hair_shell`, `src/avatars/sculpts/softbob-hair.js`):
+  a chin-length ash-brown bob with soft bangs swept to her left and a gloss band; the sculpt shown as clay
+  (`review/clay.png`). Parts drawn for her because the creator has none ("disregard the avatar creator"): eyes `dewy`
+  (`eyes3d.js`: a big warm iris under a calm lid, lashes), lips `bud` (`face.js`), the kit's `snub` nose, her mole.
+  No feature's style is shared with Thuan (tested).
+- **The sweep**: `NOSES` in the Blender body kit: a sculpted nose for each nose style (button, snub, bulb, wide, hook,
+  pointed, ridge, and a soft one for the drawn dots and line). `build.js kitNose` lays it on anybody's face in place of the
+  ball they had. Everybody keeps their head, eyes, hair, glasses and clothes. A sculpted head with its own nose wears none.
+- **The cast in Blender**: `tools/blender/rig-cast.py` exports each of the 23 residents from the generator and makes a
+  Blender character: the 28-bone armature, the body welded and separated into its skinned pieces (34 to 78 each: torso
+  and clothes, sleeves, hems, limbs, hands, feet, shoes, hair), the head on its bone with four face shape keys, toon
+  materials and ink. `art/characters/cast/blender-cast-sheet.png`, `rigged-cast.json`; the 23 `.blend` files (32 MB) are
+  written to `output/rigged-cast/` and are not in the repository.
+- `tools/avatar-turnaround.mjs --cast`: every resident's face on one sheet in the game's shader (`cast-sheet.png`).
+
+## Proved
+- Guard: 124 files, 654 tests, all green (568 s), with `tests/sculpted-cast.test.mjs` (new) and the noses in
+  `tests/body-kit.test.mjs`. Not checked: a phone or a GPU browser.
+- Pose checks changed for Vy's new proportions and hair (`tests/pair-poses.test.mjs`): a hugging mitten may rest on the top
+  of her chest (her bob hangs over the near shoulder), and backs may stand 35 mm apart back to back (was 30).
+  `tests/vy-reference.test.mjs` tests the long hair with a fringe on a recipe that wears it, since she no longer does.
+
+## Not done: what "remodelled in Blender" still means
+- The 23 Blender characters are the generator's geometry taken into Blender and rigged there. **Hand-made in Blender so far
+  are**: four heads (Johansson, Thuan, Tetsuo, Vy), one hairstyle (Vy's bob), and the kit (limbs, torso lines, feet, shoes,
+  noses). The other 19 heads, the other 23 hairstyles and all the clothes are still the generator's own shapes.
+- The modular way on: a **hair kit** (each of the 24 styles sculpted with `hair_shell`, long ones with their spring bones)
+  and a **clothes kit** (each top and bottom a sculpted shell skinned to the rig), then the remaining heads, family by
+  family. Thao, Chin and Nhung next: they are Thuan's sisters and Vy's parents, and should look related.
+- Vy's fringe covers her brows; her painted brows show only when they lift.

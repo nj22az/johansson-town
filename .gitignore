@@ -28,3 +28,6 @@ __pycache__/
 
 # The game-built character exported for a Blender review sheet; rebuilt by tools/blender/build-<name>-head.py --sheet.
 /art/characters/*/review/*.glb
+
+# The whole cast as rigged Blender characters: 32 MB that tools/blender/rig-cast.py makes again.
+/output/rigged-cast/

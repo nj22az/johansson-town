@@ -1,0 +1,705 @@
+{
+ "generator": "tools/blender/rig-cast.py",
+ "blender": "5.3.0",
+ "order": [
+  "Johansson",
+  "Thuan",
+  "Thao",
+  "Mrs Sato",
+  "Nhung",
+  "Chin",
+  "Tetsuo",
+  "Officer Mori",
+  "Harbour master",
+  "Miss Higa",
+  "Grandmother Higa",
+  "Kōji",
+  "Riku",
+  "Vy",
+  "Mac",
+  "Ms Uezu",
+  "Ms Ganaha",
+  "Mr Fujita",
+  "Ryo",
+  "Ren",
+  "Aya",
+  "Jun",
+  "Kai"
+ ],
+ "characters": {
+  "Johansson": {
+   "file": "johansson.blend",
+   "bones": 28,
+   "skinnedPieces": 39,
+   "piecesByBone": {
+    "chest": 4,
+    "footL": 3,
+    "footR": 3,
+    "handL": 6,
+    "handR": 6,
+    "head": 3,
+    "hips": 1,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4,
+    "thighL": 2,
+    "thighR": 2
+   },
+   "vertices": 70171,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 3.49
+  },
+  "Thuan": {
+   "file": "thuan.blend",
+   "bones": 28,
+   "skinnedPieces": 42,
+   "piecesByBone": {
+    "braidL2": 1,
+    "braidR2": 1,
+    "chest": 1,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 8,
+    "hips": 2,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4,
+    "thighL": 2,
+    "thighR": 2
+   },
+   "vertices": 71099,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 2.2
+  },
+  "Thao": {
+   "file": "thao.blend",
+   "bones": 28,
+   "skinnedPieces": 44,
+   "piecesByBone": {
+    "chest": 2,
+    "footL": 3,
+    "footR": 3,
+    "hairB": 1,
+    "handL": 6,
+    "handR": 6,
+    "head": 8,
+    "hips": 2,
+    "kneeL": 1,
+    "kneeR": 1,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4,
+    "thighL": 1,
+    "thighR": 1
+   },
+   "vertices": 13212,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.76
+  },
+  "Mrs Sato": {
+   "file": "mrs-sato.blend",
+   "bones": 28,
+   "skinnedPieces": 43,
+   "piecesByBone": {
+    "chest": 2,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 12,
+    "kneeL": 1,
+    "kneeR": 1,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4,
+    "thighL": 1,
+    "thighR": 1
+   },
+   "vertices": 15324,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.86
+  },
+  "Nhung": {
+   "file": "nhung.blend",
+   "bones": 28,
+   "skinnedPieces": 39,
+   "piecesByBone": {
+    "chest": 1,
+    "elbowL": 1,
+    "elbowR": 1,
+    "footL": 2,
+    "footR": 2,
+    "hairB": 1,
+    "handL": 6,
+    "handR": 6,
+    "head": 6,
+    "hips": 2,
+    "kneeL": 2,
+    "kneeR": 2,
+    "neck": 1,
+    "shoulderL": 3,
+    "shoulderR": 3
+   },
+   "vertices": 14045,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.77
+  },
+  "Chin": {
+   "file": "chin.blend",
+   "bones": 28,
+   "skinnedPieces": 41,
+   "piecesByBone": {
+    "chest": 2,
+    "footL": 3,
+    "footR": 3,
+    "handL": 6,
+    "handR": 6,
+    "head": 6,
+    "hips": 2,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4,
+    "thighL": 2,
+    "thighR": 2
+   },
+   "vertices": 13340,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.72
+  },
+  "Tetsuo": {
+   "file": "tetsuo.blend",
+   "bones": 28,
+   "skinnedPieces": 36,
+   "piecesByBone": {
+    "chest": 2,
+    "elbowL": 1,
+    "elbowR": 1,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 3,
+    "hips": 2,
+    "kneeL": 2,
+    "kneeR": 2,
+    "neck": 1,
+    "shoulderL": 3,
+    "shoulderR": 3
+   },
+   "vertices": 68914,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 2.31
+  },
+  "Officer Mori": {
+   "file": "officer-mori.blend",
+   "bones": 28,
+   "skinnedPieces": 78,
+   "piecesByBone": {
+    "chest": 21,
+    "elbowL": 1,
+    "elbowR": 1,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 13,
+    "hips": 4,
+    "kneeL": 2,
+    "kneeR": 2,
+    "neck": 1,
+    "shoulderL": 3,
+    "shoulderR": 6,
+    "skirtL": 3,
+    "skirtR": 5
+   },
+   "vertices": 14518,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.84
+  },
+  "Harbour master": {
+   "file": "harbour-master.blend",
+   "bones": 28,
+   "skinnedPieces": 40,
+   "piecesByBone": {
+    "chest": 1,
+    "elbowL": 1,
+    "elbowR": 1,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 8,
+    "hips": 2,
+    "kneeL": 2,
+    "kneeR": 2,
+    "neck": 1,
+    "shoulderL": 3,
+    "shoulderR": 3
+   },
+   "vertices": 16177,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.91
+  },
+  "Miss Higa": {
+   "file": "miss-higa.blend",
+   "bones": 28,
+   "skinnedPieces": 36,
+   "piecesByBone": {
+    "chest": 1,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 5,
+    "hips": 3,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4,
+    "thighL": 1,
+    "thighR": 1
+   },
+   "vertices": 14771,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.8
+  },
+  "Grandmother Higa": {
+   "file": "grandmother-higa.blend",
+   "bones": 28,
+   "skinnedPieces": 57,
+   "piecesByBone": {
+    "chest": 1,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 26,
+    "hips": 3,
+    "kneeL": 1,
+    "kneeR": 1,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4
+   },
+   "vertices": 14880,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.85
+  },
+  "Kōji": {
+   "file": "koji.blend",
+   "bones": 28,
+   "skinnedPieces": 44,
+   "piecesByBone": {
+    "chest": 2,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 11,
+    "hips": 2,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4,
+    "thighL": 2,
+    "thighR": 2
+   },
+   "vertices": 13879,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.77
+  },
+  "Riku": {
+   "file": "riku.blend",
+   "bones": 28,
+   "skinnedPieces": 38,
+   "piecesByBone": {
+    "chest": 1,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 6,
+    "hips": 2,
+    "kneeL": 1,
+    "kneeR": 1,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4,
+    "thighL": 1,
+    "thighR": 1
+   },
+   "vertices": 13069,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.72
+  },
+  "Vy": {
+   "file": "vy.blend",
+   "bones": 28,
+   "skinnedPieces": 38,
+   "piecesByBone": {
+    "chest": 6,
+    "elbowL": 1,
+    "elbowR": 1,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 4,
+    "hips": 1,
+    "kneeL": 1,
+    "kneeR": 1,
+    "neck": 1,
+    "shoulderL": 3,
+    "shoulderR": 3
+   },
+   "vertices": 77522,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 2.57
+  },
+  "Mac": {
+   "file": "mac.blend",
+   "bones": 28,
+   "skinnedPieces": 35,
+   "piecesByBone": {
+    "chest": 1,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 5,
+    "kneeL": 2,
+    "kneeR": 2,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4
+   },
+   "vertices": 14260,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.82
+  },
+  "Ms Uezu": {
+   "file": "ms-uezu.blend",
+   "bones": 28,
+   "skinnedPieces": 52,
+   "piecesByBone": {
+    "chest": 1,
+    "elbowL": 1,
+    "elbowR": 1,
+    "footL": 2,
+    "footR": 2,
+    "hairB": 5,
+    "handL": 6,
+    "handR": 6,
+    "head": 15,
+    "hips": 2,
+    "kneeL": 2,
+    "kneeR": 2,
+    "neck": 1,
+    "shoulderL": 3,
+    "shoulderR": 3
+   },
+   "vertices": 14842,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.78
+  },
+  "Ms Ganaha": {
+   "file": "ms-ganaha.blend",
+   "bones": 28,
+   "skinnedPieces": 34,
+   "piecesByBone": {
+    "chest": 1,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 5,
+    "hips": 1,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4,
+    "thighL": 1,
+    "thighR": 1
+   },
+   "vertices": 15219,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.85
+  },
+  "Mr Fujita": {
+   "file": "mr-fujita.blend",
+   "bones": 28,
+   "skinnedPieces": 36,
+   "piecesByBone": {
+    "chest": 1,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 4,
+    "hips": 2,
+    "kneeL": 1,
+    "kneeR": 1,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4,
+    "thighL": 1,
+    "thighR": 1
+   },
+   "vertices": 14375,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.83
+  },
+  "Ryo": {
+   "file": "ryo.blend",
+   "bones": 28,
+   "skinnedPieces": 41,
+   "piecesByBone": {
+    "chest": 1,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 9,
+    "hips": 2,
+    "kneeL": 2,
+    "kneeR": 2,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4
+   },
+   "vertices": 13230,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.78
+  },
+  "Ren": {
+   "file": "ren.blend",
+   "bones": 28,
+   "skinnedPieces": 49,
+   "piecesByBone": {
+    "chest": 1,
+    "elbowL": 1,
+    "elbowR": 1,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 15,
+    "hips": 2,
+    "kneeL": 3,
+    "kneeR": 3,
+    "neck": 1,
+    "shoulderL": 3,
+    "shoulderR": 3
+   },
+   "vertices": 13579,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.76
+  },
+  "Aya": {
+   "file": "aya.blend",
+   "bones": 28,
+   "skinnedPieces": 34,
+   "piecesByBone": {
+    "chest": 1,
+    "footL": 2,
+    "footR": 2,
+    "handL": 6,
+    "handR": 6,
+    "head": 5,
+    "hips": 1,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4,
+    "thighL": 1,
+    "thighR": 1
+   },
+   "vertices": 13900,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.77
+  },
+  "Jun": {
+   "file": "jun.blend",
+   "bones": 28,
+   "skinnedPieces": 44,
+   "piecesByBone": {
+    "chest": 2,
+    "footL": 3,
+    "footR": 3,
+    "handL": 6,
+    "handR": 6,
+    "head": 11,
+    "kneeL": 1,
+    "kneeR": 1,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4,
+    "thighL": 1,
+    "thighR": 1
+   },
+   "vertices": 13838,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.81
+  },
+  "Kai": {
+   "file": "kai.blend",
+   "bones": 28,
+   "skinnedPieces": 44,
+   "piecesByBone": {
+    "chest": 2,
+    "footL": 3,
+    "footR": 3,
+    "handL": 6,
+    "handR": 6,
+    "head": 9,
+    "hips": 2,
+    "kneeL": 1,
+    "kneeR": 1,
+    "neck": 1,
+    "shoulderL": 4,
+    "shoulderR": 4,
+    "thighL": 1,
+    "thighR": 1
+   },
+   "vertices": 15739,
+   "faceShapeKeys": [
+    "Basis",
+    "smile",
+    "shy",
+    "surprised",
+    "blink"
+   ],
+   "megabytes": 0.79
+  }
+ }
+}

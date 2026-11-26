@@ -34,6 +34,14 @@ critique what still looks too soft/chibi, and iterate"; then "When happy redraw 
   What a body sits on (the back of the thigh, the hip end) keeps the old thickness: poses are made to it.
 - **Thuan's figure** must read cute and feminine without a shelf or a straight in it (the owner, of a wide straight band at
   the hips: "she still has a barrel for hips ... use Disney audit"): one soft line, hips to neck.
+- **Vy** is drawn from her photograph as "a gorgeous young lady with a lovable appearance", "cute like the real Vy", how
+  "Disney ... or Tomodachi life" would draw her, and "shouldn't be a clone of Thuan". For her the owner said: "Disregard
+  the avatar creator it's only for prototype", "Have full artistic freedom creating her": make the part she needs
+  (`dewy` eyes, `bud` lips, the `softbob` hair sculpted in Blender) rather than choose from the creator's list.
+- **The aim for everyone** (the owner): "remodelled in blender so they are fully rigged and look like 2d characters from a
+  cartoon in 3d", "The clothes need to be rigged too", "And all hairstyles", "in a sweep but keep their personalities".
+  `tools/blender/rig-cast.py` makes every resident a rigged Blender character from the generator; what is hand-made in
+  Blender is listed in the handover of this date, and what is not (19 heads, 23 hairstyles, the clothes) is the work left.
 - The owner's photographs are not kept in the repository (it is public).
 
 ## Owner's decision — 25 November 2026: the cast are dolls wearing clothes
