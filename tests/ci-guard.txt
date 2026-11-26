@@ -152,3 +152,7 @@ body-kit.test.mjs
 # Vy and Tetsuo: heads sculpted in Blender, rigged, every expression.
 sculpted-cast.test.mjs
 avatar-wardrobe.test.mjs
+# The ferry's flicker on the owner's iPad (26 November 2026): the sun's shadow biases in texels of its map on every
+# device (render/sun-shadow.js), and the flicker detector that measured it (tools/flicker-audit.mjs).
+sun-shadow.test.mjs
+flicker-audit.test.mjs

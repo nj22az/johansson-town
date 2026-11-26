@@ -1,0 +1,228 @@
+{
+ "profile": "ipad",
+ "source": true,
+ "src": "git archive e4cdcdc src (the commit before this work)",
+ "minutes": 720,
+ "threshold": {
+  "camera": 40,
+  "shadow": 16
+ },
+ "physicalDevice": false,
+ "renderer": "swiftshader",
+ "views": [
+  {
+   "id": "car-deck-engine-room-door",
+   "variant": "game",
+   "note": "the owner\u2019s first photograph: the casing P door, its hazard stripes and the \u6a5f\u95a2\u5ba4 sign",
+   "eye": [
+    0.3500000000000796,
+    3.75,
+    -12.899999999999977
+   ],
+   "at": [
+    2.750000000000057,
+    2.55,
+    -11.199999999999974
+   ],
+   "near": 0.15,
+   "far": 640,
+   "fov": 65,
+   "deck": "car-deck",
+   "player": [
+    177.49632654795914,
+    1.52422606059425,
+    -278.52435605455923
+   ],
+   "size": [
+    744,
+    1133
+   ],
+   "camera": {
+    "per10k": 259.69,
+    "moves": [
+     88.74,
+     168.86,
+     155.13,
+     154.34
+    ]
+   },
+   "shadow": {
+    "per10k": 55.79,
+    "moves": [
+     11.23,
+     8.85,
+     43.19
+    ]
+   }
+  },
+  {
+   "id": "engine-room-port",
+   "variant": "game",
+   "note": "the engine room forward along the port engine\u2019s outboard side, the workbench to port",
+   "eye": [
+    3.437948877683368,
+    0.6499999999999999,
+    -8.309114903616162
+   ],
+   "at": [
+    3.6813029350337843,
+    -0.3396158370180917,
+    -4.441112926122585
+   ],
+   "near": 0.055,
+   "far": 640,
+   "fov": 65,
+   "deck": "er-ladder-foot",
+   "player": [
+    183.32066195234853,
+    -1.5865977795644313,
+    -281.1439789479709
+   ],
+   "size": [
+    744,
+    1133
+   ],
+   "camera": {
+    "per10k": 1.08,
+    "moves": [
+     0.61,
+     0.49,
+     0.31,
+     0.55
+    ]
+   },
+   "shadow": {
+    "per10k": 1.77,
+    "moves": [
+     0.89,
+     0.27,
+     1.32
+    ]
+   }
+  },
+  {
+   "id": "car-deck-forward",
+   "variant": "game",
+   "note": "the car deck from aft, along the lanes",
+   "eye": [
+    0,
+    3.8,
+    -14.499999999999957
+   ],
+   "at": [
+    5.684341886080802e-14,
+    2.4000000000000004,
+    -3.9999999999999574
+   ],
+   "near": 0.15,
+   "far": 640,
+   "fov": 65,
+   "deck": "car-deck",
+   "player": [
+    175.64271995217447,
+    1.4863294568635537,
+    -279.3259803570439
+   ],
+   "size": [
+    744,
+    1133
+   ],
+   "camera": {
+    "per10k": 2.25,
+    "moves": [
+     1.08,
+     0.2,
+     0,
+     1.1
+    ]
+   },
+   "shadow": {
+    "per10k": 1.14,
+    "moves": [
+     0.51,
+     0.82,
+     0.43
+    ]
+   }
+  },
+  {
+   "id": "saloon",
+   "variant": "game",
+   "note": "the saloon from its aft end",
+   "eye": [
+    2.6000000000000227,
+    8.099999999999998,
+    -0.6000000000000512
+   ],
+   "at": [
+    -1.5,
+    7,
+    4.999999999999943
+   ],
+   "near": 0.15,
+   "far": 640,
+   "fov": 65,
+   "deck": "car-deck",
+   "player": [
+    190.2723335831206,
+    1.5202264945367676,
+    -278.320350609303
+   ],
+   "size": [
+    744,
+    1133
+   ],
+   "camera": {
+    "per10k": 0.04,
+    "moves": [
+     0.02,
+     0,
+     0,
+     0.01
+    ]
+   },
+   "shadow": {
+    "per10k": 0,
+    "moves": [
+     0,
+     0,
+     0
+    ]
+   }
+  }
+ ],
+ "errors": [],
+ "graphics": {
+  "shadows": true,
+  "shadowType": 1,
+  "shadowSize": [
+   1024,
+   1024
+  ],
+  "bias": -0.00035,
+  "normalBias": 0.045,
+  "shadowCamera": [
+   -26,
+   26,
+   0.5,
+   120
+  ],
+  "state": {
+   "ink": true,
+   "grade": true,
+   "fxaa": true,
+   "scale": 1,
+   "samples": 4,
+   "hdr": true,
+   "look": "none",
+   "focusDistance": 0,
+   "focusRange": 3,
+   "focusMode": 0,
+   "kikkou": false
+  },
+  "buffer": [
+   744,
+   1133
+  ]
+ }
+}
