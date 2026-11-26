@@ -67,3 +67,26 @@ test('his frame is sturdy and his face is dark-featured, fair and dry, never the
  const lum=h=>{const n=parseInt(h.slice(1),16);return (.3*(n>>16)+.59*(n>>8&255)+.11*(n&255))/255;};
  assert.ok(lum(R.body.skin)>.78,'fair');assert.ok(lum(R.brows.colour)<.15&&lum(R.eyes.colour)<.2,'dark features');
 });
+
+/** Thuan (the owner, the same day: "When happy redraw Thuan in Blender too"): her approved design, its head sculpted. */
+test('Thuan\'s head is sculpted in Blender over her own approved silhouette: her face is not changed, her nose is real',async()=>{
+ const {THUAN_STUDIO_DESIGN}=await import('../src/avatars/thuan-studio-design.js');
+ const T=recipeFor('Thuan'),sculpted=headProfile(T.head),approved=headProfile(THUAN_STUDIO_DESIGN.head);
+ assert.equal(T.head.form,'gentle');assert.ok(sculpted.sculpt);assert.equal(THUAN_STUDIO_DESIGN.head.form,'diamond','the approved design is as it was');
+ assert.ok(Math.abs(sculpted.width-approved.width)<1e-5&&Math.abs(sculpted.height-approved.height)<1e-5,'the same half-axes');
+ for(const part of ['eyes','brows','mouth','hair','outfit'])assert.deepEqual(T[part],recipeFor('Thuan')[part]);
+ for(const [k,v] of Object.entries(THUAN_STUDIO_DESIGN.eyes))assert.deepEqual(T.eyes[k],v,'eyes.'+k);
+ for(const [k,v] of Object.entries(THUAN_STUDIO_DESIGN.mouth))assert.deepEqual(T.mouth[k],v,'mouth.'+k);
+ const surface=(P,a,t)=>shapeHeadPoint({x:Math.sin(t*DEG)*Math.sin(a*DEG),y:Math.cos(t*DEG),z:Math.sin(t*DEG)*Math.cos(a*DEG)},P);
+ const len=p=>Math.hypot(p.x,p.y,p.z);
+ // From the crown to the eyes, and round the back, her head is the approved one to within a hair.
+ for(const [a,t] of [[0,30],[60,50],[120,70],[180,90],[-90,60],[30,70]])assert.ok(Math.abs(len(surface(sculpted,a,t))-len(surface(approved,a,t)))<.02,`unchanged at a ${a}, θ ${t}`);
+ const LT=faceLayout(T),tip=theta(LT.noseY),mouth=theta(LT.mouthY);
+ assert.ok(surface(sculpted,0,tip-1.4).z-surface(approved,0,tip-1.4).z>.06,'a nose stands on it');
+ assert.ok(surface(sculpted,0,tip-1.4).z>surface(sculpted,0,mouth-5).z+.04,'forward of the upper lip');
+ // The chin is round, not a point: at the same height the lower face is wider than the approved kite's.
+ assert.ok(Math.abs(surface(sculpted,90,150).x)>Math.abs(surface(approved,90,150).x)+.02);
+ for(const f of ['tools/blender/build-thuan-head.py','tools/blender/head_sculpt.py','art/characters/thuan/thuan-head.blend','art/characters/thuan/thuan-rigged.blend','art/characters/thuan/review/contact-sheet.png'])assert.ok(existsSync(file(f)),f);
+ const rig=JSON.parse(readFileSync(file('art/characters/thuan/rig-report.json'),'utf8'));
+ assert.equal(rig.meshes['Shimanchu body'].skinned,true);assert.ok(rig.bones.includes('braidL1')&&rig.bones.includes('braidR2'),'her braids are rigged');
+});

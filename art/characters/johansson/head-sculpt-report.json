@@ -1,5 +1,7 @@
 {
  "source": "Original Johansson Town head, sculpted in Blender for the game's generator",
+ "character": "Johansson",
+ "form": "rugged",
  "generator": "tools/blender/build-johansson-head.py",
  "blender": "5.3.0",
  "halfAxes": {

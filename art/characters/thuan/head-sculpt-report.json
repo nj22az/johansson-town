@@ -1,0 +1,33 @@
+{
+ "source": "Original Johansson Town head, sculpted in Blender for the game's generator",
+ "character": "Thuan",
+ "form": "gentle",
+ "generator": "tools/blender/build-thuan-head.py",
+ "blender": "5.3.0",
+ "halfAxes": {
+  "width": 0.962065,
+  "height": 1.089946,
+  "depth": 0.98,
+  "heightOverWidth": 1.133
+ },
+ "radius": {
+  "min": 0.9204,
+  "max": 1.1305
+ },
+ "features_deg": {
+  "brow": 77.88,
+  "eye": 95.04,
+  "nose": 104.97,
+  "mouth": 116.55,
+  "eyeA": 15.06
+ },
+ "profile": {
+  "brow": 0.9507,
+  "eyeSocket": 0.931,
+  "noseTip": 1.0574,
+  "upperLip": 0.9747,
+  "chin": 1.0226
+ },
+ "jawCorner": 0.9471,
+ "temple": 1.0594
+}

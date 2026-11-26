@@ -26,5 +26,5 @@ __pycache__/
 # Sakura restroom: the CAD tessellation Blender reads; rebuilt by tools/cad/build-sakura-restroom-cad.py.
 /art/sakura-restroom/cad/parts/
 
-# Johansson: the game-built character exported for the Blender review sheet; rebuilt by tools/blender/build-johansson-head.py --sheet.
-/art/characters/johansson/review/*.glb
+# The game-built character exported for a Blender review sheet; rebuilt by tools/blender/build-<name>-head.py --sheet.
+/art/characters/*/review/*.glb

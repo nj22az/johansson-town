@@ -78,7 +78,10 @@ export const CAST_RECIPES=castSet({
  // The creator's own design for her, approved in Johansson Studio on 18 October 2026 (thuan-studio-design.js). Its
  // body silhouette is Studio's unset 'neutral', which the town resolves by who she is, as for everyone (castSet above):
  // the bath side, the swimwear and the after-bath clothes all follow it.
- Thuan:R(THUAN_STUDIO_DESIGN),
+ // (26 November 2026, the owner: "redraw Thuan in Blender too". Her approved design, with her head sculpted in Blender over
+ // its own silhouette, head form 'gentle', and a small drawn curve under the sculpted nose in place of the ball that
+ // read as a ring. Nothing else of the design is changed: tests/thuan-studio-design.test.mjs.)
+ Thuan:R({...THUAN_STUDIO_DESIGN,head:{...THUAN_STUDIO_DESIGN.head,form:'gentle'},nose:{...THUAN_STUDIO_DESIGN.nose,style:'curve',size:.3}}),
  // Thuan's middle sister: slim, a high ponytail, a plain white tee and blue shorts.
  // Stubborn but friendly: the flat set mouth and straight brows, and the grin under them.
  Thao:R({name:'Thao',body:{height:.44,build:.3,silhouette:'feminine',skin:'#ecc6a0'},head:{size:.46,shape:.4,form:'oval',jaw:.3,cheeks:.4},

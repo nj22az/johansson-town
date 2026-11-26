@@ -1787,7 +1787,8 @@ function buildHead(recipe,m,faceSize){
  material.customProgramCacheKey=()=>faceKey()+':face-light-floor-v1';
  const head=new THREE.Mesh(g,material);head.name='Shimanchu head';
  head.position.y=m.headCentre-m.headY;
- if(INK_NOSES[recipe.nose.style])head.add(inkNoseBump(recipe,m,material,{PHI0,PHI,TH0,TH}));
+ // (A sculpted head has its nose in its own surface: the drawn line lies on that, with no second bump.)
+ if(INK_NOSES[recipe.nose.style]&&!m.profile.sculpt)head.add(inkNoseBump(recipe,m,material,{PHI0,PHI,TH0,TH}));
  // The scruffy beard is painted on a shell (the other beards are built: beard-mesh.js).
  // (The shadow's stipple is fine: its shell is painted at twice the scruff's size, so a dot is round close up.)
  const beard=recipe.facial?.paint==='scruff'?beardShell(m,faceSize):recipe.facial?.paint==='shadow'?beardShell(m,faceSize*2):null;if(beard)head.add(beard.mesh);
