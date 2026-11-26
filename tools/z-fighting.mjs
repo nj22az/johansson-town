@@ -1,4 +1,5 @@
 import * as THREE from '../vendor/three.module.js';
+import {idSkips} from '../src/render/kikkou-ids.js';
 
 /**
  * Coplanar overlapping faces: the flashing the owner saw on his iPhone (20 October 2026: "Lots of flashing meshes").
@@ -9,11 +10,18 @@ import * as THREE from '../vendor/three.module.js';
  * `offsetPairs`: also compare decals with each other: two drawn with the same polygon offset fight like any two faces
  * (a decal is still never compared with the undecorated face it is offset from).
  *
+ * `ink`: also find what flickers only in the Kikkou line (render/kikkou-ids.js), where Kikkou is on. Its ID pass draws
+ * every object in a colour of its own and inks wherever the colour changes, so two objects that look alike still fight
+ * there (kind 'ink'), and it draws a decal WITHOUT the decal's polygon offset, so a decal in its backing's plane fights
+ * there too (kind 'decal'). Only what the ID pass draws is compared (idSkips; lettered plates and hull outlines hidden).
+ * `shadowLook`: two faces alike but one taking shadows and the other not differ wherever a shadow falls on them.
+ *
  * `regions`: [{minX,maxX,minZ,maxZ,minY?,maxY?}] in world metres; only triangles whose middle is in one are scanned.
- * Returns the pairs, largest overlap first: {a,b,area,gap,normal,at,centre} with a and b the meshes' paths, `at` a corner
- * of the first overlapping face and `centre` the area-weighted middle of the overlaps.
+ * Returns the pairs, largest overlap first: {a,b,area,gap,normal,at,centre,kind} with a and b the meshes' paths, `at` a
+ * corner of the first overlapping face, `centre` the area-weighted middle of the overlaps, and `kind` 'depth' (the
+ * picture flickers), 'ink' or 'decal' (only the Kikkou line does).
  */
-export function coplanarOverlaps(root,{regions=null,tolerance=.005,minArea=.0004,skip=()=>false,ground=.15,keepIdentical=false,keepHidden=false,detail=false,offsetPairs=false}={}){
+export function coplanarOverlaps(root,{regions=null,tolerance=.005,minArea=.0004,skip=()=>false,ground=.15,keepIdentical=false,keepHidden=false,detail=false,offsetPairs=false,ink=false,shadowLook=false}={}){
  root.updateMatrixWorld(true);
  const inRegion=(x,y,z)=>!regions||regions.some(r=>x>=r.minX&&x<=r.maxX&&z>=r.minZ&&z<=r.maxZ&&y>=(r.minY??-Infinity)&&y<=(r.maxY??Infinity));
  const regionBox=regions&&regions.map(r=>new THREE.Box3(new THREE.Vector3(r.minX,r.minY??-1e9,r.minZ),new THREE.Vector3(r.maxX,r.maxY??1e9,r.maxZ)));
@@ -29,7 +37,7 @@ export function coplanarOverlaps(root,{regions=null,tolerance=.005,minArea=.0004
   const colour=o.geometry.attributes.color,inst=o.instanceColor;
   return [mat.type,hex(mat.color),hex(mat.emissive),mat.emissiveIntensity,mat.roughness,mat.metalness,mat.opacity,mat.transparent,mat.vertexColors&&colour?[colour.getX(vi),colour.getY(vi),colour.getZ(vi)].map(v=>v.toFixed(3)).join(','):'',
    inst?[inst.getX(k),inst.getY(k),inst.getZ(k)].map(v=>v.toFixed(3)).join(','):'',
-   mat.map||mat.emissiveMap||mat.alphaMap?(o.name.includes('Okinawan quarter:')||/:\w+\|-?\d+\|-?\d+$/.test(o.name)?mat.uuid:o.uuid+'|'+mat.uuid):''].join('/');
+   mat.map||mat.emissiveMap||mat.alphaMap?(o.name.includes('Okinawan quarter:')||/:\w+\|-?\d+\|-?\d+$/.test(o.name)?mat.uuid:o.uuid+'|'+mat.uuid):'',shadowLook?o.receiveShadow:''].join('/');
  };
  // Every opaque triangle near the regions, by the solid it belongs to (a mesh, or one piece of a merged mesh): a face whose
  // overlap lies inside another closed solid is never seen, whatever it shares a plane with.
@@ -49,7 +57,9 @@ export function coplanarOverlaps(root,{regions=null,tolerance=.005,minArea=.0004
    const occludes=!near||near.some(r=>r.intersectsBox(box.copy(g.boundingBox).applyMatrix4(m)));
    for(const grp of groups){
     const mat=Array.isArray(o.material)?mats[grp.materialIndex]:o.material;
-    if(invisible(mat)||offset(mat)&&!offsetPairs)continue;
+    if(invisible(mat)||offset(mat)&&!offsetPairs&&!ink)continue;
+    // Drawn in the Kikkou ID pass: what it skips, and what it hides (a lettered plate, a hull outline, and what is in them).
+    const inked=ink&&!idSkips(mat)&&!(()=>{for(let q=o;q&&q!==root;q=q.parent)if(q.userData?.plate==='text'||q.userData?.outline)return true;return false;})();
     const twoSided=mat.side===THREE.DoubleSide,end=Math.min(total,grp.start+grp.count),opaque=!mat.transparent&&!mat.alphaTest&&!o.userData.clearWindow;
     for(let i=grp.start;i+2<end;i+=3){
      a.fromBufferAttribute(p,index?index.getX(i):i).applyMatrix4(m);
@@ -63,7 +73,7 @@ export function coplanarOverlaps(root,{regions=null,tolerance=.005,minArea=.0004
      if(mat.side===THREE.BackSide)n.negate();
      // A face looking down at ground level rests on the ground: nobody can stand under it to see it.
      if(n.y<-.7&&Math.max(a.y,b.y,c.y)<ground&&!twoSided)continue;
-     const t={id,mesh:o,off:offsetPairs&&offset(mat)?(mat.polygonOffsetFactor||0)+'/'+(mat.polygonOffsetUnits||0):'',glass:mat.transparent&&mat.depthWrite===false,src:sourceOf(index?index.getX(i):i),look:lookOf(o,mat,index?index.getX(i):i,k),pts:[a.clone(),b.clone(),c.clone()],n:n.clone(),d:n.dot(a)};
+     const t={id,mesh:o,inked,off:(offsetPairs||ink)&&offset(mat)?(mat.polygonOffsetFactor||0)+'/'+(mat.polygonOffsetUnits||0):'',glass:mat.transparent&&mat.depthWrite===false,src:sourceOf(index?index.getX(i):i),look:lookOf(o,mat,index?index.getX(i):i,k),pts:[a.clone(),b.clone(),c.clone()],n:n.clone(),d:n.dot(a)};
      tris.push(t);if(twoSided)tris.push({...t,n:t.n.clone().negate(),d:-t.d});
     }
    }
@@ -99,11 +109,16 @@ export function coplanarOverlaps(root,{regions=null,tolerance=.005,minArea=.0004
    for(let j=i+1;j<list.length&&list[j].lo<=s.hi+tolerance;j++){const t=list[j];
     if(t.hi<s.lo-tolerance)continue;
     if(t.id===s.id&&t.mesh===s.mesh&&s.pts.every((p,k)=>p.equals(t.pts[k])))continue;
-    if(s.n.dot(t.n)<.9998||(!keepIdentical&&s.look===t.look))continue;
+    if(s.n.dot(t.n)<.9998)continue;
+    // Alike, they cannot be told apart in the picture; in the Kikkou IDs two objects (or two copies of an instanced one)
+    // are told apart, and fight.
+    let kind='depth';
+    if(!keepIdentical&&s.look===t.look){if(ink&&s.inked&&t.inked&&s.id!==t.id)kind='ink';else continue;}
     // Two see-through layers that write no depth both draw, in their fixed order: they cannot fight each other.
     if(s.glass&&t.glass)continue;
-    // A decal and anything drawn with another offset are told apart by the offset, not by depth.
-    if(s.off!==t.off)continue;
+    // A decal and anything drawn with another offset are told apart by the offset, not by depth; but not in the Kikkou
+    // IDs, which are drawn without it.
+    if(s.off!==t.off){if(ink&&s.inked&&t.inked)kind='decal';else continue;}
     if(s.max[0]<=t.min[0]||t.max[0]<=s.min[0]||s.max[1]<=t.min[1]||t.max[1]<=s.min[1])continue;
     let poly=overlapPolygon(s.uv,t.uv);
     if(poly.length<3)continue;
@@ -125,8 +140,8 @@ export function coplanarOverlaps(root,{regions=null,tolerance=.005,minArea=.0004
     {const cx=poly.reduce((v,p)=>v+p[0],0)/poly.length,cy=poly.reduce((v,p)=>v+p[1],0)/poly.length;
      const seen=[[cx,cy],...poly.map(p=>[cx+(p[0]-cx)*.8,cy+(p[1]-cy)*.8])].some(([pu,pv])=>{const d=(height(s,[pu,pv])+height(t,[pu,pv]))/2+.0015;sample.copy(u).multiplyScalar(pu).addScaledVector(v,pv).addScaledVector(N,d);sample.x+=1.3e-5;sample.z+=.7e-5;return !insideSolid(sample);});
      if(!seen&&!keepHidden)continue;}
-    const [p,r]=s.src<=t.src?[s,t]:[t,s],key=p.src+' | '+r.src+' | '+q(s.n.x)+','+q(s.n.y)+','+q(s.n.z);
-    const f=found.get(key)??found.set(key,{a:p.src,b:r.src,same:s.mesh===t.mesh,area:0,gap:0,normal:s.n.toArray().map(x=>+x.toFixed(3)),at:s.pts[0].toArray().map(x=>+x.toFixed(2))}).get(key);
+    const [p,r]=s.src<=t.src?[s,t]:[t,s],key=p.src+' | '+r.src+' | '+q(s.n.x)+','+q(s.n.y)+','+q(s.n.z)+' | '+kind;
+    const f=found.get(key)??found.set(key,{a:p.src,b:r.src,same:s.mesh===t.mesh,kind,area:0,gap:0,normal:s.n.toArray().map(x=>+x.toFixed(3)),at:s.pts[0].toArray().map(x=>+x.toFixed(2))}).get(key);
     f.area+=area;f.gap=Math.max(f.gap,...poly.map(p=>Math.abs(gap(p))));
     // The middle of all the overlaps, weighted by their areas: where on the plan the pair fights.
     // Accumulated as plain numbers (the town has millions of overlaps to weigh; nothing is allocated per overlap).
