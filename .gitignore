@@ -31,3 +31,8 @@ __pycache__/
 
 # The whole cast as rigged Blender characters: 32 MB that tools/blender/rig-cast.py makes again.
 /output/rigged-cast/
+
+# Scratch renders and logs made while working (tools write review images to output/ by default): only what is
+# already tracked under output/ stays; new loose files at its top level are not kept.
+/output/*.png
+/output/*.log
