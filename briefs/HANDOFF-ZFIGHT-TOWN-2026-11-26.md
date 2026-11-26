@@ -89,8 +89,10 @@ shadow acne or of two wall layers in one plane; on an iPad the sun's shadow map 
   `police-station-dressing`, `johansson-house-interior`, `resident-home-plan`, `town-hall-plan`, `sakura-detail`,
   `sakura-counter`, `izakaya-backbar`, `warehouse-port`, `sakura-street-poster`, `sakura-wall-band`, `woodland-poster`,
   `furniture-heights`, `seat-layouts`, `home-decorating`, `sakura-small-office`, `higa-shop-collision`): 122/122 pass.
-- `tests/no-z-fighting.test.mjs`: see the report of this pass; it needs over 6 GB and was killed by the shared memory limit
-  while other sessions ran the same suite.
+- `tests/no-z-fighting.test.mjs` (guard): 13/13 pass (it needs about 6 GB; a first run was killed by the shared memory
+  limit while another session ran the same suite).
+- `tests/enterable-sites.test.mjs` (every room still builds, is walked and left) and `tests/ferry-z-fighting.test.mjs`
+  (the scan's default behaviour unchanged for the ferry): 7/7 pass.
 
 Not verified: no render (the page draws the compiled runtime, which this pass does not rebuild); nothing measured on the
 owner's iPad; software GL is not an iPhone GPU.
