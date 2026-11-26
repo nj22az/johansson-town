@@ -400,3 +400,88 @@ live game is `main`, his phone holds a saved copy of the old look, and the fix (
 - The `court` and `broad` shoes are fitted by frame, not chosen: the wardrobe has no entry for them.
 - The resident photo shoots (`assets/images/residents/shoot/`) and the Blender cast sheet (`tools/blender/rig-cast.py`)
   were rendered before the hands changed, except the four people of this section's.
+
+# Then: the hands, worn, and every pose remade to them (branch `hands/kit`)
+
+Not on `main`. The owner: "Omg they have mitten hands"; of a palm of spheres with spheres for fingers, "Draw the hand
+properly not like a balloon with sausages on it"; of a lumpy anatomical one, "The hands look awful, make them Disney
+quality". The owner has not yet seen this hand worn.
+
+## Done
+- **The hand** is the body kit's (`tools/blender/hand_model.py`: a palm block tapering to the wrist, four fingers extruded
+  in three joints with a fan and a curl, a thumb grown from the palm's side, subdivision surface; 2,210 points a side),
+  worn by everybody in place of the mitten (`build.js kitHandGeometry`). The mitten's four capsule fingers, opened only
+  for an export, are gone (`setOpenHands` is kept, and does nothing).
+- **A closed hand of the same points** (`hand_model.GRIP`: every finger curled at its three joints, the thumb across the
+  forefinger; checked in Blender to leave the skin clear of itself), exported as `HANDS.grip` with the knuckle line.
+  `avatar.grip(side, 0..1)` writes between the resting and the closed hand in every body the avatar wears (clothes,
+  swimwear, the bath's), as a shoe is worn; `gripOf(side)`. The animator closes it once a frame: a move's fists
+  (`FISTS` in animate.js, `grip` on a fun pose, a pair role's `grip`), what is held (consume.js `heldGrip`: round a
+  handle's bar all the way, round a glass's body as far as its curve lets the fingers come), an umbrella, a tool, a
+  steering wheel, the handlebars, the torch, the paper's edges, and a performance's own wish (`avatar.handHeld`, the
+  table drink, eased in as the hand reaches and out as it lets go).
+- **One contact shape, measured from the kit** (`build.js HAND`, and `HAND.fist` for the closed hand): the envelope (30
+  points of the drawn surface: five bands, every fingertip, the thumb's tip), the palm's middle (half way from the wrist
+  to the knuckles: where a reach puts the hand), the flat's ellipsoid (the tests' and the pair poses' core), `lie` (how far
+  a laid hand's middle stands off what it rests on), `reach`, the palm's way, and the closed hand's hollow (`hold`).
+  `handShape(m)` gives it (the mitten's, `MITTEN`, for a Pixar body, whose poses were made to it); `handOff(m, extra)`,
+  `handHold(m, radius)`, `handleAt(m, side, radius)`. Nothing reads 0.55 or 0.9 of a hand any more: every offset that
+  was "a mitten's thickness off the surface" is the hand's `lie` and the same few millimetres it had over the mitten's.
+- **The reach solver** (`animate.js reachFor`): the hand's envelope; the palm turned to what it is laid on (`palm`: 'in',
+  'out', or a way of the move's own), by the forearm's twist and the wrist within what a wrist does (`PALM`), after the
+  arm has found the place, then the arm brought back to it; a hand laid on the partner kept on them where its place is out
+  of reach (`CONTACT`), and a hand laid on the face or the hair on it the same way (`cover`; a palm laid there placed as far
+  off it as the hand's `lie`, not the mitten's); every fingertip and the wrist end kept out of what the hand lies on,
+  including the cloth on a lap as it is drawn (`seatedScan groundAt`, `underCloth`: a height field and the drape, both
+  over the thigh's own line, which rises to the knees on the floor: over the hips' height alone, Miss Higa's house dress at
+  her knees was left out and her hands went into it); the fingers of a hand on the lap along the thigh (`fingers`); and a
+  side that is the other's mirror ends as its mirror (each arm is solved on its own, and an elder's arms found one hand on
+  the top of the thigh and the other down its outer side: each is now tried from the other's, the better kept for both).
+- **Palms turned to what they touch**: the shove (palms on the chest), the fight (fists on the collar: `fist`, the closed
+  hand's envelope and lie), the hug (the hand over the partner's shoulder palm to it, the hand on the back), arms folded
+  (Huff, BackToBack), hands on the hips and the back, the lap (chair, bench, floor, beside the hips), the face (JawDrop,
+  Facepalm, HideFace, OhNo; the back of the hand to the brow in Swoon), carrying under a load.
+- **Held things**: the drink against the palm or its handle's bar in the fist (`drinkGrip`), the mug at the table clear
+  of the closed hand's curled fingers (`tableGrip`), the bar work (`work-hands.js`), the umbrella, the torch, the tester
+  and the paper in the closed hand's hollow; the steering wheel's rim at nine and three, the bicycle's rubber grips, and
+  Mr Fujita's glass and bottle as he pours (`port-shed.js holdRound`: across the hand, the palm against it, the wrist
+  straight where the arm allows) in it too, where the mitten's wrist or middle went; the rubber gloves' thumb where the
+  hand's thumb is. A Pixar body keeps the mitten's ways in all of these.
+- **Tools**: `tools/hand-shots.mjs` (the hand at rest from six sides, `--grip`, `--pairs`, `--poses`, `--sit`, `--hold`,
+  `--drive`, `--ride`), in the game's own shader.
+- **Tests**: `body-kit.test.mjs` "the hand is a hand" (four fingers and a thumb, one closed skin with no hole, within its
+  2,210 points, worn on both wrists, the right the left's mirror, the envelope on its surface, it closes and opens again).
+  Tests that encoded the mitten now read the hand's shape, with the reason beside them: `body-contact.mjs` (a body's core:
+  the hand's ellipsoid, closed when the hand is), `pair-poses.test.mjs` (the hand's middle), `izakaya-bar` and
+  `izakaya-food` (where a held thing sits: drinkGrip from the hand's hold), `fujitas-back-moves` (the paper's edges in the
+  closed hand's hollow, `handleAt`, not the mitten's middle, which is inside the hand's palm), `driver-grip` and
+  `bicycle-rider` (the hollow on the rim, on the grip's line). No threshold was loosened.
+
+## Proved (26 November 2026, the branch's last commit)
+- `node tools/ci-guard.mjs`: 125 files, 667 tests, 665 pass, 2 fail, both expected on a branch that changes the avatars
+  without rebuilding what is published from them: `resident-guide` ("Portraits must be regenerated after avatar source
+  changes") and `runtime-package` ("Run npm run build:runtime with every source change"). Neither was rebuilt here.
+- Outside the guard: `body-kit` 7/7, `driver-grip` 1/1, `bicycle-rider` 3/3, `seated-pose` and `pixar-seated-hands` 3/3,
+  `floor-sit` 7/7 (in the guard too; 160 s, was over 900), `pair-poses` (in the guard).
+- `fujitas-back-moves` 21/22: CarriedPlank fails (Nhung's left hand 9.0 mm into his underside, 8 allowed: her thumb's tip,
+  under a load the hand's top), as it failed before the hands. `port-shed` 2/3: "Both shoes rest on the timber
+  footstool" fails the same at e4cdcdc, before the hands.
+- `fun-poses` 1/4, against 2/4 before the hands (e4cdcdc): in nothing, Huff on the elder round body 24 mm into the body
+  (before: Huff on three round bodies, up to 35 mm); the hands on the head, HideFace on Mr Fujita 52 mm from his face
+  (50 allowed: the hand lies on his glasses, which the test does not count as his head); smoothly, Facepalm on the round
+  adult turns the right shoulder 0.18 rad in a frame (0.15 allowed: the kit's hand laid flat on the face finds a shoulder
+  turned round to -3.4 rad, 2.5 rad from the move's seed, and lets go the long way; a first stage that placed the arm as the
+  mitten did first was tried and left the hands 35 to 50 mm off the face). Salute's jerk, failing before, passes.
+- Looked at: `art/characters/body-kit/review/` (rest, closed, poses, pairs, sit, hold, drive, ride; the game's shader).
+
+## Remains
+- The owner has not seen the hand worn. Show him the review sheets before this goes to `main`; then rebuild the runtime
+  and the portraits (the guard's two failures), and the resident photo shoots and the Blender cast sheet.
+- Facepalm's shoulder on the round adult (above): a stage that keeps the shoulder's twist where the seed has it while the
+  palm is turned is the likely fix. HideFace on Mr Fujita: count his glasses in the test's head, or lay the hand on the face
+  past them (it should not: they are in front of his eyes).
+- Mr Fujita pouring: his left wrist bends 42 degrees round the bottle, and his left forearm is 14 mm into his belly as it was
+  with the mitten (16).
+- The hand has two shapes, resting and closed, blended straight between them: no pointing finger, no thumb up, no peace
+  sign; the blend between was not checked for the fingers passing through one another.
+- A Pixar body keeps the mitten's measures (`MITTEN`, `m.realHand`) everywhere.
