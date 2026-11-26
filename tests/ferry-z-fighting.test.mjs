@@ -39,6 +39,15 @@ test('no two faces aboard share a plane (2 mm) over more than 4 cm²: rooms, bri
  assert.deepEqual(found.filter(f=>!standIn(f)).map(where),[]);
 });
 
+test('no two decals aboard share a plane (2 mm) and their polygon offset over more than 4 cm²',()=>{
+ // The scan above leaves out every face drawn with a polygon offset (paint thinner than 2 cm, ferry-model.js `block`),
+ // and so missed the one fault the owner photographed on his iPad on 26 November 2026, at the engine room's door: the
+ // hazard stripes drawn inside the lower lobby's vinyl, their tops in its top's plane, with one offset between them.
+ // Two decals with the same offset fight like any two faces (JSY-STD-403 rule 6), so decals are compared here too.
+ const found=coplanarOverlaps(scene,{tolerance:.002,minArea:.0004,ground:-99,offsetPairs:true});
+ assert.deepEqual(found.filter(f=>!standIn(f)).map(where),[]);
+});
+
 test('seen from the quay: no two faces within 5 mm of one plane over 0.01 m², outside the wheelhouse',()=>{
  // 5 mm is what a phone's 24-bit depth buffer, with the game's 0.15 m near plane, still tells apart at about 110 m: the
  // car deck's plating over the machinery spaces (5 mm under the deck) and the lane lamps (5 mm off their hoods) flashed
