@@ -297,7 +297,7 @@ const HAIR=Object.freeze({
  perm:{front:.42,side:-.12,back:-.44,radius:1.15,faceHalf:.74,bumps:true},
  buzz:{front:.52,side:.06,back:-.36,radius:1.025,faceHalf:.8},
  afro:{front:.48,side:-.12,back:-.5,radius:1.34,faceHalf:.74,lift:.18},
- horseshoe:{ring:true,radius:1.03},
+ horseshoe:{ring:true,radius:1.04},   // thick enough to be seen from the front (the owner, 26 November 2026: "the hair should be more visible")
  bald:null,
  pixie:{front:.36,swoop:.2,side:-.04,back:-.42,radius:1.06,faceHalf:.78},
  shoulder:{front:.28,side:-.42,back:-.56,radius:1.1,faceHalf:.66},
@@ -361,10 +361,14 @@ function cutHairCap(style,flip,spec){
  const fieldOf=v=>{
   if(spec.field)return spec.field(v);
   if(spec.ring){
-   // A horseshoe: a band from in front of one ear round the back to the other, low over the ears and rising well up
+   // A horseshoe: a band from the temples round the back, up to temple height at the sides and rising well up
    // behind into a crescent with a soft wave along its top; its front ends come down as sideburns, where a beard joins.
    const a=Math.abs(Math.atan2(v.x,v.z)),back=smooth(a,1.2,Math.PI),wave=.035*Math.sin(Math.atan2(v.x,v.z)*9)*back;
-   const top=.04+back*.5+wave-v.y,bottom=v.y-(-.44-back*.1),ends=a-1.08-.3*smooth(-v.y,-.04,.44);   // the sideburns narrow downward
+   // Nobody's hair grows over or under the ear (the owner, 26 November 2026: "who grows hair around the ear like that"):
+   // above the ear (its top is at y 0.215, the braids' opening below) the band's lower edge is the ear's top; in front
+   // of it a sideburn comes down to mid-ear; behind it the hair goes down to the nape.
+   const inFront=smooth(v.z,.2,.3),behind=smooth(-v.z,.2,.36),lower=.225+(-.12-.225)*inFront+(-.44-back*.1-.225)*behind;
+   const top=.36+back*.21+wave-v.y,bottom=v.y-lower,ends=a-.98-.3*smooth(-v.y,-.04,.44);   // the sideburns narrow downward
    const m=Math.min(top,bottom),k=.2,h=Math.max(k-Math.abs(m-ends),0)/k;
    return Math.min(m,ends)-h*h*k*.25;
   }

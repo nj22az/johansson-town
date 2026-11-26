@@ -185,8 +185,8 @@ export function createSakuraShop({world,scene,state,ledger,register,action,exit,
    {const inside=!!isInside();lightCheck-=dt;if(inside!==lightsInside||lightCheck<=0)syncLightVisibility(inside);}
    lastDt=dt;display.tick?.(performance.now()/1000,getMinutes(),dt);followRota();if(!person.g.userData.playerControlled){residents.sync(getMinutes(),dt);retail.update(dt);service.update(dt);attention.update(dt);}
    checkout.update(dt,!!isInside());display.refrigerator.update(dt);display.updateStock(state.sakura.stock);
-   // The office door opens for whoever is in the shop and near it: the player, Thuan, anyone borrowed in.
+   // The office door opens for whoever is in the shop and near it: the player, Thuan, anyone borrowed in; the restroom's too.
    // The front door, from inside, opens the same way (the street side has its own).
-   if(display.officeDoor){const points=[];if(isInside()){const p=getPlayerPosition();points.push([p.x,p.z]);}for(const other of world.people)if(other.g.parent===group)points.push([other.g.position.x,other.g.position.z]);display.officeDoor.update(dt,points);display.frontDoor?.update(dt,points);}},
+   if(display.officeDoor){const points=[];if(isInside()){const p=getPlayerPosition();points.push([p.x,p.z]);}for(const other of world.people)if(other.g.parent===group)points.push([other.g.position.x,other.g.position.z]);display.officeDoor.update(dt,points);display.frontDoor?.update(dt,points);display.restroomDoor?.update(dt,points);}},
  };
 }

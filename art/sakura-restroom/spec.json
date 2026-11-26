@@ -1,0 +1,80 @@
+{
+  "title": "Sakura Shōten customer restroom: sanitary ware",
+  "units": "millimetres",
+  "drawing": "SK-401",
+  "source": "Original Johansson Town design, drawn in CAD (tools/cad/build-sakura-restroom-cad.py) and finished in Blender (tools/blender/build-sakura-restroom.py). Proportions follow ordinary 1990s Japanese close-coupled toilets with a hand-wash cistern lid and a pedestal basin with a single cold pillar tap; no maker's model is copied.",
+  "frame": "Each fixture: wall plane at Y=0, the fixture stands out to +Y, X across (centred), Z up from the finished floor. Placed in the shop, the toilet's +X is north.",
+  "toilet": {
+    "who": "Customers of the shop and Thuan herself; the only public toilet on Main Street between the ferry and the park.",
+    "why": "A close-coupled toilet with the hand-wash spout on its cistern lid: the refill water is used once to wash hands before it flushes, which is why a small shop room with a cold supply only has one.",
+    "where": "Against the west wall, centred on the room's depth, so the door swing and the basin stay clear and the vent block is over the cistern.",
+    "projection": 760,
+    "seatHeight": 420,
+    "bowlWidth": 370,
+    "tank": {
+      "width": 400,
+      "depth": 180,
+      "standoff": 20,
+      "base": 396,
+      "height": 380
+    },
+    "tankLid": {
+      "overhang": 10,
+      "thickness": 40
+    },
+    "spoutHeight": 955,
+    "lidAngle": 95,
+    "lever": {
+      "side": "The north side of the tank, by the paper holder, where the hand already is; the supply and its stop valve come up on the south side, off the wall the basin shares.",
+      "pivot": [
+        200,
+        150,
+        715
+      ],
+      "length": 78
+    },
+    "stopValve": {
+      "centre": [
+        -172,
+        0,
+        190
+      ]
+    },
+    "deckWidth": 280
+  },
+  "washbasin": {
+    "who": "Everyone who has used the toilet, and Thuan rinsing the mop cloth.",
+    "why": "A pedestal basin hides its trap and needs no cupboard to rot in a damp room; one cold pillar tap because the shop has no hot water at the front.",
+    "where": "On the south wall under the mirror, beside the door, so hands are washed on the way out.",
+    "width": 500,
+    "projection": 430,
+    "rimHeight": 850,
+    "bowlDepth": 115,
+    "tap": {
+      "centre": [
+        0,
+        42
+      ],
+      "reach": 118,
+      "outletHeight": 905,
+      "handle": "cross head, cold index"
+    }
+  },
+  "placement": {
+    "note": "Shop frame, metres (src/world/interiors/sakura-layout.js): x east, y up, z south to north.",
+    "toilet": {
+      "wallX": -6.82,
+      "z": -3.25,
+      "faces": "+x"
+    },
+    "washbasin": {
+      "x": -5.175,
+      "wallZ": -3.95,
+      "faces": "+z"
+    }
+  },
+  "decor": {
+    "who": "Thuan, who keeps the shop and cleans this room five times a day (the owner, 26 November 2026: \"make the room more cute, remember a Japanese cute girl has decorated it\").",
+    "covers": "Pink terry covers on the seat and the lid: a cold seat in a tiled room is the first thing a customer notices."
+  }
+}

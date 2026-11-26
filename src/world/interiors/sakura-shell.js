@@ -23,7 +23,7 @@ import {MAGAZINE_RACK} from './sakura-magazine-rack.js';
  * shell, hidden when the shop is seen from the street), `sakura-ceiling`, `sakura-floor`,
  * `sakura-counter`, `sakura-shelf` (wall shelving), `sakura-shelf <island>` and
  * `sakura-shelf-ends <island>` (the three gondolas), `sakura-light` (the tubes, which
- * glow), `sakura-door` and `sakura-toilet`. POS detail lives in sakura-counter-detail.js. Each shell part is one draw: every
+ * glow), `sakura-door`. The restroom's toilet, basin and door are sakura-restroom.js's. POS detail lives in sakura-counter-detail.js. Each shell part is one draw: every
  * piece is a box with a vertex colour, merged by name. Shelf tops are taken from the
  * stock layout itself, so every product stands on a board.
  */
@@ -327,16 +327,6 @@ function buildBattens(){
  return mesh(material());
 }
 
-function buildRestroomFittings(){
- const {span,cyl,mesh}=parts('sakura-toilet');
- // The toilet against the west wall, the basin and its mirror on the south wall.
- span(-6.8,-6.5,.35,.85,-3.5,-3.0,C.porcelain);span(-6.55,-6.0,.0,.38,-3.42,-3.08,C.porcelain);span(-6.55,-5.95,.38,.42,-3.47,-3.03,0xe8e4da);
- cyl(.04,.06,-6.65,.9,-3.25,0xc8ccd0,8);
- const R=RESTROOM;
- span(R.mirror.x-.22,R.mirror.x+.22,.78,.86,-3.92,-3.52,C.porcelain);span(R.mirror.x-.08,R.mirror.x+.08,0,.78,-3.9,-3.75,C.porcelain);
- return mesh(material());
-}
-
 function buildDoors(){
  const {span,mesh}=parts('sakura-door');
  // The passage to the back room: a frame and a swing door left open against the wall.
@@ -347,12 +337,11 @@ function buildDoors(){
  for(const x of [3.25,4.39])span(x-.05,x+.05,0,2.18,P-.06,P+.08,C.woodDark);span(3.2,4.44,2.18,2.26,P-.06,P+.08,C.woodDark);
  span(4.4,4.44,0,2.12,P+.08,P+1.02,0xe9e1cf);
  // The office doorway: jambs, head and a casing on the shop side. Its door swings
- // (sakura-life.js buildOfficeDoor). The restroom door stands open into the restroom.
+ // (sakura-life.js buildOfficeDoor). The restroom's door is hung in sakura-restroom.js (RESTROOM_DOOR).
  for(const x of [5.12,6.30])span(x-.04,x+.04,0,2.2,-1.25,-1.09,C.woodDark);
  span(5.08,6.34,2.16,2.24,-1.25,-1.09,C.woodDark);
  for(const [x0,x1] of [[5.0,5.08],[6.34,6.42]])span(x0,x1,0,2.32,-1.13,-1.1,C.woodDark);
  span(5.0,6.42,2.24,2.32,-1.13,-1.1,C.woodDark);
- span(-4.9,-4.08,0,2.15,-2.82,-2.78,0xd8cdb4);
  return mesh(material());
 }
 
@@ -360,7 +349,7 @@ function buildDoors(){
 export function buildSakuraShell(){
  const page=typeof document!=='undefined'&&!!document.createElement;
  const root=new THREE.Group();root.name='Sakura shōten interior';
- root.add(buildShell(),buildFrontFrame(),...buildCeilingAndFloor(page),buildWallShelving(),buildCounter(),buildTubes(),buildBattens(),buildRestroomFittings(),buildDoors(),buildEndcap(),buildFrontEndcaps());
+ root.add(buildShell(),buildFrontFrame(),...buildCeilingAndFloor(page),buildWallShelving(),buildCounter(),buildTubes(),buildBattens(),buildDoors(),buildEndcap(),buildFrontEndcaps());
  for(const id of ['east','middle','west'])root.add(...buildIsland(id));
  root.traverse(o=>{if(o.isMesh)o.receiveShadow=true;});
  return root;

@@ -1,10 +1,13 @@
 /** Original console-avatar silhouettes, shared by the face, hair and accessories. */
-export const HEAD_FORMS=Object.freeze(['oval','round','square','narrow','heart','soft-square','oblong','diamond','pear','wide','soft-round','teardrop','egg','acorn','bell','pentagon','box','block','sculpted']);
+export const HEAD_FORMS=Object.freeze(['oval','round','square','narrow','heart','soft-square','oblong','diamond','pear','wide','soft-round','teardrop','egg','acorn','bell','pentagon','box','block','sculpted',
+ // Appended (no saved id moves): a strong head, broad and square-jawed with rounded corners, between 'square' (a ball
+ // with a jaw) and 'block' (a box). First worn by Johansson (26 November 2026).
+ 'strong']);
 const FORMS={sculpted:[1,1.055,.08,.06,.015,0],oval:[.94,1.08,.22],round:[1.03,1.01,.1],square:[1.03,1.02,-.16],narrow:[.84,1.16,.25],heart:[1.01,1.07,.37], 'soft-square':[1.01,1.04,-.07,.02],oblong:[.90,1.17,.08,-.02],diamond:[.95,1.10,.36,.11],pear:[.97,1.04,-.18,.07],wide:[1.13,.96,.10,.01],'soft-round':[1.06,1.03,.20,.08],teardrop:[.92,1.10,.35,-.03],
  // The creator (2026-10-14: "I want different head shapes too"): the crown and the corners as well as the jaw.
  // [width, height, taper, cheek, crown (+ pointed, - flat), corners (0 round … 1 boxy)]
  egg:[.95,1.1,.04,0,.24,0],acorn:[1,1.06,-.1,.05,.28,0],bell:[1.03,1,-.22,.12,-.16,0],
- pentagon:[1,1.06,.32,0,-.05,.5],box:[.92,1.15,0,0,-.1,.6],block:[1.06,1,-.12,0,-.15,.55]};
+ pentagon:[1,1.06,.32,0,-.05,.5],box:[.92,1.15,0,0,-.1,.6],block:[1.06,1,-.12,0,-.15,.55],strong:[1.03,1.03,-.12,0,-.06,.28]};
 export function headProfile(head){
  const [width,height,taper,cheek=0,crown=0,corners=0]=FORMS[head.form]||FORMS.oval;
  const profile={width:width+(head.shape-.5)*.12,height:height-(head.shape-.5)*.1,

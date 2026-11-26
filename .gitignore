@@ -22,3 +22,6 @@ __pycache__/
 # Unpublished Studio drafts and the active writer's lock stay local.
 /data/studio/draft/
 /data/studio/.lock
+
+# Sakura restroom: the CAD tessellation Blender reads; rebuilt by tools/cad/build-sakura-restroom-cad.py.
+/art/sakura-restroom/cad/parts/

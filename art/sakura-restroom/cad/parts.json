@@ -1,0 +1,350 @@
+{
+ "source": "tools/cad/build-sakura-restroom-cad.py",
+ "units": "millimetres",
+ "frame": "Each fixture: wall plane at Y=0, the fixture stands out to +Y, X across (centred), Z up from the finished floor. Placed in the shop, the toilet's +X is north.",
+ "interference": "none over 1 mm\u00b3",
+ "toilet": [
+  {
+   "part": "Bowl",
+   "finish": "Porcelain",
+   "stl": "parts/toilet-Bowl.stl",
+   "volume_mm3": 52261648,
+   "min": [
+    -185.0,
+    20.0,
+    -0.0
+   ],
+   "max": [
+    185.0,
+    760.3,
+    396.0
+   ]
+  },
+  {
+   "part": "Water",
+   "finish": "Water",
+   "stl": "parts/toilet-Water.stl",
+   "volume_mm3": 135558,
+   "min": [
+    -75.0,
+    351.3,
+    194.0
+   ],
+   "max": [
+    75.0,
+    552.3,
+    200.0
+   ]
+  },
+  {
+   "part": "Sump",
+   "finish": "Shadow",
+   "stl": "parts/toilet-Sump.stl",
+   "volume_mm3": 417984,
+   "min": [
+    -71.8,
+    353.5,
+    170.0
+   ],
+   "max": [
+    71.8,
+    544.3,
+    194.0
+   ]
+  },
+  {
+   "part": "Seat",
+   "finish": "SeatPlastic",
+   "stl": "parts/toilet-Seat.stl",
+   "volume_mm3": 1806777,
+   "min": [
+    -189.0,
+    272.0,
+    399.0
+   ],
+   "max": [
+    189.0,
+    764.0,
+    420.0
+   ]
+  },
+  {
+   "part": "SeatBuffers",
+   "finish": "Rubber",
+   "stl": "parts/toilet-SeatBuffers.stl",
+   "volume_mm3": 3054,
+   "min": [
+    -139.0,
+    569.0,
+    396.0
+   ],
+   "max": [
+    139.0,
+    742.0,
+    399.0
+   ]
+  },
+  {
+   "part": "Lid",
+   "finish": "SeatPlastic",
+   "stl": "parts/toilet-Lid.stl",
+   "volume_mm3": 2463237,
+   "min": [
+    -189.0,
+    206.6,
+    442.9
+   ],
+   "max": [
+    189.0,
+    265.6,
+    933.7
+   ]
+  },
+  {
+   "part": "Hinge",
+   "finish": "SeatPlastic",
+   "stl": "parts/toilet-Hinge.stl",
+   "volume_mm3": 52139,
+   "min": [
+    -118.0,
+    248.0,
+    396.0
+   ],
+   "max": [
+    118.0,
+    268.0,
+    439.0
+   ]
+  },
+  {
+   "part": "Tank",
+   "finish": "Porcelain",
+   "stl": "parts/toilet-Tank.stl",
+   "volume_mm3": 26865782,
+   "min": [
+    -200.0,
+    20.0,
+    396.0
+   ],
+   "max": [
+    200.0,
+    200.0,
+    776.0
+   ]
+  },
+  {
+   "part": "TankLid",
+   "finish": "Porcelain",
+   "stl": "parts/toilet-TankLid.stl",
+   "volume_mm3": 2875893,
+   "min": [
+    -210.0,
+    10.0,
+    776.0
+   ],
+   "max": [
+    210.0,
+    210.0,
+    816.0
+   ]
+  },
+  {
+   "part": "DishDrain",
+   "finish": "Chrome",
+   "stl": "parts/toilet-DishDrain.stl",
+   "volume_mm3": 603,
+   "min": [
+    -11.0,
+    119.0,
+    795.2
+   ],
+   "max": [
+    11.0,
+    141.0,
+    797.2
+   ]
+  },
+  {
+   "part": "Spout",
+   "finish": "Chrome",
+   "stl": "parts/toilet-Spout.stl",
+   "volume_mm3": 51528,
+   "min": [
+    -13.0,
+    33.0,
+    816.0
+   ],
+   "max": [
+    13.0,
+    127.5,
+    962.6
+   ]
+  },
+  {
+   "part": "LeverBoss",
+   "finish": "Chrome",
+   "stl": "parts/toilet-LeverBoss.stl",
+   "volume_mm3": 15425,
+   "min": [
+    200.0,
+    133.0,
+    698.0
+   ],
+   "max": [
+    220.0,
+    167.0,
+    732.0
+   ]
+  },
+  {
+   "part": "FlushLever",
+   "finish": "Chrome",
+   "stl": "parts/toilet-FlushLever.stl",
+   "volume_mm3": 14159,
+   "min": [
+    219.5,
+    141.0,
+    702.0
+   ],
+   "max": [
+    230.0,
+    235.0,
+    728.0
+   ],
+   "pivot": [
+    200,
+    150,
+    715
+   ],
+   "axis": [
+    1,
+    0,
+    0
+   ]
+  },
+  {
+   "part": "StopValve",
+   "finish": "Chrome",
+   "stl": "parts/toilet-StopValve.stl",
+   "volume_mm3": 75460,
+   "min": [
+    -196.0,
+    -0.0,
+    166.0
+   ],
+   "max": [
+    -148.0,
+    112.0,
+    396.0
+   ]
+  }
+ ],
+ "washbasin": [
+  {
+   "part": "Basin",
+   "finish": "Porcelain",
+   "stl": "parts/washbasin-Basin.stl",
+   "volume_mm3": 17705161,
+   "min": [
+    -250.0,
+    -0.0,
+    682.0
+   ],
+   "max": [
+    250.0,
+    430.0,
+    850.0
+   ]
+  },
+  {
+   "part": "Pedestal",
+   "finish": "Porcelain",
+   "stl": "parts/washbasin-Pedestal.stl",
+   "volume_mm3": 21904803,
+   "min": [
+    -119.0,
+    38.0,
+    0.0
+   ],
+   "max": [
+    119.0,
+    259.0,
+    682.0
+   ]
+  },
+  {
+   "part": "Waste",
+   "finish": "Chrome",
+   "stl": "parts/washbasin-Waste.stl",
+   "volume_mm3": 3357,
+   "min": [
+    -25.0,
+    213.0,
+    736.9
+   ],
+   "max": [
+    25.0,
+    263.0,
+    739.3
+   ]
+  },
+  {
+   "part": "Tap",
+   "finish": "Chrome",
+   "stl": "parts/washbasin-Tap.stl",
+   "volume_mm3": 125816,
+   "min": [
+    -25.0,
+    17.0,
+    850.0
+   ],
+   "max": [
+    25.0,
+    177.5,
+    944.0
+   ]
+  },
+  {
+   "part": "TapHandle",
+   "finish": "Chrome",
+   "stl": "parts/washbasin-TapHandle.stl",
+   "volume_mm3": 18746,
+   "min": [
+    -31.6,
+    10.4,
+    942.4
+   ],
+   "max": [
+    31.6,
+    73.6,
+    957.6
+   ],
+   "pivot": [
+    0,
+    42,
+    950
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "part": "TapIndex",
+   "finish": "IndexBlue",
+   "stl": "parts/washbasin-TapIndex.stl",
+   "volume_mm3": 353,
+   "min": [
+    -7.5,
+    34.5,
+    956.2
+   ],
+   "max": [
+    7.5,
+    49.5,
+    958.2
+   ]
+  }
+ ]
+}

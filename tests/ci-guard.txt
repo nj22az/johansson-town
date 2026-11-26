@@ -141,3 +141,5 @@ ferry-z-fighting.test.mjs
 brand.test.mjs
 # Kikkou ink: the ID line in Sakura first (render/kikkou-ids.js, the composite in ink-pipeline.js).
 kikkou-ink.test.mjs
+# Sakura's restroom: the drawn toilet, basin and tap (SK-401), the door shut by default, Thuan's decor and stickers.
+sakura-restroom.test.mjs

@@ -293,5 +293,5 @@ export function buildSakuraLife(room,{anchor,action}){
  const officeDoor=buildOfficeDoor(room);
  const frontDoor=buildFrontDoor(room);
  let last=0;
- return {officeDoor,frontDoor,ready:floor.ready,loadBackRooms:backroom.load,tick(time){const dt=Math.min(.1,Math.max(0,time-last));last=time;mascot.tick(time,dt);floor.tick(time);backroom.tick(time);restroom.tick(time);},mascot,dispose(){floor.dispose();backroom.dispose();}};
+ return {officeDoor,frontDoor,restroomDoor:restroom.door,ready:Promise.all([floor.ready,restroom.ready]).then(([ok])=>ok),loadBackRooms:backroom.load,tick(time){const dt=Math.min(.1,Math.max(0,time-last));last=time;mascot.tick(time,dt);floor.tick(time);backroom.tick(time);restroom.tick(time);},mascot,dispose(){floor.dispose();backroom.dispose();restroom.dispose();}};
 }

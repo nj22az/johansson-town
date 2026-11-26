@@ -1,0 +1,128 @@
+{
+ "source": "Original Johansson Town geometry: CAD solids redrawn in Blender",
+ "generator": "tools/blender/build-sakura-restroom.py",
+ "cad": "tools/cad/build-sakura-restroom-cad.py",
+ "blender": "5.3.0",
+ "units": "metres",
+ "fixtures": {
+  "Toilet": {
+   "meshes": {
+    "ToiletChrome": {
+     "triangles": 2679,
+     "materials": [
+      "Chrome"
+     ]
+    },
+    "ToiletLid": {
+     "triangles": 1800,
+     "materials": [
+      "CoverPink",
+      "SeatPlastic"
+     ]
+    },
+    "Bowl": {
+     "triangles": 3540,
+     "materials": [
+      "Porcelain"
+     ]
+    },
+    "Water": {
+     "triangles": 80,
+     "materials": [
+      "Water"
+     ]
+    },
+    "Seat": {
+     "triangles": 2600,
+     "materials": [
+      "CoverPink"
+     ]
+    },
+    "Tank": {
+     "triangles": 900,
+     "materials": [
+      "Porcelain"
+     ]
+    },
+    "TankLid": {
+     "triangles": 1998,
+     "materials": [
+      "Porcelain"
+     ]
+    },
+    "FlushLever": {
+     "triangles": 300,
+     "materials": [
+      "Chrome"
+     ]
+    }
+   },
+   "triangles": 13897,
+   "size_m": [
+    0.44,
+    0.764,
+    0.9626
+   ],
+   "min_m": [
+    -0.23,
+    -0.764,
+    0.0
+   ],
+   "max_m": [
+    0.21,
+    -0.0,
+    0.9626
+   ]
+  },
+  "Washbasin": {
+   "meshes": {
+    "BasinChrome": {
+     "triangles": 1718,
+     "materials": [
+      "Chrome"
+     ]
+    },
+    "TapHandle": {
+     "triangles": 1560,
+     "materials": [
+      "Chrome",
+      "IndexBlue"
+     ]
+    },
+    "Basin": {
+     "triangles": 1600,
+     "materials": [
+      "Porcelain"
+     ]
+    },
+    "Pedestal": {
+     "triangles": 1100,
+     "materials": [
+      "Porcelain"
+     ]
+    }
+   },
+   "triangles": 5978,
+   "size_m": [
+    0.5,
+    0.43,
+    0.9582
+   ],
+   "min_m": [
+    -0.25,
+    -0.43,
+    0.0
+   ],
+   "max_m": [
+    0.25,
+    0.0,
+    0.9582
+   ]
+  }
+ },
+ "glb": {
+  "path": "assets/models/sakura-restroom/sakura-restroom-fixtures.glb",
+  "bytes": 447416
+ },
+ "triangles": 19875
+}
