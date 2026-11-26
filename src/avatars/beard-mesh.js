@@ -14,7 +14,7 @@ import {faceLayout} from './face.js';
 
 const DEG=180/Math.PI,smooth=THREE.MathUtils.smoothstep,clamp=THREE.MathUtils.clamp;
 /** A smooth curve through [x, y] points (a cubic through each, its slopes from its neighbours), flat beyond the ends. */
-function curve(points){
+export function curve(points){
  const n=points.length,slope=points.map((p,i)=>{const a=points[Math.max(0,i-1)],b=points[Math.min(n-1,i+1)];return (b[1]-a[1])/(b[0]-a[0]||1);});
  return x=>{
   if(x<=points[0][0])return points[0][1];if(x>=points[n-1][0])return points[n-1][1];
@@ -26,7 +26,7 @@ function curve(points){
 /** A rounded lobe every `step` along x: 1 at each lobe's middle, 0 between. */
 const lobes=(x,step)=>(.5+.5*Math.cos(2*Math.PI*x/step))**2;
 /** How far inside an ellipse a point is (about in degrees: positive inside). */
-const ellipse=(a,t,ca,ct,ra,rt)=>(1-Math.hypot((a-ca)/ra,(t-ct)/rt))*Math.min(ra,rt);
+export const ellipse=(a,t,ca,ct,ra,rt)=>(1-Math.hypot((a-ca)/ra,(t-ct)/rt))*Math.min(ra,rt);
 
 export const MESH_BEARDS=Object.freeze(['full','circle','chops','mutton','anchor','soul','strip']);
 

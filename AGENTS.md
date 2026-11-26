@@ -4,6 +4,25 @@
 
 Read the repository's [AGENTS.md](../AGENTS.md) and [CLAUDE.md](../CLAUDE.md). Their working discipline applies here.
 
+## Owner's decision — 26 November 2026: Johansson is drawn from the owner, in Blender
+
+The owner, with his photographs: "he is supposed to look more like me"; "shift the character from cute chibi to rugged,
+sturdy, manly cartoon caricature"; "Make him in blender"; "Fully rigged"; "He is not supposed to be Brown, he is a Swedish
+man", "With dark features"; and of the method: "Do NOT edit blindly. After every geometry or texture pass ... render a
+3-angle contact sheet (front, 3/4, side profile) with the toon shader and outlines active, inspect the PNG yourself ...
+critique what still looks too soft/chibi, and iterate"; then "When happy redraw Thuan in Blender too".
+
+- **His head is sculpted in Blender** (`tools/blender/build-johansson-head.py`), measured through every degree and a half
+  into `src/avatars/sculpts/rugged-head.js`, and worn by the generator as the head form `rugged` (`head-profile.js`): the
+  hair, the stubble's shell, hats and the painted face are all shaped by it, so he keeps the cartoon's full rig, every
+  move and every expression. The script's `--sheet` exports him from the generator and renders the mandated sheet in
+  Blender (Toon BSDF and Freestyle); `art/characters/johansson/` holds the sculpt, the rigged `.blend` and the sheets.
+- **The rule stands for every character redrawn this way:** a sheet after every pass, looked at, criticised, then the next
+  pass; and `node tools/avatar-turnaround.mjs` for the same in the game's own shader, which is the final judge.
+- Fair skin, dark brows, dark eyes, a five-o'clock shadow in grey; warm, dry and deadpan, never angry. Stylised and
+  heavy, not realistic: no pores, no photographic shading, no high-poly sculpt.
+- The owner's photographs are not kept in the repository (it is public).
+
 ## Owner's decision — 25 November 2026: the cast are dolls wearing clothes
 
 The owner, in order: "the feet are ugly elbows and shoulders I see only the faces are so so Thuận looks best"; "Esthetically

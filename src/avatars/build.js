@@ -13,7 +13,7 @@ import {drawFace,faceLayout,INK_NOSES,BEARD_SHELL,drawBeardShell} from './face.j
 import {buildFaceObjects} from './face-objects.js';
 import {buildEyes3d,eyes3dOn} from './eyes3d.js';
 import {pixarBody,dressPixar} from './pixar.js';
-import {beardSpec} from './beard-mesh.js';
+import {beardSpec,curve as lineThrough,ellipse as insideEllipse} from './beard-mesh.js';
 import {headProfile,shapeHeadPoint} from './head-profile.js';
 import {longBraidPoints} from './braid-path.js';
 import {pleatedSkirtGeometry} from './pleated-skirt.js';
@@ -66,13 +66,17 @@ export function measure(recipe){
  const neck=.055*k,body=H-Rh*2*headSY-neck;
  const leg=body*(studio?.60:rounded?.37:.47),torso=body-leg;
  const foot=.07*k,thigh=(leg-foot)*.5,shin=thigh;
- const legR=(.058+build*.024)*k*(studio?.9:1),armR=(.045+build*.016)*k*(studio?.85:1);
+ // A sturdy frame (the owner, 26 November 2026, of Johansson: "widen the neck to ~60% of jaw width so it flows solidly into
+ // broader, squared-off shoulders and a barrel chest"): wider and deeper through the chest, thicker in the arm, a neck twice
+ // as thick; its shoulders are squared in torsoProfile.
+ const sturdy=r.body.frame==='sturdy';
+ const legR=(.058+build*.024)*k*(studio?.9:1)*(sturdy?1.06:1),armR=(.045+build*.016)*k*(studio?.85:1)*(sturdy?1.12:1);
  const feminine=r.body.silhouette==='feminine',masculine=r.body.silhouette==='masculine';
- const width=(.3+build*.15)*k*(rounded?1.20:1)*(feminine?.94:masculine?1.08:1)*(studio?.84:1),depth=(.2+build*.09)*k*(rounded?1.15:1)*(studio?.87:1);
+ const width=(.3+build*.15)*k*(rounded?1.20:1)*(feminine?.94:masculine?1.08:1)*(studio?.84:1)*(sturdy?1.1:1),depth=(.2+build*.09)*k*(rounded?1.15:1)*(studio?.87:1)*(sturdy?1.17:1);
  const hips=width*(feminine?1.13:masculine?.9:1),waistRatio=studio?(feminine?.76:.88):feminine?.79:masculine?.98:.96;
  const upper=(rounded?.18:.22)*k*(studio?.92:1),fore=(rounded?.16:.2)*k*(studio?.92:1),hand=.056*k*(studio?.9:1);
  const hipY=leg,chestY=hipY+torso*.5,neckY=hipY+torso,headY=neckY+neck;
- return {studio,panelSkirt:r.outfit.bottom==='skirt'&&r.outfit.skirtCut==='panel',skirtLength:r.outfit.skirtLength,skirtFlare:r.outfit.skirtFlare,H,k,Rh,headSX,headSY,profile,neck,torso,leg,foot,thigh,shin,legR,armR,width,hips,waistRatio,depth,upper,fore,hand,hipY,chestY,neckY,headY,
+ return {studio,sturdy,neckR:armR*(sturdy?1.95:1.08),panelSkirt:r.outfit.bottom==='skirt'&&r.outfit.skirtCut==='panel',skirtLength:r.outfit.skirtLength,skirtFlare:r.outfit.skirtFlare,H,k,Rh,headSX,headSY,profile,neck,torso,leg,foot,thigh,shin,legR,armR,width,hips,waistRatio,depth,upper,fore,hand,hipY,chestY,neckY,headY,
   // The arm hangs from just inside the torso's edge, below its top, so the shoulder
   // rounds over it instead of the arm standing clear of the body.
   headCentre:headY+Rh*headSY*.94,shoulderX:width/2-armR*.2,shoulderY:neckY-.075*k,hipX:hips*.24,
@@ -283,6 +287,37 @@ function smoothNormals(g){
  * sphere a little bigger than the head; anywhere the style leaves bare is pulled back
  * inside the head, so the hairline is wherever the style says it is.
  */
+/**
+ * The horseshoe: what is left round a bald crown (the owner, 26 November 2026, of Johansson's: "the hair should be more
+ * visible", "who grows hair around the ear like that", then "redesign Johansson's hair and beard", with his photograph).
+ * Laid out as the beards are (beard-mesh.js), in degrees: a round from the front, θ down from the crown. The ear is at
+ * a 84..102, θ 83..106 (the ears in build()).
+ *
+ * - Its top edge is the receding line: at temple height over the ear, a little higher round the back; the crown is bare.
+ * - Its front edge comes down from the temple and runs on as a sideburn in front of the ear, to where a beard begins.
+ * - It is cut round the ear: no hair over it or under it. Behind the ear it goes down to the nape.
+ * - It is cropped: it rises from nothing at every edge, so there is no step where hair meets skin, and it is fullest at
+ *   the back.
+ */
+const HORSESHOE=(()=>{
+ const DEG=180/Math.PI,smooth=THREE.MathUtils.smoothstep;
+ const top=lineThrough([[58,71],[72,67],[95,63],[130,59],[180,57]]);
+ const front=lineThrough([[60,73],[72,70],[88,70],[104,72]]);              // nearly straight down: the temple, then the sideburn
+ const bottom=lineThrough([[60,100],[84,101],[106,108],[130,113],[180,115]]);
+ const at=v=>[Math.abs(Math.atan2(v.x,v.z))*DEG,Math.acos(THREE.MathUtils.clamp(v.y,-1,1))*DEG];
+ // Two edges meet in a round, not a point (the temple's corner, the sideburn's foot).
+ const meet=(p,q,k)=>{const h=Math.max(k-Math.abs(p-q),0)/k;return Math.min(p,q)-h*h*k*.25;};
+ const lines=(A,t)=>{
+  const wave=1.4*Math.sin(A/DEG*9)*smooth(A,120,160);                    // a soft wave along the top of the back
+  return {top:t-top(A)-wave,bottom:bottom(A)-t,front:A-front(t),ear:-insideEllipse(A,t,93,95,12.5,14.5)};
+ };
+ const field=v=>{const [A,t]=at(v),L=lines(A,t);return Math.min(meet(meet(L.top,L.front,16),L.bottom,4),L.ear);};
+ const radiusAt=v=>{const [A,t]=at(v),L=lines(A,t);
+  const body=.024+.016*smooth(A,100,165);                                  // cropped at the sides, fuller behind
+  return 1.004+body*smooth(L.top,0,10)*smooth(L.bottom,0,5)*smooth(L.front,0,5)*smooth(L.ear,0,3);};
+ // `ring`: hats and covers sit as on a bare crown (head-cover.js); `radius` is its height for what is worn over it.
+ return Object.freeze({ring:true,radius:1.04,fine:true,field,radiusAt});
+})();
 const HAIR=Object.freeze({
  crop:{front:.46,side:.02,back:-.5,radius:1.07,faceHalf:.78},
  sidepart:{front:.4,swoop:.28,side:0,back:-.5,radius:1.08,faceHalf:.78},
@@ -297,7 +332,7 @@ const HAIR=Object.freeze({
  perm:{front:.42,side:-.12,back:-.44,radius:1.15,faceHalf:.74,bumps:true},
  buzz:{front:.52,side:.06,back:-.36,radius:1.025,faceHalf:.8},
  afro:{front:.48,side:-.12,back:-.5,radius:1.34,faceHalf:.74,lift:.18},
- horseshoe:{ring:true,radius:1.04},   // thick enough to be seen from the front (the owner, 26 November 2026: "the hair should be more visible")
+ horseshoe:HORSESHOE,
  bald:null,
  pixie:{front:.36,swoop:.2,side:-.04,back:-.42,radius:1.06,faceHalf:.78},
  shoulder:{front:.28,side:-.42,back:-.56,radius:1.1,faceHalf:.66},
@@ -360,18 +395,6 @@ function cutHairCap(style,flip,spec){
  const lowAt=v=>THREE.MathUtils.lerp(spec.side,spec.back,smooth(-v.z,-.2,.7));
  const fieldOf=v=>{
   if(spec.field)return spec.field(v);
-  if(spec.ring){
-   // A horseshoe: a band from the temples round the back, up to temple height at the sides and rising well up
-   // behind into a crescent with a soft wave along its top; its front ends come down as sideburns, where a beard joins.
-   const a=Math.abs(Math.atan2(v.x,v.z)),back=smooth(a,1.2,Math.PI),wave=.035*Math.sin(Math.atan2(v.x,v.z)*9)*back;
-   // Nobody's hair grows over or under the ear (the owner, 26 November 2026: "who grows hair around the ear like that"):
-   // above the ear (its top is at y 0.215, the braids' opening below) the band's lower edge is the ear's top; in front
-   // of it a sideburn comes down to mid-ear; behind it the hair goes down to the nape.
-   const inFront=smooth(v.z,.2,.3),behind=smooth(-v.z,.2,.36),lower=.225+(-.12-.225)*inFront+(-.44-back*.1-.225)*behind;
-   const top=.36+back*.21+wave-v.y,bottom=v.y-lower,ends=a-.98-.3*smooth(-v.y,-.04,.44);   // the sideburns narrow downward
-   const m=Math.min(top,bottom),k=.2,h=Math.max(k-Math.abs(m-ends),0)/k;
-   return Math.min(m,ends)-h*h*k*.25;
-  }
   // The fringe: straight across (arched a little, so it frames the brow), or swept down to one side from a parting.
   let front=spec.front+.06*(v.x/spec.faceHalf)**2;
   if(spec.fringe)front+=spec.fringe*Math.pow(.5+.5*Math.cos((v.x+.08)*24),10);
@@ -387,7 +410,7 @@ function cutHairCap(style,flip,spec){
   return Math.min(Math.min(outFace,c)-hh*hh*kk*.25,ear*.1);
  };
  // (A piece that covers only part of the head, a beard, takes a finer patch of the sphere: spec.patch.)
- const segments=spec.fringe?128:64,rings=spec.fringe?88:44;
+ const segments=spec.fringe||spec.fine?128:64,rings=spec.fringe||spec.fine?88:44;
  const sphere=spec.patch?new THREE.SphereGeometry(1,...spec.patch):new THREE.SphereGeometry(1,segments,rings),S=sphere.attributes.position,T=sphere.index.array;
  // The sphere's seam (its first and last meridian) made exactly one, so no pinholes show along it.
  if(!spec.patch)for(let iy=0;iy<=rings;iy++){const i=iy*(segments+1);S.setXYZ(i+segments,S.getX(i),S.getY(i),S.getZ(i));}
@@ -437,10 +460,14 @@ function addHair(list,recipe,m){
  // Hair and hat are built in head-bone space, then carried to model space.
  const at=(x,y,z)=>[x,m.headY+y,z];
  const cap=style==='longbraids'?null:hairCap(style,recipe.hair.flip);
- if(cap){const p=cap.attributes.position,v=new THREE.Vector3();for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);shapeHeadPoint(v,m.profile);p.setXYZ(i,v.x,v.y,v.z);}cap.computeVertexNormals();
+ const capInk=cap&&HAIR[style]?.radiusAt?new Float32Array(cap.attributes.position.count):null;
+ if(cap){const p=cap.attributes.position,v=new THREE.Vector3();for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);if(capInk)capInk[i]=THREE.MathUtils.smoothstep(v.length()-1.004,.006,.022);shapeHeadPoint(v,m.profile);p.setXYZ(i,v.x,v.y,v.z);}cap.computeVertexNormals();
   // The cap's own field, laid out the way part() lays out its triangles (one vertex per corner, in index order).
   const hf=cap.userData.hairField,index=cap.index;
   const piece=part(list,cap,'head',c,M(cx,m.headY+cy,0,0,0,0,...S));
+  // Hair that rises from nothing at its edge (a cropped horseshoe) is inked only where it stands off the head, as a
+  // beard is: an outline along its rooted edge would be a hard line across the temple.
+  if(capInk&&index)for(let k=0;k<index.count;k++)piece.attributes.ink.setX(k,capInk[index.getX(k)]);
   if(hf&&index){const n=index.count,keep=new Float32Array(n),field=new Float32Array(n);for(let i=0;i<n;i++){const j=index.getX(i);keep[i]=hf.keep[j];field[i]=hf.field[j];}piece.userData.hairField={keep,field};}
  }
  const dark=new THREE.Color(c).multiplyScalar(.82).getStyle();
@@ -881,7 +908,9 @@ export const wearsSwimSkirt=recipe=>wearsSwimTop(recipe)&&(recipe.age==='elder'|
 
 function torsoProfile(recipe,m){
  const belly=1+(recipe.body.build-.5)*.12,hipRatio=m.hips/m.width;
- return [[0,-.1],[hipRatio*.86,-.08],[hipRatio,.05],[hipRatio,.13],[hipRatio,.15],[m.waistRatio*belly,.3],[m.waistRatio*(1+(belly-1)*.6),.5],[1,.66],[.985,.74],[.95,.8],[.88,.87],[.76,.93],[.58,.98],[.38,1.01],[.19,1.03],[0,1.04]];
+ const lower=[[0,-.1],[hipRatio*.86,-.08],[hipRatio,.05],[hipRatio,.13],[hipRatio,.15],[m.waistRatio*belly,.3],[m.waistRatio*(1+(belly-1)*.6),.5]];
+ // The shoulders: sloping away to the neck, or (a sturdy frame) carried out square to the arm before they turn in.
+ return [...lower,...(m.sturdy?[[1,.64],[1,.76],[.995,.85],[.975,.91],[.92,.96],[.78,.995],[.54,1.02],[.27,1.035],[0,1.04]]:[[1,.66],[.985,.74],[.95,.8],[.88,.87],[.76,.93],[.58,.98],[.38,1.01],[.19,1.03],[0,1.04]])];
 }
 /**
  * The body's material, carrying the painted garment. The texture is mixed over the
@@ -984,7 +1013,7 @@ function addBody(list,recipe,m,swim=false){
  // flat straps run from it over the shoulders and down the back to it again.
  if(onePiece)addStraps(list,bodyVolume(recipe,m),m,{x:W/2*.4,from:SWIMSUIT.top-.04,hw:.014*m.k,th:.003*m.k,gap:.002*m.k,colour:bottom,skin:'chest'});
  // Neck.
- tube(list,[0,m.neckY-.02,0],[0,m.headY+.01,0],m.armR*1.08,'neck',skin,8);
+ tube(list,[0,m.neckY-.02,0],[0,m.headY+.01,0],m.neckR,'neck',skin,m.sturdy?14:8);
  // A kariyushi's open camp collar is modelled, not painted: a stand behind the neck that
  // rolls into the fall over the shoulders and folds back down the front to the V. It is
  // a real edge in silhouette and catches the light, so it reads as a collar, not a bib.
@@ -1376,7 +1405,7 @@ function addHeadTowel(list,m,surfaces){
  * the chest carries the torso's top, so they stay where they were laid in every pose.
  */
 export function bodyVolume(recipe,m){
- const prof=torsoProfile(recipe,m),W=m.width,D=m.depth,neckR=m.armR*1.08,n0=m.neckY-.02,n1=m.headY+.01,top=m.hipY+1.04*m.torso;
+ const prof=torsoProfile(recipe,m),W=m.width,D=m.depth,neckR=m.neckR,n0=m.neckY-.02,n1=m.headY+.01,top=m.hipY+1.04*m.torso;
  const caps=[1,-1].map(sx=>({c:new THREE.Vector3(sx*m.shoulderX-sx*m.armR*.12,m.shoulderY-m.armR*.05,0),r:new THREE.Vector3(m.armR*1.18,m.armR*1.18*.62,m.armR*1.18*Math.min(1.1,D/W*1.6))}));
  const sdf=p=>{
   const t=(p.y-m.hipY)/m.torso;
@@ -1713,7 +1742,8 @@ function buildHead(recipe,m,faceSize){
  const canvas=document.createElement('canvas');canvas.width=canvas.height=faceSize;
  const ctx=canvas.getContext('2d');
  const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=4;
- let g=new THREE.SphereGeometry(1,36,26);
+ // (A sculpted head has a brow, sockets and a nose in its own surface: it needs the finer sphere to hold them.)
+ let g=m.profile.sculpt?new THREE.SphereGeometry(1,120,84):new THREE.SphereGeometry(1,36,26);
  const pos=g.attributes.position,uv=g.attributes.uv,v=new THREE.Vector3();
  // The face is projected onto the front of the sphere; everything else samples the
  // canvas edge, which is plain skin.
@@ -1728,7 +1758,9 @@ function buildHead(recipe,m,faceSize){
  // The face is shaded as if it were flat and tipped up to the light, as a drawn face
  // is: a sphere's own normals put a hard shadow line straight across the cheeks.
  const nrm=g.attributes.normal,n=new THREE.Vector3(),toward=new THREE.Vector3(0,.4,.92).normalize();
- for(let i=0;i<nrm.count;i++){n.fromBufferAttribute(nrm,i);n.lerp(toward,THREE.MathUtils.smoothstep(n.z,-.35,.45)*.7).normalize();nrm.setXYZ(i,n.x,n.y,n.z);}
+ // (A sculpted head keeps most of its own normals: its brow, sockets and nose are there to catch the light.)
+ const lean=m.profile.sculpt?.28:.7;
+ for(let i=0;i<nrm.count;i++){n.fromBufferAttribute(nrm,i);n.lerp(toward,THREE.MathUtils.smoothstep(n.z,-.35,.45)*lean).normalize();nrm.setXYZ(i,n.x,n.y,n.z);}
  // atan2 wraps on the rear/side seam. Interpolating from u=0 to u=1
  // across a triangle paints the whole face there, including red lips.
  // Give those triangles their own plain-skin UVs, retaining smooth normals.
@@ -1757,7 +1789,8 @@ function buildHead(recipe,m,faceSize){
  head.position.y=m.headCentre-m.headY;
  if(INK_NOSES[recipe.nose.style])head.add(inkNoseBump(recipe,m,material,{PHI0,PHI,TH0,TH}));
  // The scruffy beard is painted on a shell (the other beards are built: beard-mesh.js).
- const beard=recipe.facial?.paint==='scruff'?beardShell(m,faceSize):null;if(beard)head.add(beard.mesh);
+ // (The shadow's stipple is fine: its shell is painted at twice the scruff's size, so a dot is round close up.)
+ const beard=recipe.facial?.paint==='scruff'?beardShell(m,faceSize):recipe.facial?.paint==='shadow'?beardShell(m,faceSize*2):null;if(beard)head.add(beard.mesh);
  return {head,canvas,ctx,texture,beard};
 }
 

@@ -208,6 +208,11 @@ export function paintGarment(ctx,recipe,m,radiusAt){
    // The shadow skips the notch (index 2): in the notch it would read as a dark spike.
    for(const s of [-1,1])poly(CAMP_COLLAR.filter((_,i)=>i!==2).map(([f,t])=>pt(Math.min(.99,f*1.04),t-.016,s)),shade(top,.8),{stroke:null});
    poly([pt(.62,1.01,-1),pt(.62,1.01,1),[0,.73]],skin,{stroke:null});marks.push('open neck','collar shadow');
+   // A few clean curls of chest hair in the open collar (recipe.marks.chesthair).
+   if(recipe.marks?.chesthair)wrapped(false,()=>{ctx.strokeStyle=shade(skin,.36);ctx.lineWidth=line*1.1;ctx.lineCap='round';
+    for(const [f,t,turn] of [[0,.795,1],[-.085,.835,-1],[.085,.835,1],[-.17,.878,1],[0,.872,-1],[.17,.878,-1],[-.09,.915,-1],[.1,.918,1]]){
+     const x=X(fx(f,t),t),y=Y(t),u=TW*.0105;ctx.beginPath();ctx.moveTo(x-u,y-u*.5);ctx.quadraticCurveTo(x,y+u*1.1*turn,x+u,y-u*.5*turn);ctx.stroke();}
+    marks.push('chest hair');});
    // The top button, under the V, is a wooden one; the rest are shell.
    placket(.73,hem+.03,.02);buttons([.695],.011,'#9a6a42');buttons([.57,.45,.33],.0085,'#f8f6ef');
    pocket(W*.25,.62,W*.22,.17,top);hemRound();break;

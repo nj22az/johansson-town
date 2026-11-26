@@ -36,9 +36,13 @@ export const PARTS=Object.freeze({
  head:HEAD_FORMS,
  hair:Object.freeze(['crop','sidepart','bob','long','ponytail','sweptponytail','braids','longbraids','bun','spiky','perm','buzz','afro','horseshoe','bald','pixie','shoulder','curtains','slick','mullet','topknot','pigtails','twinbuns','longfringe']),
  eyes:Object.freeze(['round','dot','almond','sleepy','lashes','narrow','sparkle','gentle','doe','cat','droopy','heavy','bright','tired','squint','starry','inkoval']),
- brows:Object.freeze(['straight','arched','thick','thin','worried','bushy','angled','short','rounded','tapered','feathered','maro','none']),
+ brows:Object.freeze(['straight','arched','thick','thin','worried','bushy','angled','short','rounded','tapered','feathered','maro','none',
+  // Appended (no saved id moves): a heavy bar of a brow, thickest at its inner end.
+  'strong']),
  nose:Object.freeze(['button','dot','line','wide','hook','pointed','snub','bulb','ridge',...Object.keys(INK_NOSES),'none']),   // then the ink noses (face.js)
- mouth:Object.freeze(['smile','flat','grin','small','wide','smirk','pout','cat','teeth','open','lopsided','tongue','buck','soft']),
+ mouth:Object.freeze(['smile','flat','grin','small','wide','smirk','pout','cat','teeth','open','lopsided','tongue','buck','soft',
+  // Appended: a wide, nearly flat line with one corner a little up; a dry half-smile.
+  'dry']),
  glasses:Object.freeze(['none','round','square','sun','half']),
  // Moustache and beard are worn together or apart, as in any face maker; `facial` is
  // every style either can be, the single name older recipes gave.
@@ -133,10 +137,14 @@ export function normalizeRecipe(input={}){
  const flag=(v,f)=>v===undefined?f:!!v;
  return {
   v:1,name:String(r.name||'').slice(0,24),age:pick(AGES,r.age,'adult'),
-  body:sub('body',{height:num,build:num,proportion:(v)=>pick(['classic','rounded','studio'],v,'classic'),silhouette:(v)=>pick(PARTS.silhouette,v,'neutral'),skin:col}),
+  body:sub('body',{height:num,build:num,proportion:(v)=>pick(['classic','rounded','studio'],v,'classic'),silhouette:(v)=>pick(PARTS.silhouette,v,'neutral'),skin:col,
+   // 'sturdy': a thick neck, square shoulders and a barrel chest (build.js measure, torsoProfile). Absent from older recipes: standard.
+   frame:(v)=>pick(['standard','sturdy'],v,'standard')}),
   head:sub('head',{size:num,shape:num,form:(v,f)=>pick(HEAD_FORMS,v,f),jaw:num,cheeks:num,roundness:num}),
   hair:sub('hair',{style:(v,f)=>pick(PARTS.hair,v,f),colour:col,flip:flag,length:num,volume:num,tieColour:(v,f)=>col(v,r.hair?.style==='braids'?col(r.outfit?.accent,f):f)}),
-  eyes:sub('eyes',{style:(v,f)=>pick(PARTS.eyes,v,f),colour:col,size:num,width:num,spacing:num,height:num,tilt:num}),
+  eyes:sub('eyes',{style:(v,f)=>pick(PARTS.eyes,v,f),colour:col,size:num,width:num,spacing:num,height:num,tilt:num,
+   // How big the eye's highlight is, 0 (a small understated glint) to 1 (the full sparkle; absent: 1).
+   shine:num}),
   brows:sub('brows',{style:(v,f)=>pick(PARTS.brows,v,f),colour:col,size:num,spacing:num,height:num,tilt:num}),
   nose:sub('nose',{style:(v,f)=>pick(PARTS.nose,v,f),size:num,height:num,x:num}),
   mouth:sub('mouth',{style:(v,f)=>pick(PARTS.mouth,v,f),colour:col,size:num,width:num,height:num,x:num}),

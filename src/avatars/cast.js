@@ -63,15 +63,16 @@ export const CAST_RECIPES=castSet({
  // improvement"; "make Johansson look a bit more manly and not so round, he is supposed to look more like me"): a broad
  // square-jawed head (head-profile.js 'strong'), not a ball; a bald crown with close grey sides; dark heavy brows and dark
  // brown eyes under heavy lids (they were grey and blue); a broad nose set high enough that the whole mouth shows; and a
- // short grey beard over the jaw and the lip, painted (face.js PAINTED_BEARDS) with the stubble shadow under it, in place
- // of the 120 raised bristles the ink line drew as a rash of dots round his mouth.
+ // beard kept short, grey going white, sideburn to sideburn with the moustache joined (beard-mesh.js 'cropped'), in place
+ // of the 120 raised bristles the ink line drew as a rash of dots round his mouth. His hair is the horseshoe round a bald
+ // crown (build.js HORSESHOE), a shade darker than the beard it runs into at the sideburn.
  Johansson:R({name:'Johansson',
-  body:{height:.72,build:.72,silhouette:'masculine',skin:'#cf9670'},head:{size:.46,shape:.42,form:'strong',jaw:.8,cheeks:.4},
-  hair:{style:'horseshoe',colour:'#7d7973'},
-  eyes:{style:'heavy',colour:'#3a2a1e',size:.4,spacing:.52,height:.5,tilt:.45},
-  brows:{style:'thick',colour:'#3a302a',size:.72,height:.52,tilt:.5},
-  nose:{style:'wide',size:.5,height:.58},mouth:{style:'soft',colour:'#a8433e',size:.72,height:.4},
-  facial:{style:'none',paint:'scruff',colour:'#8a857e'},marks:{stubble:true},wrinkles:.7,blush:.25,
+  body:{height:.72,build:.72,silhouette:'masculine',frame:'sturdy',skin:'#f1cdb4'},head:{size:.46,shape:.5,form:'rugged',jaw:.5,cheeks:.5},
+  hair:{style:'horseshoe',colour:'#8b8782'},
+  eyes:{style:'heavy',colour:'#2b1f17',size:0,spacing:.5,height:.6,tilt:.45,shine:.2},
+  brows:{style:'strong',colour:'#241c17',size:.78,height:.38,tilt:.4},
+  nose:{style:'none',size:.5,height:.5},mouth:{style:'dry',colour:'#a8433e',size:.6,width:.8,height:.39},
+  facial:{style:'none',paint:'shadow',colour:'#6b645f'},marks:{creases:true,nostrils:true,folds:true,finecrows:true,chesthair:true},wrinkles:0,blush:.2,
   outfit:{top:'kariyushi',topColour:'#7fb0d8',pattern:'flowers',bottom:'shorts',bottomColour:'#c8b48a',footwear:'sandals',shoes:'#6d4a32',accent:'#f4f1ea'},
   swim:{colour:'#2f5f9e'}}),
  // The creator's own design for her, approved in Johansson Studio on 18 October 2026 (thuan-studio-design.js). Its

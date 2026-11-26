@@ -143,3 +143,5 @@ brand.test.mjs
 kikkou-ink.test.mjs
 # Sakura's restroom: the drawn toilet, basin and tap (SK-401), the door shut by default, Thuan's decor and stickers.
 sakura-restroom.test.mjs
+# Johansson's head, sculpted in Blender and worn by the generator; his sturdy frame and his face.
+rugged-head.test.mjs

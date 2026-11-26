@@ -1,0 +1,31 @@
+{
+ "source": "Original Johansson Town head, sculpted in Blender for the game's generator",
+ "generator": "tools/blender/build-johansson-head.py",
+ "blender": "5.3.0",
+ "halfAxes": {
+  "width": 0.92,
+  "height": 1.12,
+  "depth": 0.98,
+  "heightOverWidth": 1.217
+ },
+ "radius": {
+  "min": 0.9424,
+  "max": 1.3598
+ },
+ "features_deg": {
+  "brow": 81.3,
+  "eye": 90.53,
+  "nose": 105.05,
+  "mouth": 118.07,
+  "eyeA": 16.16
+ },
+ "profile": {
+  "brow": 1.1191,
+  "eyeSocket": 0.9824,
+  "noseTip": 1.3398,
+  "upperLip": 1.1,
+  "chin": 1.2333
+ },
+ "jawCorner": 1.3516,
+ "temple": 0.9707
+}
