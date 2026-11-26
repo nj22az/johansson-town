@@ -394,9 +394,20 @@ live game is `main`, his phone holds a saved copy of the old look, and the fix (
   - The forearm ends in a round cap that hid the top of a hand placed where the mitten was: a hand needs a wrist (the
     kit arm tapered into it), and long sleeves' cuffs end at the mitten's top.
 - **Z-fighting** (the owner, with two screenshots from the ferry: "Lots of z fighting I thought we eliminated it", "no z
-  fighting allowed"): two helpers were started on it in their own worktrees, `zfight/ferry` (the ferry and any global
-  renderer cause) and `zfight/town` (a stronger near-coplanar audit of the town and every interior, and fixes). Their
-  handovers are `briefs/HANDOFF-ZFIGHT-FERRY-2026-11-26.md` and `briefs/HANDOFF-ZFIGHT-TOWN-2026-11-26.md` on those branches.
+  fighting allowed"): done in two helpers' branches, both merged here. Details: `briefs/HANDOFF-ZFIGHT-FERRY-2026-11-26.md`
+  and `briefs/HANDOFF-ZFIGHT-TOWN-2026-11-26.md`.
+  - Ferry: the engine-room door's hazard stripes lay in the deck vinyl's top plane (now on top of it); the banding on the
+    white walls was shadow acne, a fixed normal bias that halved in texels on the iPad's smaller shadow map
+    (`render/sun-shadow.js` now holds it in texels; desktop unchanged); the Kikkou ID pass now keeps a decal's polygon
+    offset. `tools/flicker-audit.mjs` measures flicker by nudging the camera and the shadow map: at the door, 260 unstable
+    pixels in 10,000 before, 0.15 after.
+  - Town: 23 rooms had never been scanned; a near-coplanar check with a threshold from the depth buffer
+    (`tools/near-coplanar.mjs`, `tests/near-coplanar.test.mjs`, which holds each room to its count) found 423 pairs over
+    85.5 m², 316 over 19.1 m² after the fixes. The remaining rooms and the streets' signs are 12 self-contained tasks
+    in the town handover, written so Codex can take them.
+  - Left: the engine room's Blender model has coplanar faces inside its GLB (no test scans it); Umi-no-yu, the school,
+    the workshops, the port terminal and Minato's streets are untouched. Nothing was measured on an Apple GPU.
+  - `tests/ferry-engine-room-access.test.mjs` fails its ladder-width check on the published `main` too (not today's).
 - The `court` and `broad` shoes are fitted by frame, not chosen: the wardrobe has no entry for them.
 - The resident photo shoots (`assets/images/residents/shoot/`) and the Blender cast sheet (`tools/blender/rig-cast.py`)
   were rendered before the hands changed, except the four people of this section's.
