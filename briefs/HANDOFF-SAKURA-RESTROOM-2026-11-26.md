@@ -414,6 +414,7 @@ live game is `main`, his phone holds a saved copy of the old look, and the fix (
 
 # Then: the hands, worn, and every pose remade to them (branch `hands/kit`)
 
+Merged into `claude/dreamy-ritchie-cxufpl` (0fc7bea); the runtime and the residents' portraits rebuilt with it (97e42f6).
 Not on `main`. The owner: "Omg they have mitten hands"; of a palm of spheres with spheres for fingers, "Draw the hand
 properly not like a balloon with sausages on it"; of a lumpy anatomical one, "The hands look awful, make them Disney
 quality". The owner has not yet seen this hand worn.
@@ -485,9 +486,15 @@ quality". The owner has not yet seen this hand worn.
   mitten did first was tried and left the hands 35 to 50 mm off the face). Salute's jerk, failing before, passes.
 - Looked at: `art/characters/body-kit/review/` (rest, closed, poses, pairs, sit, hold, drive, ride; the game's shader).
 
+- After the merge, on 97e42f6 in a fresh checkout: `node tools/ci-guard.mjs`, 129 files, 692 tests, all green in 462 s
+  (the z-fighting tests and the rebuilt runtime and portraits included).
+
 ## Remains
-- The owner has not seen the hand worn. Show him the review sheets before this goes to `main`; then rebuild the runtime
-  and the portraits (the guard's two failures), and the resident photo shoots and the Blender cast sheet.
+- The owner has not seen the hand worn. Show the owner the review sheets before this goes to `main`. The runtime and the
+  portraits are rebuilt (97e42f6); the resident photo shoots and the Blender cast sheet are not.
+- The Hug's free hands and the `Peace` move (moves.js: "Hand by the cheek", played by four personalities) were drawn as
+  peace signs on a mitten. With two shapes the kit's open hand lies by the cheek and reads as a hand holding its own head
+  (`hands-pairs.jpg`, Hug). A peace sign (index and middle up, the rest closed) is the first third shape to add.
 - Facepalm's shoulder on the round adult (above): a stage that keeps the shoulder's twist where the seed has it while the
   palm is turned is the likely fix. HideFace on Mr Fujita: count his glasses in the test's head, or lay the hand on the face
   past them (it should not: they are in front of his eyes).
