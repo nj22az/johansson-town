@@ -25,7 +25,9 @@ export function createShopRefrigerator(room,reg){
  const doors=[];
  for(let i=0;i<4;i++){
   const door=new THREE.Group(),x=-2.255+i*1.33;door.position.set(x,0,-3.145-i%2*.022);door.name='Sliding refrigerator door '+(i+1);group.add(door);
-  box(.024,1.86,.03,.012,1.18,0,frame,door);box(.024,1.86,.03,1.292,1.18,0,frame,door);box(1.304,.024,.03,.652,.262,0,frame,door);box(1.304,.024,.03,.652,2.098,0,frame,door);
+  box(.024,1.86,.03,.012,1.18,0,frame,door);box(.024,1.86,.03,1.292,1.18,0,frame,door);// (the rails butt between the stiles, not over them: their ends lay in the stiles' faces, a flicker in the Kikkou
+  // line's IDs at every corner; tools/near-coplanar.mjs)
+  box(1.256,.024,.03,.652,.262,0,frame,door);box(1.256,.024,.03,.652,2.098,0,frame,door);
   box(.028,.35,.035,i%2?.10:1.20,1.12,.035,dark,door);
   const pane=new THREE.Mesh(new THREE.PlaneGeometry(1.254,1.812),glass);pane.position.set(.652,1.18,.004);pane.renderOrder=3;door.add(pane);
   const entry={door,x,amount:0,timer:0,direction:i%2?-1:1};doors.push(entry);
