@@ -98,6 +98,11 @@ export function createKikkouIds(renderer){
    m.addEventListener('dispose',cleanup);n.userData.disposeSource=cleanup;cache.set(m,n);made.add(n);
   }
   n.visible=!idSkips(m);n.side=m.side;
+  // A decal (a floor marking, a plate, a poster) is told from what it lies on by its polygon offset, in the IDs as in the
+  // picture: without it the two are drawn at one depth here and their IDs fight, and the line drawn where the ID changes
+  // scribbles across the decal. (The cache holds one ID material per source material, so an offset never leaks to
+  // another surface.)
+  n.polygonOffset=!!m.polygonOffset;n.polygonOffsetFactor=m.polygonOffsetFactor||0;n.polygonOffsetUnits=m.polygonOffsetUnits||0;
   return n;
  }
  return {
