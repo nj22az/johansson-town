@@ -36,9 +36,11 @@ function buildHotCase(room,anchor,action){
  const C=HOT_CASE,y0=C.top,cx=C.x,cz=C.z;
  const frame=mat(0xe3e7dd),steel=mat(0xc9ced2,{metalness:.4,roughness:.35});
  // Base, back and roof in red; glass front and sides; a warm lit floor inside.
- add(room,new THREE.BoxGeometry(C.w,.05,C.d),frame,cx,y0+.025,cz,'Sakura hot case');
+ // The back panel runs from the base's end up under the roof; the base butts against it and the roof covers its head
+ // (they overlapped, their faces in one plane: a flicker in the Kikkou line's IDs; tools/near-coplanar.mjs).
+ add(room,new THREE.BoxGeometry(C.w-.01,.05,C.d),frame,cx-.005,y0+.025,cz,'Sakura hot case');
  add(room,new THREE.BoxGeometry(C.w+.02,.05,C.d+.02),frame,cx,y0+C.h,cz,'Sakura hot case');
- add(room,new THREE.BoxGeometry(.02,C.h,C.d),frame,cx+C.w/2,y0+C.h/2,cz,'Sakura hot case');
+ add(room,new THREE.BoxGeometry(.02,C.h-.025,C.d),frame,cx+C.w/2,y0+(C.h-.025)/2,cz,'Sakura hot case');
  const glass=new THREE.MeshStandardMaterial({color:0xfff3d6,transparent:true,opacity:.22,roughness:.05,depthWrite:false});
  add(room,new THREE.BoxGeometry(.012,C.h-.05,C.d),glass,cx-C.w/2,y0+C.h/2,cz,'Sakura hot case glass');
  for(const s of [-1,1])add(room,new THREE.BoxGeometry(C.w,C.h-.05,.012),glass,cx,y0+C.h/2,cz+s*C.d/2,'Sakura hot case glass');

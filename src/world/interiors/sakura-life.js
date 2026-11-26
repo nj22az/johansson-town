@@ -260,8 +260,9 @@ function buildStorage(parent){
    ctx.strokeStyle='#1c1714';ctx.lineWidth=6;ctx.beginPath();ctx.arc(145,250,14,Math.PI,0);ctx.stroke();ctx.beginPath();ctx.moveTo(200,250);ctx.lineTo(228,245);ctx.stroke();ctx.fillStyle='#f07a8a';ctx.beginPath();ctx.arc(w/2,290,16,0,Math.PI);ctx.fill();
    ctx.fillStyle='#b63231';ctx.fillRect(250,420,40,110);ctx.fillStyle='#ffffff';ctx.fillRect(250,460,40,26);
    ctx.fillStyle='#ffffff';ctx.fillRect(40,720,w-80,60);text(ctx,"Sea Breeze Cola",w/2,750,40,'#b63231');})],
-  // Tanabata star and a summer palm from past campaigns.
-  [.75,.75,.9,-6.62,.15,standee(400,400,(ctx,w,h)=>{ctx.fillStyle='#ffc93c';ctx.beginPath();for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,r=i%2?80:190;ctx.lineTo(w/2+Math.cos(a)*r,h/2+Math.sin(a)*r);}ctx.fill();text(ctx,"Tanabata",w/2,h/2,64,'#d7263d');})],
+  // Tanabata star and a summer palm from past campaigns. (The star leans west of the beer crates, x 0.22 to 1.08, not in
+  // them: at x 0.9 its strut stood through the bottles, a face of one in its plane; tests/sakura-surfaces.test.mjs.)
+  [.75,.75,-.2,-6.62,.15,standee(400,400,(ctx,w,h)=>{ctx.fillStyle='#ffc93c';ctx.beginPath();for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,r=i%2?80:190;ctx.lineTo(w/2+Math.cos(a)*r,h/2+Math.sin(a)*r);}ctx.fill();text(ctx,"Tanabata",w/2,h/2,64,'#d7263d');})],
   [.8,1.4,4.95,-6.45,-.2,standee(400,700,(ctx,w,h)=>{ctx.fillStyle='#8a5a30';ctx.fillRect(180,260,40,420);ctx.fillStyle='#57a52f';for(let i=0;i<7;i++){ctx.save();ctx.translate(200,260);ctx.rotate(-Math.PI/2+(i-3)*.45);ctx.beginPath();ctx.ellipse(0,-120,40,130,0,0,Math.PI*2);ctx.fill();ctx.restore();}ctx.fillStyle='#ffffff';ctx.fillRect(30,590,340,90);ctx.fillStyle='#2a8fcc';ctx.font=`bold 40px ${MARU}`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText("夏だ！冷たいものどうぞ",w/2,635,320);})],
  ];
  for(const [w,h,x,z,tilt,tex] of cutouts){

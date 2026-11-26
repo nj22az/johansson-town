@@ -308,10 +308,14 @@ function views(storeys){
   well:(g,w,h)=>{g.fillStyle='#a7a398';g.fillRect(0,0,w,h);g.fillStyle='#c9d6d6';g.fillRect(0,0,w,h*.12);g.fillStyle='rgba(0,0,0,.08)';for(let y=h*.2;y<h;y+=h*.18)g.fillRect(0,y,w,3);g.fillStyle='#8a8578';g.fillRect(0,h*.9,w,h*.1);},
  };
  const tex={};
+ // Each card stands at a distance of its own, 4 cm further than the last on its side: the cards are wider and taller than
+ // their windows, so two on one side (a room's two windows, or a window over the one below) overlapped in one plane and
+ // flashed where both are seen (tools/near-coplanar.mjs, 26 November 2026). 4 cm is some 450 depth steps across the house.
+ const onSide={};
  for(const o of HOUSE_OPENINGS.filter(q=>q.type==='window'||q.id==='D-TERRACE')){
   const s=storeys[o.level],kind=o.id==='W-B1'?'well':o.side,map=tex[kind]??=canvas(512,384,PAINT[kind]);
-  const alongX=o.side==='south'||o.side==='north',out=o.side==='south'||o.side==='west'?-1:1;
-  const dist=kind==='well'?.85:2.2,w=(o.to-o.from)+dist*1.6,h=(o.head-o.sill)+dist*1.2,mid=(o.from+o.to)/2,hc=(o.sill+o.head)/2-s.F+(kind==='well'?0:.15);
+  const alongX=o.side==='south'||o.side==='north',out=o.side==='south'||o.side==='west'?-1:1,stagger=(onSide[kind]=(onSide[kind]??-1)+1)*.04;
+  const dist=(kind==='well'?.85:2.2)+stagger,w=(o.to-o.from)+dist*1.6,h=(o.head-o.sill)+dist*1.2,mid=(o.from+o.to)/2,hc=(o.sill+o.head)/2-s.F+(kind==='well'?0:.15);
   const card=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map,fog:false,side:THREE.DoubleSide}));
   card.position.set(...s.at(alongX?mid:o.face+out*dist,alongX?o.face+out*dist:mid,hc));
   // The painting faces back in at the window.

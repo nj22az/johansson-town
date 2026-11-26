@@ -40,7 +40,10 @@ function shell(group,{floor,wall,dado,ceiling=0xf3efe2,tatami=false}){
  }else box([w,.04,d],[0,-.02,0],floor,'Floor');
  const wallSet=(len,pos,ry)=>{const g=new THREE.Group();g.position.set(...pos);g.rotation.y=ry;group.add(g);
   const p=(size,at,c,name)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(...size),mat(c));m.position.set(...at);m.receiveShadow=true;if(name)m.name=name;g.add(m);};
-  p([len,.9,.04],[0,.45,0],dado);p([len,h-.9,.04],[0,.9+(h-.9)/2,0],wall,'Upper wall');p([len,.05,.06],[0,.9,.01],0x6f5a44);p([len,.08,.06],[0,.04,.01],0x5a4a3a);};
+  p([len,.9,.04],[0,.45,0],dado);p([len,h-.9,.04],[0,.9+(h-.9)/2,0],wall,'Upper wall');
+  // The rail and the skirting stand on the dado's face (their backs against it, z 0.02 to 0.04), not through the wall to
+  // its back, where their back faces lay in the dado's and the upper wall's (tools/near-coplanar.mjs).
+  p([len,.05,.02],[0,.9,.03],0x6f5a44);p([len,.08,.02],[0,.04,.03],0x5a4a3a);};
  wallSet(w,[0,0,-hd-.02],0);wallSet(d,[-hw-.02,0,0],Math.PI/2);wallSet(d,[hw+.02,0,0],-Math.PI/2);
  for(const [x,len] of [[-(hw+.55)/2,hw-.55],[(hw+.55)/2,hw-.55]])wallSet(len,[x,0,hd+.02],Math.PI);
  box([1.1,h-2.1,.04],[0,2.1+(h-2.1)/2,hd+.02],wall,'Upper wall');

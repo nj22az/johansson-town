@@ -28,7 +28,20 @@ export function createPlanKit({box,collider=()=>{},height:H=2.7,wall=0xeee3cc,fr
   // A head beam over each opening.
   for(const [g0,g1] of gaps){const len=g1-g0,mid=(g0+g1)/2;partitions.push(box(alongX?[len,H-2.0,.08]:[.08,H-2.0,len],alongX?[mid,2.0+(H-2.0)/2,fixed]:[fixed,2.0+(H-2.0)/2,mid],wall,'Doorway head beam'));}
  };
- const floorPatch=(x0,x1,z0,z1,c,name)=>box([x1-x0,.012,z1-z0],[(x0+x1)/2,.012,(z0+z1)/2],c,name);
+ // Floor finishes, all at one level (0.006 to 0.018 m). A finish laid where another already is (the genkan's tiles or a
+ // wet room's floor in the kitchen's boards) is cut into it, not laid over it: two floors in one plane flash on a phone
+ // (Tetsuo's flat, tools/near-coplanar.mjs, 26 November 2026). So the earlier finish is rebuilt round the new one.
+ const patches=[];
+ const lay=(x0,x1,z0,z1,c,name)=>{const m=box([x1-x0,.012,z1-z0],[(x0+x1)/2,.012,(z0+z1)/2],c,name);patches.push({x0,x1,z0,z1,c,name,m});return m;};
+ const floorPatch=(x0,x1,z0,z1,c,name)=>{
+  for(const p of [...patches]){
+   const cx0=Math.max(p.x0,x0),cx1=Math.min(p.x1,x1),cz0=Math.max(p.z0,z0),cz1=Math.min(p.z1,z1);
+   if(cx1-cx0<1e-6||cz1-cz0<1e-6||!p.m?.removeFromParent)continue;
+   p.m.removeFromParent();p.m.geometry?.dispose?.();patches.splice(patches.indexOf(p),1);
+   for(const [a0,a1,b0,b1] of [[p.x0,cx0,p.z0,p.z1],[cx1,p.x1,p.z0,p.z1],[cx0,cx1,p.z0,cz0],[cx0,cx1,cz1,p.z1]])if(a1-a0>1e-6&&b1-b0>1e-6)lay(a0,a1,b0,b1,p.c,p.name);
+  }
+  return lay(x0,x1,z0,z1,c,name);
+ };
  /** A toilet or bath room; the fitting stands at the end away from its door. */
  const wetRoom=(x0,x1,z0,z1,label,toilet,doorAt='z0')=>{
   floorPatch(x0+.04,x1-.04,z0+.04,z1-.04,0xd8e4e6,label+' floor');

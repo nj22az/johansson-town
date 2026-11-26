@@ -54,8 +54,10 @@ export function buildSlidingLeaves({parent,x=0,z=0,width,height,glazing,travel=w
   const leaf=new THREE.Group(),w=width/2;leaf.name=name;leaf.userData.dynamicProp=true;leaf.position.set(x+side*width/4,0,z+side*offset);parent.add(leaf);
   const pane=new THREE.Mesh(new THREE.PlaneGeometry(w-.06,height-.28),glazing);
   pane.position.y=height/2-.06;pane.name=name+' pane';pane.userData.clearWindow=true;pane.renderOrder=3;leaf.add(pane);
-  // The frame in four pieces, so the leaf reads as a leaf edge-on as well as flat.
-  for(const [sw,sh,px,py] of [[.06,height,-(w/2-.03),height/2],[.06,height,w/2-.03,height/2],[w,.08,0,.04],[w,.08,0,height-.04]]){
+  // The frame in four pieces, so the leaf reads as a leaf edge-on as well as flat. The stiles take the corners and the
+  // rails butt between them (JSY-STD-403 rule 2): rails the leaf's full width lay their ends in the stiles' faces, which
+  // the Kikkou line's IDs drew as a flicker at every corner (tools/near-coplanar.mjs, 26 November 2026).
+  for(const [sw,sh,px,py] of [[.06,height,-(w/2-.03),height/2],[.06,height,w/2-.03,height/2],[w-.12,.08,0,.04],[w-.12,.08,0,height-.04]]){
    const m=new THREE.Mesh(new THREE.BoxGeometry(sw,sh,.07),frame);m.position.set(px,py,0);m.castShadow=shadows;leaf.add(m);}
   // The pull bar, on the edge that meets the other leaf.
   const handle=new THREE.Mesh(new THREE.BoxGeometry(.035,.62,.035),bar);handle.position.set(-side*(w/2-.16),1.06,.06);leaf.add(handle);
