@@ -15,7 +15,7 @@ import {buildEyes3d,eyes3dOn} from './eyes3d.js';
 import {pixarBody,dressPixar} from './pixar.js';
 import {beardSpec,curve as lineThrough,ellipse as insideEllipse} from './beard-mesh.js';
 import {headProfile,shapeHeadPoint} from './head-profile.js';
-import {LIMBS,TORSO,FEET,NOSES} from './sculpts/body-kit.js';
+import {LIMBS,TORSO,FEET,NOSES,HANDS} from './sculpts/body-kit.js';
 import {SOFTBOB_HAIR} from './sculpts/softbob-hair.js';
 import {TIEDBACK_HAIR} from './sculpts/tiedback-hair.js';
 import {SOFTWAVE_HAIR} from './sculpts/softwave-hair.js';
@@ -293,6 +293,135 @@ export const SHOE_SHAPES=Object.freeze({sneakers:'sneaker',shoes:'shoe',boots:'b
  * shoe on the stout one, as a shop would fit them (sculpts/body-kit.js FEET: court, broad).
  */
 export const shoeShapeFor=(wear,m)=>wear==='shoes'&&m?.soft?'court':wear==='shoes'&&m?.stout?'broad':SHOE_SHAPES[wear];
+/** The kit's hand, decoded once: its points as it rests (`pos`) and, when the kit has it, closed round a handle (`grip`). */
+let kitHand=null;
+function handKit(){
+ if(kitHand)return kitHand;
+ const bytes=text=>Uint8Array.from(atob(text),c=>c.charCodeAt(0));
+ return kitHand={points:HANDS.points,pos:new Float32Array(bytes(HANDS.hand).buffer),grip:HANDS.grip?new Float32Array(bytes(HANDS.grip).buffer):null,index:new Uint32Array(bytes(HANDS.index).buffer)};
+}
+/** How the kit's hand is worn (kitHandGeometry), in hand lengths (m.hand): its top `wrist` above the hand bone, just inside the
+ *  forearm's end, and `length` from there to the middle fingertip, the mitten's length. */
+const HAND_WEAR=Object.freeze({wrist:.08,length:1.8});
+/**
+ * The hand's contact shape: the one description every pose that lays a hand on something reads (animate.js's reach
+ * solver: its envelope, where it puts the hand and how far off what it rests on; pair-poses.js's bodies; the tests' body
+ * cores), measured from the kit's hand as it is worn, so nothing is tuned to a hand by eye. In hand lengths (m.hand), in
+ * the hand bone's frame, for the left hand (the right is its mirror in x; its palm faces +x):
+ * - `top`: the hand's top over the bone (inside the forearm); `knuckles`: the knuckle line (the kit's); `tip`: the middle
+ *   fingertip; `end`: where a fingertip pushes (a finger's half-thickness up from its end);
+ * - `middle`: the palm's middle, half way from the wrist (the hand bone) to the knuckles: where a reach puts the hand, as an
+ *   animator's hand goal is the palm;
+ * - `centre`, `half`: the middle of its flat (palm and fingers, not the thumb) and its half-sizes, [thickness, length,
+ *   width]: its core, an ellipsoid;
+ * - `lie`: how far the palm's side of the flat reaches from the hand's middle plane: a hand laid flat on something has its
+ *   middle that far off it; `reach`: how far anything of it does on that side, the thumb too;
+ * - `palm`: the way the palm faces ([-1, 0, 0]: at rest, toward the body);
+ * - `touch`: points of its drawn surface (the solver's envelope): in five bands from the wrist to the fingertips, the
+ *   farthest out toward the palm, the back and either side, then the fingertip, the thumb's tip, and every finger's tip and
+ *   the farthest of it toward the palm; `round`: more of it for the head, which has a nose and lips (the bands' farthest
+ *   the four ways between, and the palm and the back in a grid); `inset`: how far that
+ *   envelope stands inside the drawn surface (metres for a body of 1.6 m: none, they are its points); `gap`: how far it is
+ *   kept off what the hand is laid on (a few millimetres: resting on it; the mitten's, whose envelope was its round, a
+ *   centimetre);
+ * - `fist`: the tip, centre, half-sizes, lie and envelope of the hand closed (the kit's grip shape): a fist, a hand round a
+ *   handle or a collar; `hold`: the closed hand's hollow, the round bar it closes on ({at, radius}: its axis, across the
+ *   hand, and its radius).
+ * The mitten it replaced was a ball: 0.9 x 1.15 x 0.78 hand lengths, its middle 0.55 below the bone (MITTEN, kept for the
+ * Pixar bodies, whose poses were made to it with their own hands).
+ */
+export const HAND=(()=>{
+ const K=handKit(),S=HAND_WEAR.length/2,n=K.points,r=v=>Math.round(v*1e4)/1e4,top=HAND_WEAR.wrist;
+ // each point in the bone's frame, with its height down the resting hand (the kit's y, 1 the wrist .. -1 the fingertip) and
+ // whether it is the thumb's (what stands out past the fingers' width on the resting hand, on the forefinger's side)
+ const at=(shape,i)=>[shape[i*3]*S,top+(shape[i*3+1]-1)*S,shape[i*3+2]*S,K.pos[i*3+1]];
+ const rest=Array.from({length:n},(_,i)=>at(K.pos,i)),width=Math.max(...rest.filter(p=>p[3]<-.3).map(p=>Math.abs(p[2]))),thumb=rest.map(p=>Math.abs(p[2])>width+1e-6);
+ // each finger's own points: the pieces of the skin below the knuckles, apart (along the mesh's edges)
+ const near=Array.from({length:n},()=>[]);for(let i=0;i<K.index.length;i+=3)for(let j=0;j<3;j++){const a=K.index[i+j],b=K.index[i+(j+1)%3];near[a].push(b);near[b].push(a);}
+ const below=i=>K.pos[i*3+1]<HANDS.knuckles-.25,seen=new Uint8Array(n),fingers=[];
+ for(let i=0;i<n;i++){if(!below(i)||seen[i])continue;const f=[i];seen[i]=1;for(let q=0;q<f.length;q++)for(const j of near[f[q]])if(below(j)&&!seen[j]){seen[j]=1;f.push(j);}if(f.length>20)fingers.push(f);}
+ const measure=shape=>{
+  const P=Array.from({length:n},(_,i)=>at(shape,i)),flat=P.filter((p,i)=>!thumb[i]);
+  const tip=Math.min(...flat.map(p=>p[1])),thick=Math.max(...flat.map(p=>Math.abs(p[0])));
+  const band=(u,w=.12)=>P.filter(p=>Math.abs(p[3]-u)<w),far=(list,f)=>list.reduce((a,p)=>f(p)>f(a)?p:a);
+  // (the palm's side of the flat as far out as it goes: a relaxed hand is a little cupped, and lies on what is under it on
+  // its fingers and the heel of the palm; a fist, on its curled fingers)
+  const lie=Math.max(...flat.map(p=>-p[0]));
+  const touch=[];
+  for(const u of [.7,.35,0,-.35,-.7]){const b=band(u);for(const f of [p=>-p[0],p=>p[0],p=>p[2],p=>-p[2]])touch.push(far(b,f).slice(0,3));}
+  touch.push(far(P,p=>-p[1]).slice(0,3),far(P,p=>p[2]).slice(0,3));
+  // (and every finger's tip and its palm's side: a fingertip curled over a thigh's side went into the cloth hung there)
+  for(const f of fingers){const F=f.map(i=>P[i]);touch.push(far(F,p=>-p[1]).slice(0,3),far(F,p=>-p[0]).slice(0,3));}
+  // (round: the same bands' farthest the four ways between, for a hand laid on the face: turned edge-on to it, the little
+  // finger's side of a hand before the lips went into the chin between the envelope's points)
+  const round=[];for(const u of [.7,.35,0,-.35,-.7]){const b=band(u);for(const f of [p=>p[2]-p[0],p=>-p[2]-p[0],p=>p[2]+p[0],p=>p[0]-p[2]])round.push(far(b,f).slice(0,3));}
+  // (and the palm and the back of it in a grid, eight down by five across: laid on a face, its nose or lips came up between
+  // the bands' points into the fingers)
+  for(const u of [.8,.55,.3,.05,-.2,-.45,-.7,-.9])for(const z of [-.55,-.27,0,.27,.55]){const c=band(u,.13).filter(p=>Math.abs(p[2]-z)<.14);
+   if(c.length)round.push(far(c,p=>-p[0]).slice(0,3),far(c,p=>p[0]).slice(0,3));}
+  const freeze=list=>Object.freeze(list.map(p=>Object.freeze(p.map(r))));
+  return {tip:r(tip),centre:Object.freeze([0,r((top+tip)/2),0]),half:Object.freeze([r(thick),r((top-tip)/2),r(width)]),lie:r(lie),reach:r(Math.max(...P.map(p=>-p[0]))),touch:freeze(touch),round:freeze(round)};};
+ const open=measure(K.pos),knuckles=top+(HANDS.knuckles-1)*S;
+ // The closed hand's hollow (the kit's grip): the biggest round bar that lies along the palm, touching it, with the curled
+ // fingers come round its far side (along the hand's breadth, over the middle two fingers): where a held thing's axis is.
+ let hold=null;
+ if(K.grip){const pts=Array.from({length:n},(_,i)=>at(K.grip,i)).filter((p,i)=>!thumb[i]&&Math.abs(p[2])<.45);
+  for(let y=-1.4;y<=-.5;y+=.02){let lo=0,hi=.6;
+   for(let k=0;k<14;k++){const r=(lo+hi)/2,cx=-(open.lie+r);if(pts.some(p=>Math.hypot(p[0]-cx,p[1]-y)<r))hi=r;else lo=r;}
+   const cx=-(open.lie+lo),round=pts.filter(p=>p[0]<cx&&Math.hypot(p[0]-cx,p[1]-y)<lo*1.6).length;
+   if(round>20&&lo>(hold?.radius||0))hold={at:Object.freeze([r(cx),r(y),0]),radius:r(lo)};}}
+ // (where a fingertip pushes: the middle finger's half-thickness up from its end, three quarters down it)
+ const finger=rest.filter(p=>Math.abs(p[3]+.75)<.06&&Math.abs(p[2]-.19*S)<.2*S),end=open.tip+(Math.max(...finger.map(p=>p[0]))-Math.min(...finger.map(p=>p[0])))/2;
+ return Object.freeze({inset:0,gap:.003,top,knuckles:r(knuckles),...open,end:r(end),middle:Object.freeze([0,r(knuckles/2),0]),palm:Object.freeze([-1,0,0]),hold:hold&&Object.freeze(hold),
+  // the same, closed (the kit's grip): a fist, or a hand round a handle
+  fist:K.grip?Object.freeze(measure(K.grip)):null});
+})();
+/** The mitten's shape in the same terms (HAND), for the Pixar bodies (pixar.js: a hand of their own, `realHand`), whose
+ *  poses were made to the mitten's volume with their own hands drawn thin (animate.js `flat`). */
+export const MITTEN=Object.freeze({inset:.008,gap:.009,top:.6,knuckles:-1.1,tip:-1.7,end:-1.45,middle:Object.freeze([0,-.55,0]),centre:Object.freeze([0,-.55,0]),half:Object.freeze([.9,1.15,.78]),lie:.9,palm:null,
+ touch:Object.freeze([[0,-1.65,0],[.9,-.6,0],[-.9,-.6,0],[0,-.6,.8],[0,-.6,-.8],[.85,-1.2,0],[-.85,-1.2,0],[0,-1.2,.7],[0,-1.2,-.7],[.9,0,0],[-.9,0,0],[0,0,.8],[0,0,-.8],
+  ...[[1,1],[1,-1],[-1,1],[-1,-1]].flatMap(([x,z])=>[[.85*x,-.35,.72*z],[.8*x,-1.2,.6*z]])].map(p=>Object.freeze(p)))});
+/** The hand a body poses with: the kit's (closed: a `fist`), or the mitten's for a body with a hand of its own (a Pixar body). */
+export const handShape=(m,fist=false)=>m?.realHand?MITTEN:fist&&HAND.fist?{...HAND,...HAND.fist}:HAND;
+/** How far the middle of a hand laid on something stands off it (metres): the palm's side of the hand (closed, a `fist`'s
+ *  curled fingers), and `extra` hand lengths more (or less: a push presses in). */
+export const handOff=(m,extra=0,fist=false)=>m.hand*(handShape(m,fist).lie+extra);
+/** The way a hand's palm faces in its bone's frame, for the hand `side` ('L' or 'R'): the right's is the left's mirror. */
+export const handPalm=(H,side)=>H.palm?[(side==='R'?-1:1)*H.palm[0],H.palm[1],H.palm[2]]:[0,0,0];
+/**
+ * How a hand holds a thing round its body (a glass, a bottle, a can, a torch, a handle's bar), for a thing `radius` metres
+ * round: `at`, in the hand bone's frame (metres), the point on the hand's middle plane level with the closed hand's hollow
+ * (HAND.hold), from which the thing's axis stands `out` metres toward the palm, its side against the palm; and
+ * `grip`, how far the hand closes round it (avatar.grip): all the way round a bar the hollow holds, less round a thicker
+ * thing, as far as its curve lets the fingers come. A mitten (a Pixar body's poses were made to it) held its middle 0.7 of
+ * a hand off a glass's side.
+ */
+export function handHold(m,radius=0){
+ const H=handShape(m);
+ if(!H.hold)return {at:[0,-m.hand*.55,0],out:radius+m.hand*.7,grip:0};
+ const R=H.hold.radius*m.hand;
+ return {at:[0,H.hold.at[1]*m.hand,0],out:radius+H.lie*m.hand+.001*m.k,grip:radius<=R?1:THREE.MathUtils.clamp(R/radius,0,1)};
+}
+/** Where the axis of a handle `radius` metres round lies in the hand `side` ('L' or 'R') closed on it (handHold: against
+ *  the palm, in the closed hand's hollow), in the hand bone's frame (metres): an umbrella's crook, a torch, a tester. A
+ *  mitten's middle, for a body that poses with one. */
+export const handleAt=(m,side,radius=.012)=>{const h=handHold(m,radius),x=handShape(m).hold?(h.out/m.hand):0;return handPoint(m,side,[-x,h.at[1]/m.hand,0]);};
+/** A point of the hand's shape (HAND's terms, the left hand's) for the hand `side` ('L' or 'R'), in metres for this body. */
+export const handPoint=(m,side,p)=>[(side==='R'?-1:1)*p[0]*m.hand,p[1]*m.hand,p[2]*m.hand];
+/**
+ * The kit's hand (sculpts/body-kit.js HANDS, tools/blender/hand_model.py), `s` long from the wrist to the middle
+ * fingertip, its wrist at `at`: hanging down the forearm's line, its back facing out from the body (`side` 1 the left
+ * hand, -1 the right), the thumb forward. `shape`: the kit's points to lay (its resting hand unless given).
+ */
+function kitHandGeometry(at,s,side,shape=handKit().pos){
+ const K=handKit(),n=K.points,pos=new Float32Array(n*3),k=s/2;
+ for(let i=0;i<n;i++){pos[i*3]=at[0]+side*shape[i*3]*k;pos[i*3+1]=at[1]+(shape[i*3+1]-1)*k;pos[i*3+2]=at[2]+shape[i*3+2]*k;}
+ const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+ // (Mirrored, a triangle is wound the other way: its last two corners change places.)
+ const I=side>0?K.index:K.index.map((v,i,a)=>i%3===1?a[i+1]:i%3===2?a[i-1]:v);
+ g.setIndex(new THREE.BufferAttribute(I,1));g.computeVertexNormals();
+ return g;
+}
 /**
  * A foot or a shoe from the kit, as geometry in model space: `shape` laid in `box` ({x, hx across; y0 the underside, y1
  * the top; z, hz along}), mirrored for the right foot (side -1), smooth-shaded. Every shape has the same points in the
@@ -1248,13 +1377,11 @@ function addBody(list,recipe,m,swim=false){
    const a=[sx*(m.shoulderX-m.armR*.72),sh[1]-m.armR*.78,0],b=[sh[0],sh[1]-m.upper*.30,0];
    limb(list,a,b,m.armR*1.05,m.armR*1.12,sleeve,{...arm,joints:[],root:['chest',.9,.15],uvAt:p=>sleeveUV(p,a,b,sx)});
   }
-  // A mitten hand: the palm, a little flattened, and a thumb on its front inner side,
-  // so a wave or a point reads as a hand rather than a ball on a stick.
+  // The hand: the body kit's (tools/blender/hand_model.py), hanging from the wrist, the palm to the body, the thumb forward.
   // (The owner, 26 November 2026: "Omg they have mitten hands", and of two tries at a modelled hand, "The hands look awful,
-  // make them Disney quality". A hand is being modelled in Blender, tools/blender/hand_model.py; it is not worn until it
-  // is good enough and the poses, which are all made to the mitten's volume, are made to it.)
-  ball(list,m.hand,[hd[0],hd[1]-m.hand*.55,0],'hand'+s,skin,[.9,1.15,.78],12,10);
-  ball(list,m.hand*.42,[hd[0]-sx*m.hand*.55,hd[1]-m.hand*.35,m.hand*.42],'hand'+s,skin,[1,1.2,1],8,6);
+  // make them Disney quality". It replaced a mitten, a ball with a thumb ball on it; the poses read its contact shape, HAND.)
+  // It closes round what it holds (avatar.grip): the kit's closed hand written into the same points.
+  const hand=part(list,kitHandGeometry([hd[0],hd[1]+m.hand*HAND_WEAR.wrist,0],m.hand*HAND_WEAR.length,sx),'hand'+s,skin);hand.attributes.ink.array.fill(.5);hand.userData.hand=s;
  }
 // A T-shirt or polo is worn over the waistband, not painted down to it: its hem hangs a few centimetres below the
  // waist, a finger clear of the body, with the cloth's edge and its inside to be seen; and a T-shirt has its ribbed neck.
@@ -2071,6 +2198,8 @@ function hairSpan(parts,from,to){
  return {start,end:start+n,keep,field};
 }
 const vertexCount=parts=>parts.reduce((n,g)=>n+g.attributes.position.count,0);
+/** Where each hand's points are in the merged body (addBody marks the hand: userData.hand), {L:{at,n},R:{at,n}}. */
+function handRanges(parts){const out={};let at=0;for(const g of parts){const n=g.attributes.position.count;if(g.userData.hand)out[g.userData.hand]={at,n};at+=n;}return out;}
 /** The cloth that is fitted out of the legs and onto the seat after skinning (towel-fit.js): a flag per vertex. */
 function fitFlags(parts){const flags=new Float32Array(vertexCount(parts));let at=0;for(const g of parts){const n=g.attributes.position.count;if(g.userData.fit)flags.fill(Number(g.userData.fit),at,at+n);at+=n;}return flags;}
 
@@ -2088,12 +2217,7 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
  }
  const parts=[];
  addBody(parts,recipe,m,false);
- // Fingers share the body's skinning and draw call, and fold inside the mitten at rest.
- const fingerStart=parts.reduce((n,g)=>n+g.attributes.position.count,0);
- for(const side of ['L','R']){const sx=side==='L'?1:-1,x=sx*(m.shoulderX+.015),y=m.shoulderY-m.upper-m.fore;
-  for(let i=0;i<4;i++)part(parts,new THREE.CapsuleGeometry(m.hand*.105,m.hand*(i===0||i===3?.40:.60),3,6),'hand'+side,recipe.body.skin,M(x+(i-1.5)*m.hand*.37,y-m.hand*(i===0||i===3?1.65:1.85),m.hand*.04,0,0,(i-1.5)*.16));
- }
- const fingerEnd=parts.reduce((n,g)=>n+g.attributes.position.count,0);
+ // (The mitten's four capsule fingers, folded inside it and opened only for an export, went with it: the hand has its own.)
  addNose(parts,recipe,m);
  // Ears.
  const ears=list=>{
@@ -2118,7 +2242,7 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
  let hairCovered=true;
  // Each shoe's vertices, so a shoe can come off and leave a sock (setShoe).
  const shoeRanges={L:[],R:[]};{let at=0;for(const g of parts){const n=g.attributes.position.count;if(g.userData.shoe)shoeRanges[g.userData.shoe].push([at,n]);at+=n;}}
- const bodyFit=fitFlags(parts);const geometry=mergeGeometries(parts,false);parts.forEach(g=>g.dispose());
+ const bodyFit=fitFlags(parts);const handsAt=handRanges(parts);const geometry=mergeGeometries(parts,false);parts.forEach(g=>g.dispose());
  if(bodyFit.some(f=>f>0))geometry.setAttribute('towelFit',new THREE.BufferAttribute(bodyFit,1));
  const hasHat=geometry.attributes.position.count>hatStart;
  const shoeOn={L:true,R:true},shoeSaved={};
@@ -2149,9 +2273,18 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
  let outline=addOutline(root,body,true);addOutline(face.head,face.head,false);
  // A Pixar body (pixar.js) on the same bones; the cartoon stays built underneath and hidden (hideCartoon).
  const pixarSkin=pixar?dressPixar(pixar,{root,bones,order:BONES,shadows,recipe}):null;
- const openFingerPositions=geometry.attributes.position.array.slice(fingerStart*3,fingerEnd*3),closedFingerPositions=openFingerPositions.slice();
- for(let i=fingerStart;i<fingerEnd;i++){const sx=geometry.attributes.skinIndex.getX(i)===BI.handL?1:-1,j=(i-fingerStart)*3;closedFingerPositions[j]=sx*(m.shoulderX+.015);closedFingerPositions[j+1]=m.shoulderY-m.upper-m.fore-m.hand*.55;closedFingerPositions[j+2]=0;}
- geometry.attributes.position.array.set(closedFingerPositions,fingerStart*3);let handsOpen=false;
+ // ---- The hands' grip: each hand's points in every body this avatar wears (clothes, swimwear, the bath's), and the kit's
+ // resting and closed hands laid there, so a hand closes round what it holds by writing between them (grip).
+ const handBodies=[{geometry,at:handsAt}],gripNow={L:0,R:0};
+ const handShapes=pixar?null:Object.fromEntries(['L','R'].map(side=>{const sx=side==='L'?1:-1,hd=[sx*(m.shoulderX+.015),m.shoulderY-m.upper-m.fore+m.hand*HAND_WEAR.wrist,0];
+  const lay=shape=>{const g=kitHandGeometry(hd,m.hand*HAND_WEAR.length,sx,shape).toNonIndexed(),out={position:g.attributes.position.array.slice(),normal:g.attributes.normal.array.slice()};g.dispose();return out;};
+  return [side,{rest:lay(handKit().pos),grip:handKit().grip?lay(handKit().grip):null}];}));
+ const writeGrip=(side,t,list=handBodies)=>{const S=handShapes?.[side];if(!S?.grip)return;const A=S.rest,B=S.grip,n=A.position.length,P=new Float32Array(n),N=new Float32Array(n),v=new THREE.Vector3();
+  for(let i=0;i<n;i++)P[i]=A.position[i]+(B.position[i]-A.position[i])*t;
+  for(let i=0;i<n;i+=3){v.set(A.normal[i]+(B.normal[i]-A.normal[i])*t,A.normal[i+1]+(B.normal[i+1]-A.normal[i+1])*t,A.normal[i+2]+(B.normal[i+2]-A.normal[i+2])*t).normalize();N[i]=v.x;N[i+1]=v.y;N[i+2]=v.z;}
+  for(const {geometry:g,at} of list){const r=at[side];if(!r||r.n*3!==n)continue;g.attributes.position.array.set(P,r.at*3);g.attributes.normal.array.set(N,r.at*3);g.attributes.position.needsUpdate=g.attributes.normal.needsUpdate=true;}};
+ /** Another body the avatar wears (swimwear, the bath's, an outfit of Thuan's) has hands too: they close as these are. */
+ const handsOf=(g,parts)=>{const entry={geometry:g,at:handRanges(parts)};handBodies.push(entry);for(const s of ['L','R'])if(gripNow[s]>0)writeGrip(s,gripNow[s],[entry]);};
 
  // ---- Hair states: every body's hair, as built, and its shape in each state.
  let hair={state:null,amount:1,from:null,side:'R'};const hairRecords=[];
@@ -2248,7 +2381,19 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
 
  const avatar={
   recipe,measure:m,root,body,bones,face,eyes3d:eyes,height:m.H,outfit:'clothes',hasHat,garment:material.userData.garment,springSetup:swing,springs:null,
-  setOpenHands(on){on=!!on;if(handsOpen===on)return;handsOpen=on;geometry.attributes.position.array.set(on?openFingerPositions:closedFingerPositions,fingerStart*3);geometry.attributes.position.needsUpdate=true;},
+  /** (The mitten's fingers came out for an export; the hand has its own, always.) */
+  setOpenHands(){},
+  /**
+   * Close a hand round what it holds: `side` 'L' or 'R', `amount` 0 the hand at rest (a little curled, as a hand rests) to 1
+   * closed round a handle (the kit's grip: the fingers curled round, the thumb across them). In between, a hand closed round
+   * something thicker. Written into the hand's points of every body the avatar wears, as a shoe is (in sixteenths, so a hand
+   * closing over a move is written a few times, not every frame).
+   */
+  grip(side,amount){const t=Math.round(THREE.MathUtils.clamp(+amount||0,0,1)*16)/16;if(!handShapes||t===gripNow[side])return;gripNow[side]=t;writeGrip(side,t);},
+  /** How far each hand is closed (grip). */
+  gripOf(side){return gripNow[side];},
+  /** How far a performance that has something in a hand wants it closed (table-drink.js); the animator closes it. */
+  handHeld:{L:0,R:0},
   /** Hat on or off. Off, it is somebody else's job to show where it went (buildHatProp). */
   setHat(on){if(seeThrough)seeThrough.visible=!!on;geometry.setDrawRange(0,on||!hasHat?Infinity:hatStart);if(hairCovered!==!!on){hairCovered=!!on;if(hatHairRanges.length)applyHair(mainHair);}},
   get hatOn(){return hasHat&&geometry.drawRange.count===Infinity;},
@@ -2344,7 +2489,7 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
     const hair=parts.slice(hairStart),span=hairSpan(parts,hairStart,parts.length),wrapStart=vertexCount(parts);
     const head=face.head.geometry.clone();head.translate(0,m.headCentre,0);
     addTowel(parts,recipe,m);const wrapEnd=vertexCount(parts);addHeadTowel(parts,m,[head,...hair]);head.dispose();
-    const g=mergeGeometries(parts,false),count=vertexCount(parts);parts.forEach(p=>p.dispose());
+    const g=mergeGeometries(parts,false),count=vertexCount(parts);handsOf(g,parts);parts.forEach(p=>p.dispose());
     // The wrap's vertices are kept out of the body after skinning (towel-fit.js); nothing else is.
     g.setAttribute('towelFit',new THREE.BufferAttribute(new Float32Array(count).fill(1,wrapStart,wrapEnd),1));
     towelBody=new THREE.SkinnedMesh(g,celFrom(new THREE.MeshStandardMaterial({vertexColors:true}),{bands:'soft3'}));towelBody.name='Shimanchu bath towel';towelBody.bind(body.skeleton,body.bindMatrix);
@@ -2354,10 +2499,10 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
     towelHair=hairRecord(g,span,{covered:()=>headTowelOn});
    }
    if(['nozomi','sailor'].includes(outfit)&&alternativeKey!==outfit){
-    if(alternativeBody){hairRecords.splice(hairRecords.indexOf(altHair),1);alternativeBody.removeFromParent();alternativeOutline.removeFromParent();alternativeBody.geometry.dispose();alternativeBody.material.map?.dispose();alternativeBody.material.dispose();}
+    if(alternativeBody){hairRecords.splice(hairRecords.indexOf(altHair),1);handBodies.splice(handBodies.findIndex(h=>h.geometry===alternativeBody.geometry),1);alternativeBody.removeFromParent();alternativeOutline.removeFromParent();alternativeBody.geometry.dispose();alternativeBody.material.map?.dispose();alternativeBody.material.dispose();}
     alternativeKey=outfit;const r=normalizeRecipe({...recipe,outfit:{...recipe.outfit,skirtCut:'classic',...(outfit==='sailor'?THUAN_SAILOR_OUTFIT:SHOPPING_LANE_OUTFIT)}}),parts=[];addBody(parts,r,m);addNose(parts,r,m);ears(parts);
     const hairStart=parts.length;addHair(parts,r,m);const span=hairSpan(parts,hairStart,parts.length);
-    const g=mergeGeometries(parts,false);parts.forEach(p=>p.dispose());alternativeBody=new THREE.SkinnedMesh(g,bodyMaterial(r,m));alternativeBody.name=outfit==='sailor'?'Thuan · harbour academy sailor':'Thuan · shopping lane outfit';alternativeBody.bind(body.skeleton,body.bindMatrix);alternativeBody.castShadow=shadows;alternativeBody.frustumCulled=false;root.add(alternativeBody);alternativeOutline=addOutline(root,alternativeBody,true);
+    const g=mergeGeometries(parts,false);handsOf(g,parts);parts.forEach(p=>p.dispose());alternativeBody=new THREE.SkinnedMesh(g,bodyMaterial(r,m));alternativeBody.name=outfit==='sailor'?'Thuan · harbour academy sailor':'Thuan · shopping lane outfit';alternativeBody.bind(body.skeleton,body.bindMatrix);alternativeBody.castShadow=shadows;alternativeBody.frustumCulled=false;root.add(alternativeBody);alternativeOutline=addOutline(root,alternativeBody,true);
     altHair=hairRecord(g,span);
    }
    if(outfit==='swim'&&!swimBody){
@@ -2366,7 +2511,7 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
     const hair=parts.slice(hairStart),span=hairSpan(parts,hairStart,parts.length),headStart=vertexCount(parts);
     // The folded towel for the head (headTowel), last, so leaving it off is drawing one range shorter.
     const head=face.head.geometry.clone();head.translate(0,m.headCentre,0);addHeadTowel(parts,m,[head,...hair]);head.dispose();
-    const flags=fitFlags(parts),count=vertexCount(parts),g=mergeGeometries(parts,false);parts.forEach(p=>p.dispose());
+    const flags=fitFlags(parts),count=vertexCount(parts),g=mergeGeometries(parts,false);handsOf(g,parts);parts.forEach(p=>p.dispose());
     g.setAttribute('towelFit',new THREE.BufferAttribute(flags,1));
     swimBody=new THREE.SkinnedMesh(g,celFrom(new THREE.MeshStandardMaterial({vertexColors:true}),{bands:'soft3'}));swimBody.name='Shimanchu swimwear';swimBody.bind(body.skeleton,body.bindMatrix);
     swimBody.userData.swim={headTowel:[headStart,count],skirt:flags.some(f=>f>0)};
@@ -2382,7 +2527,7 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
     let span=null,tenuguiAt=null;
     if(women)addTurban(parts,r,m);
     else{const hairStart=parts.length;addHair(parts,{...r,outfit:{...r.outfit,hat:'none'}},m);span=hairSpan(parts,hairStart,parts.length);tenuguiAt={start:vertexCount(parts),...addTenugui(parts,r,m)};}
-    const flags=fitFlags(parts),g=mergeGeometries(parts,false);parts.forEach(p=>p.dispose());
+    const flags=fitFlags(parts),g=mergeGeometries(parts,false);handsOf(g,parts);parts.forEach(p=>p.dispose());
     const mat=bodyMaterial(r,m);
     afterbathBody=new THREE.SkinnedMesh(g,mat);afterbathBody.name=women?'Shimanchu after the bath · house dress':'Shimanchu after the bath · vest and drawers';afterbathBody.bind(body.skeleton,body.bindMatrix);
     afterbathBody.castShadow=shadows;afterbathBody.frustumCulled=false;root.add(afterbathBody);

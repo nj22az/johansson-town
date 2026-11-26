@@ -2,7 +2,8 @@ import * as THREE from '../../vendor/three.module.js';
 import {sampleCycle,advanceCycle,CYCLE_DURATION,SIP_FLOW_START,ease} from '../drinking/cycle.js';
 import {requiredTilt,volumeAtPlane} from '../drinking/liquid.js';
 import {createLiquid} from '../drinking/vessel.js';
-import {drinkGrip,reach,HOLD_Q} from './consume.js';
+import {drinkGrip,reach,HOLD_Q,heldGrip} from './consume.js';
+import {handShape,handHold} from './build.js';
 import {faceLayout} from './face.js';
 import {shapeHeadPoint} from './head-profile.js';
 
@@ -63,12 +64,16 @@ function setWorld(object,position,quaternion){
 function tableGrip(prop,m,profile){
  const grip=drinkGrip(prop,m);
  if(prop.userData.grip?.handle==null||m.realHand)return grip;   // (a real hand's clearance is drinkGrip's own)
+ const H=handShape(m);
  const shell=prop.getObjectByName('Hollow '+prop.userData.drinkKind+' glass');
  shell?.geometry?.computeBoundingBox();
  const bounds=shell?.geometry?.boundingBox;
  // The handle lies in the XY plane, so the shell's Z extent measures the body.
  const radius=bounds?Math.max(Math.abs(bounds.min.z),Math.abs(bounds.max.z))*shell.scale.z:profile.innerRadiusTop+.006;
  const h=m.hand,clearRadius=radius+.001,thumbRadius=h*.42;
+ // (the kit's hand, closed round the bar: everything of it on the palm's side, the curled fingers and the thumb, clear of
+ // the glass's body by the millimetre)
+ if(H.fist){grip.x=Math.max(grip.x,clearRadius+H.fist.reach*h);return grip;}
  const palmClearance=clearRadius+h*.9;
  const thumbClearance=h*.55+Math.sqrt((clearRadius+thumbRadius)**2-thumbRadius**2);
  grip.x=Math.max(grip.x,palmClearance,thumbClearance);
@@ -88,7 +93,7 @@ export function createAvatarTableDrink(avatar,lease,{onComplete=()=>{},onCancel=
  const restingHand=b.handL.getWorldPosition(new THREE.Vector3()),restingHandQ=b.handL.getWorldQuaternion(new THREE.Quaternion());
  const fluid=fluidFor(prop),profile=fluid.profile,rim=new THREE.Vector3(0,prop.userData.rimHeight,profile.innerRadiusTop+.002);
  const forward=new THREE.Vector3(0,0,1).transformDirection(body.matrixWorld),liftP=restP.clone().addScaledVector(Y,.065).addScaledVector(forward,-.014);
- const gripOffset=new THREE.Vector3(0,-m.hand*.55,0).add(tableGrip(prop,m,profile));
+ const gripOffset=new THREE.Vector3(...handHold(m).at).add(tableGrip(prop,m,profile));
  let elapsed=0,active=true,last=null,maxWristError=0,lastFlow=0,lookAt=null;
  const restHead=b.head.rotation.x,restSpine=b.spine.rotation.x,restChest=b.chest.rotation.x;
  const restShoulder=b.shoulderR.position.clone();
@@ -172,6 +177,10 @@ export function createAvatarTableDrink(avatar,lease,{onComplete=()=>{},onCancel=
    avatar.pixar.grip?.('R',phase.id==='REACH'||phase.id==='PREPARE'?.1:phase.id==='GRASP'?.1+.9*THREE.MathUtils.smoothstep(s,.55,1):phase.id==='RETURN'?1-s:1);
 
   }
+  // (the kit's hand reaches half closed, shaped to take it, closes round the handle as it takes it and opens as it lets
+  // go; the animator closes it, next frame)
+  else if(avatar.handHeld)avatar.handHeld.R=heldGrip(prop,m)*(phase.id==='PREPARE'?0:phase.id==='REACH'?.5*THREE.MathUtils.smoothstep(s,0,1):phase.id==='GRASP'?.5+.5*THREE.MathUtils.smoothstep(s,0,.7)
+   :phase.id==='RELEASE'?1-.5*THREE.MathUtils.smoothstep(s,0,1):phase.id==='RETURN'?.5*(1-THREE.MathUtils.smoothstep(s,0,1)):1);
   b.shoulderR.position.copy(restShoulder);b.shoulderR.position.y+=.016*headWeight;
   body.updateWorldMatrix(true,true);
   const mouth=avatarMouth(avatar),pre=contact(mouth,.12,.027),at=contact(mouth,.12),hold=contact(mouth,tip);
@@ -234,7 +243,7 @@ export function createAvatarTableDrink(avatar,lease,{onComplete=()=>{},onCancel=
  }
  function finish(cancelled=false){
   if(!active)return;active=false;
-  b.shoulderR.position.copy(restShoulder);avatar.pixar?.grip?.('R',0);
+  b.shoulderR.position.copy(restShoulder);avatar.pixar?.grip?.('R',0);if(avatar.handHeld)avatar.handHeld.R=0;
   if(prop.parent===originalParent){setWorld(prop,restP,realHand&&!cancelled?heldQ:restQ);fluid.update(prop.userData.portion??lease.startFraction);}
   const result={...(cancelled?lease.cancel():lease.finish()),volumeConsumedMl:Math.max(0,lease.startFraction-(prop.userData.portion??lease.startFraction))*fluid.startingVolumeMl};
   (cancelled?onCancel:onComplete)(result);return result;

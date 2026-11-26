@@ -68,9 +68,13 @@ critique what still looks too soft/chibi, and iterate"; then "When happy redraw 
   in the character's `build-<name>-head.py`: drawn on the sculpt as curves, kept in the `.blend`, written with the head and
   drawn by the game's rigged eyes and by the painter: recipe `eyes.style:'drawn'`); the **body** (a frame of the kit's:
   `standard`, `sturdy`, `graceful`, `stout`, `soft`); the **feet and shoes** (kit shapes; `court` and `broad` are fitted by
-  frame); and the **hands**, which are still mittens and are owed: "make them Disney quality" (two modelled hands were
-  rejected: a balloon with sausages, then a stiff anatomical one; the handover of this date says what a hand has to be and
-  why the poses must be remade with it).
+  frame); and the **hands**: "make them Disney quality" (two modelled hands were rejected: a balloon with sausages, then a
+  stiff anatomical one). The body kit's hand (`tools/blender/hand_model.py`: box-modelled, smoothed by subdivision, with a
+  closed grip of the same points) is worn by everybody in place of the mitten, on the branch `hands/kit`, not yet seen worn
+  by the owner. Every pose that lays a hand on something reads its contact shape, measured from the kit (`build.js HAND`:
+  the reach solver's envelope, how far a laid hand lies off what it rests on, the palm's way), and turns the palm to it;
+  fists, a grab and what is held close it (`avatar.grip`). Never retune a pose to a hand by eye: change the kit and the
+  numbers follow.
   A woman must read as a woman at a glance: lashes, lips, hair that is hers, shoulders and a neck that are not a man's.
 - The owner's photographs are not kept in the repository (it is public).
 

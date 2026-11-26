@@ -2,7 +2,7 @@ import * as THREE from '../../vendor/three.module.js';
 import {poseAvatarOnBicycle} from './bicycle-pose.js';
 import {bicycleRiderFit} from '../world/bicycle-fit.js';
 import {seeded} from './recipe.js';
-import {consumptionPhase,poseAvatarConsumption,drinkHeadTilt} from './consume.js';
+import {consumptionPhase,poseAvatarConsumption,drinkHeadTilt,heldGrip} from './consume.js';
 import {bodyLanguage,CONVERSATION_BIG} from './body-language.js';
 import {createFootGrounder,createLieGrounder,createSoleFinder} from './foot-ground.js';
 import {FUN_POSES,STILL_AT} from './fun-poses.js';
@@ -11,7 +11,7 @@ export {FUN_POSES,STILL_AT,PAIR_POSES,playPair,placePair,fitPair};
 import {createSeatSupport} from './seat-support.js';
 import {gaitOf} from './gait.js';
 import {DUTY_BELT} from './police-data.js';
-import {bodyVolume} from './build.js';
+import {bodyVolume,handShape,handOff,handPalm,handleAt,MITTEN} from './build.js';
 import {storyProps,pocketSpot,PAPER,posedPoints} from './story-props.js';
 import {MUSIC_MOVES,musicPose} from './music-moves.js';
 import {EXPRESSIVE_POSES} from './expressive-poses.js';
@@ -102,9 +102,23 @@ function minimise(f,x0,step=.25,iterations=320){
  * turns it: neck, head) or in the body's own frame at rest (`at`, from its measures). `seed`: the pose for Mr Fujita, written
  * for the right arm; the left arm is the mirror unless it has its own.
  */
-/** Points over a mitten (in hand lengths, the hand bone's frame): its tip, its two faces and its sides, low and high. */
-const TOUCH=Object.freeze([[0,-1.65,0],[.9,-.6,0],[-.9,-.6,0],[0,-.6,.8],[0,-.6,-.8],[.85,-1.2,0],[-.85,-1.2,0],[0,-1.2,.7],[0,-1.2,-.7],[.9,0,0],[-.9,0,0],[0,0,.8],[0,0,-.8],
- ...[[1,1],[1,-1],[-1,1],[-1,-1]].flatMap(([x,z])=>[[.85*x,-.35,.72*z],[.8*x,-1.2,.6*z]])]);
+/** How hard the solver turns a palm to what it is laid on (`palm`), against the cost of a centimetre off the place: a palm
+ *  30° off its way costs what 2 cm off the place does. And how far a wrist turns (the right hand's terms, radians, the move's
+ *  own turn of the hand and the solver's together): toward the little finger and the thumb (x), the palm over, on top of the
+ *  forearm's own twist (y: a forearm turns its hand half round, the elbow's twist a little over two thirds of that), the
+ *  palm toward the forearm and back (z). */
+/** The moves whose hands are fists, or closed round what they hold up (how far each closes, build.js grip): the fist pumped
+ *  up, the boxer's guard, the fists under the chin, the uchiwa's handle and the left fist at the belly, the coin's grenade
+ *  and the fist before the chest, the coin at the cheek, the hair dryer aimed, the screwdriver and the straws held up.
+ *  (The mitten was a fist in every move; the hand is open unless a move closes it.) */
+const FISTS=Object.freeze({Fist:{R:1},Jab:{L:1,R:1},JabL:{L:1,R:1},HeelKick:{L:1,R:1},FanWild:{L:1,R:1},BannerUp:{R:1},GrenadeCoin:{L:1,R:.6},
+ CoinToCheek:{R:.6},Aim:{R:1},HoldUp:{R:1},HoldUpStraws:{R:1}});
+/** How hard a hand laid on something is kept on it, where its place is out of reach (or the palm's turn lifts it): a
+ *  centimetre off it costs what 1.4 cm off the place does. */
+const CONTACT=200;
+/** The torch's body, round which the fist closes (story-props.js buildTorch). */
+const TORCH_RADIUS=.016;
+const PALM=Object.freeze({weight:.3,wrist:Object.freeze([[-.35,.5],[-.45,.45],[-1.1,1.25]])});
 const _t=new THREE.Vector3();
 const REACH=Object.freeze({
  CupHands:{head:[.2,0,0],R:{at:m=>[-m.hand*.95,m.shoulderY-.085*m.k,m.depth/2+.12*m.k],seed:[-.5,.83,-.15,-1.81,-.03],hand:[.63,0,.2]}},
@@ -126,8 +140,8 @@ const REACH=Object.freeze({
  // Shuffling, or carried, both mittens on the small of the back (CrabWalk, CarriedBent): the left one too.
  BentBackL:{pose:()=>bentJoints('stand'),neck:-.12,head:[-.26,0,0],only:'L',L:{touch:true,on:['hips',(m,v)=>onBack(m,v,1,.32)],seed:[.55,.35,.25,-1.75,0],hand:[.35,0,0]}},
  // In the massage chair, both mittens on the thighs by the knees: curled over them, and half uncurled (ChairUncurl).
- ChairCurl:{pose:()=>chairJoints(1),R:{touch:true,on:['thighR',m=>[-m.hipX,m.hipY-m.thigh*.78,m.legR*1.15+m.hand*.85]],seed:[-.9,.1,-.1,-.6,0],hand:[-.2,0,0]}},
- ChairHalf:{pose:()=>chairJoints(1-UNCURL.half),seedFrom:'ChairCurl',R:{touch:true,on:['thighR',m=>[-m.hipX,m.hipY-m.thigh*.62,m.legR*1.15+m.hand*.85]],seed:[-.5,.1,-.1,-.6,0],hand:[-.2,0,0]}},
+ ChairCurl:{pose:()=>chairJoints(1),R:{touch:true,on:['thighR',m=>[-m.hipX,m.hipY-m.thigh*.78,m.legR*1.15+handOff(m,-.05)]],seed:[-.9,.1,-.1,-.6,0],hand:[-.2,0,0]}},
+ ChairHalf:{pose:()=>chairJoints(1-UNCURL.half),seedFrom:'ChairCurl',R:{touch:true,on:['thighR',m=>[-m.hipX,m.hipY-m.thigh*.62,m.legR*1.15+handOff(m,-.05)]],seed:[-.5,.1,-.1,-.6,0],hand:[-.2,0,0]}},
  // Stuck twisted in the chair, the left mitten pressed to the small of the back (FrozenAbsurd).
  // ...and the right arm flung up at the dark, the mitten above and out beside the head (clear of it).
  AbsurdUp:{neck:.05,head:[-.08,-.3,-.2],only:'R',R:{at:m=>[-(m.Rh*m.headSX+.16*m.k),m.headCentre+m.Rh*.75,.05*m.k],seed:[-2.6,.1,-.5,-.25,0]}},
@@ -138,7 +152,7 @@ const REACH=Object.freeze({
  CarryFurniture:{pose:m=>carryJoints(m),R:{under:m=>[-CARRY.spread*m.k,CARRY.under+CARRY.flank,m.depth/2+CARRY.reach*m.k],level:true,seed:[-.35,.1,.05,-1.4,0],hand:[-.7,0,0]}},
  CarryLegs:{pose:m=>carryJoints(m),seedFrom:'CarryFurniture',R:{under:m=>[-CARRY.legSpread*m.k,CARRY.legs,m.depth/2+CARRY.reach*m.k],level:true,seed:[-.35,.1,.05,-1.4,0],hand:[-.7,0,0]}},
  // Carried stiff as a plank, both mittens laid on his belly, side by side (CarriedPlank).
- PlankHands:{pose:()=>({}),R:{touch:true,rest:true,on:['spine',(m,v)=>onFront(m,v,-1,PLANK.hands,.5)],elbow:m=>[-(m.width/2+m.armR*.4),m.hipY+m.torso*.42,m.depth*.25],seed:[-.35,.3,.1,-1.6,0],hand:[.2,-1.07,0]}},
+ PlankHands:{pose:()=>({}),R:{touch:true,rest:true,on:['spine',(m,v)=>onFront(m,v,-1,PLANK.hands,-.4)],elbow:m=>[-(m.width/2+m.armR*.4),m.hipY+m.torso*.42,m.depth*.25],seed:[-.35,.3,.1,-1.6,0],hand:[.2,-1.07,0]}},
  // Reading the paper held open low over the lap, the mittens at its outer edges (SitRead: SIT_READ).
  SitRead:{R:{at:m=>[-PAPER.leaf*SIT_READ.spread,m.hipY+SIT_READ.up*m.k,m.depth/2+SIT_READ.ahead*m.k],seed:[-.6,.3,.05,-1.3,0],hand:[-.25,0,0]}},
  // The torch: the right mitten on it at the left chest pocket; held up before the chest (beam forward and up, its light
@@ -147,11 +161,13 @@ const REACH=Object.freeze({
  TorchHigh:{only:'R',R:{at:m=>[-.05*m.k,m.chestY+.04*m.k,m.depth/2+.2*m.k],seed:[-1.1,.4,.1,-1.5,0],hand:[0,0,0]}},
  TorchLow:{only:'R',R:{at:m=>[.02*m.k,m.hipY+.14*m.k,m.depth/2+.12*m.k],seed:[-.45,.4,.1,-1.2,0],hand:[0,0,0]}},
 });
-/** A mitten on the small of the back, on the side `side` (+1 the left, -1 the right) at height t up the torso: on the body's
- *  surface (bodyVolume), its middle a little under half its own thickness off it. In the body's frame at rest. */
-const onBack=(m,vol,side,t)=>{const p=vol.surf(Math.PI-side*.38,t);return p.addScaledVector(vol.normal(p),m.hand*.95).toArray();};
-/** A mitten on the belly, on the side `side` of the middle (+1 the left, -1 the right) at height t up the torso, laid as onBack. */
-const onFront=(m,vol,side,t,off=.95)=>{const p=vol.surf(side*.3,t);return p.addScaledVector(vol.normal(p),m.hand*off).toArray();};
+/** A hand on the small of the back, on the side `side` (+1 the left, -1 the right) at height t up the torso: on the body's
+ *  surface (bodyVolume), its middle as far off it as a hand laid there lies (build.js handOff), and a little. In the body's
+ *  frame at rest. */
+const onBack=(m,vol,side,t)=>{const p=vol.surf(Math.PI-side*.38,t);return p.addScaledVector(vol.normal(p),handOff(m,.05)).toArray();};
+/** A hand on the belly, on the side `side` of the middle (+1 the left, -1 the right) at height t up the torso, laid as onBack
+ *  (`off`: how much further off, or nearer, in hand lengths). */
+const onFront=(m,vol,side,t,off=.05)=>{const p=vol.surf(side*.3,t);return p.addScaledVector(vol.normal(p),handOff(m,off)).toArray();};
 /** Fujita's stuck back (ぎっくり腰): bent at the hips to a level back (with the spine and chest, about 90°), the knees bent and
  *  forward and the bottom out behind so he stands over his feet, the feet a little apart and flat; the head lifted a little
  *  (in the after-bath clothes no further: the back of the head would come down on the tenugui round his neck; without it, up
@@ -397,6 +413,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  const headRestPosition=bones.head.position.clone();
  // ---- Hands on this body's own shape (REACH): worked out the first time each move is played, then kept.
  const reached=new Map();let volume=null;
+ // ---- How far each hand is closed this frame (a move's fist or grab: closeHand), 0 resting; build.js grip.
+ const handWish={L:0,R:0},closeHand=(side,amount)=>{handWish[side]=Math.max(handWish[side],THREE.MathUtils.clamp(amount,0,1));};
  const _q=[0,1,2,3].map(()=>new THREE.Quaternion()),_eu=new THREE.Euler(),_p=[0,1,2,3,4].map(()=>new THREE.Vector3());
  function reachFor(name,dynamic=null){
   if(reached.has(name))return reached.get(name);
@@ -406,11 +424,12 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // The head in the chest's frame, turned as the move turns it.
   const qNeck=new THREE.Quaternion().setFromEuler(_eu.set(spec.neck||0,0,0)),qHead=qNeck.clone().multiply(new THREE.Quaternion().setFromEuler(_eu.set(...(spec.head||[0,0,0])))),qInv=qHead.clone().invert();
   const headAt=bones.neck.position.clone().add(headRestPosition.clone().applyQuaternion(qNeck)),chestAt=new THREE.Vector3(0,m.chestY,0);
-  const onHead=([dx,dy,dz,off])=>{const u=new THREE.Vector3(dx,dy,dz).normalize(),n=new THREE.Vector3(u.x/S[0],u.y/S[1],u.z/S[2]).normalize();
-   return new THREE.Vector3(u.x*S[0],u.y*S[1]+hc,u.z*S[2]).addScaledVector(n,off*k).applyQuaternion(qHead).add(headAt);};
+  const headNormal=([dx,dy,dz])=>{const u=new THREE.Vector3(dx,dy,dz).normalize();return new THREE.Vector3(u.x/S[0],u.y/S[1],u.z/S[2]).normalize();};
+  const onHead=([dx,dy,dz,off])=>{const u=new THREE.Vector3(dx,dy,dz).normalize();
+   return new THREE.Vector3(u.x*S[0],u.y*S[1]+hc,u.z*S[2]).addScaledVector(headNormal([dx,dy,dz]),off*k).applyQuaternion(qHead).add(headAt);};
   const headR=p=>{const q=_p[4].copy(p).sub(headAt).applyQuaternion(qInv);return Math.hypot(q.x/S[0],(q.y-hc)/S[1],q.z/S[2]);};
   const hairAt=p=>{if(!shell)return 1;const q=_p[4].copy(p).sub(headAt).applyQuaternion(qInv);return shell(q.x/S[0],(q.y-hc)/S[1],q.z/S[2]);};
-  const out={};
+  const out={},solved={};
   // A place carried by a bone, with the body in the move's pose: where it is in the chest's frame then.
   const posed=spec.pose?posedPlaces(spec.pose(m)):null,hipsM=spec.pose?chestToHips(spec.pose(m)):null,_h=new THREE.Vector3();
   // how far a point (in the chest's frame) is from the torso: bent, from the hips' part or the chest's, whichever is nearer
@@ -422,7 +441,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   for(const side of ['R','L']){
    if(spec.only&&side!==spec.only)continue;
    // a side without its own place is the mirror of the right
-   const own=!!spec[side],want=spec[side]||spec.R,sg=side==='R'?1:-1,mirror=a=>a.map((v,i)=>i===1||i===2||i===4?v*sg:v);
+   const own=!!spec[side],want=spec[side]||spec.R,sg=side==='R'?1:-1,mirror=a=>a.map((v,i)=>i===1||i===2||i===4||i===6||i===7?v*sg:v);
    const flipX=v=>own?v:[-v[0],...v.slice(1)];
    // (under: a place at a height above the floor in the move's own stance, where the mitten's top goes: under a load)
    const under=want.under?flipX(want.under(m)):null;
@@ -432,12 +451,25 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
     :want.chest?want.chest(avatar):new THREE.Vector3(...flipX(want.at(m))).sub(chestAt);
    const upC=posed?posed.up:new THREE.Vector3(0,1,0),_d=new THREE.Vector3(),_top=new THREE.Vector3(),targetUp=target.dot(upC);
    const elbowAt=want.elbow?new THREE.Vector3(...flipX(want.elbow(m))).sub(chestAt):null;
-   const hand=want.hand?mirror(want.hand):[0,0,0],seed=mirror(spec.seedFrom?reachFor(spec.seedFrom)[side]:[...want.seed,0].slice(0,5));
+   // The hand (build.js handShape): its envelope for this side (the right is the left's mirror), where its middle is, its palm.
+   // (fist: the hand closed (the kit's grip), a fist on a collar: its own envelope, and it lies on its curled fingers)
+   const H=handShape(m,!!want.fist),touch0=side==='R'?H.touch.map(q=>[-q[0],q[1],q[2]]):H.touch;
+   // (palm: the palm turned to what the hand is laid on ('in'; the back of it, 'out'; or a way of the move's own, [x, y, z]
+   // in the body's frame at rest), the wrist bending for it within what a wrist does: laid on a body (touch), on the partner
+   // (press), under a load, unless the move says (palm: false). The mitten had no palm, so a body that poses with it (a
+   // Pixar body) turns no wrist.)
+   const palmWay=H.palm?(want.palm??(want.touch||want.press||want.under?'in':false)):false,wrists=palmWay?3:0;
+   // (a palm, or the back of the hand, laid on the head: its place was set off the face as far as the mitten's middle lay,
+   // which the hand's thinner middle would hold in the air; as far as the hand's lies)
+   if(want.head&&palmWay)target.copy(onHead(flipX([...want.head.slice(0,3),want.head[3]-(MITTEN.lie-H.lie)*m.hand/k])));
+   // (the move's own turn of the hand; turning the palm, no further than a wrist goes: a mitten's turns were made to a ball)
+   const hand=(want.hand?mirror(want.hand):[0,0,0]).map((v,i)=>{if(!wrists)return v;const b=PALM.wrist[i],f=i?sg:1;return THREE.MathUtils.clamp(v*f,b[0],b[1])*f;});
+   const seed=mirror([...(spec.seedFrom?reachFor(spec.seedFrom)[side]:[...want.seed,0]).slice(0,5),...[0,0,0].slice(0,wrists)]);
    // (bounds: how far each angle may go, [low, high] per angle in the right arm's terms (pair-poses.js): an arm reaching
    // for a partner's collar stays an arm reaching forward, never one windmilled up over the head to come down on it)
    const bounds=want.bounds?want.bounds.map((b,i)=>b&&sg<0&&(i===1||i===2||i===4)?[-b[1],-b[0]]:b):null;
    // (tip: the end of the mitten goes to the place, not its middle: a lever pushed with the fingers' end)
-   const sh=bones['shoulder'+side].position,el=bones['elbow'+side].position,wr=bones['hand'+side].position,mit=new THREE.Vector3(0,-m.hand*(want.tip?1.45:.55),0);
+   const sh=bones['shoulder'+side].position,el=bones['elbow'+side].position,wr=bones['hand'+side].position,mit=new THREE.Vector3(0,m.hand*(want.tip?H.end:H.middle[1]),0);
    // things fixed round the body to keep clear of (a wall, a cabinet, the pole a body hugs): boxes in the body's frame (or a
    // function of the body's measures giving them), each point of the forearm and the mitten at least `clear` outside them
    const box=r=>(typeof want.avoid==='function'?want.avoid(m,avatar):want.avoid||[]).map(b=>new THREE.Box3(new THREE.Vector3(...b.min),new THREE.Vector3(...b.max)).expandByScalar((b.clear??.012*k)+r)),_r=new THREE.Vector3();
@@ -448,14 +480,33 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    const outside=(p,need)=>{const d=keep(_k.copy(p).applyMatrix4(posed.toRoot));return d<need?((need-d)/k)**2*2000:0;};
    const inBox=(p,list)=>{if(!list.length)return 0;_r.copy(p).applyMatrix4(posed.toRoot);let d=0;
     for(const b of list)if(b.containsPoint(_r))d=Math.max(d,Math.min(_r.x-b.min.x,b.max.x-_r.x,_r.y-b.min.y,b.max.y-_r.y,_r.z-b.min.z,b.max.z-_r.z));return d;};
-   const qHand=new THREE.Quaternion().setFromEuler(_eu.set(...hand));
+   const qHand=new THREE.Quaternion().setFromEuler(_eu.set(...hand)),qWrist=new THREE.Quaternion();let palmOn=PALM.weight;
    // (flat: a hand drawn thin, a Pixar body's, sampled as one, [across its thickness, across its width] of the mitten's
    // round, so it can lie on a thigh; round, the mitten's middle kept its 9 cm off the lap and the hand floated over it)
-   const touch=want.flat?TOUCH.map(q=>[q[0]*want.flat[0],q[1],q[2]*want.flat[1]]):TOUCH;
+   const touch=want.flat?touch0.map(q=>[q[0]*want.flat[0],q[1],q[2]*want.flat[1]]):touch0;
+   // (and laid on the head, more of it: build.js `round`; the face has a nose and lips)
+   const headTouch=H.round?touch.concat(side==='R'?H.round.map(q=>[-q[0],q[1],q[2]]):H.round):touch;
+   // The way the palm is to face, in the chest's frame: into what it is laid on, against the way out of it there (the head's,
+   // the partner's or the body's own surface at the place; up into a load); and the palm's own way in the hand's frame.
+   const palmIn=new THREE.Vector3(),palmOwn=new THREE.Vector3(...handPalm(H,side)),_pw=new THREE.Vector3();
+   // (fingers: the way the fingers lie along what the hand is laid on, [x, y, z] in the body's frame at rest, as much a wish
+   // as the palm's: a hand on the lap points its fingers to the knee, its fingertips on the thigh, not hooked over its inner
+   // edge; half as much, a child's arm a quarter bigger found another turn of the arm, Johansson Studio's sizes)
+   const fingersTo=want.fingers?new THREE.Vector3(...flipX(want.fingers)).normalize():null,_fw=new THREE.Vector3();
+   if(fingersTo&&posed)fingersTo.transformDirection(posed.toRoot.clone().invert());
+   if(Array.isArray(palmWay)){palmIn.set(...palmWay).normalize();if(posed)palmIn.transformDirection(posed.toRoot.clone().invert());}
+   else if(palmWay){
+    if(want.head)palmIn.copy(headNormal(flipX(want.head))).applyQuaternion(qHead).negate();
+    else if(under)palmIn.copy(upC);
+    else{const f=keep?p=>keep(_k.copy(p).applyMatrix4(posed.toRoot)):torso,e=.004*k,g=new THREE.Vector3(),q=new THREE.Vector3();
+     for(let i=0;i<3;i++){q.copy(target);q.setComponent(i,target.getComponent(i)+e);const a=f(q);q.setComponent(i,target.getComponent(i)-e);g.setComponent(i,a-f(q));}
+     palmIn.copy(g).normalize().negate();}
+    if(palmWay==='out')palmIn.negate();
+   }
    const cost=x=>{
     _q[0].setFromEuler(_eu.set(x[0],x[1],x[2]));const E=_p[0].copy(el).applyQuaternion(_q[0]).add(sh);
     _q[1].copy(_q[0]).multiply(_q[2].setFromEuler(_eu.set(x[3],x[4],0)));const W=_p[1].copy(wr).applyQuaternion(_q[1]).add(E);
-    _q[3].copy(_q[1]).multiply(qHand);const M=_p[2].copy(mit).applyQuaternion(_q[3]).add(W);
+    _q[3].copy(_q[1]).multiply(wrists?qWrist.setFromEuler(_eu.set(hand[0]+x[5],hand[1]+x[7],hand[2]+x[6])):qHand);const M=_p[2].copy(mit).applyQuaternion(_q[3]).add(W);
     let c;
     if(under){
      // under a load: the mitten's middle over the place, and its top (the highest of its surface) at the place's height
@@ -469,33 +520,111 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
     if(want.upper)for(let i=1;i<=4;i++){const p=_p[3].copy(sh).lerp(E,i/4),r=headR(p),near=hairAt(p)+m.armR*1.2/m.Rh;if(r<near)c+=(near-r)**2*60;
      if(armBoxes.length){const b=inBox(p,armBoxes);if(b>0)c+=((b+.004*k)/k)**2*2000;}
      if(keep)c+=outside(p,keepArm);}
-    // the forearm and the mitten out of the head and the chest
-    for(let i=0;i<=4;i++){const p=_p[3].copy(E).lerp(W,i/4),r=headR(p),near=hairAt(p)+m.armR*1.15/m.Rh;if(r<near)c+=(near-r)**2*40;
-     // (a mitten laid on the body (touch) brings its wrist to it: there only the forearm's upper part is kept off; a forearm
-     // that rests on the body too (rest) only out of it)
+    // the forearm and the hand out of the head and the chest
+    // (a hand laid on the head, firmly: kept on the face (cover), the hand drew Tetsuo's forearm into his jaw)
+    const foreHead=want.cover&&H!==MITTEN?400:40;
+    for(let i=0;i<=4;i++){const p=_p[3].copy(E).lerp(W,i/4),r=headR(p),near=hairAt(p)+m.armR*1.15/m.Rh;if(r<near)c+=(near-r)**2*foreHead;
+     // (a hand laid on the body (touch) brings its wrist to it: there only the forearm's upper part is kept off; a forearm
+     // that rests on the body too (rest) only out of it; and its wrist end rests on it, never in it: the mitten's round held
+     // it off, a flat hand lays it on a lap's cloth)
+     const d=torso(p);
+     if(want.touch&&i>2){if(H!==MITTEN&&d<m.armR*.86&&(hipsM||p.y+chestAt.y>m.hipY+.1*k))c+=((m.armR*.86-d)/k)**2*400;
+      if(spec.ground){_r.copy(p).applyMatrix4(posed.toRoot);const g=spec.ground(_r.x,_r.z)+m.armR*.86;if(_r.y<g)c+=((g-_r.y)/k)**2*2000;
+       if(spec.drape){const u=spec.drape(_r)+m.armR*.86;if(u>.001*k)c+=((u-.001*k)/k)**2*2000;}}}
+     else{const fc=want.rest?m.armR*.95:m.armR*1.1;if(d<fc&&(hipsM||p.y+chestAt.y>m.hipY+.1*k))c+=((fc-d)/k)**2*400;}
      if(want.touch&&i>2)continue;
-     const d=torso(p),fc=want.rest?m.armR*.95:m.armR*1.1;if(d<fc&&(hipsM||p.y+chestAt.y>m.hipY+.1*k))c+=((fc-d)/k)**2*400;
      if(armBoxes.length){const b=inBox(p,armBoxes);if(b>0)c+=((b+.004*k)/k)**2*2000;}
      if(keep)c+=outside(p,i<3?keepArm:m.armR*.9+.003*k);}
+    // (and the wrist end of a forearm laid on a lap between those, on the cloth there: a child's forearm dipped under a
+    // skirt between points four centimetres apart)
+    if(want.touch&&spec.ground)for(const t of [.625,.875]){_r.copy(_p[3].copy(E).lerp(W,t)).applyMatrix4(posed.toRoot);const g=spec.ground(_r.x,_r.z)+m.armR*.86;if(_r.y<g)c+=((g-_r.y)/k)**2*2000;
+     if(spec.drape){const u=spec.drape(_r)+m.armR*.86;if(u>.001*k)c+=((u-.001*k)/k)**2*2000;}}
+    // (and half way between, against another body: an arm crossing this one (a partner's round a waist, under a hand laid
+    // over the shoulder) passed between points a quarter of the forearm apart)
+    if(keep)for(let i=1;i<8;i+=2)c+=outside(_p[3].copy(E).lerp(W,i/8),i<5?keepArm:m.armR*.9+.003*k);
     if(boxes.length)for(const q of touch){const b=inBox(_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W),boxes);if(b>0)c+=((b+.004*k)/k)**2*2000;}
-    // (press: a mitten laid on the other body's clothes may press this envelope, which stands a centimetre off the drawn
-    // mitten, that far into them, so the drawn mitten rests on the shirt and not a centimetre over it)
-    if(keep)for(const q of touch)c+=outside(_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W),(want.press?-.008:.002)*k);
-    const rm=headR(M),nearM=hairAt(M)+m.hand*.85/m.Rh;if(rm<nearM)c+=(nearM-rm)**2*300;
+    // (press: a hand laid on the partner's clothes may press its envelope as far into them as the envelope stands off the
+    // drawn hand (build.js `inset`: the mitten's, a centimetre; the kit's is its own drawn surface), so the drawn hand rests
+    // on the shirt and not over it)
+    if(keep){const need=(want.press?-H.inset:.002)*k;let near=Infinity;
+     for(const q of touch){const d=keep(_k.copy(_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W)).applyMatrix4(posed.toRoot));if(d<need)c+=((need-d)/k)**2*2000;if(d<near)near=d;}
+     // (and a hand laid on the partner lies on them where it cannot reach its place, not in the air short of it: the mitten's
+     // round did that by its size)
+     if(want.press&&H!==MITTEN&&near>need+.004*k)c+=((near-need-.004*k)/k)**2*CONTACT;}
+    // (the hand out of the head and its hair: every point of its envelope; the mitten's middle was kept its own round off it)
+    if(H===MITTEN){const rm=headR(M),nearM=hairAt(M)+m.hand*.85/m.Rh;if(rm<nearM)c+=(nearM-rm)**2*300;}
+    else if(!want.cover)for(const q of touch){const p=_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W),r=headR(p),near=hairAt(p);if(r<near)c+=(near-r)**2*300;}
     // (cover: the whole mitten outside the head and its hair, not only its middle, by `cover` metres (6 mm unless said): a
     // mitten laid on the face or the crown)
-    if(want.cover){const gap=(want.cover===true?.006:want.cover)*k/m.Rh;for(const q of touch){const p=_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W),r=headR(p),near=hairAt(p)+gap;if(r<near)c+=(near-r)**2*3000;}}
-    const dm=torso(M),clear=want.touch?m.hand*(want.clear??.7):m.hand*.9;if(dm<clear)c+=((clear-dm)/k)**2*400;
-    // laid on the body, the whole mitten stays on it, not in it: its tip and the backs of its sides
-    if(want.touch)for(const q of touch){const d=torso(_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W));if(d<.009*k)c+=((.009*k-d)/k)**2*2000;}
+    // (and on it, not in the air short of it: the mitten's round reached the face from its place; the hand, thinner, is
+    // kept on the face or the hair as a hand laid on the body is, a few millimetres past the `cover` it keeps off them)
+    if(want.cover){const gap=(want.cover===true?.006:want.cover)*k/m.Rh;let close=Infinity;
+     for(const q of headTouch){const p=_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W),r=headR(p),near=hairAt(p)+gap;if(r<near)c+=(near-r)**2*3000;if(r-near<close)close=r-near;}
+     if(H!==MITTEN&&close>.004*k/m.Rh)c+=((close-.004*k/m.Rh)*m.Rh/k)**2*CONTACT;}
+    // (the middle kept off the body: laid on it, nearly as far as the hand lies (the mitten's share of its own thickness,
+    // 0.7 of 0.9); otherwise its own thickness, and the rest of the hand out of it)
+    const dm=torso(M),clear=want.touch?m.hand*(want.clear??H.lie*.7/MITTEN.lie):m.hand*H.lie;if(dm<clear)c+=((clear-dm)/k)**2*400;
+    // laid on the body, the whole hand stays on it, not in it: its tip and the backs of its sides
+    // (a lap's cloth lies in folds a few millimetres high that the legs' round does not see: there the mitten's centimetre)
+    if(want.touch){const gap=(spec.ground?MITTEN.gap:H.gap)*k;let near=Infinity;for(const q of touch){const d=torso(_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W));if(d<gap)c+=((gap-d)/k)**2*2000;if(d<near)near=d;}
+     // (and on it, not over it, where the body is what it lies on (a back, a belly, a hip): on a lap the cloth lies between,
+     // and the lap's own surface holds it, below)
+     if(H!==MITTEN&&!spec.ground&&near>(H.gap+.004)*k)c+=((near-(H.gap+.004)*k)/k)**2*CONTACT;}
+    // (not laid on it, the whole hand out of it all the same, firmly: where its place is out of reach, it stops at the body)
+    else if(H!==MITTEN)for(const q of touch){const d=torso(_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W));if(d<.002*k&&(hipsM||_t.y+chestAt.y>m.hipY+.1*k))c+=((.002*k-d)/k)**2*20000;}
+    // (ground: what the hand lies on as it is drawn, a height over [x, z] in the body's frame: a lap and the cloth on it, or
+    // the cloth spread on the floor beside the hips)
+    if(spec.ground)for(const q of touch){_r.copy(_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W)).applyMatrix4(posed.toRoot);const g=spec.ground(_r.x,_r.z)+.002*k;if(_r.y<g)c+=((g-_r.y)/k)**2*2000;
+     if(spec.drape){const u=spec.drape(_r);if(u>.001*k)c+=((u-.001*k)/k)**2*2000;}}
+    // the palm to what it is laid on, the wrist bent no further than a wrist goes (and a little kept straight)
+    if(wrists&&palmOn){c+=palmOn*(1-_pw.copy(palmOwn).applyQuaternion(_q[3]).dot(palmIn));
+     const w=[hand[0]+x[5],sg*(hand[1]+x[7]),sg*(hand[2]+x[6])];
+     for(let i=0;i<3;i++){const b=PALM.wrist[i];if(w[i]<b[0])c+=(b[0]-w[i])**2*20;else if(w[i]>b[1])c+=(w[i]-b[1])**2*20;}
+     c+=.03*(x[5]**2+x[6]**2+x[7]**2);}
     for(let i=0;i<5;i++)c+=.01*(x[i]-seed[i])**2;if(x[3]>0)c+=x[3]**2;if(x[3]<-2.6)c+=(x[3]+2.6)**2;
     if(bounds)for(let i=0;i<5;i++){const b=bounds[i];if(!b)continue;if(x[i]<b[0])c+=(b[0]-x[i])**2*5;else if(x[i]>b[1])c+=(x[i]-b[1])**2*5;}
     // (a move may keep the upper arm's and the forearm's twist near its seed, so the arm is not wound round to get there)
     if(want.twist)c+=want.twist*((x[1]-seed[1])**2+(x[4]-seed[4])**2);
     return c;};
-   let x=seed;for(const step of [.3,.1,.03])x=minimise(cost,x,step);
-   if(want.multiStart){for(const candidate of [[-.7,-.45,.4,-1.3,0],[-.7,.45,-.4,-1.3,0],[-1.6,-.3,-.3,-1,.2],[0,0,-.3,-1,0]]){let probe=candidate;for(const step of [.3,.1,.03])probe=minimise(cost,probe,step);if(cost(probe)<cost(x))x=probe;}}
-   out[side]=mirror(x);out['hand'+side]=want.hand||null;
+   // (with the wrist: the arm first, to the place alone, the wrist held straight; then the palm turned, and the arm brought
+   // back to the place: eight angles at once wandered off to a different arm for a centimetre's change in the place, and
+   // the palm's way asked of a straight wrist swung the arm round backward)
+   // (the palm turned by the forearm's twist and the wrist alone, the arm's other angles kept: the hand's middle is on the
+   // forearm's line, so the twist does not move it, and the wrist moves it a little, which the arm's next solve takes up.
+   // Turned within the whole cost it stuck with the back of the hand to the body, the palm unable to turn through it.)
+   const _o=new THREE.Quaternion(),twistB=bounds?.[4]||[-1.2,1.2];
+   const orient=x=>{_q[0].setFromEuler(_eu.set(x[0],x[1],x[2]));
+    const f=w=>{_o.copy(_q[0]).multiply(_q[2].setFromEuler(_eu.set(x[3],w[0],0))).multiply(qWrist.setFromEuler(_eu.set(hand[0]+w[1],hand[1]+w[3],hand[2]+w[2])));
+     let c=1-_pw.copy(palmOwn).applyQuaternion(_o).dot(palmIn);const v=[hand[0]+w[1],sg*(hand[1]+w[3]),sg*(hand[2]+w[2])];
+     if(fingersTo)c+=1-_fw.set(0,-1,0).applyQuaternion(_o).dot(fingersTo);
+     for(let i=0;i<3;i++){const b=PALM.wrist[i];if(v[i]<b[0])c+=(b[0]-v[i])**2*20;else if(v[i]>b[1])c+=(v[i]-b[1])**2*20;}
+     if(w[0]<twistB[0])c+=(twistB[0]-w[0])**2*20;else if(w[0]>twistB[1])c+=(w[0]-twistB[1])**2*20;
+     return c+.03*(w[1]**2+w[2]**2+w[3]**2)+.01*(w[0]-x[4])**2;};
+    let w=[x[4],x[5],x[6],x[7]];for(const step of [.4,.12,.04])w=minimise(f,w,step);return [x[0],x[1],x[2],x[3],w[0],w[1],w[2],w[3]];};
+   const solve=start=>{let x=start;if(!wrists){for(const step of [.3,.1,.03])x=minimise(cost,x,step);return x;}
+    // the arm to the place with the wrist straight; then twice: the palm turned, and the arm to the place again with the
+    // wrist as it is now
+    // (the arm brought back holds the palm's turn only lightly: the turn is the wrist's now, and the hand stays out of what
+    // it lies on before it keeps its turn)
+    const armWith=(w,on)=>a=>{palmOn=on;const c=cost([...a,...w]);palmOn=PALM.weight;return c;};
+    let a=x.slice(0,5);for(const step of [.3,.1,.03])a=minimise(armWith([0,0,0],0),a,step);x=[...a,0,0,0];
+    for(let pass=0;pass<2;pass++){x=orient(x);a=x.slice(0,5);const w=x.slice(5);for(const step of [.1,.03])a=minimise(armWith(w,PALM.weight/3),a,step);x=[...a,...w];}
+    return x;};
+   let x=solve(seed);
+   if(want.multiStart){for(const candidate of [[-.7,-.45,.4,-1.3,0],[-.7,.45,-.4,-1.3,0],[-1.6,-.3,-.3,-1,.2],[0,0,-.3,-1,0]]){const probe=solve([...candidate,...[0,0,0].slice(0,wrists)]);if(cost(probe)<cost(x))x=probe;}}
+   // (the arm's angles, and the hand's turn with the wrist's bend on it, in the right arm's terms)
+   const finish=x=>{const xr=mirror(x),h=wrists?mirror(hand):want.hand||[0,0,0];
+    out[side]=xr.slice(0,5);out['hand'+side]=wrists?[h[0]+xr[5],h[1]+xr[7],h[2]+xr[6]]:want.hand||null;};
+   // (a side that is the other's mirror ends as its mirror: each arm is solved on its own, and an arm just long enough can
+   // find two places, an elder's one hand on the top of the thigh and the other down its outer side; each is tried from
+   // the other's, and the better of the two kept for both. `mirror` takes either arm's terms to the other's.)
+   const R=solved.R;
+   if(!own&&R&&x.some((v,i)=>Math.abs(v-mirror(R.x)[i])>.05)){
+    const fromR=solve(mirror(R.x));
+    if(cost(fromR)<cost(x))x=fromR;
+    else{const fromL=R.solve(mirror(x));if(R.cost(fromL)<R.cost(R.x))R.finish(R.x=fromL);}
+   }
+   solved[side]={x,cost,solve,finish};finish(x);
   }
   reached.set(name,out);return out;
  }
@@ -645,7 +774,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    consumption={...consumptionPhase(t),food:eating,elapsed:consumeTime,cycle:Math.floor(consumeTime/5)};
   }else{consumption=null;consumeTime=0;}
   lastConsume=action;
-  for(const j of JOINTS)target[j].set(0,0,0);
+  for(const j of JOINTS)target[j].set(0,0,0);handWish.L=handWish.R=0;
   let targetRoot=0,targetHips=0,targetLean=0,seatSlide=0,onLap=null;floorSit=0;
   const chairBlend=Number.isFinite(s.chairBlend)?THREE.MathUtils.clamp(s.chairBlend,0,1):(s.seated?1:0);
   const onChair=chairBlend>0||s.seated;
@@ -688,7 +817,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
     seatSlide=Math.max(0,s.seatFront-(shins-CHAIR_SIT.edge*m.k)*avatar.root.scale.z);}
    if(floorSit>0){const F=floorShape(seatH-(s.floorHeight||0)),A=F.hands();
     for(const j of LEG_JOINTS)target[j].lerp(_pose.set(...F.joints[j]),floorSit);add('chest',FLOOR_SIT.lean*floorSit);
-    if(A){armTo('R',A.R,floorSit,A.handR);armTo('L',A.L,floorSit,A.handL);}}
+    if(A){armTo('R',A.R,floorSit,A.handR);armTo('L',A.L,floorSit,A.handL);if(A.closed){closeHand('L',A.closed*floorSit);closeHand('R',A.closed*floorSit);}}}
    // (a sitter's breath; a quarter of it with the palms laid on the thighs, which brace the trunk: the arm goes with the
    // chest, and the whole of it rocked the resting hand 1.5 cm, into the thigh and off it)
    add('chest',Math.sin(time*1.5)*.02*(C.rest&&!soak&&!s.driving&&!s.pose?1-.75*(1-floorSit):1));
@@ -961,6 +1090,14 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // A hand with fingers rests a little curled, as a hand does, never splayed flat (a judge of the counter frames: "the
   // free hand is a stiff starfish"); what it holds closes it further (consume.js, table-drink.js set the grip after this).
   if(avatar.pixar?.grip){avatar.pixar.grip('L',s.heldProp?.userData?.food?1:.28);if(!consumption&&!s.heldProp)avatar.pixar.grip('R',.28);}
+  // (the kit's hand rests as it is drawn, a little curled, and closes as far as the move asks (a fist, a grab), round what
+  // it holds (the drink or dish in the right hand, what the work puts in either: consume.js heldGrip), or as far as a
+  // performance holding something asks (avatar.handHeld: table-drink.js); all of it here, once a frame)
+  // (a handle the hand closes right round: the umbrella's, a cleaning tool's, the steering wheel's rim, the handlebars)
+  // (and what a story move has in the hand: the torch in the right fist, the paper's edges between the fingers)
+  else if(avatar.grip)for(const side of ['L','R']){const held=side==='R'?s.heldProp||s.workHeld?.R:s.workHeld?.L,round=s.driving||s.riding||side==='R'&&(s.umbrella||s.tool||avatar.storyProps?.get?.('torch')?.parent===bones.handR);
+   if(reading>0)closeHand(side,.5*reading);
+   avatar.grip(side,Math.max(handWish[side],held?heldGrip(held,m):0,round?1:0,avatar.handHeld?.[side]||0));}
   avatar.seatLevel=null;
   if(onChair&&!s.riding){
    // Keep sit/stand transitions continuous and use the actual clothing surface
@@ -1039,7 +1176,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   JOINTS.forEach(j=>bones[j].rotation.set(...(joints[j]||[0,0,0])));root.updateMatrixWorld(true);supportSeat(seat);root.updateMatrixWorld(true);
   const top=(seat-root.position.y)/root.scale.y;avatar.seatLevel=top;
   const inv=new THREE.Matrix4().copy(root.matrixWorld).invert(),p=new THREE.Vector3(),rest=new THREE.Vector3(),lapPoints=[];
-  const at=n=>bones[n].getWorldPosition(new THREE.Vector3()).applyMatrix4(inv),hip=at('thighR'),knee=at('kneeR'),thigh=new THREE.Line3(hip,knee),near=new THREE.Vector3();
+  const at=n=>bones[n].getWorldPosition(new THREE.Vector3()).applyMatrix4(inv),hip=at('thighR'),knee=at('kneeR'),thigh=new THREE.Line3(hip,knee),thighL=new THREE.Line3(at('thighL'),at('kneeL')),near=new THREE.Vector3();
   let shins=Infinity,leg=m.legR,onLap=false;
   for(const mesh of root.children){if(!mesh.isSkinnedMesh||!mesh.visible||mesh.name.includes('outline'))continue;
    const g=mesh.geometry,I=g.attributes.skinIndex,F=g.attributes.towelFit,fit=F&&mesh.towelFit,names=mesh.skeleton.bones.map(b=>b.name);
@@ -1059,7 +1196,31 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // how far round the place to look, a mitten's own width for what lies under it)
   const topAt=(x,z,y,cloth=false,ceiling=Infinity,within=m.hand*1.1)=>{for(const [px,py,pz,c] of lapPoints)if(py>y&&py<ceiling&&(c>1.5||!cloth)&&Math.hypot(px-x,pz-z)<within)y=py;return y;};
   const lap=(f,cloth=false)=>{const c=hip.clone().lerp(knee,f);return {top:topAt(c.x,c.z,c.y+leg,cloth),axis:c};};
-  return {shins,leg,lap,topAt,cloth:onLap};
+  // (the lap as a height field, a centimetre a cell: the top of what is drawn there, the legs and the cloth lying on them,
+  // below the hips and a hand over them (above that a dress is going up the body); what a hand laid on the lap lies on)
+  // (smooth: each point's height falls away a centimetre at a cell's width from it, so the field has no steps for the
+  // solver to catch on, and a body drawn bigger or smaller finds the same hands)
+  // (a hand over the thigh: over the nearer thigh's line where the point is, which rises to the knee when the knees are up
+  // on the floor; over the hips' height alone, Miss Higa's house dress at her knees was left out and her hands went into it)
+  const _a=new THREE.Vector3(),low=lapPoints.filter(([x,y,z])=>{_a.set(x,y,z);let d=Infinity,ay=hip.y;
+   for(const l of [thigh,thighL]){const e=l.closestPointToPoint(_a,true,near).distanceToSquared(_a);if(e<d){d=e;ay=near.y;}}return y<Math.max(hip.y,ay)+leg+m.hand;});
+  const cell=.012*m.k,cells=new Map(),fall=.01*m.k/(cell*cell);
+  for(const [x,y,z] of low){const key=Math.floor(x/cell)+','+Math.floor(z/cell);(cells.get(key)||cells.set(key,[]).get(key)).push([x,y,z]);}
+  const groundAt=(x,z)=>{const i=Math.floor(x/cell),j=Math.floor(z/cell);let h=-Infinity;
+   for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++)for(const [px,py,pz] of cells.get((i+a)+','+(j+b))||[]){const v=py-fall*((px-x)**2+(pz-z)**2);if(v>h)h=v;}return h;};
+  // (and how far a point is under the cloth that hangs off the lap (a dress draped over a thigh's side, or into the valley
+  // between the thighs): nearer the thighs' lines than the nearest of the cloth, within a hand of it, is under it (negative:
+  // outside it); the height field sees the cloth only from above)
+  const legsAt=[thigh,thighL],fromLeg=p=>Math.min(...legsAt.map(l=>l.closestPointToPoint(p,true,near).distanceTo(p)));
+  // (as a field over [x, z] too: in each column a centimetre and a half across, how near the cloth there comes to the thighs'
+  // lines; a point nearer them than that is under it. Smooth as the height field is.)
+  const bin=.015*m.k,drape=new Map(),fallD=.02*m.k/(bin*bin);
+  for(const [x,y,z,c] of low)if(c>.5){const key=Math.floor(x/bin)+','+Math.floor(z/bin),q=new THREE.Vector3(x,y,z),d=fromLeg(q),was=drape.get(key);if(!was||d<was[0])drape.set(key,[d,x,z]);}
+  const _u=new THREE.Vector3();
+  const underCloth=drape.size?p=>{const i=Math.floor(p.x/bin),j=Math.floor(p.z/bin),own=fromLeg(_u.copy(p));let u=-Infinity;
+   for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++){const e=drape.get((i+a)+','+(j+b));if(!e)continue;const v=e[0]-own-fallD*((e[1]-p.x)**2+(e[2]-p.z)**2);if(v>u)u=v;}
+   return u;}:null;
+  return {shins,leg,lap,topAt,groundAt,underCloth,cloth:onLap};
  }
  /**
   * The chair sit's shape for this body as it is dressed, on a seat `seat` high (`floor`: the floor's height under it; null in
@@ -1085,8 +1246,13 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   const slumped=avatar.pixar?{...joints,spine:[P.slump.spine,0,0],chest:[P.slump.chest,0,0]}:joints;
   const shoulderAt=J=>{JOINTS.forEach(j=>bones[j].rotation.set(...(J[j]||[0,0,0])));root.updateMatrixWorld(true);
    const p=root.worldToLocal(bones.shoulderR.getWorldPosition(new THREE.Vector3()));JOINTS.forEach((j,i)=>bones[j].rotation.set(...saved[i]));root.updateMatrixWorld(true);return p;};
-  const reachArm=(m.upper+m.fore+m.hand*.55)*.97,reaches=(sh,q,slack=1)=>sh.distanceTo(new THREE.Vector3(...q))<=reachArm*slack;
-  const lapAt=(f,palm=.85)=>{const L=S.lap(f);return [L.axis.x,L.top+m.hand*palm,L.axis.z];};
+  const reachArm=(m.upper+m.fore-m.hand*handShape(m).middle[1])*.97,reaches=(sh,q,slack=1)=>sh.distanceTo(new THREE.Vector3(...q))<=reachArm*slack;
+  // (the hand's middle over the lap as far as a hand laid on it lies, a little pressed into the cloth; `palm`, a Pixar
+  // body's own, in hand lengths)
+  // (and how high the lap's top is over the thigh's line anywhere under a hand laid there, from its wrist to its
+  // fingertips, `under`: a skirt's or a dress's cloth lying on it)
+  const lapAt=(f,palm=null)=>{const L=S.lap(f),out=[L.axis.x,L.top+(palm===null?handOff(m,-.05):m.hand*palm),L.axis.z],reach=m.hand*handShape(m).half[1]/m.thigh;
+   out.under=Math.max(...[-1,-.5,0,.5,1].map(u=>{const l=S.lap(THREE.MathUtils.clamp(f+u*reach,0,1));return l.top-l.axis.y;}));return out;};
   let place=null,rest=null;
   // (arms too short for the knees rest higher up the thigh, as a person's do; a body that reaches no point of its thighs,
   // Tetsuo, Chin and Mr Fujita with the low hip joints of their export of 28 October, keeps the mitten's place over the lap,
@@ -1098,8 +1264,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // by the side, as a sitter's is, not winged out over the next place on the bench or a chair's arm)
   // (the left the mirror of the right: the sit is the same both sides, and an arm solved on its own can settle elsewhere)
   const mirrored=A=>({...A,L:A.R,handL:A.handR});
-  const shape={joints,rest,shins:S.shins,hands:()=>!(S.cloth||avatar.pixar)?null:hands??=mirrored(reachFor('ChairSit:'+key,{pose:()=>rest?slumped:joints,legs:S.leg*1.04,only:'R',
-   R:{touch:true,root:place,elbow:m=>[-(m.width/2-m.armR*.4),m.hipY+m.torso*.3,m.depth*.3],seed:[-.55,.1,-.1,-.6,0],hand:rest?rest.hand:[-.3,0,0],flat:rest?.flat,clear:rest?.clear,bounds:LAP_BOUNDS}}))};
+  const shape={joints,rest,shins:S.shins,hands:()=>!(S.cloth||avatar.pixar)?null:hands??=mirrored(reachFor('ChairSit:'+key,{pose:()=>rest?slumped:joints,legs:avatar.pixar?S.leg*1.04:Math.max(S.leg*1.04,place.under||0),...(avatar.pixar?{}:{ground:S.groundAt,drape:S.underCloth}),only:'R',
+   R:{touch:true,root:place,fingers:[0,-.3,1],elbow:m=>[-(m.width/2-m.armR*.4),m.hipY+m.torso*.3,m.depth*.3],seed:[-.55,.1,-.1,-.6,0],hand:rest?rest.hand:m.realHand?[-.3,0,0]:[0,0,0],flat:rest?.flat,clear:rest?.clear,bounds:LAP_BOUNDS}}))};
   chairShapes.set(key,shape);return shape;
  }
  /**
@@ -1131,11 +1297,14 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // over the thigh: above that it is going up the body. A slim body, whose mittens do reach its thighs, laid them 2 cm
   // inside that cloth: Thao on a cushion, 26 November 2026. Not a bath towel, which lies close on the thighs and whose
   // cloth over a round belly is not a lap: Mr Fujita's mittens were held up in the air to it.)
-  const S=seatedScan(joints,0),onLap=f=>{const L=S.lap(f,true),lying=S.cloth&&avatar.outfit==='afterbath'?S.topAt(L.axis.x,L.axis.z,L.axis.y+S.leg,false,L.axis.y+m.legR*1.15+m.hand*1.3,m.hand*.7):L.top;
+  const S=seatedScan(joints,0),onLap=f=>{const L=S.lap(f,true),lying=S.cloth&&avatar.outfit==='afterbath'?S.topAt(L.axis.x,L.axis.z,L.axis.y+S.leg,false,L.axis.y+m.legR*1.15+handOff(m,.4),handOff(m,-.2)):L.top;
    return Math.max(0,Math.max(L.top,lying)-L.axis.y-m.legR*1.15);};
-  const place=f=>[-m.hipX,m.hipY-m.thigh*f,m.legR*1.15+onLap(f)+m.hand*.85],reachArm=(m.upper+m.fore+m.hand*.55)*.97;
+  const place=f=>[-m.hipX,m.hipY-m.thigh*f,m.legR*1.15+onLap(f)+handOff(m,-.05)],reachArm=(m.upper+m.fore-m.hand*handShape(m).middle[1])*.97;
   const put=J=>{JOINTS.forEach(j=>bones[j].rotation.set(...(J[j]||[0,0,0])));root.updateMatrixWorld(true);};
-  put({});const local=[1,.85,.7,.55,.4].map(u=>u*FLOOR_SIT.hands).map(f=>[f,bones.thighR.worldToLocal(root.localToWorld(new THREE.Vector3(...place(f))))]);
+  // (a hand laid on a dress's cloth lies on it to its fingertips: nearer the hips where the cloth ends before them, or its
+  // fingers hang over the hem)
+  const tipOn=f=>!(onLap(f)>0)||onLap(Math.min(1,f+m.hand*(handShape(m).middle[1]-handShape(m).tip)/m.thigh))>0;
+  put({});const local=[1,.85,.7,.55,.4].map(u=>u*FLOOR_SIT.hands).filter((f,i,all)=>tipOn(f)||i===all.length-1).map(f=>[f,bones.thighR.worldToLocal(root.localToWorld(new THREE.Vector3(...place(f))))]);
   // (measured in the body's own frame: a scene may have scaled it)
   put(joints);const inBody=p=>root.worldToLocal(p),shoulder=inBody(bones.shoulderR.getWorldPosition(new THREE.Vector3()));
   const along=(local.find(([,v])=>inBody(bones.thighR.localToWorld(v.clone())).distanceTo(shoulder)<=reachArm)||local.at(-1))[0];
@@ -1144,8 +1313,11 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // on what it sits on, the ends of the mittens on it)
   let hands;
   const shape={a,knee,joints,shins:S.shins,hands:()=>{if(hands!==undefined)return hands;
-   const A=reachFor('FloorSit:'+a.toFixed(3)+':'+knee.toFixed(3)+':'+along.toFixed(2),{pose:()=>joints,
-    R:{touch:true,on:['thighR',()=>place(along)],seed:[-.55,.1,-.1,-.5,0],hand:[-.3,0,0],bounds:LAP_BOUNDS}});
+   // (the legs as thick as what is drawn on them, and the cloth on the lap as high as it lies anywhere under the hand, from
+   // its wrist to its fingertips: the hand lies on it)
+   const under=[-1,-.5,0,.5,1].map(u=>along+u*m.hand*handShape(m).half[1]/m.thigh);
+   const A=reachFor('FloorSit:'+a.toFixed(3)+':'+knee.toFixed(3)+':'+along.toFixed(2),{pose:()=>joints,legs:avatar.pixar?0:Math.max(S.leg*1.04,...under.map(f=>m.legR*1.15+onLap(f))),...(avatar.pixar?{}:{ground:S.groundAt,drape:S.underCloth}),
+    R:{touch:true,fingers:[0,-.3,1],on:['thighR',()=>place(along)],seed:[-.55,.1,-.1,-.5,0],hand:m.realHand?[-.3,0,0]:[0,0,0],bounds:LAP_BOUNDS}});
    const was=JOINTS.map(j=>bones[j].rotation.toArray().slice(0,3));put(joints);
    // (the arms as armTo sets them: the left's turns mirrored)
    for(const s of ['R','L']){const sg=s==='R'?1:-1,a=A[s],h=A['hand'+s]||[0,0,0];bones['shoulder'+s].rotation.set(a[0],a[1]*sg,a[2]*sg);bones['elbow'+s].rotation.set(a[3],(a[4]||0)*sg,0);bones['hand'+s].rotation.set(h[0],h[1]*sg,h[2]*sg);}
@@ -1154,21 +1326,25 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    // just long enough can bring one mitten to the thigh and leave the other in the air), and the mitten's skin rather
    // than its envelope (TOUCH), which stands off the drawn mitten by a centimetre; to the lap as it is drawn (shorts, or a
    // skirt's cloth on it), which the mitten lies on
-   const q=new THREE.Vector3();let off=-Infinity;
+   // (the lap's top found once: the hand is thousands of points, and finding it for each took most of a floor sit's time)
+   const q=new THREE.Vector3(),lap=onLap(along);let off=-Infinity;
    for(const s of ['R','L']){
     const thigh=new THREE.Line3(inBody(bones['thigh'+s].getWorldPosition(new THREE.Vector3())),inBody(bones['knee'+s].getWorldPosition(new THREE.Vector3())));
-    let near=Infinity;for(const p of posedPoints(avatar,root,()=>true,1,new Set(['hand'+s])))near=Math.min(near,thigh.closestPointToPoint(p,true,q).distanceTo(p)-m.legR*1.15-onLap(along));
+    let near=Infinity;for(const p of posedPoints(avatar,root,()=>true,1,new Set(['hand'+s])))near=Math.min(near,thigh.closestPointToPoint(p,true,q).distanceTo(p)-m.legR*1.15-lap);
     off=Math.max(off,near);
    }
    JOINTS.forEach((j,i)=>bones[j].rotation.set(...was[i]));root.updateMatrixWorld(true);
    if(off<.022*m.k)return hands=A;
    // (beside the hips the mittens rest on what is sat on, or on a skirt spread over it there: as near the hips as the skirt
    // lies flat, never where it rises to the waist, which a mitten laid on it would have to be held up over)
-   const flat=x=>S.topAt(x,-FLOOR_SIT.behind*m.k,-Infinity,true),x0=-(m.hipX+m.legR*1.15+m.hand*.9+FLOOR_SIT.side*m.k);
+   const flat=x=>S.topAt(x,-FLOOR_SIT.behind*m.k,-Infinity,true),x0=-(m.hipX+m.legR*1.15+handOff(m,0,true)+FLOOR_SIT.side*m.k);
    let x=x0;for(let i=1;i<=8&&flat(x)>rest+m.legR*1.2;i++)x=x0-i*.01*m.k;
-   const side=[x,Math.max(rest+m.hand*1.1,flat(x)+m.hand*.85),-FLOOR_SIT.behind*m.k];
-   return hands=reachFor('FloorSitSide:'+a.toFixed(3)+':'+knee.toFixed(3),{pose:()=>joints,
-    R:{root:side,seed:[.1,0,-.2,-.15,0],hand:[0,0,0]}});}};
+   // (the hand there is closed, below: as far off the hip and the floor as a fist lies)
+   const side=[x,Math.max(rest+handOff(m,.2,true),flat(x)+handOff(m,-.05,true)),-FLOOR_SIT.behind*m.k];
+   // (the fingers kept out of the cloth spread on the floor there; and the hand loosely closed, resting on its knuckles: a
+   // hand hung open from a short arm beside a round middle put its fingers into the belly or the floor)
+   hands=reachFor('FloorSitSide:'+a.toFixed(3)+':'+knee.toFixed(3),{pose:()=>joints,...(avatar.pixar?{}:{ground:S.groundAt,drape:S.underCloth}),
+    R:{root:side,seed:[.1,0,-.2,-.15,0],hand:[0,0,0],fist:!avatar.pixar}});if(!avatar.pixar)hands.closed=1;return hands;}};
   floorShapes.set(key,shape);return shape;
  }
  /**
@@ -1256,10 +1432,10 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
     const fwd=_b.set(0,0,1).transformDirection(root.matrixWorld),across=new THREE.Vector3(1,0,0).transformDirection(bones.handR.matrixWorld);
     if(across.dot(fwd)<0)across.negate();const up=new THREE.Vector3(0,1,0).transformDirection(bones.handR.matrixWorld),side=new THREE.Vector3().crossVectors(up,across).normalize();up.crossVectors(across,side);
     _qb.copy(hq).multiply(new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(side,up,across)));
-    tor.position.lerpVectors(T.p0,_a.set(0,-m.hand*.55,0),u);tor.quaternion.slerpQuaternions(T.q0,_qb,u);}
+    tor.position.lerpVectors(T.p0,_a.set(...handleAt(m,'R',TORCH_RADIUS)),u);tor.quaternion.slerpQuaternions(T.q0,_qb,u);}
    else{const pitch=-.42;
     _qb.copy(hq).multiply(root.getWorldQuaternion(new THREE.Quaternion())).multiply(new THREE.Quaternion().setFromEuler(_eA.set(pitch,0,0)));
-    tor.position.lerpVectors(T.p0,_a.set(0,-m.hand*.55,0),u);tor.quaternion.slerpQuaternions(T.q0,_qb,u);}
+    tor.position.lerpVectors(T.p0,_a.set(...handleAt(m,'R',TORCH_RADIUS)),u);tor.quaternion.slerpQuaternions(T.q0,_qb,u);}
    // lit, its light on his face: the middle of the face, a little below the eyes
    if(tor.userData.torch.on){tor.updateMatrixWorld(true);tor.userData.torch.aimAt(bones.head.localToWorld(_a.set(0,m.headCentre-m.headY-m.Rh*.25,m.Rh*.8)));}
   }
@@ -1267,7 +1443,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // away from the reader, opened as far as the hands are apart
   if(reading>0){
    const paper=P.give('newspaper');paper.visible=true;
-   const mR=bones.handR.localToWorld(_a.set(0,-m.hand*.55,0)),mL=bones.handL.localToWorld(_b.set(0,-m.hand*.55,0));root.worldToLocal(mR);root.worldToLocal(mL);
+   const mR=bones.handR.localToWorld(_a.set(...handleAt(m,'R',.002))),mL=bones.handL.localToWorld(_b.set(...handleAt(m,'L',.002)));root.worldToLocal(mR);root.worldToLocal(mL);
    const across=_c.subVectors(mL,mR),dist=across.length();across.normalize();
    const a=paper.userData.paper.setSpread(Math.min(dist/2,PAPER.leaf)),away=new THREE.Vector3(0,0,1).addScaledVector(across,-across.z).normalize();
    const up=new THREE.Vector3().crossVectors(away,across);
@@ -1337,6 +1513,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // names comes in and goes out on its own ramp
   const raw=g.ramp!==undefined?g.ramp:THREE.MathUtils.clamp(Math.min(t/.5,d===Infinity?1:(d-t)/.5),0,1);
   const w=g.ramp!==undefined?smooth(g.ramp):inOut(t,d,...[RAMP_TIME[g.name]||FUN_POSES[g.name]?.ramp||PAIR_ROLES[g.name]?.ramp||.5].flat()),soak=s.seat==='Soak'||s.pose==='Soak';
+  // (a move's fists: the hands closed (build.js grip) as far as the move has come in)
+  const fists=FISTS[g.name];if(fists)for(const side of ['L','R'])if(fists[side])closeHand(side,fists[side]*w);
   switch(g.name){
    // A friendly wave: the upper arm out a little above the shoulder, the forearm up beside the head, swaying from the
    // elbow, the palm turned to the front. (A straight arm raised high and forward, the hand flat, reads as a salute: the
@@ -1599,7 +1777,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
     const u=Number.isFinite(s.uncurl)?THREE.MathUtils.clamp(s.uncurl,0,1):UNCURL.half*smooth(t/UNCURL.time),J=chairJoints(1-u);
     for(const j of ['spine','chest','neck','head'])toward(j,...J[j],w);
     const A=reachFor('ChairCurl'),B=reachFor('ChairHalf'),f=u/UNCURL.half;
-    armTo('R',mix(A.R,B.R,f),w,A.handR);armTo('L',mix(A.L,B.L,f),w,A.handL);break;}
+    // (and the hand's turn between the two: each place has its own, the palm laid on the thigh)
+    const turn=h=>mix(A[h]||[0,0,0],B[h]||[0,0,0],f);armTo('R',mix(A.R,B.R,f),w,turn('handR'));armTo('L',mix(A.L,B.L,f),w,turn('handL'));break;}
    // Stuck in the chair in a new shape when the lights come back (7a, 7c, 7f): see ABSURD. Seated, the left knee is its own.
    case 'FrozenAbsurd':{const A=ABSURD;
     for(const j of ['spine','chest','neck','head'])toward(j,...A[j],w);
@@ -1668,12 +1847,14 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
     add('chest',Math.sin(t*2.4)*.012*w);add('head',0,0,Math.sin(t*1.2)*.008*w);break;
    }
     const F=FUN_POSES[g.name];
-    if(F)return F.play({t,d,w,q,e,m,seated,set,add,toward,armTo,reach:()=>reachFor('Fun:'+g.name,F.reach)})||null;
+    if(F){if(F.grip)for(const side of ['L','R'])if(F.grip[side])closeHand(side,F.grip[side]*w);
+     return F.play({t,d,w,q,e,m,seated,set,add,toward,armTo,grip:closeHand,reach:()=>reachFor('Fun:'+g.name,F.reach)})||null;}
     // A role of a pair pose (pair-poses.js): its body from the fit for this body and its partner (playPair; played alone,
     // the fit of this body with itself), the arms solved on the partner's body the first time (or by playPair, at once).
     const R=PAIR_ROLES[g.name];if(!R)break;
     const fit=pairFit(R);
-    return R.play({t,d,w,q,e,m,seated,set,add,toward,armTo,fit,reach:()=>fit.arms!==null?fit.arms:(fit.arms=solveRole(fit,(key,spec)=>reachFor('Pair:'+key,spec)))})||null;}
+    if(fit.grip)for(const side of ['L','R'])if(fit.grip[side])closeHand(side,fit.grip[side]*w);
+    return R.play({t,d,w,q,e,m,seated,set,add,toward,armTo,fit,grip:closeHand,reach:()=>fit.arms!==null?fit.arms:(fit.arms=solveRole(fit,(key,spec)=>reachFor('Pair:'+key,spec)))})||null;}
   }
   return null;
  }

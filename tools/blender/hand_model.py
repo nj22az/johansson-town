@@ -1,108 +1,133 @@
-"""A hand modelled in Blender, in progress: NOT worn by anybody yet (build.js still draws the mitten).
+"""The body kit's hand, box-modelled in Blender as animation studios model hands: a low cage (a palm block that tapers to
+the wrist, four fingers each extruded from its knuckle in three joints, a thumb grown from the palm's side) smoothed by
+subdivision surface into one continuous skin.
 
-The owner, 26 November 2026: "Omg they have mitten hands"; "Draw the hand properly not like a balloon with sausages on it";
-and of this model, "The hands look awful, make them Disney quality". What is here is the second try: kept as the starting
-point for the hand that will be worn (briefs/HANDOFF-SAKURA-RESTROOM-2026-11-26.md, the last section)."""
+The owner, 26 November 2026: "Omg they have mitten hands"; of a palm of spheres with spheres for fingers, "Draw the hand
+properly not like a balloon with sausages on it"; of a hand of voxel-merged lumps, "The hands look awful, make them Disney
+quality". Both of those were built from blobs; this one is designed: a soft palm, fingers that taper, fan a little and
+curl more toward the little one, the middle longest, and a thumb from a fleshy base angled toward the forefinger."""
 import math
 import bpy
 import bmesh
 import numpy as np
-from mathutils import Matrix, Vector
+from mathutils import Vector, Matrix
 
-THICK = 1.1                # how thick the hand is, of the mitten's 2
-PALM = -.7                 # where its palm side lies in the box: nearly the mitten's own surface (-1)
+# Frame: x through the hand (+x the back, -x the palm), y along it (+y the wrist, -y the fingertips), z across it (+z the
+# forefinger's side, where the thumb is).
+P = dict(palm_len=1.0, palm_w=1.44, palm_t=.6, fingers=[  # z centre, length, width, curl per joint (rad), splay (rad)
+    (+.57, .70, .38, .13, +.08),     # fore
+    (+.19, .78, .39, .15, +.02),     # middle
+    (-.19, .72, .38, .19, -.04),     # ring
+    (-.56, .54, .35, .25, -.11),     # little
+], gap=.012, thumb=dict(len=.7, steps=[  # each step out of the palm's side: its way (x, y, z), its share of the length, taper
+    ((-.4, -.55, .75), .3, 1.0), ((-.45, -.9, .32), .32, .97), ((-.3, -1.0, .02), .26, .9), ((-.2, -1.0, -.05), .12, .55)]))
+
+# The same hand closed round a handle (a mug's, a torch, an umbrella's crook, a bar), the power grip: every finger curled at
+# each of its three joints (a tuple: knuckle, middle, end), the little finger most, drawn together; the thumb brought round
+# in front of the palm and laid across the forefinger and the middle finger. The same cage, so the same points in the same
+# order: the game blends the resting hand into this one (build.js grip).
+# (Curled further, the ring and little fingers' tips go into the palm: tools/blender checks the skin never passes through itself.)
+GRIP = dict(P, fingers=[(z, l, w, (c0, c1, c2), sp * .3) for (z, l, w, _, sp), (c0, c1, c2) in zip(P['fingers'], [
+    (.8, .9, .4), (.8, .95, .4), (.7, 1.0, .45), (.75, 1.0, .45)])],
+    thumb=dict(len=.7, steps=[((-.4, -.55, .75), .3, 1.0), ((-.7, -.65, .25), .32, .97), ((-.5, -.55, -.5), .26, .9), ((-.2, -.4, -.9), .12, .55)]))
+
+# The knuckle line, in the cage's frame: where the fingers leave the palm (at the middle finger, the top of the arc).
+KNUCKLES = -.06
 
 
-def hand_object(name='hand', voxel=.04, detail=.16):
-    """A hand at rest, as it hangs at the end of an arm: in the box's units, x through the hand (+x the back of it),
-    y 1 (the wrist) .. -1 (the middle fingertip), z across it (+z the forefinger's side).
-    Built as a hand is: a flat palm (wider than it is thick, wider at the knuckles than at the wrist, with the heel of the
-    hand and the thumb's mound on its inner face), four fingers of three joints each, tapering, a little curled toward the
-    palm and more so toward the little finger, and a thumb of two joints growing out of its mound, forward of the
-    forefinger. Then made one continuous skin (a voxel remesh), smoothed and thinned out."""
+def build(P=P, levels=3):
     bm = bmesh.new()
-
-    def ball(c, r):
-        made = bmesh.ops.create_uvsphere(bm, u_segments=14, v_segments=8, radius=1)['verts']
-        bmesh.ops.transform(bm, matrix=Matrix.Translation(c) @ Matrix.Diagonal((*r, 1)), verts=made)
-
-    def bone(a, b, ra, rb, flat=1.0):
-        """A tapered round segment from a to b (unit frame), radius ra to rb; `flat` thins it through the hand (x)."""
-        a, b = Vector(a), Vector(b)
-        n = max(2, int((b - a).length / .05))
-        for i in range(n + 1):
-            t = i / n
-            r = ra + (rb - ra) * t
-            ball(a.lerp(b, t), (r * flat, r, r))
-
-    # The palm: a rounded slab. Rows of lumps from the wrist to the knuckles, across from the little finger's edge to the
-    # forefinger's; thinner at its edges; the knuckle line an arc, highest at the middle finger.
-    for iy in range(10):
-        v = iy / 9                                                           # 0 the wrist .. 1 the knuckles
-        half = .42 + .44 * v ** .7                                           # the palm widens toward the knuckles
-        for iz in range(9):
-            w = iz / 8 * 2 - 1
-            y = .93 - .86 * v + (.05 * (1 - w * w) - .03 * max(-w, 0)) * v   # the knuckle arc; the little finger's side lower
-            thick = .27 * (1 - .28 * w * w) * (.86 + .14 * v)
-            ball((0, y, w * half), (thick, .16, .16))
-    # The heel of the hand and the thumb's mound, on the palm's face (-x).
-    ball((-.14, .62, -.3), (.2, .26, .3))
-    ball((-.2, .56, .42), (.24, .32, .28))
-    # Knuckles, on the back.
-    # Four fingers: [z, base y, length, radius, curl]
-    for z, y0, length, r, curl in ((-.66, .0, .6, .185, .24), (-.22, .07, .78, .205, .19), (.22, .1, .86, .21, .16), (.66, .06, .78, .205, .13)):
-        p, ang = Vector((0.0, y0, z)), .06
-        ball((.1, y0 + .03, z), (.16, .13, r * 1.05))                        # its knuckle
-        for k, share in enumerate((.42, .31, .27)):                          # three joints, each shorter and slimmer
+    L, W, T = P['palm_len'], P['palm_w'], P['palm_t']
+    # The palm: a block, four columns across (one per finger), two rows down, a little wider at the knuckles.
+    zs = np.array([-W / 2, -W / 4, 0, W / 4, W / 2])
+    ys = np.array([L, L * .62, L * .3, 0.0])
+    xs = np.array([-T * .55, T * .45])
+    V = {}
+    for i, y in enumerate(ys):
+        u = 1 - y / L                                    # 0 the wrist .. 1 the knuckles
+        widen = .62 + .38 * min(1, u / .62) ** .7        # the palm narrows to a round wrist
+        thin = .78 + .22 * min(1, u / .62)
+        for j, z in enumerate(zs):
+            arc = -KNUCKLES * (1 - (z / (W / 2)) ** 2) * (1 - y / L)   # the knuckle line an arc, highest at the middle
+            for k, x in enumerate(xs):
+                V[i, j, k] = bm.verts.new((x * thin, y - arc, z * widen))
+    F = lambda *vs: bm.faces.new(vs)
+    ni, nj = len(ys), len(zs)
+    for i in range(ni - 1):
+        for j in range(nj - 1):
+            F(V[i, j, 0], V[i, j + 1, 0], V[i + 1, j + 1, 0], V[i + 1, j, 0])        # the palm (-x)
+            F(V[i, j, 1], V[i + 1, j, 1], V[i + 1, j + 1, 1], V[i, j + 1, 1])        # the back (+x)
+    for j in range(nj - 1):
+        F(V[0, j, 0], V[0, j, 1], V[0, j + 1, 1], V[0, j + 1, 0])                    # the wrist end
+        knuckle = F(V[ni - 1, j, 0], V[ni - 1, j + 1, 0], V[ni - 1, j + 1, 1], V[ni - 1, j, 1])   # the knuckle faces
+    for i in range(ni - 1):
+        F(V[i, 0, 0], V[i + 1, 0, 0], V[i + 1, 0, 1], V[i, 0, 1])                    # the little finger's edge
+        F(V[i, nj - 1, 0], V[i, nj - 1, 1], V[i + 1, nj - 1, 1], V[i + 1, nj - 1, 0])  # the forefinger's edge
+    bm.normal_update()
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    knuckles = sorted([f for f in bm.faces if all(abs(v.co.y - (0 - .06 * (1 - (v.co.z / (W / 2)) ** 2))) < .02 for v in f.verts) and f.normal.y < -.5],
+                      key=lambda f: f.calc_center_median().z)
+    # Each finger: the knuckle face inset (a gap between fingers), then three joints, each shorter, slimmer and curled.
+    for (zc, length, w, curls, splay), face in zip(sorted(P['fingers'], key=lambda f: f[0]), knuckles):
+        inset = bmesh.ops.inset_individual(bm, faces=[face], thickness=P['gap'], depth=0)
+        f = face
+        direction = Vector((0, -1, 0))
+        ang = 0.0
+        segs = (.42, .32, .26)
+        curls = curls if isinstance(curls, tuple) else (curls,) * 3
+        for s, share in enumerate(segs):
+            ext = bmesh.ops.extrude_discrete_faces(bm, faces=[f])['faces'][0]
+            curl = curls[s]
             ang += curl
-            q = p + Vector((-math.sin(ang), -math.cos(ang), 0)) * (length * share)
-            bone(p, q, r * (1 - .07 * k), r * (1 - .07 * (k + 1)))
-            p = q
-    # The thumb: two joints out of its mound, forward of the forefinger and a little toward the palm.
-    p = Vector((-.2, .5, .56))
-    # (it stands out past the forefinger's edge no further than the mitten's thumb did: what the hand lies beside was
-    # placed to that)
-    for k, (dz, dy, dx, seg) in enumerate(((.46, -.84, -.24, .44), (.26, -.93, -.26, .36))):
-        d = Vector((dx, dy, dz)).normalized()
-        q = p + d * seg
-        bone(p, q, .235 - .02 * k, .215 - .025 * k)
-        p = q
-    mesh = bpy.data.meshes.new(name)
+            d = Vector((-math.sin(ang), -math.cos(ang), math.sin(splay)))
+            c = ext.calc_center_median()
+            step = d * (length * share)
+            taper = .93 if s < 2 else .86
+            for v in ext.verts:
+                v.co = c + (v.co - c) * taper + step
+            # turn the face to look along the finger
+            rot = Matrix.Rotation(-curl, 4, 'Z')
+            c2 = ext.calc_center_median()
+            for v in ext.verts:
+                v.co = c2 + rot @ (v.co - c2)
+            f = ext
+        # the fingertip: one more short, small step so it rounds off
+        ext = bmesh.ops.extrude_discrete_faces(bm, faces=[f])['faces'][0]
+        c = ext.calc_center_median()
+        d = Vector((-math.sin(ang + curl * .5), -math.cos(ang + curl * .5), 0))
+        for v in ext.verts:
+            v.co = c + (v.co - c) * .55 + d * (w * .28)
+    # The thumb: out of the forefinger's side of the palm, from the wrist to the middle of the palm (its mound is that broad),
+    # out to the side and a little forward, then curving forward and down toward the forefinger, thinning to a round tip.
+    th = P['thumb']
+    base = [f for f in bm.faces if f.normal.z > .6 and L * .3 < f.calc_center_median().y < L * .62]
+    if base:
+        bmesh.ops.inset_region(bm, faces=base, thickness=.025, depth=0)
+        region = base
+        for dv, share, taper in th['steps']:
+            dv = Vector(dv)
+            out = bmesh.ops.extrude_face_region(bm, geom=region)
+            bmesh.ops.delete(bm, geom=region, context='FACES')
+            region = [g for g in out['geom'] if isinstance(g, bmesh.types.BMFace)]
+            verts = list({v for f in region for v in f.verts})
+            c = sum((v.co for v in verts), Vector()) / len(verts)
+            n = sum((f.normal for f in region), Vector()).normalized()
+            q = n.rotation_difference(dv.normalized())
+            step = dv.normalized() * (th['len'] * share)
+            for v in verts:
+                v.co = c + q @ ((v.co - c) * taper) + step
+            bm.normal_update()
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    mesh = bpy.data.meshes.new('handCage')
     bm.to_mesh(mesh)
     bm.free()
-    obj = bpy.data.objects.new(name, mesh)
+    obj = bpy.data.objects.new('hand', mesh)
     bpy.context.collection.objects.link(obj)
     bpy.context.view_layer.objects.active = obj
-    bpy.ops.object.select_all(action='DESELECT')
     obj.select_set(True)
-    m = obj.modifiers.new('skin', 'REMESH')
-    m.mode, m.voxel_size, m.use_smooth_shade = 'VOXEL', voxel, True
-    bpy.ops.object.modifier_apply(modifier=m.name)
-    m = obj.modifiers.new('melt', 'SMOOTH')
-    m.factor, m.iterations = .5, 3
-    bpy.ops.object.modifier_apply(modifier=m.name)
-    m = obj.modifiers.new('thin', 'DECIMATE')
-    m.ratio = detail
-    bpy.ops.object.modifier_apply(modifier=m.name)
-    m = obj.modifiers.new('melt2', 'SMOOTH')
-    m.factor, m.iterations = .4, 2
+    m = obj.modifiers.new('subsurf', 'SUBSURF')
+    m.levels = m.render_levels = levels
     bpy.ops.object.modifier_apply(modifier=m.name)
     for p in obj.data.polygons:
         p.use_smooth = True
-    co = np.empty(len(obj.data.vertices) * 3)
-    obj.data.vertices.foreach_get('co', co)
-    co = co.reshape(-1, 3)
-    # Into the box exactly, wrist to fingertips.
-    lo, hi = co[:, 1].min(), co[:, 1].max()
-    co[:, 1] = (co[:, 1] - lo) / (hi - lo) * 2 - 1
-    # Through the hand: its palm side lies near the palm side of the box the mitten filled, since the palm is what a hand
-    # touches things with and every pose was made to the mitten's surface there; the back of the hand is where a hand's
-    # is, inside the mitten's. A cartoon's hand: plump, a little thicker than life.
-    lo, hi = co[:, 0].min(), co[:, 0].max()
-    co[:, 0] = PALM + (co[:, 0] - lo) / (hi - lo) * THICK
-    obj.data.vertices.foreach_set('co', co.ravel())
-    obj.data.update()
-    obj.data.calc_loop_triangles()
-    tri = np.empty(len(obj.data.loop_triangles) * 3, dtype=np.int32)
-    obj.data.loop_triangles.foreach_get('vertices', tri)
-    return obj, co.astype('<f4'), tri.astype('<u2')
+    return obj

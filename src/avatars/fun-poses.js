@@ -1,5 +1,5 @@
 import * as THREE from '../../vendor/three.module.js';
-import {bodyVolume} from './build.js';
+import {bodyVolume,handOff} from './build.js';
 /**
  * Funny poses for comics, memes and the scene builders (the creator, 2026-10-11: "And add more poses and funny
  * expressions"): the body of a joke, held long enough to read. One list for the whole of Johansson World: the animator plays
@@ -11,8 +11,9 @@ import {bodyVolume} from './build.js';
  * next), `ramp` (how long it takes to come and to go, in seconds, or [in, out]: half a second unless said), `airborne` (it
  * leaves the floor: the feet are not held to it) and its body (`play`). Each comes from however the body was standing (its
  * hands behind its back, in its pockets) and goes back to it. A hand that goes to the head (a cheek, the brow, the face, the
- * crown) is placed by the animator on this body's own head (`reach`: animate.js REACH, solved once per body: the whole mitten
- * clear of the head and the hair by `cover`; a big head on short arms is reached as near as they go, never into it); the
+ * crown) is placed by the animator on this body's own head (`reach`: animate.js REACH, solved once per body: the whole hand
+ * clear of the head and the hair by `cover`; a big head on short arms is reached as near as they go, never into it); `grip`
+ * closes the hands (build.js grip: a fist, or half closed, a paw) as far as the move has come in; the
  * rest is written as joint angles (animate.js: x swings a limb forward when negative, a knee or elbow folds when positive; z
  * lifts a shoulder out to its side, left positive). Family-friendly and of the 1990s: no pose belongs to anyone's franchise.
  */
@@ -25,15 +26,16 @@ const clamp01=x=>Math.min(1,Math.max(0,x));
 /** The legs a little bent and the knees turned in (weak at the knees; shy), written for both sides. */
 const kneesIn=(P,w,bend=.22,inward=.07)=>{for(const [s,k] of [['L',1],['R',-1]]){P.toward('thigh'+s,-bend*.6,0,-k*inward,w);P.toward('knee'+s,bend,0,0,w);P.toward('foot'+s,-bend*.4,0,k*inward,w);}};
 /** The left mitten on the hip, the elbow out (HandsOnHips' left arm). */
-/** A mitten laid on the hip's side (`side` +1 the left, -1 the right), as onBack lays one on the back: the body's own surface
- *  at the hip, the mitten's thickness out from it. A fixed fold of the arm put the mitten in a short-armed, wide-hipped body's
- *  thigh; solved, it rests on the hip of every body. */
-const onHip=(m,vol,side)=>{const p=vol.surf(side*Math.PI*.5,.2);return p.addScaledVector(vol.normal(p),m.hand*.95).toArray();};
+/** A hand laid on the hip's side (`side` +1 the left, -1 the right), as onBack lays one on the back: the body's own surface
+ *  at the hip, the hand's middle as far out from it as a hand lies (build.js handOff). A fixed fold of the arm put the hand in
+ *  a short-armed, wide-hipped body's thigh; solved, it rests on the hip of every body. */
+const onHip=(m,vol,side)=>{const p=vol.surf(side*Math.PI*.5,.2);return p.addScaledVector(vol.normal(p),handOff(m,.05)).toArray();};
 /** The elbow of an arm akimbo: out to the side and a little below the shoulder, so the mitten on the hip reads as hands-on-hips. */
 const akimbo=(m,side)=>[side*(m.shoulderX+m.upper*.72),m.shoulderY-m.upper*.62,.02];
-/** A mitten laid on the front of the torso, on `side` of the middle (+1 the body's left) at height t up it, as animate.js's
- *  onFront lays one: the body's own surface, the mitten's thickness out from it. For arms folded across the chest. */
-const onTorso=(m,vol,side,t,off=.9)=>{const p=vol.surf(side*.3,t);return p.addScaledVector(vol.normal(p),m.hand*off).toArray();};
+/** A hand laid on the front of the torso, on `side` of the middle (+1 the body's left) at height t up it, as animate.js's
+ *  onFront lays one: the body's own surface, the hand's middle as far out from it as a hand lies. For arms folded across
+ *  the chest. */
+const onTorso=(m,vol,side,t,off=0)=>{const p=vol.surf(side*.3,t);return p.addScaledVector(vol.normal(p),handOff(m,off)).toArray();};
 /** Both hands where `reach` put them. */
 export const both=(P,A,w)=>{if(A.R)P.armTo('R',A.R,w,A.handR);if(A.L)P.armTo('L',A.L,w,A.handL);};
 /**
@@ -130,22 +132,22 @@ function poleHug(side){
 export const FUN_POSES=Object.freeze({
  JawDrop:Object.freeze({label:'Jaw drop',face:'gobsmacked',d:2.6,ramp:.8,
   use:'Shock at something unbelievable: both mittens on the cheeks, leaning back, the knees gone weak.',
-  reach:{hair:true,head:[-.12,0,0],R:{cover:true,head:[-.82,-.38,.42,.035],seed:[-.55,.6,-1.58,-1.92,.6],hand:[0,0,0]}},
+  reach:{hair:true,head:[-.12,0,0],R:{cover:true,palm:'in',head:[-.82,-.38,.42,.035],seed:[-.55,.6,-1.58,-1.92,.6],hand:[0,0,0]}},
   play(P){const {w,t}=P;both(P,P.reach(),w);P.toward('chest',-.12,0,0,w);P.add('head',-.12*w+Math.sin(t*31)*.004*w);kneesIn(P,w,.24,.06);}}),
  Facepalm:Object.freeze({label:'Facepalm',face:'dry',d:2.6,ramp:.8,
   use:'Someone has done something silly (or you have): one mitten over the eyes, the head bowed into it, the other on the hip.',
   // (pose: the body as play() stands it, which a mitten laid `on` the body is solved against)
-  reach:{pose:()=>({chest:[.1,0,0],thighL:[0,0,.12]}),hair:true,head:[.26,0,-.1],R:{cover:true,head:[-.12,.18,1,.035],seed:[-1.55,.72,-.72,-1.9,0],hand:[0,0,0]},
+  reach:{pose:()=>({chest:[.1,0,0],thighL:[0,0,.12]}),hair:true,head:[.26,0,-.1],R:{cover:true,palm:'in',head:[-.12,.18,1,.035],seed:[-1.55,.72,-.72,-1.9,0],hand:[0,0,0]},
    L:{touch:true,on:['hips',(m,v)=>onHip(m,v,1)],elbow:m=>akimbo(m,1),seed:[.15,0,-.75,-.3,0],hand:[0,0,0]}},
   // (the leg under the hip mitten set a little out, as HandsOnHips stands)
   play(P){const {w}=P;both(P,P.reach(),w);P.toward('thighL',0,0,.12,w);P.toward('chest',.1,0,0,w);P.add('head',.26*w,0,-.1*w);}}),
  OhNo:Object.freeze({label:'Oh no!',face:'shock',d:2.6,ramp:.8,
   use:'Disaster: both mittens clapped to the head, the elbows out, crouching a little: it has all gone wrong.',
-  reach:{hair:true,head:[.1,0,0],R:{cover:.015,head:[-.7,.62,.12,.03],seed:[-2.4,.3,-.9,-1.4,0],hand:[0,0,0]}},
+  reach:{hair:true,head:[.1,0,0],R:{cover:.015,palm:'in',head:[-.7,.62,.12,.03],seed:[-2.4,.3,-.9,-1.4,0],hand:[0,0,0]}},
   play(P){const {w}=P;both(P,P.reach(),w);P.toward('chest',.08,0,0,w);P.add('head',.1*w);kneesIn(P,w,.3,0);}}),
  HideFace:Object.freeze({label:'Hide face',face:'embarrassed',d:2.8,ramp:.8,
   use:'Too embarrassed to look: both mittens over the face, the shoulders up, the knees turned in.',
-  reach:{hair:true,head:[.14,0,0],R:{cover:true,head:[-.3,.02,1,.035],seed:[-1.55,.72,-.72,-1.9,0],hand:[0,0,0]}},
+  reach:{hair:true,head:[.14,0,0],R:{cover:true,palm:'in',head:[-.3,.02,1,.035],seed:[-1.55,.72,-.72,-1.9,0],hand:[0,0,0]}},
   play(P){const {w,t}=P;both(P,P.reach(),w);P.toward('chest',.06,0,0,w);P.add('head',.14*w);kneesIn(P,w,.2,.1);P.add('hips',0,Math.sin(t*2.2)*.05*w,0);}}),
  Shush:Object.freeze({label:'Shh!',face:'wink',d:2.6,ramp:.8,
   use:'A secret, or quiet please: a mitten held up before the lips, leaning in.',
@@ -159,10 +161,10 @@ export const FUN_POSES=Object.freeze({
  // (ramp .9: the mitten's way to the brow is the longest of these moves; at .8 a slim teen's shoulder turned faster than a frame allows)
  Swoon:Object.freeze({label:'Swoon',face:'daze',d:3,ramp:.9,
   use:'The dramatic swoon (oh my!): the back of a mitten to the brow, leaning back, the other arm flung out behind.',
-  reach:{hair:true,head:[-.26,0,.14],only:'R',R:{cover:true,head:[-.25,.48,.85,.045],seed:[-2,.6,-.9,-1.9,0],hand:[0,1.6,0]}},
+  reach:{hair:true,head:[-.26,0,.14],only:'R',R:{cover:true,palm:'out',head:[-.25,.48,.85,.045],seed:[-2,.6,-.9,-1.9,0],hand:[0,1.6,0]}},
   play(P){const {w}=P;both(P,P.reach(),w);P.toward('shoulderL',.5,0,1.1,w);P.toward('elbowL',-.25,0,0,w);P.toward('chest',-.22,0,.06,w);P.add('head',-.26*w,0,.14*w);
    P.toward('thighR',-.25,0,0,w);P.toward('kneeR',.55,0,0,w);P.toward('footR',-.3,0,0,w);}}),
- Flex:Object.freeze({label:'Flex',face:'smug',d:2.6,
+ Flex:Object.freeze({grip:{L:1,R:1},label:'Flex',face:'smug',d:2.6,
   use:'Showing off how strong you are: both arms up and bent, the fists by the ears, the chest out.',
   play(P){const {w,t}=P,pump=Math.sin(t*5)*.06*w;
    P.armTo('R',[-.25,0,-1.45,0],w);P.armTo('L',[-.25,0,-1.45,0],w);P.toward('elbowR',0,0,-1.9-pump,w);P.toward('elbowL',0,0,1.9+pump,w);
@@ -173,7 +175,7 @@ export const FUN_POSES=Object.freeze({
    P.armTo('R',[-1.45,0,-.12,-.05],w);P.armTo('L',[-.45,0,.25,-1.7],w);P.toward('handL',.2,0,0,w);
    P.toward('chest',-.16-.06*rock,0,0,w);P.add('head',(-.22-.06*rock)*w);P.toward('thighL',-.2,0,0,w);P.toward('kneeL',.4,0,0,w);P.toward('footL',-.2,0,0,w);
    return {root:.006*rock};}}),
- FistPump:Object.freeze({label:'Yes!',face:'excited',d:1.6,ramp:[.2,.7],
+ FistPump:Object.freeze({grip:{L:1,R:1},label:'Yes!',face:'excited',d:1.6,ramp:[.2,.7],
   use:'Victory, it worked: a fist punched up at the sky, the other pulled down to the hip, a knee up.',
   // (the fist up beside the head and above it, the arm clear of the head and its hair: big heads, short arms)
   reach:{hair:true,head:[-.16,0,0],only:'R',R:{at:m=>[-(m.Rh*m.headSX*.8+m.hand),m.headCentre+m.Rh*m.headSY*1.05,.04*m.k],upper:true,seed:[-2.9,.1,-.35,-.1,0],hand:[0,0,0]}},
@@ -201,7 +203,7 @@ export const FUN_POSES=Object.freeze({
   // (the body is lifted clear, as a jump is), never hovering a centimetre over it.
  PoleHug:poleHug('L'),
  PoleHugR:poleHug('R'),
- Sneak:Object.freeze({label:'Sneak',face:'scheme',d:Infinity,
+ Sneak:Object.freeze({grip:{L:.55,R:.55},label:'Sneak',face:'scheme',d:Infinity,
   use:'Tiptoeing past someone: crouched on the toes, the mittens up like paws, looking sideways.',
   play(P){const {w,t}=P,bob=Math.sin(t*3)*.03*w;
    P.armTo('R',[-1.15,0,-.22,-1.75],w,[.9,0,0]);P.armTo('L',[-1.15,0,-.22,-1.75],w,[.9,0,0]);
@@ -211,13 +213,13 @@ export const FUN_POSES=Object.freeze({
  // Tempers (the creator, 2026-10-19: "pissed off and raging angry is funny, make some more of those; whatever fits Crayon
  // Shin-chan's world in expressions"): comedy anger of the Nohara-household kind, the mother before the bonk and the boy
  // in a sulk, never a threat to anyone. Faces: face.js raging, seething, eyeroll (new), fuming, angry, pouting.
- Fume:Object.freeze({label:'Fume',face:'raging',d:2.8,ramp:.6,
+ Fume:Object.freeze({grip:{L:1,R:1},label:'Fume',face:'raging',d:2.8,ramp:.6,
   use:'The all-out yell: leaning in, the fists clenched down and back, the feet planted; the last straw has gone.',
   play(P){const {w,t}=P,shake=Math.sin(t*22)*.025*w;
    P.armTo('R',[.42,0,-.32,-.35],w,[-.35,0,0]);P.armTo('L',[.42,0,-.32,-.35],w,[-.35,0,0]);
    P.toward('chest',.22+shake,0,0,w);P.add('neck',.08*w);P.add('head',.1*w);
    P.toward('thighL',0,0,.14,w);P.toward('thighR',0,0,-.14,w);}}),
- ShakeFists:Object.freeze({label:'Shake fists',face:'fuming',d:2.8,ramp:.6,
+ ShakeFists:Object.freeze({grip:{L:1,R:1},label:'Shake fists',face:'fuming',d:2.8,ramp:.6,
   use:'Beside oneself: both fists shaking by the ears, the teeth gritted, the head down; what a mother does before the bonk.',
   play(P){const {w,t}=P,shake=Math.sin(t*20)*.08*w;
    P.armTo('R',[-.45,0,-1.25,0],w);P.armTo('L',[-.45,0,-1.25,0],w);P.toward('elbowR',0,0,-2.15+shake,w);P.toward('elbowL',0,0,2.15-shake,w);
@@ -238,7 +240,7 @@ export const FUN_POSES=Object.freeze({
   use:'Give me a break: a shrug with the palms up, the head tipped, the eyes gone to the ceiling.',
   play(P){const {w}=P;P.armTo('R',[-.3,0,-.6,-1.35],w,[0,0,.4]);P.armTo('L',[-.3,0,-.6,-1.35],w,[0,0,.4]);
    P.toward('chest',-.08,0,0,w);P.add('head',-.14*w,0,.16*w);P.toward('thighR',0,0,-.1,w);}}),
- Seethe:Object.freeze({label:'Seethe',face:'seething',d:Infinity,ramp:.6,
+ Seethe:Object.freeze({grip:{L:1,R:1},label:'Seethe',face:'seething',d:Infinity,ramp:.6,
   use:'Holding it in: standing stiff and straight, the fists tight at the sides, the shoulders up, a smile that fools nobody.',
   play(P){const {w,t}=P,tremble=Math.sin(t*30)*.012*w;
    // (the arms a hand's width out from the sides: straight down they press into a round body)

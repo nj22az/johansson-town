@@ -11,6 +11,8 @@ const {separateBodies}=await import('../src/people/body-collision.js');
 const {standingHitsRect}=await import('../physics.js');
 const {suppliedRoomBoundsBlocked}=await import('../src/world/supplied-rooms.js');
 const {createAvatarActor,updateAvatarActor}=await import('../src/avatars/actors.js');
+const {handHold}=await import('../src/avatars/build.js');
+const {drinkGrip}=await import('../src/avatars/consume.js');
 const {createVenueService}=await import('../src/people/venue-service.js');
 const {createResidentLedger,restoreResidentLife}=await import('../src/people/resident-personalities.js');
 const layout={bounds:SHARED_DINING_BOUNDS,floorPolygon:SHARED_DINING_FLOOR};
@@ -26,7 +28,7 @@ for(const kind of [...Object.keys(DISHES),'rice'])test(kind+' is prepared, plate
  run(f,i=>{updateAvatarActor(actor,1/30,i*1000/30);const w=f.service.working;if(w?.step)steps.add(w.step);
   if(w&&(w.close?blocked.closeUp:blocked)(f.thao.position.x,f.thao.position.z,w.close?.13:.3))bad.push(['body',w]);
   const prop=f.thao.userData.workHeld?.R;
-  if(prop?.userData.consumable==='food'&&!picked){picked=prop;const hand=actor.avatar.bones.handR,m=actor.avatar.measure,palm=hand.localToWorld(new THREE.Vector3(0,-m.hand*.55,0)),at=prop.getWorldPosition(new THREE.Vector3());gaps.push(Math.abs(Math.hypot(palm.x-at.x,palm.z-at.z)-(prop.userData.workGrip.radius+m.hand*.7)));}
+  if(prop?.userData.consumable==='food'&&!picked){picked=prop;const hand=actor.avatar.bones.handR,m=actor.avatar.measure,palm=hand.localToWorld(new THREE.Vector3(...handHold(m).at)),at=prop.getWorldPosition(new THREE.Vector3());gaps.push(Math.abs(Math.hypot(palm.x-at.x,palm.z-at.z)-Math.abs(drinkGrip({userData:{grip:prop.userData.workGrip}},m).x)));}
   const A=actor.avatar,joints=['shoulderR','elbowR','handR'].map(b=>A.bones[b].getWorldPosition(new THREE.Vector3()));
   for(let j=0;j<2;j++)for(let t=0;t<=1;t+=.25){const point=joints[j].clone().lerp(joints[j+1],t);for(const solid of solids)if(solid.distanceToPoint(point)<A.measure.armR-.005)bad.push(['arm',w,point.toArray()]);}
   if(prop){const box=new THREE.Box3().setFromObject(prop).expandByScalar(-.005);for(const solid of solids)if(solid.intersectsBox(box))bad.push(['dish',w,box.min.toArray()]);}

@@ -1,6 +1,6 @@
 import * as THREE from '../../vendor/three.module.js';
 import {celFrom} from '../render/cel.js';
-import {bodyVolume} from './build.js';
+import {bodyVolume,handleAt,handShape,handPoint} from './build.js';
 import {faceLayout} from './face.js';
 import {faceObjectPoint} from './face-objects.js';
 import {shapeHeadPoint} from './head-profile.js';
@@ -523,7 +523,7 @@ export function buildHeadlamp(avatar){
 }
 
 /**
- * Low-voltage rubber gloves over the mittens: a palm a size bigger than the mitten's, the thumb's, and a gauntlet pulled up
+ * Low-voltage rubber gloves over the hands: a palm a size bigger than the mitten's was (the hand's fingers inside it), the thumb's, and a gauntlet pulled up
  * over the cuff of the sleeve, wide enough for whatever the forearm wears there, with a rolled rim. One per hand, carried by
  * the hand bone, so a gloved hand does whatever the mitten does.
  */
@@ -533,7 +533,10 @@ export function buildGlove(avatar,side){
  const rubber=mat(G.colour,{roughness:.55}),rim=mat(G.rim,{roughness:.55});
  const ball=(r,at,scale,name)=>{const o=add(g,new THREE.SphereGeometry(r,16,12),rubber,...at);o.scale.set(...scale);o.name=name;return o;};
  ball(h*G.over,[0,-h*.55,0],[.9,1.15,.78],'Rubber glove palm');
- ball(h*.42*G.over*1.04,[-sx*h*.55,-h*.35,h*.42],[1,1.2,1],'Rubber glove thumb');
+ // (the thumb's where the hand's is: the kit's thumb stands out forward, further than the mitten's thumb ball did, and its tip
+ // came through a glove made to the mitten)
+ const tip=handShape(m).hold?handShape(m).touch.at(-1):null;
+ ball(h*.42*G.over*1.04,tip?handPoint(m,side,[tip[0]*.6,tip[1]*.8,tip[2]*.6]):[-sx*h*.55,-h*.35,h*.42],[1,1.2,1],'Rubber glove thumb');
  // the gauntlet: over the forearm (the arm is armR*0.86 at the wrist, build.js) and the sleeve's end, with room to spare
  const rad=m.armR+G.clear;
  const cuff=add(g,new THREE.CylinderGeometry(rad*1.12,rad,G.cuff+h*.25,20,1,true),rubber,0,G.cuff/2-h*.125,0);cuff.name='Rubber glove gauntlet';cuff.material=mat(G.colour,{roughness:.55,side:THREE.DoubleSide});
@@ -590,7 +593,8 @@ export function buildTester(){
 }
 
 /** Where a mitten closes on a handle held pointing ahead (+z): the middle of the mitten, in the hand bone's frame. */
-const fistSpot=avatar=>new THREE.Vector3(0,-avatar.measure.hand*.55,0);
+/** Where a thing held in the fist sits: in the closed hand, against the palm (build.js handleAt). */
+const fistSpot=(avatar,side='R',radius=.012)=>new THREE.Vector3(...handleAt(avatar.measure,side,radius));
 
 /** The story's props on one body: given, taken, and where each is. */
 export function storyProps(avatar){
@@ -625,7 +629,7 @@ export function storyProps(avatar){
   giveKit(name,options={}){const K=WORK_KIT[name];if(!K)throw new Error('No kit "'+name+'" (story-props.js WORK_KIT)');return K.props.map(k=>api.give(k,options[k]||{}));},
   /** The tester's second probe to the left mitten (true: both probes out, to test) or parked back on the handle (false). */
   testerSplit(split){const o=held.get('voltageTester');if(!o)return;const T=o.userData.tester,s=T.second;
-   if(split){if(s.parent!==o)return;avatar.bones.handL.add(s);s.position.copy(fistSpot(avatar));s.rotation.set(Math.PI/2,0,0);}
+   if(split){if(s.parent!==o)return;avatar.bones.handL.add(s);s.position.copy(fistSpot(avatar,'L'));s.rotation.set(Math.PI/2,0,0);}
    else{if(s.parent===o)return;o.add(s);s.position.copy(T.parked);s.quaternion.identity();}
    T.update();},
   /** The torch to the hand ('R') or back on the pocket; on or off. */

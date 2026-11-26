@@ -2,6 +2,7 @@ import * as THREE from '../../vendor/three.module.js';
 import {faceLayout} from './face.js';
 import {shapeHeadPoint} from './head-profile.js';
 import {sampleCycle,CYCLE_DURATION} from '../drinking/cycle.js';
+import {handHold,handleAt} from './build.js';
 
 /** A single lift, pause at the lips, then return; shared by every avatar. */
 export function consumptionPhase(t,duration=2.4){
@@ -38,11 +39,22 @@ export function drinkHeadTilt(prop,lift,food=false){
  */
 export function drinkGrip(prop,m,side='R'){
  const g=prop?.userData?.grip,s=side==='R'?1:-1;
- if(!g)return new THREE.Vector3(s*.10*m.k,-.08*m.k+m.hand*.55,.015*m.k);
+ if(!g)return new THREE.Vector3(s*.10*m.k,-.08*m.k-handHold(m).at[1],.015*m.k);
  // (a real hand, a Pixar body's: the fingers through a handle with a finger's clearance, or the palm against a glass's
  // body; the mitten's offsets put a Pixar hand a span from the glass: the owner, 27 October 2026, "this is wrong")
- const out=m.realHand?(g.handle!=null?g.handle+.02:g.radius+.012):g.handle!=null?g.handle+m.hand*.25:g.radius+m.hand*.70;
+ // (the kit's hand, build.js handHold: the palm on the glass's side, or round the handle's bar, which lies against the
+ // palm in the closed hand's hollow)
+ const out=m.realHand?(g.handle!=null?g.handle+.02:g.radius+.012):g.handle!=null?g.handle+handHold(m,g.bar??BAR).out:handHold(m,g.radius).out;
  return new THREE.Vector3(s*out,-g.height,0);
+}
+/** A handle's bar, unless the vessel says (its `grip.bar`): about a finger thick. */
+const BAR=.008;
+/** How far a hand closes on what it holds (build.js grip): round a handle's bar, or a glass's or a bottle's body, as far
+ *  as its curve lets the fingers come; half on a morsel's sticks; a thing that says nothing, all the way. */
+export function heldGrip(prop,m){
+ const g=prop?.userData?.workGrip||prop?.userData?.grip;
+ if(prop?.userData?.food&&!g)return .35;
+ return g?handHold(m,g.handle!=null?(g.bar??BAR):g.radius).grip:1;
 }
 /** A right hand's turn on a jug's handle (table-drink.js, the counter performance): the palm toward the glass, the
  * knuckle line up the bar, the thumb on top. The hand's frame (palm +x, fingers -y, thumb +z) onto the jug's (handle
@@ -68,8 +80,9 @@ function alignDrinkHand(avatar,q,side='R'){
  hand.quaternion.copy(hand.parent.getWorldQuaternion(new THREE.Quaternion()).invert().multiply(handQ));
  hand.updateWorldMatrix(false,true);
 }
-/** The palm's centre, below the wrist the hand bone pivots on (build.js, the mitten hand). */
-const palm=m=>new THREE.Vector3(0,-m.hand*.55,0);
+/** Where a held thing's grip is measured from, below the wrist the hand bone pivots on: level with the closed hand's
+ *  hollow, on the hand's middle plane (build.js handHold). */
+const palm=m=>new THREE.Vector3(...handHold(m).at);
 function aim(bone,child,target){
  const start=bone.getWorldPosition(new THREE.Vector3());
  const from=child.getWorldPosition(new THREE.Vector3()).sub(start).normalize();
@@ -89,10 +102,14 @@ export function reach(avatar,target,side='R',lift=-.25){
  aim(shoulder,elbow,start.clone().addScaledVector(dir,along).addScaledVector(pole,height));
  aim(elbow,hand,start.clone().addScaledVector(dir,d));
 }
+/** The steering wheel's rim, round: the tube's radius (road-vehicles.js, its torus). */
+const RIM=.022;
 /**
  * Both hands on a steering wheel, at nine and three on its rim. `wheel` is {x,y,z,r} in
- * `vehicle`'s frame (world/road-vehicles.js steeringWheel). The wrist goes to the rim, so
- * the mitten closes over it. A gentle drift of the wheel keeps it from looking welded.
+ * `vehicle`'s frame (world/road-vehicles.js steeringWheel). The closed hand's hollow goes to the
+ * rim (build.js handleAt), so the fist is round it; a body with a hand of its own (a Pixar body)
+ * puts its wrist there, as the mitten did. A gentle drift of the wheel keeps it from looking welded.
+ * (The wrist on the rim left the kit's fist beyond it and the rim through the wrist.)
  */
 export function gripWheel(avatar,vehicle,wheel,time=0){
  avatar.root.updateWorldMatrix(true,true);vehicle.updateWorldMatrix(true,false);
@@ -103,8 +120,12 @@ export function gripWheel(avatar,vehicle,wheel,time=0){
  // vehicle has turned the body.
  const left=avatar.bones.shoulderL.getWorldPosition(new THREE.Vector3());
  const leftTakesThree=left.distanceTo(three)<left.distanceTo(nine);
- reach(avatar,leftTakesThree?three:nine,'L');
- reach(avatar,leftTakesThree?nine:three,'R');
+ for(const [side,at] of [['L',leftTakesThree?three:nine],['R',leftTakesThree?nine:three]]){
+  reach(avatar,at,side);if(avatar.measure.realHand)continue;
+  // (the wrist moved by as far as the hollow is off the rim, twice: the hand turns a little as it moves)
+  const hand=avatar.bones['hand'+side],to=at.clone(),hold=new THREE.Vector3();
+  for(let i=0;i<2;i++){hand.localToWorld(hold.set(...handleAt(avatar.measure,side,RIM)));to.add(at.clone().sub(hold));reach(avatar,to,side);}
+ }
 }
 /** Keep the rim/morsel at the measured mouth, independent of height or head shape. */
 export function poseAvatarConsumption(avatar,lift,food=false,prop=null){

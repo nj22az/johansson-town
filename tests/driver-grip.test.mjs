@@ -4,7 +4,7 @@ import * as THREE from '../vendor/three.module.js';
 import {installDOM} from './fixtures.mjs';
 installDOM();
 const {buildVehicle}=await import('../src/world/road-vehicles.js');
-const {buildAvatar}=await import('../src/avatars/build.js');
+const {buildAvatar,handleAt}=await import('../src/avatars/build.js');
 const {createAvatarAnimator}=await import('../src/avatars/animate.js');
 const {gripWheel}=await import('../src/avatars/consume.js');
 const {CAST_RECIPES}=await import('../src/avatars/cast.js');
@@ -20,7 +20,9 @@ test('a driver holds the steering wheel at nine and three, in every vehicle and 
   gripWheel(a,v,wheel,1.3);a.root.updateMatrixWorld(true);
   const rim=[0,Math.PI].map(t=>v.localToWorld(new THREE.Vector3(wheel.x+Math.cos(t)*wheel.r,wheel.y,wheel.z)));
   for(const side of ['L','R']){
-   const wrist=a.bones['hand'+side].getWorldPosition(new THREE.Vector3()),near=Math.min(...rim.map(p=>p.distanceTo(wrist)));
+   // (the closed hand's hollow on the rim, where the fist is round it (build.js handleAt, the rim's tube 22 mm round): until
+   // 26 November 2026 the wrist, which the mitten closed over; the hand's fist is beyond the wrist)
+   const wrist=a.bones['hand'+side].localToWorld(new THREE.Vector3(...handleAt(a.measure,side,.022))),near=Math.min(...rim.map(p=>p.distanceTo(wrist)));
    assert.ok(near<.05,kind+' '+name+' '+side+' hand is on the rim ('+near.toFixed(3)+' m)');
   }
   const l=a.bones.handL.getWorldPosition(new THREE.Vector3()),r=a.bones.handR.getWorldPosition(new THREE.Vector3());

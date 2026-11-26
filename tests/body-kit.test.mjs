@@ -11,8 +11,8 @@ import {installDOM} from './fixtures.mjs';
  * worn by the generator: one kit, every resident.
  */
 installDOM();globalThis.self=globalThis;
-const {LIMBS,TORSO,FEET,NOSES}=await import('../src/avatars/sculpts/body-kit.js');
-const {buildAvatar,buildShoeProp,measure,SHOE_SHAPES,SOCK,NOSE_SHAPES}=await import('../src/avatars/build.js');
+const {LIMBS,TORSO,FEET,NOSES,HANDS}=await import('../src/avatars/sculpts/body-kit.js');
+const {buildAvatar,buildShoeProp,measure,SHOE_SHAPES,SOCK,NOSE_SHAPES,HAND,handShape}=await import('../src/avatars/build.js');
 const {recipeFor,CAST_RECIPES}=await import('../src/avatars/cast.js');
 const file=p=>new URL('../'+p,import.meta.url);
 const bytes=text=>Uint8Array.from(atob(text),c=>c.charCodeAt(0));
@@ -127,4 +127,52 @@ test('a bare leg has no line down it: the sculpted limb\'s seam is one surface, 
   assert.ok(d>.999,`a crease at ${k}: the two normals agree to ${d.toFixed(3)}`);
  }
  assert.ok(pairs>20,'the seam was looked at');a.dispose();
+});
+
+test('the hand is a hand: four fingers and a thumb in one closed skin, within its points, worn on both wrists',()=>{
+ // (The owner, 26 November 2026: "Omg they have mitten hands"; of a palm of spheres with spheres for fingers, "Draw the hand
+ // properly not like a balloon with sausages on it"; of a lumpy anatomical one, "The hands look awful, make them Disney
+ // quality". tools/blender/hand_model.py: box-modelled and smoothed in Blender.)
+ const index=new Uint32Array(bytes(HANDS.index).buffer),rest=new Float32Array(bytes(HANDS.hand).buffer),grip=new Float32Array(bytes(HANDS.grip).buffer),n=HANDS.points;
+ assert.ok(n<=2210,`${n} points a hand (a phone draws two on every resident)`);assert.equal(rest.length,n*3);assert.equal(grip.length,n*3,'the grip is the same points');
+ assert.equal(index.length%3,0);assert.ok(Math.max(...index)<n);
+ // one closed skin: every edge between exactly two triangles, all of it one piece, and no hole through it (V - E + F = 2)
+ const edges=new Map(),key=(a,b)=>a<b?a*n+b:b*n+a;
+ for(let i=0;i<index.length;i+=3)for(let j=0;j<3;j++){const k=key(index[i+j],index[i+(j+1)%3]);edges.set(k,(edges.get(k)||0)+1);}
+ assert.ok([...edges.values()].every(c=>c===2),'closed: no open edge, no fin');
+ assert.equal(n-edges.size+index.length/3,2,'one skin with no hole through it');
+ const near=new Map();for(const k of edges.keys()){const a=Math.floor(k/n),b=k%n;(near.get(a)||near.set(a,[]).get(a)).push(b);(near.get(b)||near.set(b,[]).get(b)).push(a);}
+ const parts=keep=>{const seen=new Set(),out=[];for(let i=0;i<n;i++){if(!keep(i)||seen.has(i))continue;const part=[i];seen.add(i);for(let q=0;q<part.length;q++)for(const j of near.get(part[q]))if(keep(j)&&!seen.has(j)){seen.add(j);part.push(j);}out.push(part);}return out;};
+ assert.equal(parts(()=>true).length,1,'one piece');
+ // four fingers below the knuckles, each to its own tip, the middle one longest; a thumb out of the palm's side
+ const y=i=>rest[i*3+1],z=i=>rest[i*3+2],fingers=parts(i=>y(i)<HANDS.knuckles-.25).filter(p=>p.length>20);
+ assert.equal(fingers.length,4,'four fingers');
+ const tips=fingers.map(p=>Math.min(...p.map(y))),across=fingers.map(p=>p.reduce((s,i)=>s+z(i),0)/p.length);
+ const order=across.map((v,i)=>i).sort((a,b)=>across[b]-across[a]);   // forefinger (on the thumb's side) to little finger
+ assert.equal(Math.min(...tips),tips[order[1]],'the middle finger is the longest');assert.ok(tips[order[3]]>tips[order[2]],'the little finger is the shortest of the others');
+ const width=Math.max(...fingers.flat().map(i=>Math.abs(z(i)))),thumb=parts(i=>z(i)>width+.08);
+ assert.equal(thumb.length,1,'a thumb');assert.ok(thumb[0].length>40&&Math.max(...thumb[0].map(z))>width+.3,'standing out from the palm');
+ // the contact shape the poses are made to is measured from it: the envelope is points of the hand, the palm's side
+ // within its thickness, the middle on the palm between the wrist and the knuckles
+ const pts=[];for(let i=0;i<n;i++)pts.push([rest[i*3]*.9,.08+(rest[i*3+1]-1)*.9,rest[i*3+2]*.9]);
+ for(const q of HAND.touch)assert.ok(pts.some(p=>Math.hypot(p[0]-q[0],p[1]-q[1],p[2]-q[2])<1e-3),'an envelope point is on the hand: '+q);
+ assert.ok(HAND.lie<=HAND.half[0]+1e-6&&HAND.lie>.2,'the palm lies a hand\'s thickness off what it rests on: '+HAND.lie);
+ assert.ok(HAND.middle[1]<0&&HAND.middle[1]>HAND.knuckles,'the middle is the palm\'s');assert.ok(HAND.fist.lie>HAND.lie,'a fist stands on its curled fingers');
+ assert.equal(handShape({realHand:true}).half[0],.9,'a Pixar body keeps the mitten its poses were made to');
+ // worn: on both wrists, the right the left's mirror, hanging from the hand bone down the forearm's line, the palm to the
+ // body and the thumb forward; and it closes and opens again in its own points
+ const a=buildAvatar(recipeFor('Thao'),{shadows:false,eyes3d:false}),m=a.measure,g=a.body.geometry,P=g.attributes.position,I=g.attributes.skinIndex,W=g.attributes.skinWeight;
+ const bones=a.body.skeleton.bones,side={L:[],R:[]};
+ for(let i=0;i<P.count;i++){const b=bones[I.getX(i)].name;if(b==='handL'||b==='handR'){assert.equal(W.getX(i),1);side[b.at(-1)].push(i);}}
+ assert.equal(side.L.length,index.length,'the left hand, every triangle');assert.equal(side.R.length,index.length,'the right hand');
+ const at=a.bones.handL.getWorldPosition(new THREE.Vector3());a.root.updateMatrixWorld(true);
+ const box=list=>{const b=new THREE.Box3();for(const i of list)b.expandByPoint(new THREE.Vector3(P.getX(i),P.getY(i),P.getZ(i)));return b;},L=box(side.L),R=box(side.R);
+ const hd=[m.shoulderX+.015,m.shoulderY-m.upper-m.fore];
+ assert.ok(Math.abs(L.max.y-(hd[1]+m.hand*HAND.top))<1e-3&&Math.abs(L.min.y-(hd[1]+m.hand*HAND.tip))<1e-3,'from the wrist to the fingertips');
+ assert.ok(Math.abs((L.min.x+L.max.x)/2-hd[0])<m.hand*.1,'on the forearm\'s line');assert.ok(Math.abs(L.min.x+R.max.x)<1e-5&&Math.abs(L.max.x+R.min.x)<1e-5,'the right the left\'s mirror');
+ assert.ok(L.max.z>m.hand*.9,'the thumb forward');
+ const before=P.array.slice(side.L[0]*3,(side.L.at(-1)+1)*3);a.grip('L',1);const closed=P.array.slice(side.L[0]*3,(side.L.at(-1)+1)*3);
+ assert.notDeepEqual(Array.from(closed),Array.from(before),'it closes');assert.equal(a.gripOf('L'),1);assert.equal(P.count,g.attributes.position.count);
+ a.grip('L',0);assert.deepEqual(Array.from(P.array.slice(side.L[0]*3,(side.L.at(-1)+1)*3)),Array.from(before),'and opens again as it was');
+ a.dispose();
 });

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from '../vendor/three.module.js';
 import {installDOM} from './fixtures.mjs';
-import {buildAvatar,bodyVolume} from '../src/avatars/build.js';
+import {buildAvatar,bodyVolume,handleAt} from '../src/avatars/build.js';
 import {recipeFor} from '../src/avatars/cast.js';
 import {createAvatarAnimator,GESTURES,STORY_POSES,CARRY,REACH_BACK} from '../src/avatars/animate.js';
 import {MOVES} from '../src/avatars/moves.js';
@@ -300,7 +300,10 @@ test('SitRead: the paper held open by its edges low over his lap, the torch on h
  const b=cast({...T,state:KOAGARI}),m=b.m;storyProps(b.avatar).give('torch');b.step(20);b.state.pose='SitRead';b.step(90);
  const paper=b.avatar.storyProps.get('newspaper');assert.ok(paper?.visible);
  const edge=s=>local(b,paper.children[s<0?0:1].localToWorld(new THREE.Vector3(s*PAPER.leaf,-.07*m.k,0)));
- assert.ok(edge(-1).distanceTo(mitten(b,'R'))<.01,'the right edge in the right mitten');assert.ok(edge(1).distanceTo(mitten(b,'L'))<.02,'the left edge in the left mitten');
+ // (in the hand where it holds a thin thing, against the palm in the closed hand's hollow, build.js handleAt: until 26
+ // November 2026 the mitten's middle, 0.55 of a hand under the wrist, which is inside the hand's palm)
+ const hold=s=>local(b,world(b,'hand'+s,handleAt(m,s,.002)));
+ assert.ok(edge(-1).distanceTo(hold('R'))<.01,'the right edge in the right hand');assert.ok(edge(1).distanceTo(hold('L'))<.02,'the left edge in the left hand');
  // over his lap: every corner ahead of his front, and the whole of it below his chest
  const corners=[-1,1].flatMap(s=>[-1,1].map(y=>local(b,paper.children[s<0?0:1].localToWorld(new THREE.Vector3(s*PAPER.leaf,y*PAPER.height/2,0)))));
  const torch=b.avatar.storyProps.get('torch'),pocket=local(b,torch.getWorldPosition(new THREE.Vector3()));

@@ -10,6 +10,8 @@ const {buildMinatoBar,MINATO_BAR,BAR_ROUNDS}=await import('../src/world/interior
 const {SHARED_DINING_COLLIDERS}=await import('../src/world/interiors/shared-dining-layout.js');
 const {MINATO_FICTIONAL_SPIRITS}=await import('../src/world/interiors/izakaya-walnut.js');
 const {createAvatarActor,updateAvatarActor}=await import('../src/avatars/actors.js');
+const {handHold}=await import('../src/avatars/build.js');
+const {drinkGrip}=await import('../src/avatars/consume.js');
 import {readFile} from 'node:fs/promises';
 
 /**
@@ -107,11 +109,13 @@ test(`her hands meet what they take and nothing passes through the furniture: ${
  run(service,i=>{
   updateAvatarActor(actor,1/30,i*33);
   const held=nao.userData.workHeld?.R;
-  // The moment something comes into her hand, her mitten is round it: the palm's centre is where consume.js drinkGrip
-  // puts it from the part she grips (its body, or a mug's handle), give or take a centimetre.
+  // The moment something comes into her hand, her hand is round it: the hand is where consume.js drinkGrip puts it from
+  // the part she grips (its body, or a mug's handle), give or take a centimetre. (Measured from the hand's own hold,
+  // build.js handHold, and the offset drinkGrip gives for it: until 26 November 2026 the mitten's middle, 0.55 of a hand
+  // under the wrist, and its 0.7 of a hand off a glass.)
   if(held&&held!==last){
-   const m=actor.avatar.measure,palm=hand.localToWorld(new THREE.Vector3(0,-m.hand*.55,0)),axis=held.localToWorld(new THREE.Vector3(...(held.userData.gripAt||[0,0,0])));
-   const grip=held.userData.workGrip||held.userData.grip,expect=grip.handle!=null?grip.handle+m.hand*.25:grip.radius+m.hand*.7;
+   const m=actor.avatar.measure,palm=hand.localToWorld(new THREE.Vector3(...handHold(m).at)),axis=held.localToWorld(new THREE.Vector3(...(held.userData.gripAt||[0,0,0])));
+   const grip=held.userData.workGrip||held.userData.grip,expect=Math.abs(drinkGrip({userData:{grip}},m).x);
    gaps.push([held.name,+(Math.hypot(palm.x-axis.x,palm.z-axis.z)-expect).toFixed(3)]);
   }
   last=held;
@@ -125,7 +129,7 @@ test(`her hands meet what they take and nothing passes through the furniture: ${
   if(held){const box=new THREE.Box3().setFromObject(held).expandByScalar(-.005);for(const s of solids)if(s.intersectsBox(box))through.push([held.name,service.working?.step,service.working?.phase,box.min.toArray().map(v=>+v.toFixed(3)),box.max.toArray().map(v=>+v.toFixed(3))]);}
  });
  assert.ok(gaps.length>=1,'she took something: '+JSON.stringify(gaps));
- for(const [name,gap] of gaps)assert.ok(Math.abs(gap)<.01,`mitten on ${name}: ${gap} m off`);
+ for(const [name,gap] of gaps)assert.ok(Math.abs(gap)<.01,`hand on ${name}: ${gap} m off`);
  assert.deepEqual(through.slice(0,6),[]);
  assert.equal(service.drink.kind,kind);
 });

@@ -1,5 +1,6 @@
 import * as THREE from '../../vendor/three.module.js';
 import {mergeGeometries} from '../../vendor/BufferGeometryUtils.js';
+import {handleAt} from './build.js';
 
 /**
  * An umbrella, held in the right hand when it rains (people/schedules.js umbrellaFor, avatars/actors.js).
@@ -95,8 +96,8 @@ export const UMBRELLA_MAX_LEAN=.32;
 export function fitUmbrella(avatar,prop){
  const hand=avatar.bones.handR,m=avatar.measure;avatar.root.updateWorldMatrix(true,true);
  avatar.root.getWorldQuaternion(_q);
- // the grip is in the palm, a little below the wrist joint
- hand.localToWorld(_p.set(0,-m.hand*.55,0));
+ // the grip is in the closed hand, against the palm (build.js handleAt)
+ hand.localToWorld(_p.set(...handleAt(m,'R',UMBRELLA.crook.tube)));
  avatar.root.localToWorld(_top.set(0,m.headCentre+m.Rh*m.headSY,0));
  // lean: from the grip towards a point over the head, no further than UMBRELLA_MAX_LEAN
  const height=Math.max(UMBRELLA.minRise,_top.y+UMBRELLA.clear-_p.y);
