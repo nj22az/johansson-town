@@ -190,3 +190,7 @@ context-actions.test.mjs
 # world"): every string the player or the storyteller can meet, against data/studio/brand-rules.json, with its reasoned
 # allowlist; Minato's beer is the town's own Umineko, and an old save's kept bottle keeps its pours under its new name.
 no-real-brands.test.mjs
+# Sleeved tops cover the shoulder and the underarm: under a short sleeve the arm is the sleeve's inside, never bare (about 3 s).
+underarm-coverage.test.mjs
+# Johansson's aloha print: placed flower by flower, nothing in the line under his face, each sleeve its own band (about 15 s).
+aloha-print.test.mjs

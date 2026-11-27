@@ -2,12 +2,15 @@ import * as THREE from '../../vendor/three.module.js';
 
 /** The points of the shoes (or bare feet) each foot bone carries rigidly, in the bone's own frame, from the meshes drawn now
  *  (worked out again when the outfit changes): a function giving [{bone, samples}]. */
+// (one per body, shared by its grounder and its sole finder: built once for both, a jump's first frame took 20 ms building it again)
+const SUPPORTS=new WeakMap();
 function footSupports(avatar){
  const point=new THREE.Vector3();
- let signature='',supports=[];
+ if(!SUPPORTS.has(avatar))SUPPORTS.set(avatar,{signature:'',supports:[]});
+ const cache=SUPPORTS.get(avatar);
  return ()=>{
   const meshes=avatar.root.children.filter(o=>o.isSkinnedMesh&&o.visible),key=meshes.map(o=>o.uuid).join('/');
-  if(key===signature)return supports;signature=key;supports=[];
+  if(key===cache.signature)return cache.supports;cache.signature=key;const supports=cache.supports=[];
   const seen=new Set();
   for(const mesh of meshes){
    const g=mesh.geometry;if(seen.has(g))continue;seen.add(g);
@@ -28,10 +31,13 @@ function footSupports(avatar){
  };
 }
 
+/** How far (metres) a jump's feet leave the floor over, as its body goes from the legs' speed to its own (createFootGrounder). */
+const LEAVE=.002;
+
 /** Keep the actual shoe/foot surface on its support, including changed outfits. */
 export function createFootGrounder(avatar){
  const inverse=new THREE.Matrix4(),matrix=new THREE.Matrix4(),point=new THREE.Vector3(),supportsNow=footSupports(avatar);
- return (floor=0,{airborne=false}={})=>{
+ return (floor=0,{airborne=false,lift=0}={})=>{
   const supports=supportsNow();if(!supports.length)return;
   avatar.root.updateWorldMatrix(true,false);inverse.copy(avatar.root.matrixWorld).invert();
   let lowest=Infinity;
@@ -41,8 +47,12 @@ export function createFootGrounder(avatar){
   }
   const correction=floor-avatar.root.position.y-lowest;
   // Deliberate jumps keep their lift, but landing/preparation never crosses
-  // the floor. Other poses retain a planted supporting foot.
-  avatar.root.position.y+=airborne?Math.max(0,correction):correction;
+  // the floor. Other poses retain a planted supporting foot. A move that leaves the floor on its own time (animate.js JUMP)
+  // says how far it may (`lift`, 0..1, eased about its take-off and landing): planted at 0, free at 1, where it leaves the
+  // floor over its first LEAVE metres of clearance, so the body's speed goes on from the legs' to the move's (a hard switch
+  // between the two stepped the hips' speed by half in a frame at the take-off).
+  const free=-correction,leave=free<=0?0:free<LEAVE?free*free/(2*LEAVE):free-LEAVE/2;
+  avatar.root.position.y+=airborne?Math.max(0,correction):correction+lift*leave;
  };
 }
 

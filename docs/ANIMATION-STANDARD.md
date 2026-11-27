@@ -267,6 +267,108 @@ audit and its sheets have been looked at.
 
 ## 6. Where we stand
 
+### Stage 4, begun: squash on impacts, the jump, Talk (27 November 2026, branch `anim/stage4`)
+
+**Squash on impacts** (`animate.js` `SQUASH`, `squashStep`; rule 1).
+
+- **The impact** is read as the audit reads it: the hips, in the body's own frame over its floor, falling 0.3 m/s or faster
+  and stopping. A ferry's roll, a staircase or a teleport is not one: a step over 5 m/s is the scene's.
+- It is taken as the fall starts to brake (6 m/s², the feet meeting the floor or the seat), or else as it stops, once a fall.
+  A landing the scene flies (the player's, `s.airborne` ending) is one too.
+- **The waist takes it:** the spine shortens along itself about the hips and widens by 1/sqrt(1-s). The chest takes the
+  inverse, so the head, the arms and what they hold keep their shape and every bone's x·y·z stays 1.
+- **How much:** everyday 2.5–4.5% and comedy 11–17%, by the fall's speed (0.3–1.5 m/s; "Fast impacts demand more squash").
+- **Its timing:** in over 4 game frames, eased. Everyday goes out over 0.32 s; comedy goes past rest into a stretch of 30% of it
+  and back.
+- **Not done:** Stomp, whose hips do not fall, has none (the audit does not see it either).
+
+**Jump** (`JUMP`, `jumpMove`; everyday). Keyed pose to pose on its legs; its hips' height is taken from them.
+
+- **On the floor** the legs are a squat that keeps the ankle under the hip and the sole flat. Before, the crouch tipped the
+  feet onto their toes and the airborne grounder lifted the body instead of lowering the hips: the crouch now reaches them,
+  5.8 cm on Johansson.
+- **Take-off:** the squat opens at 9 rad/s and the feet leave with the knees still bent.
+- **In the air** the hips fly a parabola from the take-off's place and speed, measured on the body's own soles as it starts
+  (a millimetre's error met the floor a frame early and halved the hips' speed). It is 0.55 s long, "Exaggerated apex hang
+  time", and the top is more than twice the crouch, so the rise is the action.
+- **Landing:** the feet meet the floor at the speed the body fell and take it into a squat.
+- **The rest of the body:** the arms swing back in the crouch and up into a V as it leaves, the left 0.12 s later and 85% as
+  far. The trunk leans in and comes out over the push and into the air.
+- **The player's jump**, flown by `characters.js`, answers at once with no crouch, as the game must within 100 ms. Its
+  scene's stop is the impact, and after it the knees give on from 0.5 m/s into a squat as deep as the landing's speed asks.
+- **What is left:** the jump fails only overlap now, which is kept. A planted foot holds the knee to the thigh, so the two
+  start together.
+- **The grounder** (`foot-ground.js`) takes a jump's `lift`: planted at 0, free at 1, leaving the floor over its first 2 mm.
+
+**The seat's edge** (`seat-support.js`). The seat bore the lowest pelvis or thigh point inside a hard box. As a thigh swung
+forward over the box's edge, that point dropped out in a frame, and SitDown's hips stepped 10–14 mm in a frame on Vy and
+Sverker. That step was the audit's "impact" there. The edge is now soft while the body sits down or stands up, and hardens
+over 0.3 s once the body is still on the seat. SitDown has no impact now: the hips ease onto the seat.
+
+**The wave's other hand and the aloha shirt.** The owner's boxy aloha shirt stands 6 mm off the body, and the trunk's hold on
+the other upper arm, in toward the side, now pressed Johansson's pocketed forearm 3.2 mm deeper into the hip than either end
+(`tests/stance-release`). The wind-up now measures that forearm and hand against the body and eases the hold off just as far
+as keeps them no deeper (`forearmDepth`). The pocketed hand travels 2.6 cm further on Johansson.
+
+**Talk** (the third most seen) passes every check now:
+
+- its hands rise from where they hang at a natural pace (`RISE`, 0.5 s);
+- the sway comes in as they arrive, going round a little, not to and fro on a line;
+- the trunk's dip before it is small (10% of the hand's way) and not held.
+
+Hands clasped behind the back now stay there through the trunk's wind-up and come out with the action: brought round from
+the first frame, they ran forward along the action and cancelled the dip. Point (its hold 0.3), ChinTap and Clap pass
+anticipation on Sverker, so on all three.
+
+| Check | Before stage 4 | Now |
+|---|---|---|
+| Ease | 123 of 154 | 124 of 154 |
+| Anticipation | 19 of 141 | 24 of 141 |
+| Arcs | 69 of 145 | 71 of 145 |
+| Overlap | 56 of 146 | 56 of 146 |
+| Twins | 63 of 129 | 64 of 129 |
+| Squash | 0 of 15 | 15 of 15 |
+| Volume | 155 of 155 | 155 of 155 |
+| **Every check** | **7** | **8** (Talk) |
+
+Off the baseline (1062 entries to 1010), none added:
+
+- **Squash, 33:** on every move that had an impact. SitDown's two are gone with its step.
+- **Jump, 10:** ease on all three; anticipation on all three; arcs on Vy; twins on all three.
+- **Talk, 5:** anticipation on all three; arcs on Johansson and Sverker.
+- **On Sverker, 3:** anticipation for ChinTap, Point and Clap.
+- **WindUp, 1:** arcs on Sverker.
+
+**Cost.** Once a frame: the squash's reading, a few multiplications. As a move starts:
+
+- a jump's first frame, 0.18 ms where it took 0.04, for the soles' measure (7 ms the first time a body jumps, as the new code
+  warms up);
+- a trunk wind-up's first frame, about 0.2 ms more, for the forearm's measure.
+
+The soles' points are now built once a body for its grounder and its sole finder together.
+
+**Sheets** before and after (`output/anim-stage4/`, not in git; `tools/hand-shots.mjs` has `--strip` for a landing's frames
+and `--fixed`, a camera that stays where the body began):
+
+- **Jump** (`squash/`): before, the knees bent a little and the body never went down. Now the trunk leans in, the knees bend
+  over flat feet and the body sinks, the arms swing back and then forward and up as it rises, and they are up in a V in the air,
+  the left a beat behind. It meets the floor and the knees take it down; no frame jumps.
+- **Tada**, comedy: at its impact the upper body settles into the hips (the shoulders and the head lower, the shirt a little
+  wider), then recovers. The head, the arms and the shorts keep their shape, the outline follows, the shirt does not tear.
+- **Talk** (`wind/`): before, the hands came straight up out of the pockets from 0.15 s. Now the shoulder sinks first and the
+  hands rise later and more gently. It is calm and continuous, not a still beat.
+- **The aloha shirt's hem** (`springs.js`, measured, not changed): it swings the same with the squash as without it (it hangs
+  from the hips, which the squash leaves alone), and less on the new jump (0.8° a frame where the old one jerked 1.4°).
+
+**What remains** (in order; the handover has how to try each):
+
+1. **Anticipation for the rest:** Laugh, Bow, HairTuck, HeelRock and DramaFinish, CollarTug on Johansson, the 13 from stage 1,
+   SitDown and StandUp. Kachashi and Shrug on Sverker.
+2. **Twins.**
+3. **The 13 arcs entries** from stage 1, and `ARCS_WITHOUT_DRAG`.
+4. **The settle's micro-overshoot.**
+5. **The velocity steps:** the lift in Eat, Drink and the seated versions, and Vy's run knee.
+
 ### Stage 3, begun: the trunk's wind-up (27 November 2026, branch `anim/stage3`)
 
 **What was found.** The audit counts a counter-movement only where the effector moves faster than a tenth of the action's

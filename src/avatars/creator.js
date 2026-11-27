@@ -94,7 +94,7 @@ const LABEL={
  smile:'Smile',flat:'Flat',grin:'Grin',small:'Small',smirk:'Smirk',pout:'Pout',
  square:'Square',oval:'Oval',heart:'Heart',sun:'Shades',half:'Half-rim',
  moustache:'Moustache',walrus:'Walrus',stubble:'Stubble',beard:'Beard',goatee:'Goatee',
- flowers:'Flowers',stripes:'Stripes',dots:'Dots',plaid:'Plaid',
+ flowers:'Flowers',stripes:'Stripes',dots:'Dots',plaid:'Plaid',aloha:'Aloha',
  child:'Child',teen:'Teen',adult:'Adult',elder:'Elder',
 };
 /** The words under a part's picture: a wardrobe item's from the catalogue, by slot (a police top and a police cap read apart). */

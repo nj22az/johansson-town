@@ -73,6 +73,17 @@ const FADE=.32;
 const STANCE=Object.freeze({out:.3,outMin:.15,outMax:.3,back:.4,backMin:.17,backMax:.35,swing:.2});
 /** An eased curve from p0 (going at m0 per unit of u) to p1 (at rest), at u (0..1): the value, and its rate per unit of u. */
 const hermite=(p0,m0,p1,u)=>{const u2=u*u,u3=u2*u;return [(2*u3-3*u2+1)*p0+(u3-2*u2+u)*m0+(-2*u3+3*u2)*p1,(6*u2-6*u)*p0+(3*u2-4*u+1)*m0+(-6*u2+6*u)*p1];};
+/** A keyed curve (pose to pose: straight-ahead-pose-mastery): `keys` are [t, value, slope] in time order, a cubic hermite
+ *  between each two (the slope per second; 0, a rest, where it is left out; 'auto' through the keys either side, as a
+ *  breakdown passes through); held at the first and the last outside them. */
+function keyed(t,keys){
+ if(t<=keys[0][0])return keys[0][1];
+ const slope=i=>{const k=keys[i];if(k[2]!=='auto')return k[2]||0;const a=keys[Math.max(0,i-1)],b=keys[Math.min(keys.length-1,i+1)];return (b[1]-a[1])/(b[0]-a[0]);};
+ for(let i=1;i<keys.length;i++){const t1=keys[i][0];if(t>t1)continue;
+  const t0=keys[i-1][0],h=t1-t0,u=(t-t0)/h,u2=u*u,u3=u2*u;
+  return (2*u3-3*u2+1)*keys[i-1][1]+(u3-2*u2+u)*slope(i-1)*h+(-2*u3+3*u2)*keys[i][1]+(u3-u2)*slope(i)*h;}
+ return keys.at(-1)[1];
+}
 /**
  * Anticipation for the procedural moves (anticipation-mastery; docs/ANIMATION-STANDARD.md rule 2): before a move's action the
  * body goes the other way first. The action is read from the move itself when it starts: its pose is tried at times through
@@ -120,21 +131,73 @@ const TRUNK=Object.freeze({lead:.2,leadMin:.08,leadMax:.12,hold:.4,release:.8,sh
  *  and DramaFinish want their own: with it the hands' paths bow past a half circle or flatten (Laugh, Talk, HairTuck), or the
  *  levels start out of order (HeelRock, DramaFinish). Bow's, from the spine since its own bow is (TRUNK.rooted), passes on
  *  Johansson and Sverker but flattens his head's lean back into a straight 10 cm stroke and starts Vy's levels together. */
-const WIND_TRUNK=new Set(['Wave','Point','ScratchHead','ChinTap','CollarTug','Clap','Kachashi','Shrug']);
+const WIND_TRUNK=new Set(['Wave','Point','ScratchHead','ChinTap','CollarTug','Clap','Kachashi','Shrug','Talk']);
 /** A move's own share and hold at the bottom of its wind-up (TRUNK's otherwise): the kachāshī's hold is its beat; a shrug's
- *  shoulders sink and stay down a moment before they go up. */
-const TRUNK_OWN=Object.freeze({Kachashi:Object.freeze({hold:.35}),Shrug:Object.freeze({hold:.5})});
+ *  shoulders sink and stay down a moment before they go up; talk's dip is small and does not stay, but for hands held behind
+ *  the back (`behind`: they stay there through the wind-up, so the dip alone is the counter-movement), and a point's is
+ *  quicker (stage 4). */
+const TRUNK_OWN=Object.freeze({Kachashi:Object.freeze({hold:.35}),Shrug:Object.freeze({hold:.5}),Talk:Object.freeze({hold:0,behind:.12,share:.1}),Point:Object.freeze({hold:.3})});
 /** The everyday moves whose arm rises from the side at a natural pace (timing-principle-mastery: 8-12 frames at 24 fps,
  *  "Standard (natural movement)"; calm-relaxation): in over RISE_TIME[0] and out over RISE_TIME[1] seconds, eased, where the
  *  other moves ramp in a quarter of a second (4-6 frames at 24 fps, "Quick (snappy responses)", which no everyday move is),
  *  and from where the arm hangs; the clap's hands come together more deliberately (RISE_OWN). The trunk's wind-up needs it:
  *  against a raise that quick, a calm dip moves slower than a tenth of the raise's top speed, under what reads as a movement. */
-const RISE=new Set(['Wave','ScratchHead','ChinTap','CollarTug','Point','Clap']),RISE_TIME=Object.freeze([.4,.3]),RISE_OWN=Object.freeze({Clap:Object.freeze([.5,.3])});
+const RISE=new Set(['Wave','ScratchHead','ChinTap','CollarTug','Point','Clap','Talk']),RISE_TIME=Object.freeze([.4,.3]),RISE_OWN=Object.freeze({Clap:Object.freeze([.5,.3]),Talk:Object.freeze([.5,.3])});
+/**
+ * Squash on impacts (squash-stretch-mastery: "Required on every impact", "Jump arcs: stretch on ascent, squash on landing",
+ * "Timing amplifies squash/stretch: Fast impacts demand more squash", "Deformation should ease in/out, never snap"; the
+ * standard's rule 1 and section 2: everyday 2-5%, comedy 10-20%, volume kept). An impact is read as the principles audit reads
+ * it: the hips (in the body's own frame over its floor, so a ferry's roll, a staircase or a teleport is not one) falling
+ * `fall` m/s or faster within the last `within` seconds and coming to a stop (under `stop` m/s); a step faster than `teleport`
+ * m/s is a jump of the scene, not a fall. It is taken as the fall starts to brake (`brake` m/s/s, the feet meeting the floor or
+ * the seat: no free fall brakes) or, failing that, as it stops; once a fall. A landing the scene flies (s.airborne ending) is one too. The waist takes it: the
+ * spine shortens along itself by s about the hips (what is above it settles down onto them) and widens by 1/sqrt(1-s), and
+ * the chest takes the inverse, so the head, the arms and what they hold keep their shape and every bone's x*y*z stays 1.
+ * The amount is set by how fast the fall was, from `slow` to `hard` m/s, within the register's band pulled a little in from its
+ * edges (`everyday`, `comedy`); it comes in over `in` seconds, eased (peaking 4 game frames after the stop, as the chest goes
+ * on down after the hips have stopped: follow-through-overlapping, "Jump landing: body compresses"), and goes out over the
+ * register's `out`: everyday a long soft settle (calm-relaxation), comedy past rest into a stretch of `rebound` of it and
+ * back (playfulness-fun: "overshoot, wobble and settle").
+ */
+const SQUASH=Object.freeze({fall:.3,stop:.05,within:.1,teleport:5,brake:6,slow:.3,hard:1.5,in:.067,
+ everyday:Object.freeze([.025,.045]),comedy:Object.freeze([.11,.17]),out:Object.freeze({everyday:.32,comedy:.16}),rebound:.3,back:.22});
+/**
+ * Jump (everyday; the standard's stage 4), keyed pose to pose on the legs, and the hips' path from them.
+ * - On the floor the legs are a squat keyed by its thigh swing (`squat`, radians): the ankle under the hip and the sole flat,
+ *   so the feet neither slide nor tip, and the hips exactly as low as that squat brings them (the grounder plants the feet).
+ *   Down into a crouch in `down` s (anticipation-mastery: "Jump preparation: full crouch"; 37% of the action here, the 1:2 of
+ *   the guideline; and squash-stretch-mastery's "compress before explosive movement": the crouch's stop is an impact, SQUASH);
+ *   open at `speed` rad/s as it pushes off in `launch` s, the knees still bent as the feet leave (`squat.off`), as a jump's do.
+ * - In the air the hips fly a parabola from the take-off's place and speed for `flight` s (its top more than twice the crouch,
+ *   so the rise is the action; a little long, exaggeration-mastery's "Exaggerated apex hang time"), `clear` m/s clear of the
+ *   legs at either end so the feet leave and meet the floor once. The legs straighten, point (`point`) and tuck a little,
+ *   then reach for the floor flat and close as it lands, at the speed it fell (both where the soles were measured as it
+ *   started: `calibrate`), down into a squat to take it (`absorbFor` s: SQUASH's impact as the fall brakes) and up to standing
+ *   (`recover`). The legs and the hips' height are the move's own curves, not followed (they are what the feet are held to).
+ * - Secondary action (secondary-action-mastery): the arms swing back in the crouch and up over the head as it leaves (held
+ *   there a moment at the top: the story pose), out for balance as it lands; the left `lag` s after the right and `follow` of
+ *   its swing (solid drawing: no twins). The trunk leans into the crouch and the landing and comes up out of it over the push
+ *   and `arch` s into the air; the head leads, looking up (the eyes go first). The upper body follows as the animator does.
+ * - Its overlap fails and is kept so: a planted foot holds its knee to its thigh, which start together.
+ * A jump the scene flies (the player's, characters.js: s.airborne from its first frame) answers at once, with no crouch (the
+ * game answers within 100 ms): the legs push off pointed and tuck, and reach for the floor a little bent (`hard.reach`) with
+ * the feet at the scene's floor. Its stop is the impact, and after it the knees give on from `hard.give` m/s, slowing into a
+ * squat as deep as the speed it came down at asks (`hard.depth`: of L, a + b*v within c..d), and stand. Running, the legs are
+ * the run's.
+ */
+const JUMP=Object.freeze({down:.15,launch:.072,flight:.55,absorbFor:.1,recover:.28,reach:.08,speed:9,clear:.12,point:.2,lag:.12,follow:.85,arch:.1,
+ squat:Object.freeze({crouch:.52,off:.3,air:.05,tuck:.15,absorb:.62}),
+ hard:Object.freeze({reach:.2,give:.5,depth:Object.freeze([.05,.02,.06,.16]),absorbFor:.16,recover:.36}),tuck:.15,
+ spine:Object.freeze([.1,-.03,.08]),chest:Object.freeze([.25,-.08,.18]),head:Object.freeze([-.2,.05,-.12])});
+/** How long Talk's sway takes to come in, once its hands are up (seconds). */
+const TALK_SWAY=.5;
 /** Comedy's moves, whose wind-up is pushed (the town's register, the standard's section 2). */
 const PUSHED=new Set(['EvilLaugh','WindUp','Tackle','Stomp','HeelKick','Tada','Cheer','CupHands','CoinToCheek','BowDeep','BowWalk',
  'KneelHug','PoleFlick','Peek','BannerUp','FanWild','HoldOn','FingerStop','Tape','Offer','Reach','LieKnead','GrenadeCoin','Aim',
  'HoldUp','HoldUpStraws','Call','WriteAbove']);
 const LEG_SET=new Set(['thighL','kneeL','footL','thighR','kneeR','footR']);
+/** How long a seat's soft edge takes to harden once the body is still on it (seat-support.js). */
+const SEAT_SETTLE=.3;
 /** The right arm and the head, as consume.js poses them for a bite or a sip: eased in from where the animator had them and
  *  out back to it (at `CONSUME_RATE`, a critically damped follow), never there in a frame. */
 const CONSUME_JOINTS=Object.freeze(['shoulderR','elbowR','handR','head']),CONSUME_RATE=9;
@@ -429,7 +492,7 @@ export const STORY_POSES=new Set(['BentStuck','CrabWalk','ChairUncurl','FrozenAb
 /** How long each move lasts (loops run until something else happens). */
 export const GESTURES=Object.freeze({
  Wave:2,Bow:1.5,Nod:1.1,HeadShake:1.2,Point:1.6,Shrug:1.3,Clap:1.8,Laugh:2,Think:2.4,LookAround:2.6,Stretch:2.2,
- PickUp:1.6,Fist:1.4,Jab:.42,JabL:.42,Swipe:.7,Hurt:.5,Tackle:.75,Jump:.9,Cheer:1.6,Hop:1.2,Gasp:1.6,Stomp:1.4,Slump:2.2,Fidget:2.4,SitEnjoyFood:3.8,SitPresentFood:4.2,SitToast:2.4,SitPress:2.4,SitDrink:2.4,SitEat:2.4,Drink:2.4,Eat:2.4,
+ PickUp:1.6,Fist:1.4,Jab:.42,JabL:.42,Swipe:.7,Hurt:.5,Tackle:.75,Jump:1.2,Cheer:1.6,Hop:1.2,Gasp:1.6,Stomp:1.4,Slump:2.2,Fidget:2.4,SitEnjoyFood:3.8,SitPresentFood:4.2,SitToast:2.4,SitPress:2.4,SitDrink:2.4,SitEat:2.4,Drink:2.4,Eat:2.4,
  // A can, as animated in Blender (drink-can.js): bought sealed, opened and drunk; or open already, drunk.
  DrinkCan:CAN_PARTS.open[1]-CAN_PARTS.open[0],DrinkCanOpened:CAN_PARTS.drink[1]-CAN_PARTS.drink[0],
  Heart:2.8,Peace:2.8,Coy:3,Tada:2.4,HandsOnHips:2.6,HeelKick:2.6,CheekRest:3,DoubleCheek:3,
@@ -539,6 +602,13 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  // ---- The move's wind-up (WIND): the move it is for, how long it waits (W), its action's length (A), how far, and each
  // joint's turn the other way at full wind-up.
  const wind={g:null,W:0,A:0,a:0,H:0,R:1,trunk:false,turn:new Float32Array(JOINTS.length*3)},windBase=new Float32Array(JOINTS.length*3),windTry=new Float32Array(JOINTS.length*3);
+ // ---- Squash on impacts (SQUASH): the hips' height over the floor last frame and their speed then, the recent speeds, the
+ // pulse (its time, -1 when none; what it starts from; its amount; its register; its value now), the move last playing and
+ // when, the scene's own flight (s.airborne) and its speed, and the spine's and the chest's rest.
+ let seatSoft=0;
+ const squash={y:null,v:0,falls:[],armed:true,t:-1,from:0,a:0,comedy:false,now:0,scaled:false,move:null,moveT:-Infinity,air:false,airV:0,parentY:null};
+ const spineRest={p:bones.spine.position.clone(),s:bones.spine.scale.clone()},chestRest=bones.chest.scale.clone();
+ const comedyMove=name=>!!name&&(PUSHED.has(name)||!!FUN_POSES[name]||!!PAIR_ROLES[name]||STORY_POSES.has(name));
  // ---- The bite or the sip (CONSUME_JOINTS): how far its pose is in, its speed, what was consumed, and the animator's pose under it.
  let consumeW=0,consumeV=0,consumeFood=false,consumeHad=false,consumeWas=false;const consumeSaved=CONSUME_JOINTS.map(()=>new THREE.Quaternion()),headSaved=new THREE.Vector3(),consumeArm=[new THREE.Quaternion(),new THREE.Quaternion()];
  const _q=[0,1,2,3].map(()=>new THREE.Quaternion()),_eu=new THREE.Euler(),_p=[0,1,2,3,4].map(()=>new THREE.Vector3());
@@ -900,6 +970,17 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  const FK_CHAIN=Object.freeze({handL:['hips','spine','chest','shoulderL','elbowL','handL'],handR:['hips','spine','chest','shoulderR','elbowR','handR'],head:['hips','spine','chest','neck','head']});
  const fkMid={handL:new THREE.Vector3(0,m.hand*handShape(m).middle[1],0),head:new THREE.Vector3(0,m.headCentre-m.headY,0)};fkMid.handR=fkMid.handL;
  const _fkM=new THREE.Matrix4(),_fkL=new THREE.Matrix4(),_fkQ=new THREE.Quaternion(),_fkE=new THREE.Euler();
+ /** How deep the forearm and the middle of the hand of `side` go into the body (bodyVolume; metres, 0 clear), with the body
+  *  in `pose`: a forearm's surface is its bone's line less its thickness. */
+ const ARM_CHAIN=Object.freeze({L:FK_CHAIN.handL,R:FK_CHAIN.handR}),_fkA=new THREE.Vector3(),_fkB=new THREE.Vector3(),_fkP=new THREE.Vector3();
+ function forearmDepth(pose,side){
+  volume??=bodyVolume(avatar.recipe,m);_fkM.identity();
+  for(const j of ARM_CHAIN[side]){const i=JOINT_AT[j]*3;_fkM.multiply(_fkL.compose(bones[j].position,_fkQ.setFromEuler(_fkE.set(pose[i],pose[i+1],pose[i+2])),bones[j].scale));
+   if(j==='elbow'+side)_fkA.setFromMatrixPosition(_fkM);else if(j==='hand'+side)_fkB.setFromMatrixPosition(_fkM);}
+  const r=m.armR*.9,mid=fkAt(pose,'hand'+side,_fkP);let deep=Math.max(0,-volume.sdf(mid));
+  for(let k=0;k<=6;k++)deep=Math.max(deep,r-volume.sdf(_fkP.copy(_fkA).lerp(_fkB,k/6)));
+  return deep;
+ }
  function fkAt(pose,eff,out){_fkM.identity();
   for(const j of FK_CHAIN[eff]){const i=JOINT_AT[j]*3;_fkM.multiply(_fkL.compose(bones[j].position,_fkQ.setFromEuler(_fkE.set(pose[i],pose[i+1],pose[i+2])),bones[j].scale));}
   return out.copy(fkMid[eff]).applyMatrix4(_fkM);}
@@ -911,7 +992,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    const f=Math.max(...go[e].map(v=>v.length()));if(f>far){far=f;eff=e;}}
   if(far<.03)return;
   const k=go[eff].findIndex(v=>v.length()>=.9*far),A=tries[k][0],u=go[eff][k].clone().normalize();
-  wind.A=A;wind.W=THREE.MathUtils.clamp(TRUNK.lead*A,TRUNK.leadMin,TRUNK.leadMax);wind.H=(TRUNK_OWN[g.name]?.hold??TRUNK.hold)*A;wind.R=TRUNK.release*A;
+  wind.A=A;wind.W=THREE.MathUtils.clamp(TRUNK.lead*A,TRUNK.leadMin,TRUNK.leadMax);wind.H=(stanceCarry==='behind'&&TRUNK_OWN[g.name]?.behind!==undefined?TRUNK_OWN[g.name].behind:TRUNK_OWN[g.name]?.hold??TRUNK.hold)*A;wind.R=TRUNK.release*A;
   if(g.d!==Infinity&&wind.W+wind.H>g.d*.3){wind.W=0;return;}
   const comedy=PUSHED.has(g.name)||FUN_POSES[g.name]||STORY_POSES.has(g.name),b=u.clone().multiplyScalar(-(TRUNK_OWN[g.name]?.share??(comedy?TRUNK.share.comedy:TRUNK.share.everyday))*far);
   // (never into the body: a hand beside it, or in a pocket, is carried down and back and `clear` away from it, never in toward
@@ -951,7 +1032,19 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   if(side){const o=side==='L'?'R':'L',he='hand'+o,ci=JOINT_AT.chest*3;pose.set(windBase);for(let c=0;c<3;c++)pose[ci+c]+=wind.turn[ci+c];
    const at=fkAt(pose,he,new THREE.Vector3()),d=at.clone().sub(fkAt(windBase,he,new THREE.Vector3()));
    for(const [c,axis] of [[2,'x'],[0,'z']]){const i=JOINT_AT['shoulder'+o]*3+c;pose[i]+=.01;const rate=(fkAt(pose,he,p.clone())[axis]-at[axis])*100;pose[i]-=.01;
-    if(Math.abs(rate)>.05)wind.turn[i]=THREE.MathUtils.clamp(-(c===2?TRUNK.keep:1)*d[axis]/rate,-TRUNK.most.shoulder,TRUNK.most.shoulder);}}
+    if(Math.abs(rate)>.05)wind.turn[i]=THREE.MathUtils.clamp(-(c===2?TRUNK.keep:1)*d[axis]/rate,-TRUNK.most.shoulder,TRUNK.most.shoulder);}
+   // (and never deeper into the body than it stood: the forearm in a pocket already lies in the hip's measured volume, and the
+   // hold in toward the side pressed it 3 mm further in under the boxy aloha shirt (tests/stance-release.test.mjs, 27 November
+   // 2026). So the forearm and the hand are measured against the body at the full wind-up, and the hold in is eased off, and
+   // the upper arm let out from the side if that is not enough, just as far as keeps them no deeper than at the stance; an arm
+   // the move itself takes is the move's)
+   const zi=JOINT_AT['shoulder'+o]*3+2,out=o==='L'?1:-1,wound=windBase.slice();for(let k=0;k<wound.length;k++)wound[k]+=wind.turn[k];
+   const stood=forearmDepth(windBase,o)+TRUNK.clear*m.k*.05,deeper=v=>{wound[zi]=windBase[zi]+v;return forearmDepth(wound,o)>stood;};
+   const held=wind.turn[zi],most=out*TRUNK.most.shoulder;
+   // (only an arm the move leaves where it is: a shrug's other arm is its own move's)
+   const own=['shoulder'+o,'elbow'+o].some(j=>{const i=JOINT_AT[j]*3;return tries.some(([,,T])=>Math.hypot(T[i]-windBase[i],T[i+1]-windBase[i+1],T[i+2]-windBase[i+2])>.05);});
+   if(!own&&deeper(held)){let lo=0,hi=1;if(deeper(most))lo=hi=1;else for(let k=0;k<12;k++){const mid=(lo+hi)/2;if(deeper(held+(most-held)*mid))lo=mid;else hi=mid;}
+    wind.turn[zi]=held+(most-held)*hi;}}
   wind.trunk=true;
   // (the head keeps level as the trunk tilts, and leads, as the eyes go first, unless it is what moves)
   const hi=JOINT_AT.head*3,ni=JOINT_AT.neck*3,ci=JOINT_AT.chest*3,T=tries[k][2];
@@ -977,6 +1070,10 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    if(!stanceHere){Object.assign(A,{w:1,v:0,goal:1,u:1,taken:-1});continue;}
    const sh=target['shoulder'+side],el=target['elbow'+side],hd=target['hand'+side],S=STANCE;
    const taken=!!gesture&&!EASED.has(gesture.name)&&(sh.distanceToSquared(A.sh)>1e-9||el.distanceToSquared(A.el)>1e-9||hd.distanceToSquared(A.hd)>1e-9);
+   // (hands clasped behind the back stay there through the trunk's wind-up and come out with the action: brought round from
+   // behind the back from the first frame, they ran forward along the action and cancelled the dip, Point, ChinTap, Clap and
+   // Talk on Sverker)
+   if(taken&&A.w>=1&&stanceCarry==='behind'&&wind.trunk&&wind.g===gesture&&gesture.t<wind.W+wind.H){sh.copy(A.sh);el.copy(A.el);hd.copy(A.hd);continue;}
    if(taken){A.taken=A.taken<0?0:A.taken+dt;A.last.sh.copy(sh);A.last.el.copy(el);A.last.hd.copy(hd);}else A.taken=-1;
    const d=gesture?.d??Infinity,timed=Number.isFinite(d),back=timed?THREE.MathUtils.clamp(S.back*d,S.backMin,S.backMax):S.backMax;
    const goal=taken&&!(timed&&d-gesture.t<=back)?0:1;
@@ -1025,6 +1122,42 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  function upperStill(){const k0=new THREE.Vector3(),prev=history[(historyAt-1+HISTORY)%HISTORY];if(prev.t===-Infinity)return true;
   for(let i=0;i<JOINTS.length;i++){if(DRAG_LEVEL[i]!==1)continue;sample(prev.t-LAG,i*3,k0);const H=prev.v;if(Math.hypot(H[i*3]-k0.x,H[i*3+1]-k0.y,H[i*3+2]-k0.z)>.01)return false;}
   return true;}
+ /** Squash on impacts (SQUASH), once this frame's body is placed: read the hips' fall and stop, and the scene's flight ending;
+  *  play the pulse; put it on the spine and the chest. `active`: a body on its feet or its seat (not lying, carried, riding). */
+ function squashStep(dt,s,active){
+  const Q=SQUASH,S=squash;
+  const name=gesture?.name||posed?.name||null;if(name){S.move=name;S.moveT=time;}
+  const comedy=time-S.moveT<.3&&comedyMove(S.move);
+  // (the scene's own flight, the player's jump: its landing is an impact, as fast as the body was coming down)
+  let hit=null;const parent=avatar.root.parent;
+  if(parent){const py=parent.matrixWorld.elements[13],pv=S.parentY!==null&&dt>0?(py-S.parentY)/dt:0;S.parentY=py;
+   if(s.airborne){S.air=true;if(Math.abs(pv)<Q.teleport)S.airV=pv;}else if(S.air){S.air=false;if(S.airV<=-Q.fall)hit=-S.airV;S.airV=0;}}
+  if(active){
+   const y=avatar.root.position.y+bones.hips.position.y*avatar.root.scale.y-(s.seated||s.riding?0:(s.floorHeight||0));
+   if(S.y!==null&&dt>0){const v=(y-S.y)/dt;
+    if(Math.abs(v)>Q.teleport){S.falls.length=0;S.v=0;}
+    else{let fell=0;for(const [t,u] of S.falls)if(t>=time-Q.within-1e-6)fell=Math.min(fell,u);
+     if(fell<=-Q.fall&&S.armed&&(v>=-Q.stop&&S.v<-Q.stop||v<-Q.stop&&(v-S.v)/dt>=Q.brake)){hit=Math.max(hit??0,-fell);S.armed=false;}
+     if(v>=-Q.stop)S.armed=true;
+     S.falls.push([time,v]);if(S.falls.length>12)S.falls.shift();S.v=v;}}
+   S.y=y;
+  }else{S.y=null;S.v=0;S.falls.length=0;}
+  if(hit!==null){const band=comedy?Q.comedy:Q.everyday,f=THREE.MathUtils.clamp((hit-Q.slow)/(Q.hard-Q.slow),0,1);
+   S.from=S.now;S.a=band[0]+(band[1]-band[0])*f;S.comedy=comedy;S.t=0;}
+  else if(S.t>=0)S.t+=dt;
+  let k=0;
+  if(S.t>=0){const t=S.t,A=S.a;
+   if(t<Q.in)k=S.from+(A-S.from)*smooth(t/Q.in);
+   else if(!S.comedy){const u=(t-Q.in)/Q.out.everyday;if(u<1)k=A*(1-smooth(u));else S.t=-1;}
+   else{const u=(t-Q.in)/Q.out.comedy,R=-Q.rebound*A;if(u<1)k=A+(R-A)*smooth(u);else{const w=(t-Q.in-Q.out.comedy)/Q.back;if(w<1)k=R*(1-smooth(w));else S.t=-1;}}}
+  S.now=k;
+  if(k===0&&!S.scaled)return;
+  S.scaled=k!==0;
+  // (the spine shortened about the hips, widened to keep its volume; the chest the inverse, so all above it keeps its shape)
+  const c=1-k,w=1/Math.sqrt(c),P=spineRest.p,R=spineRest.s;
+  bones.spine.position.set(P.x*w,P.y*c,P.z*w);bones.spine.scale.set(R.x*w,R.y*c,R.z*w);
+  bones.chest.scale.set(chestRest.x/w,chestRest.y/c,chestRest.z/w);
+ }
  /** The kept targets at time t, between the kept frames either side (the oldest kept, before them): from offset k, into `out`
   *  (a Vector3), or the one value returned. */
  function sample(t,k,out=null){
@@ -1305,10 +1438,13 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // A move may change the arms and head while sitting; its standing legs and bounce must not pull the sitter through or off
   // the furniture (unless it says the legs are its own: a knee hiked up on the seat).
   const legs=onChair?['hips','thighL','kneeL','footL','thighR','kneeR','footR'].map(j=>[j,target[j].clone()]):null;let ownLegs=false;
+  let jumpLift=null,jumpBase=0,jumpHips=null,jumpExact=false;
   if(gesture){gesture.t+=dt;if(gesture.t>=gesture.d)gesture=null;else{
    if(wind.g!==gesture)windRead(gesture,s,onChair);
    const r=applyGesture(wind.W>0?windTime(gesture):gesture,s,onChair);
    if(!legs&&r?.root!==undefined)targetRoot+=r.root;
+   // (a jump keyed on the hips (JUMP): planted on the floor, free of it as far as its `lift`, over its standing height)
+   if(!legs&&r?.lift!==undefined){jumpLift=r.lift;jumpBase=r.base;jumpHips=r.hips??null;jumpExact=!!r.exact;}
    // Some moves say where the eyes are (down on the book while calling out): unless the scene says otherwise.
    gestureEyes=r?.eyes||null;ownLegs||=!!r?.legs;
   }}
@@ -1402,12 +1538,14 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // (getting down onto the floor or up from it, the legs keep exactly to the way down, which is eased already: so they are in
   // their shape on the floor the moment the bottom is)
   const legsOnTheWay=onChair&&chairBlend<1&&floorSit>0;
-  for(const j of JOINTS){if(legsOnTheWay&&LEG_JOINTS.includes(j))current[j].copy(target[j]);else current[j].lerp(target[j],k);bones[j].rotation.set(current[j].x,current[j].y,current[j].z);}
-  rootY+=(targetRoot-rootY)*(s.seated||s.riding?1-Math.exp(-dt*9):k);hipsY+=(targetHips-hipsY)*k;lean+=(targetLean-lean)*k;
+  for(const j of JOINTS){if((legsOnTheWay||jumpExact)&&LEG_JOINTS.includes(j))current[j].copy(target[j]);else current[j].lerp(target[j],k);bones[j].rotation.set(current[j].x,current[j].y,current[j].z);}
+  // (a jump's legs and root are its own keyed curves (JUMP), which its feet are held to)
+  if(jumpExact)rootY=targetRoot;else rootY+=(targetRoot-rootY)*(s.seated||s.riding?1-Math.exp(-dt*9):k);hipsY+=(targetHips-hipsY)*k;lean+=(targetLean-lean)*k;
   if(s.riding)rootY=targetRoot;
   avatar.root.position.x=s.riding?0:driftX;
   avatar.root.position.z=s.riding?.21*(s.bicycleFit||bicycleRiderFit(m)).scale:-seatSlide*chairBlend;
-  avatar.root.position.y=rootY+(s.seated||s.riding?0:(s.floorHeight||0));
+  // (a jump's height is over its standing height as its soles were measured, the hips' own breath since taken off: JUMP)
+  avatar.root.position.y=rootY+(s.seated||s.riding?0:(s.floorHeight||0))+(jumpLift!==null?jumpBase-(jumpHips===null?0:m.hipY+hipsY-jumpHips):0);
   bones.hips.position.y=m.hipY+(s.riding?0:hipsY);
   bones.head.position.copy(headRestPosition);
   if(s.riding)poseAvatarOnBicycle(avatar,s.ridePhase||0,s.bicycleFit||bicycleRiderFit(m));
@@ -1467,16 +1605,18 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    if(beerCue&&side==='L'&&beerCue.closeL*beerCue.w>.01){avatar.grip('L',beerCue.closeL*beerCue.w);continue;}
    avatar.grip(side,Math.max(handWish[side],held?heldGrip(held,m):0,round?1:0,avatar.handHeld?.[side]||0));}
   avatar.seatLevel=null;
+  // (the seat's edge soft while the body sits down or stands up, hardening over SEAT_SETTLE once it is still on it: seat-support.js)
+  seatSoft=onChair&&chairBlend<1?1:Math.max(0,seatSoft-dt/SEAT_SETTLE);const seatSoftness=()=>smooth(seatSoft);
   if(onChair&&!s.riding){
    // Keep sit/stand transitions continuous and use the actual clothing surface
    // as the contact point. Camera eye height never determines this support.
    if(chairBlend<1){
     groundFeet(s.floorHeight||0);const standingY=avatar.root.position.y;
-    supportSeat(Number.isFinite(s.seatHeight)?s.seatHeight:.45);
+    supportSeat(Number.isFinite(s.seatHeight)?s.seatHeight:.45,seatSoftness());
     // (onto the floor, the body is as low as the planted feet let it be, through the squat and back onto the bottom: neither
     // the feet nor the bottom ever below the floor)
     avatar.root.position.y=floorSit>0?Math.max(standingY,avatar.root.position.y):THREE.MathUtils.lerp(standingY,avatar.root.position.y,chairBlend);
-   }else supportSeat(Number.isFinite(s.seatHeight)?s.seatHeight:.45);
+   }else supportSeat(Number.isFinite(s.seatHeight)?s.seatHeight:.45,seatSoftness());
    // Sat on the floor, the heels rest on it, and nothing of the feet goes through it on the way down or up.
    // (a driver's heels on the cab's floor as well, measured: the chair's legs are a body's average, and soles hung 1.5 to
    // 1.9 cm over a car's floor or stood 1.4 in it)
@@ -1485,7 +1625,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    avatar.seatLevel=chairBlend<1?null:(Number.isFinite(s.seatHeight)?s.seatHeight:.45)-avatar.root.position.y;
   }else if(!s.riding&&!s.sleeping&&!lie){
    avatar.pixar?.seat?.(0);
-   groundFeet(s.floorHeight||0,{airborne:!!s.airborne||['Jump','Tackle','Cheer','Hop','Gasp'].includes(gesture?.name)||!!FUN_POSES[gesture?.name]?.airborne});
+   groundFeet(s.floorHeight||0,jumpLift!==null?{lift:jumpLift}:{airborne:!!s.airborne||['Tackle','Cheer','Hop','Gasp'].includes(gesture?.name)||!!FUN_POSES[gesture?.name]?.airborne});
    // Kneeling rests on the knees as well as the toes: nothing on the body (a boot's leg, a knee in thick cloth) goes
    // below the floor; whichever is lowest touches it.
    if(kneel>0){const up=groundLying(s.floorHeight||0);if(up>0)avatar.root.position.y+=up;}
@@ -1519,6 +1659,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    R.rotation.x=th;R.position.y=THREE.MathUtils.lerp(standY,plankY,W);R.position.z=-h*Math.sin(th);plankTilt=true;
   }else if(plankTilt&&!lie){avatar.root.rotation.x=0;plankTilt=false;}
   storyAfter(dt,s);
+  squashStep(dt,s,!s.riding&&!s.sleeping&&!lie&&!lyingTilt&&!plankTilt);
   // The face: blinks, words, glances, and whatever it is feeling.
   blinkIn-=dt;if(blinkIn<=0&&blinkT<0){blinkT=0;blinkIn=1.8+Math.random()*3.8;}
   // A blink closes in a frame or two, holds, and opens a little slower (rigged eyes draw every step; the painted ones
@@ -1893,6 +2034,81 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   if(avatar.pixar){toward('shoulderR',-.5-lift*.45,.35+lift*.6,-.1,w);toward('elbowR',-1.55-lift*.7,0,0,w);toward('handR',-.2*lift,0,0,w);}
   else{toward('shoulderR',-.6-lift*.95,0,-.25,w);toward('elbowR',-.85-lift*1.25,0,0,w);}
  }
+ /** The leg's two lengths, hip to knee and knee to ankle, from the bones. */
+ const legL=[bones.kneeL.position.length(),bones.footL.position.length()];
+ /** The squat at thigh swing `a` (radians forward): the thigh's swing, the knee's fold and the foot's turn that keep the ankle
+  *  under the hip and the sole flat (so the feet neither slide nor tip), and how far it brings the hips down (`dropAt`). */
+ const shinAt=a=>Math.asin(Math.min(1,legL[0]*Math.sin(a)/legL[1]));
+ const squatAt=a=>{const s=shinAt(a);return [-a,a+s,-s];};
+ const dropAt=a=>legL[0]*(1-Math.cos(a))+legL[1]*(1-Math.cos(shinAt(a)));
+ /** How fast the hips rise per radian the squat opens, at `a`. */
+ const dropRate=a=>legL[0]*(Math.sin(a)+Math.tan(shinAt(a))*Math.cos(a));
+ /** The squat that brings the hips `drop` metres down. */
+ function squatFor(drop){if(!(drop>0))return 0;let lo=0,hi=1.35;if(drop>=dropAt(hi))return hi;for(let i=0;i<18;i++){const a=(lo+hi)/2;if(dropAt(a)<drop)lo=a;else hi=a;}return lo;}
+ /** Jump (JUMP): the legs' squat, the hips' path over it, the arms, the trunk and the head. Returns the root's height over
+  *  standing, `lift` (0 planted, 1 free of the floor), `base` (the body's standing height over its floor) and `exact` (the legs
+  *  and the root as keyed, not followed: they are the move's own curves, and the feet are held to them). */
+ function jumpMove(g,s){
+  const J=JUMP,t=g.t,moving=(s.speed||0)>.08,floor=s.floorHeight||0;
+  if(g.base===undefined){g.base=avatar.root.position.y-floor;g.flew=!!s.airborne;g.land=null;}
+  const legs=(a,point=0)=>{if(moving)return;const [th,kn,ft]=squatAt(a);for(const side of ['L','R']){set('thigh'+side,th);set('knee'+side,kn);set('foot'+side,ft+point);}};
+  // the arms: the right as keyed, the left a beat after it (less of a beat toward the end, so both are down as it ends)
+  const hang=.13+clear;
+  const arms=(keysX,keysZ,keysE,end)=>{for(const [side,k] of [['R',-1],['L',1]]){const lead=side==='R',u=lead?t:Math.max(0,t-J.lag*Math.min(1,Math.max(0,end-t)/.3)),f=lead?1:J.follow;
+   set('shoulder'+side,keyed(u,keysX)*f,0,-k*(-hang+(keyed(u,keysZ)+hang)*f));set('elbow'+side,-.12+(keyed(u,keysE)+.12)*f);}};
+  if(g.flew){
+   // (flown by the scene: off at once, the legs pointed and tucked, then reaching for the floor a little bent with the feet at
+   // the scene's floor; its stop is the impact (SQUASH sells it), and after it the knees give on from `give` m/s, slowing into
+   // a squat as deep as how fast it came down asks, and stand)
+   const H=J.hard,reach=keyed(t,[[.3,0],[.5,H.reach]]);
+   if(g.land===null&&!s.airborne&&t>.05){g.land=t;g.vLand=THREE.MathUtils.clamp(-squash.airV||0,1,6);g.arm=[current.shoulderR.x,current.shoulderR.z,current.elbowR.x];g.a0=reach;}
+   if(g.land===null){g.d=Math.max(g.d,t+.1);
+    legs(Math.max(reach,keyed(t,[[0,0],[.1,.03],[.3,J.tuck],[.5,0]])),keyed(t,[[0,0],[.1,J.point],[.35,J.point*.5],[.5,0]]));
+    arms([[0,0],[.15,-.3],[.45,-.35],[.7,-.5]],[[0,-hang],[.15,-2],[.45,-1.9],[.7,-1.3]],[[0,-.12],[.15,-.2],[.45,-.25],[.7,-.35]],Infinity);
+    add('chest',keyed(t,[[0,0],[.12,-.08],[.5,0]]));add('head',keyed(t,[[0,0],[.1,-.1],[.5,-.06]]));
+    return {root:moving?0:-dropAt(reach),lift:1,base:g.base,exact:!moving};}
+   const tl=t-g.land,end=H.absorbFor+H.recover,a0=g.a0,L=legL[0]+legL[1];
+   const deep=squatFor(dropAt(a0)+L*THREE.MathUtils.clamp(H.depth[0]+H.depth[1]*g.vLand,H.depth[2],H.depth[3]));
+   const give=Math.min(H.give/dropRate(Math.max(a0,.05)),2.85*(deep-a0)/H.absorbFor);
+   const a=keyed(tl,[[0,a0,give],[H.absorbFor,deep],[end,0]]);
+   g.d=Math.max(g.d,g.land+end+.05);legs(a);
+   const [x0,z0,e0]=g.arm;
+   arms([[g.land,x0],[g.land+H.absorbFor,-.6],[g.land+end,0]],[[g.land,z0],[g.land+H.absorbFor,-.85],[g.land+end,-hang]],[[g.land,e0],[g.land+H.absorbFor,-.45],[g.land+end,-.12]],g.land+end);
+   add('chest',keyed(tl,[[0,0],[H.absorbFor,J.chest[2]],[end,0]]));add('spine',keyed(tl,[[0,0],[H.absorbFor,J.spine[2]],[end,0]]));
+   return {root:moving?0:-dropAt(a),lift:0,base:g.base,exact:!moving};
+  }
+  const T1=J.down,T2=T1+J.launch,T3=T2+J.flight,T4=T3+J.absorbFor,T5=T4+J.recover,top=T2+J.flight/2,up=T2+.1;
+  // the squat: down into the crouch, open as it pushes (the feet leave as fast as the squat opens there), in the air nearly
+  // straight with a little tuck at the top, reaching for the floor, closing as it lands, and opening to stand
+  const A=J.squat,go=J.speed;
+  const a=keyed(t,[[0,0],[T1,A.crouch],[T2,A.off,-go],[T2+J.reach,A.air],[top,A.tuck],[T3-J.reach,A.air],[T3,A.off,go],[T4,A.absorb],[T5,0]]);
+  // (where the feet leave and meet the floor, and how fast the hips go there, measured on the body's own soles as it starts: a
+  // shoe's sole is a millimetre or two off the ankle's squat, and a millimetre met a frame early halves the hips' speed there)
+  g.cal??=calibrate(A.off);
+  const {R0,v,base}=g.cal,grav=2*v/J.flight;
+  // (in the air a little clear of where the feet would be: J.clear m/s off the legs' own speed at the take-off and the
+  // landing, closing to nothing at either, so the feet leave and meet the floor once, not a frame early on a hair's error)
+  const margin=(x,w)=>x>0&&x<w?J.clear*x*(1-x/w)**2:0;
+  const R=t<=T2||t>=T3?-dropAt(a):R0+v*(t-T2)-grav*(t-T2)**2/2+margin(t-T2,J.flight/2)+margin(T3-t,J.flight/2),lift=t>T2&&t<T3?1:0;
+  legs(a,keyed(t,[[T2+.06,0],[T2+.16,J.point],[T3-.22,J.point],[T3-.14,0]]));
+  arms([[0,0],[T1,.5],[up,-.3],[up+.1,-.3],[T3,-.45,'auto'],[T4,-.6,'auto'],[T5,0]],
+   [[0,-hang],[T1,-.3,-2],[up,-2.45],[up+.1,-2.4],[T3,-1.4,'auto'],[T4,-.85,'auto'],[T5,-hang]],
+   [[0,-.12],[T1,-.35],[up,-.2],[up+.1,-.2],[T4,-.5],[T5,-.12]],T5);
+  // (the trunk comes up out of its lean over the push and on into the air, never snapped back as it leaves)
+  const trunk=k=>[[0,0],[T1,k[0]],[T2+J.arch,k[1]],[top+.05,0],[T3,0,'auto'],[T4,k[2]],[T5,0]];
+  add('spine',keyed(t,trunk(J.spine)));add('chest',keyed(t,trunk(J.chest)));
+  add('head',keyed(t,[[0,0],[T1-.03,J.head[0]],[T2+J.arch,J.head[1]],[top,0],[T4,J.head[2]],[T5,0]]));
+  return {root:R,lift,base:g.cal.base,hips:g.cal.hips,exact:!moving};
+ }
+ /** The body's own planted height (over its floor, by its soles) standing and in the squat at `a`, and how fast the hips rise as
+  *  that squat opens at JUMP.speed: the take-off's and the landing's place and speed. The legs are put back as they were. */
+ function calibrate(a){
+  const saved=LEG_JOINTS.map(j=>bones[j].rotation.clone()),planted=x=>{const [th,kn,ft]=squatAt(x);for(const side of ['L','R']){bones['thigh'+side].rotation.set(th,0,0);bones['knee'+side].rotation.set(kn,0,0);bones['foot'+side].rotation.set(ft,0,0);}
+   const so=findSoles();return -Math.min(so.L.y,so.R.y);};
+  const base=planted(0),e=.01,P=planted(a),rate=(planted(a-e)-planted(a+e))/(2*e);
+  LEG_JOINTS.forEach((j,i)=>bones[j].rotation.copy(saved[i]));
+  return {base,hips:bones.hips.position.y,R0:P-base,v:Math.max(rate,dropRate(a)*.5)*JUMP.speed};
+ }
  function applyGesture(g,s,seated=false){
   const t=g.t,d=g.d,e=d===Infinity?1:env(t,d),q=d===Infinity?Math.min(1,t/.3):ease(t,d);
   // (an everyday arm raised from the side, at a natural pace: eased out of the stance and into the pose, RISE)
@@ -1959,7 +2175,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    // A flying tackle: both arms thrown forward and closing round the other's middle, legs swept out behind
    // (the body's dive itself, leaning flat and off the ground, comes from whoever moves them: the film's lean/lift).
    case 'Tackle':set('shoulderL',-1.55*q,0,-.22*q);set('shoulderR',-1.55*q,0,.22*q);set('elbowL',-.75*q);set('elbowR',-.75*q);set('thighL',.55*q);set('thighR',.35*q);set('kneeL',.7*q);set('kneeR',.45*q);add('head',-.25*q);return {root:0};
-   case 'Jump':{const up=t<.2?-.08:Math.sin(Math.PI*Math.min(1,(t-.2)/.6))*.25;set('shoulderL',-.3,0,1.4*q);set('shoulderR',-.3,0,-1.4*q);set('kneeL',t<.2?.8:.3);set('kneeR',t<.2?.8:.3);set('thighL',t<.2?-.5:-.2);set('thighR',t<.2?-.5:-.2);return {root:up};}
+   case 'Jump':return jumpMove(g,s);
    case 'Cheer':set('shoulderL',-.2,0,2.6*q);set('shoulderR',-.2,0,-2.6*q);set('elbowL',-.3);set('elbowR',-.3);return {root:Math.abs(Math.sin(t*7))*.1*e};
    case 'Hop':set('shoulderL',-.2,0,.9*e);set('shoulderR',-.2,0,-.9*e);add('head',-.15*e);return {root:Math.abs(Math.sin(t*8))*.12*e};
    case 'Stomp':set('shoulderL',-.2,0,.35);set('shoulderR',-.2,0,-.35);set('elbowL',-1.6*q);set('elbowR',-1.6*q);set('thighL',-.5*Math.max(0,Math.sin(t*9))*e);set('kneeL',.6*Math.max(0,Math.sin(t*9))*e);add('head',.18*e,Math.sin(t*14)*.1*e);add('chest',.12*e);break;
@@ -2033,7 +2249,12 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
     set('thighR',.45*q);set('kneeR',1.7*q+Math.sin(t*3)*.08*q);
     set('shoulderL',-1.2*q,0,-.2*q);set('shoulderR',-1.2*q,0,.2*q);set('elbowL',-1.6*q);set('elbowR',-1.6*q);
     add('head',.08*q,0,-.25*q);add('chest',.1*q,0,-.06*q);break;
-   case 'Talk':set('shoulderR',-.55+Math.sin(t*3.1)*.25,0,-.2);set('elbowR',-1.1+Math.sin(t*4.3)*.3);set('shoulderL',-.35+Math.sin(t*2.3+1)*.2,0,.2);set('elbowL',-1+Math.sin(t*3.7)*.3);add('head',Math.sin(t*2.6)*.06);break;
+   // Talking with the hands: raised from where they hang at a natural pace (RISE), and once up swaying with the words (eased
+   // in over TALK_SWAY as the raise arrives: the raise is its own stroke, the hands coming up before the first word).
+   case 'Talk':{const w=r*smooth((t-rise[0]*.8)/TALK_SWAY);
+    // (the hands go round a little as they go, not to and fro on a line: arc-mastery)
+    set('shoulderR',(-.55+Math.sin(t*3.1)*.25*w)*r,0,-hang+(hang-.2-Math.cos(t*3.1)*.12*w)*r);set('elbowR',-.12*(1-r)+(-1.1+Math.sin(t*4.3)*.3*w)*r);
+    set('shoulderL',(-.35+Math.sin(t*2.3+1)*.2*w)*r,0,hang+(.2-hang+Math.cos(t*2.3+1)*.1*w)*r);set('elbowL',-.12*(1-r)+(-1+Math.sin(t*3.7)*.3*w)*r);add('head',Math.sin(t*2.6)*.06*w);break;}
    case 'DiscoPoint':case 'IdolDance':case 'AirGuitar':case 'RockBelt':case 'EnkaReach':case 'RobotDance':case 'ChickenDance':case 'JellyWobble':case 'DramaFinish':{
     const pose=musicPose(g.name,Number.isFinite(s.performBeat)?s.performBeat:t*112/60,s.performEnergy);
     for(const [joint,angles]of Object.entries(pose.joints))set(joint,...angles);
