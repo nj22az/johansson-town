@@ -80,7 +80,7 @@ const hermite=(p0,m0,p1,u)=>{const u2=u*u,u3=u2*u;return [(2*u3-3*u2+1)*p0+(u3-2
  * plays on from its start, a little quicker so it ends when it would have, the wind-up let go over its first `release` of A.
  * The head and the neck lead instead (the eyes go first) unless they make most of the move. Never into the body: an upper
  * arm is not brought in against the side, an elbow never straightens past straight. The wind-up begins in the move's first
- * frame, so a move the player asks for answers at once. Only the moves in WIND_ON, so far.
+ * frame, so a move the player asks for answers at once. Only the moves in WIND_ON, so far, and not sat.
  */
 const WIND=Object.freeze({lead:.4,leadMin:.08,leadMax:.3,release:.6,everyday:.15,comedy:.35,look:.3,least:.05,
  tries:10,within:1.2});
@@ -832,7 +832,9 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   *  first half (nothing it does is kept: the targets, the hands, the reach's marks are put back). */
  function windRead(g,s,seated){
   wind.g=g;wind.W=0;
-  if(!WIND_ON.has(g.name)||PAIR_ROLES[g.name]||g.ramp!==undefined)return;
+  // (not sat: the arm's turn the other way goes into the lap or the chest, FingerStop's forearm 59 mm into Miss Higa's,
+  // tests/story-gestures.test.mjs)
+  if(!WIND_ON.has(g.name)||PAIR_ROLES[g.name]||g.ramp!==undefined||seated)return;
   JOINTS.forEach((j,i)=>{windBase[i*3]=target[j].x;windBase[i*3+1]=target[j].y;windBase[i*3+2]=target[j].z;});
   const hands={L:handWish.L,R:handWish.R},solved={...solvedNow},pins={...pinWish},t0=g.t,span=Math.min(g.d===Infinity?WIND.within:g.d/2,WIND.within);
   let far=0,contact=false;const tries=[];
@@ -961,7 +963,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    else floorEase=Math.max(0,floorEase-dt/FLOOR_SIT.ease);
    if(floorEase>0&&(!onFloor||floorEase<1))s={...s,seated:true,seatHeight:floorSeat.seatHeight,floorHeight:floorSeat.floorHeight,chairBlend:floorEase};
   }else floorEase=0;
-  firstUpdate=false;
+  const firstSeen=firstUpdate;firstUpdate=false;
   const action=gesture?.name||s.pose||s.seat;avatar.setOpenHands?.(false);   // always mitten hands (the creator): never fingers, in any move
   const eating=['Eat','EatStanding','SitEat'].includes(action),drinking=['Drink','DrinkStanding','DrinkHip','SitDrink','SitDrinkHip','SitToast'].includes(action);
   if(eating||drinking){
@@ -969,6 +971,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    consumeTime+=dt;
    const t=Number.isFinite(s.consumeElapsed)?s.consumeElapsed:gesture?gesture.t+dt:consumeTime%5;
    consumption={...consumptionPhase(t),food:eating,elapsed:consumeTime,cycle:Math.floor(consumeTime/5)};
+   // (eating or drinking already the first time they are seen: the bite or the drink is where it is, not on its way)
+   if(firstSeen){consumeW=1;consumeV=0;}
   }else{consumption=null;consumeTime=0;}
   lastConsume=action;
   for(const j of JOINTS)target[j].set(0,0,0);handWish.L=handWish.R=0;solvedNow.L=solvedNow.R=pinWish.L=pinWish.R=false;stanceHere=false;
