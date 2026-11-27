@@ -981,6 +981,11 @@ listen"; and the channel, https://youtube.com/@johanssonanimationstudios.
   4.8 m of the screen), about 0.12–0.21 s of work, built a few milliseconds a frame from the moment the set comes on (a
   sixth of a frame, at least 3 ms); a frame that checks the sight lines spends 0.1–4.5 ms on them (once warm, under
   0.5 ms) and reads the HUD's boxes at most every 120 ms (about 1 ms, a layout read). Not measured on an iPad.
+- **The guard** (`node tools/ci-guard.mjs --test-concurrency=2`, on a machine shared with three other helpers' suites): 137
+  files, 732 tests, 729 pass. The 3 that fail: the two runtime-package checks (the runtime is not rebuilt here, and
+  `quiet-ui.css` changed, so its link's hash is stale: `npm run build:runtime` rewrites both), and `no-z-fighting`,
+  killed by the machine's out-of-memory killer while it built the town beside the others' (dmesg); run alone it passes,
+  13 of 13. `controller-game` and `neighbourhood-access` (not in the guard) fail the same way on the base commit.
 - **The pictures**: `docs/qa/izakaya-tv/` (the stand-in's sheet and four of its shots, the real YouTube's sheet and its
   shot at the set).
 
