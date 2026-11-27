@@ -926,7 +926,7 @@ listen"; and the channel, https://youtube.com/@johanssonanimationstudios.
   card over the game only pauses it. Not a view (YouTube's own help: autoplayed embeds do not count).
 - **"Watch on the TV"** (the prompt when it is not live, the rail's new TV button beside "Listen" when it is): the same
   video in an ordinary YouTube player in the activity card (`activities.js youtubeViewer`, `quiet-ui.css .youtube-view`),
-  centred over the dimmed game and all of it in view (about 900 × 507 px on an iPad on its side, never under 356 × 200),
+  centred over the dimmed game and all of it in view (926 × 521 px at 1180 × 820, never under 356 × 200),
   YouTube's controls, nothing starting by itself: the viewer presses play, and YouTube counts that as a view. Closing it
   gives the game back.
 - **Fallbacks**: offline, the API unreachable (a timeout that counts only time the page was free, `patientTimeout`: the
@@ -967,7 +967,8 @@ listen"; and the channel, https://youtube.com/@johanssonanimationstudios.
   - upright, third person, his head in front of the screen and his shoulder over a corner: the still (his body, a
     capsule); clear of him, and first person from the counter: the grid;
   - with the HUD: the place chip, the action "Listen to the TV" with "Watch on the TV" beside it, the grid clear of them;
-  - "Watch on the TV" pressed: the card with the same video's player, 926 × 521 px, and closed again to the game;
+  - "Watch on the TV" pressed (the rail's button, a real click): the card with the same video's player, 926 × 521 px,
+    all of it in view, and closed again to the game;
   - "Listen": the set called unMute and setVolume(45).
 - **The real YouTube, here** (`--youtube`): the IFrame API loaded, the player was made on the set (its page placed on
   the tube exactly as the stand-in's), the uploads playlist gave all 12 of the owner's videos and their thumbnails came
@@ -978,8 +979,10 @@ listen"; and the channel, https://youtube.com/@johanssonanimationstudios.
   look must be on the owner's iPad**, on the published site.
 - **Cost** (software Chromium, this cloud machine): the sight-line tree is 78,401 of the room's triangles (those within
   4.8 m of the screen), about 0.12–0.21 s of work, built a few milliseconds a frame from the moment the set comes on (a
-  sixth of a frame, at least 3 ms); a frame that checks the sight lines spends 1–3 ms on the set, other frames a fraction
-  of a millisecond. Not measured on an iPad.
+  sixth of a frame, at least 3 ms); a frame that checks the sight lines spends 0.1–4.5 ms on them (once warm, under
+  0.5 ms) and reads the HUD's boxes at most every 120 ms (about 1 ms, a layout read). Not measured on an iPad.
+- **The pictures**: `docs/qa/izakaya-tv/` (the stand-in's sheet and four of its shots, the real YouTube's sheet and its
+  shot at the set).
 
 ## Not done, and to watch
 - **Seeing it play**: on the iPad, in Safari, published. Check that the Short and an ordinary video play muted on their
