@@ -113,14 +113,16 @@ const WIND_ON=new Set(['HeelRock','PickUp','Tackle','Hop','EvilLaugh','SwitchHig
  * - The head keeps level (`level` of the chest's tilt) and leads, as the eyes go first, unless it is what moves.
  */
 const TRUNK=Object.freeze({lead:.2,leadMin:.08,leadMax:.12,hold:.4,release:.8,share:Object.freeze({everyday:.115,comedy:.15}),
- most:Object.freeze({chest:.28,shoulder:.3,elbow:.15}),cost:Object.freeze({chest:1.5,shoulder:3,elbow:4}),level:.7,near:.08,keep:.3,trail:.05});
+ most:Object.freeze({spine:.2,chest:.28,shoulder:.3,elbow:.15}),cost:Object.freeze({spine:1,chest:1.5,shoulder:3,elbow:4}),level:.7,near:.08,keep:.3,trail:.05,rooted:.05,clear:.01});
 /** The moves that wind up with the trunk (TRUNK): those where it passes the audit's anticipation on a body it failed on, or
  *  takes another failure off, and adds none (tools/animation-audit.mjs on every move). Laugh, Talk, Bow, HeelRock, HairTuck
  *  and DramaFinish want their own: with it the hands' paths bow past a half circle or flatten (Laugh, Talk, HairTuck), or the
- *  levels start out of order (Bow, whose root leads its own move; HeelRock; DramaFinish). */
-const WIND_TRUNK=new Set(['Wave','Point','ScratchHead','ChinTap','CollarTug','Clap','Kachashi']);
-/** A move's own hold at the bottom of its wind-up, of its action (TRUNK.hold otherwise): the kachāshī's is its beat. */
-const TRUNK_HOLD=Object.freeze({Kachashi:.35});
+ *  levels start out of order (HeelRock, DramaFinish). Bow's, from the spine since its own bow is (TRUNK.rooted), passes on
+ *  Johansson and Sverker but flattens his head's lean back into a straight 10 cm stroke and starts Vy's levels together. */
+const WIND_TRUNK=new Set(['Wave','Point','ScratchHead','ChinTap','CollarTug','Clap','Kachashi','Shrug']);
+/** A move's own share and hold at the bottom of its wind-up (TRUNK's otherwise): the kachāshī's hold is its beat; a shrug's
+ *  shoulders sink and stay down a moment before they go up. */
+const TRUNK_OWN=Object.freeze({Kachashi:Object.freeze({hold:.35}),Shrug:Object.freeze({hold:.5})});
 /** The everyday moves whose arm rises from the side at a natural pace (timing-principle-mastery: 8-12 frames at 24 fps,
  *  "Standard (natural movement)"; calm-relaxation): in over RISE_TIME[0] and out over RISE_TIME[1] seconds, eased, where the
  *  other moves ramp in a quarter of a second (4-6 frames at 24 fps, "Quick (snappy responses)", which no everyday move is),
@@ -906,16 +908,19 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    const f=Math.max(...go[e].map(v=>v.length()));if(f>far){far=f;eff=e;}}
   if(far<.03)return;
   const k=go[eff].findIndex(v=>v.length()>=.9*far),A=tries[k][0],u=go[eff][k].clone().normalize();
-  wind.A=A;wind.W=THREE.MathUtils.clamp(TRUNK.lead*A,TRUNK.leadMin,TRUNK.leadMax);wind.H=(TRUNK_HOLD[g.name]??TRUNK.hold)*A;wind.R=TRUNK.release*A;
+  wind.A=A;wind.W=THREE.MathUtils.clamp(TRUNK.lead*A,TRUNK.leadMin,TRUNK.leadMax);wind.H=(TRUNK_OWN[g.name]?.hold??TRUNK.hold)*A;wind.R=TRUNK.release*A;
   if(g.d!==Infinity&&wind.W+wind.H>g.d*.3){wind.W=0;return;}
-  const comedy=PUSHED.has(g.name)||FUN_POSES[g.name]||STORY_POSES.has(g.name),b=u.clone().multiplyScalar(-(comedy?TRUNK.share.comedy:TRUNK.share.everyday)*far);
-  // (never into the body: a hand beside it, or in a pocket, is carried down and back, never in toward it, which the lean
-  // alone does to a hand hanging below the chest; the body's surface at the hand says which way is in)
+  const comedy=PUSHED.has(g.name)||FUN_POSES[g.name]||STORY_POSES.has(g.name),b=u.clone().multiplyScalar(-(TRUNK_OWN[g.name]?.share??(comedy?TRUNK.share.comedy:TRUNK.share.everyday))*far);
+  // (never into the body: a hand beside it, or in a pocket, is carried down and back and `clear` away from it, never in toward
+  // it, which the lean alone does to a hand hanging below the chest; the body's surface at the hand says which way is in)
   if(eff!=='head'){volume??=bodyVolume(avatar.recipe,m);const p=P0[eff],e=.005,n=new THREE.Vector3(),q=new THREE.Vector3();
    if(volume.sdf(p)<TRUNK.near*m.k){for(let c=0;c<3;c++){q.copy(p);q.setComponent(c,p.getComponent(c)+e);const a=volume.sdf(q);q.setComponent(c,p.getComponent(c)-e);n.setComponent(c,volume.sdf(q)-a);}
-    n.normalize();const into=b.dot(n);if(into>0)b.addScaledVector(n,-into);}}
+    n.normalize();const into=b.dot(n);b.addScaledVector(n,-Math.max(0,into)-TRUNK.clear*m.k);}}
   // (the turns it may use: the chest's three, the arm's own swing forward or back and out to its side, the elbow opening)
-  const side=eff==='head'?null:eff.slice(-1),dofs=[['chest',0],['chest',1],['chest',2]];
+  // (and the spine's, where the move's own action bends it: the root leads its own move, so it leads the wind-up too, or the
+  // chest would set off before it)
+  const T1=tries[k][2],si=JOINT_AT.spine*3,rooted=Math.hypot(T1[si]-windBase[si],T1[si+1]-windBase[si+1],T1[si+2]-windBase[si+2])>TRUNK.rooted;
+  const side=eff==='head'?null:eff.slice(-1),dofs=[...(rooted?[['spine',0],['spine',1],['spine',2]]:[]),['chest',0],['chest',1],['chest',2]];
   if(side)dofs.push(['shoulder'+side,0],['shoulder'+side,2],['elbow'+side,0]);
   const kind=j=>j.replace(/[LR]$/,''),cost=([j])=>TRUNK.cost[kind(j)],most=([j])=>TRUNK.most[kind(j)];
   const p=new THREE.Vector3(),pose=windBase.slice(),cols=dofs.map(([j,c])=>{const i=JOINT_AT[j]*3+c;pose[i]+=.01;const v=fkAt(pose,eff,p.clone()).sub(P0[eff]).multiplyScalar(100);pose[i]=windBase[i];return v;});
@@ -947,7 +952,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   wind.trunk=true;
   // (the head keeps level as the trunk tilts, and leads, as the eyes go first, unless it is what moves)
   const hi=JOINT_AT.head*3,ni=JOINT_AT.neck*3,ci=JOINT_AT.chest*3,T=tries[k][2];
-  for(const c of [0,2])wind.turn[ni+c]=-TRUNK.level*wind.turn[ci+c];
+  for(const c of [0,2])wind.turn[ni+c]=-TRUNK.level*(wind.turn[si+c]+wind.turn[ci+c]);
   if(eff!=='head')for(const i of [hi,ni])for(let c=0;c<3;c++)wind.turn[i+c]+=WIND.look*(T[i+c]-windBase[i+c]);
  }
  /** The move's own time under its wind-up: held at its start while the body winds up, then a little quicker. */

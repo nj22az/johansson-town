@@ -71,7 +71,7 @@
   "Run:loco": {"ease":["Vy"],"arcs":["Vy","Johansson","Sverker"],"squash":["Vy","Johansson","Sverker"]},
   "Bow": {"anticipation":["Vy","Johansson","Sverker"],"twins":["Sverker"]},
   "Point": {"anticipation":["Sverker"],"overlap":["Vy","Johansson","Sverker"]},
-  "Shrug": {"anticipation":["Vy","Johansson","Sverker"],"overlap":["Vy","Johansson"],"twins":["Vy","Johansson","Sverker"]},
+  "Shrug": {"anticipation":["Sverker"],"overlap":["Vy","Johansson"],"twins":["Sverker"]},
   "Clap": {"anticipation":["Sverker"],"overlap":["Vy","Johansson"],"twins":["Vy","Johansson","Sverker"]},
   "Laugh": {"anticipation":["Vy","Johansson","Sverker"],"overlap":["Vy","Johansson"],"twins":["Vy","Johansson","Sverker"]},
   "Think": {"anticipation":["Vy","Johansson","Sverker"],"overlap":["Vy","Johansson","Sverker"]},
