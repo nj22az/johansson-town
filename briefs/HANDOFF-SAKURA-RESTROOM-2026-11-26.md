@@ -1604,3 +1604,61 @@ The owner: "The shirt you may look like a dress make it look more like a real Ha
   then compress without crossing). Not started: test it on the lap with a penetration measure first.
 - Close up (under a metre), the turned edge's ink shows as a dashed line on the shorts just under the hem; it did before.
 - Everything in "Seen, not fixed" above that is not the lap still stands (nape specks close up, the shorts' crotch lines).
+
+# 27 November, night: stage 4 begun, squash on impacts, the jump, Talk (branch `anim/stage4`)
+
+From `claude/dreamy-ritchie-cxufpl` at 00e0c0c, with 0118a61 (the owner's aloha shirt) merged in part way. Not pushed.
+Stopped at a committed, passing state with the rest written here: the session's context was near its end. What each change
+does and why is in `docs/ANIMATION-STANDARD.md` section 6, "Stage 4".
+
+## Done
+- **Squash on impacts** (`animate.js` `SQUASH`, `squashStep`): 0 → 15 of 15. The spine shortens about the hips and widens,
+  the chest takes the inverse; everyday 2.5-4.5%, comedy 11-17%, by the fall's speed; volume 155 of 155 still.
+- **Jump** (`JUMP`, `jumpMove`): keyed on its legs. The crouch reaches the hips with the feet planted and flat; the take-off
+  with bent knees; a parabola measured on the soles (`calibrate`); a landing into a squat. The player's physics jump gives at
+  the knees after the scene lands it. It now fails only overlap (a planted foot holds its knee to its thigh), which is kept.
+  `foot-ground.js`: `lift` for a jump; the foot supports built once a body.
+- **The seat's edge** (`seat-support.js`): soft while sitting down or standing up, hard once still. SitDown's 10-14 mm step
+  in a frame is gone.
+- **The shirt merge's stance-release failure** (the coordinator's fix first): the pocketed forearm in the trunk's wind-up is
+  measured against the body and kept no deeper than at the stance (`forearmDepth`); the shirt unchanged.
+- **Talk** passes every check: a natural raise, the sway eased in and curved, a small unheld dip. Hands behind the back held
+  through the trunk's wind-up: Point, ChinTap and Clap pass anticipation on Sverker.
+- `tools/hand-shots.mjs`: `--strip 0.72:2` (a landing's frames), `--fixed` (the camera where the body began).
+- Commits: 33ad065 (squash, Jump, seat), cfad576 (the merge), 559e5ef (the wave's other hand), 4601fbd (Talk, the stance
+  behind the back), then the handover and the shared foot supports.
+- Baseline 1062 → 1010 entries, none added. Every check 7 → 8.
+
+## Proved
+- `node --test tests/animation-principles.test.mjs`: 8 of 8 at each commit.
+- Guard tests that play the changed moves, at 4601fbd: 65 of 65 (animation-principles, stance-release, wave-gesture,
+  vy-reference, pair-poses, npc-seating, context-actions, sakura-dialogue, aloha-print, avatar-polish, conversation-eyes);
+  the seat tests (seated-pose, bench-two-seats, player-seating, floor-sit, pair-poses, stance-release) 20 of 20.
+- The full guard and the 55 files outside it: below, under "Proved, last".
+
+## Found
+- **For the shirt helper (`springs.js`, read, not changed):** the aloha shirt's hem swings at most 2.3° through a whole jump
+  and 0.8° in a frame (`SWING.hem`: stiffness 0.3, damping 0.24, limit 14°). Its follow-through after a landing hardly shows
+  ("After landing, the squash ripples through secondary elements", squash-stretch-mastery). Softer, or a little mass, would
+  show it; that is the hem's own setting to change.
+- The squash's chest counter-scale is exact only while the chest is not turned against the spine: S·R·S⁻¹ shears the upper
+  body by about (1-(1-s)^1.5)·sin(lean). Everyday (4.5%, a 0.2 rad lean) about 1%; comedy at 17% with a 0.3 rad lean about 7%,
+  for a few frames. Tada's sheet does not show it; a hard comedy landing leaning far over might.
+- The audit counts a jump's legs in the overlap from its first frame because the feet leave the floor later; a planted crouch
+  cannot pass (the knee and the thigh start together to keep the foot where it is). The audit's rule is the standard's; not
+  changed.
+- The player's jump (characters.js) flies 0.8 m high at 4.25 m/s from the first frame; no crouch can come before it within
+  100 ms, so its anticipation is the push's pointed toes and the arms. The squash and the give at the knees sell its landing.
+
+## Remains (stage 4, in order)
+1. **Anticipation for the rest.** Try a move in `WIND_TRUNK` (its own `TRUNK_OWN`: `share`, `hold`, `behind`) and audit it,
+   then every move: entries off, none added, and `stance-release` passing.
+   - Laugh (Vy no depth; Sverker's wind-up stroke curves 62%), Bow (try `TRUNK.rooted` with a share under 7%), HairTuck
+     (Sverker's hand from behind the back past a half circle; the stance is now held through the wind-up, try again),
+     HeelRock and DramaFinish (levels out of order), CollarTug on Johansson, the 13 from stage 1, SitDown and StandUp.
+   - Kachashi and Shrug on Sverker: the behind-the-back hold may help or hurt; check.
+   - What worked for Talk: a natural raise (`RISE`), any looping sway eased in once the raise arrives (so the raise is a
+     stroke of its own), and the dip sized to the move.
+2. Twins. 3. The 13 arcs entries from stage 1 and `ARCS_WITHOUT_DRAG` (Jump plays without the drag still; try it with).
+4. The settle's micro-overshoot. 5. The lift's velocity steps in Eat, Drink and the seated versions, and Vy's run knee.
+6. Stomp has no squash (its hips do not fall, so neither the animator nor the audit sees the stomp's impact).

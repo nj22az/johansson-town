@@ -2,12 +2,15 @@ import * as THREE from '../../vendor/three.module.js';
 
 /** The points of the shoes (or bare feet) each foot bone carries rigidly, in the bone's own frame, from the meshes drawn now
  *  (worked out again when the outfit changes): a function giving [{bone, samples}]. */
+// (one per body, shared by its grounder and its sole finder: built once for both, a jump's first frame took 20 ms building it again)
+const SUPPORTS=new WeakMap();
 function footSupports(avatar){
  const point=new THREE.Vector3();
- let signature='',supports=[];
+ if(!SUPPORTS.has(avatar))SUPPORTS.set(avatar,{signature:'',supports:[]});
+ const cache=SUPPORTS.get(avatar);
  return ()=>{
   const meshes=avatar.root.children.filter(o=>o.isSkinnedMesh&&o.visible),key=meshes.map(o=>o.uuid).join('/');
-  if(key===signature)return supports;signature=key;supports=[];
+  if(key===cache.signature)return cache.supports;cache.signature=key;const supports=cache.supports=[];
   const seen=new Set();
   for(const mesh of meshes){
    const g=mesh.geometry;if(seen.has(g))continue;seen.add(g);
