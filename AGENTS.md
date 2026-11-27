@@ -46,9 +46,15 @@ critique what still looks too soft/chibi, and iterate"; then "When happy redraw 
   pass; and `node tools/avatar-turnaround.mjs` for the same in the game's own shader, which is the final judge.
 - **His shirt** (the owner, 27 November 2026: "the collar is way too big going under his arms when drinking"; "He should be
   wearing a 'wife beater' tank top under his shirt"): the kariyushi's camp collar is a camp collar's size
-  (`garment.js CAMP_COLLAR`; a test keeps it out of his sleeves when his arms come up or across), and under the open shirt
-  he wears a white ribbed tank top (`outfit.under: 'tank'`, `garment.js UNDER`): its scoop neck and straps in the V, his
-  chest hair above it.
+  (`garment.js KARIYUSHI.collar`; a test keeps it out of his sleeves when his arms come up or across), and under the open
+  shirt he wears a white ribbed tank top (`outfit.under: 'tank'`, `garment.js UNDER`): its scoop neck and straps in the V,
+  his chest hair above it.
+- **His aloha shirt, the owner's brief of 27 November 2026** ("Shape the shirt before painting the flowers", then the print
+  "with a deliberate rhythm", then "Make the print behave like fabric", then checked in Sakura Shop): built in that order.
+  The shape is `garment.js KARIYUSHI`: a low camp collar in one piece (a narrow band round the nape folding forward into two
+  short points over a small V; `collarChart`, `collarStrip`, `build.js alohaCollar`) and a body that falls free of the
+  waist to a level, untucked hem at the upper hip with a turned edge and an inside (`build.js alohaBody`). The plain
+  block-in is the recipe with `outfit.pattern: 'none'` (`tools/hand-shots.mjs --set outfit.pattern=none`).
 - Fair skin, dark brows, dark eyes, a five-o'clock shadow in grey; warm, dry and deadpan, never angry. Stylised and
   heavy, not realistic: no pores, no photographic shading, no high-poly sculpt.
 - **Not fat** (the owner, of the first result: "Johansson isn't fat he should have a neck and a maybe smaller face", "Make the

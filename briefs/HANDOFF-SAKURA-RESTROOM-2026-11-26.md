@@ -889,3 +889,48 @@ he is wearing the shirt outside his body".
 - **The neck's outline fades out over its last 3 cm** above where it meets the body; its sides keep theirs.
 - **Tests** (`avatar-polish`): the stand is chest cloth behind the neck and outside it (this fails on the old collar);
   the neck's foot has no outline and its sides do.
+
+# 27 November, day: Johansson's aloha shirt, phase 1, the plain-blue block-in (branch `shirt/aloha`)
+
+The owner's brief, "Johansson World | Aloha shirt brief": shape the shirt before painting the flowers; then the print with a
+deliberate rhythm; then the print behaving like fabric; then checks in Sakura Shop. Phase 1 only, for the owner to see the
+plain-blue block-in before the print goes on. Not pushed, not on `main`.
+
+## Done
+- **The shape is one spec, `garment.js KARIYUSHI`.** The plain block-in is the recipe with `outfit.pattern: 'none'`
+  (`tools/hand-shots.mjs --set outfit.pattern=none`, as `avatar-turnaround.mjs --set` already had).
+- **The collar** (`build.js alohaCollar`), one piece of cloth: a narrow band round the nape whose fold stands a little up
+  the neck (18 mm behind, 11 mm at the sides) and whose fall lies 36 mm over the shoulders and back, its outer edge springing
+  off a little; at the front it folds into two short points over a small V, no notch. It is drawn on a chart of the body
+  round the neck (`collarChart`: the torso's own meridians, the neck's foot spanned), as a strip between its inner and
+  outer edges (`collarStrip`), with a top, an underside 6 mm off the neck and 4 mm off the shirt, and an edge all round.
+  The shirt's V, the tank top in it, the collar's painted shadow (now all round), the placket and buttons follow it.
+- **The body** (`build.js alohaBody`): below the chest (`top`, t 0.56) the shirt is cloth of its own, falling from the
+  widest of the body above, clear of the waist, easing out to a level hem at the upper hip (16 mm above the hip joint),
+  turned 6 mm, its inside drawn up to the waist in the cloth's shadow. It enters the chest steeply (3 mm in to 1 mm out
+  over 2 mm) so the two cross in one clean line. The torso under it keeps its own line and outline: a tuck or a faded ink
+  under the shirt stood out from the game's camera as a dotted ring. Under it, below the shirt's inside, the torso is his
+  tank top (or skin); the swing quarters now start at t 0.2 (`springs.js hemSpec`).
+- **Under the short sleeves** the arm is the sleeve's inside, darker, down to just above the hem: no bare patch when the
+  arm is raised. `tests/underarm-coverage.test.mjs` passes now (all short-sleeved tops, both bodies).
+- **Measured, before → after** (Johansson): collar top above the neck's base 34 → 19 mm behind, 34 → 27 mm at the sides;
+  the neck showing under the jaw in profile 63 → 68 mm; V 165 → 111 mm deep, about 120 → 114 mm wide; points 157 → 140 mm out
+  and 77 → 54 mm below the neck's base; pocket 103 × 100 → 84 × 77 mm, 117 → 112 mm out, its middle 224 → 197 mm below the
+  neck's base; hem 28 mm below → 16 mm above the hip joint (shorts showing 95 → 139 mm); air at the waist 0 → 14 mm in front
+  and behind, at the hip about 10 → 34 mm. The sleeves are as they were: 90 mm openings round a 63 mm arm, 120 mm down it.
+- **Tests** (`avatar-polish`): the collar is low (its top under 30 mm above the neck's base, 60 mm and more of neck under
+  the jaw, the V 80-140 mm), the body falls free of the waist to a level hem above the hip joint with its inside, on
+  Johansson, Vy and Sverker. The collar-under-the-arms test, the stand outside the neck, the neck's foot and the tank top
+  still pass.
+- **Tools:** `avatar-turnaround.mjs` serves the Town from its own checkout (a worktree's parent is not the Office site),
+  as `hand-shots.mjs` does; `hand-shots.mjs --moves` swings the hems on their springs as the game does.
+
+## Not done (phases 2-4)
+- The print (Johansson's own layout; the tiled `flowers` stays for everyone else), the print as fabric, the checks in Sakura
+  Shop at the gameplay camera.
+
+## Seen, not fixed
+- Close up (under a metre), a faint line where the shirt's body leaves the chest, clearer when he arches back (Stretch).
+  Not seen at the gameplay distance.
+- The shorts' crotch, where the leg tubes meet the torso lathe, draws two dark slanted lines in front; the higher hem shows
+  more of the shorts. It is the shorts' construction, not the shirt's.

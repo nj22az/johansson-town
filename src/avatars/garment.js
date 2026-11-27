@@ -41,28 +41,106 @@ export function sleeveUV(p,a,b,side){
 
 const shade=(hex,f)=>'#'+new THREE.Color(hex).multiplyScalar(f).getHexString();
 const lighten=(hex,f)=>'#'+new THREE.Color(hex).lerp(new THREE.Color('#ffffff'),f).getHexString();
-/**
- * Johansson's camp collar, one side (mirrored for the other), as [fraction of the cloth's
- * half-width, height t up the torso]: by the neck, the leaf's point, the notch, the lapel's
- * corner, its foot by the first button, the centre; it closes back up along the open V.
- */
 /** What is worn under an open top (recipe outfit.under): the white ribbed tank top, its scoop neck's lowest point (a
  *  fraction of the torso's height) and how far out its straps' inner edges are (a fraction of the open neck's top). */
 export const UNDER=Object.freeze({tank:Object.freeze({colour:'#f2efe6',scoop:.865,strap:.8})});
-export const CAMP_COLLAR=Object.freeze([[.55,1.0],[.68,.87],[.55,.862],[.64,.818],[.17,.735],[.035,.74]].map(Object.freeze));
 /**
- * The camp collar's stand: a band of the shirt round the back and sides of the neck, clear of it (`gap`), open at the
- * front by `open` radians either side, `height` tall and rolling `roll` outward at its top (metres at k=1; build.js). It
- * is fitted to the neck it goes round, so a thick neck has it as a thin one does (the owner, 27 November 2026, of
- * Johansson: "his shirt needs a real collar with a rounded neck"; the stand had been sized from the arm and sat inside his
- * 104 mm neck, unseen).
+ * The island shirt (the kariyushi, an aloha shirt), shaped as a garment before anything is printed on it (the owner's
+ * brief of 27 November 2026, for Johansson: "Shape the shirt before painting the flowers"). Lengths in metres at k=1.
+ *
+ * `collar`: a low, open camp collar, one piece of cloth: "a narrow band wraps around the nape and folds forwards into two
+ * short points, leaving a small V of white undershirt below the throat". It is drawn on the chart of collarChart: α the
+ * angle round the torso (0 the front, π the back; the wearer's left is α > 0) and s how far down the body from where the
+ * neck goes into it, negative up the neck.
+ *  - `stand`: how far its fold stands up the neck at the back and at the sides; it comes down to nothing at the V, so the
+ *    fold runs down into the V's corners (`vee`, α) and in profile the neck shows well below the jaw;
+ *  - `fall`: how far the band lies down over the shoulders and the back from the neck;
+ *  - `point`, `foot`, `centre`: [α, s] of each short point, the foot of its lower edge by the top button, and the V's
+ *    bottom; the point's upper edge runs from the V's corner, so each leaf is one shape with one point (no notch);
+ *  - `gap`: its inside clear of the neck; `clear`: its underside clear of the shirt it lies on, `spring` more at the fall's
+ *    edge, which springs a little off the back as folded cloth does; `thick`: the cloth.
+ * `body`: the shirt below the chest falls free of the torso, "with a little air at the waist": from `top` (a share of the
+ *  torso above the hip joint, where it leaves the chest) it hangs straight down from the widest of the body above, `gap`
+ *  clear of it and easing out to its hem by `easeZ` in front and behind and `easeX` at the sides (the arms hang there);
+ *  `hem` is its hem's height above the hip joint, nearly level, at the upper hip, untucked, so the shorts show; `turn`
+ *  the hem's turned edge, `lining` how far up its inside is drawn (a share of the torso), `swing` where its lower part
+ *  starts to swing on the hem quarters (a share of the torso; springs.js).
  */
-export const COLLAR_STAND=Object.freeze({gap:.006,open:.62,height:.044,roll:.016,thick:.006});
-/** Where the stand's front ends come down onto the chest, as a fraction of the torso's half-width at its top: the
- *  collar's leaves fold down from there and the shirt's open V starts there, round the neck, not out at the shoulders. */
-export function collarNeckF(m,radiusAt){return (m.neckR+COLLAR_STAND.gap*m.k)*Math.sin(COLLAR_STAND.open)/(m.width/2*Math.max(.05,radiusAt(1)));}
-/** The camp collar's outline on this body: CAMP_COLLAR with its top point at the stand's front end. */
-export function campCollarOutline(m,radiusAt){const f=collarNeckF(m,radiusAt);return CAMP_COLLAR.map((p,i)=>i===0?[f,p[1]]:p);}
+export const KARIYUSHI=Object.freeze({
+ collar:Object.freeze({gap:.006,clear:.004,spring:.004,thick:.006,stand:Object.freeze({back:.018,side:.011}),rise:.9,fall:.036,
+  vee:.36,point:Object.freeze([.66,.1]),foot:Object.freeze([.13,.112]),centre:Object.freeze([.03,.112])}),
+ body:Object.freeze({top:.56,gap:.003,easeX:.005,easeZ:.018,hem:.015,turn:.006,lining:.3,swing:.2}),
+});
+/**
+ * The chart the collar is drawn on (KARIYUSHI.collar). Each α is one upright half-plane through the body's axis, the
+ * torso lathe's own meridian (so α is torsoUV's angle: u = 0.5 + α/2π); in it the neck and the torso are one line, s
+ * metres along it from the neck's foot, the corner there rounded off as cloth spans it rather than followed into it.
+ *  at(α,s,lift): the point `lift` metres out from that line, [x,y,z] in the body's space;
+ *  t(α,s): the line's height there, as a share of the torso (for painting).
+ */
+const charts=new Map();
+export function collarChart(m,radiusAt,{steps=144,ds=.0015,round=.012}={}){
+ // (one body's chart, made once: the painter and the builder both read it)
+ const key=[m.width,m.depth,m.torso,m.neckR,m.hipY,m.k,steps,ds,round,...Array.from({length:33},(_,i)=>radiusAt(.4+i*.02))].map(v=>v.toFixed(5)).join();
+ if(charts.has(key))return charts.get(key);
+ if(charts.size>64)charts.clear();
+ const W=m.width/2,D=m.depth/2,T=m.torso,up=.05*m.k,R=Math.round(round*m.k/ds),lines=[];
+ for(let i=0;i<steps;i++){
+  const a=i/steps*Math.PI*2,ex=W*Math.sin(a),ez=D*Math.cos(a),E=Math.hypot(ex,ez);
+  // where this meridian leaves the neck
+  let t=1.04;while(t>.4&&radiusAt(t)*E<m.neckR)t-=.0005;
+  const ySeam=m.hipY+t*T,raw=[];
+  for(let y=ySeam+up;y>ySeam;y-=ds)raw.push([m.neckR,y]);
+  // (down the body as far as the collar's leaves reach, and a hand more)
+  for(let u=t;u>t-.3;u-=.001)raw.push([radiusAt(u)*E,m.hipY+u*T]);
+  // evenly along it, ds apart
+  const even=[raw[0]];let carry=0;
+  for(let j=1;j<raw.length;j++){const [r0,y0]=raw[j-1],[r1,y1]=raw[j],l=Math.hypot(r1-r0,y1-y0);let at=ds-carry;
+   while(at<=l){even.push([r0+(r1-r0)*at/l,y0+(y1-y0)*at/l]);at+=ds;}carry=l-(at-ds);}
+  const seam=Math.round(up/ds);
+  // the corner at the neck's foot spanned: averaged over `round` either side of it, nothing changed further off
+  const line=even.map((p,j)=>{const w=1-THREE.MathUtils.smoothstep(Math.abs(j-seam),R,R*2);if(w<=0)return p;
+   let r=0,y=0,n=0;for(let q=Math.max(0,j-R);q<=Math.min(even.length-1,j+R);q++){r+=even[q][0];y+=even[q][1];n++;}
+   return [p[0]+(r/n-p[0])*w,p[1]+(y/n-p[1])*w];});
+  // out from it: the line turned a quarter (it runs down the body)
+  const normal=line.map((p,j)=>{const a0=line[Math.max(0,j-1)],a1=line[Math.min(line.length-1,j+1)],dr=a1[0]-a0[0],dy=a1[1]-a0[1],l=Math.hypot(dr,dy)||1;return [-dy/l,dr/l];});
+  lines.push({dir:[ex/E,ez/E],line,normal,seam});
+ }
+ const sample=(L,s,lift)=>{const f=THREE.MathUtils.clamp(L.seam+s/ds,0,L.line.length-1.001),j=Math.floor(f),w=f-j,p=L.line[j],q=L.line[j+1],n=L.normal[j],o=L.normal[j+1];
+  const r=p[0]+(q[0]-p[0])*w+lift*(n[0]+(o[0]-n[0])*w),y=p[1]+(q[1]-p[1])*w+lift*(n[1]+(o[1]-n[1])*w);return [r*L.dir[0],y,r*L.dir[1]];};
+ const pick=(a,fn)=>{const f=(((a/(Math.PI*2))%1+1)%1)*steps,i=Math.floor(f)%steps,w=f-Math.floor(f),A=fn(lines[i]),B=fn(lines[(i+1)%steps]);return A.map((v,k)=>v+(B[k]-v)*w);};
+ const chart={at:(a,s,lift=0)=>pick(a,L=>sample(L,s,lift)),t:(a,s)=>(pick(a,L=>sample(L,s,0))[1]-m.hipY)/T};
+ charts.set(key,chart);return chart;
+}
+/**
+ * The camp collar as a strip on the chart (KARIYUSHI.collar): its inner edge and its outer edge, as [α, s] pairs of equal
+ * length, α from 0 to 2π (the back at π), each pair one line across the cloth. The inner edge runs up the V's edge on the
+ * wearer's left, along the fold round the back and down the other V's edge; the outer edge, from the same V bottom, out
+ * along the leaf's lower edge to its point, back up its upper edge until it meets the fall's edge, round the back and
+ * down the other leaf to the other V bottom. Pairs no further apart along either edge than about `step` metres (α
+ * counted at `R` metres a radian); the corners (the point, the foot) are pairs of their own.
+ */
+export function collarStrip(m,{step=.011,R=.14}={}){
+ const C=KARIYUSHI.collar,k=m.k,TAU=Math.PI*2,S=THREE.MathUtils.smoothstep,Rk=R*k,bend=1.05;
+ const stand=a=>{const f=Math.min(a,TAU-a);return k*S(f,C.vee,C.vee+C.rise)*THREE.MathUtils.lerp(C.stand.side,C.stand.back,S(f,Math.PI/2,Math.PI));};
+ const P=[C.point[0],C.point[1]*k],F=[C.foot[0],C.foot[1]*k],N=[C.centre[0],C.centre[1]*k],A=[C.vee,0],fall=C.fall*k;
+ // where the point's upper edge, from the V's corner, comes out from under the fall's edge
+ const X=[A[0]+(P[0]-A[0])*fall/P[1],fall];
+ const lerp=(p,q,f)=>[p[0]+(q[0]-p[0])*f,p[1]+(q[1]-p[1])*f],dist=(p,q)=>Math.hypot((q[0]-p[0])*Rk,q[1]-p[1]),count=l=>Math.max(1,Math.ceil(l/(step*k)));
+ const inner=[],outer=[];
+ // the leaf: the V's edge from its bottom to its corner, against the lower edge, the point and the upper edge to X
+ const legs=[[N,F],[F,P],[P,X]],lengths=legs.map(([p,q])=>dist(p,q)),total=lengths.reduce((a,b)=>a+b,0);let done=0;
+ legs.forEach(([p,q],i)=>{const n=count(Math.max(lengths[i],dist(N,A)*lengths[i]/total));for(let j=0;j<n;j++){outer.push(lerp(p,q,j/n));inner.push(lerp(N,A,(done+lengths[i]*j/n)/total));}done+=lengths[i];});
+ // from the V's corner and X, the fold and the fall's edge together to where the band is whole, then round the back
+ const turnN=count((bend-C.vee)*Rk);for(let j=0;j<turnN;j++){const a=C.vee+(bend-C.vee)*j/turnN;inner.push([a,-stand(a)]);outer.push([X[0]+(bend-X[0])*j/turnN,fall]);}
+ const backN=count((Math.PI-bend)*Rk);for(let j=0;j<=backN;j++){const a=bend+(Math.PI-bend)*j/backN;inner.push([a,-stand(a)]);outer.push([a,fall]);}
+ // and the other side, mirrored (the middle of the back, α = π, once)
+ const half=inner.length,mirror=([a,s])=>[TAU-a,s];
+ for(let j=half-2;j>=0;j--){inner.push(mirror(inner[j]));outer.push(mirror(outer[j]));}
+ return {inner,outer};
+}
+/** The collar's outline (collarStrip), closed, as [α, s]: its inner edge, then its outer edge back. */
+export function collarOutline(m){const {inner,outer}=collarStrip(m);return [...inner,...outer.slice(1,-1).reverse()];}
 const COLLARED=['contrastpolo','polo','blouse','kariyushi','jacket','smock','cardigan','shirt','vest','knitvest','baseball'];
 /**
  * Tops worn over a shirt (a vest, a knitted vest): the body is the top, and the shirt under it shows at the neck and is
@@ -228,15 +306,19 @@ export function paintGarment(ctx,recipe,m,radiusAt){
   case 'blouse':collar('#f8f6ef',{drop:.88,spread:.1,round:true});placket(.852,hem+.04,.018);buttons([.85,.69,.53,.37],.007,'#f8f6ef');break;
   case 'smock':collar('#f8f6ef',{drop:.88,spread:.1,round:true});pocket(0,.42,W*.5,.16,shade(top,.94));hemRound();break;
   case 'kariyushi':{
-   // The camp collar itself is cloth, modelled on the chest (build.js campCollar). Here: the
-   // V of skin it opens over, and its toon shadow, a hard-edged darker shape just below
-   // and outside its edge, so it lifts off the shirt instead of lying on it like a sticker.
-   const skin=recipe.body.skin,fx=(f,t)=>f*W/2*radiusAt(t),pt=(f,t,s)=>[s*fx(f,t),t];
-   // The shadow skips the notch (index 2): in the notch it would read as a dark spike.
-   const outline=campCollarOutline(m,radiusAt),neckF=outline[0][0];
-   for(const s of [-1,1])poly(outline.filter((_,i)=>i!==2).map(([f,t])=>pt(Math.min(.99,f*1.04),t-.016,s)),shade(top,.8),{stroke:null});
-   // the open neck: from where the collar comes round the neck, down to the top button
-   poly([pt(neckF*1.08,1.01,-1),pt(neckF*1.08,1.01,1),[0,.73]],skin,{stroke:null});marks.push('open neck','collar shadow');
+   // The camp collar itself is cloth, modelled round the neck and on the chest (build.js alohaCollar), drawn on the same
+   // chart (collarChart). Here: the V it opens over, and its toon shadow, a hard-edged darker shape just below its edge
+   // all the way round, so it lifts off the shirt instead of lying on it like a sticker.
+   const skin=recipe.body.skin,fx=(f,t)=>f*W/2*radiusAt(t),C=KARIYUSHI.collar;
+   const chart=collarChart(m,radiusAt),ua=a=>(.5+(a>Math.PI?a-Math.PI*2:a)/(Math.PI*2))*TW;
+   const chartPoly=(pts,fill,back)=>wrapped(back,()=>{ctx.beginPath();pts.forEach(([a,s],i)=>{const px=ua(a)+(back&&a>Math.PI?TW:0),py=Y(chart.t(a,s));i?ctx.lineTo(px,py):ctx.moveTo(px,py);});ctx.closePath();ctx.fillStyle=fill;ctx.fill();});
+   chartPoly(collarOutline(m).map(([a,s])=>[a,s+.013*k]),shade(top,.8),true);
+   // the open neck: from where the collar's fold comes down the front of the neck, along the V's edges to the top button
+   const neckF=Math.sin(C.vee),vBottom=chart.t(C.centre[0],C.centre[1]*k),vee=[];
+   for(let i=0;i<=8;i++){const a=C.vee+(C.centre[0]-C.vee)*i/8,s=C.centre[1]*k*i/8;vee.push([a*1.08,chart.t(a,s)]);}
+   const vPoly=[...vee.map(([a,t])=>[-Math.sin(a)*W/2*radiusAt(t),t]).reverse(),[-fx(neckF*1.08,1.03),1.03],[fx(neckF*1.08,1.03),1.03],...vee.map(([a,t])=>[Math.sin(a)*W/2*radiusAt(t),t])];
+   poly(vPoly,skin,{stroke:null});
+   marks.push('open neck','collar shadow');
    // A few clean curls of chest hair in the open collar (recipe.marks.chesthair).
    if(recipe.marks?.chesthair)wrapped(false,()=>{ctx.strokeStyle=shade(skin,.36);ctx.lineWidth=line*1.1;ctx.lineCap='round';
     for(const [f,t,turn] of [[0,.795,1],[-.085,.835,-1],[.085,.835,1],[-.17,.878,1],[0,.872,-1],[.17,.878,-1],[-.09,.915,-1],[.1,.918,1]]){
@@ -248,8 +330,7 @@ export function paintGarment(ctx,recipe,m,radiusAt){
    if(o.under==='tank')wrapped(false,()=>{
     const T=UNDER.tank,white=T.colour,u=[],strap=neckF*1.08*T.strap;
     for(let i=0;i<=28;i++){const f=-strap+2*strap*i/28,t=T.scoop+(1.035-T.scoop)*Math.pow(Math.abs(f)/strap,1.8);u.push([Math.sign(f)*fx(Math.abs(f),t),t]);}
-    const v=[pt(neckF*1.08,1.01,-1),pt(neckF*1.08,1.01,1),[0,.73]];
-    ctx.save();ctx.beginPath();v.forEach(([x,t],i)=>{const px=X(x,t),py=Y(t);i?ctx.lineTo(px,py):ctx.moveTo(px,py);});ctx.closePath();ctx.clip();
+    ctx.save();ctx.beginPath();vPoly.forEach(([x,t],i)=>{const px=X(x,t),py=Y(t);i?ctx.lineTo(px,py):ctx.moveTo(px,py);});ctx.closePath();ctx.clip();
     const outer=t=>fx(.75,t);
     poly([...u,[outer(1.035),1.035],[outer(.66),.66],[-outer(.66),.66],[-outer(1.035),1.035]],white,{stroke:null});
     // the ribs: fine lines down the cloth from its edge, a shade darker
@@ -259,9 +340,12 @@ export function paintGarment(ctx,recipe,m,radiusAt){
     path(u.map(([x,t])=>[x,t-.008]),shade(white,.9),line*2.4);path(u,shade(white,.5),line*1.25);path(u.map(([x,t])=>[x,t-.017]),shade(white,.78),line*.55);
     ctx.restore();marks.push('tank top under');
    });
-   // The top button, under the V, is a wooden one; the rest are shell.
-   placket(.73,hem+.03,.02);buttons([.695],.011,'#9a6a42');buttons([.57,.45,.33],.0085,'#f8f6ef');
-   pocket(W*.25,.62,W*.22,.17,top);hemRound();break;
+   // A centred placket from the V's bottom to the hem. The top button, just under the V, is a wooden one; the rest are
+   // shell, a hand's width apart down to the hem.
+   placket(vBottom,hem+.03,.02);buttons([vBottom-.03],.011,'#9a6a42');
+   const shell=[];for(let t=vBottom-.165;t>hem+.06;t-=.135)shell.push(t);buttons(shell,.0085,'#f8f6ef');
+   // The small patch pocket on the wearer's left chest (+x: the viewer's right from the front), below the collar's point.
+   pocket(W*.24,.665,W*.18,.13,top);hemRound();break;
   }
   case 'jacket':{
    // Notched lapels over a white shirt, two buttons, flap pockets.

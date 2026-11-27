@@ -3,6 +3,8 @@ import {POLICE_UNIFORM} from './police-data.js';
 import * as THREE from '../../vendor/three.module.js';
 import {longBraidPoints} from './braid-path.js';
 import {DRESS_BOTTOMS} from './recipe.js';
+// (a cycle with garment.js, which reads hemSpec: each reads the other only when called)
+import {KARIYUSHI} from './garment.js';
 
 /**
  * Swing: hair, skirts and shirt hems that follow the body a moment late, the way
@@ -41,8 +43,10 @@ export function hemSpec(recipe,m){
   return {kind:'skirt',...skirtSpec(m,o.bottom)};
  }
  if(o.top==='kariyushi'){
-  // An island shirt is worn out over the shorts: its hem hangs a hand's width below the waist.
-  const len=.1*m.k;return {kind:'hem',waist:waist+m.torso*.08,length:len+m.torso*.08,rx:m.hips*.56,rz:m.hips*.56*m.depth/m.width};
+  // An island shirt is worn out over the shorts, its nearly level hem at the upper hip (garment.js KARIYUSHI.body); the
+  // part of it below `swing` swings on the hem quarters. Its radii there: the chest's, eased out (build.js alohaBody).
+  const B=KARIYUSHI.body,top=hipY+m.torso*B.swing,hem=hipY+B.hem*m.k;
+  return {kind:'hem',waist:top,length:top-hem,rx:m.width/2+(B.gap+B.easeX)*m.k,rz:m.depth/2+(B.gap+B.easeZ)*m.k};
  }
  if(o.top==='police'){
   // The 1994 police jacket (police-data.js): from just above the waist to a little below the hip joint, over the duty belt.
