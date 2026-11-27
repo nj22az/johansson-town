@@ -55,6 +55,13 @@ critique what still looks too soft/chibi, and iterate"; then "When happy redraw 
   short points over a small V; `collarChart`, `collarStrip`, `build.js alohaCollar`) and a body that falls free of the
   waist to a level, untucked hem at the upper hip with a turned edge and an inside (`build.js alohaBody`). The plain
   block-in is the recipe with `outfit.pattern: 'none'` (`tools/hand-shots.mjs --set outfit.pattern=none`).
+  The print is his own, `outfit.pattern: 'aloha'` (`garment.js ALOHA`): one five-petal blossom, warm cream with a golden
+  eye, placed flower by flower with the reason for each (a larger bloom low on his right front, a smaller one diagonally
+  opposite below his left pocket, a partial bloom cut by his right sleeve's hem, a loose off-centre group on the lower
+  back; nothing across the shoulders under his face, the collar plain), each laid on the cloth as worn (`stamp`,
+  `shirtSurface`). Each sleeve has its own band of the garment texture, which is mipmapped. His placket, pocket and buttons
+  are quieter than his face; a restrained shadow lies under the collar and the sleeve hems.
+  `tests/aloha-print.test.mjs` holds the placement's intent. Everyone else's `'flowers'` is the tiled print.
 - Fair skin, dark brows, dark eyes, a five-o'clock shadow in grey; warm, dry and deadpan, never angry. Stylised and
   heavy, not realistic: no pores, no photographic shading, no high-poly sculpt.
 - **Not fat** (the owner, of the first result: "Johansson isn't fat he should have a neck and a maybe smaller face", "Make the

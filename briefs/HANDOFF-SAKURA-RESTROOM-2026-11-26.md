@@ -985,3 +985,46 @@ The owner approved the phase 1 block-in ("Yes, proceed. I want proceed."). Not p
   neck of flat facets, went in and out of it. The fold has no ink now (blue meeting skin draws it); in the walk strips at
   the game's distance it is one line where phase 1's broke into dashes in every frame. The collar's edge wall is lit one
   way across its height.
+
+## Phase 4: checked in Johansson World
+The sheets are in the session's scratchpad (`shirt/p2/final/`), not in the repository; the tools that made them are beside
+them (`turntable.mjs`, `motion.mjs`, `motion-far.mjs`, `texdump.mjs`, `sakura4.mjs`: the running game from the worktree's
+source, `SHIRT=none` swaps his recipe to the plain block-in as it is served, `LOOK` the game's look, lenses checked clear
+with the game's own `probe`).
+- **The placement**: `placement-chart.png`, the texture with each bloom labelled and the band under the face kept clear.
+- **Turnaround**: `turnaround-plain-vs-aloha.png`, front, three-quarter, side and back at one scale in the game's shader,
+  phase 1's plain block-in above the finished shirt; `turn-final.png` all eight. The collar holds from point to nape and the
+  sleeve from shoulder to opening, all round.
+- **Motion** (`motion/`): idle, walk, a turn on the spot and a turn into a walk, front, back and side, and close on the nape
+  and the hem. The flowers move with the cloth; the flank bloom narrows, goes round his side and comes back; the hem stays
+  over the shorts; nothing pokes through. `walk-nape-compare.png`: the fold behind the neck, phase 1 dashed, now whole.
+  `far-walk-shimmer.png`: eight walk frames at 8 m, one texture level against mipmaps (the pocket, buttons and petals
+  flickered; now steady).
+- **In Sakura Shop, its own light and the reference's look** (`sakura-plain-vs-aloha.jpg`, `sakura-aloha-sheet.jpg`):
+  - At the top-left reference's size against the stocked shelves, his face (brows, eyes, stubble) draws the first glance and
+    the blue shirt, its flowers low, the second.
+  - Close in front, nothing bright lies across the shoulders under his face.
+  - From the game's own camera behind him (2.2 m, over his right shoulder), the back's readable flower and the small one
+    above it show above the crates by the door; the lowest is behind them.
+  - The plain block-in is shot with the same lenses (its recipe swapped as it is served).
+- **Measured on the materials**: the face's ink and eyes are the darkest marks; the placket, the pocket and the buttons sit
+  a step off the cloth, and the sleeve hems no longer carry the dark band (`sleeve-band-before-after.png`).
+
+## Seen, not fixed
+- Close up, a few specks remain at the nape, where the neck's outline (11 mm thick at full ink, faded over the lower 18 mm
+  under the kariyushi) passes the collar's fold; not seen at the game's distance.
+- Faint dotted lines on the shoulders at the game's distance, from behind (the sleeve's round top meeting the shoulder
+  cap), as in phase 1.
+- The collar shadow's soft edge uses the canvas's `filter`; a browser without it draws the edge hard, as before (the teeth
+  close up only).
+- Phase 1's other items stand: seated, the front hem goes into the lap; the shorts' crotch lines.
+
+## Proved (27 November, the branch's last commit)
+- `tests/aloha-print.test.mjs` (7, now in the guard), `avatar-polish`, `underarm-coverage`, `vy-reference`: pass.
+- Phase 1's wider avatar list with those: 210 tests, 202 pass; the 8 that fail failed before this work (the vest's straps
+  and tenugui, Thuan's supporting foot, the batch-1 sets' draws and moves, batch 2's and batch 3's standard check S, the
+  hair clip).
+- `node tools/ci-guard.mjs`: 136 files; it fails the published runtime and the residents' portraits (rebuilt when this is
+  published). Four files ran out of time or were killed while other sessions' tests loaded the machine (load 18):
+  `drink-can`, `floor-sit`, `no-z-fighting`, `boot`; run again alone, all 30 of their tests pass.
+- `recipe.js PATTERNS` gains `'aloha'` at the end (`wardrobe-batch2` holds the list).

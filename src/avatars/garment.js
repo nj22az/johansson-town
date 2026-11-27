@@ -697,7 +697,7 @@ export function paintGarment(ctx,recipe,m,radiusAt){
   }
   // The aloha print's sleeve bloom (ALOHA, on 'sleeveR'), on the sleeve as it is drawn (shortSleeve, or the arm for a long
   // sleeve), cut by the hem painted over it below.
-  if(o.pattern==='aloha'&&!shirtSleeve)for(const b of ALOHA.blooms){
+  if(o.pattern==='aloha'&&!shirtSleeve&&!['tank','sundress','running','overalls'].includes(col))for(const b of ALOHA.blooms){
    if(b.on!=='sleeve'+(side>0?'L':'R'))continue;
    const sv=long?{a0:[side*m.shoulderX,m.shoulderY,0],a1:[side*(m.shoulderX+.015),m.shoulderY-m.upper-m.fore,0],r0:m.armR*1.04,r1:m.armR*.86}:shortSleeve(m,side,col==='kariyushi');
    const A0=new THREE.Vector3(...sv.a0),dir=new THREE.Vector3(...sv.a1).sub(A0),len=dir.length();dir.normalize();
