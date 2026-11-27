@@ -9,6 +9,7 @@ import {isWeekend} from '../commerce/sakura-rota.js';
 import {createKitano} from './kitano-on-demand.js';
 
 import {buildQuietLife} from './quiet-life.js';
+import {buildTama} from './tama.js';
 import {buildTownPower} from './town-power.js';
 import {beginPowerPlan} from './okinawa/props.js';
 import {buildDocklandsLife} from './docklands-life.js';
@@ -346,7 +347,7 @@ export function createTown(options){
   world.staffBench=buildStaffBench({parent:world.group,factory,colliders:world.colliders,
    shadows:options.shadows,register:options.register,onAction:options.onAction});
   const originalSites=[...options.sites],districts=buildDistricts(world,options);
-  world.islandLandscape=buildIslandLandscape({world,register:options.register,onAction:options.onAction,mobile:options.mobile});addCoastalRoadPaint(world);world.powerNetwork=buildTownPower(world,{fast:options.desktop,register:options.register,onAction:options.onAction,shadows:options.shadows});world.quietLife=buildQuietLife(world);
+  world.islandLandscape=buildIslandLandscape({world,register:options.register,onAction:options.onAction,mobile:options.mobile});addCoastalRoadPaint(world);world.powerNetwork=buildTownPower(world,{fast:options.desktop,register:options.register,onAction:options.onAction,shadows:options.shadows});world.quietLife=buildQuietLife(world);world.tama=buildTama(world,{register:options.register,onAction:options.onAction});
   const isOpen=(site,minutes)=>{if(!site)return false;if(['office','warehouse','bus-station','ferry-terminal'].includes(site.id))return true;const h=((minutes%1440)+1440)%1440;if(site.id==='izakaya')return izakayaOpen(h);if(site.industrialWorkshop)return h>=540&&h<1140;if(site.id==='market')return true;if(site.id==='kitahama-shop')return kitahamaShopOpen(minutes);if(site.id==='frontrow'&&isWeekend(minutes))return false;const close=site.id==='frontrow'?1110:site.id==='sento'||site.id==='ramen'?1260:1140;return h>=540&&h<close;};
   for(const profile of WORLD_CAST){
    const spawn=profile.work;
@@ -415,7 +416,7 @@ export function createTown(options){
   world.update=(dt,time,day,minutes=1002)=>{
     world.updateLife(dt,time,day,minutes);
     world.updateHours(minutes);world.updateDiningStreet?.(day);
-    world.quietLife?.update(time);world.eastLawn?.tick?.(time,minutes);world.beachLife?.tick(dt,options.getPlayerPosition?.(),time);world.beachCorner?.tick(dt,options.getPlayerPosition?.());world.portShed?.tick(dt,minutes,{advanceLife:false});world.homeLights?.update(minutes);world.onsen?.tick(time);world.school?.tick(time,minutes,options.getPlayerPosition?.());
+    world.quietLife?.update(time);world.tama?.tick(dt,time,minutes);world.eastLawn?.tick?.(time,minutes);world.beachLife?.tick(dt,options.getPlayerPosition?.(),time);world.beachCorner?.tick(dt,options.getPlayerPosition?.());world.portShed?.tick(dt,minutes,{advanceLife:false});world.homeLights?.update(minutes);world.onsen?.tick(time);world.school?.tick(time,minutes,options.getPlayerPosition?.());
     world.docklandsLife?.update(time,minutes);world.shoppingLane?.update(world.weather,minutes);world.blueCoral?.update(minutes);world.kitahamaShop?.update(minutes);world.park?.update(time);
     world.busStation?.update(minutes,day);world.tunnel?.update?.(day);
     // The shop doors open for whoever walks up to them. Everybody who is outdoors

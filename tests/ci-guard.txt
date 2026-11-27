@@ -249,3 +249,5 @@ onsen-noren-heads.test.mjs
 pole-hug.test.mjs
 story-gestures.test.mjs
 work-kit.test.mjs
+# Tama, the cat from the quay: her day, her places and ways clear of the quay's fittings, a walk with nothing jumping (about 60 s).
+tama.test.mjs
