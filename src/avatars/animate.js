@@ -69,6 +69,33 @@ const FADE=.32;
 const STANCE=Object.freeze({out:.3,outMin:.15,outMax:.3,back:.4,backMin:.17,backMax:.35,swing:.2});
 /** An eased curve from p0 (going at m0 per unit of u) to p1 (at rest), at u (0..1): the value, and its rate per unit of u. */
 const hermite=(p0,m0,p1,u)=>{const u2=u*u,u3=u2*u;return [(2*u3-3*u2+1)*p0+(u3-2*u2+u)*m0+(-2*u3+3*u2)*p1,(6*u2-6*u)*p0+(3*u2-4*u+1)*m0+(-6*u2+6*u)*p1];};
+/**
+ * Anticipation for the procedural moves (anticipation-mastery; docs/ANIMATION-STANDARD.md rule 2): before a move's action the
+ * body goes the other way first. The action is read from the move itself when it starts: its pose is tried at times through
+ * its first half, and where it first comes nine tenths of the way to the furthest it goes (the action's length, A) the
+ * turn of every joint from the body's pose under it is its direction. The move then waits WIND.lead of A (0.08-0.3 s),
+ * easing every joint of the trunk and the arms the other way by `everyday` (calm) or `comedy` (pushed) of that turn, and
+ * plays on from its start, a little quicker so it ends when it would have, the wind-up let go over its first `release` of A.
+ * The head and the neck lead instead (the eyes go first) unless they make most of the move. Never into the body: an upper
+ * arm is not brought in against the side, an elbow never straightens past straight. The wind-up begins in the move's first
+ * frame, so a move the player asks for answers at once. Only the moves in WIND_ON, so far.
+ */
+const WIND=Object.freeze({lead:.4,leadMin:.08,leadMax:.3,release:.6,everyday:.15,comedy:.35,look:.3,least:.05,
+ tries:10,within:1.2});
+/** The moves that wind up so far: those where the wind-up read from the move gives a counter-movement the audit passes and
+ *  breaks nothing else (tools/animation-audit.mjs on every move, 27 November 2026). On the others it is too small (an arm
+ *  raised from the side has no room to go the other way without going into the body: Wave, Talk, ScratchHead), or it bows
+ *  a hand's path past a half circle (HairTuck, ShakeFists, WriteAbove, Flex), or it starts every level together (Bow, Fist,
+ *  Hurt, EnkaReach): those need their own wind-ups (the standard's stage 2). Never the pair roles, the swings, eating and
+ *  drinking, or lying down. */
+const WIND_ON=new Set(['HeelRock','PickUp','Tackle','Hop','EvilLaugh','SwitchHigh','HeroicPride','DeepThinker','Heartbreak',
+ 'BattleRage','BashfulPose','BowDeep','FingerStop','Tape','Offer','Reach','CordWrapped','BasketHead','PointLaugh','Sneak','Fume',
+ 'Eyeroll','Seethe']);
+/** Comedy's moves, whose wind-up is pushed (the town's register, the standard's section 2). */
+const PUSHED=new Set(['EvilLaugh','WindUp','Tackle','Stomp','HeelKick','Tada','Cheer','CupHands','CoinToCheek','BowDeep','BowWalk',
+ 'KneelHug','PoleFlick','Peek','BannerUp','FanWild','HoldOn','FingerStop','Tape','Offer','Reach','LieKnead','GrenadeCoin','Aim',
+ 'HoldUp','HoldUpStraws','Call','WriteAbove']);
+const LEG_SET=new Set(['thighL','kneeL','footL','thighR','kneeR','footR']);
 /** The right arm and the head, as consume.js poses them for a bite or a sip: eased in from where the animator had them and
  *  out back to it (at `CONSUME_RATE`, a critically damped follow), never there in a frame. */
 const CONSUME_JOINTS=Object.freeze(['shoulderR','elbowR','handR','head']),CONSUME_RATE=9;
@@ -468,6 +495,9 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  // arm held where the reach solver placed it (solvedNow: this frame's move placed it; pinWish: fully there; pinT: for how long).
  const history=Array.from({length:HISTORY},()=>({t:-Infinity,v:new Float32Array(JOINTS.length*3+3)}));let historyAt=0,drag=0,dragV=0,lead=0,leadV=0,rootStill=1;
  const solvedNow={L:false,R:false},pinWish={L:false,R:false},pinT={L:0,R:0},_rootAt=new THREE.Vector3();
+ // ---- The move's wind-up (WIND): the move it is for, how long it waits (W), its action's length (A), how far, and each
+ // joint's turn the other way at full wind-up.
+ const wind={g:null,W:0,A:0,a:0,turn:new Float32Array(JOINTS.length*3)},windBase=new Float32Array(JOINTS.length*3),windTry=new Float32Array(JOINTS.length*3);
  // ---- The bite or the sip (CONSUME_JOINTS): how far its pose is in, its speed, what was consumed, and the animator's pose under it.
  let consumeW=0,consumeV=0,consumeFood=false,consumeHad=false,consumeWas=false;const consumeSaved=CONSUME_JOINTS.map(()=>new THREE.Quaternion()),headSaved=new THREE.Vector3(),consumeArm=[new THREE.Quaternion(),new THREE.Quaternion()];
  const _q=[0,1,2,3].map(()=>new THREE.Quaternion()),_eu=new THREE.Euler(),_p=[0,1,2,3,4].map(()=>new THREE.Vector3());
@@ -795,6 +825,40 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   JOINTS.forEach((j,i)=>{const T=target[j];baseNow[i*3]=T.x;baseNow[i*3+1]=T.y;baseNow[i*3+2]=T.z;});hipsNow=hips;
   return hips;
  }
+ /** The move's wind-up (WIND), read as it starts: the body's pose under it now (windBase), and the move tried through its
+  *  first half (nothing it does is kept: the targets, the hands, the reach's marks are put back). */
+ function windRead(g,s,seated){
+  wind.g=g;wind.W=0;
+  if(!WIND_ON.has(g.name)||PAIR_ROLES[g.name]||g.ramp!==undefined)return;
+  JOINTS.forEach((j,i)=>{windBase[i*3]=target[j].x;windBase[i*3+1]=target[j].y;windBase[i*3+2]=target[j].z;});
+  const hands={L:handWish.L,R:handWish.R},solved={...solvedNow},pins={...pinWish},t0=g.t,span=Math.min(g.d===Infinity?WIND.within:g.d/2,WIND.within);
+  let far=0,contact=false;const tries=[];
+  for(let k=1;k<=WIND.tries;k++){g.t=span*k/WIND.tries;solvedNow.L=solvedNow.R=false;applyGesture(g,s,seated);contact||=solvedNow.L||solvedNow.R;
+   let n=0;JOINTS.forEach((j,i)=>{const T=target[j];if(!LEG_SET.has(j))n+=(T.x-windBase[i*3])**2+(T.y-windBase[i*3+1])**2+(T.z-windBase[i*3+2])**2;
+    windTry[i*3]=T.x;windTry[i*3+1]=T.y;windTry[i*3+2]=T.z;T.set(windBase[i*3],windBase[i*3+1],windBase[i*3+2]);});
+   tries.push([g.t,Math.sqrt(n),windTry.slice()]);far=Math.max(far,Math.sqrt(n));}
+  g.t=t0;handWish.L=hands.L;handWish.R=hands.R;Object.assign(solvedNow,solved);Object.assign(pinWish,pins);
+  if(contact||far<WIND.least)return;
+  const best=tries.find(([,n])=>n>=.9*far),A=best[0];
+  wind.A=A;wind.W=THREE.MathUtils.clamp(WIND.lead*A,WIND.leadMin,WIND.leadMax);
+  if(g.d!==Infinity&&wind.W>g.d*.3){wind.W=0;return;}
+  wind.a=PUSHED.has(g.name)||FUN_POSES[g.name]||STORY_POSES.has(g.name)?WIND.comedy:WIND.everyday;
+  const T=best[2];let headPart=0,all=0;
+  JOINTS.forEach((j,i)=>{const d=Math.hypot(T[i*3]-windBase[i*3],T[i*3+1]-windBase[i*3+1],T[i*3+2]-windBase[i*3+2]);all+=d;if(j==='head'||j==='neck')headPart+=d;});
+  const lead=headPart<all*.5;
+  JOINTS.forEach((j,i)=>{for(let c=0;c<3;c++){const d=T[i*3+c]-windBase[i*3+c];
+   wind.turn[i*3+c]=LEG_SET.has(j)?0:(lead&&(j==='head'||j==='neck'))?WIND.look*d/wind.a:-d;}});
+ }
+ /** The move's own time under its wind-up: held at its start while the body winds up, then a little quicker. */
+ function windTime(g){const W=wind.W,t=g.t<W?0:g.d===Infinity?g.t-W:(g.t-W)*g.d/(g.d-W);return {...g,t};}
+ /** The wind-up on this frame's targets: eased in over W, let go over the action's first `release`. */
+ function windStep(g){
+  const W=wind.W,k=g.t<W?smooth(g.t/W):1-smooth((g.t-W)/(WIND.release*wind.A));if(k<=0)return;
+  JOINTS.forEach((j,i)=>{const T=target[j],a=wind.a*k;let x=wind.turn[i*3]*a,y=wind.turn[i*3+1]*a,z=wind.turn[i*3+2]*a;
+   if(j==='shoulderR')z=Math.min(0,z);else if(j==='shoulderL')z=Math.max(0,z);
+   if(j==='elbowL'||j==='elbowR')x=Math.min(x,-T.x);
+   T.x+=x;T.y+=y;T.z+=z;});
+ }
  /** The stance's arms under a move (STANCE): an arm taken by a move that does not come from the stance itself (EASED moves do)
   *  leaves it as a movement and goes back into it before the move ends (or, after a held move, from where the move left it). */
  function stanceStep(dt){
@@ -1121,7 +1185,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // the furniture (unless it says the legs are its own: a knee hiked up on the seat).
   const legs=onChair?['hips','thighL','kneeL','footL','thighR','kneeR','footR'].map(j=>[j,target[j].clone()]):null;let ownLegs=false;
   if(gesture){gesture.t+=dt;if(gesture.t>=gesture.d)gesture=null;else{
-   const r=applyGesture(gesture,s,onChair);
+   if(wind.g!==gesture)windRead(gesture,s,onChair);
+   const r=applyGesture(wind.W>0?windTime(gesture):gesture,s,onChair);
    if(!legs&&r?.root!==undefined)targetRoot+=r.root;
    // Some moves say where the eyes are (down on the book while calling out): unless the scene says otherwise.
    gestureEyes=r?.eyes||null;ownLegs||=!!r?.legs;
@@ -1130,6 +1195,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   if(posed&&posed.ramp>0){const r=applyGesture(posed,s,onChair);if(r?.eyes)gestureEyes=r.eyes;ownLegs||=!!r?.legs;if(!legs&&r?.root!==undefined)targetRoot+=r.root;}
   if(legs&&!ownLegs)for(const [j,pose] of legs)target[j].copy(pose);
   stanceStep(dt);
+  if(gesture&&wind.g===gesture&&wind.W>0)windStep(gesture);
   torchArm(dt,s);
   // (the palms turned down on the thighs where the arms still rest there, once every pose and move has had them)
   if(onLap){const R=CHAIR_SIT.pixar.rest;for(const side of ['R','L']){const w=onLap.w*(1-smooth(target['shoulder'+side].distanceTo(onLap[side])/R.off)),k=side==='R'?1:-1;
