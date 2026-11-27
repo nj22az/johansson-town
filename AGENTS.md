@@ -4,6 +4,20 @@
 
 Read the repository's [AGENTS.md](../AGENTS.md) and [CLAUDE.md](../CLAUDE.md). Their working discipline applies here.
 
+## Owner's decision — 27 November 2026: fictional brands only
+
+The owner, asked whether the izakaya's real-brand beer should get a made-up name: "Yes, no real brand only fictional
+brands that fit into the Jansson world and if you can't make up a good one just use the Johansson name as a brand".
+
+- **No real brand anywhere in the World:** not on products, cans, bottles, signs, menus, posters, vehicles, clothes,
+  machines, in dialogue, the storyteller's text or the comics. Real places (Nago, Naha) are not brands and stay.
+- **Fictional brands that belong to the island:** its animals, places, people and 1990s Okinawan small-town life. Kame
+  island lager, Jugon big draft and Tako black lager (the drinks machines, `commerce/vending-catalogue.js`), Sakura's
+  Umineko lager, Ryukyu Cola and Blue Coral are the pattern. Where no good name comes, use the Johansson name
+  (Johansson Brewery, Johansson Foods …): Johansson is this world's Acme.
+- **New content is checked for real brands before it is committed;** a test keeps a list of the real brands found once
+  and refuses them.
+
 ## Owner's decision — 27 November 2026: the animation guideline, strictly
 
 The owner: "https://github.com/dylantarre/animation-principles use this as the guidelines for animating Johansson world
