@@ -59,7 +59,9 @@ const ARCS_WITHOUT_DRAG=new Set(['Talk','Jump','Fidget','SitPresentFood','Heart'
  'HoldOn','FrozenAbsurd','TorchOff','Facepalm','HideFace','Swoon','Flex','Fight:A']);
 const DRAG_LEVEL=Object.freeze(JOINTS.map(j=>['chest','neck','head','shoulderL','shoulderR'].includes(j)?1:['elbowL','elbowR','handL','handR'].includes(j)?2:0));
 /** From one way of being to another (standing, walking, running, sitting, climbing), the body's own pose fades from where it
- *  was over this long, eased: stopping and standing up are movements (the walk's stop stepped by all its speed in a frame). */
+ *  was over this long, eased: stopping and standing up are movements (the walk's stop stepped by all its speed in a frame).
+ *  So does a move cut off before its end (stopped, or another played over it): it let go of its pose in a frame, and the
+ *  drag carried that step into the frames after (a garment set's points jumped 20 cm, tests/avatar-wardrobe-sets). */
 const FADE=.32;
 /** The stance under a move (gait.js carry: the hands in the pockets, or clasped behind the back): an arm the move takes comes
  *  out of it from the move's first frame, on an eased curve `out` of the move's length long (between `outMin` and `outMax`
@@ -489,7 +491,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  const stanceArm=Object.fromEntries(['L','R'].map(side=>[side,{w:1,v:0,goal:1,from:1,fromV:0,u:1,T:1,taken:-1,sh:new THREE.Vector3(),el:new THREE.Vector3(),hd:new THREE.Vector3(),
   last:{sh:new THREE.Vector3(),el:new THREE.Vector3(),hd:new THREE.Vector3()}}]));let stanceHere=false,stanceCarry=null;
  // ---- The way of being (FADE): which (mode), how far into it (fadeT), the pose it fades from, and this frame's own pose.
- let mode=null,fadeT=1;const fadeFrom=new Float32Array(JOINTS.length*3),baseNow=new Float32Array(JOINTS.length*3);
+ let mode=null,fadeT=1,cut=false;const fadeFrom=new Float32Array(JOINTS.length*3),baseNow=new Float32Array(JOINTS.length*3);
  // ---- The drag hierarchy (LAG): the targets (and the grips' wishes) of the last HISTORY frames, how far the lag is on (drag:
  // off while walking, running, riding, climbing, driving, airborne, lying, kneeling, carried or sat on the floor), and each
  // arm held where the reach solver placed it (solvedNow: this frame's move placed it; pinWish: fully there; pinT: for how long).
@@ -818,7 +820,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   *  returned). A bicycle's is the bicycle's. */
  let fadeHips=0,hipsNow=0;
  function modeFade(dt,now,hips){
-  if(mode!==null&&now!==mode&&mode!=='ride'&&now!=='ride'){fadeFrom.set(baseNow);fadeHips=hipsNow;fadeT=0;}
+  if((cut||mode!==null&&now!==mode)&&mode!=='ride'&&now!=='ride'&&mode!==null){fadeFrom.set(baseNow);fadeHips=hipsNow;fadeT=0;}
+  cut=false;
   mode=now;
   if(fadeT<1){fadeT=Math.min(1,fadeT+dt/FADE);const f=smooth(fadeT),F=fadeFrom;hips=fadeHips+(hips-fadeHips)*f;
    JOINTS.forEach((j,i)=>{const T=target[j];T.set(F[i*3]+(T.x-F[i*3])*f,F[i*3+1]+(T.y-F[i*3+1])*f,F[i*3+2]+(T.z-F[i*3+2])*f);});}
@@ -926,11 +929,12 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   *  @param {boolean} [hold] also stretch a timed move to `seconds` (a Point held through a line: in and out at its own pace). */
  function play(name,seconds,hold){
   if(!(name in GESTURES))return false;
+  if(gesture&&gesture.t<gesture.d)cut=true;
   gesture={name,t:0,d:(GESTURES[name]===Infinity||hold)&&seconds?seconds:GESTURES[name]};return true;
  }
  /** A move of one's own choosing: loops are held for a few seconds, not for ever. */
  const flourish=name=>play(name,2.6+random()*1.4);
- const stop=()=>{gesture=null;};
+ const stop=()=>{if(gesture&&gesture.t<gesture.d)cut=true;gesture=null;};
 
  /**
   * @param {number} dt
