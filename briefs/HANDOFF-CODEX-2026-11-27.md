@@ -85,6 +85,43 @@ first job of section 1 is done; check the Pages run and the live page.
 5. **A question the owner has not answered:** beer in Sakura's drinks machine only, or in every machine (it is in all of
    them now, `src/commerce/`, the vending products; beer stops 23:00 to 05:00).
 
+## 3a. New from the owner, at handover: the cat and the seagull in the Kikkou technique
+
+The owner (27 Nov, night): "can you make the cat and the seagull in the blahaj sprite stacked kikkou technique?
+https://kuraneko1.github.io/blahaj-kikkou-3d/". Not started.
+
+**Who they are:**
+- **The cat is Tama, the cat from the quay.** So far Tama lives only in the storyteller:
+  - `src/feed/evening-news.js` line 26: Tama left the market with a whole squid;
+  - `src/feed/places.js` lines 45-46: "Tama the cat" by the window seat, the town paper and the poetry shelf, and
+    "negotiating with Tama the cat".
+
+  There is no cat in the 3D town.
+- **The seagull is the harbour gull.** Four circle over the harbour in `src/world/quiet-life.js`, built from a sphere and
+  two flat planes, without the World's ink. The feed also has "a gull stood on the roof of the harbour office"
+  (`evening-news.js` line 28) and "feeding a gull" on the pier (`places.js` line 115).
+
+**What the technique is,** read from the page's source on 27 Nov. Its badge still says "2-pass sprite stack engine", but it
+no longer stacks pixel slices:
+- Pass 1 draws an articulated 3D mesh with real depth and three flat, camera-aligned cel steps. There is no inverted-hull
+  outline, so no false lines in creases.
+- Pass 2 lays it over the backdrop and draws one even ink line, from 16 directions in screen space, round the true
+  silhouette and where two objects meet. Each object's ID rides in alpha.
+
+The World already took this look: AGENTS.md, "25 November 2026: cartoon cast online, Kikkou ink for the World",
+`briefs/HANDOFF-CARTOON-CAST-KIKKOU-2026-11-25.md`, and `src/render/ink-pipeline.js`.
+
+**Ask the owner first:** the page's real-mesh look, or true sprite stacking (pixel slices drawn one above another). Then:
+- Build Tama and the gull as small articulated figures in that look.
+- Give each a place and a reason, as the town requires ("nothing random"):
+  - Tama: the quay and the fish market, and the window seat and print room the feed names;
+  - the gull: over the harbour, on the harbour office's roof, and at the pier where people feed it.
+- Make both usable by the storyteller (`src/feed/`), not only the game.
+- Animate them to `docs/ANIMATION-STANDARD.md`:
+  - the gull: a flap and glide with overlapping wingtips; a landing with anticipation and squash;
+  - Tama: walk, sit, wash, and the tail following through.
+- Keep them free of z-fighting, with tests, and show the owner software renders.
+
 ## 4. Seen and not fixed (smaller)
 
 - Clothes still laid on the generic neck radius:
