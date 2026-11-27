@@ -40,7 +40,9 @@ test('Studio\'s data is valid and written the way the tools write it',async()=>{
 
 test('the brand rules copy jojo\'s list, add Orion (also in katakana) and keep Asahi out',async()=>{
  const rules=JSON.parse(await read('data/studio/brand-rules.json'));
- assert.equal(rules.brands.length,56);
+ // (grown from jojo's 55 and Orion to the owner's ruling of 27 November 2026: tests/no-real-brands.test.mjs)
+ assert.ok(rules.brands.length>56);assert.equal(rules.copiedFrom.grownTo,rules.brands.length,'copiedFrom.grownTo says how long the list is');
+ assert.equal(new Set(rules.brands).size,rules.brands.length,'each brand once');assert.ok(rules.brands.every(b=>b===b.toLowerCase()),'written in small letters');
  for(const brand of ['orion beer','orion','coca-cola','fujiiryoki','seven-eleven'])assert.ok(rules.brands.includes(brand),brand);
  assert.ok(!rules.brands.includes('asahi'),'Asahi is a street name here');
  assert.ok(rules.kana.includes('オリオン'));

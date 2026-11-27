@@ -46,7 +46,7 @@ export const SATO_MENU=Object.freeze([
  {id:'chashu',name:'Chashu-men',jp:"チャーシュー麺",cost:650,prop:'ramen'},
  {id:'gyoza',name:'Gyoza, six',jp:"餃子",cost:250,prop:'gyoza'},
  {id:'rice',name:'A bowl of rice',jp:"ご飯",cost:100,prop:'rice'},
- {id:'beer',name:'Orion, a bottle',jp:"瓶ビール",cost:400,prop:'beer'},
+ {id:'beer',name:'Umineko, a bottle',jp:"瓶ビール",cost:400,prop:'beer'},
  {id:'tea',name:'Oolong tea',jp:"烏龍茶",cost:120,prop:'tea'},
  {id:'mugicha',name:'Cold barley tea',jp:"冷たい麦茶",cost:100,prop:'mugicha'},
  {id:'coffee',name:'Hot coffee',jp:"珈琲",cost:200,prop:'coffee'},

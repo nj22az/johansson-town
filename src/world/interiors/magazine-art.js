@@ -149,7 +149,7 @@ function contents(title,issue,colour){
   p.t(title.en,160,400,12,'#777',700);footer(p,3);});
 }
 function tvListings(title,issue){
- const channels=["Shima TV","Southwest Broadcasting","MinatoTV","NHKOkinawa"];
+ const channels=["Shima TV","Southwest Broadcasting","MinatoTV","JHK Okinawa"];
  const shows=["News","Serial drama","Quiz!","Historical drama","Professional baseball","Anime","Song program","Movie theater","Weather forecast","Cooking time","Comedy","Document"];
  return [0,1,2,3].map(d=>ctx=>(w,h)=>page(ctx,w,h,p=>{
   const day=new Date(issue.saleDate.getFullYear(),issue.saleDate.getMonth(),issue.saleDate.getDate()+d*2);
@@ -181,7 +181,7 @@ function guide(title,issue){
  ];
 }
 function fashion(title,issue){
- return [ctx=>(w,h)=>page(ctx,w,h,p=>{header(p,title,"Purikura notebook Big reveal",'#f2557a');
+ return [ctx=>(w,h)=>page(ctx,w,h,p=>{header(p,title,"Photo-sticker notebook Big reveal",'#f2557a');
   for(let i=0;i<12;i++){const x=16+(i%3)*98,y=46+Math.floor(i/3)*90;p.rect(x,y,90,82,'#fff');p.rect(x+4,y+4,82,60,['#fbcfe8','#bae6fd','#fde68a','#bbf7d0'][(i+issue.variant)%4]);
    p.ctx.fillStyle='#6b3a2a';p.ctx.beginPath();p.ctx.arc(x+45,y+34,16,Math.PI,0);p.ctx.fill();p.ctx.fillStyle='#ffd8bf';p.ctx.beginPath();p.ctx.arc(x+45,y+40,12,0,Math.PI*2);p.ctx.fill();p.t(["Friends","Chovelig",'♡LOVE',"See you soon"][i%4],x+45,y+73,10,'#f2557a',900);}
   footer(p,9);}),

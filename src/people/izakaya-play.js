@@ -1,6 +1,6 @@
 import {ganahaAtWindow} from './ganaha.js';
 import {izakayaOpen} from './social.js';
-import {BOTTLE_KEEP} from '../world/interiors/izakaya-dressing.js';
+import {BOTTLE_KEEP,RENAMED_KEEP,KEEP_DRINK} from '../world/interiors/izakaya-dressing.js';
 import {ferryTimetableText} from '../world/ferry-timetable.js';
 
 /**
@@ -30,12 +30,14 @@ export function createIzakayaPlay({state,show,close,spend,save,receipt,getMinute
    ['Hang up',close]]);
  }
  function bottleKeep(){
+  // (a bottle kept before the awamori got its fictional name keeps its pours, under the new name)
+  if(state.izakayaBottle&&Object.hasOwn(RENAMED_KEEP,state.izakayaBottle.drink))state.izakayaBottle.drink=RENAMED_KEEP[state.izakayaBottle.drink];
   const mine=state.izakayaBottle,tags=BOTTLE_KEEP.map(b=>`${b.name} — ${b.drink}`).join('\n');
   const text='The regulars’ own bottles, each with its owner’s name on a tag round the neck. You pay for the bottle once and drink it a glass at a time.\n\n'+tags+(mine?`\n\nYou — ${mine.drink} (${mine.poured} poured so far)`:'');
   const buttons=[];
   if(!mine)buttons.push(['Keep a bottle of awamori · ¥'+KEEP_PRICE,()=>{
    if(!open()){receipt('Bottle keep','Thao keeps the bottles for you, and she isn’t in yet. Minato opens at four.');return;}
-   if(!spend(KEEP_PRICE))return;state.izakayaBottle={drink:'Zuisen awamori',poured:0,since:getMinutes()};note?.('Kept a bottle of awamori at Minato.');save();
+   if(!spend(KEEP_PRICE))return;state.izakayaBottle={drink:KEEP_DRINK,poured:0,since:getMinutes()};note?.('Kept a bottle of awamori at Minato.');save();
    receipt('Bottle keep','Thao writes your name on a tag in her careful hand and loops it round the neck. “There. Now you’re a regular. That’s worse for you than it sounds.”');}]);
   else buttons.push(['Pour a glass from your bottle',()=>{
    if(!open()){receipt('Bottle keep','Your bottle is on the shelf, but the counter is closed. Minato opens at four.');return;}

@@ -185,3 +185,7 @@ vending-loop.test.mjs
 izakaya-tv-youtube.test.mjs
 advertising-billboard.test.mjs
 context-actions.test.mjs
+# No real brand in the World (the owner, 27 November 2026: "no real brand only fictional brands that fit into the Jansson
+# world"): every string the player or the storyteller can meet, against data/studio/brand-rules.json, with its reasoned
+# allowlist; Minato's beer is the town's own Umineko, and an old save's kept bottle keeps its pours under its new name.
+no-real-brands.test.mjs

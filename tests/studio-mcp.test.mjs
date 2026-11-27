@@ -182,7 +182,7 @@ test('render_portrait refuses an unknown pose in words, before any browser start
 test('validate and publish_check report in plain words',async()=>{
  const v=await call('validate',{});
  assert.equal(v.data.looks.ok,true,JSON.stringify(v.data.looks));assert.equal(v.data.draft.ok,true,JSON.stringify(v.data.draft));
- assert.ok(v.data.brands.warnings.some(w=>/izakaya-beer\.js:\d+ — Minato's draught/.test(w)),'the known Orion uses are found by their words');
+ assert.equal(v.data.brands.ok,true);assert.deepEqual(v.data.brands.warnings,[],'no known real-brand use is left in World (the owner, 27 November 2026; tests/no-real-brands.test.mjs)');
  const c=await call('validate',{target:'change',change:{format:'johansson-studio-change',version:1,id:'x',made:'y',by:'ipad',note:'n',ops:[{op:'constructor'}]}});
  assert.equal(c.data.ok,false);assert.ok(c.data.problems.length>=3);assert.ok(c.data.problems.some(p=>/is not a Studio step/.test(p)));
  const brand=await call('validate',{target:'change',change:{format:'johansson-studio-change',version:1,id:'2026-10-12T09-14Z-x',made:'2026-10-12T09:14:00Z',by:'claude',note:'A promoter for the festival.',

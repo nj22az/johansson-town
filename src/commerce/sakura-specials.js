@@ -8,7 +8,7 @@
  */
 export const SAKURA_SPECIALS=Object.freeze([
  {id:'karaage',name:'Karaage',jp:'からあげ',note:'Fried chicken, hot from the case',price:180,kind:'food',bite:'karaage'},
- {id:'pork-tamago',name:'Pork tamago onigiri',jp:'ポーク玉子',note:'Spam and egg rice ball',price:200,kind:'food',bite:'rice'},
+ {id:'pork-tamago',name:'Pork tamago onigiri',jp:'ポーク玉子',note:'Luncheon meat and egg rice ball',price:200,kind:'food',bite:'rice'},
  {id:'andagi',name:'Sata andagi',jp:'サーターアンダギー',note:'Island doughnuts, two',price:100,kind:'food',bite:'dashimaki'},
  {id:'iced-coffee',name:'Iced coffee',jp:'アイスコーヒー',note:'Brewed this morning, on ice',price:150,kind:'drink',cup:true},
  {id:'iced-sanpin',name:'Iced sanpin tea',jp:'さんぴん茶',note:'Jasmine tea, on ice',price:120,kind:'drink',cup:true},

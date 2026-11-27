@@ -40,7 +40,7 @@ function paintSkyline(ctx){
   }
  }
  // Neon on the near blocks: the signs of Kokusai-dōri.
- const neon=[["Hotel",'#ff6ab0'],["Karaoke",'#6af0ff'],["Steak",'#ffd24a'],['A&W','#ff8a3a'],["Naha",'#9aff8a'],["Pachinko",'#ff5a5a']];
+ const neon=[["Hotel",'#ff6ab0'],["Karaoke",'#6af0ff'],["Steak",'#ffd24a'],['Shisa Drive-In','#ff8a3a'],["Naha",'#9aff8a'],["Pachinko",'#ff5a5a']];
  ctx.font='bold 34px "Hiragino Kaku Gothic ProN","Noto Sans CJK JP",sans-serif';ctx.textBaseline='middle';
  neon.forEach(([t,c],i)=>{const x=120+i*320+rnd()*80,y=SKY_H*(.62+rnd()*.12);ctx.shadowColor=c;ctx.shadowBlur=16;ctx.fillStyle=c;ctx.fillText(t,x,y);});
  ctx.shadowBlur=0;

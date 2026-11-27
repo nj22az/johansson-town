@@ -40,7 +40,7 @@ export const HAPPENINGS=Object.freeze([
   lines:{'Mrs Sato':'Sunday auction. The man from Itoman bids with his eyebrows. I bid with my purse, and my purse wins.','Sverker':'Auction at nine, every Sunday since before the war. The gulls know it better than the fishermen.'}},
  {id:'ballgame',title:'The ballgame on the radio',on:{weekday:0},hours:[840,960],
   cast:{'Sverker':at('stroll',[TOWN_DESTINATIONS.pier[0],TOWN_DESTINATIONS.pier[1]+2],'listening to the ballgame in Mr Fujita’s shed on the pier'),Tetsuo:at('stroll',[TOWN_DESTINATIONS.pier[0]+1.2,TOWN_DESTINATIONS.pier[1]+2.4],'arguing with the ballgame on the radio')},
-  lines:{Tetsuo:'The radio says the Hawks are winning. My radio has been wrong before. I built it.'}},
+  lines:{Tetsuo:'The radio says the Habus are winning. My radio has been wrong before. I built it.'}},
  {id:'morning-market',title:'Thao’s Monday market',on:{weekday:1},hours:[510,600],
   cast:{Thao:at('market',MARKET_THRESHOLD,'her day off: the Monday shop at Sakura, a list as long as her arm')},
   lines:{Thao:'Monday is my day off. I spend it buying things for Minato, which is not a day off, but do not tell me that.'}},

@@ -31,11 +31,11 @@ export function createOfficeWorkbookView(catalogue,selectedId,onSelect){
  root.append(el('h3',book.title),el('p',book.description,'office-workbook-description'));
  const summaries=el('dl',undefined,'office-workbook-summary');for(const summary of book.summaries){const group=el('div');group.append(el('dt',summary.label),el('dd',officeCellText(summary.value,summary.type)));summaries.append(group);}root.append(summaries);
  const toolbar=el('div',undefined,'office-workbook-toolbar'),label=el('label','Find a record'),search=el('input');search.type='search';search.placeholder='Vessel, stock code or job';search.setAttribute('aria-label','Find a record');label.append(search);
- const download=el('a','Download Excel file','office-workbook-download');download.href=workbookFileURL(book);download.download=book.file;download.type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+ const download=el('a','Download the spreadsheet (.xlsx)','office-workbook-download');download.href=workbookFileURL(book);download.download=book.file;download.type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
  toolbar.append(label,download);root.append(toolbar);
  const scroll=el('div',undefined,'office-workbook-scroll');scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label',book.sheet+' spreadsheet');
  const table=el('table'),caption=el('caption',book.sheet+' — '+catalogue.asOf),head=el('thead'),headers=el('tr');headers.append(el('th','Row'));
- for(const col of book.columns){const th=el('th',col.label);th.scope='col';if(col.calculated)th.title='Calculated in the Excel workbook';headers.append(th);}head.append(headers);table.append(caption,head);const tbody=el('tbody');table.append(tbody);scroll.append(table);root.append(scroll);
+ for(const col of book.columns){const th=el('th',col.label);th.scope='col';if(col.calculated)th.title='Calculated in the spreadsheet';headers.append(th);}head.append(headers);table.append(caption,head);const tbody=el('tbody');table.append(tbody);scroll.append(table);root.append(scroll);
  const count=el('p',undefined,'office-workbook-count');count.setAttribute('aria-live','polite');root.append(count);
  const formula=el('p','Select a value to see its cell or formula.','office-workbook-formula');formula.setAttribute('aria-live','polite');root.append(formula);
  root.append(el('p','Preview the town records here. Download the workbook to edit its blue input cells, use filters and calculate your own records. Each file has 20 prepared entry lines.','office-workbook-note'));

@@ -121,7 +121,7 @@ export function createBarRound({kind,bar,room,staff:g,walk,full=true,cancelled=(
   // out to her walking line, the walk, and a step in.
   if(inside&&Math.hypot(g.position.x-s.close[0],g.position.z-s.close[1])<.01){inside=s;phase='turning';}
   else{path=[[s.stand[0],s.stand[1]]];phase=inside?'out':'walking';}
-  u.activity=name==='shelf'?'taking down the '+B.shelf.name:name==='store'?'fetching from the cold store':name==='tap'?'pulling an Orion draught':name==='pour'||name==='pour-own'?'pouring':name==='return'?'putting the bottle back':name==='sink'?'pouring a drink away':'getting a glass';
+  u.activity=name==='shelf'?'taking down the '+B.shelf.name:name==='store'?'fetching from the cold store':name==='tap'?'pulling an Umineko draught':name==='pour'||name==='pour-own'?'pouring':name==='return'?'putting the bottle back':name==='sink'?'pouring a drink away':'getting a glass';
  }
  next();
  return {
@@ -160,7 +160,7 @@ export function createBarRound({kind,bar,room,staff:g,walk,full=true,cancelled=(
 /** The big bottle in a bottle-and-glass set, as its own piece to lift (the set's bottle, label and cap). */
 function splitBottle(set){
  const pieces=set.children.filter(o=>/Brown beer bottle|bottle metal details|Printed serving product label/.test(o.name));
- const bottle=new THREE.Group();bottle.name='Orion large bottle';bottle.position.set(-.06,0,0);set.add(bottle);
+ const bottle=new THREE.Group();bottle.name='Umineko large bottle';bottle.position.set(-.06,0,0);set.add(bottle);
  for(const p of pieces){bottle.attach(p);}
  set.updateMatrixWorld(true);
  bottle.userData={grip:{radius:.038,height:.12},spout:[0,.278,0],local:[-.06,0,0],home:bottle.getWorldPosition(new THREE.Vector3()).toArray()};

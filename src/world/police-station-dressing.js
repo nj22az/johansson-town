@@ -11,7 +11,7 @@ export const STATION_DRESSING=Object.freeze([
  ['towels',[8.65,4.7,22.55],'Mori','Two hand towels dry on the sheltered pole beside his room, clear of the bedding.'],
  ['curtains',[7.55,4.6,22.055],'Mori','Cotton curtains behind the upstairs window frames give the night officer privacy.'],
  ['hanabuku',[5.1,.8,21.75],'visitors and Mori','An open concrete screen shades the entrance corner without closing the door approach.'],
- ['emblem',[4.95,2.65,20.3],'Minato Police Station','The small gold Asahikage belongs to the canopy fascia, painted in its sign texture.'],
+ ['emblem',[4.95,2.65,20.3],'Minato Police Station','The small gold harbour-moon emblem belongs to the canopy fascia, painted in its sign texture.'],
  ['entrance-canopy',[5.34,2.7,20.3],'visitors','A concrete rain hood with a visible cap and a complete enamel name sign, leaving the doorway legible from the street.'],
  ['entrance-nameplate',[5.655,1.68,21.38],'Minato Police Station','Four Japanese characters fill a compact vertical plate beside the door, with clear space under the lamp and canopy.'],
  ['door-pulls',[5.595,1.16,20.3],'visitors','A pair of aluminium pull handles stand clear of the glass, one on each sliding leaf, instead of an ambiguous cross-bar.'],

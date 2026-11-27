@@ -1266,3 +1266,121 @@ listen"; and the channel, https://youtube.com/@johanssonanimationstudios.
 - **The perspective placement** is the point to keep an eye on with YouTube (above).
 - **Not in the runtime yet**: `npm run build:runtime` before publishing (the guard's runtime-package test fails on this
   branch until then).
+
+---
+
+# 27 November: no real brands, only the island's own (branch `brands/fictional`)
+
+The owner: "Yes, no real brand only fictional brands that fit into the Jansson world and if you can't make up a good one
+just use the Johansson name as a brand" (AGENTS.md, the decision of this date). From `claude/dreamy-ritchie-cxufpl` at
+6c8a001; not pushed, not on `main`.
+
+## The rule, as applied
+Nothing the player or the storyteller can meet names a real maker, shop, drink, paper, broadcaster, team or product:
+products and menus, signs, posters and painted textures, scene names, dialogue, the storyteller, the guide, the Studio's
+data. Real places stay (Nago, Naha, Kokusai-dōri, Shuri), and so do words that are only words. Comments are ours and may
+quote the owner, the research and the sources.
+
+## Found and replaced, and why
+- **Orion (a real Okinawan brewer)** on Minato's draught, large bottle and can (`people/izakaya-beer.js DRINKS`), the bar's
+  tap, its badge and its bottle (`minato-bar.js`, `izakaya-bar.js`), the labels on the izakaya's glasses and bottles, also
+  Mr Fujita's crates (`izakaya-serving-visuals.js`, the label string only), Sato Ramen's bottle (`sato-ramen-layout.js`,
+  `ramen-kitchen.js`), the house fridge: **Umineko**, the town's own lager. Decided against Kame draught because every
+  other piece of the town already said Umineko: Sakura's account with Minato ("Umineko lager, kegs and bottles",
+  `commerce/merchandising.js`), the economy's keg and bottle that Minato's ¥450 mug and ¥600 bottle are priced from
+  (`economy/goods.js`), Thao's own summer poster, the crates to Sato Ramen, the Coral Bay Bar and Mr Fujita. A Kame
+  draught would have left all of that pointing at a beer Minato no longer poured. **Umineko is Johansson Brewery's**
+  (Nago), like the machines' Kame, Jugon and Tako, so the town's beer is one company: `izakaya-beer.js MINATO_BEER` (brand,
+  brewer, from, who, why), a line in `vending-catalogue.js`. The tap's badge is Umineko's green (#38523d), not a blue.
+- **The red-and-white beer can on Minato's and Sato Ramen's posters** (brand-rules' "livery" known issues): repainted in
+  Umineko's own paper, ink and accent. While there: the sun on Minato's poster covered the end of 夏だ！ウミネコ, and the
+  can's UMINEKO ran past the can on both posters; both fixed.
+- **Zuisen and Kumesen (real awamori distilleries)** on the bottle keep and the player's kept bottle: **Shimakaze**, the
+  island's awamori that Sakura supplies (Chin; the player), and **Shimakaze kūsu**, its aged one (Mr Higa).
+  `izakaya-dressing.js RENAMED_KEEP` renames a bottle kept in an old save the first time the keep is opened, pours kept.
+- **Spam:** luncheon meat (Sakura's pork-tamago note, the gōya trellis, the yard's gōya, a neighbour's line). The town
+  already called the depot's tins "tinned pork" and the storyteller "luncheon meat".
+- **A&W (Okinawa's root-beer drive-ins):** the **Shisa Drive-In** in Naha (three chat lines, the city's neon).
+- **Tamagotchi:** the **Pocket Piyo**, an egg-shaped key-ring chick from the same imaginary hand-helds as the Pocket
+  Gentleman and Pocket Lady cameras (chat topic id `pocket-pet`; ids were never saved).
+- **The Hawks (a real pro team) on Tetsuo's radio:** the **Habus**.
+- **NHK:** **JHK Okinawa**, the public broadcaster by the Acme rule (Johansson Hōsō Kyōkai): the typhoon bulletin, the
+  house television, the magazine's TV listing (beside Shima TV, Southwest Broadcasting and MinatoTV).
+- **Okinawa TV** on Sato Ramen's autograph board: **Shima TV**. **The Ryūkyū Shimpō** round Thuan's tuna head: **the
+  Minato Shimbun**. **Purikura** in the magazines: photo-sticker. **"Harley Tournament"** on the school's board was the
+  Hārī mistranslated: **Hārī boat race**.
+- **The postman's Super Cub** (Kuro's purpose in the Studio's prop registry): the postman's red motorbike. **A Johansson
+  Washlet**: a Johansson bidet seat. **Thermos** (a maker's name in Japan): flask, in the house, the police station, the
+  storyteller's places and Mori's guide article (the guide's catalogue refreshed with `render-resident-guide.mjs
+  --catalogue-only`, portraits kept). **Risograph** (a look's label): Stencil print (its id stays `riso`). **Excel** on
+  the office workbooks' download: the spreadsheet (.xlsx). **Asahikage** (the real police emblem) in the station's
+  dressing: the harbour-moon emblem, as `police-data.js` draws it. **IKEA** in the furniture's scene names: Town side
+  table, Home furniture, pine cabinet (`ikea-furniture.js CALLED`).
+
+## Kept, and why
+- Real places; Orion as the night sky (none in the text today; a sense in the test lets it through); Asahi as a street.
+- **Not brands:** laserdisc (a medium), the onsen's bandai counter, awamori, chūhai, ramune, root beer, cup noodles
+  (generic; the brand is the singular Cup Noodle), the Konami-style cheat code on a magazine page (a code, no name).
+- **Ordinary words that are also brands** (national, sharp, canon, citizen, boss, hope, peace, crown …): left to the
+  reader; brand-rules.json `leftOut.words`.
+- **Outside the World, with their reasons in the test's ALLOWED:** the credits (IKEA's furniture models, as their terms
+  ask), the real-money shop (Shopify), the install help (iPhone, iPad), Studio's device record (`by:'ipad'`, 'iPad
+  Safari'), the speech voice "Google Japanese" matched for Thuan, the ferry's engineering references (Yanmar, Mitsubishi:
+  research data never shown; the fitted engine is the fictional Johansson Marine JM6-160), `RENAMED_KEEP`'s old names.
+- **Real people, not brands:** a neighbour hearing Amuro Namie on the radio (`chat-lines.js`). Left; the owner may want a
+  fictional singer.
+- **Other repositories:** the owner's YouTube videos on Minato's television (branch `tv/youtube`) are a real service by
+  his request; "youtube" is not listed, so that branch's file names pass.
+
+## Bitmaps and assets not changed
+- `assets/models/furniture/ikea-lack.glb`, `ikea-ivar.glb`: the downloaded product models (no brand is printed on them;
+  the World loads the `town-*.glb` variants under neutral names).
+- `assets/images/feed/sato-ramen*.webp`, `minato*.webp`: comic backdrops captured before today: Sato Ramen's shows the
+  old red poster and a red-and-white can on a table, Minato's ORION on its bottles is not legible at their size. They are
+  generated, not the owner's art: re-capture with `tools/render-feed-backdrops.mjs`.
+- Looked at and clean: the izakaya's and advertising posters (`assets/graphics/izakaya/`, `advertising/`), Sakura's
+  trade posters, the vending cans. Not looked at one by one: `assets/magazines/*.png` (manga pages and posters).
+
+## The guard
+- `data/studio/brand-rules.json` version 2: `about` says the ruling covers the whole World; `brands` grown from 56 to 324
+  (drinks, Okinawa's own brands and distilleries, snacks, shops, tobacco, vehicles and fuel, electronics and toys,
+  household names, clothes, papers, broadcasters, teams, airlines, cards, phones, web); `kana` to 133 (substring
+  forms only where unambiguous: no ファンタ in ファンタジー, no キリン the giraffe); `contextual` for 22 brands that are
+  also a street, a city, a god, an era, a surname or a word here (the Studio does not refuse those); `knownIssues` empty.
+  `copiedFrom.note`: **jojo's `town-studio/modeller/rules.json` should be brought in step with this list** (not done:
+  other repositories untouched). This repository's copy of it, `src/studio/modeller/rules.json`, is unchanged; the
+  modeller reads World's list through `extraBrands`.
+- `tests/no-real-brands.test.mjs` (in `tests/ci-guard.txt`): every string and template text of src/ (comments, regular
+  expressions and module paths are not read; base64 tables are skipped), the JSON of src/, data/ and guide/, the root
+  content files, index.html and the Studio's page. `SENSES` (each ordinary sense, blanked out before the word is looked
+  for again, so "Mr Honda's Honda" still fails) and `ALLOWED` (a file, a context and a reason; one no longer needed
+  fails). It also checks Minato's beer against Sakura's account and the economy, and an old save's kept bottle. Against
+  the sources before the replacements it lists all 54 uses that were there.
+- Updated: `studio-data.test.mjs` (the list's length is `copiedFrom.grownTo`, lower case, no repeats),
+  `studio-mcp.test.mjs` (validate reports no known issue), `izakaya-beer`, `living-town`, the two izakaya MCP tours.
+
+## Proved
+- `node --test` on no-real-brands and 31 related files (izakaya ×8, living-town, chats, happenings, feed, guide ×2,
+  sato-ramen ×3, police, magazines, looks, label-spec, open-can, vending-beer, english-language, town-economy,
+  merchandising, studio-data, studio-assets, asset-modeller, halloween-street, minato-compact): all pass except, as on the
+  base commit, `office-workbooks` (a cached cell 'Harbour master' against 'Sverker') and `studio-data`'s two tests that
+  read the parent folder's other checkout. Neither is in the guard.
+- **Hand shots** (`node tools/hand-shots.mjs --can 1.5,5.0 --name Johansson --bought "Umineko lager" …`):
+  `art/brands/review/hand-umineko-before.jpg` (the plain back panel faced out at the chest and the lips) and
+  `-after.jpg` (`bought-can.js shopPrint` turned half round as the machines' cans were: the label, "Beer" and the gull face
+  out while he opens it and drinks).
+- **In the game** (software Chromium, the source tree, 19:00 in Minato; a short script on `tools/izakaya-bar-look.mjs`'s
+  set-up, which now serves this checkout): `art/brands/review/izakaya-umineko.jpg`: the drinks menu ("Umineko draught,
+  medium mug · ¥450", "Umineko large bottle · ¥600", "Umineko can · ¥300"), the large bottle at the booth reading
+  UMINEKO · LARGE BOTTLE, Minato's and Sato Ramen's posters, the bottle keep.
+- **CI guard** (`node tools/ci-guard.mjs --test-concurrency=3`, 138 files, 873 s on a machine shared with another guard):
+  745 of 746 pass; the one failure is the published runtime package (not rebuilt on a branch, expected). The resident
+  guide's portraits pass (the catalogue was refreshed without rendering).
+
+## Remains
+- The owner has seen none of it; the runtime is not rebuilt (`npm run build:runtime`).
+- Re-capture the Minato and Sato Ramen comic backdrops; decide on the real singer in the chat line.
+- Minato's wall menu strips (`minato-compact-room.js`, not touched: the TV helper's file) spell the drinks' English
+  names down the strip letter by letter, as they did with the old names; `okinawa/signs.js SIGN_JAPANESE` has no entry
+  for them (生ビール 中ジョッキ, 大瓶, 缶ビール would read as Japanese).
+- Bring jojo's brand list in step.

@@ -200,14 +200,14 @@ export function buildPoliceStationInterior({site,room,reg,collider=()=>{},action
  G.box(.3,.03,.22,.7,.77,-.62,0xe8e1c7);
  G.box(.44,.05,.42,1.1,.45,-1.35,C.navy);G.cyl(.03,.03,.42,1.1,.22,-1.35,C.grey,{segments:6});G.box(.42,.45,.05,1.1,.72,-1.55,C.navy);
  spot(ground,[1.35,1.0,-.35],'Inspect the desk radio','inspect','The desk radio','The base set to prefectural headquarters in Naha, through the mast on the roof. Officer Mori checks in at ten at night, when the patrol starts, and at six in the morning, when it ends: “Minato. All quiet.” Nobody in Naha can remember him saying anything else.');
- // On the back wall: the filing cabinet with the duty roster pinned to it, and the tea corner, a thermos and cups for
+ // On the back wall: the filing cabinet with the duty roster pinned to it, and the tea corner, a flask and cups for
  // visitors who come in upset (and for the night shift).
  G.block(-1.6,-1.0,0,1.32,-3.25,-2.7,C.steel);for(const y of [.35,.75,1.15])G.block(-1.52,-1.08,y-.01,y+.01,-2.72,-2.7,C.grey);solid(-1.62,-.98,-3.25,-2.68,0,1.32);
  G.box(.22,.3,.01,-1.3,1.05,-2.695,0xfff8e6);
  spot(ground,[-1.3,1.2,-2.25],'Read the duty roster','read','Duty roster, September 1997','Desk: 16:00 to 22:00. Night patrol: 22:00 to 06:00. Officer Mori.\nFlag up 08:30, down 17:15.\nRadio check-in with Naha at 22:00 and 06:00.\nPatrol car: Sunday mornings, wash.\nWhen the desk is closed, ring the bell or dial 110.');
  G.block(-.8,.6,0,.85,-3.25,-2.8,C.timber);G.block(-.82,.62,.85,.89,-3.25,-2.78,C.counterTop);solid(-.82,.62,-3.25,-2.78,0,.89);
  G.cyl(.07,.07,.3,-.5,1.04,-3.0,C.red,{segments:12});G.box(.1,.12,.1,-.25,.95,-3.05,C.green);for(const x of [0,.15,.3])G.cyl(.035,.03,.07,x,.925,-2.95,C.white,{segments:10});
- spot(ground,[-.1,1.0,-2.4],'Inspect the tea things','inspect','Tea for visitors','A thermos of cold barley tea, a tin of green tea and four cups. The note on the tin says: For anybody who comes in upset. Also for me at four in the morning.');
+ spot(ground,[-.1,1.0,-2.4],'Inspect the tea things','inspect','Tea for visitors','A flask of cold barley tea, a tin of green tea and four cups. The note on the tin says: For anybody who comes in upset. Also for me at four in the morning.');
 
  // ── The holding room: for anyone who needs looking after until morning ──
  // Its back wall shares the WC's; its front is bars, and the barred door stands open because nobody is in it.
