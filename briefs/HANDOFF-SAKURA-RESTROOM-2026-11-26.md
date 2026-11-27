@@ -909,8 +909,12 @@ plain-blue block-in before the print goes on. Not pushed, not on `main`.
   widest of the body above, clear of the waist, easing out to a level hem at the upper hip (16 mm above the hip joint),
   turned 6 mm, its inside drawn up to the waist in the cloth's shadow. It enters the chest steeply (3 mm in to 1 mm out
   over 2 mm) so the two cross in one clean line. The torso under it keeps its own line and outline: a tuck or a faded ink
-  under the shirt stood out from the game's camera as a dotted ring. Under it, below the shirt's inside, the torso is his
-  tank top (or skin); the swing quarters now start at t 0.2 (`springs.js hemSpec`).
+  under the shirt stood out from the game's camera as a dotted ring. The shirt's own ink comes in over its first 2 cm (at
+  full width at once, its open top showed specks from behind and above). Under it, below the shirt's inside, the torso is
+  his tank top (or skin); the swing quarters now start at t 0.2 (`springs.js hemSpec`).
+- **Ink:** the outline is drawn by an inflated copy's back faces, so anything inked that tucks in or fades out going down
+  shows from above as a line or dots. The collar's underside has none (it stood into the neck and came out in specks in
+  the walk); under the kariyushi the neck's ink fades over its lower 18 mm, under the collar's fold, not 30.
 - **Under the short sleeves** the arm is the sleeve's inside, darker, down to just above the hem: no bare patch when the
   arm is raised. `tests/underarm-coverage.test.mjs` passes now (all short-sleeved tops, both bodies).
 - **Measured, before → after** (Johansson): collar top above the neck's base 34 → 19 mm behind, 34 → 27 mm at the sides;
@@ -932,5 +936,10 @@ plain-blue block-in before the print goes on. Not pushed, not on `main`.
 ## Seen, not fixed
 - Close up (under a metre), a faint line where the shirt's body leaves the chest, clearer when he arches back (Stretch).
   Not seen at the gameplay distance.
+- At the gameplay distance the collar's fold line behind the neck is a thin outline that breaks into dashes in the walk;
+  for phase 3 (the outline treatment).
+- Seated, the shirt's front hem goes into the lap: the thighs come up past it, and the hem quarters' spring tips sit
+  between the thigh spheres, so nothing pushes them out. So it was before (the old hem was lower still).
+- The Kikkou ink (Sakura) draws the collar's band behind the neck faintly at full-figure scale.
 - The shorts' crotch, where the leg tubes meet the torso lathe, draws two dark slanted lines in front; the higher hem shows
   more of the shorts. It is the shorts' construction, not the shirt's.

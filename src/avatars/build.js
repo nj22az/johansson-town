@@ -160,9 +160,11 @@ function alohaCollar(list,m,prof,colour){
  const toVee=([a,s])=>{const A=Math.min(a,Math.PI*2-a)*R,u=THREE.MathUtils.clamp(((A-ax)*dx+(s-ay)*dy)/(dx*dx+dy*dy),0,1);return Math.hypot(A-ax-dx*u,s-ay-dy*u);};
  const inkAt=new Map(),pk=p=>p.x.toFixed(5)+','+p.y.toFixed(5)+','+p.z.toFixed(5);
  grid.forEach((p,i)=>{const w=.85*THREE.MathUtils.smoothstep(toVee(p),.004*k,.016*k);inkAt.set(pk(top[i]),w);inkAt.set(pk(bottom[i]),w);});
- for(const g of [sheet(top,faces,flip),sheet(bottom,faces,!flip),sheet(edgePts,edgeFaces,false)]){
+ // (The underside, which faces the body, has none: its ink shell stood into the neck, and came out of it in specks behind
+ // the fold as the head bobbed in the walk.)
+ for(const [g,inked] of [[sheet(top,faces,flip),true],[sheet(bottom,faces,!flip),false],[sheet(edgePts,edgeFaces,false),true]]){
   const piece=part(list,g,'chest',colour),Q=piece.attributes.position,ink=piece.attributes.ink,v=new THREE.Vector3();
-  for(let i=0;i<Q.count;i++)ink.setX(i,inkAt.get(pk(v.fromBufferAttribute(Q,i)))??.85);
+  for(let i=0;i<Q.count;i++)ink.setX(i,inked?inkAt.get(pk(v.fromBufferAttribute(Q,i)))??.85:0);
  }
 }
 
@@ -204,9 +206,12 @@ function alohaBody(list,m,prof,colour,share){
  const uv=p=>torsoUV(p,m);
  // (rows top to bottom face out; the hem's turned edge, from the outside in, faces down; the inside, its rows from the hem
  // up, faces the body)
- // (its steep entry turned as the chest is there, so it is lit as the chest is and shows no ledge)
+ // (its steep entry turned as the chest is there, so it is lit as the chest is and shows no ledge; its ink coming in over
+ // the first two centimetres, so its ink shell starts flush with it there: at full width at once, the shell's open top
+ // stood a centimetre off the chest and showed its inside, from behind and above, as specks along the line)
  {const g=oval(rows),N=g.attributes.normal;for(let j=0;j<2;j++)for(let i=0;i<=segments;i++){const a=i/segments*Math.PI*2,[,rx,rz]=rows[2],n=new THREE.Vector3(Math.sin(a)/rx,0,Math.cos(a)/rz).normalize();N.setXYZ(j*(segments+1)+i,n.x,n.y,n.z);}
-  part(list,g,share,colour,null,uv);}
+  const outer=part(list,g,share,colour,null,uv),Q=outer.attributes.position,ink=outer.attributes.ink;
+  for(let i=0;i<Q.count;i++)ink.setX(i,THREE.MathUtils.smoothstep(rows[0][0]-Q.getY(i),0,.02*k));}
  // (its ink light: drawn full, the turned edge's line stood off a centimetre under the hem, a second hem in the air)
  part(list,oval([hem,[hem[0],hem[1]-turn,hem[2]-turn]]),share,colour,null,uv).attributes.ink.array.fill(.35);
  part(list,oval(inside),share,'#'+new THREE.Color(colour).multiplyScalar(.68).getHexString()).attributes.ink.array.fill(0);
@@ -1348,7 +1353,9 @@ function addBody(list,recipe,m,swim=false){
  // centimetres above where the neck meets the body (the narrower of the torso's two radii comes down to the neck's).
  {const neck=list.at(-1),P=neck.attributes.position,ink=neck.attributes.ink,half=Math.min(W,D)/2;let t=1.04;
   while(t>.6&&latheRadius(prof,t)*half<m.neckR)t-=.002;
-  const meet=m.hipY+t*m.torso,fade=.03*m.k;
+  // (Under a kariyushi's low collar, over the lower 18 mm: its fold stands 18 mm up the back of the neck, and above it the
+  // fading ink shell showed, from behind and above, as specks along the fold.)
+  const meet=m.hipY+t*m.torso,fade=(!swim&&o.top==='kariyushi'?.018:.03)*m.k;
   for(let i=0;i<P.count;i++)ink.setX(i,ink.getX(i)*THREE.MathUtils.smoothstep(P.getY(i),meet,meet+fade));}
  // A kariyushi's open camp collar is modelled, not painted (alohaCollar): one piece of cloth round the nape and down to
  // its two points, a real edge in silhouette that catches the light, so it reads as a collar, not a bib.
