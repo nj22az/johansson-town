@@ -46,7 +46,7 @@ const lighten=(hex,f)=>'#'+new THREE.Color(hex).lerp(new THREE.Color('#ffffff'),
  * half-width, height t up the torso]: by the neck, the leaf's point, the notch, the lapel's
  * corner, its foot by the first button, the centre; it closes back up along the open V.
  */
-export const CAMP_COLLAR=Object.freeze([[.6,1.0],[.9,.83],[.7,.84],[.85,.79],[.16,.725],[.035,.73]].map(Object.freeze));
+export const CAMP_COLLAR=Object.freeze([[.55,1.0],[.68,.87],[.55,.862],[.64,.818],[.17,.735],[.035,.74]].map(Object.freeze));
 const COLLARED=['contrastpolo','polo','blouse','kariyushi','jacket','smock','cardigan','shirt','vest','knitvest','baseball'];
 /**
  * Tops worn over a shirt (a vest, a knitted vest): the body is the top, and the shirt under it shows at the neck and is

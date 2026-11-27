@@ -654,3 +654,28 @@ move was changed: fixing them comes next, from the baseline.
   strokes); whether the theatrical poses (`expressive-poses.js`) and the dances (`music-moves.js`) are comedy.
 - Not measured: arcs from the game's camera, staging, timing by weight and age, secondary action's amplitude, the face,
   the camera and the screens; the hair and the cloth's drag.
+
+# 27 November, night: Johansson's collar
+
+The owner: "I do believe Johansson's Rigged Hawaii shirt needs to be improved too the collar is way too big going under
+his arms when drinking".
+
+## Done
+- **The collar was too big:** the kariyushi's camp collar leaves reached 221 mm of his 234 mm half-width, nearly to the
+  shoulder seam. Raised or crossing arms went over them: 29 mm into the sleeve drinking, 55 mm pointing, 47 mm clapping,
+  40 mm tugging the collar, 19 mm scratching his head.
+- **Now a camp collar's size** (`garment.js CAMP_COLLAR`; the painted shadow under it follows the same outline): leaf
+  point at 68% of the half-width, the notch and lapel in proportion, the V where it was.
+- **Clear in every move measured:** drinking (the izakaya drink and the Blender can drink), pointing, clapping,
+  stretching, collar-tugging, head-scratching and the hair tuck, on Vy, Johansson, Sverker, Thuan, Tetsuo and Mr Fujita
+  wearing it.
+- **A test** in `tests/avatar-polish.test.mjs`: the collar ends well inside the shoulders and never goes under the
+  sleeve in Drink, Point, Clap and CollarTug, on the smallest, Johansson's and the largest body.
+- Guard: 712 of 714, the two known failures (the published runtime, the resident-guide portraits).
+
+## Found, not fixed (neither file is in the guard)
+- `tests/avatar-polish.test.mjs` "glasses stay clear of the hand …" fails since 59e05bc for the can: a resident's can
+  is placed by the Blender sip now, and the test fits the old way on top of it. Given to the drink helper, with adding
+  the file to the guard.
+- `tests/underarm-coverage.test.mjs` fails: 168 underarm points expose the base arm under sleeved tops. It failed as far
+  back as 28c9449.
