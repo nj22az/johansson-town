@@ -1384,3 +1384,15 @@ quote the owner, the research and the sources.
   names down the strip letter by letter, as they did with the old names; `okinawa/signs.js SIGN_JAPANESE` has no entry
   for them (生ビール 中ジョッキ, 大瓶, 缶ビール would read as Japanese).
 - Bring jojo's brand list in step.
+
+# 27 November, afternoon: two comic backdrops left stale on purpose
+
+- **Stale:** `assets/images/feed/sato-ramen*.webp` still shows the old red-and-white beer poster; `minato*` has bottle
+  labels too small to read. The brand sweep asked for both to be re-captured.
+- **Why they stay:** `tools/render-feed-backdrops.mjs sato-ramen minato` no longer frames these rooms. The rooms have
+  moved since the views were made:
+  - Minato's views now look into a corner and find Sato Ramen's counter seats;
+  - Sato Ramen's push view sits on the counter.
+  So `tests/feed-seating.test.mjs` fails ("residents sit on real seats", 1 of 2). The capture was reverted.
+- **Remains:** fit the capture's cameras to today's rooms (`src/feed/places.js`), re-capture both, and keep
+  feed-seating green.
