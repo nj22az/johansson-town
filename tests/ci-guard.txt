@@ -180,3 +180,8 @@ avatar-polish.test.mjs
 vending-beer.test.mjs
 vending.test.mjs
 vending-loop.test.mjs
+# The izakaya television: the owner's YouTube videos placed on the tube, shown only in clear view, the random choice, the
+# fallback to the old film, the rail's TV button (about 1 s).
+izakaya-tv-youtube.test.mjs
+advertising-billboard.test.mjs
+context-actions.test.mjs

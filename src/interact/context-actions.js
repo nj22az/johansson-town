@@ -2,7 +2,7 @@ import {actionFor,svg} from '../ui/icons.js';
 
 const clean=label=>String(label||'').replace(/^(?:E|Enter|ACTION)\s*·\s*/i,'').trim();
 const action=(id,label,icon,key='')=>({id,label,icon,key,primary:false});
-const IDs=['act','enterBuildingButton','exitRoomButton','standButton','orderButton','eatButton','drink','goAshoreButton','stayAboardButton'];
+const IDs=['act','enterBuildingButton','exitRoomButton','standButton','orderButton','eatButton','drink','goAshoreButton','stayAboardButton','tvButton'];
 
 /** The rail offers one next action, plus the choices that make sense beside it. */
 export function contextActions(state={}){
@@ -37,6 +37,9 @@ export function contextActions(state={}){
   if(heldDrink)add('drink','Drink','cup','R');
   if(inside&&canExit)add('exitRoomButton','Exit to street','exit','Enter');
  }
+ // The izakaya's television beside the rest (game.js placeTelevision): at the set, the other of listen/mute and watch;
+ // seated in its sight, listen or mute.
+ const tv=clean(state.tvLabel);if(tv)add('tvButton',tv,'tv');
  if(actions[0]){actions[0].primary=true;actions[0].key='E';}
  // A press already in flight keeps its target and meaning until release. A new
  // nearby object cannot steal the primary action from under the player's finger.

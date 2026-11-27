@@ -1156,3 +1156,113 @@ here: the session's context was near its end. What each change does and why is i
 5. The settle's micro-overshoot.
 6. The lift's velocity steps, and Vy's run knee.
 7. The drink's leftover failures (DrinkCan and DrinkCanOpened). Untouched in stage 3.
+
+# 27 November, night: the owner's YouTube videos on Minato's television (branch `tv/youtube`)
+
+The owner: "I want to change the video in the izikaya to embedded YouTube videos from my channel can a short be
+embedded?"; then "Can't the embed option be used? So it plays a random video of mine? And we can choose if we want to
+listen"; and the channel, https://youtube.com/@johanssonanimationstudios.
+
+## Done
+- **The real YouTube player on the set** (`src/world/izakaya-tv-youtube.js`, `attachYouTube`): the IFrame Player API's
+  page (youtube-nocookie.com; `playsinline`, `controls=0`, `rel=0`, `iv_load_policy=3`, `disablekb=1`, `mute=1`), 640 × 480
+  CSS px, laid over the canvas and turned into the tube every frame by one CSS `matrix3d` (`tvOverlayMatrix`: the
+  camera's projection and the face's world matrix), `pointer-events:none`. The game places it in `present()`, after the
+  camera is final and before the draw (`game.js placeTelevision`); a frame drawn without it hides it at once (a watchdog
+  on the next animation frame), so it cannot lag or float. It sits over the vignette (`#ink`), under the room fade, the
+  HUD and every card.
+- **Shown only in clear view** (`tvOverlayDecision`, pure): the set on (Minato or Sato Ramen in their hours), nothing over
+  the game, the look Natural (the drawn looks cannot filter a YouTube page: with any other look, or the Pocket Gentleman
+  raised, the tube shows the still), reduced motion off, near (4 m), facing (cos 0.42), all of it on screen, at least
+  200 × 200 px, nothing between the lens and the screen's corners, edge middles and middle, and no HUD piece over it.
+  Otherwise the tube shows the video's thumbnail (i.ytimg.com allows it as a texture), else the old advert's poster, else
+  a quiet test card, and the player is paused. 250 ms in (easing out), 150 ms out (easing in), opacity only; it comes in
+  only once the video moves, never over YouTube's loading screen. Hidden at once when something is actually in the way.
+- **What is in the way** (`src/world/tv-occlusion.js`): the room's triangles within reach of the screen in a
+  bounding-volume tree (the izakaya is about 105,000 triangles in a few room-wide batches), meshes that move, appear or are
+  skinned raycast on their own, the residents in the room and Johansson as capsules (his own body ignored only with the
+  lens in his head), what hangs off the camera (a held can). An early warning (people 12 cm wider and a fifth of a second
+  ahead, the lens likewise) starts the fade before anything arrives.
+- **A random video of the owner's**: `TV_YOUTUBE = {videos:['ozpLFCdrAfk'], uploads:'UUechhQjAeM3xkuRDXof1CmA'}`. The
+  player reads the uploads playlist (every upload, Shorts included, new ones automatically) and plays them by ID, picked
+  with the town's `shuffledPlaylist` (`createVideoPicker`): never the same twice in a row, also on coming back in; the
+  next random one when one ends; one that will not play is skipped. No playlist: the `videos` list.
+- **Listening** (the TV prompt, `minato-compact-room.js`, follows the set): "Listen to the TV" / "Mute the TV" while it
+  plays in view, inside the tap (and again on its release, for Safari), volume 45 of 100 (Safari ignores it), and the
+  town's sound ducked to half (`town-audio.js duck`). Walking away, the set going off or another look mutes it again; a
+  card over the game only pauses it. Not a view (YouTube's own help: autoplayed embeds do not count).
+- **"Watch on the TV"** (the prompt when it is not live, the rail's new TV button beside "Listen" when it is): the same
+  video in an ordinary YouTube player in the activity card (`activities.js youtubeViewer`, `quiet-ui.css .youtube-view`),
+  centred over the dimmed game and all of it in view (926 × 521 px at 1180 × 820, never under 356 × 200),
+  YouTube's controls, nothing starting by itself: the viewer presses play, and YouTube counts that as a view. Closing it
+  gives the game back.
+- **Fallbacks**: offline, the API unreachable (a timeout that counts only time the page was free, `patientTimeout`: the
+  room's build stalls the page), the player not starting, or every video refused: the set plays
+  `video/izakaya-ad.mp4` exactly as before (`advertising-billboard.js hold(false)`). Leaving the room stops and destroys
+  the player and removes its page.
+- **YouTube's rules** (links in the module): 200 × 200 px; no automatic playback until visible (here: all of it, clear);
+  nothing over the player and its look unchanged. **The one thing to keep an eye on**: the perspective `matrix3d` is only
+  positioning, but it is a transform of YouTube's page; if YouTube ever objects, show it flat (no perspective) or only the
+  still and "Watch on the TV".
+
+## How to add videos or change the channel
+- Edit `TV_YOUTUBE` in `src/world/izakaya-tv-youtube.js`: IDs in `videos` (a Short's ID is the part after `/shorts/`);
+  another channel's uploads playlist is its channel ID with `UC` turned into `UU` (`uploadsPlaylist()`). Then rebuild the
+  runtime (`npm run build:runtime`).
+
+## Proved
+- `node --test tests/izakaya-tv-youtube.test.mjs` (in the guard, with `advertising-billboard` and `context-actions`):
+  the seeded random choice (no repeat, every one once a round, the uploads list, a failed one skipped), the decision
+  (shown in view and clear; hidden for each of: off, a card, another look, reduced motion, too far, facing away, behind,
+  a corner off screen, under 200 px either way, occluded, the HUD over it; the hysteresis), the CSS transform's corners on
+  the projected corners within a pixel from five poses in three viewports, the triangle tree against three.js's raycast,
+  one corner blocked, moved, hidden, added and see-through meshes, capsules and a held can, and the set with a fake API
+  (muted start, nothing played unseen, fade only once moving, listen/mute, hidden and paused at once when Thao steps in,
+  re-muted walking away, the watchdog, "Watch on the TV", dispose; the uploads mode; offline, unreachable, every video
+  refused: the old film).
+- `node tools/tv-overlay-shots.mjs` (new; software Chromium, the game from source with `?audit&visual-audit`, YouTube
+  replaced by a local stand-in that shows a 640 × 480 grid with a red rim): see the report below in this section's
+  last list. `--youtube` uses the real YouTube.
+- **The shots** (1180 × 820, an iPad on its side, then 820 × 1180 upright; `docs/qa/izakaya-tv/`, all of them in
+  `output/tv-overlay/` and `output/tv-overlay-youtube/` when the tool is run):
+  - at the set, first person (straight on and looking across): the stand-in's grid on the tube, its red rim on the
+    tube's rim, inside the bezel; the browser's own box of the transformed page against the corners three.js projects:
+    at most 0.03 px apart in every shot;
+  - from the counter (too small: under 200 px) and from the door (too far): the still, the video's thumbnail;
+  - at the set in the woodblock look: the still, drawn in the look;
+  - third person beside him: the grid on the tube; from the counter: too small, the still;
+  - upright, third person, his head in front of the screen and his shoulder over a corner: the still (his body, a
+    capsule); clear of him, and first person from the counter: the grid;
+  - with the HUD: the place chip, the action "Listen to the TV" with "Watch on the TV" beside it, the grid clear of them;
+  - "Watch on the TV" pressed (the rail's button, a real click): the card with the same video's player, 926 × 521 px,
+    all of it in view, and closed again to the game;
+  - "Listen": the set called unMute and setVolume(45).
+- **The real YouTube, here** (`--youtube`): the IFrame API loaded, the player was made on the set (its page placed on
+  the tube exactly as the stand-in's), the uploads playlist gave all 12 of the owner's videos and their thumbnails came
+  as textures; but every video, asked to play, answered error 150 (the standard youtube.com host the same), while
+  YouTube's oEmbed says the Short may be embedded: YouTube will not play to this cloud sandbox (an unlisted, headless
+  browser on a server address, page on 127.0.0.1). The set showed the thumbnail, never YouTube's error screen, and once
+  every video had been refused it went back to its own film, as designed. **Playback has not been seen yet: the first
+  look must be on the owner's iPad**, on the published site.
+- **Cost** (software Chromium, this cloud machine): the sight-line tree is 78,401 of the room's triangles (those within
+  4.8 m of the screen), about 0.12–0.21 s of work, built a few milliseconds a frame from the moment the set comes on (a
+  sixth of a frame, at least 3 ms); a frame that checks the sight lines spends 0.1–4.5 ms on them (once warm, under
+  0.5 ms) and reads the HUD's boxes at most every 120 ms (about 1 ms, a layout read). Not measured on an iPad.
+- **The guard** (`node tools/ci-guard.mjs --test-concurrency=2`, on a machine shared with three other helpers' suites): 137
+  files, 732 tests, 729 pass. The 3 that fail: the two runtime-package checks (the runtime is not rebuilt here, and
+  `quiet-ui.css` changed, so its link's hash is stale: `npm run build:runtime` rewrites both), and `no-z-fighting`,
+  killed by the machine's out-of-memory killer while it built the town beside the others' (dmesg); run alone it passes,
+  13 of 13. `controller-game` and `neighbourhood-access` (not in the guard) fail the same way on the base commit.
+- **The pictures**: `docs/qa/izakaya-tv/` (the stand-in's sheet and four of its shots, the real YouTube's sheet and its
+  shot at the set).
+
+## Not done, and to watch
+- **Seeing it play**: on the iPad, in Safari, published. Check that the Short and an ordinary video play muted on their
+  own when you stand under the set, that "Listen to the TV" brings the sound up (Safari: in the tap), and that "Watch on
+  the TV" plays with sound when its play button is pressed.
+- **The player only shows from near**: YouTube's 200 × 200 px puts it within about 1.4 m of the screen on an iPad on its
+  side (2 m upright, about 2.7 m on a big monitor at the narrowest field of view). From the counter or the door it is the
+  thumbnail. That is the rule, not a fault.
+- **The perspective placement** is the point to keep an eye on with YouTube (above).
+- **Not in the runtime yet**: `npm run build:runtime` before publishing (the guard's runtime-package test fails on this
+  branch until then).

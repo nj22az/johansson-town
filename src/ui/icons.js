@@ -9,6 +9,8 @@ const P=Object.freeze({
  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>',
  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4 4l2 2M18 18l2 2M4 20l2-2M18 6l2-2"/>',
  screen:'<path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/>',
+ // An old set with its aerial (the izakaya's television).
+ tv:'<rect x="3" y="8" width="18" height="13" rx="2"/><path d="M8 3l4 5 4-5M7 12h7v5H7zM17.5 12.5v.01M17.5 16v.01"/>',
  heart:'<path d="M12 21L3 12C-2 4 7-1 12 6c5-7 14-2 9 6z"/>',
  star:'<path d="M12 2l3 6 7 1-5 5 1 8-6-4-6 4 1-8-5-5 7-1z"/>',
  shirt:'<path d="M8 3l4 3 4-3 6 5-4 4-2-2v11H8V10l-2 2-4-4z"/>',
@@ -99,6 +101,7 @@ const ACTIONS=[
  [/eat|ramen|order food|supper|meal/i,'bowl','EAT'],
  [/^Sit|seat|bench|stool|chair/i,'chair','SIT'],
  [/phone|call/i,'phone','CALL'],
+ [/\bTV\b|television/i,'tv','WATCH'],
  [/radio|music|jukebox/i,'music','LISTEN'],
  [/play|arcade|Star Port|cabinet/i,'game','PLAY'],
  [/print|Form 3|workshop|model/i,'cube','MAKE'],

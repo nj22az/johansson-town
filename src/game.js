@@ -89,6 +89,7 @@ import {travelProgress} from './progression/travel.js';
 import {openWant,wantPool,heartLine,withArticle} from './people/friendship.js';
 import {ensureDailyQuests,form3NudgeAllowed,hasDailyQuest,isDailyDone,markDailyDone,FORM3_NUDGE,QUAY_NUDGE,RADIO_821} from './progression/soft-quests.js';
 import {buildIzakayaRoom,preloadIzakaya,izakayaReady} from './world/izakaya.js?snappy=1';
+import {attachYouTube} from './world/izakaya-tv-youtube.js';
 import {createIzakayaGuests} from './people/izakaya-guests.js';
 import {controlVisibility,roomExitVisible} from './interact/control-visibility.js';
 import {createContextRail} from './interact/context-actions.js';
@@ -472,6 +473,7 @@ function updateBelowDeck(view){
 function present(draw,view=camera){
  if(graphicsLifecycle?.lost)return;
  updateBelowDeck(view);
+ placeTelevision(view);
  if(!pipeline){
   if(graphics.postprocess&&inkRecovery.ready())buildInk();
   if(!pipeline){draw(renderer);firstFrameReady();return;}
@@ -492,6 +494,50 @@ function present(draw,view=camera){
   renderPlain();
   draw(renderer);firstFrameReady();
  }
+}
+/**
+ * The izakaya television's YouTube player (world/izakaya-tv-youtube.js): put on the set the first time a frame is drawn
+ * in Minato or Sato Ramen, then placed over the tube on every frame drawn, here, after the camera is final and before the
+ * draw, so the page moves with the picture. A frame drawn by another camera (the item inspector) hides it at once.
+ * Bodies: the residents in the room; self: Johansson's model (a body when the lens is outside him); others: the camera,
+ * for what he holds in first person.
+ * Its prompt (minato-compact-room.js) and the rail's TV button follow it; the town's sound ducks while it is listened to.
+ */
+const TV_DUCK=.5,tvViewport=new THREE.Vector2();let tvControls=null;
+function televisionBodies(){
+ const list=[],shown=o=>{for(let p=o;p;p=p.parent)if(!p.visible)return false;return true;};
+ for(const a of characters?.actors||[]){const g=a.entity;if(g&&(g.userData.inIzakaya||g.userData.inRamen)&&shown(g))list.push(g);}
+ return list;
+}
+/** YouTube goes on the set before the frame's first word to it, so the old film never starts loading meanwhile. */
+function prepareTelevision(){
+ const tv=izakayaTV;if(!tv||tv.place||tv.youtubeTried)return;tv.youtubeTried=true;
+ attachYouTube(tv,{onListening:on=>townAudio.duck(on?TV_DUCK:1),onWatch:url=>activities.action('youtube-watch','Minato television',{url})});
+}
+function placeTelevision(view){
+ const tv=izakayaTV;
+ if(!tv){tvControls=null;townAudio.duck(1);return;}
+ prepareTelevision();
+ if(!tv.place)return;
+ renderer.getSize(tvViewport);
+ tv.place({camera:view===camera?camera:null,active:sharedDining(current)&&(izakayaOpen(minutes)||satoRamenOpen(minutes)),
+  paused:!started||document.hidden||roomLoading||catchingUp||!!inspector?.active||!!itemViewer?.active||!!activities?.paused||!!cameraControls.active||!!lookPicker.open||!!photoStudio?.active||!$('#directory').classList.contains('hidden'),
+  // The Pocket Gentleman draws its own little picture: the set shows its still, as with a drawn look.
+  look:pocket?.raised?'pocket':look,viewport:{width:tvViewport.x,height:tvViewport.y},bodies:televisionBodies(),others:[camera],
+  self:johansson?.root||null});
+ tvControls=tv.controls?.()||null;
+ const hit=tv.anchor?.userData?.hit;if(hit)hit.label=tv.promptLabel?.()||'Watch the television';
+}
+/**
+ * The rail's TV button: at the set while it plays, watch it properly; seated in its sight, listen or mute. The prompt's
+ * own label is brought to the same moment, so the two never say the same thing for a frame.
+ */
+function televisionRail(){
+ const c=tvControls,tv=izakayaTV;if(!c||!tv)return '';
+ if(seated)return c.listen||'';
+ if(active?.object!==tv.anchor)return '';
+ const primary=c.listen||c.watch;if(primary)active.label=primary;
+ return c.listen?c.watch||'':'';
 }
 loadTownEnvironment(scene,renderer);
 const townSky=createTownSky(scene);
@@ -2285,6 +2331,8 @@ const contextRail=createContextRail({onAction:(id,event)=>{
  if(id==='standButton')standUp();
  else if(id==='goAshoreButton')islandPlay?.goAshore();
  else if(id==='stayAboardButton')islandPlay?.stayAboard();
+ // In the tap's own handler, so Safari lets the TV's sound start (izakaya-tv-youtube.js toggleListen).
+ else if(id==='tvButton'){if(seated&&tvControls?.listen)izakayaTV?.toggleListen?.();else izakayaTV?.watch?.();}
  else if(id==='enterBuildingButton'){const site=doorSite;if(site&&!current)completion=crossThreshold(()=>enterRoom(site));}
  else if(id==='exitRoomButton'){if(current)completion=crossThreshold(async()=>leaveNearbyDoor());}
  else if(id==='orderButton')activities.action(Number.isInteger(parkSeat?.ramenSeatId)?'store-table':'izakaya-table');
@@ -2554,12 +2602,14 @@ function updateContextControls(){
  // A boolean: a room without an exit point (Sakura's office: its way out is the stair) offered "Exit to street" anywhere.
  const exitNearby=!!current&&!!(!!active&&/^(?:exit|leave|step outside|go out)\b/i.test(active.label)||exitPoint&&Math.hypot(player.position.x-exitPoint[0],player.position.z-exitPoint[2])<1.45&&(!roomWalk()||Math.abs(player.position.y-(activeRoomLayout.exitFloor??0))<1));
  contextTarget=!seated&&!blocked?(linuxLife?.inBed?{label:'Get out of bed',fn:()=>linuxLife.wake()}:active):null;
+ // The TV's button, and its prompt's label brought to the same moment (contextTarget is `active` itself).
+ const tvRail=televisionRail();
  const serviceOpen=Number.isInteger(parkSeat?.ramenSeatId)?satoRamenOpen(minutes):!!parkSeat?.izakaya&&izakayaOpen(minutes);
  contextRail.update({playing:started,paused:blocked,seated,table,canOrder:table&&serviceOpen&&!pending&&!ramenOrder,
   orderPending:table&&pending,canEat:johansson?.drinking?false:ramenOrder?.delivered?ramenOrder.left>0&&!ramenDrink:!!(parkSeat?.izakaya&&beerService?.dish?.left>0),
   canDrink:johansson?.drinking?false:ramenOrder?.delivered?ramenOrder.left>0&&!!ramenDrink:!!(parkSeat?.izakaya&&beerService?.drink?.left>0),
   heldDrink:!!hands?.canDrink,inside:!!current,canExit:exitNearby&&!linuxLife?.inBed,targetLabel:contextTarget?.label||'',departure:current?null:islandPlay?.departurePrompt??null,
-  enterLabel:door?'Enter '+door.title:'',pressed:[...pressedControls]});
+  enterLabel:door?'Enter '+door.title:'',tvLabel:tvRail,pressed:[...pressedControls]});
  if(stickHintUntil&&(now>stickHintUntil||touchSticks.moving)){touchSticks.hint(false);stickHintUntil=0;}
  // Soft quest: quay before evening press (~18:30), once per calendar dayKey if picked.
  // Time of day, not minutes since the save began: it used to fire on load from day two.
@@ -2637,6 +2687,9 @@ if(new URLSearchParams(location.search).has('audit'))window.__JOHANSSON_AUDIT__=
  get drinking(){return johansson?.drinkingState||null;},
  teleport(x,z,facing,tilt){spawnScene?.cancel('placement');ensureKitanoAt(x,z);if(seated){seated=false;parkSeat=null;johansson?.seat?.(null);}player.position.set(x,groundHeight(x,z),z);if(Number.isFinite(facing))yaw=facing;if(Number.isFinite(tilt))pitch=tilt;},
  get lensOcclusion(){return lensOcclusion;},
+ /** The izakaya television's YouTube player (world/izakaya-tv-youtube.js): its state, for tools/tv-overlay-shots.mjs. */
+ get television(){const y=izakayaTV?.youtube;if(!y)return izakayaTV?{youtube:false}:null;return {bodies:y.bodies,phase:y.phase,video:y.video,videos:y.ids.length,fromUploads:y.fromUploads,muted:y.muted,listening:y.listening,opacity:y.opacity,decision:{...y.decision},transform:y.transform,failure:y.failure,errors:y.errors,states:y.states,triangles:y.triangles,sightReady:y.sightReady,buildMs:+y.buildMs.toFixed(1),placeMs:+y.placeMs.toFixed(2),sightMs:+y.sightMs.toFixed(2),coverMs:+y.coverMs.toFixed(2),prompt:izakayaTV.anchor?.userData?.hit?.label||null,controls:izakayaTV.controls?.()||null};},
+ televisionListen(){return izakayaTV?.toggleListen?.()??null;},
  /** For the audit: the lens's own tests at a point (what stops the boom), and whether he is in one of the ferry's rooms. */
  probe(x,y,z,r=.16){return {blocked:cameraBlocked(x,z,y,r),room:shipRoom(),deck:deckUnder()?.floor?.id??null,aboardSolid:!!deckUnder()&&ferryWalk.cameraBlocked(x,z,y,r)};},
  get lens(){return {position:camera.position.toArray(),rotation:camera.rotation.toArray().slice(0,3),quaternion:camera.quaternion.toArray(),distance:thirdDistance,ceiling:current?indoorCeilings?.limit(camera.position.x,camera.position.z,player.position.y):null,blocked:cameraBlocked(camera.position.x,camera.position.z,camera.position.y,.16)};},
@@ -2867,7 +2920,7 @@ desktopFrameStats();if(document.documentElement.dataset.desktopMenu==='open'){cl
  // Before START the title still draws: its first frame is what marks the island drawn and opens START (islandDrawn).
  // Frozen, it never drew, and every ?visual-audit harness waited at 97% for ever ("Drawing the island").
  if(!started){renderTitle(frozenDt);return;}
- if(detailsStarted&&!document.hidden)detailStream.update(current?doors.get(current.id)||player.position:player.position,current?null:{x:-Math.sin(yaw),z:-Math.cos(yaw)});if(window.__JOHANSSON_AUDIT__.renderFrozen!==false)window.__JOHANSSON_AUDIT__.render();return;}renderer.info.reset?.();lightBudget.update();colliderGrid.refresh();if(pocket?.raised&&!pocketCanRaise())lowerPocket();if(photoStudio?.active){clock.getDelta();photoStudio.render();return;}izakayaTV?.update({camera,active:sharedDining(current)&&(izakayaOpen(minutes)||satoRamenOpen(minutes)),paused:!started||document.hidden||roomLoading||!!inspector?.active||!!activities?.paused});if(detailsStarted&&!document.hidden&&!catchingUp)detailStream.update(current?doors.get(current.id)||player.position:player.position,current?null:{x:-Math.sin(yaw),z:-Math.cos(yaw)});updateContextControls();const frameDt=Math.min(clock.getDelta(),MAX_FRAME_DT);governResolution(frameDt);updateWantCards(frameDt);sweepCel(frameDt);updateController(frameDt);activeRoomLayout?.workshop?.update(activities.state,activities.paused?0:frameDt);if(started&&!document.hidden&&!activities.paused)activeRoomLayout?.ownedUpdate?.(frameDt);activeRoomLayout?.keep?.setPlayerBottle(!!activities.state.izakayaBottle);if(started&&!document.hidden){const paused=catchingUp||cameraControls.active||roomLoading||inspector?.active||itemViewer?.active||activities.paused||!$('#directory').classList.contains('hidden');const before=player.position.clone();if(catchingUp)catchUpFrame();else simulate(frameDt,!!paused);if(!paused){if(player.position.distanceTo(before)>.01&&(stepTick+=frameDt)>.42){activities.footstep(current?'wood':routeAt(player.position.x,player.position.z)?.surface||'stone');stepTick=0;}interaction();}else{neighbourChats.cancel();chatBubble.hide();resetInput();$('#prompt').classList.remove('on');}townAudio.update({player:player.position,yaw,minutes,rain:weather,inside:!!current,station:activities.state.radioStation||0,paused,relax:!!(seated&&!current),ferry:world.ferry?.audio??null});$('#clock').textContent=fmt(minutes);setTime();hands?.update(paused?0:frameDt);updateJohansson(paused?0:frameDt);updateEarDefenders();if(!inspector?.active){characters?.update(frameDt);castAI?.pose(frameDt);if(!paused||conversationLine)facing.update(frameDt);}if(!paused||conversationLine)updateConversationLift(frameDt);if((mapTick+=frameDt)>.15){drawMap();mapTick=0;}tickSubtitle(frameDt);applyFerryCamera();if(current&&activeRoomLayout?.fixedCamera&&!window.__JOHANSSON_AUDIT__?.camera){const f=activeRoomLayout.fixedCamera;camera.position.set(...f.pos);camera.lookAt(...f.at);camera.updateMatrixWorld();}if(current&&window.__JOHANSSON_AUDIT__?.camera){const a=window.__JOHANSSON_AUDIT__.camera;camera.position.set(...a.pos);camera.lookAt(...a.at);camera.updateMatrixWorld();}spawnScene?.update(frameDt,{paused,unavailable:!!(islandPlay?.active||window.__JOHANSSON_AUDIT__?.camera)});placeWorldBalloons(frameDt);if(inspector?.active)present(()=>inspector.render(frameDt),inspector.camera);else if(streetFrontageOf(current))present(()=>shopStreetView.render({renderer,scene,camera,town,room,frontage:streetFrontageOf(current)}));else if(!current)renderOutdoor();else present(()=>renderer.render(scene,camera));pocket?.frame();}else{neighbourChats.cancel();chatBubble.hide();renderTitle(frameDt);}}renderOutdoor();loop();
+ if(detailsStarted&&!document.hidden)detailStream.update(current?doors.get(current.id)||player.position:player.position,current?null:{x:-Math.sin(yaw),z:-Math.cos(yaw)});if(window.__JOHANSSON_AUDIT__.renderFrozen!==false)window.__JOHANSSON_AUDIT__.render();return;}renderer.info.reset?.();lightBudget.update();colliderGrid.refresh();if(pocket?.raised&&!pocketCanRaise())lowerPocket();if(photoStudio?.active){clock.getDelta();photoStudio.render();return;}prepareTelevision();izakayaTV?.update({camera,active:sharedDining(current)&&(izakayaOpen(minutes)||satoRamenOpen(minutes)),paused:!started||document.hidden||roomLoading||!!inspector?.active||!!activities?.paused});if(detailsStarted&&!document.hidden&&!catchingUp)detailStream.update(current?doors.get(current.id)||player.position:player.position,current?null:{x:-Math.sin(yaw),z:-Math.cos(yaw)});updateContextControls();const frameDt=Math.min(clock.getDelta(),MAX_FRAME_DT);governResolution(frameDt);updateWantCards(frameDt);sweepCel(frameDt);updateController(frameDt);activeRoomLayout?.workshop?.update(activities.state,activities.paused?0:frameDt);if(started&&!document.hidden&&!activities.paused)activeRoomLayout?.ownedUpdate?.(frameDt);activeRoomLayout?.keep?.setPlayerBottle(!!activities.state.izakayaBottle);if(started&&!document.hidden){const paused=catchingUp||cameraControls.active||roomLoading||inspector?.active||itemViewer?.active||activities.paused||!$('#directory').classList.contains('hidden');const before=player.position.clone();if(catchingUp)catchUpFrame();else simulate(frameDt,!!paused);if(!paused){if(player.position.distanceTo(before)>.01&&(stepTick+=frameDt)>.42){activities.footstep(current?'wood':routeAt(player.position.x,player.position.z)?.surface||'stone');stepTick=0;}interaction();}else{neighbourChats.cancel();chatBubble.hide();resetInput();$('#prompt').classList.remove('on');}townAudio.update({player:player.position,yaw,minutes,rain:weather,inside:!!current,station:activities.state.radioStation||0,paused,relax:!!(seated&&!current),ferry:world.ferry?.audio??null});$('#clock').textContent=fmt(minutes);setTime();hands?.update(paused?0:frameDt);updateJohansson(paused?0:frameDt);updateEarDefenders();if(!inspector?.active){characters?.update(frameDt);castAI?.pose(frameDt);if(!paused||conversationLine)facing.update(frameDt);}if(!paused||conversationLine)updateConversationLift(frameDt);if((mapTick+=frameDt)>.15){drawMap();mapTick=0;}tickSubtitle(frameDt);applyFerryCamera();if(current&&activeRoomLayout?.fixedCamera&&!window.__JOHANSSON_AUDIT__?.camera){const f=activeRoomLayout.fixedCamera;camera.position.set(...f.pos);camera.lookAt(...f.at);camera.updateMatrixWorld();}if(current&&window.__JOHANSSON_AUDIT__?.camera){const a=window.__JOHANSSON_AUDIT__.camera;camera.position.set(...a.pos);camera.lookAt(...a.at);camera.updateMatrixWorld();}spawnScene?.update(frameDt,{paused,unavailable:!!(islandPlay?.active||window.__JOHANSSON_AUDIT__?.camera)});placeWorldBalloons(frameDt);if(inspector?.active)present(()=>inspector.render(frameDt),inspector.camera);else if(streetFrontageOf(current))present(()=>shopStreetView.render({renderer,scene,camera,town,room,frontage:streetFrontageOf(current)}));else if(!current)renderOutdoor();else present(()=>renderer.render(scene,camera));pocket?.frame();}else{neighbourChats.cancel();chatBubble.hide();renderTitle(frameDt);}}renderOutdoor();loop();
 
 // The title shares the live world, assets, camera and render budget with play.
 // Never advance activities, player input, catch-up or saves while previewing.
