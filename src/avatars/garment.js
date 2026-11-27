@@ -272,7 +272,7 @@ function paintPrint(ctx,print,band){
 export const KARIYUSHI=Object.freeze({
  collar:Object.freeze({gap:.006,clear:.004,spring:.004,thick:.006,stand:Object.freeze({back:.018,side:.011}),rise:.9,fall:.036,
   vee:.36,point:Object.freeze([.66,.1]),foot:Object.freeze([.13,.112]),centre:Object.freeze([.03,.112])}),
- body:Object.freeze({top:.56,gap:.003,side:.7,easeX:.002,easeZ:.005,cover:.03,vent:Object.freeze({h:.032,w:.009}),turn:.006,lining:.3,swing:.2}),
+ body:Object.freeze({top:.56,gap:.006,side:.7,easeX:.002,easeZ:.005,cover:.03,vent:Object.freeze({h:.032,w:.009}),turn:.006,lining:.3,swing:.2}),
 });
 /** Where the kariyushi's hem is: `cover` over the shorts' waistband (at 0.13 of the torso above the hip joint, as
  *  build.js addBody paints it), on every body. */

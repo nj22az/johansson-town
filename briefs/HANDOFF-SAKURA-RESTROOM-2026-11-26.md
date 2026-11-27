@@ -1028,3 +1028,72 @@ with the game's own `probe`).
   published). Four files ran out of time or were killed while other sessions' tests loaded the machine (load 18):
   `drink-can`, `floor-sit`, `no-z-fighting`, `boot`; run again alone, all 30 of their tests pass.
 - `recipe.js PATTERNS` gains `'aloha'` at the end (`wardrobe-batch2` holds the list).
+
+# 27 November, evening: Johansson's aloha shirt, a real Hawaii shirt (branch `shirt/aloha`)
+
+The owner: "The shirt you may look like a dress make it look more like a real Hawaii shirt". Not pushed, not on `main`.
+
+## Measured, why it read as a dress
+- The body flared from the chest to the hem: 140 → 161 mm half-depth in front and behind (21 mm out each side, an
+  A-line), the sides 233 → 227 mm (straight from the front: the dress read was the side and three-quarter views).
+- The hem was 16 mm over the hip joint and 61 mm under the shorts' waistband: 142 mm of shorts showed on legs of 522 mm,
+  the shirt 573 mm from the neck's base. With his big head and short legs it read as a long tunic.
+- Eight flowers on broad blue: a plain tunic, not an aloha print (the owner's reference sheet had the tiled print).
+- Sleeves (unchanged, they already read): 118 mm long, ending 111 mm above the elbow, a 90 mm opening round a 60 mm arm.
+
+## Done
+- **Shape** (c9751ad; `garment.js KARIYUSHI.body`, `kariyushiBody`, `kariyushiHemY`, `build.js alohaBody`,
+  `springs.js hemSpec`): boxy and straight, 6 mm clear of the body and 5 mm of ease in front and behind, the side seams
+  0.7 of the way out to the chest's width; the level hem covers the shorts' waistband by 3 cm on every body (`cover`, set
+  from the waistband, so Vy's is right too). After: hem 45 mm over the hip joint, 31 mm under the waistband, 171 mm of
+  shorts showing, 544 mm from the neck's base; 150 mm half-depth at the hem against 140 at the chest, 234 mm half-width
+  against 234. A vent at
+  each side seam, 32 mm high, 18 mm wide at the hem: the hem, its turned edge and the inside rise in a V there, and one
+  sheet facing out shows the inside's shadow in it, edge to edge with the inside's own V (never two faces in one place,
+  JSY-STD-403 rules 3, 4 and 7). The collar is as approved.
+- **Print** (2740ace; `garment.js ALOHA`, `alohaPrint`, `paintPrint`, `clothFrame`): the heroes where the brief put them
+  and the print's largest flowers; round them an all-over print tossed on a fixed low-discrepancy sequence (R2: the same
+  every time, no grid, no rows), 20 smaller blossoms on the body and 7 on the sleeves, dense up to the chest and thinning
+  toward the shoulders, none above 0.68 of the torso, on a sleeve's top or under the arms; tonal leaves (`#5a91bb`, a
+  deeper blue, quieter than the cream) behind every blossom and in pairs in the gaps, about 180. The widest field of
+  plain blue is 49 mm from a motif (was 291). The pocket is pattern-matched (its stitching only), the buttons coconut.
+  Two hero companions moved to keep blue between them (`flank`, `back-low`, `back-high`), the large one a little up and
+  off the placket, clear of the new hem.
+- **Passes** (sheets in the session's scratchpad, `shirt/p5/`, not in the repository): print pass 1 (`p1-*.png`), dense
+  to 0.7 and on the sleeves' tops: a bright row under his face, front and back; pass 2 (`p2-*`), nothing above 0.62:
+  the cream in a band round the bottom, a stripe of flowers; pass 3 (`p3-*`), thinning out to 0.68 with smaller ones high
+  up: the gradient kept. Reshape pass 1 (`r1-*`): the vent at 26 mm read too small, so 32.
+- **The pair poses read the shirt's air** (`pair-poses.js bodyOf`: how far the clothes stand off the chest, the 90th
+  percentile of the chest's and spine's points, clamped to 6-18 mm): with the shirt 3 mm off the body it fell from 7.6 to
+  4.9 mm, the pair came 1.3 mm nearer and in Fight Thuan's body met Johansson's collar points, 6.8 mm in (the limit is
+  6). The shirt is 6 mm off the body now (`gap`): 7.9 mm, and `pair-poses` passes. A shirt brought nearer the body moves
+  every pair pose that holds him.
+- **Tests**: `avatar-polish`'s hem test now says boxy (no more than 12 mm off the widest of the body above the hem, on
+  Johansson, Vy and Sverker; the old shirt fails it at 21 mm), the hem 15-45 mm under the waistband, level but at the
+  vents, a vent at each side seam 20-45 mm high. `aloha-print`: the hero placements stand; "broad blue between groups",
+  "the other sleeve is plain" and "one flower above the chest" gave way to blue between every two blossoms but no bare
+  field over 6 cm, both sleeves printed and none on the arm's inside or a sleeve's top, nothing above the yoke and few
+  and small high up, thinning upward, tonal leaves, the pocket pattern-matched.
+
+## Proved (looked at)
+- `turnaround-before-after.png` (four views at one scale, old above new), `silhouette-before-after.png` (black; the side
+  view's trapezoid is gone, straight now), `torso-before-after.png`, `sakura-before-after.jpg` (the reference framing,
+  the game camera front and behind, the back; the running game from the worktree's source), `motion-front.png`,
+  `motion-back.png` (idle, walk, turn, sit, walk and turn: the print stays on the cloth, nothing through it),
+  `r1-hem.png` (the vents close up).
+- `node tools/ci-guard.mjs --test-concurrency=2` on the branch's last commit: 136 files, 736 tests, 734 pass; the two
+  that fail are the published runtime and the residents' portraits (rebuilt when this is published); none ran out of
+  time. (The run before the 6 mm gap failed `pair-poses`' Fight as above; run alone after it, it passes.)
+- The wider avatar list of phase 1 with the shirt's own files: 211 tests, 202 pass; the 9 that fail are the ones phase
+  1's record lists (the vest's straps and tenugui, identical on 2dd979c; Thuan's supporting foot; the batch-1 sets' draws
+  and moves; batch 2's and batch 3's standard check S, two each; the hair clip). None is the kariyushi.
+
+## Not done
+- **Seated, the front hem still goes into the lap**: the shorts' thighs come up 46 mm through it (78 before). The hem
+  quarters' spring tips sit between the thigh spheres, so nothing pushes them. A fix in `springs.js createSprings`: from
+  the thighs' rotation in the hips' frame, find the smallest forward turn of the hem's front and side quarters' targets
+  that clears the shorts (legR × 1.27) over each thigh, about 22° seated; with the swing starting at 0.2 of the torso,
+  linear blend skinning folds the rows just under the waist by a few millimetres, so start the swing at 0.3 (the rows
+  then compress without crossing). Not started: test it on the lap with a penetration measure first.
+- Close up (under a metre), the turned edge's ink shows as a dashed line on the shorts just under the hem; it did before.
+- Everything in "Seen, not fixed" above that is not the lap still stands (nape specks close up, the shorts' crotch lines).
