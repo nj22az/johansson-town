@@ -1396,3 +1396,211 @@ quote the owner, the research and the sources.
   So `tests/feed-seating.test.mjs` fails ("residents sit on real seats", 1 of 2). The capture was reverted.
 - **Remains:** fit the capture's cameras to today's rooms (`src/feed/places.js`), re-capture both, and keep
   feed-seating green.
+
+# 27 November, day: Johansson's aloha shirt, phase 1, the plain-blue block-in (branch `shirt/aloha`)
+
+The owner's brief, "Johansson World | Aloha shirt brief": shape the shirt before painting the flowers; then the print with a
+deliberate rhythm; then the print behaving like fabric; then checks in Sakura Shop. Phase 1 only, for the owner to see the
+plain-blue block-in before the print goes on. Not pushed, not on `main`.
+
+## Done
+- **The shape is one spec, `garment.js KARIYUSHI`.** The plain block-in is the recipe with `outfit.pattern: 'none'`
+  (`tools/hand-shots.mjs --set outfit.pattern=none`, as `avatar-turnaround.mjs --set` already had).
+- **The collar** (`build.js alohaCollar`), one piece of cloth: a narrow band round the nape whose fold stands a little up
+  the neck (18 mm behind, 11 mm at the sides) and whose fall lies 36 mm over the shoulders and back, its outer edge springing
+  off a little; at the front it folds into two short points over a small V, no notch. It is drawn on a chart of the body
+  round the neck (`collarChart`: the torso's own meridians, the neck's foot spanned), as a strip between its inner and
+  outer edges (`collarStrip`), with a top, an underside 6 mm off the neck and 4 mm off the shirt, and an edge all round.
+  The shirt's V, the tank top in it, the collar's painted shadow (now all round), the placket and buttons follow it.
+- **The body** (`build.js alohaBody`): below the chest (`top`, t 0.56) the shirt is cloth of its own, falling from the
+  widest of the body above, clear of the waist, easing out to a level hem at the upper hip (16 mm above the hip joint),
+  turned 6 mm, its inside drawn up to the waist in the cloth's shadow. It enters the chest steeply (3 mm in to 1 mm out
+  over 2 mm) so the two cross in one clean line. The torso under it keeps its own line and outline: a tuck or a faded ink
+  under the shirt stood out from the game's camera as a dotted ring. The shirt's own ink comes in over its first 2 cm (at
+  full width at once, its open top showed specks from behind and above). Under it, below the shirt's inside, the torso is
+  his tank top (or skin); the swing quarters now start at t 0.2 (`springs.js hemSpec`).
+- **Ink:** the outline is drawn by an inflated copy's back faces, so anything inked that tucks in or fades out going down
+  shows from above as a line or dots. The collar's underside has none (it stood into the neck and came out in specks in
+  the walk); under the kariyushi the neck's ink fades over its lower 18 mm, under the collar's fold, not 30.
+- **Under the short sleeves** the arm is the sleeve's inside, darker, down to just above the hem: no bare patch when the
+  arm is raised. `tests/underarm-coverage.test.mjs` passes now (all short-sleeved tops, both bodies).
+- **Measured, before → after** (Johansson): collar top above the neck's base 34 → 19 mm behind, 34 → 27 mm at the sides;
+  the neck showing under the jaw in profile 63 → 68 mm; V 165 → 111 mm deep, about 120 → 114 mm wide; points 157 → 140 mm out
+  and 77 → 54 mm below the neck's base; pocket 103 × 100 → 84 × 77 mm, 117 → 112 mm out, its middle 224 → 197 mm below the
+  neck's base; hem 28 mm below → 16 mm above the hip joint (shorts showing 95 → 139 mm); air at the waist 0 → 14 mm in front
+  and behind, at the hip about 10 → 34 mm. The sleeves are as they were: 90 mm openings round a 63 mm arm, 120 mm down it.
+- **Tests** (`avatar-polish`): the collar is low (its top under 30 mm above the neck's base, 60 mm and more of neck under
+  the jaw, the V 80-140 mm), the body falls free of the waist to a level hem above the hip joint with its inside, on
+  Johansson, Vy and Sverker. The collar-under-the-arms test, the stand outside the neck, the neck's foot and the tank top
+  still pass.
+- **Tools:** `avatar-turnaround.mjs` serves the Town from its own checkout (a worktree's parent is not the Office site),
+  as `hand-shots.mjs` does; `hand-shots.mjs --moves` swings the hems on their springs as the game does.
+
+## Not done (phases 2-4)
+- The print (Johansson's own layout; the tiled `flowers` stays for everyone else), the print as fabric, the checks in Sakura
+  Shop at the gameplay camera.
+
+## Seen, not fixed
+- Close up (under a metre), a faint line where the shirt's body leaves the chest, clearer when he arches back (Stretch).
+  Not seen at the gameplay distance.
+- At the gameplay distance the collar's fold line behind the neck is a thin outline that breaks into dashes in the walk;
+  for phase 3 (the outline treatment).
+- Seated, the shirt's front hem goes into the lap: the thighs come up past it, and the hem quarters' spring tips sit
+  between the thigh spheres, so nothing pushes them out. So it was before (the old hem was lower still).
+- The Kikkou ink (Sakura) draws the collar's band behind the neck faintly at full-figure scale.
+- The shorts' crotch, where the leg tubes meet the torso lathe, draws two dark slanted lines in front; the higher hem shows
+  more of the shorts. It is the shorts' construction, not the shirt's.
+
+# 27 November, day: Johansson's aloha shirt, phases 2-4, the print, the print as fabric, the checks (branch `shirt/aloha`)
+
+The owner approved the phase 1 block-in ("Yes, proceed. I want proceed."). Not pushed, not on `main`.
+
+## Phase 2: the print with a deliberate rhythm
+- **`outfit.pattern: 'aloha'`** (appended to `recipe.js PATTERNS`, so no saved look moves; the maker calls it "Aloha"), worn
+  by Johansson (`cast.js`). Everyone else's `'flowers'` is the tiled print it was.
+- **`garment.js ALOHA`**: one blossom (five rounded petals, each a little uneven; warm cream `#f7edd4`, a faint crease where a
+  petal lies over the next, a golden eye `#ecb12e`) on the recipe's sky blue, and eight blooms placed by hand, each with its
+  angle round the body, its height, its size, its turn and why it is there. `alohaLayout` says where each lies on a body.
+- **Laid on the cloth as worn**: `stamp` measures the texels round each flower on the garment (`shirtSurface`: the chest's
+  lathe, and below it the kariyushi's own body, `kariyushiBody`, now the one place its rows are worked out, read by
+  `build.js alohaBody` too) and draws through the inverse, so a flower is round on the body.
+- **Each sleeve has its own band** of the garment texture (`GARMENT.SLEEVE`, `SLEEVE_R`; the texture is 512 x 448, each
+  band as many texels as the shared one had), so one sleeve can carry a bloom. Every other print paints both alike.
+  `sleeveUV` now takes the angle round the arm's axis, not round the shoulder end's upright (the hem's print was askew by
+  up to a tenth of a turn). `shortSleeve` is the one spec of a short sleeve's tube.
+- Under a kariyushi the torso below its body is not printed (whole triangles sample the empty strip), so nothing of the
+  print shows under the hem or on the shorts; under the aloha print the underarm gussets are plain cloth.
+- `tests/aloha-print.test.mjs`: the placement's intent, measured on his body.
+
+## Phase 3: the print as fabric
+- **Matte**: the body is the town's toon material (no highlight). The flowers lie on the cloth and move with it; a flank
+  bloom narrows, goes round his side and comes back as he turns (the turn strips).
+- **Mipmapped garment texture**, kept premultiplied by its alpha (`build.js bodyMaterial`): with one level, the petals,
+  buttons and fine lines skipped texels as he walked off; close up the full level is drawn as before, and an edge between a
+  drawn texel and an empty one no longer filters to a dark fringe. Parts that sample the empty strip never step down a
+  level (their UV is one point).
+- **Quieter than his face** (the kariyushi only): the placket, the pocket and the hem's stitch in a blue a little darker
+  than the cloth and finer than any ink; the shell buttons a pale blue near the cloth, the wooden one smaller and softer;
+  the sleeve's turned hem a little paler, its fold a quiet line.
+- **The heavy band across every short sleeve was the sleeve's lining** standing out through the wall (`sleeveTube`): a
+  straight cylinder from the hem while a roomy sleeve narrows above it. It follows the wall now, 7.5 mm inside, on every
+  sleeve, cuff and trouser hem that uses it.
+- **A restrained shadow under the sleeve hems**: on a kariyushi the arm is a shade darker (0.88) for 22 mm below the hem,
+  between two rings of its own (`limb` `rings`, `HEM_SHADOW`), so the band's edges are lines; under the collar, the painted
+  shadow it had, its edge softened by most of a texel (drawn hard, its long level edge came out close up as a row of teeth).
+- **The dashed fold behind the neck** (phase 1's "seen, not fixed"): the fold's own edge had ink, whose shell, 6 mm off a
+  neck of flat facets, went in and out of it. The fold has no ink now (blue meeting skin draws it); in the walk strips at
+  the game's distance it is one line where phase 1's broke into dashes in every frame. The collar's edge wall is lit one
+  way across its height.
+
+## Phase 4: checked in Johansson World
+The sheets are in the session's scratchpad (`shirt/p2/final/`), not in the repository; the tools that made them are beside
+them (`turntable.mjs`, `motion.mjs`, `motion-far.mjs`, `texdump.mjs`, `sakura4.mjs`: the running game from the worktree's
+source, `SHIRT=none` swaps his recipe to the plain block-in as it is served, `LOOK` the game's look, lenses checked clear
+with the game's own `probe`).
+- **The placement**: `placement-chart.png`, the texture with each bloom labelled and the band under the face kept clear.
+- **Turnaround**: `turnaround-plain-vs-aloha.png`, front, three-quarter, side and back at one scale in the game's shader,
+  phase 1's plain block-in above the finished shirt; `turn-final.png` all eight. The collar holds from point to nape and the
+  sleeve from shoulder to opening, all round.
+- **Motion** (`motion/`): idle, walk, a turn on the spot and a turn into a walk, front, back and side, and close on the nape
+  and the hem. The flowers move with the cloth; the flank bloom narrows, goes round his side and comes back; the hem stays
+  over the shorts; nothing pokes through. `walk-nape-compare.png`: the fold behind the neck, phase 1 dashed, now whole.
+  `far-walk-shimmer.png`: eight walk frames at 8 m, one texture level against mipmaps (the pocket, buttons and petals
+  flickered; now steady).
+- **In Sakura Shop, its own light and the reference's look** (`sakura-plain-vs-aloha.jpg`, `sakura-aloha-sheet.jpg`):
+  - At the top-left reference's size against the stocked shelves, his face (brows, eyes, stubble) draws the first glance and
+    the blue shirt, its flowers low, the second.
+  - Close in front, nothing bright lies across the shoulders under his face.
+  - From the game's own camera behind him (2.2 m, over his right shoulder), the back's readable flower and the small one
+    above it show above the crates by the door; the lowest is behind them.
+  - The plain block-in is shot with the same lenses (its recipe swapped as it is served).
+- **Measured on the materials**: the face's ink and eyes are the darkest marks; the placket, the pocket and the buttons sit
+  a step off the cloth, and the sleeve hems no longer carry the dark band (`sleeve-band-before-after.png`).
+
+## Seen, not fixed
+- Close up, a few specks remain at the nape, where the neck's outline (11 mm thick at full ink, faded over the lower 18 mm
+  under the kariyushi) passes the collar's fold; not seen at the game's distance.
+- Faint dotted lines on the shoulders at the game's distance, from behind (the sleeve's round top meeting the shoulder
+  cap), as in phase 1.
+- The collar shadow's soft edge uses the canvas's `filter`; a browser without it draws the edge hard, as before (the teeth
+  close up only).
+- Phase 1's other items stand: seated, the front hem goes into the lap; the shorts' crotch lines.
+
+## Proved (27 November, the branch's last commit)
+- `tests/aloha-print.test.mjs` (7, now in the guard), `avatar-polish`, `underarm-coverage`, `vy-reference`: pass.
+- Phase 1's wider avatar list with those: 210 tests, 202 pass; the 8 that fail failed before this work (the vest's straps
+  and tenugui, Thuan's supporting foot, the batch-1 sets' draws and moves, batch 2's and batch 3's standard check S, the
+  hair clip).
+- `node tools/ci-guard.mjs`: 136 files; it fails the published runtime and the residents' portraits (rebuilt when this is
+  published). Four files ran out of time or were killed while other sessions' tests loaded the machine (load 18):
+  `drink-can`, `floor-sit`, `no-z-fighting`, `boot`; run again alone, all 30 of their tests pass.
+- `recipe.js PATTERNS` gains `'aloha'` at the end (`wardrobe-batch2` holds the list).
+
+# 27 November, evening: Johansson's aloha shirt, a real Hawaii shirt (branch `shirt/aloha`)
+
+The owner: "The shirt you may look like a dress make it look more like a real Hawaii shirt". Not pushed, not on `main`.
+
+## Measured, why it read as a dress
+- The body flared from the chest to the hem: 140 → 161 mm half-depth in front and behind (21 mm out each side, an
+  A-line), the sides 233 → 227 mm (straight from the front: the dress read was the side and three-quarter views).
+- The hem was 16 mm over the hip joint and 61 mm under the shorts' waistband: 142 mm of shorts showed on legs of 522 mm,
+  the shirt 573 mm from the neck's base. With his big head and short legs it read as a long tunic.
+- Eight flowers on broad blue: a plain tunic, not an aloha print (the owner's reference sheet had the tiled print).
+- Sleeves (unchanged, they already read): 118 mm long, ending 111 mm above the elbow, a 90 mm opening round a 60 mm arm.
+
+## Done
+- **Shape** (c9751ad; `garment.js KARIYUSHI.body`, `kariyushiBody`, `kariyushiHemY`, `build.js alohaBody`,
+  `springs.js hemSpec`): boxy and straight, 6 mm clear of the body and 5 mm of ease in front and behind, the side seams
+  0.7 of the way out to the chest's width; the level hem covers the shorts' waistband by 3 cm on every body (`cover`, set
+  from the waistband, so Vy's is right too). After: hem 45 mm over the hip joint, 31 mm under the waistband, 171 mm of
+  shorts showing, 544 mm from the neck's base; 150 mm half-depth at the hem against 140 at the chest, 234 mm half-width
+  against 234. A vent at
+  each side seam, 32 mm high, 18 mm wide at the hem: the hem, its turned edge and the inside rise in a V there, and one
+  sheet facing out shows the inside's shadow in it, edge to edge with the inside's own V (never two faces in one place,
+  JSY-STD-403 rules 3, 4 and 7). The collar is as approved.
+- **Print** (2740ace; `garment.js ALOHA`, `alohaPrint`, `paintPrint`, `clothFrame`): the heroes where the brief put them
+  and the print's largest flowers; round them an all-over print tossed on a fixed low-discrepancy sequence (R2: the same
+  every time, no grid, no rows), 20 smaller blossoms on the body and 7 on the sleeves, dense up to the chest and thinning
+  toward the shoulders, none above 0.68 of the torso, on a sleeve's top or under the arms; tonal leaves (`#5a91bb`, a
+  deeper blue, quieter than the cream) behind every blossom and in pairs in the gaps, about 180. The widest field of
+  plain blue is 49 mm from a motif (was 291). The pocket is pattern-matched (its stitching only), the buttons coconut.
+  Two hero companions moved to keep blue between them (`flank`, `back-low`, `back-high`), the large one a little up and
+  off the placket, clear of the new hem.
+- **Passes** (sheets in the session's scratchpad, `shirt/p5/`, not in the repository): print pass 1 (`p1-*.png`), dense
+  to 0.7 and on the sleeves' tops: a bright row under his face, front and back; pass 2 (`p2-*`), nothing above 0.62:
+  the cream in a band round the bottom, a stripe of flowers; pass 3 (`p3-*`), thinning out to 0.68 with smaller ones high
+  up: the gradient kept. Reshape pass 1 (`r1-*`): the vent at 26 mm read too small, so 32.
+- **The pair poses read the shirt's air** (`pair-poses.js bodyOf`: how far the clothes stand off the chest, the 90th
+  percentile of the chest's and spine's points, clamped to 6-18 mm): with the shirt 3 mm off the body it fell from 7.6 to
+  4.9 mm, the pair came 1.3 mm nearer and in Fight Thuan's body met Johansson's collar points, 6.8 mm in (the limit is
+  6). The shirt is 6 mm off the body now (`gap`): 7.9 mm, and `pair-poses` passes. A shirt brought nearer the body moves
+  every pair pose that holds him.
+- **Tests**: `avatar-polish`'s hem test now says boxy (no more than 12 mm off the widest of the body above the hem, on
+  Johansson, Vy and Sverker; the old shirt fails it at 21 mm), the hem 15-45 mm under the waistband, level but at the
+  vents, a vent at each side seam 20-45 mm high. `aloha-print`: the hero placements stand; "broad blue between groups",
+  "the other sleeve is plain" and "one flower above the chest" gave way to blue between every two blossoms but no bare
+  field over 6 cm, both sleeves printed and none on the arm's inside or a sleeve's top, nothing above the yoke and few
+  and small high up, thinning upward, tonal leaves, the pocket pattern-matched.
+
+## Proved (looked at)
+- `turnaround-before-after.png` (four views at one scale, old above new), `silhouette-before-after.png` (black; the side
+  view's trapezoid is gone, straight now), `torso-before-after.png`, `sakura-before-after.jpg` (the reference framing,
+  the game camera front and behind, the back; the running game from the worktree's source), `motion-front.png`,
+  `motion-back.png` (idle, walk, turn, sit, walk and turn: the print stays on the cloth, nothing through it),
+  `r1-hem.png` (the vents close up).
+- `node tools/ci-guard.mjs --test-concurrency=2` on the branch's last commit: 136 files, 736 tests, 734 pass; the two
+  that fail are the published runtime and the residents' portraits (rebuilt when this is published); none ran out of
+  time. (The run before the 6 mm gap failed `pair-poses`' Fight as above; run alone after it, it passes.)
+- The wider avatar list of phase 1 with the shirt's own files: 211 tests, 202 pass; the 9 that fail are the ones phase
+  1's record lists (the vest's straps and tenugui, identical on 2dd979c; Thuan's supporting foot; the batch-1 sets' draws
+  and moves; batch 2's and batch 3's standard check S, two each; the hair clip). None is the kariyushi.
+
+## Not done
+- **Seated, the front hem still goes into the lap**: the shorts' thighs come up 46 mm through it (78 before). The hem
+  quarters' spring tips sit between the thigh spheres, so nothing pushes them. A fix in `springs.js createSprings`: from
+  the thighs' rotation in the hips' frame, find the smallest forward turn of the hem's front and side quarters' targets
+  that clears the shorts (legR × 1.27) over each thigh, about 22° seated; with the swing starting at 0.2 of the torso,
+  linear blend skinning folds the rows just under the waist by a few millimetres, so start the swing at 0.3 (the rows
+  then compress without crossing). Not started: test it on the lap with a penetration measure first.
+- Close up (under a metre), the turned edge's ink shows as a dashed line on the shorts just under the hem; it did before.
+- Everything in "Seen, not fixed" above that is not the lap still stands (nape specks close up, the shorts' crotch lines).

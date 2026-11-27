@@ -15,6 +15,9 @@ brands that fit into the Jansson world and if you can't make up a good one just 
   island lager, Jugon big draft and Tako black lager (the drinks machines, `commerce/vending-catalogue.js`), Sakura's
   Umineko lager, Ryukyu Cola and Blue Coral are the pattern. Where no good name comes, use the Johansson name
   (Johansson Brewery, Johansson Foods …): Johansson is this world's Acme.
+- **Real public figures are fictional too** (the owner, asked about a chat line naming a real pop singer: "Yes swap to a
+  fictional singer"): the radio plays the Chura Stars, the island's own pop group; Kayoko Shima is the enka singer who
+  sang at the harbour hall. Singers, presenters, athletes and actors in the World are the town's own.
 - **New content is checked for real brands before it is committed;** a test keeps a list of the real brands found once
   and refuses them: `tests/no-real-brands.test.mjs` (in the CI guard) reads every string the player or the storyteller
   can meet against `data/studio/brand-rules.json`. A word that is also a street, a place, a god or a surname here is
@@ -87,9 +90,28 @@ critique what still looks too soft/chibi, and iterate"; then "When happy redraw 
   pass; and `node tools/avatar-turnaround.mjs` for the same in the game's own shader, which is the final judge.
 - **His shirt** (the owner, 27 November 2026: "the collar is way too big going under his arms when drinking"; "He should be
   wearing a 'wife beater' tank top under his shirt"): the kariyushi's camp collar is a camp collar's size
-  (`garment.js CAMP_COLLAR`; a test keeps it out of his sleeves when his arms come up or across), and under the open shirt
-  he wears a white ribbed tank top (`outfit.under: 'tank'`, `garment.js UNDER`): its scoop neck and straps in the V, his
-  chest hair above it.
+  (`garment.js KARIYUSHI.collar`; a test keeps it out of his sleeves when his arms come up or across), and under the open
+  shirt he wears a white ribbed tank top (`outfit.under: 'tank'`, `garment.js UNDER`): its scoop neck and straps in the V,
+  his chest hair above it.
+- **His aloha shirt, the owner's brief of 27 November 2026** ("Shape the shirt before painting the flowers", then the print
+  "with a deliberate rhythm", then "Make the print behave like fabric", then checked in Sakura Shop): built in that order.
+  The shape is `garment.js KARIYUSHI`: a low camp collar in one piece (a narrow band round the nape folding forward into two
+  short points over a small V; `collarChart`, `collarStrip`, `build.js alohaCollar`) and a body that is a real aloha
+  shirt's (the owner, the same day: "The shirt you may look like a dress make it look more like a real Hawaii shirt"):
+  boxy and straight from the chest, a few millimetres of ease, never flaring (it had, 21 mm, an A-line), its level,
+  untucked hem 3 cm over the shorts' waistband (`kariyushiHemY`), a small vent at each side seam, a turned edge and an
+  inside (`build.js alohaBody`). The plain block-in is the recipe with `outfit.pattern: 'none'`
+  (`tools/hand-shots.mjs --set outfit.pattern=none`).
+  The print is his own, `outfit.pattern: 'aloha'` (`garment.js ALOHA`, `alohaPrint`): an all-over aloha print of one
+  five-petal blossom, warm cream with a golden eye, and tonal leaves in a deeper blue. Its heroes, the largest flowers, are
+  placed with the reason for each (a larger bloom low on his right front, a smaller one below his left pocket, a partial
+  bloom cut by his right sleeve's hem, a loose off-centre group on the lower back); round them smaller blossoms tossed on a
+  fixed sequence, dense low and thinning toward the shoulders, nothing bright across the shoulders under his face, none
+  under the arms; leaves behind them and in the gaps, so no field is bare. Each is laid on the cloth as worn (`stamp`,
+  `clothFrame`, `shirtSurface`). Each sleeve has its own band of the garment texture, which is mipmapped. The pocket is
+  pattern-matched, the buttons coconut; placket, pocket and buttons are quieter than his face; a restrained shadow lies
+  under the collar and the sleeve hems.
+  `tests/aloha-print.test.mjs` holds the placement's intent. Everyone else's `'flowers'` is the tiled print.
 - Fair skin, dark brows, dark eyes, a five-o'clock shadow in grey; warm, dry and deadpan, never angry. Stylised and
   heavy, not realistic: no pores, no photographic shading, no high-poly sculpt.
 - **Not fat** (the owner, of the first result: "Johansson isn't fat he should have a neck and a maybe smaller face", "Make the
