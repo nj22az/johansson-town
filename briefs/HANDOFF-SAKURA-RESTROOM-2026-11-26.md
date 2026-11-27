@@ -610,4 +610,47 @@ make strict adherence to it".
   the principles audit with its fixes. When it starts, audit the repository (what it does, licence, quality, what it
   needs), add it to the toolbox as REA and Lightpanda were added (AGENTS.md, a pinned version), and write the
   suggestions for a game someone would buy.
-- The principles audit is being built on `audit/principles` (worktree `/home/user/jt-audit`).
+- The principles audit: built, next section.
+
+# 27 November, night: the principles audit and its first baseline (branch `audit/principles`)
+
+The audit the standard's section 5 asked for, from `claude/dreamy-ritchie-cxufpl` at 10adb74. Not pushed, not on `main`. No
+move was changed: fixing them comes next, from the baseline.
+
+## Done
+- `tools/animation-audit.mjs`, a library and a command (`node tools/animation-audit.mjs [--moves a,b] [--bodies a,b]
+  [--out dir] [--write-baseline]`): every move in `GESTURES`, and the walk, the run, the idle, sitting down and standing up,
+  played by the game's animator on the smallest resident by measure (Vy), Johansson and the largest (Sverker), sampled at
+  60 fps, measured for ease, anticipation, arcs, overlap, twins, squash and volume. The thresholds, their sources (the
+  skill, or "ours" with the reason), the register of each move, the primary-effector overrides and the classes a check
+  cannot measure (with why) are all in the file; the report is `output/animation-audit/` (not kept: about 95 s to make).
+- `tests/animation-principles.test.mjs` (in the CI guard): a linear lerp fixture fails ease, anticipation, arcs, overlap
+  and twins on every body; a reach built to the standard passes every check; a landing passes squash only with a squash
+  that keeps its volume; every move is audited; no move fails a check on a body the baseline does not list, and a listed
+  failure that now passes must come off it.
+- `tests/animation-principles.baseline.json`: what fails today, per move, check and body.
+- `docs/ANIMATION-STANDARD.md`: section 5 says what is measured as built (and where it had to be defined more closely:
+  the everyday arcs' ceiling, the springs left out of overlap, the excluded classes); section 6 is where we stand.
+
+## Proved
+- 155 moves: ease passes 77 of 154, anticipation 0 of 132, arcs 65 of 145, overlap 0 of 152, twins 75 of 144, squash 0 of
+  15, volume 155 of 155; every check, 1 (the idle). The causes are in section 6: one curve for the whole body, no wind-up,
+  no squash anywhere, the stance snap (hands out of the pockets or from behind the back in a frame, 16 of 33 residents,
+  Johansson among them), poses snapped to.
+- Glitches it found: the can drink's exported motion turns the right shoulder 0.35 rad between two 30 fps keys (5.53 s of
+  the motion), under `drink-can.test.mjs`'s 0.3 rad a frame at 60 fps; on Sverker the drink flips the right elbow about
+  0.6 rad and back in a frame at the lip; Johansson's head hitches 0.3 s into DrinkCanOpened; Jump's crouch never reaches
+  the hips; in Eat, Drink, SitEat, SitDrink and SitToast the hand jumps 9–22 cm in the first frame and 7–25 cm as the move
+  ends, and Eat and Drink drop it 47 cm from the mouth in 0.2 s on a straight line.
+- `node --test tests/animation-principles.test.mjs`: 8 pass, 91 s alone.
+- CI guard (`node tools/ci-guard.mjs`, 132 files, 679 s): 712 of 714 pass; the two that fail are the known ones, the
+  resident-guide portraits (failing at 10adb74 too: the avatar sources changed since the portraits were made) and the
+  published runtime package (not rebuilt on a branch).
+
+## Remains
+- Bring the moves up to the standard, the most-seen first (section 6's table), and take each off the baseline with
+  `--write-baseline` once it passes and its sheets have been looked at.
+- For the owner: whether everyday arcs keep the guideline's 50% ceiling (as built) or 20% (which fails 202 of 433 natural
+  strokes); whether the theatrical poses (`expressive-poses.js`) and the dances (`music-moves.js`) are comedy.
+- Not measured: arcs from the game's camera, staging, timing by weight and age, secondary action's amplitude, the face,
+  the camera and the screens; the hair and the cloth's drag.
