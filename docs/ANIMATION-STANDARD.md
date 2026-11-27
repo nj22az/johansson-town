@@ -180,7 +180,7 @@ played as the game plays it:
   seated one.
 
 Every joint and end effector is sampled at 60 fps: a timed move over its length and a second of settling, a held move
-(`Infinity`) over its way in and a 2 s hold. `node tools/animation-audit.mjs [--moves a,b] [--bodies a,b] [--out dir]`
+(`Infinity`) over its way in and a 2 s hold, each against the body at rest in the frame before it starts. `node tools/animation-audit.mjs [--moves a,b] [--bodies a,b] [--out dir]`
 writes every move's, body's and check's numbers to `output/animation-audit/animation-audit.json` and the table to
 `animation-audit.txt` (about 95 s).
 
@@ -189,7 +189,7 @@ writes every move's, body's and check's numbers to `output/animation-audit/anima
 | Ease | each joint's movements from one rest to the next: its speed in the first and the last frame (above the rest), against its top speed; its velocity's change from one frame to the next | neither edge is over half the top speed, and the velocity never steps by over half of it in a frame (a movement under 8 frames: by over nine tenths) **(ours)** |
 | Anticipation | the primary effector (whichever of the hands, the head, the hips and the feet travels furthest; the hips for sitting and the jumps). Its action is the stroke in which it first comes half way to its furthest; its counter-movement is how far it first goes back along that line, and for how long | an action over 200 ms has a counter-movement of at least 5% of its travel and 5 mm **(ours)**, lasting 30–50% of the action |
 | Arcs | each stroke of the primary hand or head (a foot in a foot move; a held prop where a move names it) between two rests, over 10 cm: how far the path goes from the straight line between its ends, over that line's length | everyday 10–50%, comedy 30–50% (below) |
-| Overlap | when each level of the drag hierarchy first and last turns faster than a tenth of its own top speed: root (hips, spine), primary (chest, neck, head, upper arms, thighs), secondary (forearms, hands, shins, feet) | each level starts and stops 5–10 game frames after the one before (10–20 across a level that does not move) |
+| Overlap | when each level of the drag hierarchy first and last moves: a joint starts where its first movement passes a tenth of that movement's own top speed, and stops where its last falls under a tenth of its own (never under 0.08 rad/s); root (hips, spine), primary (chest, neck, head, upper arms, thighs), secondary (forearms, hands, shins, feet), a leg only when its foot leaves the floor by 3 cm | each level starts and stops 5–10 game frames after the one before (10–20 across a level that does not move) |
 | Twins | the left arm's turns (shoulder, elbow, wrist) against the right's mirrored, at the lag within half a second that brings them closest, when both arms move | that lag is 5 frames or more, or the arms still differ by 10% or more at it |
 | Squash | impacts: the hips falling at 0.3 m/s or faster and stopped within 6 frames **(ours)**; the torso's shortening (bone scale) within 8 frames of it | 2–5% (comedy 10–20%), volume kept |
 | Volume | every bone's scale, x × y × z, against its rest | within 1 ± 1% |
@@ -227,8 +227,13 @@ not tuned to make any move pass. Where a measurement had to be defined more clos
 - **Overlap.** The keyed joints only. The hair, the skirts and the hems swing on springs (`springs.js`, straight ahead);
   they hang from the hips and the head, not after the forearms, and their parent carries them from its first frame, so
   their own start shows no lag to measure. What is held is held rigidly and does not drag. The legs, which rule 5 does not
-  place, are placed by their reach from the root **(ours)**. A held move whose pose keeps a little life never stops, so only
-  its starts are judged.
+  place, are placed by their reach from the root **(ours)**, and take part only when their foot leaves the floor by 3 cm
+  **(ours)**: a foot on the floor holds its leg, and the overlap gives way to that contact. A held move whose pose keeps a
+  little life never stops, so only its starts are judged. Starts and stops are read off each joint's own first and last
+  movement **(ours)**: until stage 1 (section 6) they were read at a tenth of the joint's top speed over the whole move,
+  which called a joint with one fast stroke stopped while it still turned back into its rest at half a radian a second,
+  and one with a fast sway late in the move started late. A fixed speed instead kept a fast joint moving longer than a
+  slow one with the same curve. The floor of 0.08 rad/s is above the idle's breath and sway (0.02–0.05 rad/s).
 - **Twins.** "At least 2 frames at 24 fps apart" is read as the lag that best lines the arms up. Two arms doing different
   things are far apart at every lag; a walk's arms in opposition differ by far more than 10%.
 - **Squash.** Impacts are found from the hips alone: a stomp that does not move the hips is not seen. The body has no squash
@@ -261,6 +266,91 @@ Moves come off it most-seen first: walk, idle, talk, wave, nod, eat, drink, sit.
 audit and its sheets have been looked at.
 
 ## 6. Where we stand
+
+### Stage 1: the stance, the drag, the eating hand (27 November 2026, branch `anim/stage1`)
+
+What was done, all in `animate.js` but for the lift's bow (`consume.js`):
+
+- **The stance as a movement** (`stanceStep`, `STANCE`). An arm a move takes comes out of the pockets or from behind the
+  back from the move's first frame, on an eased curve (a hermite from where it is and as fast as it is going) over 30% of
+  the move (0.15–0.3 s), and goes back over the move's last 40% (0.17–0.35 s), so it is in the stance as the move ends.
+  The two arms leave as their moves take them. From behind the back the upper arm swings out by up to 0.2 rad on the way,
+  so the bent forearm does not drag across the back. `tests/stance-release.test.mjs` (in the guard) plays seven moves on
+  five stance bodies: no hand or forearm goes deeper into the torso or the thighs on the way than at either end, and no
+  hand jumps.
+- **The drag hierarchy** (`dragStep`, `LAG` 7 game frames a level). Each joint plays the target its level had that long
+  ago: the root leads; the chest, neck, head and upper arms follow; the forearms and hands follow them; the grip a level
+  after the hands. The upper level's lag holds only while the root moves (a move that leaves the root still has nothing
+  to follow, and the upper arms must answer within 100 ms), and takes its lag at once when the root sets off from
+  stillness. The drag is on standing and sat on a chair; walking, running, riding, climbing, driving, in the air, lying,
+  kneeling and on the floor keep no lag. Contacts pin it: an arm the reach solver has held on a wheel, a handlebar, a
+  table, a partner or a placement for two lags moves as one with its hand, which never leaves what it holds. The settle
+  is each joint's own follow: no overshoot. Nineteen moves whose hands were keyed on arcs made without the drag (Heart,
+  HoldOn, IdolDance, Facepalm, Flex, Swoon, the dances and others, `ARCS_WITHOUT_DRAG`) play without it until stage 2
+  keys them again.
+- **From one way of being to another** (`FADE`, 0.32 s): standing, walking, running, sitting, climbing; the walk's stride
+  eases down to its stop. The walk's stop and StandUp's step at 0.48 s no longer step.
+- **Eating and drinking.** The consumption pose is blended in from where the arm was and out back to it, level by level,
+  at a critically damped 9/s, and its reach starts each frame from where it left the arm (the forearm's twist no longer
+  flips as the hand comes up). The lift to the mouth and the drop from it are bowed by 15% of their chord
+  (`consume.js LIFT_ARC`), and the drink poses ease in. On the way back to hands in the pockets the hand lags half a level,
+  behind the back a quarter: with the whole lag the arm was down by the side while the forearm was still bent for the
+  mouth, and the hand went 2 cm into the hip. The overlap gives way to the body, as it does to what a hand holds.
+
+| Check | Before | After |
+|---|---|---|
+| Ease | 77 of 154 | 121 of 154 |
+| Anticipation | 0 of 132 | 1 of 142 |
+| Arcs | 65 of 145 | 67 of 146 |
+| Overlap | 0 of 152 | 49 of 146 |
+| Twins | 75 of 144 | 63 of 129 (66 fail, from 69: more moves have one arm still) |
+| Squash | 0 of 15 | 0 of 15 |
+| Volume | 155 of 155 | 155 of 155 |
+| **Every check** | **1** | **5** |
+
+Off the baseline: the walk, Nod, HeadShake and LookAround altogether; 140 (move, body) failures of ease, 198 of overlap,
+21 of arcs, 13 of twins and 1 of anticipation (1506 entries to 1181). On it now, and worse:
+
+- **Anticipation, 35 entries on 13 moves** (Talk, Jab, JabL, Kachashi, Phone, FishIdle, IdolDance, AirGuitar, EnkaReach,
+  RobotDance, ChickenDance, JellyWobble, DramaFinish). They were not judged before: their action snapped in under 200 ms;
+  eased, it takes longer and has no wind-up. Stage 2.
+- **Arcs, 13 entries.** The way out of the pockets and back is a blend of the stance and the move, and on these it bows
+  past a half circle or too little: Talk on Johansson (56% off a 12 cm chord), HandsOnHips on Johansson (63%, 15 cm),
+  HoldOn and Kachashi on Vy and Johansson (52–53%), Jump on Vy (9.9%), Fidget on Vy and Johansson (9.4–9.6%), AirGuitar on
+  all three (5.7–8.2%), EvilLaugh on Sverker (25%, as it is on the others already). Stage 2 keys them with the stance in.
+- **Eat and Drink keep failing overlap** (the secondary stops 1–3 frames after the primary), by the body rule above.
+
+What is left on the most-seen moves: the walk passes everything that applies; Nod passes everything; Talk passes ease,
+overlap and twins (anticipation, and arcs on Johansson and Sverker, fail); Wave passes ease and arcs (no wind-up, and its
+levels start 11 frames apart on Vy and Johansson, over 10); Eat, Drink, SitEat, SitDrink and SitToast no longer jump the
+hand and pass arcs but on Sverker, but the elbow or the hand still steps by 50–72% of its top speed in the quick lift at
+0.7–1.75 s (the reach's fold, there before; stage 2); SitDown and StandUp pass ease (no wind-up, no squash, arms
+mirrored); the run steps Vy's knee by 57% at its stop. The face and the fingers have no joints of their own in the
+animator: the face keeps no lag yet, the grip lags its hand, and what the hand holds is held rigidly.
+
+Sheets in the game's shader, before and after (`node tools/hand-shots.mjs --moves Walk,Talk,Nod,Wave,Eat,SitEat --name
+<who> <dir>`; `output/anim-stage1/before/` and `after/`, Johansson and Thao): front and three-quarter at key moments, and
+8 consecutive frames where the stance is left and taken again. Seen in them:
+
+- **Eat (Thao).** Before, the right hand jumped from the pocket to the belly between frames −1 and 0, and back between
+  frames 144 and 145. After, nothing jumps: the hand is still by the pocket at 0.15 s and lifts from there, and is back in
+  the pocket by 2.7 s. The strip at the move's end shows the hand still holding the bite at the belly: the hand-back comes
+  after the move's last frame, over about half a second, so the strip misses it.
+- **Wave (Johansson).** The arm leaves the pocket gently (at 0.15 s a third of the way out, where before it was already
+  swung far out at full speed); the wave itself is as it was; it comes back into the pocket eased, no pop.
+- **Talk (Johansson).** The arms come out of the pockets over about half a second; before they were in the talking pose
+  at once.
+- **SitEat (Johansson).** No jump at either end; the hand comes back to the thigh eased.
+- **Walk (Johansson).** The last step now finishes: at 3.1–3.2 s the right foot is still lifted in it, where before both
+  feet were already together at 3.2 s. Whether that last step reads as a step or as a foot stepping in place after the body
+  has stopped wants a look in motion.
+
+The animator's cost, per resident per frame (`animator.update` alone, eight residents, medians of seven runs alternating
+with the code before, on a shared machine, so to a few microseconds): idle 24 → 27 µs, walking 23 → 25, a gesture 19 →
+24, a funny pose 19 → 22, eating 46 → 55, sat 113 → 113, eating sat 145 → 147. The edition's budgets (`src/edition.js`)
+are by feature, not time; at 33 residents the extra is about 0.1 ms a frame, 0.3 ms if all of them ate at once.
+
+### The first audit (27 November 2026, branch `audit/principles`)
 
 **27 November 2026.** The standard is adopted. The can drink and its opening are being re-keyed in Blender to it
 (briefs/HANDOFF-SAKURA-RESTROOM-2026-11-26.md). The audit and its first baseline are in (branch `audit/principles`): 155
