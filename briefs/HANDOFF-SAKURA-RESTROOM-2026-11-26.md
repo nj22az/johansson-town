@@ -652,6 +652,13 @@ make strict adherence to it".
   (`tests/animation-principles.baseline.json`), as the standard's section 5 describes. The baseline may only shrink.
 - **Bringing the existing moves up to the standard**, the most-seen first: walk, idle, talk, wave, nod, eat, drink, sit.
 - The camera and the screens against `motion-sickness`, `accessible-motion` (reduced motion) and `timing-calibration`.
+- **Queued by the owner, for when the animation is spotless** (27 November 2026): "When the animation is truly spotless,
+  audit this repo add it to our toolbox as well and give suggestions on how Johansson world can become a fun game
+  https://github.com/nexu-io/opengame that someone would like to buy". Not started: it waits on the can drink's re-key and
+  the principles audit with its fixes. When it starts, audit the repository (what it does, licence, quality, what it
+  needs), add it to the toolbox as REA and Lightpanda were added (AGENTS.md, a pinned version), and write the
+  suggestions for a game someone would buy.
+- The principles audit: built, next section.
 
 # 27 November, night: the principles audit and its first baseline (branch `audit/principles`)
 

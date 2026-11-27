@@ -61,7 +61,7 @@ dissonance"). Johansson World has two registers. Every move belongs to one of th
 | Exaggeration of poses | 20–30% past real (`game-development`: "Exaggerate poses 20-30% beyond realistic") | 30–50% (`playfulness-fun`; `exaggeration-mastery`: "30-50% for consumer/entertainment") |
 | Anticipation | 30–50% of the action's length, opposite to it (`anticipation-mastery`) | the same ratio, the wind-up pushed: "big preparation for big payoff" (`playfulness-fun`) |
 | Secondary action | 30–40% of the primary's amplitude (`secondary-action-mastery`, "Moderate") | 50–60% (`secondary-action-mastery`, "Expressive (entertainment, games)") |
-| Arcs | 10–20% of the travel (`arc-mastery`, "subtle organic feel") | 30–50% (`arc-mastery`, "dramatic sweeping motion") |
+| Arcs | at least 10% of the travel; 10–20% the default for a keyed stroke (`arc-mastery`, "subtle organic feel"), up to 50% where a turn about a joint sweeps it (a wave, a stretch) | 30–50% (`arc-mastery`, "dramatic sweeping motion") |
 | Follow-through | long, soft settles (`calm-relaxation`: "Long settling times (500ms+)") | overshoot, wobble and settle (`playfulness-fun`) |
 | Breathing | a 4–6 s cycle (`calm-relaxation`) | as the beat needs |
 
@@ -110,7 +110,8 @@ Frame counts in the guideline are at 24 fps. In the game (60 fps) multiply them 
    - Linear is for the mechanical only: an engine, a fan, a conveyor, a wheel at speed, a clock.
    - Blinks go down fast and come up slower.
 7. **Arcs** (`arc-mastery`).
-   - Hands, heads, feet and held props travel on curves: 10–20% of the travel off the straight line (30–50% when sweeping).
+   - Hands, heads, feet and held props travel on curves, never on the straight line: at least 10% of the travel off it,
+     10–20% by default, 30–50% when sweeping (a turn about a joint sets its own arc; the audit's ceiling is the guideline's 50%).
    - The path is asymmetric where the action is: fast one way, slower back.
    - Check arcs from the camera that will see them, not only in the world.
 8. **Secondary action** (`secondary-action-mastery`).
