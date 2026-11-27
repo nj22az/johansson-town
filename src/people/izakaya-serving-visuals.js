@@ -160,6 +160,12 @@ export function buildBeerBottle(){
 
 /** The draught jug's measures (metres): its body, and its handle's bar (axis at barX, `bar` thick) and opening (y from, to). */
 export const JUG=Object.freeze({r:.047,h:.19,bar:.0075,barX:.047+.035+.0075,opening:[.04,.154]});
+/** The pint glass's measures (metres, radius and height): its outer and inner walls from the foot up, its inner floor, its
+ *  height, and the beer in it (its radius at the bottom and the top, its height: 2.6 cm of the glass left for the head). */
+export const PINT=Object.freeze({h:.152,floor:.012,
+ outer:Object.freeze([[0,0],[.0298,0],[.031,.004],[.0372,.108],[.0386,.122],[.0384,.13],[.0372,.137],[.0378,.152]].map(Object.freeze)),
+ inner:Object.freeze([[0,.012],[.0282,.012],[.0342,.108],[.0356,.122],[.0354,.13],[.0342,.137],[.0348,.1515]].map(Object.freeze)),
+ beer:Object.freeze([.0278,.0336,.104])});
 export function buildServingDrink(kind,{held=false,sealed=false}={}){
  const group=new THREE.Group(),level=new THREE.Group();group.name='Minato drink · '+kind;level.name='Live '+kind+' contents';group.add(level);group.userData.level=level;
  const glass=pieces(group,'Hollow '+kind+' glass','glass'),china=pieces(group,kind+' glazed vessel','china'),metal=pieces(group,kind+' metal details','metal');let liquid=null,head=null,height=0,radius=0,rimHeight=.11;
@@ -184,6 +190,17 @@ export function buildServingDrink(kind,{held=false,sealed=false}={}){
   // facets as spikes; filled to 2 cm under the rim with a thick head; its bottom 2 mm over the glass's inner floor at
   // 0.011, as the other glasses' fills are, so the two faces do not flicker through the glass)
   fill(JUG.r-.0095,JUG.h-.030,(JUG.h-.030)/2+.013,0,0xf0a400,true);rimHeight=JUG.h;
+ }else if(kind==='pint'){
+  // A pint glass, the nonic (568 ml, the British and Irish imperial pint, its bulge two fingers under the rim so a stack does
+  // not wedge and a hand does not slip): Minato keeps a few for the black lager, which Johansson asked for in a proper glass
+  // (izakaya-beer.js BEER_SERVES). Its wall 3 mm, its base 12 mm, tapered from 6.2 cm across at the foot to 7.7 at the
+  // bulge; the hand wraps it as it wraps a can (consume.js canSocket), a little under its middle, where it is 6.9 cm across.
+  glass.lathe(PINT.outer.map(([r,y])=>[r,y]).concat(PINT.inner.slice().reverse()),0xd6e0d6);glass.ring(PINT.outer.at(-1)[0]-.0015,.0015,0xdde4d8,0,PINT.h);
+  // (the beer inside the wall, a cone as the glass is, 2 mm over its inner floor; a black lager under a tan head)
+  liquid=new THREE.Mesh(new THREE.CylinderGeometry(PINT.beer[1],PINT.beer[0],PINT.beer[2],24),new THREE.MeshStandardMaterial({color:0x2b1508,roughness:.23}));liquid.name='Live pint liquid';
+  liquid.position.set(0,PINT.floor+.002+PINT.beer[2]/2,0);level.add(liquid);
+  head=new THREE.Mesh(new THREE.CylinderGeometry(PINT.beer[1]+.001,PINT.beer[1]+.0005,.012,24),new THREE.MeshStandardMaterial({color:0xe6d3b0,roughness:.78}));head.name='Live beer foam';
+  head.position.set(0,PINT.floor+.002+PINT.beer[2]+.006,0);level.add(head);height=PINT.beer[2];radius=PINT.beer[1]*.86;rimHeight=PINT.h;
  }else if(kind==='bottle'){
   if(!held){
    const bottle=pieces(group,'Brown beer bottle');bottle.lathe([[0,0],[.03,0],[.037,.005],[.038,.032],[.037,.203],[.03,.22],[.014,.254],[.013,.278],[0,.278]],0x604128,-.06);bottle.finish();
@@ -224,7 +241,7 @@ export function buildServingDrink(kind,{held=false,sealed=false}={}){
  // Where a hand takes hold (avatars/consume.js drinkGrip): a mug or cup by the outside of
  // its handle, anything else round its body, so the fingers close on the glass itself.
  group.userData.grip=kind==='draft'?{handle:JUG.barX+JUG.bar,bar:JUG.bar,height:(JUG.opening[0]+JUG.opening[1])/2,opening:JUG.opening}:kind==='coffee'?{handle:.055,height:.04}:kind==='bottle'?{radius:.03,height:.04}
-  :kind==='can'?{radius:.033,height:.06}:kind==='sake'?{radius:.029,height:.02}:{radius:kind==='awamori'?.038:.036,height:(kind==='awamori'?.085:.115)*.45};
+  :kind==='pint'?{radius:.034,height:.056,taper:Math.atan2(.0372-.031,.104)}:kind==='can'?{radius:.033,height:.06}:kind==='sake'?{radius:.029,height:.02}:{radius:kind==='awamori'?.038:.036,height:(kind==='awamori'?.085:.115)*.45};
  glass.finish();china.finish();metal.finish();group.userData.portion=1;group.userData.targetPortion=1;group.userData.consumable='drink';group.userData.rimHeight=rimHeight;group.userData.vessel='hollow';
  return {group,level,liquid,head,height,radius};
 }

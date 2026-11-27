@@ -36,6 +36,6 @@ test('a dish is cooked at its station, carried across the counter, and eaten a b
  assert.deepEqual(service.dish,{kind:'karaage',left:DISHES.karaage.bites,bites:DISHES.karaage.bites});
  assert.equal(service.drink,null,'food and drink have their own places on the table');
  let last;for(let i=0;i<DISHES.karaage.bites;i++)last=service.bite();assert.equal(last.left,0);
- assert.equal(MINATO_MENU.length,16,'everything on the wall can be ordered');
+ assert.equal(MINATO_MENU.length,17,'everything on the wall can be ordered, and Johansson’s pint, which is not on it (BEER_SERVES)');
  service.clear();
 });

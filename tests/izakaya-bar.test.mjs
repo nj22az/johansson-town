@@ -34,7 +34,7 @@ function run(service,each=()=>{},limit=90*30){
 }
 
 test('each drink comes from where it is kept, in a bartender’s order',()=>{
- const expect={draft:['rack','tap','pick'],awamori:['rack','set','shelf','pour','return','pick'],oolong:['rack','set','store','pour','return','pick'],bottle:['store','set','pour-own','pick'],can:['store'],sake:['warmer']};
+ const expect={draft:['rack','tap','pick'],awamori:['rack','set','shelf','pour','return','pick'],oolong:['rack','set','store','pour','return','pick'],pint:['rack','set','store','pour','return','pick'],bottle:['store','set','pour-own','pick'],can:['store'],sake:['warmer']};
  for(const kind of Object.keys(DRINKS)){
   const {service}=room();assert.equal(service.order(kind,IZAKAYA_PLAYER_SEATS.counter2),true,kind);
   const trail=run(service);

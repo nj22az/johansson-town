@@ -28,8 +28,21 @@ import {BUDGET} from '../edition.js';
 export const MINATO_BEER=Object.freeze({brand:'Umineko',brewer:'Johansson Brewery, Nago',from:'Sakura Trading (Sakura Shōten’s depot)',
  who:'Thao, who orders it; the counter’s regulars and the crews off the boats',
  why:'The town’s lager: the kegs and large bottles Sakura’s round brings on Tuesdays and Fridays, the can Sakura sells at ¥220.'});
+/**
+ * Who each of Minato's beers is for and why it is served as it is (nothing is random: CLAUDE.md). The mug is the house's
+ * standard; the pint is the extra, for one man.
+ */
+export const BEER_SERVES=Object.freeze({
+ draft:Object.freeze({vessel:'a frosted jokki, the thick handled mug of every izakaya in the islands',who:'the counter’s regulars, the crews off the boats, anyone thirsty after work',
+  why:'Draught lager is what an Okinawan izakaya pours, and the mug is how: it keeps the beer cold in a warm room and stands up to a kanpai. The house’s standard glass.'}),
+ pint:Object.freeze({vessel:'a nonic pint glass, 568 ml, the bulge two fingers under the rim',who:'Johansson, the Swede; now and then a ship’s officer from the north who sees it on the rack',
+  why:'Johansson drinks a dark beer slowly, the way he did in harbour pubs on his northern runs, and asked Thao for "a proper glass": she keeps one pint on the rack for him and pours it from the Umineko Black bottles the brewery’s rep left this autumn (Sakura’s poster, world/interiors/sakura-trade-posters.js). In 1997 a pint glass at a Motobu izakaya is a foreigner’s quirk, which is why there is one.'}),
+ bottle:Object.freeze({vessel:'a small glass, 180 ml, beside the 633 ml bottle',who:'pairs and tables sharing a bottle, older regulars who pour for each other',
+  why:'Pouring for one another is the custom; a small glass keeps the beer cold and the pouring going.'}),
+});
 export const DRINKS=Object.freeze({
  draft:Object.freeze({id:'draft',jp:"Umineko draught, medium mug",en:'Umineko draught, a frosted mug',price:450,sips:6,alcohol:1,pour:4.2,line:"One Umineko draught! Cold from the tap."}),
+ pint:Object.freeze({id:'pint',jp:"Umineko Black, a pint",en:'Umineko Black, a pint glass',price:500,sips:6,alcohol:1.1,pour:3.2,line:"Your pint. The black one -- I poured it slowly."}),
  bottle:Object.freeze({id:'bottle',jp:"Umineko large bottle",en:'Umineko large bottle and a small glass',price:600,sips:8,alcohol:1.4,pour:2,line:"It's a big bottle. Pour for yourself -- or I pour the first one."}),
  can:Object.freeze({id:'can',jp:"Umineko can",en:'Umineko can, 350 ml',price:300,sips:4,alcohol:.8,pour:1.2,line:"Still in the can? Straight from the can, then."}),
  awamori:Object.freeze({id:'awamori',jp:"Awamori on the rocks",en:'awamori on the rocks',price:250,sips:5,alcohol:1.6,pour:1.8,line:"Awamori. Slowly -- it is older than you think."}),
@@ -294,9 +307,10 @@ export function createBeerService({room,getNao,blocked=()=>false,bounds=SHARED_D
    * A resident's drink or dish: `kind` a menu item (or resident rice), `table` where it goes, `onServed(prop)` with what she sets
    * down. False when she is not working the room. `tag` cancels it (they have gone).
    */
-  request({kind,table,tag=null,onServed}){
+  request({kind,table,tag=null,onServed,yaw}){
    const nao=getNao();if(!menuItem(kind)||DRINKS[kind]&&!bar||!nao)return false;
-   queue.push({kind,seat:serviceFor(table,!DRINKS[kind]),tag,onServed});if(!order)start(nao);return true;
+   // (`yaw`: the way the glass's drinking side is to face, the customer's own turn: turnHeld)
+   queue.push({kind,seat:{...serviceFor(table,!DRINKS[kind]),...(Number.isFinite(yaw)?{yaw}:{})},tag,onServed});if(!order)start(nao);return true;
   },
   cancel(tag){for(let i=queue.length-1;i>=0;i--)if(queue[i].tag===tag)queue.splice(i,1);if(order&&order.tag===tag)order.cancelled=true;},
   /** One sip. Returns what is left, or null with nothing on the table. */
@@ -336,6 +350,9 @@ export function createBeerService({room,getNao,blocked=()=>false,bounds=SHARED_D
    }else if(order.phase==='leaving'){
     if(stepTo(nao,seat.route.at(-1),dt)){order.path=[...seat.route.slice(0,-1).reverse(),station()].map(p=>[...p]);order.phase='returning';u.activity='back to the counter';}
    }else if(order.phase==='placing'){
+    // (the glass turned in her fingers as she sets it down, eased, there as she lets go: izakaya-bar.js turnHeld)
+    if(glass&&DRINKS[order.kind]&&order.round.turnHeld&&Number.isFinite(seat.yaw)){const ease=x=>{x=Math.min(1,Math.max(0,x));return x*x*(3-2*x);},e0=ease(1-order.timer/1.1),e1=ease(1-(order.timer-dt)/1.1);
+     if(e0<1)order.round.turnHeld(seat.yaw,(e1-e0)/(1-e0));}
     if((order.timer-=dt)<=0){
      const to=DRINKS[order.kind]?seat.table:(seat.dish||seat.table),prop=glass?order.round.letGo(to):null;
      if(glass)finishRound();

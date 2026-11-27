@@ -39,7 +39,8 @@ for(const kind of [...Object.keys(DISHES),'rice'])test(kind+' is prepared, plate
 });
 
 test('a resident drinks first, waits for food, pays once, and only eats after placement',()=>{
- const f=fixture(),state={},ledger=createResidentLedger(()=>state),p={profile:{name:'Chin'},g:new THREE.Group()};p.g.userData={inIzakaya:true,seatHeight:.46};f.room.add(p.g);p.g.position.set(-1.9,0,-.18);
+ // (a grown-up: beer only for one of twenty or more by their recorded age, as the drinks machines sell it)
+ const f=fixture(),state={},ledger=createResidentLedger(()=>state),p={profile:{name:'Chin',age:40},g:new THREE.Group()};p.g.userData={inIzakaya:true,seatHeight:.46};f.room.add(p.g);p.g.position.set(-1.9,0,-.18);
  const venue=createVenueService({room:f.room,place:'izakaya',bar:()=>f.service,getCustomers:()=>[p],getStaff:()=>f.thao,getMinutes:()=>1140,tableFor:()=>[-1.9,.78,-.775],ledger});
  let drinkFirst=false,sippedBeforeFood=false,ate=false;
  for(let i=0;i<30*240;i++){venue.update(1/30);f.service.update(1/30);const body={x:f.thao.position.x,z:f.thao.position.z,radius:f.thao.userData.serviceRadius};separateBodies([body,{x:p.g.position.x,z:p.g.position.z,fixed:true}]);f.thao.position.x=body.x;f.thao.position.z=body.z;const r=state.residentLife.Chin.meals.izakaya;

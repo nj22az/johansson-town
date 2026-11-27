@@ -39,7 +39,8 @@ export const MINATO_BAR=Object.freeze({
   // washer under the worktop when she is back at her station. A draught mug is 0.145 m across with its handle (to +x),
   // so the mugs stand 0.15 m apart, each handle clear of the next mug, and the two rocks glasses go to the back row
   // with the tumblers.
-  slots:Object.freeze({draft:[[-1.25,-1.72],[-1.10,-1.72],[-.95,-1.72]],oolong:[[-1.26,-1.61],[-1.165,-1.61],[-1.07,-1.61]],awamori:[[-.975,-1.61],[-.88,-1.61]]}),
+  // (the third mug's place is the pint glass's: izakaya-beer.js BEER_SERVES, Johansson's black lager)
+  slots:Object.freeze({draft:[[-1.25,-1.72],[-1.10,-1.72]],pint:[[-.95,-1.72]],oolong:[[-1.26,-1.61],[-1.165,-1.61],[-1.07,-1.61]],awamori:[[-.975,-1.61],[-.88,-1.61]]}),
   tray:[-1.06,-1.665,.48,.22],
   purpose:'The night’s clean glasses, beside the prep board, where each pour starts.'}),
  // A glass stands on a ribbed mat (the pour) or the tap's grille: on the ribs' crests, never flat on a flat top.
@@ -57,7 +58,9 @@ export const MINATO_BAR=Object.freeze({
   // The compartment's floor, at her waist; everything along its front, where she reaches it through the door (open
   // to 60°, her hand on its pull all the way), standing in front of what she takes.
   shelfY:.835,
-  stock:Object.freeze({bottle:[[.06,-3.20],[.27,-3.20]],can:[[.41,-3.19]],oolong:[[.51,-3.21]]}),
+  // (one big-bottle set, and in the other's place the Umineko Black bottles the brewery's rep left this autumn, poured into a
+  // pint glass for whoever asks: izakaya-beer.js BEER_SERVES)
+  stock:Object.freeze({bottle:[[.06,-3.20]],pint:[[.27,-3.20]],can:[[.41,-3.19]],oolong:[[.51,-3.21]]}),
   // Her right side stays clear of the rear unit's corner beside the store.
   maxStandX:.52,
   purpose:'The cold store’s upper compartment: the big Umineko bottles with their chilled glasses, the cans, the oolong jug.'}),
@@ -79,6 +82,7 @@ export const BAR_ROUNDS=Object.freeze({
  draft:['rack','tap','pick','serve'],
  awamori:['rack','set','shelf','pour','return','pick','serve'],
  oolong:['rack','set','store','pour','return','pick','serve'],
+ pint:['rack','set','store','pour','return','pick','serve'],
  bottle:['store','set','pour-own','pick','serve'],
  can:['store','serve'],
  sake:['warmer','serve'],
@@ -185,7 +189,7 @@ export function buildMinatoBar(room){
  const stock=[];
  for(const [kind,spots] of Object.entries(B.store.stock))for(const [x,z] of spots){
   // The big bottle's chilled glass is empty until she pours the first one.
-  stock.push({kind,make:()=>{const g=kind==='oolong'?jug():kind==='bottle'?empty('bottle'):createDrinkProp(kind);g.name='Cold store '+kind;
+  stock.push({kind,make:()=>{const g=kind==='oolong'?jug():kind==='pint'?blackLager():kind==='bottle'?empty('bottle'):createDrinkProp(kind);g.name='Cold store '+kind;
    // The set is taken by its big bottle, not between bottle and glass.
    if(kind==='bottle'){g.userData.gripAt=[-.06,0,0];g.userData.workGrip={radius:.038,height:.12};g.userData.pourAt=[.05,g.userData.rimHeight,0];}return g;},home:[x,B.store.shelfY,z]});
  }
@@ -214,7 +218,7 @@ export function buildMinatoBar(room){
   /** Where the next one of this kind is kept, before she goes for it. */
   peek:kind=>(kind==='sake'?[warm]:stock.filter(s=>s.kind===kind)).find(s=>s.item)?.home||null,
   /** The jug back on its place in the cold store. */
-  shelve(item){const slot=stock.find(s=>s.kind==='oolong'&&!s.item);if(!slot)return false;slot.item=item;group.attach(item);item.position.set(...slot.home);item.rotation.set(0,0,0);return true;},
+  shelve(item){const slot=stock.find(s=>s.kind===(item?.userData?.stockKind||'oolong')&&!s.item);if(!slot)return false;slot.item=item;group.attach(item);item.position.set(...slot.home);item.rotation.set(0,0,0);return true;},
   /** Back at her station: the rack from the glass washer, the cold store and the warmer from behind. */
   restock(){for(const slot of [...glasses,...stock,warm])if(!slot.item&&!(slot.kind==='oolong'&&stock.includes(slot)))fill(slot);},
   /** How many of each are in their places, for tests. */
@@ -234,6 +238,16 @@ export function buildMinatoBar(room){
   dispose(){if(disposed)return;disposed=true;door.dispose();bottle.dispose();fallbackMaterial?.dispose();}};
 }
 /** Cold oolong tea in a glass jug with a lid, as a 1997 counter kept it. */
+/** A 500 ml bottle of Umineko Black (the brewery's black lager, new this autumn: world/interiors/sakura-trade-posters.js), from
+ *  the cold store, poured into a pint glass: a brown bottle with a black band for a label and a black cap. */
+function blackLager(){
+ const g=new THREE.Group();g.name='Umineko Black bottle';
+ const glass=new THREE.Mesh(new THREE.LatheGeometry([[0,0],[.029,0],[.033,.005],[.033,.15],[.026,.175],[.013,.205],[.012,.228],[0,.228]].map(([r,y])=>new THREE.Vector2(r,y)),20),new THREE.MeshStandardMaterial({color:0x4a2e1a,roughness:.3}));glass.name='Umineko Black bottle glass';
+ // (the band and the cap stand 0.6 mm off the glass: never on its surface, JSY-STD-403)
+ const band=new THREE.Mesh(new THREE.CylinderGeometry(.0336,.0336,.06,20,1,true),new THREE.MeshStandardMaterial({color:0x17130f,roughness:.6}));band.position.y=.085;band.name='Umineko Black label';
+ const cap=new THREE.Mesh(new THREE.CylinderGeometry(.0135,.0135,.008,16),new THREE.MeshStandardMaterial({color:0x111111,metalness:.5,roughness:.4}));cap.position.y=.231;cap.name='Umineko Black cap';
+ g.add(glass,band,cap);g.userData.grip={radius:.033,height:.1};g.userData.spout=[0,.228,0];g.userData.stockKind='pint';return g;
+}
 function jug(){
  const g=new THREE.Group();g.name='Oolong jug';
  const glass=new THREE.Mesh(new THREE.CylinderGeometry(.052,.056,.22,20,1,true),new THREE.MeshStandardMaterial({color:0xd8e4dc,transparent:true,opacity:.35,roughness:.1,side:THREE.DoubleSide,depthWrite:false}));glass.position.y=.11;glass.name='Oolong jug glass';

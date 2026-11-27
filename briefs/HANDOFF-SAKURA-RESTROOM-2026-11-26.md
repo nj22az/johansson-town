@@ -1782,5 +1782,161 @@ code and tests kept the old heights. None came from the z-fighting overhaul: all
   they are not in the guard: local runs here would fail on the environment. Add them if every local run is in the layout.
 - ferry-ship.js's general arrangement still calls the engine room "Low: 1.9 m clear, and tall men duck under the pipes"
   with its top at 2.8 m, pre-H1 words and height that the design book prints. Not changed.
-- The closed H1 crankcase lost the open-door scene of the owner's photographs (6o-3); if he wants it back, it belongs in the
+- The closed H1 crankcase lost the open-door scene of the owner's photographs (6o-3); if the owner wants it back, it belongs in the
   Blender model (the code's fallback still has it, under `!FERRY_H1_ENABLED`).
+
+# 27 November, evening: beer from a glass, animated in Blender (branch `drink/beer`)
+
+The owner: "How about a pint glass at the izikaya does it work?", then "Remake it follow Disney principles how should it look
+when anyone drinks beer". From `claude/dreamy-ritchie-cxufpl` at e28d51b, merged with it at 00e0c0c (Umineko). Not pushed.
+
+## The beats (everyday register; the comedy push only on the first "kaa!"; brief in `tools/blender/drink-beer-keys.py`)
+Four parts joining on one pose (C: leaning in, the right hand on the glass where it stands on the counter), so the game plays
+TAKE, then FIRST or SIP, then LET. Times (s) from each part's start, at the keys' own timing:
+- TAKE 0-1.75: still 0-0.35; the eyes to the glass 0.35 (the head 5 frames after); the reach's counter-move (the hand down and
+  back on the thigh) 0.45-0.62; the lean in and the reach on an arc 0.62-1.22; the hand slides on, closes 1.3-1.42.
+- FIRST 1.75-8.35: still to 0.2; anticipation 0.2-0.5 (a breath in, a lean in, the glass rocked 5 degrees forward on its foot's
+  front edge and slid 15 mm: the dip, 40% of the lift); the lift on an arc 0.5-1.25 (slow out, the elbow rising, sitting back);
+  contact 1.25-1.4 (the head meets it); the gulp 1.4-3.2 (the tilt following the fill, the head back, the eyes shut, three
+  swallows); off the lip 3.2-3.5 and down on an arc to his chest; "kaa!" 3.5-4.1 (brows up, the mouth open: the face's laugh;
+  the shoulders up then down; the chin up then a nod); the foam moustache wiped with the back of the left fingers from his left
+  to his right 4.0-4.6 (the hand up from his thigh in 0.6 s); the set-down 5.1-5.95 (up and back first, forward and down on
+  an arc, the tap); still from 6.35.
+- SIP 8.35-12.6: the same keys smaller and quieter: one swallow, no foam, a content breath out for the "kaa".
+- LET 12.6-14.0: the hand off the glass, back to the thigh on an arc, the body back past upright and settling.
+- Each drinks as themselves (`drink-beer.js BEER_STYLES`, by beat): gulpers (Mr Fujita, Masaru, Kai, Kōji, Ryo) quick to the
+  glass, a 35% longer draught, the head 25% further back, a bigger "kaa!"; sippers (Thao, Christina) slower to it, a draught
+  40% shorter, the head barely back, a content breath; Johansson looks at his dark beer 50% longer first, slow to the lips, a
+  long draught, a slow satisfied breath out.
+
+## The pipeline
+- `tools/drink-beer-kit.mjs` (the seated body on Minato's stool, the counter, the glass's place, each glass and how the hand
+  holds it, the beer's tilt-for-fill table from `drinking/liquid.js requiredTilt`), `tools/blender/drink-beer.py` (generated from
+  drink-can.py's rig, bake and sheet code plus the beer's parts; `--vessel mug|pint|glass`, `--sheet`, `--frames`),
+  `drink-beer-keys.py` (the brief and the keys). The beer in the Blender glass is the inside cut level in the world at the height
+  that holds what is left (bisected), the head a slab on it. Writes `src/avatars/motions/drink-beer-{mug,pint,glass}.js` (v2: new
+  face cues kaa, foam, swallow, shrug; contacts counter, hold, wipe, lean; reach paths mouthL, foot, spot, up) and
+  `tests/drink-beer-*.verify.json`.
+- `src/avatars/beer-hold.js`: the sockets (the mug by its handle's bar in the fist's hollow, the jug beyond the fingers; the pint
+  wrapped as the can, tipped by its taper; the small glass 0.3 hand lengths out on the fingertips, the hand 0.62 of the wrap).
+- `src/avatars/drink-beer.js`: the player (as the can's: the body by level weights, the wrists by the paths in the body's size;
+  then the foot on this counter where the glass stands and stood as the motion has it, the rim on this lower lip with the glass
+  tipped as far as the beer left needs, never through the counter, the back of the fingers on the upper lip); the right shoulder
+  forward 5 cm with the lean (a reach); both up on the "kaa!"; the throat squashed 3.5% on a swallow (the neck's scale, volume
+  kept); a slosh (the beer's surface a damped spring lagging the glass, `table-drink.js` fluid `surface`); a foam moustache (nine
+  blobs on the head's own surface, 2.5 mm out, wiped from his left); per-person timing (`beerWarp`, speeds eased across beats).
+  `createBeerTableDrink`: Johansson's glass at the counter (`actors.js drinkFromTable` with `animated`, which game.js sipDrink
+  passes; without it the table performance, which `tests/drinking-game.test.mjs` keeps testing on a mug; TABLE_DRINK_KINDS +pint).
+- The pint (`izakaya-serving-visuals.js PINT`, a nonic, black lager under a tan head) and Umineko Black on the menu
+  (`izakaya-beer.js DRINKS.pint`, `BEER_SERVES`: who and why for the mug, the pint and the small glass); Thao pours it as she does
+  oolong: the rack's pint glass (it takes the third mug's place), the cold store's black-lager bottle (in one big-bottle set's
+  place), poured on the mat, the bottle back (`minato-bar.js BAR_ROUNDS.pint`, `blackLager`; `izakaya-bar.js fromStore`). Not on
+  the wall's strips (Thao keeps one glass for him); MINATO_MENU is 17.
+- `tools/hand-shots.mjs --beer pint --name X`: the game's sheets (key moments, strips of 8 frames over the lift, the gulp and the
+  set-down, the third-person camera indoors).
+
+## Numbers
+- Blender: rim to lip max 5.2 mm (pint), 5.6 (mug), 7.4 (glass); the foot on the counter while there within 3.6 mm, at worst
+  0.8 mm under its top in the rock; wrists within limits; the back of the fingers 5.5-32 mm off the upper lip across the wipe.
+- Game, Johansson at the counter, all three glasses: the rim on the lip 0.0 mm over 135 frames (put right by 8.7-11.5 mm); the
+  foot within 16 mm of its place while on the counter (the rock's 15 mm slide), never under its top, lifted 2-3 mm at most;
+  the glass tipped at least what the beer needs on every frame it flows; the eyes shut for most of the draught; "kaa!"; the
+  foam on and wiped; the slosh at the tap settles under 0.5 degrees in 1.5 s; the parts join within 0.005 rad.
+- `tests/drink-beer.test.mjs`: 9 pass, 1 todo (below); in the guard list.
+- The CI guard (`node tools/ci-guard.mjs --test-concurrency=2`, before drink-beer was listed): 759 of 766, 1101 s. Six failed
+  that the branch then fixed and were re-run alone, passing: the drinking game's five (they test the table performance, which
+  `animated` now leaves to them) and the English inventory (the menu's 大ジョッキ, now "jokki"). The seventh is the published
+  runtime package (not rebuilt on a branch). The principles audit in it: as the baseline, nothing added (ease 123/154,
+  anticipation 19/141, arcs 69/145, overlap 56/146, twins 63/129, squash 0/15, volume 155/155).
+
+## Remains
+- **The right elbow letting go** (the test's todo): 0.5 s into LET it swings 0.4 rad over five frames (0.127 rad in one; its
+  speed steps 0.096 rad a frame, the limit 0.06), on the mug and the small glass, whatever the keys and the let-go easing were
+  changed to; not found yet.
+- **Other bodies at the counter:** only Johansson's arm reaches the glass where Thao sets it (the stool is 42 cm from the
+  counter's edge and the body sits 10 cm back on it); the others come 2-5 cm short, with the lean in to 32 degrees and the
+  shoulder 5 cm forward (`extraLean` finds no shortfall by the arm's length; the cause is not found). Residents keep the old
+  drink from the hand.
+- **A glass already in the hand** (residents at a venue, Johansson's small glass): built (`BEER_HELD`, animate.js) but off: fitted
+  into a venue's 3 s drink step the glass came up 41-74 mm a frame and the mug's wall went 5-13 mm into Johansson's face.
+  Venue-service's drink step would want to span the following rest step.
+- **The handle hand** (fingers through the mug's handle, the thumb on top): not made; the mug is held in the fist round its bar
+  (the fingers do go through the handle). A HANDLE shape in hand_model.py, the kit and build.js grip is next.
+- **The kanpai clink** (optional): not made.
+- The audit cannot play the counter performance (not a GESTURES move); Drink and SitDrink are unchanged (the held path is off).
+- The coordinator's addition, the can's leftover audit failures (DrinkCan, DrinkCanOpened: ease on Vy and Sverker, overlap on
+  all three since stanceStep): not started.
+- The owner has not seen any of it.
+
+# 27 November, night: the beer drink finished for every body at the counter (branch `drink/beer`)
+
+The owner: "Remake it follow Disney principles how should it look when anyone drinks beer"; "anyone" is every resident. From
+c58f5bd, merged with `claude/dreamy-ritchie-cxufpl` at 626f29a (the real Hawaii shirt, stage 3, the brand sweep, the TV). Not
+pushed. Commits: e750767 (the pop), 21b265e (every body at the counter), 609feea (residents), 4741f33 (the merge), and the sheets.
+
+## Found, and fixed at the cause
+- **The pop letting go** (0.4 rad over five frames 0.5 s into LET): two causes in the bake. The hand's way from the glass to
+  the thigh went out of the arm's reach as the body sat back, so the IK took the arm straight and bent it again in five frames;
+  and where the arm was straight `settle_roll` dropped the upper arm's roll to none and gave it back, the elbow taking it. Now
+  the way back is keyed every 0.1 s within 0.9 of the arm from the shoulder (`within_reach`), the take's counter-move goes back
+  along the thigh, and the upper arm's roll is chosen over the whole move, carried across straight frames (`settled_rolls`).
+- **Why the other bodies came short** (measured): (1) `motion.js normalizeMotion` dropped `fps`, so every widened contact in
+  `drink-beer.js` (the foot on the counter, the wrist at the glass, the lip's approach, the wipe) and the can's ring and pocket
+  for another body (`drink-can.js sizeContacts`) were empty: nothing brought another body's hand to the glass. (2) The kit
+  seated the body 10 cm back on the stool where the game slides it 10 cm forward (the animator's `root.position.z = -slide` on
+  a root the kit had turned to face +z), so Blender's counter was 20 cm further than the game's (the glass 0.58 m ahead of
+  the root, not 0.39) and the lean 0.58 rad. The test and hand-shots placed the glass the kit's way.
+- **The glass Thao sets down** was left as her hand had it, 46 degrees off; a mug would have turned round in the drinker's hand
+  in a frame. She now turns it in her fingers as she sets it down (`izakaya-bar.js turnHeld`, eased over the 1.1 s), its
+  drinking side to the customer and a mug's handle to their right; residents' requests say which way they face.
+
+## Done
+- Blender (`tools/drink-beer-kit.mjs`, `tools/blender/drink-beer{,-keys}.py`): the body forward on the stool; C re-leant for the
+  near counter (0.155 rad, its breakdowns about it); the IK's own pose kept at the lip and on the glass (evening the trunk
+  under them carried the rim 5-9 mm off); poles that keep the wrist clear of soft_wrist's ends, evened five times; the joins
+  held on one pose on both frames about each marker; the glass to the lip nearly at its drinking tilt (`('lip', -8, .025)`),
+  down from it in 0.35 s. Blender: rim to lip at most 5.4/5.6/5.2 mm (mug/pint/glass), the foot within 3 mm of its place and
+  at worst 1.8 mm under the top in the rock.
+- Game (`drink-beer.js`): a hand resting on the thigh rests on this body's own and leaves it over 18 cm; a soft reach on the
+  wrist goals (never past 97.5% of the arm); the wrist to the glass only near it; the hand's socket brought to the glass's
+  place (the standing glass jumped 5-7 mm into it); the rim onto the lip over its last 0.3 s; the hand's twist into the forearm
+  over a contact's first quarter (`bring`'s new `twist` argument, the can's unchanged); beat speeds eased over 0.15 s.
+  `beerPlan`, `beerPlanAt`, `beerDrunkAt`, `beerSipLength`.
+- **Who drinks the animated way now:** Johansson at Minato's counter (game.js, the mug, the pint), and every resident with a
+  beer at a counter stool (venue-service.js: Sverker and Tetsuo by taste, Thuan by game.js; the mug), each in their own time
+  (`BEER_STYLES`). The venue's drink step is the drink's own length (7-12 s, not 3: `mealState`'s `drinkLength`, the beer going
+  down at the lip as the motion's does); animate.js plays it once the body is set on its seat (before, the seat's lift carried
+  the glass 31 mm). Beer only for a grown-up by recorded age (`DRINKING_AGE`, as the machines): a child never gets beer
+  (Vy is 11; `izakaya-food`'s test guest is now 40).
+- Measured, first draught at the counter, 8 bodies x 3 glasses (Johansson, Thao, Mr Fujita, Sverker, Thuan, Tetsuo, Masaru,
+  Christina): the rim on the lip 0.0 mm; the foot within 15.4 mm of its place (the rock's 15 mm slide), never under the top;
+  no joint over 0.35 rad a frame, no step of speed over 0.06 rad (worst 0.057); the glass at most 25.4 mm a frame; wrists
+  within 0.05 rad of their limits. Residents through the animator (Sverker, Tetsuo, Thuan; a fresh glass and a later sip):
+  the same, set down within 2 mm of where it stood.
+- The can (`drink-can.js`): its ring and pocket weights sampled between frames, the hook eased off past the tear (the hand
+  jumped 19 mm on Vy once the weights came on). The principles audit's baseline is unchanged.
+
+## Proved
+- `tests/drink-beer.test.mjs` 11 of 11 (the todo now passes; eight bodies at the game's seat; a resident at the counter);
+  drink-can, izakaya-bar, izakaya-beer, izakaya-food, the drinking game, motion and the principles audit pass (the baseline
+  unchanged: ease 124/154 ... squash 15/15 after the merge).
+- The CI guard (`node tools/ci-guard.mjs --test-concurrency=2`, after the merge): 788 of 789 in 1685 s, no timeouts; the one
+  failure is the published runtime package (not rebuilt on a branch).
+
+## Sheets (looked at: no pop, no slide, nothing through the glass or the counter)
+- Blender: `art/characters/body-kit/review/drink-beer-{mug,pint,glass}-{front,three-quarter,side}.jpg` (the shirt, the near
+  counter).
+- Game (`node tools/hand-shots.mjs --beer pint|mug[:resident] --name X`, now at the game's seat): `drink-beer-game-{pint,mug}-
+  {johansson,thao,mr-fujita,sverker}.jpg` and a resident at the venue `drink-beer-game-mug-resident-{sverker,tetsuo}.jpg`:
+  key moments, strips of 8 over the lift, the gulp, the set-down and the let-go, the third-person camera at the "kaa!".
+
+## Remains
+- **The handle hand** (item 4): not made; the mug is held in the fist round its bar. A HANDLE shape in
+  `tools/blender/hand_model.py`, the kit and build.js grip (`HANDS`) is next.
+- **The kanpai** (optional): not made.
+- **The can's leftover audit failures** (ease on Vy and Sverker, overlap on all three): not started; unchanged in the baseline.
+- A later sip (not in the test): wrists up to 0.058 rad past their limits (Christina, Tetsuo), Thao's small glass 0.062 rad.
+- A booth's table and a standing drinker keep the drink from the hand (the counter's motion at a booth: steps up to 0.13 rad,
+  the glass 32 mm a frame; the held sip ends at the chest and blends out at 55-78 mm a frame). Johansson's small glass of the
+  bottle is not in `TABLE_DRINK_KINDS` (its prop is the bottle-and-glass set) and keeps the old sip.
+- The owner has not seen any of it.
