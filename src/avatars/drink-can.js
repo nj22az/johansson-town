@@ -92,10 +92,15 @@ function bring(avatar,side,pt,goal,w,keepWorld=true,firm=1,tag=side){
   if(last){k=Math.min(k0,firm)+(k0-Math.min(k0,firm))*last.ease;pose(last.a);kept=wristExcess(hand.quaternion,side)<.02;if(kept)best=last.a;}
   if(!kept)for(const ease of [1,.5,0]){k=Math.min(k0,firm)+(k0-Math.min(k0,firm))*ease;let least=Infinity;
    for(const a of [0,.2,-.2,.4,-.4,.7,-.7,1,-1]){pose(a);const x=wristExcess(hand.quaternion,side);if(x<least-1e-4){least=x;best=a;}if(x<1e-4)break;}
-   chosen.get(avatar)[tag]={a:best,ease};if(least<.02)break;}}
+   chosen.get(avatar)[tag]={a:best,ease};if(least<.02)break;}
+  // (and a new way taken a little at a time, not in a frame: 0.06 rad of turn about the line, and a tenth of the way between
+  // holding the hand's turn and letting it go, a frame at most)
+  if(!kept&&last){const c=chosen.get(avatar)[tag];best=last.a+Math.max(-.06,Math.min(.06,best-last.a));c.a=best;
+   c.ease=last.ease+Math.max(-.1,Math.min(.1,c.ease-last.ease));k=Math.min(k0,firm)+(k0-Math.min(k0,firm))*c.ease;}}
  pose(best);
- // (a hand turned other than it was carries its point elsewhere: the wrist moved again for it, the turn at the wrist kept)
- for(let i=0;i<2&&pt;i++){const miss=aim.clone().sub(point());if(miss.length()<2e-4)break;to.add(miss);pose(best,false);}
+ // (a hand turned other than it was carries its point elsewhere: the wrist moved again for it, the turn at the wrist kept;
+ // up to five times, so a contact lands to a fraction of a millimetre: the torn tab hangs from the finger where it tore)
+ for(let i=0;i<5&&pt;i++){const miss=aim.clone().sub(point());if(miss.length()<2e-4)break;to.add(miss);pose(best,false);}
  return d;
 }
 /** The hand's turn about the forearm's line moved into the forearm (the elbow's own twist, as the game turns it, and as

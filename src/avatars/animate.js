@@ -1102,7 +1102,9 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // from where it hung to the can held at the waist, and goes back); the tab's moments as the motion has them.
   const canPart=avatar.pixar?null:gesture?.name==='DrinkCan'?CAN_PARTS.open:gesture?.name==='DrinkCanOpened'?CAN_PARTS.drink:null;
   if(canPart){
-   const t=canPart[0]+gesture.t,w=smooth(Math.min(1,gesture.t/.45))*smooth(Math.min(1,(gesture.d-gesture.t)/.45));
+   // (blended in over 0.7 s, the motion holding the can still for its first 0.15: the can comes up from where the animator
+   // had it no faster than it goes to his mouth; out over 0.45 s, from the can settled at his waist)
+   const t=canPart[0]+gesture.t,w=smooth(Math.min(1,gesture.t/.7))*smooth(Math.min(1,(gesture.d-gesture.t)/.45));
    if(canLast<0)canLast=canPart[0]-1e-6;
    const cue=playCanDrink(avatar,s.heldProp,t,w);
    canCue={...cue,w};

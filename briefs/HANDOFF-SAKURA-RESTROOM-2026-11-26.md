@@ -558,24 +558,57 @@ might need improvement". On `drink/can` (from `claude/dreamy-ritchie-cxufpl`), n
   in the blend); each wrist from the chest in the body's size, the rim to this body's lower lip, the hook to the ring, the
   tab to this body's pocket; the elbow way remembered per contact and turned only as far as the contact is on.
 
+## Re-keyed to the animation standard (27 November, the owner: "make strict adherence to" dylantarre/animation-principles)
+Register: everyday (calm). Beats (s): reach to the ring 0.2-0.8 (anticipation 0-0.2), hook 0.8-0.93, lift 0.93-1.12, the
+give 1.12-1.22, tear 1.22-1.46, to the pocket 1.66-1.95 (anticipation 1.56-1.66), back to his side 2.16-2.97, glance
+2.2-2.45, raise 2.75-3.45 (anticipation 2.45-2.75), first pull 3.45-5.10, breath 5.35-5.58, second pull 5.72-6.05
+(anticipation 5.58-5.72) to 7.40, off the lips 7.40-7.72, "ahh" 7.72-7.86, lowering 8.06-8.66 (anticipation 7.86-8.06),
+settle to 8.98 (drinkEnd moved from 8.8). Primary: the can (the left hook in the opening); secondary: breathing (chest,
+0.006 rad, 4.8 s), a small weight shift (spine lean), the free left hand alive at his side while he drinks.
+- The opening: the can at his middle in front of the lower breastbone, tipped to the left hand, its ring turned to it; the
+  left elbow low by his side, the forearm up and across from below; the forefinger hooks the ring from his side of it,
+  the lift is the wrist bending back, a give before the tear, the tab peeled back toward him then up and out.
+- The pocket: the elbow out and forward, the hand down into it from above: in Blender the hooked fingertip is 8.7 mm from
+  the pocket (was 66 mm), the wrists within their limits.
+- Overlap: the spine and chest keyed 8 frames before each pose, the neck and head 4 (but held back till the can leaves
+  the lips, and after the eyes at the reach); each hand's turn dragged 4 frames behind its forearm off contacts; the hook
+  closes 4 frames after the hand arrives; the head turns to what the eyes look at 5 frames after them.
+- Exaggeration: head back on the first pull 20% past the old key, the second 10% (more and the can's base meets the nose
+  on the bigger heads), the breath-out nod 20%.
+- The rig: IK control turns kept in one hemisphere between keys (a hand went over the long way in a frame); a measure of
+  the hook at the pocket; the can's aluminium a mid silver-grey (its ends read as white discs).
+- The game: the drink blends in over 0.7 s (out over 0.45); the ring held through the tear (the coordinator's 75c31b7 put
+  the events after the pose; RINGW now ends at 1.34) so the torn tab hangs from the finger on every body; elbow-way
+  changes rate-limited (0.06 rad and a tenth of the hand-turn hold a frame); the re-place loop up to five passes.
+- Sheets: front and three-quarter now end with a black-silhouette row of eight story poses (from the render's alpha).
+
 ## Proved
-- `node --test tests/drink-can.test.mjs tests/open-can.test.mjs`: 14 pass (new: nothing pops, every body: no joint turns
-  more than 0.3 rad between frames at 60 fps, the can never moves 30 mm in one; the worst now 0.29 rad and 29 mm).
-- Blender: rim to lip at contact max 4.9 mm, mean 1.4 mm over 113 frames; hook to ring max 3.5 mm; right wrist within its
-  limits, left 0.08 rad past them at the pocket in Blender's own measure (within them in the game).
-- In the game, seven bodies standing and seated: the rim on the lower lip 0.0 mm at every contact frame; the arm put right
-  for the lip by up to 23 mm, the ring by up to 9 mm, the wrists from the chest by up to 79 mm (Thao), Johansson 2 mm.
-- Sheets: `art/characters/body-kit/review/drink-can-{front,three-quarter,side,opening}.jpg` (Blender),
-  `drink-can-game-johansson.jpg`, `drink-can-game-thao-seated.jpg` (the game, `tools/hand-shots.mjs --can`).
-- CI guard (`node tools/ci-guard.mjs`): 704 of 706 pass; the two that fail are the known ones (resident-guide portraits, the
-  published runtime package, which is not rebuilt on a branch).
+- `node --test tests/drink-can.test.mjs tests/open-can.test.mjs`: 14 pass (with 75c31b7's tab-in-the-fingers test).
+- Blender: rim to lip max 5.1 mm, mean 1.2 mm; hook to ring max 4.8 mm; hook to pocket max 8.7 mm; wrists within limits.
+- Game, seven bodies: rim on the lip 0.0 mm; worst correction: lip 23 mm, ring 10 mm, pocket 61 mm (Thao; Johansson 27),
+  the hands' paths 80 mm (Thao; Johansson 4); no joint over 0.29 rad a frame, the can at most 28.9 mm a frame, in the
+  lowering (8.22 s), not in the blend.
+- The principles audit (scratch script on the exported motion): anticipation 33-48% of each action on all six beats,
+  opposite to it (cos -0.68 to -0.94) on five; arcs 13-21% off the chord in the world; overshoots 2.8% (can), 6.7% (left
+  hand), 18.5% of a 38 mm head move; eyes before the head by 2 frames measured (5 by construction); holds: glance 4.3, rim
+  3.0, deep pull 7.4, "ahh" 11 mm a frame; no linear interpolation set.
+- CI guard as before the re-key: 704 of 706 (the two known).
 
 ## Remains
 - The owner has not seen any of it.
-- At the pocket the motion's hooked fingertip is 6.6 cm off the pocket on Johansson himself (up to 10.7 cm on others): the
-  game's pocket hold puts it there. Re-key the pocket in Blender so it lands there.
-- Seen from the front, the forearm crosses his face while he drinks (from his right, the can to the middle of the mouth).
-- The can's speed peaks (29 mm a frame) in the blend in, from where the animator held it.
-- Residents sip the same motion at 1.25 times its speed; glasses and bottles sit in the socket but still drink by the old
-  consumption path; the 190 g can is held and drunk as the 350 ml one is.
-- The swallow is a chin dip, not a throat; the Blender can is a stand-in in its materials.
+- Staging, by the silhouette rows: from the front the opening's story poses (0.90, 1.38, 1.95, 2.45 s) do not read in
+  black: the can and both hands are inside the body's outline (the can at his middle, as asked). From the three-quarter
+  the pocket (1.95) and the "ahh" (7.80) read; the drink's poses read from both.
+- The pocket the hand goes to is the game's pocketSpot (where the torch clips), near the placket under the collar; the
+  shirt's printed pocket is lower and further out, so in the renders the tab goes in beside it.
+- The lowering's anticipation does not go against the lowering (cos +0.48): the can rises off his lips while his head
+  nods down for the breath out; lifting it more broke the wrist limits on Thuan and made the elbow pop.
+- Arcs outside 10-20% from some cameras: the raise (three-quarter 8%), the second pull (three-quarter 4%), the lowering
+  (side 5%), the tear (front 9%), the pocket (front 24%, three-quarter 23%).
+- The drag hierarchy is in the keys, but the measured stagger (half-move times) is not consistent: the IK keeps the upper
+  arm and the hand together (dragging the forearm three frames made the can fling at 107 mm a frame).
+- In the game the opening's reach and its anticipation play inside the 0.7 s blend-in, so they are softened.
+- Squash and stretch: the faces are painted (no cheek or chin shapes, no face bones): none.
+- The 190 g can is held and its rim put on the lip at its own size; it is drunk in the same two pulls (a one-pull
+  version would need its own keys).
+- Residents sip at 1.25 times its speed; glasses and bottles still drink by the old consumption path.
