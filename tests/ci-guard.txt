@@ -174,3 +174,5 @@ stance-release.test.mjs
 # The avatars' polish: glasses clear of the hand and at the mouth (a can as the Blender sip places it), portions, the camp
 # collar's size (about 20 s).
 avatar-polish.test.mjs
+# Sleeved tops cover the shoulder and the underarm: under a short sleeve the arm is the sleeve's inside, never bare (about 3 s).
+underarm-coverage.test.mjs
