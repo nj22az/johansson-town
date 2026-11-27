@@ -166,7 +166,7 @@
   "TorchOff": {"anticipation":["Vy","Johansson","Sverker"],"arcs":["Johansson","Sverker"],"overlap":["Vy","Johansson","Sverker"]},
   "CarriedPlank": {"overlap":["Vy","Johansson","Sverker"],"twins":["Vy","Sverker"]},
   "CarryLegs": {"anticipation":["Vy","Johansson","Sverker"],"arcs":["Johansson","Sverker"],"overlap":["Vy","Johansson","Sverker"]},
-  "ReachBack": {"anticipation":["Vy","Johansson","Sverker"],"arcs":["Vy","Johansson","Sverker"]},
+  "ReachBack": {"anticipation":["Vy","Johansson","Sverker"],"arcs":["Vy","Johansson","Sverker"],"overlap":["Vy"]},
   "JawDrop": {"anticipation":["Vy","Johansson","Sverker"],"overlap":["Johansson"],"twins":["Sverker"]},
   "Facepalm": {"anticipation":["Vy","Johansson","Sverker"],"arcs":["Vy","Sverker"],"overlap":["Vy","Johansson","Sverker"]},
   "OhNo": {"anticipation":["Vy","Johansson","Sverker"],"twins":["Vy","Johansson"]},

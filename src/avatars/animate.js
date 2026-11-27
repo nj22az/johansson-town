@@ -496,7 +496,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  // off while walking, running, riding, climbing, driving, airborne, lying, kneeling, carried or sat on the floor), and each
  // arm held where the reach solver placed it (solvedNow: this frame's move placed it; pinWish: fully there; pinT: for how long).
  const history=Array.from({length:HISTORY},()=>({t:-Infinity,v:new Float32Array(JOINTS.length*3+3)}));let historyAt=0,drag=0,dragV=0,lead=0,leadV=0,rootStill=1;
- const solvedNow={L:false,R:false},pinWish={L:false,R:false},pinT={L:0,R:0},_rootAt=new THREE.Vector3();
+ const solvedNow={L:false,R:false},pinWish={L:false,R:false},pinT={L:0,R:0},pinW={L:0,R:0},pinV={L:0,R:0},_rootAt=new THREE.Vector3();
  // ---- The move's wind-up (WIND): the move it is for, how long it waits (W), its action's length (A), how far, and each
  // joint's turn the other way at full wind-up.
  const wind={g:null,W:0,A:0,a:0,turn:new Float32Array(JOINTS.length*3)},windBase=new Float32Array(JOINTS.length*3),windTry=new Float32Array(JOINTS.length*3);
@@ -893,7 +893,10 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   if(without&&drag>0&&settled()){drag=0;dragV=0;}else [drag,dragV]=follow(drag,dragV,want&&!without?1:0,6,dt);
   historyAt=(historyAt+1)%HISTORY;const H=history[historyAt],n=JOINTS.length*3;H.t=time;
   JOINTS.forEach((j,i)=>{H.v[i*3]=target[j].x;H.v[i*3+1]=target[j].y;H.v[i*3+2]=target[j].z;});H.v[n]=handWish.L;H.v[n+1]=handWish.R;H.v[n+2]=consumeW;
-  for(const side of ['L','R'])pinT[side]=pinWish[side]?pinT[side]+dt:0;
+  // (the pin comes on as before, and goes off eased: dropped at once while the arm moves, the hand's lag came back in a frame
+  // and the elbow stepped, ReachBack's end)
+  for(const side of ['L','R']){pinT[side]=pinWish[side]?pinT[side]+dt:0;const on=smooth((pinT[side]-2*LAG)/.15);
+   if(on>=pinW[side]){pinW[side]=on;pinV[side]=0;}else[pinW[side],pinV[side]]=follow(pinW[side],pinV[side],on,12,dt);}
   // (the root moving: its targets turning faster than 0.1 rad/s, well over the idle's sway, within the last half second; the
   // upper level's lag comes in quickly, never so fast that what it plays goes back in time)
   const rate=Math.max(...['hips','spine'].map(j=>{const k=JOINTS.indexOf(j)*3;return Math.hypot(H.v[k]-sample(time-.05,k,_rootAt).x,H.v[k+1]-_rootAt.y,H.v[k+2]-_rootAt.z);}))/.05;
@@ -902,7 +905,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // ago are the ones it shows; moving already, it eases into the lag instead of jumping back)
   if(rootStill===0&&lead<1&&upperStill(dt)){lead=1;leadV=0;}else [lead,leadV]=follow(lead,leadV,rootStill<.5?1:0,16,dt);
   if(drag<1e-3)return;
-  const pin={L:smooth((pinT.L-2*LAG)/.15),R:smooth((pinT.R-2*LAG)/.15)},up=LAG*lead*drag;
+  const pin=pinW,up=LAG*lead*drag;
   JOINTS.forEach((j,i)=>{const lv=DRAG_LEVEL[i];if(!lv)return;const side=lv===2?j.slice(-1):null;sample(time-up-(side?(1-pin[side])*LAG*drag:0),i*3,target[j]);});
   handWish.L=sample(time-up-2*LAG*drag,n);handWish.R=sample(time-up-2*LAG*drag,n+1);
  }
@@ -2085,7 +2088,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    case 'ReachBack':{const R=REACH_BACK,A=reachBack(g,s),named=g.ramp!==undefined,r=named?w:inOut(t,d,.6,R.out);
     const p=Math.min(t/R.reach,named?g.ramp:(d-t)/R.out,1),push=smooth((t-R.reach)/.2)*smooth((p-.8)/.2);
     const a=mix(reachBackPath(A,Math.max(0,p)),A.up.L,push),wa=smooth(p/.22);
-    toward('shoulderL',a[0],-a[1],-a[2],wa);toward('elbowL',a[3],-(a[4]||0),0,wa);toward('handL',0,0,0,wa);solvedNow.L=true;if(push>=.999)pinWish.L=true;
+    toward('shoulderL',a[0],-a[1],-a[2],wa);toward('elbowL',a[3],-(a[4]||0),0,wa);toward('handL',0,0,0,wa);solvedNow.L=true;pinWish.L=true;   // (pinned from the start: the lever is timed to the mitten, which may not come late, tests/fujitas-back-moves)
     armTo('R',[-.42,.66,-.03,-1.49],w);toward('chest',R.lean,R.twist,0,r);add('head',R.down*w,-R.twist*.9*r,0);return {eyes:[0,.85]};}
    // The torch (6f, 7a, 7d): the arm is torchArm's; the body stands easy and calm.
    case 'TorchUp':add('chest',.02*w);break;
