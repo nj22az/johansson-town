@@ -62,8 +62,8 @@
       "_cast-BFecK4nC.js"
     ]
   },
-  "_halloween-UUKQcAkU.js": {
-    "file": "halloween-UUKQcAkU.js",
+  "_halloween-oKGtkGKG.js": {
+    "file": "halloween-oKGtkGKG.js",
     "name": "halloween",
     "isDynamicEntry": true,
     "imports": [
@@ -91,15 +91,15 @@
       "_animate-CYzycYTy.js"
     ]
   },
-  "_onsen-ySrQWNNJ.js": {
-    "file": "onsen-ySrQWNNJ.js",
+  "_onsen-qmC1iDJr.js": {
+    "file": "onsen-qmC1iDJr.js",
     "name": "onsen",
     "isDynamicEntry": true,
     "imports": [
       "_compact-shops-BfunVcpj.js",
       "_fish-BxtZ7oLB.js",
       "_animate-CYzycYTy.js",
-      "_halloween-UUKQcAkU.js"
+      "_halloween-oKGtkGKG.js"
     ]
   },
   "_pixar-1FEJUwRr.js": {
@@ -114,12 +114,12 @@
     "file": "preload-helper-PPVm8Dsz.js",
     "name": "preload-helper"
   },
-  "_sakura-interior-CZABLqO8.js": {
-    "file": "sakura-interior-CZABLqO8.js",
+  "_sakura-interior-nOkHMShf.js": {
+    "file": "sakura-interior-nOkHMShf.js",
     "name": "sakura-interior",
     "isDynamicEntry": true,
     "imports": [
-      "_halloween-UUKQcAkU.js",
+      "_halloween-oKGtkGKG.js",
       "_compact-shops-BfunVcpj.js",
       "_cast-BFecK4nC.js",
       "_fish-BxtZ7oLB.js",
@@ -198,7 +198,7 @@
     ]
   },
   "src/boot.js": {
-    "file": "boot-CjpndwXs.js",
+    "file": "boot-DyaZoRBB.js",
     "name": "boot",
     "src": "src/boot.js",
     "isEntry": true,
@@ -215,7 +215,7 @@
     ]
   },
   "src/feed/mount.js": {
-    "file": "feed-DRFKQp05.js",
+    "file": "feed-BvL0RZUX.js",
     "name": "feed",
     "src": "src/feed/mount.js",
     "isEntry": true,
@@ -235,13 +235,13 @@
     ]
   },
   "src/game.js?snappy=1": {
-    "file": "game-CdqcrtB0.js",
+    "file": "game-YRDB3Gg0.js",
     "name": "game",
     "src": "src/game.js?snappy=1",
     "isDynamicEntry": true,
     "imports": [
       "_preload-helper-PPVm8Dsz.js",
-      "_halloween-UUKQcAkU.js",
+      "_halloween-oKGtkGKG.js",
       "_ferry-ship-DfhHmc7y.js",
       "_compact-shops-BfunVcpj.js",
       "_fish-BxtZ7oLB.js",
@@ -251,8 +251,8 @@
       "_animate-CYzycYTy.js",
       "_actors-0yzPKsVe.js",
       "_pixar-1FEJUwRr.js",
-      "_onsen-ySrQWNNJ.js",
-      "_sakura-interior-CZABLqO8.js",
+      "_onsen-qmC1iDJr.js",
+      "_sakura-interior-nOkHMShf.js",
       "src/world/interiors/sato-ramen.js",
       "_friendship-BH5aQ0qn.js",
       "src/world/interiors/town-hall.js",
@@ -281,14 +281,14 @@
     ]
   },
   "src/scene/scene-world.js": {
-    "file": "scene-world-BHMec4tG.js",
+    "file": "scene-world-Dr1kLkiL.js",
     "name": "scene-world",
     "src": "src/scene/scene-world.js",
     "isDynamicEntry": true,
     "imports": [
       "_preload-helper-PPVm8Dsz.js",
       "_compact-shops-BfunVcpj.js",
-      "_halloween-UUKQcAkU.js",
+      "_halloween-oKGtkGKG.js",
       "_staff-bench-CgKoYd3S.js",
       "_fish-BxtZ7oLB.js",
       "_actors-0yzPKsVe.js",
@@ -301,15 +301,15 @@
       "_hat-models-BaIWxLH1.js"
     ],
     "dynamicImports": [
-      "_sakura-interior-CZABLqO8.js",
-      "_halloween-UUKQcAkU.js",
+      "_sakura-interior-nOkHMShf.js",
+      "_halloween-oKGtkGKG.js",
       "src/world/interiors/sato-ramen.js",
       "_actors-0yzPKsVe.js",
       "_compact-shops-BfunVcpj.js",
       "_compact-shops-BfunVcpj.js",
       "_compact-shops-BfunVcpj.js",
       "_compact-shops-BfunVcpj.js",
-      "_onsen-ySrQWNNJ.js",
+      "_onsen-qmC1iDJr.js",
       "src/world/interiors/town-hall.js"
     ]
   },
@@ -323,13 +323,13 @@
     ]
   },
   "src/world/interiors/sato-ramen.js": {
-    "file": "sato-ramen-doKRWcWz.js",
+    "file": "sato-ramen-B9A2x9w_.js",
     "name": "sato-ramen",
     "src": "src/world/interiors/sato-ramen.js",
     "isDynamicEntry": true,
     "imports": [
       "_compact-shops-BfunVcpj.js",
-      "_halloween-UUKQcAkU.js",
+      "_halloween-oKGtkGKG.js",
       "_fish-BxtZ7oLB.js",
       "_staff-bench-CgKoYd3S.js",
       "_cast-BFecK4nC.js",
@@ -344,7 +344,7 @@
     ]
   },
   "src/world/interiors/town-hall.js": {
-    "file": "town-hall-BgaSzvw3.js",
+    "file": "town-hall-B7NAIMlk.js",
     "name": "town-hall",
     "src": "src/world/interiors/town-hall.js",
     "isDynamicEntry": true,
@@ -352,7 +352,7 @@
       "_compact-shops-BfunVcpj.js",
       "_fish-BxtZ7oLB.js",
       "_animate-CYzycYTy.js",
-      "_halloween-UUKQcAkU.js",
+      "_halloween-oKGtkGKG.js",
       "_staff-bench-CgKoYd3S.js",
       "_ferry-ship-DfhHmc7y.js",
       "_preload-helper-PPVm8Dsz.js",
