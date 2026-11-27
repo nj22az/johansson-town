@@ -1807,6 +1807,13 @@ pushed. Commits: e750767 (the pop), 21b265e (every body at the counter), 609feea
 - The can (`drink-can.js`): its ring and pocket weights sampled between frames, the hook eased off past the tear (the hand
   jumped 19 mm on Vy once the weights came on). The principles audit's baseline is unchanged.
 
+## Proved
+- `tests/drink-beer.test.mjs` 11 of 11 (the todo now passes; eight bodies at the game's seat; a resident at the counter);
+  drink-can, izakaya-bar, izakaya-beer, izakaya-food, the drinking game, motion and the principles audit pass (the baseline
+  unchanged: ease 124/154 ... squash 15/15 after the merge).
+- The CI guard (`node tools/ci-guard.mjs --test-concurrency=2`, after the merge): 788 of 789 in 1685 s, no timeouts; the one
+  failure is the published runtime package (not rebuilt on a branch).
+
 ## Sheets (looked at: no pop, no slide, nothing through the glass or the counter)
 - Blender: `art/characters/body-kit/review/drink-beer-{mug,pint,glass}-{front,three-quarter,side}.jpg` (the shirt, the near
   counter).
