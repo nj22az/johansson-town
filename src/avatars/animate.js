@@ -1249,15 +1249,6 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // A can bought and drunk (actors.js drinkBought): the motion over the pose so far, blended in and out (the arm comes up
   // from where it hung to the can held at the waist, and goes back); the tab's moments as the motion has them.
   const canPart=avatar.pixar?null:gesture?.name==='DrinkCan'?CAN_PARTS.open:gesture?.name==='DrinkCanOpened'?CAN_PARTS.drink:null;
-  // (the stance kept under the can, as under the story's eased moves (EASED): a loafer's hands in the pockets, an elder's
-  // behind the back, the lean. The motion blends in from it and back out to it, and the animator is in it as the move ends,
-  // so the arms neither leave it nor go back to it in a frame. This frame's ease toward its targets was made without it (and
-  // so was the last frame's, the one the move ends in): put right by what the stance adds to them, as much of it as that
-  // ease takes (k))
-  if((canPart||canLast>=0)&&!avatar.pixar&&!s.riding&&!onChair&&!s.climbing&&!moving&&(!s.pose||STORY_POSES.has(s.pose))&&!s.carrying){
-   const CAN_STANCE=['chest','shoulderL','shoulderR','elbowL','elbowR'],was=CAN_STANCE.map(j=>target[j].clone());add('chest',gait.lean*.6);if(gait.carry==='behind'||gait.carry==='pockets')carryArms(gait.carry,0,0);
-   CAN_STANCE.forEach((j,i)=>{const d=target[j].sub(was[i]).multiplyScalar(k),r=bones[j].rotation;current[j].add(d);r.set(r.x+d.x,r.y+d.y,r.z+d.z);});
-  }
   if(canPart){
    // (blended in level by level within the motion's still beat at its start, out level by level from the can settled at
    // his waist: drink-can.js levelWeights; the face and the hands' cues by the hands' level)

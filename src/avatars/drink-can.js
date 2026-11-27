@@ -30,7 +30,7 @@ export const CAN_PARTS=Object.freeze({open:[0,M.markers.drinkEnd],drink:[M.marke
 const tracks=Object.entries(M.joints).map(([name,data])=>[name,new THREE.QuaternionKeyframeTrack(name+'.quaternion',T,data).createInterpolant()]);
 const _q=new THREE.Quaternion(),_v=new THREE.Vector3(),_w=new THREE.Vector3(),_m=new THREE.Quaternion();
 const smooth=x=>{x=Math.min(1,Math.max(0,x));return x*x*(3-2*x);};
-const pockets=new WeakMap(),lips=new WeakMap(),chosen=new WeakMap();
+const pockets=new WeakMap(),lips=new WeakMap(),chosen=new WeakMap(),played=new WeakMap();
 /** The body the motion was made on (tools/blender/drink-can.py writes its name and size into `props.can.made`): the can is
  *  not drawn to a body's size, nor held in its socket in proportion, so a body of another size cannot take the can's part of
  *  the paths in its own proportion (Vy's rim came 25 mm off her lip, her hooked finger 26 mm off the ring, the can 7 mm into
@@ -83,11 +83,11 @@ function poseAt(avatar,t,w){
 
 /** The drag hierarchy (docs/ANIMATION-STANDARD.md 3.5): the root, then the chest, head and upper arms, then the forearms
  *  and hands. The move blends in and out level by level, six game frames apart (the root first both ways), not every
- *  joint in the same frame out of the stance the animator had: in, each over 0.25 s (the forearms and hands 0.3 s: the
+ *  joint in the same frame out of the stance the animator had: in, each over 0.25 s (the forearms and hands 0.32 s: the
  *  can comes from a hanging hand no faster than 30 mm a frame), all of it within the motion's still
  *  beat at its start (0.35 s, then the left hand's first key), so the opening's anticipation and the drink's are played
  *  whole; out, each over 0.45 s, from the can settled at his waist. */
-const LEVEL={spine:0,chest:1,neck:1,head:1,shoulderL:1,shoulderR:1,elbowL:2,elbowR:2,handL:2,handR:2},APART=.1,IN=.25,IN_HANDS=.3,OUT=.45,APART_OUT=.1;
+const LEVEL={spine:0,chest:1,neck:1,head:1,shoulderL:1,shoulderR:1,elbowL:2,elbowR:2,handL:2,handR:2},APART=.1,IN=.25,IN_HANDS=.32,OUT=.45,APART_OUT=.1;
 /** Each level's weight, `blend` {in: seconds since the move began, out: seconds before it ends}. */
 export function levelWeights(blend){
  return [0,1,2].map(l=>smooth((blend.in-l*APART)/(l===2?IN_HANDS:IN))*smooth((blend.out-(2-l)*APART_OUT)/OUT));
@@ -189,6 +189,8 @@ export function wristExcess(q,side){
  */
 export function playCanDrink(avatar,prop,t,w=1,blend=null){
  const cues=canCues(t),fix={lip:0,ring:0,pocket:0,R:0,L:0};
+ // (a new play of it, not the next frame: the ways the elbows took last time forgotten, so no play starts from another's)
+ const lastT=played.get(avatar);if(lastT===undefined||Math.abs(t-lastT)>.1)chosen.delete(avatar);played.set(avatar,t);
  // (blended level by level where the move says how far in and out it is; the hands' level is the contacts' weight)
  const lw=blend?levelWeights(blend):null;if(lw)w=lw[2];
  if(w<=0&&!(lw&&lw[0]>0))return {...cues,fix};
