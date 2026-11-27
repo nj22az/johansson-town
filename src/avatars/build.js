@@ -909,6 +909,19 @@ function addHair(list,recipe,m){
  }
 }
 
+/** How far into a style's hair a unit direction is (its field: above 0 under hair, below 0 bare), or null for no hair or a
+ *  ring. hairReach's own measure; the hair clip moves back along its line until its front end is under the hair by it. */
+function hairEdge(style,flip,v){
+ const spec=HAIR[style];
+ if(!spec||spec.ring)return null;
+ if(spec.field)return spec.field(v);
+ let front=spec.front;
+ if(spec.swoop)front-=spec.swoop*THREE.MathUtils.smoothstep(v.x*(flip?-1:1),-.3,.5);
+ if(spec.centre)front-=spec.centre*THREE.MathUtils.smoothstep(Math.abs(v.x),.04,.42);
+ const outFace=Math.max(.18-v.z,Math.abs(v.x)-spec.faceHalf,v.y-front);
+ const low=THREE.MathUtils.lerp(spec.side,spec.back,THREE.MathUtils.smoothstep(-v.z,-.2,.7));
+ return Math.min(outFace,v.y-low);
+}
 /**
  * How far out from a unit head's centre the hair's surface is in the direction v (hairCap's own field): the style's
  * radius where there is hair, and just outside the skin where the style leaves the head bare (a hair clip sits on it).
@@ -916,12 +929,7 @@ function addHair(list,recipe,m){
 function hairReach(style,flip,v){
  const spec=HAIR[style],skin=1.035;
  if(!spec||spec.ring)return skin;
- let front=spec.front;
- if(spec.swoop)front-=spec.swoop*THREE.MathUtils.smoothstep(v.x*(flip?-1:1),-.3,.5);
- if(spec.centre)front-=spec.centre*THREE.MathUtils.smoothstep(Math.abs(v.x),.04,.42);
- const outFace=Math.max(.18-v.z,Math.abs(v.x)-spec.faceHalf,v.y-front);
- const low=THREE.MathUtils.lerp(spec.side,spec.back,THREE.MathUtils.smoothstep(-v.z,-.2,.7));
- const f=spec.field?spec.field(v):Math.min(outFace,v.y-low);
+ const f=hairEdge(style,flip,v);
  // Curls stand proud of the radius, and a lifted style (the afro) rises off it.
  const full=spec.radiusAt?spec.radiusAt(v):spec.radius*(1+(spec.lift&&v.y>0?v.y*spec.lift:0))+(spec.bumps?.05:0)+(spec.lift?spec.lift*.25:0);
  return THREE.MathUtils.lerp(skin,Math.max(skin,full),THREE.MathUtils.smoothstep(f,-.035,.035));
@@ -1039,14 +1047,33 @@ function addHat(list,recipe,m){
    t2=surface(d.clone().add(new THREE.Vector3(0,0,e))).sub(surface(d.clone().add(new THREE.Vector3(0,0,-e)))),n=new THREE.Vector3().crossVectors(t1,t2).normalize();
    if(n.dot(p.clone().sub(new THREE.Vector3(0,head,0)))<0)n.negate();return {p,n};};
   // The bar runs from above and behind down to the heart at the front, each end on the hair.
-  const back=spot(new THREE.Vector3(side*.6,.66,.46)),front=spot(new THREE.Vector3(side*.56,.48,.68)),lift=R*.032;
+  // (Where that front end falls at the hairline (Christina's softwave, Thao's tied-back, a crop), the hair there drops
+  // away to the skin, and the slide from the full hair behind ran down through it, 17 mm under its surface on Christina:
+  // the slide is moved back along its own line, in twentieths of it and no further than half its length, until its front
+  // end is under the hair by CLIP_IN, where the hair's surface is its full round. A style that leaves the temple bare,
+  // the front end well clear of the hairline, keeps it on the skin, as before.)
+  const dB=new THREE.Vector3(side*.6,.66,.46).normalize(),dF=new THREE.Vector3(side*.56,.48,.68).normalize(),shift=dF.clone().sub(dB).multiplyScalar(.05);
+  {const f0=hairEdge(style,recipe.hair.flip,dF);
+   if(f0!==null&&f0>-CLIP_EDGE&&f0<CLIP_IN)for(let i=0,f=f0;i<10&&f<CLIP_IN;i++){const nB=dB.clone().sub(shift).normalize(),nF=dF.clone().sub(shift).normalize(),g=hairEdge(style,recipe.hair.flip,nF);
+    if(g<=f)break;dB.copy(nB);dF.copy(nF);f=g;}}
+  const back=spot(dB),front=spot(dF),lift=R*.032;
   const along=front.p.clone().sub(back.p),len=along.length();along.normalize();
   const frame=(n,dir,at,scale,geo,lean=1)=>{const up=n.clone().normalize(),fwd=dir.clone().addScaledVector(up,-dir.dot(up)).normalize(),across=new THREE.Vector3().crossVectors(up,fwd);
    const q=new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(across,up,fwd));
    // Light ink, as on the necklace: a full outline round so small a piece breaks up into dashes.
    part(list,geo,'head',c,new THREE.Matrix4().compose(at.clone().addScaledVector(up,lift*lean),q,new THREE.Vector3(...scale))).attributes.ink.array.fill(.3);};
   const barN=back.n.clone().add(front.n).normalize();
-  frame(barN,along,back.p.clone().add(front.p).multiplyScalar(.5),[R*.055,R*.03,len*.56],new THREE.SphereGeometry(1,12,6));
+  // (curved to the hair under it, as a slide is to the head: each point of the bar carried off the flat it was made on (the
+  // plane through its middle square to barN) by as far as the hair's surface under that point stands off the flat. On
+  // Christina's soft waves the hair rises off the flat along the bar and across it, and the flat bar went 8-17 mm in.)
+  const up=barN,fwd=along.clone().addScaledVector(up,-along.dot(up)).normalize(),across=new THREE.Vector3().crossVectors(up,fwd);
+  const mid=back.p.clone().add(front.p).multiplyScalar(.5),bar=new THREE.SphereGeometry(1,12,6),BP=bar.attributes.position,flat=new THREE.Vector3(),toward=new THREE.Vector3();
+  for(let i=0;i<BP.count;i++){
+   flat.copy(mid).addScaledVector(across,BP.getX(i)*R*.055).addScaledVector(fwd,BP.getZ(i)*len*.56);
+   toward.set(flat.x/H[0],(flat.y-head)/H[1],flat.z/H[2]);
+   BP.setY(i,BP.getY(i)+surface(toward).sub(flat).dot(up)/(R*.03));}
+  bar.computeVertexNormals();
+  frame(barN,along,mid,[R*.055,R*.03,len*.56],bar);
   // The heart: two round lobes and a point, flat on the hair at the bar's front end.
   const hs=R*.095,heart=new THREE.Shape();
   heart.moveTo(0,-hs*.95);heart.bezierCurveTo(-hs*.3,-hs*.68,-hs*1.05,-hs*.2,-hs*1.05,hs*.32);heart.bezierCurveTo(-hs*1.05,hs*.92,-hs*.32,hs*1.08,0,hs*.5);
@@ -1308,6 +1335,9 @@ function bottomStripes(o,bottom,swim){
  */
 const ROLL=Object.freeze({y:.52,z:.72,r:.4,scale:Object.freeze([2,.5,.6])});
 const FRINGE_ROLL=Object.freeze({bob:ROLL,long:ROLL});
+/** How far under the hair (hairEdge) the hair clip's front end lies: past hairReach's blend at the hairline (CLIP_EDGE,
+ *  0.035 either side of it), on the hair's full round. */
+const CLIP_IN=.06,CLIP_EDGE=.035;
 /** Hats worn with the hair out, not over it: nothing tucks the hair under them. */
 const HAIR_OUT_HATS=Object.freeze(['none','headband','ribbon','hairclip']);
 /** swim: false for clothes, true for swimwear, 'towel' for the bare body under a bath wrap (addTowel). */
@@ -1757,12 +1787,19 @@ function addHeadTowel(list,m,surfaces){
  const P=g.attributes.position,v=new THREE.Vector3(),q=new THREE.Vector3();
  const half=new THREE.Vector3(lx/2-rad,0,lz/2-rad);
  for(let i=0;i<P.count;i++){v.fromBufferAttribute(P,i);q.set(THREE.MathUtils.clamp(v.x,-half.x,half.x),0,THREE.MathUtils.clamp(v.z,-half.z,half.z));const d=v.clone().sub(q);if(d.lengthSq()>1e-14)d.setLength(rad);v.copy(q).add(d);P.setXYZ(i,v.x,v.y,v.z);}
- const surface=new THREE.Mesh(mergeGeometries(surfaces.map(s=>{const c=new THREE.BufferGeometry();c.setAttribute('position',s.attributes.position.clone());return c;}),false),new THREE.MeshBasicMaterial({side:THREE.DoubleSide}));
- const ray=new THREE.Raycaster(),down=new THREE.Vector3(0,-1,0),from=new THREE.Vector3(),d=.006*k;
- const ground=(x,z)=>{let top=-Infinity;for(const [ox,oz] of [[0,0],[d,0],[-d,0],[0,d],[0,-d]]){ray.set(from.set(x+ox,m.H+1,z+oz),down);const hit=ray.intersectObject(surface,false)[0];if(hit)top=Math.max(top,hit.point.y);}return top;};
+ // (each ray straight down meets only the triangles over its own spot: the head's and the hair's triangles are filed by
+ // the squares of the floor plan their outlines cover, and a ray reads its square's. The highest hit is the same as casting
+ // against every triangle, which took 0.8 s a towel on the head, at every change into the bath's clothes.)
+ const tris=[],cell=.01,files=new Map(),at=(x,z)=>Math.floor(x/cell)+':'+Math.floor(z/cell);
+ for(const s of surfaces){const Q=s.attributes.position,n=Q.count,vtx=j=>new THREE.Vector3().fromBufferAttribute(Q,j);
+  for(let j=0;j+2<n;j+=3){const t=[vtx(j),vtx(j+1),vtx(j+2)],x0=Math.min(t[0].x,t[1].x,t[2].x),x1=Math.max(t[0].x,t[1].x,t[2].x),z0=Math.min(t[0].z,t[1].z,t[2].z),z1=Math.max(t[0].z,t[1].z,t[2].z);
+   tris.push(t);for(let a=Math.floor(x0/cell);a<=Math.floor(x1/cell);a++)for(let b=Math.floor(z0/cell);b<=Math.floor(z1/cell);b++){const key=a+':'+b;if(!files.has(key))files.set(key,[]);files.get(key).push(t);}}}
+ const ray=new THREE.Ray(),down=new THREE.Vector3(0,-1,0),from=new THREE.Vector3(),hit=new THREE.Vector3(),d=.006*k;
+ const ground=(x,z)=>{let top=-Infinity;for(const [ox,oz] of [[0,0],[d,0],[-d,0],[0,d],[0,-d]]){ray.set(from.set(x+ox,m.H+1,z+oz),down);
+  for(const [a,b,c] of files.get(at(x+ox,z+oz))||[])if(ray.intersectTriangle(a,b,c,false,hit))top=Math.max(top,hit.y);}return top;};
  const cache=new Map();
  for(let i=0;i<P.count;i++){const x=P.getX(i),z=P.getZ(i)+cz,key=x.toFixed(5)+','+z.toFixed(5);if(!cache.has(key))cache.set(key,ground(x,z));P.setXYZ(i,x,cache.get(key)+gap+P.getY(i)+th/2,z);}
- surface.geometry.dispose();g.computeVertexNormals();
+ g.computeVertexNormals();
  // Folded in four, with the end of its band showing along one fold.
  const b0=-lx/2+lx*11/16,b1=-lx/2+lx*12/16;
  part(list,g,'head',p=>p.x>b0&&p.x<b1?TOWEL.band:TOWEL.colour);
@@ -1888,8 +1925,11 @@ function runningShirt(list,recipe,m,colour){
  const torsoSkin=p=>{const chest=THREE.MathUtils.smoothstep(p.y,m.hipY+m.torso*.15,m.hipY+m.torso*.55);return [['hips',1-chest],['chest',chest]];};
  part(list,shell,torsoSkin,colour);
  // The straps: from a little below the shell's edge at the front, over the shoulder between the neck and the shoulder's
- // round, to the same below the edge at the back, lying just over the shell.
- addStraps(list,vol,m,{x:Math.sin(V.strapAt)*W/2*latheRadius(vol.prof,V.straps),from:V.straps-.05,hw:.019*k,th:.003*k,gap:(V.gap+.0015)*k,colour,skin:torsoSkin});
+ // round, to the same below the edge at the back, lying just over the shell. (Their inner edge keeps the strap's own lift
+ // off the neck as built: a sturdy frame's neck is half as thick again as an arm's 1.08, and at the vest's own place the
+ // straps lay up the sides of Johansson's neck, 1 mm off it.)
+ const hw=.019*k,gap=(V.gap+.0015)*k,x=Math.max(Math.sin(V.strapAt)*W/2*latheRadius(vol.prof,V.straps),m.neckR+hw+gap);
+ addStraps(list,vol,m,{x,from:V.straps-.05,hw,th:.003*k,gap,colour,skin:torsoSkin});
 }
 /**
  * Two flat straps laid over the shoulders, `x` either side of the middle, from the height `from` up the front, over the
@@ -1927,8 +1967,9 @@ export const TENUGUI=Object.freeze({clear:.012,anchor:.72,lift:1.9,end:.42,halfW
 function tenuguiShape(recipe,m,{state='rest',direction=Math.PI,time=0}={}){
  const vol=bodyVolume(recipe,m),T=TENUGUI,W=m.width,D=m.depth,k=m.k;
  // Round the neck at a set distance from it, wherever on the shoulders' slope that is: lower behind, where the neck is nearer
- // the back, than at the sides.
- const rho=m.armR*1.08+(T.halfWidth+T.clear)*k,ringT=a=>vol.tAt(Math.min(1,rho*Math.hypot(Math.sin(a)/(W/2),Math.cos(a)/(D/2))));
+ // the back, than at the sides. (The neck as built, m.neckR: a sturdy frame's is half as thick again as an arm's 1.08, and
+ // the tenugui laid round the arm's measure went 3 mm into Johansson's neck.)
+ const rho=m.neckR+(T.halfWidth+T.clear)*k,ringT=a=>vol.tAt(Math.min(1,rho*Math.hypot(Math.sin(a)/(W/2),Math.cos(a)/(D/2))));
  const onRing=a=>vol.surf(a,ringT(a)),tA=ringT(T.anchor),xA=Math.abs(onRing(T.anchor).x);
  const down=(sx,t)=>{const x=sx*xA*(1+(tA-t)*.1),r=latheRadius(vol.prof,t);return new THREE.Vector3(x,m.hipY+t*m.torso,D/2*Math.sqrt(Math.max(0,r*r-(x/(W/2))**2)));};
  // From the right end's tip up the chest, round the back of the neck, and down to the left end's tip.
