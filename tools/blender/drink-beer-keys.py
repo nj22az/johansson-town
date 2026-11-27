@@ -191,7 +191,11 @@ body(t0 + .15, *CPOSE)
 body(t0 + .7, (-.015, 0, 0), (-.02, 0, 0), (0, 0, 0), (.02, 0, 0))      # eased back past upright
 body(t0 + 1.0, (.004, 0, 0), (.006, 0, 0), (0, 0, 0), (.03, 0, 0))      # the micro-overshoot back
 body(t0 + 1.4, *ZERO)
-GLASS += [(t0, 'on'), (t0 + .15, 'on'), (t0 + .32, 'off'), (t0 + .72, 'back'), (t0 + 1.08, 'restpast'), (t0 + 1.4, 'rest')]   # (off the glass and back, unhurried)
+# (off the glass and back, unhurried: drawn back toward him as he sits back, the elbow bending, then down onto the thigh; the
+# breakdowns between them kept within the arm's reach of the shoulder as the body leans back)
+GLASS += [(t0, 'on'), (t0 + .15, 'on'), (t0 + .22, ('reach', 'on', 'off', .4)), (t0 + .32, ('reach', 'off', 'off', 0)),
+          (t0 + .42, ('reach', 'off', 'back', .25)), (t0 + .52, ('reach', 'off', 'back', .5)), (t0 + .62, ('reach', 'off', 'back', .75)),
+          (t0 + .72, ('reach', 'back', 'back', 0)), (t0 + .9, ('reach', 'back', 'restpast', .5)), (t0 + 1.08, 'restpast'), (t0 + 1.4, 'rest')]
 POLES_R += [(t0, POLE_REACH), (t0 + .32, POLE_REACH), (t0 + 1.08, POLE_REST), (t0 + 1.4, POLE_REST)]
 cue('closeR', (t0, V['hold']['amount']), (t0 + .15, V['hold']['amount']), (t0 + .32, .12), (t0 + 1.4, .12))
 cue('hold', (t0, 1), (t0 + .14, 1), (t0 + .2, 0), (t0 + 1.4, 0))

@@ -129,10 +129,12 @@ test('the glass never goes into the face, and the wrists stay within what a wris
   assert.ok(worst<.05,`${who}, the ${vessel}: a wrist ${worst.toFixed(3)} rad past its limit (${at})`);}
 });
 
-// (todo, measured 27 November 2026: Johansson's right elbow, letting go of the mug and the small glass, swings 0.4 rad over five
-// frames (0.127 rad in one, its speed stepping by 0.096 rad a frame, the limit 0.06) 0.5 s into LET, whatever the keys and the
-// let-go's easing were changed to: the handover)
-test('nothing pops: no joint turns over between frames, its speed never jumps, the glass is never snatched',{todo:'the right elbow 0.5 s into LET (the handover)'},()=>{
+// (27 November 2026: Johansson's right elbow, letting go of the mug and the small glass, swung 0.4 rad over five frames 0.5 s
+// into LET, its speed stepping by 0.096 rad a frame. Two causes in the bake (tools/blender/drink-beer.py): the hand's way back
+// to his thigh went out of the arm's reach as he sat back, so the IK took the arm straight and bent it again in five frames; and
+// where the arm was straight the upper arm's roll was dropped to none and given back, the elbow taking it. The way back is now
+// kept within reach (within_reach) and the roll carried across the straight frames (settled_rolls).)
+test('nothing pops: no joint turns over between frames, its speed never jumps, the glass is never snatched',()=>{
  for(const vessel of ['mug','pint','glass'])for(const [who,seated] of COUNTER_BODIES.map(w=>[w,'counter'])){const {frames}=counterDrink(who,vessel);let turn=[0],glass=[0],jump=[0];
   for(let i=2;i<frames.length;i++){
    frames[i].joints.forEach((q,j)=>{const d=q.angleTo(frames[i-1].joints[j]);if(d>turn[0])turn=[d,UPPER[j],frames[i].t];

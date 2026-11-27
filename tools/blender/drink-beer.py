@@ -615,6 +615,20 @@ def between(a, b, u, bow=(0, 0, 0)):
 
 
 ON = hand_for(counter_at())
+ARM_R = (Vector(K['bones']['elbowR']) - Vector(K['bones']['shoulderR'])).length + (Vector(K['bones']['handR']) - Vector(K['bones']['elbowR'])).length
+REACH_MOST = .9
+
+
+def within_reach(m, t, most=REACH_MOST):
+    """The right hand's pose `m` with its wrist drawn in toward the shoulder (where it is at time t) to `most` of the arm's
+    length, if it is further: the arm bent, never taken straight by the IK."""
+    S = world_of('shoulderR', t).to_translation()
+    d = m.to_translation() - S
+    if d.length <= most * ARM_R:
+        return m
+    return Matrix.Translation(S + d.normalized() * most * ARM_R) @ m.to_quaternion().to_matrix().to_4x4()
+
+
 CHEST_AT = Vector((-.12, M['chestY'] + .06, .3))                              # (held up in front of his chest, pleased with it)
 LOW_AT = Vector((-.13, M['chestY'] + .02, .31))
 
@@ -625,19 +639,26 @@ def glass_pose(name, t):
     if name == 'rest':
         return rest
     if name == 'dip':
-        return moved(rest, (0, -.012, -.02))
+        # (the reach's counter-move: the hand drawn back along the thigh toward the hip, pressing a touch; not down off it, which
+        # takes an arm all but at its length at rest straight, the elbow snapping open before the reach)
+        return moved(rest, (0, -.004, -.03))
     if name == 'restpast':
-        return moved(rest, (0, -.006, .004))
+        # (settling onto the thigh: a touch down into it and back toward him, never further from the shoulder than the rest,
+        # which is all but at arm's length: an arm taken straight by the IK snaps the elbow, as below)
+        return moved(rest, (0, -.004, -.006))
     if name == 'near':
         return moved(ON, (-.02, .01, -.035))
     if name == 'mid':
-        return between(moved(rest, (0, -.012, -.02)), moved(ON, (-.02, .01, -.035)), .5, (-.02, .06, 0))
+        return between(moved(rest, (0, -.004, -.03)), moved(ON, (-.02, .01, -.035)), .5, (-.02, .06, 0))
     if name == 'on':
         return ON
     if name == 'off':
         return moved(ON, (-.025, .015, -.02))
     if name == 'back':
-        return between(moved(ON, (-.025, .015, -.02)), rest, .5, (-.02, .05, 0))
+        # (drawn back toward him on its way down, the elbow bending as the hand comes in: half way, up a little and in. The
+        # glass and the thigh are each all but at arm's length, and the halfway point between them bowed up and out took the
+        # arm straight, the elbow snapping open and shut in five frames (27 November 2026): a person brings the hand in)
+        return between(moved(ON, (-.025, .015, -.02)), rest, .5, (-.015, .03, -.07))
     if name == 'rock':
         return hand_for(counter_at(dz=.015, tip=math.radians(5)))
     if name == 'up':
@@ -655,6 +676,12 @@ def glass_pose(name, t):
         return hand_for(can_at((LOW_AT + Vector((0, .025, -.015))).lerp(SPOT, .55) + Vector((0, .035, 0)), can_turn(math.radians(2), .05)))
     if name == 'setnear':
         return hand_for(can_at(SPOT + Vector((0, .012, -.004)), UPRIGHT))
+    if isinstance(name, tuple) and name[0] == 'reach':
+        # (a breakdown on the way from one place to the next, `u` of it, drawn in to within REACH_MOST of the arm's length from
+        # the shoulder where it is then: the body leans back faster than the hand comes away from the glass, and an IK target
+        # left beyond the arm snaps it straight)
+        _, a, b, u = name
+        return within_reach(between(glass_pose(a, t), glass_pose(b, t), u), t)
     if isinstance(name, tuple) and name[0] == 'lip':
         _, deg, away = name
         tilt = tilt_for(fill_at(t)) + math.radians(3) if deg is None else math.radians(deg)
@@ -793,34 +820,61 @@ def twist_into_forearm(side, elbow, hand):
 UPPERARM = {s: (Vector(K['bones']['elbow' + s]) - Vector(K['bones']['shoulder' + s])).normalized() for s in 'RL'}
 
 
-ROLLED = {}
-
-
-def settle_roll(side, shoulder, elbow):
+def roll_of(side, shoulder, elbow):
     """The upper arm's roll about its own line, which the IK leaves to chance where the arm is near straight (and turns over
-    from one frame to the next), set as the game's arms have it: the elbow bending about its own x (forward, the hinge every
-    move of the game's bends it by) and, as the arm straightens, the upper arm not rolled at all. The arm is where it was:
-    only what the shoulder and the elbow each take of the turn about the upper arm's line changes, so the motion blends from
-    and to the game's own poses the short way, and samples between its frames without the arm wringing."""
+    from one frame to the next): (the shoulder's own roll; the roll at which the elbow bends about its own x, the hinge every
+    move of the game's bends it by, or None where the arm is straight; how far the elbow is bent, radians). Only what the
+    shoulder and the elbow each take of the turn about the upper arm's line is chosen by it: the arm stays where it is."""
     u, f = UPPERARM[side], FOREARM[side]
-    rest = -2 * math.atan2(Vector((shoulder.x, shoulder.y, shoulder.z)).dot(u), shoulder.w)     # (the shoulder's own roll, undone)
+    own = 2 * math.atan2(Vector((shoulder.x, shoulder.y, shoulder.z)).dot(u), shoulder.w)
     perp = lambda v: v - u * v.dot(u)
     d, n = perp(elbow @ f), perp(Vector((-1, 0, 0)).cross(f))                  # (the forearm, and the way a hinge bends it)
+    bend = math.asin(min(1.0, d.length))
     if n.length < 1e-6 or d.length < 1e-6:
-        a = rest
-    else:
-        hinge = math.atan2(u.dot(n.cross(d)), n.dot(d))
-        s = min(1, d.length / math.sin(.5))
-        s = s * s * (3 - 2 * s)
-        # (the way round from the one to the other kept from frame to frame, not the shorter: where the two are half a turn
-        # apart, the shorter way changes sides as the arm straightens, and the upper arm would turn over in a frame)
-        was = ROLLED.get(side)
-        diff = math.remainder(hinge - rest, math.tau)
-        if was is not None:
-            diff += math.tau * round((was - diff) / math.tau)
-        ROLLED[side] = diff
-        a = rest + diff * s
-    return shoulder @ Quaternion(u, a), Quaternion(u, -a) @ elbow
+        return own, None, bend
+    return own, own + math.atan2(u.dot(n.cross(d)), n.dot(d)), bend
+
+
+def settled_rolls(found):
+    """Each frame's roll of the upper arm (radians about its own line) from roll_of's `found` [(own, hinge, bend)], as a
+    person's arm has it: the hinge's where the elbow is bent; where the arm passes straight (the hinge undefined, and its
+    roll free: turning the upper arm about its own line moves nothing then), carried across from the roll before to the
+    roll after, eased, so the upper arm does not turn over and back in the frames the arm is straight (letting go of the
+    glass at arm's length, 27 November 2026: the shoulder's roll dropped to none and back in five frames, the elbow taking
+    it, 0.3 rad a frame); then evened over its neighbours. The way round kept from frame to frame, not the shorter."""
+    sure = lambda bend: 0.0 if bend <= .04 else 1.0 if bend >= .16 else ((bend - .04) / .12) ** 2 * (3 - 2 * ((bend - .04) / .12))
+    near = lambda a, to: a + math.tau * round((to - a) / math.tau)
+    full, conf, last = [], [], None
+    for own, hinge, bend in found:
+        c = sure(bend) if hinge is not None else 0.0
+        if c > 0:
+            hinge = near(hinge, last) if last is not None else math.remainder(hinge, math.tau)
+            last = hinge
+        full.append(hinge)
+        conf.append(c)
+    firm = [i for i, c in enumerate(conf) if c >= .999]
+    out = []
+    for i in range(len(found)):
+        before = max((j for j in firm if j <= i), default=None)
+        after = min((j for j in firm if j >= i), default=None)
+        if before is None and after is None:
+            across = 0.0
+        elif before is None or after is None or before == after:
+            across = full[before if after is None else after]
+        else:
+            x = (i - before) / (after - before)
+            across = full[before] + (near(full[after], full[before]) - full[before]) * x * x * (3 - 2 * x)
+        out.append(across if conf[i] <= 0 else across + (near(full[i], across) - across) * conf[i])
+    for _ in range(2):
+        out = [(out[max(0, i - 2)] + 4 * out[max(0, i - 1)] + 6 * a + 4 * out[min(len(out) - 1, i + 1)] + out[min(len(out) - 1, i + 2)]) / 16
+               for i, a in enumerate(out)]
+    return out
+
+
+def set_roll(side, shoulder, elbow, own, roll):
+    """The upper arm rolled to `roll` about its own line, the elbow turned back as much: the forearm where it was."""
+    a = roll - own
+    return shoulder @ Quaternion(UPPERARM[side], a), Quaternion(UPPERARM[side], -a) @ elbow
 
 
 def soft_wrist(side, q):
@@ -837,17 +891,21 @@ def soft_wrist(side, q):
 frames = range(1, F(duration) + 1)
 # The bake: every frame's pose, as the controls put it, written to the game's bones (the forearm taking its twist), and the
 # controls let go; the renders and the export are of the baked bones.
-baked, contacts = [], []
+baked, contacts, rolls = [], [], {'R': [], 'L': []}
 for f in frames:
     scene.frame_set(f)
     pose = {n: game_local(n) for n in JOINTS}
     for side in 'RL':
         pose['elbow' + side], pose['hand' + side] = twist_into_forearm(side, pose['elbow' + side], pose['hand' + side])
-        pose['shoulder' + side], pose['elbow' + side] = settle_roll(side, pose['shoulder' + side], pose['elbow' + side])
+        rolls[side].append(roll_of(side, pose['shoulder' + side], pose['elbow' + side]))
         pose['hand' + side] = soft_wrist(side, pose['hand' + side])
     baked.append(pose)
     contacts.append({c: float(rig[c]) for c in ('lip', 'mouth', 'counter', 'hold', 'wipe')})
     contacts[-1]['held'] = contacts[-1]['counter'] * contacts[-1]['hold']
+# (the upper arm's roll, chosen over the whole move: settled_rolls)
+for side in 'RL':
+    for pose, (own, _, _), roll in zip(baked, rolls[side], settled_rolls(rolls[side])):
+        pose['shoulder' + side], pose['elbow' + side] = set_roll(side, pose['shoulder' + side], pose['elbow' + side], own, roll)
 # Overlap (follow-through-overlapping: "offset secondary elements by 2-4 frames (at 24fps) per level of hierarchy"; the
 # standard's rule 5): the IK moves the upper arm and the hand together, so the forearm and the hand (the secondary level) are
 # moved LAG frames after the upper arm, both (the wrist's bend is the same, later). Where the hand holds a contact (the rim at
