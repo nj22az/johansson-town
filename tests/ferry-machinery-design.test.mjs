@@ -47,11 +47,16 @@ test('fuel is dimensioned as a duty budget and disproves the old fixed crossing/
  assert.equal(zeroLoad.enduranceDays,Infinity);
  assert.equal(f.excludes.includes('alongside'),true);
 });
-test('overhaul and route clearance remain unproven when the actual room height is too low',()=>{
+// The H1 arrangement (the owner, 31 October 2026, "Implement and push to main"; briefs/HANDOFF-FERRY-ENGINE-ROOM-H1-2026-10-31.md)
+// raised the car deck a metre so that the room is no longer too low (it was 1.9 m clear, 0.25 m over the machinery): the
+// structure's underside at +3,600 mm over the floor plates at +900 gives 2.7 m, and the main route's 2 m is met. The
+// overhaul envelope and the removal path are still unproven.
+test('the H1 room clears the main route; overhaul and the removal path remain unproven',()=>{
  const r=machineryDesignReport();
- near(r.access.nominalClearHeightM,1.9);
- near(r.access.overheadReserveM,.25);
- assert.equal(r.access.routeHeightTargetMet,false);
+ near(r.access.deckheadAboveKeelM,3.6);
+ near(r.access.nominalClearHeightM,2.7);
+ near(r.access.overheadReserveM,1.05);
+ assert.equal(r.access.routeHeightTargetMet,true);
  assert.equal(r.access.supplierOverhaulEnvelopeVerified,false);
  assert.equal(r.access.removalPathVerified,false);
  assert.equal(D.reservations.removal.liftingApplianceWLLKG,null);

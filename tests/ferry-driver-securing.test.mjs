@@ -3,23 +3,28 @@ import assert from 'node:assert/strict';
 import * as THREE from '../vendor/three.module.js';
 import {installDOM} from './fixtures.mjs';
 import {buildVehicle} from '../src/world/road-vehicles.js';
+import {FERRY_DECKS} from '../src/world/ferry-model.js';
 import {createVehicleDrivers} from '../src/people/vehicle-driver.js';
 import {crewBlocked,crewObstacleAt} from '../src/people/ferry-crew-walk.js';
 import {buildWheelSecuring} from '../src/world/ferry-vehicle-securing.js';
 import {ferryServiceFixture} from './ferry-service-fixture.mjs';
 import {QUICK_CROSSING} from '../src/world/ferry-quick-crossing.js';
 
+// The decks are the H1 arrangement's (the owner, 31 October 2026, "Implement and push to main";
+// briefs/HANDOFF-FERRY-ENGINE-ROOM-H1-2026-10-31.md): the car deck at +4,000 mm above the keel (2.1 m ship-local, was 1.1)
+// and the passenger deck at +8,400 (6.5 m, was 5.5). The car stands in the first car place, as town-traffic.js parks it.
+const CAR=FERRY_DECKS.car.y;
 for(const [kind,width,length,name] of [['car',1.62,3.9,'Chin'],['kei truck',1.48,3.4,'Tetsuo']])test(name+' steps out clear of the actual casing fittings, walks upstairs and returns to the same car',()=>{
- installDOM();const world=new THREE.Group(),ferry=new THREE.Group(),car=buildVehicle(kind,0xffffff),g=new THREE.Group();world.add(ferry,car,g);car.visible=true;car.position.set(-1.375,1.1,-1.9);
- const v={id:'car-test',driver:name,purpose:'Cargo errand',width,length,g:car},obstacles=()=>[{id:v.id,x:-1.375,z:-1.9,w:width,d:length,y:1.1,height:2}],drivers=createVehicleDrivers({people:()=>[{g,profile:{name}}]});
+ installDOM();const world=new THREE.Group(),ferry=new THREE.Group(),car=buildVehicle(kind,0xffffff),g=new THREE.Group();world.add(ferry,car,g);car.visible=true;car.position.set(-1.375,CAR,-1.9);
+ const v={id:'car-test',driver:name,purpose:'Cargo errand',width,length,g:car},obstacles=()=>[{id:v.id,x:-1.375,z:-1.9,w:width,d:length,y:CAR,height:2}],drivers=createVehicleDrivers({people:()=>[{g,profile:{name}}]});
  assert.equal(drivers.board(v),true);assert.equal(g.parent,car);assert.equal(drivers.leaveForPassenger(v,ferry,{obstacles}),true);assert.equal(g.parent,ferry);
  let sawStair=false;
  for(let i=0;i<1000&&!drivers.passengerClear(v);i++){
   const before=g.position.clone(),mode=drivers.snapshot(v).mode;drivers.update(.1);
   if(mode==='walking'){assert.ok(g.position.distanceTo(before)<=.1051);assert.equal(crewBlocked(g.position.toArray()),false);assert.equal(crewObstacleAt(g.position.toArray(),obstacles()),false);}
-  if(g.position.y>1.3&&g.position.y<5.4)sawStair=true;
+  if(g.position.y>2.3&&g.position.y<6.4)sawStair=true;
  }
- assert.equal(drivers.passengerClear(v),true,JSON.stringify(drivers.snapshot(v)));assert.ok(sawStair,'the driver climbs the actual stair');assert.equal(g.position.y,5.5);assert.equal(g.userData.inVehicle,undefined);assert.equal(g.userData.ferryPassenger,v.id);
+ assert.equal(drivers.passengerClear(v),true,JSON.stringify(drivers.snapshot(v)));assert.ok(sawStair,'the driver climbs the actual stair');assert.equal(g.position.y,6.5);assert.equal(g.userData.inVehicle,undefined);assert.equal(g.userData.ferryPassenger,v.id);
  assert.equal(drivers.returnToVehicle(v),true);for(let i=0;i<1000&&!drivers.atWheel(v);i++)drivers.update(.1);
  assert.equal(drivers.atWheel(v),true,JSON.stringify(drivers.snapshot(v)));assert.equal(g.parent,car);assert.equal(g.userData.inVehicle,v.id);assert.equal(g.userData.ferryPassenger,undefined);assert.equal(world.children.filter(o=>o===g).length,0);
  drivers.release(v,{restore:true});assert.equal(g.parent,world);assert.equal(g.userData.ferryPassenger,undefined);

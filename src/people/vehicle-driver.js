@@ -1,11 +1,14 @@
 import * as THREE from '../../vendor/three.module.js';
 import {crewRoute,stepCrewRoute,crewWalkSegment,CREW_RADIUS} from './ferry-crew-walk.js';
+import {FERRY_DECKS} from '../world/ferry-model.js';
 
 /** Borrow the existing resident, never add a second copy of their avatar. */
 export function createVehicleDrivers({people}){
  const borrowed=new Map();
  const keys=['inVehicle','ferryPassenger','indoors','socialPose','seatHeight','floorHeight','activity'];
- const passengerPoint=[-.9,5.5,-10.45];
+ // In the passenger lobby at the stair head, on the upper deck (6.5 m ship-local since the H1 arrangement, the owner's
+ // 31 October 2026 instruction: every deck over the engine room stands a metre higher; it was 5.5).
+ const passengerPoint=[-.9,FERRY_DECKS.upper.y,-10.45];
  function atWheel(v,saved){
   const g=saved.g,u=g.userData,seat=v.g.userData.driverSeat;v.g.add(g);
   g.position.set(seat.x,0,seat.z);g.rotation.set(0,Math.PI,0);g.visible=true;

@@ -5,6 +5,7 @@
  * Reservations are NOT manufacturer installation dimensions or approval evidence.
  */
 import {FERRY_MACHINERY, FERRY_HEIGHTS} from './ferry-ship.js';
+import {FERRY_H1_ENABLED,FERRY_H1} from './ferry-engine-room-plan.js';
 
 function freeze(value){
  if(value && typeof value==='object' && !Object.isFrozen(value)){
@@ -203,7 +204,9 @@ export function machineryStartingAirScreen(){
 export function machineryDesignReport(){
  const d=FERRY_MACHINERY_DESIGN,e=d.installedFiction,r=d.reservations;
  const litres=engineDisplacementLitres(e);
- const deckheadAboveKeelM=FERRY_HEIGHTS.carDeck-.2;
+ // The deckhead is the car deck's structural underside: H1 keeps a 400 mm structure zone under the car deck (+3,600 under
+ // +4,000; FERRY_H1.deckhead), the earlier arrangement allowed 0.2 m.
+ const deckheadAboveKeelM=FERRY_H1_ENABLED?FERRY_H1.deckhead:FERRY_HEIGHTS.carDeck-.2;
  const machineryTopAboveKeelM=r.physicalEnvelope.lowerEdgeAboveKeelM+r.physicalEnvelope.heightM;
  const nominalClearHeightM=deckheadAboveKeelM-FERRY_HEIGHTS.floorPlates;
  return {revision:d.revision,status:d.status,constructionRelease:false,installedFiction:e,
