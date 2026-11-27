@@ -542,7 +542,8 @@ CANKEYS = [
     (6.82, lambda t: Matrix.Translation((0, -.025 * k, .008 * k)) @ at_lip(6.68, math.radians(16), away=.06 * k, down=.04 * k)),  # anticipation: a dip, down
     (7.0, lambda t: at_lip(t, math.radians(42), away=.035 * k, down=.012 * k, side=-.04 * k)),     # breakdown: in on an arc from his right
     *pull(7.15, 8.2, 58, 93),                                                                     # the second pull: the last of it
-    *pull(8.2, 8.5, 93, 91, .05),
+    *pull(8.2, 8.5, 93, 91, .1),
+    (8.57, lambda t: at_lip(t, math.radians(88), away=.006 * k, down=0, side=-.008 * k)),                          # (it eases off them)
     (8.62, lambda t: at_lip(t, math.radians(74), away=.03 * k, down=0, side=-.055 * k)),                            # off the lips first (not tipped down against them), then down
     (8.82, lambda t: at_lip(t, math.radians(40), away=.067 * k, down=0)),                            # release: off the lip, into the "ahh"
     (8.96, lambda t: at_lip(t, math.radians(39), away=.07 * k, down=0)),                              # "ahh": held off his lips (with his head)
@@ -577,7 +578,7 @@ LOOK = [(.35, 0), (.45, .35), (1.95, .35), (2.07, .1), (2.55, .3), (3.85, .4), (
 BLINK = [(.35, 0), (4.7, 0), (4.95, 1), (6.05, 1), (6.25, 0), (7.15, 0), (7.35, 1), (8.35, 1), (8.55, 0), (11.15, 0), (11.3, 1), (11.7, 1), (11.85, 0), (13.1, 0)]
 BREATH = [(.35, 0), (6.4, 0), (6.58, .8), (6.82, 0), (8.9, 0), (9.15, 1), (9.6, .2), (10.08, 0), (11.95, 0), (12.15, .6), (12.5, 0), (13.1, 0)]
 SMILE = [(.35, 0), (2.55, .4), (3.7, 0), (8.9, 0), (9.22, 1), (10.08, .6), (10.1, 0), (12.0, 0), (12.3, .5), (13.1, .3)]
-LIPW = [(.35, 0), (4.52, 0), (4.6, 1), (6.2, 1), (6.35, 0), (7.12, 0), (7.2, 1), (8.5, 1), (8.68, 0), (10.88, 0), (11.06, 1), (11.65, 1), (11.75, 0), (13.1, 0)]
+LIPW = [(.35, 0), (4.52, 0), (4.6, 1), (6.2, 1), (6.35, 0), (7.1, 0), (7.2, 1), (8.48, 1), (8.7, 0), (10.88, 0), (11.06, 1), (11.65, 1), (11.75, 0), (13.1, 0)]
 POCKETW = [(.35, 0), (2.1, 0), (2.38, 1), (2.45, 1), (2.6, 0), (13.1, 0)]
 # (the right wrist from his own lips while the can is near them, the "ahh" too)
 MOUTHW = [(.35, 0), (3.88, 0), (4.55, 1), (9.2, 1), (9.75, 0), (10.4, 0), (11.05, 1), (11.95, 1), (12.4, 0), (13.1, 0)]
@@ -964,6 +965,11 @@ for n in UPPER:
     raw = [p[n] for p in baked]
     for pose, q, q1, w in zip(baked, evened(raw), evened(raw, (1, 2, 1)), at_lip):
         pose[n] = q.slerp(q1, w)
+# (the hands' own turns once more, two frames each side, at the lip too: the IK's hand is turned key by key, and its turn at
+# the wrist is the least even of all)
+for n in ('handR', 'handL'):
+    for pose, q in zip(baked, evened([p[n] for p in baked], (1, 4, 6, 4, 1))):
+        pose[n] = q
 for side in 'RL':                                                           # (and the wrist still within what a wrist does)
     for pose in baked:
         pose['hand' + side] = soft_wrist(side, pose['hand' + side])

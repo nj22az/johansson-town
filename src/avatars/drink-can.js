@@ -116,7 +116,7 @@ function held(avatar){
  *  off (metres). */
 function bring(avatar,side,pt,goal,w,keepWorld=true,firm=1,tag=side){
  const hand=avatar.bones['hand'+side],point=()=>pt?hand.localToWorld(pt.clone()):hand.getWorldPosition(new THREE.Vector3());
- const at=point(),off=_v.copy(goal).sub(at),d=off.length();if(d<1e-5||w<=0)return d;
+ const at=point(),off=_v.copy(goal).sub(at),d=off.length();if(w<=0)return d;   // (posed even when it is on its goal: the arm keeps the way it has, not another for a frame)
  const aim=at.clone().addScaledVector(off,w);
  const handLocal=hand.quaternion.clone(),k0=keepWorld===true?1:keepWorld===false?0:keepWorld;let k=k0;
  hand.getWorldQuaternion(_m);const keep=_m.clone(),elbow=avatar.bones['elbow'+side].getWorldPosition(new THREE.Vector3()),shoulder=avatar.bones['shoulder'+side].getWorldPosition(new THREE.Vector3());
@@ -216,7 +216,7 @@ export function playCanDrink(avatar,prop,t,w=1,blend=null){
   // (and let go of as slowly after the tear, the tab in the hook: not dropped to the wrist's own turn in the frame it tears)
   const near=side==='L'?Math.max(cues.ring,sampleTrack(M,RING_NEAR,t)):cues.ring;
   const before=ARM.map(j=>avatar.bones[j+side].quaternion.clone());
-  fix[side]=bring(avatar,side,null,hand.add(goals[side]),w,side==='R'?1:near,side==='R'?cues.lip:near*.4);
+  fix[side]=bring(avatar,side,null,hand.add(goals[side]),w,side==='R'?1:near,side==='R'?Math.max(cues.lip,sampleTrack(M,LIP_NEAR,t)):near*.4);
   // (the left, hanging or easy at his side, steadied where no contact holds it; by as much as the move is in, so it ends on the
   // animator's own arm)
   if(side==='L')steady(avatar,side,before,t,w*(1-Math.max(near,prop?.userData?.sealed?sampleTrack(M,POCKET_NEAR,t):0)));
