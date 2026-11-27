@@ -127,10 +127,10 @@ import {createAvatarJohansson,playerRecipe,playerRecipeKey} from './avatars/acto
 import {TABLE_DRINK_KINDS} from './avatars/table-drink.js';
 import {setSwingFocus} from './avatars/springs.js';
 import {createBeerService,createDrinkProp,createBiteProp,setPropPortion,DRINKS} from './people/izakaya-beer.js';
-import {DRUNK,LAGER_ALCOHOL,soberUp,wantsAnother,drink as drinkUp} from './people/drunk.js';
+import {DRUNK,soberUp,wantsAnother,drink as drinkUp} from './people/drunk.js';
 import {createShopCarry} from './interact/shop-carry.js';
 import {townAudio} from './audio/town-audio.js?snappy=1';
-import {emptyFor,canColour} from './commerce/vending-catalogue.js';
+import {emptyFor,canColour,alcoholOf} from './commerce/vending-catalogue.js';
 import {createBoughtCan} from './commerce/bought-can.js';
 import {SPECIAL_BY_NAME} from './commerce/sakura-specials.js';
 import {HOT_SNACKS} from './commerce/konbini.js';
@@ -814,7 +814,7 @@ activities=createActivities({say,onLaundry:wash=>{world.laundryWash=wash||null;}
 world.laundryWash=activities.state.coinLaundry||null;
 islandPlay=createIslandPlay({world,player,camera,activities,register:reg,aboard:()=>!current&&!!deckUnder(),getMinutes:()=>minutes,getRain:()=>weather,passTime:value=>{minutes+=value;townClock.pass(value);activities.state.clockAhead=townClock.ahead;activities.save();},place:(x,z,_y,facing=0)=>{if(current)leaveRoom();standUpAt(x,z,facing);resetInput();},veil:run=>crossThreshold(run,{chime:false}),enterNaha:()=>crossThreshold(()=>enterRoom(NAHA_ARRIVALS)),leaveNaha:()=>leaveRoom()});
 syncView();
-hands=createHands({scene,camera,say,consume:name=>{const i=activities.state.inventory.indexOf(name);if(i<0)return false;const lager=name==='Umineko lager';if(lager&&!wantsAnother(tipsy,LAGER_ALCOHOL)){say('Enough for tonight. The can goes back in your bag for tomorrow.',3);return false;}if(lager)tipsy=drinkUp(tipsy,LAGER_ALCOHOL);activities.state.inventory.splice(i,1);const left=SPECIAL_BY_NAME[name]?.cup?null:emptyFor(name);if(left)activities.state.inventory.push(left);activities.save();return true;},canColour,onDrink:name=>{if(!johansson)return;
+hands=createHands({scene,camera,say,consume:name=>{const i=activities.state.inventory.indexOf(name);if(i<0)return false;const alcohol=alcoholOf(name);if(alcohol&&!wantsAnother(tipsy,alcohol)){say('Enough for tonight. The can goes back in your bag for tomorrow.',3);return false;}if(alcohol)tipsy=drinkUp(tipsy,alcohol);activities.state.inventory.splice(i,1);const left=SPECIAL_BY_NAME[name]?.cup?null:emptyFor(name);if(left)activities.state.inventory.push(left);activities.save();return true;},canColour,onDrink:name=>{if(!johansson)return;
  // (seen from behind him, the can he bought is in his hand while he drinks it, not only in front of the first-person
  // camera: commerce/bought-can.js; the owner, 27 November 2026, "Can they still drink beer or anything from the vending machines?")
  if(thirdPerson&&johansson.ready&&name){const prop=createBoughtCan(name);prop.userData.startPortion=1;prop.userData.finishPortion=0;setPropPortion(prop,1,{immediate:true});clearTimeout(sipDrink.timer);johansson.drinkBought(prop,{seated});}

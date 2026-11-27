@@ -2,6 +2,8 @@ import * as THREE from '../../vendor/three.module.js';
 import {residentPersonality,createResidentLedger} from './resident-personalities.js';
 import {groundHeight} from '../world/layout.js?snappy=1';
 import {freeSlot} from '../world/seat-slots.js';
+import {residentVendingChoice} from '../commerce/vending-catalogue.js';
+import {drink as drinkUp} from './drunk.js';
 
 // Interpret affordances, never player callbacks: NPCs must not open the player's
 // menus, spend their money, remove quest items or trigger a journey on their behalf.
@@ -26,7 +28,9 @@ export function townAffordance(object){
  else return null;
  const cost=Number(label.match(/[¥￥]\s*(\d+)/)?.[1]||(['shop','arcade','phone'].includes(kind)?kind==='phone'?10:kind==='arcade'?100:120:0));
  const item=/newspaper|book|postcard/.test(lower)?'paper':/rice|onigiri/.test(lower)?'rice':/bun/.test(lower)?'bun':/tea/.test(lower)?'tea':/beer/.test(lower)?'beer':'can';
- return {kind,label,cost,object,item};
+ // a drinks machine: what is pressed is chosen at the machine (residentVendingChoice: never a beer for a child)
+ const vending=kind==='shop'&&/vending|buy a drink/.test(lower);
+ return {kind,label,cost,object,item,vending};
 }
 
 const POSE={read:'Read',inspect:'Use',machine:'Use',radio:'Use',post:'Use',recycle:'Use',arcade:'Use',phone:'Phone',fish:'Fish',seat:'Sit',shop:'Use'};
@@ -117,7 +121,11 @@ export function createTownActivities({getTargets,collides,getPlayerPosition=()=>
   }
   const arrived=Math.hypot(g.position.x-use.target[0],g.position.z-use.target[1])<.95;
   if(use.phase==='walking'&&arrived){
+   // At a drinks machine the can is chosen by who they are, their age and the hour (vending-catalogue.js): a beer only for
+   // a grown-up in their own evening while the machine sells it, and it counts toward their evening as a bar's does.
+   if(use.vending){use.drink=residentVendingChoice({name:person.profile.name,age:person.profile.age??null,place:base.place,minutes,tipsy:g.userData.tipsy||0});use.cost=use.drink.price;}
    if(!ledger.purchase(person.profile.name,minutes,use.transaction,use.label,use.cost)){release(person,minutes);return base;}
+   if(use.drink?.alcohol)g.userData.tipsy=drinkUp(g.userData.tipsy,use.drink.alcohol);
    use.paid=true;use.phase='using';use.deadline=minutes+use.remaining+2;g.userData.usingTownObject=true;
    if(use.kind==='seat'||use.kind==='office'&&use.object.userData.seat){
     const seat=use.slot||use.object.userData.seat;
@@ -137,7 +145,7 @@ export function createTownActivities({getTargets,collides,getPlayerPosition=()=>
    const office=use.object.userData.officeTask;
    g.userData.socialPose=office?office.pose:shopping?(use.item==='paper'?'Read':['rice','bun'].includes(use.item)?'EatStanding':'DrinkStanding'):POSE[use.kind];
    g.userData.heldItem=office?office.heldItem||null:shopping?use.item:use.kind==='phone'?'phone':use.kind==='fish'?'rod':use.kind==='read'?'paper':null;
-   if(use.remaining<=0){ledger.record(person.profile.name,minutes,office?.activity||VERB[use.kind]+' '+labelObject(use.label));release(person,minutes,35);return base;}
+   if(use.remaining<=0){ledger.record(person.profile.name,minutes,office?.activity||(use.drink?'buying a '+use.drink.inventoryName+' at the drinks machine':VERB[use.kind]+' '+labelObject(use.label)));release(person,minutes,35);return base;}
   }
   return {place:'town-activity-'+use.id,target:use.target,activity:use.phase==='walking'?'going to '+labelObject(use.label):use.object.userData.officeTask?.activity||VERB[use.kind]+' '+labelObject(use.label)};
  }

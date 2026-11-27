@@ -889,3 +889,84 @@ he is wearing the shirt outside his body".
 - **The neck's outline fades out over its last 3 cm** above where it meets the body; its sides keep theirs.
 - **Tests** (`avatar-polish`): the stand is chest cloth behind the neck and outside it (this fails on the old collar);
   the neck's foot has no outline and its sides do.
+
+# 27 November: beer in the drinks machines, the cans drawn in Python (branch `vending/beer`)
+
+The owner: "replace the generic teas and coffe we need the vending machine to sell beer and you need to use Disney art
+style and draw them in Python". From `claude/dreamy-ritchie-cxufpl` at 30f0f3b; not pushed, not on `main`. The decision is
+in `AGENTS.md` (the owner's decision of this date).
+
+## Decided, and why (the reasons are in the data: `src/commerce/vending-catalogue.js`, each can's `for`, `who`, `why`, `placed`)
+- **Out:** Harbour Tea (green tea), Dockside (canned coffee) and Sanpin (jasmine tea), the generic ones. They are
+  `RETIRED_VENDING`: a can of 'Green tea', 'Canned coffee' or 'Sanpin jasmine tea' in a saved bag still drinks, leaves its
+  empty, keeps its colour and is printed as itself in his hand (the coffee at its 190 g size). Sakura's own 'Green tea' and
+  'Canned coffee' share those bag names, and stay drinkable with them.
+- **In, the top row (at a grown-up's eye, above the children's drinks):**
+  - **Kame island lager**, 350 ml, ¥220 (Sakura's own counter price for a can of lager, so the machine is never the dearer
+    way), three columns. For Tetsuo and Erik on the bench outside Sakura of an evening, Johansson on the walk home, and
+    anybody of age on a Saturday, when Sakura is shut and the machine is the only can in town.
+  - **Jugon big draft**, the 500 ml long can (66 × 168 mm), ¥280, three columns (a long-can column holds 18 to a 350's 25).
+    For the Minato Maru's crew off the last boat at 22:20 (Ryo, Ren, Chin, Jun): forty minutes before the beer stops.
+  - **Tako black**, a dark lager, 350 ml, ¥240, two columns (it sells slower). For the men who sip slowly: Sverker, Erik,
+    Johansson.
+- **Kept, the bottom row:** J-Coffee (two columns now: the quay crew's, and what sells at night when the beer has stopped),
+  the shikuwasa soda and Ryukyu cola at a child's hand and eye (Vy, Riku), hot corn soup at the right end (red buttons).
+  Each now has its `for`, `who`, `why` and `placed` too.
+- **Whose beer:** Sakura's. Japan has granted no licence to sell alcohol from machines alone since 1973 (National Tax
+  Agency), and Sakura holds the island's only licence since Higa Liquor closed; so Minato Drinks' van loads the beer at
+  Sakura Trading's depot each morning with the rest (`VENDING_BEER_STOCK`, `VENDING_MACHINE.operator`, a line on
+  `SUPPLIERS.sakura.alcohol`), and the machine's sticker names Sakura as the seller. Found: who restocks is Minato Drinks'
+  van every morning (`VENDING_MACHINE.operator`); no account was added to `ACCOUNTS.sakura` (a test holds those to the
+  round's four drink customers).
+- **The night (checked on the web):** since 1977 the National Tax Agency has had the trade sell no alcohol from vending
+  machines from 23:00 to 05:00 (自動販売機による酒類の深夜販売の自粛指導, 昭和52年～; NTA 酒類の概況), and since 1989 every
+  alcohol machine carries its stop hours and the warning to minors (the Brewers Association of Japan's English page says the
+  same). It was the NTA's guidance from 1977, not an agreement of the 1990s; the trade's own 1990s step was the May 1995
+  resolution to take the outdoor machines away by May 2000. So: from 23:00 to 05:00 the beer buttons are dark with 販売中止
+  and the soft drinks still sell, on every machine (`VENDING_BEER_HOURS`, `beerOnSale`); the Port Terminal's indoor machine
+  keeps the same hours and would also stop with its hall, which is open round the clock (`PORT_HALL.open`).
+- **Nobody under twenty** (the 1922 act): `vendingRefusal` and `residentVendingChoice`. Residents do use the machines
+  (`people/town-activities.js`, the 'Buy a drink' affordance): the can is now chosen at the machine by who they are, their
+  age and the hour; a beer only for a grown-up in their own evening, while the machine sells it and they have room for it,
+  and it counts on their drunkenness scale as a bar's does. The player as Johansson is a grown man; the Linux edition's
+  resident play (`playingResident`) is not age-checked at the machine (it was not asked for; see Remains).
+- **Drinking it:** a machine beer counts as Sakura's can does (`game.js` consume reads `alcoholOf`: Kame .8, Tako .88,
+  Jugon 1.14 on `people/drunk.js`'s scale, "Enough for tonight" past the limit). Only the consume line and an import changed
+  in `game.js`.
+
+## Drawn (`tools/draw-vending-cans.py`, pycairo 1.29 from pip, Pillow for the WebP and the sheet)
+- Each can's wrap-around print, the front at the middle, at the proportions of the band the machine's dummy can shows
+  (0.86 of its height, π × its diameter round): 1024 × 518 for 350 ml, 1024 × 714 for the long can, in
+  `assets/graphics/vending/*.webp`; the machine's side poster `beer-poster.webp` (512 × 832, the three together at dusk,
+  the hours and the warning). The review sheet: `art/vending-cans/review/cans-sheet.jpg` (flat, as cylinders front,
+  three-quarter and back, and at the size the window shows them, ×1 and ×4).
+- **Kame** (turtle, sunset, teal and gold): sat back on the tide line, a towel round his neck, eyes shut in bliss, one
+  flipper up: "otsukare". **Jugon** (dugong, night blue and gold): leaping out of the sea under the moon, stretched from
+  fluke to snout, laughing. **Tako** (octopus, black and coral): a skipper's cap, squashed down wide, one eye winking, an arm
+  curled up to tell a tale. Logos are drawn as brush strokes (`GLYPHS`, ten letters), outlined, dropped and lit; small
+  print in IPA Gothic and Inter. The backs carry what a Japanese can of beer carries (kind, strength, contents, the
+  minors' warning, the brewer: ヨハンソン麦酒, a Johansson company by the Acme rule, the アルミ mark).
+- **The passes:** (1) Kame's logo ran off the top and the turtle's head covered it, the sun sat in the sea and the swash
+  crossed his face: the logo moved down, the turtle scaled to 0.8 under it, the sun set behind him, the English and
+  Japanese set apart. (2) A towel to say "after work" (a first one read as a bottle on his chest; redrawn under the chin
+  with its fringed end down his front), the raised flipper given a curve and two wave lines. Jugon (1) read as a dolphin
+  with stick flippers: rebuilt as a dugong's barrel with a big downturned whiskery snout; (2) the nostrils read as a
+  second face and a brow stood outside the head: removed, the eyes moved in and enlarged; (3) the near flipper swept back
+  as a paddle (it follows the leap). Tako (1) had no visible outline on the black (ink on near-black) and ran off the top:
+  a gold rim round the lettering, the figure lowered; (2) fewer, bigger suckers, the head squashed wider.
+- **Redraw:** `python3 tools/draw-vending-cans.py` (or `--only kame-lager`), then look at the sheet. Never edit the WebP.
+
+## In the game
+- `world/vending.js`: the new columns; the top band 1.5 cm taller (the long can stands 16.8 cm on its 3.4 cm lip with room
+  above; the lit header moved up the cabinet to make room, same size); the drawn prints loaded once (`withArt`) and drawn
+  into the window's label cells, the side poster's cell and the hand can's canvas, with a plain brand print until they are
+  in; the beer's button lamps a mesh of their own (`Beer buttons`, the machine's own lit material, so a story still dims
+  them) swapped whole between lit and 販売中止 (`userData.beerOnSale`); the alcohol sticker on the face (the warning, the
+  stop hours, さくら商店 as the seller). `vendingCanTexture` keeps its interface (and prints retired ids).
+- The street (`okinawa/quarters.js`, every outdoor machine) and the Port Terminal (`interiors/port-hall.js`) switch the
+  beer by the clock; the menu (`activities.js`) shows the beer's buttons 販売中止 and disabled at night and refuses them.
+- `commerce/bought-can.js`: the can in his hand is sold sealed at its column's size (the long can 1.38 × taller), and a
+  drawn print shows its middle at the same scale (its UVs, `ART_SHARE`).
+- `studio/prop-registry.js`: the three beer cans as props with their who, why and where; the machine's purpose updated.
+- Tools: `hand-shots.mjs --can … --bought "Jugon big draft"` holds the can as sold; `vending-drink-shots.mjs --machine`
+  photographs Sakura's machine at noon, 21:00 and 23:30.

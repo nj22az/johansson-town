@@ -68,7 +68,9 @@ export const SUPPLIERS=Object.freeze({
  sakura:{name:'Sakura Shōten (Sakura Trading)',owner:'Thuan',depot:'warehouse',goods:'Everyday goods: drinks, food, washing, paper goods, batteries; the town’s flowers and decorations; its stationery and office supplies; and all its beer, awamori, sake and shōchū.',
   decor:['seasonal window decorations','Tanabata bamboo and paper strips','New Year kadomatsu and shimenawa','paper lanterns and festival bunting','wreaths and table flowers','bouquets, from the buckets by the door'],
   stationery:['A4 copy paper by the ream','account ledgers and receipt books','ballpoint pens by the box','envelopes, long and square','cellophane tape and glue','exercise books and pencils'],
-  alcohol:['Umineko lager, crates and kegs','awamori, from the 180 ml bottles to the clay kame','sake for warming','shōchū for the mixes']},
+  alcohol:['Umineko lager, crates and kegs','awamori, from the 180 ml bottles to the clay kame','sake for warming','shōchū for the mixes',
+   // the beer in Minato Drinks' machines is Sakura's, under its licence (vending-catalogue.js VENDING_BEER_STOCK, 27 November 2026)
+   'Kame, Jugon and Tako cans for the drinks machines’ beer columns, loaded on Minato Drinks’ van at the depot each morning']},
 });
 
 export const ACCOUNTS=Object.freeze({

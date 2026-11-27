@@ -65,9 +65,10 @@ test('the drinks machine: a 1990s can machine’s size, its window of dummy cans
  const pool=g.getObjectByName('Vending light on the pavement');assert.equal(pool.visible,false,'no light pool by day');g.userData.night(1);assert.ok(pool.visible&&pool.material.opacity>.9,'a pool of light at night');
  const indoor=createVendingMachine({pad:false});assert.ok(!indoor.getObjectByName('Vending light on the pavement')&&!indoor.userData.parts.includes('Vending pad'),'indoors: no pad, no pavement');
  assert.ok(Math.abs(indoor.userData.top-M.size.height)<1e-9);
- // light enough for phones: a handful of meshes and a few thousand triangles, the paint in two shared 1K atlases
+ // light enough for phones: a handful of meshes and a few thousand triangles, the paint in two shared 1K atlases (the
+ // beer's buttons a mesh of their own, swapped whole for the night's 販売中止)
  let meshes=0,tris=0;g.traverse(o=>{if(o.isMesh){meshes++;tris+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;}});
- assert.ok(meshes<=7&&tris<5000,meshes+' meshes, '+tris+' triangles');
+ assert.ok(meshes<=8&&tris<5000,meshes+' meshes, '+tris+' triangles');
  const other=createVendingMachine();assert.equal(other.getObjectByName('Vending machine body').geometry,body.geometry,'machines share their geometry');
  assert.notEqual(other.getObjectByName('Vending lit panels').material,g.getObjectByName('Vending lit panels').material,'but each dims its own lights');
 });

@@ -32,6 +32,7 @@ import {buildLaneEdges} from './lane-edges.js';
 import {MAIN_ROAD} from '../main-road.js';
 import {WEST_YARD} from '../west-yard.js';
 import {createVendingMachine,vendingReady,hydrateVending,VENDING_MACHINE} from '../vending.js';
+import {beerOnSale} from '../../commerce/vending-catalogue.js';
 import {windowGlow} from '../../render/dusk.js';
 import {dessertShopOpen,BLUE_CORAL} from '../blue-coral-shop.js';
 import {higaFrontage,higaPoint} from './higa-liquor-dressing.js';
@@ -121,6 +122,8 @@ export function buildOkinawaQuarters(world,{register,onAction,shadows=false,getP
   if(materials.glow)materials.glow.emissiveIntensity=glow*.75;
   if(materials.lamp)materials.lamp.emissiveIntensity=.1+glow*1.6;
   for(const machine of vendings)machine.userData.night?.(glow);   // the drinks machines' light on the pavement
+  // their beer buttons dark from eleven at night to five in the morning (販売中止), the soft drinks still selling
+  {const beer=beerOnSale(minutes);for(const machine of vendings)if(machine.userData.beerSelling!==beer)machine.userData.beerOnSale?.(beer);}
   old.shutter.update(minutes);
   // The kissaten's way in opening or shutting: the residents' routes are searched again (game.js, neighbours.replan).
   if(higa.update(minutes))world.passagesChanged=true;

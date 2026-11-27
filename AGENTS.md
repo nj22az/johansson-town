@@ -29,6 +29,26 @@ make strict adherence to it".
   by `node tools/animation-audit.mjs --write-baseline`; `tests/animation-principles.test.mjs` holds it): a move on it does
   not comply until it comes off it.
 
+## Owner's decision — 27 November 2026: beer in the drinks machines, drawn in Python
+
+The owner: "replace the generic teas and coffe we need the vending machine to sell beer and you need to use Disney art
+style and draw them in Python".
+
+- **The line-up** (`src/commerce/vending-catalogue.js VENDING_PRODUCTS`, each with `for`, `who`, `why` and `placed`): Kame
+  island lager (350 ml, ¥220, Sakura's own counter price), Jugon big draft (the 500 ml long can, ¥280, for the crew off
+  the last boat) and Tako black (350 ml, ¥240) took the places of Harbour Tea, Dockside and Sanpin, which stay drinkable
+  from a saved bag (`RETIRED_VENDING`). J-Coffee, the shikuwasa soda, Ryukyu cola and hot corn soup stay. The beer is the
+  top row; the children's sodas are the bottom row, at their height.
+- **The beer is Sakura's** (it sells and supplies all the alcohol): Japan licenses nobody to sell alcohol from machines
+  alone, so the machines' beer is under Sakura's licence, loaded on Minato Drinks' van at Sakura Trading's depot
+  (`VENDING_BEER_STOCK`).
+- **No beer from 23:00 to 05:00** (the National Tax Agency's rule since 1977, sources in `VENDING_BEER_HOURS`): the beer
+  buttons read 販売中止 and the soft drinks still sell, outdoors and in the Port Terminal. Nobody under twenty buys beer
+  (`vendingRefusal`, `residentVendingChoice`); a machine beer counts on the drunkenness scale as a bar's does.
+- **The cans are drawn in Python** (`tools/draw-vending-cans.py`, pycairo): an original mascot each (Kame the turtle, Jugon
+  the dugong, Tako the octopus), classic hand-drawn animation's appeal in the town's own designs, hand-lettered logos; no
+  real brand and nobody else's characters. Change a can there and redraw; never edit the WebP by hand.
+
 ## Owner's decision — 26 November 2026: Johansson is drawn from the owner, in Blender
 
 The owner, with his photographs: "he is supposed to look more like me"; "shift the character from cute chibi to rugged,

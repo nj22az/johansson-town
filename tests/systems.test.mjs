@@ -50,9 +50,9 @@ test('v4 save import preserves money, inventory and quest; transactions and Tama
  const acts=createActivities({say(){},onWeather(){},onTime:value=>{if(value?.restore)minutes=value.restore;},getMinutes:()=>minutes});
  assert.equal(acts.state.yen,888);assert.equal(dom.storage.get('johansson-town-1988-v4'),initial);assert.deepEqual(acts.state.inventory,['Taman'],'the old sea bream is a taman now');assert.equal(acts.state.kenjiEscort,'walking');
  acts.action('resident','Nhung');dom.button('About Tama');assert.equal(acts.state.yen,1388);assert.equal(acts.state.quest,3);acts.action('resident','Nhung');dom.button('About Tama');assert.equal(acts.state.yen,1388);
- acts.action('vending');dom.button('Dockside Coffee · ¥120');assert.equal(acts.state.yen,1268);assert.ok(acts.state.inventory.includes('Canned coffee'));
+ acts.action('vending');dom.button('J-coffee · Black coffee · ¥120');assert.equal(acts.state.yen,1268);assert.ok(acts.state.inventory.includes('J-Coffee'));
  const restored=JSON.parse(dom.storage.get('johansson-town-1988-v5'));assert.equal(restored.quest,3);assert.equal(restored.yen,1268);assert.ok(restored.visited.includes('office'));
- acts.state.yen=0;acts.action('vending');dom.button('Harbour Tea · Green tea · ¥120');assert.equal(acts.state.yen,0);assert.ok(!acts.state.inventory.includes('Green tea'));
+ acts.state.yen=0;acts.action('vending');dom.button('Kame · Island lager · ¥220');assert.equal(acts.state.yen,0);assert.ok(!acts.state.inventory.includes('Kame lager'));
 });
 test('every resident has several authored subjects and schedules retain all outdoor residents',()=>{
  const {world}=build(),player=new THREE.Group();player.position.set(0,0,30);const state={inventory:[],quest:0};const ai=createCastAI({world,player,state:()=>state,paused:()=>false,collides:(x,z,r)=>townBoundsBlocked(x,z,r)||world.colliders.some(c=>circleHitsRect(x,z,r,c))});
