@@ -474,7 +474,7 @@ BODY = [
 # (the drag: the root moves first and the hands last. Each pose's spine and chest are keyed eight frames (0.27 s) before
 # the hands reach theirs and its neck and head four (0.13 s): the body starts each move and settles first, the head
 # follows, the arm and the can after. The first and last poses of each part stay where they are.)
-LEAD = {'spine': 8 / FPS, 'chest': 8 / FPS, 'neck': 4 / FPS, 'head': 4 / FPS}
+LEAD = {'spine': 4 / FPS, 'chest': 0.0, 'neck': 0.0, 'head': 0.0}         # (the root first; chest, head and upper arms with the pose)
 FIXED = (0.0, 8.98, 9.0, 12.0)
 # (but off the can the can goes first: the head comes down from a pull only as the can leaves the lips, or the face would
 # come into the can's base, and holds the "ahh" with it; and the head looks down at the can coming up only after the eyes
@@ -536,10 +536,10 @@ CANKEYS = [
     (5.35, lambda t: at_lip(t, math.radians(32), away=.03 * k, down=.01 * k)),                       # release (a beat: not snatched away)
     (5.58, lambda t: at_lip(t, math.radians(18), away=.06 * k, down=.04 * k)),                       # a breath
     (5.72, lambda t: Matrix.Translation((0, -.025 * k, .008 * k)) @ at_lip(5.58, math.radians(16), away=.06 * k, down=.04 * k)),  # anticipation: a dip, down
-    (5.90, lambda t: at_lip(t, math.radians(42), away=.035 * k, down=.012 * k, side=-.022 * k)),    # breakdown: in on an arc from his right
+    (5.90, lambda t: at_lip(t, math.radians(42), away=.035 * k, down=.012 * k, side=-.04 * k)),     # breakdown: in on an arc from his right
     *pull(6.05, 7.10, 58, 93),                                                                     # the second pull: the last of it
     *pull(7.10, 7.40, 93, 91, .05),
-    (7.52, lambda t: at_lip(t, math.radians(76), away=.026 * k, down=0)),                            # off the lips first (not tipped down against them), then down
+    (7.52, lambda t: at_lip(t, math.radians(76), away=.026 * k, down=0, side=-.03 * k)),                            # off the lips first (not tipped down against them), then down
     (7.72, lambda t: at_lip(t, math.radians(40), away=.068 * k, down=0)),                            # release: off the lip, into the "ahh"
     (7.86, lambda t: at_lip(t, math.radians(39), away=.07 * k, down=0)),                              # "ahh": held off his lips (with his head)
     (8.06, lambda t: at_lip(t, math.radians(36), away=.08 * k, down=-.02 * k)),                      # anticipation: a touch up
@@ -684,7 +684,7 @@ REST = lambda dx=0.0, dy=0.0, dz=0.0: Matrix.Translation(Vector(LEFT_REST) + Vec
 MID = lambda a, b, u, off: Vector(a).lerp(Vector(b), u) + Vector(off) * k
 LEFT = [
     (0.00, lambda t: REST()),
-    (0.20, lambda t: REST(.012, -.015, -.02)),                                                                             # anticipation: drops and draws back
+    (0.20, lambda t: REST(.016, .004, -.024)),                                                                             # anticipation: out and back (not down: the arm would go straight)
     (0.45, lambda t: left_for(MID(LEFT_REST, ring_at(.8, 0), .5, (.05, -.035, -.01)), over(ring_at(t, 0), .2))),            # breakdown: out and under, the arc
     (0.68, lambda t: left_for(Vector(ring_at(t, 0)) + Vector((.03 * k, -.02 * k, .01 * k)), over(ring_at(t, 0), .3))),      # coming up to it
     (0.80, lambda t: left_for(Vector(ring_at(t, 0)) + Vector((0, -.002 * k, 0)), over(ring_at(t, 0), .45))),                # the forefinger under the ring
@@ -700,8 +700,8 @@ LEFT = [
     (1.95, lambda t: left_for(Vector(pocket(t)) + Vector((0, -.002 * k, .003 * k)), over(pocket(t), 1.1))),              # at its mouth
     (2.02, lambda t: left_for(Vector(pocket(t)) + Vector((0, -.008 * k, .002 * k)), over(pocket(t), 1.1))),              # in it
     (2.16, lambda t: left_for(Vector(pocket(t)) + Vector((.01 * k, .025 * k, .02 * k)), over(pocket(t), .9))),           # out of it, up (anticipation of the way down)
-    (2.47, lambda t: REST(.0015, -.003, -.003)),                                                                            # down past where it hangs
-    (2.97, lambda t: REST()),                                                                                              # settles, long and soft
+    (2.55, lambda t: REST(.0015, -.003, -.003)),                                                                            # down past where it hangs
+    (3.05, lambda t: REST()),                                                                                              # settles, long and soft
     # (while he drinks, alive and second to the can: a little out from his side as the right arm goes up, easy while he
     # swallows, a little lift with the breath, back as the can comes down)
     (3.35, lambda t: REST(.016, .01, -.008)),
@@ -912,14 +912,14 @@ for f in frames:
 # it starts after the arm and goes on after the arm has stopped; not while it holds a contact (the rim at the lip, the
 # finger on the ring, the tab at the pocket), where the turn is what puts it there.
 DRAG = 4
-# (the forearm is not dragged behind the upper arm: tried, three frames, and the hand's paths lost their arcs, the can
-# flung at 107 mm a frame; the IK keeps the upper arm and the hand together)
+# (and the forearm after the upper arm: the elbow's turn half of the way to where it was three frames before, off contacts.
+# All of three frames made the hand's paths lose their arcs and the can fling at 107 mm a frame.)
 for side, held_by in (('R', ('lip', 'mouth')), ('L', ('ring', 'pocket'))):
-    for part, lag in (('hand', DRAG),):
+    for part, lag, much in (('elbow', 3, .5), ('hand', DRAG, 1.0)):
         late = [p[part + side].copy() for p in baked]
         for i, f in enumerate(frames):
             free = 1 - max(contacts[i][c] for c in held_by)
-            baked[i][part + side] = late[i].slerp(late[max(0, i - lag)], max(0.0, min(1.0, free)))
+            baked[i][part + side] = late[i].slerp(late[max(0, i - lag)], much * max(0.0, min(1.0, free)))
 for pb in P:
     for c in pb.constraints:
         if c.type in ('IK', 'COPY_ROTATION'):

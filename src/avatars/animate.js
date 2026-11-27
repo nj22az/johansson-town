@@ -1106,7 +1106,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    // had it no faster than it goes to his mouth; out over 0.45 s, from the can settled at his waist)
    const t=canPart[0]+gesture.t,w=smooth(Math.min(1,gesture.t/.7))*smooth(Math.min(1,(gesture.d-gesture.t)/.45));
    if(canLast<0)canLast=canPart[0]-1e-6;
-   const cue=playCanDrink(avatar,s.heldProp,t,w);
+   const cue=playCanDrink(avatar,s.heldProp,t,w,{in:gesture.t,out:gesture.d-gesture.t});
    canCue={...cue,w};
    // (the tab's moments once this frame's pose is made: torn off where the hooked finger holds the ring now)
    for(const e of canEvents(canLast,t)){if(e==='tabOff')tearTab(s.heldProp,bones.handL);else if(e==='tabPocketed')pocketTab(s.heldProp);}

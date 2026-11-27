@@ -54,12 +54,21 @@ function pathAt(data,t){
  let lo=0,hi=T.length-1;while(hi-lo>1){const mid=(lo+hi)>>1;if(T[mid]<=t)lo=mid;else hi=mid;}
  return new THREE.Vector3().fromArray(data,lo*3).lerp(new THREE.Vector3().fromArray(data,hi*3),(t-T[lo])/(T[hi]-T[lo]));
 }
-/** The motion's joints at time t over the pose the bones have, by `w` (0 the animator's own, 1 the motion's). */
+/** The motion's joints at time t over the pose the bones have, by `w` (0 the animator's own, 1 the motion's): a number, or
+ *  each joint's own (levelWeights). */
 function poseAt(avatar,t,w){
- for(const [name,track] of tracks){const b=avatar.bones[name];if(!b)continue;_q.fromArray(track.evaluate(Math.max(0,Math.min(END,t))));b.quaternion.slerp(_q,w);}
+ for(const [name,track] of tracks){const b=avatar.bones[name];if(!b)continue;_q.fromArray(track.evaluate(Math.max(0,Math.min(END,t))));b.quaternion.slerp(_q,typeof w==='number'?w:w[LEVEL[name]]);}
  avatar.root.updateMatrixWorld(true);
 }
 
+/** The drag hierarchy (docs/ANIMATION-STANDARD.md 3.5): the root, then the chest, head and upper arms, then the forearms
+ *  and hands. The move blends in and out level by level, six game frames apart (the root first both ways), not every
+ *  joint in the same frame out of the stance the animator had. */
+const LEVEL={spine:0,chest:1,neck:1,head:1,shoulderL:1,shoulderR:1,elbowL:2,elbowR:2,handL:2,handR:2},APART=.1,IN=.7,OUT=.45;
+/** Each level's weight, `blend` {in: seconds since the move began, out: seconds before it ends}. */
+export function levelWeights(blend){
+ return [0,1,2].map(l=>smooth((blend.in-l*APART)/IN)*smooth((blend.out-(2-l)*APART)/OUT));
+}
 /** The bones the motion turns, as they are now: a function that puts them back. */
 function held(avatar){
  const was=tracks.map(([name])=>[avatar.bones[name],avatar.bones[name]?.quaternion.clone()]).filter(([b])=>b);
@@ -128,15 +137,17 @@ export function wristExcess(q,side){
  * up as animated; the can in the right hand's socket; the rim brought onto this body's lower lip, and the hooked forefinger
  * onto the ring, where the motion keeps them. Returns the cues (canCues) and how far each contact was put right (`fix`).
  */
-export function playCanDrink(avatar,prop,t,w=1){
+export function playCanDrink(avatar,prop,t,w=1,blend=null){
  const cues=canCues(t),fix={lip:0,ring:0,pocket:0,R:0,L:0};
- if(w<=0)return {...cues,fix};
+ // (blended level by level where the move says how far in and out it is; the hands' level is the contacts' weight)
+ const lw=blend?levelWeights(blend):null;if(lw)w=lw[2];
+ if(w<=0&&!(lw&&lw[0]>0))return {...cues,fix};
  // each wrist where the animated body's was, in this body's size, from its chest (a narrower body's arms, turned as his
  // were, crossed in front of it): the arm put there, the hand's turn kept
  // (while it blends in or out, what the motion's own pose would be put right by, by as much as it is blended: an arm half
  // way from the animator's pose is not pulled to where the motion's whole pose would have it, its elbow flipped over)
  const goals={};
- const back=M.reach&&w<1?held(avatar):null;poseAt(avatar,t,M.reach?1:w);
+ const back=M.reach&&(w<1||lw&&lw[0]<1)?held(avatar):null;poseAt(avatar,t,M.reach?1:lw||w);
  if(M.reach){
   const chest=avatar.bones.chest,k=avatar.measure.k;
   // (and the right one, as it goes to the mouth, from this body's lower lip: a bigger head's is further out)
@@ -144,7 +155,7 @@ export function playCanDrink(avatar,prop,t,w=1){
   for(const side of ['R','L']){const goal=chest.localToWorld(pathAt(M.reach[side],t).multiplyScalar(k));
    if(side==='R'&&mouth>0)goal.lerp(avatar.bones.head.localToWorld(pathAt(M.reach.mouth,t).multiplyScalar(k).add(lip)),mouth);
    goals[side]=goal.sub(avatar.bones['hand'+side].getWorldPosition(_v));}}
- if(back){back();poseAt(avatar,t,w);}
+ if(back){back();poseAt(avatar,t,lw||w);}
  for(const side of M.reach?['R','L']:[]){const hand=avatar.bones['hand'+side].getWorldPosition(new THREE.Vector3());
   // (the right hand's turn in the world kept, the can tipped as it was animated; the left's at the wrist, the arm being
   // another body's and the hand turning with it as a hand does, but for while it is hooked on the ring)

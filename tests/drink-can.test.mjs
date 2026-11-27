@@ -23,7 +23,9 @@ installDOM();
  */
 const VERIFY=JSON.parse(readFileSync(new URL('./drink-can.verify.json',import.meta.url),'utf8'));
 const PALM_WRIST=[[-.35,.5],[-.45,.45],[-1.1,1.25]];   // animate.js PALM.wrist (the right hand's terms; the left's y and z mirrored)
-const BODIES=['Nils Johansson','Thao','Thuan','Mr Fujita','Tetsuo','Nhung','Miss Higa'];
+// (Vy the smallest body by measure, Sverker the largest: the principles audit's bodies)
+const BODIES=['Nils Johansson','Vy','Sverker','Thao','Thuan','Mr Fujita','Tetsuo','Nhung','Miss Higa'];
+const JUMP=.06;   // rad a frame, from one frame to the next, at 60 fps (3.6 rad/s gained or lost in a sixtieth: a hitch)
 const runs=new Map(),UPPER=['spine','chest','neck','head','shoulderL','elbowL','handL','shoulderR','elbowR','handR'];
 
 /** The can drunk by `who` (sealed: opened first), every frame's facts. */
@@ -126,12 +128,16 @@ test('nothing pops: no joint turns over between two frames, the can is never sna
  // (found 27 November 2026: the left shoulder turned 3.1 rad in a frame as the motion blended in, the left IK's pole was half
  // a turn out so its elbow went into his chest, the upper arm rolled over between frames where the IK left its roll to
  // chance, and the can left the lip at 45 degrees in a tenth of a second; at 60 frames a second)
- for(const who of BODIES){const {frames}=drink(who);let turn=[0],can=[0];
+ // (and no joint's speed jumps from one frame to the next: a turn of 0.18 rad a frame between 0.05s is a pop all the same,
+ // the principles audit found one at 5.53 s; steps of speed, not only of angle)
+ for(const who of BODIES){const {frames}=drink(who);let turn=[0],can=[0],jump=[0];
   for(let i=1;i<frames.length;i++){
-   frames[i].joints.forEach((q,j)=>{const d=q.angleTo(frames[i-1].joints[j]);if(d>turn[0])turn=[d,UPPER[j],frames[i].t];});
+   frames[i].joints.forEach((q,j)=>{const d=q.angleTo(frames[i-1].joints[j]);if(d>turn[0])turn=[d,UPPER[j],frames[i].t];
+    if(i>1){const e=Math.abs(d-frames[i-1].joints[j].angleTo(frames[i-2].joints[j]));if(e>jump[0])jump=[e,UPPER[j],frames[i].t];}});
    const d=frames[i].can.distanceTo(frames[i-1].can);if(d>can[0])can=[d,frames[i].t];}
   assert.ok(turn[0]<.3,`${who}: ${turn[1]} turns ${turn[0].toFixed(2)} rad in a frame at ${turn[2]?.toFixed(2)} s`);
-  assert.ok(can[0]<.03,`${who}: the can moves ${(can[0]*1000).toFixed(0)} mm in a frame at ${can[1]?.toFixed(2)} s`);}
+  assert.ok(can[0]<.03,`${who}: the can moves ${(can[0]*1000).toFixed(0)} mm in a frame at ${can[1]?.toFixed(2)} s`);
+  assert.ok(jump[0]<JUMP,`${who}: ${jump[1]}'s turn a frame changes by ${jump[0].toFixed(3)} rad from one frame to the next at ${jump[2]?.toFixed(2)} s`);}
 });
 
 test('the can goes further over as it empties, and the eyes shut for the deep swallows, a breath out after',()=>{
