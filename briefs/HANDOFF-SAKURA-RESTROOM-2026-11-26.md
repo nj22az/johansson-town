@@ -963,8 +963,18 @@ here: the session's context was near its end. What each change does and why is i
 - Guard tests that play the changed moves pass:
   - `stance-release`, `wave-gesture`, `avatar-polish` (with the collar under the sleeve in Clap and CollarTug);
   - `conversation-eyes`, `vy-reference`, `drinking-game`, `player-seating`, `open-can`.
-- The full guard and the 51 animator files at the base and the head: see the stage 3 report (the runs were in progress at
-  the time of writing; their logs are in the session's scratchpad, `s3/files-base`, `s3/files-head`).
+- **The 51 animator and avatar files outside the guard**, each alone, at afb2fcb and at 4b01670: all 50 that finish give the
+  same results at both, test by test, nothing worse and nothing newly fixed. `fun-poses` runs past its hour at both, as
+  stage 2 found. The ones that fail, fail what they failed before stage 3:
+  - afterbath-outfit, avatar-floor-contact, avatar-wardrobe-sets test 1, drink-grip (2);
+  - expressive-poses, fujitas-back-moves' plank, izakaya-lived-in, onsen-noren-heads, onsen-seats;
+  - owned-vehicles (2), pole-hug (2), story-gestures (2), underarm-coverage;
+  - wardrobe-batch2, wardrobe-batch3 (2), work-kit.
+- **The full guard** (`node tools/ci-guard.mjs`, 134 files, 2222 s with the machine at load 15): 703 of 706.
+  - floor-sit and no-z-fighting ran past the guard's 900 s a file. Alone, floor-sit passes 7 of 7 (6 min) and
+    no-z-fighting 13 of 13 at the head as at the base (run directly; under `node --test` it reports a bare "test failed"
+    at both).
+  - The runtime package and the portraits did not fail here.
 
 ## Found
 - **The audit counts a counter-movement only where it moves faster than a tenth of the action's top speed** (its rest).
