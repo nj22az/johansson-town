@@ -14,7 +14,8 @@
 //   node tools/hand-shots.mjs --moves Walk,Talk,Nod,Wave,Eat,SitEat [--name Johansson] [out-dir]
 //       each move as the game's animator plays it (the walk: a resident's walk coming to a stop): front and three-quarter at
 //       its key moments, and strips of 8 consecutive frames over where it leaves the stance (and comes back to it), so a pop
-//       shows. One sheet a move: <out-dir>/<move>-<name>.png (default out-dir: output/hands-moves).
+//       shows. One sheet a move: <out-dir>/<move>-<name>.png (default out-dir: output/hands-moves). With --wind, a strip more:
+//       every third frame from the move's start to 0.35 s, over its wind-up and into its action, in motion order.
 // Software Chromium (TOWN_CHROMIUM_PATH, or /opt/pw-browsers/chromium). Default out: output/hands-<what>.png
 import {chromium} from 'playwright';
 import {createServer} from 'node:http';
@@ -23,7 +24,7 @@ import {resolve,dirname,extname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),site=resolve(root,'..');
 const args=process.argv.slice(2),flag=k=>{const i=args.indexOf(k);return i>=0?args[i+1]:null;};
-const MOVES=flag('--moves')||'',CAN=flag('--can')||'',SEATED=args.includes('--seated'),RIDE=flag('--ride')||'',DRIVE=flag('--drive')||'',HOLD=flag('--hold')||'',OUTFIT=flag('--outfit')||'clothes',NAME=flag('--name')||'Thao',PAIRS=flag('--pairs')||'',POSES=flag('--poses')||'',SIT=flag('--sit')||'',WHO=flag('--who')||'Thuan,Nils Johansson',GRIP=flag('--grip'),SHAPE=flag('--shape')||'close';
+const MOVES=flag('--moves')||'',WIND=args.includes('--wind'),CAN=flag('--can')||'',SEATED=args.includes('--seated'),RIDE=flag('--ride')||'',DRIVE=flag('--drive')||'',HOLD=flag('--hold')||'',OUTFIT=flag('--outfit')||'clothes',NAME=flag('--name')||'Thao',PAIRS=flag('--pairs')||'',POSES=flag('--poses')||'',SIT=flag('--sit')||'',WHO=flag('--who')||'Thuan,Nils Johansson',GRIP=flag('--grip'),SHAPE=flag('--shape')||'close';
 const what=MOVES?'moves':PAIRS?'pairs':POSES?'poses':SIT?'sit':HOLD?'hold':DRIVE?'drive':RIDE?'ride':CAN?'can':'rest';
 const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--pairs','--poses','--sit','--who','--grip','--outfit','--hold','--drive','--ride','--shape','--can','--moves'].includes(args[i-1]))||resolve(root,MOVES?'output/hands-moves':`output/hands-${what}.png`));
 await mkdir(MOVES?out:dirname(out),{recursive:true});
@@ -38,7 +39,7 @@ const errors=[];
 try{
  const page=await browser.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
  await page.goto(`http://127.0.0.1:${server.address().port}/blank`);
- const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold,drive,ride,shape,can,seated,moves])=>{
+ const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold,drive,ride,shape,can,seated,moves,WIND])=>{
   const base='/johansson-town/',T=await import(base+'vendor/three.module.js'),{buildAvatar}=await import(base+'src/avatars/build.js'),{recipeFor}=await import(base+'src/avatars/cast.js');
   const {createAvatarAnimator,GESTURES,STILL_AT,playPair}=await import(base+'src/avatars/animate.js'),{createInkPipeline}=await import(base+'src/render/ink-pipeline.js');
   const S=360,renderer=new T.WebGLRenderer({preserveDrawingBuffer:true,antialias:true});renderer.setSize(S,S);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.NoToneMapping;
@@ -78,18 +79,21 @@ try{
     // the key moments (seconds from the move's start) and where the strips start (frames): the walk's stop is where the damped
     // speed falls under 0.08 m/s, 3.14 s
     const keys=walk?[2.5,3.1,3.2,3.6]:held?[0,.15,.5,1.6]:[0,.15,Math.min(d*.43,d-.3),d-.12,d+.3];
-    const strips=walk?[[186,'the stop']]:held?[[-1,'leaving the stance']]:[[-1,'leaving the stance'],[Math.round(d*60)-3,'coming back']];
-    const want=new Map();for(const k of keys)want.set(Math.round(k*60),'key');for(const [s0] of strips)for(let i=0;i<8;i++)if(!want.has(s0+i))want.set(s0+i,'strip');
+    const strips=(walk?[[186,'the stop']]:held?[[-1,'leaving the stance']]:[[-1,'leaving the stance'],[Math.round(d*60)-3,'coming back']]).map(x=>[...x,1]);
+    // (--wind: and every third frame from the move's start to 0.35 s, over its wind-up and into its action)
+    if(WIND&&!walk)strips.push([0,'every 3rd frame over the wind-up',3]);
+    const inStrip=(f,[s0,,k])=>f>=s0&&f<s0+8*k&&(f-s0)%k===0;
+    const want=new Map();for(const k of keys)want.set(Math.round(k*60),'key');for(const [s0,,k] of strips)for(let i=0;i<8;i++)if(!want.has(s0+i*k))want.set(s0+i*k,'strip');
     const last=Math.max(...want.keys()),key=[],strip=new Map();
     for(let f=-1;f<=last;f++){if(f===0&&!walk)anim.play(move);tick(f);if(!want.has(f))continue;
      const c=a.bones.chest.getWorldPosition(new T.Vector3()),y=frontYaw(a),at=(f/60).toFixed(3)+' s';
      if(keys.some(k=>Math.round(k*60)===f)){const whole=c.clone().add(new T.Vector3(0,.12*a.measure.k,0));for(const [turn,label] of [[0,'front'],[-.8,'three-quarter']]){shoot(sc,whole,y+turn,.1,3.6,`${move} ${at} · ${label}`);key.push({f,label,tile:tiles.pop()});}}
-     for(const [s0] of strips)if(f>=s0&&f<s0+8){shoot(sc,c.clone().add(new T.Vector3(0,-.12,0)),y-.8,.15,1.9,`frame ${f} · ${at}`);(strip.get(s0)||strip.set(s0,[]).get(s0)).push(tiles.pop());}
+     for(const st of strips)if(inStrip(f,st)){const [s0]=st;shoot(sc,c.clone().add(new T.Vector3(0,-.12,0)),y-.8,.15,1.9,`frame ${f} · ${at}`);(strip.get(s0)||strip.set(s0,[]).get(s0)).push(tiles.pop());}
     }
     // rows: the key moments from the front, from three-quarters, then each strip of 8 frames
     const rows=[key.filter(k=>k.label==='front').map(k=>k.tile),key.filter(k=>k.label!=='front').map(k=>k.tile),...strips.map(([s0])=>strip.get(s0)||[])];
     const sheet=document.createElement('canvas');sheet.width=S*8;sheet.height=S*rows.length+28*strips.length;const ctx=sheet.getContext('2d');ctx.fillStyle='#f4f1ea';ctx.fillRect(0,0,sheet.width,sheet.height);
-    let yy=0;rows.forEach((row,r)=>{if(r>=2){ctx.fillStyle='#253b3d';ctx.font='bold 18px sans-serif';ctx.fillText(`${name} · ${move} · 8 consecutive frames, ${strips[r-2][1]}`,8,yy+20);yy+=28;}
+    let yy=0;rows.forEach((row,r)=>{if(r>=2){ctx.fillStyle='#253b3d';ctx.font='bold 18px sans-serif';ctx.fillText(`${name} · ${move} · ${strips[r-2][2]>1?'8 frames':'8 consecutive frames'}, ${strips[r-2][1]}`,8,yy+20);yy+=28;}
      row.forEach(({c,label},i)=>{ctx.drawImage(c,i*S,yy);ctx.fillStyle='#253b3d';ctx.font='15px sans-serif';ctx.fillText(label,i*S+8,yy+20);});yy+=S;});
     files.push([`${move}-${name.replace(/\s+/g,'')}.png`,sheet.toDataURL('image/png')]);a.dispose();
    }
@@ -185,7 +189,7 @@ try{
   const cols=Math.min(6,tiles.length),sheet=document.createElement('canvas');sheet.width=S*cols;sheet.height=S*Math.ceil(tiles.length/cols);const ctx=sheet.getContext('2d');
   tiles.forEach(({c,label},i)=>{ctx.drawImage(c,(i%cols)*S,Math.floor(i/cols)*S);ctx.fillStyle='#253b3d';ctx.font='15px sans-serif';ctx.fillText(label,(i%cols)*S+8,Math.floor(i/cols)*S+20);});
   return sheet.toDataURL('image/png');
- },[NAME,PAIRS,POSES,SIT,WHO,GRIP,OUTFIT,HOLD,DRIVE,RIDE,SHAPE,CAN,SEATED,MOVES]);
+ },[NAME,PAIRS,POSES,SIT,WHO,GRIP,OUTFIT,HOLD,DRIVE,RIDE,SHAPE,CAN,SEATED,MOVES,WIND]);
  if(data.files)for(const [file,url] of data.files){const path=resolve(out,file);await writeFile(path,Buffer.from(url.split(',')[1],'base64'));console.log('wrote',path);}
  else{await writeFile(out,Buffer.from(data.split(',')[1],'base64'));console.log('wrote',out);}
 }catch(e){errors.push(String(e?.stack||e));}

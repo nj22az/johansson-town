@@ -15,9 +15,11 @@ test('a wave bends the elbow, holds the forearm up beside the head and shows the
   const a=buildAvatar(CAST_RECIPES[name],{shadows:false}),anim=createAvatarAnimator(a);a.root.updateMatrixWorld(true);
   const rest=a.bones.handR.getWorldQuaternion(new THREE.Quaternion());
   anim.play('Wave');
-  for(let i=0;i<78;i++){
+  for(let i=0;i<100;i++){
    anim.update(1/60,{speed:0});a.root.updateMatrixWorld(true);
-   if(i<27)continue;   // (while it is up: it comes in over 0.45 s and goes down after 1.3 s of its 1.6)
+   // (while it is up: the shoulder dips for a quarter of a second first, its wind-up (animate.js TRUNK), the arm comes up over
+   // 0.4 s, eased, and goes down after 1.7 s of its 2; it was in over 0.45 s and down after 1.3 s of 1.6, with no wind-up)
+   if(i<40)continue;
    const at=b=>a.bones[b].getWorldPosition(new THREE.Vector3()),s=at('shoulderR'),e=at('elbowR'),h=at('handR');
    const upper=e.clone().sub(s).normalize(),fore=h.clone().sub(e).normalize();
    assert.ok(Math.acos(THREE.MathUtils.clamp(upper.dot(fore),-1,1))>1,`${name}: the elbow bent (${upper.dot(fore).toFixed(2)})`);
