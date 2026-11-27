@@ -27,7 +27,8 @@ export const onsenOpen=minutes=>{const m=((minutes%1440)+1440)%1440;return m>=ON
  * from eight until the bath closes at ten); Christina owns it. Why here: outside, so the burner's fumes and the oil are
  * out of the bath, at the corner where the hot water goes straight in to the baths, and away from the street front and
  * the footbath. He works it standing in front of it on the lawn (`stand`, facing it), never inside the bath and never in
- * swimwear (people/onsen-boiler.js).
+ * swimwear (people/onsen-boiler.js). The lawn in front of it is open: the gettō screen begins at the bath fence's corner
+ * (harbour-park-garden.js bath-screen, reshaped on 27 November 2026 when it was found planted in front of the boiler).
  */
 export const ONSEN_BOILER=Object.freeze({
  who:'Tetsuo',owner:'Christina',
@@ -37,4 +38,6 @@ export const ONSEN_BOILER=Object.freeze({
  flue:Object.freeze({x:-4.02,z:.4,r:.05,top:2.45}),
  /** Where he stands to work it: on the lawn in front of the unit, facing it (local +x is the town's +z). */
  stand:Object.freeze(onsenPoint(-4.85,.4)),facing:Object.freeze([0,1]),
+ /** How it is reached and filled: from the lawn on its south, where nothing is planted between it and the walks. */
+ access:'From the lawn south of the bathhouse, open from the pond walk: Tetsuo works it standing there, and its tank is filled from the same side with kerosene carried over from the fuel depot at the beach’s south end.',
 });

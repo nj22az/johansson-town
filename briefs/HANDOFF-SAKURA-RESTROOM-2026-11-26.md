@@ -2086,3 +2086,35 @@ fitting and a real walk to it from the bench and from his workshop.
   and onsen-boiler added, 1692 s): 873 pass, 1 skipped (east-lawn's gateball court), 1 todo (sisters' play day), 1 fails:
   the published runtime package, stale on a branch until it is rebuilt. Nothing timed out or was cancelled.
 - Of the fifteen files given at the start, every one passes or, for izakaya-lived-in, is retired with its module.
+
+## Then: the boiler was behind the gettō (the coordinator's photographs, same branch)
+
+After merging `fix/places` (a248fbe) the coordinator photographed the boiler in the real createTown scene under
+swiftshader (it renders here, slowly): Tetsuo's stand point, (23.0, -25.45), was inside the bath screen's bed
+(`harbour-park-garden.js` bath-screen, x 20.6-29.6) and in one of its gettō plants (23.0, -25.35); the heater and the
+tank stood on the strip of lawn behind the bed, hidden by its plants, with no way to them but through the earth.
+
+**Decision: the bed is reshaped, the boiler stays.** The bed ran 3 m further west than the bath's fence, in front of the
+bathhouse's own wall, which has no bath yard behind it: it screened nothing there and hid the boiler. It now starts at the
+corner where the bathhouse meets the fence (x 23.6) and runs the fence's length to the shore walk as before, so its
+purpose holds (the pond walk does not look into the bath yard). Its six plants stand a metre apart along the fence (they
+were 1.6 m apart over 9 m): the same plants for Christina's mūchī leaves, a closer screen where there is something to
+screen. West of the fence the boiler and its tank stand open to the lawn, worked from the lawn by Tetsuo and filled from
+it with kerosene carried over from the fuel depot (`ONSEN_BOILER.access`). The reasons are written with the bed and the
+boiler. Moving the boiler would have put it either against the bath's fence (behind the screen again) or nearer the
+street front; a gap in the screen would have screened nothing either side of it.
+- `PARK_PLANTS[kind].reach`: each clump's radius on the ground as `park.js plant()` draws it (gettō 0.4 m), so a place
+  to stand or a walk can be kept clear of it.
+- `tests/onsen-boiler.test.mjs` now fails on the old data and passes on the new: the stand point on no bed's earth (with
+  his body's 0.3 m), clear of every plant by its reach and his body, no bed between the boiler and the lawn, and his
+  walk to it, from the bench and from his workshop, crossing no bed.
+- Looked at: the six views re-shot with the coordinator's lenses (`boiler-shots.mjs`, a copy of
+  `tools/fish-market-photos.mjs` with its shots changed, run from `tools/` and deleted): the heater and tank visible from
+  the lawn in every view, the lawn in front of them open, nothing through anything (the nearest gettō is 0.8 m beside the
+  heater, overlapping it only in the high three-quarter view's perspective). Before and after sheets:
+  `docs/qa/onsen-boiler/before-2026-11-27.jpg`, `after-2026-11-27.jpg`. A software render, not a phone.
+- Focused tests only (the coordinator runs the guard after the merge): onsen-boiler and harbour-park-rework 10 of 10;
+  east-garden, garden-bridge-access, park-apron, park-onsen, park-seam, park, tree-rebuild, ground-standard,
+  architect-masterplan, near-coplanar and no-z-fighting 44 of 44; resident-journeys, resident-after-work, happenings,
+  kissa-higa, higa-liquor-laundry, kitano-residents, continuous-life, island-businesses, shop-days, onsen-front, edition
+  and neighbourhood-access 99 of 99.

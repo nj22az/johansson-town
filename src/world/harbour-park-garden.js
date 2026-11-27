@@ -15,17 +15,21 @@ const rect=(minX,maxX,minZ,maxZ)=>Object.freeze({minX,maxX,minZ,maxZ});
 const months=(...m)=>Object.freeze(m);
 const ALL_YEAR=months(1,2,3,4,5,6,7,8,9,10,11,12);
 
-/** Each plant: what it is (English, Japanese), when it flowers on Okinawa, and why a park here grows it. */
+/**
+ * Each plant: what it is (English, Japanese), when it flowers on Okinawa, why a park here grows it, and its `reach`: the
+ * clump's radius on the ground as park.js plant() draws it (its leaves, their lean and its flowers), so a place to stand
+ * or a walk can be kept clear of it.
+ */
 export const PARK_PLANTS=Object.freeze({
- hibiscus:Object.freeze({name:'hibiscus',jp:'ブッソウゲ',flowers:ALL_YEAR,colour:0xd8323a,
+ hibiscus:Object.freeze({name:'hibiscus',jp:'ブッソウゲ',flowers:ALL_YEAR,colour:0xd8323a,reach:.6,
   why:'Okinawa’s everyday flower, red all year; the plants come in pots from Sakura’s flower stand across the street.'}),
- bougainvillea:Object.freeze({name:'bougainvillea',jp:'ブーゲンビレア',flowers:ALL_YEAR,colour:0xc8357f,
+ bougainvillea:Object.freeze({name:'bougainvillea',jp:'ブーゲンビレア',flowers:ALL_YEAR,colour:0xc8357f,reach:.7,
   why:'Magenta all year in the island’s heat and salt wind; clipped low as a screen between the bench and the traffic.'}),
- ixora:Object.freeze({name:'ixora',jp:'サンダンカ',flowers:months(5,6,7,8,9,10),colour:0xe8562a,
+ ixora:Object.freeze({name:'ixora',jp:'サンダンカ',flowers:months(5,6,7,8,9,10),colour:0xe8562a,reach:.4,
   why:'Sandanka, one of the three famous flowers of Okinawa: orange-red heads from May into October, low enough not to hide the gate.'}),
- lily:Object.freeze({name:'Easter lily',jp:'テッポウユリ',flowers:months(4,5),colour:0xf6f1e2,
+ lily:Object.freeze({name:'Easter lily',jp:'テッポウユリ',flowers:months(4,5),colour:0xf6f1e2,reach:.25,
   why:'The Ryukyu islands’ own white lily, in flower in April and May; the rest of the year it is a clump of narrow leaves.'}),
- getto:Object.freeze({name:'shell ginger',jp:'月桃',flowers:months(5,6),colour:0xf3e4d2,
+ getto:Object.freeze({name:'shell ginger',jp:'月桃',flowers:months(5,6),colour:0xf3e4d2,reach:.4,
   why:'Gettō: tall leaves that screen the bath’s fence all year, and hanging white-and-pink flowers in May and June; its leaves wrap the mūchī rice cakes in December.'}),
 });
 
@@ -42,10 +46,15 @@ export const HARBOUR_PARK_BEDS=Object.freeze([
   keeper:'thuan',tends:'08:40, before Sakura opens',
   why:'The border along Main Street, opposite Sakura’s door: Sakura supplies the town’s flowers since Mrs Kinjō retired, and the border is where Thuan plants out what she sells in pots; it screens the cherry bench from the street.',
   plants:Object.freeze([['bougainvillea',6.8,-27.9],['hibiscus',6.8,-29.3],['bougainvillea',6.8,-30.7],['hibiscus',6.8,-32.2]].map(Object.freeze))}),
- Object.freeze({id:'bath-screen',title:'Gettō screen',bounds:rect(20.6,29.6,-25.7,-25),
+ // From the corner where the bathhouse meets the bath's fence (x 23.6) to the shore walk: the length of the fence. It ran
+ // 3 m further west until 27 November 2026, in front of the bathhouse's own wall, which has no bath yard behind it, and
+ // with two of its plants in front of the bath's boiler (onsen-layout.js ONSEN_BOILER), hiding it and leaving its keeper
+ // and the kerosene no way to it but through the bed. Its six plants stand a metre apart along the fence now (they were
+ // 1.6 m apart over 9 m): the same plants for Christina's mūchī leaves, a closer screen where there is something to screen.
+ Object.freeze({id:'bath-screen',title:'Gettō screen',bounds:rect(23.6,29.6,-25.7,-25),
   keeper:'gran-higa',tends:'09:45, before the bath opens',
-  why:'Gettō along the bath’s south fence, so the pond walk does not look into the bath yard; Christina cuts its leaves for mūchī in December.',
-  plants:Object.freeze([21.4,23.0,24.6,26.2,27.8,29.0].map(x=>Object.freeze(['getto',x,-25.35])))}),
+  why:'Gettō along the bath’s south fence, so the pond walk does not look into the bath yard; Christina cuts its leaves for mūchī in December. It starts at the fence’s corner: the bathhouse wall west of it has the bath’s boiler against it, open to the lawn for Tetsuo and for the kerosene.',
+  plants:Object.freeze([24.1,25.1,26.1,27.1,28.1,29.1].map(x=>Object.freeze(['getto',x,-25.35])))}),
 ]);
 
 /** The koi pond's keeper: the pond lies between Umi-no-yu and the quay. */

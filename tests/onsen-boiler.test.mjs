@@ -9,6 +9,10 @@ import {canonicalDay} from '../src/people/canonical-day.js';
 import {BOILER_DUTY,boilerDutyAt} from '../src/people/onsen-boiler.js';
 import {ONSEN_BOILER,ONSEN_DOOR,onsenPoint} from '../src/world/onsen-layout.js';
 import {standingHitsRect,townBoundsBlocked} from '../physics.js';
+import {HARBOUR_PARK_BEDS,PARK_PLANTS} from '../src/world/harbour-park-garden.js';
+const BODY=.3;   // a walker's radius (schedules.js, physics.js)
+/** Is (x, z) on a bed's earth, or within `pad` of it? */
+const onBed=(x,z,pad=0)=>HARBOUR_PARK_BEDS.find(b=>x>b.bounds.minX-pad&&x<b.bounds.maxX+pad&&z>b.bounds.minZ-pad&&z<b.bounds.maxZ+pad)||null;
 
 // Umi-no-yu's boiler (world/onsen-layout.js ONSEN_BOILER, people/onsen-boiler.js). Tetsuo's cast.js day has him at the
 // onsen for the boiler at 18:00 and from 20:00, and the yuntaku bench's reason sends him "back up to the boiler at
@@ -71,6 +75,14 @@ test('the boiler stands at the back corner of the bathhouse, off the wall, with 
  // Its place to work it: clear of every solid, on the town's walkable ground, facing the heater a step away.
  const [sx,sz]=ONSEN_BOILER.stand;
  assert.equal(world.colliders.some(c=>standingHitsRect(sx,sz,.3,0,c)),false,'room to stand');
+ // On the lawn, not in a bed's earth, and clear of every plant by the plant's reach and his body (the coordinator's
+ // photographs of 27 November 2026: the first stand point was inside the gettō screen and one of its plants).
+ assert.equal(onBed(sx,sz,BODY)?.id,undefined,'his feet are on the lawn, off every bed');
+ for(const bed of HARBOUR_PARK_BEDS)for(const [kind,x,z] of bed.plants)
+  assert.ok(Math.hypot(sx-x,sz-z)>=PARK_PLANTS[kind].reach+BODY,`clear of the ${kind} at ${x}, ${z} in ${bed.id}`);
+ // and the heater and its tank are not behind a bed's plants: the lawn in front of them, out to where he stands, is open.
+ for(const bed of HARBOUR_PARK_BEDS){const b=bed.bounds,[x0,x1]=[solid.x-solid.w/2,solid.x+solid.w/2];
+  assert.ok(!(b.maxX>x0&&b.minX<x1&&b.maxZ>sz-BODY&&b.minZ<solid.z+solid.d/2),bed.id+' is not between the boiler and the lawn');}
  assert.equal(townBoundsBlocked(sx,sz,.3),false,'on the town’s ground');
  const front=solid.z-solid.d/2,gap=front-sz;assert.ok(gap>.3&&gap<.7,'a step from the heater: '+gap.toFixed(2));
  const yaw=boilerDutyAt('Tetsuo',1090).stand.yaw;assert.ok(Math.abs(Math.cos(yaw)+1)<1e-9,'facing it (the town’s +z)');
@@ -90,8 +102,10 @@ test('the boiler stands at the back corner of the bathhouse, off the wall, with 
    const person={g,profile},state={inventory:[],residentLocations:{Tetsuo:{position:from,indoors:null}}};
    g.position.set(from[0],groundHeight(from[0],from[1]),from[1]);
    const ai=createCastAI({world:{people:[person],homes:new Map()},player:new THREE.Vector3(100,0,100),state:()=>state,paused:()=>false,collides:blocked});
-   let arrived=false;
-   for(let i=0;i<9000&&!arrived;i++){ai.update(.1,minute,false);arrived=g.userData.standPose&&Math.hypot(g.position.x-sx,g.position.z-sz)<.2;}
+   let arrived=false;const crossed=new Set();
+   for(let i=0;i<9000&&!arrived;i++){ai.update(.1,minute,false);arrived=g.userData.standPose&&Math.hypot(g.position.x-sx,g.position.z-sz)<.2;
+    const bed=onBed(g.position.x,g.position.z,.15);if(bed)crossed.add(bed.id);}
+   assert.deepEqual([...crossed],[],'his walk to the boiler crosses no bed');
    assert.ok(arrived,'Tetsuo works the boiler from '+from+'; at '+g.position.toArray().map(v=>v.toFixed(2)));
    assert.equal(g.userData.socialPose,'Interact');assert.ok(!g.userData.indoors&&!g.userData.inOnsen,'outdoors, not in the bath');
    assert.ok(Math.abs(Math.atan2(Math.sin(g.rotation.y-yaw),Math.cos(g.rotation.y-yaw)))<.06,'facing the heater');
