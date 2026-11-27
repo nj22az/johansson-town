@@ -1675,3 +1675,112 @@ does and why is in `docs/ANIMATION-STANDARD.md` section 6, "Stage 4".
   story-gestures (2), wardrobe-batch2, wardrobe-batch3 (2), work-kit, izakaya-lived-in.
 - 90ce252's shared foot supports came after the guard's snapshot: the principles test and player-seating pass on it (11 of
   11), and the 55 files above ran on it.
+
+# 27 November, evening: the outstanding failures, data, tooling and the ferry (branch `fix/data-ferry`)
+
+The owner: "Fix all outstanding errors". This branch took one group: the data and tooling files and the ferry's. From
+`claude/dreamy-ritchie-cxufpl` at 1dfc816; commits b9da0a3 (data and tooling), 22f5f05 (the ferry), 50d99a3 (the guide's
+portraits), then the guard list and this note. Not pushed; the runtime is not rebuilt.
+
+"Old" means the file fails at fc7281f, the repository's first commit (7 November), run in a detached worktree; "new" means
+it passes at the commit before the one named. Every test change cites the decision it follows, in the test.
+
+## Data and tooling
+- **products-data**, **studio-data** (1): products-data.js's FINGERPRINT was stale. 9ca68be (26 November, the renames)
+  edited products.json and the module by hand. *Code (a generated file)*: regenerated with build-data's own generator
+  (`productsModule`; see Found for why not its CLI). New.
+- **studio-data** (2), "draft must be git-ignored": the test asked the site's repository about the town's paths. Since
+  7 November the town is its own repository and the site's .gitignore leaves out all of /johansson-town/, so in the
+  documented layout looks.json read as ignored too (shown in a scratch layout). *Test out of date (the move)*: each path is
+  asked of its own repository (the town's for johansson-town/…, the site's for output/studio-mcp). Old. From a checkout
+  outside a site checkout (here /home/user/jt-fix, whose CODE_ROOT is /home/user, no repository) output/studio-mcp cannot
+  be answered: *environment*. 5 of 5 in the documented layout.
+- **products-move**, four causes: Kissa Higa's new Sakura account (the owner, 30 October; old), the paused community
+  kitchen, so the hall orders only the office's lines (31 October; old: the first failure at fc7281f), Grandmother Higa
+  and the Harbour master renamed Christina and Sverker (26 November; new), beer in the machines (27 November, 08ed267;
+  new). *Tests out of date*: a dated section each, asserting what must still hold (the shelf lines, every snapshot drink
+  still drinks in its colour and leaves its empty, the kept cans keep every field) before taking the data's values.
+- **studio-mcp** (11, validate and publish_check): `publishCheck` ran git at CODE_ROOT outside any try; here that is no
+  repository, so the whole tool failed. In the documented layout it asked the site's git about the town's files (all
+  ignored there, so "uncommitted" always read committed) and checked the site's main. *Code*: it asks the town's own
+  repository (the checkout the tool is in) for its branch, main (FETCH_HEAD through --git-common-dir, so a worktree works)
+  and files, the site's only for avatar-creator and .mcp.json; an unreadable repository is a failed item in words. Old (the
+  code is fc7281f's). render_portrait passed once the avatar-creator symlink existed.
+- **looks-data** (4), body.frame "unknown": Studio's look fields did not know the body kit's frames (1f675a0, 26 November),
+  the tank top under an open shirt (6c349e4) or the eye's shine, whose default is absent. *Code*: `BODY_FRAMES` exported from
+  recipe.js and used by normalizeRecipe and Studio; outfit.under is `UNDER_LAYERS`; eyes.shine a 0-1 number; head.scale
+  0.7-1.3 as recipe.js reads it (it was offered as 0-1). New.
+- **looks-data** (5), "Emi": the townsfolk profile Emi is Emi Nakamura, retired by the owner on 31 October; the test skipped
+  only retired recipe names. *Test out of date*: a retired identity is asserted absent from the live lists. Old.
+- **The guide's portraits**: looks.js and recipe.js are among their sources, so they were rendered again
+  (`TOWN_CHROMIUM_PATH=/opt/pw-browsers/chromium node tools/render-resident-guide.mjs`; Playwright's own chromium-1228 is not
+  installed here): 23 pictures byte-identical, only guide/portraits.json's hash changed.
+- **office-workbooks: NOT FIXED.** service-work-log.xlsx's cached cell reads "Harbour master": 9ca68be renamed him in the
+  builder (scripts/build-office-workbooks.mjs) and catalogue.json, not in the workbook. *Code (a generated file)*. The
+  builder imports `@oai/artifact-tool`, which is not on the npm registry (404) and nowhere on this machine; the workbook was
+  not edited by hand. New. Next: `node scripts/build-office-workbooks.mjs` where that package is installed (it writes the
+  three .xlsx and catalogue.json's bytes and sha256), then the test.
+- **controller-game**: the test expected the ferry landing at x -1.5 (written 30 October); the H1 arrangement (the owner,
+  31 October, "Implement and push to main") moved the shore waiting point and the ferry opening to x 0.3, beyond the 4 m
+  gangway's sweep. *Test out of date*. Old. (The trucker-cap 404 in the log is the test's stubbed fetch, a warning.) Past the
+  landing the test imports ../../steam-deck/ui/controller.mjs, the site's: outside a site checkout that is
+  /home/user/steam-deck, *environment*. 1 of 1 in the documented layout.
+- **motor-bench**: ENOENT /home/user/motor-90l/motor.js. The test reads the site's own `motor-90l/` (nj22az.github.io), the
+  town's sibling in the documented layout; that folder's motor.js and calc.mjs match the provenance's sha256. *Environment*;
+  3 of 3 in the documented layout. Nothing was made outside the repository.
+
+## The ferry
+One cause for nearly all: the H1 arrangement (the owner, 31 October 2026; briefs/HANDOFF-FERRY-ENGINE-ROOM-H1-2026-10-31.md)
+raised every deck over the engine room a metre (car deck 2.1 m ship-local, the lobby 6.5, the forecastle tops 4.56), and
+code and tests kept the old heights. None came from the z-fighting overhaul: all but the design book fail at fc7281f.
+- **owned-vehicles** (3, 4) and **airport-ferry** (8), stuck at "securing", "The car door has no clear, supported exit":
+  vehicle-driver.js walked a driver to a passenger point at 5.5 m, a metre under the lobby floor, so no exit had a route.
+  *Code*: the upper deck's height (`FERRY_DECKS.upper.y`); ferry-crew-walk.js's obstacle with no height stands on the car
+  deck, not at 1.1. Old (fc7281f aims at 5.5 with the lobby at 6.5).
+- **ferry-driver-securing** (1, 2): the test parked the car at 1.1 and expected 5.5. *Test out of date* (with the code
+  fix). Old. **ferry-crew-tasks** (8): a start at 1.1, under the deck; tests 7 and 9 probed under their floors too and are
+  moved to 2.1 and 6.5. *Test out of date*. Old. **ferry-forecastle** (1): the stations at 3.56 against the tops at 4.56
+  (H1: "forward crew station derives from actual forecastle floor"); test 3's car at 1.1 moved too. *Test out of date*. Old.
+- **ferry-engine-room-access** (2), "ladder at x 3.19": the ladder's walking band was the old 0.75 m ladder's fixed
+  0.34 m half-width; H1's ladder is 0.8 m clear. *Code*: walked between its stringers' inner faces. Old.
+- **ferry-johansson-marine** (2), "built: camshaft": H1 builds no open No.4 crankcase (its record: "Starboard crankcase
+  stays closed") but the prompts still called it open. *Test out of date, and code*: the open-crankcase prompt and its
+  sentence belong to the earlier arrangement only. Past that, "in the engine room: low table": the carpet room's low tables,
+  tea cups and pothos (the owner, 3 November: "the accommodation needs to be more cosy") are cylinders too; the test keeps
+  the engine room for machinery and puts the furnishings on the passenger deck. Old.
+- **ferry-machinery-design** (5), "2.9 != 1.9": the test asserted the pre-H1 room, too low. *Test out of date, and code*:
+  the report's deckhead is H1's structural underside (+3,600 mm, `FERRY_H1.deckhead`), not the car deck less 0.2 m: 2.7 m
+  clear, 1.05 m over the machinery, the 2 m route met; the overhaul envelope and the removal path still unproven. Old.
+- **ferry-ship** (11), "56 meshes" against under 40: the 17 over are the owner's Blender parts of 2 November, the
+  pantograph wipers (twelve draws by design) and the navigation feeder's panel with its four switches; the rest is 39.
+  *Test out of date*: those are counted exactly, the rest kept under 40. Old (56 at fc7281f).
+- **ferry-design-book**: the H1-F2 side frames (53782b3) and the castings (399eaf3, 4397257), all 25 November, changed the
+  machinery without redrawing the book. *Code (generated)*: `node tools/ferry-drawings.mjs` (two SVGs); `--check` passes. New.
+
+## Proved
+- Each file alone, in /home/user/jt-fix: products-data 3/3, products-move 3/3, studio-mcp 13/13, looks-data 6/6,
+  ferry-design-book 4/4, ferry-crew-tasks 9/9, ferry-driver-securing 5/5, ferry-engine-room-access 4/4, ferry-forecastle
+  3/3, ferry-johansson-marine 3/3, ferry-machinery-design 9/9, ferry-ship 12/12, airport-ferry 12/12, owned-vehicles 13/13,
+  resident-guide 2/2. studio-data 4/5, controller-game 0/1, motor-bench 0/3 there (environment, above); in the documented
+  layout (a sparse local clone of the site with a detached worktree of this branch at johansson-town/ inside it):
+  studio-data 5/5, motor-bench 3/3 (at 22f5f05), controller-game 1/1 (at 50d99a3). office-workbooks 2/3.
+- Tests that read the changed code, run alone: studio-apply, avatar-customization (34 with the data files, all pass);
+  police-uniform, wardrobe-batch2, wardrobe-batch3: 21 of 24, the 3 the handover above lists as failing at its base.
+- The fourteen files that now pass in a checkout anywhere are added to tests/ci-guard.txt.
+- **The guard** (`node tools/ci-guard.mjs --test-concurrency=2`, the 157 files with the fourteen added, 2187 s with the
+  machine's load at 9-13): 876 of 877. The one failure is the published runtime package ("published runtime matches the
+  current source"), stale on a branch until it is rebuilt. Nothing was cancelled or ran out of time.
+
+## Found
+- **A Studio CLI run from a checkout outside a site checkout writes into another checkout.** build-data.mjs (and every
+  tool on tools/studio/repo.mjs) takes CODE_ROOT three folders up and writes CODE_ROOT/johansson-town/…: from
+  /home/user/jt-fix that is /home/user/johansson-town, the main checkout. Run once here, it rewrote that checkout's
+  products-data.js (one fingerprint line); restored at once (`git checkout --` of that file; its tree was otherwise clean).
+  repo.mjs refuses links, so a symlinked layout does not help. Run the Studio CLIs only from <site>/johansson-town, or use
+  their exported generators.
+- studio-data, controller-game and motor-bench pass in the documented layout (CI's) but not in a checkout outside one, so
+  they are not in the guard: local runs here would fail on the environment. Add them if every local run is in the layout.
+- ferry-ship.js's general arrangement still calls the engine room "Low: 1.9 m clear, and tall men duck under the pipes"
+  with its top at 2.8 m, pre-H1 words and height that the design book prints. Not changed.
+- The closed H1 crankcase lost the open-door scene of the owner's photographs (6o-3); if he wants it back, it belongs in the
+  Blender model (the code's fallback still has it, under `!FERRY_H1_ENABLED`).

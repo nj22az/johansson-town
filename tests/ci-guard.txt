@@ -193,3 +193,21 @@ no-real-brands.test.mjs
 underarm-coverage.test.mjs
 # Johansson's aloha print: placed flower by flower, nothing in the line under his face, each sleeve its own band (about 15 s).
 aloha-print.test.mjs
+# Fixed on 27 November 2026 (briefs/HANDOFF-SAKURA-RESTROOM-2026-11-26.md, "the outstanding failures: data, tooling and the
+# ferry"): Sakura's products as data and the move's snapshot, Studio over MCP and its look fields, the ferry at her H1
+# heights (the drivers' and crew's routes, the ladder, the forecastle), her machinery, hull and design book, and the cars
+# that cross with her (airport-ferry and owned-vehicles about 3 to 4 minutes each).
+products-data.test.mjs
+products-move.test.mjs
+studio-mcp.test.mjs
+looks-data.test.mjs
+ferry-design-book.test.mjs
+ferry-crew-tasks.test.mjs
+ferry-driver-securing.test.mjs
+ferry-engine-room-access.test.mjs
+ferry-forecastle.test.mjs
+ferry-johansson-marine.test.mjs
+ferry-machinery-design.test.mjs
+ferry-ship.test.mjs
+airport-ferry.test.mjs
+owned-vehicles.test.mjs
