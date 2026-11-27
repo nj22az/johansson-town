@@ -16,11 +16,5 @@
     "src/render/cel.js"
   ],
   "sha256": "680f194b12bb4a01bd1df5edc760538b5abfa06d4a8bc2ee01056f26b345ee87",
-  "count": 23,
-  "retainedPortraits": {
-    "previousSha256": "a012e9c1e4d15b151bb97756cc3e38b9ca8782c9da4f077c6cb2dacf9f4915de",
-    "previousCount": 23,
-    "count": 23,
-    "rendered": 0
-  }
+  "count": 23
 }
