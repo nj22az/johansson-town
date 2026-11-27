@@ -21,7 +21,7 @@ export const MAGAZINE_TITLES=Object.freeze([
   heads:["Kokusai Street Thorough guide","Autumn remote island tour","Yanbaru Forest Walk","Naha Gourmet Winter"],
   subs:["Old Bon EisaMAP","With boat timetable","Souvenirs100Selection","Route bus Riding"]},
  {id:'galisland',name:'GAL ISLAND',en:'Gal Island fashion',kind:'fashion',cadence:'monthly',price:420,thick:.008,
-  heads:["Loose socks declaration!!","Platform sandals100Barrage","Purikura notebook Public!","Autumn brown hair catalog"],
+  heads:["Loose socks declaration!!","Platform sandals100Barrage","Photo-sticker notebook Public!","Autumn brown hair catalog"],
   subs:["Large collection of reader models","Pager code Latest version","Sunscreen Summer camp","Mix and match30Day"]},
  {id:'kakuto',name:"Weekly Fight",en:'Weekly Kakutō Fight',kind:'sport',cadence:'weekly',onSale:3,price:360,thick:.008,
   heads:["Okinawa Tournament Fierce battle!","Fall of the Champion Shocking night","Tag Team Championship New era","The true identity behind the mask Finally"],

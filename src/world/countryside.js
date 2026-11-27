@@ -107,7 +107,7 @@ export function buildCountryside({world,register=()=>{},onAction=()=>{},mobile=f
    const leaves=add(B(3.9,.35,1.5),new THREE.MeshStandardMaterial({color:0x4f8a3e,roughness:.95}),0,1.78,0,'Gōya trellis');void leaves;
    for(let i=0;i<9;i++){const goya=add(new THREE.CapsuleGeometry(.07,.28,4,8),0x5f9e3a,-1.7+i*.42,1.45,(i%2?.35:-.35),'Gōya');goya.rotation.z=.15*(i%3-1);}
    for(const s of [-1,1])add(B(4,1.5,.03),new THREE.MeshStandardMaterial({color:0x5f9a48,roughness:.95,transparent:true,opacity:.85,side:THREE.DoubleSide}),0,1.05,s*.8,'Green curtain');
-   anchor(x,z+1.4,1.4,'Look at the gōya trellis','Gōya','Bitter melon climbing a net: warty, bright green, the length of your hand. Sliced thin and fried with egg, tofu and Spam, it is champurū.');
+   anchor(x,z+1.4,1.4,'Look at the gōya trellis','Gōya','Bitter melon climbing a net: warty, bright green, the length of your hand. Sliced thin and fried with egg, tofu and luncheon meat, it is champurū.');
   }else if(kind==='scarecrow'){
    add(B(.08,1.8,.08),0x6d5238,0,.9,0);add(B(1.2,.08,.08),0x6d5238,0,1.45,0);add(B(.5,.6,.2),0x3f6a8a,0,1.35,0,'Scarecrow');
    add(new THREE.SphereGeometry(.17,10,8),0xe8dcc0,0,1.85,0);add(new THREE.ConeGeometry(.38,.22,12),0xd8b864,0,2.05,0,'Straw hat');

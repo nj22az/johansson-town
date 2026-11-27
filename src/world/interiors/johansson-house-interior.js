@@ -596,13 +596,13 @@ function furnishGround(s,{action,television,post}){
    // The cushion's seat, facing the table: in the room's frame he looks along (−sin yaw, −cos yaw), and stands up
    // behind the cushion, away from the table.
    const [px,,pz]=s.at(x,y,0),yaw=Math.atan2(px-cx,pz-cz);
-   const o=s.anchor(x,y,.8,'Sit at the low table',()=>action('seat','Low table','Tea from the thermos, still warm. Through the window, the hinpun and the lane, and somebody’s bicycle going down to the pier.'));
+   const o=s.anchor(x,y,.8,'Sit at the low table',()=>action('seat','Low table','Tea from the flask, still warm. Through the window, the hinpun and the lane, and somebody’s bicycle going down to the pier.'));
    o.userData.seat={position:[px,0,pz],stand:[px+Math.sin(yaw)*.75,0,pz+Math.cos(yaw)*.75],surfaceY:.09,eyeY:.82,yaw,pitch:0,front:.25};
   }
   // The television on its cabinet against the north wall, facing the table.
   s.box(.9,.4,.45,tx+.6,y1-.22,.23,C.timberDark);s.solid(tx+.13,y1-.45,tx+1.07,y1,0,1);
   s.box(.62,.45,.48,tx+.6,y1-.25,.7,0x2b2b2b);s.mesh(.52,.02,.36,tx+.6,y1-.48,.72,0x3a5260,'Television screen');
-  s.anchor(tx+.6,y1-.8,1,'Watch the television',()=>{const news=television?.();if(news)action('watch',news.title,news.text);else action('inspect','Television','NHK Okinawa: the weather map with a typhoon symbol far to the south, then sumo highlights. You leave it on low for company.');});
+  s.anchor(tx+.6,y1-.8,1,'Watch the television',()=>{const news=television?.();if(news)action('watch',news.title,news.text);else action('inspect','Television','JHK Okinawa: the weather map with a typhoon symbol far to the south, then sumo highlights. You leave it on low for company.');});
   // The photograph on the west wall: a harbour in Sweden, and this one the year he came.
   s.box(.03,.5,.38,x0+.02,ty,1.75,0x3a3a3a);s.box(.01,.44,.32,x0+.04,ty,1.75,0xe9dcc3);
   for(const [dy,sea,roof] of [[-.11,0x7498aa,0xac5149],[.11,0x78aaa2,0xae8063]]){s.box(.01,.19,.09,x0+.045,ty+dy,1.69,sea);s.box(.01,.08,.07,x0+.05,ty+dy,1.78,roof);}
@@ -626,7 +626,7 @@ function furnishGround(s,{action,television,post}){
   s.blk(x0,9.1,0,x0+.7,y1,1.75,0xe8ebe6);s.solid(x0,9.1,x0+.72,y1,0,1.75);
   s.blk(x0,5.9,1.55,x0+.35,6.85,2.25,0xe8e3d6);s.blk(x0,8.55,1.55,x0+.35,9.0,2.25,0xe8e3d6);
   s.anchor(x0+.8,6.9,1.1,'Make tea',say('Kettle','You put the kettle on. Jasmine tea, the way Thuan makes it, in the pot her mother sent from Hội An.'));
-  s.anchor(x0+.8,9.45,1.2,'Look in the fridge',say('Fridge','Orion beer from Sakura, goya for tomorrow, a jar of Thuan’s nước chấm, and the herring Mr Higa ordered in for midsummer.'));
+  s.anchor(x0+.8,9.45,1.2,'Look in the fridge',say('Fridge','Umineko lager from Sakura, goya for tomorrow, a jar of Thuan’s nước chấm, and the herring Mr Higa ordered in for midsummer.'));
   // The dining table for four, under the north window.
   const dx=2.5,dy=8.75;s.box(1.4,.8,.04,dx,dy,.72,C.timberDark);for(const [a,b] of [[-.62,-.33],[.62,-.33],[-.62,.33],[.62,.33]])s.box(.05,.05,.7,dx+a,dy+b,.35,0x5a3f2a);
   s.solid(dx-.7,dy-.4,dx+.7,dy+.4,0,.76);
@@ -659,7 +659,7 @@ function furnishGround(s,{action,television,post}){
  {const [x0,y0,x1,y1]=room('g0-wc');
   s.mesh(.55,.4,.4,x1-.35,6.3,.2,0xf4f6f6,'Toilet');s.mesh(.16,.42,.5,x1-.1,6.3,.65,0xeef2f2,'Toilet cistern');s.solid(x1-.62,6.08,x1,6.52,0,.6);
   s.box(.3,.35,.2,x1-.2,y1-.22,.85,0xf4f6f6);s.box(.3,.02,.4,x1-.2,y1-.02,1.35,0xcfe0e6,{finish:'gloss'});s.solid(x1-.37,y1-.42,x1,y1,0,.95);
-  s.anchor(x1-.8,6.3,1,'Use the toilet',say('WC','A Johansson Washlet, the seat warm. On the shelf, a wooden Dala horse Thuan finds funny.'));
+  s.anchor(x1-.8,6.3,1,'Use the toilet',say('WC','A Johansson bidet seat, warm to sit on. On the shelf, a wooden Dala horse Thuan finds funny.'));
   s.box(.6,.6,.85,9.0,y0+.32,.43,C.white);s.cyl(.17,.17,.02,9.0,y0+.63,.55,0x8e979a,{rx:Math.PI/2});s.solid(8.68,y0,9.32,y0+.64,0,.9);
   s.blk(9.5,y0,0,10.1,y0+.5,.8,0xe8e3d6);s.blk(9.6,y0+.08,.7,10.0,y0+.42,.81,0x8e979a,'metal');s.solid(9.48,y0,10.12,y0+.52,0,.82);}
  // The covered terrace's lobby: boots, the garden tools on the wall, the potting bench beside the terrace door.

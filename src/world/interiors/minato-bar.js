@@ -8,10 +8,10 @@ import {createDrinkProp,setPropPortion,updatePropPortion} from '../../people/iza
  * nowhere: each drink has a place it comes from, and the glass she sets down in front of you is the one she took.
  *
  * - The glass rack on the worktop: the empty draught mugs, rocks glasses and tumblers, washed and waiting.
- * - The Orion draught tap beside it: the keg is in the worktop's cupboard; the mug fills under the spout.
+ * - The Umineko draught tap beside it: the keg is in the worktop's cupboard; the mug fills under the spout.
  * - The back bar: awamori is Sango Quay, the house's everyday pour (izakaya-walnut.js), the bottle on the middle
  *   shelf at her shoulder (the walnut export's bottle 25), taken down, poured at the worktop and put back.
- * - The cold store's upper door: the big Orion bottles with a chilled glass beside each, the cans and the jug of
+ * - The cold store's upper door: the big Umineko bottles with a chilled glass beside each, the cans and the jug of
  *   oolong tea. She opens the door, takes what was ordered and shuts it.
  * - The rear unit beside the range: the sake set, its tokkuri warmed in the simmer pan.
  *
@@ -46,7 +46,7 @@ export const MINATO_BAR=Object.freeze({
  pour:Object.freeze({...at(-.70,IN_WORKTOP,AT_WORKTOP,Math.PI),glass:[-.70,top+.007,-1.72],
   purpose:'The clear stretch of worktop where she pours, in sight of the counter.'}),
  tap:Object.freeze({...at(-.52,IN_WORKTOP,AT_WORKTOP,Math.PI),at:[-.52,top,-1.60],glass:[-.52,top+.013,-1.72],
-  purpose:'Orion on draught: the keg is in the worktop cupboard below, the tap where she can pull it from the aisle.'}),
+  purpose:'Umineko on draught: the keg is in the worktop cupboard below, the tap where she can pull it from the aisle.'}),
  shelf:Object.freeze({...at(BACKBAR[0]+SANGO_LOCAL[0],IN_BACK,AT_BACK,0,SLATE),brand:'sango_quay',name:'Sango Quay',source:'Bottle 25 | SANGO QUAY',
   bottle:[BACKBAR[0]+SANGO_LOCAL[0],BACKBAR[1]+SANGO_LOCAL[1],BACKBAR[2]+SANGO_LOCAL[2]],
   inUse:[BACKBAR[0]+SANGO_LOCAL[0],SLATE,SANGO_FRONT],
@@ -60,7 +60,7 @@ export const MINATO_BAR=Object.freeze({
   stock:Object.freeze({bottle:[[.06,-3.20],[.27,-3.20]],can:[[.41,-3.19]],oolong:[[.51,-3.21]]}),
   // Her right side stays clear of the rear unit's corner beside the store.
   maxStandX:.52,
-  purpose:'The cold store’s upper compartment: the big Orion bottles with their chilled glasses, the cans, the oolong jug.'}),
+  purpose:'The cold store’s upper compartment: the big Umineko bottles with their chilled glasses, the cans, the oolong jug.'}),
  sink:Object.freeze({...at(rear.basinX,IN_BACK,AT_BACK,0),at:[rear.basinX,top-.04,-3.26],
   purpose:'The wash basin: a drink nobody is waiting for goes down it, the glass into the washer.'}),
  // What her hands go over, never through ([min, max] in the room): the worktop, the back bar's cupboard below the
@@ -159,8 +159,8 @@ export function buildMinatoBar(room){
  for(const [kind,spots] of Object.entries(B.rack.slots))for(const [x,z] of spots){
   glasses.push({kind,make:()=>{const g=empty(kind);g.name='Rack '+kind+' glass';return g;},home:[x,top+.015,z]});
  }
- // The Orion draught tap: a steel font on its drip tray, the spout over the mug, the lever towards the aisle.
- const tap=new THREE.Group();tap.name='Orion draught tap';tap.position.set(B.tap.at[0],top,B.tap.at[2]);group.add(tap);
+ // The Umineko draught tap: a steel font on its drip tray, the spout over the mug, the lever towards the aisle.
+ const tap=new THREE.Group();tap.name='Umineko draught tap';tap.position.set(B.tap.at[0],top,B.tap.at[2]);group.add(tap);
  const reachZ=B.tap.glass[2]-B.tap.at[2];
  // A low counter-top server, as Japanese bars have them: the spout just clears a mug, the lever at her reach.
  box(tap,'Tap drip tray',[.13,.010,.22],[0,.005,reachZ/2+.01],metal);ribs(tap,'Tap drip tray grille',0,reachZ/2+.01,.12,.20,.010,metal);
@@ -169,7 +169,8 @@ export function buildMinatoBar(room){
  cyl(tap,'Tap nozzle',.009,.025,[0,.18,reachZ],metal);
  const lever=new THREE.Group();lever.name='Tap lever';lever.position.set(0,.215,reachZ+.01);tap.add(lever);
  cyl(lever,'Tap lever handle',.011,.09,[0,.045,0],dark);
- const badge=box(tap,'Tap Orion badge',[.045,.045,.004],[0,.13,-.027],new THREE.MeshStandardMaterial({color:0x2d5fa8,roughness:.5}));badge.castShadow=false;
+ // (the badge in Umineko's own green, its brand ink: commerce/products-data.js, beer)
+ const badge=box(tap,'Tap Umineko badge',[.045,.045,.004],[0,.13,-.027],new THREE.MeshStandardMaterial({color:0x38523d,roughness:.5}));badge.castShadow=false;
  // The cold store's upper door comes out of the baked room to swing on its hinge; behind it, a lined compartment.
  const D=B.store.door,doorX=D.hinge[0],doorZ=D.hinge[1];
  const inside=(min,max)=>p=>p.x>=min[0]&&p.x<=max[0]&&p.y>=min[1]&&p.y<=max[1]&&p.z>=min[2]&&p.z<=max[2];

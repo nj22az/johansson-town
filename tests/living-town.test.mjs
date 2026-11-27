@@ -49,7 +49,7 @@ test('supper charges once, advances the evening, saves a memory and refuses insu
  acts.action('izakaya-table');dom.button('Order something to eat…');dom.button('Assorted Yakitori · ¥180');
  assert.equal(acts.state.yen,1020);assert.equal(minutes,1102);assert.deepEqual(ordered,['yakitori']);
  assert.ok(acts.state.notes.includes('Ordered a plate of yakitori at Minato.'));
- acts.state.yen=100;acts.action('izakaya-table');dom.button('Order a drink…');dom.button('Orion draught, medium mug · ¥450 (not enough yen)');
+ acts.state.yen=100;acts.action('izakaya-table');dom.button('Order a drink…');dom.button('Umineko draught, medium mug · ¥450 (not enough yen)');
  assert.equal(acts.state.yen,100);assert.deepEqual(ordered,['yakitori'],'nothing you cannot pay for');
  acts.action('izakaya-menu');dom.button('Read the food');assert.match(document.querySelector('#activityBody').firstChild.textContent,/Grilled Atka mackerel/);
 });

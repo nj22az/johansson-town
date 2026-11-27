@@ -138,7 +138,7 @@ function noticeboard(group){
    ctx.font=`bold 20px ${GOTHIC}`;ctx.fillText(head,0,-nh/2+34);ctx.font=`13px ${GOTHIC}`;lines.forEach((l,i)=>ctx.fillText(l,0,-nh/2+58+i*18));ctx.restore();};
   note(26,26,200,160,'#f4efdf',-.03,["When there is a typhoon","To Minato Elementary Gymnasium/Community Center","Check your emergency bag",'Typhoon shelters:','school gym, community hall'],"Typhoon shelter");
   note(242,30,170,150,'#fff7c9',.02,["Don't play on the quay",'Do not play on','the quay or the','tetrapods'],"Port Safety");
-  note(430,24,186,176,'#e3f0e6',-.015,["Harley Tournament","May 4th of the lunar calendar","Fisheries cooperative Youth group",'Harbour boat race','co-op youth section'],"From the Fisheries Association");
+  note(430,24,186,176,'#e3f0e6',-.015,["Hārī boat race","May 4th of the lunar calendar","Fisheries cooperative Youth group",'Harbour boat race','co-op youth section'],"From the Fisheries Association");
   note(40,206,250,168,'#f6f1e6',.01,["Evacuation site map",'Shelter map'],"Minato Town Evacuation map");
   // The map on that notice: the harbour, the school, the hall, drawn with a felt pen.
   ctx.strokeStyle='#3f6f9a';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(60,330);ctx.quadraticCurveTo(160,300,270,340);ctx.stroke();

@@ -17,7 +17,7 @@ test('Thao makes it from the tap, walks the drink over, sets it down and goes ba
  assert.ok(Math.hypot(nao.position.x-NAO_STATION[0],nao.position.z-NAO_STATION[2])<.05,'back at her station');
  assert.equal(nao.userData.playerService,undefined);
  assert.deepEqual(beer.drink,{kind:'draft',left:DRINKS.draft.sips,sips:DRINKS.draft.sips});
- assert.ok(said.some(t=>/Orion/.test(t)));
+ assert.ok(said.some(t=>/Umineko/.test(t)));
  let last;for(let i=0;i<DRINKS.draft.sips;i++)last=beer.sip();
  assert.equal(last.left,0);assert.ok(last.alcohol>0);
 });

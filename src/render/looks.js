@@ -41,7 +41,7 @@ export const LOOKS=Object.freeze({
  // The island as Vy would draw it (the owner, 25 November 2026: "If choosing to play with Vy can you make the island look
  // like this", of a world drawn in a child's coloured pencils): chosen for you while you play as her (game.js).
  vy:{label:'Vy’s drawing',short:'Vy',hint:'The island in a child’s coloured pencils: hatching on everything, soft wobbly lines.'},
- riso:{label:'Risograph',short:'Riso',hint:'Experimental: coral and teal ink plates, grain and slight misregistration.',experimental:true},
+ riso:{label:'Stencil print',short:'Stencil',hint:'Experimental: coral and teal ink plates, grain and slight misregistration.',experimental:true},
  pencilManga:{label:'Pencil manga',short:'Pencil',hint:'Experimental: clean manga contours with broken graphite strokes in deep shadows.',experimental:true},
  brushOil:{label:'Heavy brush oil',short:'Brush',hint:'Experimental: broad directional paint dabs, with facial features and contours retained.',experimental:true},
  stamp:{label:'Rubber stamp',short:'Stamp',hint:'Experimental: worn burgundy ink, cut silhouettes and irregular pressure on warm paper.',experimental:true},
