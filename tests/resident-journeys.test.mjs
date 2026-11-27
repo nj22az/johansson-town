@@ -17,18 +17,35 @@ const world=createTown({scene:new THREE.Scene(),sites:createBusinesses(),mobile:
 // The surface reaches the terminal quay (z −73.4), where the commuters land off the boat (social.js transitStop).
 const surface=createWalkSurface({minX:-45,maxX:50,minZ:-78,maxZ:95,base:planHeight});surface.add(world.group);setWalkSurface(surface);
 const grid=createColliderGrid(world.colliders),blocked=(x,z,r=.3)=>townBoundsBlocked(x,z,r)||grid.some(x,z,r,c=>standingHitsRect(x,z,r,groundHeight(x,z),c));
+/**
+ * game.js setTime: the town's hours at this minute, and the walkers' routes searched again where a way in changed. The
+ * game wires Kissa Higa's front to the walkers (game.js: world.neighbours, world.people and createNeighbours'
+ * getKissaClosing), so the shutter waits for whoever is still inside, and so does the walkers' controller here.
+ */
+const kissaClosing=()=>!!world.quarters?.higa?.closingHeld;
+function clock(minutes,...systems){
+ world.updateHours(minutes);
+ if(!world.passagesChanged)return;world.passagesChanged=false;
+ const door=world.quarters?.higa?.shutterSolid,region=door?{at:[door.x,door.z],radius:12}:{};
+ for(const system of systems)system.replan?.(region);
+}
 for(const spec of NEIGHBOURS)test(spec.name+' completes authored street journeys, sleeps and leaves next morning with town hidden',()=>{
  const parent=new THREE.Group();parent.visible=false;
- const system=createNeighbours({parent,blocked,register(o){o.userData.hit={inside:false};}});
+ const system=createNeighbours({parent,blocked,getKissaClosing:kissaClosing,register(o){o.userData.hit={inside:false};}});
  const person=system.people.find(p=>p.spec.name===spec.name);system.people.splice(0,system.people.length,person);
+ world.neighbours=[person.g];world.people=[];
  const home=activeResidentHome(spec.name).target;person.g.position.set(home.x,groundHeight(home.x,home.z),home.z);person.initialised=true;
  let key=null;
  for(let m=0;m<=1440+720;m+=15){
-  const plan=canonicalDay(spec.name,m),next=plan.place+':'+plan.target.join(',');if(next===key)continue;key=next;
+  // The town keeps its own clock as the game's does (game.js setTime): since 30 October 2026 Kissa Higa's shutter and
+  // doors follow its hours (okinawa/quarters.js), and a way in opening or shutting has the walkers search again.
+  clock(m,system);
+  const plan=canonicalDay(spec.name,m,false,{kissaClosingHeld:kissaClosing()}),next=plan.place+':'+plan.target.join(',');if(next===key)continue;key=next;
   let arrived=false;
   // Hold each destination long enough to assess the actual route independently
   // of time compression. The postman's working round is tested separately.
   for(let i=0;i<9000;i++){
+   if(i%10===9)clock(m,system);
    const before=person.g.position.clone();system.update(.1,m);
    assert.ok(person.g.position.distanceTo(before)<.24,spec.name+' moves continuously');
    // A home up an indoor stair (neighbours.js STAIR_HOMES) is reached upstairs, not at the doorway at its foot.
@@ -51,11 +68,14 @@ for(const profile of WORLD_CAST.filter(p=>p.name!=='Barfly'))test(profile.name+'
  // This is the exact predicate used by game.js for the main schedule controller.
  const runtimeBlocked=(x,z,r)=>townBoundsBlocked(x,z,r)||grid.some(x,z,r,c=>standingHitsRect(x,z,r,groundHeight(x,z),c));
  const system=createCastAI({world:{people:[person],homes:new Map()},player:new THREE.Vector3(100,0,100),state:()=>state,paused:()=>false,collides:runtimeBlocked});
+ world.people=[person];world.neighbours=[];
  let key=null;
  for(let m=0;m<=1440+720;m+=15){
+  clock(m,system);
   const plan=residentPlan(profile,m,false,state,false),next=plan.place+':'+plan.target.join(',');if(next===key)continue;key=next;
   const indoor=['home','bookshop','izakaya','ramen','market','onsen'].includes(plan.place)||plan.place==='work'&&profile.workSite;
   for(let i=0;i<9000;i++){
+   if(i%10===9)clock(m,system);
    system.update(.1,m,false);
    if(!indoor||g.userData.indoors===plan.place)break;
   }
@@ -68,10 +88,12 @@ test('main residents complete simultaneous home/work changes while their town is
  const people=WORLD_CAST.filter(p=>p.name!=='Barfly').map(profile=>{const g=new THREE.Group();g.userData={name:profile.name,hit:{inside:false}};parent.add(g);return {g,profile};});
  const state={inventory:[],residentLocations:Object.fromEntries(people.map(p=>[p.profile.name,{position:p.profile.home,indoors:'home'}]))};
  const system=createCastAI({world:{people,homes:new Map()},player:{position:new THREE.Vector3(100,0,100)},state:()=>state,paused:()=>false,collides:(x,z,r)=>townBoundsBlocked(x,z,r)||grid.some(x,z,r,c=>standingHitsRect(x,z,r,groundHeight(x,z),c))});
+ world.people=people;world.neighbours=[];
  for(const m of [720,1260,145,620,2160]){
+  clock(m,system);
   const expected=people.map(p=>({p,plan:residentPlan(p.profile,m,false,state)})).filter(({p,plan})=>['home','bookshop','izakaya','ramen','market','onsen'].includes(plan.place)||plan.place==='work'&&p.profile.workSite);
   let arrived=false;
-  for(let i=0;i<9000;i++){system.update(.1,m,false);if(expected.every(({p,plan})=>p.g.userData.indoors===plan.place)){arrived=true;break;}}
+  for(let i=0;i<9000;i++){if(i%10===9)clock(m,system);system.update(.1,m,false);if(expected.every(({p,plan})=>p.g.userData.indoors===plan.place)){arrived=true;break;}}
   assert.ok(arrived,'Unfinished journeys at '+m+': '+expected.filter(({p,plan})=>p.g.userData.indoors!==plan.place).map(({p,plan})=>p.profile.name+' to '+plan.place+' at '+p.g.position.toArray()).join('; '));
  }
 });

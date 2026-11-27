@@ -52,7 +52,12 @@ test('Sakura is Thuan’s outright and keeps shop hours: Thuan on weekdays, shut
 test('Tetsuo lives in the Front-Row yard and never takes the boat; the Chinen house on Kitano-jima is gone with his mother, the history kept',()=>{
  const tetsuo=profile('Tetsuo');
  assert.equal(tetsuo.homeAddress,'2 Front-Row Yard');
- assert.equal(residentPlan(tetsuo,at(1,720)).place,'ramen');assert.equal(residentPlan(tetsuo,at(1,1100)).place,'work');
+ // His day since the 30 October 2026 Kissa Higa mornings is his cast.js day (AGENTS.md; commuter-schedule.js, finish
+ // 18:00): the radio bench from nine, lunch at Sato Ramen, the workshop until six, and the yuntaku bench outside Kissa
+ // Higa from half past six to eight (21 October 2026). His workshop day no longer runs past six, as it did on his old
+ // late shift.
+ assert.equal(residentPlan(tetsuo,at(1,600)).place,'work');assert.equal(residentPlan(tetsuo,at(1,720)).place,'ramen');
+ assert.equal(residentPlan(tetsuo,at(1,1020)).place,'work');assert.equal(residentPlan(tetsuo,at(1,1125)).place,'higa-bench');
  for(let m=0;m<1440;m+=15)assert.notEqual(residentPlan(tetsuo,at(1,m)).place,'away',''+m);
  // Phase 4 (docs/CAST-CONSOLIDATION.md §6, addendum 5): Grandmother Chinen retired and the Chinen house came down; the
  // hamlet is Johansson's house and the Shiroma house (Kai's), and only the family history stays in Tetsuo's own words.

@@ -177,9 +177,13 @@ for(const name of ['Christina','Kōji'])test(name+' walks the stand points of th
 test('one switch (full-life.js) turns stand points and quay breaks off for a lighter edition, and back on',async()=>{
  const {setFullLife,fullLife}=await import('../src/people/full-life.js');
  const {quayLedger,quayClaim}=await import('../src/people/quay-breaks.js');
- const b=quayLedger(20740).find(b=>b.spot),m=20740*1440+7*60+40;
+ // Christina's garden round (her 06:00 phase, higa-garden). Since 30 October 2026 she keeps Kissa Higa from a quarter to
+ // seven on weekdays (commerce/kissa-higa.js), whose counter is her shop's place (shop-days.js), not a stand point, so the
+ // round is read at twenty past six on this Wednesday, before she goes down to open, where 07:40 was read before.
+ const b=quayLedger(20740).find(b=>b.spot),m=20740*1440+6*60+20;
  assert.equal(fullLife(),true,'on by default');
  assert.ok(standNow('Christina',m,'world')&&quayClaim(b.name,b.start+1));
+ assert.equal(canonicalDay('Christina',m).stand?.sequence,'higa-garden','with full life she works along the garden round');
  setFullLife(false);
  try{
   assert.equal(standNow('Christina',m,'world'),null);assert.equal(quayClaim(b.name,b.start+1),null);
