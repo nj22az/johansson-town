@@ -130,16 +130,18 @@ const TRUNK=Object.freeze({lead:.2,leadMin:.08,leadMax:.12,hold:.4,release:.8,sh
  *  and DramaFinish want their own: with it the hands' paths bow past a half circle or flatten (Laugh, Talk, HairTuck), or the
  *  levels start out of order (HeelRock, DramaFinish). Bow's, from the spine since its own bow is (TRUNK.rooted), passes on
  *  Johansson and Sverker but flattens his head's lean back into a straight 10 cm stroke and starts Vy's levels together. */
-const WIND_TRUNK=new Set(['Wave','Point','ScratchHead','ChinTap','CollarTug','Clap','Kachashi','Shrug']);
+const WIND_TRUNK=new Set(['Wave','Point','ScratchHead','ChinTap','CollarTug','Clap','Kachashi','Shrug','Talk']);
 /** A move's own share and hold at the bottom of its wind-up (TRUNK's otherwise): the kachāshī's hold is its beat; a shrug's
- *  shoulders sink and stay down a moment before they go up. */
-const TRUNK_OWN=Object.freeze({Kachashi:Object.freeze({hold:.35}),Shrug:Object.freeze({hold:.5})});
+ *  shoulders sink and stay down a moment before they go up; talk's dip is small and does not stay, but for hands held behind
+ *  the back (`behind`: they stay there through the wind-up, so the dip alone is the counter-movement), and a point's is
+ *  quicker (stage 4). */
+const TRUNK_OWN=Object.freeze({Kachashi:Object.freeze({hold:.35}),Shrug:Object.freeze({hold:.5}),Talk:Object.freeze({hold:0,behind:.12,share:.1}),Point:Object.freeze({hold:.3})});
 /** The everyday moves whose arm rises from the side at a natural pace (timing-principle-mastery: 8-12 frames at 24 fps,
  *  "Standard (natural movement)"; calm-relaxation): in over RISE_TIME[0] and out over RISE_TIME[1] seconds, eased, where the
  *  other moves ramp in a quarter of a second (4-6 frames at 24 fps, "Quick (snappy responses)", which no everyday move is),
  *  and from where the arm hangs; the clap's hands come together more deliberately (RISE_OWN). The trunk's wind-up needs it:
  *  against a raise that quick, a calm dip moves slower than a tenth of the raise's top speed, under what reads as a movement. */
-const RISE=new Set(['Wave','ScratchHead','ChinTap','CollarTug','Point','Clap']),RISE_TIME=Object.freeze([.4,.3]),RISE_OWN=Object.freeze({Clap:Object.freeze([.5,.3])});
+const RISE=new Set(['Wave','ScratchHead','ChinTap','CollarTug','Point','Clap','Talk']),RISE_TIME=Object.freeze([.4,.3]),RISE_OWN=Object.freeze({Clap:Object.freeze([.5,.3]),Talk:Object.freeze([.5,.3])});
 /**
  * Squash on impacts (squash-stretch-mastery: "Required on every impact", "Jump arcs: stretch on ascent, squash on landing",
  * "Timing amplifies squash/stretch: Fast impacts demand more squash", "Deformation should ease in/out, never snap"; the
@@ -186,6 +188,8 @@ const JUMP=Object.freeze({down:.15,launch:.072,flight:.55,absorbFor:.1,recover:.
  squat:Object.freeze({crouch:.52,off:.3,air:.05,tuck:.15,absorb:.62}),
  hard:Object.freeze({reach:.2,give:.5,depth:Object.freeze([.05,.02,.06,.16]),absorbFor:.16,recover:.36}),tuck:.15,
  spine:Object.freeze([.1,-.03,.08]),chest:Object.freeze([.25,-.08,.18]),head:Object.freeze([-.2,.05,-.12])});
+/** How long Talk's sway takes to come in, once its hands are up (seconds). */
+const TALK_SWAY=.5;
 /** Comedy's moves, whose wind-up is pushed (the town's register, the standard's section 2). */
 const PUSHED=new Set(['EvilLaugh','WindUp','Tackle','Stomp','HeelKick','Tada','Cheer','CupHands','CoinToCheek','BowDeep','BowWalk',
  'KneelHug','PoleFlick','Peek','BannerUp','FanWild','HoldOn','FingerStop','Tape','Offer','Reach','LieKnead','GrenadeCoin','Aim',
@@ -985,7 +989,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    const f=Math.max(...go[e].map(v=>v.length()));if(f>far){far=f;eff=e;}}
   if(far<.03)return;
   const k=go[eff].findIndex(v=>v.length()>=.9*far),A=tries[k][0],u=go[eff][k].clone().normalize();
-  wind.A=A;wind.W=THREE.MathUtils.clamp(TRUNK.lead*A,TRUNK.leadMin,TRUNK.leadMax);wind.H=(TRUNK_OWN[g.name]?.hold??TRUNK.hold)*A;wind.R=TRUNK.release*A;
+  wind.A=A;wind.W=THREE.MathUtils.clamp(TRUNK.lead*A,TRUNK.leadMin,TRUNK.leadMax);wind.H=(stanceCarry==='behind'&&TRUNK_OWN[g.name]?.behind!==undefined?TRUNK_OWN[g.name].behind:TRUNK_OWN[g.name]?.hold??TRUNK.hold)*A;wind.R=TRUNK.release*A;
   if(g.d!==Infinity&&wind.W+wind.H>g.d*.3){wind.W=0;return;}
   const comedy=PUSHED.has(g.name)||FUN_POSES[g.name]||STORY_POSES.has(g.name),b=u.clone().multiplyScalar(-(TRUNK_OWN[g.name]?.share??(comedy?TRUNK.share.comedy:TRUNK.share.everyday))*far);
   // (never into the body: a hand beside it, or in a pocket, is carried down and back and `clear` away from it, never in toward
@@ -1063,6 +1067,10 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    if(!stanceHere){Object.assign(A,{w:1,v:0,goal:1,u:1,taken:-1});continue;}
    const sh=target['shoulder'+side],el=target['elbow'+side],hd=target['hand'+side],S=STANCE;
    const taken=!!gesture&&!EASED.has(gesture.name)&&(sh.distanceToSquared(A.sh)>1e-9||el.distanceToSquared(A.el)>1e-9||hd.distanceToSquared(A.hd)>1e-9);
+   // (hands clasped behind the back stay there through the trunk's wind-up and come out with the action: brought round from
+   // behind the back from the first frame, they ran forward along the action and cancelled the dip, Point, ChinTap, Clap and
+   // Talk on Sverker)
+   if(taken&&A.w>=1&&stanceCarry==='behind'&&wind.trunk&&wind.g===gesture&&gesture.t<wind.W+wind.H){sh.copy(A.sh);el.copy(A.el);hd.copy(A.hd);continue;}
    if(taken){A.taken=A.taken<0?0:A.taken+dt;A.last.sh.copy(sh);A.last.el.copy(el);A.last.hd.copy(hd);}else A.taken=-1;
    const d=gesture?.d??Infinity,timed=Number.isFinite(d),back=timed?THREE.MathUtils.clamp(S.back*d,S.backMin,S.backMax):S.backMax;
    const goal=taken&&!(timed&&d-gesture.t<=back)?0:1;
@@ -2213,7 +2221,12 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
     set('thighR',.45*q);set('kneeR',1.7*q+Math.sin(t*3)*.08*q);
     set('shoulderL',-1.2*q,0,-.2*q);set('shoulderR',-1.2*q,0,.2*q);set('elbowL',-1.6*q);set('elbowR',-1.6*q);
     add('head',.08*q,0,-.25*q);add('chest',.1*q,0,-.06*q);break;
-   case 'Talk':set('shoulderR',-.55+Math.sin(t*3.1)*.25,0,-.2);set('elbowR',-1.1+Math.sin(t*4.3)*.3);set('shoulderL',-.35+Math.sin(t*2.3+1)*.2,0,.2);set('elbowL',-1+Math.sin(t*3.7)*.3);add('head',Math.sin(t*2.6)*.06);break;
+   // Talking with the hands: raised from where they hang at a natural pace (RISE), and once up swaying with the words (eased
+   // in over TALK_SWAY as the raise arrives: the raise is its own stroke, the hands coming up before the first word).
+   case 'Talk':{const w=r*smooth((t-rise[0]*.8)/TALK_SWAY);
+    // (the hands go round a little as they go, not to and fro on a line: arc-mastery)
+    set('shoulderR',(-.55+Math.sin(t*3.1)*.25*w)*r,0,-hang+(hang-.2-Math.cos(t*3.1)*.12*w)*r);set('elbowR',-.12*(1-r)+(-1.1+Math.sin(t*4.3)*.3*w)*r);
+    set('shoulderL',(-.35+Math.sin(t*2.3+1)*.2*w)*r,0,hang+(.2-hang+Math.cos(t*2.3+1)*.1*w)*r);set('elbowL',-.12*(1-r)+(-1+Math.sin(t*3.7)*.3*w)*r);add('head',Math.sin(t*2.6)*.06*w);break;}
    case 'DiscoPoint':case 'IdolDance':case 'AirGuitar':case 'RockBelt':case 'EnkaReach':case 'RobotDance':case 'ChickenDance':case 'JellyWobble':case 'DramaFinish':{
     const pose=musicPose(g.name,Number.isFinite(s.performBeat)?s.performBeat:t*112/60,s.performEnergy);
     for(const [joint,angles]of Object.entries(pose.joints))set(joint,...angles);
