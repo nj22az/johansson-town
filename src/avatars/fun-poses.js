@@ -62,6 +62,8 @@ export const POLE_RADIUS=.022;
 // it) and turned out a little past the pole, the other cheek to it; the chest a little into the pole; the pole that far to
 // the cheek's side
 const POLE_HUG_HEAD=Object.freeze({pitch:-.3,yaw:.3,roll:0}),POLE_HUG_LEAN=.05,POLE_HUG_SIDE=.06;
+// how far the pole stands clear of the lap's cloth (a skirt's, a dress's) as the knees come up round it (metres, for 1.6 m)
+const POLE_HUG_LAP=.006;
 // where the mittens grip the pole, from its axis (x, and the height over the chest; the first the left, the second the
 // right, for PoleHug: the face's side a little higher), and how far beyond its axis
 const POLE_HUG_GRIP=Object.freeze([[.1,.12],[-.1,.06],[.1,.06],[-.1,.12]]),POLE_HUG_GRIP_BEYOND=.03;
@@ -96,6 +98,19 @@ function poleAhead(m,r,avatar,side,x){
  }
  if(!any){const S=[m.Rh*m.headSX,m.Rh*m.headSY,m.Rh*.98],v=new THREE.Vector3();
   for(let a=0;a<64;a++)for(let b=1;b<16;b++){const t=a/64*Math.PI*2,f=b/16*Math.PI;take(v.set(S[0]*Math.sin(f)*Math.cos(t),m.headCentre+S[1]*Math.cos(f),S[2]*Math.sin(f)*Math.sin(t)));}}
+ // and ahead of the lap's cloth as the hug raises the knees: a long skirt or a dress, fitted over the raised thighs after
+ // skinning (towel-fit.js), comes up across the lap between the knees, and Miss Higa's long skirt went 13 mm into the pole.
+ // The legs put in the hug's pose a moment (every other joint straight, as the reach's own pose is), the cloth fitted as it
+ // is drawn, and the pole kept its radius and POLE_HUG_LAP clear of it.
+ for(const mesh of meshes){
+  const F=mesh.geometry.attributes.towelFit,fit=F&&mesh.towelFit;if(!fit)continue;
+  const bones=Object.values(avatar.bones),saved=bones.map(b=>b.quaternion.clone()),joints=POLE_HUG_JOINTS[side],root=avatar.root;
+  for(const b of bones)b.rotation.set(...(joints[b.name]||[0,0,0]));root.updateMatrixWorld(true);fit.refresh();
+  const P=mesh.geometry.attributes.position,v=new THREE.Vector3(),rest=new THREE.Vector3(),lap=r+POLE_HUG_LAP*m.k;
+  for(let i=0;i<P.count;i++){if(F.getX(i)<=.5)continue;mesh.getVertexPosition(i,v);fit.fitPoint(v,F.getX(i),rest.fromBufferAttribute(P,i));
+   root.worldToLocal(mesh.localToWorld(v));const dx=v.x-x;if(Math.abs(dx)<lap)z=Math.max(z,v.z+Math.sqrt(lap*lap-dx*dx));}
+  bones.forEach((b,i)=>b.quaternion.copy(saved[i]));root.updateMatrixWorld(true);fit.refresh();
+ }
  // and far enough ahead of the body's own front (a round belly reaches well past the chest's depth) for both mittens to
  // close on the pole clear of it: each mitten's middle a mitten and a centimetre outside the torso where it grips
  if(avatar?.recipe){const vol=bodyVolume(avatar.recipe,m),need=m.hand+.01*m.k;
