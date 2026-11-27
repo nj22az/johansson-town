@@ -1,7 +1,7 @@
 import * as THREE from '../../vendor/three.module.js';
 import {faceLayout} from './face.js';
 import {shapeHeadPoint} from './head-profile.js';
-import {sampleCycle,CYCLE_DURATION} from '../drinking/cycle.js';
+import {sampleCycle,CYCLE_DURATION,LIFT_STAGE} from '../drinking/cycle.js';
 import {handHold,handleAt} from './build.js';
 
 /** A single lift, pause at the lips, then return; shared by every avatar. */
@@ -170,6 +170,8 @@ export function gripWheel(avatar,vehicle,wheel,time=0){
  }
 }
 /** Keep the rim/morsel at the measured mouth, independent of height or head shape. */
+/** How far a bite or a sip bows forward off the straight line from the rest to the mouth, at its middle, of that line's length. */
+export const LIFT_ARC=.15;
 export function poseAvatarConsumption(avatar,lift,food=false,prop=null){
  const {root,measure:m,bones:b}=avatar;root.updateWorldMatrix(true,true);
  const L=faceLayout(avatar.recipe),head=b.head;
@@ -222,6 +224,17 @@ export function poseAvatarConsumption(avatar,lift,food=false,prop=null){
   head.updateWorldMatrix(true,false);
   target=rest.clone().lerp(head.localToWorld(lips.clone()).sub(contact),lift);
  }
+ // (on an arc, not a straight line: the hand comes up in front of the body and goes down the same way, bowed forward at its
+ // middle by LIFT_ARC of the way from the rest to the mouth (arc-mastery: 10-20% for an everyday move; the audit found the
+ // hand dropping 47 cm from the mouth on a dead straight line), nothing at the rest or at the mouth, never past the arm's reach)
+ if(lift>.001&&lift<.999){const top=head.localToWorld(lips.clone()).sub(contact),chord=top.sub(rest),len=chord.length();
+  const fwd=new THREE.Vector3(0,0,1).transformDirection(root.matrixWorld);if(len>1e-4)fwd.addScaledVector(chord,-fwd.dot(chord)/(len*len));
+  // (each stage its own arc: the vessel rests at LIFT_STAGE between the lift and the approach, and between the recovery and the
+  // setting down, cycle.js; one arc over the whole way left the short stage below it straight)
+  // (sine squared: each stage leaves and reaches its ends along its line, so the hand is not swung across as it comes to the
+  // mouth: a sine's steepest bow there flipped the wrist, holding a bite level, a third of a radian in a frame)
+  const L=LIFT_STAGE,bow=lift<L?L*Math.sin(Math.PI*lift/L)**2:(1-L)*Math.sin(Math.PI*(lift-L)/(1-L))**2;
+  if(len>1e-4&&fwd.lengthSq()>1e-8){target.addScaledVector(fwd.normalize(),LIFT_ARC*len*bow);if(target.distanceTo(shoulder)>span)target.sub(shoulder).setLength(span).add(shoulder);}}
  // (a Pixar body's elbow hangs below the shoulder as it drinks, the cartoon's short arm goes out to the side)
  reach(avatar,target,'R',avatar.pixar?[-.45,-1,.25]:-.25);
  // The vessel sits inside the hand, where the thumb can close on it, rather

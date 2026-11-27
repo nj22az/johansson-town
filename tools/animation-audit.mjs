@@ -83,10 +83,16 @@ export const THRESHOLDS=Object.freeze({
  arcTravel:.10,
  arcBands:Object.freeze({everyday:Object.freeze([.10,.50]),comedy:Object.freeze([.30,.50])}),
  // ---- Overlap (follow-through-overlapping: "offset secondary elements by 2-4 frames (at 24fps) per level of hierarchy";
- // ×2.5: 5 to 10 game frames per level). A joint starts when it first turns faster than a tenth of its own top speed, and
- // stops when it last does (ours: where an eased curve leaves its rest whatever its size; not under 0.08 rad/s, above the
- // idle's own breath and sway, 0.02 to 0.05 rad/s, which go on under many moves).
- overlapGap:Object.freeze([5,10]),overlapRest:.08,
+ // ×2.5: 5 to 10 game frames per level). A joint starts where its first movement passes a tenth of that movement's own top
+ // speed, and stops where its last movement falls under a tenth of its own (ours: where an eased curve leaves and reaches its
+ // rest whatever its size); never under 0.08 rad/s, above the idle's own breath and sway (0.02 to 0.05 rad/s) that goes on
+ // under many moves. (Until 27 November 2026 it was a tenth of the joint's top speed in the whole move: a joint with one fast
+ // stroke was called stopped while it still turned back into its rest at half a radian a second, and one with a fast sway
+ // late in the move was called started late. A fixed speed instead kept a fast joint moving longer than a slow one with the
+ // same curve.)
+ // A leg takes part only when its foot leaves the floor (ours): a foot on the floor holds its leg, and the overlap gives way
+ // to the contact (the standard's hierarchy names no leg).
+ overlapGap:Object.freeze([5,10]),overlapRest:.08,footLift:.03,
  // ---- Twins (the standard, solid drawing: "Offset them in time (at least 2 frames at 24 fps) or in amount (at least
  // 10%) (ours)": 5 game frames). The arms are compared as the left's turns at the shoulder, elbow and wrist against the
  // right's mirrored, at the lag (within half a second) that brings them closest: twins when that lag is under 5 frames and
@@ -425,9 +431,17 @@ function checkArcs(rec,P){
 // not after the forearms; carried by their parent from its first frame, their own start shows no lag to measure.
 function checkOverlap(rec,J){
  const T=THRESHOLDS,levels=[[],[],[]];
- for(const j of JOINTS){const M=J[j];if(!M.moving)continue;const rest=Math.max(T.overlapRest,T.restFraction*M.peak);
-  let on=-1,off=-1;for(let i=rec.start;i<rec.n;i++)if(M.speed[i]>rest){if(on<0)on=i;off=i;}
-  if(on<0)continue;
+ // (a leg whose foot stays on the floor is held by it)
+ const lifted=side=>{const a=rec.eff['foot'+side],y0=a[(rec.start-1)*3+1];let up=0;for(let i=rec.start;i<rec.n;i++)up=Math.max(up,a[i*3+1]-y0);return up>=T.footLift;};
+ const free={L:lifted('L'),R:lifted('R')};
+ for(const j of JOINTS){const M=J[j];if(!M.moving)continue;if(/^(thigh|knee|foot)/.test(j)&&!free[j.slice(-1)])continue;
+  const v=M.speed,floor=T.overlapRest;let a=-1,b=-1;for(let i=rec.start;i<rec.n;i++)if(v[i]>floor){if(a<0)a=i;b=i;}
+  if(a<0)continue;
+  // (the first movement's top: where the speed first stops rising, over three frames; the last's, where it last starts falling)
+  const avg=i=>(v[Math.max(0,i-1)]+v[i]+v[Math.min(rec.n-1,i+1)])/3;
+  let p1=a;while(p1<b&&avg(p1+1)>=avg(p1))p1++;let pl=b;while(pl>a&&avg(pl-1)>=avg(pl))pl--;
+  const r1=Math.max(floor,T.restFraction*v[p1]),rl=Math.max(floor,T.restFraction*v[pl]);
+  let on=a;while(on<p1&&v[on]<r1)on++;let off=b;while(off>pl&&v[off]<rl)off--;
   // (it stops only if it has come to rest before the watch ends: a held move's life goes on)
   const settled=off<rec.n-6;
   levels[LEVEL[j]].push({joint:j,on:on-rec.start,off:settled?off-rec.start:null});}

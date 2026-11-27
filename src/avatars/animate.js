@@ -36,6 +36,42 @@ const ease=(t,d,edge=.25)=>Math.min(1,t/edge,(d-t)/edge);
 const smooth=x=>{x=Math.min(1,Math.max(0,x));return x*x*(3-2*x);};
 /** A big move (kneeling down, a deep bow): in over `a` seconds and, when it has an end, out over `b`, eased at both ends. */
 const inOut=(t,d,a,b=a)=>smooth(Math.min(t/a,d===Infinity?1:(d-t)/b));
+/** A critically damped follow (SmoothDamp, Game Programming Gems 4): x toward `goal` at rate `omega` (1/s), `v` its speed;
+ *  eased out of rest and into the goal, no overshoot, stable at any step. Returns [x, v]. */
+const follow=(x,v,goal,omega,dt)=>{const k=omega*dt,e=1/(1+k+.48*k*k+.235*k*k*k),c=x-goal,u=(v+omega*c)*dt;return [goal+(c+u)*e,(v-omega*u)*e];};
+/**
+ * The drag hierarchy (follow-through-overlapping, "The Drag Hierarchy"; docs/ANIMATION-STANDARD.md rule 5): the root (hips,
+ * spine) leads; the chest, neck, head and upper arms follow their targets LAG behind it, while it moves (a move that leaves
+ * the root still has nothing for them to follow: they answer at once, as the game must within 100 ms, game-development); the
+ * forearms and hands LAG behind them; the fingers' grip LAG behind those. 7 game frames: inside the guideline's 2-4 frames
+ * at 24 fps (5-10 at 60), and the upper arms still answer within about a tenth of a second. Each joint plays the target it
+ * had that long ago, out of HISTORY frames kept (enough for the grip's 0.35 s at 144 frames a second); its own follow, and
+ * so its ease and its settle (no overshoot), are as they were. The legs keep no lag: a foot on the floor or a seat under the
+ * hips holds them (a contact pins them, and the overlap gives way to it).
+ */
+const LAG=7/60,HISTORY=64;
+/** Moves whose hands were keyed on arcs made without the drag: with the forearm a lag behind the upper arm, Heart's, HoldOn's
+ *  and IdolDance's hands go round past a half circle, Facepalm's, Flex's and Swoon's come back flatter than comedy's 30%, the
+ *  dances' strums flatten (the principles audit, 27 November 2026). They play without the drag until their arcs are keyed again
+ *  with it in (the standard's stage 2): it goes off as one starts (at once, when the body has been still: nothing it shows
+ *  changes then), and comes back, eased, once it is over. */
+const ARCS_WITHOUT_DRAG=new Set(['Talk','Jump','Fidget','SitPresentFood','Heart','HandsOnHips','EvilLaugh','Kachashi','IdolDance','AirGuitar','DramaFinish',
+ 'HoldOn','FrozenAbsurd','TorchOff','Facepalm','HideFace','Swoon','Flex','Fight:A']);
+const DRAG_LEVEL=Object.freeze(JOINTS.map(j=>['chest','neck','head','shoulderL','shoulderR'].includes(j)?1:['elbowL','elbowR','handL','handR'].includes(j)?2:0));
+/** From one way of being to another (standing, walking, running, sitting, climbing), the body's own pose fades from where it
+ *  was over this long, eased: stopping and standing up are movements (the walk's stop stepped by all its speed in a frame). */
+const FADE=.32;
+/** The stance under a move (gait.js carry: the hands in the pockets, or clasped behind the back): an arm the move takes comes
+ *  out of it from the move's first frame, on an eased curve `out` of the move's length long (between `outMin` and `outMax`
+ *  seconds), and goes back into it over the move's own last `back` of its length (between `backMin` and `backMax`), so the
+ *  whole arm is in the stance again as the move ends; an arm a held move had goes back over `backMax` once it is let go.
+ *  From behind the back the upper arm swings out by up to `swing` radians on the way, clear of the back. */
+const STANCE=Object.freeze({out:.3,outMin:.15,outMax:.3,back:.4,backMin:.17,backMax:.35,swing:.2});
+/** An eased curve from p0 (going at m0 per unit of u) to p1 (at rest), at u (0..1): the value, and its rate per unit of u. */
+const hermite=(p0,m0,p1,u)=>{const u2=u*u,u3=u2*u;return [(2*u3-3*u2+1)*p0+(u3-2*u2+u)*m0+(-2*u3+3*u2)*p1,(6*u2-6*u)*p0+(3*u2-4*u+1)*m0+(-6*u2+6*u)*p1];};
+/** The right arm and the head, as consume.js poses them for a bite or a sip: eased in from where the animator had them and
+ *  out back to it (at `CONSUME_RATE`, a critically damped follow), never there in a frame. */
+const CONSUME_JOINTS=Object.freeze(['shoulderR','elbowR','handR','head']),CONSUME_RATE=9;
 /** Face down, how far the head is raised (radians, neck and head together) so its cheek, the widest thing on
  *  them, rests on the ground beside the chest rather than holding it up off it. */
 const PRONE_LIFT=m=>Math.asin(THREE.MathUtils.clamp((m.Rh*m.headSX*1.04-m.depth/2)/(m.headCentre-m.neckY),0,.9));
@@ -403,7 +439,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  if(clear){current.shoulderL.z=.13+clear;current.shoulderR.z=-.13-clear;}
  const target=Object.fromEntries(JOINTS.map(j=>[j,new THREE.Vector3()]));
  const gazeLocal=new THREE.Vector3();
- let phase=0,time=Number.isFinite(initialTime)?initialTime:Math.random()*10,rootY=0,hipsY=0,lean=0;
+ let phase=0,time=Number.isFinite(initialTime)?initialTime:Math.random()*10,rootY=0,hipsY=0,lean=0,stepSize=0,stepSizeV=0;
  let lie=0,lyingTilt=false,prone=false,floorSit=0,floorEase=0,floorSeat=null,firstUpdate=true;
  /** How much a seat (a state's seatHeight over its floorHeight) is sat on as the floor (FLOOR_SIT): 0 a chair, 1 the floor. */
  // (never a driver: a car's seat is a seat, however low over its floor; at the floor's real height, 0.265, a car's 0.46
@@ -421,9 +457,22 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  const reached=new Map();let volume=null;
  // ---- How far each hand is closed this frame (a move's fist or grab: closeHand), 0 resting; build.js grip.
  const handWish={L:0,R:0},closeHand=(side,amount)=>{handWish[side]=Math.max(handWish[side],THREE.MathUtils.clamp(amount,0,1));};
+ // ---- The stance under every move, standing (STANCE): each arm's share of it (w, and its speed v), how long a move has had
+ // the arm (taken, -1 when it has not), where the move had it last, and where the stance has it this frame.
+ const stanceArm=Object.fromEntries(['L','R'].map(side=>[side,{w:1,v:0,goal:1,from:1,fromV:0,u:1,T:1,taken:-1,sh:new THREE.Vector3(),el:new THREE.Vector3(),hd:new THREE.Vector3(),
+  last:{sh:new THREE.Vector3(),el:new THREE.Vector3(),hd:new THREE.Vector3()}}]));let stanceHere=false,stanceCarry=null;
+ // ---- The way of being (FADE): which (mode), how far into it (fadeT), the pose it fades from, and this frame's own pose.
+ let mode=null,fadeT=1;const fadeFrom=new Float32Array(JOINTS.length*3),baseNow=new Float32Array(JOINTS.length*3);
+ // ---- The drag hierarchy (LAG): the targets (and the grips' wishes) of the last HISTORY frames, how far the lag is on (drag:
+ // off while walking, running, riding, climbing, driving, airborne, lying, kneeling, carried or sat on the floor), and each
+ // arm held where the reach solver placed it (solvedNow: this frame's move placed it; pinWish: fully there; pinT: for how long).
+ const history=Array.from({length:HISTORY},()=>({t:-Infinity,v:new Float32Array(JOINTS.length*3+3)}));let historyAt=0,drag=0,dragV=0,lead=0,leadV=0,rootStill=1;
+ const solvedNow={L:false,R:false},pinWish={L:false,R:false},pinT={L:0,R:0},_rootAt=new THREE.Vector3();
+ // ---- The bite or the sip (CONSUME_JOINTS): how far its pose is in, its speed, what was consumed, and the animator's pose under it.
+ let consumeW=0,consumeV=0,consumeFood=false,consumeHad=false,consumeWas=false;const consumeSaved=CONSUME_JOINTS.map(()=>new THREE.Quaternion()),headSaved=new THREE.Vector3(),consumeArm=[new THREE.Quaternion(),new THREE.Quaternion()];
  const _q=[0,1,2,3].map(()=>new THREE.Quaternion()),_eu=new THREE.Euler(),_p=[0,1,2,3,4].map(()=>new THREE.Vector3());
  function reachFor(name,dynamic=null){
-  if(reached.has(name))return reached.get(name);
+  if(reached.has(name)){const r=reached.get(name);if(r.R)solvedNow.R=true;if(r.L)solvedNow.L=true;return r;}
   const spec=dynamic||REACH[name],k=m.k,S=[m.Rh*m.headSX,m.Rh*m.headSY,m.Rh*.98],hc=m.headCentre-m.headY;volume??=bodyVolume(avatar.recipe,m);
   // (hair: the arm keeps out of the hair as well as the head, as far as it reaches that way: a reach past the head)
   const shell=spec.hair?hairShell(S):null;
@@ -632,7 +681,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    }
    solved[side]={x,cost,solve,finish};finish(x);
   }
-  reached.set(name,out);return out;
+  reached.set(name,out);if(out.R)solvedNow.R=true;if(out.L)solvedNow.L=true;return out;
  }
  /** How far the hair (and whatever else the head carries: ears, a bun) reaches out from the head's middle, by direction, in
   *  the head's own radii (S: its half-axes): the outermost of the drawn body's head-bound points and of the drawn head, at
@@ -735,6 +784,80 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   else if(kind==='skip'){add('shoulderL',0,0,.35*e);add('shoulderR',0,0,-.35*e);}
  }
 
+ /** From one way of being to another (FADE): this frame's pose fades from the last frame's, eased (the hips' bounce with it,
+  *  returned). A bicycle's is the bicycle's. */
+ let fadeHips=0,hipsNow=0;
+ function modeFade(dt,now,hips){
+  if(mode!==null&&now!==mode&&mode!=='ride'&&now!=='ride'){fadeFrom.set(baseNow);fadeHips=hipsNow;fadeT=0;}
+  mode=now;
+  if(fadeT<1){fadeT=Math.min(1,fadeT+dt/FADE);const f=smooth(fadeT),F=fadeFrom;hips=fadeHips+(hips-fadeHips)*f;
+   JOINTS.forEach((j,i)=>{const T=target[j];T.set(F[i*3]+(T.x-F[i*3])*f,F[i*3+1]+(T.y-F[i*3+1])*f,F[i*3+2]+(T.z-F[i*3+2])*f);});}
+  JOINTS.forEach((j,i)=>{const T=target[j];baseNow[i*3]=T.x;baseNow[i*3+1]=T.y;baseNow[i*3+2]=T.z;});hipsNow=hips;
+  return hips;
+ }
+ /** The stance's arms under a move (STANCE): an arm taken by a move that does not come from the stance itself (EASED moves do)
+  *  leaves it as a movement and goes back into it before the move ends (or, after a held move, from where the move left it). */
+ function stanceStep(dt){
+  for(const side of ['L','R']){const A=stanceArm[side];
+   if(!stanceHere){Object.assign(A,{w:1,v:0,goal:1,u:1,taken:-1});continue;}
+   const sh=target['shoulder'+side],el=target['elbow'+side],hd=target['hand'+side],S=STANCE;
+   const taken=!!gesture&&!EASED.has(gesture.name)&&(sh.distanceToSquared(A.sh)>1e-9||el.distanceToSquared(A.el)>1e-9||hd.distanceToSquared(A.hd)>1e-9);
+   if(taken){A.taken=A.taken<0?0:A.taken+dt;A.last.sh.copy(sh);A.last.el.copy(el);A.last.hd.copy(hd);}else A.taken=-1;
+   const d=gesture?.d??Infinity,timed=Number.isFinite(d),back=timed?THREE.MathUtils.clamp(S.back*d,S.backMin,S.backMax):S.backMax;
+   const goal=taken&&!(timed&&d-gesture.t<=back)?0:1;
+   // (a new curve from where the last one is, as fast as it was going)
+   if(goal!==A.goal){A.goal=goal;A.from=A.w;A.fromV=A.v;A.u=0;A.T=goal?(timed&&taken?Math.max(dt,d-gesture.t):back):timed?THREE.MathUtils.clamp(S.out*d,S.outMin,S.outMax):S.outMax;}
+   if(A.u<1){A.u=Math.min(1,A.u+dt/A.T);const [w,rate]=hermite(A.from,A.fromV*A.T,A.goal,A.u);A.w=w;A.v=A.u<1?rate/A.T:0;}else{A.w=A.goal;A.v=0;}
+   if(!taken&&A.w>=1)continue;
+   if(!taken){sh.copy(A.last.sh);el.copy(A.last.el);hd.copy(A.last.hd);}
+   sh.lerp(A.sh,A.w);el.lerp(A.el,A.w);hd.lerp(A.hd,A.w);
+   // (from behind the back the arm swings out round the body on the way, its elbow away from the side: a straight blend
+   // drags the bent forearm across the back, tests/stance-release.test.mjs)
+   if(stanceCarry==='behind')sh.z+=(side==='L'?1:-1)*STANCE.swing*4*A.w*(1-A.w);
+  }
+ }
+ /** The drag hierarchy (LAG): each joint plays the target its level had that long ago, the grips a level after the hands; an
+  *  arm held where the reach solver placed it moves as one from just after it is there (its hand stays on what it is laid on)
+  *  until it leaves. Eased on and off with what the body is doing (`want`). */
+ function dragStep(dt,want){
+  const without=ARCS_WITHOUT_DRAG.has(gesture?.name)||ARCS_WITHOUT_DRAG.has(posed?.name);
+  if(without&&drag>0&&settled()){drag=0;dragV=0;}else [drag,dragV]=follow(drag,dragV,want&&!without?1:0,6,dt);
+  historyAt=(historyAt+1)%HISTORY;const H=history[historyAt],n=JOINTS.length*3;H.t=time;
+  JOINTS.forEach((j,i)=>{H.v[i*3]=target[j].x;H.v[i*3+1]=target[j].y;H.v[i*3+2]=target[j].z;});H.v[n]=handWish.L;H.v[n+1]=handWish.R;H.v[n+2]=consumeW;
+  for(const side of ['L','R'])pinT[side]=pinWish[side]?pinT[side]+dt:0;
+  // (the root moving: its targets turning faster than 0.1 rad/s, well over the idle's sway, within the last half second; the
+  // upper level's lag comes in quickly, never so fast that what it plays goes back in time)
+  const rate=Math.max(...['hips','spine'].map(j=>{const k=JOINTS.indexOf(j)*3;return Math.hypot(H.v[k]-sample(time-.05,k,_rootAt).x,H.v[k+1]-_rootAt.y,H.v[k+2]-_rootAt.z);}))/.05;
+  rootStill=rate>.1?0:rootStill+dt;
+  // (the moment the root sets off, the upper level takes its lag at once if it has been still till now: its targets of a lag
+  // ago are the ones it shows; moving already, it eases into the lag instead of jumping back)
+  if(rootStill===0&&lead<1&&upperStill(dt)){lead=1;leadV=0;}else [lead,leadV]=follow(lead,leadV,rootStill<.5?1:0,16,dt);
+  if(drag<1e-3)return;
+  const pin={L:smooth((pinT.L-2*LAG)/.15),R:smooth((pinT.R-2*LAG)/.15)},up=LAG*lead*drag;
+  JOINTS.forEach((j,i)=>{const lv=DRAG_LEVEL[i];if(!lv)return;const side=lv===2?j.slice(-1):null;sample(time-up-(side?(1-pin[side])*LAG*drag:0),i*3,target[j]);});
+  handWish.L=sample(time-up-2*LAG*drag,n);handWish.R=sample(time-up-2*LAG*drag,n+1);
+ }
+ /** Whether every lagging joint's target kept still up to the last frame over the longest lag (within 0.01 rad): what each shows
+  *  is then what it would show with no lag. */
+ function settled(){const k0=new THREE.Vector3(),prev=history[(historyAt-1+HISTORY)%HISTORY];if(prev.t===-Infinity)return true;
+  for(let i=0;i<JOINTS.length;i++){if(!DRAG_LEVEL[i])continue;sample(prev.t-2*LAG,i*3,k0);const H=prev.v;if(Math.hypot(H[i*3]-k0.x,H[i*3+1]-k0.y,H[i*3+2]-k0.z)>.01)return false;}
+  return true;}
+ /** Whether the chest, neck, head and upper arms kept still up to the last frame, over a lag (their targets within 0.01 rad of a
+  *  lag before): a move that starts this frame starts them and the root together. */
+ function upperStill(){const k0=new THREE.Vector3(),prev=history[(historyAt-1+HISTORY)%HISTORY];if(prev.t===-Infinity)return true;
+  for(let i=0;i<JOINTS.length;i++){if(DRAG_LEVEL[i]!==1)continue;sample(prev.t-LAG,i*3,k0);const H=prev.v;if(Math.hypot(H[i*3]-k0.x,H[i*3+1]-k0.y,H[i*3+2]-k0.z)>.01)return false;}
+  return true;}
+ /** The kept targets at time t, between the kept frames either side (the oldest kept, before them): from offset k, into `out`
+  *  (a Vector3), or the one value returned. */
+ function sample(t,k,out=null){
+  let newer=history[historyAt],i=historyAt;
+  for(let c=1;c<HISTORY;c++){const j=(i-1+HISTORY)%HISTORY,older=history[j];if(older.t===-Infinity)break;
+   if(older.t<=t){const f=newer.t>older.t?(t-older.t)/(newer.t-older.t):1,a=older.v,b=newer.v;
+    if(!out)return a[k]+(b[k]-a[k])*f;return out.set(a[k]+(b[k]-a[k])*f,a[k+1]+(b[k+1]-a[k+1])*f,a[k+2]+(b[k+2]-a[k+2])*f);}
+   newer=older;i=j;}
+  return out?out.set(newer.v[k],newer.v[k+1],newer.v[k+2]):newer.v[k];
+ }
+
  /** @param {number} [seconds] how long to hold a move that would otherwise loop.
   *  @param {boolean} [hold] also stretch a timed move to `seconds` (a Point held through a line: in and out at its own pace). */
  function play(name,seconds,hold){
@@ -780,13 +903,18 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    consumption={...consumptionPhase(t),food:eating,elapsed:consumeTime,cycle:Math.floor(consumeTime/5)};
   }else{consumption=null;consumeTime=0;}
   lastConsume=action;
-  for(const j of JOINTS)target[j].set(0,0,0);handWish.L=handWish.R=0;
+  for(const j of JOINTS)target[j].set(0,0,0);handWish.L=handWish.R=0;solvedNow.L=solvedNow.R=pinWish.L=pinWish.R=false;stanceHere=false;
+  consumeWas=consumeHad;consumeHad=false;
+  // (the bite's or the sip's pose, eased in and out; a can's sip is the drink's own, drink-can.js)
+  const canSip=!!consumption&&!avatar.pixar&&!consumption.food&&s.heldProp?.userData?.drinkKind==='can';
+  if(canSip){consumeW=consumeV=0;}else [consumeW,consumeV]=follow(consumeW,consumeV,consumption?1:0,CONSUME_RATE,dt);
   let targetRoot=0,targetHips=0,targetLean=0,seatSlide=0,onLap=null;floorSit=0;
   const chairBlend=Number.isFinite(s.chairBlend)?THREE.MathUtils.clamp(s.chairBlend,0,1):(s.seated?1:0);
   const onChair=chairBlend>0||s.seated;
   const speed=s.speed||0,moving=speed>.08&&!s.seated&&!s.riding;
   // Arms hang a little out from the body, the way a toy's do.
   set('shoulderL',0,0,.13+clear);set('shoulderR',0,0,-.13-clear);set('elbowL',-.12);set('elbowR',-.12);
+  if(!moving){stepSize=0;stepSizeV=0;}   // (a walk starts from a standstill)
   if(s.riding){
    // Pedalling: the knees go round, the hands are on the bars.
    const p=s.ridePhase||0;
@@ -830,7 +958,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    const pose=s.pose;
    if(s.driving){set('shoulderL',-.95,0,.12);set('shoulderR',-.95,0,-.12);set('elbowL',-.65);set('elbowR',-.65);set('head',-.06);}
    else if(pose==='Type'){set('shoulderL',-.9,0,.1);set('shoulderR',-.9,0,-.1);set('elbowL',-.7+Math.sin(time*14)*.08);set('elbowR',-.7+Math.sin(time*13+1)*.08);set('head',.15);}
-   else if(pose==='Eat'||pose==='Drink'||pose==='SitDrinkHip'||s.seat==='SitEat'){const lift=Math.max(0,Math.sin(time*1.4))**4;drinkArm(lift);set('head',.08-lift*.1);
+   else if(pose==='Eat'||pose==='Drink'||pose==='SitDrinkHip'||s.seat==='SitEat'){const lift=Math.max(0,Math.sin(time*1.4))**4;drinkArm(lift,smooth(consumeTime/.35));set('head',.08-lift*.1);
     // the bathhouse way with a bottle of milk: the other hand on the hip, the chin up
     if(pose==='SitDrinkHip'){set('shoulderL',.15,0,.75);set('elbowL',-.3,0,-1.5);add('head',-.12);}}
    // Pouring from the chair: the glass held out low in the right hand, the bottle brought across in the left
@@ -859,7 +987,9 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    const backing=!run&&gesture?.name==='BowWalk',small=backing?.55:1;
    const stride=m.leg*(run?2.6:1.7)*strideStyle*G.stride*small;
    phase+=(backing?-1:1)*speed/stride*Math.PI*2*dt*.5;
-   const A=(run?.95:Math.min(.62,.25+speed*.3))*Math.sqrt(G.stride)*(backing?.6:1),sp=Math.sin(phase),cp=Math.cos(phase);
+   // (the stride's size follows what the speed asks, eased: the scene's speed can fall to nothing in a tenth of a second)
+   [stepSize,stepSizeV]=follow(stepSize,stepSizeV,(run?.95:Math.min(.62,.25+speed*.3))*Math.sqrt(G.stride)*(backing?.6:1),12,dt);
+   const A=stepSize,sp=Math.sin(phase),cp=Math.cos(phase);
    set('thighL',-sp*A,G.toe,0);set('thighR',sp*A,-G.toe,0);
    set('kneeL',(Math.max(0,Math.sin(phase-.9))*A*1.5+.05)*G.lift);set('kneeR',(Math.max(0,Math.sin(phase+Math.PI-.9))*A*1.5+.05)*G.lift);
    set('footL',sp*A*.3);set('footR',-sp*A*.3);
@@ -887,7 +1017,9 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    const pose=s.pose;
    // Standing about the way they walk: an elder's hands behind the back, a loafer's in the pockets.
    // (The story's moves ease in from this and back to it, so it stays under them.)
-   if((!pose||STORY_POSES.has(pose))&&!s.carrying&&(!gesture||EASED.has(gesture.name))){add('chest',gait.lean*.6);if(gait.carry==='behind'||gait.carry==='pockets')carryArms(gait.carry,0,0);}
+   // (and so under every move: an arm a move takes leaves the stance and comes back to it as a movement, stanceStep)
+   if((!pose||STORY_POSES.has(pose))&&!s.carrying){add('chest',gait.lean*.6);if(gait.carry==='behind'||gait.carry==='pockets'){carryArms(gait.carry,0,0);stanceHere=true;stanceCarry=gait.carry;
+    for(const side of ['L','R']){const A=stanceArm[side];A.sh.copy(target['shoulder'+side]);A.el.copy(target['elbow'+side]);A.hd.copy(target['hand'+side]);}}}
    if(pose==='CounterIdle'){set('shoulderL',-.5,0,.2);set('shoulderR',-.5,0,-.2);set('elbowL',-.95);set('elbowR',-.95);}
    else if(pose==='Interact'){set('shoulderL',-.75+Math.sin(time*4.5)*.18,0,.15);set('shoulderR',-.75+Math.sin(time*4.5+1.7)*.18,0,-.15);set('elbowL',-.8);set('elbowR',-.8);add('chest',.12);add('head',.2);}
    // Cleaning (people/izakaya-hours.js): the arms work, the chest turns into it.
@@ -895,7 +1027,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    else if(pose==='Wipe'){const a=time*3.2;set('shoulderR',-.95+Math.sin(a)*.12,Math.cos(a)*.22,-.15);set('elbowR',-.45);set('shoulderL',-.35,0,.25);set('elbowL',-.4);add('chest',.35);add('head',.25);}
    else if(pose==='Polish'){set('shoulderL',-.9,0,.25);set('shoulderR',-.9,0,-.25);set('elbowL',-1.45);set('elbowR',-1.45+Math.sin(time*5)*.18);add('head',.28);}
    else if(pose==='Stack'){const l=(Math.sin(time*1.4)+1)/2;set('shoulderL',-.6-l,0,.2);set('shoulderR',-.6-l,0,-.2);set('elbowL',-.6+l*.3);set('elbowR',-.6+l*.3);add('chest',.2-l*.15);}
-   else if(pose==='DrinkStanding'||pose==='Drink'||pose==='DrinkHip'){const lift=Math.max(0,Math.sin(time*1.2))**4;set('shoulderR',-.5-lift*1.1,0,-.2);set('elbowR',-.9-lift*1.2);
+   else if(pose==='DrinkStanding'||pose==='Drink'||pose==='DrinkHip'){const lift=Math.max(0,Math.sin(time*1.2))**4,w=smooth(consumeTime/.35);toward('shoulderR',-.5-lift*1.1,0,-.2,w);toward('elbowR',-.9-lift*1.2,0,0,w);
     // DrinkHip: a bottle of coffee milk after the bath, the free hand on the hip, the chin up
     if(pose==='DrinkHip'){set('shoulderL',.15,0,.75);set('elbowL',-.3,0,-1.5);add('chest',-.06);add('head',-.12);}}
    else if(pose==='Sit'||pose==='Sleep'){set('head',.2);}
@@ -997,6 +1129,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // the named pose after the move, so a pose that binds the body (a cord round it) keeps it through a laugh
   if(posed&&posed.ramp>0){const r=applyGesture(posed,s,onChair);if(r?.eyes)gestureEyes=r.eyes;ownLegs||=!!r?.legs;if(!legs&&r?.root!==undefined)targetRoot+=r.root;}
   if(legs&&!ownLegs)for(const [j,pose] of legs)target[j].copy(pose);
+  stanceStep(dt);
   torchArm(dt,s);
   // (the palms turned down on the thighs where the arms still rest there, once every pose and move has had them)
   if(onLap){const R=CHAIR_SIT.pixar.rest;for(const side of ['R','L']){const w=onLap.w*(1-smooth(target['shoulder'+side].distanceTo(onLap[side])/R.off)),k=side==='R'?1:-1;
@@ -1076,6 +1209,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    }else for(const j of ['thighL','kneeL','footL','thighR','kneeR','footR'])target[j].multiplyScalar(chairBlend);
    targetRoot*=chairBlend;
   }
+  targetHips=modeFade(dt,s.riding?'ride':s.climbing?'climb':onChair?'seat':moving?(s.running||speed>2.6?'run':'walk'):'stand',targetHips);
+  dragStep(dt,!moving&&!s.riding&&!s.climbing&&!s.driving&&!s.airborne&&lie===0&&kneel===0&&plankWanted===0&&!(onChair&&floorSit>0));
   const k=1-Math.exp(-dt*14);
   // (getting down onto the floor or up from it, the legs keep exactly to the way down, which is eased already: so they are in
   // their shape on the floor the moment the bottom is)
@@ -1094,9 +1229,22 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    const t=Number.isFinite(s.consumeElapsed)?s.consumeElapsed:gesture?gesture.t:consumeTime%5,[a,b]=CAN_PARTS.sip;
    canCue={...playCanDrink(avatar,s.heldProp,a+Math.min(b-a,t*(b-a)/2.4),1),w:1};
   }
-  else if(consumption){
-   bones.head.rotation.x+=drinkHeadTilt(s.heldProp,consumption.lift,consumption.food);
-   poseAvatarConsumption(avatar,consumption.lift,consumption.food,s.heldProp);
+  else if(consumption||consumeW>.001||sample(time-LAG*(1+lead)*drag,JOINTS.length*3+2)>.001){
+   // (eased in from where the animator had the arm and the head, and out back to it after: consumeW)
+   const C=consumption||{lift:0,food:consumeFood};consumeFood=C.food;
+   CONSUME_JOINTS.forEach((j,i)=>consumeSaved[i].copy(bones[j].quaternion));headSaved.copy(bones.head.position);
+   // (the arm's reach starts from where it left the arm last frame, so its twist goes on from there: from the animator's arm
+   // hanging down to a hand at the mouth was nearly a half turn, and the forearm's twist flipped as the hand came up)
+   if(consumeWas){bones.shoulderR.quaternion.copy(consumeArm[0]);bones.elbowR.quaternion.copy(consumeArm[1]);bones.shoulderR.updateMatrixWorld(true);}
+   bones.head.rotation.x+=drinkHeadTilt(s.heldProp,C.lift,C.food);
+   poseAvatarConsumption(avatar,C.lift,C.food,s.heldProp);consumeArm[0].copy(bones.shoulderR.quaternion);consumeArm[1].copy(bones.elbowR.quaternion);consumeHad=true;
+   // (the hand a level behind the arm, but on the way back to hands in the pockets only half a level, and behind the back a
+   // quarter: with the whole of it the arm is down by the side while the forearm is still bent for the mouth, and the hand or
+   // the forearm goes into the hip or the back (tests/stance-release.test.mjs). The overlap gives way to the body, as it does
+   // to what a hand holds.)
+   const handLag=!consumption&&stanceHere?(stanceCarry==='behind'?.25:.5):1,lagged=lv=>sample(time-(lv?LAG*lead*drag:0)-(lv>1?handLag*LAG*drag:0),JOINTS.length*3+2);
+   if(consumeW<.999||lagged(2)<.999){CONSUME_JOINTS.forEach((j,i)=>{const w=lagged(DRAG_LEVEL[JOINTS.indexOf(j)]);bones[j].quaternion.copy(consumeSaved[i].slerp(bones[j].quaternion,w));});
+    bones.head.position.lerpVectors(headSaved,bones.head.position,lagged(1));bones.head.parent.updateMatrixWorld(true);}
   }
   // A can bought and drunk (actors.js drinkBought): the motion over the pose so far, blended in and out (the arm comes up
   // from where it hung to the can held at the waist, and goes back); the tab's moments as the motion has them.
@@ -1409,7 +1557,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  /** An arm toward [shoulder x, y, z, elbow x, elbow y] (and the wrist), written for the right arm: the left is its mirror. The
   *  arm swings forward or back first and turns in or out after (and the other way round going back), so an arm that ends
   *  across the chest goes round the front of it, never through its side. */
- const armTo=(side,a,w,hand)=>{const k=side==='R'?1:-1,later=smooth((w-.3)/.7),sh=target['shoulder'+side];
+ const armTo=(side,a,w,hand)=>{const k=side==='R'?1:-1,later=smooth((w-.3)/.7),sh=target['shoulder'+side];if(solvedNow[side]&&w>=.999)pinWish[side]=true;
   sh.x+=(a[0]-sh.x)*w;sh.y+=(a[1]*k-sh.y)*later;sh.z+=(a[2]*k-sh.z)*later;
   toward('elbow'+side,a[3],(a[4]||0)*k,0,w);if(hand)toward('hand'+side,hand[0],hand[1]*k,hand[2]*k,w);};
  const mix=(a,b,u)=>a.map((v,i)=>v+((b[i]??0)-v)*u);
@@ -1529,9 +1677,11 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   * forward, the forearm folds up and turns across to the mouth (the angles measured on Meshy Johansson's bones, the hand
   * two fingers under his lips, where the rim of the glass comes to them: tools/pixar-sheet.mjs "sit drink").
   */
- function drinkArm(lift){
-  if(avatar.pixar){set('shoulderR',-.5-lift*.45,.35+lift*.6,-.1);set('elbowR',-1.55-lift*.7);set('handR',-.2*lift,0,0);}
-  else{set('shoulderR',-.6-lift*.95,0,-.25);set('elbowR',-.85-lift*1.25);}
+ /** The arm with a drink, lifted `lift` of the way, `w` of the way from where the body had it (eased in by the move or the pose
+  *  that holds the drink: set at once, it jumped there in a frame). */
+ function drinkArm(lift,w=1){
+  if(avatar.pixar){toward('shoulderR',-.5-lift*.45,.35+lift*.6,-.1,w);toward('elbowR',-1.55-lift*.7,0,0,w);toward('handR',-.2*lift,0,0,w);}
+  else{toward('shoulderR',-.6-lift*.95,0,-.25,w);toward('elbowR',-.85-lift*1.25,0,0,w);}
  }
  function applyGesture(g,s,seated=false){
   const t=g.t,d=g.d,e=d===Infinity?1:env(t,d),q=d===Infinity?Math.min(1,t/.3):ease(t,d);
@@ -1622,8 +1772,9 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
     set('elbowL',-.12*q);set('elbowR',-.12*q);set('handL',.6*q);set('handR',.6*q);add('head',.25*q);break;
    }
    // (a toast on a Pixar body: the glass raised in front of the face with the elbow bent, not a straight arm overhead)
-   case 'SitToast':if(avatar.pixar){set('shoulderR',-1.35*q,.45*q,-.15*q);set('elbowR',-1.3*q);}else{set('shoulderR',-1.9*q,0,-.2);set('elbowR',-.6*q);}add('head',-.15*q);break;
-   case 'SitDrink':{const lift=Math.max(0,Math.sin(t*2.6))**2;drinkArm(lift);break;}
+   // (from where the arm was: its constant turn out, set at once, stepped in a frame)
+   case 'SitToast':if(avatar.pixar){set('shoulderR',-1.35*q,.45*q,-.15*q);set('elbowR',-1.3*q);}else{toward('shoulderR',-1.9,0,-.2,inOut(t,d,.35));toward('elbowR',-.6,0,0,inOut(t,d,.35));}add('head',-.15*q);break;
+   case 'SitDrink':{const lift=Math.max(0,Math.sin(t*2.6))**2;drinkArm(lift,inOut(t,d,.35));break;}
    // Playful poses for photos: struck, held while the move lasts, and kept alive with a
    // little bounce. The head is big and the arms short, so every hand stays at or
    // below the cheek.
@@ -1860,7 +2011,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    case 'ReachBack':{const R=REACH_BACK,A=reachBack(g,s),named=g.ramp!==undefined,r=named?w:inOut(t,d,.6,R.out);
     const p=Math.min(t/R.reach,named?g.ramp:(d-t)/R.out,1),push=smooth((t-R.reach)/.2)*smooth((p-.8)/.2);
     const a=mix(reachBackPath(A,Math.max(0,p)),A.up.L,push),wa=smooth(p/.22);
-    toward('shoulderL',a[0],-a[1],-a[2],wa);toward('elbowL',a[3],-(a[4]||0),0,wa);toward('handL',0,0,0,wa);
+    toward('shoulderL',a[0],-a[1],-a[2],wa);toward('elbowL',a[3],-(a[4]||0),0,wa);toward('handL',0,0,0,wa);solvedNow.L=true;if(push>=.999)pinWish.L=true;
     armTo('R',[-.42,.66,-.03,-1.49],w);toward('chest',R.lean,R.twist,0,r);add('head',R.down*w,-R.twist*.9*r,0);return {eyes:[0,.85]};}
    // The torch (6f, 7a, 7d): the arm is torchArm's; the body stands easy and calm.
    case 'TorchUp':add('chest',.02*w);break;
@@ -1880,7 +2031,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
     const R=PAIR_ROLES[g.name];if(!R)break;
     const fit=pairFit(R);
     if(fit.grip)for(const side of ['L','R'])if(fit.grip[side])closeHand(side,fit.grip[side]*w);
-    return R.play({t,d,w,q,e,m,seated,set,add,toward,armTo,fit,grip:closeHand,reach:()=>fit.arms!==null?fit.arms:(fit.arms=solveRole(fit,(key,spec)=>reachFor('Pair:'+key,spec)))})||null;}
+    return R.play({t,d,w,q,e,m,seated,set,add,toward,armTo,fit,grip:closeHand,reach:()=>(solvedNow.L=solvedNow.R=true,fit.arms!==null?fit.arms:(fit.arms=solveRole(fit,(key,spec)=>reachFor('Pair:'+key,spec))))})||null;}
   }
   return null;
  }

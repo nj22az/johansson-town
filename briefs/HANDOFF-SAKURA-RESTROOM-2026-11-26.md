@@ -679,3 +679,51 @@ his arms when drinking".
   the file to the guard.
 - `tests/underarm-coverage.test.mjs` fails: 168 underarm points expose the base arm under sleeved tops. It failed as far
   back as 28c9449.
+
+# 27 November, late night: stage 1 of bringing the moves up to the standard (branch `anim/stage1`)
+
+From `claude/dreamy-ritchie-cxufpl` at 2d61531, the coordinator's stage 1: the stance snap, the drag hierarchy, the eating
+and drinking hand, the walk's stop and StandUp's step. Not pushed, not on `main`. Stage 2 (wind-ups for the procedural
+moves, squash on impacts with the Jump crouch reaching the hips, the twins' offsets, the habits) waits for review of the
+sheets. The drink helper's can block in `animate.js` and its files were not touched.
+
+## Done
+- `animate.js`: the stance as a movement (`stanceStep`, `STANCE`); the drag hierarchy (`dragStep`, `LAG`, `HISTORY`, the
+  pins for reach-solver placements, `ARCS_WITHOUT_DRAG`); the cross-fade between ways of being (`modeFade`, `FADE`); the
+  walk's stride eased to its stop; the consumption pose blended in and out level by level, with a reach that goes on from
+  its last frame; the drink poses eased. `consume.js`: the lift and the drop bowed (`LIFT_ARC`); `drinking/cycle.js`
+  exports `LIFT_STAGE`. What each does and why is in `docs/ANIMATION-STANDARD.md` section 6, "Stage 1".
+- `tools/animation-audit.mjs`: overlap reads each joint's own first and last movement, and a leg only when its foot lifts
+  (section 5 says why). `tests/animation-principles.baseline.json` rewritten from the run: 1506 entries to 1181.
+- `tests/stance-release.test.mjs` (in the guard): seven moves on five stance bodies, no hand or forearm deeper into the
+  body on the way than at either end, no hand jumping.
+- `tools/hand-shots.mjs --moves`: a move's sheet (front and three-quarter at key moments, 8-frame strips over the stance's
+  release and return). Before and after sheets of Walk, Talk, Nod, Wave, Eat and SitEat on Johansson and Thao:
+  `output/anim-stage1/before/` and `output/anim-stage1/after/` (not kept in git: 2 MB each).
+
+## Proved
+- The audit: ease 77 → 121 of 154, anticipation 0 → 1 of 142, arcs 65 → 67 of 146, overlap 0 → 49 of 146, twins 75 → 63
+  of 129 (fewer failures, more moves with one arm still), squash 0 of 15, volume 155 of 155; every check 1 → 5. Off the
+  baseline altogether: the walk, Nod, HeadShake, LookAround.
+- `node --test tests/stance-release.test.mjs`: passes, 7 s. Before the hand-back was shortened it caught Thao's hand 22 mm
+  into her hip on the way back from Eat, and Sverker's forearm 6 mm across his back on the way out of Point.
+- CI guard (`node tools/ci-guard.mjs`, 133 files, 678 s): 713 of 715 pass; the two that fail are the known ones (the
+  resident-guide portraits and the published runtime package).
+- The animator's cost per resident per frame (medians of seven runs against the code before, on a shared machine): idle
+  24 → 27 µs, walking 23 → 25, a gesture 19 → 24, eating 46 → 55, sat 113 → 113, eating sat 145 → 147.
+- Sheets looked at: no hand jumps at either end of Eat, SitEat, Wave or Talk; what was seen is in section 6.
+
+## Remains
+- On the baseline now and not before: anticipation on 13 moves (35 entries) whose action was a snap under 200 ms and is
+  now eased and longer, with no wind-up; arcs on 13 (move, body) pairs where the blend out of the pockets or back bows past
+  a half circle or under 10% (Talk and HandsOnHips on Johansson, HoldOn and Kachashi, Fidget, AirGuitar, Jump on Vy,
+  EvilLaugh on Sverker). Stage 2 keys them with the stance in.
+- Eat and Drink keep failing overlap: on the way back to the pockets the hand lags half a level (a quarter behind the
+  back) so that it does not go into the hip. 19 moves play without the drag (`ARCS_WITHOUT_DRAG`) until stage 2.
+- Not done in stage 1: the face keeps no lag (the animator has no face joints); the stance's release has no anticipation of
+  its own (a counter-move inside the release was tried and did not show: the move's own pose starts near its zero); the
+  settle has no overshoot at all (each joint's own follow), not the micro-overshoot allowed; the run still steps Vy's knee
+  by 57% at its stop; the quick lift to the mouth
+  still steps the elbow or the hand by 50–72% of its top speed (the reach folding, there before).
+- Look in motion at the walk's last step (section 6).
+- `claude/dreamy-ritchie-cxufpl` moved on (e8759bc, 08a73c4) while this was done; this branch is from 2d61531.
