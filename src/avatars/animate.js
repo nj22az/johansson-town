@@ -290,7 +290,7 @@ const _t=new THREE.Vector3();
 const REACH=Object.freeze({
  CupHands:{head:[.2,0,0],R:{at:m=>[-m.hand*.95,m.shoulderY-.085*m.k,m.depth/2+.12*m.k],seed:[-.5,.83,-.15,-1.81,-.03],hand:[.63,0,.2]}},
  CoinToCheek:{head:[.06,0,-.24],R:{head:[-.72,-.45,.55,.05],seed:[-1.55,.72,-.72,-1.55]},L:{head:[-.45,-.72,.62,.07],seed:[-2.19,.45,.89,-.82,-.02]}},
- HoldOn:{head:[.05,0,0],R:{at:m=>[-(m.armR*1.08+.1*m.k),m.shoulderY+.09*m.k,.045*m.k],elbow:m=>[-(m.shoulderX+.05*m.k),m.shoulderY+.015*m.k,.24*m.k],seed:[-1.66,.47,-.2,-2.53,.55]}},
+ HoldOn:{head:[.05,0,0],headClear:.003,R:{at:m=>[-(m.armR*1.08+.1*m.k),m.shoulderY+.09*m.k,.045*m.k],elbow:m=>[-(m.shoulderX+.05*m.k),m.shoulderY+.015*m.k,.24*m.k],seed:[-1.66,.47,-.2,-2.53,.55]}},
  Peek:{neck:.2,head:[-.14,0,0],R:{head:[-.8,-.1,.75,.065],seed:[-1.67,.82,-.73,-.88]}},
  GrenadeCoin:{head:[.08,0,0],R:{head:[-1,-.35,.25,.08],seed:[-1.63,.19,-1.01,-1.64]},L:{at:m=>[0,m.shoulderY-.1*m.k,m.depth/2+.13*m.k],seed:[-.89,.96,.19,-1.48]}},
  BannerUp:{head:[-.08,0,0],R:{at:m=>[-(m.Rh*m.headSX+.09*m.k),m.headCentre+.03*m.k,.06*m.k],seed:[-2.98,.1,-.21,-.01]}},
@@ -358,11 +358,14 @@ function bentJoints(mode,outfit='afterbath'){
  * above the floor: the tops of the carriers' mittens. CarryFurniture puts a carrier's mittens there (`flank` higher: under
  * his side, where his back curves up from its lowest line): the forearms forward and level under him, palms up, `spread`
  * (each side of her middle) apart and `reach` ahead of her front, the knees bent and the back straight, leaning in
- * (`lean`). CarryLegs is the same at CARRY.legs (`legSpread` apart), under his legs, which are thinner than his body. `stations`: where each carrier stands round him, from his hips along his length toward his head (`along`, metres),
+ * (`lean`). (`flank` measured again on him as he is drawn since the cast's bodies were redrawn in Blender, 26 November 2026:
+ * his underside over the four mittens under his body stands 14.9 mm over CARRY.under on average, 6 mm more on one side than
+ * the other, and at the 17 mm it was one mitten went 9 mm into his side. 15.5: at 15, CarryLegs' arms, solved from
+ * CarryFurniture's, came out mirrored on Vy (the principles audit's twins).) CarryLegs is the same at CARRY.legs (`legSpread` apart), under his legs, which are thinner than his body. `stations`: where each carrier stands round him, from his hips along his length toward his head (`along`, metres),
  * on his left (+1) or right (-1) side, `out` from his middle, facing him; two on one side (shoulders and knees) and one on
  * the other (the waist), as two big heads cannot stand side by side over a short body.
  */
-export const CARRY=Object.freeze({under:.755,flank:.017,legs:.818,spread:.12,legSpread:.07,reach:.2,lean:.08,
+export const CARRY=Object.freeze({under:.755,flank:.0155,legs:.818,spread:.12,legSpread:.07,reach:.2,lean:.08,
  stations:Object.freeze([
   Object.freeze({at:'shoulders',move:'CarryFurniture',side:1,along:.33,out:.42}),
   Object.freeze({at:'waist',move:'CarryFurniture',side:-1,along:.16,out:.42}),
@@ -749,7 +752,10 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
      if(want.press&&H!==MITTEN&&near>need+.004*k)c+=((near-need-.004*k)/k)**2*CONTACT;}
     // (the hand out of the head and its hair: every point of its envelope; the mitten's middle was kept its own round off it)
     if(H===MITTEN){const rm=headR(M),nearM=hairAt(M)+m.hand*.85/m.Rh;if(rm<nearM)c+=(nearM-rm)**2*300;}
-    else if(!want.cover)for(const q of touch){const p=_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W),r=headR(p),near=hairAt(p);if(r<near)c+=(near-r)**2*300;}
+    // (headClear: metres kept between the hand's envelope and the head as well, for a hand held right by the face: the
+    // envelope's points settle on the head's surface under this soft hold, and the drawn fingers between them a millimetre
+    // or two past it)
+    else if(!want.cover){const hc0=(spec.headClear||0)*k/m.Rh;for(const q of touch){const p=_t.set(q[0]*m.hand,q[1]*m.hand,q[2]*m.hand).applyQuaternion(_q[3]).add(W),r=headR(p),near=hairAt(p)+hc0;if(r<near)c+=(near-r)**2*300;}}
     // (cover: the whole mitten outside the head and its hair, not only its middle, by `cover` metres (6 mm unless said): a
     // mitten laid on the face or the crown)
     // (and on it, not in the air short of it: the mitten's round reached the face from its place; the hand, thinner, is
@@ -1899,8 +1905,32 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  function kneelPose(k,t){
   const K=KNEEL,press=Math.sin(Math.PI*smooth((t-1.4)/1))*.12*k;
   toward('hips',K.hips,0,0,k);toward('spine',K.spine,0,0,k);toward('chest',K.chest,0,0,k);toward('neck',K.neck,0,0,k);toward('head',K.head[0],K.head[1]-press,K.head[2],k);
-  for(const side of ['L','R']){toward('thigh'+side,K.thigh-K.hips,0,0,k);toward('knee'+side,K.knee,0,0,k);toward('foot'+side,K.foot,0,0,k);}
+  const tuck=kneelTuck();for(const side of ['L','R']){toward('thigh'+side,K.thigh-K.hips,0,0,k);toward('knee'+side,K.knee,0,0,k);toward('foot'+side,K.foot+tuck,0,0,k);}
   armTo('R',K.armR,k,K.handR);armTo('L',K.armL,k,K.handL);
+ }
+ /**
+  * Kneeling, the toes tucked under are on the floor with the knees (KneelHug). The body rests on whichever is lowest
+  * (groundLying), and bare feet, or a thin shoe, reach less far below the ankle than a knee does below its joint: with the
+  * knees holding the body up, the body kit's bare feet were left over the floor (Fujita's 6 mm, Thuan's in her swimsuit
+  * 0.7 mm). So the kneel's foot is keyed for the body as it is dressed: the turn at the ankle, toes down (never more than
+  * TUCK), that brings the feet's lowest point level with the knees' when the legs are in the kneel; it comes in with the
+  * kneel's own ease, as the rest of the pose does. Worked out with the legs put in the kneel a moment (every other joint
+  * straight), again when what is worn on the body changes.
+  */
+ const TUCK=.35;let tuckFor={key:null,turn:0};
+ function kneelTuck(){
+  const root=avatar.root,meshes=root.children.filter(o=>o.isSkinnedMesh&&o.visible),key=meshes.map(o=>o.uuid).join('/');
+  if(key===tuckFor.key)return tuckFor.turn;
+  const all=Object.values(bones),saved=all.map(b=>b.quaternion.clone()),K=KNEEL;
+  const put=foot=>{for(const b of all)b.rotation.set(0,0,0);bones.hips.rotation.set(K.hips,0,0);
+   for(const side of ['L','R']){bones['thigh'+side].rotation.set(K.thigh-K.hips,0,0);bones['knee'+side].rotation.set(K.knee,0,0);bones['foot'+side].rotation.set(foot,0,0);}root.updateMatrixWorld(true);};
+  // (how far the feet's lowest point is over the lowest of the rest of the body, the knees: in the root's frame both)
+  const over=a=>{put(K.foot+a);const f=findSoles();return Math.min(f.L.y,f.R.y)-(-groundLying(0)-root.position.y);};
+  let turn=0,g=over(0);
+  if(g>1e-7){const e=.01;for(let i=0;i<8&&Math.abs(g)>1e-7;i++){const d=(over(turn+e)-over(turn-e))/(2*e);if(Math.abs(d)<.02*m.k)break;turn=THREE.MathUtils.clamp(turn-g/d,-TUCK,TUCK);g=over(turn);}
+   if(g<-1e-6)turn=0;}
+  all.forEach((b,i)=>b.quaternion.copy(saved[i]));root.updateMatrixWorld(true);
+  tuckFor={key,turn};return turn;
  }
  /** Toward a joint's pose by w (0..1) from wherever the body has it this frame (walking, sitting): no jump at the start. */
  const toward=(j,x,y,z,w)=>target[j].lerp(_pose.set(x,y,z),w);
@@ -2327,7 +2357,9 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
     if(!seated){toward('thighL',-.3,0,.04,w);toward('kneeL',.3,0,0,w);toward('thighR',.22,0,-.04,w);toward('footR',-.22,0,0,w);}break;}
    // Holding on in a gale (4c): both mittens clutching the tenugui at the sides of the neck (the ends are streaming
    // behind), leaning into the wind, one foot braced back.
-   case 'HoldOn':{const A=reachFor('HoldOn');add('chest',.12*w);add('head',.05*w);armTo('R',A.R,w);armTo('L',A.L,w);
+   // (the head held where the reach laid the fists by it, not wandering on as a body standing easy does: its roll of 0.04
+   // brought Fujita's jaw down 5 mm onto a fist, the kit's fingers 8 mm into it)
+   case 'HoldOn':{const A=reachFor('HoldOn');add('chest',.12*w);toward('head',.05,0,0,w);armTo('R',A.R,w);armTo('L',A.L,w);
     if(!seated){toward('thighL',-.3,0,.04,w);toward('kneeL',.3,0,0,w);toward('thighR',.22,0,-.04,w);toward('footR',-.22,0,0,w);}break;}
    // Stopping someone without looking up (4d; standing or seated): the right arm out level, the mitten raised like a stop
    // sign, the left holding the book she reads, the head and eyes down on it.

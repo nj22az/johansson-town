@@ -235,3 +235,17 @@ stand-points.test.mjs
 architect-masterplan.test.mjs
 # Tetsuo works Umi-no-yu's boiler, behind the bathhouse, at the hours his cast.js day gives (about 20 s).
 onsen-boiler.test.mjs
+# The residents' bodies, poses and clothes (the owner, 27 November 2026: "Fix all outstanding errors"; the handover of
+# 26 November, "the residents' bodies"): the after-bath clothes on the body and never in it (about 3 min), Thuan's
+# supporting foot in every move and outfit (about 4 min), the wardrobe's sets and batches 2 and 3 with the hair clip on the
+# hair (about 2 min), the noren's head tops, the pole hug clear of the pole, the story's moves with the toes on the floor
+# kneeling and no hand in the face (about 4 min), Tetsuo's work kit.
+afterbath-outfit.test.mjs
+avatar-floor-contact.test.mjs
+avatar-wardrobe-sets.test.mjs
+wardrobe-batch2.test.mjs
+wardrobe-batch3.test.mjs
+onsen-noren-heads.test.mjs
+pole-hug.test.mjs
+story-gestures.test.mjs
+work-kit.test.mjs

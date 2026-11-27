@@ -25,7 +25,10 @@ const SETS=['ticket-window','harbour-summer'];
 const set=id=>ISLAND_OUTFITS.find(s=>s.id===id);
 const BODIES={
  Thuan:CAST_RECIPES.Thuan,
- child:normalizeRecipe({...CAST_RECIPES.Johansson,name:'Higa Kenta',age:'child',body:{...CAST_RECIPES.Johansson.body,build:.35}}),
+ // (A child has no beard: Johansson's recipe carries the grown man's five-o'clock shadow since the owner's redrawing of
+ // 26 November 2026 (AGENTS.md: "a five-o'clock shadow in grey"), painted on a shell of its own, a third draw that is his
+ // face's and not the clothes'. The child is his build, not his stubble.)
+ child:normalizeRecipe({...CAST_RECIPES.Johansson,name:'Higa Kenta',age:'child',body:{...CAST_RECIPES.Johansson.body,build:.35},facial:{...CAST_RECIPES.Johansson.facial,paint:'none'}}),
 };
 /** A top worn in its first colourway (its own colours), as the maker puts it on. */
 const wearing=(body,top,more={})=>{const way=entryFor('top',top).colourways[0]?.colours||{},o={...body.outfit,top,pattern:'none',...more};
