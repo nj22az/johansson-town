@@ -116,6 +116,8 @@ function restPositions(m){
 const PARENT={...SPRING_PARENT,hips:'root',spine:'hips',chest:'spine',neck:'chest',head:'neck',shoulderL:'chest',elbowL:'shoulderL',handL:'elbowL',shoulderR:'chest',elbowR:'shoulderR',handR:'elbowR',thighL:'hips',kneeL:'thighL',footL:'kneeL',thighR:'hips',kneeR:'thighR',footR:'kneeR'};
 
 const tmpColour=new THREE.Color();
+/** How far down the arm a kariyushi's sleeve shades it below its hem, in metres (a grown man's). */
+const HEM_SHADOW=.022;
 /** The torso lathe's radius at a fraction of its height. */
 /**
  * The kariyushi's camp collar (garment.js KARIYUSHI.collar), one piece of cloth: a narrow band round the nape whose fold
@@ -162,9 +164,16 @@ function alohaCollar(list,m,prof,colour){
  grid.forEach((p,i)=>{const w=.85*THREE.MathUtils.smoothstep(toVee(p),.004*k,.016*k);inkAt.set(pk(top[i]),w);inkAt.set(pk(bottom[i]),w);});
  // (The underside, which faces the body, has none: its ink shell stood into the neck, and came out of it in specks behind
  // the fold as the head bobbed in the walk.)
- for(const [g,inked] of [[sheet(top,faces,flip),true],[sheet(bottom,faces,!flip),false],[sheet(edgePts,edgeFaces,false),true]]){
+ // The edge's wall is lit the same from its top to its underside (one normal for each pair across it): with its two ends'
+ // own normals, the toon band's line crossed it triangle by triangle, a row of dark teeth under the collar's edge behind.
+ const edge=sheet(edgePts,edgeFaces,false);{const N=edge.attributes.normal;for(let i=0;i<N.count;i+=2){const x=N.getX(i)+N.getX(i+1),y=N.getY(i)+N.getY(i+1),z=N.getZ(i)+N.getZ(i+1),l=Math.hypot(x,y,z)||1;N.setXYZ(i,x/l,y/l,z/l);N.setXYZ(i+1,x/l,y/l,z/l);}}
+ // (Nor does the inner edge, the fold against the neck: its ink's shell, 6 mm off a neck of flat facets that come 2.6 mm
+ // nearer between their corners, went in and out of the neck and showed behind it as a dashed line, broken up further as
+ // the head moves in the walk. The fold is drawn by the blue collar meeting the neck.)
+ const fold=new Set();for(let i=0;i<cols;i++){fold.add(pk(top[id(i,0)]));fold.add(pk(bottom[id(i,0)]));}
+ for(const [g,inked,isEdge] of [[sheet(top,faces,flip),true,false],[sheet(bottom,faces,!flip),false,false],[edge,true,true]]){
   const piece=part(list,g,'chest',colour),Q=piece.attributes.position,ink=piece.attributes.ink,v=new THREE.Vector3();
-  for(let i=0;i<Q.count;i++)ink.setX(i,inked?inkAt.get(pk(v.fromBufferAttribute(Q,i)))??.85:0);
+  for(let i=0;i<Q.count;i++){const key=pk(v.fromBufferAttribute(Q,i));ink.setX(i,inked&&!(isEdge&&fold.has(key))?inkAt.get(key)??.85:0);}
  }
 }
 
@@ -268,13 +277,14 @@ function tube(list,a,b,r,bone,hex,segments=10){
  * from one bone to the next over a soft band -- and `root` lends the top of the limb to
  * the body, so a shoulder or hip rounds off instead of hinging on a seam.
  */
-function limb(list,a,b,r0,r1,hex,{bone,joints=[],root=null,soft=.13,segments=14,uvAt=null,shape=null}={}){
+function limb(list,a,b,r0,r1,hex,{bone,joints=[],root=null,soft=.13,segments=14,uvAt=null,shape=null,rings=[]}={}){
  const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),d=B.clone().sub(A),len=d.length(),dir=d.clone().normalize();
  // A capsule with rings all along it (three's own has none between its caps), so the
- // skin has somewhere to bend.
+ // skin has somewhere to bend. (`rings`: more of them, at shares t along it from a, where a colour is to change on a line.)
  const prof=[],cap=5,rows=12;
  for(let i=0;i<=cap;i++){const a=-Math.PI/2+i/cap*Math.PI/2;prof.push(new THREE.Vector2(Math.cos(a)*r0,-len/2+Math.sin(a)*r0));}
- for(let i=1;i<rows;i++)prof.push(new THREE.Vector2(r0,-len/2+i/rows*len));
+ const along=[...Array.from({length:rows-1},(_,i)=>-len/2+(i+1)/rows*len),...rings.map(t=>(.5-t)*len)].sort((p,q)=>p-q);
+ for(const y of along)prof.push(new THREE.Vector2(r0,y));
  for(let i=0;i<=cap;i++){const a=i/cap*Math.PI/2;prof.push(new THREE.Vector2(Math.cos(a)*r0,len/2+Math.sin(a)*r0));}
  prof[0].x=prof.at(-1).x=0;
  const g=new THREE.LatheGeometry(prof,segments),pos=g.attributes.position;
@@ -319,8 +329,11 @@ function sleeveTube(list,a,b,r0,r1,hex,{bone,root=null,segments=14,uvAt=null,th=
  for(let i=1;i<=cap;i++){const t=i/cap*Math.PI/2;outer.push(new THREE.Vector2(Math.cos(t)*r0,len/2+Math.sin(t)*r0));}
  outer.at(-1).x=0;
  const shell=part(list,new THREE.LatheGeometry(outer,segments),share,hex,at,uvAt);
- // Its inside, from the hem up `depth`: facing the arm.
- const lining=[new THREE.Vector2(r1-th-.0005,-len/2+depth),new THREE.Vector2(r1-th-.0005,-len/2+depth*.5),new THREE.Vector2(r1-th,-len/2)];
+ // Its inside, from the hem up `depth`: facing the arm, and following the wall in as it narrows above the hem. (Straight up
+ // from the hem, it stood out through a tapering sleeve's wall: on a kariyushi's roomy sleeve its top showed from 4 cm above
+ // the hem as a heavy dark band right round the sleeve, the darkest line on the shirt. 27 November 2026.)
+ const wall=h=>THREE.MathUtils.lerp(r1,r0,h/len);
+ const lining=[new THREE.Vector2(wall(depth)-th-.0005,-len/2+depth),new THREE.Vector2(wall(depth*.5)-th-.0005,-len/2+depth*.5),new THREE.Vector2(r1-th,-len/2)];
  const dark=inside??('#'+new THREE.Color(typeof hex==='function'?hex(B):hex).multiplyScalar(.68).getHexString());
  part(list,new THREE.LatheGeometry(lining,segments),share,dark,at).attributes.ink.array.fill(0);
  return shell;
@@ -1245,17 +1258,22 @@ function bodyMaterial(recipe,m){
  const ctx=canvas.getContext('2d'),prof=torsoProfile(recipe,m);
  const marks=paintGarment(ctx,recipe,m,t=>latheRadius(prof,t))||[];
  const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;
- // Wraps round the body; no mipmaps, so distance never bleeds the drawing into the strip.
- texture.wrapS=THREE.RepeatWrapping;texture.generateMipmaps=false;texture.minFilter=THREE.LinearFilter;texture.anisotropy=4;
+ // Wraps round the body. Mipmapped, so the print's petals, the buttons and the fine lines do not shimmer as he walks off
+ // into the distance (with one level only, a step away every other texel was skipped); close up the full level is drawn,
+ // as sharp as before. The drawing is kept premultiplied by its alpha, so what is filtered between a drawn texel and an
+ // empty one is the drawing thinning out, not a dark fringe round everything. (The parts that sample the empty strip, at
+ // one UV, never step down a level: their UV does not change across them.)
+ texture.wrapS=THREE.RepeatWrapping;texture.generateMipmaps=true;texture.minFilter=THREE.LinearMipmapLinearFilter;texture.anisotropy=4;
+ texture.premultiplyAlpha=true;
  const material=celFrom(new THREE.MeshStandardMaterial({vertexColors:true}),{bands:'soft3'});
  material.map=texture;
  const base=material.onBeforeCompile,key=material.customProgramCacheKey?.bind(material);
  material.onBeforeCompile=(shader,renderer)=>{
   base?.call(material,shader,renderer);
   shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>','').replace('#include <color_fragment>',
-   '#include <color_fragment>\n#ifdef USE_MAP\n vec4 garment = texture2D( map, vMapUv );\n diffuseColor.rgb = mix( diffuseColor.rgb, garment.rgb, garment.a );\n#endif');
+   '#include <color_fragment>\n#ifdef USE_MAP\n vec4 garment = texture2D( map, vMapUv );\n diffuseColor.rgb = diffuseColor.rgb * ( 1.0 - garment.a ) + garment.rgb;\n#endif');
  };
- material.customProgramCacheKey=()=>'garment_'+(key?key():'');
+ material.customProgramCacheKey=()=>'garment_pm_'+(key?key():'');
  material.userData.garment={canvas,texture,marks};
  return material;
 }
@@ -1426,10 +1444,16 @@ function addBody(list,recipe,m,swim=false){
   // (Under a short sleeve, the arm is the sleeve's inside, in its shadow, down to a little above its hem: a raised or swung
   // arm shows cloth under the sleeve, never a bare patch. tests/underarm-coverage.test.mjs.)
   const inSleeve='#'+new THREE.Color(sleeve).multiplyScalar(.68).getHexString();
-  const armColour=coveredSleeve?(longSleeve?(ends===null?sleeve:p=>p.y>=ends?sleeve:skin):p=>p.y>=sh[1]-m.upper*.3?sleeve:below===skin&&p.y>=sh[1]-m.upper*.505?inSleeve:below):skin;
+  // Under a kariyushi's roomy sleeve, a restrained shadow on the arm just below its hem (the owner's brief: "a restrained
+  // shadow beneath the collar and sleeve hems"): a band of skin a shade darker from the hem's height down `HEM_SHADOW`,
+  // between two rings of its own, so its edges are lines. The arm and the sleeve both go with the shoulder there.
+  const hemY=!swim&&o.top==='kariyushi'?shortSleeve(m,sx,true).a1[1]:null,shadowFrom=hemY===null?null:hemY-HEM_SHADOW*m.k;
+  const shadowed=hemY===null?null:'#'+new THREE.Color(skin).multiplyScalar(.88).getHexString();
+  const armColour=coveredSleeve?(longSleeve?(ends===null?sleeve:p=>p.y>=ends?sleeve:skin):p=>p.y>=sh[1]-m.upper*.3?sleeve:below===skin&&p.y>=sh[1]-m.upper*.505?inSleeve:shadowed&&p.y<hemY&&p.y>=shadowFrom?shadowed:below):skin;
   // (Bare, or under a short sleeve, the arm is the kit's: a round shoulder, an elbow, a forearm and a wrist. A long sleeve
   // is cloth and hangs straight.)
-  limb(list,sh,hd,m.armR*1.04,m.armR*.86,armColour,longSleeve?{...arm,uvAt:p=>sleeveUV(p,sh,hd,sx)}:{...arm,shape:kitLimb('arm',m)});
+  const armRings=hemY===null?[]:[hemY,shadowFrom].map(y=>(sh[1]-y)/(sh[1]-hd[1]));
+  limb(list,sh,hd,m.armR*1.04,m.armR*.86,armColour,longSleeve?{...arm,uvAt:p=>sleeveUV(p,sh,hd,sx)}:{...arm,shape:kitLimb('arm',m),rings:armRings});
   // A long sleeve ends in a cuff: cloth standing off the wrist, open, with its inside (sleeveTube). It grows out of the
   // sleeve from under its surface two thirds of the way down the forearm, so there is no seam where it starts.
   if(longSleeve&&o.top!=='lantern'){   // (the lantern costume is at its vertex budget, and its globe hides the wrists)

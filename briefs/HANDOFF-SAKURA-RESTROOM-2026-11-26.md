@@ -964,3 +964,24 @@ The owner approved the phase 1 block-in ("Yes, proceed. I want proceed."). Not p
 - Under a kariyushi the torso below its body is not printed (whole triangles sample the empty strip), so nothing of the
   print shows under the hem or on the shorts; under the aloha print the underarm gussets are plain cloth.
 - `tests/aloha-print.test.mjs`: the placement's intent, measured on his body.
+
+## Phase 3: the print as fabric
+- **Matte**: the body is the town's toon material (no highlight). The flowers lie on the cloth and move with it; a flank
+  bloom narrows, goes round his side and comes back as he turns (the turn strips).
+- **Mipmapped garment texture**, kept premultiplied by its alpha (`build.js bodyMaterial`): with one level, the petals,
+  buttons and fine lines skipped texels as he walked off; close up the full level is drawn as before, and an edge between a
+  drawn texel and an empty one no longer filters to a dark fringe. Parts that sample the empty strip never step down a
+  level (their UV is one point).
+- **Quieter than his face** (the kariyushi only): the placket, the pocket and the hem's stitch in a blue a little darker
+  than the cloth and finer than any ink; the shell buttons a pale blue near the cloth, the wooden one smaller and softer;
+  the sleeve's turned hem a little paler, its fold a quiet line.
+- **The heavy band across every short sleeve was the sleeve's lining** standing out through the wall (`sleeveTube`): a
+  straight cylinder from the hem while a roomy sleeve narrows above it. It follows the wall now, 7.5 mm inside, on every
+  sleeve, cuff and trouser hem that uses it.
+- **A restrained shadow under the sleeve hems**: on a kariyushi the arm is a shade darker (0.88) for 22 mm below the hem,
+  between two rings of its own (`limb` `rings`, `HEM_SHADOW`), so the band's edges are lines; under the collar, the painted
+  shadow it had, its edge softened by most of a texel (drawn hard, its long level edge came out close up as a row of teeth).
+- **The dashed fold behind the neck** (phase 1's "seen, not fixed"): the fold's own edge had ink, whose shell, 6 mm off a
+  neck of flat facets, went in and out of it. The fold has no ink now (blue meeting skin draws it); in the walk strips at
+  the game's distance it is one line where phase 1's broke into dashes in every frame. The collar's edge wall is lit one
+  way across its height.

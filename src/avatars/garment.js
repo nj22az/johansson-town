@@ -323,11 +323,11 @@ export function paintGarment(ctx,recipe,m,radiusAt){
  });
  const path=(pts,stroke,width=line,back=false)=>{ctx.beginPath();pts.forEach(([x,t],i)=>{const px=X(x,t,back),py=Y(t);i?ctx.lineTo(px,py):ctx.moveTo(px,py);});ctx.strokeStyle=stroke;ctx.lineWidth=width;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke();};
  // A round thing of radius r metres at x,t on the front, kept round on the curved cloth.
- const dotAt=(x,t,r,fill,stroke=null)=>{
+ const dotAt=(x,t,r,fill,stroke=null,width=line*.8)=>{
   const a=theta(x,t);ctx.beginPath();ctx.ellipse(X(x,t),Y(t),r*pxPerX(a,t),r*pxPerY,0,0,Math.PI*2);
-  if(fill){ctx.fillStyle=fill;ctx.fill();}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=line*.8;ctx.stroke();}
+  if(fill){ctx.fillStyle=fill;ctx.fill();}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=width;ctx.stroke();}
  };
- const buttons=(ts,r,fill)=>{for(const t of ts)dotAt(0,t,r*m.k,fill,shade(fill,.6));marks.push('buttons:'+ts.length);};
+ const buttons=(ts,r,fill,{stroke=shade(fill,.6),width=line*.8}={})=>{for(const t of ts)dotAt(0,t,r*m.k,fill,stroke,width);marks.push('buttons:'+ts.length);};
  /**
   * Words on the cloth, centred at x,t (on the back when `back`), letters `h` metres tall and kept upright and in proportion
   * on the curved cloth. `fit` (metres) is the room across: a patch's name is set smaller and then cut (patchName).
@@ -416,9 +416,9 @@ export function paintGarment(ctx,recipe,m,radiusAt){
   ctx.strokeStyle=ink;ctx.lineWidth=line*.8;ctx.beginPath();ctx.moveTo(0,Y(.975));ctx.lineTo(X(-spread*k,1.0),Y(.975));ctx.moveTo(X(spread*k,1.0),Y(.975));ctx.lineTo(TW,Y(.975));ctx.stroke();
   marks.push('collar');
  };
- const placket=(from,to,w=.022)=>{poly([[-w*k,from],[w*k,from],[w*k,to],[-w*k,to]],null,{width:line*.8});marks.push('placket');};
- const pocket=(x,t,w,h,fill=null)=>{poly([[x-w/2,t+h/2],[x+w/2,t+h/2],[x+w/2,t-h/2],[x-w/2,t-h/2]],fill,{width:line*.8});path([[x-w/2,t+h/2-.035],[x+w/2,t+h/2-.035]],ink,line*.6);marks.push('pocket');};
- const hemRound=()=>{ctx.strokeStyle=shade(top,.72);ctx.lineWidth=line*.7;ctx.beginPath();ctx.moveTo(0,Y(hem+.035));ctx.lineTo(TW,Y(hem+.035));ctx.stroke();};
+ const placket=(from,to,w=.022,{stroke=ink,width=line*.8}={})=>{poly([[-w*k,from],[w*k,from],[w*k,to],[-w*k,to]],null,{stroke,width});marks.push('placket');};
+ const pocket=(x,t,w,h,fill=null,{stroke=ink,width=line*.8,mouth=ink,mouthW=line*.6}={})=>{poly([[x-w/2,t+h/2],[x+w/2,t+h/2],[x+w/2,t-h/2],[x-w/2,t-h/2]],fill,{stroke,width});path([[x-w/2,t+h/2-.035],[x+w/2,t+h/2-.035]],mouth,mouthW);marks.push('pocket');};
+ const hemRound=({stroke=shade(top,.72),width=line*.7}={})=>{ctx.strokeStyle=stroke;ctx.lineWidth=width;ctx.beginPath();ctx.moveTo(0,Y(hem+.035));ctx.lineTo(TW,Y(hem+.035));ctx.stroke();};
 
  switch(o.top){
   case 'tee':rib();hemRound();break;
@@ -443,7 +443,10 @@ export function paintGarment(ctx,recipe,m,radiusAt){
    const skin=recipe.body.skin,fx=(f,t)=>f*W/2*radiusAt(t),C=KARIYUSHI.collar;
    const chart=collarChart(m,radiusAt),ua=a=>(.5+(a>Math.PI?a-Math.PI*2:a)/(Math.PI*2))*TW;
    const chartPoly=(pts,fill,back)=>wrapped(back,()=>{ctx.beginPath();pts.forEach(([a,s],i)=>{const px=ua(a)+(back&&a>Math.PI?TW:0),py=Y(chart.t(a,s));i?ctx.lineTo(px,py):ctx.moveTo(px,py);});ctx.closePath();ctx.fillStyle=fill;ctx.fill();});
-   chartPoly(collarOutline(m).map(([a,s])=>[a,s+.013*k]),shade(top,.8),true);
+   // (its edge softened by most of a texel: drawn hard, its long, nearly level edge stepped from row to row of the texture,
+   // and close up the steps came out as a row of soft dark teeth under the collar behind. A browser without the canvas's
+   // filter draws it hard, as before.)
+   ctx.save();ctx.filter='blur(0.8px)';chartPoly(collarOutline(m).map(([a,s])=>[a,s+.013*k]),shade(top,.8),true);ctx.restore();
    // the open neck: from where the collar's fold comes down the front of the neck, along the V's edges to the top button
    const neckF=Math.sin(C.vee),vBottom=chart.t(C.centre[0],C.centre[1]*k),vee=[];
    for(let i=0;i<=8;i++){const a=C.vee+(C.centre[0]-C.vee)*i/8,s=C.centre[1]*k*i/8;vee.push([a*1.08,chart.t(a,s)]);}
@@ -472,11 +475,15 @@ export function paintGarment(ctx,recipe,m,radiusAt){
     ctx.restore();marks.push('tank top under');
    });
    // A centred placket from the V's bottom to the hem. The top button, just under the V, is a wooden one; the rest are
-   // shell, a hand's width apart down to the hem.
-   placket(vBottom,hem+.03,.02);buttons([vBottom-.03],.011,'#9a6a42');
-   const shell=[];for(let t=vBottom-.165;t>hem+.06;t-=.135)shell.push(t);buttons(shell,.0085,'#f8f6ef');
+   // shell, a hand's width apart down to the hem. All of it quieter than his face (the owner's brief: "Make the button and
+   // pocket lines quieter than the facial features"): its seams a blue a little darker than the cloth and finer than any
+   // ink, the shell buttons a pale blue close to the cloth, the wooden one a small, soft brown; the placket still reads as
+   // a line of buttons down the front.
+   const seam=shade(top,.72),seamW=line*.65,quiet={stroke:seam,width:seamW};
+   placket(vBottom,hem+.03,.02,quiet);buttons([vBottom-.03],.0095,'#8c6a50',{stroke:shade('#8c6a50',.8),width:line*.5});
+   const shell=[];for(let t=vBottom-.165;t>hem+.06;t-=.135)shell.push(t);buttons(shell,.0078,lighten(top,.45),{stroke:shade(top,.82),width:line*.5});
    // The small patch pocket on the wearer's left chest (+x: the viewer's right from the front), below the collar's point.
-   pocket(W*.24,.665,W*.18,.13,top);hemRound();break;
+   pocket(W*.24,.665,W*.18,.13,top,{...quiet,mouth:shade(top,.82),mouthW:line*.5});hemRound({stroke:shade(top,.82),width:line*.55});break;
   }
   case 'jacket':{
    // Notched lapels over a white shirt, two buttons, flap pockets.
@@ -699,15 +706,19 @@ export function paintGarment(ctx,recipe,m,radiusAt){
    const at=(U,V)=>{const phi=(U/TW-.5)*Math.PI*2,f=(S.v1-(1-V/TH))/(S.v1-S.v0),R=THREE.MathUtils.lerp(sv.r0,sv.r1,f);
     return axis(f).addScaledVector(ex,side*R*Math.sin(phi)).addScaledVector(ez,R*Math.cos(phi));};
    const ref=p=>{const f=THREE.MathUtils.clamp(p.clone().sub(A0).dot(dir)/len,0,1);return p.clone().sub(axis(f));};
-   stamp(ctx,at,(.5+b.a/(Math.PI*2))*TW,yTop+h*b.along,b.r*m.k,b.turn,{out:ref,up:()=>dir.clone().negate(),clip:[0,yTop,TW,end-yTop],wrap:true});
+   // (to the hem's band, which is painted over it: not a sliver of it below)
+   const hemTop=end-Math.max(3,(long?.03:.018)*m.k*pxV);
+   stamp(ctx,at,(.5+b.a/(Math.PI*2))*TW,yTop+h*b.along,b.r*m.k,b.turn,{out:ref,up:()=>dir.clone().negate(),clip:[0,yTop,TW,hemTop-yTop],wrap:true});
    if(!marks.includes('aloha sleeve'))marks.push('aloha sleeve');
   }
   ctx.restore();
   // The hem of a short sleeve, or the cuff of a long one: a band and a line above it. A PE shirt's and a jersey's are
   // in the accent colour (the class colour, the piping).
   if(!['tank','sundress','running'].includes(col)){
-   const bandH=Math.max(3,(long?.03:.018)*m.k*pxV),ink=shade(cloth,.5);
-   ctx.fillStyle=['contrastpolo','gymtee','baseball'].includes(col)?o.accent:col==='kariyushi'?lighten(cloth,.22):shade(cloth,.86);ctx.fillRect(0,end-bandH,TW,bandH);
+   // (A kariyushi's, the turned hem of the aloha shirt, is quieter than his face: a little paler where it turns, its fold a
+   // blue a little darker than the cloth.)
+   const bandH=Math.max(3,(long?.03:.018)*m.k*pxV),ink=col==='kariyushi'?shade(cloth,.7):shade(cloth,.5);
+   ctx.fillStyle=['contrastpolo','gymtee','baseball'].includes(col)?o.accent:col==='kariyushi'?lighten(cloth,.15):shade(cloth,.86);ctx.fillRect(0,end-bandH,TW,bandH);
    ctx.fillStyle=ink;ctx.fillRect(0,end-bandH-1.2,TW,1.2);
    if(once)marks.push(long?'cuffs':'sleeve-hems');
   }
