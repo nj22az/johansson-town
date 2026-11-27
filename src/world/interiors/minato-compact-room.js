@@ -204,7 +204,9 @@ export function buildCompactDiningRoom({room,reg=()=>{},collider=()=>{},action=(
  const calendar=createFutureCalendar();calendar.group.position.set(...P.details.calendar);calendar.group.rotation.y=Math.PI;room.add(calendar.group);
  anchor([P.details.calendar[0],1.85,P.details.calendar[2]-.4],'Read Future Calendar',()=>{calendar.update();action('inspect','Future Calendar',calendar.mesh.userData.dateLabel+'\nToday’s real date · Europe/Stockholm. This calendar turns a page every real day.');});
  const television=createIzakayaTV({parent:room,position:P.details.television,yaw:Math.PI/2});
- anchor([P.details.television[0]+.7,1.65,P.details.television[2]],'Watch the television',()=>action('inspect','Minato television','Old television adverts, the lunchtime news and the occasional baseball game. Thao turns it down when a good story begins.'));
+ // With YouTube on the set (izakaya-tv-youtube.js, attached by the game) the prompt listens, mutes or watches; its label
+ // follows the set (game.js placeTelevision). Without it, the set is described as before.
+ television.anchor=anchor([P.details.television[0]+.7,1.65,P.details.television[2]],'Watch the television',()=>{if(!television.interact?.())action('inspect','Minato television','Old television adverts, the lunchtime news and the occasional baseball game. Thao turns it down when a good story begins.');});
  menus(room,anchor,action);
  const lamps=lighting(room),closed=hours(room,lamps);closed.update(getMinutes());
  const vapour=steam(room);vapour.update(0,getMinutes());ramenDressing.update(getMinutes());

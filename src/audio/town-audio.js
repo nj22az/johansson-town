@@ -2,10 +2,12 @@ import {assetURL} from '../assets.js';
 import {BEACH_CORNER} from '../world/beach-layout.js';
 import {ambience} from './soundscape.js';
 import {naturalNightCall} from './night-texture.js';
-let ctx=null,master=null,enabled=true,buffers=new Map(),loops=new Map(),lastTrain=-1,speech=null,speechRequest=0;
+// ducked: how much of the town's sound plays under something else (the izakaya's TV once listened to: world/izakaya-tv-youtube.js).
+let ctx=null,master=null,enabled=true,ducked=1,buffers=new Map(),loops=new Map(),lastTrain=-1,speech=null,speechRequest=0;
+const LEVEL=.38;
 export function unlockTownAudio(){
   const Context=window.AudioContext||window.webkitAudioContext;if(!Context)return;
-  if(!ctx){ctx=new Context();master=ctx.createGain();master.gain.value=.38;master.connect(ctx.destination);}
+  if(!ctx){ctx=new Context();master=ctx.createGain();master.gain.value=LEVEL*ducked;master.connect(ctx.destination);}
   if(!document.hidden)ctx.resume().catch(()=>{});
 
 }
@@ -164,7 +166,9 @@ export const townAudio={
       speech=voice(key);if(speech)speech.gain.gain.value=.9;
     }catch{/* The written dialogue remains available if audio cannot load. */}
   },
-  setEnabled(value){enabled=value;if(!value)this.stopSpeech();unlockTownAudio();if(master)master.gain.setTargetAtTime(value?.38:0,ctx.currentTime,.1);},
+  setEnabled(value){enabled=value;if(!value)this.stopSpeech();unlockTownAudio();if(master)master.gain.setTargetAtTime(value?LEVEL*ducked:0,ctx.currentTime,.1);},
+  /** Lower the whole town under another sound (1: full; the TV asks for less while it is listened to), over a quarter second. */
+  duck(level=1){level=Math.max(0,Math.min(1,Number(level)||0));if(level===ducked)return;ducked=level;if(master&&ctx)master.gain.setTargetAtTime(enabled?LEVEL*ducked:0,ctx.currentTime,.25);},
   play(name,volume=.5){if(!enabled||!ctx)return;if(!buffers.has(name)){void loadSound(name).then(ready=>{if(ready)this.play(name,volume);});return;}const v=voice(name);if(v)v.gain.gain.value=volume;},
   // There is no grass recording, so the lawn borrows the stone one at about half the
   // level rather than sounding like a pavement.

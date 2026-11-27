@@ -36,10 +36,11 @@ export function createIzakayaTV({parent,position=[5.94,2.72,-3.65],yaw=-Math.PI/
  for(const x of [-.33,.33]){box([.035,.31,.035],[x,-.55,-.34],metal,'Wall bracket');box([.035,.035,.4425],[x,-.413,-.10125],metal,'Shelf support');}
  const texture=new THREE.VideoTexture(video);texture.colorSpace=THREE.SRGBColorSpace;texture.minFilter=THREE.LinearFilter;texture.magFilter=THREE.LinearFilter;
  video.muted=true;video.defaultMuted=true;video.playsInline=true;video.preload='none';video.setAttribute('playsinline','');video.setAttribute('webkit-playsinline','');
- let order=[],current=-1,visible=false,playingRequest=false,blocked=false,disposed=false,poster=null,failed=new Set();
+ // held: another picture has the tube (izakaya-tv-youtube.js puts YouTube on it); the film waits, unloaded, until released.
+ let order=[],current=-1,visible=false,playingRequest=false,blocked=false,disposed=false,poster=null,failed=new Set(),held=false;
  const frustum=new THREE.Frustum(),matrix=new THREE.Matrix4(),centre=new THREE.Vector3(),normal=new THREE.Vector3(),toward=new THREE.Vector3();
  function play(){
-  if(disposed||!visible||blocked||playingRequest||!video.paused||current<0)return;
+  if(disposed||held||!visible||blocked||playingRequest||!video.paused||current<0)return;
   playingRequest=true;
   Promise.resolve(video.play?.()).catch(()=>{blocked=true;}).finally(()=>{playingRequest=false;if(!visible)video.pause?.();});
  }
@@ -63,8 +64,12 @@ export function createIzakayaTV({parent,position=[5.94,2.72,-3.65],yaw=-Math.PI/
  function visibility(){if(document.hidden)hide();}
  video.addEventListener('loadeddata',loaded);video.addEventListener('ended',ended);video.addEventListener('error',error);
  document.addEventListener('pointerdown',gesture);document.addEventListener('keydown',gesture);document.addEventListener('visibilitychange',visibility);
- return {group,screen,video,update({camera,active=false,paused=false}){
+ return {group,screen,video,material,
+  /** Give the tube to another picture (true) or take it back for the film (false), which then starts as it always did. */
+  hold(on){on=!!on;if(on===held||disposed)return;held=on;if(held){hide();return;}current=-1;order=[];},
+  update({camera,active=false,paused=false}){
   if(disposed)return;
+  if(held){visible=false;video.pause?.();return;}
   group.updateWorldMatrix(true,false);camera.updateMatrixWorld();screen.getWorldPosition(centre);
   normal.set(0,0,1).transformDirection(group.matrixWorld);camera.getWorldPosition(toward).sub(centre);
   matrix.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);frustum.setFromProjectionMatrix(matrix);

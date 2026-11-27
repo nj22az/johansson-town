@@ -100,7 +100,7 @@ export function createActivities({say,onLaundry=()=>{},onKaraoke=null,getResiden
   const realShop=createShopify(SHOPIFY_CONFIG);let modalRevision=0;
   let awaySince=0,returnDay=null;
   let pendingAbsence=0,ledgerView=null,magazineView=null,yearTurned=false;let state={...defaults},timer=null,modalOpen=false,previousFocus=null,radioStation=0;
-  let woodlandView=null;
+  let woodlandView=null,youtubeView=null;
 
   try {
     // A new real year starts the island's 1997 over, keeping friendships, the bag, money and decorating (year-loop.js).
@@ -182,10 +182,10 @@ export function createActivities({say,onLaundry=()=>{},onKaraoke=null,getResiden
     }
     proceed();return true;
   }
-  function close(){disposeWoodlandViewer();dialogueBox.close();modal.classList.remove('bag-view','flyer-view','letter-view','pocket-album-view','resident-record');ledgerView=null;magazineView?.dispose();magazineView=null;modal.classList.remove('magazine-view','print-view');modal.classList.remove('sakura-records');workshopUI.dispose();modalRevision++;townAudio.stopSpeech();clearInterval(timer);timer=null;modalOpen=false;modal.classList.add('hidden');modal.classList.remove('conversation');modal.classList.remove('office-records');document.body.classList.remove('conversation-open');onConversation(null);window.__JOHANSSON_CHARACTER_CONTROL__?.setExpression?.('Thuan',null);previousFocus?.focus?.();}
+  function close(){disposeWoodlandViewer();disposeYoutubeViewer();dialogueBox.close();modal.classList.remove('bag-view','flyer-view','letter-view','pocket-album-view','resident-record');ledgerView=null;magazineView?.dispose();magazineView=null;modal.classList.remove('magazine-view','print-view');modal.classList.remove('sakura-records');workshopUI.dispose();modalRevision++;townAudio.stopSpeech();clearInterval(timer);timer=null;modalOpen=false;modal.classList.add('hidden');modal.classList.remove('conversation');modal.classList.remove('office-records');document.body.classList.remove('conversation-open');onConversation(null);window.__JOHANSSON_CHARACTER_CONTROL__?.setExpression?.('Thuan',null);previousFocus?.focus?.();}
   // options.mood: how Thuan's face looks for this line (her lines only; others release it).
   function show(title,text,buttons=[],options={}){
-    disposeWoodlandViewer();
+    disposeWoodlandViewer();disposeYoutubeViewer();
     if(window.johanssonDesktop&&window.johanssonLinuxWorld)buttons=window.johanssonLinuxWorld.conversationActions(title,buttons,options);
     modal.classList.remove('bag-view','flyer-view','letter-view','pocket-album-view','resident-record');ledgerView=null;modal.classList.remove('sakura-records');workshopUI.dispose();modal.classList.remove('office-records');
     magazineView?.dispose();magazineView=null;modal.classList.remove('magazine-view','print-view');
@@ -422,6 +422,24 @@ export function createActivities({say,onLaundry=()=>{},onKaraoke=null,getResiden
     const view=woodlandView;if(!view)return;woodlandView=null;
     window.removeEventListener('message',view.message);view.disposeHistory?.();
     view.frame.remove();modal.classList.remove('woodland-view');
+  }
+  function disposeYoutubeViewer(){
+    const frame=youtubeView;if(!frame)return;youtubeView=null;
+    // The video stops with its page: nothing plays on after the card has closed.
+    frame.src='about:blank';frame.remove();modal.classList.remove('youtube-view');
+  }
+  /**
+   * The izakaya television's video in an ordinary YouTube player, with YouTube's own controls (world/izakaya-tv-youtube.js
+   * "Watch on the TV"). Nothing starts by itself: the viewer presses play in the player, and YouTube counts that as a
+   * view (https://support.google.com/youtube/answer/171780). Closing the card takes the page away and the game back.
+   */
+  function youtubeViewer(title,{url}={}){
+    if(typeof url!=='string'||!/^(?:https:\/\/www\.youtube(?:-nocookie)?\.com\/embed\/|\/(?!\/))/.test(url)){show(title,'Nothing is showing on the set just now.',[['Close',close]]);return;}
+    show(title,'',[['Back to the room',close]]);
+    const frame=document.createElement('iframe');frame.title=title+' · YouTube';frame.className='youtube-viewer';frame.src=url;
+    frame.setAttribute('allow','autoplay; encrypted-media; picture-in-picture; fullscreen');frame.setAttribute('allowfullscreen','');
+    frame.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
+    youtubeView=frame;modal.classList.add('youtube-view');body.replaceChildren(frame);
   }
   function woodlandViewer(){
     show(WOODLAND_POSTER.title,'',[]);
@@ -1488,6 +1506,7 @@ export function createActivities({say,onLaundry=()=>{},onKaraoke=null,getResiden
       case 'inspect':inspect(name,detail);break;
       // A broadcast is watched, not filed: the set is switched off, nothing goes in the archive.
       case 'watch':show(name,String(detail||''),[['Switch it off',close]]);break;
+      case 'youtube-watch':youtubeViewer(name||'Minato television',detail);break;
       case 'motor-bench':motorBench(name,detail);break;
       case 'read':if(typeof detail==='string')fileDocument(state,{type:'Notice',title:name,text:detail,source:'notice:'+name,organisation:'Community Hall'},getMinutes());save();read(name,detail);break;
       case 'machine':operate(name,detail);break;
