@@ -33,7 +33,7 @@ export const MINATO_BEER=Object.freeze({brand:'Umineko',brewer:'Johansson Brewer
  * standard; the pint is the extra, for one man.
  */
 export const BEER_SERVES=Object.freeze({
- draft:Object.freeze({vessel:'a frosted 大ジョッキ, the thick handled mug of every izakaya in the islands',who:'the counter’s regulars, the crews off the boats, anyone thirsty after work',
+ draft:Object.freeze({vessel:'a frosted jokki, the thick handled mug of every izakaya in the islands',who:'the counter’s regulars, the crews off the boats, anyone thirsty after work',
   why:'Draught lager is what an Okinawan izakaya pours, and the mug is how: it keeps the beer cold in a warm room and stands up to a kanpai. The house’s standard glass.'}),
  pint:Object.freeze({vessel:'a nonic pint glass, 568 ml, the bulge two fingers under the rim',who:'Johansson, the Swede; now and then a ship’s officer from the north who sees it on the rack',
   why:'Johansson drinks a dark beer slowly, the way he did in harbour pubs on his northern runs, and asked Thao for "a proper glass": she keeps one pint on the rack for him and pours it from the Umineko Black bottles the brewery’s rep left this autumn (Sakura’s poster, world/interiors/sakura-trade-posters.js). In 1997 a pint glass at a Motobu izakaya is a foreigner’s quirk, which is why there is one.'}),

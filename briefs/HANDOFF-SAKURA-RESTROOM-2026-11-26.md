@@ -1437,7 +1437,8 @@ TAKE, then FIRST or SIP, then LET. Times (s) from each part's start, at the keys
   forward 5 cm with the lean (a reach); both up on the "kaa!"; the throat squashed 3.5% on a swallow (the neck's scale, volume
   kept); a slosh (the beer's surface a damped spring lagging the glass, `table-drink.js` fluid `surface`); a foam moustache (nine
   blobs on the head's own surface, 2.5 mm out, wiped from his left); per-person timing (`beerWarp`, speeds eased across beats).
-  `createBeerTableDrink`: Johansson's glass at the counter (`actors.js drinkFromTable`, game.js sipDrink; TABLE_DRINK_KINDS +pint).
+  `createBeerTableDrink`: Johansson's glass at the counter (`actors.js drinkFromTable` with `animated`, which game.js sipDrink
+  passes; without it the table performance, which `tests/drinking-game.test.mjs` keeps testing on a mug; TABLE_DRINK_KINDS +pint).
 - The pint (`izakaya-serving-visuals.js PINT`, a nonic, black lager under a tan head) and Umineko Black on the menu
   (`izakaya-beer.js DRINKS.pint`, `BEER_SERVES`: who and why for the mug, the pint and the small glass); Thao pours it as she does
   oolong: the rack's pint glass (it takes the third mug's place), the cold store's black-lager bottle (in one big-bottle set's
@@ -1454,6 +1455,11 @@ TAKE, then FIRST or SIP, then LET. Times (s) from each part's start, at the keys
   the glass tipped at least what the beer needs on every frame it flows; the eyes shut for most of the draught; "kaa!"; the
   foam on and wiped; the slosh at the tap settles under 0.5 degrees in 1.5 s; the parts join within 0.005 rad.
 - `tests/drink-beer.test.mjs`: 9 pass, 1 todo (below); in the guard list.
+- The CI guard (`node tools/ci-guard.mjs --test-concurrency=2`, before drink-beer was listed): 759 of 766, 1101 s. Six failed
+  that the branch then fixed and were re-run alone, passing: the drinking game's five (they test the table performance, which
+  `animated` now leaves to them) and the English inventory (the menu's 大ジョッキ, now "jokki"). The seventh is the published
+  runtime package (not rebuilt on a branch). The principles audit in it: as the baseline, nothing added (ease 123/154,
+  anticipation 19/141, arcs 69/145, overlap 56/146, twins 63/129, squash 0/15, volume 155/155).
 
 ## Remains
 - **The right elbow letting go** (the test's todo): 0.5 s into LET it swings 0.4 rad over five frames (0.127 rad in one; its

@@ -187,7 +187,8 @@ export function createAvatarJohansson({scene,recipe=playerRecipe()}={}){
    // Fit that unseen initial body to its seat before taking the resting-hand sample.
    if(posedSeconds<.3)animator.update(.7,{...lastState,seated:true,seat:seatMove,tipsy:0});
    // (a glass of beer, as it was animated in Blender: drink-beer.js; the rest, the table performance)
-   tableDrink=beerMotion(lease.prop)&&!avatar.pixar?createBeerTableDrink(avatar,lease,callbacks):createAvatarTableDrink(avatar,lease,callbacks);return true;
+   // (`animated`: game.js asks for it; the drinking game's tests keep the table performance, which awamori, oolong and a can use)
+   tableDrink=callbacks.animated&&beerMotion(lease.prop)&&!avatar.pixar?createBeerTableDrink(avatar,lease,callbacks):createAvatarTableDrink(avatar,lease,callbacks);return true;
   },
   cancelTableDrink(){const result=tableDrink?.cancel();tableDrink=null;drinkingArm?.dispose();drinkingArm=null;return result;},
   play(name,{face}={}){

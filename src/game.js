@@ -1052,7 +1052,8 @@ function sipDrink(){
   // the one Thao delivered, retained in the room and returned to this table.
   updateJohansson(0);
   const account=result=>{if(result?.consumedPortion>0){tipsy=drinkUp(tipsy,result.alcohol);minutes+=2*result.consumedPortion;townClock.pass(2*result.consumedPortion);activities.state.clockAhead=townClock.ahead;}};
-  const started=actor.drinkFromTable(lease,{
+  // (a glass of beer as animated in Blender: drink-beer.js; the table performance for the rest)
+  const started=actor.drinkFromTable(lease,{animated:true,
    onComplete:result=>{account(result);say(result.left?'A measured sip. '+result.left+(result.left===1?' mouthful left.':' mouthfuls left.'):'The glass is empty. Thao glances over: Another drink?',3);
     window.dispatchEvent(new CustomEvent('sipCompleted',{detail:{drinkId:table.kind==='draft'?'beer':table.kind,volumeConsumedMl:result.volumeConsumedMl,source:'izakaya'}}));},
    onCancel:account,
