@@ -443,7 +443,7 @@ BODY = [
     (1.35, (.03, -.04, 0), (.05, -.09, 0), (.08, .01, 0), (.20, .01, .02)),     # at the ring: turned to the can (staging: it shows past his right side)
     (1.57, (.035, -.04, 0), (.055, -.09, 0), (.08, .01, 0), (.22, .01, .02)),   # a little closer before the tear
     (1.73, (.025, -.035, 0), (.04, -.075, 0), (.06, .02, 0), (.165, .03, .01)), # the tear: a little jerk back
-    (2.1, (.02, 0, 0), (.03, .06, 0), (.05, .06, 0), (.10, .16, -.02)),         # to the pocket: looks to his left
+    (2.25, (.02, 0, 0), (.03, .06, 0), (.05, .06, 0), (.10, .16, -.02)),        # to the pocket: looks to his left
     (2.65, (0, 0, 0), (0, 0, 0), (.03, 0, 0), (.08, 0, 0)),                      # the can opened: looks at it, satisfied
     (3.45, (.005, 0, 0), (.008, 0, 0), (.035, 0, 0), (.09, -.01, 0)),            # (a moving hold: the drink starts in it)
     (3.84, (.02, 0, 0), (.03, 0, 0), (.05, 0, 0), (.14, -.03, 0)),              # anticipation: the dip, a glance at the can
@@ -532,8 +532,8 @@ CANKEYS = [
     (2.35, lambda t: can_at((-.03 * k, M['chestY'] - .02 * k, .21 * k), can_turn(.02, .15))),
     (2.80, lambda t: can_at((-.07 * k, M['chestY'] - .075 * k, .19 * k), can_turn(0, .15))),          # opened: down to the waist
     (3.15, lambda t: can_at((-.065 * k, M['chestY'] - .03 * k, .185 * k), can_turn(.04, .15))),       # lifted a little to look at it, satisfied
-    (3.50, lambda t: can_at((-.065 * k, M['chestY'] - .033 * k, .186 * k), can_turn(.04, .15))),      # (held: the drink starts in it)
-    (3.84, lambda t: can_at((-.08 * k, M['chestY'] - .085 * k, .16 * k), can_turn(-.07, .15))),       # anticipation: dips, down and in toward him
+    (3.54, lambda t: can_at((-.065 * k, M['chestY'] - .033 * k, .186 * k), can_turn(.04, .15))),      # (held: the drink starts in it)
+    (3.86, lambda t: can_at((-.08 * k, M['chestY'] - .09 * k, .158 * k), can_turn(-.07, .15))),       # anticipation: dips, down and in toward him
     (4.15, lambda t: can_at((-.13 * k, M['chestY'] + .12 * k, .27 * k), can_turn(.35, .1))),          # the arc: out in front and up
     *pull(4.55, 5.9, 40, 75),                                                                      # contact, then deep
     *pull(5.9, 6.2, 75, 73, .05),                                                                      # the last swallow of it
@@ -547,9 +547,9 @@ CANKEYS = [
     (8.82, lambda t: at_lip(t, math.radians(40), away=.068 * k, down=0)),                            # release: off the lip, into the "ahh"
     (8.96, lambda t: at_lip(t, math.radians(39), away=.07 * k, down=0)),                              # "ahh": held off his lips (with his head)
     (9.16, lambda t: at_lip(t, math.radians(28), away=.07 * k, down=-.025 * k)),                     # anticipation: tipped back, a touch up and in (against the lowering)
-    (9.4, lambda t: can_at((-.13 * k, M['chestY'] + .12 * k, .26 * k), can_turn(.2, .05))),         # down, the arc out
-    (9.58, lambda t: can_at((-.14 * k, M['chestY'] - .04 * k, .21 * k), can_turn(.05, .12))),
-    (9.76, lambda t: can_at((-.08 * k, M['chestY'] - .138 * k, .17 * k), can_turn(-.03, .25))),      # past the waist, then a long soft settle
+    (9.45, lambda t: can_at((-.13 * k, M['chestY'] + .12 * k, .26 * k), can_turn(.2, .05))),         # down, the arc out
+    (9.66, lambda t: can_at((-.14 * k, M['chestY'] - .04 * k, .21 * k), can_turn(.05, .12))),
+    (9.85, lambda t: can_at((-.08 * k, M['chestY'] - .138 * k, .17 * k), can_turn(-.03, .25))),      # past the waist, then a long soft settle
     (10.08, lambda t: can_at(WAIST, can_turn(0, .25))),
     (10.1, lambda t: can_at(WAIST, can_turn(0, .25))),
     (10.4, lambda t: can_at((-.09 * k, M['chestY'] - .135 * k, .175 * k), can_turn(-.05, .25))),     # anticipation: dips
@@ -562,7 +562,7 @@ CANKEYS = [
 ]
 # The right elbow (its pole): down and out at the waist, out and up as the can goes up to the mouth.
 POLES_R = [(10.1, (-.45, .75, -.2)), (10.75, (-.7, 1.05, .1)), (11.3, (-.75, 1.1, .2)), (12.3, (-.6, .9, 0)), (13.1, (-.45, .75, -.2)),
-           (.35, (-.45, .75, -.2)), (.9, (-.5, .9, -.1)), (2.8, (-.45, .75, -.2)), (3.5, (-.45, .75, -.2)), (4.15, (-.7, 1.05, .1)),
+           (.35, (-.45, .75, -.2)), (.9, (-.5, .9, -.1)), (2.8, (-.45, .75, -.2)), (3.54, (-.45, .75, -.2)), (4.15, (-.7, 1.05, .1)),
            (4.55, (-.75, 1.1, .2)), (5.9, (-.8, 1.2, .25)), (6.65, (-.7, 1.0, .1)), (8.2, (-.85, 1.25, .3)), (9.2, (-.6, .9, 0)), (10.08, (-.45, .75, -.2))]
 # The left hand: at his side, then over the can, its forefinger hooked under the ring; the ring lifted; the tab torn off and
 # drawn up and away; to the pocket; back to his side.
@@ -572,15 +572,15 @@ POLES_R = [(10.1, (-.45, .75, -.2)), (10.75, (-.7, 1.05, .1)), (11.3, (-.75, 1.1
 REST_TURN = Quaternion((0, 0, 1), .1) @ Quaternion((1, 0, 0), -.4)
 LEFT_REST = tuple(Vector(K['bones']['elbowL']) + Quaternion((1, 0, 0), -.4) @ (Vector(K['bones']['handL']) - Vector(K['bones']['elbowL'])))
 CLOSE = {'R': [(.35, .4), (.5, K['hand']['wrapAt'] * 1.0), (13.1, K['hand']['wrapAt'])], 'L': [(.35, 0), (13.1, 0)]}
-HOOK_L = [(.35, 0), (.9, 0), (1.28, 1), (2.33, 1), (2.51, .3), (2.95, 0), (13.1, 0)]        # (closing on the ring four frames after the hand is there)
+HOOK_L = [(.35, 0), (.9, 0), (1.28, 1), (2.45, 1), (2.6, .3), (3.0, 0), (13.1, 0)]        # (closing on the ring four frames after the hand is there)
 LOOK = [(.35, 0), (.45, .35), (1.95, .35), (2.07, .1), (2.55, .3), (3.85, .4), (4.05, 0), (10.2, 0), (10.4, .35), (10.65, 0), (13.1, 0)]
 BLINK = [(.35, 0), (4.7, 0), (4.95, 1), (6.05, 1), (6.25, 0), (7.15, 0), (7.35, 1), (8.35, 1), (8.55, 0), (11.15, 0), (11.3, 1), (11.7, 1), (11.85, 0), (13.1, 0)]
 BREATH = [(.35, 0), (6.4, 0), (6.58, .8), (6.82, 0), (8.9, 0), (9.15, 1), (9.6, .2), (10.08, 0), (11.95, 0), (12.15, .6), (12.5, 0), (13.1, 0)]
 SMILE = [(.35, 0), (2.55, .4), (3.7, 0), (8.9, 0), (9.22, 1), (10.08, .6), (10.1, 0), (12.0, 0), (12.3, .5), (13.1, .3)]
-LIPW = [(.35, 0), (4.35, 0), (4.56, 1), (6.2, 1), (6.35, 0), (6.98, 0), (7.15, 1), (8.5, 1), (8.68, 0), (10.88, 0), (11.06, 1), (11.65, 1), (11.75, 0), (13.1, 0)]
-POCKETW = [(.35, 0), (2.01, 0), (2.3, 1), (2.37, 1), (2.51, 0), (13.1, 0)]
+LIPW = [(.35, 0), (4.52, 0), (4.6, 1), (6.2, 1), (6.35, 0), (7.12, 0), (7.2, 1), (8.5, 1), (8.68, 0), (10.88, 0), (11.06, 1), (11.65, 1), (11.75, 0), (13.1, 0)]
+POCKETW = [(.35, 0), (2.1, 0), (2.38, 1), (2.45, 1), (2.6, 0), (13.1, 0)]
 # (the right wrist from his own lips while the can is near them, the "ahh" too)
-MOUTHW = [(.35, 0), (3.84, 0), (4.55, 1), (9.2, 1), (9.55, 0), (10.4, 0), (11.05, 1), (11.95, 1), (12.4, 0), (13.1, 0)]
+MOUTHW = [(.35, 0), (3.88, 0), (4.55, 1), (9.2, 1), (9.55, 0), (10.4, 0), (11.05, 1), (11.95, 1), (12.4, 0), (13.1, 0)]
 RINGW = [(.35, 0), (1.11, 0), (1.15, 1), (1.66, 1), (1.69, 0), (13.1, 0)]        # (on through the tear: the tab comes off where the finger holds it)
 FILL = [(.35, 1), (4.65, 1), (6.05, .45), (7.45, .45), (8.35, 0), (10.08, 0), (10.1, 1), (13.1, 1)]
 # (the eyes go first: the head turns to what they look at five frames after them, anticipation-mastery's "looks before
@@ -593,7 +593,7 @@ for side, keys_ in CLOSE.items():
     for t, v in keys_:
         key_prop('close' + side, t, v)
 mark('tabOff', 1.65)
-mark('tabPocketed', 2.35)
+mark('tabPocketed', 2.45)
 for t, p in POLES_R:
     key_at('pole.R', t, (p[0] * k, p[1] * k, p[2] * k))
 # the look target: the can while it is opened and in the glance before the drink, ahead after
@@ -686,7 +686,7 @@ pocket = lambda t: bone_point('chest', POCKET, t)
 # down from the forearm's line, radians; less than nothing is the wrist bent back), a little give before the tear; the tab
 # torn off up and back toward him; then to the pocket with the elbow out at his side and a little forward, the hand coming
 # down into it from above, the fingertips pointing into its mouth.
-BEND = {.8: .2, 1.03: .3, 1.15: .45, 1.25: .55, 1.47: -.15, 1.57: -.02, 1.65: -.25, 1.73: -.1, 1.81: .05, 1.91: .1, 2.01: .15, 2.15: .9, 2.3: 1.0, 2.37: 1.0}
+BEND = {.8: .2, 1.03: .3, 1.15: .45, 1.25: .55, 1.47: -.15, 1.57: -.02, 1.65: -.25, 1.73: -.1, 1.84: 0, 1.97: .1, 2.27: .85, 2.38: 1.0, 2.45: 1.0}
 REST = lambda dx=0.0, dy=0.0, dz=0.0: Matrix.Translation(Vector(LEFT_REST) + Vector((dx * k, dy * k, dz * k))) @ REST_TURN.to_matrix().to_4x4()
 MID = lambda a, b, u, off: Vector(a).lerp(Vector(b), u) + Vector(off) * k
 LEFT = [
@@ -700,14 +700,13 @@ LEFT = [
     (1.57, lambda t: left_for(ring_at(t, .44), over(ring_at(t, .44), .2))),                                                 # the give: the tear's anticipation
     (1.65, lambda t: left_for(ring_at(t, .55), over(ring_at(t, .55), 0))),                                                  # torn off
     (1.73, lambda t: left_for(MID(ring_at(1.65, .55), Vector(ring_at(1.65, .55)) + Vector((.04 * k, .065 * k, .02 * k)), .5, (-.005, .006, -.018)), over(ring_at(1.65, .55), 0))),  # peeled back toward him on the way up
-    (1.81, lambda t: left_for(Vector(ring_at(1.65, .55)) + Vector((.04 * k, .065 * k, .02 * k)), over(ring_at(1.65, .55), .05))),  # follow-through: up and out, past
-    (1.91, lambda t: left_for(Vector(ring_at(1.65, .55)) + Vector((.038 * k, .06 * k, .021 * k)), over(ring_at(1.65, .55), .1))),  # settles back
-    (2.01, lambda t: left_for(Vector(ring_at(1.65, .55)) + Vector((.045 * k, .055 * k, .035 * k)), over(ring_at(1.65, .55), .15))),  # anticipation: out from him, before the pocket
-    (2.15, lambda t: left_for(Vector(pocket(t)) + Vector((0, .025 * k, .015 * k)), over(pocket(t), 1.0))),               # over the pocket
-    (2.3, lambda t: left_for(Vector(pocket(t)) + Vector((0, -.002 * k, .003 * k)), over(pocket(t), 1.1))),              # at its mouth
-    (2.37, lambda t: left_for(Vector(pocket(t)) + Vector((0, -.008 * k, .002 * k)), over(pocket(t), 1.1))),              # in it
-    (2.51, lambda t: left_for(Vector(pocket(t)) + Vector((.01 * k, .025 * k, .02 * k)), over(pocket(t), .9))),           # out of it, up (anticipation of the way down)
-    (2.85, lambda t: REST(.0015, -.003, -.003)),                                                                            # down past where it hangs
+    (1.84, lambda t: left_for(Vector(ring_at(1.65, .55)) + Vector((.035 * k, .05 * k, .01 * k)), over(ring_at(1.65, .55), 0))),  # follow-through: up and back, past
+    (1.97, lambda t: left_for(Vector(ring_at(1.65, .55)) + Vector((.03 * k, .045 * k, .025 * k)), over(ring_at(1.65, .55), .1))),  # settles, out from him: the pocket's anticipation
+    (2.27, lambda t: left_for(Vector(pocket(t)) + Vector((0, .025 * k, .02 * k)), over(pocket(t), 1.0))),                # over the pocket
+    (2.38, lambda t: left_for(Vector(pocket(t)) + Vector((0, -.002 * k, .003 * k)), over(pocket(t), 1.1))),              # at its mouth
+    (2.45, lambda t: left_for(Vector(pocket(t)) + Vector((0, -.008 * k, .002 * k)), over(pocket(t), 1.1))),              # in it
+    (2.6, lambda t: left_for(Vector(pocket(t)) + Vector((.01 * k, .025 * k, .02 * k)), over(pocket(t), .9))),            # out of it, up (anticipation of the way down)
+    (2.9, lambda t: REST(.0015, -.003, -.003)),                                                                             # down past where it hangs
     (3.20, lambda t: REST()),                                                                                              # settles, long and soft
     # (while he drinks, alive and second to the can: a little out from his side as the right arm goes up, easy while he
     # swallows, a little lift with the breath, back as the can comes down)
@@ -720,8 +719,8 @@ LEFT = [
     (13.1, lambda t: REST()),
 ]
 # (the elbow: down by his side for the opening, out and a little forward and up for the pocket)
-POLES_L = [(.35, (.45, .75, -.2)), (.8, (.55, .55, -.05)), (1.91, (.6, .6, -.05)), (2.15, (.75, .45, .3)), (2.37, (.75, .45, .3)),
-           (2.85, (.45, .75, -.2)), (13.1, (.45, .75, -.2))]
+POLES_L = [(.35, (.45, .75, -.2)), (.8, (.55, .55, -.05)), (1.97, (.6, .6, -.05)), (2.27, (.75, .45, .3)), (2.45, (.75, .45, .3)),
+           (2.9, (.45, .75, -.2)), (13.1, (.45, .75, -.2))]
 for t, p in POLES_L:
     key_at('pole.L', t, (p[0] * k, p[1] * k, p[2] * k))
 for t, f in LEFT:
@@ -934,11 +933,43 @@ for side, held_by in (('R', ('lip', 'ring')), ('L', ('ring', 'pocket'))):       
         # (between the two, the hand's twist given to the forearm again and the wrist kept within what a wrist does)
         baked[i]['elbow' + side], hand = twist_into_forearm(side, baked[i]['elbow' + side], baked[i]['hand' + side])
         baked[i]['hand' + side] = soft_wrist(side, hand)
+# Spacing (slow-in-out-mastery; the principles audit's ease): every joint's curve from the spine up evened over its
+# neighbours, three frames each side by binomial weights (about a frame and a half's spread at 30 fps): the poses stay where they are keyed,
+# the steps of speed from one key's in-betweens to the next's (which the game plays as a jump of the joint's turn a frame) are
+# taken out.
+SPREAD = (1, 6, 15, 20, 15, 6, 1)
+
+
+def evened(qs):
+    out = []
+    for i, q in enumerate(qs):
+        acc = Vector((0, 0, 0))
+        for d, w in zip(range(-3, 4), SPREAD):
+            r = q.inverted() @ qs[min(len(qs) - 1, max(0, i + d))]
+            if r.w < 0:
+                r = -r
+            axis, angle = r.to_axis_angle()
+            acc += axis * angle * w / sum(SPREAD)
+        out.append(q @ Quaternion(acc.normalized(), acc.length) if acc.length > 1e-9 else q.copy())
+    return out
+
+
+UPPER = ('spine', 'chest', 'neck', 'head', 'shoulderL', 'elbowL', 'handL', 'shoulderR', 'elbowR', 'handR')
+# (not while the rim is at his lip: there every joint from the spine up is where the IK put the can on the lip as the head
+# swallows, eased back to it as the contact comes and goes)
+on = [c['lip'] for c in contacts]
+at_lip = [max(on[j] * ease3(1 - abs(i - j) / EASE) for j in range(max(0, i - EASE), min(len(on), i + EASE + 1))) for i in range(len(on))]
+for n in UPPER:
+    for pose, q, w in zip(baked, evened([p[n] for p in baked]), at_lip):
+        pose[n] = q.slerp(pose[n], w)
+for side in 'RL':                                                           # (and the wrist still within what a wrist does)
+    for pose in baked:
+        pose['hand' + side] = soft_wrist(side, pose['hand' + side])
 for pb in P:
     for c in pb.constraints:
-        if c.type in ('IK', 'COPY_ROTATION'):
+        if c.type in ('IK', 'COPY_ROTATION', 'DAMPED_TRACK'):
             c.mute = True
-for n in ('shoulderL', 'elbowL', 'handL', 'shoulderR', 'elbowR', 'handR'):
+for n in UPPER:
     fc = [c for c in (rig.animation_data.action.fcurves if hasattr(rig.animation_data.action, 'fcurves') else []) if c.data_path == f'pose.bones["{n}"].rotation_quaternion']
     for f, pose in zip(frames, baked):
         set_game_local(n, pose[n])
@@ -982,9 +1013,8 @@ for f in frames:
     for side in 'RL':
         e = game_local('hand' + side).to_euler('ZYX')
         verify['wrist'][side].append([round(e.x, 4), round(e.y, 4), round(e.z, 4)])
-# (the body from the waist up: the legs and the hips stay as the game stands or seats him, so the one motion is drunk
+# (the body from the waist up, UPPER: the legs and the hips stay as the game stands or seats him, so the one motion is drunk
 # standing or sitting)
-UPPER = ('spine', 'chest', 'neck', 'head', 'shoulderL', 'elbowL', 'handL', 'shoulderR', 'elbowR', 'handR')
 motion = {'format': 'johansson-motion', 'version': 2, 'name': 'Opens a can and drinks it', 'fps': FPS, 'by': f'tools/blender/drink-can.py ({args.name})',
           'times': times, 'joints': {n: joints[n] for n in UPPER},
           'shapes': {c: tracks[c] for c in ('closeR', 'closeL', 'hookL', 'hookR')},

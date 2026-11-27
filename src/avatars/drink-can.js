@@ -45,7 +45,7 @@ function widen(data,reach){
  for(let i=0;i<data.length;i++){let w=0;for(let j=0;j<data.length&&w<1;j++){const d=Math.abs(T[i]-T[j]);if(d<reach)w=Math.max(w,data[j]*smooth(1-d/reach));}out[i]=w;}
  return out;
 }
-const RING_NEAR=widen(M.contact.ring,.45),POCKET_NEAR=widen(M.contact.pocket,.35);
+const RING_NEAR=widen(M.contact.ring,.45),POCKET_NEAR=widen(M.contact.pocket,.35),LIP_NEAR=widen(M.contact.lip,.3);
 /** Where a ring the hooked left forefinger lifts lies, in the left hand bone's frame (build.js HAND.hookAt). */
 const hookLocal=avatar=>new THREE.Vector3(...handPoint(avatar.measure,'L',HAND.hookAt));
 /** This body's lower lip in its head's frame (consume.js lowerLip: found on the drawn head once, the head is not re-drawn). */
@@ -91,6 +91,21 @@ const LEVEL={spine:0,chest:1,neck:1,head:1,shoulderL:1,shoulderR:1,elbowL:2,elbo
 export function levelWeights(blend){
  return [0,1,2].map(l=>smooth((blend.in-l*APART)/IN)*smooth((blend.out-(2-l)*APART)/OUT));
 }
+/** What each arm is turned by to fit this body (the reach above, before any contact is put right), taken a little at a time:
+ *  the IK that fits another body's arm to the path can turn the elbow 0.04 rad in a frame for a hair's move of the hand (Sverker's
+ *  left arm, hanging), which the animator's follow does not smooth, being after it. Two eased followers in turn (a critically
+ *  damped follow, about a tenth of a second), so a change sets off and comes to rest softly; started where it is at the move's
+ *  start. The contacts are put right after this, exactly. */
+const ARM=['shoulder','elbow','hand'],steadied=new WeakMap(),_d=new THREE.Quaternion();
+function steady(avatar,side,before,t,much){
+ const all=steadied.get(avatar)||steadied.set(avatar,{}).get(avatar),was=all[side],fresh=!was||Math.abs(t-was.t)>.1,now={t,j:[]};
+ ARM.forEach((j,i)=>{const b=avatar.bones[j+side],q=_d.copy(b.quaternion).multiply(before[i].clone().invert());if(q.w<0)q.set(-q.x,-q.y,-q.z,-q.w);
+  const s=Math.hypot(q.x,q.y,q.z),a=2*Math.atan2(s,q.w),v=s>1e-9?[q.x/s*a,q.y/s*a,q.z/s*a]:[0,0,0];
+  const p=fresh?{s1:v,s2:v}:was.j[i],s1=p.s1.map((x,c)=>x+(v[c]-x)*.35),s2=p.s2.map((x,c)=>x+(s1[c]-x)*.35);now.j.push({s1,s2});
+  const ang=Math.hypot(...s2),d=ang>1e-9?new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(...s2).divideScalar(ang),ang):new THREE.Quaternion();
+  b.quaternion.slerp(d.multiply(before[i]),much);});
+ all[side]=now;avatar.bones['shoulder'+side].updateWorldMatrix(false,true);
+}
 /** The bones the motion turns, as they are now: a function that puts them back. */
 function held(avatar){
  const was=tracks.map(([name])=>[avatar.bones[name],avatar.bones[name]?.quaternion.clone()]).filter(([b])=>b);
@@ -107,7 +122,10 @@ function bring(avatar,side,pt,goal,w,keepWorld=true,firm=1,tag=side){
  hand.getWorldQuaternion(_m);const keep=_m.clone(),elbow=avatar.bones['elbow'+side].getWorldPosition(new THREE.Vector3()),shoulder=avatar.bones['shoulder'+side].getWorldPosition(new THREE.Vector3());
  // (the elbow kept on the side it is: its way from the line from the shoulder to the wrist)
  const wrist=hand.getWorldPosition(new THREE.Vector3()),to=wrist.clone().addScaledVector(off,w),line=to.clone().sub(shoulder).normalize(),out=elbow.clone().sub(shoulder);out.addScaledVector(line,-out.dot(line));
- const pole=out.lengthSq()>1e-8?out.normalize():new THREE.Vector3(side==='R'?-1:1,0,0),inv=avatar.root.matrixWorld.clone().invert();
+ // (where the arm hangs nearly straight that way is all but nothing, and turns over from one frame to the next: steadied by the
+ // way an elbow goes when the arm bends, back and out, as much as the arm is straight)
+ const bend=new THREE.Vector3(side==='R'?-.4:.4,0,-1).normalize().transformDirection(avatar.root.matrixWorld);bend.addScaledVector(line,-bend.dot(line));
+ const pole=out.addScaledVector(bend,.003*avatar.measure.k).normalize(),inv=avatar.root.matrixWorld.clone().invert();
  // (the elbow turned round by as much as the arm is moved: a contact coming on turns it from where it was, not at once)
  const pose=(a,turn=true)=>{const p=pole.clone().applyAxisAngle(line,a*Math.min(1,w)).transformDirection(inv);const local=hand.quaternion.clone();reach(avatar,to,side,[p.x,p.y,p.z]);
   // (keepWorld: 1 the hand's turn in the world kept, 0 its turn at the wrist, or between)
@@ -119,15 +137,18 @@ function bring(avatar,side,pt,goal,w,keepWorld=true,firm=1,tag=side){
  // (the last frame's way tried first (for this arm and this contact, `tag`), and kept while it will do: the elbow is not
  // sent from one side to the other and back between frames for a turn of the wrist a hair less)
  let best=0;const last=(chosen.get(avatar)||chosen.set(avatar,{}).get(avatar))[tag];
- if(k0>0){let kept=false;
-  if(last){k=Math.min(k0,firm)+(k0-Math.min(k0,firm))*last.ease;pose(last.a);kept=wristExcess(hand.quaternion,side)<.02;if(kept)best=last.a;}
+ if(k0>0){let kept=false,want=null;
+  if(last){k=Math.min(k0,firm)+(k0-Math.min(k0,firm))*last.ease;pose(last.a);kept=wristExcess(hand.quaternion,side)<.02;if(kept)want={a:last.a,ease:last.ease};}
   if(!kept)for(const ease of [1,.5,0]){k=Math.min(k0,firm)+(k0-Math.min(k0,firm))*ease;let least=Infinity;
    for(const a of [0,.2,-.2,.4,-.4,.7,-.7,1,-1]){pose(a);const x=wristExcess(hand.quaternion,side);if(x<least-1e-4){least=x;best=a;}if(x<1e-4)break;}
-   chosen.get(avatar)[tag]={a:best,ease};if(least<.02)break;}
-  // (and a new way taken a little at a time, not in a frame: 0.06 rad of turn about the line, and a tenth of the way between
-  // holding the hand's turn and letting it go, a frame at most)
-  if(!kept&&last){const c=chosen.get(avatar)[tag];best=last.a+Math.max(-.06,Math.min(.06,best-last.a));c.a=best;
-   c.ease=last.ease+Math.max(-.1,Math.min(.1,c.ease-last.ease));k=Math.min(k0,firm)+(k0-Math.min(k0,firm))*c.ease;}}
+   want={a:best,ease};if(least<.02)break;}
+  // (and a new way taken eased, not in a frame and not at a rate snapped to: the turn about the line and the share of the hand's
+  // turn held in the world follow what is wanted as a critically damped spring, at most 0.06 rad and a tenth a frame, its
+  // speed changing by at most a fifth of that a frame: they set off and come to rest softly, as the rest of the arm does)
+  const c=last?{...last}:{a:want.a,ease:want.ease,va:0,ve:0};
+  const follow=(x,v,to,top)=>{const nv=Math.max(-top,Math.min(top,v+Math.max(-top*.2,Math.min(top*.2,.09*(to-x)-.6*v))));return [x+nv,nv];};
+  if(last){[c.a,c.va]=follow(last.a,last.va||0,want.a,.06);[c.ease,c.ve]=follow(last.ease,last.ve||0,want.ease,.1);}
+  chosen.get(avatar)[tag]=c;best=c.a;k=Math.min(k0,firm)+(k0-Math.min(k0,firm))*c.ease;}
  pose(best);
  // (a hand turned other than it was carries its point elsewhere: the wrist moved again for it, the turn at the wrist kept;
  // up to five times, so a contact lands to a fraction of a millimetre: the torn tab hangs from the finger where it tore)
@@ -145,6 +166,12 @@ function twistIntoForearm(avatar,side){
 function holdWrist(q,side){
  _e.setFromQuaternion(q,'XYZ');const m=side==='R'?1:-1,c=(v,[lo,hi])=>Math.min(hi,Math.max(lo,v));
  _e.set(c(_e.x,WRIST[0]),m*c(m*_e.y,WRIST[1]),m*c(m*_e.z,WRIST[2]),'XYZ');q.setFromEuler(_e);
+}
+/** A wrist eased into what a wrist does (tools/blender/drink-can.py soft_wrist): within 0.15 rad of an end it comes to it more
+ *  and more slowly, never past it; a little inside them, as the game samples between frames. */
+function softWrist(q,side){
+ _e.setFromQuaternion(q,'XYZ');const m=side==='R'?1:-1,soft=(v,lo,hi,s=.15)=>v>hi-s?hi-s+s*Math.tanh((v-hi+s)/s):v<lo+s?lo+s-s*Math.tanh((lo+s-v)/s):v;
+ _e.set(soft(_e.x,WRIST[0][0]+.03,WRIST[0][1]-.03),m*soft(m*_e.y,WRIST[1][0]+.03,WRIST[1][1]-.03),m*soft(m*_e.z,WRIST[2][0]+.03,WRIST[2][1]-.03),'XYZ');q.setFromEuler(_e);
 }
 /** How far a wrist (the hand's turn at it) is past what a wrist does (animate.js PALM.wrist, the right hand's terms; the
  *  left's turns about y and z are the right's mirror), radians, all its ways added. */
@@ -184,12 +211,27 @@ export function playCanDrink(avatar,prop,t,w=1,blend=null){
  for(const side of M.reach?['R','L']:[]){const hand=avatar.bones['hand'+side].getWorldPosition(new THREE.Vector3());
   // (the right hand's turn in the world kept, the can tipped as it was animated; the left's at the wrist, the arm being
   // another body's and the hand turning with it as a hand does, but for while it is hooked on the ring)
-  fix[side]=bring(avatar,side,null,hand.add(goals[side]),w,side==='R'?1:cues.ring,side==='R'?cues.lip:cues.ring*.4);}
+  // (the left hand's turn held in the world from well before it hooks the ring, as the path is put right for it: RING_NEAR,
+  // or the hooked finger comes to the ring turned as another body's arm turns it, 20 mm off on Thao)
+  const near=side==='L'&&prop?.userData?.sealed&&!prop.userData.sealed.off?Math.max(cues.ring,sampleTrack(M,RING_NEAR,t)):cues.ring;
+  const before=ARM.map(j=>avatar.bones[j+side].quaternion.clone());
+  fix[side]=bring(avatar,side,null,hand.add(goals[side]),w,side==='R'?1:near,side==='R'?cues.lip:near*.4);
+  // (the left, hanging or easy at his side, steadied where no contact holds it; by as much as the move is in, so it ends on the
+  // animator's own arm)
+  if(side==='L')steady(avatar,side,before,t,w*(1-Math.max(near,prop?.userData?.sealed?sampleTrack(M,POCKET_NEAR,t):0)));
+  // (off the lip, the right wrist kept within what a wrist does, softly: the can a little less tipped on a body whose arm
+  // will not turn it so, rather than the wrist bent past its end)
+  if(side==='R'&&cues.lip<1){const q=avatar.bones.handR.quaternion,soft=q.clone();softWrist(soft,'R');q.slerp(soft,1-cues.lip);avatar.bones.handR.updateWorldMatrix(false,true);}}
  if(prop)placeCan(avatar,prop);
- if(prop&&cues.lip>0){
-  // the rim on the lip: this body's lip, the rim where the hand has put it
-  const lip=avatar.bones.head.localToWorld(lipOf(avatar).clone()),rim=prop.localToWorld(canRim(prop));
-  fix.lip=bring(avatar,'R',avatar.bones.handR.worldToLocal(rim.clone()),lip,cues.lip*w,true,1,'lip');placeCan(avatar,prop);
+ const near=prop&&M.reach?.mouth?sampleTrack(M,M.contact.mouth,t):0;
+ if(prop&&(cues.lip>0||near>0)){
+  // the rim on the lip: this body's lip, the rim where the hand has put it. And near his mouth (the can coming to it, between
+  // the pulls, leaving it) the rim where the motion's own was from its lip, in this body's size: the contact comes on and goes
+  // off as the rim arrives and leaves, not pulled in early or let go of at once
+  const head=avatar.bones.head,lip=head.localToWorld(lipOf(avatar).clone()),rim=prop.localToWorld(canRim(prop));
+  // (and from the motion's own place to the lip itself over the last 0.3 s before the contact, and back after it: LIP_NEAR)
+  const on=Math.max(cues.lip,sampleTrack(M,LIP_NEAR,t));if(on<1&&M.reach?.mouth)lip.add(madeRimOff(avatar,prop,t).multiplyScalar(1-on));
+  fix.lip=bring(avatar,'R',avatar.bones.handR.worldToLocal(rim.clone()),lip,Math.max(cues.lip,near)*w,true,1,'lip');placeCan(avatar,prop);
  }
  const S=prop?.userData?.sealed;
  if(S&&!S.off)liftTab(prop,cues.tab);
@@ -211,7 +253,7 @@ export function playCanDrink(avatar,prop,t,w=1,blend=null){
  }else if(S?.lastFix&&t>S.lastFixAt&&t<S.lastFixAt+.25){
   // (torn off: what the hand was put right by on the ring, let go over a quarter of a second, not at once)
   const f=1-smooth((t-S.lastFixAt)/.25),hand=avatar.bones.handL.getWorldPosition(new THREE.Vector3());
-  fix.ring=bring(avatar,'L',null,hand.clone().add(S.lastFix),f,true,0);
+  fix.ring=bring(avatar,'L',null,hand.clone().add(S.lastFix),f,true,.4,'ring');   // (the elbow on the way the ring had it, the hand held as firmly)
  }
  return {...cues,fix};
 }
@@ -234,6 +276,14 @@ function sizeContacts(avatar,prop,t,mouth,goals){
    madePocket??=pocketMouth({measure:m0,recipe:recipeFor(M.props?.can?.made?.name||'Nils Johansson')});
    goals.L.addScaledVector(own.clone().sub(madePocket.clone().multiplyScalar(f)).applyQuaternion(chest),pocket);}
  }
+}
+
+/** Where the motion's own rim was from its lower lip at time t (world, in this body's size and its head's turn): its wrist from the
+ *  lip (the motion's `mouth` path) and the can in its socket, its hand turned as this body's now is. */
+function madeRimOff(avatar,prop,t){
+ const m0=made(),s=canSocket(m0,prop,'R'),head=avatar.bones.head.getWorldQuaternion(new THREE.Quaternion());
+ const can=canRim(prop).applyQuaternion(s.quaternion).add(s.position).applyQuaternion(avatar.bones.handR.getWorldQuaternion(new THREE.Quaternion()));
+ return pathAt(M.reach.mouth,t).multiplyScalar(m0.k).applyQuaternion(head).add(can).multiplyScalar(avatar.measure.k/m0.k);
 }
 
 /** The can in the right hand's socket (the hand is where the motion has put it). */

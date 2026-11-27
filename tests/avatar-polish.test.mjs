@@ -8,7 +8,8 @@ import {createAvatarAnimator} from '../src/avatars/animate.js';
 import {createAvatarActor,updateAvatarActor} from '../src/avatars/actors.js';
 import {faceLayout} from '../src/avatars/face.js';
 import {shapeHeadPoint} from '../src/avatars/head-profile.js';
-import {fitAvatarHeldProp,consumptionPhase} from '../src/avatars/consume.js';
+import {fitAvatarHeldProp,consumptionPhase,lowerLip} from '../src/avatars/consume.js';
+import {canRim} from '../src/avatars/drink-can.js';
 import {createDrinkProp,createDishProp,setPropPortion,updatePropPortion,disposeServing} from '../src/people/izakaya-beer.js';
 installDOM();
 
@@ -55,13 +56,24 @@ test('glasses stay clear of the hand and their rim meets the measured mouth at e
  for(const name of ['Johansson','Thuan'])for(const height of [0,.5,1])for(const kind of ['draft','bottle','oolong','can','coffee']){
   const a=buildAvatar({...CAST_RECIPES[name],body:{...CAST_RECIPES[name].body,height}});
   const prop=createDrinkProp(kind,{held:true}),anim=createAvatarAnimator(a);a.bones.handR.add(prop);
-  anim.play('SitDrink');for(let i=0;i<36;i++)anim.update(1/30,{seated:true,heldProp:prop});
-  fitAvatarHeldProp(a,prop,anim.consumption.lift);a.root.updateMatrixWorld(true);
-  const m=a.measure,L=faceLayout(a.recipe),theta=Math.PI*.28+L.mouthY/256*Math.PI*.58,phi=Math.PI/2-.95+L.mouthX/256*1.9;
+  anim.play('SitDrink');
+  const m=a.measure;
+  if(kind==='can'){
+   // (a can is sipped as it was animated in Blender (drink-can.js, CAN_PARTS.sip): the motion places it, not the old fit; checked
+   // at the sip's lip contact, the rim on this body's lower lip)
+   let at=null;for(let i=0;i<150&&at===null;i++){anim.update(1/60,{seated:true,heldProp:prop,consumeElapsed:i/60});a.root.updateMatrixWorld(true);if(anim.canCue?.lip>.99)at=i;}
+   assert.ok(at!==null,name+' '+height+' can: the sip comes to the lip');
+   const rim=prop.localToWorld(canRim(prop)),lip=a.bones.head.localToWorld(lowerLip(a).lower.clone());
+   assert.ok(rim.distanceTo(lip)<.002,name+' '+height+' can: the rim on the lower lip ('+(rim.distanceTo(lip)*1000).toFixed(1)+' mm)');
+  }else{
+   for(let i=0;i<36;i++)anim.update(1/30,{seated:true,heldProp:prop});
+   fitAvatarHeldProp(a,prop,anim.consumption.lift);a.root.updateMatrixWorld(true);
+   const L=faceLayout(a.recipe),theta=Math.PI*.28+L.mouthY/256*Math.PI*.58,phi=Math.PI/2-.95+L.mouthX/256*1.9;
   const v=shapeHeadPoint(new THREE.Vector3(-Math.cos(phi)*Math.sin(theta),Math.cos(theta),Math.sin(phi)*Math.sin(theta)),m.profile);
   const mouth=a.bones.head.localToWorld(new THREE.Vector3(v.x*m.Rh*m.headSX,m.headCentre-m.headY+v.y*m.Rh*m.headSY,v.z*m.Rh*.98+.025*m.k));
   const rim=prop.localToWorld(new THREE.Vector3(0,prop.userData.rimHeight,0));
-  assert.ok(rim.distanceTo(mouth)<.015,name+' '+height+' '+kind+' reaches lips');
+   assert.ok(rim.distanceTo(mouth)<.015,name+' '+height+' '+kind+' reaches lips');
+  }
   // The palm closes on the drink: on the outside of a mug's handle, on a tumbler's side.
   const palm=prop.worldToLocal(a.bones.handR.localToWorld(new THREE.Vector3(0,-m.hand*.55,0))),grip=prop.userData.grip;
   const across=Math.hypot(palm.x,palm.z);
