@@ -747,3 +747,23 @@ The owner: "He should be wearing a 'wife beater' tank top under his shirt".
   (8eeb14f): "cold-store on Thuan: Wave pops 0.239 m in a frame". The file is not in the guard. Given to the stage 2
   helper, along with running every animator-touching test file before and after. Test 1 there (draw counts on a child)
   failed before stage 1 too.
+
+# 27 November, late night: published to `main` (the owner: "Push to main so I can try Johansson")
+
+- **Rebuilt:** the runtime (`npm run build:runtime`) and the residents' portraits (`tools/render-resident-guide.mjs`, with
+  `TOWN_CHROMIUM_PATH=/opt/pw-browsers/chromium`).
+  - The runtime build follows `src/scene/scene-world.js` into the site's `avatar-creator/fujita-stage.js`, which imports
+    `../johansson-town/src/world/port-shed.js`. So the town must sit at the site's `johansson-town/` path (a clone or a
+    symlink there; the site ignores the folder).
+- **The guard on the rebuilt branch:** 715 of 715, all green.
+- **What `main` now has:**
+  - the can drink keyed in Blender, its first version: the opening is the stiff one being re-keyed on `drink/can`;
+  - the torn tab in the fingers;
+  - the animation standard and its audit;
+  - stage 1 of the moves: the stance release, the drag hierarchy, eating and drinking without jumps, the walk's stop;
+  - the smaller collar and the tank top.
+- **Known and not yet fixed on `main`:**
+  - stage 1's faster Wave makes a padded outfit set's surface move 4 cm more than the bare body in a frame
+    (`avatar-wardrobe-sets` test 4; not in the guard);
+  - the opening's staging and the pocket (on `drink/can`);
+  - stage 2 of the moves (on `anim/stage2`).
