@@ -1,13 +1,14 @@
 // The hands, close up, in the game's own shader: a resident's hand at rest from six sides, and the poses where hands touch
 // something (the pair poses, the funny poses, sitting), each as the whole figure and a close-up of every hand, played on the
 // game's own animator to the still Johansson Studio shoots (STILL_AT), as tests/pair-poses.test.mjs plays them.
-//   node tools/hand-shots.mjs [--name Thao] [out.png]                       the hand at rest, six views
+//   node tools/hand-shots.mjs [--name Thao] [--grip 0..1] [--shape hook] [out.png]   the hand at rest (or closed so far), six views
 //   node tools/hand-shots.mjs --pairs Shove,Fight,Hug,BackToBack [--who "Thuan,Nils Johansson"] [out.png]
 //   node tools/hand-shots.mjs --poses Facepalm,Huff,Scold [--name Thao] [out.png]
 //   node tools/hand-shots.mjs --sit chair,floor [--name Thao] [--outfit afterbath] [out.png]
 //   node tools/hand-shots.mjs --hold draft,can,bottle [--name Johansson] [out.png]     a drink in the hand, held and at the lips
 //   node tools/hand-shots.mjs --drive car,"kei truck" [--name Johansson] [out.png]      both hands on the steering wheel
 //   node tools/hand-shots.mjs --ride 0,.25 [--name Thuan] [out.png]                     on a bicycle, at those turns of the crank
+//   node tools/hand-shots.mjs --can 0,1,3.45 [--name Johansson] [--seated] [out.png]     a bought can opened and drunk (drink-can.js), at those seconds
 // Software Chromium (TOWN_CHROMIUM_PATH, or /opt/pw-browsers/chromium). Default out: output/hands-<what>.png
 import {chromium} from 'playwright';
 import {createServer} from 'node:http';
@@ -16,9 +17,9 @@ import {resolve,dirname,extname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),site=resolve(root,'..');
 const args=process.argv.slice(2),flag=k=>{const i=args.indexOf(k);return i>=0?args[i+1]:null;};
-const RIDE=flag('--ride')||'',DRIVE=flag('--drive')||'',HOLD=flag('--hold')||'',OUTFIT=flag('--outfit')||'clothes',NAME=flag('--name')||'Thao',PAIRS=flag('--pairs')||'',POSES=flag('--poses')||'',SIT=flag('--sit')||'',WHO=flag('--who')||'Thuan,Nils Johansson',GRIP=flag('--grip');
-const what=PAIRS?'pairs':POSES?'poses':SIT?'sit':HOLD?'hold':DRIVE?'drive':RIDE?'ride':'rest';
-const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--pairs','--poses','--sit','--who','--grip','--outfit','--hold','--drive','--ride'].includes(args[i-1]))||resolve(root,`output/hands-${what}.png`));
+const CAN=flag('--can')||'',SEATED=args.includes('--seated'),RIDE=flag('--ride')||'',DRIVE=flag('--drive')||'',HOLD=flag('--hold')||'',OUTFIT=flag('--outfit')||'clothes',NAME=flag('--name')||'Thao',PAIRS=flag('--pairs')||'',POSES=flag('--poses')||'',SIT=flag('--sit')||'',WHO=flag('--who')||'Thuan,Nils Johansson',GRIP=flag('--grip'),SHAPE=flag('--shape')||'close';
+const what=PAIRS?'pairs':POSES?'poses':SIT?'sit':HOLD?'hold':DRIVE?'drive':RIDE?'ride':CAN?'can':'rest';
+const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--pairs','--poses','--sit','--who','--grip','--outfit','--hold','--drive','--ride','--shape','--can'].includes(args[i-1]))||resolve(root,`output/hands-${what}.png`));
 await mkdir(dirname(out),{recursive:true});
 const TYPES={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.glb':'model/gltf-binary'};
 const server=createServer(async(req,res)=>{try{const path=decodeURIComponent(new URL(req.url,'http://x').pathname),file=resolve(site,'.'+path);if(!file.startsWith(site))throw Error('outside');
@@ -30,7 +31,7 @@ const errors=[];
 try{
  const page=await browser.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
  await page.goto(`http://127.0.0.1:${server.address().port}/blank`);
- const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold,drive,ride])=>{
+ const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold,drive,ride,shape,can,seated])=>{
   const base='/johansson-town/',T=await import(base+'vendor/three.module.js'),{buildAvatar}=await import(base+'src/avatars/build.js'),{recipeFor}=await import(base+'src/avatars/cast.js');
   const {createAvatarAnimator,GESTURES,STILL_AT,playPair}=await import(base+'src/avatars/animate.js'),{createInkPipeline}=await import(base+'src/render/ink-pipeline.js');
   const S=360,renderer=new T.WebGLRenderer({preserveDrawingBuffer:true,antialias:true});renderer.setSize(S,S);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.NoToneMapping;
@@ -74,6 +75,22 @@ try{
     const sc=scene(),P=body(name,sc),prop=createDrinkProp(kind);P.a.bones.handR.add(prop);const state={pose:'DrinkStanding',heldProp:prop,consumeElapsed:lift?1.2:0};
     P.step(60,state);fitAvatarHeldProp(P.a,prop,lift);P.holder.updateMatrixWorld(true);
     const h=handAt(P.a,'R'),y=frontYaw(P.a);for(const turn of [-1.2,-.4,.6,2.2])shoot(sc,h,y+turn,.2,P.a.measure.hand*10,`${kind} ${lift?'at the lips':'held'} · grip ${P.a.gripOf?.('R')}`);P.a.dispose();}}
+  }else if(can){
+   // a bought can, sealed, opened and drunk as animated in Blender (actors.js drinkBought: the DrinkCan move)
+   const {createDrinkProp}=await import(base+'src/people/izakaya-beer.js');
+   for(const at of can.split(',').map(Number)){
+    const sc=scene(),P=body(name,sc),prop=createDrinkProp('can',{held:true,sealed:true});P.a.bones.handR.add(prop);
+    const state={heldProp:prop,seated,seatHeight:.45};
+    if(seated){const seat=new T.Mesh(new T.BoxGeometry(.5,.04,.42),new T.MeshStandardMaterial({color:0x8a6a4a}));seat.position.set(0,.43,-.06);sc.add(seat);}
+    P.step(30,state);P.anim.play('DrinkCan');P.step(Math.round(at*60),state);
+    const c=P.a.bones.chest.getWorldPosition(new T.Vector3()),y=frontYaw(P.a),hd=P.a.bones.head.getWorldPosition(new T.Vector3()),m=P.a.measure;
+    const aim=hd.clone().add(new T.Vector3(0,(m.headCentre-m.headY)*.2,0)).lerp(c,.35);
+    for(const [turn,label] of [[0,'front'],[-.8,'three-quarter'],[-Math.PI/2,'side']])shoot(sc,aim,y+turn,.1,2.1,`${at.toFixed(2)} s · ${label}`);
+    // (close: the can's top and the hands opening it; the mouth and the can at it, from his left, the side the arm is not)
+    const near=at<2.4?prop.localToWorld(new T.Vector3(0,.1,0)):P.a.bones.head.localToWorld(new T.Vector3(0,(m.headCentre-m.headY)*.35,m.Rh*.8));
+    shoot(sc,near,y+(at<2.4?-.5:.9),at<2.4?.35:.05,m.hand*(at<2.4?6:11),`${at.toFixed(2)} s · close`);
+    P.a.dispose();
+   }
   }else if(ride){
    // on the town's bicycle (world/bicycle.js), as tests/bicycle-rider.test.mjs rides it
    const {buildBicycle}=await import(base+'src/world/bicycle.js'),{bicycleRiderFit}=await import(base+'src/world/bicycle-fit.js');
@@ -104,7 +121,7 @@ try{
    }
   }else{
    const sc=scene(),P=body(name,sc);P.step(30);
-   if(grip){P.a.grip?.('L',+grip);P.a.grip?.('R',+grip);}
+   if(grip){P.a.grip?.('L',+grip,shape);P.a.grip?.('R',+grip,shape);}
    const m=P.a.measure,y=frontYaw(P.a);
    for(const side of ['L','R']){const h=handAt(P.a,side),o=side==='L'?1:-1;
     for(const [turn,pitch,label] of [[0,.1,'front'],[o*.8,.1,'three-quarter'],[o*Math.PI/2,.05,'outside (back of the hand)'],[-o*1.2,.1,'inside (palm)'],[Math.PI,.1,'behind'],[o*.5,.95,'above']])
@@ -115,7 +132,7 @@ try{
   const cols=Math.min(6,tiles.length),sheet=document.createElement('canvas');sheet.width=S*cols;sheet.height=S*Math.ceil(tiles.length/cols);const ctx=sheet.getContext('2d');
   tiles.forEach(({c,label},i)=>{ctx.drawImage(c,(i%cols)*S,Math.floor(i/cols)*S);ctx.fillStyle='#253b3d';ctx.font='15px sans-serif';ctx.fillText(label,(i%cols)*S+8,Math.floor(i/cols)*S+20);});
   return sheet.toDataURL('image/png');
- },[NAME,PAIRS,POSES,SIT,WHO,GRIP,OUTFIT,HOLD,DRIVE,RIDE]);
+ },[NAME,PAIRS,POSES,SIT,WHO,GRIP,OUTFIT,HOLD,DRIVE,RIDE,SHAPE,CAN,SEATED]);
  await writeFile(out,Buffer.from(data.split(',')[1],'base64'));console.log('wrote',out);
 }catch(e){errors.push(String(e?.stack||e));}
 finally{await browser.close();server.close();}

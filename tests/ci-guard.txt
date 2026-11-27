@@ -162,3 +162,6 @@ flicker-audit.test.mjs
 # A bought can in his hand (the owner, 27 November 2026: "Can they still drink beer or anything from the vending
 # machines?", "A can needs to be opened also, removing the tab"): opened by the kit's hand, the tab pocketed, then drunk.
 open-can.test.mjs
+# ...and the drink as animated in Blender (tools/blender/drink-can.py): the rim on the lip on every body, the hand on the can,
+# the can out of the face, the wrists within their limits, the can tipped further as it empties.
+drink-can.test.mjs

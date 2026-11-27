@@ -1,10 +1,10 @@
 // Photographs Johansson opening and drinking what he bought, in the running game, as the third-person view shows it (the
 // owner, 27 November 2026, of the new hands: "Can they still drink beer or anything from the vending machines?", and "A
 // can needs to be opened also, removing the tab"): each can bought into the bag (the audit's buy, as a machine's pocket
-// gives it), then drunk as R drinks it (sip): the tab pulled off and pocketed (avatars/open-can.js), then the drink; shot
-// at each stage from his right, his front and close on the can, with where the can is against his hand and his lips in
-// the report.
-//   node tools/vending-drink-shots.mjs [--source] [--drinks "Green tea,Canned coffee,J-Coffee,Umineko lager"] [out-dir]
+// gives it), then drunk as R drinks it (sip), as animated in Blender (avatars/drink-can.js): the tab pulled off and
+// pocketed, then the drink; shot at each moment from his right, his left, his front or close on the can (a few: each is
+// about a minute in software rendering), with where the can is against his hand and his lips in the report.
+//   node tools/vending-drink-shots.mjs [--source] [--drinks "Umineko lager,Canned coffee"] [out-dir]
 // The built runtime by default (npm run build:runtime first); --source serves the source modules. Run it alone.
 import {chromium} from 'playwright';
 import {createServer} from 'node:http';
@@ -13,7 +13,7 @@ import {resolve,dirname,extname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),site=resolve(root,'..');
 const args=process.argv.slice(2),flag=k=>{const i=args.indexOf(k);return i>=0?args[i+1]:null;};
-const SOURCE=args.includes('--source'),DRINKS=(flag('--drinks')||'Green tea,Canned coffee,J-Coffee,Umineko lager').split(',');
+const SOURCE=args.includes('--source'),DRINKS=(flag('--drinks')||'Umineko lager').split(',');
 const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--drinks'].includes(args[i-1]))||resolve(root,'output/vending-drink'));await mkdir(out,{recursive:true});
 const TYPES={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.glb':'model/gltf-binary','.svg':'image/svg+xml','.hdr':'application/octet-stream','.wasm':'application/wasm'};
 const sourcePage=html=>html.replace(/<link rel="modulepreload" data-town-runtime[^>]*>\n?/g,'')
@@ -65,11 +65,12 @@ try{
   await page.evaluate(n=>window.__JOHANSSON_AUDIT__.buy(n),name);await stepGame(800);
   const sipped=await page.evaluate(()=>window.__JOHANSSON_AUDIT__.sip());step('bought and drinking '+name,{sipped});
   const moments=[];
-  for(const [ms,when] of [[350,'reaching for the tab'],[300,'on the ring'],[250,'the tab off'],[450,'to his pocket'],[750,'drinking'],[600,'at the mouth']]){
+  // (the moments of the drink as animated in Blender, avatars/drink-can.js: the forefinger on the ring, the tab to the
+  // pocket, the rim on the lip, deep with the head back, the last of it; seconds into it, each step from the last)
+  for(const [ms,when,views] of [[900,'the forefinger on the ring',['can','front']],[1050,'the tab to his pocket',['front']],[1500,'the rim on his lip',['right','left']],
+   [1350,'deep, the head back',['right','left']],[2300,'the last of it',['left']]]){
    await stepGame(ms);const m=await measure();moments.push({when,...m});step(name+' · '+when,m);
-   await shoot(`${name} · ${when}`,await onCan());
-   await shoot(`${name} · ${when} · right`,await lens(1.0,1.4,1.2));
-   await shoot(`${name} · ${when} · front`,await lens(1.0,1.45,.35));
+   for(const v of views)await shoot(`${name} · ${when} · ${v}`,v==='can'?await onCan():v==='right'?await lens(1.0,1.4,1.2):v==='left'?await lens(.9,1.45,-.9):await lens(1.0,1.45,.35));
   }
   await stepGame(2500);const after=await measure();step(name+' · after',after);
   report.drinks.push({name,sipped,moments,after});

@@ -3,7 +3,8 @@ import {poseAvatarOnBicycle} from './bicycle-pose.js';
 import {bicycleRiderFit} from '../world/bicycle-fit.js';
 import {seeded} from './recipe.js';
 import {consumptionPhase,poseAvatarConsumption,drinkHeadTilt,heldGrip} from './consume.js';
-import {OPEN_CAN,openCanGrip} from './open-can.js';
+import {CAN_PARTS,playCanDrink,canEvents} from './drink-can.js';
+import {tearTab,pocketTab} from './open-can.js';
 import {bodyLanguage,CONVERSATION_BIG} from './body-language.js';
 import {createFootGrounder,createLieGrounder,createSoleFinder} from './foot-ground.js';
 import {FUN_POSES,STILL_AT} from './fun-poses.js';
@@ -327,7 +328,8 @@ export const STORY_POSES=new Set(['BentStuck','CrabWalk','ChairUncurl','FrozenAb
 export const GESTURES=Object.freeze({
  Wave:1.6,Bow:1.5,Nod:1.1,HeadShake:1.2,Point:1.6,Shrug:1.3,Clap:1.8,Laugh:2,Think:2.4,LookAround:2.6,Stretch:2.2,
  PickUp:1.6,Fist:1.4,Jab:.42,JabL:.42,Swipe:.7,Hurt:.5,Tackle:.75,Jump:.9,Cheer:1.6,Hop:1.2,Gasp:1.6,Stomp:1.4,Slump:2.2,Fidget:2.4,SitEnjoyFood:3.8,SitPresentFood:4.2,SitToast:2.4,SitPress:2.4,SitDrink:2.4,SitEat:2.4,Drink:2.4,Eat:2.4,
- OpenCan:OPEN_CAN.duration,
+ // A can, as animated in Blender (drink-can.js): bought sealed, opened and drunk; or open already, drunk.
+ DrinkCan:CAN_PARTS.open[1]-CAN_PARTS.open[0],DrinkCanOpened:CAN_PARTS.drink[1]-CAN_PARTS.drink[0],
  Heart:2.8,Peace:2.8,Coy:3,Tada:2.4,HandsOnHips:2.6,HeelKick:2.6,CheekRest:3,DoubleCheek:3,
  // Habits (body-language.js quirk): small, done while somebody else is talking.
  ScratchHead:1.8,HairTuck:1.6,HeelRock:2.4,ChinTap:2,CollarTug:1.5,
@@ -411,6 +413,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   return ankle<m.shin*Math.cos(.07)?THREE.MathUtils.smoothstep(Math.acos(THREE.MathUtils.clamp(ankle/m.shin,0,1)),FLOOR_SIT.from,FLOOR_SIT.to):0;};
  // KneelHug's kneel, 0..1: eased down and up over 0.8 s whatever ends the move (its time, another move, a stop).
  let kneelRamp=0,kneel=0,kneelT=0;
+ // ---- A can as animated in Blender (drink-can.js): this frame's cues (null when none is drunk), and where the motion was.
+ let canCue=null,canLast=-1;
  let gesture=null,blinkIn=1+Math.random()*3,blinkT=-1,talkT=0,talkOpen=0,glance=[0,0],glanceIn=2,lastExpression='neutral';
  const headRestPosition=bones.head.position.clone();
  // ---- Hands on this body's own shape (REACH): worked out the first time each move is played, then kept.
@@ -1085,10 +1089,26 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   bones.hips.position.y=m.hipY+(s.riding?0:hipsY);
   bones.head.position.copy(headRestPosition);
   if(s.riding)poseAvatarOnBicycle(avatar,s.ridePhase||0,s.bicycleFit||bicycleRiderFit(m));
+  else if(consumption&&!avatar.pixar&&!consumption.food&&s.heldProp?.userData?.drinkKind==='can'){
+   // (a resident drinking a can: the sip as it was animated, in the time a sip is drunk in, 2.4 s: a quarter quicker)
+   const t=Number.isFinite(s.consumeElapsed)?s.consumeElapsed:gesture?gesture.t:consumeTime%5,[a,b]=CAN_PARTS.sip;
+   canCue={...playCanDrink(avatar,s.heldProp,a+Math.min(b-a,t*(b-a)/2.4),1),w:1};
+  }
   else if(consumption){
    bones.head.rotation.x+=drinkHeadTilt(s.heldProp,consumption.lift,consumption.food);
    poseAvatarConsumption(avatar,consumption.lift,consumption.food,s.heldProp);
   }
+  // A can bought and drunk (actors.js drinkBought): the motion over the pose so far, blended in and out (the arm comes up
+  // from where it hung to the can held at the waist, and goes back); the tab's moments as the motion has them.
+  const canPart=avatar.pixar?null:gesture?.name==='DrinkCan'?CAN_PARTS.open:gesture?.name==='DrinkCanOpened'?CAN_PARTS.drink:null;
+  if(canPart){
+   const t=canPart[0]+gesture.t,w=smooth(Math.min(1,gesture.t/.45))*smooth(Math.min(1,(gesture.d-gesture.t)/.45));
+   if(canLast<0)canLast=canPart[0]-1e-6;
+   for(const e of canEvents(canLast,t)){if(e==='tabOff')tearTab(s.heldProp,bones.handL);else if(e==='tabPocketed')pocketTab(s.heldProp);}
+   canLast=t;
+   const cue=playCanDrink(avatar,s.heldProp,t,w);
+   canCue={...cue,w};
+  }else{canLast=-1;if(!consumption||s.heldProp?.userData?.drinkKind!=='can')canCue=null;}
   // A hand with fingers rests a little curled, as a hand does, never splayed flat (a judge of the counter frames: "the
   // free hand is a stiff starfish"); what it holds closes it further (consume.js, table-drink.js set the grip after this).
   if(avatar.pixar?.grip){avatar.pixar.grip('L',s.heldProp?.userData?.food?1:.28);if(!consumption&&!s.heldProp)avatar.pixar.grip('R',.28);}
@@ -1099,6 +1119,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // (and what a story move has in the hand: the torch in the right fist, the paper's edges between the fingers)
   else if(avatar.grip)for(const side of ['L','R']){const held=side==='R'?s.heldProp||s.workHeld?.R:s.workHeld?.L,round=s.driving||s.riding||side==='R'&&(s.umbrella||s.tool||avatar.storyProps?.get?.('torch')?.parent===bones.handR);
    if(reading>0)closeHand(side,.5*reading);
+   if(side==='L'&&canCue?.hookL*canCue?.w>.01){avatar.grip('L',canCue.hookL*canCue.w,'hook');continue;}   // (the forefinger hooked in a can's ring)
    avatar.grip(side,Math.max(handWish[side],held?heldGrip(held,m):0,round?1:0,avatar.handHeld?.[side]||0));}
   avatar.seatLevel=null;
   if(onChair&&!s.riding){
@@ -1160,8 +1181,10 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   let blink=0;if(blinkT>=0){blinkT+=dt;blink=blinkT<.04?blinkT/.04:blinkT<.11?1:Math.max(0,1-(blinkT-.11)/.06);if(blinkT>=.17)blinkT=-1;}
   if(s.talking){talkT-=dt;if(talkT<=0){talkT=.09+Math.random()*.12;talkOpen=talkOpen?0:(Math.random()<.8?1:0);}}else talkOpen=0;
   glanceIn-=dt;if(glanceIn<=0){glanceIn=1.2+Math.random()*3;glance=Math.random()<.45?[0,0]:[(Math.random()-.5)*1.6,(Math.random()-.5)*.8];}
-  const face=s.sleeping?'sleep':expression;
-  avatar.paintFace({expression:face,blink,talk:talkOpen,look:s.look||(headToW>.5?[0,0]:null)||eyes||gestureEyes||(face==='thinking'?[1,-1]:glance)});
+  let face=s.sleeping?'sleep':expression;
+  // (drinking a can, the face as it was animated: the eyes on the can, shut for the deep swallows, a breath out, content)
+  if(canCue){const w=canCue.w;blink=Math.max(blink,canCue.blink*w);talkOpen=Math.max(talkOpen,canCue.breath*w>.4?1:0);if(canCue.smile*w>.5&&['neutral','smile'].includes(face))face='content';}
+  avatar.paintFace({expression:face,blink,talk:talkOpen,look:canCue&&canCue.look*canCue.w>.15?[0,1]:s.look||(headToW>.5?[0,0]:null)||eyes||gestureEyes||(face==='thinking'?[1,-1]:glance)});
  }
 
  /**
@@ -1600,13 +1623,6 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    // (a toast on a Pixar body: the glass raised in front of the face with the elbow bent, not a straight arm overhead)
    case 'SitToast':if(avatar.pixar){set('shoulderR',-1.35*q,.45*q,-.15*q);set('elbowR',-1.3*q);}else{set('shoulderR',-1.9*q,0,-.2);set('elbowR',-.6*q);}add('head',-.15*q);break;
    case 'SitDrink':{const lift=Math.max(0,Math.sin(t*2.6))**2;drinkArm(lift);break;}
-   // A bought can opened before it is drunk (open-can.js): held up in front of the chest in the right hand, the head down
-   // to it, the left hand brought up beside it; open-can.js takes the left hand to the ring and the pocket from here, and
-   // says how far it closes on the ring. Standing or seated alike: only the arms and the head.
-   case 'OpenCan':{
-    set('shoulderR',-.78*q,0,-.1*q);set('elbowR',-1.3*q);
-    set('shoulderL',-.55*q,0,.2*q);set('elbowL',-1.35*q);
-    add('neck',.1*q);add('head',.24*q);closeHand('L',openCanGrip(t));break;}
    // Playful poses for photos: struck, held while the move lasts, and kept alive with a
    // little bounce. The head is big and the arms short, so every hand stays at or
    // below the cheek.
@@ -1868,6 +1884,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   return null;
  }
  return {update,play,stop,style,gait,get gesture(){return gesture?.name||null;},get gestureTime(){return gesture?.t??0;},get consumption(){return consumption;},
+  /** A can being drunk as animated (drink-can.js): this frame's cues and how far each contact was put right; or null. */
+  get canCue(){return canCue;},
   /** The body this animates, and its reach solver (for a pair's arms, solved on the partner's body: pair-poses.js playPair). */
   get avatar(){return avatar;},solveReach:(key,spec)=>reachFor('Pair:'+key,spec)};
 }

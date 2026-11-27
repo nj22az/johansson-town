@@ -9,7 +9,7 @@ import {recipeFor} from './cast.js';
 import {APPEARANCE_REVISIONS} from './wardrobe.js';
 import {normalizeRecipe,decodeRecipe,encodeRecipe} from './recipe.js';
 import {fitAvatarHeldProp,gripWheel} from './consume.js';
-import {openCan,finishOpening} from './open-can.js';
+import {finishOpening} from './open-can.js';
 import {workHands} from './work-hands.js';
 import {createAvatarTableDrink,createFirstPersonDrinkingArm,TABLE_DRINK_KINDS,levelHeldDrink} from './table-drink.js';
 import {DEFAULT_PLAYER,readPlayers,readSave} from '../save.js';
@@ -174,6 +174,8 @@ export function createAvatarJohansson({scene,recipe=playerRecipe()}={}){
   get ready(){return true;},get move(){return move;},get expression(){return expression;},get weights(){return {};},
   get actions(){return [...Object.keys(GESTURES),'Idle','Walk','Run','Sit','SitEat','Soak','Fall'];},
   get avatar(){return avatar;},
+  /** This frame's cues of a can drunk as animated (drink-can.js), or null. */
+  get canCue(){return animator.canCue;},
   get drinking(){return !!tableDrink?.active;},
   get drinkingState(){return tableDrink?.diagnostics||null;},
   drinkFromTable(lease,callbacks={}){
@@ -212,13 +214,13 @@ export function createAvatarJohansson({scene,recipe=playerRecipe()}={}){
   hold(prop){if(tableDrink?.active)api.cancelTableDrink();bought=null;if(held){finishOpening(held);if(held.userData.consumable)disposeServing(held);else held.removeFromParent();}held=prop||null;if(!held)avatar.pixar?.grip?.('R',0);if(held){held.position.set(0,-avatar.measure.hand*.4,avatar.measure.hand*.6);hand().add(held);if(held.userData.consumable)fitAvatarHeldProp(avatar,held);}},
   /**
    * A can he bought, drunk (game.js, R; the owner, 27 November 2026: "Can they still drink beer or anything from the
-   * vending machines?", and "A can needs to be opened also, removing the tab"): in the right hand, opened first if it is
-   * sealed (open-can.js: the tab pulled off and put in his pocket), then the drink, then the empty can put away.
+   * vending machines?", "A can needs to be opened also, removing the tab", "You need to animate the beer drinking in
+   * blender and bring it to the game after"): in the right hand, opened first if it is sealed and then drunk down, as it
+   * was animated in Blender (drink-can.js), standing or seated; then the empty can put away.
    */
-  drinkBought(prop,{seated=false}={}){
-   api.hold(prop);const drink=seated?'SitDrink':'Drink';
-   if(prop?.userData?.sealed){bought={stage:'open',drink};animator.play('OpenCan');move='OpenCan';}
-   else{bought={stage:'drink',drink};animator.play(drink);move=drink;}
+  drinkBought(prop){
+   api.hold(prop);const name=prop?.userData?.sealed?'DrinkCan':'DrinkCanOpened';
+   bought={stage:'drink'};animator.play(name);move=name;
   },
   /** Where a bought can is: 'open', 'drink', or null. */
   get bought(){return bought?.stage||null;},
@@ -251,16 +253,16 @@ export function createAvatarJohansson({scene,recipe=playerRecipe()}={}){
    if(tableDrink&&!tableDrink.active){tableDrink=null;drinkingArm?.dispose();drinkingArm=null;}
    // Johansson's shirt hem swings wherever he is.
    if(root.visible)avatar.springs?.update(dt);
-   if(held?.userData.consumable){
+   // (a can drunk as animated is where the motion put it, in the hand's socket: drink-can.js)
+   const canCue=animator.canCue;
+   if(held?.userData.consumable&&!canCue){
     const c=animator.consumption;
     if(c&&held.userData.finishPortion!==undefined)setPropPortion(held,THREE.MathUtils.lerp(held.userData.startPortion,held.userData.finishPortion,c.swallow));
     updatePropPortion(held,dt);fitAvatarHeldProp(avatar,held,c?.lift||0);
    }
    if(bought&&held){
-    if(bought.stage==='open'){
-     if(animator.gesture==='OpenCan')openCan(avatar,held,animator.gestureTime);
-     else{finishOpening(held);bought.stage='drink';animator.play(bought.drink);move=bought.drink;}
-    }else if(!animator.gesture)api.hold(null);
+    if(canCue&&held.userData.finishPortion!==undefined){setPropPortion(held,canCue.fill);updatePropPortion(held,dt);}
+    if(!animator.gesture)api.hold(null);
    }
   },
  };
