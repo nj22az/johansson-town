@@ -168,3 +168,6 @@ drink-can.test.mjs
 # The animation principles audit (the owner, 27 November 2026: "make strict adherence to it"; docs/ANIMATION-STANDARD.md
 # section 5): its fixtures, and no move adding a failure to tests/animation-principles.baseline.json (about 100 s).
 animation-principles.test.mjs
+# Hands out of the pockets and from behind the back as a movement (animate.js stanceStep, the standard's stage 1): never
+# deeper into the body on the way than at either end, never a jump (about 7 s).
+stance-release.test.mjs
