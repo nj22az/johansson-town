@@ -4,6 +4,15 @@
 
 Read the repository's [AGENTS.md](../AGENTS.md) and [CLAUDE.md](../CLAUDE.md). Their working discipline applies here.
 
+## Owner's decision — 27 November 2026: one skin colour, face and body, in every light
+
+The owner, on Johansson at Kitano-jima airport at 19:00 in rain: "Johansson's face and body needs to have same color". The
+face had a floor on dim light (half its own colour, so a painted face reads after dark) and the body did not, so in rain,
+after dark and indoors the face stood paler than the neck, arms and legs. One light for the whole figure
+(`src/avatars/figure-light.js`): every material a resident is built with, face, eyes, brows, mouth, body, clothes, hair and
+the outfit bodies made later, takes the same floor; the ink does not, and the town's own materials keep their light.
+`tests/face-lighting.test.mjs` holds it. Anything new worn on the figure goes through `figureLight`.
+
 ## Owner's decision — 27 November 2026: fictional brands only
 
 The owner, asked whether the izakaya's real-brand beer should get a made-up name: "Yes, no real brand only fictional

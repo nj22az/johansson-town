@@ -1,5 +1,6 @@
 import * as THREE from '../../vendor/three.module.js';
 import {celFrom} from '../render/cel.js';
+import {figureLightShader} from './figure-light.js';
 import {pixarSkin} from './pixar-skin.js';
 import {moodOf} from './face.js';
 
@@ -209,8 +210,9 @@ function featureMaterial(name,shaderHead,paint,uniforms){
    .replace('#include <project_vertex>','#include <project_vertex>\n gl_Position = projectionMatrix * ( mvPosition + vec4( 0., 0., 0.0028, 0. ) );');
   shader.fragmentShader=shaderHead+shader.fragmentShader
    .replace('#include <color_fragment>',`#include <color_fragment>\n diffuseColor = ${paint}();\n if ( diffuseColor.a < 0.004 ) discard;`)
-   .replace('#include <emissivemap_fragment>','totalEmissiveRadiance *= diffuseColor.rgb;')
-   .replace('#include <opaque_fragment>','outgoingLight = max( outgoingLight, diffuseColor.rgb * 0.5 );\n#include <opaque_fragment>');};
+   .replace('#include <emissivemap_fragment>','totalEmissiveRadiance *= diffuseColor.rgb;');
+  shader.fragmentShader=figureLightShader(shader.fragmentShader);};
+ material.userData.figureLight=true;   // (the figure's floor is in its own shader: figure-light.js)
  material.customProgramCacheKey=()=>baseKey()+':'+name+'-v8';
  return {material,dispose(){material.dispose();source.dispose();}};
 }

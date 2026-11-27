@@ -28,6 +28,7 @@ import {addPoliceCap,policeCapTuck,addPoliceJacket,addDutyBelt} from './police-u
 import {addKerchief,kerchiefTuck} from './kerchief.js';
 import {GARMENT,PLAIN_UV,torsoUV,sleeveUV,shortSleeve,paintGarment,SLEEVED_LONG,KARIYUSHI,kariyushiBody,UNDER,collarChart,collarStrip,SHIRT_SLEEVES,ACCENT_SLEEVES,UNDERSHIRT_ARMS,SLEEVE_END} from './garment.js';
 import {ASSET_HATS,isAssetHat,assetHatPieces,hatTuck,weaveTexture} from './hat-assets.js';
+import {figureLight,lightFigure} from './figure-light.js';
 
 /**
  * Builds a Shimanchu from a recipe.
@@ -2197,16 +2198,10 @@ function buildHead(recipe,m,faceSize){
  // Cel-shaded like the town, on its high-key ramp, and a little self-lit so a face in
  // a dim room still reads. Every head form, the soft sculpted one too (the owner, 24 October 2026: Vy's "shiny 3d head"
  // must be cel shaded like the rest of the characters).
- const material=celFrom(new THREE.MeshStandardMaterial({map:texture,roughness:.82,emissive:0xffffff,emissiveMap:texture,emissiveIntensity:.05}),{bands:'soft3'});
- // Keep the painted eyes, brows and mouth readable in dim scenes before any Look
- // converts the picture to paper/ink. A floor on albedo lighting leaves daylight
- // unchanged, unlike adding more emission to every face at every hour.
- const faceCompile=material.onBeforeCompile,faceKey=material.customProgramCacheKey.bind(material);
- material.onBeforeCompile=(shader,renderer)=>{faceCompile.call(material,shader,renderer);
-  shader.fragmentShader=shader.fragmentShader.replace('#include <opaque_fragment>',
-   'outgoingLight = max( outgoingLight, diffuseColor.rgb * 0.5 );\n#include <opaque_fragment>');
- };
- material.customProgramCacheKey=()=>faceKey()+':face-light-floor-v1';
+ // Keep the painted eyes, brows and mouth readable in dim scenes before any Look converts the picture to paper/ink: a
+ // floor on albedo lighting leaves daylight unchanged, unlike adding more emission to every face at every hour. The body
+ // takes the same floor (figure-light.js lightFigure), so the face is the colour of the neck and arms in every light.
+ const material=figureLight(celFrom(new THREE.MeshStandardMaterial({map:texture,roughness:.82,emissive:0xffffff,emissiveMap:texture,emissiveIntensity:.05}),{bands:'soft3'}));
  const head=new THREE.Mesh(g,material);head.name='Shimanchu head';
  head.position.y=m.headCentre-m.headY;
  // (A sculpted head has its nose in its own surface: the drawn line lies on that, with no second bump.)
@@ -2716,6 +2711,9 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
    if(swimBody){swimBody.visible=outfit==='swim';swimOutline.visible=swimBody.visible;}
    if(towelBody){towelBody.visible=outfit==='towel';towelOutline.visible=towelBody.visible;}
    if(afterbathBody){afterbathBody.visible=outfit==='afterbath';afterbathOutline.visible=afterbathBody.visible;}
+   // (a body made for this outfit just now takes the figure's one light too; not the whole root: a prop in the hand is
+   // the room's, lit by its light)
+   for(const b of [alternativeBody,swimBody,towelBody,afterbathBody])if(b)figureLight(b.material);
    hideCartoon();
    return outfit;
   },
@@ -2743,6 +2741,8 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
   for(const o of [body,outline,panelBody,panelOutline,alternativeBody,alternativeOutline,swimBody,swimOutline,towelBody,towelOutline,afterbathBody,afterbathOutline,face.head,faceObjects])if(o)o.visible=false;
  }
  avatar.pixar=pixarSkin;hideCartoon();
+ // One light for the whole figure: the face's floor on dim light on every material it is built with (figure-light.js).
+ lightFigure(root);
  avatar.springs=createSprings(avatar);
  avatar.paintFace({});
  return avatar;

@@ -2,6 +2,7 @@ import * as THREE from '../../vendor/three.module.js';
 import {faceLayout,eyesOf} from './face.js';
 import {faceObjectPoint} from './face-objects.js';
 import {celFrom} from '../render/cel.js';
+import {figureLightShader} from './figure-light.js';
 
 /**
  * Rigged cartoon eyes (the creator, 25 October 2026: "We are not looking for uncanny valley we want rigged cartoon eyes";
@@ -295,7 +296,7 @@ export function buildEyes3d(recipe,m){
  * no painted eyes under it: {star: 'wide', …}; a wink is the open eyes with her left one shut).
  */
 export function rigEyes(geometry,{iris,style,own=null,drawn=null,cel=true,make=(g,m)=>new THREE.Mesh(g,m),stand=null,nearer=0}){
- // Lit as the face is (build.js buildHead: cel, high-key, a little self-lit, a floor on dim light). Blended onto the skin
+ // Lit as the face is (build.js buildHead: cel, high-key, a little self-lit, the figure's floor on dim light). Blended onto the skin
  // and writing no depth: the ink, which reads depth, and the Looks' normals (look-buffers.js) see the head as it was.
  const params=new Float32Array(EYE_PARAMS.length),uniforms={...shared,uEye:{value:params},uEyeIris:{value:new THREE.Color(iris)}};
  const source=new THREE.MeshStandardMaterial({roughness:.82,emissive:0xffffff,emissiveIntensity:.05,transparent:true,depthWrite:false});
@@ -308,9 +309,10 @@ export function rigEyes(geometry,{iris,style,own=null,drawn=null,cel=true,make=(
   if(nearer)shader.vertexShader=shader.vertexShader.replace('#include <project_vertex>',`#include <project_vertex>\n gl_Position = projectionMatrix * ( mvPosition + vec4( 0., 0., ${nearer.toFixed(4)}, 0. ) );`);
   shader.fragmentShader=FRAGMENT_HEAD+shader.fragmentShader
    .replace('#include <color_fragment>','#include <color_fragment>\n diffuseColor = eyesPaint( eyeParallax( vViewPosition ) );\n if ( diffuseColor.a < 0.004 ) discard;')
-   .replace('#include <emissivemap_fragment>','totalEmissiveRadiance *= diffuseColor.rgb;')
-   .replace('#include <opaque_fragment>','outgoingLight = max( outgoingLight, diffuseColor.rgb * 0.5 );\n#include <opaque_fragment>');
+   .replace('#include <emissivemap_fragment>','totalEmissiveRadiance *= diffuseColor.rgb;');
+  shader.fragmentShader=figureLightShader(shader.fragmentShader);
  };
+ material.userData.figureLight=true;   // (the figure's floor is in its own shader: figure-light.js)
  material.customProgramCacheKey=cel?()=>baseKey()+':eyes3d-v5:'+nearer:()=>'eyes3d-v4:smooth:'+nearer;
  // First of the see-through things, so glasses' lenses (and a painted beard) are drawn over the eyes, not under them.
  const mesh=make(geometry,material);mesh.name='Shimanchu eyes';mesh.castShadow=false;mesh.receiveShadow=true;mesh.visible=false;mesh.renderOrder=-1;

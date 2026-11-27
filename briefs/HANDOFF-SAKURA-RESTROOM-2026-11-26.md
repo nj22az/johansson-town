@@ -2259,3 +2259,35 @@ in a scratch variant for these five scenes): `output/bodies-fix/<what>-before-af
 - The other things laid round an arm's 1.08 as if it were the neck: the necklace (`neckwear: pendant` on Johansson: its
   chain 4 mm inside his neck), the tee's neck rib, the contrast polo's collar band. And the one-piece swimsuit's straps sit
   0.5 mm from Thuan's neck.
+
+# 27 November, night: one skin colour, face and body (branch `claude/dreamy-ritchie-cxufpl`)
+
+The owner, with a screenshot of Johansson at Kitano-jima airport at 19:00 in rain: "Johansson's face and body needs to have
+same color". The face looked paler and more beige than the neck, arms and legs.
+- **Cause.** The head (build.js `buildHead`), the eyes (eyes3d.js) and the brows and mouth (face-features.js) floored their
+  light at half their own colour, so a painted face reads in a dim scene; the body's material had no floor. In daylight
+  nothing differs (the lit colour is above the floor). Measured in the running game from the front, under the town's
+  lights (scratch script, the game with `?audit&visual-audit`, the harbour park lawn):
+
+  | Light | Cheek | Forearm | Shin |
+  |---|---|---|---|
+  | 12:00 | #ffcaa1 | #ffcaa1 | #ffc9a1 |
+  | 17:40 | #fab894 | #fab58f | #f9b38f |
+  | 19:00, rain (before) | #af8f7a | #a17067 | #9d6d68 |
+  | 21:00 (before) | #705e63 | #2d2b3e | #2e2b3e |
+  | 19:00, rain (after) | #af8e79 | #af8f7a | #af8f7a |
+  | 21:00 (after) | #705e63 | #705e63 | #705e63 |
+
+- **Fix.** `src/avatars/figure-light.js`: one floor for the whole figure. `lightFigure(root)` at the end of `buildAvatar` puts
+  it on every material the resident is built with (not the ink); `wear()` puts it on an outfit's body made later (swim,
+  towel, after the bath, Thuan's sailor suit); the head uses `figureLight`, the eyes and the face's decals
+  `figureLightShader`. A prop taken into the hand later is the room's and keeps the room's light. Also tried: no floor at all
+  (the face 2 to 15 levels off the arms in rain, and its eyes hard to read at night); not kept.
+- **Tests.** `tests/face-lighting.test.mjs` rewritten to the ruling: the face's floor and the body's are the same, every
+  material of five residents has it, their ink has none, a swim and a towel body have it, a town material has none. It
+  replaces the old assertion that the face's floor "does not change body ... materials". Fails on the old code (both tests).
+  eyes3d, pixar-skin, looks, face-features, cel-look, look-materials pass.
+- **Portraits** re-rendered (`tools/render-resident-guide.mjs`): nine change by tens to hundreds of pixels in the bodies'
+  deepest shade; the manifest's hash also covers the bodies merge (9f7a4e9).
+- **Not done.** A hat bought and put on after the build, if it is added outside `wear()`, is not floored; none found that is.
+  The owner has not seen it yet.
