@@ -82,8 +82,9 @@ export const CAST_RECIPES=castSet({
   nose:{style:'none',size:.5,height:.5},mouth:{style:'dry',colour:'#a8433e',size:.6,width:.8,height:.39},
   facial:{style:'none',paint:'shadow',colour:'#6b645f'},marks:{creases:true,nostrils:true,folds:true,finecrows:true,chesthair:true},wrinkles:0,blush:.2,
   // (27 November 2026, the owner: "He should be wearing a 'wife beater' tank top under his shirt": a white ribbed singlet
-  // under the open kariyushi, showing in its V; garment.js UNDER.)
-  outfit:{top:'kariyushi',topColour:'#7fb0d8',pattern:'flowers',bottom:'shorts',bottomColour:'#c8b48a',footwear:'sandals',shoes:'#6d4a32',accent:'#f4f1ea',under:'tank'},
+  // under the open kariyushi, showing in its V; garment.js UNDER. And the owner's brief of the same day, "Give the floral
+  // print a deliberate rhythm": his own print, laid out flower by flower, garment.js ALOHA.)
+  outfit:{top:'kariyushi',topColour:'#7fb0d8',pattern:'aloha',bottom:'shorts',bottomColour:'#c8b48a',footwear:'sandals',shoes:'#6d4a32',accent:'#f4f1ea',under:'tank'},
   swim:{colour:'#2f5f9e'}}),
  // The creator's own design for her, approved in Johansson Studio on 18 October 2026 (thuan-studio-design.js). Its
  // body silhouette is Studio's unset 'neutral', which the town resolves by who she is, as for everyone (castSet above):

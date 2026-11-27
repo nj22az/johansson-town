@@ -943,3 +943,24 @@ plain-blue block-in before the print goes on. Not pushed, not on `main`.
 - The Kikkou ink (Sakura) draws the collar's band behind the neck faintly at full-figure scale.
 - The shorts' crotch, where the leg tubes meet the torso lathe, draws two dark slanted lines in front; the higher hem shows
   more of the shorts. It is the shorts' construction, not the shirt's.
+
+# 27 November, day: Johansson's aloha shirt, phases 2-4, the print, the print as fabric, the checks (branch `shirt/aloha`)
+
+The owner approved the phase 1 block-in ("Yes, proceed. I want proceed."). Not pushed, not on `main`.
+
+## Phase 2: the print with a deliberate rhythm
+- **`outfit.pattern: 'aloha'`** (appended to `recipe.js PATTERNS`, so no saved look moves; the maker calls it "Aloha"), worn
+  by Johansson (`cast.js`). Everyone else's `'flowers'` is the tiled print it was.
+- **`garment.js ALOHA`**: one blossom (five rounded petals, each a little uneven; warm cream `#f7edd4`, a faint crease where a
+  petal lies over the next, a golden eye `#ecb12e`) on the recipe's sky blue, and eight blooms placed by hand, each with its
+  angle round the body, its height, its size, its turn and why it is there. `alohaLayout` says where each lies on a body.
+- **Laid on the cloth as worn**: `stamp` measures the texels round each flower on the garment (`shirtSurface`: the chest's
+  lathe, and below it the kariyushi's own body, `kariyushiBody`, now the one place its rows are worked out, read by
+  `build.js alohaBody` too) and draws through the inverse, so a flower is round on the body.
+- **Each sleeve has its own band** of the garment texture (`GARMENT.SLEEVE`, `SLEEVE_R`; the texture is 512 x 448, each
+  band as many texels as the shared one had), so one sleeve can carry a bloom. Every other print paints both alike.
+  `sleeveUV` now takes the angle round the arm's axis, not round the shoulder end's upright (the hem's print was askew by
+  up to a tenth of a turn). `shortSleeve` is the one spec of a short sleeve's tube.
+- Under a kariyushi the torso below its body is not printed (whole triangles sample the empty strip), so nothing of the
+  print shows under the hem or on the shorts; under the aloha print the underarm gussets are plain cloth.
+- `tests/aloha-print.test.mjs`: the placement's intent, measured on his body.

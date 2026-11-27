@@ -84,7 +84,9 @@ export const PARTS=Object.freeze({
 /** The prints a top can carry (garment.js), in the order the maker offers them. */
 export const PATTERNS=Object.freeze(['none','flowers','stripes','dots',
  // Appended: a checked shirt (Erik's). Not dealt by the dice, so no stranger's look changes.
- 'check']);
+ 'check',
+ // Appended: Johansson's aloha print, laid out flower by flower (garment.js ALOHA), not dealt by the dice.
+ 'aloha']);
 /** The patterns a bottom can carry: plaid on a skirt, stripes down trousers (build.js), in the order the maker offers them. */
 export const BOTTOM_PATTERNS=Object.freeze(['none','plaid','stripes']);
 /** Bottoms that are skirts: they hang from the waist as cloth on springs (build.js, springs.js), not as two legs. */

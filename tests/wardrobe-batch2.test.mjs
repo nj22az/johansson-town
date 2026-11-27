@@ -39,7 +39,7 @@ function draws(a){let meshes=0,ink=0;const face=o=>{for(let p=o;p;p=p.parent)if(
  a.root.traverse(o=>{if(o.isMesh&&o.visible&&!face(o)&&o!==a.eyes3d?.mesh)(o.userData.outline?ink++:meshes++);});return [meshes,ink];}
 
 test('one list each for the prints, the skirts and the dice, used everywhere',()=>{
- assert.deepEqual([...PATTERNS],['none','flowers','stripes','dots','check']);
+ assert.deepEqual([...PATTERNS],['none','flowers','stripes','dots','check','aloha']);
  assert.deepEqual([...DRESS_BOTTOMS],['skirt','longskirt','pleatedskirt']);
  for(const b of DRESS_BOTTOMS)assert.ok(PARTS.bottom.includes(b));
  assert.deepEqual([...LOOK_FIELDS['outfit.pattern'].words],[...PATTERNS]);

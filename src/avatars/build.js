@@ -26,7 +26,7 @@ import {celFrom} from '../render/cel.js';
 import {createTowelFit} from './towel-fit.js';
 import {addPoliceCap,policeCapTuck,addPoliceJacket,addDutyBelt} from './police-uniform.js';
 import {addKerchief,kerchiefTuck} from './kerchief.js';
-import {GARMENT,PLAIN_UV,torsoUV,sleeveUV,paintGarment,SLEEVED_LONG,KARIYUSHI,UNDER,collarChart,collarStrip,SHIRT_SLEEVES,ACCENT_SLEEVES,UNDERSHIRT_ARMS,SLEEVE_END} from './garment.js';
+import {GARMENT,PLAIN_UV,torsoUV,sleeveUV,shortSleeve,paintGarment,SLEEVED_LONG,KARIYUSHI,kariyushiBody,UNDER,collarChart,collarStrip,SHIRT_SLEEVES,ACCENT_SLEEVES,UNDERSHIRT_ARMS,SLEEVE_END} from './garment.js';
 import {ASSET_HATS,isAssetHat,assetHatPieces,hatTuck,weaveTexture} from './hat-assets.js';
 
 /**
@@ -179,18 +179,12 @@ function alohaCollar(list,m,prof,colour){
  * quarters (`share`).
  */
 function alohaBody(list,m,prof,colour,share){
- const B=KARIYUSHI.body,k=m.k,W=m.width/2,D=m.depth/2,T=m.torso,t0=B.top,hemY=m.hipY+B.hem*k,t1=(hemY-m.hipY)/T,rows=[];
- let widest=0;
- for(let j=0,N=22;j<=N;j++){
-  // (closer together near the top, where it leaves the chest)
-  const u=Math.pow(j/N,1.5),t=t0-(t0-t1)*u,r=latheRadius(prof,t);widest=Math.max(widest,r);
-  // It comes out of the chest steeply, from 3 mm inside it to 1 mm outside over 2 mm, so the two cross in one clean line:
-  // crossing at a shallow angle, their facets interleaved in a zigzag. (The torso keeps its own line and outline: anything
-  // tucked or faded under the shirt there stood out from above, from the game's camera, as a dotted ring of ink.)
-  const lift=j?THREE.MathUtils.lerp(.001*k,B.gap*k,THREE.MathUtils.smoothstep(u,0,.2)):-.003*k;
-  rows.push([m.hipY+t*T,W*THREE.MathUtils.lerp(r,widest,.5)+lift+B.easeX*k*u,D*widest+lift+B.easeZ*k*u]);
-  if(!j)rows.push([rows[0][0]-.002*k,rows[0][1]+.004*k,rows[0][2]+.004*k]);
- }
+ const B=KARIYUSHI.body,k=m.k;
+ // Its outside, row by row (garment.js kariyushiBody, which the print is laid on too). It comes out of the chest steeply, so
+ // the two cross in one clean line: crossing at a shallow angle, their facets interleaved in a zigzag. (The torso keeps its
+ // own line and outline: anything tucked or faded under the shirt there stood out from above, from the game's camera, as a
+ // dotted ring of ink.)
+ const {rows,hemY}=kariyushiBody(m,t=>latheRadius(prof,t));
  const turn=B.turn*k,hem=rows.at(-1),inside=[];
  // its inside, from the hem up to the waist (or the top, if that is nearer)
  const insideTop=Math.min(rows[0][0]-.02*k,m.hipY+m.torso*B.lining),radiiAt=y=>{for(let j=1;j<rows.length;j++)if(rows[j][0]<=y){const a=rows[j-1],b=rows[j],w=(a[0]-y)/(a[0]-b[0]);return [a[1]+(b[1]-a[1])*w,a[2]+(b[2]-a[2])*w];}return [hem[1],hem[2]];};
@@ -1325,7 +1319,12 @@ function addBody(list,recipe,m,swim=false){
  // The shirt's details are painted, not modelled (garment.js): the torso carries the
  // garment texture's UVs, the cloth stays its vertex colour underneath.
  const torsoSkin=p=>{const chest=THREE.MathUtils.smoothstep(p.y,hipY+m.torso*.15,hipY+m.torso*.55);return [['hips',1-chest],['chest',chest]];};
- part(list,lathe,torsoSkin,torsoColour,M(0,hipY,0,0,0,0,W/2,m.torso,D/2),swim?null:p=>torsoUV(p,m));
+ const torso=part(list,lathe,torsoSkin,torsoColour,M(0,hipY,0,0,0,0,W/2,m.torso,D/2),swim?null:p=>torsoUV(p,m));
+ // Under a kariyushi's body (alohaBody, which carries the print there) the torso is not printed: what is under the shirt
+ // is plain, and nothing of the print can show on the shorts below the hem. Whole triangles, so none is smeared across
+ // the texture; the line is under the body, a little below where it leaves the chest.
+ if(!swim&&o.top==='kariyushi'){const P=torso.attributes.position,U=torso.attributes.uv,below=hipY+m.torso*(KARIYUSHI.body.top-.06);
+  for(let i=0;i<P.count;i+=3)if((P.getY(i)+P.getY(i+1)+P.getY(i+2))/3<below)for(let j=0;j<3;j++)U.setXY(i+j,PLAIN_UV[0],PLAIN_UV[1]);}
  if(tank){
   // The vest: a thin shell over the body from the waist to straight across the chest,
   // so its edge is a clean line, and two straps that follow the shoulders over the top.
@@ -1449,14 +1448,15 @@ function addBody(list,recipe,m,swim=false){
   // hem without a seam. A kariyushi's is a little roomier and boxier, as real ones are.
   // Its print and its hem band are painted (garment.js), not separate pieces.
   if(!swim&&!longSleeve&&!tank&&!running&&o.top!=='sundress'){
-   const roomy=o.top==='kariyushi',a0=[sh[0]-sx*m.armR*.1,sh[1]-m.armR*.04,0],a1=[sh[0]+sx*.008,sh[1]-m.upper*(roomy?.52:.56),0];
-   sleeveTube(list,a0,a1,m.armR*(roomy?1.12:1.08),m.armR*(roomy?1.5:1.4),sleeve,{bone:'shoulder'+s,root:['chest',.55,.3],uvAt:p=>sleeveUV(p,a0,a1,sx),th:.007*m.k,depth:m.upper*.22});
+   const {a0,a1,r0,r1}=shortSleeve(m,sx,o.top==='kariyushi');
+   sleeveTube(list,a0,a1,r0,r1,sleeve,{bone:'shoulder'+s,root:['chest',.55,.3],uvAt:p=>sleeveUV(p,a0,a1,sx),th:.007*m.k,depth:m.upper*.22});
   }
   if(coveredSleeve){
    // A closed underarm gusset shared by every sleeved top. The chest end
    // stays inside the torso while the outer end follows the upper arm.
    const a=[sx*(m.shoulderX-m.armR*.72),sh[1]-m.armR*.78,0],b=[sh[0],sh[1]-m.upper*.30,0];
-   limb(list,a,b,m.armR*1.05,m.armR*1.12,sleeve,{...arm,joints:[],root:['chest',.9,.15],uvAt:p=>sleeveUV(p,a,b,sx)});
+   // (Under a print laid out flower by flower, the gusset is plain cloth: the underarm stretches, and nothing is placed there.)
+   limb(list,a,b,m.armR*1.05,m.armR*1.12,sleeve,{...arm,joints:[],root:['chest',.9,.15],uvAt:o.pattern==='aloha'?null:p=>sleeveUV(p,a,b,sx)});
   }
   // The hand: the body kit's (tools/blender/hand_model.py), hanging from the wrist, the palm to the body, the thumb forward.
   // (The owner, 26 November 2026: "Omg they have mitten hands", and of two tries at a modelled hand, "The hands look awful,
@@ -1739,6 +1739,9 @@ function addHeadTowel(list,m,surfaces){
  * and `gap+th` (its outer), so it lies on the body, bends with it and is never inside it. The strips are the chest's, and
  * the chest carries the torso's top, so they stay where they were laid in every pose.
  */
+/** The torso lathe's radius (a share of the half-width and half-depth) at a share t of the torso's height: what the garment
+ *  painter is handed (paintGarment's radiusAt). */
+export const torsoRadius=(recipe,m)=>{const prof=torsoProfile(recipe,m);return t=>latheRadius(prof,t);};
 export function bodyVolume(recipe,m){
  const prof=torsoProfile(recipe,m),W=m.width,D=m.depth,neckR=m.neckR,n0=m.neckY-.02,n1=m.headY+.01,top=m.hipY+1.04*m.torso;
  const caps=[1,-1].map(sx=>({c:new THREE.Vector3(sx*m.shoulderX-sx*m.armR*.12,m.shoulderY-m.armR*.05,0),r:new THREE.Vector3(m.armR*1.18,m.armR*1.18*.62,m.armR*1.18*Math.min(1.1,D/W*1.6))}));

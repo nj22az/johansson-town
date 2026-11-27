@@ -15,13 +15,17 @@ import {POLICE_UNIFORM} from './police-data.js';
  *
  * The texture: u runs once round the body, 0.5 at the front (+z) and the seam at the
  * back; v carries the torso from just below the hips (t=T0) to the top of the neck
- * (t=T1). Below it, a band carries the sleeves (both share it: u runs round the arm,
- * 0.5 at its front, v down from the shoulder to the hem or cuff). The strip at the very
- * bottom is left empty for every other part of the body to sample.
+ * (t=T1). Below it, a band for each sleeve (u runs round the arm, 0.5 at its front and 0.75
+ * on its outside, v down from the shoulder to the hem or cuff): the wearer's left (SLEEVE) and
+ * then his right (SLEEVE_R), so a print may put something on one sleeve and not the other
+ * (Johansson's aloha print). The strip at the very bottom is left empty for every other part of
+ * the body to sample. Each band is as many texels as when the two sleeves shared one.
  */
-export const GARMENT=Object.freeze({width:512,height:352,V0:.3,T0:-.1,T1:1.05,SLEEVE:Object.freeze({v0:.06,v1:.28})});
+export const GARMENT=Object.freeze({width:512,height:448,V0:.45,T0:-.1,T1:1.05,SLEEVE:Object.freeze({v0:.26,v1:.432}),SLEEVE_R:Object.freeze({v0:.07,v1:.242})});
 /** Where every part that is not the torso samples: the empty strip. */
 export const PLAIN_UV=Object.freeze([.5,.02]);
+/** A sleeve's band in the texture: the wearer's left (side +1) or his right (side −1). */
+export const sleeveBand=side=>side>0?GARMENT.SLEEVE:GARMENT.SLEEVE_R;
 
 /** The torso's UV at a model-space point, from the lathe's angle and the torso height. */
 export function torsoUV(p,m){
@@ -30,13 +34,26 @@ export function torsoUV(p,m){
  return [u,GARMENT.V0+(1-GARMENT.V0)*THREE.MathUtils.clamp((t-GARMENT.T0)/(GARMENT.T1-GARMENT.T0),0,1)];
 }
 
-/** A sleeve's UV at a model-space point: round the arm from a (shoulder) to b (hem). */
+/**
+ * A sleeve's UV at a model-space point: round the arm from a (shoulder) to b (hem), in its own side's band. The angle is
+ * taken round the arm's axis where the point is (not round the shoulder end's upright line, which put the hem's print
+ * askew by up to a tenth of a turn where the sleeve slants out from the shoulder).
+ */
 export function sleeveUV(p,a,b,side){
  const ax=b[0]-a[0],ay=b[1]-a[1],az=b[2]-a[2],len=Math.hypot(ax,ay,az)||1;
- const rx=p.x-a[0],ry=p.y-a[1],rz=p.z-a[2],t=THREE.MathUtils.clamp((rx*ax+ry*ay+rz*az)/(len*len),0,1);
- // The arm hangs down, so round it is the x-z plane; the front (+z) is u = 0.5 either side.
- const u=.5+Math.atan2(rx*side,rz)/(Math.PI*2),S=GARMENT.SLEEVE;
+ const t=THREE.MathUtils.clamp(((p.x-a[0])*ax+(p.y-a[1])*ay+(p.z-a[2])*az)/(len*len),0,1),rx=p.x-a[0]-ax*t,rz=p.z-a[2]-az*t;
+ // The arm hangs down, so round it is the x-z plane; the front (+z) is u = 0.5 either side, its outside 0.75.
+ const u=.5+Math.atan2(rx*side,rz)/(Math.PI*2),S=sleeveBand(side);
  return [u,S.v1-(S.v1-S.v0)*t];
+}
+/**
+ * A short sleeve on the body (build.js addBody): its tube from a0, inside the shoulder, to its hem a1, its radius r0 at the
+ * top and r1 at the hem. A kariyushi's is a little roomier and boxier, as real ones are. `side` +1 is the wearer's left.
+ */
+export function shortSleeve(m,side,roomy){
+ const sh=[side*m.shoulderX,m.shoulderY,0];
+ return {a0:[sh[0]-side*m.armR*.1,sh[1]-m.armR*.04,0],a1:[sh[0]+side*.008,sh[1]-m.upper*(roomy?.52:.56),0],
+  r0:m.armR*(roomy?1.12:1.08),r1:m.armR*(roomy?1.5:1.4)};
 }
 
 const shade=(hex,f)=>'#'+new THREE.Color(hex).multiplyScalar(f).getHexString();
@@ -44,6 +61,77 @@ const lighten=(hex,f)=>'#'+new THREE.Color(hex).lerp(new THREE.Color('#ffffff'),
 /** What is worn under an open top (recipe outfit.under): the white ribbed tank top, its scoop neck's lowest point (a
  *  fraction of the torso's height) and how far out its straps' inner edges are (a fraction of the open neck's top). */
 export const UNDER=Object.freeze({tank:Object.freeze({colour:'#f2efe6',scoop:.865,strap:.8})});
+/**
+ * Johansson's aloha print (`outfit.pattern: 'aloha'`), laid out flower by flower, not tiled: the owner's brief of 27
+ * November 2026, "Give the floral print a deliberate rhythm". One simple blossom, five rounded petals a little uneven
+ * (`petals`: each [its turn off the even fifth, its reach, its width]), in warm cream with a golden-yellow eye on the sky
+ * blue of the cloth (the recipe's topColour), drawn at different sizes and turns where it is wanted (`blooms`).
+ * Each bloom: `on` the shirt's body (`a`, torsoUV's angle: 0 the front, the wearer's left a > 0, π the back; `t`, a share
+ * of the torso's height above the hip joint) or on his right sleeve (`a` round the arm, 0 its front, π/2 its outside;
+ * `along` from the shoulder, 0, to the hem, 1); `r` its radius in metres (a grown man's, k = 1), `turn` its rotation; and
+ * why it is there. In the reference the bright flowers at both shoulders made a line under his face: here nothing is near
+ * the shoulders or the collar (the collar is plain cloth), the weight is low, and broad blue lies between the groups.
+ * The design is Frank Thomas and Ollie Johnston's staging and appeal (The Illusion of Life): the face first, then the
+ * shirt; the placement is Johansson World's own.
+ */
+export const ALOHA=Object.freeze({
+ petal:'#f7edd4',crease:'#e6d4ac',eye:'#ecb12e',
+ petals:Object.freeze([[0,1,1],[.035,.93,.95],[-.03,1.02,1.04],[.045,.95,.97],[-.02,.9,.93]].map(Object.freeze)),
+ blooms:Object.freeze([
+  {id:'large',on:'body',a:-.5,t:.24,r:.088,turn:.35,why:'the one larger flower, low on his right front: after his face the eye comes here, and the shirt\'s weight sits low'},
+  {id:'flank',on:'body',a:-1.15,t:.17,r:.048,turn:1.4,why:'its companion round his right flank: as he turns it narrows and goes round his side'},
+  {id:'small',on:'body',a:.52,t:.43,r:.056,turn:-.5,why:'the smaller one, diagonally opposite the large one, below his left pocket'},
+  {id:'bud',on:'body',a:.95,t:.3,r:.032,turn:.9,why:'a bud beside it toward his side, so the two are a group and not a dot'},
+  {id:'sleeve',on:'sleeveR',a:1.5,along:.74,r:.046,turn:.2,why:'a partial bloom on the outside of his right sleeve, cut by its hem and turning out of sight round the arm'},
+  {id:'back',on:'body',a:2.69,t:.3,r:.064,turn:-.8,why:'the lower back, off-centre to his left and clear of his arm: the one the game\'s camera reads from behind him'},
+  {id:'back-low',on:'body',a:3.03,t:.15,r:.038,turn:.6,why:'lower and in toward the middle of his back'},
+  {id:'back-high',on:'body',a:2.96,t:.46,r:.03,turn:1.1,why:'higher and in again: with the other two a loose triangle off to his left, not a row, all between his arms'},
+ ].map(Object.freeze)),
+});
+/**
+ * Where each of ALOHA's blooms lies on a body, at rest (`m` the body's measure, `radiusAt` its torso lathe's radius, `top`
+ * the top it is printed on): {id, on, r (metres), at (a THREE.Vector3 in the body's space), why}, and for the sleeve's,
+ * how far along the sleeve it is (`along`, metres) and the sleeve's length to its hem (`length`).
+ */
+export function alohaLayout(m,radiusAt,top='kariyushi'){
+ const surf=shirtSurface(m,radiusAt,top==='kariyushi');
+ return ALOHA.blooms.map(b=>{
+  const r=b.r*m.k;
+  if(b.on==='body')return {id:b.id,on:b.on,r,at:surf(b.a,b.t),why:b.why};
+  const side=b.on==='sleeveL'?1:-1,sv=shortSleeve(m,side,top==='kariyushi'),A=new THREE.Vector3(...sv.a0),dir=new THREE.Vector3(...sv.a1).sub(A),length=dir.length();dir.normalize();
+  const R=THREE.MathUtils.lerp(sv.r0,sv.r1,b.along),at=A.clone().addScaledVector(dir,b.along*length).add(new THREE.Vector3(side*R*Math.sin(b.a),0,R*Math.cos(b.a)));
+  return {id:b.id,on:b.on,r,at,along:b.along*length,length,why:b.why};
+ });
+}
+/** Draws ALOHA's blossom of radius 1 in the context's current frame (its y up the cloth). */
+function blossom(ctx){
+ const A=ALOHA,petal=i=>{const [turn,reach,width]=A.petals[i%5],a=Math.PI/2+(i+turn)*Math.PI*2/5;
+  ctx.beginPath();ctx.ellipse(.54*reach*Math.cos(a),.54*reach*Math.sin(a),.46*reach,.42*width,a,0,Math.PI*2);};
+ // each petal a round lobe from the eye out to its reach, overlapping its neighbours
+ ctx.fillStyle=A.petal;for(let i=0;i<5;i++){petal(i);ctx.fill();}
+ // and lying over the next one round, as a blossom's petals do: its edge there a faint crease (inside the flower only), so
+ // the petals read close up and melt into one shape further off
+ ctx.strokeStyle=A.crease;ctx.lineWidth=.04;
+ for(let i=0;i<5;i++){ctx.save();petal(i+1);ctx.clip();petal(i);ctx.stroke();ctx.restore();}
+ ctx.beginPath();ctx.arc(0,0,.23,0,Math.PI*2);ctx.fillStyle=A.eye;ctx.fill();
+}
+/**
+ * Paints `draw` (a picture of radius 1, its y up the cloth) on the garment texture at texel (U,V), `r` metres across and
+ * turned `turn`, as it lies on the cloth there: `at(U,V)` is the point of the cloth a texel is drawn on, `out(p)` a way out
+ * of the cloth at p and `up(p)` the way up it. The texels round (U,V) are measured on the cloth (a texel's step in u and in
+ * v, in metres along the cloth's own right and up), and the picture is drawn through the inverse, so on the body it is the
+ * shape it was drawn, wherever the cloth is wider or narrower than the texture. `clip` [x,y,w,h] keeps it to its band;
+ * `wrap` draws it again a turn either side, over the back's seam.
+ */
+function stamp(ctx,at,U,V,r,turn,{out,up,clip,wrap=false,draw=blossom}){
+ const pu=at(U+.5,V).sub(at(U-.5,V)),pv=at(U,V+.5).sub(at(U,V-.5)),p=at(U,V);
+ const n=new THREE.Vector3().crossVectors(pu,pv).normalize();if(n.dot(out(p))<0)n.negate();
+ const u0=up(p),e2=u0.clone().addScaledVector(n,-n.dot(u0)).normalize(),e1=new THREE.Vector3().crossVectors(e2,n);
+ const a=pu.dot(e1),b=pv.dot(e1),c=pu.dot(e2),d=pv.dot(e2),det=a*d-b*c,TW=GARMENT.width;
+ ctx.save();ctx.beginPath();ctx.rect(...clip);ctx.clip();
+ for(const off of wrap?[0,-TW,TW]:[0]){ctx.save();ctx.transform(d/det,-c/det,-b/det,a/det,U+off,V);ctx.scale(r,r);ctx.rotate(turn);draw(ctx);ctx.restore();}
+ ctx.restore();
+}
 /**
  * The island shirt (the kariyushi, an aloha shirt), shaped as a garment before anything is printed on it (the owner's
  * brief of 27 November 2026, for Johansson: "Shape the shirt before painting the flowers"). Lengths in metres at k=1.
@@ -71,6 +159,39 @@ export const KARIYUSHI=Object.freeze({
   vee:.36,point:Object.freeze([.66,.1]),foot:Object.freeze([.13,.112]),centre:Object.freeze([.03,.112])}),
  body:Object.freeze({top:.56,gap:.003,easeX:.005,easeZ:.018,hem:.015,turn:.006,lining:.3,swing:.2}),
 });
+/**
+ * The kariyushi's body below the chest (KARIYUSHI.body; build.js alohaBody draws it, the painter lays the print on it):
+ * its outside as rows [y, rx, rz] from where it leaves the chest down to the hem, each row an oval round the body's axis.
+ * It hangs from the widest of the body above; it comes out of the chest steeply, from 3 mm inside it to 1 mm outside over
+ * 2 mm (the second row), so the two cross in one clean line.
+ */
+export function kariyushiBody(m,radiusAt){
+ const B=KARIYUSHI.body,k=m.k,W=m.width/2,D=m.depth/2,T=m.torso,t0=B.top,hemY=m.hipY+B.hem*k,t1=(hemY-m.hipY)/T,rows=[];
+ let widest=0;
+ for(let j=0,N=22;j<=N;j++){
+  // (closer together near the top, where it leaves the chest)
+  const u=Math.pow(j/N,1.5),t=t0-(t0-t1)*u,r=radiusAt(t);widest=Math.max(widest,r);
+  const lift=j?THREE.MathUtils.lerp(.001*k,B.gap*k,THREE.MathUtils.smoothstep(u,0,.2)):-.003*k;
+  rows.push([m.hipY+t*T,W*THREE.MathUtils.lerp(r,widest,.5)+lift+B.easeX*k*u,D*widest+lift+B.easeZ*k*u]);
+  if(!j)rows.push([rows[0][0]-.002*k,rows[0][1]+.004*k,rows[0][2]+.004*k]);
+ }
+ return {rows,hemY};
+}
+/**
+ * Where the shirt's outside is, at torsoUV's angle α (0 the front, the wearer's left α > 0) and the share t of the torso's
+ * height: on the chest the torso's lathe, and below it, on a kariyushi, its own body (kariyushiBody). So a print laid by
+ * this lies on the cloth as it is worn, round where the cloth is round, and the two meet at the chest in one line.
+ */
+export function shirtSurface(m,radiusAt,kariyushi){
+ const W=m.width/2,D=m.depth/2,body=kariyushi?kariyushiBody(m,radiusAt).rows:null,top=body?body[0][0]:-Infinity;
+ return (a,t,out=new THREE.Vector3())=>{
+  const y=m.hipY+t*m.torso,s=Math.sin(a),c=Math.cos(a);
+  if(y>=top){const r=radiusAt(t);return out.set(W*r*s,y,D*r*c);}
+  let j=1;while(j<body.length-1&&body[j][0]>y)j++;
+  const p=body[j-1],q=body[j],w=THREE.MathUtils.clamp((p[0]-y)/((p[0]-q[0])||1),0,1.5),rx=p[1]+(q[1]-p[1])*w,rz=p[2]+(q[2]-p[2])*w;
+  const l=1/Math.hypot(W*s/rx,D*c/rz);return out.set(l*W*s,y,l*D*c);
+ };
+}
 /**
  * The chart the collar is drawn on (KARIYUSHI.collar). Each α is one upright half-plane through the body's axis, the
  * torso lathe's own meridian (so α is torsoUV's angle: u = 0.5 + α/2π); in it the neck and the torso are one line, s
@@ -267,6 +388,16 @@ export function paintGarment(ctx,recipe,m,radiusAt){
    }
   }
   marks.push(o.pattern);
+ }
+ // Johansson's aloha print (ALOHA): each flower where it was placed, lying on the cloth as it is worn (shirtSurface: on a
+ // kariyushi its body below the chest stands clear of the waist, and a flower there is drawn for that cloth). On a
+ // kariyushi the print runs to the hem, which ends the cloth and cuts what it crosses; on any other top it stops at its
+ // hem line. The sleeve's bloom is drawn with the sleeves, below.
+ if(o.pattern==='aloha'&&!['tank','overalls','sundress'].includes(o.top)){
+  const surf=shirtSurface(m,radiusAt,o.top==='kariyushi'),at=(U,V)=>surf((U/TW-.5)*Math.PI*2,T0+((1-V/TH)-V0)/(1-V0)*(T1-T0));
+  const floor=o.top==='kariyushi'?Y(T0):Y(hem),round=p=>new THREE.Vector3(p.x,0,p.z),up=()=>new THREE.Vector3(0,1,0);
+  for(const b of ALOHA.blooms)if(b.on==='body')stamp(ctx,at,(.5+b.a/(Math.PI*2))*TW,Y(b.t),b.r*k,b.turn,{out:round,up,clip:[0,0,TW,floor],wrap:true});
+  marks.push('aloha');
  }
 
  // The neckline: a rib round a crew neck, the opening of a shirt.
@@ -526,8 +657,9 @@ export function paintGarment(ctx,recipe,m,radiusAt){
   case 'housedress':rib(lighten(top,.45));break;
  }
 
- // The sleeves' band: the print carried on round the arm, and a hem or a cuff.
- {const S=GARMENT.SLEEVE,yTop=(1-S.v1)*TH,yBot=(1-S.v0)*TH,h=yBot-yTop,col=o.top,long=SLEEVED_LONG.includes(col);
+ // The sleeves' bands, one for each: the print carried on round the arm, and a hem or a cuff. Both alike but for a print
+ // laid out on the shirt (Johansson's aloha print), which puts something on one sleeve only.
+ for(const side of [1,-1]){const S=sleeveBand(side),yTop=(1-S.v1)*TH,yBot=(1-S.v0)*TH,h=yBot-yTop,col=o.top,long=SLEEVED_LONG.includes(col),once=side>0;
   const sleeveCirc=Math.PI*2*m.armR*(long?1.04:1.2),sleeveLen=long?m.upper+m.fore:m.upper*.6;
   const pxU=TW/sleeveCirc,pxV=h/sleeveLen;
   // A sleeve that ends before the wrist (SLEEVE_END): its print and its cuff stop there, the arm below it is bare.
@@ -536,7 +668,7 @@ export function paintGarment(ctx,recipe,m,radiusAt){
   // A raglan's sleeves (ACCENT_SLEEVES) are plain cloth in the accent the same way.
   const shirtSleeve=SHIRT_SLEEVES.includes(col)||ACCENT_SLEEVES.includes(col),cloth=shirtSleeve?o.accent:o.topColour;
   ctx.save();ctx.beginPath();ctx.rect(0,yTop,TW,end-yTop);ctx.clip();
-  if(col==='stripedvest'){ctx.fillStyle=o.topColour;const step=h/9;for(let y=yTop+step*.5;y<end;y+=step)ctx.fillRect(0,y,TW,Math.min(step*.22,end-y));marks.push('striped sleeves');}
+  if(col==='stripedvest'){ctx.fillStyle=o.topColour;const step=h/9;for(let y=yTop+step*.5;y<end;y+=step)ctx.fillRect(0,y,TW,Math.min(step*.22,end-y));if(once)marks.push('striped sleeves');}
   if(o.pattern==='stripes'&&!shirtSleeve){ctx.fillStyle='#f4f1ea';const band=m.torso*.12*pxV;for(let y=yTop+band;y<end;y+=band*2)ctx.fillRect(0,y,TW,Math.min(band,end-y));}
   if(o.pattern==='check'&&!shirtSleeve){
    const band=m.torso*.085*pxV,step=band*2.3;ctx.save();ctx.globalAlpha=.5;ctx.fillStyle='#f4f1ea';
@@ -556,6 +688,20 @@ export function paintGarment(ctx,recipe,m,radiusAt){
      ctx.restore();}
    }
   }
+  // The aloha print's sleeve bloom (ALOHA, on 'sleeveR'), on the sleeve as it is drawn (shortSleeve, or the arm for a long
+  // sleeve), cut by the hem painted over it below.
+  if(o.pattern==='aloha'&&!shirtSleeve)for(const b of ALOHA.blooms){
+   if(b.on!=='sleeve'+(side>0?'L':'R'))continue;
+   const sv=long?{a0:[side*m.shoulderX,m.shoulderY,0],a1:[side*(m.shoulderX+.015),m.shoulderY-m.upper-m.fore,0],r0:m.armR*1.04,r1:m.armR*.86}:shortSleeve(m,side,col==='kariyushi');
+   const A0=new THREE.Vector3(...sv.a0),dir=new THREE.Vector3(...sv.a1).sub(A0),len=dir.length();dir.normalize();
+   const ex=new THREE.Vector3(1,0,0).addScaledVector(dir,-dir.x).normalize(),ez=new THREE.Vector3(0,0,1).addScaledVector(dir,-dir.z).normalize();
+   const axis=f=>A0.clone().addScaledVector(dir,f*len);
+   const at=(U,V)=>{const phi=(U/TW-.5)*Math.PI*2,f=(S.v1-(1-V/TH))/(S.v1-S.v0),R=THREE.MathUtils.lerp(sv.r0,sv.r1,f);
+    return axis(f).addScaledVector(ex,side*R*Math.sin(phi)).addScaledVector(ez,R*Math.cos(phi));};
+   const ref=p=>{const f=THREE.MathUtils.clamp(p.clone().sub(A0).dot(dir)/len,0,1);return p.clone().sub(axis(f));};
+   stamp(ctx,at,(.5+b.a/(Math.PI*2))*TW,yTop+h*b.along,b.r*m.k,b.turn,{out:ref,up:()=>dir.clone().negate(),clip:[0,yTop,TW,end-yTop],wrap:true});
+   if(!marks.includes('aloha sleeve'))marks.push('aloha sleeve');
+  }
   ctx.restore();
   // The hem of a short sleeve, or the cuff of a long one: a band and a line above it. A PE shirt's and a jersey's are
   // in the accent colour (the class colour, the piping).
@@ -563,7 +709,7 @@ export function paintGarment(ctx,recipe,m,radiusAt){
    const bandH=Math.max(3,(long?.03:.018)*m.k*pxV),ink=shade(cloth,.5);
    ctx.fillStyle=['contrastpolo','gymtee','baseball'].includes(col)?o.accent:col==='kariyushi'?lighten(cloth,.22):shade(cloth,.86);ctx.fillRect(0,end-bandH,TW,bandH);
    ctx.fillStyle=ink;ctx.fillRect(0,end-bandH-1.2,TW,1.2);
-   marks.push(long?'cuffs':'sleeve-hems');
+   if(once)marks.push(long?'cuffs':'sleeve-hems');
   }
  }
  return marks;
