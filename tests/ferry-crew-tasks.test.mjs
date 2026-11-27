@@ -147,19 +147,22 @@ test('the master is the shed’s own body: on the bridge by day, in his chair af
  assert.ok(['SitHold','SitPour'].includes(s.shed.fujita.userData.socialPose),'the beer is for after he signs off');
 });
 
+// The car deck and the lobby stand at the H1 arrangement's heights (the owner, 31 October 2026, "Implement and push to
+// main"; briefs/HANDOFF-FERRY-ENGINE-ROOM-H1-2026-10-31.md): the car deck 2.1 m ship-local (was 1.1), the passenger deck
+// and its lobby 6.5 m (was 5.5).
 test('a solid or occupied work station cannot be acknowledged or reported complete',()=>{
  const {run,crew}=fixture();
- run.operation={id:'blocked-voyage',stage:'preparing',tasks:[task('bad','deck','bow',1,{x:3,y:1.1,z:15})]};
+ run.operation={id:'blocked-voyage',stage:'preparing',tasks:[task('bad','deck','bow',1,{x:3,y:2.1,z:15})]};
  for(let i=0;i<20;i++)crew.update(.1,600);
  assert.equal(crew.taskAtStation('bad'),false);assert.equal(crew.taskReady('bad'),false);
  assert.ok(crew.snapshot().find(c=>c.post==='deck').blocked);
- const vehicle={id:'van',x:0,z:1.25,w:1.95,d:4.9,y:1.1,height:2.4};
+ const vehicle={id:'van',x:0,z:1.25,w:1.95,d:4.9,y:2.1,height:2.4};
  assert.equal(crewRoute(CREW_POSTS.gangway.pos,CREW_POSTS['car-deck'].pos,{obstacles:[vehicle]}).ok,false);
 });
 
 test('a loaded car deck keeps physical pedestrian access to the passenger stair',()=>{
- const obstacles=FERRY_CAR_PLACES.map((p,i)=>({id:'car-'+i,x:p.x,z:p.z-17.25,w:1.62,d:3.9,y:1.1,height:1.8}));
- const start=[0,1.1,5],goal=CREW_POSTS.purser.pos,route=crewRoute(start,goal,{obstacles});
+ const obstacles=FERRY_CAR_PLACES.map((p,i)=>({id:'car-'+i,x:p.x,z:p.z-17.25,w:1.62,d:3.9,y:2.1,height:1.8}));
+ const start=[0,2.1,5],goal=CREW_POSTS.purser.pos,route=crewRoute(start,goal,{obstacles});
  assert.ok(route.ok,route.reason);
  for(let i=1;i<route.path.length;i++)assert.ok(crewWalkSegment(route.path[i-1].pos,route.path[i].pos,CREW_RADIUS,obstacles));
  assert.ok(route.path.every(p=>!crewObstacleAt(p.pos,obstacles)));
@@ -167,7 +170,7 @@ test('a loaded car deck keeps physical pedestrian access to the passenger stair'
 });
 
 test('the passenger stair-head rail cannot be cut between coarse route samples',()=>{
- const a=[2.55,5.5,-10.05],b=[2.4,5.5,-9.9];
+ const a=[2.55,6.5,-10.05],b=[2.4,6.5,-9.9];
  assert.equal(crewBlocked(a),false);assert.equal(crewBlocked(b),false);
  assert.equal(crewBlockedBetween(a,b),true,'the diagonal crosses the rail’s expanded corner');
  assert.equal(crewWalkSegment(a,b),false);

@@ -1,4 +1,5 @@
 import * as WALK from '../world/ferry-walk.js';
+import {FERRY_DECKS} from '../world/ferry-model.js';
 
 /** Ship-local walking over the same floors and solids as the player, including stacked decks. */
 export const CREW_RADIUS=.18;
@@ -31,7 +32,7 @@ export function crewBlockedBetween(a,b,r=CREW_RADIUS,obstacles=[]){
  const solids=Math.abs(b[2]-a[2])<=1?(solidsByZ.get(Math.floor((a[2]+b[2])/2))||[]):shipSolids;
  if(solids.some(s=>crossesBox(a,b,[s.x[0]-r,s.y[0]-HEIGHT,s.z[0]-r],[s.x[1]+r,s.y[1]-.03,s.z[1]+r])))return true;
  return obstacles.some(c=>{
-  if(c.disabled)return false;const y=c.y??c.minY??1.1;
+  if(c.disabled)return false;const y=c.y??c.minY??FERRY_DECKS.car.y;
   return crossesBox(a,b,[c.x-c.w/2-r,y-HEIGHT,c.z-c.d/2-r],[c.x+c.w/2+r,y+(c.height??2)-.03,c.z+c.d/2+r]);
  });
 }
@@ -48,7 +49,7 @@ export function crewFloorsAt(x,z,r=CREW_RADIUS){
 export function crewObstacleAt(p,obstacles=[],r=CREW_RADIUS){
  return obstacles.some(c=>{
   if(c.disabled)return false;
-  const y=c.y??c.minY??1.1,height=c.height??2;
+  const y=c.y??c.minY??FERRY_DECKS.car.y,height=c.height??2;
   return p[1]+HEIGHT>y&&p[1]+.03<y+height&&Math.abs(p[0]-c.x)<c.w/2+r&&Math.abs(p[2]-c.z)<c.d/2+r;
  });
 }

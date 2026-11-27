@@ -765,9 +765,12 @@ export const FERRY_INTERIOR=(()=>{
    for(const x of [L.x[0]+.02,L.x[1]-.02]){bar([x,CAR,L.head],[x,y0,L.foot],.03,STEEL);bar([x,CAR+.9,L.head],[x,y0+.9,L.foot],.02,YELLOW,'paint');}}
   // The ladder's own volume keeps the lens out (batch 6f): at its foot the camera stood under the rungs looking up through them.
   box([L.x[0]-.06,y0,L.head-.1],[L.x[1]+.07,CAR,L.foot+.1],STEEL,{solid:false,camera:true,draw:false,name:'ladder volume'});
-  // The ladder is walked anywhere across its width (the creator, 2026-10-12, could not get down on a phone).
-  floor('er-ladder',[L.x[0],L.x[1]],[L.head,L.foot],[CAR,y0],(x,z,r)=>Math.abs(x-(L.x[0]+L.x[1])/2)<=.34);
-  floor('er-ladder-foot',[L.x[0],L.x[1]],[L.foot-.05,L.foot+.4],y0,(x,z,r)=>Math.abs(x-(L.x[0]+L.x[1])/2)<=.34);
+  // The ladder is walked anywhere across its width (the creator, 2026-10-12, could not get down on a phone): between its
+  // stringers' inner faces (the bars above, at 0.02 inside each bound, 0.03 thick). A fixed half-width of 0.34 m, the
+  // old 0.75 m ladder's, left the H1 ladder's 0.8 m clear width (FERRY_H1.ladder) unwalkable at its sides.
+  const betweenStringers=x=>x>=L.x[0]+.05&&x<=L.x[1]-.05;
+  floor('er-ladder',[L.x[0],L.x[1]],[L.head,L.foot],[CAR,y0],(x,z,r)=>betweenStringers(x));
+  floor('er-ladder-foot',[L.x[0],L.x[1]],[L.foot-.05,L.foot+.4],y0,(x,z,r)=>betweenStringers(x));
   floor('er-entrance',[CAS_IN-.4,L.x[1]],[ER.entrance[0],L.head+.05],CAR,(x,z,r)=>x>=CAS_IN-.4&&x<=CAS_OUT-.06-r&&z>=ER.entrance[0]+r&&(x>=CAS_IN+.06+r||(z>=ER.door[0]+r-.06&&z<=ER.door[1]-r+.06)||x<CAS_IN-.05));
   // The space: lining along her sides, the bulkheads fore and aft (the ladder comes through the aft one), the deckhead
   // under the car deck, the chequered floor plates.

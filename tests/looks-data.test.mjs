@@ -7,7 +7,7 @@ import {normalizeRecipe,DEFAULT_RECIPE} from '../src/avatars/recipe.js';
 import {PROFILES} from '../src/people/profiles.js';
 import {WARDROBE_KEY} from '../src/avatars/wardrobe.js';
 import {CAST_NAMES,liveNameFor} from '../src/people/cast.js';
-import {identityOf} from '../src/people/roster.js';
+import {identityOf,isRetired} from '../src/people/roster.js';
 
 // Everybody World asks recipeFor about: the island's cast (people/cast.js), the residents (PROFILES, and Thuan in the
 // cast; residents.js draws its list from these), the neighbours (NEIGHBOUR_RECIPES: everyone in neighbours.js), the
@@ -65,7 +65,12 @@ test('the resident groups cover everybody once, and the Studio pickers can name 
  assert.ok(!RESIDENT_NAMES.includes('Harbour visitor'));
  // A townsfolk profile whose name the roster now gives to somebody else (Emi is Mrs Nakamura's display name,
  // docs/CAST-CONSOLIDATION.md) is that person: Studio names her, not a second resident called Emi.
- for(const p of PROFILES)if(!RETIRED_RECIPE_NAMES.includes(p.name))assert.ok(RESIDENT_NAMES.includes(liveNameFor(p.name)===p.name?p.name:identityOf(p.name)?.avatar||p.name),p.name);
+ // Since 31 October 2026 (the owner, AGENTS.md "facilities before population") Emi Nakamura is retired: the profile
+ // under her old name is a retired identity (roster.js isRetired), in no live list like the other retired.
+ for(const p of PROFILES){
+  if(isRetired(p.name)){assert.ok(!RESIDENT_NAMES.includes(p.name),p.name+' is retired');continue;}
+  if(!RETIRED_RECIPE_NAMES.includes(p.name))assert.ok(RESIDENT_NAMES.includes(liveNameFor(p.name)===p.name?p.name:identityOf(p.name)?.avatar||p.name),p.name);
+ }
  for(const n of Object.keys(NEIGHBOUR_RECIPES))if(!RETIRED_RECIPE_NAMES.includes(n))assert.ok(RESIDENT_NAMES.includes(n),n);
 });
 

@@ -7,7 +7,8 @@ import {FERRY_MACHINERY,FERRY_ELECTRICS} from '../src/world/ferry-ship.js';
 import {FERRY_INTERIOR} from '../src/world/ferry-interior.js';
 import {FERRY_INSPECT} from '../src/world/ferry-inspect.js';
 import {createFerryRun} from '../src/world/ferry.js';
-import {FERRY_DECK_SIGNS} from '../src/world/ferry-model.js';
+import {FERRY_DECK_SIGNS,FERRY_DECKS} from '../src/world/ferry-model.js';
+import {FERRY_H1_ENABLED} from '../src/world/ferry-engine-room-plan.js';
 installDOM();
 
 test('the Johansson Marine catalogue is the ship’s own data under the brand',()=>{
@@ -21,7 +22,7 @@ test('the Johansson Marine catalogue is the ship’s own data under the brand',(
 
 test('the main engines and generator sets are built as machines, in the livery, with their plates',()=>{
  const names=new Set(FERRY_INTERIOR.cyls.map(c=>c.name).filter(Boolean));
- for(const part of ['crankcase door','oil filler','fuel filter','turbocharger turbine','turbocharger compressor','air filter','cooling-water pump','sea-water pump','lube-oil filter','flywheel housing','coupling guard','gearbox cover','output flange','tachometer','stop button','start button','shutdown button','sensor box','lagging band','bulkhead lamp','generator turbocharger','alternator','alternator end bell','pump casing','pump motor','compressor cylinder','purifier bowl','separator vessel','earth lamp','synchronising lamp','fuel valve handwheel','flange','strainer housing','strainer cover','strainer stud','camshaft','cam lobe','crankcase opening','door bolt','telegraph lever','clock','clutch pack','clutch plate'])assert.ok(names.has(part),'built: '+part);
+ for(const part of ['crankcase door','oil filler','fuel filter','turbocharger turbine','turbocharger compressor','air filter','cooling-water pump','sea-water pump','lube-oil filter','flywheel housing','coupling guard','gearbox cover','output flange','tachometer','stop button','start button','shutdown button','sensor box','lagging band','bulkhead lamp','generator turbocharger','alternator','alternator end bell','pump casing','pump motor','compressor cylinder','purifier bowl','separator vessel','earth lamp','synchronising lamp','fuel valve handwheel','flange','strainer housing','strainer cover','strainer stud','telegraph lever','clock','clutch pack','clutch plate'])assert.ok(names.has(part),'built: '+part);
  const green=JOHANSSON_MARINE.livery.green;
  const blocks=FERRY_INTERIOR.boxes.filter(b=>b.name==='main engine');assert.equal(blocks.length,2);for(const b of blocks)assert.equal(b.hex,green,'the block is in Johansson green');
  const plates=FERRY_INTERIOR.plates;
@@ -38,14 +39,25 @@ test('the main engines and generator sets are built as machines, in the livery, 
  assert.ok(plates.some(p=>p.kind==='chequer'&&p.rotX===-Math.PI/2&&p.w>6),'the floor is chequer plate');
  assert.equal(plates.filter(p=>p.name==='label: fuel filter').length,4,'the filters are dated');
  assert.ok(plates.filter(p=>p.kind==='grating').length>=5,'gratings over the bilge in the aisle and beside the engines');
- // The second photo set (6o-3): one crankcase door is off the starboard engine and lies on the plates; no two solid
- // things of the engine room stand inside each other (the sea chests once stood inside the fuel tank and the separator).
- const doors=FERRY_INTERIOR.cyls.filter(c=>c.name==='crankcase door');assert.equal(doors.length,12);assert.equal(doors.filter(d=>d.pos[1]<-.9).length,1,'one door on the plates');
+ // The second photo set (6o-3) had one crankcase door off the starboard engine, on the plates. In the H1 engine room
+ // (the owner, 31 October 2026, "Implement and push to main"; briefs/HANDOFF-FERRY-ENGINE-ROOM-H1-2026-10-31.md: "Starboard
+ // crankcase stays closed") all twelve doors are on, so nothing of the open door is built and no prompt says it is open.
+ // No two solid things of the engine room stand inside each other (the sea chests once stood inside the fuel tank and the separator).
+ assert.equal(FERRY_H1_ENABLED,true);
+ const doors=FERRY_INTERIOR.cyls.filter(c=>c.name==='crankcase door');assert.equal(doors.length,12);assert.equal(doors.filter(d=>d.pos[1]<-.9).length,0,'no door on the plates');
+ for(const part of ['camshaft','cam lobe','crank web','crankcase opening','door bolt'])assert.ok(!names.has(part),'the closed crankcase shows no '+part);
+ assert.ok(!FERRY_INSPECT.some(p=>p.id==='crankcase'),'no prompt for an open crankcase');assert.doesNotMatch(FERRY_INSPECT.find(p=>p.id==='main-engine-s').text,/door is off/);
  const solids=FERRY_INTERIOR.boxes.filter(b=>b.solid&&b.name&&/sea chest|strainer|fuel service tank|oily-water separator|air compressor|local control stand|air bottles|workbench|pump$/.test(b.name));
  const lo=(b,i)=>Math.min(b.a[i],b.b[i]),hi=(b,i)=>Math.max(b.a[i],b.b[i]);
  for(let i=0;i<solids.length;i++)for(let j=i+1;j<solids.length;j++){const A=solids[i],B=solids[j];const overlap=[0,1,2].every(k=>lo(A,k)<hi(B,k)-.01&&lo(B,k)<hi(A,k)-.01);assert.ok(!overlap,A.name+' stands inside '+B.name);}
- // Every cylinder stands inside the engine room, below the car deck.
- for(const c of FERRY_INTERIOR.cyls)assert.ok(c.pos[1]<2.2&&c.pos[1]>-1.25&&Math.abs(c.pos[0])<4,'in the engine room: '+c.name+' '+JSON.stringify(c.pos));
+ // Every cylinder stands inside the engine room, below the car deck, but the accommodation's furnishings: since the
+ // owner's 3 November 2026 "the accommodation needs to be more cosy and comfortable" (briefs/HANDOFF-FERRY-EXTERIOR-CAD-
+ // 2026-11-03.md) the carpet room's low tables and tea cups and Sakura's pothos are cylinders too, on the passenger deck.
+ const COSY=new Set(['low table','low table leg','tea cup','plant pot','pothos']),UP=FERRY_DECKS.upper.y;
+ for(const c of FERRY_INTERIOR.cyls){
+  if(COSY.has(c.name)){assert.ok(c.pos[1]>UP&&c.pos[1]<UP+2.4&&Math.abs(c.pos[0])<4,'on the passenger deck: '+c.name+' '+JSON.stringify(c.pos));continue;}
+  assert.ok(c.pos[1]<2.2&&c.pos[1]>-1.25&&Math.abs(c.pos[0])<4,'in the engine room: '+c.name+' '+JSON.stringify(c.pos));
+ }
 });
 
 test('the model draws the cylinders and hangs the plates on her; the prompts name the brand',()=>{

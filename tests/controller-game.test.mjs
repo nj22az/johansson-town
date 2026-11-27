@@ -22,7 +22,10 @@ test('controller and camera controls boot in the game, pause movement in setting
  source+='\nexport {camera,player,activities,cameraControls,touchSticks,controllerFrame,updateController,simulate,controlsAllowed,resetInput,centreCamera,keys};export const stand=()=>{seated=false;parkSeat=null;};export const resetMovementSample=()=>{walkMotion.reset();accumulator=0;};';
  try{
   const api=await import(data(source));assert.equal(window.__JOHANSSON_RUNNING__,true);assert.equal(window.__JOHANSSON_STABILITY__.ok,true,window.__JOHANSSON_STABILITY__.failures.join(', '));api.stand();assert.ok(api.controlsAllowed());
-  assert.deepEqual([api.player.position.x,api.player.position.z],[-1.5,-72.7],'the controller smoke starts on its clear ferry landing');
+  // The landing is the H1 arrangement's (the owner, 31 October 2026, "Implement and push to main"; briefs/HANDOFF-FERRY-
+  // ENGINE-ROOM-MAIN-2026-10-31.md): with the 4 m gangway the shore waiting point, and the ferry opening with it, moved
+  // beyond the gangway's sweep, to x 0.3 (ferry-engine-room-plan.js FERRY_H1.shore.landingX).
+  assert.deepEqual([api.player.position.x,api.player.position.z],[.3,-72.7],'the controller smoke starts on its clear ferry landing');
   const p={id:'CPU standard pad',index:0,mapping:'standard',connected:true,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};pads=[p];api.updateController(1/60);
   p.axes=[0,0,1,.2];api.updateController(1/60);const before=api.camera.quaternion.clone();api.simulate(.1);assert.ok(api.camera.quaternion.angleTo(before)>.05,'Right stick turns the actual game camera');
   api.cameraControls.open();assert.equal(api.controlsAllowed(),false);api.resetInput();assert.deepEqual(api.touchSticks.move,{x:0,y:0});

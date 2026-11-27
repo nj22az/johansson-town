@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {execFile} from 'node:child_process';
 import {promisify} from 'node:util';
+import {fileURLToPath} from 'node:url';
 import {check,looksSets,studioCharacters} from '../tools/studio/build-data.mjs';
 import {openRepo,CODE_ROOT,PATHS} from '../tools/studio/repo.mjs';
 import {validateLooks,brandProblems} from '../src/studio/rules.js';
@@ -22,7 +23,12 @@ test('World\'s generated modules match Studio\'s data (build-data --check)',asyn
 });
 
 test('Studio\'s draft and its write lock never reach git, so only "update World" publishes a change',async()=>{
- const ignored=path=>promisify(execFile)('git',['check-ignore','-q',path],{cwd:CODE_ROOT}).then(()=>true,()=>false);
+ // Since 7 November 2026 the town is its own repository, cloned as johansson-town/ inside the site's checkout, whose
+ // .gitignore leaves out all of /johansson-town/: so a path in the town is asked of the town's repository (this one), and
+ // Studio's output (output/studio-mcp, at the site's root) of the site's.
+ const TOWN=fileURLToPath(new URL('..',import.meta.url));
+ const ignored=path=>{const town=path.startsWith('johansson-town/');
+  return promisify(execFile)('git',['check-ignore','-q',town?path.slice('johansson-town/'.length):path],{cwd:town?TOWN:CODE_ROOT}).then(()=>true,()=>false);};
  for(const path of [PATHS.draft,PATHS.lock,'output/studio-mcp/portraits/x.png'])assert.ok(await ignored(path),`${path} must be git-ignored`);
  for(const path of [PATHS.looks,PATHS.log,PATHS.looksModule,PATHS.charactersModule,PATHS.products,PATHS.productsModule,'johansson-town/assets/graphics/labels/beer.r1.webp'])
   assert.equal(await ignored(path),false,`${path} is World's data`);

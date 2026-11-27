@@ -157,7 +157,7 @@ export function normalizeRecipe(input={}){
    // waist, slim arms and legs (build.js measure, torsoProfile). Absent from older recipes: standard.
    // 'stout' (appended): a big man heavy in the middle, a belly the widest of him.
    // 'soft' (appended): an old lady, small and soft: narrow rounded shoulders, a slight neck, round hips.
-   frame:(v)=>pick(['standard','sturdy','graceful','stout','soft'],v,'standard')}),
+   frame:(v)=>pick(BODY_FRAMES,v,'standard')}),
   head:sub('head',{size:num,shape:num,form:(v,f)=>pick(HEAD_FORMS,v,f),jaw:num,cheeks:num,roundness:num,
    // A head smaller or larger than the size slider reaches (0.7 to 1.3 of it; absent: 1). Not a creator dial.
    scale:(v)=>Number.isFinite(+v)&&v!==undefined&&v!==null?Math.min(1.3,Math.max(.7,+v)):1}),
@@ -219,6 +219,8 @@ function legacyDressed(src,out){
 /** A recipe as a short code you can paste or put in a link, and back. */
 /** What can be worn under an open top (outfit.under): nothing, or a white ribbed tank top (garment.js paints it). */
 export const UNDER_LAYERS=Object.freeze(['none','tank']);
+/** The body kit's frames (body.frame; build.js measure, torsoProfile): absent from older recipes, standard. */
+export const BODY_FRAMES=Object.freeze(['standard','sturdy','graceful','stout','soft']);
 export function encodeRecipe(recipe){
  const json=JSON.stringify(normalizeRecipe(recipe));
  const bytes=new TextEncoder().encode(json);let bin='';for(const b of bytes)bin+=String.fromCharCode(b);

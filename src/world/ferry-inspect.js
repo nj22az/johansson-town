@@ -1,6 +1,7 @@
 import {FERRY_SHIP,FERRY_HEIGHTS,FERRY_MACHINERY,FERRY_ELECTRICS,FERRY_LOADS} from './ferry-ship.js';
 import {FERRY_ENGINE_ROOM} from './ferry-interior.js';
 import {JOHANSSON_MARINE} from './johansson-marine.js';
+import {FERRY_H1_ENABLED} from './ferry-engine-room-plan.js';
 
 /**
  * What you can look at aboard the Minato Maru, and what it tells you (ferry batch 6c): each a point in her frame
@@ -24,9 +25,11 @@ export const FERRY_INSPECT=Object.freeze([
  at('gearbox',[1.55,FP+1.1,Z(9.2)],'Port gearbox','Johansson Marine '+JOHANSSON_MARINE.catalogue.gear.model+' reverse-reduction gear',
   `A Johansson Marine ${JOHANSSON_MARINE.catalogue.gear.model}: ${M.gears.kind}. ${M.gears.ratio} : 1, so the screw turns at ${M.propellers.rpm} rpm. ${M.propellers.why}. The shaft runs aft through the bulkhead to a ${Math.round(M.propellers.diameter*100)/100} m, ${M.propellers.blades}-bladed ${M.propellers.material.toLowerCase()} screw.`),
  at('main-engine-s',[-1.55,FP+1.3,Z(10.8)],'Stbd main engine','Main engine, starboard: Johansson Marine '+JOHANSSON_MARINE.catalogue.main.model,
-  `The starboard ${JOHANSSON_MARINE.catalogue.main.model}, the twin of the port engine, turning the other way so the screws turn outward. Her No.4 crankcase door is off: the second engineer had a look at the cams and the big-end this morning and liked what he saw.`),
- at('crankcase',[-1.0,FP+.9,Z(11.0)],'Open crankcase','No.4 crankcase door, starboard engine',
-  'The door is off and on a rag on the plates with its bolts. Inside, the camshaft and a lobe, the crank web below, everything wet with oil and the inside painted red so a leak shows. Feel the bearings for heat with the back of the hand; look for metal in the oil. The door goes back on before she sails.',{reach:1.6,facing:.6}),
+  `The starboard ${JOHANSSON_MARINE.catalogue.main.model}, the twin of the port engine, turning the other way so the screws turn outward.${FERRY_H1_ENABLED?'':' Her No.4 crankcase door is off: the second engineer had a look at the cams and the big-end this morning and liked what he saw.'}`),
+ // The open No.4 door is the earlier arrangement's: in the H1 engine room (the owner, 31 October 2026, "Implement and push
+ // to main"; briefs/HANDOFF-FERRY-ENGINE-ROOM-H1-2026-10-31.md) the starboard crankcase stays closed, so nothing says it is open.
+ ...(FERRY_H1_ENABLED?[]:[at('crankcase',[-1.0,FP+.9,Z(11.0)],'Open crankcase','No.4 crankcase door, starboard engine',
+  'The door is off and on a rag on the plates with its bolts. Inside, the camshaft and a lobe, the crank web below, everything wet with oil and the inside painted red so a leak shows. Feel the bearings for heat with the back of the hand; look for metal in the oil. The door goes back on before she sails.',{reach:1.6,facing:.6})]),
  at('gearbox-s',[-1.55,FP+1.1,Z(9.2)],'Stbd gearbox','Johansson Marine '+JOHANSSON_MARINE.catalogue.gear.model+' reverse-reduction gear, starboard',
   `The starboard ${JOHANSSON_MARINE.catalogue.gear.model}. Inside, the pinion and the wheel and two multi-disc clutch packs, ahead and astern, in oil. A spare ahead pack lies on a pallet by the workbench: the port one chattered in April.`),
  at('generator-1',[1.4,FP+1.2,Z(12.6)],'No.1 generator','Generator No.1: Johansson Marine '+JOHANSSON_MARINE.catalogue.genset.model,

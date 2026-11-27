@@ -174,8 +174,14 @@ test('the scenarios: real posts of her manning, in real places on board',()=>{
 });
 
 test('the hull as drawn is the ship as designed: 34.5 × 8.4 m, closed, faired, her decks at their heights, and light enough for a phone',()=>{
- const ferry=buildFerryModel();let tris=0,meshes=0;
- ferry.traverse(o=>{if(o.isMesh){meshes++;const g=o.geometry;tris+=(g.index?g.index.count:g.getAttribute('position').count)/3;}});
+ const ferry=buildFerryModel();let tris=0,meshes=0,wipers=0,feeder=0;
+ // The owner's Blender parts of 2 November 2026 are their own meshes by design: the three pantograph wipers, four parts
+ // each, "twelve draws" (briefs/HANDOFF-BRIDGE-WIPERS-2026-11-02.md), and the navigation lights' feeder panel with its
+ // four double-pole switches (briefs/HANDOFF-NAVIGATION-FEEDER-2026-11-02.md). They are counted exactly; the rest of her
+ // keeps the phone's budget.
+ ferry.traverse(o=>{if(o.isMesh){const g=o.geometry;tris+=(g.index?g.index.count:g.getAttribute('position').count)/3;
+  if(/^wiper_/.test(o.name))wipers++;else if(o.name==='Navigation panel, protection and actual two-core cable'||/^Navigation double-pole switch /.test(o.parent?.name||''))feeder++;else meshes++;}});
+ assert.equal(wipers,12,'the wipers: '+wipers+' meshes');assert.equal(feeder,5,'the feeder panel and its switches: '+feeder+' meshes');
  // With her interiors walked (batches 6b, 6c): the lobby, the saloon, the crew's rooms, the engine room.
  assert.ok(meshes<40,meshes+' meshes');assert.ok(tris<100000,tris+' triangles'); // 60 000 until the engine room was built from the photographs (6o-2, 6o-3), 66 000 until the rooms forward of it (6q-1), 70 000 until the pipes were routed from the diagrams (6r-1, 172 runs): one merged mesh, still light for a phone
  // Her particulars, from the data.

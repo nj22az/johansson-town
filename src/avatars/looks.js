@@ -1,4 +1,4 @@
-import {DEFAULT_RECIPE,normalizeRecipe,PARTS,AGES,PATTERNS,BOTTOM_PATTERNS} from './recipe.js';
+import {DEFAULT_RECIPE,normalizeRecipe,PARTS,AGES,PATTERNS,BOTTOM_PATTERNS,BODY_FRAMES,UNDER_LAYERS} from './recipe.js';
 
 /**
  * Looks: what Johansson Studio may change about a resident, as a short list of fields laid over the recipe World
@@ -17,7 +17,7 @@ const DEFAULTS=flatten(normalizeRecipe(DEFAULT_RECIPE)).filter(([path])=>!LEFT_O
 export const LOOK_PATHS=Object.freeze(DEFAULTS.map(([path])=>path));
 
 /** The words a field may take, for every field that is a word. Colours are #rrggbb; numbers run from 0 to 1. */
-const WORDS={age:AGES,'body.proportion':['classic','rounded','studio'],'outfit.skirtCut':['classic','panel'],'body.silhouette':PARTS.silhouette,'head.form':PARTS.head,
+const WORDS={age:AGES,'body.proportion':['classic','rounded','studio'],'body.frame':BODY_FRAMES,'outfit.under':UNDER_LAYERS,'outfit.skirtCut':['classic','panel'],'body.silhouette':PARTS.silhouette,'head.form':PARTS.head,
  'hair.style':PARTS.hair,'eyes.style':PARTS.eyes,'brows.style':PARTS.brows,'nose.style':PARTS.nose,'mouth.style':PARTS.mouth,
  'glasses.style':PARTS.glasses,'facial.moustache':PARTS.moustache,'facial.beard':PARTS.beard,'facial.paint':PARTS.paint,'outfit.top':PARTS.top,
  'outfit.pattern':PATTERNS,'outfit.bottom':PARTS.bottom,'outfit.bottomPattern':BOTTOM_PATTERNS,
@@ -25,10 +25,12 @@ const WORDS={age:AGES,'body.proportion':['classic','rounded','studio'],'outfit.s
  'swim.bath':['towel','swimwear']};
 const COLOUR=/^#[0-9a-f]{6}$/;
 /** Numbers that are not 0 to 1: whole numbers in their own range (a shirt number, 0 for none). */
-const RANGES={'outfit.number':{min:0,max:99,whole:true}};
+const RANGES={'outfit.number':{min:0,max:99,whole:true},'head.scale':{min:.7,max:1.3}};
+/** Numbers the default recipe leaves out (recipe.js reads an absent eyes.shine, the highlight's size, as 1). */
+const ABSENT_NUMBERS=new Set(['eyes.shine']);
 /** What kind of value each field holds: {kind:'word',words}, {kind:'colour'}, {kind:'number',min:0,max:1} or {kind:'yes/no'}. */
 export const LOOK_FIELDS=Object.freeze(Object.fromEntries(DEFAULTS.map(([path,value])=>[path,Object.freeze(
- typeof value==='boolean'?{kind:'yes/no'}:typeof value==='number'?{kind:'number',min:0,max:1,...RANGES[path]}:
+ typeof value==='boolean'?{kind:'yes/no'}:typeof value==='number'||ABSENT_NUMBERS.has(path)?{kind:'number',min:0,max:1,...RANGES[path]}:
  WORDS[path]?{kind:'word',words:Object.freeze([...WORDS[path]])}:COLOUR.test(value)?{kind:'colour'}:{kind:'unknown'})])));
 
 /** The value at a path ("outfit.hat") in a recipe. */
