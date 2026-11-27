@@ -34,6 +34,8 @@ __pycache__/
 /output/drink-can/
 # The principles audit's report (tools/animation-audit.mjs rewrites it in about 95 s; the baseline in tests/ is what is kept)
 /output/animation-audit/
+# Review sheets the animation stages shoot (tools/hand-shots.mjs --moves): looked at, reported, not kept
+/output/anim-stage*/
 
 # Scratch renders and logs made while working (tools write review images to output/ by default): only what is
 # already tracked under output/ stays; new loose files at its top level are not kept.
