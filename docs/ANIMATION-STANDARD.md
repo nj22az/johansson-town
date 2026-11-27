@@ -267,6 +267,75 @@ audit and its sheets have been looked at.
 
 ## 6. Where we stand
 
+### Stage 3, begun: the trunk's wind-up (27 November 2026, branch `anim/stage3`)
+
+**What was found.** The audit counts a counter-movement only where the effector moves faster than a tenth of the action's
+top speed (a slower one is rest). The everyday arm raises ramped in a quarter of a second, linearly (4-6 frames at 24 fps,
+"Quick (snappy responses)", `timing-principle-mastery`): the Wave's hand reached 4.2 m/s. Against that, no calm dip
+registers. An arm hanging at the side also has no room to turn the other way in its own joints.
+
+**What was done** (`animate.js` `TRUNK`, `WIND_TRUNK`, `RISE`, `windTrunk`):
+
+- **The everyday raises rise at a natural pace** (`RISE`: Wave, Point, ScratchHead, ChinTap, CollarTug, Clap). They come
+  in over 0.4 s, eased (the clap 0.5), and start from where the arm hangs, a little out from the side: their poses began
+  from straight down, against the side. The Wave lasts 2 s (from 1.6), so its waving is not cut short by the wind-up.
+- **The wind-up is the chest's: a dip of the shoulder.** As the move starts, its pose is tried (stage 2's tries). The
+  hand that goes furthest, and the line of its action, are read by forward kinematics on the body's own bones. A weighted
+  least-squares solve finds the chest's lean, dip or turn that carries that hand back along the line by 11.5% of how far it
+  goes (everyday; 15% comedy). The arm adds only its own swing back along the line and away from the body (never in toward
+  the side), and the elbow opens a little (at least 0.05 rad) so the forearm trails a level behind.
+- **Its timing.** In over 20% of the action (0.08-0.12 s), held at the bottom for 40% of it ("full crouch with held pose
+  before launch"; the shrug's 50%, the kachāshī's 35%), let go over 80% of it as the arm rises; the move waits for it.
+- **Not the spine.** A root that moves only for the wind-up stops long before the rest (overlap), and the drag holds the
+  chest a level behind a moving root, which spread the dip too thin to read. Where a move's own action bends the spine,
+  the spine leads the wind-up instead (`TRUNK.rooted`); no move in the set does yet.
+- **Never into the body.** The part of the dip that would carry a hand into the body beside it is taken out of the goal
+  (the body's surface normal from `bodyVolume`), and the hand is led a centimetre clear. The other hand stays by the hip:
+  its upper arm turns back against the lean, forward or back fully and sideways by 30%. Taking all of the sideways swing
+  back pressed the forearm 7-17 mm deeper into the hip than the pocket has it (`tests/stance-release.test.mjs`), so that
+  hand still swings out about 3 cm as the chest leans.
+- **The head keeps level** (70% of the chest's tilt taken back at the neck) and leads toward the action.
+
+Only the moves where it passes and adds no failure have it: Wave, Point, ScratchHead, ChinTap, CollarTug, Clap, Kachashi
+(its ease), Shrug. The others want their own wind-ups (stage 3's list in the handover):
+
+- Talk and Laugh: the hands' strokes flatten or bow past a half circle.
+- HairTuck: Sverker's hand from behind his back to the ear goes past a half circle.
+- Bow: its head's lean back is a straight 10 cm stroke on Johansson, and Vy's levels start together.
+- HeelRock, DramaFinish: the levels start out of order.
+
+| Check | Before stage 3 | Now |
+|---|---|---|
+| Ease | 122 of 154 | 123 of 154 |
+| Anticipation | 17 of 141 | 19 of 141 |
+| Arcs | 69 of 146 | 69 of 145 (Shrug's hand no longer makes a 10 cm stroke) |
+| Overlap | 55 of 146 | 56 of 146 |
+| Twins | 63 of 129 | 63 of 129 |
+| Squash | 0 of 15 | 0 of 15 |
+| Volume | 155 of 155 | 155 of 155 |
+| **Every check** | **6** | **7** (the Wave) |
+
+Off the baseline, none added (26 entries, 1088 to 1062):
+
+- the Wave altogether;
+- anticipation: ScratchHead on all three; Point, ChinTap, Clap and Shrug on Vy and Johansson; CollarTug on Vy and Sverker;
+- arcs: ScratchHead on all three;
+- ease: Kachashi on all three;
+- twins: Shrug on Vy and Johansson.
+
+The wind-up costs once a move, as it starts: that frame takes about 0.3 ms where it took 0.05 (Johansson, Wave: ten tries
+of the move as in stage 2, and about forty short bone-chain evaluations); the frames after are unchanged (26-27 µs).
+
+**Sheets**, before and after (`node tools/hand-shots.mjs --moves … --wind`, a new strip of every third frame over the
+wind-up; `output/anim-stage3/wind/before/` and `after/`, the seven moves on Johansson and Thao):
+
+- The wind-up reads as a dip of the shoulder: the chest leans 10-15 degrees toward the raised arm, its hand sinks and comes a
+  little in front, the head stays nearly level, then the arm swings out and up.
+- No pop: each strip moves evenly from frame to frame.
+- It is not subtle on the small bodies. Vy needs about 0.28 rad of lean to carry her hand back 5% of its way: her trunk
+  moves the hand about half as far per radian as Johansson's.
+- The other hand hangs a little away from the hip while the chest leans, then is back.
+
 ### Stage 2, begun: wind-ups read from the move (27 November 2026, branch `anim/stage2`)
 
 - **First, a stage 1 fault mended.** A move cut off before its end (stopped, or another played over it) let go of its pose
