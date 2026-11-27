@@ -78,11 +78,14 @@ test('the kariyushi collar is low: a narrow band round the nape, the neck showin
 
 /**
  * "Let the fabric fall from the shoulders with a little air at the waist ... Finish with a nearly level, untucked hem at the
- * upper hip so the shorts remain visible" (the owner's brief, 27 November 2026). The body of the shirt is cloth of its own
- * below the chest (build.js alohaBody): clear of the waist in front and behind, its hem above the hip joint and below the
- * shorts' waistband, level, turned, with its inside drawn in the cloth's shadow, and the shorts showing below it.
+ * upper hip so the shorts remain visible" (the owner's brief, 27 November 2026), and then: "The shirt you may look like a
+ * dress make it look more like a real Hawaii shirt". The body of the shirt is cloth of its own below the chest (build.js
+ * alohaBody): boxy and straight, no wider at the hem than at the chest (it had flared 21 mm in front and behind, an A-line),
+ * a few millimetres clear of the waist, its hem level and just over the shorts' waistband (a few centimetres, no more:
+ * it had come down to 16 mm over the hip joint, a dress's length on his short legs), turned, with its inside drawn in the
+ * cloth's shadow, a small vent at each side seam, and the shorts showing below it.
  */
-test('the kariyushi falls free of the waist to a level, untucked hem at the upper hip, with a turned edge and an inside',()=>{
+test('the kariyushi is boxy and straight, its level hem just over the shorts\' waistband, with side vents, a turned edge and an inside',()=>{
  for(const name of ['Johansson','Vy','Sverker']){
   // (in Johansson's blue, which nothing else they wear is)
   const r=recipeFor(name),a=buildAvatar({...r,outfit:{...r.outfit,top:'kariyushi',topColour:'#7fb0d8'}},{shadows:false}),m=a.measure,k=m.k,g=a.body.geometry,P=g.attributes.position,C=g.attributes.color;
@@ -91,11 +94,22 @@ test('the kariyushi falls free of the waist to a level, untucked hem at the uppe
    const bare=m.depth/2*latheRadius(vol.prof,t);return [f-bare,b-bare];};
   const [front,back]=air(.3);
   assert.ok(front>.006*k&&back>.006*k,`${name}: air at the waist, ${(front*1000).toFixed(0)} mm in front and ${(back*1000).toFixed(0)} mm behind`);
-  // the hem: the lowest of the shirt's body, all round at one height (the sleeves and the arms aside)
-  const hem=[];for(let i=0;i<P.count;i++)if((is(i,shirt)||is(i,inside))&&P.getY(i)<m.hipY+m.torso*.3&&Math.hypot(P.getX(i)/m.width,P.getZ(i)/m.depth)>.35)hem.push(P.getY(i));
-  const low=Math.min(...hem),high=Math.max(...hem.filter(y=>y<low+.01*k));
-  assert.ok(low>m.hipY&&low<m.hipY+m.torso*.13,`${name}: the hem at ${((low-m.hipY)*1000).toFixed(0)} mm above the hip joint, under the shorts' waistband`);
-  assert.ok(high-low<.002*k,`${name}: the hem level all round`);
+  // the hem: the lowest of the shirt's body, all round at one height (the sleeves and the arms aside), but at the vents
+  const body=[];for(let i=0;i<P.count;i++)if((is(i,shirt)||is(i,inside))&&P.getY(i)<m.hipY+m.torso*.3&&Math.hypot(P.getX(i)/m.width,P.getZ(i)/m.depth)>.35)body.push(i);
+  const low=Math.min(...body.map(i=>P.getY(i))),waistband=m.hipY+m.torso*.13;
+  assert.ok(waistband-low>.015*k&&waistband-low<.045*k,`${name}: the hem ${((waistband-low)*1000).toFixed(0)} mm under the shorts' waistband (a few centimetres)`);
+  const seam=i=>Math.abs(P.getZ(i))<.02*k,level=body.filter(i=>!seam(i)&&P.getY(i)<low+.01*k).map(i=>P.getY(i));
+  assert.ok(Math.max(...level)-low<.002*k,`${name}: the hem level all round`);
+  // the vents: at each side seam the hem rises in a slit two or three centimetres high
+  // (its top: the lowest of the outside on the seam's own line)
+  for(const s of [1,-1]){const rise=Math.min(...body.filter(i=>is(i,shirt)&&Math.abs(P.getZ(i))<.002*k&&Math.sign(P.getX(i))===s).map(i=>P.getY(i)))-low;
+   assert.ok(rise>.02*k&&rise<.045*k,`${name}: a vent at the ${s>0?'left':'right'} side seam, ${(rise*1000).toFixed(0)} mm high`);}
+  // boxy: no wider at the hem than at the chest, front, back and sides (it was an A-line, 21 mm out in front and behind)
+  const extent=(y,f)=>{let e=-Infinity;for(let i=0;i<P.count;i++)if(is(i,shirt)&&Math.abs(P.getY(i)-y)<.004*k)e=Math.max(e,f(i));return e;};
+  const hemY=low;   // (the hem's own row)
+  // (off the widest of the body above the hem: a figure wider at the hips than the chest, as Vy is, is followed, not flared)
+  let widest=0;for(let t=(low-m.hipY)/m.torso;t<=.64;t+=.01)widest=Math.max(widest,m.depth/2*latheRadius(vol.prof,t));
+  for(const [label,f] of [['in front',i=>P.getZ(i)],['behind',i=>-P.getZ(i)]])assert.ok(extent(hemY,f)-widest<.012*k,`${name}: straight ${label}, ${((extent(hemY,f)-widest)*1000).toFixed(0)} mm off the body at the hem`);
   assert.ok([...Array(P.count).keys()].some(i=>is(i,inside)&&P.getY(i)>low&&P.getY(i)<low+.05*k),`${name}: the hem's inside, in its shadow`);
   a.dispose();
  }

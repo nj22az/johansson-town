@@ -4,7 +4,7 @@ import * as THREE from '../../vendor/three.module.js';
 import {longBraidPoints} from './braid-path.js';
 import {DRESS_BOTTOMS} from './recipe.js';
 // (a cycle with garment.js, which reads hemSpec: each reads the other only when called)
-import {KARIYUSHI} from './garment.js';
+import {KARIYUSHI,kariyushiHemY} from './garment.js';
 
 /**
  * Swing: hair, skirts and shirt hems that follow the body a moment late, the way
@@ -43,9 +43,9 @@ export function hemSpec(recipe,m){
   return {kind:'skirt',...skirtSpec(m,o.bottom)};
  }
  if(o.top==='kariyushi'){
-  // An island shirt is worn out over the shorts, its nearly level hem at the upper hip (garment.js KARIYUSHI.body); the
+  // An island shirt is worn out over the shorts, its level hem just over the shorts' waistband (garment.js KARIYUSHI.body); the
   // part of it below `swing` swings on the hem quarters. Its radii there: the chest's, eased out (build.js alohaBody).
-  const B=KARIYUSHI.body,top=hipY+m.torso*B.swing,hem=hipY+B.hem*m.k;
+  const B=KARIYUSHI.body,top=hipY+m.torso*B.swing,hem=kariyushiHemY(m);
   return {kind:'hem',waist:top,length:top-hem,rx:m.width/2+(B.gap+B.easeX)*m.k,rz:m.depth/2+(B.gap+B.easeZ)*m.k};
  }
  if(o.top==='police'){

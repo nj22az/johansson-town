@@ -178,33 +178,40 @@ function alohaCollar(list,m,prof,colour){
 }
 
 /**
- * The kariyushi's body below the chest (garment.js KARIYUSHI.body), worn, not painted on (the owner, 27 November 2026: "Let
- * the fabric fall from the shoulders with a little air at the waist"): cloth that leaves the torso where its chest is,
- * coming out of it steeply there, and hangs from the widest of the body above, clear of the waist and the hips,
- * easing out to a nearly level hem at the upper hip. Front and back it falls straight; at the sides, where the arms hang,
- * it keeps half way between that and the body's own line. The hem is turned (its edge `turn` deep) and the cloth's inside
- * is drawn from it up to the waist, darker and with no ink of its own, so a look under the hem finds the shirt's inside and
- * the shorts under it. Painted as the torso is (torsoUV), and shared as the torso is, its lower part swinging on the hem
+ * The kariyushi's body below the chest (garment.js KARIYUSHI.body), worn, not painted on: a real aloha shirt's body (the
+ * owner, 27 November 2026: "make it look more like a real Hawaii shirt"), cloth that leaves the torso where its chest is,
+ * coming out of it steeply there, and hangs straight down from the widest of the body above, boxy, a few millimetres clear
+ * of the waist, to a level hem at the hip, just over the shorts' waistband, with a small vent at each side seam. The hem
+ * is turned (its edge `turn` deep) and the cloth's inside is drawn from it up to the waist, darker and with no ink of its
+ * own, so a look under the hem finds the shirt's inside and the shorts under it; where a vent parts, its inside shows, in
+ * the same shadow. Painted as the torso is (torsoUV), and shared as the torso is, its lower part swinging on the hem
  * quarters (`share`).
  */
 function alohaBody(list,m,prof,colour,share){
- const B=KARIYUSHI.body,k=m.k;
+ const B=KARIYUSHI.body,k=m.k,TAU=Math.PI*2;
  // Its outside, row by row (garment.js kariyushiBody, which the print is laid on too). It comes out of the chest steeply, so
  // the two cross in one clean line: crossing at a shallow angle, their facets interleaved in a zigzag. (The torso keeps its
  // own line and outline: anything tucked or faded under the shirt there stood out from above, from the game's camera, as a
  // dotted ring of ink.)
- const {rows,hemY}=kariyushiBody(m,t=>latheRadius(prof,t));
- const turn=B.turn*k,hem=rows.at(-1),inside=[];
+ const {rows,hemY,vent,ventA}=kariyushiBody(m,t=>latheRadius(prof,t));
+ const turn=B.turn*k,hem=rows.at(-1),inside=[],dark='#'+new THREE.Color(colour).multiplyScalar(.68).getHexString();
  // its inside, from the hem up to the waist (or the top, if that is nearer)
  const insideTop=Math.min(rows[0][0]-.02*k,m.hipY+m.torso*B.lining),radiiAt=y=>{for(let j=1;j<rows.length;j++)if(rows[j][0]<=y){const a=rows[j-1],b=rows[j],w=(a[0]-y)/(a[0]-b[0]);return [a[1]+(b[1]-a[1])*w,a[2]+(b[2]-a[2])*w];}return [hem[1],hem[2]];};
  for(let j=0,N=7;j<=N;j++){const y=hemY+(insideTop-hemY)*j/N,[rx,rz]=radiiAt(y);inside.push([y,rx-turn,rz-turn]);}
- const segments=28,oval=rs=>{
-  const pos=[],idx=[],cols=segments+1;
-  for(const [y,rx,rz] of rs)for(let i=0;i<=segments;i++){const a=i/segments*Math.PI*2;pos.push(rx*Math.sin(a),y,rz*Math.cos(a));}
-  for(let j=0;j<rs.length-1;j++)for(let i=0;i<segments;i++){const a=j*cols+i,b=a+cols;idx.push(a,b,a+1,b,b+1,a+1);}
+ // Round the body: 28 columns, and the corners of each vent at the side seams (the oval's π/2 and 3π/2, columns of the 28).
+ const angles=[...Array.from({length:29},(_,i)=>i/28*TAU),...[1,3].flatMap(s=>[s*Math.PI/2-ventA,s*Math.PI/2+ventA])].sort((a,b)=>a-b),cols=angles.length;
+ // Each column's rows (top to bottom, or the inside's hem to top) drawn up where its hem rises at a vent: the hem's row by
+ // the vent's height, the rest by less in proportion, to nothing at the far end (`from`); the cloth's radii where they land.
+ const oval=(rs,from=rs[0][0])=>{
+  const pos=[],idx=[];
+  for(const [y,rx,rz] of rs)for(const a of angles){const span=Math.abs(from-hemY),v=vent(a),Y=span?y+v*Math.abs(from-y)/span:y+v;
+   // (the row's own radii, moved as the cloth's change between where it was and where it lands)
+   let RX=rx,RZ=rz;if(Y!==y){const p=radiiAt(y),q=radiiAt(Y);RX+=q[0]-p[0];RZ+=q[1]-p[1];}
+   pos.push(RX*Math.sin(a),Y,RZ*Math.cos(a));}
+  for(let j=0;j<rs.length-1;j++)for(let i=0;i<cols-1;i++){const a=j*cols+i,b=a+cols;idx.push(a,b,a+1,b,b+1,a+1);}
   const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.setIndex(idx);g.computeVertexNormals();
   // the seam's two columns are one line: one normal there
-  const N=g.attributes.normal;for(let j=0;j<rs.length;j++){const a=j*cols,b=a+segments,x=N.getX(a)+N.getX(b),y=N.getY(a)+N.getY(b),z=N.getZ(a)+N.getZ(b),l=Math.hypot(x,y,z)||1;N.setXYZ(a,x/l,y/l,z/l);N.setXYZ(b,x/l,y/l,z/l);}
+  const N=g.attributes.normal;for(let j=0;j<rs.length;j++){const a=j*cols,b=a+cols-1,x=N.getX(a)+N.getX(b),y=N.getY(a)+N.getY(b),z=N.getZ(a)+N.getZ(b),l=Math.hypot(x,y,z)||1;N.setXYZ(a,x/l,y/l,z/l);N.setXYZ(b,x/l,y/l,z/l);}
   return g;};
  const uv=p=>torsoUV(p,m);
  // (rows top to bottom face out; the hem's turned edge, from the outside in, faces down; the inside, its rows from the hem
@@ -212,12 +219,19 @@ function alohaBody(list,m,prof,colour,share){
  // (its steep entry turned as the chest is there, so it is lit as the chest is and shows no ledge; its ink coming in over
  // the first two centimetres, so its ink shell starts flush with it there: at full width at once, the shell's open top
  // stood a centimetre off the chest and showed its inside, from behind and above, as specks along the line)
- {const g=oval(rows),N=g.attributes.normal;for(let j=0;j<2;j++)for(let i=0;i<=segments;i++){const a=i/segments*Math.PI*2,[,rx,rz]=rows[2],n=new THREE.Vector3(Math.sin(a)/rx,0,Math.cos(a)/rz).normalize();N.setXYZ(j*(segments+1)+i,n.x,n.y,n.z);}
+ {const g=oval(rows),N=g.attributes.normal;for(let j=0;j<2;j++)angles.forEach((a,i)=>{const [,rx,rz]=rows[2],n=new THREE.Vector3(Math.sin(a)/rx,0,Math.cos(a)/rz).normalize();N.setXYZ(j*cols+i,n.x,n.y,n.z);});
   const outer=part(list,g,share,colour,null,uv),Q=outer.attributes.position,ink=outer.attributes.ink;
   for(let i=0;i<Q.count;i++)ink.setX(i,THREE.MathUtils.smoothstep(rows[0][0]-Q.getY(i),0,.02*k));}
  // (its ink light: drawn full, the turned edge's line stood off a centimetre under the hem, a second hem in the air)
  part(list,oval([hem,[hem[0],hem[1]-turn,hem[2]-turn]]),share,colour,null,uv).attributes.ink.array.fill(.35);
- part(list,oval(inside),share,'#'+new THREE.Color(colour).multiplyScalar(.68).getHexString()).attributes.ink.array.fill(0);
+ part(list,oval(inside,insideTop),share,dark).attributes.ink.array.fill(0);
+ // The vents: where the slit parts, the shirt's inside shows a turn in from the outside, in the inside's shadow (one sheet
+ // facing out in the V the hem leaves, edge to edge with the inside's own V, which faces the body: never two in one place).
+ for(const c of [Math.PI/2,Math.PI*1.5]){
+  const at=(a,y)=>{const [rx,rz]=radiiAt(y);return [(rx-turn)*Math.sin(a),y,(rz-turn)*Math.cos(a)];};
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute([at(c-ventA,hemY),at(c,hemY),at(c+ventA,hemY),at(c,hemY+vent(c))].flat(),3));
+  g.setIndex([0,1,3,1,2,3]);g.computeVertexNormals();part(list,g,share,dark).attributes.ink.array.fill(0);
+ }
 }
 
 function latheRadius(prof,t){for(let i=1;i<prof.length;i++){const [r0,y0]=prof[i-1],[r1,y1]=prof[i];if(t<=y1)return r0+(r1-r0)*((t-y0)/((y1-y0)||1));}return prof.at(-1)[0];}

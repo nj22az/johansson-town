@@ -78,13 +78,13 @@ export const ALOHA=Object.freeze({
  petal:'#f7edd4',crease:'#e6d4ac',eye:'#ecb12e',
  petals:Object.freeze([[0,1,1],[.035,.93,.95],[-.03,1.02,1.04],[.045,.95,.97],[-.02,.9,.93]].map(Object.freeze)),
  blooms:Object.freeze([
-  {id:'large',on:'body',a:-.5,t:.24,r:.088,turn:.35,why:'the one larger flower, low on his right front: after his face the eye comes here, and the shirt\'s weight sits low'},
-  {id:'flank',on:'body',a:-1.15,t:.17,r:.048,turn:1.4,why:'its companion round his right flank: as he turns it narrows and goes round his side'},
+  {id:'large',on:'body',a:-.56,t:.275,r:.088,turn:.35,why:'the one larger flower, low on his right front: after his face the eye comes here, and the shirt\'s weight sits low'},
+  {id:'flank',on:'body',a:-1.15,t:.2,r:.048,turn:1.4,why:'its companion round his right flank: as he turns it narrows and goes round his side'},
   {id:'small',on:'body',a:.52,t:.43,r:.056,turn:-.5,why:'the smaller one, diagonally opposite the large one, below his left pocket'},
   {id:'bud',on:'body',a:.95,t:.3,r:.032,turn:.9,why:'a bud beside it toward his side, so the two are a group and not a dot'},
   {id:'sleeve',on:'sleeveR',a:1.5,along:.74,r:.046,turn:.2,why:'a partial bloom on the outside of his right sleeve, cut by its hem and turning out of sight round the arm'},
   {id:'back',on:'body',a:2.69,t:.3,r:.064,turn:-.8,why:'the lower back, off-centre to his left and clear of his arm: the one the game\'s camera reads from behind him'},
-  {id:'back-low',on:'body',a:3.03,t:.15,r:.038,turn:.6,why:'lower and in toward the middle of his back'},
+  {id:'back-low',on:'body',a:3.03,t:.18,r:.038,turn:.6,why:'lower and in toward the middle of his back'},
   {id:'back-high',on:'body',a:2.96,t:.46,r:.03,turn:1.1,why:'higher and in again: with the other two a loose triangle off to his left, not a row, all between his arms'},
  ].map(Object.freeze)),
 });
@@ -147,35 +147,46 @@ function stamp(ctx,at,U,V,r,turn,{out,up,clip,wrap=false,draw=blossom}){
  *    bottom; the point's upper edge runs from the V's corner, so each leaf is one shape with one point (no notch);
  *  - `gap`: its inside clear of the neck; `clear`: its underside clear of the shirt it lies on, `spring` more at the fall's
  *    edge, which springs a little off the back as folded cloth does; `thick`: the cloth.
- * `body`: the shirt below the chest falls free of the torso, "with a little air at the waist": from `top` (a share of the
- *  torso above the hip joint, where it leaves the chest) it hangs straight down from the widest of the body above, `gap`
- *  clear of it and easing out to its hem by `easeZ` in front and behind and `easeX` at the sides (the arms hang there);
- *  `hem` is its hem's height above the hip joint, nearly level, at the upper hip, untucked, so the shorts show; `turn`
- *  the hem's turned edge, `lining` how far up its inside is drawn (a share of the torso), `swing` where its lower part
- *  starts to swing on the hem quarters (a share of the torso; springs.js).
+ * `body`: the shirt below the chest is a real aloha shirt's, boxy and straight (the owner, 27 November 2026: "The shirt
+ *  you may look like a dress make it look more like a real Hawaii shirt"). It had flared from the chest to a long, wide hem,
+ *  21 mm out in front and behind, and covered the shorts nearly to the crotch: an A-line, a smock's shape. From `top` (a
+ *  share of the torso above the hip joint, where it leaves the chest) it hangs straight down from the widest of the body
+ *  above, `gap` clear of it, with only `easeZ` of ease in front and behind and `easeX` at the sides, its side seams kept
+ *  `side` of the way out from the body's own line to the chest's (the arms hang there); `cover` is how far its level,
+ *  untucked hem comes down over the shorts' waistband (a few centimetres: kariyushiHemY), so the shorts show below it;
+ *  `vent` the small slit at each side seam (`h` its height, `w` half its width at the hem); `turn` the hem's turned edge,
+ *  `lining` how far up its inside is drawn (a share of the torso), `swing` where its lower part starts to swing on the hem
+ *  quarters (a share of the torso; springs.js).
  */
 export const KARIYUSHI=Object.freeze({
  collar:Object.freeze({gap:.006,clear:.004,spring:.004,thick:.006,stand:Object.freeze({back:.018,side:.011}),rise:.9,fall:.036,
   vee:.36,point:Object.freeze([.66,.1]),foot:Object.freeze([.13,.112]),centre:Object.freeze([.03,.112])}),
- body:Object.freeze({top:.56,gap:.003,easeX:.005,easeZ:.018,hem:.015,turn:.006,lining:.3,swing:.2}),
+ body:Object.freeze({top:.56,gap:.003,side:.7,easeX:.002,easeZ:.005,cover:.03,vent:Object.freeze({h:.032,w:.009}),turn:.006,lining:.3,swing:.2}),
 });
+/** Where the kariyushi's hem is: `cover` over the shorts' waistband (at 0.13 of the torso above the hip joint, as
+ *  build.js addBody paints it), on every body. */
+export const kariyushiHemY=m=>m.hipY+m.torso*.13-KARIYUSHI.body.cover*m.k;
 /**
  * The kariyushi's body below the chest (KARIYUSHI.body; build.js alohaBody draws it, the painter lays the print on it):
  * its outside as rows [y, rx, rz] from where it leaves the chest down to the hem, each row an oval round the body's axis.
  * It hangs from the widest of the body above; it comes out of the chest steeply, from 3 mm inside it to 1 mm outside over
- * 2 mm (the second row), so the two cross in one clean line.
+ * 2 mm (the second row), so the two cross in one clean line. `vent(a)`: how far the hem rises at the oval's angle a (0 the
+ * front, π/2 the wearer's left side): the side vents, a narrow V at each side seam; `ventA` half of each one's width there,
+ * as an angle round the oval.
  */
 export function kariyushiBody(m,radiusAt){
- const B=KARIYUSHI.body,k=m.k,W=m.width/2,D=m.depth/2,T=m.torso,t0=B.top,hemY=m.hipY+B.hem*k,t1=(hemY-m.hipY)/T,rows=[];
+ const B=KARIYUSHI.body,k=m.k,W=m.width/2,D=m.depth/2,T=m.torso,t0=B.top,hemY=kariyushiHemY(m),t1=(hemY-m.hipY)/T,rows=[];
  let widest=0;
  for(let j=0,N=22;j<=N;j++){
   // (closer together near the top, where it leaves the chest)
   const u=Math.pow(j/N,1.5),t=t0-(t0-t1)*u,r=radiusAt(t);widest=Math.max(widest,r);
   const lift=j?THREE.MathUtils.lerp(.001*k,B.gap*k,THREE.MathUtils.smoothstep(u,0,.2)):-.003*k;
-  rows.push([m.hipY+t*T,W*THREE.MathUtils.lerp(r,widest,.5)+lift+B.easeX*k*u,D*widest+lift+B.easeZ*k*u]);
+  rows.push([m.hipY+t*T,W*THREE.MathUtils.lerp(r,widest,B.side)+lift+B.easeX*k*u,D*widest+lift+B.easeZ*k*u]);
   if(!j)rows.push([rows[0][0]-.002*k,rows[0][1]+.004*k,rows[0][2]+.004*k]);
  }
- return {rows,hemY};
+ // (at the side seam the oval's angle runs along its depth: a slit w wide is w/rz of a turn there)
+ const ventA=B.vent.w*k/rows.at(-1)[2],vent=a=>{const d=Math.abs(Math.abs(Math.atan2(Math.sin(a),Math.cos(a)))-Math.PI/2);return d<ventA?B.vent.h*k*(1-d/ventA):0;};
+ return {rows,hemY,vent,ventA};
 }
 /**
  * Where the shirt's outside is, at torsoUV's angle α (0 the front, the wearer's left α > 0) and the share t of the torso's
