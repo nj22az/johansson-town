@@ -56,7 +56,7 @@ import {PROFILES} from './src/people/profiles.js';
 import {RESIDENTS,residentHomeDescription} from './src/people/residents.js';
 import {gossipAt,izakayaOpen,onsenInvitationDay} from './src/people/social.js';
 import {DRINKS,DISHES,menuItem} from './src/people/izakaya-beer.js';
-import {VENDING_PRODUCTS,DRINKABLE,EMPTY_CAN,CAN_REFUND,beerOnSale,vendingRefusal} from './src/commerce/vending-catalogue.js';
+import {VENDING_PRODUCTS,DRINKABLE,EMPTY_CAN,CAN_REFUND,BEER_STOPPED_LABEL,beerOnSale,vendingRefusal} from './src/commerce/vending-catalogue.js';
 import {SAKURA_SPECIALS,SPECIAL_BY_NAME,specialsOpen} from './src/commerce/sakura-specials.js';
 import {MEDICINES,STAMINA_DRINK} from './src/world/interiors/sakura-dressing.js';
 import {STORE_ITEMS} from './src/commerce/catalogue.js';
@@ -1145,11 +1145,12 @@ export function createActivities({say,onLaundry=()=>{},onKaraoke=null,getResiden
     show('Overheard at Minato',gossip.line+'\n\n'+gossip.clue,[['Stay a little longer',()=>{onTime(7);izakayaGossip();}],['Back to the evening',close]]);
   }
   // The beer is in the top row and is Sakura's (vending-catalogue.js); from eleven at night to five in the morning its
-  // buttons are dark, 販売中止, as every alcohol machine's were (VENDING_BEER_HOURS), and the soft drinks still sell. The
+  // buttons are dark (the lamps read 販売中止; the menu says it in English), as every alcohol machine's were
+  // (VENDING_BEER_HOURS), and the soft drinks still sell. The
   // Port Terminal's hall is open round the clock (town.js isOpen), so its machine keeps the same hours.
   function vending(){const now=getMinutes(),night=!beerOnSale(now);
-    show("MINATO DRINKS · Vending machine",'Beer in the top row, Sakura’s: ¥220 to ¥280'+(night?', but its buttons are dark: 販売中止, from eleven at night to five in the morning':'; not after eleven at night')+'. Cold drinks behind the blue buttons, hot behind the red, ¥120. Drink it now or keep it in your bag; the empty can goes to the recycling box by Sakura’s door.',
-      [...VENDING_PRODUCTS.map(product=>{const no=vendingRefusal(product,{minutes:now});return [no?product.label.replace(/ · ¥\d+$/,'')+' · 販売中止':product.label,()=>buyDrink(product),!!no];}),['Leave',close]]);}
+    show("MINATO DRINKS · Vending machine",'Beer in the top row, Sakura’s: ¥220 to ¥280'+(night?', but its buttons are dark, sale stopped from eleven at night to five in the morning':'; not after eleven at night')+'. Cold drinks behind the blue buttons, hot behind the red, ¥120. Drink it now or keep it in your bag; the empty can goes to the recycling box by Sakura’s door.',
+      [...VENDING_PRODUCTS.map(product=>{const no=vendingRefusal(product,{minutes:now});return [no?product.label.replace(/ · ¥\d+$/,'')+' · '+BEER_STOPPED_LABEL:product.label,()=>buyDrink(product),!!no];}),['Leave',close]]);}
   function buyDrink(product){const no=vendingRefusal(product,{minutes:getMinutes()});if(no){say(no);return;}if(!spend(product.price))return;onTime(1);onMove('Give');const name=product.inventoryName;addItem(name);townAudio.play('clunk',.7);close();if(!onPurchase(name))receipt('Thank you',`${product.brand} — ${name} is in your bag.`);}
 
   function legacyResident(name){

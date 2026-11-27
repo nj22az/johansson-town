@@ -970,3 +970,55 @@ in `AGENTS.md` (the owner's decision of this date).
 - `studio/prop-registry.js`: the three beer cans as props with their who, why and where; the machine's purpose updated.
 - Tools: `hand-shots.mjs --can … --bought "Jugon big draft"` holds the can as sold; `vending-drink-shots.mjs --machine`
   photographs Sakura's machine at noon, 21:00 and 23:30.
+- The menu speaks English (controls and dialogue stay English, `scripts/english-inventory.mjs`): at night the beer's
+  buttons read "Kame · Island lager · not sold until 5:00" and refuse with "Sale stopped …"; only the machine's lamps and
+  sticker carry 販売中止 and the Japanese warning (vending.js is scenery).
+
+## Proved
+- `node --test tests/vending-beer.test.mjs` (new, in the guard; 9 tests): the line-up and its reasons (every name a
+  resident, the beer named only for grown-ups, own brand names, Sakura's price and supply); the long can clear in the
+  window; the night rule and its source, the beer lamps' atlas cells by day and night, the alcohol sticker; the Port
+  Terminal's machine dark at 23:20 and lit at 05:10; the menu at 23:30 (beer refused, soda sold) and at 19:00 (a long can
+  bought); residents: no child ever gets a beer at any hour or place, each grown-up's evening beer is the one naming them,
+  none after eleven, at work, past their limit or with no recorded age, and in the street Ryo pays ¥280 and grows
+  tipsier, Vy and Riku buy sodas; old saves' tea and coffee drink, empty, keep their colours and prints and sit in the
+  bag's drinks; each WebP is the size and proportion the catalogue says and the hand maps its middle; Johansson and
+  Sverker drink a long can with its rim on the lip (under 2 mm) and never in the face.
+- Updated and passing: `vending.test.mjs`, `vending-loop.test.mjs` (both now in the guard), `open-can.test.mjs` (a Kame,
+  an old Green tea and a Tako opened and drunk; every can at its column's size), `systems.test.mjs` (the v4 save buys a
+  J-Coffee; no beer without the yen). Also run and passing: halloween-street, asset-modeller, vending-placement,
+  port-hall-finish, resident-life, npc-seating, staff-bench, studio-assets, lot-dressing, kitahama-park-grounded,
+  sakura-back, sakura-merchandising, higa-liquor-laundry, english-language.
+- **CI guard** (`node tools/ci-guard.mjs --test-concurrency=2`, 137 files, 2475 s on a machine shared with other guards):
+  738 of 740; the two failures were english-language (my Japanese menu labels: fixed after, it passes) and the published
+  runtime package (not rebuilt here, expected). The resident-guide portraits passed.
+- **In the game** (`node tools/vending-drink-shots.mjs --source --machine --drinks "Kame lager,Jugon big draft"`, software
+  Chromium; sheet `art/vending-cans/review/game-machine-and-drink.jpg`): Sakura's machine at noon from the pavement and
+  close on its window (Kame, Jugon's long cans, Tako in the top row at ¥220/¥280/¥240; J-Coffee, the sodas and corn soup
+  below; the alcohol sticker readable), at 21:00 lit, and at 23:30 the top row's buttons dark with 販売中止 while the
+  bottom row's are lit. Then Johansson buys each (the audit's `buy`, as the machine's pocket gives it) and drinks it in
+  the third-person game: the Kame can and the Jugon long can in his hand printed as themselves, opened, the tab pocketed,
+  drunk; no page errors.
+- **Close up** (`node tools/hand-shots.mjs --can 1.5,5.0 --name Johansson --bought "Kame lager"` and `"Jugon big draft"`;
+  `art/vending-cans/review/hand-kame.jpg`, `hand-jugon.jpg`): the first shots showed the can's back panel outward (the
+  hand's socket holds the can's -z to the front), so the print was turned; now the logo and the mascot face out of his
+  hand when opening and at his lips, the long can at its length.
+- Looked at: every can's print, the review sheet, the poster, both hand sheets and the game sheet.
+
+## Remains
+- The owner has not seen any of it. The runtime is not rebuilt (`npm run build:runtime`).
+- Every Johansson Vending machine shares one line-up (`VENDING_COLUMNS`), so the beer is in all of them: Sakura's wall,
+  the fish market's, the Main Street drinks corner's pair, Kitahama Heights' pair across from the park, Fumoto's and the
+  Port Terminal's. In 1990s Japan a beer machine stood at its licensed shop; if the owner wants the beer at Sakura's
+  machine only, the columns need a layout per machine.
+- The Linux edition's resident play (`playingResident`) is not age-checked at the machine (the player is taken to be
+  Johansson); the refusal is ready (`vendingRefusal(…,{age})`) if it is wanted.
+- The storyteller (`src/feed/`) keeps generic drinks lists and has no age filter; the beers are not added to its
+  `DRINKS` (a child could be given one). They are registered for it through `vendingBuyersOf`/`vendingLinesFor` and the
+  Studio's prop registry (`kame-lager-can`, `jugon-draft-can`, `tako-black-can`, each with who, why and where).
+- Found, not changed: the izakaya still names a real brewer, Orion, on its drinks (`people/izakaya-beer.js` DRINKS);
+  Sakura's Umineko can, like the machines' cans before today, is printed with its front toward his palm
+  (`bought-can.js shopPrint`); `tests/products-move.test.mjs` failed before this branch (not in the guard) and its legacy
+  snapshot of the machine's line-up is now older still; `hand-shots.mjs` exits 1 on the page's missing favicon.
+- The ferry's lobby machines (`ferry-ship.js`, "Canned coffee and tea") and Johansson Mart's two (`kitahama-shop-build.js`)
+  are other machines, not this model, and are unchanged.

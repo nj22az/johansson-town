@@ -69,7 +69,7 @@ test('the night: no beer from 23:00 to 05:00, the soft drinks still sold; the ru
   assert.equal(beerOnSale(m),on,`beer at ${Math.floor(m%1440/60)}:${String(m%60).padStart(2,'0')}`);
  assert.equal(beerOnSale(12*60,{open:false}),false,'indoors, not while its hall is shut');
  const kame=VENDING_PRODUCTS.find(p=>p.id==='kame-lager'),soda=VENDING_PRODUCTS.find(p=>p.id==='shikuwasa');
- assert.match(vendingRefusal(kame,{minutes:23*60+30}),/販売中止/);assert.equal(vendingRefusal(soda,{minutes:23*60+30}),null);assert.equal(vendingRefusal(kame,{minutes:21*60}),null);
+ assert.match(vendingRefusal(kame,{minutes:23*60+30}),/^Sale stopped/);assert.equal(vendingRefusal(soda,{minutes:23*60+30}),null);assert.equal(vendingRefusal(kame,{minutes:21*60}),null);
  // the machine's beer buttons: lit by day, dark with 販売中止 by night (the lit atlas's own cells), the rest untouched
  const g=createVendingMachine(),beer=g.getObjectByName('Beer buttons'),lit=g.getObjectByName('Vending lit panels'),before=lit.geometry;
  const vAt=geo=>{const uv=geo.attributes.uv;let lo=1,hi=0;for(let i=0;i<uv.count;i++){lo=Math.min(lo,uv.getX(i));hi=Math.max(hi,uv.getX(i));}return [lo,hi];};
@@ -94,8 +94,8 @@ test('the machine’s menu: the beer buttons dark at night and refused, the soft
  const dom=installDOM();let minutes=23*60+30;const said=[];
  const acts=createActivities({say:s=>said.push(s),onWeather(){},onTime(){},getMinutes:()=>minutes});
  acts.state.yen=1000;acts.action('vending');
- assert.ok(dom.has('Kame · Island lager · 販売中止')&&dom.has('Jugon · Big draft · 販売中止'),'the beer 販売中止: '+dom.labels().join(' | '));
- dom.button('Kame · Island lager · 販売中止');assert.equal(acts.state.yen,1000);assert.ok(!acts.state.inventory.includes('Kame lager'),'no beer at night');
+ assert.ok(dom.has('Kame · Island lager · not sold until 5:00')&&dom.has('Jugon · Big draft · not sold until 5:00'),'the beer stopped (in English; the lamps say 販売中止): '+dom.labels().join(' | '));
+ dom.button('Kame · Island lager · not sold until 5:00');assert.equal(acts.state.yen,1000);assert.ok(!acts.state.inventory.includes('Kame lager'),'no beer at night');
  dom.button('Shikuwasa · Citrus soda · ¥120');assert.equal(acts.state.yen,880);assert.ok(acts.state.inventory.includes('Shikuwasa soda'),'the soda still sells');
  minutes=19*60;acts.action('vending');dom.button('Jugon · Big draft · ¥280');assert.equal(acts.state.yen,600);assert.ok(acts.state.inventory.includes('Jugon big draft'));
 });

@@ -97,21 +97,23 @@ export const DRINKING_AGE=20;
  * is every alcohol machine's: the Port Terminal's, indoors, keeps it too, and also stops whenever its hall is shut.
  */
 export const VENDING_BEER_HOURS=Object.freeze({stop:23*60,start:5*60,
- rule:'No alcohol from a vending machine from 23:00 to 05:00; the beer buttons read 販売中止 and the soft drinks still sell.',
+ rule:'No alcohol from a vending machine from 23:00 to 05:00; the beer buttons read 販売中止 (sale stopped) and the soft drinks still sell.',
  sources:Object.freeze(['National Tax Agency, 酒類の概況 (the alcohol situation), the measures for vending machines: https://www.nta.go.jp/taxes/sake/shiori-gaikyo/shiori/2009/pdf/11.pdf',
   'Brewers Association of Japan, “The Law Prohibiting Minors from Drinking”: https://brewers.or.jp/english/99-alcohl.html'])});
 const minute=m=>((Math.floor(m)%1440)+1440)%1440;
 /** Whether a machine's beer is on sale at this town minute: not 23:00–05:00; indoors also only while its room is open. */
+export const BEER_STOPPED_LABEL='not sold until 5:00';
 export function beerOnSale(minutes,{open=true}={}){const m=minute(minutes);return !!open&&m>=VENDING_BEER_HOURS.start&&m<VENDING_BEER_HOURS.stop;}
 
 /**
- * Why a machine will not sell this can now, or null if it will: beer at night (販売中止), and beer to anybody under twenty.
+ * Why a machine will not sell this can now, or null if it will (in English: what the player reads; the lamp says 販売中止):
+ * beer at night, and beer to anybody under twenty.
  * `age` null is the player as Johansson (a grown man); a resident with no recorded age never gets a beer (residentVendingChoice).
  */
 export function vendingRefusal(product,{minutes=720,open=true,age=null}={}){
  if(!product?.alcohol)return null;
- if(!beerOnSale(minutes,{open}))return '販売中止. The beer buttons are dark from eleven at night to five in the morning; the soft drinks still sell.';
- if(age!==null&&!(age>=DRINKING_AGE))return 'お酒は20歳になってから. The beer is for grown-ups.';
+ if(!beerOnSale(minutes,{open}))return 'Sale stopped. The beer buttons are dark from eleven at night to five in the morning; the soft drinks still sell.';
+ if(age!==null&&!(age>=DRINKING_AGE))return 'No beer under twenty: the sticker on the machine says so.';
  return null;
 }
 
