@@ -727,3 +727,23 @@ sheets. The drink helper's can block in `animate.js` and its files were not touc
   still steps the elbow or the hand by 50–72% of its top speed (the reach folding, there before).
 - Look in motion at the walk's last step (section 6).
 - `claude/dreamy-ritchie-cxufpl` moved on (e8759bc, 08a73c4) while this was done; this branch is from 2d61531.
+
+# 27 November, late night: a tank top under Johansson's shirt
+
+The owner: "He should be wearing a 'wife beater' tank top under his shirt".
+
+## Done
+- **A new outfit field, `outfit.under`** (`recipe.js UNDER_LAYERS`: 'none' or 'tank'): what is worn under an open top.
+  Johansson has `under: 'tank'` (`cast.js`).
+- **Painted in the kariyushi's open V** (`garment.js`, `UNDER.tank`): off-white #f2efe6, ribbed, with a bound edge. Its
+  wide scoop sits between straps that show at the V's top corners, with his chest hair above the scoop. It is clipped to
+  the V; the shirt covers the rest.
+- **A test** in `tests/avatar-polish.test.mjs`: he wears it, it is painted, his chest hair shows above it, a kariyushi
+  alone has skin in its V, and an unknown under layer is normalised to none.
+- **Not yet:** the creator (Studio) has no control for `under`. A saved or shared recipe keeps it (`normalizeRecipe`).
+
+## Found
+- `tests/avatar-wardrobe-sets.test.mjs` test 4 ("… without popping") passes before stage 1 (e8759bc) and fails after it
+  (8eeb14f): "cold-store on Thuan: Wave pops 0.239 m in a frame". The file is not in the guard. Given to the stage 2
+  helper, along with running every animator-touching test file before and after. Test 1 there (draw counts on a child)
+  failed before stage 1 too.

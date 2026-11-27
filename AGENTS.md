@@ -44,6 +44,11 @@ critique what still looks too soft/chibi, and iterate"; then "When happy redraw 
   Blender (Toon BSDF and Freestyle); `art/characters/johansson/` holds the sculpt, the rigged `.blend` and the sheets.
 - **The rule stands for every character redrawn this way:** a sheet after every pass, looked at, criticised, then the next
   pass; and `node tools/avatar-turnaround.mjs` for the same in the game's own shader, which is the final judge.
+- **His shirt** (the owner, 27 November 2026: "the collar is way too big going under his arms when drinking"; "He should be
+  wearing a 'wife beater' tank top under his shirt"): the kariyushi's camp collar is a camp collar's size
+  (`garment.js CAMP_COLLAR`; a test keeps it out of his sleeves when his arms come up or across), and under the open shirt
+  he wears a white ribbed tank top (`outfit.under: 'tank'`, `garment.js UNDER`): its scoop neck and straps in the V, his
+  chest hair above it.
 - Fair skin, dark brows, dark eyes, a five-o'clock shadow in grey; warm, dry and deadpan, never angry. Stylised and
   heavy, not realistic: no pores, no photographic shading, no high-poly sculpt.
 - **Not fat** (the owner, of the first result: "Johansson isn't fat he should have a neck and a maybe smaller face", "Make the

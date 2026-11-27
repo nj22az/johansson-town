@@ -7,6 +7,7 @@ import {CAST_RECIPES,recipeFor} from '../src/avatars/cast.js';
 import {createAvatarAnimator} from '../src/avatars/animate.js';
 import {createAvatarActor,updateAvatarActor} from '../src/avatars/actors.js';
 import {faceLayout} from '../src/avatars/face.js';
+import {normalizeRecipe} from '../src/avatars/recipe.js';
 import {shapeHeadPoint} from '../src/avatars/head-profile.js';
 import {fitAvatarHeldProp,consumptionPhase} from '../src/avatars/consume.js';
 import {createDrinkProp,createDishProp,setPropPortion,updatePropPortion,disposeServing} from '../src/people/izakaya-beer.js';
@@ -71,6 +72,16 @@ test('the kariyushi collar stays out from under the arms when they come up or ac
   }
   kar.dispose();tee.dispose();
  }
+});
+
+/** The owner, 27 November 2026: "He should be wearing a 'wife beater' tank top under his shirt". */
+test('Johansson wears a white ribbed tank top under his open kariyushi, showing in its V; nobody else does unless dressed so',()=>{
+ assert.equal(recipeFor('Johansson').outfit.under,'tank');
+ assert.equal(normalizeRecipe({outfit:{under:'cape'}}).outfit.under,'none','only a known under layer is kept');
+ const a=buildAvatar(recipeFor('Johansson'),{shadows:false});
+ assert.ok(a.garment.marks.includes('tank top under'),'painted in the V');assert.ok(a.garment.marks.includes('chest hair'),'his chest hair above its scoop');a.dispose();
+ const t=buildAvatar({...recipeFor('Thuan'),outfit:{...recipeFor('Thuan').outfit,top:'kariyushi'}},{shadows:false});
+ assert.ok(!t.garment.marks.includes('tank top under'),'a kariyushi alone has the skin in its V');t.dispose();
 });
 
 test('shirt collars and buttons are painted on the +z front, with nothing stuck on',()=>{
