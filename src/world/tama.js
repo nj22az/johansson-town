@@ -110,12 +110,62 @@ function buildCat(){
  return {root,hips,torso,shoulders,neck,head,legs,tail,ears:head.children.filter(o=>o.userData.side),eyes:head.children.filter(o=>o.name==='Tama eye'),material};
 }
 
+
+/**
+ * The Blåhaj look (the owner, 27 November 2026, of kuraneko1.github.io/blahaj-kikkou-3d: "I want the same style as the
+ * shark"): her 3D body is drawn small, into a picture of its own 72 dots square, in the town's three flat tones, 24 times a
+ * second as the shark is; the picture stands in the town facing the camera, its dots shown square and an ink line one dot
+ * wide drawn round her outline. The body itself is on a layer of its own that only that picture's camera sees.
+ */
+export const TAMA_SPRITE=Object.freeze({dots:72,span:.84,fps:24,layer:30,ink:0x231d2b,forward:.45});
+function pixelSprite(cat){
+ const S=TAMA_SPRITE,target=new THREE.WebGLRenderTarget(S.dots,S.dots,{minFilter:THREE.NearestFilter,magFilter:THREE.NearestFilter,generateMipmaps:false,depthBuffer:true});
+ const lens=new THREE.OrthographicCamera(-S.span/2,S.span/2,S.span/2,-S.span/2,.05,8);lens.layers.set(S.layer);
+ cat.root.traverse(o=>o.layers.set(S.layer));
+ const material=new THREE.ShaderMaterial({transparent:true,depthWrite:true,
+  uniforms:{map:{value:target.texture},texel:{value:1/S.dots},ink:{value:new THREE.Color(S.ink)}},
+  vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+  fragmentShader:`uniform sampler2D map;uniform float texel;uniform vec3 ink;varying vec2 vUv;
+   void main(){vec2 at=(floor(vUv/texel)+.5)*texel;vec4 c=texture2D(map,at);
+    if(c.a<.5){float n=max(max(texture2D(map,at+vec2(texel,0.)).a,texture2D(map,at-vec2(texel,0.)).a),max(texture2D(map,at+vec2(0.,texel)).a,texture2D(map,at-vec2(0.,texel)).a));
+     if(n<.5)discard;gl_FragColor=vec4(ink,1.);}else gl_FragColor=vec4(c.rgb,1.);
+    #include <tonemapping_fragment>
+    #include <colorspace_fragment>
+   }`});
+ const card=new THREE.Mesh(new THREE.PlaneGeometry(S.span,S.span),material);card.name='Tama, drawn';card.frustumCulled=false;
+ // (her own ink: the town's line is not drawn round the card)
+ card.userData.outline=true;card.userData.dynamicProp=true;
+ const centre=new THREE.Vector3(),look=new THREE.Vector3();let drawn=-1,lit=null;
+ card.onBeforeRender=(renderer,scene,camera)=>{
+  centre.set(0,.2,0).applyMatrix4(cat.root.matrixWorld);camera.getWorldDirection(look);
+  // The card stands a little in front of her, toward the camera, so the quay under her paws does not cut it.
+  const toward=Math.min(S.forward,camera.position.distanceTo(centre)*.5),d=camera.position.distanceTo(centre);
+  card.position.copy(centre).addScaledVector(look,-toward);card.quaternion.copy(camera.quaternion);
+  card.scale.setScalar((d-toward)/d);card.updateMatrixWorld(true);
+  if(scene.overrideMaterial)return;
+  const now=performance.now()/1000;if(now-drawn<1/S.fps)return;drawn=now;
+  // The town's lights light her: they are let onto her layer once.
+  if(lit!==scene){scene.traverse(o=>{if(o.isLight)o.layers.enable(S.layer);});lit=scene;}
+  lens.position.copy(centre).addScaledVector(look,-3);lens.quaternion.copy(camera.quaternion);lens.updateMatrixWorld(true);
+  const previous=renderer.getRenderTarget(),clear=renderer.getClearColor(new THREE.Color()),alpha=renderer.getClearAlpha(),bg=scene.background,fog=scene.fog,
+   shadows=renderer.shadowMap.autoUpdate,auto=renderer.autoClear;
+  try{scene.background=null;scene.fog=null;renderer.shadowMap.autoUpdate=false;renderer.autoClear=true;
+   renderer.setRenderTarget(target);renderer.setClearColor(0x000000,0);renderer.clear();renderer.render(scene,lens);}
+  finally{renderer.setRenderTarget(previous);renderer.setClearColor(clear,alpha);scene.background=bg;scene.fog=fog;renderer.shadowMap.autoUpdate=shadows;renderer.autoClear=auto;}
+ };
+ return {card,target,lens};
+}
 /**
  * Tama in the town. `tick(dt, time, minutes)` each frame: where her day says she should be; if she is somewhere else she
  * stretches, walks there along her way and settles. A jump of the clock (a load, a catch-up) puts her where she would be.
  */
 export function buildTama(world,{register,onAction}={}){
  const cat=buildCat();world.group.add(cat.root);
+ const drawn=pixelSprite(cat);world.group.add(drawn.card);
+ // Her shadow on the quay, as the shark has its own: a soft oval a few millimetres over the ground, drawn behind
+ // everything at that depth (a polygon offset), never in the town's line.
+ const shade=new THREE.Mesh(new THREE.CircleGeometry(1,24).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:0x1d2233,transparent:true,opacity:.28,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2}));
+ shade.name='Tama’s shadow';shade.userData.outline=true;shade.userData.dynamicProp=true;world.group.add(shade);
  const state={spot:null,route:null,leg:0,along:0,mode:'settled',since:0,yaw:0,x:0,z:0,stride:0,pose:{...POSES.sit},from:null,to:'sit',blend:1,tailSwing:new Array(7).fill(0),y:null};
  const place=spot=>{const s=TAMA_SPOTS[spot];Object.assign(state,{spot,route:null,mode:'settled',x:s.x,z:s.z,yaw:s.yaw,from:null,to:s.pose,blend:1});state.pose={...POSES[s.pose]};};
  const startWalk=spot=>{const route=TAMA_ROUTES[`${state.spot}>${spot}`];if(!route){place(spot);return;}
@@ -167,6 +217,7 @@ export function buildTama(world,{register,onAction}={}){
   if(state.y===null||!dt)state.y=ground;else state.y+=(ground-state.y)*Math.min(1,dt*10);
   const hop=Math.min(.06,Math.abs(ground-state.y)*.8);
   cat.root.position.set(state.x,state.y+hop,state.z);cat.root.rotation.y=state.yaw;
+  shade.position.set(state.x,state.y+.004,state.z);shade.rotation.y=state.yaw;shade.scale.set(.13+.03*p.lie,1,.24-.04*(p.pitch<-.2?1:0));
   // The stride: one cycle per two strides walked, so a paw stays put on the quay while the body passes over it.
   const phase=state.stride/TAMA_GAIT.stride*Math.PI,amp=.5*w;
   const bob=Math.abs(Math.sin(phase))*.006*w;
@@ -208,5 +259,5 @@ export function buildTama(world,{register,onAction}={}){
   });
   return state;
  }
- return {cat,state,tick,place};
+ return {cat,state,tick,place,sprite:drawn};
 }

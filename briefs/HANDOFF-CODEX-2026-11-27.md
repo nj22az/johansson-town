@@ -122,6 +122,24 @@ The World already took this look: AGENTS.md, "25 November 2026: cartoon cast onl
   - Tama: walk, sit, wash, and the tail following through.
 - Keep them free of z-fighting, with tests, and show the owner software renders.
 
+## 3b. Tama, made by Claude at the very end (the owner: "I think you can make the cat Claude", "I want the same style as the shark")
+
+`src/world/tama.js`, built with the town (`town.js`, `world.tama`), ticked with its clock.
+- **Her day:** the fish counter 06:30, the sun on the quay 09:30, the boats by the bollard 15:30, under the auction roof
+  19:00 (`TAMA_SPOTS`, each with its reason; `TAMA_ROUTES` round the auction's tables and past the ice plant).
+- **Her look is the shark's:** her 3D body on layer 30 is drawn 24 times a second into a 72-dot picture (`pixelSprite`),
+  lit by the town's lights. A card facing the camera shows it, with square dots and a one-dot ink line. A soft oval
+  shadow lies under her.
+- **Her test:** `tests/tama.test.mjs` is in the guard. Her places and ways are clear of the quay's fittings, and her walk
+  has no jumps. Sheet: `docs/qa/tama/pixel-sprite-2026-11-27.jpg`. Software renders only.
+- **Left to do:**
+  - Her sitting pose: the hind legs read stiff; fold them under her as a cat does.
+  - The picture's camera is orthographic: from very close, her paws can sit a little off her shadow. Match the game
+    camera's perspective.
+  - The harbour gull in the same look.
+  - Give her to the storyteller: the feed's places, and the gull's.
+  - The owner has not seen her in the game.
+
 ## 4. Seen and not fixed (smaller)
 
 - Clothes still laid on the generic neck radius:
