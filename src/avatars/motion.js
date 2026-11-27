@@ -9,9 +9,11 @@ const fail=message=>{throw new Error(message);};
 /**
  * A motion file, checked: `johansson-motion` version 1 (the joints' turns over time), or version 2, which adds what a
  * performance made in Blender carries (tools/blender/drink-can.py): `shapes` (how far each hand is closed, build.js grip:
- * closeR/closeL, and hooked: hookR/hookL), `face` (blink, breath, smile, and look: the eyes on what is in the hands; cues the
- * face painter takes), `prop` (tab: how far a can's ring is lifted, of the way it goes before it tears), `contact` (how far
- * a contact the game keeps is on: lip, ring), `fill` (what is left in what is drunk), each a number 0..1 a sample;
+ * closeR/closeL, and hooked: hookR/hookL), `face` (blink, breath, smile, and look: the eyes on what is in the hands; kaa, the
+ * breath out after a long draught; foam, a moustache of it on the upper lip; swallow, each swallow's beat; shrug, the shoulders up:
+ * cues the face painter and the player take), `prop` (tab: how far a can's ring is lifted, of the way it goes before it tears), `contact` (how far
+ * a contact the game keeps is on: lip, ring, mouth, pocket; a glass's foot on the counter, held in the hand, the left hand's
+ * fingers wiping the upper lip; lean, how far the body leans in for a counter), `fill` (what is left in what is drunk), each a number 0..1 a sample;
  * `events` ({t, name}) and `markers` (name: time); `reach`, each wrist's path (reachPaths). Every track has a value a sample.
  */
 export function normalizeMotion(value){
@@ -33,15 +35,15 @@ export function normalizeMotion(value){
  const group=(key,names)=>{const out={};for(const [n,data] of Object.entries(value[key]||{})){if(!names.includes(n))fail('Unknown '+key+' track: '+n);out[n]=track(n,data);}return out;};
  const events=(value.events||[]).map(e=>{if(!e||typeof e.name!=='string'||!Number.isFinite(e.t)||e.t<0||e.t>end)fail('Invalid motion event.');return {t:e.t,name:e.name};});
  const markers={};for(const [n,t] of Object.entries(value.markers||{})){if(!Number.isFinite(t)||t<0||t>end)fail('Invalid motion marker: '+n);markers[n]=t;}
- return {format:'johansson-motion',version:2,name,times:times.slice(),joints,shapes:group('shapes',['closeR','closeL','hookR','hookL']),face:group('face',['blink','breath','smile','look']),prop:group('prop',['tab']),
-  contact:group('contact',['lip','ring','mouth','pocket']),fill:value.fill===undefined?null:track('fill',value.fill),events,markers,reach:reachPaths(value.reach,times.length),props:value.props&&typeof value.props==='object'?JSON.parse(JSON.stringify(value.props)):{}};
+ return {format:'johansson-motion',version:2,name,times:times.slice(),joints,shapes:group('shapes',['closeR','closeL','hookR','hookL']),face:group('face',['blink','breath','smile','look','kaa','foam','swallow','shrug']),prop:group('prop',['tab']),
+  contact:group('contact',['lip','ring','mouth','pocket','counter','hold','wipe','lean']),fill:value.fill===undefined?null:track('fill',value.fill),events,markers,reach:reachPaths(value.reach,times.length),props:value.props&&typeof value.props==='object'?JSON.parse(JSON.stringify(value.props)):{}};
 }
 /** Where each wrist goes (`reach`: R and L, [x, y, z] a sample in the chest's frame, in the body's own size: the game's
  *  metres over its k), so a body built otherwise puts its hands where the animated body did, for its size; `mouth`, the
  *  right wrist from the lower lip in the head's frame, which it goes by as far as `contact.mouth` says. */
 function reachPaths(value,n){
  if(value===undefined)return null;const out={};
- for(const [side,data] of Object.entries(value||{})){if(!['R','L','mouth'].includes(side)||!Array.isArray(data)||data.length!==n*3||data.some(v=>!Number.isFinite(v)||Math.abs(v)>2))fail('Invalid reach path: '+side);out[side]=data.slice();}
+ for(const [side,data] of Object.entries(value||{})){if(!['R','L','mouth','mouthL','foot','spot'].includes(side)||!Array.isArray(data)||data.length!==n*3||data.some(v=>!Number.isFinite(v)||Math.abs(v)>2))fail('Invalid reach path: '+side);out[side]=data.slice();}
  return out;
 }
 /** A track's value at time t (a 0..1 track sampled with the motion's times): eased between samples as the joints are. */

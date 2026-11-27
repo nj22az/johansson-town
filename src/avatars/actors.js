@@ -12,6 +12,7 @@ import {fitAvatarHeldProp,gripWheel} from './consume.js';
 import {finishOpening} from './open-can.js';
 import {workHands} from './work-hands.js';
 import {createAvatarTableDrink,createFirstPersonDrinkingArm,TABLE_DRINK_KINDS,levelHeldDrink} from './table-drink.js';
+import {beerMotion,createBeerTableDrink} from './drink-beer.js';
 import {DEFAULT_PLAYER,readPlayers,readSave} from '../save.js';
 import {swingsAt} from './springs.js';
 const swingAt=new THREE.Vector3();
@@ -122,7 +123,7 @@ export function updateAvatarActor(actor,dt,now=performance.now()){
   waving:!!(u.chat?.greeting||actor.gestureTime>0&&!actor.waved),
   talking:!!(u.chat?.speaking||u.speakingUntil>now),
   expression:u.thuanExpression||feeling||(engaged?'smile':'neutral'),
-  sleeping,conversing:!!(u.playerConversation||u.chat||u.playing),gaze:Array.isArray(u.lookTarget)?u.lookTarget:null,consumeElapsed:u.consumeElapsed,tipsy:u.tipsy||0,
+  sleeping,conversing:!!(u.playerConversation||u.chat||u.playing),gaze:Array.isArray(u.lookTarget)?u.lookTarget:null,consumeElapsed:u.consumeElapsed,drinkRest:u.drinkRest,tipsy:u.tipsy||0,
  });
  // A driver's hands are on the wheel, not hovering in front of it.
  const wheel=u.inVehicle&&entity.parent?.userData?.steeringWheel;
@@ -145,7 +146,8 @@ export function updateAvatarActor(actor,dt,now=performance.now()){
   }
   if(Number.isFinite(u.heldPortion))setPropPortion(actor.heldProp,u.heldPortion);
   else if(c?.food&&c.swallow===0&&actor.portion>0)setPropPortion(actor.heldProp,1);
-  updatePropPortion(actor.heldProp,dt);fitAvatarHeldProp(avatar,actor.heldProp,c?.lift||0);
+  // (a can or a glass of beer drunk as animated is where its motion put it: drink-can.js, drink-beer.js)
+  updatePropPortion(actor.heldProp,dt);if(!actor.animator.beerCue&&!actor.animator.canCue)fitAvatarHeldProp(avatar,actor.heldProp,c?.lift||0);
   if(actor.dishProp){if(Number.isFinite(u.foodPortion))setPropPortion(actor.dishProp,u.foodPortion);updatePropPortion(actor.dishProp,dt);fitAvatarHeldProp(avatar,actor.dishProp,0,'L');}
  }
  if(actor.gestureTime>0)actor.waved=true;else actor.waved=false;
@@ -184,7 +186,8 @@ export function createAvatarJohansson({scene,recipe=playerRecipe()}={}){
    // First-person players may instantiate their body only when taking this sip.
    // Fit that unseen initial body to its seat before taking the resting-hand sample.
    if(posedSeconds<.3)animator.update(.7,{...lastState,seated:true,seat:seatMove,tipsy:0});
-   tableDrink=createAvatarTableDrink(avatar,lease,callbacks);return true;
+   // (a glass of beer, as it was animated in Blender: drink-beer.js; the rest, the table performance)
+   tableDrink=beerMotion(lease.prop)&&!avatar.pixar?createBeerTableDrink(avatar,lease,callbacks):createAvatarTableDrink(avatar,lease,callbacks);return true;
   },
   cancelTableDrink(){const result=tableDrink?.cancel();tableDrink=null;drinkingArm?.dispose();drinkingArm=null;return result;},
   play(name,{face}={}){
@@ -255,7 +258,7 @@ export function createAvatarJohansson({scene,recipe=playerRecipe()}={}){
    if(root.visible)avatar.springs?.update(dt);
    // (a can drunk as animated is where the motion put it, in the hand's socket: drink-can.js)
    const canCue=animator.canCue;
-   if(held?.userData.consumable&&!canCue){
+   if(held?.userData.consumable&&!canCue&&!animator.beerCue){
     const c=animator.consumption;
     if(c&&held.userData.finishPortion!==undefined)setPropPortion(held,THREE.MathUtils.lerp(held.userData.startPortion,held.userData.finishPortion,c.swallow));
     updatePropPortion(held,dt);fitAvatarHeldProp(avatar,held,c?.lift||0);

@@ -98,7 +98,7 @@ export function levelWeights(blend){
  *  damped follow, about a tenth of a second), so a change sets off and comes to rest softly; started where it is at the move's
  *  start. The contacts are put right after this, exactly. */
 const ARM=['shoulder','elbow','hand'],steadied=new WeakMap(),_d=new THREE.Quaternion();
-function steady(avatar,side,before,t,much){
+export function steady(avatar,side,before,t,much){
  const all=steadied.get(avatar)||steadied.set(avatar,{}).get(avatar),was=all[side],fresh=!was||Math.abs(t-was.t)>.1,now={t,j:[]};
  ARM.forEach((j,i)=>{const b=avatar.bones[j+side],q=_d.copy(b.quaternion).multiply(before[i].clone().invert());if(q.w<0)q.set(-q.x,-q.y,-q.z,-q.w);
   const s=Math.hypot(q.x,q.y,q.z),a=2*Math.atan2(s,q.w),v=s>1e-9?[q.x/s*a,q.y/s*a,q.z/s*a]:[0,0,0];
@@ -107,6 +107,8 @@ function steady(avatar,side,before,t,much){
   b.quaternion.slerp(d.multiply(before[i]),much);});
  all[side]=now;avatar.bones['shoulder'+side].updateWorldMatrix(false,true);
 }
+/** A new performance on this body (drink-beer.js too): the ways its elbows took last time forgotten. */
+export const forgetWays=avatar=>{chosen.delete(avatar);steadied.delete(avatar);};
 /** The bones the motion turns, as they are now: a function that puts them back. */
 function held(avatar){
  const was=tracks.map(([name])=>[avatar.bones[name],avatar.bones[name]?.quaternion.clone()]).filter(([b])=>b);
@@ -115,7 +117,7 @@ function held(avatar){
 /** The arm `side` moved so the point `at` of its hand (world, moving with the hand) goes to `goal`, by `w`; the hand's own
  *  turn in the world kept (what it holds is where it is to be), or (`keepWorld` false) its turn at the wrist. How far it was
  *  off (metres). */
-function bring(avatar,side,pt,goal,w,keepWorld=true,firm=1,tag=side){
+export function bring(avatar,side,pt,goal,w,keepWorld=true,firm=1,tag=side){
  const hand=avatar.bones['hand'+side],point=()=>pt?hand.localToWorld(pt.clone()):hand.getWorldPosition(new THREE.Vector3());
  const at=point(),off=_v.copy(goal).sub(at),d=off.length();if(w<=0)return d;   // (posed even when it is on its goal: the arm keeps the way it has, not another for a frame)
  const aim=at.clone().addScaledVector(off,w);
@@ -158,7 +160,7 @@ function bring(avatar,side,pt,goal,w,keepWorld=true,firm=1,tag=side){
 }
 /** The hand's turn about the forearm's line moved into the forearm (the elbow's own twist, as the game turns it, and as
  *  tools/blender/drink-can.py bakes it): the hand's turn in the world is the same, the wrist bends and does not wring. */
-function twistIntoForearm(avatar,side){
+export function twistIntoForearm(avatar,side){
  const hand=avatar.bones['hand'+side],elbow=avatar.bones['elbow'+side],a=hand.position.clone().normalize(),q=hand.quaternion;
  const d=q.x*a.x+q.y*a.y+q.z*a.z,t=new THREE.Quaternion(a.x*d,a.y*d,a.z*d,q.w);if(t.lengthSq()<1e-12)return;t.normalize();
  elbow.quaternion.multiply(t);hand.quaternion.premultiply(t.invert());elbow.updateWorldMatrix(false,true);
@@ -170,7 +172,7 @@ function holdWrist(q,side){
 }
 /** A wrist eased into what a wrist does (tools/blender/drink-can.py soft_wrist): within 0.15 rad of an end it comes to it more
  *  and more slowly, never past it; a little inside them, as the game samples between frames. */
-function softWrist(q,side){
+export function softWrist(q,side){
  _e.setFromQuaternion(q,'XYZ');const m=side==='R'?1:-1,soft=(v,lo,hi,s=.15)=>v>hi-s?hi-s+s*Math.tanh((v-hi+s)/s):v<lo+s?lo+s-s*Math.tanh((lo+s-v)/s):v;
  _e.set(soft(_e.x,WRIST[0][0]+.03,WRIST[0][1]-.03),m*soft(m*_e.y,WRIST[1][0]+.03,WRIST[1][1]-.03),m*soft(m*_e.z,WRIST[2][0]+.03,WRIST[2][1]-.03),'XYZ');q.setFromEuler(_e);
 }

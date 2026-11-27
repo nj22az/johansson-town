@@ -32,18 +32,20 @@ function fluidFor(prop){
  const base=source?source.position.y-source.geometry.parameters.height/2:.006,top=h-.0008,n=48;
  const capacity=n*Math.sin(2*Math.PI/n)/2*r*r*(top-base)*1e6;
  const starting=source?n*Math.sin(2*Math.PI/n)/2*r*r*source.geometry.parameters.height*1e6:capacity*.9;
- const profile={id:kind,segments:n,innerRadiusBottom:r*.96,innerRadiusTop:r,interiorBottom:base,interiorTop:top,
+ const profile={id:kind,segments:n,innerRadiusBottom:source?.geometry?.parameters?.radiusBottom??r*.96,innerRadiusTop:r,interiorBottom:base,interiorTop:top,
   capacityMl:capacity*(.96*.96+.96+1)/3,liquidRimContact:[-r,top,0],height:h,
-  liquidColor:source?.material?.color?.getHex()||0xc18c36,liquidOpacity:kind==='awamori'?.38:kind==='draft'?1:.92,
-  hasFoam:!!surface?.head,foamHeight:kind==='draft'?.018:.006,hasIce:['awamori','oolong'].includes(kind),startingVolumeMl:starting};
+  liquidColor:source?.material?.color?.getHex()||0xc18c36,liquidOpacity:kind==='awamori'?.38:kind==='draft'||kind==='pint'?1:.92,
+  hasFoam:!!surface?.head,foamHeight:kind==='draft'||kind==='pint'?.016:.006,hasIce:['awamori','oolong'].includes(kind),startingVolumeMl:starting};
  const liquid=source?createLiquid(profile):null;
  if(liquid)prop.add(liquid.root);
  const api={profile,liquid,startingVolumeMl:Math.min(starting,profile.capacityMl),update(fraction){
   if(!liquid)return;
   prop.updateWorldMatrix(true,false);
-  const normal=Y.clone().applyQuaternion(prop.getWorldQuaternion(new THREE.Quaternion()).invert());
+  const normal=api.up.clone().applyQuaternion(prop.getWorldQuaternion(new THREE.Quaternion()).invert());
   liquid.update(api.startingVolumeMl*Math.max(0,Math.min(1,fraction)),normal);
- }};
+ },
+ /** The beer's surface (its normal in the world): level, unless a slosh has it lagging the glass (drink-beer.js). */
+ up:Y.clone(),surface(normal){api.up.copy(normal).normalize();}};
  prop.userData.tableDrinkFluid=api;
  if(prop.userData.level)prop.userData.level.visible=false;
  if(prop.userData.pour?.bubbles)prop.userData.pour.bubbles.visible=false;
