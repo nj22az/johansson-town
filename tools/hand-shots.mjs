@@ -7,6 +7,9 @@
 //   node tools/hand-shots.mjs --sit chair,floor [--name Thao] [--outfit afterbath] [out.png]
 //   node tools/hand-shots.mjs --hold draft,can,bottle [--name Johansson] [out.png]     a drink in the hand, held and at the lips
 //   node tools/hand-shots.mjs --drive car,"kei truck" [--name Johansson] [out.png]      both hands on the steering wheel
+//   node tools/hand-shots.mjs --beer pint [--name Johansson] [out.png]   a glass of beer taken off Minato's counter, drunk and set down
+//       (drink-beer.js createBeerTableDrink): its key moments from the front, the three-quarter and the side, strips of 8
+//       consecutive frames over the lift, the gulp and the set-down, and the game's third-person camera indoors
 //   node tools/hand-shots.mjs --ride 0,.25 [--name Thuan] [out.png]                     on a bicycle, at those turns of the crank
 //   node tools/hand-shots.mjs --can 0,1,3.45 [--name Johansson] [--seated] [--bought "Kame lager"] [out.png]     a bought can opened and drunk (drink-can.js), at those seconds
 //       (--bought: the can as the machine sells it, printed and sized as itself, commerce/bought-can.js; else the izakaya's can):
@@ -25,9 +28,9 @@ import {resolve,dirname,extname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),site=resolve(root,'..');
 const args=process.argv.slice(2),flag=k=>{const i=args.indexOf(k);return i>=0?args[i+1]:null;};
-const BOUGHT=flag('--bought')||'',MOVES=flag('--moves')||'',WIND=args.includes('--wind'),CAN=flag('--can')||'',SEATED=args.includes('--seated'),RIDE=flag('--ride')||'',DRIVE=flag('--drive')||'',HOLD=flag('--hold')||'',OUTFIT=flag('--outfit')||'clothes',NAME=flag('--name')||'Thao',PAIRS=flag('--pairs')||'',POSES=flag('--poses')||'',SIT=flag('--sit')||'',WHO=flag('--who')||'Thuan,Nils Johansson',GRIP=flag('--grip'),SHAPE=flag('--shape')||'close';
-const what=MOVES?'moves':PAIRS?'pairs':POSES?'poses':SIT?'sit':HOLD?'hold':DRIVE?'drive':RIDE?'ride':CAN?'can':'rest';
-const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--pairs','--poses','--sit','--who','--grip','--outfit','--hold','--drive','--ride','--shape','--can','--moves','--bought'].includes(args[i-1]))||resolve(root,MOVES?'output/hands-moves':`output/hands-${what}.png`));
+const BEER=flag('--beer')||'',BOUGHT=flag('--bought')||'',MOVES=flag('--moves')||'',WIND=args.includes('--wind'),CAN=flag('--can')||'',SEATED=args.includes('--seated'),RIDE=flag('--ride')||'',DRIVE=flag('--drive')||'',HOLD=flag('--hold')||'',OUTFIT=flag('--outfit')||'clothes',NAME=flag('--name')||'Thao',PAIRS=flag('--pairs')||'',POSES=flag('--poses')||'',SIT=flag('--sit')||'',WHO=flag('--who')||'Thuan,Nils Johansson',GRIP=flag('--grip'),SHAPE=flag('--shape')||'close';
+const what=BEER?'beer':MOVES?'moves':PAIRS?'pairs':POSES?'poses':SIT?'sit':HOLD?'hold':DRIVE?'drive':RIDE?'ride':CAN?'can':'rest';
+const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--pairs','--poses','--sit','--who','--grip','--outfit','--hold','--drive','--ride','--shape','--can','--moves','--bought','--beer'].includes(args[i-1]))||resolve(root,MOVES?'output/hands-moves':`output/hands-${what}.png`));
 await mkdir(MOVES?out:dirname(out),{recursive:true});
 const TYPES={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.glb':'model/gltf-binary'};
 // (the Town is this checkout, at /johansson-town/, wherever it is: a worktree's parent is not the Office site)
@@ -40,7 +43,7 @@ const errors=[];
 try{
  const page=await browser.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text()+(m.location()?.url?' ('+m.location().url+')':''));});
  await page.goto(`http://127.0.0.1:${server.address().port}/blank`);
- const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold,drive,ride,shape,can,seated,moves,bought,WIND])=>{
+ const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold,drive,ride,shape,can,seated,moves,bought,WIND,beer])=>{
   const base='/johansson-town/',T=await import(base+'vendor/three.module.js'),{buildAvatar}=await import(base+'src/avatars/build.js'),{recipeFor}=await import(base+'src/avatars/cast.js');
   const {createAvatarAnimator,GESTURES,STILL_AT,playPair}=await import(base+'src/avatars/animate.js'),{createInkPipeline}=await import(base+'src/render/ink-pipeline.js');
   const S=360,renderer=new T.WebGLRenderer({preserveDrawingBuffer:true,antialias:true});renderer.setSize(S,S);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.NoToneMapping;
@@ -126,6 +129,25 @@ try{
     const sc=scene(),P=body(name,sc),prop=createDrinkProp(kind);P.a.bones.handR.add(prop);const state={pose:'DrinkStanding',heldProp:prop,consumeElapsed:lift?1.2:0};
     P.step(60,state);fitAvatarHeldProp(P.a,prop,lift);P.holder.updateMatrixWorld(true);
     const h=handAt(P.a,'R'),y=frontYaw(P.a);for(const turn of [-1.2,-.4,.6,2.2])shoot(sc,h,y+turn,.2,P.a.measure.hand*10,`${kind} ${lift?'at the lips':'held'} · grip ${P.a.gripOf?.('R')}`);P.a.dispose();}}
+  }else if(beer){
+   // a glass of beer off Minato's counter (drink-beer.js), seated on a counter stool, the glass where Thao sets one down
+   const {createDrinkProp,setPropPortion}=await import(base+'src/people/izakaya-beer.js'),{createBeerTableDrink,beerParts,BEER_MOTIONS}=await import(base+'src/avatars/drink-beer.js');
+   const kind={mug:'draft',pint:'pint',glass:'bottle'}[beer],sc=scene(),P=body(name,sc),state={seated:true,seatHeight:.46,seatFront:.19};P.step(90,state);
+   const room=P.holder,counter=new T.Mesh(new T.BoxGeometry(1.6,.06,.7),new T.MeshStandardMaterial({color:0xb08a5a}));counter.position.copy(P.a.root.localToWorld(new T.Vector3(0,.739-.03,.52+.35)));sc.add(counter);
+   const stool=new T.Mesh(new T.CylinderGeometry(.17,.17,.04,24),new T.MeshStandardMaterial({color:0x4a3a2a}));stool.position.copy(P.a.root.localToWorld(new T.Vector3(0,.4,.1)));sc.add(stool);
+   const prop=createDrinkProp(kind,{held:true});sc.add(prop);prop.position.copy(P.a.root.localToWorld(new T.Vector3(-.15,.739,.58)));prop.quaternion.copy(P.a.root.getWorldQuaternion(new T.Quaternion())).multiply(new T.Quaternion().setFromAxisAngle(new T.Vector3(0,1,0),Math.PI));
+   let consumed=0;const lease={prop,kind,startFraction:1,endFraction:.6,get consumedPortion(){return consumed;},consume(p){consumed=.4*p;setPropPortion(prop,1-consumed,{immediate:true});},finish:()=>({}),cancel:()=>({})};
+   const drink=createBeerTableDrink(P.a,lease),y=frontYaw(P.a),m=P.a.measure,M=BEER_MOTIONS[beer],B=beerParts(M);
+   const keys=[['take',.62,'the hand dips'],['take',1.42,'on the glass'],['first',.45,'anticipation'],['first',.95,'the lift'],['first',1.42,'contact'],['first',2.6,'the gulp'],['first',3.35,'off the lip'],['first',3.65,'kaa!'],['first',4.55,'the wipe'],['first',5.25,'set-down: up first'],['first',5.96,'the tap'],['let',.75,'let go']];
+   const strips=[['first',.75,'lift'],['first',2.2,'gulp'],['first',5.86,'set-down']],done=new Set();let strip=null;
+   const aimAt=()=>{const c=P.a.bones.chest.getWorldPosition(new T.Vector3()),hd=P.a.bones.head.getWorldPosition(new T.Vector3());return hd.lerp(c,.45);};
+   for(let i=0;i<60*30&&drink.active;i++){P.step(1,state);drink.update(1/60);P.holder.updateMatrixWorld(true);const d=drink.diagnostics;if(!d)continue;const rel=d.t-B[d.part][0];
+    for(const [part,at,label] of keys)if(part===d.part&&rel>=at&&!done.has(label)){done.add(label);for(const [turn,v] of [[0,'front'],[-.8,'three-quarter'],[-Math.PI/2,'side']])shoot(sc,aimAt(),y+turn,.12,2.3,`${label} · ${v}`);
+     if(label==='kaa!'){const q=P.a.root.getWorldQuaternion(new T.Quaternion()),fwd=new T.Vector3(0,0,1).applyQuaternion(q),right=new T.Vector3(-1,0,0).applyQuaternion(q),pivot=P.a.root.getWorldPosition(new T.Vector3()).add(new T.Vector3(0,m.H+.14,0)).addScaledVector(right,m.Rh*m.headSX+.26);
+      shootFrom(sc,pivot.clone().addScaledVector(fwd,-2.2).add(new T.Vector3(0,.11,0)),P.a.bones.chest.getWorldPosition(new T.Vector3()),'kaa! · the game camera, indoors');}}
+    for(const [part,at,label] of strips)if(part===d.part&&rel>=at&&!done.has('strip '+label)){done.add('strip '+label);strip={label,n:0};}
+    if(strip&&strip.n<8){shoot(sc,aimAt(),y-.8,.12,2.3,`${strip.label} ${strip.n+1}/8`);strip.n++;}}
+   P.a.dispose();
   }else if(can){
    // a bought can, sealed, opened and drunk as animated in Blender (actors.js drinkBought: the DrinkCan move)
    const {createDrinkProp}=await import(base+'src/people/izakaya-beer.js'),{CAN_PARTS}=await import(base+'src/avatars/drink-can.js');
@@ -194,7 +216,7 @@ try{
   const cols=Math.min(6,tiles.length),sheet=document.createElement('canvas');sheet.width=S*cols;sheet.height=S*Math.ceil(tiles.length/cols);const ctx=sheet.getContext('2d');
   tiles.forEach(({c,label},i)=>{ctx.drawImage(c,(i%cols)*S,Math.floor(i/cols)*S);ctx.fillStyle='#253b3d';ctx.font='15px sans-serif';ctx.fillText(label,(i%cols)*S+8,Math.floor(i/cols)*S+20);});
   return sheet.toDataURL('image/png');
- },[NAME,PAIRS,POSES,SIT,WHO,GRIP,OUTFIT,HOLD,DRIVE,RIDE,SHAPE,CAN,SEATED,MOVES,BOUGHT,WIND]);
+ },[NAME,PAIRS,POSES,SIT,WHO,GRIP,OUTFIT,HOLD,DRIVE,RIDE,SHAPE,CAN,SEATED,MOVES,BOUGHT,WIND,BEER]);
  if(data.files)for(const [file,url] of data.files){const path=resolve(out,file);await writeFile(path,Buffer.from(url.split(',')[1],'base64'));console.log('wrote',path);}
  else{await writeFile(out,Buffer.from(data.split(',')[1],'base64'));console.log('wrote',out);}
 }catch(e){errors.push(String(e?.stack||e));}
