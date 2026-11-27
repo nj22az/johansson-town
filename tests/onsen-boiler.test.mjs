@@ -56,7 +56,7 @@ test('the boiler stands at the back corner of the bathhouse, off the wall, with 
  const world=createTown({scene:new THREE.Scene(),sites:createIslandBusinesses(),mobile:false,shadows:false,register:(o,label,fn)=>prompts.push({o,label,fn}),enter(){},onAction:(...a)=>actions.push(a),getPlayerPosition:()=>new THREE.Vector3()});
  world.group.updateMatrixWorld(true);
  const box=name=>{const o=world.group.getObjectByName(name);assert.ok(o,name);return new THREE.Box3().setFromObject(o);};
- const pad=box('Umi-no-yu boiler pad'),heater=box('Umi-no-yu boiler and oil tank'),flue=box('Umi-no-yu boiler flue and pipes');
+ const heater=box('Umi-no-yu boiler and oil tank'),flue=box('Umi-no-yu boiler flue and pipes');assert.equal(world.group.getObjectByName('Umi-no-yu boiler pad'),undefined,'no slab of its own (ground-standard.js)');
  // Outside the bathhouse's and the bath's walls (park-onsen colliders), at its corner with the bath's fence, on the park side.
  const solid=world.colliders.find(c=>c.id==='onsen-boiler');assert.ok(solid);
  const walls=world.colliders.filter(c=>c.id==='park-onsen');
@@ -64,8 +64,9 @@ test('the boiler stands at the back corner of the bathhouse, off the wall, with 
  assert.equal(walls.some(w=>overlap(w,solid)),false,'outside the walls, not in the bath');
  const [cx,cz]=onsenPoint(-3.8,-.2);assert.ok(Math.hypot(solid.x+solid.w/2-cx,solid.z+solid.d/2-cz)<.4,'at the corner where the bathhouse meets the bath’s fence');
  assert.ok(Math.hypot(ONSEN_DOOR[0]-solid.x,ONSEN_DOOR[1]-solid.z)>4,'away from the street door');
- // It stands on its pad: the heater's foot a millimetre over the pad's top, the pad's top over the lawn.
- assert.ok(Math.abs(heater.min.y-ONSEN_BOILER.pad.top-.001)<1e-6,'the heater on the pad');assert.ok(pad.max.y>.05,'the pad over the lawn');
+ // It stands on the garden's ground, 3 mm over it (the ground there is at 0, ground-standard.js), never in it.
+ const {groundHeight:ground}=await import('../src/world/layout.js');const [ux,uz]=onsenPoint((ONSEN_BOILER.unit.x0+ONSEN_BOILER.unit.x1)/2,(ONSEN_BOILER.unit.z0+ONSEN_BOILER.unit.z1)/2);
+ assert.ok(Math.abs(heater.min.y-ground(ux,uz)-ONSEN_BOILER.unit.foot)<1e-6,'the heater on the ground');
  assert.ok(flue.max.y>2.4&&flue.max.y<3.3,'the flue up the wall to its cap, under the eaves');
  // Its place to work it: clear of every solid, on the town's walkable ground, facing the heater a step away.
  const [sx,sz]=ONSEN_BOILER.stand;
