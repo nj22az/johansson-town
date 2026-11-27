@@ -25,8 +25,9 @@ make strict adherence to it".
 - **Performances are keyed pose to pose in Blender and exported** (`tools/blender/drink-can.py`, `src/avatars/motion.js`).
   Procedural moves are eased curves, never linear in time on anything alive.
 - **No new move, and no change to one, may add a failure to the principles audit.** The moves that do not comply yet are
-  fixed, the most-seen first. They are listed in the audit's baseline; until it exists, assume a move does not comply
-  until it has been checked.
+  fixed, the most-seen first. They are listed in the audit's baseline (`tests/animation-principles.baseline.json`, written
+  by `node tools/animation-audit.mjs --write-baseline`; `tests/animation-principles.test.mjs` holds it): a move on it does
+  not comply until it comes off it.
 
 ## Owner's decision — 26 November 2026: Johansson is drawn from the owner, in Blender
 
