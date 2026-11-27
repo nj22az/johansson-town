@@ -47,6 +47,48 @@ export function drinkGrip(prop,m,side='R'){
  const out=m.realHand?(g.handle!=null?g.handle+.02:g.radius+.012):g.handle!=null?g.handle+handHold(m,g.bar??BAR).out:handHold(m,g.radius).out;
  return new THREE.Vector3(s*out,-g.height,0);
 }
+/**
+ * Where a vessel held round its body sits in the kit's hand (a can, a glass, a bottle): its socket, the vessel's own frame
+ * in the hand bone's (metres). Its axis lies across the hand along the knuckle line (the hand's +z, the thumb's way: held
+ * upright, the thumb is up), against the palm where the hand closes round it (build.js handHold: the wrap's, for a can);
+ * its middle (`grip.height` up it) level with the hand's middle; its opening toward the wrist, to be drunk from (the
+ * owner, 27 November 2026: "He is holding the can very weird"). The same for either hand (the palm is the right's +x).
+ */
+export function canSocket(m,prop,side='R'){
+ const g=prop?.userData?.grip,h=handHold(m,g?.radius??.033),s=side==='R'?1:-1;
+ const position=new THREE.Vector3(s*h.out,h.at[1],-(g?.height??.06));
+ const quaternion=new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(new THREE.Vector3(-1,0,0),new THREE.Vector3(0,0,1),new THREE.Vector3(0,1,0)));
+ return {position,quaternion};
+}
+/**
+ * The lower lip and the middle of the mouth where they are drawn on this body's head (the painted mouth, faceLayout, on the
+ * head's own mesh, found by a ray from the head's middle), in the head bone's frame: where a can's rim is put to drink.
+ */
+export function lowerLip(avatar){
+ const {measure:m,bones:b,face}=avatar,L=faceLayout(avatar.recipe);avatar.root.updateMatrixWorld(true);
+ const centre=b.head.localToWorld(new THREE.Vector3(0,m.headCentre-m.headY,0)),ray=new THREE.Raycaster(),hits=[];
+ const on=y=>{const theta=Math.PI*.28+y/256*Math.PI*.58,phi=Math.PI/2-.95+L.mouthX/256*1.9;
+  const v=shapeHeadPoint(new THREE.Vector3(-Math.cos(phi)*Math.sin(theta),Math.cos(theta),Math.sin(phi)*Math.sin(theta)),m.profile);
+  const p=b.head.localToWorld(new THREE.Vector3(v.x*m.Rh*m.headSX,m.headCentre-m.headY+v.y*m.Rh*m.headSY,v.z*m.Rh*.98)),dir=p.clone().sub(centre).normalize();
+  // (from outside the head, in: the first of the drawn head it meets)
+  ray.set(centre.clone().addScaledVector(dir,m.Rh*3),dir.clone().negate());hits.length=0;
+  const hit=face?.head?ray.intersectObject(face.head,true,hits)[0]:null;
+  return b.head.worldToLocal((hit?hit.point:p).clone());};
+ return {mouth:on(L.mouthY),lower:on(L.mouthY+7*L.mouthS)};
+}
+/** The vessel's turn held upright (tipped by a sip's `q`), its opening toward the drinker (its +z to the body's -z). */
+const HALF_TURN_Y=new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,1,0),Math.PI);
+/**
+ * A vessel held round its body in the kit's hand (a can, a glass, a bottle; not a handle, not food, not a hand of its own):
+ * it is in the hand's socket (canSocket), so the hand is turned to it, not it to the hand. For the vessel's world turn `q`
+ * (upright, tipped by the sip) the vessel's own turn (`vq`, its opening toward him), the hand's (`hq`) and the socket.
+ * Null for anything else, which keeps its own ways.
+ */
+export function socketHold(avatar,prop,q,side='R'){
+ const g=prop?.userData?.grip;if(!g||g.handle!=null||g.radius==null||prop.userData.food||avatar.measure.realHand||avatar.pixar)return null;
+ const S=canSocket(avatar.measure,prop,side),vq=q.clone().multiply(HALF_TURN_Y);
+ return {S,vq,hq:vq.clone().multiply(S.quaternion.clone().invert())};
+}
 /** A handle's bar, unless the vessel says (its `grip.bar`): about a finger thick. */
 const BAR=.008;
 /** How far a hand closes on what it holds (build.js grip): round a handle's bar, or a glass's or a bottle's body, as far
@@ -144,12 +186,15 @@ export function poseAvatarConsumption(avatar,lift,food=false,prop=null){
  // the screenshots? Look and correct")
  const rimNear=avatar.pixar&&!food?-(prop?.userData.grip?.radius??.039)*.9:0;
  const held=!food&&prop?fingerHold(avatar,prop):null,heldQ=held?jugTurn(q):null,heldHandQ=held?heldQ.clone().multiply(HOLD_Q):null;
+ // (held round its body in the kit's hand: in the hand's socket, the hand turned to it)
+ const socket=!food&&prop&&!held?socketHold(avatar,prop,q):null;
  // (a jug held by its handle hangs its base a hand's height under the fist: the resting hand comes up and forward so the
  // base clears the thighs; at the lap it went into Thuận's)
  if(held){const base=held.centre.clone().applyQuaternion(heldHandQ).sub(held.barAt.clone().applyQuaternion(heldQ)),below=Math.max(0,-base.y),up=new THREE.Vector3(0,1,0),fwd=new THREE.Vector3(0,0,1).applyQuaternion(root.getWorldQuaternion(new THREE.Quaternion()));
   rest.addScaledVector(up,Math.max(0,below-.05)).addScaledVector(fwd,.06);}
  // (with finger bones: from the wrist to the jug's base is the fingers' hollow less the bar's place on the jug; then the rim)
  const contact=held?held.centre.clone().applyQuaternion(heldHandQ).sub(held.barAt.clone().applyQuaternion(heldQ)).add(new THREE.Vector3(0,prop.userData.rimHeight??.15,rimNear).applyQuaternion(q))
+  :socket?socket.S.position.clone().applyQuaternion(socket.hq).add(new THREE.Vector3(0,prop.userData.rimHeight??.15,0).applyQuaternion(socket.vq))
   :(food?new THREE.Vector3(0,.04,.115):palm(m).add(drinkGrip(prop,m)).add(new THREE.Vector3(0,prop?.userData.rimHeight??.15,rimNear))).applyQuaternion(q);
  // Short arms and large custom heads still meet the drink. Start from a
  // reachable resting hand, then lean gently; any remaining reach is met by
@@ -182,6 +227,7 @@ export function poseAvatarConsumption(avatar,lift,food=false,prop=null){
  // The vessel sits inside the hand, where the thumb can close on it, rather
  // than hanging outside the wrist. Keep the palm level throughout the sip.
  if(held)alignDrinkHand(avatar,heldHandQ);
+ else if(socket)alignDrinkHand(avatar,socket.hq);
  else if(!food)alignDrinkHand(avatar,q);
  else{b.handR.quaternion.copy(b.handR.parent.getWorldQuaternion(new THREE.Quaternion()).invert().multiply(q));b.handR.updateWorldMatrix(false,true);}
 }
@@ -200,6 +246,14 @@ export function fitAvatarHeldProp(avatar,prop,lift=0,side='R'){
   const world=new THREE.Matrix4().compose(p,jq,new THREE.Vector3(1,1,1));
   prop.matrixAutoUpdate=false;prop.matrix.copy(hand.matrixWorld).invert().multiply(world);prop.matrixWorldNeedsUpdate=true;
   prop.updateMatrixWorld(true);prop.userData.tableDrinkFluid?.update(prop.userData.portion??1);
+  return;
+ }
+ // (round its body in the kit's hand: in the hand's socket, the hand turned so the vessel is upright, tipped by the sip;
+ // the owner, 27 November 2026, "He is holding the can very weird": it stood upright beside a half-closed hand)
+ const socket=!food?socketHold(avatar,prop,q,side):null;
+ if(socket){
+  alignDrinkHand(avatar,socket.hq,side);
+  prop.matrixAutoUpdate=false;prop.matrix.compose(socket.S.position,socket.S.quaternion,new THREE.Vector3(1,1,1));prop.matrixWorldNeedsUpdate=true;
   return;
  }
  if(!food)alignDrinkHand(avatar,q,side);
