@@ -50,9 +50,13 @@ function shopPrint(product){
  const front=new THREE.CylinderGeometry(SERVING.radius,SERVING.radius,SERVING.label,24,1,true,-Math.PI*.8,Math.PI*1.6),uv=front.attributes.uv;
  for(let i=0;i<uv.count;i++)uv.setXY(i,(slot%ATLAS_COLS+.025+uv.getX(i)*.95)/ATLAS_SPAN,1-(Math.floor(slot/ATLAS_COLS)+.025+(1-uv.getY(i))*.95)/ATLAS_ROWS);
  const atlas=getLabelMaterial().map;
- return [printed(front,new THREE.MeshBasicMaterial({map:atlas,toneMapped:false}),'Printed can · '+product.brand.name),
+ const print=[printed(front,new THREE.MeshBasicMaterial({map:atlas,toneMapped:false}),'Printed can · '+product.brand.name),
   printed(new THREE.CylinderGeometry(SERVING.radius,SERVING.radius,SERVING.label,8,1,true,Math.PI*.8,Math.PI*.4),
    new THREE.MeshStandardMaterial({color:product.brand.paper,roughness:.45,metalness:.15}),'Can back · '+product.brand.name)];
+ // (its label out of the hand, as the machine's cans: the label is centred on the cylinder's +z and the hand's socket holds
+ // the can with its -z to the front, so both halves turn half round; hand-shots.mjs --can … --bought "Umineko lager")
+ for(const mesh of print)mesh.rotation.y=Math.PI;
+ return print;
 }
 
 /** The bought can `name` (its name in the bag), ready for Johansson's hand (actors.js hold). */

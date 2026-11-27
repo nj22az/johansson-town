@@ -20,7 +20,10 @@ const sourcePage=html=>html.replace(/<link rel="modulepreload" data-town-runtime
  .replace(/from ['"]\.\/runtime\/audio-[^'"]+['"]/g,"from './src/audio/town-audio.js?snappy=1'")
  .replace(/window\.JOHANSSON_FEED_MODULE="[^"]+"/,'window.JOHANSSON_FEED_MODULE="./src/feed/mount.js"')
  .replace(/window\.JOHANSSON_PORTRAIT_MODULE="[^"]+"/,'window.JOHANSSON_PORTRAIT_MODULE="./src/avatars/guide-portraits.js"');
-const server=createServer(async(req,res)=>{try{const path=decodeURIComponent(new URL(req.url,'http://x').pathname);const file=resolve(site,'.'+(path.endsWith('/')?path+'index.html':path));if(!file.startsWith(site))throw Error('outside');
+// (the Town is this checkout, at /johansson-town/, wherever it is: a worktree's parent is not the Office site, and its
+// johansson-town/ may be another checkout)
+const server=createServer(async(req,res)=>{try{const path=decodeURIComponent(new URL(req.url,'http://x').pathname),town=path.startsWith('/johansson-town/');
+ const rel=(town?path.slice('/johansson-town'.length):path),file=resolve(town?root:site,'.'+(rel.endsWith('/')?rel+'index.html':rel));if(!file.startsWith(town?root:site))throw Error('outside');
  let body=await readFile(file);if(SOURCE&&file===resolve(root,'index.html'))body=sourcePage(body.toString());
  res.writeHead(200,{'content-type':TYPES[extname(file)]||'application/octet-stream','cache-control':'no-store'});res.end(body);}catch{res.writeHead(404);res.end();}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
