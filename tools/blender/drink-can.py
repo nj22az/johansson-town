@@ -20,8 +20,13 @@ improved for animating:
   can to a millimetre); bones for fifteen finger joints a hand would take the game's skeleton from 28 bones to 58 for every
   body on screen, every point of the hand weighted to three of them, and fingers posed joint by joint in every move.
 - CONTROLS: the arms by IK (`ik.R`, `ik.L`: where the hand goes and how it is turned; `pole.R`, `pole.L`: where the elbow
-  goes), each wrist kept in what a wrist does (animate.js PALM.wrist, as IK limits); the head by FK, and a `look` target
-  the head turns to as far as `look` says. Baked to the game's bones on export.
+  goes), each wrist kept in what a wrist does (animate.js PALM.wrist, in the game's Euler order: Blender's ZYX is three.js's
+  XYZ); the head by FK, and a `look` target the head turns to as far as `look` says. Each pole's angle is found by
+  measuring, not set (the left arm's is half a turn from the right's: with both at 0 the left elbow went away from its
+  pole, into his chest); the poles the wrist limits ask for are eased into one another, so no elbow swings over between
+  keys. Baked to the game's bones on export: the forearm taking the hand's twist, and each upper arm's roll settled as the
+  game's arms have it (the elbow bending about its own x; no roll where the arm is straight), so the motion blends from and
+  to the game's poses the short way and no joint turns over between frames.
 - The CAN (izakaya-serving-visuals.js 'can', sealed, at its size) on the socket, and its TAB: on the can, then in the left
   hand's hook from the moment it tears off (two Child Of constraints, their influence keyed), then gone in the shirt's
   pocket.
@@ -193,6 +198,35 @@ for side in 'RL':
     c.chain_count, c.use_tail, c.iterations = 2, True, 2000
     c = P['hand' + side].constraints.new('COPY_ROTATION')
     c.target, c.subtarget = rig, 'ik.' + side
+
+
+def pole_off(side):
+    """How far round the line from the shoulder to the wrist the elbow is from its pole (radians, signed): the IK's elbow
+    goes toward its pole only with the pole's angle set for the way these bones are rolled."""
+    bpy.context.view_layer.update()
+    S, E = (rig.matrix_world @ P['shoulder' + side].matrix).to_translation(), (rig.matrix_world @ P['elbow' + side].matrix).to_translation()
+    W, Q = (rig.matrix_world @ P['ik.' + side].matrix).to_translation(), (rig.matrix_world @ P['pole.' + side].matrix).to_translation()
+    a = (W - S).normalized()
+    e, q = (E - S) - a * (E - S).dot(a), (Q - S) - a * (Q - S).dot(a)
+    return math.atan2(a.dot(q.cross(e)), q.dot(e))
+
+
+# (the poles' angles found, not guessed: each arm reaching forward and down with its pole out at its side and back, the
+# angle turned until the elbow is the pole's way; the animator's poles then mean what they say)
+for side in 'RL':
+    sg = -1 if side == 'R' else 1
+    ik, pole = P['ik.' + side], P['pole.' + side]
+    c = P['elbow' + side].constraints['IK']
+    for _ in range(3):
+        offs = []
+        for target, at in (((0, -.2, -.2), (sg * .5, .2, -.1)), ((-sg * .1, -.22, -.05), (sg * .5, .3, -.2)), ((0, -.1, -.3), (sg * .4, -.2, -.2))):
+            ik.matrix = Matrix.Translation(rest['shoulder' + side] + Vector(target))
+            pole.matrix = Matrix.Translation(rest['shoulder' + side] + Vector(at))
+            offs.append(pole_off(side))
+        c.pole_angle = math.remainder(c.pole_angle - sum(offs) / len(offs), math.tau)
+    print(f'pole angle {side}: {math.degrees(c.pole_angle):.1f} deg, the elbow then {max(abs(math.degrees(o)) for o in offs):.1f} deg off its pole')
+    ik.matrix_basis = Matrix()
+    pole.matrix_basis = Matrix()
 c = P['head'].constraints.new('DAMPED_TRACK')
 c.target, c.subtarget, c.track_axis = rig, 'look', 'TRACK_Z'
 c.influence = 0
@@ -407,13 +441,13 @@ BODY = [
     (3.05, (-.01, 0, 0), (-.02, 0, 0), (-.02, 0, 0), (-.02, 0, 0)),              # up to meet it
     (3.45, (-.02, 0, 0), (-.04, 0, 0), (-.05, 0, 0), (-.10, 0, 0)),              # contact
     (4.80, (-.04, 0, 0), (-.09, 0, 0), (-.12, 0, 0), (-.30, 0, 0)),              # deep: the head back
-    (5.25, (-.02, 0, 0), (-.04, 0, 0), (-.05, 0, 0), (-.10, 0, 0)),              # release
-    (5.55, (.01, 0, 0), (.02, 0, 0), (.0, 0, 0), (-.04, 0, 0)),                  # breath
-    (5.85, (-.02, 0, 0), (-.04, 0, 0), (-.06, 0, 0), (-.12, 0, 0)),              # second pull
+    (5.35, (-.02, 0, 0), (-.04, 0, 0), (-.05, 0, 0), (-.10, 0, 0)),              # release
+    (5.65, (.01, 0, 0), (.02, 0, 0), (.0, 0, 0), (-.04, 0, 0)),                  # breath
+    (5.95, (-.02, 0, 0), (-.04, 0, 0), (-.06, 0, 0), (-.12, 0, 0)),              # second pull
     (7.10, (-.05, 0, 0), (-.12, 0, 0), (-.16, 0, 0), (-.40, 0, 0)),              # tipped right up
-    (7.60, (-.01, 0, 0), (-.02, 0, 0), (-.02, 0, 0), (-.06, 0, 0)),              # release
-    (7.95, (.03, 0, 0), (.04, 0, 0), (.04, 0, 0), (.10, 0, 0)),                  # breath out, a nod
-    (8.40, (-.005, 0, 0), (-.01, 0, 0), (0, 0, 0), (.02, 0, 0)),                 # settle (overshoot)
+    (7.70, (-.01, 0, 0), (-.02, 0, 0), (-.02, 0, 0), (-.06, 0, 0)),              # release
+    (8.05, (.03, 0, 0), (.04, 0, 0), (.04, 0, 0), (.10, 0, 0)),                  # breath out, a nod
+    (8.50, (-.005, 0, 0), (-.01, 0, 0), (0, 0, 0), (.02, 0, 0)),                 # settle (overshoot)
     (8.80, (0, 0, 0), (0, 0, 0), (0, 0, 0), (.03, 0, 0)),
     # A sip (a resident drinking a can that is open, as the game's sips come: in two and a half seconds, from the waist)
     (9.00, (0, 0, 0), (0, 0, 0), (0, 0, 0), (.03, 0, 0)),
@@ -430,7 +464,7 @@ for t, sp, ch, nk, hd in BODY:
     for n, e in (('spine', sp), ('chest', ch), ('neck', nk), ('head', hd)):
         key_fk(n, t, e)
 # swallows: a small dip of the chin at each gulp (the head's own keys between the deep ones)
-for t0, t1, n in ((3.70, 4.70, 3), (6.10, 7.00, 3), (10.15, 10.55, 1)):
+for t0, t1, n in ((3.70, 4.70, 3), (6.20, 7.00, 3), (10.15, 10.55, 1)):
     for i in range(n):
         t = t0 + (t1 - t0) * (i + .5) / n
         scene.frame_set(F(t))
@@ -460,7 +494,7 @@ def pull(t0, t1, a0, a1, step=.1):
 
 # The can (right hand): held at his waist, brought to the lower chest to be opened, opened, then drunk.
 WAIST = (-.09 * k, M['chestY'] - .12 * k, .17 * k)                            # in the body's frame (game), before the right hip
-LOWCHEST = (-.03 * k, M['chestY'] + .05 * k, .19 * k)
+LOWCHEST = (-.05 * k, M['chestY'] - .01 * k, .27 * k)                          # (out in front, low: the left arm reaches it with its elbow out at his side, clear of his chest)
 CANKEYS = [
     (0.00, lambda t: can_at(WAIST, can_turn(0, .25))),
     (0.25, lambda t: can_at((-.07 * k, M['chestY'] - .05 * k, .21 * k), can_turn(-.08, .15))),       # on the way up (arc out)
@@ -473,14 +507,14 @@ CANKEYS = [
     (3.10, lambda t: can_at((-.15 * k, M['chestY'] + .14 * k, .2 * k), can_turn(.35, .1))),           # the arc: out and up
     *pull(3.45, 4.80, 40, 75),                                                                      # contact, then deep
     *pull(4.80, 5.10, 75, 73, .05),                                                                      # the last swallow of it
-    (5.20, lambda t: at_lip(t, math.radians(30), away=.03 * k, down=.01 * k)),                       # release
-    (5.55, lambda t: at_lip(t, math.radians(18), away=.06 * k, down=.04 * k)),                       # a breath
-    *pull(5.85, 7.10, 60, 100),                                                                     # the second pull: the last of it
+    (5.35, lambda t: at_lip(t, math.radians(32), away=.03 * k, down=.01 * k)),                       # release (a beat: not snatched away)
+    (5.65, lambda t: at_lip(t, math.radians(18), away=.06 * k, down=.04 * k)),                       # a breath
+    *pull(5.95, 7.10, 60, 100),                                                                     # the second pull: the last of it
     *pull(7.10, 7.40, 100, 98, .05),
-    (7.55, lambda t: at_lip(t, math.radians(30), away=.04 * k, down=.02 * k)),                       # release
-    (7.80, lambda t: can_at((-.11 * k, M['chestY'] + .14 * k, .23 * k), can_turn(.25, .05))),         # down, the arc out
-    (8.05, lambda t: can_at((-.14 * k, M['chestY'] + .0 * k, .2 * k), can_turn(.08, .1))),
-    (8.40, lambda t: can_at((-.075 * k, M['chestY'] - .135 * k, .17 * k), can_turn(-.04, .25))),     # settles past the waist
+    (7.70, lambda t: at_lip(t, math.radians(35), away=.04 * k, down=.02 * k)),                       # release
+    (7.95, lambda t: can_at((-.11 * k, M['chestY'] + .14 * k, .23 * k), can_turn(.25, .05))),         # down, the arc out
+    (8.20, lambda t: can_at((-.14 * k, M['chestY'] + .0 * k, .2 * k), can_turn(.08, .1))),
+    (8.50, lambda t: can_at((-.075 * k, M['chestY'] - .135 * k, .17 * k), can_turn(-.04, .25))),     # settles past the waist
     (8.80, lambda t: can_at(WAIST, can_turn(0, .25))),
     (9.00, lambda t: can_at(WAIST, can_turn(0, .25))),
     (9.30, lambda t: can_at((-.09 * k, M['chestY'] - .135 * k, .175 * k), can_turn(-.05, .25))),     # anticipation: dips
@@ -497,18 +531,22 @@ POLES_R = [(9.0, (-.45, .75, -.2)), (9.65, (-.7, 1.05, .1)), (10.2, (-.75, 1.1, 
            (3.45, (-.75, 1.1, .2)), (4.80, (-.8, 1.2, .25)), (5.55, (-.7, 1.0, .1)), (7.10, (-.85, 1.25, .3)), (8.0, (-.6, .9, 0)), (8.8, (-.45, .75, -.2))]
 # The left hand: at his side, then over the can, its forefinger hooked under the ring; the ring lifted; the tab torn off and
 # drawn up and away; to the pocket; back to his side.
-LEFT_REST = (.25 * k, M['chestY'] - .22 * k, .02 * k)
+# (the left hand at rest as the game's own arm hangs (animate.js: the elbow a little bent, -0.4 rad about its x), not
+# straight down at full stretch, where the IK's elbow snaps from bent to straight in a frame, and from where the motion
+# would blend out to a bent arm the long way)
+REST_TURN = Quaternion((0, 0, 1), .1) @ Quaternion((1, 0, 0), -.4)
+LEFT_REST = tuple(Vector(K['bones']['elbowL']) + Quaternion((1, 0, 0), -.4) @ (Vector(K['bones']['handL']) - Vector(K['bones']['elbowL'])))
 CLOSE = {'R': [(0, .4), (.15, K['hand']['wrapAt'] * 1.0), (12.0, K['hand']['wrapAt'])], 'L': [(0, 0), (12.0, 0)]}
 HOOK_L = [(0, 0), (.45, 0), (.8, 1), (1.98, 1), (2.15, .3), (2.45, 0), (12.0, 0)]
 LOOK = [(0, 0), (.2, .35), (1.6, .35), (1.9, .1), (2.3, .3), (2.75, .4), (3.0, 0), (9.1, 0), (9.3, .35), (9.55, 0), (12.0, 0)]
-BLINK = [(0, 0), (3.6, 0), (3.85, 1), (4.95, 1), (5.15, 0), (5.95, 0), (6.15, 1), (7.25, 1), (7.45, 0), (10.05, 0), (10.2, 1), (10.6, 1), (10.75, 0), (12.0, 0)]
-BREATH = [(0, 0), (5.2, 0), (5.4, .8), (5.7, 0), (7.6, 0), (7.85, 1), (8.3, .2), (8.8, 0), (10.85, 0), (11.05, .6), (11.4, 0), (12.0, 0)]
-SMILE = [(0, 0), (2.2, .4), (2.6, 0), (7.6, 0), (7.95, 1), (8.8, .6), (9.0, 0), (10.9, 0), (11.2, .5), (12.0, .3)]
-LIPW = [(0, 0), (3.40, 0), (3.46, 1), (5.10, 1), (5.20, 0), (5.79, 0), (5.85, 1), (7.40, 1), (7.50, 0), (9.90, 0), (9.96, 1), (10.55, 1), (10.65, 0), (12.0, 0)]
+BLINK = [(0, 0), (3.6, 0), (3.85, 1), (4.95, 1), (5.15, 0), (6.05, 0), (6.25, 1), (7.25, 1), (7.45, 0), (10.05, 0), (10.2, 1), (10.6, 1), (10.75, 0), (12.0, 0)]
+BREATH = [(0, 0), (5.3, 0), (5.5, .8), (5.8, 0), (7.7, 0), (7.95, 1), (8.4, .2), (8.8, 0), (10.85, 0), (11.05, .6), (11.4, 0), (12.0, 0)]
+SMILE = [(0, 0), (2.2, .4), (2.6, 0), (7.7, 0), (8.05, 1), (8.8, .6), (9.0, 0), (10.9, 0), (11.2, .5), (12.0, .3)]
+LIPW = [(0, 0), (3.25, 0), (3.46, 1), (5.10, 1), (5.25, 0), (5.78, 0), (5.95, 1), (7.40, 1), (7.55, 0), (9.78, 0), (9.96, 1), (10.55, 1), (10.65, 0), (12.0, 0)]
 POCKETW = [(0, 0), (1.55, 0), (1.85, 1), (2.0, 1), (2.25, 0), (12.0, 0)]
-MOUTHW = [(0, 0), (2.75, 0), (3.45, 1), (7.44, 1), (8.05, 0), (9.3, 0), (9.95, 1), (10.85, 1), (11.3, 0), (12.0, 0)]
+MOUTHW = [(0, 0), (2.75, 0), (3.45, 1), (7.44, 1), (8.2, 0), (9.3, 0), (9.95, 1), (10.85, 1), (11.3, 0), (12.0, 0)]
 RINGW = [(0, 0), (.76, 0), (.80, 1), (1.28, 1), (1.30, 0), (12.0, 0)]
-FILL = [(0, 1), (3.55, 1), (4.95, .45), (6.15, .45), (7.25, 0), (8.8, 0), (9.0, 1), (12.0, 1)]
+FILL = [(0, 1), (3.55, 1), (4.95, .45), (6.2, .45), (7.25, 0), (8.8, 0), (9.0, 1), (12.0, 1)]
 for name, keys_ in (('hookL', HOOK_L), ('look', LOOK), ('blink', BLINK), ('breath', BREATH), ('smile', SMILE), ('lip', LIPW), ('ring', RINGW), ('fill', FILL), ('mouth', MOUTHW), ('pocket', POCKETW)):
     for t, v in keys_:
         key_prop(name, t, v)
@@ -589,7 +627,7 @@ pocket = lambda t: bone_point('chest', K['pocket']['position'], t)
 # stay above the lid and the forefinger is the one under the ring)
 PITCH = {.45: .6, .8: 1.05, 1.25: .95, 1.3: .95, 1.5: .6}
 LEFT = [
-    (0.00, lambda t: Matrix.Translation(Vector(LEFT_REST)) @ Quaternion((0, 0, 1), .1).to_matrix().to_4x4()),
+    (0.00, lambda t: Matrix.Translation(Vector(LEFT_REST)) @ REST_TURN.to_matrix().to_4x4()),
     (0.45, lambda t: left_for(Vector(ring_at(t, 0)) + Vector((.02 * k, .07 * k, .02 * k)), over(ring_at(t, 0), PITCH[.45]))),   # over the can
     (0.80, lambda t: left_for(Vector(ring_at(t, 0)) + Vector((0, .002 * k, 0)), over(ring_at(t, 0), PITCH[.8]))),               # the forefinger under the ring
     (1.25, lambda t: left_for(ring_at(t, .55), over(ring_at(t, .55), PITCH[1.25]))),                                           # lifted
@@ -597,8 +635,8 @@ LEFT = [
     (1.50, lambda t: left_for(Vector(ring_at(1.3, .55)) + Vector((.01 * k, .06 * k, .03 * k)))),        # up and away over the can's front
     (1.85, lambda t: left_for(Vector(pocket(t)) + Vector((0, .03 * k, .02 * k)), over(pocket(t), 1.0))),               # over the pocket
     (2.00, lambda t: left_for(Vector(pocket(t)) + Vector((0, -.005 * k, .005 * k)), over(pocket(t), 1.2))),           # in it
-    (2.45, lambda t: Matrix.Translation(Vector(LEFT_REST)) @ Quaternion((0, 0, 1), .1).to_matrix().to_4x4()),
-    (12.0, lambda t: Matrix.Translation(Vector(LEFT_REST)) @ Quaternion((0, 0, 1), .1).to_matrix().to_4x4()),
+    (2.45, lambda t: Matrix.Translation(Vector(LEFT_REST)) @ REST_TURN.to_matrix().to_4x4()),
+    (12.0, lambda t: Matrix.Translation(Vector(LEFT_REST)) @ REST_TURN.to_matrix().to_4x4()),
 ]
 POLES_L = [(0.0, (.45, .75, -.2)), (.8, (.6, 1.0, -.1)), (1.85, (.5, .9, -.3)), (2.45, (.45, .75, -.2)), (12.0, (.45, .75, -.2))]
 for t, p in POLES_L:
@@ -614,30 +652,42 @@ def wrist_excess(side):
     p = a * Vector((q.x, q.y, q.z)).dot(a)
     t = Quaternion((q.w, p.x, p.y, p.z))
     t.normalize()
-    e = (t.inverted() @ q).to_euler('XYZ')
+    e = (t.inverted() @ q).to_euler('ZYX')
     z = e.z if side == 'R' else -e.z                                        # (the left's turns are the right's mirror: y and z)
     return max(0, WRIST[0][0] - e.x, e.x - WRIST[0][1]) + max(0, WRIST[2][0] - z, z - WRIST[2][1])
 
 
 def settle_poles(side, times):
     pole = P['pole.' + side]
+    last, found = None, []
     for t in times:
         scene.frame_set(F(t))
         S = (rig.matrix_world @ P['shoulder' + side].matrix).to_translation()
         W = (rig.matrix_world @ P['ik.' + side].matrix).to_translation()
         p0 = (rig.matrix_world @ pole.matrix).to_translation()
         axis = (W - S).normalized()
-        best = None
-        for deg in sorted(range(-70, 71, 10), key=abs):
+        tried = []
+        for deg in range(-70, 71, 10):
             p = S + Matrix.Rotation(math.radians(deg), 3, axis) @ (p0 - S)
             pole.matrix = rig.matrix_world.inverted() @ Matrix.Translation(p)
             bpy.context.view_layer.update()
-            x = wrist_excess(side)
-            if best is None or x < best[0] - 1e-3:
-                best = (x, p)
-            if x <= 1e-3:
-                break
-        pole.matrix = rig.matrix_world.inverted() @ Matrix.Translation(best[1])
+            tried.append((wrist_excess(side), deg, p, (rig.matrix_world @ P['elbow' + side].matrix).to_translation()))
+        # (of the turns that keep the wrist as well as any can, the one whose elbow is nearest where the last key's was: the
+        # elbow goes on its way, it does not jump to the other side of the arm from one key to the next; the animator's own
+        # pole where nothing was found before)
+        least = min(x for x, *_ in tried)
+        ok = [c for c in tried if c[0] <= least + .06]                     # (soft_wrist, at the bake, takes up as little as this)
+        best = min(ok, key=lambda c: (c[3] - last).length + .002 * abs(c[1]) if last is not None else abs(c[1]))
+        last = best[3]
+        pole.matrix = rig.matrix_world.inverted() @ Matrix.Translation(best[2])
+        pole.keyframe_insert('location', frame=F(t))
+        found.append((t, pole.location.copy()))
+    # (and the found poles eased into one another, twice over their neighbours: one key's elbow a way round from the next's
+    # swung over in the frames between them; the wrist, a little past its ends where that leaves it, soft_wrist takes up)
+    for _ in range(2):
+        found = [(t, (found[max(0, i - 1)][1] + 2 * p + found[min(len(found) - 1, i + 1)][1]) / 4) for i, (t, p) in enumerate(found)]
+    for t, p in found:
+        pole.location = p
         pole.keyframe_insert('location', frame=F(t))
 
 
@@ -717,10 +767,43 @@ def twist_into_forearm(side, elbow, hand):
     return elbow @ t, t.inverted() @ hand
 
 
+UPPERARM = {s: (Vector(K['bones']['elbow' + s]) - Vector(K['bones']['shoulder' + s])).normalized() for s in 'RL'}
+
+
+ROLLED = {}
+
+
+def settle_roll(side, shoulder, elbow):
+    """The upper arm's roll about its own line, which the IK leaves to chance where the arm is near straight (and turns over
+    from one frame to the next), set as the game's arms have it: the elbow bending about its own x (forward, the hinge every
+    move of the game's bends it by) and, as the arm straightens, the upper arm not rolled at all. The arm is where it was:
+    only what the shoulder and the elbow each take of the turn about the upper arm's line changes, so the motion blends from
+    and to the game's own poses the short way, and samples between its frames without the arm wringing."""
+    u, f = UPPERARM[side], FOREARM[side]
+    rest = -2 * math.atan2(Vector((shoulder.x, shoulder.y, shoulder.z)).dot(u), shoulder.w)     # (the shoulder's own roll, undone)
+    perp = lambda v: v - u * v.dot(u)
+    d, n = perp(elbow @ f), perp(Vector((-1, 0, 0)).cross(f))                  # (the forearm, and the way a hinge bends it)
+    if n.length < 1e-6 or d.length < 1e-6:
+        a = rest
+    else:
+        hinge = math.atan2(u.dot(n.cross(d)), n.dot(d))
+        s = min(1, d.length / math.sin(.5))
+        s = s * s * (3 - 2 * s)
+        # (the way round from the one to the other kept from frame to frame, not the shorter: where the two are half a turn
+        # apart, the shorter way changes sides as the arm straightens, and the upper arm would turn over in a frame)
+        was = ROLLED.get(side)
+        diff = math.remainder(hinge - rest, math.tau)
+        if was is not None:
+            diff += math.tau * round((was - diff) / math.tau)
+        ROLLED[side] = diff
+        a = rest + diff * s
+    return shoulder @ Quaternion(u, a), Quaternion(u, -a) @ elbow
+
+
 def soft_wrist(side, q):
     """The wrist kept within what a wrist does (PALM.wrist): its bend and its turn to either side eased into their ends
     within the last 0.15 rad of them, never past (on the way between keys the controls bent it back a moment)."""
-    e = q.to_euler('XYZ')
+    e = q.to_euler('ZYX')                                    # (Blender's ZYX: the game's (three.js) XYZ, the order PALM.wrist is in)
     sg = 1 if side == 'R' else -1
     soft = lambda v, lo, hi, m=.15: (hi - m + m * math.tanh((v - hi + m) / m)) if v > hi - m else (lo + m - m * math.tanh((lo + m - v) / m)) if v < lo + m else v
     e.x = soft(e.x, WRIST[0][0] + .03, WRIST[0][1] - .03)                   # (a little inside them: the game samples between frames)
@@ -737,6 +820,7 @@ for f in frames:
     pose = {n: game_local(n) for n in JOINTS}
     for side in 'RL':
         pose['elbow' + side], pose['hand' + side] = twist_into_forearm(side, pose['elbow' + side], pose['hand' + side])
+        pose['shoulder' + side], pose['elbow' + side] = settle_roll(side, pose['shoulder' + side], pose['elbow' + side])
         pose['hand' + side] = soft_wrist(side, pose['hand' + side])
     baked.append(pose)
 for pb in P:
@@ -784,7 +868,7 @@ for f in frames:
     verify['hook'].append(g3((WM @ P['hook.L'].matrix).to_translation()))
     verify['ringAt'].append(g3(Matrix((tab if f < F(TIMES['tabOff']) else held).matrix_world) @ RING))
     for side in 'RL':
-        e = game_local('hand' + side).to_euler('XYZ')
+        e = game_local('hand' + side).to_euler('ZYX')
         verify['wrist'][side].append([round(e.x, 4), round(e.y, 4), round(e.z, 4)])
 # (the body from the waist up: the legs and the hips stay as the game stands or seats him, so the one motion is drunk
 # standing or sitting)

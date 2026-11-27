@@ -530,3 +530,52 @@ vending machines?"; then "A can needs to be opened also, removing the tab". Not 
   (`actors.js drinkBought`). Another move before it is open opens it all the same and puts it away.
 - `game.js` (R in the third-person view) drinks a bought can by `drinkBought`; the audit can `buy(name)` (as a machine's
   pocket gives it) and report what he `held`. `tools/vending-drink-shots.mjs` photographs it all in the running game.
+
+# 27 November, later: the drink animated in Blender (branch `drink/can`)
+
+The owner: "He is holding the can very weird, can you research how others did this? Drinking needs to be impeccable Disney
+animation standard"; then "You need to animate the beer drinking in blender and bring it to the game after, the rigging
+might need improvement". On `drink/can` (from `claude/dreamy-ritchie-cxufpl`), not pushed, not on `main`.
+
+## Done
+- The hands (`tools/blender/hand_model.py`, `build-body-kit.py`): a WRAP shape round a 66 mm can (the fingers' pads on its
+  side, the thumb across) on the closure from rest to fist (`HAND.wrapAt`), and a HOOK shape (the forefinger crooked
+  under a ring, the others easy), all built on the rest cage's own topology; `avatar.grip(side, amount, shape)`.
+- The socket (`consume.js canSocket`, `socketHold`): the can's axis along the knuckle line, the palm on it.
+- The rig (`tools/blender/drink-can.py`): the game's 28 bones from `export-avatar-glb`, arm IK with poles, a `look`
+  target, `socket.R` and `hook.L` bones, the hand shapes as shape keys driven by custom properties, the can and its tab as
+  objects. No finger bones (three shapes do what the hand does here; finger bones would take every body from 28 bones to
+  58). Fixed today: the left IK's pole angle was half a turn out (its elbow went into his chest; now measured: R 0, L 180
+  degrees); the upper arm's roll settled at the bake (the elbow bends about its x, no roll where the arm is straight); the
+  poles the wrist limits ask for eased into one another; the wrist limits in the game's Euler order (Blender ZYX); the
+  left hand at rest bent as the game's arm hangs; the releases from the lip slowed (the first 0.25 s, the second 0.3 s).
+- The performance, keyed pose to pose at 30 fps: the opening out in front at the lower chest (forefinger under the ring,
+  lift, tear, the tab to the shirt pocket), the drink in two pulls with a breath between, the settle; a sip for residents.
+- The export: `src/avatars/motions/drink-can.js`, johansson-motion v2 (`motion.js normalizeMotion`: shapes, face, prop,
+  contacts, fill, events, markers, reach paths); `tests/drink-can.verify.json` for the round trip.
+- The game (`src/avatars/drink-can.js`, `animate.js` DrinkCan/DrinkCanOpened, `actors.js drinkBought`, `open-can.js`): the
+  motion over the animator's pose, blended in and out against the motion's own full pose (the shoulder no longer turns over
+  in the blend); each wrist from the chest in the body's size, the rim to this body's lower lip, the hook to the ring, the
+  tab to this body's pocket; the elbow way remembered per contact and turned only as far as the contact is on.
+
+## Proved
+- `node --test tests/drink-can.test.mjs tests/open-can.test.mjs`: 14 pass (new: nothing pops, every body: no joint turns
+  more than 0.3 rad between frames at 60 fps, the can never moves 30 mm in one; the worst now 0.29 rad and 29 mm).
+- Blender: rim to lip at contact max 4.9 mm, mean 1.4 mm over 113 frames; hook to ring max 3.5 mm; right wrist within its
+  limits, left 0.08 rad past them at the pocket in Blender's own measure (within them in the game).
+- In the game, seven bodies standing and seated: the rim on the lower lip 0.0 mm at every contact frame; the arm put right
+  for the lip by up to 23 mm, the ring by up to 9 mm, the wrists from the chest by up to 79 mm (Thao), Johansson 2 mm.
+- Sheets: `art/characters/body-kit/review/drink-can-{front,three-quarter,side,opening}.jpg` (Blender),
+  `drink-can-game-johansson.jpg`, `drink-can-game-thao-seated.jpg` (the game, `tools/hand-shots.mjs --can`).
+- CI guard (`node tools/ci-guard.mjs`): 704 of 706 pass; the two that fail are the known ones (resident-guide portraits, the
+  published runtime package, which is not rebuilt on a branch).
+
+## Remains
+- The owner has not seen any of it.
+- At the pocket the motion's hooked fingertip is 6.6 cm off the pocket on Johansson himself (up to 10.7 cm on others): the
+  game's pocket hold puts it there. Re-key the pocket in Blender so it lands there.
+- Seen from the front, the forearm crosses his face while he drinks (from his right, the can to the middle of the mouth).
+- The can's speed peaks (29 mm a frame) in the blend in, from where the animator held it.
+- Residents sip the same motion at 1.25 times its speed; glasses and bottles sit in the socket but still drink by the old
+  consumption path; the 190 g can is held and drunk as the 350 ml one is.
+- The swallow is a chin dip, not a throat; the Blender can is a stand-in in its materials.

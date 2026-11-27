@@ -75,6 +75,11 @@ critique what still looks too soft/chibi, and iterate"; then "When happy redraw 
   the reach solver's envelope, how far a laid hand lies off what it rests on, the palm's way), and turns the palm to it;
   fists, a grab and what is held close it (`avatar.grip`). Never retune a pose to a hand by eye: change the kit and the
   numbers follow.
+  Drinking a can is animated in Blender and played in the game (the owner, 27 November 2026: "You need to animate the beer
+  drinking in blender and bring it to the game after"; branch `drink/can`): `tools/blender/drink-can.py` rigs the game's
+  skeleton, keys the performance, bakes and writes `src/avatars/motions/drink-can.js` (johansson-motion v2); the game plays
+  it (`src/avatars/drink-can.js`) and only puts the contacts right on other bodies. Change the drink there, re-export, never
+  hand-edit the motion; `tests/drink-can.test.mjs` holds it (contacts, wrists, no pops).
   A woman must read as a woman at a glance: lashes, lips, hair that is hers, shoulders and a neck that are not a man's.
 - The owner's photographs are not kept in the repository (it is public).
 

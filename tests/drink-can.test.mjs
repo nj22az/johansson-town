@@ -24,7 +24,7 @@ installDOM();
 const VERIFY=JSON.parse(readFileSync(new URL('./drink-can.verify.json',import.meta.url),'utf8'));
 const PALM_WRIST=[[-.35,.5],[-.45,.45],[-1.1,1.25]];   // animate.js PALM.wrist (the right hand's terms; the left's y and z mirrored)
 const BODIES=['Nils Johansson','Thao','Thuan','Mr Fujita','Tetsuo','Nhung','Miss Higa'];
-const runs=new Map();
+const runs=new Map(),UPPER=['spine','chest','neck','head','shoulderL','elbowL','handL','shoulderR','elbowR','handR'];
 
 /** The can drunk by `who` (sealed: opened first), every frame's facts. */
 function drink(who,seated=false){
@@ -43,7 +43,8 @@ function drink(who,seated=false){
   const up=new THREE.Vector3(0,1,0).transformDirection(prop.matrixWorld);
   const wrist=s=>{const q=a.bones['hand'+s].quaternion,e=new THREE.Euler().setFromQuaternion(q,'XYZ');return [e.x,s==='R'?e.y:-e.y,s==='R'?e.z:-e.z];};
   frames.push({t,c,rimLip:rim.distanceTo(lip),tilt:Math.acos(THREE.MathUtils.clamp(up.dot(new THREE.Vector3(0,1,0)),-1,1)),wrist:{R:wrist('R'),L:wrist('L')},face:faces.at(-1),
-   canInFace:i%6===0?canInFace(a,prop):0,handOnCan:[30,207,288].includes(i)?handOnCan(a,prop):null});
+   canInFace:i%6===0?canInFace(a,prop):0,handOnCan:[30,207,288].includes(i)?handOnCan(a,prop):null,
+   joints:UPPER.map(j=>a.bones[j].quaternion.clone()),can:prop.getWorldPosition(new THREE.Vector3())});
  }
  const run={a,prop,frames};runs.set(key,run);return run;
 }
@@ -119,6 +120,18 @@ test('the wrists stay within what a wrist does, on every body',()=>{
  for(const who of BODIES){const {frames}=drink(who);let worst=0,at=null;
   for(const f of frames)for(const s of ['R','L'])f.wrist[s].forEach((v,i)=>{const [lo,hi]=PALM_WRIST[i],o=Math.max(lo-v,v-hi);if(o>worst){worst=o;at=`${s} ${'xyz'[i]} at ${f.t.toFixed(2)} s`;}});
   assert.ok(worst<.05,`${who}: a wrist ${worst.toFixed(3)} rad past its limit (${at})`);}
+});
+
+test('nothing pops: no joint turns over between two frames, the can is never snatched, from the blend in to the blend out',()=>{
+ // (found 27 November 2026: the left shoulder turned 3.1 rad in a frame as the motion blended in, the left IK's pole was half
+ // a turn out so its elbow went into his chest, the upper arm rolled over between frames where the IK left its roll to
+ // chance, and the can left the lip at 45 degrees in a tenth of a second; at 60 frames a second)
+ for(const who of BODIES){const {frames}=drink(who);let turn=[0],can=[0];
+  for(let i=1;i<frames.length;i++){
+   frames[i].joints.forEach((q,j)=>{const d=q.angleTo(frames[i-1].joints[j]);if(d>turn[0])turn=[d,UPPER[j],frames[i].t];});
+   const d=frames[i].can.distanceTo(frames[i-1].can);if(d>can[0])can=[d,frames[i].t];}
+  assert.ok(turn[0]<.3,`${who}: ${turn[1]} turns ${turn[0].toFixed(2)} rad in a frame at ${turn[2]?.toFixed(2)} s`);
+  assert.ok(can[0]<.03,`${who}: the can moves ${(can[0]*1000).toFixed(0)} mm in a frame at ${can[1]?.toFixed(2)} s`);}
 });
 
 test('the can goes further over as it empties, and the eyes shut for the deep swallows, a breath out after',()=>{
