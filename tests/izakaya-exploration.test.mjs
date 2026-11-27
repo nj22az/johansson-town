@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import * as THREE from '../vendor/three.module.js';
 import {installDOM} from './fixtures.mjs';
 import {buildIzakayaExploration,createMinatoMemories,MINATO_MEMORIES,MINATO_MEMORY_STORY,MINATO_RECIPE_CARD} from '../src/world/interiors/izakaya-exploration.js';
-import {buildIzakayaLivedIn,MINATO_DETAIL_SURFACES} from '../src/world/interiors/izakaya-lived-in.js';
+import {FURNITURE_HEIGHTS} from '../src/world/furniture-standards.js';
 
 function memoryHarness(state={}){
  let shown=null,saves=0,closes=0;const curtains=[];
@@ -83,19 +83,19 @@ test('window controls operate the cloth without claiming a memory and the radio 
  h.press('Back to the radio');assert.equal(h.shown.title,'The old radio');
 });
 
-test('the Minato guestbook rests on its actual table and leaves lived-in objects clear',()=>{
+test('the Minato guestbook rests on its actual table',()=>{
  installDOM();const room=new THREE.Group(),{group}=buildIzakayaExploration(room,{}),book=new THREE.Box3();
  const solids=group.getObjectByName('Minato door joinery and discovery objects').geometry.attributes.position;
  for(let i=0;i<solids.count;i++){const p=new THREE.Vector3().fromBufferAttribute(solids,i);if(p.x>-5&&p.x<-4.7&&p.z>4.7&&p.z<5&&p.y<.9)book.expandByPoint(p);}
- assert.ok(!book.isEmpty());const table=MINATO_DETAIL_SURFACES.loungeSouth;
+ // The old room's south lounge table (build-minato-interior.py), whose top the guestbook is cut to. Its numbers were
+ // izakaya-lived-in.js's, retired on 27 November 2026 with that module: nothing built its dressing in today's room.
+ assert.ok(!book.isEmpty());const table={y:FURNITURE_HEIGHTS.table,minX:-4.93,maxX:-4.27,minZ:4.67,maxZ:5.33};
  assert.ok(book.min.x>=table.minX&&book.max.x<=table.maxX&&book.min.z>=table.minZ&&book.max.z<=table.maxZ);
  assert.ok(Math.abs(book.min.y-table.y-.004)<.000001,'Book clears the thin table patina');
  const paper=group.getObjectByName('Minato memory guestbook and recipe').geometry.attributes.position;
  const pageYs=[];for(let i=0;i<paper.count;i++){const p=new THREE.Vector3().fromBufferAttribute(paper,i);if(p.x<0)pageYs.push(p.y);}
  assert.ok(pageYs.every(y=>Math.abs(y-book.max.y-.0005)<.000001),'Printed page rests immediately above the paper surface');
  assert.equal(MINATO_MEMORIES.find(m=>m.id==='guestbook').position[1],table.y+.08,'Guestbook interaction follows its tabletop');
- const {placements}=buildIzakayaLivedIn(new THREE.Group());
- for(const p of placements.filter(p=>p.surface==='loungeSouth'))assert.ok(!(book.min.x<p.max[0]&&book.max.x>p.min[0]&&book.min.z<p.max[2]&&book.max.z>p.min[2]),'Guestbook clears '+p.id);
 });
 
 test('the koshi-do stand open on a clear 1.8 m entrance and curtains clear wooden frames',()=>{
