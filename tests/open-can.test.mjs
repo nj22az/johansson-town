@@ -5,9 +5,8 @@ import {installDOM} from './fixtures.mjs';
 import {createAvatarJohansson} from '../src/avatars/actors.js';
 import {recipeFor} from '../src/avatars/cast.js';
 import {createBoughtCan} from '../src/commerce/bought-can.js';
-import {DRINK_CAN,CAN_PARTS} from '../src/avatars/drink-can.js';
+import {DRINK_CAN,CAN_PARTS,pocketMouth} from '../src/avatars/drink-can.js';
 import {HAND,handPoint} from '../src/avatars/build.js';
-import {pocketSpot} from '../src/avatars/story-props.js';
 import {VENDING_PRODUCTS} from '../src/commerce/vending-catalogue.js';
 installDOM();
 
@@ -29,7 +28,7 @@ for(const [who,seated] of [['Nils Johansson',false],['Nils Johansson',true],['Th
  const a=actor.avatar,hand=a.bones.handL,hookAt=new THREE.Vector3(...handPoint(a.measure,'L',HAND.hookAt));
  assert.equal(can.parent,a.bones.handR,'the can in his right hand');assert.equal(can.userData.bought,'Green tea');
  let t=0,onRing=0,ringFrames=0,offAt=null,hooked=1,pocket=null,inFingers=0,tabAtPocket=null;const off=at('tabOff'),pocketed=at('tabPocketed');
- const P=pocketSpot(a).position;
+ const P=pocketMouth(a);
  for(let i=0;i<Math.round(pocketed*60)+6;i++){
   actor.update(1/60,state);t+=1/60;a.root.updateWorldMatrix(true,true);
   const cue=actor.canCue,hook=hand.localToWorld(hookAt.clone());

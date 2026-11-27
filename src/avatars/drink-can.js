@@ -1,7 +1,8 @@
 import * as THREE from '../../vendor/three.module.js';
 import DRINK_CAN_MOTION from './motions/drink-can.js';
 import {normalizeMotion,sampleTrack} from './motion.js';
-import {HAND,handPoint} from './build.js';
+import {HAND,handPoint,measure} from './build.js';
+import {recipeFor} from './cast.js';
 import {canSocket,lowerLip,reach} from './consume.js';
 import {liftTab} from './open-can.js';
 import {pocketSpot} from './story-props.js';
@@ -30,10 +31,29 @@ const tracks=Object.entries(M.joints).map(([name,data])=>[name,new THREE.Quatern
 const _q=new THREE.Quaternion(),_v=new THREE.Vector3(),_w=new THREE.Vector3(),_m=new THREE.Quaternion();
 const smooth=x=>{x=Math.min(1,Math.max(0,x));return x*x*(3-2*x);};
 const pockets=new WeakMap(),lips=new WeakMap(),chosen=new WeakMap();
+/** The body the motion was made on (tools/blender/drink-can.py writes its name and size into `props.can.made`): the can is
+ *  not drawn to a body's size, nor held in its socket in proportion, so a body of another size cannot take the can's part of
+ *  the paths in its own proportion (Vy's rim came 25 mm off her lip, her hooked finger 26 mm off the ring, the can 7 mm into
+ *  her face). */
+let madeOn=null,madePocket=null;
+const made=()=>madeOn||(madeOn=measure(recipeFor(M.props?.can?.made?.name||'Nils Johansson')));
+/** A contact's weight widened into its approach and its leaving (each sample: the contact's weight in the `reach` seconds
+ *  round it, eased): how far a wrist's path is put right for what this body's own can and hand make of the contact, from well
+ *  before it is made, so the hand comes to it on its own path and is not pulled onto it at the last. */
+function widen(data,reach){
+ const out=new Float32Array(data.length);
+ for(let i=0;i<data.length;i++){let w=0;for(let j=0;j<data.length&&w<1;j++){const d=Math.abs(T[i]-T[j]);if(d<reach)w=Math.max(w,data[j]*smooth(1-d/reach));}out[i]=w;}
+ return out;
+}
+const RING_NEAR=widen(M.contact.ring,.45),POCKET_NEAR=widen(M.contact.pocket,.35);
 /** Where a ring the hooked left forefinger lifts lies, in the left hand bone's frame (build.js HAND.hookAt). */
 const hookLocal=avatar=>new THREE.Vector3(...handPoint(avatar.measure,'L',HAND.hookAt));
 /** This body's lower lip in its head's frame (consume.js lowerLip: found on the drawn head once, the head is not re-drawn). */
 const lipOf=avatar=>lips.get(avatar)||lips.set(avatar,lowerLip(avatar).lower.clone()).get(avatar);
+/** Where the tab goes into this body's shirt pocket, in the chest's frame: the middle of the pocket's mouth (story-props.js
+ *  pocketSpot), 12 mm out from the cloth in its size, where the hooked forefinger's pad goes with the tab, its tip not in the
+ *  chest (as tools/blender/drink-can.py keys it). */
+export const pocketMouth=avatar=>{const p=pocketSpot(avatar);return p.mouth.clone().addScaledVector(p.normal,.012*avatar.measure.k);};
 /** The can's rim on the side of its opening, where the lip goes (izakaya-serving-visuals.js 'can', in its frame: a 190 g
  *  can is drawn smaller, its grip and rim measured as drawn, commerce/bought-can.js). */
 export const canRim=prop=>new THREE.Vector3(0,(prop?.userData?.rimHeight??.124)-.003,(prop?.userData?.grip?.radius??.033)*.91);
@@ -156,7 +176,10 @@ export function playCanDrink(avatar,prop,t,w=1,blend=null){
   const mouth=M.reach.mouth?sampleTrack(M,M.contact.mouth,t):0,lip=mouth>0?lipOf(avatar):null;
   for(const side of ['R','L']){const goal=chest.localToWorld(pathAt(M.reach[side],t).multiplyScalar(k));
    if(side==='R'&&mouth>0)goal.lerp(avatar.bones.head.localToWorld(pathAt(M.reach.mouth,t).multiplyScalar(k).add(lip)),mouth);
-   goals[side]=goal.sub(avatar.bones['hand'+side].getWorldPosition(_v));}}
+   goals[side]=goal.sub(avatar.bones['hand'+side].getWorldPosition(_v));}
+  // (the paths are the motion's body's in this body's size; what is not of this body's size put right: the can in the hand
+  // and the hooked finger, near where they make a contact (the rim at the lip, the ring, the pocket))
+  if(prop)sizeContacts(avatar,prop,t,mouth,goals);}
  if(back){back();poseAt(avatar,t,lw||w);}
  for(const side of M.reach?['R','L']:[]){const hand=avatar.bones['hand'+side].getWorldPosition(new THREE.Vector3());
   // (the right hand's turn in the world kept, the can tipped as it was animated; the left's at the wrist, the arm being
@@ -176,9 +199,9 @@ export function playCanDrink(avatar,prop,t,w=1,blend=null){
   S.lastFix=ring.clone().sub(hook).multiplyScalar(cues.ring*w);S.lastFixAt=t;
   fix.ring=bring(avatar,'L',hookLocal(avatar),ring,cues.ring*w,true,.4,'ring');
  }else if(S?.off&&cues.pocket>0){
-  // the tab to this body's own shirt pocket (story-props.js pocketSpot: where the torch is clipped), a little in at its mouth
+  // the tab to this body's own shirt pocket, at its mouth (story-props.js pocketSpot: the pocket drawn on the shirt)
   // (and the hand still there as the motion takes it away, once the tab is in: let go of as the contact is, not at once)
-  const pocket=pockets.get(avatar)||pockets.set(avatar,pocketSpot(avatar).position.clone()).get(avatar);
+  const pocket=pockets.get(avatar)||pockets.set(avatar,pocketMouth(avatar)).get(avatar);
   const hook=avatar.bones.handL.localToWorld(new THREE.Vector3(...handPoint(avatar.measure,'L',HAND.hookAt)));
   // (the hand turning with the arm as it is moved, its turn at the wrist kept, and held to what a wrist does: a hand putting
   // a thing in a pocket is not held to a turn in the world, and the elbow, sought round for one, would go from one side to
@@ -191,6 +214,26 @@ export function playCanDrink(avatar,prop,t,w=1,blend=null){
   fix.ring=bring(avatar,'L',null,hand.clone().add(S.lastFix),f,true,0);
  }
  return {...cues,fix};
+}
+
+/** Each wrist's goal put right for the parts of a contact that are not in this body's proportion (the motion's own pose on
+ *  the bones): the can, held in this body's socket, at the lip and under the hooked finger, the hooked finger itself, and the
+ *  pocket drawn on this body's shirt. The motion's body would have them at its own, scaled by k/k0; this body has its own. */
+function sizeContacts(avatar,prop,t,mouth,goals){
+ const m=avatar.measure,m0=made(),f=m.k/m0.k,S=prop.userData?.sealed,i=Math.min(T.length-1,Math.max(0,Math.round(t*M.fps)));
+ const ring=S&&!S.off?RING_NEAR[i]:0,pocket=S?POCKET_NEAR[i]:0;if(mouth<=0&&ring<=0&&pocket<=0)return;
+ const own=canSocket(m,prop,'R'),theirs=canSocket(m0,prop,'R'),handR=avatar.bones.handR.getWorldQuaternion(new THREE.Quaternion());
+ // (a point of the can, from the wrist: in this body's socket, less the motion's body's in this body's size)
+ const held=p=>p.clone().applyQuaternion(own.quaternion).add(own.position).sub(p.clone().applyQuaternion(theirs.quaternion).add(theirs.position).multiplyScalar(f)).applyQuaternion(handR);
+ if(mouth>0)goals.R.addScaledVector(held(canRim(prop)),-mouth);
+ if(ring>0||pocket>0){
+  const handL=avatar.bones.handL.getWorldQuaternion(new THREE.Quaternion()),hook=hookLocal(avatar).sub(new THREE.Vector3(...handPoint(m0,'L',HAND.hookAt)).multiplyScalar(f)).applyQuaternion(handL);
+  goals.L.addScaledVector(hook,-Math.max(ring,pocket));
+  if(ring>0)goals.L.addScaledVector(held(S.ring.clone().applyMatrix4(S.tab.matrix)),ring);
+  if(pocket>0){const chest=avatar.bones.chest.getWorldQuaternion(new THREE.Quaternion()),own=pockets.get(avatar)||pockets.set(avatar,pocketMouth(avatar)).get(avatar);
+   madePocket??=pocketMouth({measure:m0,recipe:recipeFor(M.props?.can?.made?.name||'Nils Johansson')});
+   goals.L.addScaledVector(own.clone().sub(madePocket.clone().multiplyScalar(f)).applyQuaternion(chest),pocket);}
+ }
 }
 
 /** The can in the right hand's socket (the hand is where the motion has put it). */

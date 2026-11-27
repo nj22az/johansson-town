@@ -41,7 +41,7 @@ const kit={name:NAME,measure:{k:m.k,hand:m.hand,H:m.H,Rh:m.Rh,headCentre:m.headC
  socket:{R:{position:socket.position.toArray().map(r),quaternion:socket.quaternion.toArray().map(r)}},
  hook:{L:handPoint(m,'L',HAND.hookAt).map(r)},
  lip:{lower:lip.lower.toArray().map(r),mouth:lip.mouth.toArray().map(r)},
- pocket:{position:pocket.position.toArray().map(r),normal:pocket.normal.toArray().map(r)},
+ pocket:{position:pocket.position.toArray().map(r),normal:pocket.normal.toArray().map(r),mouth:pocket.mouth.toArray().map(r)},
  can:{radius:prop.userData.grip.radius,height:.122,rim:prop.userData.rimHeight,rimRadius:.03,opening:[0,.121,.012],pivot:[0,.121,.023],ring:S.ring.toArray()}};
 await writeFile(out,JSON.stringify(kit));
 console.log('wrote',out,Object.keys(hands).length,'hand points');

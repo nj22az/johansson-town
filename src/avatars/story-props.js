@@ -416,17 +416,28 @@ export function buildCordWrap(avatar,{to=null}={}){
  return mesh;
 }
 
+/** The breast pockets drawn on the tops that have one (garment.js paintGarment: the island shirt's `pocket(W*.25,.62,W*.22,
+ *  .17)`, the office shirt's `pocket(W*.22,.66,W*.2,.13)`): the middle of its mouth, across (of the body's width) and up (of the
+ *  torso), on the wearer's left. Measured on Johansson's island shirt (27 November 2026): its mouth 64 mm further out and 42 mm
+ *  lower than the clip's top was, which put the torch, and the tab he puts in his pocket, on the placket beside it. */
+const BREAST_POCKET=Object.freeze({kariyushi:Object.freeze({x:.25,top:.705}),shirt:Object.freeze({x:.22,top:.725})});
+
 /** Where a torch clipped to the left chest sits, in the chest bone's frame: head down in the shirt pocket (or down the front of
- *  the vest, clipped to its neckline), its clip over the edge, beside the badge he wears there, lying on the body. */
+ *  the vest, clipped to its neckline), its clip over the edge, beside the badge he wears there, lying on the body. Where the
+ *  top has a breast pocket drawn on it (BREAST_POCKET), in that pocket, its clip over the mouth's middle. `mouth`: where
+ *  something put in the pocket goes in (the mouth's middle on the cloth; or the clip's top, where none is drawn). */
 export function pocketSpot(avatar){
- const m=avatar.measure,vol=bodyVolume(avatar.recipe,m),vest=avatar.outfit==='afterbath',a=vest?.16:.22;
- const edge=vest?.8:.78,mid=edge-(TORCH.length/2+.002)/m.torso;   // the clip's top at the pocket's (or the neckline's) edge
- const s=vol.surf(a,mid),n=vol.normal(s),gap=(vest?.009:.004)*m.k+TORCH.radius;
- const at=s.clone().addScaledVector(n,gap).sub(new THREE.Vector3(0,m.chestY,0));
+ const m=avatar.measure,vol=bodyVolume(avatar.recipe,m),vest=avatar.outfit==='afterbath',drawn=!vest&&BREAST_POCKET[avatar.recipe.outfit?.top];
+ // (the angle round the body at which the cloth is x metres across from its middle, as garment.js draws it)
+ const across=(x,t)=>Math.asin(THREE.MathUtils.clamp(x/vol.surf(Math.PI/2,t).x,-1,1));
+ const edge=drawn?drawn.top:vest?.8:.78,a=drawn?across(drawn.x*m.width,edge):vest?.16:.22;
+ const mid=edge-(TORCH.length/2+.002)/m.torso;   // the clip's top at the pocket's (or the neckline's) edge
+ const s=vol.surf(a,mid),n=vol.normal(s),gap=(vest?.009:.004)*m.k+TORCH.radius,chest=new THREE.Vector3(0,m.chestY,0);
+ const at=s.clone().addScaledVector(n,gap).sub(chest),mouth=vol.surf(a,edge).sub(chest);
  // the torch's +z (its lens) down the chest along the surface, its +y (the clip) outward
  const out=n.clone(),down=new THREE.Vector3(0,-1,0).addScaledVector(out,out.y).normalize(),side=new THREE.Vector3().crossVectors(out,down);
  const q=new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(side,out,down));
- return {position:at,quaternion:q,normal:n};
+ return {position:at,quaternion:q,normal:n,mouth};
 }
 
 // ---- Tetsuo's work kit (WORK_KIT). Each piece fitted to the body that wears it, in the bone frame that carries it.

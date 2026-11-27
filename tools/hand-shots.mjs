@@ -8,7 +8,9 @@
 //   node tools/hand-shots.mjs --hold draft,can,bottle [--name Johansson] [out.png]     a drink in the hand, held and at the lips
 //   node tools/hand-shots.mjs --drive car,"kei truck" [--name Johansson] [out.png]      both hands on the steering wheel
 //   node tools/hand-shots.mjs --ride 0,.25 [--name Thuan] [out.png]                     on a bicycle, at those turns of the crank
-//   node tools/hand-shots.mjs --can 0,1,3.45 [--name Johansson] [--seated] [out.png]     a bought can opened and drunk (drink-can.js), at those seconds
+//   node tools/hand-shots.mjs --can 0,1,3.45 [--name Johansson] [--seated] [out.png]     a bought can opened and drunk (drink-can.js), at those seconds:
+//       front, three-quarter, side, a close view, and from where the game's own third-person camera stands (game.js
+//       placeThirdPerson: behind him and over his right shoulder, outdoors 3.2 m back and indoors 2.2 m)
 // Software Chromium (TOWN_CHROMIUM_PATH, or /opt/pw-browsers/chromium). Default out: output/hands-<what>.png
 import {chromium} from 'playwright';
 import {createServer} from 'node:http';
@@ -40,6 +42,9 @@ try{
   const scene=()=>{const s=new T.Scene();s.background=new T.Color('#cfe3ee');s.add(new T.HemisphereLight(0xffffff,0xd8cdbd,2.4));const sun=new T.DirectionalLight(0xffffff,2.2);sun.position.set(2,5,4);s.add(sun);
    const floor=new T.Mesh(new T.CircleGeometry(2.2,40),new T.MeshStandardMaterial({color:0xc9cfbd}));floor.rotation.x=-Math.PI/2;floor.position.y=-.001;s.add(floor);return s;};
   const shoot=(sc,target,yaw,pitch,d,label)=>{camera.position.set(target.x+Math.sin(yaw)*Math.cos(pitch)*d,target.y+Math.sin(pitch)*d,target.z+Math.cos(yaw)*Math.cos(pitch)*d);camera.lookAt(target);camera.updateProjectionMatrix();camera.updateMatrixWorld();
+   sc.updateMatrixWorld(true);pipeline.setCamera(camera);pipeline.render(r=>r.render(sc,camera));const c=document.createElement('canvas');c.width=c.height=S;c.getContext('2d').drawImage(renderer.domElement,0,0);tiles.push({c,label});};
+  // (from a place, looking at a point: the game's own camera, which is not on a circle round what it looks at)
+  const shootFrom=(sc,from,target,label)=>{camera.position.copy(from);camera.lookAt(target);camera.updateProjectionMatrix();camera.updateMatrixWorld();
    sc.updateMatrixWorld(true);pipeline.setCamera(camera);pipeline.render(r=>r.render(sc,camera));const c=document.createElement('canvas');c.width=c.height=S;c.getContext('2d').drawImage(renderer.domElement,0,0);tiles.push({c,label});};
   const body=(who,sc)=>{const a=buildAvatar(recipeFor(who),{shadows:false});a.wear?.(outfit);const holder=new T.Group();holder.add(a.root);sc.add(holder);
    const anim=createAvatarAnimator(a,{random:(()=>{let s=7;return ()=>{s=(s*16807)%2147483647;return s/2147483647;};})()});
@@ -77,7 +82,7 @@ try{
     const h=handAt(P.a,'R'),y=frontYaw(P.a);for(const turn of [-1.2,-.4,.6,2.2])shoot(sc,h,y+turn,.2,P.a.measure.hand*10,`${kind} ${lift?'at the lips':'held'} · grip ${P.a.gripOf?.('R')}`);P.a.dispose();}}
   }else if(can){
    // a bought can, sealed, opened and drunk as animated in Blender (actors.js drinkBought: the DrinkCan move)
-   const {createDrinkProp}=await import(base+'src/people/izakaya-beer.js');
+   const {createDrinkProp}=await import(base+'src/people/izakaya-beer.js'),{CAN_PARTS}=await import(base+'src/avatars/drink-can.js');
    for(const at of can.split(',').map(Number)){
     const sc=scene(),P=body(name,sc),prop=createDrinkProp('can',{held:true,sealed:true});P.a.bones.handR.add(prop);
     const state={heldProp:prop,seated,seatHeight:.45};
@@ -87,8 +92,15 @@ try{
     const aim=hd.clone().add(new T.Vector3(0,(m.headCentre-m.headY)*.2,0)).lerp(c,.35);
     for(const [turn,label] of [[0,'front'],[-.8,'three-quarter'],[-Math.PI/2,'side']])shoot(sc,aim,y+turn,.1,2.1,`${at.toFixed(2)} s · ${label}`);
     // (close: the can's top and the hands opening it; the mouth and the can at it, from his left, the side the arm is not)
-    const near=at<2.4?prop.localToWorld(new T.Vector3(0,.1,0)):P.a.bones.head.localToWorld(new T.Vector3(0,(m.headCentre-m.headY)*.35,m.Rh*.8));
-    shoot(sc,near,y+(at<2.4?-.5:.9),at<2.4?.35:.05,m.hand*(at<2.4?6:11),`${at.toFixed(2)} s · close`);
+    const opening=at<CAN_PARTS.drink[0],near=opening?prop.localToWorld(new T.Vector3(0,.1,0)):P.a.bones.head.localToWorld(new T.Vector3(0,(m.headCentre-m.headY)*.35,m.Rh*.8));
+    shoot(sc,near,y+(opening?-.5:.9),opening?.35:.05,m.hand*(opening?6:11),`${at.toFixed(2)} s · close`);
+    // (and from the game's camera (game.js placeThirdPerson): its pivot above his head and to his right (actors.js lens: eye,
+    // side), the lens `back` metres behind it along his facing, tipped down by the game's pitch, -0.05; looking at his chest,
+    // which turns the lens, not where it stands: what his body hides from it is the same)
+    const lens={eye:m.H+.14,side:m.Rh*m.headSX+.26},q=P.a.root.getWorldQuaternion(new T.Quaternion()),fwd=new T.Vector3(0,0,1).applyQuaternion(q),right=new T.Vector3(-1,0,0).applyQuaternion(q);
+    for(const [back,where] of [[3.2,'outdoors'],[2.2,'indoors']]){const pivot=P.a.root.getWorldPosition(new T.Vector3()).add(new T.Vector3(0,lens.eye,0)).addScaledVector(right,lens.side);
+     const pitch=-.05,from=pivot.clone().addScaledVector(fwd,-back*Math.cos(pitch)).add(new T.Vector3(0,-Math.sin(pitch)*back,0));
+     shootFrom(sc,from,c.clone().lerp(prop.getWorldPosition(new T.Vector3()),.5),`${at.toFixed(2)} s · game camera, ${where}`);}
     P.a.dispose();
    }
   }else if(ride){
