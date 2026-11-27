@@ -160,7 +160,7 @@ export function buildBeerBottle(){
 
 /** The draught jug's measures (metres): its body, and its handle's bar (axis at barX, `bar` thick) and opening (y from, to). */
 export const JUG=Object.freeze({r:.047,h:.19,bar:.0075,barX:.047+.035+.0075,opening:[.04,.154]});
-export function buildServingDrink(kind,{held=false}={}){
+export function buildServingDrink(kind,{held=false,sealed=false}={}){
  const group=new THREE.Group(),level=new THREE.Group();group.name='Minato drink · '+kind;level.name='Live '+kind+' contents';group.add(level);group.userData.level=level;
  const glass=pieces(group,'Hollow '+kind+' glass','glass'),china=pieces(group,kind+' glazed vessel','china'),metal=pieces(group,kind+' metal details','metal');let liquid=null,head=null,height=0,radius=0,rimHeight=.11;
  const fill=(r,h,y,x=0,hex=0xc18c36,foam=false)=>{
@@ -195,7 +195,21 @@ export function buildServingDrink(kind,{held=false}={}){
   // cylinder was only 0.25 mm outside the metal and flickered in the cold store.
   metal.lathe([[0,0],[.027,0],[.03,.004],[.031,.011],[.033,.016]],0xc6c8b5);
   metal.lathe([[.033,.108],[.03,.117],[.029,.121],[0,.121]],0xc6c8b5);
-  metal.ring(.03,.0012,C.steel,0,.121);metal.cyl(.026,.001,0xa1aa9e,0,.120);metal.ball(.006,0x343b32,0,.121,.012,1,.13,1.65);metal.add(new THREE.TorusGeometry(.007,.0018,4,16).rotateX(Math.PI/2).scale(1,1,1.35),0xc6c8b5,0,.124,-.003);metal.ball(.002,C.steel,0,.124,-.005,1,.4,1);productLabel(group,1,.033,.092,0,.062,0,Math.PI*2);rimHeight=.124;
+  metal.ring(.03,.0012,C.steel,0,.121);metal.cyl(.026,.001,0xa1aa9e,0,.120);
+  if(sealed){
+   // Sealed, as a machine or a shop sells it (commerce/bought-can.js; the owner, 27 November 2026: "A can needs to be
+   // opened also, removing the tab"): a ring-pull tab whose tongue covers the opening, torn off whole when the can is
+   // opened (avatars/open-can.js), and the opening under it, shown once it is gone; each its own part, so the tab can
+   // leave the can. (Each is centred on the lid's plane, cut by it where its surface stands steep to it, so neither lies
+   // along the lid: JSY-STD-403.)
+   const opening=pieces(group,'Can opening','metal');opening.ball(.006,0x343b32,0,.121,.012,1,.13,1.65);const hole=opening.finish();hole.visible=false;
+   const tab=new THREE.Group();tab.name='Can pull tab';group.add(tab);const pull=pieces(tab,'Can pull tab metal','metal');
+   pull.ball(.0068,0xc6c8b5,0,.121,.0115,1,.2,1.75);   // the tongue over the opening, scored round it
+   pull.add(new THREE.TorusGeometry(.0075,.0017,4,16).rotateX(Math.PI/2).scale(1,1,1.2),0xc6c8b5,0,.1215,-.0075);   // the ring, a finger's pull
+   pull.finish();
+   group.userData.sealed={tab,opening:hole,ring:new THREE.Vector3(0,.1215,-.0075)};
+  }else{metal.ball(.006,0x343b32,0,.121,.012,1,.13,1.65);metal.add(new THREE.TorusGeometry(.007,.0018,4,16).rotateX(Math.PI/2).scale(1,1,1.35),0xc6c8b5,0,.124,-.003);metal.ball(.002,C.steel,0,.124,-.005,1,.4,1);}
+  productLabel(group,1,.033,.092,0,.062,0,Math.PI*2);rimHeight=.124;
  }else if(kind==='coffee'){
   const offset=held?0:.012;if(!held)plate(china,.126,.126);
   china.lathe([[0,0],[.025,0],[.027,.006],[.036,.066],[.036,.071],[.033,.073],[.030,.069],[.023,.013],[0,.013]],C.china,0,offset);china.add(new THREE.TorusGeometry(.019,.0045,6,20,Math.PI).rotateZ(-Math.PI/2),C.china,.033,.038+offset);fill(.029,.044,.04+offset,0,0x4a3020);rimHeight=.073+offset;

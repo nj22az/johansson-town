@@ -9,6 +9,7 @@ import {recipeFor} from './cast.js';
 import {APPEARANCE_REVISIONS} from './wardrobe.js';
 import {normalizeRecipe,decodeRecipe,encodeRecipe} from './recipe.js';
 import {fitAvatarHeldProp,gripWheel} from './consume.js';
+import {openCan,finishOpening} from './open-can.js';
 import {workHands} from './work-hands.js';
 import {createAvatarTableDrink,createFirstPersonDrinkingArm,TABLE_DRINK_KINDS,levelHeldDrink} from './table-drink.js';
 import {DEFAULT_PLAYER,readPlayers,readSave} from '../save.js';
@@ -164,6 +165,8 @@ export function createAvatarJohansson({scene,recipe=playerRecipe()}={}){
  const root=new THREE.Group();root.name='Johansson (third person)';root.visible=false;scene.add(root);
  let avatar=buildAvatar(recipe,{shadows:true,faceSize:512}),animator=createAvatarAnimator(avatar,{bowDepth:.18});
  root.add(avatar.root);
+ // (a bought can: opened, then drunk, then put away; drinkBought)
+ let bought=null;
  let expression='neutral',expressionUntil=0,speakUntil=0,time=0,seatMove='Sit',outfit='clothes',requested='clothes',held=null,lookPoint=null,move=null,earDefendersOn=false,tableDrink=null,drinkingArm=null,posedSeconds=0,lastState={};
  const hand=()=>avatar.bones.handR;
  const api={
@@ -184,6 +187,7 @@ export function createAvatarJohansson({scene,recipe=playerRecipe()}={}){
   cancelTableDrink(){const result=tableDrink?.cancel();tableDrink=null;drinkingArm?.dispose();drinkingArm=null;return result;},
   play(name,{face}={}){
    if(tableDrink?.active)api.cancelTableDrink();
+   if(bought)api.hold(null);   // (another move before a bought can was finished: the can put away, opened)
    move=name;if(face)api.express(face,3);
    const map={Bow:'Bow',Wave:'Wave'};if(!animator.play(map[name]||name))animator.play('Nod');
    const faces={Wave:'happy',Clap:'happy',Kachashi:'laugh',Laugh:'laugh',Think:'thinking',Shrug:'worried',HeadShake:'grumpy',Bow:'content',Nod:'smile',Stretch:'content',LookAround:'surprised',SitToast:'happy',Heart:'happy',Peace:'laugh',Coy:'smile',Tada:'laugh',HandsOnHips:'content',HeelKick:'happy'};
@@ -205,7 +209,19 @@ export function createAvatarJohansson({scene,recipe=playerRecipe()}={}){
   get lens(){const m=avatar.measure;return {eye:m.H+.14,side:m.Rh*m.headSX+.26,head:m.headCentre};},
   /** Hip height above the feet when seated, for game.js's seat fit. */
   get sitHip(){const m=avatar.measure;return m.hipY+.09-m.seatDrop;},
-  hold(prop){if(tableDrink?.active)api.cancelTableDrink();if(held){if(held.userData.consumable)disposeServing(held);else held.removeFromParent();}held=prop||null;if(!held)avatar.pixar?.grip?.('R',0);if(held){held.position.set(0,-avatar.measure.hand*.4,avatar.measure.hand*.6);hand().add(held);if(held.userData.consumable)fitAvatarHeldProp(avatar,held);}},
+  hold(prop){if(tableDrink?.active)api.cancelTableDrink();bought=null;if(held){finishOpening(held);if(held.userData.consumable)disposeServing(held);else held.removeFromParent();}held=prop||null;if(!held)avatar.pixar?.grip?.('R',0);if(held){held.position.set(0,-avatar.measure.hand*.4,avatar.measure.hand*.6);hand().add(held);if(held.userData.consumable)fitAvatarHeldProp(avatar,held);}},
+  /**
+   * A can he bought, drunk (game.js, R; the owner, 27 November 2026: "Can they still drink beer or anything from the
+   * vending machines?", and "A can needs to be opened also, removing the tab"): in the right hand, opened first if it is
+   * sealed (open-can.js: the tab pulled off and put in his pocket), then the drink, then the empty can put away.
+   */
+  drinkBought(prop,{seated=false}={}){
+   api.hold(prop);const drink=seated?'SitDrink':'Drink';
+   if(prop?.userData?.sealed){bought={stage:'open',drink};animator.play('OpenCan');move='OpenCan';}
+   else{bought={stage:'drink',drink};animator.play(drink);move=drink;}
+  },
+  /** Where a bought can is: 'open', 'drink', or null. */
+  get bought(){return bought?.stage||null;},
   jump(){api.cancelTableDrink();animator.play('Jump');},
   stop(){api.cancelTableDrink();animator.stop();move=null;},
   /** Swap to a new recipe (the creator's save), keeping everything else. */
@@ -239,6 +255,12 @@ export function createAvatarJohansson({scene,recipe=playerRecipe()}={}){
     const c=animator.consumption;
     if(c&&held.userData.finishPortion!==undefined)setPropPortion(held,THREE.MathUtils.lerp(held.userData.startPortion,held.userData.finishPortion,c.swallow));
     updatePropPortion(held,dt);fitAvatarHeldProp(avatar,held,c?.lift||0);
+   }
+   if(bought&&held){
+    if(bought.stage==='open'){
+     if(animator.gesture==='OpenCan')openCan(avatar,held,animator.gestureTime);
+     else{finishOpening(held);bought.stage='drink';animator.play(bought.drink);move=bought.drink;}
+    }else if(!animator.gesture)api.hold(null);
    }
   },
  };

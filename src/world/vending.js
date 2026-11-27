@@ -157,6 +157,15 @@ function paintCan(ctx,p,w,h){
  ctx.font=`900 70px ${BOLD}`;ctx.globalAlpha=.85;for(const u of [0,512])ctx.fillText(p.mark,u,120);ctx.globalAlpha=1;
  ctx.restore();
 }
+const canPrints=new Map();
+/** A can's print as a texture of its own, once round the can (commerce/bought-can.js: the can in his hand). */
+export function vendingCanTexture(id){
+ if(canPrints.has(id))return canPrints.get(id);
+ const product=VENDING_PRODUCTS.find(p=>p.id===id);if(!product||typeof document==='undefined')return null;
+ const c=document.createElement('canvas');c.width=512;c.height=256;const ctx=c.getContext?.('2d');if(!ctx)return null;
+ paintCan(ctx,product,512,256);
+ const map=new THREE.CanvasTexture(c);map.colorSpace=THREE.SRGBColorSpace;map.anisotropy=4;canPrints.set(id,map);return map;
+}
 function paintLit(ctx){
  cell(ctx,LIT.white,(c,w,h)=>{c.fillStyle='#fff';c.fillRect(0,0,w,h);});
  cell(ctx,LIT.header,(c,w,h)=>{

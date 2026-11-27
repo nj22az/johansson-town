@@ -131,6 +131,7 @@ import {DRUNK,LAGER_ALCOHOL,soberUp,wantsAnother,drink as drinkUp} from './peopl
 import {createShopCarry} from './interact/shop-carry.js';
 import {townAudio} from './audio/town-audio.js?snappy=1';
 import {emptyFor,canColour} from './commerce/vending-catalogue.js';
+import {createBoughtCan} from './commerce/bought-can.js';
 import {SPECIAL_BY_NAME} from './commerce/sakura-specials.js';
 import {HOT_SNACKS} from './commerce/konbini.js';
 import {routeAt,groundHeight,planHeight,setWalkSurface} from './world/layout.js?snappy=1';
@@ -813,7 +814,11 @@ activities=createActivities({say,onLaundry:wash=>{world.laundryWash=wash||null;}
 world.laundryWash=activities.state.coinLaundry||null;
 islandPlay=createIslandPlay({world,player,camera,activities,register:reg,aboard:()=>!current&&!!deckUnder(),getMinutes:()=>minutes,getRain:()=>weather,passTime:value=>{minutes+=value;townClock.pass(value);activities.state.clockAhead=townClock.ahead;activities.save();},place:(x,z,_y,facing=0)=>{if(current)leaveRoom();standUpAt(x,z,facing);resetInput();},veil:run=>crossThreshold(run,{chime:false}),enterNaha:()=>crossThreshold(()=>enterRoom(NAHA_ARRIVALS)),leaveNaha:()=>leaveRoom()});
 syncView();
-hands=createHands({scene,camera,say,consume:name=>{const i=activities.state.inventory.indexOf(name);if(i<0)return false;const lager=name==='Umineko lager';if(lager&&!wantsAnother(tipsy,LAGER_ALCOHOL)){say('Enough for tonight. The can goes back in your bag for tomorrow.',3);return false;}if(lager)tipsy=drinkUp(tipsy,LAGER_ALCOHOL);activities.state.inventory.splice(i,1);const left=SPECIAL_BY_NAME[name]?.cup?null:emptyFor(name);if(left)activities.state.inventory.push(left);activities.save();return true;},canColour,onDrink:()=>johansson?.play(seated?'SitDrink':'Drink')});
+hands=createHands({scene,camera,say,consume:name=>{const i=activities.state.inventory.indexOf(name);if(i<0)return false;const lager=name==='Umineko lager';if(lager&&!wantsAnother(tipsy,LAGER_ALCOHOL)){say('Enough for tonight. The can goes back in your bag for tomorrow.',3);return false;}if(lager)tipsy=drinkUp(tipsy,LAGER_ALCOHOL);activities.state.inventory.splice(i,1);const left=SPECIAL_BY_NAME[name]?.cup?null:emptyFor(name);if(left)activities.state.inventory.push(left);activities.save();return true;},canColour,onDrink:name=>{if(!johansson)return;
+ // (seen from behind him, the can he bought is in his hand while he drinks it, not only in front of the first-person
+ // camera: commerce/bought-can.js; the owner, 27 November 2026, "Can they still drink beer or anything from the vending machines?")
+ if(thirdPerson&&johansson.ready&&name){const prop=createBoughtCan(name);prop.userData.startPortion=1;prop.userData.finishPortion=0;setPropPortion(prop,1,{immediate:true});clearTimeout(sipDrink.timer);johansson.drinkBought(prop,{seated});}
+ else johansson.play(seated?'SitDrink':'Drink');}});
 // Johansson himself, for the third-person view. The model loads the first time the view is used.
 const VIEW_KEY='johansson-town-view';
 let thirdPerson=false,johansson=null,playerSpeed=0,playerRunning=false,thirdDistance=3.1,crampedEase=0,pivotSide=.34;
@@ -2625,6 +2630,10 @@ if(new URLSearchParams(location.search).has('audit'))window.__JOHANSSON_AUDIT__=
   *  that performance stands (table-drink.js diagnostics: the phase, the rim's and the wrist's errors). */
  serve(kind='draft'){if(!seated)return 'not seated';if(!parkSeat?.izakaya)return 'not an izakaya seat';if(!beerService)return 'no beer service in this room';if(!parkSeat.izakaya.table)return 'the seat has no table';return beerService.serveNow(kind,parkSeat.izakaya)?true:'serveNow refused '+kind;},
  sip(){return drinkNow();},
+ /** For the audit of a bought can (the owner, 27 November 2026: "Can they still drink beer or anything from the vending
+  *  machines?"): the can in the bag as a machine's pocket gives it (onPurchase), then drunk as R drinks it (sip). */
+ buy(name){activities.state.inventory.push(name);hands.offer(name,player.position.clone(),false);return true;},
+ get held(){return johansson?.avatar?.root?(()=>{let found=null;johansson.avatar.root.traverse(o=>{if(o.userData?.bought)found=o.userData.bought;});return found;})():null;},
  get drinking(){return johansson?.drinkingState||null;},
  teleport(x,z,facing,tilt){spawnScene?.cancel('placement');ensureKitanoAt(x,z);if(seated){seated=false;parkSeat=null;johansson?.seat?.(null);}player.position.set(x,groundHeight(x,z),z);if(Number.isFinite(facing))yaw=facing;if(Number.isFinite(tilt))pitch=tilt;},
  get lensOcclusion(){return lensOcclusion;},

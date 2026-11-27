@@ -503,3 +503,30 @@ quality". The owner has not yet seen this hand worn.
 - The hand has two shapes, resting and closed, blended straight between them: no pointing finger, no thumb up, no peace
   sign; the blend between was not checked for the fingers passing through one another.
 - A Pixar body keeps the mitten's measures (`MITTEN`, `m.realHand`) everywhere.
+
+# 27 November: a bought can in his hand, opened before it is drunk
+
+The owner, of the hands: "These hands are near perfect but are they rigged? Can they still drink beer or anything from the
+vending machines?"; then "A can needs to be opened also, removing the tab". Not on `main`.
+
+## What was found
+- The hand is skinned to the hand bone (it follows the arm everywhere) and closes by blending between two shapes drawn in
+  Blender (open, closed: `avatar.grip`). It has no finger bones: no finger moves on its own.
+- Residents and the player at the izakaya and the ramen counter held their drinks. A can from a machine or from Sakura,
+  drunk with R in the third-person view, was not in his hand at all: he played the drink with an empty hand, and the can
+  was drawn only in front of the first-person camera (`interact/hands.js`). That was so before the hands.
+
+## Done
+- `src/commerce/bought-can.js`: the can he bought, built on the izakaya's can (whose grip, rim and tilt the hand is fitted
+  to), printed as what was bought: a machine's own print (`world/vending.js vendingCanTexture`, from `paintCan`) at its
+  column's size (the 190 g coffee and corn soup smaller, the grip and rim measured to it), Sakura's Umineko in its shelf
+  label from the packaging atlas.
+- Sold sealed (`izakaya-serving-visuals.js`, `sealed`): a ring-pull tab whose tongue covers the opening, and the opening,
+  each its own part, centred on the lid's plane (JSY-STD-403).
+- `src/avatars/open-can.js` and the `OpenCan` move (`animate.js`): the can held up in front of his chest a little right
+  of his middle; the left hand's hollow to the ring, the fingers closed on it (0.8), the ring lifted about the tongue's
+  front end, the tab torn off whole into the hand, the opening shown, the tab carried to the shirt's chest pocket on the
+  left (`story-props.js pocketSpot`) and put away, the hand back; then the drink, then the empty can put away
+  (`actors.js drinkBought`). Another move before it is open opens it all the same and puts it away.
+- `game.js` (R in the third-person view) drinks a bought can by `drinkBought`; the audit can `buy(name)` (as a machine's
+  pocket gives it) and report what he `held`. `tools/vending-drink-shots.mjs` photographs it all in the running game.

@@ -159,3 +159,6 @@ sakura-surfaces.test.mjs
 # device (render/sun-shadow.js), and the flicker detector that measured it (tools/flicker-audit.mjs).
 sun-shadow.test.mjs
 flicker-audit.test.mjs
+# A bought can in his hand (the owner, 27 November 2026: "Can they still drink beer or anything from the vending
+# machines?", "A can needs to be opened also, removing the tab"): opened by the kit's hand, the tab pocketed, then drunk.
+open-can.test.mjs
