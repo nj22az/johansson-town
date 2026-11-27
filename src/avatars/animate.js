@@ -30,6 +30,7 @@ import {EXPRESSIVE_POSES} from './expressive-poses.js';
  * to that side (left positive, right negative).
  */
 const JOINTS=['hips','spine','chest','neck','head','shoulderL','elbowL','handL','shoulderR','elbowR','handR','thighL','kneeL','footL','thighR','kneeR','footR'];
+const JOINT_AT=Object.freeze(Object.fromEntries(JOINTS.map((j,i)=>[j,i])));
 const env=(t,d)=>t<0||t>d?0:Math.sin(Math.PI*Math.min(1,t/d));
 const TIC_TIME={glance:1.4,sky:1.6,nod:1,hum:2.4,watch:1.8,hair:1.4,kick:.8,skip:1.1};
 const ease=(t,d,edge=.25)=>Math.min(1,t/edge,(d-t)/edge);
@@ -93,6 +94,41 @@ const WIND=Object.freeze({lead:.4,leadMin:.08,leadMax:.3,release:.6,everyday:.15
 const WIND_ON=new Set(['HeelRock','PickUp','Tackle','Hop','EvilLaugh','SwitchHigh','HeroicPride','DeepThinker','Heartbreak',
  'BattleRage','BashfulPose','BowDeep','FingerStop','Tape','Offer','Reach','CordWrapped','BasketHead','PointLaugh','Sneak','Fume',
  'Eyeroll','Seethe']);
+/**
+ * The trunk's wind-up (the standard's stage 3; anticipation-mastery), for the moves whose arm rises from the side: an arm that
+ * hangs has no room to turn the other way in its own joints without going into the body (the hand went back 0-5 mm of the
+ * 10-37 mm needed), so the counter-movement is the chest's, a dip of the shoulder as an animator would key it. The chest
+ * leans, dips or turns so that it carries the hand back along the line of its action by `share` of how far the hand goes
+ * (everyday's calm; comedy's pushed, "big preparation for big payoff", playfulness-fun), the arm adding its own swing only
+ * where that goes back along the line and away from the body (the upper arm forward or back, or out from the side, never in;
+ * the elbow toward straight, as a forearm trails): a weighted least-squares solve on the body's own bones (`cost`: the chest
+ * is where it comes from, the arm dearer), within `most` (radians) of each joint, once, as the move starts.
+ * - Not the spine: a root that moves only for the wind-up stops long before the rest of the body (the overlap's first rule:
+ *   the root stops first, the others 5-10 frames after), and the drag holds the chest a level behind a moving root, which
+ *   spread the dip so thin that it went slower than a tenth of the action's top speed and did not read as a movement.
+ * - In over `lead` of the action (`leadMin`-`leadMax` s), held at the bottom for `hold` of it ("full crouch with held pose
+ *   before launch"), let go over `release` of it as the action goes; the move waits for it and plays on a little quicker.
+ * - Never into the body: the part of the dip that would carry a hand into the body beside it (within `near` metres of a body
+ *   1.6 m tall) is taken out of the goal, by the body's surface there; the lean alone swings a hand hanging below the chest in.
+ * - The head keeps level (`level` of the chest's tilt) and leads, as the eyes go first, unless it is what moves.
+ */
+const TRUNK=Object.freeze({lead:.2,leadMin:.08,leadMax:.12,hold:.4,release:.8,share:Object.freeze({everyday:.115,comedy:.15}),
+ most:Object.freeze({spine:.2,chest:.28,shoulder:.3,elbow:.15}),cost:Object.freeze({spine:1,chest:1.5,shoulder:3,elbow:4}),level:.7,near:.08,keep:.3,trail:.05,rooted:.05,clear:.01});
+/** The moves that wind up with the trunk (TRUNK): those where it passes the audit's anticipation on a body it failed on, or
+ *  takes another failure off, and adds none (tools/animation-audit.mjs on every move). Laugh, Talk, Bow, HeelRock, HairTuck
+ *  and DramaFinish want their own: with it the hands' paths bow past a half circle or flatten (Laugh, Talk, HairTuck), or the
+ *  levels start out of order (HeelRock, DramaFinish). Bow's, from the spine since its own bow is (TRUNK.rooted), passes on
+ *  Johansson and Sverker but flattens his head's lean back into a straight 10 cm stroke and starts Vy's levels together. */
+const WIND_TRUNK=new Set(['Wave','Point','ScratchHead','ChinTap','CollarTug','Clap','Kachashi','Shrug']);
+/** A move's own share and hold at the bottom of its wind-up (TRUNK's otherwise): the kachāshī's hold is its beat; a shrug's
+ *  shoulders sink and stay down a moment before they go up. */
+const TRUNK_OWN=Object.freeze({Kachashi:Object.freeze({hold:.35}),Shrug:Object.freeze({hold:.5})});
+/** The everyday moves whose arm rises from the side at a natural pace (timing-principle-mastery: 8-12 frames at 24 fps,
+ *  "Standard (natural movement)"; calm-relaxation): in over RISE_TIME[0] and out over RISE_TIME[1] seconds, eased, where the
+ *  other moves ramp in a quarter of a second (4-6 frames at 24 fps, "Quick (snappy responses)", which no everyday move is),
+ *  and from where the arm hangs; the clap's hands come together more deliberately (RISE_OWN). The trunk's wind-up needs it:
+ *  against a raise that quick, a calm dip moves slower than a tenth of the raise's top speed, under what reads as a movement. */
+const RISE=new Set(['Wave','ScratchHead','ChinTap','CollarTug','Point','Clap']),RISE_TIME=Object.freeze([.4,.3]),RISE_OWN=Object.freeze({Clap:Object.freeze([.5,.3])});
 /** Comedy's moves, whose wind-up is pushed (the town's register, the standard's section 2). */
 const PUSHED=new Set(['EvilLaugh','WindUp','Tackle','Stomp','HeelKick','Tada','Cheer','CupHands','CoinToCheek','BowDeep','BowWalk',
  'KneelHug','PoleFlick','Peek','BannerUp','FanWild','HoldOn','FingerStop','Tape','Offer','Reach','LieKnead','GrenadeCoin','Aim',
@@ -391,7 +427,7 @@ export const STORY_POSES=new Set(['BentStuck','CrabWalk','ChairUncurl','FrozenAb
 
 /** How long each move lasts (loops run until something else happens). */
 export const GESTURES=Object.freeze({
- Wave:1.6,Bow:1.5,Nod:1.1,HeadShake:1.2,Point:1.6,Shrug:1.3,Clap:1.8,Laugh:2,Think:2.4,LookAround:2.6,Stretch:2.2,
+ Wave:2,Bow:1.5,Nod:1.1,HeadShake:1.2,Point:1.6,Shrug:1.3,Clap:1.8,Laugh:2,Think:2.4,LookAround:2.6,Stretch:2.2,
  PickUp:1.6,Fist:1.4,Jab:.42,JabL:.42,Swipe:.7,Hurt:.5,Tackle:.75,Jump:.9,Cheer:1.6,Hop:1.2,Gasp:1.6,Stomp:1.4,Slump:2.2,Fidget:2.4,SitEnjoyFood:3.8,SitPresentFood:4.2,SitToast:2.4,SitPress:2.4,SitDrink:2.4,SitEat:2.4,Drink:2.4,Eat:2.4,
  // A can, as animated in Blender (drink-can.js): bought sealed, opened and drunk; or open already, drunk.
  DrinkCan:CAN_PARTS.open[1]-CAN_PARTS.open[0],DrinkCanOpened:CAN_PARTS.drink[1]-CAN_PARTS.drink[0],
@@ -499,7 +535,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  const solvedNow={L:false,R:false},pinWish={L:false,R:false},pinT={L:0,R:0},pinW={L:0,R:0},pinV={L:0,R:0},_rootAt=new THREE.Vector3();
  // ---- The move's wind-up (WIND): the move it is for, how long it waits (W), its action's length (A), how far, and each
  // joint's turn the other way at full wind-up.
- const wind={g:null,W:0,A:0,a:0,turn:new Float32Array(JOINTS.length*3)},windBase=new Float32Array(JOINTS.length*3),windTry=new Float32Array(JOINTS.length*3);
+ const wind={g:null,W:0,A:0,a:0,H:0,R:1,trunk:false,turn:new Float32Array(JOINTS.length*3)},windBase=new Float32Array(JOINTS.length*3),windTry=new Float32Array(JOINTS.length*3);
  // ---- The bite or the sip (CONSUME_JOINTS): how far its pose is in, its speed, what was consumed, and the animator's pose under it.
  let consumeW=0,consumeV=0,consumeFood=false,consumeHad=false,consumeWas=false;const consumeSaved=CONSUME_JOINTS.map(()=>new THREE.Quaternion()),headSaved=new THREE.Vector3(),consumeArm=[new THREE.Quaternion(),new THREE.Quaternion()];
  const _q=[0,1,2,3].map(()=>new THREE.Quaternion()),_eu=new THREE.Euler(),_p=[0,1,2,3,4].map(()=>new THREE.Vector3());
@@ -831,10 +867,11 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  /** The move's wind-up (WIND), read as it starts: the body's pose under it now (windBase), and the move tried through its
   *  first half (nothing it does is kept: the targets, the hands, the reach's marks are put back). */
  function windRead(g,s,seated){
-  wind.g=g;wind.W=0;
+  wind.g=g;wind.W=0;wind.trunk=false;
   // (not sat: the arm's turn the other way goes into the lap or the chest, FingerStop's forearm 59 mm into Miss Higa's,
   // tests/story-gestures.test.mjs)
-  if(!WIND_ON.has(g.name)||PAIR_ROLES[g.name]||g.ramp!==undefined||seated)return;
+  const trunk=WIND_TRUNK.has(g.name);
+  if(!WIND_ON.has(g.name)&&!trunk||PAIR_ROLES[g.name]||g.ramp!==undefined||seated)return;
   JOINTS.forEach((j,i)=>{windBase[i*3]=target[j].x;windBase[i*3+1]=target[j].y;windBase[i*3+2]=target[j].z;});
   const hands={L:handWish.L,R:handWish.R},solved={...solvedNow},pins={...pinWish},t0=g.t,span=Math.min(g.d===Infinity?WIND.within:g.d/2,WIND.within);
   let far=0,contact=false;const tries=[];
@@ -844,8 +881,9 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    tries.push([g.t,Math.sqrt(n),windTry.slice()]);far=Math.max(far,Math.sqrt(n));}
   g.t=t0;handWish.L=hands.L;handWish.R=hands.R;Object.assign(solvedNow,solved);Object.assign(pinWish,pins);
   if(contact||far<WIND.least)return;
+  if(trunk){windTrunk(g,tries);return;}
   const best=tries.find(([,n])=>n>=.9*far),A=best[0];
-  wind.A=A;wind.W=THREE.MathUtils.clamp(WIND.lead*A,WIND.leadMin,WIND.leadMax);
+  wind.A=A;wind.W=THREE.MathUtils.clamp(WIND.lead*A,WIND.leadMin,WIND.leadMax);wind.H=0;wind.R=WIND.release*A;
   if(g.d!==Infinity&&wind.W>g.d*.3){wind.W=0;return;}
   wind.a=PUSHED.has(g.name)||FUN_POSES[g.name]||STORY_POSES.has(g.name)?WIND.comedy:WIND.everyday;
   const T=best[2];let headPart=0,all=0;
@@ -854,13 +892,78 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   JOINTS.forEach((j,i)=>{for(let c=0;c<3;c++){const d=T[i*3+c]-windBase[i*3+c];
    wind.turn[i*3+c]=LEG_SET.has(j)?0:(lead&&(j==='head'||j==='neck'))?WIND.look*d/wind.a:-d;}});
  }
+ /** Where the middle of a hand or of the head is with the body in `pose` (each joint's angles, JOINTS×3), along its bones
+  *  from the hips, in the body's own frame. */
+ const FK_CHAIN=Object.freeze({handL:['hips','spine','chest','shoulderL','elbowL','handL'],handR:['hips','spine','chest','shoulderR','elbowR','handR'],head:['hips','spine','chest','neck','head']});
+ const fkMid={handL:new THREE.Vector3(0,m.hand*handShape(m).middle[1],0),head:new THREE.Vector3(0,m.headCentre-m.headY,0)};fkMid.handR=fkMid.handL;
+ const _fkM=new THREE.Matrix4(),_fkL=new THREE.Matrix4(),_fkQ=new THREE.Quaternion(),_fkE=new THREE.Euler();
+ function fkAt(pose,eff,out){_fkM.identity();
+  for(const j of FK_CHAIN[eff]){const i=JOINT_AT[j]*3;_fkM.multiply(_fkL.compose(bones[j].position,_fkQ.setFromEuler(_fkE.set(pose[i],pose[i+1],pose[i+2])),bones[j].scale));}
+  return out.copy(fkMid[eff]).applyMatrix4(_fkM);}
+ /** The trunk's wind-up (TRUNK), from the move's tries (windRead): the hand or the head that goes furthest, the line of its
+  *  action, and the chest's and its own arm's turns that carry it back along that line. */
+ function windTrunk(g,tries){
+  const P0={},go={};let eff=null,far=0;
+  for(const e of ['handL','handR','head']){P0[e]=fkAt(windBase,e,new THREE.Vector3());go[e]=tries.map(([,,T])=>fkAt(T,e,new THREE.Vector3()).sub(P0[e]));
+   const f=Math.max(...go[e].map(v=>v.length()));if(f>far){far=f;eff=e;}}
+  if(far<.03)return;
+  const k=go[eff].findIndex(v=>v.length()>=.9*far),A=tries[k][0],u=go[eff][k].clone().normalize();
+  wind.A=A;wind.W=THREE.MathUtils.clamp(TRUNK.lead*A,TRUNK.leadMin,TRUNK.leadMax);wind.H=(TRUNK_OWN[g.name]?.hold??TRUNK.hold)*A;wind.R=TRUNK.release*A;
+  if(g.d!==Infinity&&wind.W+wind.H>g.d*.3){wind.W=0;return;}
+  const comedy=PUSHED.has(g.name)||FUN_POSES[g.name]||STORY_POSES.has(g.name),b=u.clone().multiplyScalar(-(TRUNK_OWN[g.name]?.share??(comedy?TRUNK.share.comedy:TRUNK.share.everyday))*far);
+  // (never into the body: a hand beside it, or in a pocket, is carried down and back and `clear` away from it, never in toward
+  // it, which the lean alone does to a hand hanging below the chest; the body's surface at the hand says which way is in)
+  if(eff!=='head'){volume??=bodyVolume(avatar.recipe,m);const p=P0[eff],e=.005,n=new THREE.Vector3(),q=new THREE.Vector3();
+   if(volume.sdf(p)<TRUNK.near*m.k){for(let c=0;c<3;c++){q.copy(p);q.setComponent(c,p.getComponent(c)+e);const a=volume.sdf(q);q.setComponent(c,p.getComponent(c)-e);n.setComponent(c,volume.sdf(q)-a);}
+    n.normalize();const into=b.dot(n);b.addScaledVector(n,-Math.max(0,into)-TRUNK.clear*m.k);}}
+  // (the turns it may use: the chest's three, the arm's own swing forward or back and out to its side, the elbow opening)
+  // (and the spine's, where the move's own action bends it: the root leads its own move, so it leads the wind-up too, or the
+  // chest would set off before it)
+  const T1=tries[k][2],si=JOINT_AT.spine*3,rooted=Math.hypot(T1[si]-windBase[si],T1[si+1]-windBase[si+1],T1[si+2]-windBase[si+2])>TRUNK.rooted;
+  const side=eff==='head'?null:eff.slice(-1),dofs=[...(rooted?[['spine',0],['spine',1],['spine',2]]:[]),['chest',0],['chest',1],['chest',2]];
+  if(side)dofs.push(['shoulder'+side,0],['shoulder'+side,2],['elbow'+side,0]);
+  const kind=j=>j.replace(/[LR]$/,''),cost=([j])=>TRUNK.cost[kind(j)],most=([j])=>TRUNK.most[kind(j)];
+  const p=new THREE.Vector3(),pose=windBase.slice(),cols=dofs.map(([j,c])=>{const i=JOINT_AT[j]*3+c;pose[i]+=.01;const v=fkAt(pose,eff,p.clone()).sub(P0[eff]).multiplyScalar(100);pose[i]=windBase[i];return v;});
+  let use=dofs.map(()=>true),x=null;
+  for(let pass=0;pass<4;pass++){
+   // (Δ = W Jᵀ (J W Jᵀ + λ)⁻¹ b: the least turn, weighted, that moves the effector by b)
+   const M=new THREE.Matrix3().set(0,0,0,0,0,0,0,0,0),e=M.elements;
+   cols.forEach((c,n)=>{if(!use[n])return;const w=1/cost(dofs[n]),a=[c.x,c.y,c.z];for(let r=0;r<3;r++)for(let s=0;s<3;s++)e[r+s*3]+=w*a[r]*a[s];});
+   e[0]+=1e-4;e[4]+=1e-4;e[8]+=1e-4;const y=b.clone().applyMatrix3(M.invert());
+   x=cols.map((c,n)=>use[n]?c.dot(y)/cost(dofs[n]):0);
+   // (the upper arm never in toward the side, the elbow never bent further: only toward straight, as a forearm trails)
+   let again=false;dofs.forEach(([j,c],n)=>{if(use[n]&&(c===2&&j.startsWith('shoulder')&&x[n]*(j.endsWith('L')?1:-1)<0||j.startsWith('elbow')&&x[n]<0)){use[n]=false;again=true;}});
+   if(!again)break;}
+  // (no joint past what a calm body does: the whole wind-up smaller rather than one joint bent further)
+  const over=Math.max(1,...x.map((v,n)=>Math.abs(v)/most(dofs[n])));
+  wind.a=1;wind.turn.fill(0);dofs.forEach(([j,c],n)=>{wind.turn[JOINT_AT[j]*3+c]+=x[n]/over;});
+  // (the forearm trails the upper arm into the wind-up a little, at least `trail`, where its elbow is bent: so it starts a level
+  // after the upper arm, as rule 5 has it, not only with the action)
+  if(side){const i=JOINT_AT['elbow'+side]*3;if(windBase[i]<-2*TRUNK.trail)wind.turn[i]=Math.max(wind.turn[i],TRUNK.trail);}
+  // (the other hand stays by the hip, in its pocket or behind the back: carried with the leaning chest it swung 4-6 cm out of
+  // the pocket. Its upper arm turns back against the lean, forward or back (x) for all of its drift that way and in (z) for
+  // `keep` of its swing out: as the lean lifts that shoulder and brings it in toward the middle, taking all of it back pressed
+  // the forearm 7-17 mm deeper into the hip than the pocket has it (tests/stance-release.test.mjs); the hand rides up a
+  // little, as a hand in a pocket does)
+  if(side){const o=side==='L'?'R':'L',he='hand'+o,ci=JOINT_AT.chest*3;pose.set(windBase);for(let c=0;c<3;c++)pose[ci+c]+=wind.turn[ci+c];
+   const at=fkAt(pose,he,new THREE.Vector3()),d=at.clone().sub(fkAt(windBase,he,new THREE.Vector3()));
+   for(const [c,axis] of [[2,'x'],[0,'z']]){const i=JOINT_AT['shoulder'+o]*3+c;pose[i]+=.01;const rate=(fkAt(pose,he,p.clone())[axis]-at[axis])*100;pose[i]-=.01;
+    if(Math.abs(rate)>.05)wind.turn[i]=THREE.MathUtils.clamp(-(c===2?TRUNK.keep:1)*d[axis]/rate,-TRUNK.most.shoulder,TRUNK.most.shoulder);}}
+  wind.trunk=true;
+  // (the head keeps level as the trunk tilts, and leads, as the eyes go first, unless it is what moves)
+  const hi=JOINT_AT.head*3,ni=JOINT_AT.neck*3,ci=JOINT_AT.chest*3,T=tries[k][2];
+  for(const c of [0,2])wind.turn[ni+c]=-TRUNK.level*(wind.turn[si+c]+wind.turn[ci+c]);
+  if(eff!=='head')for(const i of [hi,ni])for(let c=0;c<3;c++)wind.turn[i+c]+=WIND.look*(T[i+c]-windBase[i+c]);
+ }
  /** The move's own time under its wind-up: held at its start while the body winds up, then a little quicker. */
- function windTime(g){const W=wind.W,t=g.t<W?0:g.d===Infinity?g.t-W:(g.t-W)*g.d/(g.d-W);return {...g,t};}
+ function windTime(g){const W=wind.W+wind.H,t=g.t<W?0:g.d===Infinity?g.t-W:(g.t-W)*g.d/(g.d-W);return {...g,t};}
  /** The wind-up on this frame's targets: eased in over W, let go over the action's first `release`. */
  function windStep(g){
-  const W=wind.W,k=g.t<W?smooth(g.t/W):1-smooth((g.t-W)/(WIND.release*wind.A));if(k<=0)return;
+  const W=wind.W,k=g.t<W?smooth(g.t/W):g.t<W+wind.H?1:1-smooth((g.t-W-wind.H)/wind.R);if(k<=0)return;
   JOINTS.forEach((j,i)=>{const T=target[j],a=wind.a*k;let x=wind.turn[i*3]*a,y=wind.turn[i*3+1]*a,z=wind.turn[i*3+2]*a;
-   if(j==='shoulderR')z=Math.min(0,z);else if(j==='shoulderL')z=Math.max(0,z);
+   // (stage 2's turn of the move's own joints: never in toward the side; the trunk's solve keeps to that itself, and turns the
+   // other arm back against the chest, which may be in)
+   if(!wind.trunk){if(j==='shoulderR')z=Math.min(0,z);else if(j==='shoulderL')z=Math.max(0,z);}
    if(j==='elbowL'||j==='elbowR')x=Math.min(x,-T.x);
    T.x+=x;T.y+=y;T.z+=z;});
  }
@@ -1764,6 +1867,11 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  }
  function applyGesture(g,s,seated=false){
   const t=g.t,d=g.d,e=d===Infinity?1:env(t,d),q=d===Infinity?Math.min(1,t/.3):ease(t,d);
+  // (an everyday arm raised from the side, at a natural pace: eased out of the stance and into the pose, RISE)
+  const rise=RISE_OWN[g.name]||RISE_TIME,r=RISE.has(g.name)?(d===Infinity?smooth(t/rise[0]):inOut(t,d,...rise)):q;
+  // (and from where the arm hangs, a little out from the side, not from straight down against it: held at its start while the
+  // body winds up, the arm went in toward that and the hand into the hip)
+  const hang=.13+clear;
   // the moves for Fujita's Ten Minutes of Heaven come in smoothly over half a second (big ones slower); a pose the scene
   // names comes in and goes out on its own ramp
   const raw=g.ramp!==undefined?g.ramp:THREE.MathUtils.clamp(Math.min(t/.5,d===Infinity?1:(d-t)/.5),0,1);
@@ -1774,18 +1882,18 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    // A friendly wave: the upper arm out a little above the shoulder, the forearm up beside the head, swaying from the
    // elbow, the palm turned to the front. (A straight arm raised high and forward, the hand flat, reads as a salute: the
    // owner, 26 October 2026: "He shouldn't do the Hitler salute".)
-   case 'Wave':set('shoulderR',-.22*q,0,-1.72*q);set('elbowR',0,0,-1.45*q+Math.sin(t*9)*.32*q);set('handR',0,-.95*q,0);add('head',0,0,.08*q);break;
+   case 'Wave':set('shoulderR',-.22*r,0,-hang-(1.72-hang)*r);set('elbowR',-.12*(1-r),0,-1.45*r+Math.sin(t*9)*.32*r);set('handR',0,-.95*r,0);add('head',0,0,.08*r);break;
    case 'Bow':add('chest',.95*e*bowDepth);add('spine',.25*e*bowDepth);add('head',.2*e*bowDepth);set('shoulderL',.1,0,clear?.13+clear:.05);set('shoulderR',.1,0,clear?-.13-clear:-.05);break;
    case 'Nod':add('head',Math.sin(t*9)*.28*e);break;
-   case 'ScratchHead':set('shoulderR',-1.55*q,0,-1.15*q);set('elbowR',-2.2*q+Math.sin(t*16)*.12*q);add('head',.06*q,0,-.14*q);break;
+   case 'ScratchHead':set('shoulderR',-1.55*r,0,-hang-(1.15-hang)*r);set('elbowR',-.12*(1-r)-2.2*r+Math.sin(t*16)*.12*r);add('head',.06*r,0,-.14*r);break;
    case 'HairTuck':set('shoulderL',-1.3*q,0,.95*q);set('elbowL',-2.25*q);add('head',0,0,.12*q);break;
    case 'HeelRock':set('shoulderL',.45*q,0,.1);set('shoulderR',.45*q,0,-.1);set('elbowL',-.9*q);set('elbowR',-.9*q);add('footL',Math.sin(t*5)*.22*e);add('footR',Math.sin(t*5)*.22*e);add('chest',Math.sin(t*5)*.04*e);break;
-   case 'ChinTap':set('shoulderR',-1.2*q,0,-.3);set('elbowR',-1.9*q+Math.sin(t*11)*.14*q);add('head',.1*q,0,.1*q);break;
-   case 'CollarTug':set('shoulderR',-1*q,0,-.25*q);set('elbowR',-2.1*q);set('shoulderL',-1*q,0,.25*q);set('elbowL',-2.1*q);add('head',-.12*q);break;
+   case 'ChinTap':set('shoulderR',-1.2*r,0,-.3);set('elbowR',-1.9*r+Math.sin(t*11)*.14*r);add('head',.1*r,0,.1*r);break;
+   case 'CollarTug':set('shoulderR',-1*r,0,-hang-(.25-hang)*r);set('elbowR',-.12*(1-r)-2.1*r);set('shoulderL',-1*r,0,hang+(.25-hang)*r);set('elbowL',-.12*(1-r)-2.1*r);add('head',-.12*r);break;
    case 'HeadShake':add('head',0,Math.sin(t*11)*.45*e);break;
-   case 'Point':set('shoulderR',-1.5*q,.2,-.1);set('elbowR',-.05);add('head',0,-.15*q);break;
+   case 'Point':set('shoulderR',-1.5*r,.2,-.1);set('elbowR',-.05);add('head',0,-.15*r);break;
    case 'Shrug':set('shoulderL',-.3*e,0,.55*e+.13);set('shoulderR',-.3*e,0,-.55*e-.13);set('elbowL',-1.3*e);set('elbowR',-1.3*e);add('head',0,0,.2*e);break;
-   case 'Clap':{const c=Math.abs(Math.sin(t*9));set('shoulderL',-1.2*q,0,.1+c*.35);set('shoulderR',-1.2*q,0,-.1-c*.35);set('elbowL',-.9*q);set('elbowR',-.9*q);break;}
+   case 'Clap':{const c=Math.abs(Math.sin(t*9));set('shoulderL',-1.2*r,0,.1+c*.35);set('shoulderR',-1.2*r,0,-.1-c*.35);set('elbowL',-.9*r);set('elbowR',-.9*r);break;}
    case 'Laugh':add('chest',-.24*e+Math.sin(t*16)*.07*e);add('head',-.32*e);set('shoulderL',-.85*e,0,.4);set('shoulderR',-.85*e,0,-.4);set('elbowL',-1.65*e);set('elbowR',-1.65*e);break;
    case 'Gasp':add('chest',-.18*e);add('head',-.12*e);set('shoulderL',-.7*e,0,.28);set('shoulderR',-.7*e,0,-.28);set('elbowL',-1.9*e);set('elbowR',-1.9*e);return {root:Math.sin(Math.PI*t/d)*.045};
    case 'Think':set('shoulderR',-1.25*q,0,-.35);set('elbowR',-1.95*q);set('shoulderL',-.4*q,0,.3);set('elbowL',-1.4*q);add('head',.12*q,0,.18*q);break;

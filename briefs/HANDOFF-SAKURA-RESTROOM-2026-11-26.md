@@ -1065,3 +1065,94 @@ in `AGENTS.md` (the owner's decision of this date).
   snapshot of the machine's line-up is now older still; `hand-shots.mjs` exits 1 on the page's missing favicon.
 - The ferry's lobby machines (`ferry-ship.js`, "Canned coffee and tea") and Johansson Mart's two (`kitahama-shop-build.js`)
   are other machines, not this model, and are unchanged.
+
+# 27 November, later: stage 3 begun, the trunk's wind-up (branch `anim/stage3`)
+
+From `claude/dreamy-ritchie-cxufpl` at afb2fcb. Not pushed. Stopped at a committed, passing state with the rest written
+here: the session's context was near its end. What each change does and why is in `docs/ANIMATION-STANDARD.md` section 6,
+"Stage 3".
+
+## Done
+- `animate.js`:
+  - **`TRUNK`, `WIND_TRUNK`, `windTrunk`:** the wind-up as a dip of the shoulder, solved on the body's own bones.
+  - **`RISE`:** the everyday arm raises at a natural pace, from where the arm hangs.
+  - **The Wave** lasts 2 s (from 1.6).
+  - **`windStep`/`windTime`:** a hold at the bottom of the wind-up.
+- `tools/hand-shots.mjs --wind`: a strip of every third frame over the wind-up.
+- `tests/wave-gesture.test.mjs` (guard): looks for the raised arm where it is now up, 0.67-1.67 s.
+- Commits: ba79fb7 (the trunk's wind-up, the rise), 4b01670 (Shrug; the dip a centimetre clear of the body).
+  ba79fb7 alone fails `stance-release` by 0.2 mm (Vy's waving hand), which 4b01670 mends.
+- Baseline 1088 → 1062 entries, none added. Every check 6 → 7 (the Wave). Anticipation 17 → 19 of 141, ease 122 → 123,
+  overlap 55 → 56. Off:
+  - the Wave altogether;
+  - ScratchHead's anticipation and arcs on all three;
+  - anticipation on two bodies each for Point, ChinTap, Clap and Shrug, and on Vy and Sverker for CollarTug;
+  - Kachashi's ease on all three;
+  - Shrug's twins on Vy and Johansson.
+- Sheets before and after, the seven moves on Johansson and Thao: `output/anim-stage3/wind/` (not in git).
+
+## Proved
+- `node --test tests/animation-principles.test.mjs`: 8 of 8.
+- Guard tests that play the changed moves pass:
+  - `stance-release`, `wave-gesture`, `avatar-polish` (with the collar under the sleeve in Clap and CollarTug);
+  - `conversation-eyes`, `vy-reference`, `drinking-game`, `player-seating`, `open-can`.
+- **The 51 animator and avatar files outside the guard**, each alone, at afb2fcb and at 4b01670: all 50 that finish give the
+  same results at both, test by test, nothing worse and nothing newly fixed. `fun-poses` runs past its hour at both, as
+  stage 2 found. The ones that fail, fail what they failed before stage 3:
+  - afterbath-outfit, avatar-floor-contact, avatar-wardrobe-sets test 1, drink-grip (2);
+  - expressive-poses, fujitas-back-moves' plank, izakaya-lived-in, onsen-noren-heads, onsen-seats;
+  - owned-vehicles (2), pole-hug (2), story-gestures (2), underarm-coverage;
+  - wardrobe-batch2, wardrobe-batch3 (2), work-kit.
+- **The full guard** (`node tools/ci-guard.mjs`, 134 files, 2222 s with the machine at load 15): 703 of 706.
+  - floor-sit and no-z-fighting ran past the guard's 900 s a file. Alone, floor-sit passes 7 of 7 (6 min) and
+    no-z-fighting 13 of 13 at the head as at the base (run directly; under `node --test` it reports a bare "test failed"
+    at both).
+  - The runtime package and the portraits did not fail here.
+
+## Found
+- **The audit counts a counter-movement only where it moves faster than a tenth of the action's top speed** (its rest).
+  Against a raise ramped in a quarter second (the Wave's hand at 4.2 m/s), no calm dip registers. So a move that wants a
+  calm wind-up wants an action at a natural pace first (`RISE`).
+- **A root that moves only in the wind-up fails overlap:** the root must stop first, but it stops a second before the
+  arms. And a moving root holds the chest a lag behind it, which halves the dip's speed. The dip is the chest's.
+- **The moves' poses started from an arm straight down against the side** (shoulder z 0), not the body's hang (0.13 rad
+  out). Held at its start through the wind-up, Wave's and ScratchHead's hand went 5-9 mm into the hip. Now they start
+  from the hang.
+- **The other hand in a pocket still swings about 3 cm out** as the chest leans. Its forearm already lies 11-19 mm into the
+  hip's measured core at the pocket stance, so turning it all the way back presses it deeper (`TRUNK.keep` 0.3 is the most
+  the stance test allows).
+- **Vy needs about 0.28 rad (16 degrees) of lean** to carry her hand back 5% of its way: her trunk carries the hand about
+  half as far per radian as Johansson's. On her it is not subtle.
+- **The machine's load (about 15 on 4 cores) made the whole-animator benchmark meaningless:** the base's idle read 95 to
+  193 µs between runs. The start frame of a trunk move was measured alone instead: about 0.3 ms where it was 0.05, once,
+  as the move starts; the frames after, 26-27 µs as before.
+
+## Remains (stage 3, in order)
+1. **Anticipation for the rest of the most-seen moves.** Try a move by adding it to `WIND_TRUNK` (its own share and hold
+   in `TRUNK_OWN`) and auditing it (`node tools/animation-audit.mjs --moves X`). Then audit every move: it must take entries
+   off and add none, and `stance-release` must pass.
+   - **Talk:** no depth on any body. Its hands start from the stance and sway at once (no ramp), and it adds arcs on Vy.
+     It wants a ramped raise of its own first.
+   - **Laugh:** passes on Johansson and Sverker. On Vy no depth; on Sverker the wind-up's own stroke curves 62% (13 cm).
+   - **Bow:** the spine leads (`TRUNK.rooted` does this) and passes on Johansson and Sverker. But Johansson's head lean
+     back is a straight 10 cm stroke (an arc failure), and Vy's levels start together. Try a share under 7% so the stroke
+     stays under 10 cm.
+   - **HairTuck:** Sverker's hand from behind his back to the ear goes past a half circle with any wind-up or slower rise.
+   - **HeelRock, DramaFinish:** their levels start out of order.
+   - **Point, ChinTap, Clap on Sverker (hands behind his back):** the release from behind the back runs forward along the
+     action and cancels the dip. Try holding the stance through the wind-up and releasing with the action.
+   - **CollarTug on Johansson.**
+   - The 13 that newly needed it after stage 1, SitDown and StandUp.
+2. **Squash on impacts, 0 of 15** (not begun). A plan:
+   - Read the impact in the animator as the audit does: the hips falling at 0.3 m/s or faster and stopping.
+   - Squash the waist: the spine's scale y by (1 - s) and x, z by 1/sqrt(1 - s). Scale the chest by the inverse, so the
+     head and arms keep their shape and every bone's product stays 1.
+   - Size it by the fall: everyday 2.5-4.5%, comedy 11-18%. Ease it over about 10 frames, peaking within the audit's 8.
+   - Jump's crouch first: `foot-ground.js` only lifts an airborne body (`Math.max(0, correction)`), and Jump counts as
+     airborne from its first frame, so its crouch never brings the hips down.
+   - Check the clothes, the outline and the hem springs. `springs.js` belongs to the shirt helper.
+3. The twins' offsets.
+4. The 13 arcs entries from stage 1, and `ARCS_WITHOUT_DRAG`.
+5. The settle's micro-overshoot.
+6. The lift's velocity steps, and Vy's run knee.
+7. The drink's leftover failures (DrinkCan and DrinkCanOpened). Untouched in stage 3.
