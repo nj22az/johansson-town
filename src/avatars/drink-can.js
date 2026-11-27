@@ -213,7 +213,8 @@ export function playCanDrink(avatar,prop,t,w=1,blend=null){
   // another body's and the hand turning with it as a hand does, but for while it is hooked on the ring)
   // (the left hand's turn held in the world from well before it hooks the ring, as the path is put right for it: RING_NEAR,
   // or the hooked finger comes to the ring turned as another body's arm turns it, 20 mm off on Thao)
-  const near=side==='L'&&prop?.userData?.sealed&&!prop.userData.sealed.off?Math.max(cues.ring,sampleTrack(M,RING_NEAR,t)):cues.ring;
+  // (and let go of as slowly after the tear, the tab in the hook: not dropped to the wrist's own turn in the frame it tears)
+  const near=side==='L'?Math.max(cues.ring,sampleTrack(M,RING_NEAR,t)):cues.ring;
   const before=ARM.map(j=>avatar.bones[j+side].quaternion.clone());
   fix[side]=bring(avatar,side,null,hand.add(goals[side]),w,side==='R'?1:near,side==='R'?cues.lip:near*.4);
   // (the left, hanging or easy at his side, steadied where no contact holds it; by as much as the move is in, so it ends on the
@@ -221,7 +222,8 @@ export function playCanDrink(avatar,prop,t,w=1,blend=null){
   if(side==='L')steady(avatar,side,before,t,w*(1-Math.max(near,prop?.userData?.sealed?sampleTrack(M,POCKET_NEAR,t):0)));
   // (off the lip, the right wrist kept within what a wrist does, softly: the can a little less tipped on a body whose arm
   // will not turn it so, rather than the wrist bent past its end)
-  if(side==='R'&&cues.lip<1){const q=avatar.bones.handR.quaternion,soft=q.clone();softWrist(soft,'R');q.slerp(soft,1-cues.lip);avatar.bones.handR.updateWorldMatrix(false,true);}}
+  const off=1-Math.max(cues.lip,sampleTrack(M,LIP_NEAR,t));   // (let go of over 0.3 s each side of the lip, as the rim is)
+  if(side==='R'&&off>0){const q=avatar.bones.handR.quaternion,soft=q.clone();softWrist(soft,'R');q.slerp(soft,off);avatar.bones.handR.updateWorldMatrix(false,true);}}
  if(prop)placeCan(avatar,prop);
  const near=prop&&M.reach?.mouth?sampleTrack(M,M.contact.mouth,t):0;
  if(prop&&(cues.lip>0||near>0)){

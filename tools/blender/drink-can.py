@@ -523,7 +523,7 @@ OPEN_TURN = lambda dt=0.0: can_turn(.06 + dt, .55, -.12)
 CANKEYS = [
     (.35, lambda t: can_at(WAIST, can_turn(0, .25))),
     (.5, lambda t: can_at(WAIST, can_turn(0, .25))),                                               # (still while the move blends in)
-    (.64, lambda t: can_at((-.08 * k, M['chestY'] - .16 * k, .145 * k), can_turn(-.06, .25))),     # anticipation: down and in, against the reach
+    (.67, lambda t: can_at((-.08 * k, M['chestY'] - .178 * k, .14 * k), can_turn(-.07, .25))),     # anticipation: down and in, against the reach
     (.83, lambda t: can_at((-.125 * k, M['chestY'] - .06 * k, .26 * k), can_turn(-.02, .4))),        # on the way up (the arc out to his right)
     (1.05, lambda t: can_at(LOWCHEST, OPEN_TURN())),
     (1.5, lambda t: can_at((LOWCHEST[0], LOWCHEST[1] - .006 * k, LOWCHEST[2]), OPEN_TURN(-.01))),    # held against the pull
@@ -543,7 +543,7 @@ CANKEYS = [
     (7.0, lambda t: at_lip(t, math.radians(42), away=.035 * k, down=.012 * k, side=-.04 * k)),     # breakdown: in on an arc from his right
     *pull(7.15, 8.2, 58, 93),                                                                     # the second pull: the last of it
     *pull(8.2, 8.5, 93, 91, .05),
-    (8.62, lambda t: at_lip(t, math.radians(76), away=.026 * k, down=0, side=-.03 * k)),                            # off the lips first (not tipped down against them), then down
+    (8.62, lambda t: at_lip(t, math.radians(74), away=.03 * k, down=0, side=-.055 * k)),                            # off the lips first (not tipped down against them), then down
     (8.82, lambda t: at_lip(t, math.radians(40), away=.068 * k, down=0)),                            # release: off the lip, into the "ahh"
     (8.96, lambda t: at_lip(t, math.radians(39), away=.07 * k, down=0)),                              # "ahh": held off his lips (with his head)
     (9.16, lambda t: at_lip(t, math.radians(28), away=.07 * k, down=-.025 * k)),                     # anticipation: tipped back, a touch up and in (against the lowering)
@@ -923,7 +923,8 @@ for f in frames:
 # the can at 107 mm a frame.)
 LAG, EASE = 3, 8
 ease3 = lambda x: 0.0 if x <= 0 else 1.0 if x >= 1 else x * x * (3 - 2 * x)
-for side, held_by in (('R', ('lip', 'ring')), ('L', ('ring', 'pocket'))):          # (the can too, while the finger is on its ring)
+for side, held_by in (('R', ('lip', 'ring', 'mouth')), ('L', ('ring', 'pocket'))):  # (the can too: on its ring, and near his face, which a
+    # late forearm would put it into)
     on = [max(c[h] for h in held_by) for c in contacts]
     soft = [max(on[j] * ease3(1 - abs(i - j) / EASE) for j in range(max(0, i - EASE), min(len(on), i + EASE + 1))) for i in range(len(on))]
     late = {part: [p[part + side].copy() for p in baked] for part in ('elbow', 'hand')}
@@ -934,34 +935,35 @@ for side, held_by in (('R', ('lip', 'ring')), ('L', ('ring', 'pocket'))):       
         baked[i]['elbow' + side], hand = twist_into_forearm(side, baked[i]['elbow' + side], baked[i]['hand' + side])
         baked[i]['hand' + side] = soft_wrist(side, hand)
 # Spacing (slow-in-out-mastery; the principles audit's ease): every joint's curve from the spine up evened over its
-# neighbours, three frames each side by binomial weights (about a frame and a half's spread at 30 fps): the poses stay where they are keyed,
+# neighbours, five frames each side by binomial weights (about a frame and a half's spread at 30 fps): the poses stay where they are keyed,
 # the steps of speed from one key's in-betweens to the next's (which the game plays as a jump of the joint's turn a frame) are
 # taken out.
-SPREAD = (1, 6, 15, 20, 15, 6, 1)
+SPREAD = (1, 10, 45, 120, 210, 252, 210, 120, 45, 10, 1)
 
 
-def evened(qs):
-    out = []
+def evened(qs, spread=SPREAD):
+    out, n = [], len(spread) // 2
     for i, q in enumerate(qs):
         acc = Vector((0, 0, 0))
-        for d, w in zip(range(-3, 4), SPREAD):
+        for d, w in zip(range(-n, n + 1), spread):
             r = q.inverted() @ qs[min(len(qs) - 1, max(0, i + d))]
             if r.w < 0:
                 r = -r
             axis, angle = r.to_axis_angle()
-            acc += axis * angle * w / sum(SPREAD)
+            acc += axis * angle * w / sum(spread)
         out.append(q @ Quaternion(acc.normalized(), acc.length) if acc.length > 1e-9 else q.copy())
     return out
 
 
 UPPER = ('spine', 'chest', 'neck', 'head', 'shoulderL', 'elbowL', 'handL', 'shoulderR', 'elbowR', 'handR')
-# (not while the rim is at his lip: there every joint from the spine up is where the IK put the can on the lip as the head
-# swallows, eased back to it as the contact comes and goes)
+# (and less while the rim is at his lip, a frame each side: there every joint from the spine up is close to where the IK put the
+# can on the lip as the head swallows; eased from the one to the other as the contact comes and goes)
 on = [c['lip'] for c in contacts]
 at_lip = [max(on[j] * ease3(1 - abs(i - j) / EASE) for j in range(max(0, i - EASE), min(len(on), i + EASE + 1))) for i in range(len(on))]
 for n in UPPER:
-    for pose, q, w in zip(baked, evened([p[n] for p in baked]), at_lip):
-        pose[n] = q.slerp(pose[n], w)
+    raw = [p[n] for p in baked]
+    for pose, q, q1, w in zip(baked, evened(raw), evened(raw, (1, 2, 1)), at_lip):
+        pose[n] = q.slerp(q1, w)
 for side in 'RL':                                                           # (and the wrist still within what a wrist does)
     for pose in baked:
         pose['hand' + side] = soft_wrist(side, pose['hand' + side])
