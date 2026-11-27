@@ -579,3 +579,28 @@ might need improvement". On `drink/can` (from `claude/dreamy-ritchie-cxufpl`), n
 - Residents sip the same motion at 1.25 times its speed; glasses and bottles sit in the socket but still drink by the old
   consumption path; the 190 g can is held and drunk as the 350 ml one is.
 - The swallow is a chin dip, not a throat; the Blender can is a stand-in in its materials.
+
+# 27 November, evening: the animation guideline, adopted strictly
+
+The owner: "https://github.com/dylantarre/animation-principles use this as the guidelines for animating Johansson world
+make strict adherence to it".
+
+## Done
+- The guideline is in the repository at the owner's commit (`docs/animation-principles/`, MIT, unchanged; `VENDORED.md`).
+- How it applies here: `docs/ANIMATION-STANDARD.md`. It covers:
+  - which skills govern which work;
+  - the two registers (everyday calm and friendly, comedy playful) with the guideline's numbers;
+  - the twelve principles as rules at 60 fps and 30 fps;
+  - the camera and the screens;
+  - making, reviewing and checking a move.
+- The rule is in `AGENTS.md` (a new owner's decision at the top), `CLAUDE.md`, and a project skill
+  (`.claude/skills/animation-standard`) that loads it. In the site repository it is in `ANIMATION_DIRECTION.md`,
+  `CLAUDE.md`, `AGENTS.md` and `HANDOVER.md`.
+- The can drink's re-key in Blender (the helper on `drink/can`) was given the standard's numbers for every beat.
+- The torn tab hung half a metre from the fingers (fixed earlier today in 75c31b7).
+
+## Remains
+- **The principles audit** (`tools/animation-audit.mjs`, `tests/animation-principles.test.mjs`) and its first baseline
+  (`tests/animation-principles.baseline.json`), as the standard's section 5 describes. The baseline may only shrink.
+- **Bringing the existing moves up to the standard**, the most-seen first: walk, idle, talk, wave, nod, eat, drink, sit.
+- The camera and the screens against `motion-sickness`, `accessible-motion` (reduced motion) and `timing-calibration`.

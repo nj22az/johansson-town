@@ -4,6 +4,30 @@
 
 Read the repository's [AGENTS.md](../AGENTS.md) and [CLAUDE.md](../CLAUDE.md). Their working discipline applies here.
 
+## Owner's decision — 27 November 2026: the animation guideline, strictly
+
+The owner: "https://github.com/dylantarre/animation-principles use this as the guidelines for animating Johansson world
+make strict adherence to it".
+
+- **Everything that moves follows it:**
+  - residents and the player, with their faces and hands;
+  - props, animals, vehicles, doors and machines;
+  - the camera, the comics' poses and the game's screens.
+- **The guideline is kept in the repository** at the commit the owner gave: `docs/animation-principles/` (MIT, unchanged;
+  see `VENDORED.md`). Do not edit it.
+- **How it applies here is [docs/ANIMATION-STANDARD.md](docs/ANIMATION-STANDARD.md).** Read it, and the skills its
+  section 1 names for the work, before you key, pose or code any motion. It covers:
+  - which skills govern which work;
+  - the town's two registers (everyday is calm and friendly, comedy is playful), with the guideline's numbers for each;
+  - the twelve principles as rules, at 60 fps in the game and 30 fps in Blender;
+  - how a move is made and reviewed;
+  - the checks.
+- **Performances are keyed pose to pose in Blender and exported** (`tools/blender/drink-can.py`, `src/avatars/motion.js`).
+  Procedural moves are eased curves, never linear in time on anything alive.
+- **No new move, and no change to one, may add a failure to the principles audit.** The moves that do not comply yet are
+  fixed, the most-seen first. They are listed in the audit's baseline; until it exists, assume a move does not comply
+  until it has been checked.
+
 ## Owner's decision — 26 November 2026: Johansson is drawn from the owner, in Blender
 
 The owner, with his photographs: "he is supposed to look more like me"; "shift the character from cute chibi to rugged,
