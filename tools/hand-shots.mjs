@@ -7,7 +7,7 @@
 //   node tools/hand-shots.mjs --sit chair,floor [--name Thao] [--outfit afterbath] [out.png]
 //   node tools/hand-shots.mjs --hold draft,can,bottle [--name Johansson] [out.png]     a drink in the hand, held and at the lips
 //   node tools/hand-shots.mjs --drive car,"kei truck" [--name Johansson] [out.png]      both hands on the steering wheel
-//   node tools/hand-shots.mjs --beer pint [--name Johansson] [out.png]   a glass of beer taken off Minato's counter, drunk and set down
+//   node tools/hand-shots.mjs --beer pint[:resident] [--name Johansson] [out.png]   a glass of beer taken off Minato's counter, drunk and set down (:resident, as a resident at the venue)
 //       (drink-beer.js createBeerTableDrink): its key moments from the front, the three-quarter and the side, strips of 8
 //       consecutive frames over the lift, the gulp and the set-down, and the game's third-person camera indoors
 //   node tools/hand-shots.mjs --ride 0,.25 [--name Thuan] [out.png]                     on a bicycle, at those turns of the crank
@@ -138,18 +138,29 @@ try{
     P.step(60,state);fitAvatarHeldProp(P.a,prop,lift);P.holder.updateMatrixWorld(true);
     const h=handAt(P.a,'R'),y=frontYaw(P.a);for(const turn of [-1.2,-.4,.6,2.2])shoot(sc,h,y+turn,.2,P.a.measure.hand*10,`${kind} ${lift?'at the lips':'held'} · grip ${P.a.gripOf?.('R')}`);P.a.dispose();}}
   }else if(beer){
-   // a glass of beer off Minato's counter (drink-beer.js), seated on a counter stool, the glass where Thao sets one down
-   const {createDrinkProp,setPropPortion}=await import(base+'src/people/izakaya-beer.js'),{createBeerTableDrink,beerParts,BEER_MOTIONS}=await import(base+'src/avatars/drink-beer.js');
-   const kind={mug:'draft',pint:'pint',glass:'bottle'}[beer],sc=scene(),P=body(name,sc),state={seated:true,seatHeight:.46,seatFront:.19};P.step(90,state);
-   const room=P.holder,counter=new T.Mesh(new T.BoxGeometry(1.6,.06,.7),new T.MeshStandardMaterial({color:0xb08a5a}));counter.position.copy(P.a.root.localToWorld(new T.Vector3(0,.739-.03,.52+.35)));sc.add(counter);
-   const stool=new T.Mesh(new T.CylinderGeometry(.17,.17,.04,24),new T.MeshStandardMaterial({color:0x4a3a2a}));stool.position.copy(P.a.root.localToWorld(new T.Vector3(0,.4,.1)));sc.add(stool);
-   const prop=createDrinkProp(kind,{held:true});sc.add(prop);prop.position.copy(P.a.root.localToWorld(new T.Vector3(-.15,.739,.58)));prop.quaternion.copy(P.a.root.getWorldQuaternion(new T.Quaternion())).multiply(new T.Quaternion().setFromAxisAngle(new T.Vector3(0,1,0),Math.PI));
-   let consumed=0;const lease={prop,kind,startFraction:1,endFraction:.6,get consumedPortion(){return consumed;},consume(p){consumed=.4*p;setPropPortion(prop,1-consumed,{immediate:true});},finish:()=>({}),cancel:()=>({})};
-   const drink=createBeerTableDrink(P.a,lease),y=frontYaw(P.a),m=P.a.measure,M=BEER_MOTIONS[beer],B=beerParts(M);
+   // a glass of beer off Minato's counter (drink-beer.js), seated on a counter stool as game.js seats a body (the holder at the
+   // seat, the body forward on the stool as far as its shins need), the glass where Thao sets one down, turned to the drinker:
+   // Johansson's (createBeerTableDrink), or with --resident a resident's at the venue (the animator's 'Drink' pose, the glass in
+   // the hand standing where it stands: venue-service.js drinkRest)
+   const {createDrinkProp,setPropPortion,IZAKAYA_PLAYER_SEATS}=await import(base+'src/people/izakaya-beer.js'),{MINATO_COMPACT}=await import(base+'src/world/interiors/minato-compact-plan.js');
+   const {createBeerTableDrink,beerParts,BEER_MOTIONS,restTurn,beerPlan,beerPlanAt,beerStyleOf}=await import(base+'src/avatars/drink-beer.js');
+   const seat=IZAKAYA_PLAYER_SEATS.counter2,C=MINATO_COMPACT.counter,kind={mug:'draft',pint:'pint',glass:'bottle'}[beer.split(':')[0]],resident=beer.endsWith(':resident');
+   const sc=scene(),P=body(name,sc),state={seated:true,seatHeight:seat.surfaceY,seatFront:seat.front};P.holder.position.set(...seat.position);P.holder.rotation.set(0,seat.yaw,0);P.step(90,{...state,pose:'Sit'});
+   const counter=new T.Mesh(new T.BoxGeometry(1.6,.06,C.depth),new T.MeshStandardMaterial({color:0xb08a5a}));counter.position.set(seat.position[0],C.top-.03,C.position[2]);sc.add(counter);
+   const stool=new T.Mesh(new T.CylinderGeometry(.17,.17,.04,24),new T.MeshStandardMaterial({color:0x4a3a2a}));stool.position.set(seat.position[0],seat.surfaceY-.03,seat.position[2]);sc.add(stool);
+   const prop=createDrinkProp(kind,{held:true}),M=BEER_MOTIONS[beer.split(':')[0]],B=beerParts(M),y=frontYaw(P.a),m=P.a.measure;let tick;
+   if(resident){
+    P.a.bones.handR.add(prop);setPropPortion(prop,1,{immediate:true});const plan=beerPlan(prop,beerStyleOf(P.a.recipe?.name),{counter:true,first:true});let e=0;
+    tick=()=>{if(e>plan.duration+.3)return null;P.step(1,{...state,heldProp:prop,pose:'Drink',consumeElapsed:Math.min(e,plan.duration),drinkRest:seat.table,drinkFirst:true});e+=1/60;return beerPlanAt(plan,Math.min(e,plan.duration));};
+   }else{
+    sc.add(prop);prop.position.set(...seat.table);prop.quaternion.copy(restTurn(P.a.root));
+    let consumed=0;const lease={prop,kind,startFraction:1,endFraction:.6,get consumedPortion(){return consumed;},consume(p){consumed=.4*p;setPropPortion(prop,1-consumed,{immediate:true});},finish:()=>({}),cancel:()=>({})};
+    const drink=createBeerTableDrink(P.a,lease);tick=()=>{if(!drink.active)return null;P.step(1,state);drink.update(1/60);P.holder.updateMatrixWorld(true);return drink.diagnostics;};
+   }
    const keys=[['take',.62,'the hand dips'],['take',1.42,'on the glass'],['first',.45,'anticipation'],['first',.95,'the lift'],['first',1.42,'contact'],['first',2.6,'the gulp'],['first',3.35,'off the lip'],['first',3.65,'kaa!'],['first',4.55,'the wipe'],['first',5.25,'set-down: up first'],['first',5.96,'the tap'],['let',.75,'let go']];
-   const strips=[['first',.75,'lift'],['first',2.2,'gulp'],['first',5.86,'set-down']],done=new Set();let strip=null;
+   const strips=[['first',.75,'lift'],['first',2.2,'gulp'],['first',5.86,'set-down'],['let',.3,'let go']],done=new Set();let strip=null;
    const aimAt=()=>{const c=P.a.bones.chest.getWorldPosition(new T.Vector3()),hd=P.a.bones.head.getWorldPosition(new T.Vector3());return hd.lerp(c,.45);};
-   for(let i=0;i<60*30&&drink.active;i++){P.step(1,state);drink.update(1/60);P.holder.updateMatrixWorld(true);const d=drink.diagnostics;if(!d)continue;const rel=d.t-B[d.part][0];
+   for(let i=0;i<60*30;i++){const d=tick();if(d===null)break;if(!d)continue;P.holder.updateMatrixWorld(true);const rel=d.t-B[d.part][0];
     for(const [part,at,label] of keys)if(part===d.part&&rel>=at&&!done.has(label)){done.add(label);for(const [turn,v] of [[0,'front'],[-.8,'three-quarter'],[-Math.PI/2,'side']])shoot(sc,aimAt(),y+turn,.12,2.3,`${label} · ${v}`);
      if(label==='kaa!'){const q=P.a.root.getWorldQuaternion(new T.Quaternion()),fwd=new T.Vector3(0,0,1).applyQuaternion(q),right=new T.Vector3(-1,0,0).applyQuaternion(q),pivot=P.a.root.getWorldPosition(new T.Vector3()).add(new T.Vector3(0,m.H+.14,0)).addScaledVector(right,m.Rh*m.headSX+.26);
       shootFrom(sc,pivot.clone().addScaledVector(fwd,-2.2).add(new T.Vector3(0,.11,0)),P.a.bones.chest.getWorldPosition(new T.Vector3()),'kaa! · the game camera, indoors');}}

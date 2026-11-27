@@ -1758,3 +1758,69 @@ TAKE, then FIRST or SIP, then LET. Times (s) from each part's start, at the keys
 - The coordinator's addition, the can's leftover audit failures (DrinkCan, DrinkCanOpened: ease on Vy and Sverker, overlap on
   all three since stanceStep): not started.
 - The owner has not seen any of it.
+
+# 27 November, night: the beer drink finished for every body at the counter (branch `drink/beer`)
+
+The owner: "Remake it follow Disney principles how should it look when anyone drinks beer"; "anyone" is every resident. From
+c58f5bd, merged with `claude/dreamy-ritchie-cxufpl` at 626f29a (the real Hawaii shirt, stage 3, the brand sweep, the TV). Not
+pushed. Commits: e750767 (the pop), 21b265e (every body at the counter), 609feea (residents), 4741f33 (the merge), and the sheets.
+
+## Found, and fixed at the cause
+- **The pop letting go** (0.4 rad over five frames 0.5 s into LET): two causes in the bake. The hand's way from the glass to
+  the thigh went out of the arm's reach as the body sat back, so the IK took the arm straight and bent it again in five frames;
+  and where the arm was straight `settle_roll` dropped the upper arm's roll to none and gave it back, the elbow taking it. Now
+  the way back is keyed every 0.1 s within 0.9 of the arm from the shoulder (`within_reach`), the take's counter-move goes back
+  along the thigh, and the upper arm's roll is chosen over the whole move, carried across straight frames (`settled_rolls`).
+- **Why the other bodies came short** (measured): (1) `motion.js normalizeMotion` dropped `fps`, so every widened contact in
+  `drink-beer.js` (the foot on the counter, the wrist at the glass, the lip's approach, the wipe) and the can's ring and pocket
+  for another body (`drink-can.js sizeContacts`) were empty: nothing brought another body's hand to the glass. (2) The kit
+  seated the body 10 cm back on the stool where the game slides it 10 cm forward (the animator's `root.position.z = -slide` on
+  a root the kit had turned to face +z), so Blender's counter was 20 cm further than the game's (the glass 0.58 m ahead of
+  the root, not 0.39) and the lean 0.58 rad. The test and hand-shots placed the glass the kit's way.
+- **The glass Thao sets down** was left as her hand had it, 46 degrees off; a mug would have turned round in the drinker's hand
+  in a frame. She now turns it in her fingers as she sets it down (`izakaya-bar.js turnHeld`, eased over the 1.1 s), its
+  drinking side to the customer and a mug's handle to their right; residents' requests say which way they face.
+
+## Done
+- Blender (`tools/drink-beer-kit.mjs`, `tools/blender/drink-beer{,-keys}.py`): the body forward on the stool; C re-leant for the
+  near counter (0.155 rad, its breakdowns about it); the IK's own pose kept at the lip and on the glass (evening the trunk
+  under them carried the rim 5-9 mm off); poles that keep the wrist clear of soft_wrist's ends, evened five times; the joins
+  held on one pose on both frames about each marker; the glass to the lip nearly at its drinking tilt (`('lip', -8, .025)`),
+  down from it in 0.35 s. Blender: rim to lip at most 5.4/5.6/5.2 mm (mug/pint/glass), the foot within 3 mm of its place and
+  at worst 1.8 mm under the top in the rock.
+- Game (`drink-beer.js`): a hand resting on the thigh rests on this body's own and leaves it over 18 cm; a soft reach on the
+  wrist goals (never past 97.5% of the arm); the wrist to the glass only near it; the hand's socket brought to the glass's
+  place (the standing glass jumped 5-7 mm into it); the rim onto the lip over its last 0.3 s; the hand's twist into the forearm
+  over a contact's first quarter (`bring`'s new `twist` argument, the can's unchanged); beat speeds eased over 0.15 s.
+  `beerPlan`, `beerPlanAt`, `beerDrunkAt`, `beerSipLength`.
+- **Who drinks the animated way now:** Johansson at Minato's counter (game.js, the mug, the pint), and every resident with a
+  beer at a counter stool (venue-service.js: Sverker and Tetsuo by taste, Thuan by game.js; the mug), each in their own time
+  (`BEER_STYLES`). The venue's drink step is the drink's own length (7-12 s, not 3: `mealState`'s `drinkLength`, the beer going
+  down at the lip as the motion's does); animate.js plays it once the body is set on its seat (before, the seat's lift carried
+  the glass 31 mm). Beer only for a grown-up by recorded age (`DRINKING_AGE`, as the machines): a child never gets beer
+  (Vy is 11; `izakaya-food`'s test guest is now 40).
+- Measured, first draught at the counter, 8 bodies x 3 glasses (Johansson, Thao, Mr Fujita, Sverker, Thuan, Tetsuo, Masaru,
+  Christina): the rim on the lip 0.0 mm; the foot within 15.4 mm of its place (the rock's 15 mm slide), never under the top;
+  no joint over 0.35 rad a frame, no step of speed over 0.06 rad (worst 0.057); the glass at most 25.4 mm a frame; wrists
+  within 0.05 rad of their limits. Residents through the animator (Sverker, Tetsuo, Thuan; a fresh glass and a later sip):
+  the same, set down within 2 mm of where it stood.
+- The can (`drink-can.js`): its ring and pocket weights sampled between frames, the hook eased off past the tear (the hand
+  jumped 19 mm on Vy once the weights came on). The principles audit's baseline is unchanged.
+
+## Sheets (looked at: no pop, no slide, nothing through the glass or the counter)
+- Blender: `art/characters/body-kit/review/drink-beer-{mug,pint,glass}-{front,three-quarter,side}.jpg` (the shirt, the near
+  counter).
+- Game (`node tools/hand-shots.mjs --beer pint|mug[:resident] --name X`, now at the game's seat): `drink-beer-game-{pint,mug}-
+  {johansson,thao,mr-fujita,sverker}.jpg` and a resident at the venue `drink-beer-game-mug-resident-{sverker,tetsuo}.jpg`:
+  key moments, strips of 8 over the lift, the gulp, the set-down and the let-go, the third-person camera at the "kaa!".
+
+## Remains
+- **The handle hand** (item 4): not made; the mug is held in the fist round its bar. A HANDLE shape in
+  `tools/blender/hand_model.py`, the kit and build.js grip (`HANDS`) is next.
+- **The kanpai** (optional): not made.
+- **The can's leftover audit failures** (ease on Vy and Sverker, overlap on all three): not started; unchanged in the baseline.
+- A later sip (not in the test): wrists up to 0.058 rad past their limits (Christina, Tetsuo), Thao's small glass 0.062 rad.
+- A booth's table and a standing drinker keep the drink from the hand (the counter's motion at a booth: steps up to 0.13 rad,
+  the glass 32 mm a frame; the held sip ends at the chest and blends out at 55-78 mm a frame). Johansson's small glass of the
+  bottle is not in `TABLE_DRINK_KINDS` (its prop is the bottle-and-glass set) and keeps the old sip.
+- The owner has not seen any of it.
