@@ -193,3 +193,21 @@ no-real-brands.test.mjs
 underarm-coverage.test.mjs
 # Johansson's aloha print: placed flower by flower, nothing in the line under his face, each sleeve its own band (about 15 s).
 aloha-print.test.mjs
+# The town's places and its residents' lives, fixed 27 November 2026 (handover of 26 November, "Places and lives"): the
+# Nakamuras' counter vacant since 31 October, Tetsuo's and Christina's days since Kissa Higa (30 October), the shutter on
+# the town's clock, the compact Minato survey at revision 9, the ferry put on her timetable before the lots are looked
+# at, Thao's sneakers at the genkan, Mr Fujita's footstool, Sakura's restroom in fewer draws. The slow ones: east-lawn
+# (about 70-120 s), resident-journeys (50-100 s), neighbourhood-access (40-80 s), stand-points (55-80 s).
+building-survey.test.mjs
+east-lawn.test.mjs
+housing-consolidation.test.mjs
+kitano-residents.test.mjs
+minato-business-consolidation.test.mjs
+neighbourhood-access.test.mjs
+okinawa-quarters.test.mjs
+onsen-front.test.mjs
+owned-display-lod.test.mjs
+port-shed.test.mjs
+resident-journeys.test.mjs
+sisters.test.mjs
+stand-points.test.mjs
