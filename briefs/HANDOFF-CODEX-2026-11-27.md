@@ -9,8 +9,9 @@ do next.
 
 | | Commit | State |
 |---|---|---|
-| `main` (live at nj22az.github.io/johansson-town/) | `00e0c0c` | published 27 Nov |
-| `claude/dreamy-ritchie-cxufpl` (the work branch) | this file's commit | pushed; 68+ commits ahead of `main`, which is its ancestor (a fast-forward) |
+| `main` (live at nj22az.github.io/johansson-town/) | this file's commit | published 27 Nov, night, after the guard (section 2); before it `00e0c0c` |
+| `claude/dreamy-ritchie-cxufpl` (the work branch) | the same | pushed |
+| `wip/beer-booth` | `147baae` | the beer drink's unfinished work (section 5); not merged |
 
 **The owner said "Yes" to publishing the branch to `main`** once the full guard passes (27 Nov, night, to "Do you want this
 pushed to main when the tests are done?"). The guard was running at handover; its result is in section 2. If it was not
@@ -33,8 +34,11 @@ published by Claude:
 
 ## 2. The last guard
 
-At `e212b54`, `node tools/ci-guard.mjs --test-concurrency=2`: *(Claude fills this in below if it finished before the
-session ended; otherwise run it.)*
+At `e212b54`, `node tools/ci-guard.mjs --test-concurrency=2`: **1,041 tests, 1,038 pass, 0 fail**, 1 skipped (east-lawn's
+gateball court, switched off), 2 todo (notes already there); 1,447 s. The animation audit: ease 124/154, anticipation
+24/141, arcs 71/145, overlap 56/146, twins 64/129, squash 14/14, volume 155/155; every check 8/155. After it, only the
+handover's own documents changed. **Published to `main` on the owner's "Yes"** (this file's commit is `main`'s head): the
+first job of section 1 is done; check the Pages run and the live page.
 
 ## 3. The owner's open requests, in order
 
