@@ -38,20 +38,25 @@ export function beerGrip(m,prop){
  return {amount:handHold(m,g?.radius??.034).grip,shape:'close'};
 }
 const BASIS=new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(new THREE.Vector3(-1,0,0),new THREE.Vector3(0,0,1),new THREE.Vector3(0,1,0)));
+/** The same in the left hand: the right's mirrored across the hand (its x), the glass's own frame mirrored front to back (its
+ *  z), which a glass round its axis with a mug's handle on its x has in itself: its handle the palm's way, its drinking side
+ *  (now its -z) toward the wrist (drink-beer.js mirrorMotion). */
+const BASIS_L=new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(new THREE.Vector3(1,0,0),new THREE.Vector3(0,0,1),new THREE.Vector3(0,-1,0)));
 /** The vessel's frame in the hand bone's frame (hand `side`, 'R' or 'L'), for a body of measure `m`. */
 export function beerSocket(m,prop,side='R'){
  const v=vesselOf(prop),g=prop?.userData?.grip||{},s=side==='R'?1:-1;
  if(v==='mug'){
   // (the bar's axis where the closed hand holds a bar so thick, its middle there; the jug beyond it, through the fingers)
   const [bx,by,bz]=handleAt(m,side,g.bar??JUG.bar),mid=(JUG.opening[0]+JUG.opening[1])/2;
-  return {position:new THREE.Vector3(bx+s*JUG.barX,by,bz-mid),quaternion:BASIS.clone()};
+  return {position:new THREE.Vector3(bx+s*JUG.barX,by,bz-mid),quaternion:(side==='R'?BASIS:BASIS_L).clone()};
  }
  const h=handHold(m,g.radius??.033),out=h.out+(v==='glass'?FINGERTIPS.out*m.hand:0);
- const quaternion=BASIS.clone();
+ const quaternion=(side==='R'?BASIS:BASIS_L).clone();
  // (a glass wider at the top: its axis tipped away from the palm as it rises, by the taper, so the palm lies on its side)
  if(g.taper)quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,1,0),s*g.taper));
  return {position:new THREE.Vector3(s*out,h.at[1],-(g.height??.06)),quaternion};
 }
-/** The rim on the side that goes to the lip, in the vessel's frame, 3 mm under its top (the lip goes over it). */
-export const beerRim=prop=>{const g=prop?.userData?.grip||{},v=vesselOf(prop),r=v==='mug'?JUG.r:v==='pint'?.0378:v==='glass'?.03:(g.radius??.033);
- return new THREE.Vector3(0,(prop?.userData?.rimHeight??.12)-.003,r*.92);};
+/** The rim on the side that goes to the lip, in the vessel's frame, 3 mm under its top (the lip goes over it): its +z side,
+ *  or held in the left hand (`side` 'L'), its -z (BASIS_L). */
+export const beerRim=(prop,side='R')=>{const g=prop?.userData?.grip||{},v=vesselOf(prop),r=v==='mug'?JUG.r:v==='pint'?.0378:v==='glass'?.03:(g.radius??.033);
+ return new THREE.Vector3(0,(prop?.userData?.rimHeight??.12)-.003,(side==='L'?-1:1)*r*.92);};

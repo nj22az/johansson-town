@@ -20,8 +20,14 @@
 #                    body past it); still from 6.35.
 #   SIP   8.35-12.6  the same keys smaller and quieter (timing contrast): a short anticipation, the lift, one swallow, no "kaa"
 #                    (a content little breath out), the set-down; still from 4.0 of it.
-#   LET   12.6-14.0  the hand opens off the glass 12.75, back to the thigh on an arc, the body easing back past upright 12.85-13.3
-#                    and settling (a micro-overshoot) by 13.75.
+#   LAST  12.6-16.85 the last of the glass: SIP's beats at SIP's times (the game blends the two by how far the glass must go over
+#                    for the beer left: tools say `beerLast`), the glass from a quarter full to empty, so it goes over toward
+#                    horizontal; the head back as far as the first draught's and more, the elbow up higher, the eyes shut on it.
+#   LET   16.85-18.25 the hand opens off the glass, back to the thigh on an arc, the body easing back past upright and settling
+#                    (a micro-overshoot) by 1.15 s of it.
+# The table it is keyed at (tools/drink-beer-kit.mjs `--seat`): Minato's counter (0.78 m high, the glass 0.48 m ahead of the
+# stool and 0.15 m to his right) or the booth's table (0.72 m, the glass 0.35 m ahead of the bench): nearer and lower, so he
+# leans in less (CPOSE), and the hand lifts over the table's near edge on its way to it.
 # Overlap: the spine leads every pose by 4 frames; the head after the eyes by 5; the forearm and hand dragged 3 frames at the
 # bake; the left hand's wipe after the right hand's release. Arcs: every stroke of the glass through a breakdown off its chord.
 
@@ -53,6 +59,9 @@ def tilt_for(fill):
 # How much of each part there is, by glass: the beer left after the first draught and after a sip; the head back at the
 # deepest of the first draught (the taller mug goes over further for the same beer, the small glass less).
 FILLS = {'mug': (.9, .62, .52), 'pint': (.9, .64, .55), 'glass': (.85, .45, .32)}[VESSEL]
+# (the last of it: a quarter of the glass to none; the glass toward horizontal, the head back further than the first draught's)
+LAST_FILLS = (.22, 0.0)
+LAST_HEAD = 1.55
 HEADBACK = {'mug': 1.0, 'pint': .9, 'glass': .7}[VESSEL]
 FOAM = VESSEL in ('mug', 'pint')                                              # (a draught's head and the pint's: a moustache)
 
@@ -70,7 +79,12 @@ C_GLASS = lambda t: counter_at()
 ZERO = ((0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0))
 # leaning in to it a little, looking down at the glass. (The counter is 38 cm in front of him as the game seats him: the stool
 # 42 cm from its edge, the body forward on the stool by 10 cm. The kit had it 20 cm further, and the lean was 0.58 rad.)
-CPOSE = ((.085, -.03, 0), (.07, -.05, 0), (-.03, 0, 0), (.12, -.06, 0))
+# (At the booth the glass is 24 cm ahead of him and 6 cm lower, a forearm's reach: he leans in a third as much, and looks down
+# further at it.)
+BOOTH = K['counter']['kind'] == 'booth'
+# (and leans a little toward it, the right shoulder dropping, so the forearm comes level to a glass that low and the hand round
+# it holds it upright with the wrist all but straight)
+CPOSE = ((.03, -.02, .05), (.025, -.04, .04), (-.01, 0, -.04), (.2, -.07, -.03)) if BOOTH else ((.085, -.03, 0), (.07, -.05, 0), (-.03, 0, 0), (.12, -.06, 0))
 
 
 def C(ds=0.0, dc=0.0, dn=0.0, dh=0.0):
@@ -94,6 +108,13 @@ def scale(pose, a, extra=()):
 
 
 POLE_REST, POLE_REACH, POLE_UP, POLE_HOLD = (-.45, .7, -.15), (-.55, .75, .15), (-.75, 1.1, .25), (-.6, .85, .05)
+POLE_LIFT = POLE_REACH                                                        # (the elbow as the glass leaves the table: the counter's)
+if BOOTH:
+    # (the booth's glass a forearm away and low: the elbow down by his side and back, the forearm level to the glass, so the
+    # hand round it holds it upright with the wrist straight; with the counter's elbow, out and forward, the wrist could not,
+    # and the glass stood 10 degrees over in the hand, its foot 9-13 mm into the table)
+    POLE_REACH = (-.38, .5, -.25)
+POLE_LAST = (-.8, 1.35, .3)                                                  # (the elbow up higher for the last of it)
 # ---- TAKE
 SEG = {'take': 0.0}
 body(0, *ZERO)
@@ -113,14 +134,15 @@ cue('lean', (0, 0), (.62, 0), (1.22, 1), (1.75, 1))
 SEG['first'] = 1.75
 
 
-def drink(t0, first):
-    """FIRST (`first`) or SIP from t0: the same keys, the sip smaller and quieter."""
+def drink(t0, kind):
+    """FIRST, SIP or LAST (`kind`) from t0: the same keys, the sip smaller and quieter, the last at the sip's times with the
+    glass going over toward horizontal and the head further back."""
+    first, last = kind == 'first', kind == 'last'
     u = lambda s: t0 + s
-    fill0, fill1 = (FILLS[0], FILLS[1]) if first else (FILLS[1], FILLS[2])
+    fill0, fill1 = (FILLS[0], FILLS[1]) if first else LAST_FILLS if last else (FILLS[1], FILLS[2])
     g1 = 3.2 if first else 2.1                                              # the draught ends
     s0 = 5.1 if first else 2.75                                             # the set-down begins
-    a = 1.0 if first else .45                                               # how much of the first's movement
-    hb = HEADBACK * (1.0 if first else .5)
+    hb = HEADBACK * (1.0 if first else LAST_HEAD if last else .5)
     end = s0 + 1.5
     body(u(0), *CPOSE)
     body(u(.2), *CPOSE)
@@ -144,16 +166,20 @@ def drink(t0, first):
     body(u(s0 + 1.25), *CPOSE)
     body(u(end), *CPOSE)
     # the glass
-    GLASS.extend([(u(0), 'on'), (u(.2), 'on'), (u(.5), 'rock'), (u(.75), 'up'), (u(1.05), 'in'), (u(1.25), ('lip', -8, .025)), (u(1.4), ('lip', None, 0))])
+    # (for the last of it the glass comes up already further over: it goes to the lip at 80 degrees, not 60)
+    GLASS.extend([(u(0), 'on'), (u(.2), 'on'), (u(.5), 'rock'), (u(.75), 'up'), (u(1.05), ('in', 34, 24) if last else 'in'), (u(1.25), ('lip', -8, .025)), (u(1.4), ('lip', None, 0))])
     GLASS.append((u(1.4), ('pull', u(1.4), u(g1), fill0, fill1)))
     # (down from the lip to the chest unhurried: 0.35 s for the 25 cm, the glass at 1.2 m/s at the most)
-    GLASS.extend([(u(g1 + .3), ('lip', 20, .06)), (u(g1 + .65), 'chest' if first else 'chestlow')])
+    GLASS.extend([(u(g1 + .3), ('lip', 34 if last else 20, .06)), (u(g1 + .65), 'chest' if first else 'chestlow')])
     if first:
         GLASS.extend([(u(g1 + .9), 'chestlow'), (u(s0), 'chestlow')])
     else:
         GLASS.append((u(s0), 'chestlow'))
     GLASS.extend([(u(s0 + .2), 'setup'), (u(s0 + .55), 'setmid'), (u(s0 + .78), 'setnear'), (u(s0 + .85), 'on'), (u(end), 'on')])
-    POLES_R.extend([(u(.2), POLE_REACH), (u(.5), POLE_REACH), (u(1.05), POLE_UP), (u(g1), POLE_UP), (u(g1 + .55), POLE_HOLD), (u(s0 + .2), POLE_HOLD),
+    up = POLE_LAST if last else POLE_UP
+    # (at the booth the elbow comes out from his side to the counter's way in the anticipation, as the glass is rocked, so the
+    # lift swings it no further than at the counter: from his side to up and out in the lift, it swung 0.2 rad a frame at the lip)
+    POLES_R.extend([(u(.2), POLE_REACH), (u(.5), POLE_LIFT), (u(1.05), up), (u(g1), up), (u(g1 + .55), POLE_HOLD), (u(s0 + .2), POLE_HOLD),
                     (u(s0 + .85), POLE_REACH), (u(end), POLE_REACH)])
     # the hand's closing, the contacts, the face
     cue('closeR', (u(0), V['hold']['amount']), (u(end), V['hold']['amount']))
@@ -164,7 +190,8 @@ def drink(t0, first):
     cue('lip', (u(0), 0), (u(1.33), 0), (u(1.44), 1), (u(g1), 1), (u(g1 + .12), 0), (u(end), 0))
     cue('mouth', (u(0), 0), (u(.75), 0), (u(1.3), 1), (u(g1 + .3), 1), (u(g1 + .75), 0), (u(end), 0))
     cue('look', (u(0), 1), (u(.45), 1), (u(.8), 0), (u(s0 - .1), 0), (u(s0 + .05), 1), (u(end), 1))
-    cue('blink', (u(0), 0), (u(1.45), 0), (u(1.6), 1 if first else .0), (u(g1 - .1), 1 if first else 0), (u(g1 + .1), 0), (u(end), 0))
+    shut = 1 if first else .85 if last else 0                               # (the eyes shut on the first draught, and on the last of it)
+    cue('blink', (u(0), 0), (u(1.45), 0), (u(1.6), shut), (u(g1 - .1), shut), (u(g1 + .1), 0), (u(end), 0))
     cue('breath', (u(0), 0), (u(.2), 0), (u(.4), .5), (u(.5), 0), (u(g1 + .25), 0), (u(g1 + .45), 1 if first else .6), (u(g1 + .9), 0), (u(end), 0))
     if first:
         cue('kaa', (u(0), 0), (u(g1 + .3), 0), (u(g1 + .45), 1), (u(g1 + .75), 1), (u(g1 + 1.0), 0), (u(end), 0))
@@ -193,8 +220,9 @@ def drink(t0, first):
     return t0 + end
 
 
-SEG['sip'] = drink(SEG['first'], True)
-SEG['let'] = drink(SEG['sip'], False)
+SEG['sip'] = drink(SEG['first'], 'first')
+SEG['last'] = drink(SEG['sip'], 'sip')
+SEG['let'] = drink(SEG['last'], 'last')
 t0 = SEG['let']
 body(t0, *CPOSE)
 body(t0 + .15, *CPOSE)
@@ -225,3 +253,9 @@ for n, t in SEG.items():
     mark(n, t)
 LEFT.insert(0, (0, 'rest'))
 LEFT.append((duration, 'rest'))
+# the sheets' moments: the reach, the first draught's lift, contact, gulp, "kaa!", wipe and set-down, a sip at the lip, the last of
+# it at the lip and coming off it, the let-go; the story poses again as silhouettes
+T0, T1, T2, TL, T3 = SEG['take'], SEG['first'], SEG['sip'], SEG['last'], SEG['let']
+SHEET_PICKS = [T0 + .3, T0 + .62, T0 + 1.0, T0 + 1.45, T1 + .5, T1 + .9, T1 + 1.4, T1 + 2.6, T1 + 3.3, T1 + 3.65, T1 + 4.5, T1 + 5.3, T1 + 5.95, T2 + 1.75,
+               TL + 1.05, TL + 1.75, TL + 2.3, T3 + .7, T3 + 1.4]
+SHEET_STORY = [T0 + 1.45, T1 + .5, T1 + 1.4, T1 + 2.6, T1 + 3.65, T1 + 4.5, T1 + 5.95, TL + 1.75, T3 + .7]

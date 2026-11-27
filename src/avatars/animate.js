@@ -4,7 +4,7 @@ import {bicycleRiderFit} from '../world/bicycle-fit.js';
 import {seeded} from './recipe.js';
 import {consumptionPhase,poseAvatarConsumption,drinkHeadTilt,heldGrip} from './consume.js';
 import {CAN_PARTS,playCanDrink,canEvents,levelWeights} from './drink-can.js';
-import {beerMotion,beerStyleOf,playBeerDrink,restBeer,restTurn,beerFace,beerHand,BEER_HELD,beerPlan,beerPlanAt} from './drink-beer.js';
+import {beerMotion,beerStyleOf,playBeerDrink,restBeer,beerFace,beerHand,beerFreeHand,BEER_HELD,BEER_HELD_POSES,beerPlan,beerPlanAt,beerTableFor,beerSideFor,beerRestAt,beerLastBlend} from './drink-beer.js';
 import {tearTab,pocketTab} from './open-can.js';
 import {bodyLanguage,CONVERSATION_BIG} from './body-language.js';
 import {createFootGrounder,createLieGrounder,createSoleFinder} from './foot-ground.js';
@@ -201,6 +201,9 @@ const SEAT_SETTLE=.3;
 /** The right arm and the head, as consume.js poses them for a bite or a sip: eased in from where the animator had them and
  *  out back to it (at `CONSUME_RATE`, a critically damped follow), never there in a frame. */
 const CONSUME_JOINTS=Object.freeze(['shoulderR','elbowR','handR','head']),CONSUME_RATE=9;
+/** A sip in the hand straight after a drink that had the arm as animated (a can, a glass of beer: drink-can.js, drink-beer.js),
+ *  the vessel changed in the pose: its pose in at once, eased from where that drink left the arm over this long (seconds). */
+const HANDOFF=.35;
 /** Face down, how far the head is raised (radians, neck and head together) so its cheek, the widest thing on
  *  them, rests on the ground beside the chest rather than holding it up off it. */
 const PRONE_LIFT=m=>Math.asin(THREE.MathUtils.clamp((m.Rh*m.headSX*1.04-m.depth/2)/(m.headCentre-m.neckY),0,.9));
@@ -582,6 +585,9 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  let canCue=null,canLast=-1;
  // ---- Beer from a glass as animated in Blender (drink-beer.js): this frame's cues, or null.
  let beerCue=null,beerHeldNow=false;
+ // (a glass held with nowhere to set it down and nothing timing its sips (Mr Fujita's chair): how long it has been held, for its
+ // blend in and its sips' rhythm; and the last play, eased out from where it was when the drink stops, whatever stops it)
+ let beerHeldFor=0,beerLastPlay=null,beerFadeOut=0;
  let gesture=null,blinkIn=1+Math.random()*3,blinkT=-1,talkT=0,talkOpen=0,glance=[0,0],glanceIn=2,lastExpression='neutral';
  const headRestPosition=bones.head.position.clone();
  // ---- Hands on this body's own shape (REACH): worked out the first time each move is played, then kept.
@@ -610,7 +616,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  const spineRest={p:bones.spine.position.clone(),s:bones.spine.scale.clone()},chestRest=bones.chest.scale.clone();
  const comedyMove=name=>!!name&&(PUSHED.has(name)||!!FUN_POSES[name]||!!PAIR_ROLES[name]||STORY_POSES.has(name));
  // ---- The bite or the sip (CONSUME_JOINTS): how far its pose is in, its speed, what was consumed, and the animator's pose under it.
- let consumeW=0,consumeV=0,consumeFood=false,consumeHad=false,consumeWas=false;const consumeSaved=CONSUME_JOINTS.map(()=>new THREE.Quaternion()),headSaved=new THREE.Vector3(),consumeArm=[new THREE.Quaternion(),new THREE.Quaternion()];
+ let consumeW=0,consumeV=0,consumeFood=false,consumeHad=false,consumeWas=false,ownArmLast=false,handoffT=-1;const handoffFrom=CONSUME_JOINTS.map(()=>new THREE.Quaternion());const consumeSaved=CONSUME_JOINTS.map(()=>new THREE.Quaternion()),headSaved=new THREE.Vector3(),consumeArm=[new THREE.Quaternion(),new THREE.Quaternion()];
  const _q=[0,1,2,3].map(()=>new THREE.Quaternion()),_eu=new THREE.Euler(),_p=[0,1,2,3,4].map(()=>new THREE.Vector3());
  function reachFor(name,dynamic=null){
   if(reached.has(name)){const r=reached.get(name);if(r.R)solvedNow.R=true;if(r.L)solvedNow.L=true;return r;}
@@ -1220,12 +1226,17 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   for(const j of JOINTS)target[j].set(0,0,0);handWish.L=handWish.R=0;solvedNow.L=solvedNow.R=pinWish.L=pinWish.R=false;stanceHere=false;
   consumeWas=consumeHad;consumeHad=false;
   // (the bite's or the sip's pose, eased in and out; a can's sip is the drink's own, drink-can.js)
-  // (a glass of beer at a counter, `drinkRest` where it stands, is drunk as animated: drink-beer.js; elsewhere the drink below)
-  const beerHere=BEER_HELD&&!!beerMotion(s.heldProp)&&Array.isArray(s.drinkRest);
+  // (a glass of beer at a table, `drinkRest` where it stands, or held in a drinking pose with nowhere to set it down, is drunk as
+  // animated: drink-beer.js; elsewhere the drink below)
+  const beerHere=BEER_HELD&&!!beerMotion(s.heldProp)&&(Array.isArray(s.drinkRest)||BEER_HELD_POSES.includes(s.pose));
   const canSip=!!consumption&&!avatar.pixar&&!consumption.food&&(s.heldProp?.userData?.drinkKind==='can'||beerHere);
   // (a glass of beer drunk as animated owns the arm: the old drinking arm's targets are left out under it, drink-beer.js)
   beerHeldNow=canSip&&beerHere;
-  if(canSip){consumeW=consumeV=0;}else [consumeW,consumeV]=follow(consumeW,consumeV,consumption?1:0,CONSUME_RATE,dt);
+  // (after a can or a glass drunk as animated, the next drink's sip in at once, eased from where that drink left the arm
+  // (HANDOFF): eased in from nothing, as from rest, the first sip after a can fell 41 mm short of the lips)
+  if(canSip){consumeW=consumeV=0;handoffT=-1;}
+  else{if(ownArmLast&&consumption){consumeW=1;consumeV=0;handoffT=0;}else if(handoffT>=0)handoffT+=dt;if(handoffT>=HANDOFF||!consumption)handoffT=-1;
+   [consumeW,consumeV]=follow(consumeW,consumeV,consumption?1:0,CONSUME_RATE,dt);}
   let targetRoot=0,targetHips=0,targetLean=0,seatSlide=0,onLap=null;floorSit=0;
   const chairBlend=Number.isFinite(s.chairBlend)?THREE.MathUtils.clamp(s.chairBlend,0,1):(s.seated?1:0);
   const onChair=chairBlend>0||s.seated;
@@ -1572,7 +1583,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    // the forearm goes into the hip or the back (tests/stance-release.test.mjs). The overlap gives way to the body, as it does
    // to what a hand holds.)
    const handLag=!consumption&&stanceHere?(stanceCarry==='behind'?.25:.5):1,lagged=lv=>sample(time-(lv?LAG*lead*drag:0)-(lv>1?handLag*LAG*drag:0),JOINTS.length*3+2);
-   if(consumeW<.999||lagged(2)<.999){CONSUME_JOINTS.forEach((j,i)=>{const w=lagged(DRAG_LEVEL[JOINTS.indexOf(j)]);bones[j].quaternion.copy(consumeSaved[i].slerp(bones[j].quaternion,w));});
+   if(handoffT>=0){const e=smooth(handoffT/HANDOFF);CONSUME_JOINTS.forEach((j,i)=>bones[j].quaternion.copy(handoffFrom[i].clone().slerp(bones[j].quaternion,e)));bones.head.parent.updateMatrixWorld(true);}
+   else if(consumeW<.999||lagged(2)<.999){CONSUME_JOINTS.forEach((j,i)=>{const w=lagged(DRAG_LEVEL[JOINTS.indexOf(j)]);bones[j].quaternion.copy(consumeSaved[i].slerp(bones[j].quaternion,w));});
     bones.head.position.lerpVectors(headSaved,bones.head.position,lagged(1));bones.head.parent.updateMatrixWorld(true);}
   }
   // A can bought and drunk (actors.js drinkBought): the motion over the pose so far, blended in and out (the arm comes up
@@ -1589,7 +1601,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    for(const e of canEvents(canLast,t)){if(e==='tabOff')tearTab(s.heldProp,bones.handL);else if(e==='tabPocketed')pocketTab(s.heldProp);}
    canLast=t;
   }else{canLast=-1;if(!consumption||s.heldProp?.userData?.drinkKind!=='can')canCue=null;}
-  if(beerCue&&!beerHeldNow){restBeer(avatar);beerCue=null;}
+  if(beerCue&&!beerHeldNow&&!beerLastPlay){restBeer(avatar);beerCue=null;}
   // A hand with fingers rests a little curled, as a hand does, never splayed flat (a judge of the counter frames: "the
   // free hand is a stiff starfish"); what it holds closes it further (consume.js, table-drink.js set the grip after this).
   if(avatar.pixar?.grip){avatar.pixar.grip('L',s.heldProp?.userData?.food?1:.28);if(!consumption&&!s.heldProp)avatar.pixar.grip('R',.28);}
@@ -1601,8 +1613,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   else if(avatar.grip)for(const side of ['L','R']){const held=side==='R'?s.heldProp||s.workHeld?.R:s.workHeld?.L,round=s.driving||s.riding||side==='R'&&(s.umbrella||s.tool||avatar.storyProps?.get?.('torch')?.parent===bones.handR);
    if(reading>0)closeHand(side,.5*reading);
    if(side==='L'&&canCue?.hookL*canCue?.w>.01){avatar.grip('L',canCue.hookL*canCue.w,'hook');continue;}   // (the forefinger hooked in a can's ring)
-   if(beerCue&&side==='R'){const h=beerHand(avatar,s.heldProp,beerCue);avatar.grip('R',h.amount,h.shape);continue;}   // (a glass of beer, as animated)
-   if(beerCue&&side==='L'&&beerCue.closeL*beerCue.w>.01){avatar.grip('L',beerCue.closeL*beerCue.w);continue;}
+   if(beerCue&&s.heldProp&&side===beerCue.side){const h=beerHand(avatar,s.heldProp,beerCue);avatar.grip(side,h.amount,h.shape);continue;}   // (a glass of beer, as animated)
+   if(beerCue&&side!==beerCue.side){const f=beerFreeHand(beerCue);if(f.amount*beerCue.w>.01){avatar.grip(side,f.amount*beerCue.w);continue;}}
    avatar.grip(side,Math.max(handWish[side],held?heldGrip(held,m):0,round?1:0,avatar.handHeld?.[side]||0));}
   avatar.seatLevel=null;
   // (the seat's edge soft while the body sits down or stands up, hardening over SEAT_SETTLE once it is still on it: seat-support.js)
@@ -1671,19 +1683,37 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // (drinking a can, the face as it was animated: the eyes on the can, shut for the deep swallows, a breath out, content)
   if(canCue){const w=canCue.w;blink=Math.max(blink,canCue.blink*w);talkOpen=Math.max(talkOpen,canCue.breath*w>.4?1:0);if(canCue.smile*w>.5&&['neutral','smile'].includes(face))face='content';}
   if(beerHeldNow){
-   // (a resident's glass of beer at a counter (`drinkRest`, where it stands), as animated and timed for who drinks it, in the
-   // time it needs, which the venue gives it (venue-service.js): taken off the counter, a sip or a fresh glass's first draught
-   // (`drinkFirst`), set down and let go. drink-beer.js. Here, once the body is set on its seat: before it, the seat's lift
-   // carried the glass in the hand 31 mm off its place on the counter)
+   // (a resident's glass of beer at a table (`drinkRest`, where it stands: the counter or the booth's, beerTableFor; the hand on
+   // its side, beerSideFor), as animated and timed for who drinks it, in the time it needs, which the venue gives it
+   // (venue-service.js): taken off the table, a sip (`drinkLast`: as far toward the last of it as the beer left needs) or a
+   // fresh glass's first draught (`drinkFirst`), set down and let go. Or a glass held with nowhere to set it down, sipped from
+   // and held at the waist between, in the venue's time (`consumeElapsed`) or, with nothing timing it, in the drinker's own
+   // rhythm (BEER_STYLES `between`). drink-beer.js. Here, once the body is set on its seat: before it, the seat's lift carried
+   // the glass in the hand 31 mm off its place on the counter)
    avatar.root.updateMatrixWorld(true);
-   const style=beerStyleOf(avatar.recipe?.name),M=beerMotion(s.heldProp),plan=beerPlan(s.heldProp,style,{counter:true,first:!!s.drinkFirst});
-   const t=Math.max(0,Math.min(plan.duration,s.consumeElapsed||0)),at=beerPlanAt(plan,t),rest={position:new THREE.Vector3(...s.drinkRest),quaternion:restTurn(avatar.root)};
+   const style=beerStyleOf(avatar.recipe?.name),rested=Array.isArray(s.drinkRest),place=rested?new THREE.Vector3(...s.drinkRest):null;
+   const table=rested?beerTableFor(avatar,place,s.heldProp):'held',side=rested?beerSideFor(avatar,place):'R',M=beerMotion(s.heldProp,table,side);
+   const last=Number.isFinite(s.drinkLast)?s.drinkLast:s.drinkFirst?0:beerLastBlend(M,s.heldProp,s.heldProp.userData.portion??1);
+   const plan=beerPlan(s.heldProp,style,{table,side,first:!!s.drinkFirst,last}),timed=Number.isFinite(s.consumeElapsed);
+   let t,blend;beerHeldFor+=dt;
+   if(timed){t=Math.max(0,Math.min(plan.duration,s.consumeElapsed));blend={in:t,out:plan.duration-t};}
+   else{const rest=style.between??8,local=beerHeldFor%(rest+plan.duration);t=Math.max(0,local-rest);blend={in:beerHeldFor,out:Infinity};}
+   const at=beerPlanAt(plan,t),rest=rested?beerRestAt(avatar,place,side):null;
    // (a new play only at its start: the parts join on one pose, and the jump in the motion's time from one to the next is no new play)
-   beerCue={...playBeerDrink(avatar,s.heldProp,at.t,1,{motion:M,rest,blend:{in:t,out:plan.duration-t},style,dt,fresh:t<=dt+1e-9}),style,part:at.part};
-  }
+   beerCue={...playBeerDrink(avatar,s.heldProp,at.t,1,{motion:M,rest,blend,style,dt,fresh:timed?t<=dt+1e-9:beerHeldFor<=dt+1e-9,last:plan.last}),style,part:at.part};
+   beerLastPlay={M,t:at.t,last:plan.last,rest,style,w:beerCue.w};beerFadeOut=0;
+  }else if(beerLastPlay&&beerLastPlay.w>.001&&!(consumption&&handoffT>=0)){
+   // (the drink stopped before its play had eased out (the pose changed, the glass taken from the hand): the body eased back
+   // from where the play left it, level by level, over the play's own way out, the glass no longer in it)
+   beerHeldFor=0;beerFadeOut+=dt;const L=beerLastPlay,out=.65-beerFadeOut;
+   if(out<=0){beerLastPlay=null;restBeer(avatar);beerCue=null;}
+   else{avatar.root.updateMatrixWorld(true);beerCue={...playBeerDrink(avatar,null,L.t,1,{motion:L.M,rest:L.rest,blend:{in:99,out,scale:L.w},style:L.style,dt,last:L.last,fresh:false}),style:L.style};}
+  }else{beerHeldFor=0;beerLastPlay=null;}
   // (drinking a glass of beer: the eyes on it, shut on the draught, the breath out after, content: drink-beer.js beerFace)
   let beerLook=null;if(beerCue){const f=beerFace(beerCue,beerCue.style,face);blink=Math.max(blink,f.blink);talkOpen=Math.max(talkOpen,f.talk);if(['neutral','smile','content'].includes(face))face=f.expression;beerLook=f.look;}
   avatar.paintFace({expression:face,blink,talk:talkOpen,look:canCue&&canCue.look*canCue.w>.15?[0,1]:beerLook||s.look||(headToW>.5?[0,0]:null)||eyes||gestureEyes||(face==='thinking'?[1,-1]:glance)});
+  // (where a can or a glass drunk as animated leaves the arm this frame: a sip in the hand after it eases from there, HANDOFF)
+  ownArmLast=!!(canCue&&consumption||beerHeldNow);if(ownArmLast)CONSUME_JOINTS.forEach((j,i)=>handoffFrom[i].copy(bones[j].quaternion));
  }
 
  /**

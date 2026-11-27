@@ -1,11 +1,11 @@
 import * as THREE from '../../vendor/three.module.js';
-import {DRINKS,serviceFor,createDrinkProp,createDishProp,setPropPortion,updatePropPortion,disposeServing} from './izakaya-beer.js';
+import {DRINKS,serviceFor,createDrinkProp,createDishProp,setPropPortion,updatePropPortion,disposeServing,glassYawAt} from './izakaya-beer.js';
 import {consumptionPhase} from '../avatars/consume.js';
 import {LIMIT,wantsAnother,drink as drinkUp} from './drunk.js';
 import {izakayaJob} from './izakaya-hours.js';
 import {MINATO_COMPACT} from '../world/interiors/minato-compact-plan.js';
 import {DRINKING_AGE} from '../commerce/vending-catalogue.js';
-import {beerPlan,beerStyleOf,beerDrunkAt} from '../avatars/drink-beer.js';
+import {beerPlan,beerStyleOf,beerDrunkAt,beerMotion,beerLastBlend} from '../avatars/drink-beer.js';
 
 // A beer at Minato is a draught; a round comes every ROUND_GAP town minutes for as long
 // as there is room under the limit (drunk.js).
@@ -46,7 +46,7 @@ export function createVenueService({room,place,getCustomers,getMinutes,getStaff=
  const barService=()=>place==='izakaya'?bar?.()||null:null;
  const inside=place==='ramen'?'inRamen':'inIzakaya';
  const settings=new Map();let serving=null,timer=0;
- function clear(person){for(const key of ['heldItem','mealState','residentSpeech','heldPortion','foodPortion','consumeElapsed','drinkRest','drinkFirst'])delete person.g.userData[key];}
+ function clear(person){for(const key of ['heldItem','mealState','residentSpeech','heldPortion','foodPortion','consumeElapsed','drinkRest','drinkFirst','drinkLast'])delete person.g.userData[key];}
  function remove(person){kitchen?.cancel(person);barService()?.cancel(person);const setting=settings.get(person);if(!setting)return;for(const prop of [setting.food,setting.drink])disposeServing(prop);settings.delete(person);clear(person);if(serving===person){serving=null;timer=0;}}
  function table(person,prop,side){
   const g=person.g,forward=new THREE.Vector3(-Math.sin(g.rotation.y),0,-Math.cos(g.rotation.y)),right=new THREE.Vector3(Math.cos(g.rotation.y),0,-Math.sin(g.rotation.y));
@@ -90,20 +90,28 @@ export function createVenueService({room,place,getCustomers,getMinutes,getStaff=
  /** The way a seated customer faces, in the world (their glass's drinking side is turned to it: izakaya-bar.js turnHeld). */
  const yawOf=person=>new THREE.Euler().setFromQuaternion(person.g.getWorldQuaternion(new THREE.Quaternion()),'YXZ').y;
  /**
-  * A glass of beer at Minato's counter, drunk as animated (the owner, 27 November 2026: "how should it look when anyone drinks
-  * beer"): the meal's plan with each drink step as long as that sip is for who drinks it (taken off the counter, the first
-  * draught of a fresh glass or a later sip, set down and let go: 7-12 s, not 3), and the beer going down as the motion's does
-  * at the lip. Null elsewhere (a booth's table, standing; another drink): the drink from the hand as before.
+  * A glass of beer at a table at Minato, drunk as animated (the owner, 27 November 2026: "how should it look when anyone drinks
+  * beer"): at the counter or the booth's table (its own motion: lower and nearer), with the hand on the glass's side (a glass
+  * Thao sets to the left of a booth seat is taken with the left hand: glassYawAt). The meal's plan with each drink step as long
+  * as that sip is for who drinks it (taken off the table, the first draught of a fresh glass or a later sip, set down and let
+  * go: 7-12 s, not 3), each later sip as far toward the last of the glass as the beer left after it needs (`last`), and the
+  * beer going down as the motion's does at the lip. Null for another drink, or nobody seated (they drink sitting down).
   */
  const beerPlans=new Map();
- function beerAtCounter(person,setting,seated){
-  const r=setting.record;
-  if(place!=='izakaya'||!seated||r.drink!=='beer'||!r.drinkDelivered||!setting.drinkAt||Math.abs(setting.drinkAt.y-MINATO_COMPACT.counter.top)>.01)return null;
-  const base=r.drinkOnly?MEALS.round:meal||MEALS.supper,name=person.profile.name,key=name+'|'+(base===MEALS.round?'round':'meal');
+ const tableOf=y=>Math.abs(y-MINATO_COMPACT.counter.top)<=.01?'counter':Math.abs(y-MINATO_COMPACT.booth.tableTop)<=.01?'booth':null;
+ /** The hand that takes the glass at `at` from this seated person: the one on its side. */
+ const handFor=(person,at)=>{const g=person.g,yaw=yawOf(person);return glassYawAt([g.position.x,0,g.position.z],yaw,[at.x,at.y,at.z])===yaw?'R':'L';};
+ function beerAtTable(person,setting,seated){
+  const r=setting.record,table=setting.drinkAt&&tableOf(setting.drinkAt.y);
+  if(place!=='izakaya'||!seated||r.drink!=='beer'||!r.drinkDelivered||!table)return null;
+  const base=r.drinkOnly?MEALS.round:meal||MEALS.supper,name=person.profile.name,side=handFor(person,setting.drinkAt),key=[name,base===MEALS.round?'round':'meal',table,side].join('|');
   if(beerPlans.has(key))return beerPlans.get(key);
-  const glass=createDrinkProp(DRINK_PROP.beer,{held:true}),style=beerStyleOf(name),plans=[0,1].map(i=>beerPlan(glass,style,{counter:true,first:i===0}));disposeServing(glass);
-  const at=sip=>plans[sip===0?0:1];
-  const out=Object.freeze({...base,beer:true,drinkLength:sip=>at(sip).duration,drunk:(sip,local)=>beerDrunkAt(at(sip),local)});
+  // (each sip's blend toward the last of it, by what it leaves: mealState's drinkLeft after it)
+  const glass=createDrinkProp(DRINK_PROP.beer,{held:true}),style=beerStyleOf(name),M=beerMotion(glass,table,side),from=base.from??1,to=base.to??0;
+  const last=sip=>sip===0?0:beerLastBlend(M,glass,from-(from-to)*Math.min(1,(sip+1)/base.sips));
+  const plans=Array.from({length:base.sips},(_,i)=>beerPlan(glass,style,{table,side,first:i===0,last:last(i)}));disposeServing(glass);
+  const at=sip=>plans[Math.min(plans.length-1,Math.max(0,sip))];
+  const out=Object.freeze({...base,beer:true,table,side,drinkLength:sip=>at(sip).duration,drunk:(sip,local)=>beerDrunkAt(at(sip),local),last:sip=>at(sip).last});
   beerPlans.set(key,out);return out;
  }
  /** Minato's glass and meal arrive separately; only their own clocks can consume them. */
@@ -123,32 +131,37 @@ export function createVenueService({room,place,getCustomers,getMinutes,getStaff=
    r.delivered=r.foodDelivered&&r.drinkDelivered;
    u.residentSpeech={text:'Thank you, Thao.',until:getMinutes()+4};
   };
-  if(!r.drinkDelivered&&!setting.drinkRequested){const at={position:new THREE.Vector3()};table(person,at,1);
-   setting.drinkRequested=service.request({kind:DRINK_PROP[r.drink]||'oolong',table:at.position.toArray(),tag:person,onServed:p=>accept('drink',p),yaw:yawOf(person)});}
+  // (the glass turned to the hand that will take it: its handle to their left hand where it is set down to their left)
+  if(!r.drinkDelivered&&!setting.drinkRequested){const at={position:new THREE.Vector3()};table(person,at,1);const g=person.g,spot=serviceFor(at.position.toArray(),false).table;
+   setting.drinkRequested=service.request({kind:DRINK_PROP[r.drink]||'oolong',table:at.position.toArray(),tag:person,onServed:p=>accept('drink',p),yaw:glassYawAt([g.position.x,0,g.position.z],yawOf(person),spot)});}
   // Submit food after this customer's glass is down. The queue continues to serve
   // other customers and the player, without a second controller moving Thao.
   if(!r.foodDelivered&&r.drinkDelivered&&!setting.foodRequested){const at={position:new THREE.Vector3()};table(person,at,-1);
    setting.foodRequested=service.request({kind:r.item==='fish'?'hokke':r.item,table:at.position.toArray(),tag:person,onServed:p=>accept('food',p)});}
   // (the sips by the beer's own plan where it is drunk as animated; the bites by the meal's, their own clock as before)
-  const meals=r.drinkOnly?MEALS.round:meal||MEALS.supper,plan=beerAtCounter(person,setting,seated)||meals;
+  const meals=r.drinkOnly?MEALS.round:meal||MEALS.supper,plan=beerAtTable(person,setting,seated)||meals;
   let f=mealState(meals,r.eaten),d=mealState(plan,r.sipped);
-  const drinking=r.drinkDelivered&&d.action==='drink',eating=r.foodDelivered&&!r.drinkOnly&&f.action==='eat'&&!drinking;
-  if(r.foodDelivered&&(!r.drinkOnly)&&(f.action!=='eat'||eating))r.eaten+=dt;
-  if(r.drinkDelivered&&(d.action!=='drink'||drinking))r.sipped+=dt;
+  // (a glass and a plate are drunk and eaten from sitting down: standing (on the way to the seat, or getting up to go) the glass
+  // stays where it stands on the table and the clocks wait; drunk from in the hand there, it appeared in the hand from the
+  // table for a step and went back to it after)
+  const drinking=seated&&r.drinkDelivered&&d.action==='drink',eating=seated&&r.foodDelivered&&!r.drinkOnly&&f.action==='eat'&&!drinking;
+  if(seated&&r.foodDelivered&&(!r.drinkOnly)&&(f.action!=='eat'||eating))r.eaten+=dt;
+  if(seated&&r.drinkDelivered&&(d.action!=='drink'||drinking))r.sipped+=dt;
   f=mealState(meals,r.eaten);d=mealState(plan,r.sipped);
   // Keep one performance at a time, advancing a mouthful only while its action owns
   // the resident. Independent clocks preserve all original bites, sips and portions.
-  const sip=r.drinkDelivered&&d.action==='drink',bite=r.foodDelivered&&!r.drinkOnly&&f.action==='eat'&&!sip;
+  const sip=seated&&r.drinkDelivered&&d.action==='drink',bite=seated&&r.foodDelivered&&!r.drinkOnly&&f.action==='eat'&&!sip;
   if(r.drink==='beer'&&r.drinkDelivered){const drunk=(1-d.drinkLeft)*BEER;u.tipsy=drinkUp(u.tipsy,drunk-(r.drunk||0));r.drunk=drunk;}
   u.consumeElapsed=sip?d.local:f.local;u.heldPortion=sip?d.drinkLeft:bite?1-consumptionPhase(f.local).swallow:undefined;
   u.foodPortion=r.foodDelivered?f.foodLeft:undefined;
   if(r.foodDelivered){setPropPortion(setting.food,f.foodLeft);updatePropPortion(setting.food,dt);if(setting.foodAt)setting.food.position.copy(setting.foodAt);else table(person,setting.food,-1);}
   if(r.drinkDelivered){setPropPortion(setting.drink,d.drinkLeft);updatePropPortion(setting.drink,dt);if(setting.drinkAt)setting.drink.position.copy(setting.drinkAt);else table(person,setting.drink,1);}
-  setting.food.visible=seated&&r.foodDelivered&&!r.drinkOnly&&!bite;setting.drink.visible=seated&&r.drinkDelivered&&!sip;
-  u.heldItem=sip?r.drink:bite?r.item:null;u.socialPose=sip?(seated?'Drink':'DrinkStanding'):bite?(seated?'Eat':'EatStanding'):seated?'Sit':'Idle_Neutral';
-  // (a glass of beer at the counter taken off it where it stands, drunk and set down there: animate.js drinkRest, drink-beer.js)
-  if(sip&&plan.beer){setting.drink.updateWorldMatrix(true,false);u.drinkRest=setting.drink.getWorldPosition(new THREE.Vector3()).toArray();u.drinkFirst=d.sip===0;}
-  else{delete u.drinkRest;delete u.drinkFirst;}
+  setting.food.visible=r.foodDelivered&&!r.drinkOnly&&!bite;setting.drink.visible=r.drinkDelivered&&!sip;
+  u.heldItem=sip?r.drink:bite?r.item:null;u.socialPose=sip?'Drink':bite?'Eat':seated?'Sit':'Idle_Neutral';
+  // (a glass of beer at a table taken off it where it stands, drunk and set down there: animate.js drinkRest, drink-beer.js;
+  // `drinkLast`, how far toward the last of the glass this sip is)
+  if(sip&&plan.beer){setting.drink.updateWorldMatrix(true,false);u.drinkRest=setting.drink.getWorldPosition(new THREE.Vector3()).toArray();u.drinkFirst=d.sip===0;u.drinkLast=plan.last(d.sip);}
+  else{delete u.drinkRest;delete u.drinkFirst;delete u.drinkLast;}
   u.mealState=r.delivered?'eating':r.drinkDelivered?'waiting-food':'ordered';
   u.activity=sip?'drinking '+LABELS[r.drink]+' at '+venueName:bite?'eating '+LABELS[r.item]:r.delivered?'enjoying supper':r.drinkDelivered?'waiting for '+LABELS[r.item]:'waiting for '+LABELS[r.drink];
   if(r.drinkDelivered&&d.drinkLeft<=0&&(r.drinkOnly||r.foodDelivered&&f.foodLeft<=0)){

@@ -90,11 +90,21 @@ function boothService(x,z){
  const right=x>=booth.position[0],end=booth.position[0]+(right?1:-1)*booth.tableWidth/2;
  return {spotX:end-(right?1:-1)*.25,close:[end+(right?1:-1)*.15,z],route:way([booth.standX[right?1:0],z])};
 }
+/**
+ * Which way a glass set down at `spot` for someone seated at `position` facing `yaw` is turned (its own yaw, izakaya-bar.js
+ * turnHeld): its drinking side to them and a mug's handle to their right hand, as they take it with the hand on its side
+ * (avatars/drink-beer.js beerSideFor); set down to their left (at the booth Thao sets it at the table's end she can reach, the
+ * left of half its seats: her reach is 0.4 m), half round, its handle to their left hand, which takes it.
+ */
+export function glassYawAt(position,yaw,spot){
+ const right=[Math.cos(yaw),-Math.sin(yaw)],d=[spot[0]-position[0],spot[2]-position[2]];
+ return d[0]*right[0]+d[1]*right[1]<0?yaw+Math.PI:yaw;
+}
 const boothSeat=(id,row,label)=>{
  const x=booth.seatX[1],z=booth.benchZ[row],topZ=booth.position[2]+(row===0?-1:1)*booth.tableDepth*.2,serveX=booth.standX[1];
- const drinkZ=booth.position[2]+(row===0?-1:1)*(booth.tableDepth/2-.07),service=boothService(x,drinkZ);
- return Object.freeze({id,label,position:[x,0,z],stand:[serveX,0,z],surfaceY:plan.seatHeight,eyeY:row===0?1.14:1.2,yaw:row===0?Math.PI:0,front:SHARED_DINING_SEAT_FRONT.bench,
-  table:[service.spotX,booth.tableTop,drinkZ],dish:[x+(row===0?.15:-.15),booth.tableTop,topZ],serve:[serveX,0,topZ],
+ const drinkZ=booth.position[2]+(row===0?-1:1)*(booth.tableDepth/2-.07),service=boothService(x,drinkZ),yaw=row===0?Math.PI:0,table=[service.spotX,booth.tableTop,drinkZ];
+ return Object.freeze({id,label,position:[x,0,z],stand:[serveX,0,z],surfaceY:plan.seatHeight,eyeY:row===0?1.14:1.2,yaw,glassYaw:glassYawAt([x,0,z],yaw,table),front:SHARED_DINING_SEAT_FRONT.bench,
+  table,dish:[x+(row===0?.15:-.15),booth.tableTop,topZ],serve:[serveX,0,topZ],
   route:service.route,close:service.close,
  });
 };
@@ -248,7 +258,7 @@ export function createBeerService({room,getNao,blocked=()=>false,bounds=SHARED_D
  const station=()=>[NAO_STATION[0],NAO_STATION[2]];
  function serve(kind,seat,carried=null){
   // The glass she carried is the one on the table; only the opening scene's drink is already there (serveNow).
-  if(DRINKS[kind]){clearDrink();const prop=carried||createDrinkProp(kind);if(!carried){prop.position.set(...seat.table);prop.rotation.y=seat.yaw||0;room.add(prop);}else setPropPortion(prop,1,{immediate:true});drink={kind,left:DRINKS[kind].sips,prop};}
+  if(DRINKS[kind]){clearDrink();const prop=carried||createDrinkProp(kind);if(!carried){prop.position.set(...seat.table);prop.rotation.y=seat.glassYaw??seat.yaw??0;room.add(prop);}else setPropPortion(prop,1,{immediate:true});drink={kind,left:DRINKS[kind].sips,prop};}
   else{clearDish();const prop=carried||createDishProp(kind);if(!carried){prop.position.set(...(seat.dish||seat.table));room.add(prop);}dish={kind,left:menuItem(kind).bites,prop};}
   served++;
  }
@@ -351,8 +361,8 @@ export function createBeerService({room,getNao,blocked=()=>false,bounds=SHARED_D
     if(stepTo(nao,seat.route.at(-1),dt)){order.path=[...seat.route.slice(0,-1).reverse(),station()].map(p=>[...p]);order.phase='returning';u.activity='back to the counter';}
    }else if(order.phase==='placing'){
     // (the glass turned in her fingers as she sets it down, eased, there as she lets go: izakaya-bar.js turnHeld)
-    if(glass&&DRINKS[order.kind]&&order.round.turnHeld&&Number.isFinite(seat.yaw)){const ease=x=>{x=Math.min(1,Math.max(0,x));return x*x*(3-2*x);},e0=ease(1-order.timer/1.1),e1=ease(1-(order.timer-dt)/1.1);
-     if(e0<1)order.round.turnHeld(seat.yaw,(e1-e0)/(1-e0));}
+    if(glass&&DRINKS[order.kind]&&order.round.turnHeld&&Number.isFinite(seat.glassYaw??seat.yaw)){const ease=x=>{x=Math.min(1,Math.max(0,x));return x*x*(3-2*x);},e0=ease(1-order.timer/1.1),e1=ease(1-(order.timer-dt)/1.1);
+     if(e0<1)order.round.turnHeld(seat.glassYaw??seat.yaw,(e1-e0)/(1-e0));}
     if((order.timer-=dt)<=0){
      const to=DRINKS[order.kind]?seat.table:(seat.dish||seat.table),prop=glass?order.round.letGo(to):null;
      if(glass)finishRound();

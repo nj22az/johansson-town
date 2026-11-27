@@ -1940,3 +1940,67 @@ pushed. Commits: e750767 (the pop), 21b265e (every body at the counter), 609feea
   the glass 32 mm a frame; the held sip ends at the chest and blends out at 55-78 mm a frame). Johansson's small glass of the
   bottle is not in `TABLE_DRINK_KINDS` (its prop is the bottle-and-glass set) and keeps the old sip.
 - The owner has not seen any of it.
+
+# 27 November, late night: the beer drink at the booth, held, later sips; the handoff after a can (branch `drink/beer`, WIP)
+
+The owner: "Remake it follow Disney principles how should it look when anyone drinks beer". From 1935a6d. Handed over to Codex
+mid-way at the coordinator's word; not pushed; `claude/dreamy-ritchie-cxufpl` (9f7a4e9) **not yet merged in** (it touches
+animate.js and tests/drink-grip.test.mjs: merge before going on).
+
+## Done (in the WIP commit; the counter's own tests pass)
+- **Blender pipeline for any table** (`tools/drink-beer-kit.mjs --seat counter2|window|--standing`; `tools/blender/drink-beer.py
+  --table counter|booth|held`, each with its own `--out`: two bakes sharing `output/drink-beer` raced on kit.json). Writes
+  `src/avatars/motions/drink-beer-<vessel>[-booth|-held].js` and `tests/drink-beer-<vessel>[...].verify.json`. Batch:
+  `bakeall.sh` pattern (one `--out output/drink-beer-<v>-<t>` per job, two at a time, ~40 s a bake).
+- **LAST part** (`drink-beer-keys.py drink(t0,'last')`): SIP's beats at SIP's times, the glass from 22% to empty, the head
+  back 1.55 x the first draught's, `POLE_LAST`, the eyes 0.85 shut, `('in', 34, 24)` so the glass comes up already over. Parts
+  now TAKE 0, FIRST 1.75, SIP 8.35, LAST 12.6, LET 16.85, end 18.25. In Blender: rim to lip <= 6.5 mm, tilt at the lip 81-92
+  degrees in LAST, wrists 0.000 past.
+- **Booth** (`BOOTH` in drink-beer-keys.py): CPOSE leaning in a third as much and a little toward the glass (z), `POLE_REACH`
+  down and back by his side, `POLE_LIFT` (the counter's elbow) from the anticipation on, `POLE_EVEN` 14 (drink-beer.py). In
+  Blender the foot at most 1.2-7.8 mm under the top at the tap (the game lifts it), wrists 0.000.
+- **Held** (`tools/blender/drink-beer-held-keys.py`, standing): HOLD 0-0.5 at H (the glass at the waist), SIP 0.5-4.75, LAST
+  4.75-9.0. Sheet: `art/characters/body-kit/review/drink-beer-mug-held-*.jpg` (an earlier keying: the head looked at the glass
+  all through H; now only to take it up and put it back). Booth sheet (earlier keying): `drink-beer-mug-booth-*.jpg`. Not
+  re-rendered after the last keys; pint/glass booth and held sheets not rendered.
+- **The head after the eyes, slower** (drink-beer.py headLook keys +0.12 s on the way to the glass): 7 rad/s at the booth before.
+- **Game** (`src/avatars/drink-beer.js`): `BEER_TABLE_MOTIONS`, `beerMotion(prop,table,side)`, `mirrorMotion` (left hand: joints
+  L<->R with (x,-y,-z,w), paths x negated, R/L paths swapped; checked against bones), `beerSide`, `beerParts` (generic from
+  markers), `sampler` (SIP with LAST blended by `last`), `beerLastBlend(M,prop,endFraction)`, `beerTableFor`, `beerSideFor`,
+  `beerRestAt`, `restTurn(root,side)`, `beerPlan(prop,style,{table,side,first,last})`, `beerFreeHand`, `BEER_HELD_POSES`;
+  `playBeerDrink` takes `last` and works for either hand (G/W); `createBeerTableDrink` picks table, hand and blend itself.
+  `beer-hold.js`: `BASIS_L`, `beerRim(prop,side)`.
+- **animate.js**: a beer in 'Drink'/'DrinkStanding' with no `drinkRest` plays the held motion (timed by `consumeElapsed`, or
+  in the drinker's own rhythm, `BEER_STYLES.between`); `drinkRest` at the booth picks the booth motion and the hand by side;
+  `drinkLast`; a play cut off eases out over 0.65 s (`beerLastPlay`, `blend.scale`). **The can handoff (coordinator's item):**
+  `ownArmLast`, `handoffFrom`, `HANDOFF` 0.35 s: a drink in the hand after a can or a beer as animated takes its pose at once,
+  eased from where that drink left the arm. Probe: rim to lips at the sip 16.2 mm -> 0.0 (Johansson, can -> coffee), the hand
+  at the change <= 11.4 mm a frame. **No test added yet** (planned: tests/drink-grip.test.mjs, can -> coffee at phase 1.2).
+- **Venue** (`venue-service.js beerAtTable`, `handFor`, `tableOf`): booth plans, the left hand where Thao sets the glass to the
+  left, `drinkLast` per sip; nobody drinks or eats standing (the glass and the plate stay on the table, visible). Thao turns the
+  glass for the hand that takes it (`izakaya-beer.js glassYawAt`, player seats' `glassYaw`).
+- Probe numbers (scratch, first draught, game): booth both sides, 8 bodies x mug: worst step 0.057 rad, glass <= 22.5 mm a
+  frame, wrists <= 0.049; pint/glass on 4 bodies the same order. Before: steps up to 0.5 rad, glass 35 mm, wrists 0.18 past.
+
+## Tests (focused, at the WIP commit)
+- `tests/drink-beer.test.mjs` 11/11 pass (the counter, re-baked with LAST). izakaya-beer + izakaya-bar 15/15 pass.
+- New `tests/drink-beer-sips.test.mjs` (later sips 60%->45% on 8 bodies, the last of it on 4): **fails**. Johansson's mug
+  60%->45% puts the glass 24.2 mm into the face (not yet looked at: the LAST blend or the mug's far wall with the head back);
+  the new hand-through-the-table check (`tests/drink-beer-fixtures.mjs handInTable`, HAND.touch and the fist's) finds 12-20 mm
+  on the pint and the small glass at the counter: decide whether that is the fingers really in the counter at the grab (look at
+  a sheet) or the fist's envelope being the wrong one for a wrap; do not loosen it without looking.
+- New `tests/drink-beer-tables.test.mjs` (booth both sides, a later sip, held standing/seated, the blend's shape): was still
+  running at hand-over; result in the report.
+- `tests/drink-grip.test.mjs` (as on this branch, before the merge): **fails 3 of 4** (grips throughout sips, Fujita's first frame, creator proportions), as expected: draft and bottle in 'Drink' now play the held motion, so its check of the
+  rim at the lips at consumeElapsed 1.2 (the old sip's timing) and `fitAvatarHeldProp` no longer apply to beer glasses. After
+  merging 9f7a4e9 (whose SIPPED already leaves the can out for the same reason), leave the beer glasses out of SIPPED the same
+  way (drink-beer-tables holds their rim) and add the can-handoff check there.
+- Not run: drink-can, izakaya-food, the drinking game, motion, animation-principles, avatar-polish.
+
+## Not started
+- The handle hand (item 2), Johansson's small glass from the bottle (item 3), kanpai (item 4), the can's audit leftovers
+  (item 5). Game sheets (tools/hand-shots.mjs) for the booth and held: not made; hand-shots still places the glass the counter
+  way only.
+- The resident can sip ('Drink' with a can, animate.js `CAN_PARTS.sip` at w 1) has no blend in or out at all (seen, not fixed);
+  the old drink from the hand (tea, coffee) moves the hand 80 mm in a frame at 1.7 s (seen in the handoff probe, not fixed).
+- The owner has not seen any of it.

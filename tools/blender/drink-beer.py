@@ -1,6 +1,7 @@
 """Anyone drinking beer from a glass at Minato's counter, animated in Blender and played in the game.
 
-  python tools/blender/drink-beer.py --root . --vessel mug|pint|glass [--name Johansson] [--out output/drink-beer] [--sheet]
+  python tools/blender/drink-beer.py --root . --vessel mug|pint|glass [--table counter|booth|held] [--name Johansson]
+         [--out output/drink-beer] [--sheet]
 
 The owner, 27 November 2026: "How about a pint glass at the izikaya does it work?", then "Remake it follow Disney principles
 how should it look when anyone drinks beer". The draught mug (大ジョッキ) stays Minato's standard; the pint is the extra
@@ -18,9 +19,14 @@ counter), FIRST (the first long draught, the "kaa!", the foam wiped off, set dow
 LET (the hand off the glass, the body back). Baked as drink-can.py bakes (the forearm's twist, the upper arm's roll, the wrist
 limits, the forearm and hand three frames behind the upper arm off contacts, every curve evened).
 
-Writes src/avatars/motions/drink-beer-<vessel>.js (johansson-motion v2), tests/drink-beer-<vessel>.verify.json, the .blend, and
-with --sheet art/characters/body-kit/review/drink-beer-<vessel>-{front,three-quarter,side}.jpg (the last rows the story poses
-as black silhouettes).
+`--table` says where (tools/drink-beer-kit.mjs): `counter`, Minato's counter stool (the default); `booth`, the booth's lower,
+nearer table (its bench, the glass to his right; the game mirrors it for a glass set to the left); `held`, a glass in the hand
+with nowhere to set it down (standing, or seated with no table: Mr Fujita's chair in his shed, the bench outside Kissa Higa),
+keyed in tools/blender/drink-beer-held-keys.py.
+
+Writes src/avatars/motions/drink-beer-<vessel>[-booth|-held].js (johansson-motion v2), tests/drink-beer-<vessel>[...].verify.json,
+the .blend, and with --sheet art/characters/body-kit/review/drink-beer-<vessel>[...]-{front,three-quarter,side}.jpg (the last rows
+the story poses as black silhouettes).
 """
 import argparse
 import json
@@ -35,6 +41,7 @@ ap.add_argument('--root', default='.')
 ap.add_argument('--name', default='Johansson')
 ap.add_argument('--out', default='output/drink-beer')
 ap.add_argument('--vessel', default='pint', choices=('mug', 'pint', 'glass'))
+ap.add_argument('--table', default='counter', choices=('counter', 'booth', 'held'))
 ap.add_argument('--sheet', action='store_true')
 ap.add_argument('--frames', default='')
 args, _ = ap.parse_known_args(argv)
@@ -49,12 +56,16 @@ FPS = 30
 # ------------------------------------------------------------------ the body, as the game builds it
 glb, kitfile = OUT / 'body.glb', OUT / 'kit.json'
 subprocess.run(['node', 'tools/export-avatar-glb.mjs', '--name', args.name, str(glb)], cwd=ROOT, check=True, capture_output=True)
-subprocess.run(['node', 'tools/drink-beer-kit.mjs', '--name', args.name, str(kitfile)], cwd=ROOT, check=True, capture_output=True)
+TABLE = args.table
+WHERE = {'counter': ['--seat', 'counter2'], 'booth': ['--seat', 'window'], 'held': ['--standing']}[TABLE]
+subprocess.run(['node', 'tools/drink-beer-kit.mjs', '--name', args.name, *WHERE, str(kitfile)], cwd=ROOT, check=True, capture_output=True)
 K = json.loads(kitfile.read_text())
 M = K['measure']
 VESSEL = args.vessel
 V = K['vessels'][VESSEL]
-OUT = OUT / VESSEL
+HELD = TABLE == 'held'
+SUFFIX = '' if TABLE == 'counter' else '-' + TABLE                        # (the counter's files keep their names)
+OUT = OUT / (VESSEL + SUFFIX)
 OUT.mkdir(parents=True, exist_ok=True)
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=str(glb))
@@ -399,25 +410,37 @@ bpy.context.view_layer.update()
 in_hand.matrix_world = rig.matrix_world @ P['socket.R'].matrix
 on_counter = vessel('Glass on counter')
 wood, dark = material('Counter', (.55, .38, .22)), material('Stool', (.2, .16, .12))
-TOP_B = K['counter']['top'] - K['seated']['root'][1]
-edge = K['counter']['edge'] - K['seated']['root'][2]
 counter = bpy.data.objects.new('Counter', bpy.data.meshes.new('Counter'))
-bm = bmesh.new()
-bmesh.ops.create_cube(bm, size=1.0)
-bm.to_mesh(counter.data)
-bm.free()
-scene.collection.objects.link(counter)
-counter.data.materials.append(wood)
-counter.scale = (2.4, K['counter']['depth'], .06)
-counter.location = G2B((0, TOP_B - .03, edge + K['counter']['depth'] / 2))
 stool = bpy.data.objects.new('Stool', bpy.data.meshes.new('Stool'))
-bm = bmesh.new()
-bmesh.ops.create_cone(bm, cap_ends=True, segments=24, radius1=.17, radius2=.17, depth=.04)
-bm.to_mesh(stool.data)
-bm.free()
-scene.collection.objects.link(stool)
-stool.data.materials.append(dark)
-stool.location = G2B((0, K['counter']['seatHeight'] - K['seated']['root'][1] - .02, -K['seated']['root'][2]))
+for ob, mat in ((counter, wood), (stool, dark)):
+    scene.collection.objects.link(ob)
+    ob.data.materials.append(mat)
+if HELD:
+    # (nothing to set it down on: the body standing on the floor)
+    counter.hide_render = stool.hide_render = True
+else:
+    TB = K['counter']
+    TOP_B = TB['top'] - K['seated']['root'][1]
+    edge = TB['edge'] - K['seated']['root'][2]
+    bm = bmesh.new()
+    bmesh.ops.create_cube(bm, size=1.0)
+    bm.to_mesh(counter.data)
+    bm.free()
+    # (the counter, 2.4 m of it drawn; or the booth's table, its own width, its middle off to one side of the seat; its top 5-6 cm thick)
+    thick = .05 if TB['kind'] == 'booth' else .06
+    counter.scale = (TB['width'] if TB['kind'] == 'booth' else 2.4, TB['depth'], thick)
+    counter.location = G2B((TB['across'] if TB['kind'] == 'booth' else 0, TOP_B - thick / 2, edge + TB['depth'] / 2))
+    bm = bmesh.new()
+    if TB['kind'] == 'booth':
+        # (the booth's bench: as wide as the table, 0.42 m deep, its seat at the seat's height, under him)
+        bmesh.ops.create_cube(bm, size=1.0)
+        stool.scale = (TB['width'], .42, .04)
+        stool.location = G2B((TB['across'], TB['seatHeight'] - K['seated']['root'][1] - .02, -K['seated']['root'][2]))
+    else:
+        bmesh.ops.create_cone(bm, cap_ends=True, segments=24, radius1=.17, radius2=.17, depth=.04)
+        stool.location = G2B((0, TB['seatHeight'] - K['seated']['root'][1] - .02, -K['seated']['root'][2]))
+    bm.to_mesh(stool.data)
+    bm.free()
 
 # ------------------------------------------------------------------ keying
 F = lambda t: int(round(t * FPS)) + 1
@@ -515,6 +538,10 @@ def wrist_excess(side, margin=0.0):
 
 
 POLE_EVEN = 5                                                               # (the poles found evened into one another five times over: an elbow swung round at a contact flicks the forearm)
+if TABLE == 'booth':
+    # (and at the booth fourteen: its glass taken from low by his side, the elbow comes further round to the lip, and five
+    # evenings left it swinging 0.14 rad a frame there)
+    POLE_EVEN = 14
 
 
 def settle_poles(side, times):
@@ -552,7 +579,7 @@ def settle_poles(side, times):
 
 
 # (the left hand over the can turned again, its fingers on along its forearm as the IK has it; its elbow found after)
-exec(open(Path(__file__).resolve().parent / 'drink-beer-keys.py').read())
+exec(open(Path(__file__).resolve().parent / ('drink-beer-held-keys.py' if HELD else 'drink-beer-keys.py')).read())
 
 # ------------------------------------------------------------------ the keys applied to the rig
 A4 = A.to_4x4()
@@ -578,8 +605,12 @@ for f in range(1, F(duration) + 1):
     scene.frame_set(f)
     P['shoulderR'].location = (0, 0, PROTRACT * k * float(rig['lean']))
     P['shoulderR'].keyframe_insert('location', frame=f)
+# (the head after the eyes, 5 frames later; and slower to turn to the glass than the eyes are, its arrival 0.12 s later again:
+# at the booth's low, near glass the head turned 7 rad/s in a tenth of a second)
+prev = None
 for t, v in sorted(CUES['look']):
-    key_prop('headLook', t if t == 0 else min(duration, t + 5 / FPS), v)
+    key_prop('headLook', t if t == 0 else min(duration, t + 5 / FPS + (.12 if prev is not None and v > prev else 0)), v)
+    prev = v
 # swallows: each a small dip of the chin at its beat (the throat's squash is the game's: the `swallow` cue)
 for t, v in CUES['swallow']:
     if v > .99:
@@ -588,7 +619,7 @@ for t, v in CUES['swallow']:
         P['head'].keyframe_insert('rotation_quaternion', frame=F(t))
 # Breathing (secondary, straight ahead): the chest on a 4.8 s cycle, 0.006 rad, let go of near the ends of each part so the
 # parts join on the same pose
-JOINS = [SEG['take'], SEG['first'], SEG['sip'], SEG['let'], duration]
+JOINS = sorted(SEG.values()) + [duration]                                   # (where the parts start and end: TAKE, FIRST, SIP, LAST, LET)
 frames = range(1, F(duration) + 1)
 envelope = lambda t: min(1.0, *[min(1, max(0, (abs(t - b) - .05) / .3)) for b in JOINS])
 chest_q = []
@@ -638,8 +669,13 @@ CHEST_AT = Vector((-.12, M['chestY'] + .06, .3))                              # 
 LOW_AT = Vector((-.13, M['chestY'] + .02, .31))
 
 
+PLACES = globals().get('PLACES', {})                                          # (the keys' own places: the held glass's)
+
+
 def glass_pose(name, t):
     """The right hand's pose for a named place of the glass (or of the hand, off it) at time t (game frame)."""
+    if isinstance(name, str) and name in PLACES:
+        return PLACES[name](t)
     rest = SEATED['handR']
     if name == 'rest':
         return rest
@@ -668,9 +704,11 @@ def glass_pose(name, t):
         return hand_for(counter_at(dz=.015, tip=math.radians(5)))
     if name == 'up':
         return hand_for(can_at(SPOT + Vector((0, .09, -.06)), can_turn(math.radians(4))))
-    if name == 'in':
-        lip = at_lip(t, math.radians(18), away=.08, down=.05)
-        return hand_for(can_at(SPOT.lerp(lip.to_translation(), .6) + Vector((0, .1, -.02)), can_turn(math.radians(12))))
+    if name == 'in' or isinstance(name, tuple) and name[0] == 'in':
+        # (on the way up, the glass at its lip `deg` over (18), itself turned `turn` (12): ('in', deg, turn))
+        deg, turn = name[1:] if isinstance(name, tuple) else (18, 12)
+        lip = at_lip(t, math.radians(deg), away=.08, down=.05)
+        return hand_for(can_at(SPOT.lerp(lip.to_translation(), .6) + Vector((0, .1, -.02)), can_turn(math.radians(turn))))
     if name == 'chest':
         return hand_for(can_at(CHEST_AT, can_turn(math.radians(10), .1)))
     if name == 'chestlow':
@@ -980,7 +1018,7 @@ for side in 'RL':                                                           # (a
 # the frames about it, which are all the held pose C there. With the IK's own pose at the glass on the counter, its elbow was
 # found from the key before, and the joins came out up to 0.04 rad apart)
 # (a join between two frames, as 1.75 s and 8.35 s are at 30 a second, held on both: the game samples between them)
-JOIN = [(math.floor(SEG[n] * FPS + 1e-6), math.ceil(SEG[n] * FPS - 1e-6)) for n in ('first', 'sip', 'let')]
+JOIN = [(math.floor(t * FPS + 1e-6), math.ceil(t * FPS - 1e-6)) for t in sorted(SEG.values())[1:]]
 REF = {n: baked[JOIN[0][1]][n].copy() for n in UPPER}
 for a, b in JOIN:
     for i in range(max(0, a - 8), min(len(baked), b + 9)):
@@ -1040,30 +1078,32 @@ for f in frames:
         verify['wrist'][side].append([round(e.x, 4), round(e.y, 4), round(e.z, 4)])
 grasp = next(t for t, v in zip(times, tracks['hold']) if v > .5)
 release = max(t for t, v in zip(times, tracks['hold']) if v > .5)
-motion = {'format': 'johansson-motion', 'version': 2, 'name': {'mug': 'Drinks a draught from the mug', 'pint': 'Drinks a pint', 'glass': 'Drinks a small glass of beer'}[VESSEL],
-          'fps': FPS, 'by': f'tools/blender/drink-beer.py --vessel {VESSEL} ({args.name})',
+motion = {'format': 'johansson-motion', 'version': 2, 'name': {'mug': 'Drinks a draught from the mug', 'pint': 'Drinks a pint', 'glass': 'Drinks a small glass of beer'}[VESSEL]
+          + {'counter': '', 'booth': ' at the booth', 'held': ', held'}[TABLE],
+          'fps': FPS, 'by': f'tools/blender/drink-beer.py --vessel {VESSEL} --table {TABLE} ({args.name})',
           'times': times, 'joints': {n: joints[n] for n in UPPER},
           'shapes': {c: tracks[c] for c in ('closeR', 'closeL')},
           'face': {c: tracks[c] for c in ('blink', 'breath', 'smile', 'look', 'kaa', 'foam', 'swallow', 'shrug')},
           'reach': reach,
           'contact': {c: tracks[c] for c in ('lip', 'mouth', 'counter', 'hold', 'wipe', 'lean')},
           'fill': tracks['fill'],
-          'events': [{'t': round(grasp, 5), 'name': 'grasp'}, {'t': round(release + 1 / FPS, 5), 'name': 'release'}],
-          'markers': {n: round(TIMES[n], 5) for n in ('take', 'first', 'sip', 'let', 'end')},
+          'events': [{'t': round(grasp, 5), 'name': 'grasp'}, {'t': round(min(times[-1], release + 1 / FPS), 5), 'name': 'release'}],   # (held: in the hand to the end)
+          'markers': {n: round(t, 5) for n, t in TIMES.items()},
           'props': {'glass': {'vessel': VESSEL, 'kind': V['kind'], 'bone': 'handR', 'made': {'name': args.name, 'k': round(M['k'], 5)}},
-                    'counter': {'spot': [round(c, 5) for c in SPOT], 'top': round(TOP, 5)}}}
-target = ROOT / f'src/avatars/motions/drink-beer-{VESSEL}.js'
-target.write_text(f'// Written by tools/blender/drink-beer.py --vessel {VESSEL} (Blender: the rig, the keys and the bake are there); the game\'s\n'
+                    'counter': {'spot': [round(c, 5) for c in SPOT], 'top': round(TOP, 5)}, 'table': TABLE}}
+target = ROOT / f'src/avatars/motions/drink-beer-{VESSEL}{SUFFIX}.js'
+target.write_text(f'// Written by tools/blender/drink-beer.py --vessel {VESSEL} --table {TABLE} (Blender: the rig, the keys and the bake are there); the game\'s\n'
                   '// motion format, src/avatars/motion.js `johansson-motion` v2. Do not edit: animate it there and export it again.\n'
                   'export default ' + json.dumps(motion, separators=(',', ':')) + ';\n')
-(ROOT / f'tests/drink-beer-{VESSEL}.verify.json').write_text(json.dumps({'name': args.name, 'vessel': VESSEL, 'times': times, 'lipWeight': tracks['lip'], 'counterWeight': tracks['counter'],
+(ROOT / f'tests/drink-beer-{VESSEL}{SUFFIX}.verify.json').write_text(json.dumps({'name': args.name, 'vessel': VESSEL, 'times': times, 'lipWeight': tracks['lip'], 'counterWeight': tracks['counter'],
                                                                         'holdWeight': tracks['hold'], 'wipeWeight': tracks['wipe'], 'top': TOP, **verify}, separators=(',', ':')) + '\n')
 err = [((Vector(r) - Vector(l)).length, t) for r, l, w, t in zip(verify['rim'], verify['lip'], tracks['lip'], times) if w > .99]
 print('rim to lip at contact: max %.1f mm, mean %.1f mm over %d frames' % (max(e for e, _ in err) * 1000, sum(e for e, _ in err) / len(err) * 1000, len(err)))
 on = [(abs(b[1] - TOP), t) for b, w, h, t in zip(verify['base'], tracks['counter'], tracks['hold'], times) if w > .99]
-print('the foot on the counter while it is there: off it by at most %.1f mm (at %.2f s)' % (max(on)[0] * 1000, max(on)[1]))
-low = min((b[1] - TOP, t) for b, t in zip(verify['base'], times))
-print('the foot lowest against the counter top: %.1f mm (at %.2f s)' % (low[0] * 1000, low[1]))
+if on:                                                                      # (held: nothing to stand it on)
+    print('the foot on the counter while it is there: off it by at most %.1f mm (at %.2f s)' % (max(on)[0] * 1000, max(on)[1]))
+    low = min((b[1] - TOP, t) for b, t in zip(verify['base'], times))
+    print('the foot lowest against the counter top: %.1f mm (at %.2f s)' % (low[0] * 1000, low[1]))
 we = [((Vector(a) - Vector(b)).length, t) for a, b, w, t in zip(verify['wipe'], verify['upperLip'], tracks['wipe'], times) if w > .99]
 if we:
     print('the forefinger to the upper lip while wiping: %.1f-%.1f mm' % (min(we)[0] * 1000, max(we)[0] * 1000))
@@ -1076,7 +1116,7 @@ for side in 'RL':
             worst = max(worst, lo - v, v - hi)
     print('wrist %s: furthest past its limits %.3f rad' % (side, worst))
 print('wrote', target, len(times), 'samples', flush=True)
-bpy.ops.wm.save_as_mainfile(filepath=str(OUT / f'drink-beer-{VESSEL}.blend'), compress=True)
+bpy.ops.wm.save_as_mainfile(filepath=str(OUT / f'drink-beer-{VESSEL}{SUFFIX}.blend'), compress=True)
 
 # ------------------------------------------------------------------ contact sheets
 if args.sheet or args.frames:
@@ -1112,11 +1152,10 @@ if args.sheet or args.frames:
     shots = OUT / 'shots'
     shots.mkdir(exist_ok=True)
     files = []
-    T0, T1, T2, T3 = TIMES['take'], TIMES['first'], TIMES['sip'], TIMES['let']
-    picks = [T0 + .3, T0 + .62, T0 + 1.0, T0 + 1.45, T1 + .5, T1 + .9, T1 + 1.4, T1 + 2.6, T1 + 3.3, T1 + 3.65, T1 + 4.5, T1 + 5.3, T1 + 5.95, T2 + 1.75, T3 + .7, T3 + 1.4]
+    # (the keys say which moments: SHEET_PICKS and SHEET_STORY, the story poses drawn again as silhouettes)
+    picks, story = SHEET_PICKS, SHEET_STORY
     if args.frames:
         picks = [float(x) for x in args.frames.split(',')]
-    story = [T0 + 1.45, T1 + .5, T1 + 1.4, T1 + 2.6, T1 + 3.65, T1 + 4.5, T1 + 5.95, T3 + .7]
     views = {'front': (0, -1.0), 'three-quarter': (-.62, -.78), 'side': (-1.0, 0)}
     for view, (dx, dy) in views.items():
         for t, silhouette in [(t, False) for t in picks] + [(t, True) for t in (story if not args.frames else [])]:
@@ -1143,7 +1182,7 @@ if args.sheet or args.frames:
         o.hide_render = False
     name = 'frames' if args.frames else None
     for view in views:
-        sheet = ROOT / f'art/characters/body-kit/review/drink-beer-{VESSEL}-{view}.jpg' if not name else OUT / f'frames-{view}.jpg'
+        sheet = ROOT / f'art/characters/body-kit/review/drink-beer-{VESSEL}{SUFFIX}-{view}.jpg' if not name else OUT / f'frames-{view}.jpg'
         cmd = ['montage'] + [x for v, t, f, tag in files if v == view for x in ('-label', f'{t:.2f} s' + (f' {tag}' if tag else ''), f)] + ['-tile', '8x', '-geometry', '+2+2', '-pointsize', '14', str(OUT / f'sheet-{view}.png')]
         subprocess.run(cmd, check=True)
         subprocess.run(['convert', str(OUT / f'sheet-{view}.png'), '-quality', '82', str(sheet)], check=True)
