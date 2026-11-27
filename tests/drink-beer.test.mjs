@@ -10,7 +10,8 @@ import {createDrinkProp,setPropPortion,DRINKS,BEER_SERVES,IZAKAYA_PLAYER_SEATS} 
 import {lowerLip} from '../src/avatars/consume.js';
 import {levelHeldDrink} from '../src/avatars/table-drink.js';
 import {requiredTilt} from '../src/drinking/liquid.js';
-import {BEER_MOTIONS,beerParts,createBeerTableDrink,beerStyleOf,beerWarp,restTurn} from '../src/avatars/drink-beer.js';
+import {BEER_MOTIONS,beerParts,createBeerTableDrink,beerStyleOf,beerWarp,restTurn,beerPlan,beerDrunkAt} from '../src/avatars/drink-beer.js';
+import {mealState,MEALS} from '../src/people/venue-service.js';
 import {beerRim,beerSocket,vesselOf} from '../src/avatars/beer-hold.js';
 import {normalizeMotion} from '../src/avatars/motion.js';
 installDOM();
@@ -180,4 +181,40 @@ test('each drinks as themselves: a gulper\'s draught is longer and quicker to th
 test('the pint and the mug on Minato\'s menu, with who orders them and why',()=>{
  assert.ok(DRINKS.pint&&BEER_SERVES.pint.who&&BEER_SERVES.pint.why&&BEER_SERVES.draft.who&&BEER_SERVES.draft.why);
  assert.equal(vesselOf(createDrinkProp('pint',{held:true})),'pint');
+});
+
+/** A resident's glass at the counter, as the venue gives it (venue-service.js: the 'Drink' pose, the glass in the hand, where it
+ *  stands on the counter `drinkRest`, `consumeElapsed` over the drink's own time): every frame's facts. */
+function residentDrink(who,first){
+ const key=['resident',who,first].join('|');if(runs.has(key))return runs.get(key);
+ const a=buildAvatar(recipeFor(who),{shadows:false}),room=new THREE.Group(),g=new THREE.Group();room.add(g);g.add(a.root);g.position.set(...SEAT.position);g.rotation.y=SEAT.yaw;
+ const animator=createAvatarAnimator(a,{random:seeded()}),base={seated:true,seatHeight:SEAT.surfaceY,seatFront:SEAT.front};
+ for(let i=0;i<90;i++)animator.update(1/60,{...base,pose:'Sit'});room.updateMatrixWorld(true);
+ const prop=createDrinkProp('draft',{held:true});a.bones.handR.add(prop);setPropPortion(prop,first?1:.75,{immediate:true});
+ const plan=beerPlan(prop,beerStyleOf(who),{counter:true,first}),lip=lowerLip(a).lower,spot=new THREE.Vector3(...SEAT.table),frames=[];
+ for(let i=0;i<Math.round(plan.duration*60)+20;i++){
+  animator.update(1/60,{...base,heldProp:prop,pose:'Drink',consumeElapsed:Math.min(i/60,plan.duration),drinkRest:SEAT.table,drinkFirst:first});room.updateMatrixWorld(true);const c=animator.beerCue;
+  frames.push({t:i/60,c,foot:prop.getWorldPosition(new THREE.Vector3()),rimLip:prop.localToWorld(beerRim(prop)).distanceTo(a.bones.head.localToWorld(lip.clone())),joints:UPPER.map(j=>a.bones[j].quaternion.clone())});}
+ const run={plan,frames,spot};runs.set(key,run);return run;
+}
+test('a resident at the counter takes the glass off it where it stands, drinks in the time the drink needs, and sets it down there',()=>{
+ for(const who of ['Sverker','Tetsuo','Thuan'])for(const first of [true,false]){const {plan,frames,spot}=residentDrink(who,first);
+  assert.ok(plan.duration>6,`${who}: the drink's own length, not a 3 s step (${plan.duration.toFixed(1)} s)`);
+  let turn=[0],jump=[0],glass=[0],rim=0,n=0,foot=0;
+  for(let i=1;i<frames.length;i++){const f=frames[i],e=frames[i-1];
+   f.joints.forEach((q,j)=>{const d=q.angleTo(e.joints[j]);if(d>turn[0])turn=[d,UPPER[j],f.t];if(i>1){const x=Math.abs(d-e.joints[j].angleTo(frames[i-2].joints[j]));if(x>jump[0])jump=[x,UPPER[j],f.t];}});
+   const d=f.foot.distanceTo(e.foot);if(d>glass[0])glass=[d,f.t];
+   if(f.c&&f.c.w>.99&&f.c.lip>.99){rim=Math.max(rim,f.rimLip);n++;}if(f.c&&f.c.w>.99&&f.c.hold>.5&&f.c.counter>.99)foot=Math.max(foot,f.foot.distanceTo(spot));}
+  const tag=`${who}${first?', a fresh glass':', a later sip'}`;
+  assert.ok(n>20&&rim<.002,`${tag}: the rim on the lip (${(rim*1000).toFixed(1)} mm over ${n} frames)`);
+  assert.ok(foot<.02,`${tag}: the foot where it stands while on the counter (${(foot*1000).toFixed(1)} mm)`);
+  assert.ok(frames.at(-1).foot.distanceTo(spot)<.002,`${tag}: set down where it stood`);
+  assert.ok(turn[0]<.3&&jump[0]<JUMP,`${tag}: ${jump[1]}'s turn a frame changes by ${jump[0].toFixed(3)} rad at ${jump[2]?.toFixed(2)} s (${turn[1]} ${turn[0].toFixed(2)} rad a frame)`);
+  assert.ok(glass[0]<.03,`${tag}: the glass ${(glass[0]*1000).toFixed(0)} mm in a frame at ${glass[1]?.toFixed(2)} s`);}
+ // (the venue's plan: each drink step as long as its sip, the beer going down at the lip as the motion's does)
+ const prop=createDrinkProp('draft',{held:true}),P=[0,1].map(i=>beerPlan(prop,beerStyleOf('Sverker'),{counter:true,first:i===0}));
+ const plan={...MEALS.round,drinkLength:sip=>P[sip?1:0].duration,drunk:(sip,local)=>beerDrunkAt(P[sip?1:0],local)};
+ assert.equal(mealState(plan,P[0].duration-.01).action,'drink');assert.equal(mealState(plan,P[0].duration+.01).action,'rest');
+ assert.equal(mealState(plan,.5).drinkLeft,1,'nothing drunk while the glass is taken');
+ const after=mealState(plan,P[0].duration-.01).drinkLeft;assert.ok(Math.abs(after-.75)<1e-6,`a quarter of the glass by the first sip's end (${after})`);
 });

@@ -322,10 +322,35 @@ export function beerFace(cue,style=BEER_STYLE_DEFAULT,base='neutral'){
 /** How the right hand closes this frame (build.js grip: amount, shape). */
 export const beerHand=(avatar,prop,cue)=>({...beerGrip(avatar.measure,prop),amount:cue.closeR});
 
-/** How long a beer sip with the glass already in the hand lasts (a resident's drink step at a venue: 3 or 4 s), seconds. */
+/** How long a beer sip with the glass already in the hand lasts when nothing says (a gesture's own time aside), seconds. */
 export const BEER_HELD_SIP=3;
-/** Whether a glass already in the hand is drunk as animated (animate.js): not yet, the handover says why. */
-export const BEER_HELD=false;
+/** Whether a resident's glass is drunk as animated (animate.js): at a counter, where it stands (`drinkRest`), in the time the
+ *  drink needs, which the venue gives it (venue-service.js beerSipLength; squeezed into a 3 s step the glass came up 41-74 mm a
+ *  frame). A glass with nowhere to stand (a booth's table, the counter motion's reach is not a booth's; standing) keeps the
+ *  drink from the hand: the held sip ends with the glass at the chest and blended out to the hand in 0.9 s, 55-78 mm a frame. */
+export const BEER_HELD=true;
+/**
+ * A beer drunk as animated, timed for who drinks it: at a counter (`counter`) the glass taken off it, the first draught of a
+ * fresh glass (`first`) or a later sip, set down and let go; in the hand, a sip from the glass held before them. {seq,
+ * duration, drink}: each part's place in the motion and in the play.
+ */
+export function beerPlan(prop,style=BEER_STYLE_DEFAULT,{counter=true,first=false}={}){
+ const M=beerMotion(prop);if(!M)return null;const P=beerParts(M),seq=[];let total=0;
+ const parts=counter?['take',first?'first':'sip','let']:['held'];
+ for(const part of parts){const warp=beerWarp(part,style);seq.push({part:part==='held'?'sip':part,start:P[part==='held'?'sip':part][0],at:total,warp});total+=warp.duration;}
+ return {M,seq,duration:total,drink:counter&&first?'first':'sip'};
+}
+/** Where a plan is `e` seconds in: the part and the motion's time. */
+export function beerPlanAt(plan,e){const s=plan.seq.findLast(x=>e>=x.at)||plan.seq[0];return {part:s.part,t:s.start+s.warp.at(e-s.at)};}
+/** How much of the sip's beer is drunk `e` seconds into a plan, 0..1: none before the draught, the motion's fill going down
+ *  while the rim is at the lip, all of it after (as createBeerTableDrink takes it from the lease). */
+export function beerDrunkAt(plan,e){
+ const M=plan.M,P=beerParts(M),D=P[plan.drink],f0=sampleTrack(M,M.fill,D[0]+.5),f1=sampleTrack(M,M.fill,D[1]-.05);if(!(f0>f1))return e>=plan.duration?1:0;
+ const {part,t}=beerPlanAt(plan,Math.min(e,plan.duration-1e-6)),i=plan.seq.findIndex(x=>x.part===part),j=plan.seq.findIndex(x=>x.part===plan.drink);
+ if(i<j)return 0;if(i>j)return 1;return Math.min(1,Math.max(0,(f0-sampleTrack(M,M.fill,t))/(f0-f1)));
+}
+/** How long a resident's sip of beer takes (a venue's drink step): the plan's length; 0 for a glass not drunk as animated. */
+export const beerSipLength=(prop,name,opts)=>beerPlan(prop,beerStyleOf(name),opts)?.duration||0;
 
 /**
  * Johansson's glass at Minato's counter (game.js sipDrink, the lease the beer service gives: its glass is the one Thao set
@@ -336,11 +361,10 @@ export function createBeerTableDrink(avatar,lease,{onComplete=()=>{},onCancel=()
  const prop=lease.prop,M=beerMotion(prop),P=beerParts(M);
  prop.updateWorldMatrix(true,false);
  const rest={position:prop.getWorldPosition(new THREE.Vector3()),quaternion:prop.getWorldQuaternion(new THREE.Quaternion())};
- const drinkPart=(lease.startFraction??1)>=.99?'first':'sip',seq=[];let total=0;
- for(const part of ['take',drinkPart,'let']){const warp=beerWarp(part,style);seq.push({part,start:P[part][0],at:total,warp});total+=warp.duration;}
+ const drinkPart=(lease.startFraction??1)>=.99?'first':'sip',plan=beerPlan(prop,style,{counter:true,first:drinkPart==='first'}),total=plan.duration;
  const f0=sampleTrack(M,M.fill,P[drinkPart][0]+.5),f1=sampleTrack(M,M.fill,P[drinkPart][1]-.05);
  let elapsed=0,active=true,last=null,lastFlow=0,lookAt=null;
- const where=e=>{const s=seq.findLast(x=>e>=x.at)||seq[0];return {part:s.part,t:s.start+s.warp.at(e-s.at)};};
+ const where=e=>beerPlanAt(plan,e);
  function finish(cancelled=false){
   if(!active)return null;active=false;restBeer(avatar);
   const fluid=levelHeldDrink(prop);if(fluid){fluid.surface(new THREE.Vector3(0,1,0));fluid.update(prop.userData.portion??lease.startFraction);}
