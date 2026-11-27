@@ -964,7 +964,7 @@ in `AGENTS.md` (the owner's decision of this date).
   them) swapped whole between lit and 販売中止 (`userData.beerOnSale`); the alcohol sticker on the face (the warning, the
   stop hours, さくら商店 as the seller). `vendingCanTexture` keeps its interface (and prints retired ids).
 - The street (`okinawa/quarters.js`, every outdoor machine) and the Port Terminal (`interiors/port-hall.js`) switch the
-  beer by the clock; the menu (`activities.js`) shows the beer's buttons 販売中止 and disabled at night and refuses them.
+  beer by the clock; the menu (`activities.js`) shows the beer's buttons disabled at night ("not sold until 5:00") and refuses them.
 - `commerce/bought-can.js`: the can in his hand is sold sealed at its column's size (the long can 1.38 × taller), and a
   drawn print shows its middle at the same scale (its UVs, `ART_SHARE`).
 - `studio/prop-registry.js`: the three beer cans as props with their who, why and where; the machine's purpose updated.
