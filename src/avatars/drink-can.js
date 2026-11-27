@@ -83,13 +83,14 @@ function poseAt(avatar,t,w){
 
 /** The drag hierarchy (docs/ANIMATION-STANDARD.md 3.5): the root, then the chest, head and upper arms, then the forearms
  *  and hands. The move blends in and out level by level, six game frames apart (the root first both ways), not every
- *  joint in the same frame out of the stance the animator had: in, each over 0.25 s, all of it within the motion's still
+ *  joint in the same frame out of the stance the animator had: in, each over 0.25 s (the forearms and hands 0.3 s: the
+ *  can comes from a hanging hand no faster than 30 mm a frame), all of it within the motion's still
  *  beat at its start (0.35 s, then the left hand's first key), so the opening's anticipation and the drink's are played
  *  whole; out, each over 0.45 s, from the can settled at his waist. */
-const LEVEL={spine:0,chest:1,neck:1,head:1,shoulderL:1,shoulderR:1,elbowL:2,elbowR:2,handL:2,handR:2},APART=.1,IN=.25,OUT=.45;
+const LEVEL={spine:0,chest:1,neck:1,head:1,shoulderL:1,shoulderR:1,elbowL:2,elbowR:2,handL:2,handR:2},APART=.1,IN=.25,IN_HANDS=.3,OUT=.45,APART_OUT=.1;
 /** Each level's weight, `blend` {in: seconds since the move began, out: seconds before it ends}. */
 export function levelWeights(blend){
- return [0,1,2].map(l=>smooth((blend.in-l*APART)/IN)*smooth((blend.out-(2-l)*APART)/OUT));
+ return [0,1,2].map(l=>smooth((blend.in-l*APART)/(l===2?IN_HANDS:IN))*smooth((blend.out-(2-l)*APART_OUT)/OUT));
 }
 /** What each arm is turned by to fit this body (the reach above, before any contact is put right), taken a little at a time:
  *  the IK that fits another body's arm to the path can turn the elbow 0.04 rad in a frame for a hair's move of the hand (Sverker's
@@ -251,7 +252,8 @@ export function playCanDrink(avatar,prop,t,w=1,blend=null){
   // a thing in a pocket is not held to a turn in the world, and the elbow, sought round for one, would go from one side to
   // the other between frames as the hand lets go)
   fix.pocket=bring(avatar,'L',hookLocal(avatar),avatar.bones.chest.localToWorld(pocket.clone()),cues.pocket*w,false);
-  holdWrist(avatar.bones.handL.quaternion,'L');avatar.bones.handL.updateWorldMatrix(false,true);
+  // (eased into its ends, by as much as the pocket holds the hand: a hard stop at them stopped the hand dead in a frame)
+  {const q=avatar.bones.handL.quaternion,soft=q.clone();softWrist(soft,'L');q.slerp(soft,Math.min(1,cues.pocket*w));}avatar.bones.handL.updateWorldMatrix(false,true);
  }else if(S?.lastFix&&t>S.lastFixAt&&t<S.lastFixAt+.25){
   // (torn off: what the hand was put right by on the ring, let go over a quarter of a second, not at once)
   const f=1-smooth((t-S.lastFixAt)/.25),hand=avatar.bones.handL.getWorldPosition(new THREE.Vector3());
