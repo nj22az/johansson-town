@@ -211,3 +211,8 @@ port-shed.test.mjs
 resident-journeys.test.mjs
 sisters.test.mjs
 stand-points.test.mjs
+# Every building's walking circuit, clear at the standard's width or, where a fitting placed for a reason stands, along
+# the lane left at its real width (architecture-plan.js `narrow`), and connected to Main Street (about 15 s).
+architect-masterplan.test.mjs
+# Tetsuo works Umi-no-yu's boiler, behind the bathhouse, at the hours his cast.js day gives (about 20 s).
+onsen-boiler.test.mjs
