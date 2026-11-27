@@ -544,7 +544,7 @@ CANKEYS = [
     *pull(7.15, 8.2, 58, 93),                                                                     # the second pull: the last of it
     *pull(8.2, 8.5, 93, 91, .05),
     (8.62, lambda t: at_lip(t, math.radians(74), away=.03 * k, down=0, side=-.055 * k)),                            # off the lips first (not tipped down against them), then down
-    (8.82, lambda t: at_lip(t, math.radians(40), away=.068 * k, down=0)),                            # release: off the lip, into the "ahh"
+    (8.82, lambda t: at_lip(t, math.radians(40), away=.067 * k, down=0)),                            # release: off the lip, into the "ahh"
     (8.96, lambda t: at_lip(t, math.radians(39), away=.07 * k, down=0)),                              # "ahh": held off his lips (with his head)
     (9.16, lambda t: at_lip(t, math.radians(28), away=.07 * k, down=-.025 * k)),                     # anticipation: tipped back, a touch up and in (against the lowering)
     (9.45, lambda t: can_at((-.13 * k, M['chestY'] + .12 * k, .26 * k), can_turn(.2, .05))),         # down, the arc out
@@ -580,8 +580,8 @@ SMILE = [(.35, 0), (2.55, .4), (3.7, 0), (8.9, 0), (9.22, 1), (10.08, .6), (10.1
 LIPW = [(.35, 0), (4.52, 0), (4.6, 1), (6.2, 1), (6.35, 0), (7.12, 0), (7.2, 1), (8.5, 1), (8.68, 0), (10.88, 0), (11.06, 1), (11.65, 1), (11.75, 0), (13.1, 0)]
 POCKETW = [(.35, 0), (2.1, 0), (2.38, 1), (2.45, 1), (2.6, 0), (13.1, 0)]
 # (the right wrist from his own lips while the can is near them, the "ahh" too)
-MOUTHW = [(.35, 0), (3.88, 0), (4.55, 1), (9.2, 1), (9.55, 0), (10.4, 0), (11.05, 1), (11.95, 1), (12.4, 0), (13.1, 0)]
-RINGW = [(.35, 0), (1.11, 0), (1.15, 1), (1.66, 1), (1.69, 0), (13.1, 0)]        # (on through the tear: the tab comes off where the finger holds it)
+MOUTHW = [(.35, 0), (3.88, 0), (4.55, 1), (9.2, 1), (9.75, 0), (10.4, 0), (11.05, 1), (11.95, 1), (12.4, 0), (13.1, 0)]
+RINGW = [(.35, 0), (1.04, 0), (1.15, 1), (1.66, 1), (1.69, 0), (13.1, 0)]        # (on through the tear: the tab comes off where the finger holds it)
 FILL = [(.35, 1), (4.65, 1), (6.05, .45), (7.45, .45), (8.35, 0), (10.08, 0), (10.1, 1), (13.1, 1)]
 # (the eyes go first: the head turns to what they look at five frames after them, anticipation-mastery's "looks before
 # moving")
@@ -956,10 +956,10 @@ def evened(qs, spread=SPREAD):
 
 
 UPPER = ('spine', 'chest', 'neck', 'head', 'shoulderL', 'elbowL', 'handL', 'shoulderR', 'elbowR', 'handR')
-# (and less while the rim is at his lip, a frame each side: there every joint from the spine up is close to where the IK put the
+# (and less while the rim is at his lip, a frame each side, eased over twice EASE: there every joint from the spine up is close to where the IK put the
 # can on the lip as the head swallows; eased from the one to the other as the contact comes and goes)
 on = [c['lip'] for c in contacts]
-at_lip = [max(on[j] * ease3(1 - abs(i - j) / EASE) for j in range(max(0, i - EASE), min(len(on), i + EASE + 1))) for i in range(len(on))]
+at_lip = [max(on[j] * ease3(1 - abs(i - j) / (2 * EASE)) for j in range(max(0, i - 2 * EASE), min(len(on), i + 2 * EASE + 1))) for i in range(len(on))]
 for n in UPPER:
     raw = [p[n] for p in baked]
     for pose, q, q1, w in zip(baked, evened(raw), evened(raw, (1, 2, 1)), at_lip):
