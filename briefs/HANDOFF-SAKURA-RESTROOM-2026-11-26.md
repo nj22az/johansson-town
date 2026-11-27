@@ -613,6 +613,21 @@ settle to 8.98 (drinkEnd moved from 8.8). Primary: the can (the left hook in the
   version would need its own keys).
 - Residents sip at 1.25 times its speed; glasses and bottles still drink by the old consumption path.
 
+## Then: the principles audit merged (964f071, work in progress)
+- `audit/principles` merged into `drink/can`. On top: the root alone leads (spine 4 frames), the forearm half-dragged 3
+  frames off contacts, the strokes to and from the lip bowed, the reach's anticipation out and back, a slower return from
+  the pocket, and the game blends the move level by level (`drink-can.js levelWeights`, the can block of `animate.js`).
+- `tests/drink-can.test.mjs` now has Vy and Sverker and checks steps of joint speed (0.06 rad a frame at 60 fps). It
+  FAILS: Vy's lip and ring corrections 24.5 and 26.4 mm (limits 12 and 25), the can 6.5 mm into Vy's face, Vy's right
+  wrist 0.16 rad past its limit at 8.0 s, Johansson's left shoulder 0.31 rad in a frame at 2.43 s.
+- `node tools/animation-audit.mjs --moves DrinkCan,DrinkCanOpened`: both still fail ease, anticipation, arcs and overlap
+  on Vy, Johansson and Sverker (fewer ease segments than before: Johansson's DrinkCan 10 of 30, was 12 of 40). What is
+  left: speed steps at key times (the head at 1.23 s, the left shoulder at 2.5 and 6.53 s, the chest at 8.98 s); the
+  counter-movement before the can goes up (Johansson 0 of 26 mm in DrinkCan, 23 of 39 mm in DrinkCanOpened); the strokes
+  off the lip after the first pull (4.9-5.65 s) and up to it (2.52-3.17 s in DrinkCanOpened) 5.5-7% off straight; overlap
+  primary to secondary 0 frames (the IK moves the upper arm and the hand together; the half forearm drag is not enough).
+  The baseline is unchanged. The sheets are 56c3b82's.
+
 # 27 November, evening: the animation guideline, adopted strictly
 
 The owner: "https://github.com/dylantarre/animation-principles use this as the guidelines for animating Johansson world
