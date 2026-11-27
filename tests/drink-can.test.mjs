@@ -45,7 +45,7 @@ function drink(who,seated=false){
   const up=new THREE.Vector3(0,1,0).transformDirection(prop.matrixWorld);
   const wrist=s=>{const q=a.bones['hand'+s].quaternion,e=new THREE.Euler().setFromQuaternion(q,'XYZ');return [e.x,s==='R'?e.y:-e.y,s==='R'?e.z:-e.z];};
   frames.push({t,c,rimLip:rim.distanceTo(lip),tilt:Math.acos(THREE.MathUtils.clamp(up.dot(new THREE.Vector3(0,1,0)),-1,1)),wrist:{R:wrist('R'),L:wrist('L')},face:faces.at(-1),
-   canInFace:i%6===0?canInFace(a,prop):0,handOnCan:[30,207,288].includes(i)?handOnCan(a,prop):null,
+   canInFace:i%6===0?canInFace(a,prop):0,handOnCan:[51,273,354].includes(i)?handOnCan(a,prop):null,
    joints:UPPER.map(j=>a.bones[j].quaternion.clone()),can:prop.getWorldPosition(new THREE.Vector3())});
  }
  const run={a,prop,frames};runs.set(key,run);return run;
@@ -143,16 +143,16 @@ test('nothing pops: no joint turns over between two frames, the can is never sna
 test('the can goes further over as it empties, and the eyes shut for the deep swallows, a breath out after',()=>{
  const {frames}=drink('Nils Johansson');
  const pull=(a,b)=>frames.filter(f=>f.t>a&&f.t<b&&f.c.lip>.99);
- for(const [a,b] of [[3.4,5.2],[5.8,7.5]]){const p=pull(a,b);
+ for(const [a,b] of [[4.5,6.3],[6.9,8.6]]){const p=pull(a,b);
   assert.ok(p.at(-1).tilt-p[0].tilt>THREE.MathUtils.degToRad(30),`tipped further through the pull from ${a} s (${THREE.MathUtils.radToDeg(p[0].tilt).toFixed(0)} to ${THREE.MathUtils.radToDeg(p.at(-1).tilt).toFixed(0)} degrees)`);
   // (and, while it empties, far enough for what is left to reach the opening: a can holds a fill f below the rim's edge
   // until it is tipped atan((1 - f) h / r))
   p.forEach((f,i)=>{if(!(p[i+1]&&p[i+1].c.fill<f.c.fill-1e-4))return;const need=Math.atan((1-f.c.fill)*.122/.033);assert.ok(f.tilt>Math.min(need,THREE.MathUtils.degToRad(85))-.05,`at ${f.t.toFixed(2)} s, drinking, tipped ${THREE.MathUtils.radToDeg(f.tilt).toFixed(0)}, ${THREE.MathUtils.radToDeg(need).toFixed(0)} needed`);});
  }
- assert.ok(frames.filter(f=>f.t>4&&f.t<4.8).every(f=>f.face.blink>.99),'the eyes shut for the deep swallows');
- assert.ok(frames.some(f=>f.t>5.2&&f.t<5.7&&f.face.talk>0),'a breath out between the pulls');
- assert.ok(frames.some(f=>f.t>7.9&&f.face.expression==='content'),'content after');
- assert.ok(frames.filter(f=>f.t>.4&&f.t<1.2).every(f=>f.face.look?.[1]>0),'the eyes on the can while it is opened');
+ assert.ok(frames.filter(f=>f.t>5.1&&f.t<5.9).every(f=>f.face.blink>.99),'the eyes shut for the deep swallows');
+ assert.ok(frames.some(f=>f.t>6.3&&f.t<6.8&&f.face.talk>0),'a breath out between the pulls');
+ assert.ok(frames.some(f=>f.t>9&&f.face.expression==='content'),'content after');
+ assert.ok(frames.filter(f=>f.t>.75&&f.t<1.55).every(f=>f.face.look?.[1]>0),'the eyes on the can while it is opened');
 });
 
 test('a resident drinking a can that is open sips it as animated: the rim on the lip, the eyes shut for the swallow',()=>{

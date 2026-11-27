@@ -3,7 +3,7 @@ import {poseAvatarOnBicycle} from './bicycle-pose.js';
 import {bicycleRiderFit} from '../world/bicycle-fit.js';
 import {seeded} from './recipe.js';
 import {consumptionPhase,poseAvatarConsumption,drinkHeadTilt,heldGrip} from './consume.js';
-import {CAN_PARTS,playCanDrink,canEvents} from './drink-can.js';
+import {CAN_PARTS,playCanDrink,canEvents,levelWeights} from './drink-can.js';
 import {tearTab,pocketTab} from './open-can.js';
 import {bodyLanguage,CONVERSATION_BIG} from './body-language.js';
 import {createFootGrounder,createLieGrounder,createSoleFinder} from './foot-ground.js';
@@ -1101,12 +1101,21 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // A can bought and drunk (actors.js drinkBought): the motion over the pose so far, blended in and out (the arm comes up
   // from where it hung to the can held at the waist, and goes back); the tab's moments as the motion has them.
   const canPart=avatar.pixar?null:gesture?.name==='DrinkCan'?CAN_PARTS.open:gesture?.name==='DrinkCanOpened'?CAN_PARTS.drink:null;
+  // (the stance kept under the can, as under the story's eased moves (EASED): a loafer's hands in the pockets, an elder's
+  // behind the back, the lean. The motion blends in from it and back out to it, and the animator is in it as the move ends,
+  // so the arms neither leave it nor go back to it in a frame. This frame's ease toward its targets was made without it (and
+  // so was the last frame's, the one the move ends in): put right by what the stance adds to them, as much of it as that
+  // ease takes (k))
+  if((canPart||canLast>=0)&&!avatar.pixar&&!s.riding&&!onChair&&!s.climbing&&!moving&&(!s.pose||STORY_POSES.has(s.pose))&&!s.carrying){
+   const CAN_STANCE=['chest','shoulderL','shoulderR','elbowL','elbowR'],was=CAN_STANCE.map(j=>target[j].clone());add('chest',gait.lean*.6);if(gait.carry==='behind'||gait.carry==='pockets')carryArms(gait.carry,0,0);
+   CAN_STANCE.forEach((j,i)=>{const d=target[j].sub(was[i]).multiplyScalar(k),r=bones[j].rotation;current[j].add(d);r.set(r.x+d.x,r.y+d.y,r.z+d.z);});
+  }
   if(canPart){
-   // (blended in over 0.7 s, the motion holding the can still for its first 0.15: the can comes up from where the animator
-   // had it no faster than it goes to his mouth; out over 0.45 s, from the can settled at his waist)
-   const t=canPart[0]+gesture.t,w=smooth(Math.min(1,gesture.t/.7))*smooth(Math.min(1,(gesture.d-gesture.t)/.45));
+   // (blended in level by level within the motion's still beat at its start, out level by level from the can settled at
+   // his waist: drink-can.js levelWeights; the face and the hands' cues by the hands' level)
+   const t=canPart[0]+gesture.t,blend={in:gesture.t,out:gesture.d-gesture.t},w=levelWeights(blend)[2];
    if(canLast<0)canLast=canPart[0]-1e-6;
-   const cue=playCanDrink(avatar,s.heldProp,t,w,{in:gesture.t,out:gesture.d-gesture.t});
+   const cue=playCanDrink(avatar,s.heldProp,t,w,blend);
    canCue={...cue,w};
    // (the tab's moments once this frame's pose is made: torn off where the hooked finger holds the ring now)
    for(const e of canEvents(canLast,t)){if(e==='tabOff')tearTab(s.heldProp,bones.handL);else if(e==='tabPocketed')pocketTab(s.heldProp);}
