@@ -251,3 +251,5 @@ story-gestures.test.mjs
 work-kit.test.mjs
 # Tama, the cat from the quay: her day, her places and ways clear of the quay's fittings, a walk with nothing jumping (about 60 s).
 tama.test.mjs
+# The harbour's gulls (umineko) in the Blåhaj look: their own picture layers, a flight that flaps and glides with nothing jumping a frame (about 2 s).
+gulls.test.mjs

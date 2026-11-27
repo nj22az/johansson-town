@@ -1,5 +1,6 @@
 import * as THREE from '../../vendor/three.module.js';
 import {groundHeight} from './layout.js';
+import {pixelSprite} from '../render/pixel-sprite.js';
 /**
  * Tama, the cat from the quay (the owner, 27 November 2026: "I think you can make the cat"). The storyteller has told of
  * her for a while (feed/evening-news.js: she left the market with a whole squid; feed/places.js); now she lives there.
@@ -15,6 +16,9 @@ import {groundHeight} from './layout.js';
  * puts them (they do not slide), she eases into and out of every pose, stretches before she walks off (anticipation), and
  * her tail and head follow the body a beat late (overlap and follow-through).
  */
+
+/** Her picture (render/pixel-sprite.js): 72 dots square over 0.84 m, 24 drawings a second, centred 0.2 m over the quay. */
+export const TAMA_SPRITE=Object.freeze({name:'Tama, drawn',dots:72,span:.84,fps:24,layer:30,centre:Object.freeze([0,.2,0])});
 
 /** Her places on the quay, in town coordinates, measured clear of every fitting there (tests/tama.test.mjs). */
 export const TAMA_SPOTS=Object.freeze({
@@ -112,56 +116,12 @@ function buildCat(){
 
 
 /**
- * The Blåhaj look (the owner, 27 November 2026, of kuraneko1.github.io/blahaj-kikkou-3d: "I want the same style as the
- * shark"): her 3D body is drawn small, into a picture of its own 72 dots square, in the town's three flat tones, 24 times a
- * second as the shark is; the picture stands in the town facing the camera, its dots shown square and an ink line one dot
- * wide drawn round her outline. The body itself is on a layer of its own that only that picture's camera sees.
- */
-export const TAMA_SPRITE=Object.freeze({dots:72,span:.84,fps:24,layer:30,ink:0x231d2b,forward:.45});
-function pixelSprite(cat){
- const S=TAMA_SPRITE,target=new THREE.WebGLRenderTarget(S.dots,S.dots,{minFilter:THREE.NearestFilter,magFilter:THREE.NearestFilter,generateMipmaps:false,depthBuffer:true});
- const lens=new THREE.OrthographicCamera(-S.span/2,S.span/2,S.span/2,-S.span/2,.05,8);lens.layers.set(S.layer);
- cat.root.traverse(o=>o.layers.set(S.layer));
- const material=new THREE.ShaderMaterial({transparent:true,depthWrite:true,
-  uniforms:{map:{value:target.texture},texel:{value:1/S.dots},ink:{value:new THREE.Color(S.ink)}},
-  vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
-  fragmentShader:`uniform sampler2D map;uniform float texel;uniform vec3 ink;varying vec2 vUv;
-   void main(){vec2 at=(floor(vUv/texel)+.5)*texel;vec4 c=texture2D(map,at);
-    if(c.a<.5){float n=max(max(texture2D(map,at+vec2(texel,0.)).a,texture2D(map,at-vec2(texel,0.)).a),max(texture2D(map,at+vec2(0.,texel)).a,texture2D(map,at-vec2(0.,texel)).a));
-     if(n<.5)discard;gl_FragColor=vec4(ink,1.);}else gl_FragColor=vec4(c.rgb,1.);
-    #include <tonemapping_fragment>
-    #include <colorspace_fragment>
-   }`});
- const card=new THREE.Mesh(new THREE.PlaneGeometry(S.span,S.span),material);card.name='Tama, drawn';card.frustumCulled=false;
- // (her own ink: the town's line is not drawn round the card)
- card.userData.outline=true;card.userData.dynamicProp=true;
- const centre=new THREE.Vector3(),look=new THREE.Vector3();let drawn=-1,lit=null;
- card.onBeforeRender=(renderer,scene,camera)=>{
-  centre.set(0,.2,0).applyMatrix4(cat.root.matrixWorld);camera.getWorldDirection(look);
-  // The card stands a little in front of her, toward the camera, so the quay under her paws does not cut it.
-  const toward=Math.min(S.forward,camera.position.distanceTo(centre)*.5),d=camera.position.distanceTo(centre);
-  card.position.copy(centre).addScaledVector(look,-toward);card.quaternion.copy(camera.quaternion);
-  card.scale.setScalar((d-toward)/d);card.updateMatrixWorld(true);
-  if(scene.overrideMaterial)return;
-  const now=performance.now()/1000;if(now-drawn<1/S.fps)return;drawn=now;
-  // The town's lights light her: they are let onto her layer once.
-  if(lit!==scene){scene.traverse(o=>{if(o.isLight)o.layers.enable(S.layer);});lit=scene;}
-  lens.position.copy(centre).addScaledVector(look,-3);lens.quaternion.copy(camera.quaternion);lens.updateMatrixWorld(true);
-  const previous=renderer.getRenderTarget(),clear=renderer.getClearColor(new THREE.Color()),alpha=renderer.getClearAlpha(),bg=scene.background,fog=scene.fog,
-   shadows=renderer.shadowMap.autoUpdate,auto=renderer.autoClear;
-  try{scene.background=null;scene.fog=null;renderer.shadowMap.autoUpdate=false;renderer.autoClear=true;
-   renderer.setRenderTarget(target);renderer.setClearColor(0x000000,0);renderer.clear();renderer.render(scene,lens);}
-  finally{renderer.setRenderTarget(previous);renderer.setClearColor(clear,alpha);scene.background=bg;scene.fog=fog;renderer.shadowMap.autoUpdate=shadows;renderer.autoClear=auto;}
- };
- return {card,target,lens};
-}
-/**
  * Tama in the town. `tick(dt, time, minutes)` each frame: where her day says she should be; if she is somewhere else she
  * stretches, walks there along her way and settles. A jump of the clock (a load, a catch-up) puts her where she would be.
  */
 export function buildTama(world,{register,onAction}={}){
  const cat=buildCat();world.group.add(cat.root);
- const drawn=pixelSprite(cat);world.group.add(drawn.card);
+ const drawn=pixelSprite(cat.root,TAMA_SPRITE);world.group.add(drawn.card);
  // Her shadow on the quay, as the shark has its own: a soft oval a few millimetres over the ground, drawn behind
  // everything at that depth (a polygon offset), never in the town's line.
  const shade=new THREE.Mesh(new THREE.CircleGeometry(1,24).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:0x1d2233,transparent:true,opacity:.28,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2}));

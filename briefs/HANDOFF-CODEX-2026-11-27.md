@@ -136,9 +136,24 @@ The World already took this look: AGENTS.md, "25 November 2026: cartoon cast onl
   - Her sitting pose: the hind legs read stiff; fold them under her as a cat does.
   - The picture's camera is orthographic: from very close, her paws can sit a little off her shadow. Match the game
     camera's perspective.
-  - The harbour gull in the same look.
+  - ~~The harbour gull in the same look~~: done (`src/world/gulls.js`, branch `gull` then the work branch; see below).
   - Give her to the storyteller: the feed's places, and the gull's.
   - The owner has not seen her in the game.
+
+## 3c. The gulls, made by Claude at the very end (the owner: "Then make the seagull")
+
+`src/world/gulls.js`, built by `quiet-life.js` in place of the old sphere-and-plane gulls.
+- **What they are:** four umineko (black-tailed gulls) circling the east quay, with their reason recorded in `GULLS.why`.
+- **How they're drawn:** each is a small 3D bird drawn as a pixel sprite. The drawing is shared with Tama now, in
+  `src/render/pixel-sprite.js`. Each gull has its own picture layer (26 to 29; Tama has 30).
+- **How they move:** they flap in bursts and glide between them, the outer wing a beat behind the inner. They bank and
+  pitch with their way.
+- **Tests:** `tests/gulls.test.mjs` is in the guard. `tests/town-renewal.test.mjs` now finds the gull by its new name.
+- **Sheet:** `docs/qa/gulls/pixel-sprite-2026-11-27.jpg`.
+- **Not done:**
+  - a gull standing on the harbour office roof, or on the pier being fed (the feed's stories);
+  - their call;
+  - the owner has not seen them in the game.
 
 ## 4. Seen and not fixed (smaller)
 
