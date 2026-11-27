@@ -16,7 +16,14 @@ brands that fit into the Jansson world and if you can't make up a good one just 
   Umineko lager, Ryukyu Cola and Blue Coral are the pattern. Where no good name comes, use the Johansson name
   (Johansson Brewery, Johansson Foods …): Johansson is this world's Acme.
 - **New content is checked for real brands before it is committed;** a test keeps a list of the real brands found once
-  and refuses them.
+  and refuses them: `tests/no-real-brands.test.mjs` (in the CI guard) reads every string the player or the storyteller
+  can meet against `data/studio/brand-rules.json`. A word that is also a street, a place, a god or a surname here is
+  let through only by a written sense or an allowance with its reason, in the test.
+- **The town's beer is one company's:** Johansson Brewery of Nago brews Umineko (Sakura's shelf, Minato's tap, bottle
+  and can, Sato Ramen, the Coral Bay Bar, Mr Fujita's shed) and the machines' Kame, Jugon and Tako
+  (`people/izakaya-beer.js MINATO_BEER`). The island's awamori is Shimakaze; its TV is Shima TV, Southwest Broadcasting,
+  MinatoTV and JHK Okinawa (the public broadcaster); its paper the Minato Shimbun. The handover of this date lists every
+  name replaced and why.
 
 ## Owner's decision — 27 November 2026: the animation guideline, strictly
 
