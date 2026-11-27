@@ -18,7 +18,8 @@ const NAME=flag('--name')||'Johansson',LOOK=flag('--look')||'none',BODY=args.inc
 const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--look','--set','--views','--expressions','--focus'].includes(args[i-1]))||resolve(root,'output/turnaround-'+NAME.toLowerCase().replace(/\W+/g,'-')+'.png'));
 await mkdir(dirname(out),{recursive:true});
 const TYPES={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.glb':'model/gltf-binary'};
-const server=createServer(async(req,res)=>{try{const path=decodeURIComponent(new URL(req.url,'http://x').pathname),file=resolve(site,'.'+path);if(!file.startsWith(site))throw Error('outside');
+// (the Town is this checkout, at /johansson-town/, wherever it is: a worktree's parent is not the Office site)
+const server=createServer(async(req,res)=>{try{const path=decodeURIComponent(new URL(req.url,'http://x').pathname),town=path.startsWith('/johansson-town/'),file=town?resolve(root,'.'+path.slice('/johansson-town'.length)):resolve(site,'.'+path);if(!file.startsWith(town?root:site))throw Error('outside');
  if(path==='/blank')return res.writeHead(200,{'content-type':'text/html'}).end('<!doctype html><title>turnaround</title>');
  const body=await readFile(file);res.writeHead(200,{'content-type':TYPES[extname(file)]||'application/octet-stream','cache-control':'no-store'});res.end(body);}catch{res.writeHead(404);res.end();}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));

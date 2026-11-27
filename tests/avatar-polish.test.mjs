@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from '../vendor/three.module.js';
 import {installDOM} from './fixtures.mjs';
-import {buildAvatar} from '../src/avatars/build.js';
+import {buildAvatar,bodyVolume} from '../src/avatars/build.js';
+import {KARIYUSHI,collarChart} from '../src/avatars/garment.js';
 import {CAST_RECIPES,recipeFor} from '../src/avatars/cast.js';
 import {createAvatarAnimator} from '../src/avatars/animate.js';
 import {createAvatarActor,updateAvatarActor} from '../src/avatars/actors.js';
@@ -27,7 +28,7 @@ test('face UVs never interpolate a second face across the rear seam',()=>{
  }
 });
 
-test('the kariyushi collar is cloth: a stand round the neck, notched leaves and lapels over an open V, with a shadow under them',()=>{
+test('the kariyushi collar is cloth: a band round the neck folding forward into two short points over an open V, with a shadow under it',()=>{
  for(const name of ['Johansson','Thuan']){
   const a=buildAvatar({...CAST_RECIPES[name],outfit:{...CAST_RECIPES[name].outfit,top:'kariyushi'}}),m=a.measure,P=a.body.geometry.attributes.position;
   let stand=0;
@@ -49,10 +50,76 @@ test('the kariyushi collar is cloth: a stand round the neck, notched leaves and 
 });
 
 /**
+ * The owner's brief for Johansson's aloha shirt, 27 November 2026: "Give it a low, open camp collar. A narrow band wraps
+ * around the nape and folds forwards into two short points, leaving a small V of white undershirt below the throat. In
+ * profile, leave visible space below the jaw." Measured on his body: the collar's top no more than 3 cm above the neck's
+ * base, the neck showing for at least 6 cm under the jaw above it, and the V about a hand deep and a hand wide.
+ */
+/** The torso lathe's radius at a share t of its height (as build.js reads its profile). */
+const latheRadius=(prof,t)=>{for(let i=1;i<prof.length;i++){const [r0,y0]=prof[i-1],[r1,y1]=prof[i];if(t<=y1)return r0+(r1-r0)*((t-y0)/((y1-y0)||1));}return prof.at(-1)[0];};
+test('the kariyushi collar is low: a narrow band round the nape, the neck showing below the jaw, a small V',()=>{
+ const a=buildAvatar(recipeFor('Johansson'),{shadows:false}),m=a.measure,k=m.k,P=a.body.geometry.attributes.position,C=a.body.geometry.attributes.color;
+ const SI=a.body.geometry.attributes.skinIndex,chest=a.body.skeleton.bones.indexOf(a.bones.chest),shirt=new THREE.Color(a.recipe.outfit.topColour);
+ let top=-1;for(let i=0;i<P.count;i++){const r=Math.hypot(P.getX(i),P.getZ(i));
+  if(SI.getX(i)===chest&&r>m.neckR&&r<m.neckR+.07*k&&Math.abs(C.getX(i)-shirt.r)+Math.abs(C.getY(i)-shirt.g)+Math.abs(C.getZ(i)-shirt.b)<.02)top=Math.max(top,P.getY(i));}
+ const H=a.face.head.geometry.attributes.position,v=new THREE.Vector3();a.root.updateMatrixWorld(true);
+ // (the head as it sits on the neck, in the body's own frame: the root turns the town's way round, about y)
+ let jaw=Infinity;for(let i=0;i<H.count;i++){v.fromBufferAttribute(H,i).applyMatrix4(a.face.head.matrixWorld).applyMatrix4(a.root.matrixWorld.clone().invert());jaw=Math.min(jaw,v.y);}
+ assert.ok(top-m.neckY<.03*k,`the collar stands ${((top-m.neckY)*1000).toFixed(0)} mm above the neck's base (at most 30)`);
+ assert.ok(jaw-top>.06*k,`the neck shows ${((jaw-top)*1000).toFixed(0)} mm between the collar and the jaw (at least 60)`);
+ const chart=collarChart(m,t=>latheRadius(bodyVolume(a.recipe,m).prof,t)),K=KARIYUSHI.collar,corner=chart.at(K.vee,0),bottom=chart.at(K.centre[0],K.centre[1]*k);
+ const deep=corner[1]-bottom[1],wide=corner[0]*2;
+ assert.ok(deep>.08*k&&deep<.14*k,`the V is ${(deep*1000).toFixed(0)} mm deep`);assert.ok(wide>.08*k&&wide<.14*k,`and ${(wide*1000).toFixed(0)} mm wide at the throat`);
+ // the two points: out on the chest below the neck, short of the shoulders
+ const point=chart.at(K.point[0],K.point[1]*k);
+ assert.ok(point[1]<m.neckY-.03*k&&point[1]>m.neckY-.09*k&&Math.abs(point[0])<m.width/2*.7,'each point on the upper chest, short of the shoulder: '+point.map(x=>(x*1000).toFixed(0)));
+ a.dispose();
+});
+
+/**
+ * "Let the fabric fall from the shoulders with a little air at the waist ... Finish with a nearly level, untucked hem at the
+ * upper hip so the shorts remain visible" (the owner's brief, 27 November 2026), and then: "The shirt you may look like a
+ * dress make it look more like a real Hawaii shirt". The body of the shirt is cloth of its own below the chest (build.js
+ * alohaBody): boxy and straight, no wider at the hem than at the chest (it had flared 21 mm in front and behind, an A-line),
+ * a few millimetres clear of the waist, its hem level and just over the shorts' waistband (a few centimetres, no more:
+ * it had come down to 16 mm over the hip joint, a dress's length on his short legs), turned, with its inside drawn in the
+ * cloth's shadow, a small vent at each side seam, and the shorts showing below it.
+ */
+test('the kariyushi is boxy and straight, its level hem just over the shorts\' waistband, with side vents, a turned edge and an inside',()=>{
+ for(const name of ['Johansson','Vy','Sverker']){
+  // (in Johansson's blue, which nothing else they wear is)
+  const r=recipeFor(name),a=buildAvatar({...r,outfit:{...r.outfit,top:'kariyushi',topColour:'#7fb0d8'}},{shadows:false}),m=a.measure,k=m.k,g=a.body.geometry,P=g.attributes.position,C=g.attributes.color;
+  const shirt=new THREE.Color(a.recipe.outfit.topColour),inside=shirt.clone().multiplyScalar(.68),is=(i,c)=>Math.abs(C.getX(i)-c.r)+Math.abs(C.getY(i)-c.g)+Math.abs(C.getZ(i)-c.b)<.01;
+  const vol=bodyVolume(a.recipe,m),air=t=>{const y=m.hipY+t*m.torso;let f=-1,b=-1;for(let i=0;i<P.count;i++)if(is(i,shirt)&&Math.abs(P.getX(i))<.015*k&&Math.abs(P.getY(i)-y)<.03*k){f=Math.max(f,P.getZ(i));b=Math.max(b,-P.getZ(i));}
+   const bare=m.depth/2*latheRadius(vol.prof,t);return [f-bare,b-bare];};
+  const [front,back]=air(.3);
+  assert.ok(front>.006*k&&back>.006*k,`${name}: air at the waist, ${(front*1000).toFixed(0)} mm in front and ${(back*1000).toFixed(0)} mm behind`);
+  // the hem: the lowest of the shirt's body, all round at one height (the sleeves and the arms aside), but at the vents
+  const body=[];for(let i=0;i<P.count;i++)if((is(i,shirt)||is(i,inside))&&P.getY(i)<m.hipY+m.torso*.3&&Math.hypot(P.getX(i)/m.width,P.getZ(i)/m.depth)>.35)body.push(i);
+  const low=Math.min(...body.map(i=>P.getY(i))),waistband=m.hipY+m.torso*.13;
+  assert.ok(waistband-low>.015*k&&waistband-low<.045*k,`${name}: the hem ${((waistband-low)*1000).toFixed(0)} mm under the shorts' waistband (a few centimetres)`);
+  const seam=i=>Math.abs(P.getZ(i))<.02*k,level=body.filter(i=>!seam(i)&&P.getY(i)<low+.01*k).map(i=>P.getY(i));
+  assert.ok(Math.max(...level)-low<.002*k,`${name}: the hem level all round`);
+  // the vents: at each side seam the hem rises in a slit two or three centimetres high
+  // (its top: the lowest of the outside on the seam's own line)
+  for(const s of [1,-1]){const rise=Math.min(...body.filter(i=>is(i,shirt)&&Math.abs(P.getZ(i))<.002*k&&Math.sign(P.getX(i))===s).map(i=>P.getY(i)))-low;
+   assert.ok(rise>.02*k&&rise<.045*k,`${name}: a vent at the ${s>0?'left':'right'} side seam, ${(rise*1000).toFixed(0)} mm high`);}
+  // boxy: no wider at the hem than at the chest, front, back and sides (it was an A-line, 21 mm out in front and behind)
+  const extent=(y,f)=>{let e=-Infinity;for(let i=0;i<P.count;i++)if(is(i,shirt)&&Math.abs(P.getY(i)-y)<.004*k)e=Math.max(e,f(i));return e;};
+  const hemY=low;   // (the hem's own row)
+  // (off the widest of the body above the hem: a figure wider at the hips than the chest, as Vy is, is followed, not flared)
+  let widest=0;for(let t=(low-m.hipY)/m.torso;t<=.64;t+=.01)widest=Math.max(widest,m.depth/2*latheRadius(vol.prof,t));
+  for(const [label,f] of [['in front',i=>P.getZ(i)],['behind',i=>-P.getZ(i)]])assert.ok(extent(hemY,f)-widest<.012*k,`${name}: straight ${label}, ${((extent(hemY,f)-widest)*1000).toFixed(0)} mm off the body at the hem`);
+  assert.ok([...Array(P.count).keys()].some(i=>is(i,inside)&&P.getY(i)>low&&P.getY(i)<low+.05*k),`${name}: the hem's inside, in its shadow`);
+  a.dispose();
+ }
+});
+
+/**
  * The owner, 27 November 2026: "Johansson's rigged Hawaii shirt needs to be improved too, the collar is way too big going
  * under his arms when drinking". The collar's leaves reached 221 mm out of his 234 mm half-width, nearly to the shoulder
  * seam, and the raised arms went over them: 29 mm into the sleeve drinking, 55 mm pointing, 47 mm clapping. The collar is
- * a camp collar's size now (garment.js CAMP_COLLAR), and stays out of the sleeves in the moves that bring an arm across
+ * a camp collar's size now (garment.js KARIYUSHI.collar), and stays out of the sleeves in the moves that bring an arm across
  * or up, on the smallest, Johansson's and the largest body.
  */
 test('the kariyushi collar stays out from under the arms when they come up or across (drinking, pointing, clapping)',()=>{

@@ -26,7 +26,7 @@ import {celFrom} from '../render/cel.js';
 import {createTowelFit} from './towel-fit.js';
 import {addPoliceCap,policeCapTuck,addPoliceJacket,addDutyBelt} from './police-uniform.js';
 import {addKerchief,kerchiefTuck} from './kerchief.js';
-import {GARMENT,PLAIN_UV,torsoUV,sleeveUV,paintGarment,SLEEVED_LONG,campCollarOutline,COLLAR_STAND,SHIRT_SLEEVES,ACCENT_SLEEVES,UNDERSHIRT_ARMS,SLEEVE_END} from './garment.js';
+import {GARMENT,PLAIN_UV,torsoUV,sleeveUV,shortSleeve,paintGarment,SLEEVED_LONG,KARIYUSHI,kariyushiBody,UNDER,collarChart,collarStrip,SHIRT_SLEEVES,ACCENT_SLEEVES,UNDERSHIRT_ARMS,SLEEVE_END} from './garment.js';
 import {ASSET_HATS,isAssetHat,assetHatPieces,hatTuck,weaveTexture} from './hat-assets.js';
 
 /**
@@ -116,42 +116,121 @@ function restPositions(m){
 const PARENT={...SPRING_PARENT,hips:'root',spine:'hips',chest:'spine',neck:'chest',head:'neck',shoulderL:'chest',elbowL:'shoulderL',handL:'elbowL',shoulderR:'chest',elbowR:'shoulderR',handR:'elbowR',thighL:'hips',kneeL:'thighL',footL:'kneeL',thighR:'hips',kneeR:'thighR',footR:'kneeR'};
 
 const tmpColour=new THREE.Color();
+/** How far down the arm a kariyushi's sleeve shades it below its hem, in metres (a grown man's). */
+const HEM_SHADOW=.022;
 /** The torso lathe's radius at a fraction of its height. */
-/** The camp collar from Blender (tools/blender/kariyushi_collar.py), body-relative. */
 /**
- * The camp collar's leaf and lapel, one piece of cloth each side: the CAMP_COLLAR outline
- * laid onto the chest and given a few millimetres of thickness, so it has an edge the ink
- * outline follows and catches the light, plain cloth with no print. The outline is cut
- * into small triangles first so the cloth bends with the chest rather than cutting into it.
+ * The kariyushi's camp collar (garment.js KARIYUSHI.collar), one piece of cloth: a narrow band round the nape whose fold
+ * stands a little up the neck and whose fall lies over the shoulders and the back, folding forward into two short points
+ * over a small V. It is a strip drawn on the collar's chart (garment.js collarChart, collarStrip), a grid across it from its
+ * inner edge (the V's edges and the fold) to its outer edge, laid on the body: a top `thick` over an underside that stands
+ * `clear` off the shirt and `gap` off the neck, and an edge all round, so it has an edge the ink follows, a thickness and an
+ * inside, and catches the light.
+ * Plain cloth: the print, when there is one, is painted on the shirt under it, not on it.
  */
-function campCollar(list,m,prof,colour){
- const W=m.width,D=m.depth,mid=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2];
- for(const s of [-1,1]){
-  const shape=campCollarOutline(m,t=>latheRadius(prof,t)),outline=shape.map(([f,t])=>new THREE.Vector2(f,t));
-  let tris=THREE.ShapeUtils.triangulateShape(outline,[]).map(t=>t.map(i=>[outline[i].x,outline[i].y]));
-  for(let k=0;k<3;k++)tris=tris.flatMap(([a,b,c])=>{const ab=mid(a,b),bc=mid(b,c),ca=mid(c,a);return [[a,ab,ca],[ab,b,bc],[ca,bc,c],[ab,bc,ca]];});
-  // On the chest, lifted off it: out from the body's axis, and up a little where the chest
-  // turns over into the shoulder.
-  const at=([f,t],lift)=>{const r=latheRadius(prof,t),x=s*f*W/2*r,z=D/2*r*Math.sqrt(Math.max(0,1-f*f)),q=Math.hypot(x,z)||1,k=1+lift/q;
-   return new THREE.Vector3(x*k,m.hipY+t*m.torso+lift*THREE.MathUtils.smoothstep(t,.9,1.02),z*k);};
-  const top=.011*m.k,under=.003*m.k,pos=[],centre=at([.5,.84],0);
-  const face=(a,b,c)=>{const n=new THREE.Vector3().subVectors(b,a).cross(new THREE.Vector3().subVectors(c,a)),out=a.clone().add(b).add(c).multiplyScalar(1/3).sub(centre.clone().multiplyScalar(.2));
-   if(n.dot(out)<0)[b,c]=[c,b];pos.push(a.x,a.y,a.z,b.x,b.y,b.z,c.x,c.y,c.z);};
-  for(const [a,b,c] of tris){face(at(a,top),at(b,top),at(c,top));const A=at(a,under),B=at(b,under),C=at(c,under),n=new THREE.Vector3().subVectors(B,A).cross(new THREE.Vector3().subVectors(C,A));
-   // The underside faces into the body.
-   if(n.dot(A)>0)pos.push(A.x,A.y,A.z,C.x,C.y,C.z,B.x,B.y,B.z);else pos.push(A.x,A.y,A.z,B.x,B.y,B.z,C.x,C.y,C.z);}
-  // The edge all round, in the same steps as the triangles' edges.
-  const ring=[];shape.forEach((p,i)=>{const q=shape[(i+1)%shape.length];for(let j=0;j<8;j++)ring.push([p[0]+(q[0]-p[0])*j/8,p[1]+(q[1]-p[1])*j/8]);});
-  const c2=at([.45,.85],top);
-  ring.forEach((p,i)=>{const q=ring[(i+1)%ring.length],a=at(p,under),b=at(q,under),c=at(q,top),d=at(p,top),n=new THREE.Vector3().subVectors(b,a).cross(new THREE.Vector3().subVectors(d,a)),away=a.clone().add(c).multiplyScalar(.5).sub(c2);
-   if(n.dot(away)>=0)pos.push(a.x,a.y,a.z,b.x,b.y,b.z,c.x,c.y,c.z,a.x,a.y,a.z,c.x,c.y,c.z,d.x,d.y,d.z);else pos.push(a.x,a.y,a.z,c.x,c.y,c.z,b.x,b.y,b.z,a.x,a.y,a.z,d.x,d.y,d.z,c.x,c.y,c.z);});
-  let g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));
-  g=mergeVertices(g,1e-5);g.computeVertexNormals();
-  // A light ink line round the collar, none along the open V: there the outline would
-  // draw on the skin beside the edge and cross where the lapels meet at the button.
-  const piece=part(list,g,'chest',colour),Q=piece.attributes.position,ink=piece.attributes.ink;
-  for(let i=0;i<Q.count;i++){const t=(Q.getY(i)-m.hipY)/m.torso,f=Math.abs(Q.getX(i))/(W/2*latheRadius(prof,THREE.MathUtils.clamp(t,0,1.04))),edgeV=.035+(.62-.035)*THREE.MathUtils.clamp((t-.73)/.28,0,1);
-   ink.setX(i,.55*THREE.MathUtils.smoothstep(f-edgeV,.04,.14));}
+function alohaCollar(list,m,prof,colour){
+ const C=KARIYUSHI.collar,k=m.k,R=.14*k,chart=collarChart(m,t=>latheRadius(prof,t)),{inner,outer}=collarStrip(m),cols=inner.length,rows=6;
+ // A grid across the strip, each column a line from its inner edge to its outer edge.
+ const grid=[];for(let i=0;i<cols;i++)for(let j=0;j<=rows;j++){const v=j/rows;grid.push([inner[i][0]+(outer[i][0]-inner[i][0])*v,inner[i][1]+(outer[i][1]-inner[i][1])*v]);}
+ const id=(i,j)=>i*(rows+1)+j;
+ // Off the body: on the neck by `gap`, on the shirt by `clear`, the top the cloth's thickness over that.
+ // (and a little more toward the outer edge, which springs off what it lies on: v is how far across the strip)
+ const under=(s,v)=>(THREE.MathUtils.lerp(C.gap,C.clear,THREE.MathUtils.smoothstep(s,-.004*k,.006*k))+C.spring*THREE.MathUtils.smoothstep(v,.3,1))*k;
+ const at=([a,s],lift)=>new THREE.Vector3(...chart.at(a,s,lift));
+ const top=grid.map((p,i)=>at(p,under(p[1],(i%(rows+1))/rows)+C.thick*k)),bottom=grid.map((p,i)=>at(p,under(p[1],(i%(rows+1))/rows)));
+ const area=(P,[a,b,c])=>new THREE.Vector3().subVectors(P[b],P[a]).cross(new THREE.Vector3().subVectors(P[c],P[a]));
+ let faces=[];for(let i=0;i<cols-1;i++)for(let j=0;j<rows;j++){const a=id(i,j),b=id(i+1,j),c=id(i+1,j+1),d=id(i,j+1);faces.push([a,b,c],[a,c,d]);}
+ // (the strip's two ends are the V's bottoms, a point each: no faces there)
+ faces=faces.filter(f=>area(top,f).length()>1e-10);
+ // Which way the chart's grid turns on the body: the top faces out, the underside in.
+ const f0=faces[Math.floor(faces.length/2)],flip=area(top,f0).dot(new THREE.Vector3().subVectors(top[f0[0]],bottom[f0[0]]))<0;
+ const sheet=(pts,list3,reverse)=>{const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pts.flatMap(p=>[p.x,p.y,p.z]),3));
+  g.setIndex(list3.flatMap(([a,b,c])=>reverse?[a,c,b]:[a,b,c]));g.computeVertexNormals();return g;};
+ // Its edges, inner and outer, from the top to the underside, facing out of the strip.
+ const edgePts=[],edgeFaces=[];
+ for(const j of [0,rows]){
+  const base=edgePts.length;for(let i=0;i<cols;i++)edgePts.push(top[id(i,j)],bottom[id(i,j)]);
+  for(let i=0;i<cols-1;i++){const t0=base+i*2,b0=t0+1,t1=t0+2,b1=t0+3,p=grid[id(i,j)],q=grid[id(i,rows-j)];   // (out: away from the other edge)
+   if(edgePts[t0].distanceTo(edgePts[t1])<1e-6)continue;
+   const d=new THREE.Vector3().subVectors(at([p[0]+(p[0]-q[0])*.05,p[1]+(p[1]-q[1])*.05],0),at(p,0));
+   const n=new THREE.Vector3().subVectors(edgePts[b0],edgePts[t0]).cross(new THREE.Vector3().subVectors(edgePts[b1],edgePts[t0]));
+   edgeFaces.push(...(n.dot(d)>0?[[t0,b0,b1],[t0,b1,t1]]:[[t0,b1,b0],[t0,t1,b1]]));}
+ }
+ // A light ink line round the collar, none along the open V: there the outline would draw on the skin beside the edge and
+ // cross where the leaves meet at the button. (By how far a point is from the V's edges, on the chart.)
+ const ax=C.vee*R,ay=0,bx=C.centre[0]*R,by=C.centre[1]*k,dx=bx-ax,dy=by-ay;
+ const toVee=([a,s])=>{const A=Math.min(a,Math.PI*2-a)*R,u=THREE.MathUtils.clamp(((A-ax)*dx+(s-ay)*dy)/(dx*dx+dy*dy),0,1);return Math.hypot(A-ax-dx*u,s-ay-dy*u);};
+ const inkAt=new Map(),pk=p=>p.x.toFixed(5)+','+p.y.toFixed(5)+','+p.z.toFixed(5);
+ grid.forEach((p,i)=>{const w=.85*THREE.MathUtils.smoothstep(toVee(p),.004*k,.016*k);inkAt.set(pk(top[i]),w);inkAt.set(pk(bottom[i]),w);});
+ // (The underside, which faces the body, has none: its ink shell stood into the neck, and came out of it in specks behind
+ // the fold as the head bobbed in the walk.)
+ // The edge's wall is lit the same from its top to its underside (one normal for each pair across it): with its two ends'
+ // own normals, the toon band's line crossed it triangle by triangle, a row of dark teeth under the collar's edge behind.
+ const edge=sheet(edgePts,edgeFaces,false);{const N=edge.attributes.normal;for(let i=0;i<N.count;i+=2){const x=N.getX(i)+N.getX(i+1),y=N.getY(i)+N.getY(i+1),z=N.getZ(i)+N.getZ(i+1),l=Math.hypot(x,y,z)||1;N.setXYZ(i,x/l,y/l,z/l);N.setXYZ(i+1,x/l,y/l,z/l);}}
+ // (Nor does the inner edge, the fold against the neck: its ink's shell, 6 mm off a neck of flat facets that come 2.6 mm
+ // nearer between their corners, went in and out of the neck and showed behind it as a dashed line, broken up further as
+ // the head moves in the walk. The fold is drawn by the blue collar meeting the neck.)
+ const fold=new Set();for(let i=0;i<cols;i++){fold.add(pk(top[id(i,0)]));fold.add(pk(bottom[id(i,0)]));}
+ for(const [g,inked,isEdge] of [[sheet(top,faces,flip),true,false],[sheet(bottom,faces,!flip),false,false],[edge,true,true]]){
+  const piece=part(list,g,'chest',colour),Q=piece.attributes.position,ink=piece.attributes.ink,v=new THREE.Vector3();
+  for(let i=0;i<Q.count;i++){const key=pk(v.fromBufferAttribute(Q,i));ink.setX(i,inked&&!(isEdge&&fold.has(key))?inkAt.get(key)??.85:0);}
+ }
+}
+
+/**
+ * The kariyushi's body below the chest (garment.js KARIYUSHI.body), worn, not painted on: a real aloha shirt's body (the
+ * owner, 27 November 2026: "make it look more like a real Hawaii shirt"), cloth that leaves the torso where its chest is,
+ * coming out of it steeply there, and hangs straight down from the widest of the body above, boxy, a few millimetres clear
+ * of the waist, to a level hem at the hip, just over the shorts' waistband, with a small vent at each side seam. The hem
+ * is turned (its edge `turn` deep) and the cloth's inside is drawn from it up to the waist, darker and with no ink of its
+ * own, so a look under the hem finds the shirt's inside and the shorts under it; where a vent parts, its inside shows, in
+ * the same shadow. Painted as the torso is (torsoUV), and shared as the torso is, its lower part swinging on the hem
+ * quarters (`share`).
+ */
+function alohaBody(list,m,prof,colour,share){
+ const B=KARIYUSHI.body,k=m.k,TAU=Math.PI*2;
+ // Its outside, row by row (garment.js kariyushiBody, which the print is laid on too). It comes out of the chest steeply, so
+ // the two cross in one clean line: crossing at a shallow angle, their facets interleaved in a zigzag. (The torso keeps its
+ // own line and outline: anything tucked or faded under the shirt there stood out from above, from the game's camera, as a
+ // dotted ring of ink.)
+ const {rows,hemY,vent,ventA}=kariyushiBody(m,t=>latheRadius(prof,t));
+ const turn=B.turn*k,hem=rows.at(-1),inside=[],dark='#'+new THREE.Color(colour).multiplyScalar(.68).getHexString();
+ // its inside, from the hem up to the waist (or the top, if that is nearer)
+ const insideTop=Math.min(rows[0][0]-.02*k,m.hipY+m.torso*B.lining),radiiAt=y=>{for(let j=1;j<rows.length;j++)if(rows[j][0]<=y){const a=rows[j-1],b=rows[j],w=(a[0]-y)/(a[0]-b[0]);return [a[1]+(b[1]-a[1])*w,a[2]+(b[2]-a[2])*w];}return [hem[1],hem[2]];};
+ for(let j=0,N=7;j<=N;j++){const y=hemY+(insideTop-hemY)*j/N,[rx,rz]=radiiAt(y);inside.push([y,rx-turn,rz-turn]);}
+ // Round the body: 28 columns, and the corners of each vent at the side seams (the oval's π/2 and 3π/2, columns of the 28).
+ const angles=[...Array.from({length:29},(_,i)=>i/28*TAU),...[1,3].flatMap(s=>[s*Math.PI/2-ventA,s*Math.PI/2+ventA])].sort((a,b)=>a-b),cols=angles.length;
+ // Each column's rows (top to bottom, or the inside's hem to top) drawn up where its hem rises at a vent: the hem's row by
+ // the vent's height, the rest by less in proportion, to nothing at the far end (`from`); the cloth's radii where they land.
+ const oval=(rs,from=rs[0][0])=>{
+  const pos=[],idx=[];
+  for(const [y,rx,rz] of rs)for(const a of angles){const span=Math.abs(from-hemY),v=vent(a),Y=span?y+v*Math.abs(from-y)/span:y+v;
+   // (the row's own radii, moved as the cloth's change between where it was and where it lands)
+   let RX=rx,RZ=rz;if(Y!==y){const p=radiiAt(y),q=radiiAt(Y);RX+=q[0]-p[0];RZ+=q[1]-p[1];}
+   pos.push(RX*Math.sin(a),Y,RZ*Math.cos(a));}
+  for(let j=0;j<rs.length-1;j++)for(let i=0;i<cols-1;i++){const a=j*cols+i,b=a+cols;idx.push(a,b,a+1,b,b+1,a+1);}
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.setIndex(idx);g.computeVertexNormals();
+  // the seam's two columns are one line: one normal there
+  const N=g.attributes.normal;for(let j=0;j<rs.length;j++){const a=j*cols,b=a+cols-1,x=N.getX(a)+N.getX(b),y=N.getY(a)+N.getY(b),z=N.getZ(a)+N.getZ(b),l=Math.hypot(x,y,z)||1;N.setXYZ(a,x/l,y/l,z/l);N.setXYZ(b,x/l,y/l,z/l);}
+  return g;};
+ const uv=p=>torsoUV(p,m);
+ // (rows top to bottom face out; the hem's turned edge, from the outside in, faces down; the inside, its rows from the hem
+ // up, faces the body)
+ // (its steep entry turned as the chest is there, so it is lit as the chest is and shows no ledge; its ink coming in over
+ // the first two centimetres, so its ink shell starts flush with it there: at full width at once, the shell's open top
+ // stood a centimetre off the chest and showed its inside, from behind and above, as specks along the line)
+ {const g=oval(rows),N=g.attributes.normal;for(let j=0;j<2;j++)angles.forEach((a,i)=>{const [,rx,rz]=rows[2],n=new THREE.Vector3(Math.sin(a)/rx,0,Math.cos(a)/rz).normalize();N.setXYZ(j*cols+i,n.x,n.y,n.z);});
+  const outer=part(list,g,share,colour,null,uv),Q=outer.attributes.position,ink=outer.attributes.ink;
+  for(let i=0;i<Q.count;i++)ink.setX(i,THREE.MathUtils.smoothstep(rows[0][0]-Q.getY(i),0,.02*k));}
+ // (its ink light: drawn full, the turned edge's line stood off a centimetre under the hem, a second hem in the air)
+ part(list,oval([hem,[hem[0],hem[1]-turn,hem[2]-turn]]),share,colour,null,uv).attributes.ink.array.fill(.35);
+ part(list,oval(inside,insideTop),share,dark).attributes.ink.array.fill(0);
+ // The vents: where the slit parts, the shirt's inside shows a turn in from the outside, in the inside's shadow (one sheet
+ // facing out in the V the hem leaves, edge to edge with the inside's own V, which faces the body: never two in one place).
+ for(const c of [Math.PI/2,Math.PI*1.5]){
+  const at=(a,y)=>{const [rx,rz]=radiiAt(y);return [(rx-turn)*Math.sin(a),y,(rz-turn)*Math.cos(a)];};
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute([at(c-ventA,hemY),at(c,hemY),at(c+ventA,hemY),at(c,hemY+vent(c))].flat(),3));
+  g.setIndex([0,1,3,1,2,3]);g.computeVertexNormals();part(list,g,share,dark).attributes.ink.array.fill(0);
  }
 }
 
@@ -212,13 +291,14 @@ function tube(list,a,b,r,bone,hex,segments=10){
  * from one bone to the next over a soft band -- and `root` lends the top of the limb to
  * the body, so a shoulder or hip rounds off instead of hinging on a seam.
  */
-function limb(list,a,b,r0,r1,hex,{bone,joints=[],root=null,soft=.13,segments=14,uvAt=null,shape=null}={}){
+function limb(list,a,b,r0,r1,hex,{bone,joints=[],root=null,soft=.13,segments=14,uvAt=null,shape=null,rings=[]}={}){
  const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),d=B.clone().sub(A),len=d.length(),dir=d.clone().normalize();
  // A capsule with rings all along it (three's own has none between its caps), so the
- // skin has somewhere to bend.
+ // skin has somewhere to bend. (`rings`: more of them, at shares t along it from a, where a colour is to change on a line.)
  const prof=[],cap=5,rows=12;
  for(let i=0;i<=cap;i++){const a=-Math.PI/2+i/cap*Math.PI/2;prof.push(new THREE.Vector2(Math.cos(a)*r0,-len/2+Math.sin(a)*r0));}
- for(let i=1;i<rows;i++)prof.push(new THREE.Vector2(r0,-len/2+i/rows*len));
+ const along=[...Array.from({length:rows-1},(_,i)=>-len/2+(i+1)/rows*len),...rings.map(t=>(.5-t)*len)].sort((p,q)=>p-q);
+ for(const y of along)prof.push(new THREE.Vector2(r0,y));
  for(let i=0;i<=cap;i++){const a=i/cap*Math.PI/2;prof.push(new THREE.Vector2(Math.cos(a)*r0,len/2+Math.sin(a)*r0));}
  prof[0].x=prof.at(-1).x=0;
  const g=new THREE.LatheGeometry(prof,segments),pos=g.attributes.position;
@@ -263,8 +343,11 @@ function sleeveTube(list,a,b,r0,r1,hex,{bone,root=null,segments=14,uvAt=null,th=
  for(let i=1;i<=cap;i++){const t=i/cap*Math.PI/2;outer.push(new THREE.Vector2(Math.cos(t)*r0,len/2+Math.sin(t)*r0));}
  outer.at(-1).x=0;
  const shell=part(list,new THREE.LatheGeometry(outer,segments),share,hex,at,uvAt);
- // Its inside, from the hem up `depth`: facing the arm.
- const lining=[new THREE.Vector2(r1-th-.0005,-len/2+depth),new THREE.Vector2(r1-th-.0005,-len/2+depth*.5),new THREE.Vector2(r1-th,-len/2)];
+ // Its inside, from the hem up `depth`: facing the arm, and following the wall in as it narrows above the hem. (Straight up
+ // from the hem, it stood out through a tapering sleeve's wall: on a kariyushi's roomy sleeve its top showed from 4 cm above
+ // the hem as a heavy dark band right round the sleeve, the darkest line on the shirt. 27 November 2026.)
+ const wall=h=>THREE.MathUtils.lerp(r1,r0,h/len);
+ const lining=[new THREE.Vector2(wall(depth)-th-.0005,-len/2+depth),new THREE.Vector2(wall(depth*.5)-th-.0005,-len/2+depth*.5),new THREE.Vector2(r1-th,-len/2)];
  const dark=inside??('#'+new THREE.Color(typeof hex==='function'?hex(B):hex).multiplyScalar(.68).getHexString());
  part(list,new THREE.LatheGeometry(lining,segments),share,dark,at).attributes.ink.array.fill(0);
  return shell;
@@ -1189,17 +1272,22 @@ function bodyMaterial(recipe,m){
  const ctx=canvas.getContext('2d'),prof=torsoProfile(recipe,m);
  const marks=paintGarment(ctx,recipe,m,t=>latheRadius(prof,t))||[];
  const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;
- // Wraps round the body; no mipmaps, so distance never bleeds the drawing into the strip.
- texture.wrapS=THREE.RepeatWrapping;texture.generateMipmaps=false;texture.minFilter=THREE.LinearFilter;texture.anisotropy=4;
+ // Wraps round the body. Mipmapped, so the print's petals, the buttons and the fine lines do not shimmer as he walks off
+ // into the distance (with one level only, a step away every other texel was skipped); close up the full level is drawn,
+ // as sharp as before. The drawing is kept premultiplied by its alpha, so what is filtered between a drawn texel and an
+ // empty one is the drawing thinning out, not a dark fringe round everything. (The parts that sample the empty strip, at
+ // one UV, never step down a level: their UV does not change across them.)
+ texture.wrapS=THREE.RepeatWrapping;texture.generateMipmaps=true;texture.minFilter=THREE.LinearMipmapLinearFilter;texture.anisotropy=4;
+ texture.premultiplyAlpha=true;
  const material=celFrom(new THREE.MeshStandardMaterial({vertexColors:true}),{bands:'soft3'});
  material.map=texture;
  const base=material.onBeforeCompile,key=material.customProgramCacheKey?.bind(material);
  material.onBeforeCompile=(shader,renderer)=>{
   base?.call(material,shader,renderer);
   shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>','').replace('#include <color_fragment>',
-   '#include <color_fragment>\n#ifdef USE_MAP\n vec4 garment = texture2D( map, vMapUv );\n diffuseColor.rgb = mix( diffuseColor.rgb, garment.rgb, garment.a );\n#endif');
+   '#include <color_fragment>\n#ifdef USE_MAP\n vec4 garment = texture2D( map, vMapUv );\n diffuseColor.rgb = diffuseColor.rgb * ( 1.0 - garment.a ) + garment.rgb;\n#endif');
  };
- material.customProgramCacheKey=()=>'garment_'+(key?key():'');
+ material.customProgramCacheKey=()=>'garment_pm_'+(key?key():'');
  material.userData.garment={canvas,texture,marks};
  return material;
 }
@@ -1254,12 +1342,21 @@ function addBody(list,recipe,m,swim=false){
   // let the next column's triangles in and the shirt's edge zigzagged, and so did the shoulders where they round in.
   if(['jacket','cardigan'].includes(o.top)&&p.z>D*.18&&Math.abs(Math.atan2(p.x*D,p.z*W))<Math.PI/14)return o.accent;
   if(o.top==='sundress'&&(p.y-hipY)/m.torso>.78)return skin;
+  // Under a kariyushi's body (alohaBody) the body is what he wears under it, seen only by a look up under the hem: the
+  // tank top, or his skin, as far up as the shirt's inside is drawn (where the shirt stands well clear); above that, where
+  // it is close, the torso is the shirt's own colour, so nothing of another colour lies a few millimetres under it.
+  if(o.top==='kariyushi'&&p.y<hipY+m.torso*KARIYUSHI.body.lining)return o.under==='tank'?UNDER.tank.colour:skin;
   return top;
  };
  // The shirt's details are painted, not modelled (garment.js): the torso carries the
  // garment texture's UVs, the cloth stays its vertex colour underneath.
  const torsoSkin=p=>{const chest=THREE.MathUtils.smoothstep(p.y,hipY+m.torso*.15,hipY+m.torso*.55);return [['hips',1-chest],['chest',chest]];};
- part(list,lathe,torsoSkin,torsoColour,M(0,hipY,0,0,0,0,W/2,m.torso,D/2),swim?null:p=>torsoUV(p,m));
+ const torso=part(list,lathe,torsoSkin,torsoColour,M(0,hipY,0,0,0,0,W/2,m.torso,D/2),swim?null:p=>torsoUV(p,m));
+ // Under a kariyushi's body (alohaBody, which carries the print there) the torso is not printed: what is under the shirt
+ // is plain, and nothing of the print can show on the shorts below the hem. Whole triangles, so none is smeared across
+ // the texture; the line is under the body, a little below where it leaves the chest.
+ if(!swim&&o.top==='kariyushi'){const P=torso.attributes.position,U=torso.attributes.uv,below=hipY+m.torso*(KARIYUSHI.body.top-.06);
+  for(let i=0;i<P.count;i+=3)if((P.getY(i)+P.getY(i+1)+P.getY(i+2))/3<below)for(let j=0;j<3;j++)U.setXY(i+j,PLAIN_UV[0],PLAIN_UV[1]);}
  if(tank){
   // The vest: a thin shell over the body from the waist to straight across the chest,
   // so its edge is a clean line, and two straps that follow the shoulders over the top.
@@ -1287,23 +1384,13 @@ function addBody(list,recipe,m,swim=false){
  // centimetres above where the neck meets the body (the narrower of the torso's two radii comes down to the neck's).
  {const neck=list.at(-1),P=neck.attributes.position,ink=neck.attributes.ink,half=Math.min(W,D)/2;let t=1.04;
   while(t>.6&&latheRadius(prof,t)*half<m.neckR)t-=.002;
-  const meet=m.hipY+t*m.torso,fade=.03*m.k;
+  // (Under a kariyushi's low collar, over the lower 18 mm: its fold stands 18 mm up the back of the neck, and above it the
+  // fading ink shell showed, from behind and above, as specks along the fold.)
+  const meet=m.hipY+t*m.torso,fade=(!swim&&o.top==='kariyushi'?.018:.03)*m.k;
   for(let i=0;i<P.count;i++)ink.setX(i,ink.getX(i)*THREE.MathUtils.smoothstep(P.getY(i),meet,meet+fade));}
- // A kariyushi's open camp collar is modelled, not painted: a stand behind the neck that
- // rolls into the fall over the shoulders and folds back down the front to the V. It is
- // a real edge in silhouette and catches the light, so it reads as a collar, not a bib.
- // The collar's stand is modelled: a band of the shirt round the back and sides of the
- // neck, open at the front, rolling a little outward at the top, so the collar wraps the
- // neck from every side. Its leaves and lapels on the front are cloth too (campCollar).
- if(!swim&&o.top==='kariyushi'){
-  // (round the neck it is worn on: garment.js COLLAR_STAND)
-  const C=COLLAR_STAND,ri=m.neckR+C.gap*m.k,t=C.thick*m.k,h=C.height*m.k,roll=C.roll*m.k,open=C.open;
-  const band=new THREE.LatheGeometry([[ri,0],[ri+t,0],[ri+t+roll,h],[ri+roll*.6,h]].map(([r,y])=>new THREE.Vector2(r,y)).concat([new THREE.Vector2(ri,0)]),24,open,Math.PI*2-open*2);
-  // It runs down to nothing at the front, where it turns into the collar's leaves.
-  const P=band.attributes.position;for(let i=0;i<P.count;i++){const a=Math.abs(Math.atan2(P.getX(i),P.getZ(i)));P.setY(i,P.getY(i)*THREE.MathUtils.smoothstep(a,open,open+1.1));}band.computeVertexNormals();
-  part(list,band,'chest',top,M(0,m.neckY-.012*m.k,0));
-  campCollar(list,m,prof,top);
- }
+ // A kariyushi's open camp collar is modelled, not painted (alohaCollar): one piece of cloth round the nape and down to
+ // its two points, a real edge in silhouette that catches the light, so it reads as a collar, not a bib.
+ if(!swim&&o.top==='kariyushi')alohaCollar(list,m,prof,top);
  // The contrasting polo's collar is authored in Blender and fitted to this body.
  if(!swim&&o.top==='contrastpolo'){
   const ri=m.armR*1.08+.004*m.k;
@@ -1368,10 +1455,19 @@ function addBody(list,recipe,m,swim=false){
   // forearm.
   const sleeve=coveredSleeve&&(SHIRT_SLEEVES.includes(o.top)||ACCENT_SLEEVES.includes(o.top))?o.accent:top,below=coveredSleeve&&UNDERSHIRT_ARMS.includes(o.top)?o.accent:skin;
   const ends=longSleeve&&SLEEVE_END[o.top]?sh[1]-(m.upper+m.fore)*SLEEVE_END[o.top]:null;
-  const armColour=coveredSleeve?(longSleeve?(ends===null?sleeve:p=>p.y>=ends?sleeve:skin):p=>p.y>=sh[1]-m.upper*.3?sleeve:below):skin;
+  // (Under a short sleeve, the arm is the sleeve's inside, in its shadow, down to a little above its hem: a raised or swung
+  // arm shows cloth under the sleeve, never a bare patch. tests/underarm-coverage.test.mjs.)
+  const inSleeve='#'+new THREE.Color(sleeve).multiplyScalar(.68).getHexString();
+  // Under a kariyushi's roomy sleeve, a restrained shadow on the arm just below its hem (the owner's brief: "a restrained
+  // shadow beneath the collar and sleeve hems"): a band of skin a shade darker from the hem's height down `HEM_SHADOW`,
+  // between two rings of its own, so its edges are lines. The arm and the sleeve both go with the shoulder there.
+  const hemY=!swim&&o.top==='kariyushi'?shortSleeve(m,sx,true).a1[1]:null,shadowFrom=hemY===null?null:hemY-HEM_SHADOW*m.k;
+  const shadowed=hemY===null?null:'#'+new THREE.Color(skin).multiplyScalar(.88).getHexString();
+  const armColour=coveredSleeve?(longSleeve?(ends===null?sleeve:p=>p.y>=ends?sleeve:skin):p=>p.y>=sh[1]-m.upper*.3?sleeve:below===skin&&p.y>=sh[1]-m.upper*.505?inSleeve:shadowed&&p.y<hemY&&p.y>=shadowFrom?shadowed:below):skin;
   // (Bare, or under a short sleeve, the arm is the kit's: a round shoulder, an elbow, a forearm and a wrist. A long sleeve
   // is cloth and hangs straight.)
-  limb(list,sh,hd,m.armR*1.04,m.armR*.86,armColour,longSleeve?{...arm,uvAt:p=>sleeveUV(p,sh,hd,sx)}:{...arm,shape:kitLimb('arm',m)});
+  const armRings=hemY===null?[]:[hemY,shadowFrom].map(y=>(sh[1]-y)/(sh[1]-hd[1]));
+  limb(list,sh,hd,m.armR*1.04,m.armR*.86,armColour,longSleeve?{...arm,uvAt:p=>sleeveUV(p,sh,hd,sx)}:{...arm,shape:kitLimb('arm',m),rings:armRings});
   // A long sleeve ends in a cuff: cloth standing off the wrist, open, with its inside (sleeveTube). It grows out of the
   // sleeve from under its surface two thirds of the way down the forearm, so there is no seam where it starts.
   if(longSleeve&&o.top!=='lantern'){   // (the lantern costume is at its vertex budget, and its globe hides the wrists)
@@ -1390,14 +1486,15 @@ function addBody(list,recipe,m,swim=false){
   // hem without a seam. A kariyushi's is a little roomier and boxier, as real ones are.
   // Its print and its hem band are painted (garment.js), not separate pieces.
   if(!swim&&!longSleeve&&!tank&&!running&&o.top!=='sundress'){
-   const roomy=o.top==='kariyushi',a0=[sh[0]-sx*m.armR*.1,sh[1]-m.armR*.04,0],a1=[sh[0]+sx*.008,sh[1]-m.upper*(roomy?.52:.56),0];
-   sleeveTube(list,a0,a1,m.armR*(roomy?1.12:1.08),m.armR*(roomy?1.5:1.4),sleeve,{bone:'shoulder'+s,root:['chest',.55,.3],uvAt:p=>sleeveUV(p,a0,a1,sx),th:.007*m.k,depth:m.upper*.22});
+   const {a0,a1,r0,r1}=shortSleeve(m,sx,o.top==='kariyushi');
+   sleeveTube(list,a0,a1,r0,r1,sleeve,{bone:'shoulder'+s,root:['chest',.55,.3],uvAt:p=>sleeveUV(p,a0,a1,sx),th:.007*m.k,depth:m.upper*.22});
   }
   if(coveredSleeve){
    // A closed underarm gusset shared by every sleeved top. The chest end
    // stays inside the torso while the outer end follows the upper arm.
    const a=[sx*(m.shoulderX-m.armR*.72),sh[1]-m.armR*.78,0],b=[sh[0],sh[1]-m.upper*.30,0];
-   limb(list,a,b,m.armR*1.05,m.armR*1.12,sleeve,{...arm,joints:[],root:['chest',.9,.15],uvAt:p=>sleeveUV(p,a,b,sx)});
+   // (Under a print laid out flower by flower, the gusset is plain cloth: the underarm stretches, and nothing is placed there.)
+   limb(list,a,b,m.armR*1.05,m.armR*1.12,sleeve,{...arm,joints:[],root:['chest',.9,.15],uvAt:o.pattern==='aloha'?null:p=>sleeveUV(p,a,b,sx)});
   }
   // The hand: the body kit's (tools/blender/hand_model.py), hanging from the wrist, the palm to the body, the thumb forward.
   // (The owner, 26 November 2026: "Omg they have mitten hands", and of two tries at a modelled hand, "The hands look awful,
@@ -1419,15 +1516,9 @@ function addBody(list,recipe,m,swim=false){
   part(list,new THREE.LatheGeometry(lining,24),'hips','#'+new THREE.Color(top).multiplyScalar(.68).getHexString(),M(0,hipY,0,0,0,0,W/2,m.torso,D/2)).attributes.ink.array.fill(0);
   if(o.top==='tee')part(list,new THREE.TorusGeometry(m.armR*1.08+.007*k,.007*k,8,24),'chest',top,M(0,m.neckY+.002*k,0,Math.PI/2,0,0,1,1,1)).attributes.ink.array.fill(.5);
  }
- // An island shirt worn out over the shorts: the hem below the waist is its own short skirt of
- // shirt, printed like the rest of it, and it swings on the hem quarters (springs.js).
- if(!swim&&o.top==='kariyushi'){
-  // Its top tucks just inside the shirt above, so the two read as one piece of cloth; the
-  // print is the shirt's own, painted down to this hem (garment.js).
-  const hem=hemSpec(recipe,m),rTop=W/2*latheRadius(prof,(hem.waist-hipY)/m.torso)*.97;
-  const ring=new THREE.CylinderGeometry(rTop,hem.rx*1.04,hem.length,32,4,true);
-  part(list,ring,quarterShare(hem,()=>[['hips',1]]),top,M(0,hem.waist-hem.length/2,0,0,0,0,1,1,D/W),p=>torsoUV(p,m));
- }
+ // An island shirt worn out over the shorts: below the chest its body is cloth of its own, falling free of the waist to a
+ // nearly level hem at the upper hip, printed like the rest of it; its lower part swings on the hem quarters (springs.js).
+ if(!swim&&o.top==='kariyushi')alohaBody(list,m,prof,top,quarterShare(hemSpec(recipe,m),torsoSkin));
  // The 1994 police jacket's modelled pieces and its skirt (police-uniform.js); its pockets, shirt and tie are painted.
  if(!swim&&o.top==='police')addPoliceJacket(list,recipe,m,prof,avatarKit(),{torsoUV,hemSpec,quarterShare});
  // A duty belt and its kit (police-data.js DUTY_BELT), out of the jacket's waist slots or on the belt over a shirt.
@@ -1686,6 +1777,9 @@ function addHeadTowel(list,m,surfaces){
  * and `gap+th` (its outer), so it lies on the body, bends with it and is never inside it. The strips are the chest's, and
  * the chest carries the torso's top, so they stay where they were laid in every pose.
  */
+/** The torso lathe's radius (a share of the half-width and half-depth) at a share t of the torso's height: what the garment
+ *  painter is handed (paintGarment's radiusAt). */
+export const torsoRadius=(recipe,m)=>{const prof=torsoProfile(recipe,m);return t=>latheRadius(prof,t);};
 export function bodyVolume(recipe,m){
  const prof=torsoProfile(recipe,m),W=m.width,D=m.depth,neckR=m.neckR,n0=m.neckY-.02,n1=m.headY+.01,top=m.hipY+1.04*m.torso;
  const caps=[1,-1].map(sx=>({c:new THREE.Vector3(sx*m.shoulderX-sx*m.armR*.12,m.shoulderY-m.armR*.05,0),r:new THREE.Vector3(m.armR*1.18,m.armR*1.18*.62,m.armR*1.18*Math.min(1.1,D/W*1.6))}));

@@ -17,6 +17,8 @@
 //       its key moments, and strips of 8 consecutive frames over where it leaves the stance (and comes back to it), so a pop
 //       shows. One sheet a move: <out-dir>/<move>-<name>.png (default out-dir: output/hands-moves). With --wind, a strip more:
 //       every third frame from the move's start to 0.35 s, over its wind-up and into its action, in motion order.
+// --set outfit.pattern=none;outfit.topColour=#7fb0d8 tries values on every resident's recipe without editing it, as
+//       avatar-turnaround.mjs does (a garment's plain block-in, before its print).
 // Software Chromium (TOWN_CHROMIUM_PATH, or /opt/pw-browsers/chromium). Default out: output/hands-<what>.png
 import {chromium} from 'playwright';
 import {createServer} from 'node:http';
@@ -25,9 +27,9 @@ import {resolve,dirname,extname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),site=resolve(root,'..');
 const args=process.argv.slice(2),flag=k=>{const i=args.indexOf(k);return i>=0?args[i+1]:null;};
-const BOUGHT=flag('--bought')||'',MOVES=flag('--moves')||'',WIND=args.includes('--wind'),CAN=flag('--can')||'',SEATED=args.includes('--seated'),RIDE=flag('--ride')||'',DRIVE=flag('--drive')||'',HOLD=flag('--hold')||'',OUTFIT=flag('--outfit')||'clothes',NAME=flag('--name')||'Thao',PAIRS=flag('--pairs')||'',POSES=flag('--poses')||'',SIT=flag('--sit')||'',WHO=flag('--who')||'Thuan,Nils Johansson',GRIP=flag('--grip'),SHAPE=flag('--shape')||'close';
+const BOUGHT=flag('--bought')||'',SET=flag('--set')||'',MOVES=flag('--moves')||'',WIND=args.includes('--wind'),CAN=flag('--can')||'',SEATED=args.includes('--seated'),RIDE=flag('--ride')||'',DRIVE=flag('--drive')||'',HOLD=flag('--hold')||'',OUTFIT=flag('--outfit')||'clothes',NAME=flag('--name')||'Thao',PAIRS=flag('--pairs')||'',POSES=flag('--poses')||'',SIT=flag('--sit')||'',WHO=flag('--who')||'Thuan,Nils Johansson',GRIP=flag('--grip'),SHAPE=flag('--shape')||'close';
 const what=MOVES?'moves':PAIRS?'pairs':POSES?'poses':SIT?'sit':HOLD?'hold':DRIVE?'drive':RIDE?'ride':CAN?'can':'rest';
-const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--pairs','--poses','--sit','--who','--grip','--outfit','--hold','--drive','--ride','--shape','--can','--moves','--bought'].includes(args[i-1]))||resolve(root,MOVES?'output/hands-moves':`output/hands-${what}.png`));
+const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--pairs','--poses','--sit','--who','--grip','--outfit','--hold','--drive','--ride','--shape','--can','--moves','--bought','--set'].includes(args[i-1]))||resolve(root,MOVES?'output/hands-moves':`output/hands-${what}.png`));
 await mkdir(MOVES?out:dirname(out),{recursive:true});
 const TYPES={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.glb':'model/gltf-binary'};
 // (the Town is this checkout, at /johansson-town/, wherever it is: a worktree's parent is not the Office site)
@@ -40,8 +42,10 @@ const errors=[];
 try{
  const page=await browser.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text()+(m.location()?.url?' ('+m.location().url+')':''));});
  await page.goto(`http://127.0.0.1:${server.address().port}/blank`);
- const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold,drive,ride,shape,can,seated,moves,bought,WIND])=>{
-  const base='/johansson-town/',T=await import(base+'vendor/three.module.js'),{buildAvatar}=await import(base+'src/avatars/build.js'),{recipeFor}=await import(base+'src/avatars/cast.js');
+ const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold,drive,ride,shape,can,seated,moves,bought,WIND,set])=>{
+  const base='/johansson-town/',T=await import(base+'vendor/three.module.js'),{buildAvatar}=await import(base+'src/avatars/build.js'),cast=await import(base+'src/avatars/cast.js');
+  // (--set: values tried on the recipe, path=value pairs)
+  const recipeFor=who=>{const r=JSON.parse(JSON.stringify(cast.recipeFor(who)));for(const pair of set.split(';').filter(Boolean)){const [path,raw]=pair.split('='),keys=path.split('.');let o=r;for(const k of keys.slice(0,-1))o=o[k]??={};o[keys.at(-1)]=raw==='true'?true:raw==='false'?false:isNaN(+raw)?raw:+raw;}return r;};
   const {createAvatarAnimator,GESTURES,STILL_AT,playPair}=await import(base+'src/avatars/animate.js'),{createInkPipeline}=await import(base+'src/render/ink-pipeline.js');
   const S=360,renderer=new T.WebGLRenderer({preserveDrawingBuffer:true,antialias:true});renderer.setSize(S,S);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.NoToneMapping;
   const pipeline=createInkPipeline(renderer,{superScale:1,samples:0,fxaa:true});pipeline.setLook('none');
@@ -74,7 +78,8 @@ try{
     if(/Eat$/.test(move)){const R=izakaya.createBiteProp('rice'),L=izakaya.createDishProp('rice');a.bones.handR.add(R);a.bones.handL.add(L);base0.heldProp=R;}
     if(/Drink$/.test(move)){const R=izakaya.createDrinkProp('draft',{held:true});a.bones.handR.add(R);base0.heldProp=R;}
     let speed=0;const state=f=>{if(!walk)return base0;speed=T.MathUtils.damp(speed,f>=0&&f<180?1.25:0,20,1/60);return speed>0?{...base0,speed}:base0;};
-    const tick=f=>{anim.update(1/60,state(f));holder.updateMatrixWorld(true);};
+    // (the swinging hems and hair as the game swings them: springs.js)
+    const tick=f=>{anim.update(1/60,state(f));a.springs?.update(1/60);holder.updateMatrixWorld(true);};
     for(let f=-60;f<-1;f++)tick(f);
     const d=walk?3:GESTURES[move],held=d===Infinity;
     // the key moments (seconds from the move's start) and where the strips start (frames): the walk's stop is where the damped
@@ -194,7 +199,7 @@ try{
   const cols=Math.min(6,tiles.length),sheet=document.createElement('canvas');sheet.width=S*cols;sheet.height=S*Math.ceil(tiles.length/cols);const ctx=sheet.getContext('2d');
   tiles.forEach(({c,label},i)=>{ctx.drawImage(c,(i%cols)*S,Math.floor(i/cols)*S);ctx.fillStyle='#253b3d';ctx.font='15px sans-serif';ctx.fillText(label,(i%cols)*S+8,Math.floor(i/cols)*S+20);});
   return sheet.toDataURL('image/png');
- },[NAME,PAIRS,POSES,SIT,WHO,GRIP,OUTFIT,HOLD,DRIVE,RIDE,SHAPE,CAN,SEATED,MOVES,BOUGHT,WIND]);
+ },[NAME,PAIRS,POSES,SIT,WHO,GRIP,OUTFIT,HOLD,DRIVE,RIDE,SHAPE,CAN,SEATED,MOVES,BOUGHT,WIND,SET]);
  if(data.files)for(const [file,url] of data.files){const path=resolve(out,file);await writeFile(path,Buffer.from(url.split(',')[1],'base64'));console.log('wrote',path);}
  else{await writeFile(out,Buffer.from(data.split(',')[1],'base64'));console.log('wrote',out);}
 }catch(e){errors.push(String(e?.stack||e));}
