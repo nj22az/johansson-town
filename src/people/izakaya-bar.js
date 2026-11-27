@@ -14,10 +14,12 @@ import {setPropPortion,updatePropPortion} from './izakaya-beer.js';
  * and the tap's lever pulled. On the web the hands make the same round, and the glass fills while she holds the
  * bottle over it.
  */
-const POUR={draft:4.2,awamori:1.8,oolong:1.6,bottle:2};
+const POUR={draft:4.2,awamori:1.8,oolong:1.6,bottle:2,pint:3.2};
 const REACH=.9,TURN=Math.PI*2.4;
-const glassKind=kind=>kind==='draft'||kind==='awamori'||kind==='oolong'?kind:null;
-const COLOURS={draft:0xd9a441,awamori:0xe9e2c8,oolong:0x8a4a1c,bottle:0xd9a441};
+const glassKind=kind=>kind==='draft'||kind==='awamori'||kind==='oolong'||kind==='pint'?kind:null;
+const COLOURS={draft:0xd9a441,awamori:0xe9e2c8,oolong:0x8a4a1c,bottle:0xd9a441,pint:0x2b1508};
+/** What is poured from something she takes out of the cold store and puts back (the oolong jug, the black lager's bottle). */
+const fromStore=kind=>kind==='oolong'||kind==='pint';
 
 export function createBarRound({kind,bar,room,staff:g,walk,full=true,cancelled=()=>false}){
  const B=bar.data,steps=[...bar.rounds[kind]],u=g.userData;
@@ -62,13 +64,13 @@ export function createBarRound({kind,bar,room,staff:g,walk,full=true,cancelled=(
   else if(name==='set'){const item=glass||set;plan([[REACH,()=>R({place:B.pour.glass})],[.05,null,()=>release('R',item,B.pour.glass)],[.3,()=>R({rest:true})]]);}
   else if(name==='shelf')plan([[REACH,()=>R({reach:bar.bottle.piece})],[.05,null,()=>{bottleOut=true;source=bar.bottle.piece;hold('R',source);}],[.35,()=>R(lifted())]]);
   else if(name==='store'){
-   const item=kind==='oolong'?null:true;
+   const item=fromStore(kind)?null:true;
    plan([
     [REACH,()=>L({to:bar.doorPull().toArray()})],
     [.7,null,null,t=>{bar.doorOpen=t;hands.L={to:bar.doorPull().toArray()};}],
     [.3,()=>L({rest:true})],
-    [REACH,()=>{const it=bar.stock(kind);if(kind==='oolong')jug=it;else set=it;R({reach:it});}],
-    [.05,null,()=>{const it=jug||set;hold('R',it);if(kind==='oolong')source=jug;}],
+    [REACH,()=>{const it=bar.stock(kind);if(fromStore(kind))jug=it;else set=it;R({reach:it});}],
+    [.05,null,()=>{const it=jug||set;hold('R',it);if(fromStore(kind))source=jug;}],
     [.35,()=>R(lifted())],
     [REACH,()=>L({to:bar.doorPull().toArray()})],
     [.7,null,()=>L({rest:true}),t=>{bar.doorOpen=1-t;hands.L={to:bar.doorPull().toArray()};}],
@@ -109,7 +111,7 @@ export function createBarRound({kind,bar,room,staff:g,walk,full=true,cancelled=(
   * up 5 cm, held so as she steps back, and comes in to her carrying hold only once she is out.
   */
  const lifted=()=>{const o=held.R;if(!o)return null;const p=o.localToWorld(new THREE.Vector3(...(o.userData.gripAt||[0,0,0])));return {place:[p.x,p.y+.05,p.z]};};
- const jugHome=()=>{const [x,z]=B.store.stock.oolong[0];return [x,B.store.shelfY,z];};
+ const jugHome=()=>{const [x,z]=B.store.stock[fromStore(kind)?kind:'oolong'][0];return [x,B.store.shelfY,z];};
  function next(){
   // Someone who ordered has gone: what is in her hand goes back, the drink down the sink.
   if(cancelled()&&!steps.includes('sink')){const left=steps.slice(step+1).filter(s=>s==='return');steps.splice(step+1,Infinity,...left,...(glass||set?['sink']:[]));}

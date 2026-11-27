@@ -689,12 +689,12 @@ def wipe_pose(t, dx):
     hq = head.to_quaternion()
     hx, hy, hz = hq @ Vector((1, 0, 0)), hq @ Vector((0, 1, 0)), hq @ Vector((0, 0, 1))
     at = head @ UPPER_LIP + hx * dx + hz * .003
-    fingers = (-hx * math.cos(.35) - hy * math.sin(.35)).normalized()         # (across, to his right, a little down)
-    y = -fingers
-    x = -hz                                                                  # (the back of the hand toward his lips, the palm away)
-    x = (x - y * x.dot(y)).normalized()
-    z = x.cross(y)
-    turn = Matrix((x, y, z)).transposed()
+    # (the hand turned only by the swing that brings it up from his thigh, about the shoulder, and a little over toward the lip:
+    # no twist of the forearm, which the bake would have to turn through half a turn; the back of its fingers to the lip)
+    rest = SEATED['handL']
+    sh = Vector(K['bones']['shoulderL'])
+    swing = (rest.to_translation() - sh).rotation_difference(at - sh)
+    turn = (Quaternion(hy, .35) @ swing @ rest.to_quaternion()).to_matrix()
     return Matrix.Translation(at - turn @ WIPE_AT) @ turn.to_4x4()
 
 
@@ -716,8 +716,9 @@ def left_pose(name, t):
 
 POLES_L = [(0, (.45, .75, -.2)), (duration, (.45, .75, -.2))]
 for t, name in LEFT:
-    if name in ('rising', 'wipe0', 'wipe1', 'falling'):
-        POLES_L.append((t, (.55, .65, .1)))
+    POLES_L.append((t, {'rising': (.5, .72, -.08), 'falling': (.5, .72, -.08), 'wipe0': (.55, .65, .05), 'wipe1': (.55, .65, .05)}.get(name, (.45, .75, -.2))))   # (the elbow's way turned gradually: out as the hand comes up)
+for t in JOINS:                                                              # (the parts join on one pose: the elbow's way too)
+    POLES_L.append((t, (.45, .75, -.2)))
 for t, p in sorted(POLES_L):
     key_at('pole.L', t, (p[0] * k, p[1] * k, p[2] * k))
 for t, name in LEFT:
@@ -730,8 +731,11 @@ for _ in range(2):
             got = Vector(bone_point('handL', WIPE_AT, t))
             key_pose('ik.L', t, moved(left_pose(name, t), want - got), 'handL')
 every = lambda t0, t1, dt=.2: [t0 + dt * i for i in range(int((t1 - t0) / dt) + 1)]
-settle_poles('R', sorted(set([round(t, 3) for t, _ in GLASS_KEYS] + every(0, duration, .1))))
-settle_poles('L', sorted(set([round(t, 3) for t, _ in LEFT] + every(0, duration, .2))))
+# (sought for the wrist key by key, and every tenth of a second only where the glass is near his face: elsewhere the keyed
+# elbow's way is kept, which turns gradually; sought there too, it swung over between keys as he let go of the glass)
+near_face = [t for t in every(0, duration, .1) if (scene.frame_set(F(t)) or True) and max(float(rig['mouth']), float(rig['lip'])) > 0]
+settle_poles('R', sorted(set([round(t, 3) for t, _ in GLASS_KEYS] + near_face)))
+# (the left elbow's way as keyed: the poles above turn it gradually; sought for the wrist key by key, it swung over in a frame)
 # the look target: the glass's top (on the counter or in the hand), the head turning to it as far as headLook
 for t in every(0, duration, .1):
     scene.frame_set(F(t))
@@ -914,7 +918,7 @@ for n in UPPER:
 
 
 cues = ('closeR', 'closeL', 'blink', 'breath', 'smile', 'look', 'kaa', 'foam', 'swallow', 'shrug', 'lip', 'mouth', 'counter', 'hold', 'wipe', 'lean', 'fill')
-reach = {'R': [], 'L': [], 'mouth': [], 'mouthL': [], 'foot': [], 'spot': []}
+reach = {'R': [], 'L': [], 'mouth': [], 'mouthL': [], 'foot': [], 'spot': [], 'up': []}
 times, joints, tracks = [], {n: [] for n in JOINTS}, {c: [] for c in cues}
 verify = {'rim': [], 'lip': [], 'base': [], 'up': [], 'wipe': [], 'upperLip': [], 'wrist': {'R': [], 'L': []}}
 WM = rig.matrix_world
@@ -941,6 +945,7 @@ for f in frames:
     reach['mouthL'] += [round(c / M['k'], 4) for c in hq.inverted() @ (wl - head_point(UPPER_LIP))]
     g = in_hand if float(rig['hold']) > .5 else on_counter
     gm = Matrix(g.matrix_world)
+    reach['up'] += [round(c, 4) for c in B2G(gm.to_quaternion() @ Vector((0, 1, 0)))]                   # (the glass's axis, the root's frame)
     reach['foot'] += [round(c, 4) for c in Vector(B2G(gm @ Vector((0, 0, 0)))) - SPOT]          # (the glass's foot from its place on the counter, metres)
     verify['rim'].append(g3(gm @ RIM))
     verify['lip'].append(g3(head_point(K['lip']['lower'])))

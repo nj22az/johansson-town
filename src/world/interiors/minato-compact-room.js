@@ -141,6 +141,7 @@ function discoveries(room,anchor,action,exploration){
 
 function menus(room,anchor,action){
  const group=new THREE.Group();group.name='Minato and Sato menus';room.add(group);
+ // (the pint is not on the wall: Thao keeps one glass for Johansson, izakaya-beer.js BEER_SERVES)
  const items=[...Object.values(DISHES).map(d=>[d.jp,d.price]),...['draft','bottle','awamori','sake','can','oolong'].map(id=>[DRINKS[id].jp,DRINKS[id].price])];
  const batch=(name,list,size,placement,paper,ink)=>{
   const c=document.createElement('canvas');c.width=96*list.length;c.height=320;const x=c.getContext('2d'),parts=[];

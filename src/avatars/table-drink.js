@@ -20,7 +20,7 @@ export function avatarMouth(avatar){
 }
 
 /** A single loose vessel may move; bottle-and-cup arrangements need separate meshes. */
-export const TABLE_DRINK_KINDS=Object.freeze(['draft','can','awamori','oolong']);
+export const TABLE_DRINK_KINDS=Object.freeze(['draft','pint','can','awamori','oolong']);
 
 /** A held drink's liquid kept level as the hand tips it (the counter performance's liquid, for a resident's jug). */
 export function levelHeldDrink(prop){return prop?.userData?.drinkSurface?.liquid?fluidFor(prop):null;}

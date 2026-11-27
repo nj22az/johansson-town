@@ -171,11 +171,12 @@ def drink(t0, first):
     cue('swallow', (u(end), 0))
     cue('fill', (u(0), fill0), (u(1.45), fill0), (u(g1 - .05), fill1), (u(end), fill1))
     if first and FOAM:
-        cue('foam', (u(0), 0), (u(g1), 0), (u(g1 + .12), 1), (u(g1 + 1.3), 1), (u(g1 + 1.55), 0), (u(end), 0))
-        cue('wipe', (u(0), 0), (u(g1 + 1.22), 0), (u(g1 + 1.3), 1), (u(g1 + 1.55), 1), (u(g1 + 1.65), 0), (u(end), 0))
-        cue('closeL', (u(g1 + .95), 0), (u(g1 + 1.25), .45), (u(g1 + 1.6), .45), (u(g1 + 2.05), 0))
-        LEFT.extend([(u(g1 + .85), 'rest'), (u(g1 + .95), 'restdip'), (u(g1 + 1.18), 'rising'), (u(g1 + 1.3), 'wipe0'), (u(g1 + 1.55), 'wipe1'),
-                     (u(g1 + 1.8), 'falling'), (u(g1 + 2.05), 'restpast'), (u(g1 + 2.3), 'rest')])
+        # (the left hand up from his thigh in 0.6 s, its dip first; across the lip from his left to his right; down again)
+        cue('foam', (u(0), 0), (u(g1), 0), (u(g1 + .12), 1), (u(g1 + 1.35), 1), (u(g1 + 1.62), 0), (u(end), 0))
+        cue('wipe', (u(0), 0), (u(g1 + 1.27), 0), (u(g1 + 1.35), 1), (u(g1 + 1.62), 1), (u(g1 + 1.72), 0), (u(end), 0))
+        cue('closeL', (u(g1 + .75), 0), (u(g1 + 1.3), .45), (u(g1 + 1.68), .45), (u(g1 + 2.2), 0))
+        LEFT.extend([(u(g1 + .6), 'rest'), (u(g1 + .75), 'restdip'), (u(g1 + 1.05), 'rising'), (u(g1 + 1.35), 'wipe0'), (u(g1 + 1.62), 'wipe1'),
+                     (u(g1 + 1.9), 'falling'), (u(g1 + 2.2), 'restpast'), (u(g1 + 2.45), 'rest')])
     else:
         cue('foam', (u(0), 0), (u(end), 0))
         cue('wipe', (u(0), 0), (u(end), 0))
@@ -190,9 +191,9 @@ body(t0 + .15, *CPOSE)
 body(t0 + .7, (-.015, 0, 0), (-.02, 0, 0), (0, 0, 0), (.02, 0, 0))      # eased back past upright
 body(t0 + 1.0, (.004, 0, 0), (.006, 0, 0), (0, 0, 0), (.03, 0, 0))      # the micro-overshoot back
 body(t0 + 1.4, *ZERO)
-GLASS += [(t0, 'on'), (t0 + .15, 'on'), (t0 + .25, 'off'), (t0 + .6, 'back'), (t0 + .95, 'restpast'), (t0 + 1.4, 'rest')]
-POLES_R += [(t0, POLE_REACH), (t0 + .15, POLE_REACH), (t0 + .95, POLE_REST), (t0 + 1.4, POLE_REST)]
-cue('closeR', (t0, V['hold']['amount']), (t0 + .15, V['hold']['amount']), (t0 + .27, .12), (t0 + 1.4, .12))
+GLASS += [(t0, 'on'), (t0 + .15, 'on'), (t0 + .32, 'off'), (t0 + .72, 'back'), (t0 + 1.08, 'restpast'), (t0 + 1.4, 'rest')]   # (off the glass and back, unhurried)
+POLES_R += [(t0, POLE_REACH), (t0 + .32, POLE_REACH), (t0 + 1.08, POLE_REST), (t0 + 1.4, POLE_REST)]
+cue('closeR', (t0, V['hold']['amount']), (t0 + .15, V['hold']['amount']), (t0 + .32, .12), (t0 + 1.4, .12))
 cue('hold', (t0, 1), (t0 + .14, 1), (t0 + .2, 0), (t0 + 1.4, 0))
 cue('counter', (t0, 1), (t0 + 1.4, 1))
 cue('lean', (t0, 1), (t0 + .15, 1), (t0 + .8, 0), (t0 + 1.4, 0))

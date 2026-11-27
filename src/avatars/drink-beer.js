@@ -42,7 +42,9 @@ export const beerParts=M=>({take:[M.markers.take,M.markers.first],first:[M.marke
 const BEATS={take:[[0,.35,'still'],[.35,.62,'antic'],[.62,1.42,'lift'],[1.42,1.75,'settle']],
  first:[[0,.2,'still'],[.2,.5,'antic'],[.5,1.4,'lift'],[1.4,3.2,'gulp'],[3.2,3.5,'release'],[3.5,5.1,'kaa'],[5.1,5.95,'set'],[5.95,6.6,'settle']],
  sip:[[0,.2,'still'],[.2,.5,'antic'],[.5,1.4,'lift'],[1.4,2.1,'gulp'],[2.1,2.4,'release'],[2.4,2.75,'kaa'],[2.75,3.6,'set'],[3.6,4.25,'settle']],
- let:[[0,.15,'still'],[.15,1.4,'settle']]};
+ let:[[0,.15,'still'],[.15,1.4,'settle']],
+ // (a sip with the glass in the hand: the sip's keys to its breath out, the glass held after, not set down)
+ held:[[0,.2,'still'],[.2,.5,'antic'],[.5,1.4,'lift'],[1.4,2.1,'gulp'],[2.1,2.4,'release'],[2.4,2.75,'kaa']]};
 /**
  * How each drinks (appeal: "each resident drinks as themselves"; exaggeration stays everyday, 20-30%, but for the first
  * "kaa!"): each beat's length against the keys', how far the head goes back in a draught, and how big the "kaa!" is.
@@ -172,7 +174,7 @@ function slosh(prop,dt){
  if(v.length()>3)v.set(0,0,0);   // (a glass put somewhere else, not moved)
  s.a.lerp(v.clone().sub(s.v).divideScalar(h),.5);s.v.copy(v);s.p.copy(p);
  const target=new THREE.Vector3(0,9.8,0).sub(s.a.clone().setY(0)).normalize();
- const om=9,ze=.22;s.nv.addScaledVector(target.clone().sub(s.n),om*om*h).addScaledVector(s.nv,-2*ze*om*h);s.n.addScaledVector(s.nv,h).normalize();
+ const om=9,ze=.34;s.nv.addScaledVector(target.clone().sub(s.n),om*om*h).addScaledVector(s.nv,-2*ze*om*h);s.n.addScaledVector(s.nv,h).normalize();
  if(s.n.y<Math.cos(.245)){const flat=s.n.clone().setY(0).normalize();s.n.set(flat.x*Math.sin(.245),Math.cos(.245),flat.z*Math.sin(.245));}
  sloshes.set(prop,s);fluid.surface(s.n);fluid.update(prop.userData.portion??1);
 }
@@ -188,7 +190,24 @@ export function placeBeer(avatar,prop,cues,rest){
 /** The glass's upright turn at its place on the counter, its rim's drinking side toward the body (`root`'s back). */
 export const restTurn=root=>root.getWorldQuaternion(new THREE.Quaternion()).multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,1,0),Math.PI));
 
-const played=new WeakMap();
+const played=new WeakMap(),leans=new WeakMap();
+/** The spine and the chest leant further in by `a` radians (the spine 0.55 of it), about their own x: forward. */
+function leanIn(avatar,a){const b=avatar.bones;b.spine.quaternion.multiply(_q.setFromAxisAngle(new THREE.Vector3(1,0,0),a*.55));b.chest.quaternion.multiply(_q.setFromAxisAngle(new THREE.Vector3(1,0,0),a*.45));avatar.root.updateMatrixWorld(true);}
+/** How much further than the motion's body a body leans in to take a glass standing where it stands on the counter (its arm,
+ *  in its proportion, short of it): found once a play, on the pose the parts join on (the hand on the glass), up to 0.25 rad;
+ *  the leaning in, a little more for a shorter arm, is how anyone takes a glass a long arm away. */
+function extraLean(avatar,M,rest,prop){
+ const key=rest.position.toArray().map(v=>v.toFixed(3)).join(),was=leans.get(avatar);if(was?.key===key&&was.M===M)return was.E;
+ const b=avatar.bones,m=avatar.measure,back=held(avatar,M),pos=b.shoulderR.position.clone(),bind=bindOf(avatar);
+ const tC=M.markers.first,root=avatar.root.getWorldQuaternion(new THREE.Quaternion()),arm=(m.upper+m.fore)*.975;
+ const short=E=>{poseAt(avatar,M,tC,1);b.shoulderR.position.copy(bind.R).add(new THREE.Vector3(0,0,.05*m.k));leanIn(avatar,E);
+  // (the wrist where this hand holds this glass standing at its place: the foot there, the hand turned to the glass upright)
+  const S=beerSocket(m,prop,'R'),hq=rest.quaternion.clone().multiply(S.quaternion.clone().invert()),goal=rest.position.clone().sub(S.position.clone().applyQuaternion(hq));
+  return b.shoulderR.getWorldPosition(new THREE.Vector3()).distanceTo(goal)-arm;};
+ let E=0;if(short(0)>0){let lo=0,hi=.3;for(let i=0;i<12;i++){const mid=(lo+hi)/2;if(short(mid)>0)lo=mid;else hi=mid;}E=hi;}
+ back();b.shoulderR.position.copy(pos);avatar.root.updateMatrixWorld(true);
+ leans.set(avatar,{key,M,E});return E;
+}
 /**
  * Beer drunk at time t (seconds into the glass's motion), over the pose the animator has made, by `w`.
  * opts: `rest` {position, quaternion} the glass's foot on the counter and its upright turn there (null: standing, or held
@@ -196,9 +215,10 @@ const played=new WeakMap();
  * `style` (BEER_STYLES); `dt` (the slosh).
  * Returns the cues and how far each contact was put right (`fix`, metres).
  */
-export function playBeerDrink(avatar,prop,t,w=1,{motion:M=beerMotion(prop),rest=null,blend=null,style=BEER_STYLE_DEFAULT,dt=1/60}={}){
+export function playBeerDrink(avatar,prop,t,w=1,{motion:M=beerMotion(prop),rest=null,blend=null,style=BEER_STYLE_DEFAULT,dt=1/60,fresh}={}){
  const cues=beerCues(M,t),fix={lip:0,foot:0,wipe:0,lift:0,R:0,L:0},m=avatar.measure,b=avatar.bones,k=m.k;
- const lastT=played.get(avatar);if(lastT===undefined||Math.abs(t-lastT)>.25)forgetWays(avatar);played.set(avatar,t);
+ // (a new play forgets the ways the elbows took in the last; one part on to the next, which join on one pose, does not)
+ const lastT=played.get(avatar);if(fresh??(lastT===undefined||Math.abs(t-lastT)>.25))forgetWays(avatar);played.set(avatar,t);
  const lw=blend?levelWeights(blend):null;if(lw)w=lw[2];
  const bind=bindOf(avatar);restBeer(avatar);
  const counter=!!rest?.position,root=avatar.root.getWorldQuaternion(new THREE.Quaternion());
@@ -207,8 +227,9 @@ export function playBeerDrink(avatar,prop,t,w=1,{motion:M=beerMotion(prop),rest=
  const k1=lw?lw[1]:w,shrug=cues.shrug*Math.min(1.3,style.kaaAmount)*.018*k*k1;
  b.shoulderR.position.copy(bind.R).add(new THREE.Vector3(0,shrug,counter?.05*k*cues.lean*k1:0));b.shoulderL.position.copy(bind.L).add(new THREE.Vector3(0,shrug,0));
  // each wrist where the animated body's was, in this body's size (the motion's whole pose; then blended as the move is)
- const goals={},unlean=counter?0:cues.lean,mouthW=cues.mouth,head=style.head??1;
+ const goals={},unlean=counter?0:cues.lean,mouthW=cues.mouth,head=(style.head??1)*(vesselOf(prop)==='mug'?1.35:1);   // (the tall mug: the head further back, its far wall clear of the nose)
  const back=w<1||lw&&lw[0]<1?held(avatar,M):null;poseAt(avatar,M,t,1,unlean,head,mouthW);
+ if(counter&&cues.lean>0){const E=extraLean(avatar,M,rest,prop);if(E>0)leanIn(avatar,E*cues.lean);}
  {const chest=b.chest,L=lipsOf(avatar),wipeNear=sampleIdx(M,widened(M,'wipe',.35),t);
   const R=chest.localToWorld(pathAt(M,'R',t).multiplyScalar(k));
   if(mouthW>0)R.lerp(b.head.localToWorld(pathAt(M,'mouth',t).multiplyScalar(k).add(L.lower)),mouthW);
@@ -219,17 +240,27 @@ export function playBeerDrink(avatar,prop,t,w=1,{motion:M=beerMotion(prop),rest=
   if(wipeNear>0)Lw.lerp(b.head.localToWorld(pathAt(M,'mouthL',t).multiplyScalar(k).add(L.upper)),wipeNear);
   goals.R=R.sub(b.handR.getWorldPosition(_v));goals.L=Lw.sub(b.handL.getWorldPosition(_v));}
  if(back){back();poseAt(avatar,M,t,lw||w,unlean,head,mouthW);}
+ if(counter&&cues.lean>0){const E=extraLean(avatar,M,rest,prop);if(E>0)leanIn(avatar,E*cues.lean*(lw?lw[0]:w));}
+ // a swallow: the throat squashed a little and widened as much (its volume kept), on the beat (before the contacts, which
+ // the head's move with it would carry off the lip)
+ {const sq=.035*cues.swallow*w;if(sq>0){const x=1/Math.sqrt(1-sq);b.neck.scale.set(bind.neck.x*x,bind.neck.y*(1-sq),bind.neck.z*x);avatar.root.updateMatrixWorld(true);}}
  for(const side of ['R','L']){const hand=b['hand'+side].getWorldPosition(new THREE.Vector3()),before=['shoulder','elbow','hand'].map(j=>b[j+side].quaternion.clone());
-  const near=side==='L'?sampleIdx(M,widened(M,'wipe',.35),t):Math.max(cues.lip,sampleIdx(M,widened(M,'lip',.3),t));
-  fix[side]=bring(avatar,side,null,hand.add(goals[side]),w,side==='R'?1:near,side==='R'?Math.max(near,cues.hold*sampleIdx(M,widened(M,'counter',.3),t)):near*.4,'beer'+side);
+  const near=side==='L'?sampleIdx(M,widened(M,'wipe',.35),t):Math.max(cues.lip,sampleIdx(M,widened(M,'lip',.3),t),counter?Math.min(sampleIdx(M,widened(M,'hold',.6),t),sampleIdx(M,widened(M,'counter',.3),t)):0);
+  fix[side]=bring(avatar,side,null,hand.add(goals[side]),w,side==='R'?1:near,side==='R'?Math.max(near,Math.min(sampleIdx(M,widened(M,'hold',.6),t),sampleIdx(M,widened(M,'counter',.3),t))):near*.4,'beer'+side);
   if(side==='L')steady(avatar,'L',before,t,w*(1-near));
   const off=1-near;if(side==='R'&&off>0){const q=b.handR.quaternion,soft=q.clone();softWrist(soft,'R');q.slerp(soft,off);b.handR.updateWorldMatrix(false,true);}}
  if(prop){
   placeBeer(avatar,prop,cues,rest);
   const S=beerSocket(m,prop,'R'),inHand=p=>b.handR.worldToLocal(prop.localToWorld(p.clone()));
   // the foot on the counter where it stands, as the motion has it there (the rock before the lift, the tap of the set-down)
-  const onCounter=counter?cues.hold*sampleIdx(M,widened(M,'counter',.3),t):0;
-  if(onCounter>0){fix.foot=bring(avatar,'R',inHand(new THREE.Vector3()),rest.position.clone().add(pathAt(M,'foot',t).applyQuaternion(root)),onCounter*w,true,1,'beerFoot');placeBeer(avatar,prop,cues,rest);}
+  // (let go of as gently as it was taken: the hand's hold on the glass widened into its coming and going)
+  const onCounter=counter?Math.min(sampleIdx(M,widened(M,'hold',.6),t),sampleIdx(M,widened(M,'counter',.3),t)):0;
+  if(onCounter>0){
+   // (the glass stood as the motion has it there, upright or rocked on its foot: the hand turned so, whatever this arm made of it)
+   const want=pathAt(M,'up',t).applyQuaternion(root).normalize(),has=new THREE.Vector3(0,1,0).applyQuaternion(prop.getWorldQuaternion(new THREE.Quaternion()));
+   const turn=new THREE.Quaternion().setFromUnitVectors(has,want),hq=b.handR.getWorldQuaternion(new THREE.Quaternion());
+   hq.premultiply(new THREE.Quaternion().slerp(turn,onCounter*w));b.handR.quaternion.copy(b.handR.parent.getWorldQuaternion(new THREE.Quaternion()).invert().multiply(hq));b.handR.updateWorldMatrix(false,true);placeBeer(avatar,prop,cues,rest);
+   fix.foot=bring(avatar,'R',inHand(new THREE.Vector3()),rest.position.clone().add(pathAt(M,'foot',t).applyQuaternion(root)),onCounter*w,true,1,'beerFoot');placeBeer(avatar,prop,cues,rest);}
   // the rim on the lip, the glass tipped as far as the beer left in it needs (and the motion's 3 degrees more), never less
   if(cues.lip>0&&cues.hold>.5){
    const fluid=levelHeldDrink(prop),f=prop.userData.portion??1,need=fluid?requiredTilt(fluid.profile,Math.max(.01,fluid.startingVolumeMl*f))+.052:0;
@@ -247,9 +278,7 @@ export function playBeerDrink(avatar,prop,t,w=1,{motion:M=beerMotion(prop),rest=
   slosh(prop,dt);
  }
  // the back of the left fingers across the upper lip
- if(cues.wipe>0){const lip=b.head.localToWorld(lipsOf(avatar).upper.clone());fix.wipe=bring(avatar,'L',wipePoint(m),lip,cues.wipe*w,true,1,'beerWipe');}
- // a swallow: the throat squashed a little and widened as much (its volume kept), on the beat
- const sq=.035*cues.swallow*w;if(sq>0){const x=1/Math.sqrt(1-sq);b.neck.scale.set(bind.neck.x*x,bind.neck.y*(1-sq),bind.neck.z*x);}
+ {const on=sampleIdx(M,widened(M,'wipe',.3),t);if(on>0){const lip=b.head.localToWorld(lipsOf(avatar).upper.clone());fix.wipe=bring(avatar,'L',wipePoint(m),lip,on*w,false,1,'beerWipe');}}
  showFoam(avatar,cues.foam*(lw?lw[1]:w));
  return {...cues,fix,w};
 }
@@ -265,7 +294,9 @@ export function beerFace(cue,style=BEER_STYLE_DEFAULT,base='neutral'){
 export const beerHand=(avatar,prop,cue)=>({...beerGrip(avatar.measure,prop),amount:cue.closeR});
 
 /** How long a beer sip with the glass already in the hand lasts (a resident's drink step at a venue: 3 or 4 s), seconds. */
-export const BEER_HELD_SIP=3.2;
+export const BEER_HELD_SIP=3;
+/** Whether a glass already in the hand is drunk as animated (animate.js): not yet, the handover says why. */
+export const BEER_HELD=false;
 
 /**
  * Johansson's glass at Minato's counter (game.js sipDrink, the lease the beer service gives: its glass is the one Thao set
@@ -295,12 +326,12 @@ export function createBeerTableDrink(avatar,lease,{onComplete=()=>{},onCancel=()
  return {prop,get active(){return active;},get elapsed(){return elapsed;},get diagnostics(){return last;},get lookAt(){return lookAt;},get duration(){return total;},
   update(dt){
    if(!active)return;elapsed+=dt;if(elapsed>=total){finish();return;}
-   const {part,t}=where(elapsed),cue=playBeerDrink(avatar,prop,t,1,{motion:M,rest,blend:{in:elapsed,out:total-elapsed},style,dt});
+   const {part,t}=where(elapsed),cue=playBeerDrink(avatar,prop,t,1,{motion:M,rest,blend:{in:elapsed,out:total-elapsed},style,dt,fresh:elapsed<=dt+1e-9});
    // (the hands closing as animated, over what the animator had: the mug's handle in the handle's shape)
    const hand=beerHand(avatar,prop,cue);avatar.grip?.('R',hand.amount*cue.w,hand.shape);avatar.grip?.('L',cue.closeL*cue.w);
    // (the beer goes down as the motion's does while the rim is on his lip)
    if(part===drinkPart&&cue.lip>.99&&f0>f1){const flow=Math.min(1,Math.max(0,(f0-cue.fill)/(f0-f1)));if(flow>lastFlow){lastFlow=flow;lease.consume(flow);}}
-   avatar.paintFace?.(beerFace(cue,style));
+   {const f=beerFace(cue,style);if(!f.look)delete f.look;avatar.paintFace?.(f);}
    lookAt=cue.look*cue.w>.15?prop.localToWorld(new THREE.Vector3(0,prop.userData.rimHeight||.12,0)):null;
    last={...cue,part,t,elapsed,total,consumedPortion:lease.consumedPortion};
   },

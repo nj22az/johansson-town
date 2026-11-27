@@ -28,8 +28,21 @@ import {BUDGET} from '../edition.js';
 export const MINATO_BEER=Object.freeze({brand:'Umineko',brewer:'Johansson Brewery, Nago',from:'Sakura Trading (Sakura Shōten’s depot)',
  who:'Thao, who orders it; the counter’s regulars and the crews off the boats',
  why:'The town’s lager: the kegs and large bottles Sakura’s round brings on Tuesdays and Fridays, the can Sakura sells at ¥220.'});
+/**
+ * Who each of Minato's beers is for and why it is served as it is (nothing is random: CLAUDE.md). The mug is the house's
+ * standard; the pint is the extra, for one man.
+ */
+export const BEER_SERVES=Object.freeze({
+ draft:Object.freeze({vessel:'a frosted 大ジョッキ, the thick handled mug of every izakaya in the islands',who:'the counter’s regulars, the crews off the boats, anyone thirsty after work',
+  why:'Draught lager is what an Okinawan izakaya pours, and the mug is how: it keeps the beer cold in a warm room and stands up to a kanpai. The house’s standard glass.'}),
+ pint:Object.freeze({vessel:'a nonic pint glass, 568 ml, the bulge two fingers under the rim',who:'Johansson, the Swede; now and then a ship’s officer from the north who sees it on the rack',
+  why:'Johansson drinks a dark beer slowly, the way he did in harbour pubs on his northern runs, and asked Thao for "a proper glass": she keeps one pint on the rack for him and pours it from the Umineko Black bottles the brewery’s rep left this autumn (Sakura’s poster, world/interiors/sakura-trade-posters.js). In 1997 a pint glass at a Motobu izakaya is a foreigner’s quirk, which is why there is one.'}),
+ bottle:Object.freeze({vessel:'a small glass, 180 ml, beside the 633 ml bottle',who:'pairs and tables sharing a bottle, older regulars who pour for each other',
+  why:'Pouring for one another is the custom; a small glass keeps the beer cold and the pouring going.'}),
+});
 export const DRINKS=Object.freeze({
  draft:Object.freeze({id:'draft',jp:"Umineko draught, medium mug",en:'Umineko draught, a frosted mug',price:450,sips:6,alcohol:1,pour:4.2,line:"One Umineko draught! Cold from the tap."}),
+ pint:Object.freeze({id:'pint',jp:"Umineko Black, a pint",en:'Umineko Black, a pint glass',price:500,sips:6,alcohol:1.1,pour:3.2,line:"Your pint. The black one -- I poured it slowly."}),
  bottle:Object.freeze({id:'bottle',jp:"Umineko large bottle",en:'Umineko large bottle and a small glass',price:600,sips:8,alcohol:1.4,pour:2,line:"It's a big bottle. Pour for yourself -- or I pour the first one."}),
  can:Object.freeze({id:'can',jp:"Umineko can",en:'Umineko can, 350 ml',price:300,sips:4,alcohol:.8,pour:1.2,line:"Still in the can? Straight from the can, then."}),
  awamori:Object.freeze({id:'awamori',jp:"Awamori on the rocks",en:'awamori on the rocks',price:250,sips:5,alcohol:1.6,pour:1.8,line:"Awamori. Slowly -- it is older than you think."}),

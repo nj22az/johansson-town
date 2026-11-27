@@ -43,7 +43,7 @@ export function normalizeMotion(value){
  *  right wrist from the lower lip in the head's frame, which it goes by as far as `contact.mouth` says. */
 function reachPaths(value,n){
  if(value===undefined)return null;const out={};
- for(const [side,data] of Object.entries(value||{})){if(!['R','L','mouth','mouthL','foot','spot'].includes(side)||!Array.isArray(data)||data.length!==n*3||data.some(v=>!Number.isFinite(v)||Math.abs(v)>2))fail('Invalid reach path: '+side);out[side]=data.slice();}
+ for(const [side,data] of Object.entries(value||{})){if(!['R','L','mouth','mouthL','foot','spot','up'].includes(side)||!Array.isArray(data)||data.length!==n*3||data.some(v=>!Number.isFinite(v)||Math.abs(v)>2))fail('Invalid reach path: '+side);out[side]=data.slice();}
  return out;
 }
 /** A track's value at time t (a 0..1 track sampled with the motion's times): eased between samples as the joints are. */

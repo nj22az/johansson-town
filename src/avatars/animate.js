@@ -4,7 +4,7 @@ import {bicycleRiderFit} from '../world/bicycle-fit.js';
 import {seeded} from './recipe.js';
 import {consumptionPhase,poseAvatarConsumption,drinkHeadTilt,heldGrip} from './consume.js';
 import {CAN_PARTS,playCanDrink,canEvents,levelWeights} from './drink-can.js';
-import {beerMotion,beerParts,beerWarp,beerStyleOf,playBeerDrink,restBeer,restTurn,beerFace,beerHand,BEER_HELD_SIP} from './drink-beer.js';
+import {beerMotion,beerParts,beerWarp,beerStyleOf,playBeerDrink,restBeer,restTurn,beerFace,beerHand,BEER_HELD_SIP,BEER_HELD} from './drink-beer.js';
 import {tearTab,pocketTab} from './open-can.js';
 import {bodyLanguage,CONVERSATION_BIG} from './body-language.js';
 import {createFootGrounder,createLieGrounder,createSoleFinder} from './foot-ground.js';
@@ -518,7 +518,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  // ---- A can as animated in Blender (drink-can.js): this frame's cues (null when none is drunk), and where the motion was.
  let canCue=null,canLast=-1;
  // ---- Beer from a glass as animated in Blender (drink-beer.js): this frame's cues, or null.
- let beerCue=null;
+ let beerCue=null,beerHeldNow=false;
  let gesture=null,blinkIn=1+Math.random()*3,blinkT=-1,talkT=0,talkOpen=0,glance=[0,0],glanceIn=2,lastExpression='neutral';
  const headRestPosition=bones.head.position.clone();
  // ---- Hands on this body's own shape (REACH): worked out the first time each move is played, then kept.
@@ -1087,7 +1087,9 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   for(const j of JOINTS)target[j].set(0,0,0);handWish.L=handWish.R=0;solvedNow.L=solvedNow.R=pinWish.L=pinWish.R=false;stanceHere=false;
   consumeWas=consumeHad;consumeHad=false;
   // (the bite's or the sip's pose, eased in and out; a can's sip is the drink's own, drink-can.js)
-  const canSip=!!consumption&&!avatar.pixar&&!consumption.food&&(s.heldProp?.userData?.drinkKind==='can'||!!beerMotion(s.heldProp));
+  const canSip=!!consumption&&!avatar.pixar&&!consumption.food&&(s.heldProp?.userData?.drinkKind==='can'||BEER_HELD&&!!beerMotion(s.heldProp));
+  // (a glass of beer drunk as animated owns the arm: the old drinking arm's targets are left out under it, drink-beer.js)
+  beerHeldNow=BEER_HELD&&canSip&&!!beerMotion(s.heldProp);
   if(canSip){consumeW=consumeV=0;}else [consumeW,consumeV]=follow(consumeW,consumeV,consumption?1:0,CONSUME_RATE,dt);
   let targetRoot=0,targetHips=0,targetLean=0,seatSlide=0,onLap=null;floorSit=0;
   const chairBlend=Number.isFinite(s.chairBlend)?THREE.MathUtils.clamp(s.chairBlend,0,1):(s.seated?1:0);
@@ -1208,7 +1210,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    else if(pose==='Wipe'){const a=time*3.2;set('shoulderR',-.95+Math.sin(a)*.12,Math.cos(a)*.22,-.15);set('elbowR',-.45);set('shoulderL',-.35,0,.25);set('elbowL',-.4);add('chest',.35);add('head',.25);}
    else if(pose==='Polish'){set('shoulderL',-.9,0,.25);set('shoulderR',-.9,0,-.25);set('elbowL',-1.45);set('elbowR',-1.45+Math.sin(time*5)*.18);add('head',.28);}
    else if(pose==='Stack'){const l=(Math.sin(time*1.4)+1)/2;set('shoulderL',-.6-l,0,.2);set('shoulderR',-.6-l,0,-.2);set('elbowL',-.6+l*.3);set('elbowR',-.6+l*.3);add('chest',.2-l*.15);}
-   else if(pose==='DrinkStanding'||pose==='Drink'||pose==='DrinkHip'){const lift=Math.max(0,Math.sin(time*1.2))**4,w=smooth(consumeTime/.35);toward('shoulderR',-.5-lift*1.1,0,-.2,w);toward('elbowR',-.9-lift*1.2,0,0,w);
+   else if(pose==='DrinkStanding'||pose==='Drink'||pose==='DrinkHip'){const lift=Math.max(0,Math.sin(time*1.2))**4,w=smooth(consumeTime/.35);if(!beerHeldNow){toward('shoulderR',-.5-lift*1.1,0,-.2,w);toward('elbowR',-.9-lift*1.2,0,0,w);}
     // DrinkHip: a bottle of coffee milk after the bath, the free hand on the hip, the chin up
     if(pose==='DrinkHip'){set('shoulderL',.15,0,.75);set('elbowL',-.3,0,-1.5);add('chest',-.06);add('head',-.12);}}
    else if(pose==='Sit'||pose==='Sleep'){set('head',.2);}
@@ -1407,13 +1409,16 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   bones.hips.position.y=m.hipY+(s.riding?0:hipsY);
   bones.head.position.copy(headRestPosition);
   if(s.riding)poseAvatarOnBicycle(avatar,s.ridePhase||0,s.bicycleFit||bicycleRiderFit(m));
-  else if(consumption&&!avatar.pixar&&!consumption.food&&beerMotion(s.heldProp)){
+  // (not yet for a glass already in the hand: the held sip as animated is built (BEER_HELD) but, fitted into a venue's 3 s drink step,
+  // it swung the arm up too fast and put the mug's wall into the face; residents keep the drink below until it is re-keyed: the handover)
+  else if(BEER_HELD&&consumption&&!avatar.pixar&&!consumption.food&&beerMotion(s.heldProp)){
    // (a glass of beer already in the hand (a resident's at a venue, a small glass of the bottle): a sip as it was animated,
    // from the glass held before him, timed for who drinks it and fitted to the sip's time: drink-beer.js)
    const t=Number.isFinite(s.consumeElapsed)?s.consumeElapsed:gesture?gesture.t:consumeTime%5,style=beerStyleOf(avatar.recipe?.name);
-   const W=beerWarp('sip',style,gesture&&!Number.isFinite(s.consumeElapsed)?gesture.d:BEER_HELD_SIP),M=beerMotion(s.heldProp);
+   const W=beerWarp('held',style,gesture&&!Number.isFinite(s.consumeElapsed)?gesture.d:BEER_HELD_SIP),M=beerMotion(s.heldProp);
    const rest=Array.isArray(s.drinkRest)?{position:new THREE.Vector3(...s.drinkRest),quaternion:restTurn(avatar.root)}:null;
-   beerCue={...playBeerDrink(avatar,s.heldProp,beerParts(M).sip[0]+W.at(t),1,{motion:M,rest,blend:{in:t,out:W.duration-t},style,dt}),style};
+   // (blended in and out over two and a half times the can's: the glass comes up from wherever the hand was to where it is held)
+   beerCue={...playBeerDrink(avatar,s.heldProp,beerParts(M).sip[0]+W.at(t),1,{motion:M,rest,blend:{in:t*.4,out:(W.duration-t)*.4},style,dt}),style};
   }
   else if(consumption&&!avatar.pixar&&!consumption.food&&s.heldProp?.userData?.drinkKind==='can'){
    // (a resident drinking a can: the sip as it was animated, in the time a sip is drunk in, 2.4 s: a quarter quicker)
@@ -1451,7 +1456,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    for(const e of canEvents(canLast,t)){if(e==='tabOff')tearTab(s.heldProp,bones.handL);else if(e==='tabPocketed')pocketTab(s.heldProp);}
    canLast=t;
   }else{canLast=-1;if(!consumption||s.heldProp?.userData?.drinkKind!=='can')canCue=null;}
-  if(beerCue&&!(consumption&&!avatar.pixar&&!consumption.food&&beerMotion(s.heldProp))){restBeer(avatar);beerCue=null;}
+  if(beerCue&&!(BEER_HELD&&consumption&&!avatar.pixar&&!consumption.food&&beerMotion(s.heldProp))){restBeer(avatar);beerCue=null;}
   // A hand with fingers rests a little curled, as a hand does, never splayed flat (a judge of the counter frames: "the
   // free hand is a stiff starfish"); what it holds closes it further (consume.js, table-drink.js set the grip after this).
   if(avatar.pixar?.grip){avatar.pixar.grip('L',s.heldProp?.userData?.food?1:.28);if(!consumption&&!s.heldProp)avatar.pixar.grip('R',.28);}
@@ -1878,6 +1883,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  /** The arm with a drink, lifted `lift` of the way, `w` of the way from where the body had it (eased in by the move or the pose
   *  that holds the drink: set at once, it jumped there in a frame). */
  function drinkArm(lift,w=1){
+  if(beerHeldNow)return;
   if(avatar.pixar){toward('shoulderR',-.5-lift*.45,.35+lift*.6,-.1,w);toward('elbowR',-1.55-lift*.7,0,0,w);toward('handR',-.2*lift,0,0,w);}
   else{toward('shoulderR',-.6-lift*.95,0,-.25,w);toward('elbowR',-.85-lift*1.25,0,0,w);}
  }
