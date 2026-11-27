@@ -59,7 +59,9 @@ const ARCS_WITHOUT_DRAG=new Set(['Talk','Jump','Fidget','SitPresentFood','Heart'
  'HoldOn','FrozenAbsurd','TorchOff','Facepalm','HideFace','Swoon','Flex','Fight:A']);
 const DRAG_LEVEL=Object.freeze(JOINTS.map(j=>['chest','neck','head','shoulderL','shoulderR'].includes(j)?1:['elbowL','elbowR','handL','handR'].includes(j)?2:0));
 /** From one way of being to another (standing, walking, running, sitting, climbing), the body's own pose fades from where it
- *  was over this long, eased: stopping and standing up are movements (the walk's stop stepped by all its speed in a frame). */
+ *  was over this long, eased: stopping and standing up are movements (the walk's stop stepped by all its speed in a frame).
+ *  So does a move cut off before its end (stopped, or another played over it): it let go of its pose in a frame, and the
+ *  drag carried that step into the frames after (a garment set's points jumped 20 cm, tests/avatar-wardrobe-sets). */
 const FADE=.32;
 /** The stance under a move (gait.js carry: the hands in the pockets, or clasped behind the back): an arm the move takes comes
  *  out of it from the move's first frame, on an eased curve `out` of the move's length long (between `outMin` and `outMax`
@@ -69,6 +71,33 @@ const FADE=.32;
 const STANCE=Object.freeze({out:.3,outMin:.15,outMax:.3,back:.4,backMin:.17,backMax:.35,swing:.2});
 /** An eased curve from p0 (going at m0 per unit of u) to p1 (at rest), at u (0..1): the value, and its rate per unit of u. */
 const hermite=(p0,m0,p1,u)=>{const u2=u*u,u3=u2*u;return [(2*u3-3*u2+1)*p0+(u3-2*u2+u)*m0+(-2*u3+3*u2)*p1,(6*u2-6*u)*p0+(3*u2-4*u+1)*m0+(-6*u2+6*u)*p1];};
+/**
+ * Anticipation for the procedural moves (anticipation-mastery; docs/ANIMATION-STANDARD.md rule 2): before a move's action the
+ * body goes the other way first. The action is read from the move itself when it starts: its pose is tried at times through
+ * its first half, and where it first comes nine tenths of the way to the furthest it goes (the action's length, A) the
+ * turn of every joint from the body's pose under it is its direction. The move then waits WIND.lead of A (0.08-0.3 s),
+ * easing every joint of the trunk and the arms the other way by `everyday` (calm) or `comedy` (pushed) of that turn, and
+ * plays on from its start, a little quicker so it ends when it would have, the wind-up let go over its first `release` of A.
+ * The head and the neck lead instead (the eyes go first) unless they make most of the move. Never into the body: an upper
+ * arm is not brought in against the side, an elbow never straightens past straight. The wind-up begins in the move's first
+ * frame, so a move the player asks for answers at once. Only the moves in WIND_ON, so far, and not sat.
+ */
+const WIND=Object.freeze({lead:.4,leadMin:.08,leadMax:.3,release:.6,everyday:.15,comedy:.35,look:.3,least:.05,
+ tries:10,within:1.2});
+/** The moves that wind up so far: those where the wind-up read from the move gives a counter-movement the audit passes and
+ *  breaks nothing else (tools/animation-audit.mjs on every move, 27 November 2026). On the others it is too small (an arm
+ *  raised from the side has no room to go the other way without going into the body: Wave, Talk, ScratchHead), or it bows
+ *  a hand's path past a half circle (HairTuck, ShakeFists, WriteAbove, Flex), or it starts every level together (Bow, Fist,
+ *  Hurt, EnkaReach): those need their own wind-ups (the standard's stage 2). Never the pair roles, the swings, eating and
+ *  drinking, or lying down. */
+const WIND_ON=new Set(['HeelRock','PickUp','Tackle','Hop','EvilLaugh','SwitchHigh','HeroicPride','DeepThinker','Heartbreak',
+ 'BattleRage','BashfulPose','BowDeep','FingerStop','Tape','Offer','Reach','CordWrapped','BasketHead','PointLaugh','Sneak','Fume',
+ 'Eyeroll','Seethe']);
+/** Comedy's moves, whose wind-up is pushed (the town's register, the standard's section 2). */
+const PUSHED=new Set(['EvilLaugh','WindUp','Tackle','Stomp','HeelKick','Tada','Cheer','CupHands','CoinToCheek','BowDeep','BowWalk',
+ 'KneelHug','PoleFlick','Peek','BannerUp','FanWild','HoldOn','FingerStop','Tape','Offer','Reach','LieKnead','GrenadeCoin','Aim',
+ 'HoldUp','HoldUpStraws','Call','WriteAbove']);
+const LEG_SET=new Set(['thighL','kneeL','footL','thighR','kneeR','footR']);
 /** The right arm and the head, as consume.js poses them for a bite or a sip: eased in from where the animator had them and
  *  out back to it (at `CONSUME_RATE`, a critically damped follow), never there in a frame. */
 const CONSUME_JOINTS=Object.freeze(['shoulderR','elbowR','handR','head']),CONSUME_RATE=9;
@@ -462,12 +491,15 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  const stanceArm=Object.fromEntries(['L','R'].map(side=>[side,{w:1,v:0,goal:1,from:1,fromV:0,u:1,T:1,taken:-1,sh:new THREE.Vector3(),el:new THREE.Vector3(),hd:new THREE.Vector3(),
   last:{sh:new THREE.Vector3(),el:new THREE.Vector3(),hd:new THREE.Vector3()}}]));let stanceHere=false,stanceCarry=null;
  // ---- The way of being (FADE): which (mode), how far into it (fadeT), the pose it fades from, and this frame's own pose.
- let mode=null,fadeT=1;const fadeFrom=new Float32Array(JOINTS.length*3),baseNow=new Float32Array(JOINTS.length*3);
+ let mode=null,fadeT=1,cut=false;const fadeFrom=new Float32Array(JOINTS.length*3),baseNow=new Float32Array(JOINTS.length*3);
  // ---- The drag hierarchy (LAG): the targets (and the grips' wishes) of the last HISTORY frames, how far the lag is on (drag:
  // off while walking, running, riding, climbing, driving, airborne, lying, kneeling, carried or sat on the floor), and each
  // arm held where the reach solver placed it (solvedNow: this frame's move placed it; pinWish: fully there; pinT: for how long).
  const history=Array.from({length:HISTORY},()=>({t:-Infinity,v:new Float32Array(JOINTS.length*3+3)}));let historyAt=0,drag=0,dragV=0,lead=0,leadV=0,rootStill=1;
- const solvedNow={L:false,R:false},pinWish={L:false,R:false},pinT={L:0,R:0},_rootAt=new THREE.Vector3();
+ const solvedNow={L:false,R:false},pinWish={L:false,R:false},pinT={L:0,R:0},pinW={L:0,R:0},pinV={L:0,R:0},_rootAt=new THREE.Vector3();
+ // ---- The move's wind-up (WIND): the move it is for, how long it waits (W), its action's length (A), how far, and each
+ // joint's turn the other way at full wind-up.
+ const wind={g:null,W:0,A:0,a:0,turn:new Float32Array(JOINTS.length*3)},windBase=new Float32Array(JOINTS.length*3),windTry=new Float32Array(JOINTS.length*3);
  // ---- The bite or the sip (CONSUME_JOINTS): how far its pose is in, its speed, what was consumed, and the animator's pose under it.
  let consumeW=0,consumeV=0,consumeFood=false,consumeHad=false,consumeWas=false;const consumeSaved=CONSUME_JOINTS.map(()=>new THREE.Quaternion()),headSaved=new THREE.Vector3(),consumeArm=[new THREE.Quaternion(),new THREE.Quaternion()];
  const _q=[0,1,2,3].map(()=>new THREE.Quaternion()),_eu=new THREE.Euler(),_p=[0,1,2,3,4].map(()=>new THREE.Vector3());
@@ -788,12 +820,49 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   *  returned). A bicycle's is the bicycle's. */
  let fadeHips=0,hipsNow=0;
  function modeFade(dt,now,hips){
-  if(mode!==null&&now!==mode&&mode!=='ride'&&now!=='ride'){fadeFrom.set(baseNow);fadeHips=hipsNow;fadeT=0;}
+  if((cut||mode!==null&&now!==mode)&&mode!=='ride'&&now!=='ride'&&mode!==null){fadeFrom.set(baseNow);fadeHips=hipsNow;fadeT=0;}
+  cut=false;
   mode=now;
   if(fadeT<1){fadeT=Math.min(1,fadeT+dt/FADE);const f=smooth(fadeT),F=fadeFrom;hips=fadeHips+(hips-fadeHips)*f;
    JOINTS.forEach((j,i)=>{const T=target[j];T.set(F[i*3]+(T.x-F[i*3])*f,F[i*3+1]+(T.y-F[i*3+1])*f,F[i*3+2]+(T.z-F[i*3+2])*f);});}
   JOINTS.forEach((j,i)=>{const T=target[j];baseNow[i*3]=T.x;baseNow[i*3+1]=T.y;baseNow[i*3+2]=T.z;});hipsNow=hips;
   return hips;
+ }
+ /** The move's wind-up (WIND), read as it starts: the body's pose under it now (windBase), and the move tried through its
+  *  first half (nothing it does is kept: the targets, the hands, the reach's marks are put back). */
+ function windRead(g,s,seated){
+  wind.g=g;wind.W=0;
+  // (not sat: the arm's turn the other way goes into the lap or the chest, FingerStop's forearm 59 mm into Miss Higa's,
+  // tests/story-gestures.test.mjs)
+  if(!WIND_ON.has(g.name)||PAIR_ROLES[g.name]||g.ramp!==undefined||seated)return;
+  JOINTS.forEach((j,i)=>{windBase[i*3]=target[j].x;windBase[i*3+1]=target[j].y;windBase[i*3+2]=target[j].z;});
+  const hands={L:handWish.L,R:handWish.R},solved={...solvedNow},pins={...pinWish},t0=g.t,span=Math.min(g.d===Infinity?WIND.within:g.d/2,WIND.within);
+  let far=0,contact=false;const tries=[];
+  for(let k=1;k<=WIND.tries;k++){g.t=span*k/WIND.tries;solvedNow.L=solvedNow.R=false;applyGesture(g,s,seated);contact||=solvedNow.L||solvedNow.R;
+   let n=0;JOINTS.forEach((j,i)=>{const T=target[j];if(!LEG_SET.has(j))n+=(T.x-windBase[i*3])**2+(T.y-windBase[i*3+1])**2+(T.z-windBase[i*3+2])**2;
+    windTry[i*3]=T.x;windTry[i*3+1]=T.y;windTry[i*3+2]=T.z;T.set(windBase[i*3],windBase[i*3+1],windBase[i*3+2]);});
+   tries.push([g.t,Math.sqrt(n),windTry.slice()]);far=Math.max(far,Math.sqrt(n));}
+  g.t=t0;handWish.L=hands.L;handWish.R=hands.R;Object.assign(solvedNow,solved);Object.assign(pinWish,pins);
+  if(contact||far<WIND.least)return;
+  const best=tries.find(([,n])=>n>=.9*far),A=best[0];
+  wind.A=A;wind.W=THREE.MathUtils.clamp(WIND.lead*A,WIND.leadMin,WIND.leadMax);
+  if(g.d!==Infinity&&wind.W>g.d*.3){wind.W=0;return;}
+  wind.a=PUSHED.has(g.name)||FUN_POSES[g.name]||STORY_POSES.has(g.name)?WIND.comedy:WIND.everyday;
+  const T=best[2];let headPart=0,all=0;
+  JOINTS.forEach((j,i)=>{const d=Math.hypot(T[i*3]-windBase[i*3],T[i*3+1]-windBase[i*3+1],T[i*3+2]-windBase[i*3+2]);all+=d;if(j==='head'||j==='neck')headPart+=d;});
+  const lead=headPart<all*.5;
+  JOINTS.forEach((j,i)=>{for(let c=0;c<3;c++){const d=T[i*3+c]-windBase[i*3+c];
+   wind.turn[i*3+c]=LEG_SET.has(j)?0:(lead&&(j==='head'||j==='neck'))?WIND.look*d/wind.a:-d;}});
+ }
+ /** The move's own time under its wind-up: held at its start while the body winds up, then a little quicker. */
+ function windTime(g){const W=wind.W,t=g.t<W?0:g.d===Infinity?g.t-W:(g.t-W)*g.d/(g.d-W);return {...g,t};}
+ /** The wind-up on this frame's targets: eased in over W, let go over the action's first `release`. */
+ function windStep(g){
+  const W=wind.W,k=g.t<W?smooth(g.t/W):1-smooth((g.t-W)/(WIND.release*wind.A));if(k<=0)return;
+  JOINTS.forEach((j,i)=>{const T=target[j],a=wind.a*k;let x=wind.turn[i*3]*a,y=wind.turn[i*3+1]*a,z=wind.turn[i*3+2]*a;
+   if(j==='shoulderR')z=Math.min(0,z);else if(j==='shoulderL')z=Math.max(0,z);
+   if(j==='elbowL'||j==='elbowR')x=Math.min(x,-T.x);
+   T.x+=x;T.y+=y;T.z+=z;});
  }
  /** The stance's arms under a move (STANCE): an arm taken by a move that does not come from the stance itself (EASED moves do)
   *  leaves it as a movement and goes back into it before the move ends (or, after a held move, from where the move left it). */
@@ -824,7 +893,10 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   if(without&&drag>0&&settled()){drag=0;dragV=0;}else [drag,dragV]=follow(drag,dragV,want&&!without?1:0,6,dt);
   historyAt=(historyAt+1)%HISTORY;const H=history[historyAt],n=JOINTS.length*3;H.t=time;
   JOINTS.forEach((j,i)=>{H.v[i*3]=target[j].x;H.v[i*3+1]=target[j].y;H.v[i*3+2]=target[j].z;});H.v[n]=handWish.L;H.v[n+1]=handWish.R;H.v[n+2]=consumeW;
-  for(const side of ['L','R'])pinT[side]=pinWish[side]?pinT[side]+dt:0;
+  // (the pin comes on as before, and goes off eased: dropped at once while the arm moves, the hand's lag came back in a frame
+  // and the elbow stepped, ReachBack's end)
+  for(const side of ['L','R']){pinT[side]=pinWish[side]?pinT[side]+dt:0;const on=smooth((pinT[side]-2*LAG)/.15);
+   if(on>=pinW[side]){pinW[side]=on;pinV[side]=0;}else[pinW[side],pinV[side]]=follow(pinW[side],pinV[side],on,12,dt);}
   // (the root moving: its targets turning faster than 0.1 rad/s, well over the idle's sway, within the last half second; the
   // upper level's lag comes in quickly, never so fast that what it plays goes back in time)
   const rate=Math.max(...['hips','spine'].map(j=>{const k=JOINTS.indexOf(j)*3;return Math.hypot(H.v[k]-sample(time-.05,k,_rootAt).x,H.v[k+1]-_rootAt.y,H.v[k+2]-_rootAt.z);}))/.05;
@@ -833,7 +905,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // ago are the ones it shows; moving already, it eases into the lag instead of jumping back)
   if(rootStill===0&&lead<1&&upperStill(dt)){lead=1;leadV=0;}else [lead,leadV]=follow(lead,leadV,rootStill<.5?1:0,16,dt);
   if(drag<1e-3)return;
-  const pin={L:smooth((pinT.L-2*LAG)/.15),R:smooth((pinT.R-2*LAG)/.15)},up=LAG*lead*drag;
+  const pin=pinW,up=LAG*lead*drag;
   JOINTS.forEach((j,i)=>{const lv=DRAG_LEVEL[i];if(!lv)return;const side=lv===2?j.slice(-1):null;sample(time-up-(side?(1-pin[side])*LAG*drag:0),i*3,target[j]);});
   handWish.L=sample(time-up-2*LAG*drag,n);handWish.R=sample(time-up-2*LAG*drag,n+1);
  }
@@ -862,11 +934,12 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   *  @param {boolean} [hold] also stretch a timed move to `seconds` (a Point held through a line: in and out at its own pace). */
  function play(name,seconds,hold){
   if(!(name in GESTURES))return false;
+  if(gesture&&gesture.t<gesture.d)cut=true;
   gesture={name,t:0,d:(GESTURES[name]===Infinity||hold)&&seconds?seconds:GESTURES[name]};return true;
  }
  /** A move of one's own choosing: loops are held for a few seconds, not for ever. */
  const flourish=name=>play(name,2.6+random()*1.4);
- const stop=()=>{gesture=null;};
+ const stop=()=>{if(gesture&&gesture.t<gesture.d)cut=true;gesture=null;};
 
  /**
   * @param {number} dt
@@ -893,7 +966,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    else floorEase=Math.max(0,floorEase-dt/FLOOR_SIT.ease);
    if(floorEase>0&&(!onFloor||floorEase<1))s={...s,seated:true,seatHeight:floorSeat.seatHeight,floorHeight:floorSeat.floorHeight,chairBlend:floorEase};
   }else floorEase=0;
-  firstUpdate=false;
+  const firstSeen=firstUpdate;firstUpdate=false;
   const action=gesture?.name||s.pose||s.seat;avatar.setOpenHands?.(false);   // always mitten hands (the creator): never fingers, in any move
   const eating=['Eat','EatStanding','SitEat'].includes(action),drinking=['Drink','DrinkStanding','DrinkHip','SitDrink','SitDrinkHip','SitToast'].includes(action);
   if(eating||drinking){
@@ -901,6 +974,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    consumeTime+=dt;
    const t=Number.isFinite(s.consumeElapsed)?s.consumeElapsed:gesture?gesture.t+dt:consumeTime%5;
    consumption={...consumptionPhase(t),food:eating,elapsed:consumeTime,cycle:Math.floor(consumeTime/5)};
+   // (eating or drinking already the first time they are seen: the bite or the drink is where it is, not on its way)
+   if(firstSeen){consumeW=1;consumeV=0;}
   }else{consumption=null;consumeTime=0;}
   lastConsume=action;
   for(const j of JOINTS)target[j].set(0,0,0);handWish.L=handWish.R=0;solvedNow.L=solvedNow.R=pinWish.L=pinWish.R=false;stanceHere=false;
@@ -1121,7 +1196,8 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // the furniture (unless it says the legs are its own: a knee hiked up on the seat).
   const legs=onChair?['hips','thighL','kneeL','footL','thighR','kneeR','footR'].map(j=>[j,target[j].clone()]):null;let ownLegs=false;
   if(gesture){gesture.t+=dt;if(gesture.t>=gesture.d)gesture=null;else{
-   const r=applyGesture(gesture,s,onChair);
+   if(wind.g!==gesture)windRead(gesture,s,onChair);
+   const r=applyGesture(wind.W>0?windTime(gesture):gesture,s,onChair);
    if(!legs&&r?.root!==undefined)targetRoot+=r.root;
    // Some moves say where the eyes are (down on the book while calling out): unless the scene says otherwise.
    gestureEyes=r?.eyes||null;ownLegs||=!!r?.legs;
@@ -1130,6 +1206,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   if(posed&&posed.ramp>0){const r=applyGesture(posed,s,onChair);if(r?.eyes)gestureEyes=r.eyes;ownLegs||=!!r?.legs;if(!legs&&r?.root!==undefined)targetRoot+=r.root;}
   if(legs&&!ownLegs)for(const [j,pose] of legs)target[j].copy(pose);
   stanceStep(dt);
+  if(gesture&&wind.g===gesture&&wind.W>0)windStep(gesture);
   torchArm(dt,s);
   // (the palms turned down on the thighs where the arms still rest there, once every pose and move has had them)
   if(onLap){const R=CHAIR_SIT.pixar.rest;for(const side of ['R','L']){const w=onLap.w*(1-smooth(target['shoulder'+side].distanceTo(onLap[side])/R.off)),k=side==='R'?1:-1;
@@ -2013,7 +2090,7 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
    case 'ReachBack':{const R=REACH_BACK,A=reachBack(g,s),named=g.ramp!==undefined,r=named?w:inOut(t,d,.6,R.out);
     const p=Math.min(t/R.reach,named?g.ramp:(d-t)/R.out,1),push=smooth((t-R.reach)/.2)*smooth((p-.8)/.2);
     const a=mix(reachBackPath(A,Math.max(0,p)),A.up.L,push),wa=smooth(p/.22);
-    toward('shoulderL',a[0],-a[1],-a[2],wa);toward('elbowL',a[3],-(a[4]||0),0,wa);toward('handL',0,0,0,wa);solvedNow.L=true;if(push>=.999)pinWish.L=true;
+    toward('shoulderL',a[0],-a[1],-a[2],wa);toward('elbowL',a[3],-(a[4]||0),0,wa);toward('handL',0,0,0,wa);solvedNow.L=true;pinWish.L=true;   // (pinned from the start: the lever is timed to the mitten, which may not come late, tests/fujitas-back-moves)
     armTo('R',[-.42,.66,-.03,-1.49],w);toward('chest',R.lean,R.twist,0,r);add('head',R.down*w,-R.twist*.9*r,0);return {eyes:[0,.85]};}
    // The torch (6f, 7a, 7d): the arm is torchArm's; the body stands easy and calm.
    case 'TorchUp':add('chest',.02*w);break;

@@ -267,6 +267,63 @@ audit and its sheets have been looked at.
 
 ## 6. Where we stand
 
+### Stage 2, begun: wind-ups read from the move (27 November 2026, branch `anim/stage2`)
+
+- **First, a stage 1 fault mended.** A move cut off before its end (stopped, or another played over it) let go of its pose
+  in a frame; the drag carried that step into the frames after, and `tests/avatar-wardrobe-sets.test.mjs` (not in the
+  guard) saw a garment set's points jump up to 24 cm in a frame where the bare body's jumped 21. A cut now fades over the
+  same 0.32 s as a change of way of being (`FADE`).
+- **Anticipation** (`animate.js` `WIND`, `windRead`, `windStep`). When a move starts, the animator tries its pose through
+  its first half and reads its action from it: where it first comes nine tenths of the way to the furthest it goes (the
+  action's length), and every joint's turn to get there. The move then waits 40% of that (0.08–0.3 s) while the trunk and
+  the arms ease the other way, by 15% of the turn for everyday moves and 35% for comedy's, and plays on a little quicker,
+  so it ends when it would have; the wind-up is let go over the action's first 60%. The head and the neck lead instead (the
+  eyes go first) unless they make most of the move. Never into the body: an upper arm is not brought in against the side,
+  an elbow never straightens past straight. It starts in the move's first frame, so a move the player asks for shows at
+  once. Its one-off cost is ten tries of the move as it starts.
+- Tried on every move, it passes the audit's anticipation and breaks nothing on 23 (`WIND_ON`: HeelRock, PickUp, Tackle,
+  Hop, EvilLaugh, SwitchHigh, HeroicPride, DeepThinker, Heartbreak, BattleRage, BashfulPose, BowDeep, FingerStop, Tape,
+  Offer, Reach, CordWrapped, BasketHead, PointLaugh, Sneak, Fume, Eyeroll, Seethe), and only those have it. On the rest:
+  - too small: an arm raised from the side (Wave, Talk, ScratchHead, Laugh) has no room to go the other way in its joints
+    without going into the body, so the hand goes back 0–5 mm of the 10–37 mm needed; Point and Bow come near it on some
+    bodies, not on all;
+  - it bows a hand's path past a half circle (HairTuck, ShakeFists, WriteAbove, Flex, VictoryStand, SitPresentFood) or
+    flattens it (Talk on Vy);
+  - it starts every level together (Bow, Fist, Hurt, EnkaReach, FishIdle, Cheer, Switch): the root does not move in it, so
+    the upper level takes no lag.
+  These want wind-ups made for them: a dip of the shoulder or the chest that carries the hand back, not the arm's own turn.
+
+| Check | Before stage 2 | Now |
+|---|---|---|
+| Ease | 121 of 154 | 122 of 154 |
+| Anticipation | 1 of 142 | 15 of 141 |
+| Arcs | 67 of 146 | 67 of 146 |
+| Overlap | 49 of 146 | 55 of 146 |
+| Twins | 63 of 129 | 63 of 129 |
+| Squash | 0 of 15 | 0 of 15 |
+| Volume | 155 of 155 | 155 of 155 |
+| **Every check** | **5** | **6** |
+
+Off the baseline: DeepThinker altogether; 57 anticipation entries, 22 overlap entries and 1 ease (1181 entries to 1102).
+One went on, explained: ReachBack's overlap on Vy. `tests/fujitas-back-moves.test.mjs` found ReachBack's mitten 13 cm from
+the breaker's lever as the lever moves (stage 1: the hand came a level late); its reaching arm is now pinned from the
+move's start and arrives on time, and on Vy, whose other hand stays in her pocket, the only forearm that moves is that
+pinned one, so its levels stop 4 frames apart where 5 are asked. The contact wins. A pin now also lets go eased: dropped
+in a frame, it stepped the elbow.
+
+Not sat: tried on a chair, the turn the other way put FingerStop's forearm 59 mm into Miss Higa
+(`tests/story-gestures.test.mjs`). Its cost is once a move, as it starts: that frame takes about 145 µs where the others
+take 27 (Johansson, PointLaugh). A body already eating or drinking the first time it is seen now has the bite or the rim
+where it is, not on its way (`tests/drink-grip.test.mjs`, a stage 1 fault).
+
+Sheets, before and after (`output/anim-stage2/before/` and `after/`: PointLaugh, Eyeroll, BowDeep, Hop and Tackle on
+Johansson and Thao). The wind-up is calm on the everyday moves: in PointLaugh's first frames the hands hardly move before
+the point; it shows as a beat of stillness and a slight draw back rather than a gesture of its own.
+
+Not done yet in stage 2: squash on impacts (Jump's crouch first), the twins' offsets, the arcs the stance's blend bends
+and the moves still played without the drag (`ARCS_WITHOUT_DRAG`), the settle's micro-overshoot, the lift's and the run's
+velocity steps. The handover has where each stands.
+
 ### Stage 1: the stance, the drag, the eating hand (27 November 2026, branch `anim/stage1`)
 
 What was done, all in `animate.js` but for the lift's bow (`consume.js`):
