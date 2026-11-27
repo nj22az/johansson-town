@@ -963,6 +963,17 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
  const FK_CHAIN=Object.freeze({handL:['hips','spine','chest','shoulderL','elbowL','handL'],handR:['hips','spine','chest','shoulderR','elbowR','handR'],head:['hips','spine','chest','neck','head']});
  const fkMid={handL:new THREE.Vector3(0,m.hand*handShape(m).middle[1],0),head:new THREE.Vector3(0,m.headCentre-m.headY,0)};fkMid.handR=fkMid.handL;
  const _fkM=new THREE.Matrix4(),_fkL=new THREE.Matrix4(),_fkQ=new THREE.Quaternion(),_fkE=new THREE.Euler();
+ /** How deep the forearm and the middle of the hand of `side` go into the body (bodyVolume; metres, 0 clear), with the body
+  *  in `pose`: a forearm's surface is its bone's line less its thickness. */
+ const ARM_CHAIN=Object.freeze({L:FK_CHAIN.handL,R:FK_CHAIN.handR}),_fkA=new THREE.Vector3(),_fkB=new THREE.Vector3(),_fkP=new THREE.Vector3();
+ function forearmDepth(pose,side){
+  volume??=bodyVolume(avatar.recipe,m);_fkM.identity();
+  for(const j of ARM_CHAIN[side]){const i=JOINT_AT[j]*3;_fkM.multiply(_fkL.compose(bones[j].position,_fkQ.setFromEuler(_fkE.set(pose[i],pose[i+1],pose[i+2])),bones[j].scale));
+   if(j==='elbow'+side)_fkA.setFromMatrixPosition(_fkM);else if(j==='hand'+side)_fkB.setFromMatrixPosition(_fkM);}
+  const r=m.armR*.9,mid=fkAt(pose,'hand'+side,_fkP);let deep=Math.max(0,-volume.sdf(mid));
+  for(let k=0;k<=6;k++)deep=Math.max(deep,r-volume.sdf(_fkP.copy(_fkA).lerp(_fkB,k/6)));
+  return deep;
+ }
  function fkAt(pose,eff,out){_fkM.identity();
   for(const j of FK_CHAIN[eff]){const i=JOINT_AT[j]*3;_fkM.multiply(_fkL.compose(bones[j].position,_fkQ.setFromEuler(_fkE.set(pose[i],pose[i+1],pose[i+2])),bones[j].scale));}
   return out.copy(fkMid[eff]).applyMatrix4(_fkM);}
@@ -1014,7 +1025,19 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   if(side){const o=side==='L'?'R':'L',he='hand'+o,ci=JOINT_AT.chest*3;pose.set(windBase);for(let c=0;c<3;c++)pose[ci+c]+=wind.turn[ci+c];
    const at=fkAt(pose,he,new THREE.Vector3()),d=at.clone().sub(fkAt(windBase,he,new THREE.Vector3()));
    for(const [c,axis] of [[2,'x'],[0,'z']]){const i=JOINT_AT['shoulder'+o]*3+c;pose[i]+=.01;const rate=(fkAt(pose,he,p.clone())[axis]-at[axis])*100;pose[i]-=.01;
-    if(Math.abs(rate)>.05)wind.turn[i]=THREE.MathUtils.clamp(-(c===2?TRUNK.keep:1)*d[axis]/rate,-TRUNK.most.shoulder,TRUNK.most.shoulder);}}
+    if(Math.abs(rate)>.05)wind.turn[i]=THREE.MathUtils.clamp(-(c===2?TRUNK.keep:1)*d[axis]/rate,-TRUNK.most.shoulder,TRUNK.most.shoulder);}
+   // (and never deeper into the body than it stood: the forearm in a pocket already lies in the hip's measured volume, and the
+   // hold in toward the side pressed it 3 mm further in under the boxy aloha shirt (tests/stance-release.test.mjs, 27 November
+   // 2026). So the forearm and the hand are measured against the body at the full wind-up, and the hold in is eased off, and
+   // the upper arm let out from the side if that is not enough, just as far as keeps them no deeper than at the stance; an arm
+   // the move itself takes is the move's)
+   const zi=JOINT_AT['shoulder'+o]*3+2,out=o==='L'?1:-1,wound=windBase.slice();for(let k=0;k<wound.length;k++)wound[k]+=wind.turn[k];
+   const stood=forearmDepth(windBase,o)+TRUNK.clear*m.k*.05,deeper=v=>{wound[zi]=windBase[zi]+v;return forearmDepth(wound,o)>stood;};
+   const held=wind.turn[zi],most=out*TRUNK.most.shoulder;
+   // (only an arm the move leaves where it is: a shrug's other arm is its own move's)
+   const own=['shoulder'+o,'elbow'+o].some(j=>{const i=JOINT_AT[j]*3;return tries.some(([,,T])=>Math.hypot(T[i]-windBase[i],T[i+1]-windBase[i+1],T[i+2]-windBase[i+2])>.05);});
+   if(!own&&deeper(held)){let lo=0,hi=1;if(deeper(most))lo=hi=1;else for(let k=0;k<12;k++){const mid=(lo+hi)/2;if(deeper(held+(most-held)*mid))lo=mid;else hi=mid;}
+    wind.turn[zi]=held+(most-held)*hi;}}
   wind.trunk=true;
   // (the head keeps level as the trunk tilts, and leads, as the eyes go first, unless it is what moves)
   const hi=JOINT_AT.head*3,ni=JOINT_AT.neck*3,ci=JOINT_AT.chest*3,T=tries[k][2];
