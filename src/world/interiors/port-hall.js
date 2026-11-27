@@ -1,6 +1,7 @@
 import {FURNITURE_HEIGHTS} from '../furniture-standards.js';
 import * as THREE from '../../../vendor/three.module.js';
 import {createVendingMachine,VENDING_MACHINE} from '../vending.js';
+import {beerOnSale} from '../../commerce/vending-catalogue.js';
 import {japaneseSign} from '../okinawa/signs.js';
 import {buildAvatar} from '../../avatars/build.js';
 import {createAvatarAnimator} from '../../avatars/animate.js';
@@ -19,7 +20,8 @@ import {PORT_HALL_FINISH,paintHallFloor,paintHallPlywood,finishPortHall} from '.
  * a departures board hangs over the counter, and the stairs go up to the Harbour
  * Office. Room contract: the door is on the +z wall, you enter facing -z (yaw 0).
  */
-export const PORT_HALL=Object.freeze({w:9,d:7,h:3.2});
+// open: the hall's hours, which its drinks machine's beer keeps (the terminal is open round the clock, town.js isOpen)
+export const PORT_HALL=Object.freeze({w:9,d:7,h:3.2,open:()=>true});
 const GOTHIC='"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP",system-ui,sans-serif';
 
 function canvasTexture(w,h,draw){
@@ -121,9 +123,12 @@ export function buildPortHall({room,reg,collider=()=>{},action,naha=()=>{},upsta
  const ganaha=typeof document!=='undefined'&&document.createElement?buildAvatar(recipeFor(GANAHA.name),{shadows:false,faceSize:256}):null,ganahaMotion=ganaha&&createAvatarAnimator(ganaha);
  if(ganaha)clerk.add(ganaha.root);
  const talk=spot([mid+.45,1.25,cz+.6],'Talk to Ms Ganaha',()=>action('ganaha',GANAHA.name,{buy:windows[1].go}));
- let time=0,minutes=720;
+ let time=0,minutes=720,vending=null;
  function tick(dt=0,now=720){
   time+=dt;minutes=now;finish.tick(time);const here=ganahaAtWindow(minutes);
+  // the drinks machine's beer: the hall is open round the clock (town.js isOpen), so it keeps the night's 販売中止 hours
+  // (vending-catalogue.js VENDING_BEER_HOURS: every alcohol machine's, indoors too)
+  const beer=beerOnSale(minutes,{open:PORT_HALL.open(minutes)});if(vending&&vending.userData.beerSelling!==beer)vending.userData.beerOnSale(beer);
   clerk.visible=here;talk.visible=here;if(closedPlate)closedPlate.visible=!here;
   // Before noon her window sells nothing: the oiler sells the morning tickets at the gangway (people/ferry-crew.js).
   const hit=windows[1].spot.userData.hit;
@@ -176,7 +181,7 @@ export function buildPortHall({room,reg,collider=()=>{},action,naha=()=>{},upsta
  collider(hw-.55,1.75,1,2.6,1.7);
  spot([hw-1.3,1.2,2.4],'Go up to the Harbour Office',upstairs);
  // indoors on the hall's floor, so no concrete pad; its collider is its own footprint (it faces -x: its depth along x)
- const vending=createVendingMachine({pad:false});vending.position.set(hw-.55,0,-2.9);vending.rotation.y=-Math.PI/2;group.add(vending);collider(hw-.55,-2.9,VENDING_MACHINE.size.depth+.04,VENDING_MACHINE.size.width+.04,1.9);
+ vending=createVendingMachine({pad:false});vending.position.set(hw-.55,0,-2.9);vending.rotation.y=-Math.PI/2;group.add(vending);vending.userData.beerOnSale(beerOnSale(minutes,{open:PORT_HALL.open(minutes)}));collider(hw-.55,-2.9,VENDING_MACHINE.size.depth+.04,VENDING_MACHINE.size.width+.04,1.9);
  spot([hw-1.2,1.1,-2.9],'Buy a drink from the vending machine',()=>action('vending'));
  // Sakura's ferry punch cards, on an honour shelf by the door: Thuan restocks it.
  box('Punch card shelf',[.6,.9,.3],[-hw+.5,.45,hd-.4],0x8a6a4a);

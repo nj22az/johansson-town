@@ -174,3 +174,9 @@ stance-release.test.mjs
 # The avatars' polish: glasses clear of the hand and at the mouth (a can as the Blender sip places it), portions, the camp
 # collar's size (about 20 s).
 avatar-polish.test.mjs
+# Beer in the drinks machines (the owner, 27 November 2026: "we need the vending machine to sell beer"): the line-up and
+# its reasons, the 23:00-05:00 stop (販売中止), nobody under twenty, the cans drawn in Python, old saved cans still drinking;
+# and the machine itself and its loop (a can bought, drunk, its empty returned).
+vending-beer.test.mjs
+vending.test.mjs
+vending-loop.test.mjs

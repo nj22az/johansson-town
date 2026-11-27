@@ -2,7 +2,7 @@ import * as THREE from '../../vendor/three.module.js';
 import {GLTFLoader} from '../../vendor/GLTFLoader.js';
 import {mergeGeometries} from '../../vendor/BufferGeometryUtils.js';
 import {assetURL} from '../assets.js';
-import {VENDING_AD,VENDING_PRODUCTS} from '../commerce/vending-catalogue.js';
+import {VENDING_AD,VENDING_PRODUCTS,ALL_VENDING,VENDING_BEER_HOURS} from '../commerce/vending-catalogue.js';
 import {paintJCoffeeLabel} from './halloween-props.js';
 
 let template,pending;
@@ -62,12 +62,14 @@ export const VENDING_MACHINE=Object.freeze({
   why:'Johansson Vending builds the island’s drinks machines at its Urasoe works and sells them to the bottlers; Minato Drinks, the island’s bottler, owns and fills this one and puts its own name on the light panel.'}),
  // how many cans one column holds, by the can it is set up for (a short coffee can stacks deeper than a long one)
  columnCapacity:Object.freeze({190:36,350:25,500:18}),
- operator:Object.freeze({name:VENDING_AD.brand,why:'Minato Drinks owns the machines, fills them from its van every morning and keeps the takings; Sakura gives the wall and the power and takes a share.'}),
+ operator:Object.freeze({name:VENDING_AD.brand,why:'Minato Drinks owns the machines, fills them from its van every morning and keeps the soft drinks’ takings; Sakura gives the wall and the power and takes a share. The beer in them is Sakura’s, under its liquor licence: the van loads it at Sakura Trading’s depot in the Quay Warehouse on the same round, and its takings are Sakura’s (vending-catalogue.js VENDING_BEER_STOCK).'}),
  size:Object.freeze({width:1.03,height:1.83,depth:.74,door:.21,pad:.04,padFront:.12,padSide:.07}),
- // the window: two rows of eight columns, each band of glass with its price plates inside and the buttons on the rail below
- bands:Object.freeze([Object.freeze({row:0,bottom:1.37,top:1.585,rail:1.305}),Object.freeze({row:1,bottom:1.09,top:1.305,rail:1.025})]),
+ // the window: two rows of eight columns, each band of glass with its price plates inside and the buttons on the rail below;
+ // the top row's band is the taller, for the 500 ml long can (16.8 cm on a 3.4 cm lip, with room above it), the lit
+ // header moved up the cabinet to make room (27 November 2026)
+ bands:Object.freeze([Object.freeze({row:0,bottom:1.37,top:1.60,rail:1.305}),Object.freeze({row:1,bottom:1.09,top:1.305,rail:1.025})]),
  windowWidth:.89,
- header:Object.freeze({bottom:1.61,top:1.795,width:.9}),
+ header:Object.freeze({bottom:1.625,top:1.81,width:.9}),
  pocket:Object.freeze({x0:-.43,x1:.19,y0:.16,y1:.36,depth:.17,why:'The take-out pocket (取出口): a can drops down the chute onto its floor, behind a hinged flap of smoked plastic that you push in to reach it.'}),
  money:Object.freeze({x0:.225,x1:.455,y0:.43,y1:.97}),
  faceTop:1.005,
@@ -84,18 +86,19 @@ export const VENDING_MACHINE=Object.freeze({
 
 /**
  * What stands in the window, column by column (row 0 the top row): every column is a product of the catalogue
- * (commerce/vending-catalogue.js) in the can that column is set up for. The top row, at eye height, is what people
- * choose by sight: Okinawa's everyday sanpin tea, green tea, the island's shikuwasa soda and cola (all cold, blue).
- * The bottom row, at hand height under the coin slot, is the port's coffee: J-Coffee in three columns because it is
- * what the quay crew press before and after a shift and what sells out first at night, Dockside's sweet milk coffee
- * in the short 190 g can, and hot corn soup at the right end, where a machine keeps its warm columns (red).
- * The first shikuwasa column is sold out by evening in a warm October (its 売切 lamp lit): the van comes at eight.
+ * (commerce/vending-catalogue.js, where each says who presses it, why, and why it stands where it does). Since 27 November
+ * 2026 (the owner: "we need the vending machine to sell beer") the top row, at a grown-up's eye, is the beer: Kame lager
+ * in three columns, the Jugon 500 ml long can in three (a long-can column holds 18 to a 350's 25) and Tako black in two;
+ * the beer stands above the children's drinks, never at their hand. The bottom row, at hand height under the coin slot,
+ * is J-Coffee for the quay crew (two columns: it sells out first at night, when the beer has stopped), the shikuwasa soda
+ * and the cola at a child's height, and hot corn soup at the right end, where a machine keeps its warm columns (red).
+ * The first shikuwasa column is sold out by evening in a warm season (its 売切 lamp lit): the van comes at eight.
  */
 export const VENDING_COLUMNS=Object.freeze([
- ['sanpin',350],['sanpin',350],['harbour-tea',350],['harbour-tea',350],['shikuwasa',350,true],['shikuwasa',350],['ryukyu-cola',350],['ryukyu-cola',350],
- ['j-coffee',350],['j-coffee',350],['j-coffee',350],['dockside-coffee',190],['dockside-coffee',190],['dockside-coffee',190],['corn-soup',190],['corn-soup',190],
+ ['kame-lager',350],['kame-lager',350],['kame-lager',350],['jugon-draft',500],['jugon-draft',500],['jugon-draft',500],['tako-black',350],['tako-black',350],
+ ['j-coffee',350],['j-coffee',350],['shikuwasa',350,true],['shikuwasa',350],['ryukyu-cola',350],['ryukyu-cola',350],['corn-soup',190],['corn-soup',190],
 ].map(([id,size,soldOut=false],i)=>{const product=VENDING_PRODUCTS.find(p=>p.id===id);if(!product)throw Error('vending column: no product '+id);
- return Object.freeze({row:Math.floor(i/8),col:i%8,id,size:product.size??size,soldOut,hot:!!product.hot,price:product.price});}));
+ return Object.freeze({row:Math.floor(i/8),col:i%8,id,size:product.size??size,soldOut,hot:!!product.hot,beer:!!product.alcohol,price:product.price});}));
 
 /** The machine's model: the maker's series, its number of columns, C for cans (JV-16C). */
 export const vendingModel=()=>`${VENDING_MACHINE.maker.series}-${VENDING_COLUMNS.length}C`;
@@ -133,12 +136,33 @@ export function vendingPoints({pad=true}={}){
 
 const S=1024;
 const LIT=Object.freeze({white:[0,0,128,128],header:[128,0,896,188],label:i=>[(i%4)*256,192+Math.floor(i/4)*128,256,128],
- price:i=>[(i%4)*128,656+Math.floor(i/4)*48,128,48],lampCold:[256,448,64,32],lampHot:[320,448,64,32],soldOn:[384,448,64,24],soldOff:[448,448,64,24],
+ price:i=>[(i%4)*128,656+Math.floor(i/4)*48,128,48],lampCold:[256,448,64,32],lampHot:[320,448,64,32],lampStop:[896,448,64,32],soldOn:[384,448,64,24],soldOff:[448,448,64,24],
  otsuri:[512,448,128,32],led:[640,448,128,32],bill:[768,448,128,32],backdrop:[0,512,512,144]});
-const PRINT=Object.freeze({poster:[0,0,640,432],sideA:[640,0,256,416],sideB:[0,440,256,416],money:[256,440,240,512],rating:[512,440,256,160],badge:[768,440,256,112],takeOut:[512,680,512,56]});
+const PRINT=Object.freeze({poster:[0,0,640,432],sideA:[640,0,256,416],sideB:[0,440,256,416],money:[256,440,240,512],rating:[512,440,256,160],badge:[768,440,256,112],takeOut:[512,680,512,56],notice:[512,744,512,96]});
+/** The side poster for the beer (the island's three, drawn with the cans by tools/draw-vending-cans.py). */
+export const VENDING_BEER_POSTER=Object.freeze({file:'graphics/vending/beer-poster.webp',width:512,height:832});
 const PRICES=[...new Set(VENDING_COLUMNS.map(c=>c.price+'|'+(c.hot?1:0)))].map(k=>{const [p,h]=k.split('|');return [+p,h==='1'];});
 const priceKey=col=>PRICES.findIndex(([p,h])=>p===col.price&&h===col.hot);
-const LABELLED=['sanpin','harbour-tea','shikuwasa','ryukyu-cola','j-coffee','dockside-coffee','corn-soup'];
+// the products in the window, each with its label cell in the lit atlas (eight at most)
+const LABELLED=[...new Set(VENDING_COLUMNS.map(c=>c.id))];
+
+/**
+ * The cans' prints drawn in Python (tools/draw-vending-cans.py), loaded once: `fn` is called with the image when it is
+ * in, at once if it already is. Until then (and without a page: the tests) the can wears the plain print paintCan draws.
+ */
+const ART=new Map();
+function withArt(file,fn){
+ if(typeof Image==='undefined'||typeof document==='undefined')return;
+ let a=ART.get(file);
+ if(!a){a={img:new Image(),ready:false,waiting:[]};ART.set(file,a);a.img.decoding='async';
+  a.img.onload=()=>{a.ready=true;for(const f of a.waiting.splice(0))f(a.img);};
+  a.img.onerror=()=>{a.failed=true;a.waiting.length=0;console.warn('Vending print unavailable: '+file);};
+  a.img.src=assetURL(file);}
+ if(a.ready)fn(a.img);else a.waiting.push(fn);
+}
+/** Resolves when every drawn print asked for so far is in (or failed): for the shot tools and the audit. */
+export const vendingArtLoaded=()=>Promise.all([...ART.values()].map(a=>a.ready||a.failed?null:new Promise(r=>{a.waiting.push(()=>r());a.img.addEventListener('error',()=>r(),{once:true});})));
+function drawArt(ctx,img,[x,y,w,h]){ctx.save();ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(img,x,y,w,h);ctx.restore();}
 
 function cell(ctx,[x,y,w,h],paint){ctx.save();ctx.translate(x,y);ctx.beginPath();ctx.rect(0,0,w,h);ctx.clip();paint(ctx,w,h);ctx.restore();}
 const ink=hex=>{const n=parseInt(hex.slice(1),16),l=(.299*(n>>16&255)+.587*(n>>8&255)+.114*(n&255))/255;return l>.62?'#2b2116':'#fff8e8';};
@@ -147,6 +171,11 @@ function round(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,
 /** A can's printed body, in a 512 × 256 design (once round the can; its front at the middle). */
 function paintCan(ctx,p,w,h){
  if(p.id==='j-coffee'){paintJCoffeeLabel(ctx,w,h);return;}
+ if(p.art){
+  // until its drawn print is in: the brand's colour and name, so the window is never empty
+  ctx.save();ctx.scale(w/512,h/256);ctx.fillStyle=p.color;ctx.fillRect(0,0,512,256);ctx.fillStyle='#f6e7c4';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.font=`900 64px ${BOLD}`;ctx.fillText(p.brand,256,112,210);ctx.font='bold 24px Arial,sans-serif';ctx.fillText(p.subtitle.toUpperCase(),256,172,200);ctx.restore();return;
+ }
  ctx.save();ctx.scale(w/512,h/256);
  ctx.fillStyle=p.color;ctx.fillRect(0,0,512,256);const fg=ink(p.color);
  ctx.fillStyle=fg;ctx.globalAlpha=.9;ctx.fillRect(0,14,512,8);ctx.fillRect(0,234,512,8);ctx.globalAlpha=1;
@@ -161,10 +190,13 @@ const canPrints=new Map();
 /** A can's print as a texture of its own, once round the can (commerce/bought-can.js: the can in his hand). */
 export function vendingCanTexture(id){
  if(canPrints.has(id))return canPrints.get(id);
- const product=VENDING_PRODUCTS.find(p=>p.id===id);if(!product||typeof document==='undefined')return null;
- const c=document.createElement('canvas');c.width=512;c.height=256;const ctx=c.getContext?.('2d');if(!ctx)return null;
- paintCan(ctx,product,512,256);
- const map=new THREE.CanvasTexture(c);map.colorSpace=THREE.SRGBColorSpace;map.anisotropy=4;canPrints.set(id,map);return map;
+ // (a retired can still in somebody's bag is printed as itself too)
+ const product=ALL_VENDING.find(p=>p.id===id);if(!product||typeof document==='undefined')return null;
+ const A=product.art,c=document.createElement('canvas');c.width=A?.width||512;c.height=A?.height||256;const ctx=c.getContext?.('2d');if(!ctx)return null;
+ paintCan(ctx,product,c.width,c.height);
+ const map=new THREE.CanvasTexture(c);map.colorSpace=THREE.SRGBColorSpace;map.anisotropy=4;canPrints.set(id,map);
+ if(A)withArt(A.file,img=>{drawArt(ctx,img,[0,0,c.width,c.height]);map.needsUpdate=true;});
+ return map;
 }
 function paintLit(ctx){
  cell(ctx,LIT.white,(c,w,h)=>{c.fillStyle='#fff';c.fillRect(0,0,w,h);});
@@ -178,7 +210,9 @@ function paintLit(ctx){
   c.fillStyle='#2a63c4';c.fillRect(0,h*.74,split,h*.26);c.fillStyle='#d6322a';c.fillRect(split,h*.74,w-split,h*.26);
   c.fillStyle='#ffffff';c.font=`bold 30px ${JP}`;c.fillText('つめた〜い',split/2,h*.875,split*.9);c.font=`bold 22px ${JP}`;c.fillText('あったか〜い',split+(w-split)/2,h*.875,(w-split)*.92);
  });
- LABELLED.forEach((id,i)=>cell(ctx,LIT.label(i),(c,w,h)=>paintCan(c,VENDING_PRODUCTS.find(p=>p.id===id),w,h)));
+ LABELLED.forEach((id,i)=>{const p=VENDING_PRODUCTS.find(q=>q.id===id);cell(ctx,LIT.label(i),(c,w,h)=>paintCan(c,p,w,h));
+  // the drawn print, squeezed into the cell: the dummy can's band stretches it back to its own proportions
+  if(p.art)withArt(p.art.file,img=>{drawArt(ctx,img,LIT.label(i));if(atlases?.lit)atlases.lit.needsUpdate=true;});});
  // a price plate for each price and temperature the window shows (blue strip cold, red strip hot)
  PRICES.forEach(([price,hot],i)=>cell(ctx,LIT.price(i),(c,w,h)=>{
   c.fillStyle='#fbfaf4';c.fillRect(0,0,w,h);c.fillStyle=hot?'#d6322a':'#2a63c4';c.fillRect(0,0,w,h*.22);
@@ -186,6 +220,9 @@ function paintLit(ctx){
  for(const [key,col,hi] of [['lampCold','#2f7cf0','#bfe0ff'],['lampHot','#ec3a2c','#ffd0c4']])cell(ctx,LIT[key],(c,w,h)=>{
   c.fillStyle='#e8eef2';c.fillRect(0,0,w,h);const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,hi);g.addColorStop(.5,col);g.addColorStop(1,col);
   c.fillStyle=g;round(c,3,3,w-6,h-6,6);c.fill();c.fillStyle='rgba(255,255,255,.75)';c.fillRect(10,6,w-20,3);});
+ // a beer button through the night (VENDING_BEER_HOURS): unlit, 販売中止 on it in the stop lamp's dull red
+ cell(ctx,LIT.lampStop,(c,w,h)=>{c.fillStyle='#e8eef2';c.fillRect(0,0,w,h);c.fillStyle='#4a4f55';round(c,3,3,w-6,h-6,6);c.fill();
+  c.fillStyle='#ff6a4a';c.textAlign='center';c.textBaseline='middle';c.font=`bold 15px ${JP}`;c.fillText('販売中止',w/2,h/2+1,w-12);});
  for(const [key,bg,fg] of [['soldOn','#ff3b2a','#fff6d8'],['soldOff','#3b2422','#6e4e48']])cell(ctx,LIT[key],(c,w,h)=>{
   c.fillStyle=bg;c.fillRect(0,0,w,h);c.fillStyle=fg;c.textAlign='center';c.textBaseline='middle';c.font=`bold 18px ${JP}`;c.fillText('売切',w/2,h/2+1,w*.9);});
  cell(ctx,LIT.otsuri,(c,w,h)=>{c.fillStyle='#fffaf0';c.fillRect(0,0,w,h);c.fillStyle='#c4262e';c.textAlign='center';c.textBaseline='middle';c.font=`bold 24px ${JP}`;c.fillText('おつり',w/2,h/2+1);});
@@ -209,13 +246,16 @@ function paintPrint(ctx){
   c.fillStyle='#d9a441';c.font=`bold 44px ${JP}`;c.fillText('港の一本。',272,262,340);
   c.fillStyle='#f3e6c4';c.font='italic bold 28px Arial,sans-serif';c.fillText('The port’s own can',274,302,330);
   c.fillStyle='#17130f';c.textAlign='center';c.font=`900 26px ${BOLD}`;c.fillText('つめた〜い  ¥'+p.price,w/2,h-9);});
- // the sides: the island's tea on one, its soda on the other, for people coming along the pavement either way
- cell(ctx,PRINT.sideA,(c,w,h)=>{const p=P('sanpin');
-  c.fillStyle='#f4ead0';c.fillRect(0,0,w,h);c.fillStyle=p.color;c.fillRect(0,0,w,h*.62);
-  c.fillStyle='rgba(255,255,255,.85)';for(const [x,y,r] of [[50,60,18],[200,40,14],[180,150,22],[60,190,15],[130,230,12]]){for(let k=0;k<5;k++){const a=k*Math.PI*2/5;c.beginPath();c.ellipse(x+Math.cos(a)*r*.7,y+Math.sin(a)*r*.7,r*.5,r*.32,a,0,7);c.fill();}}
-  c.fillStyle='#fffaf0';c.textAlign='center';c.textBaseline='middle';c.font=`bold 64px ${JP}`;c.fillText('さんぴん茶',w/2,h*.47,w*.92);
-  c.fillStyle='#4a3a18';c.font=`900 40px ${BOLD}`;c.fillText(p.brand,w/2,h*.7,w*.9);c.font='bold 24px Arial,sans-serif';c.fillText('Okinawa’s jasmine tea',w/2,h*.79,w*.9);
-  c.fillStyle='#2a63c4';c.fillRect(0,h*.86,w,h*.14);c.fillStyle='#fff';c.font=`bold 30px ${JP}`;c.fillText('つめた〜い ¥'+p.price,w/2,h*.93,w*.9);});
+ // the sides: the island's beer on one (drawn in Python with the cans; this until it is in), its cola on the other, for
+ // people coming along the pavement either way
+ cell(ctx,PRINT.sideA,(c,w,h)=>{const beers=VENDING_PRODUCTS.filter(p=>p.alcohol);
+  c.fillStyle='#f4ead0';c.fillRect(0,0,w,h);c.fillStyle='#1c2b55';c.fillRect(0,0,w,h*.62);
+  beers.forEach((p,i)=>{const x=w*(i+1)/(beers.length+1),cw=46,ch=p.size===500?118:86;c.fillStyle=p.color;round(c,x-cw/2,h*.56-ch,cw,ch,8);c.fill();
+   c.fillStyle='#f6e7c4';c.textAlign='center';c.textBaseline='middle';c.font=`900 15px ${BOLD}`;c.fillText(p.brand,x,h*.56-ch/2,cw-4);});
+  c.fillStyle='#fffaf0';c.textAlign='center';c.textBaseline='middle';c.font=`bold 58px ${JP}`;c.fillText('ビール',w/2,h*.16,w*.9);
+  c.fillStyle='#4a3a18';c.font=`900 30px ${BOLD}`;c.fillText('KAME · JUGON · TAKO',w/2,h*.7,w*.92);c.font=`bold 20px ${JP}`;c.fillText('販売時間 午前5時〜午後11時',w/2,h*.79,w*.92);
+  c.fillStyle='#2a63c4';c.fillRect(0,h*.86,w,h*.14);c.fillStyle='#fff';c.font=`bold 26px ${JP}`;c.fillText('つめた〜い ¥220から',w/2,h*.93,w*.9);});
+ withArt(VENDING_BEER_POSTER.file,img=>{drawArt(ctx,img,PRINT.sideA);if(atlases?.print)atlases.print.needsUpdate=true;});
  cell(ctx,PRINT.sideB,(c,w,h)=>{const p=P('ryukyu-cola');
   c.fillStyle=p.color;c.fillRect(0,0,w,h);c.fillStyle='#fff8e8';c.beginPath();c.moveTo(0,h*.55);c.bezierCurveTo(w*.3,h*.45,w*.6,h*.68,w,h*.56);c.lineTo(w,h*.64);c.bezierCurveTo(w*.6,h*.76,w*.3,h*.53,0,h*.63);c.fill();
   c.fillStyle='rgba(255,255,255,.55)';for(const [x,y,r] of [[40,70,9],[70,120,6],[200,60,11],[180,140,7],[120,40,5],[220,200,8],[30,220,6]]){c.beginPath();c.arc(x,y,r,0,7);c.fill();}
@@ -244,6 +284,13 @@ function paintPrint(ctx){
    if(tw>w-22){size=Math.max(6,Math.floor(size*(w-22)/tw));c.font=weight+size+'px Arial,sans-serif';}c.fillText(line,w/2,8+rowH*(i+.5));});});
  cell(ctx,PRINT.takeOut,(c,w,h)=>{c.fillStyle='#f2ecdc';c.fillRect(0,0,w,h);c.fillStyle='#3a3530';c.textAlign='center';c.textBaseline='middle';c.font=`bold 34px ${JP}`;c.fillText('取出口',w*.36,h/2+2);
   c.font='bold 20px Arial,sans-serif';c.fillText('▼ TAKE OUT',w*.66,h/2+2);});
+ // the sticker every alcohol machine carries since 1989 (VENDING_BEER_HOURS): that it sells alcohol, the warning to
+ // minors, its stop hours and who is answerable for it (the licensed seller, VENDING_BEER_STOCK)
+ cell(ctx,PRINT.notice,(c,w,h)=>{const H=VENDING_BEER_HOURS,hm=m=>`${Math.floor(m/60)}時`;
+  c.fillStyle='#fffdf6';c.fillRect(0,0,w,h);c.strokeStyle='#c4262e';c.lineWidth=4;c.strokeRect(2,2,w-4,h-4);
+  c.fillStyle='#c4262e';c.fillRect(0,0,h,h);c.fillStyle='#fff';c.textAlign='center';c.textBaseline='middle';c.font=`bold 56px ${JP}`;c.fillText('酒',h/2,h/2+3);
+  c.fillStyle='#c4262e';c.textAlign='left';c.font=`bold 25px ${JP}`;c.fillText('未成年者の飲酒は法律で禁止されています',h+14,h*.3,w-h-24);
+  c.fillStyle='#2b2f33';c.font=`bold 21px ${JP}`;c.fillText(`販売停止時間 午後${hm(H.stop-720)}〜午前${hm(H.start)}　販売管理者 さくら商店`,h+14,h*.72,w-h-24);});
 }
 let atlases=null;
 function paintAtlases(){
@@ -319,6 +366,8 @@ function machineGeometry({pad=true}={}){
  const key=pad?'pad':'bare';if(geometryCache.has(key))return geometryCache.get(key);
  const M=VENDING_MACHINE,{width:W,height:H,depth:D,door:DOOR}=M.size,F=D/2,Y=pad?M.size.pad:0,WW=M.windowWidth;
  const body=bucket(),print=bucket({uv:true}),lit=bucket({uv:true}),clear=bucket({alpha:true}),flapB=bucket({alpha:true});let hingeAt=[0,0,0];
+ // the beer's button lamps, twice over (lit, and dark with 販売中止 for the night): a machine wears one or the other
+ const beerOn=bucket({uv:true}),beerOff=bucket({uv:true});
  const RED=0xc4262e,CREAM=0xf2ecdc,DARK=0x2b2f33,STEEL=0xbfc4c7,CHROME=0xdfe3e5,KICK=0x3a3d40,GREYP=0xe4e1d8;
  const face=F+.008;   // the cream face panel's front, on the door
  // ---- the concrete pad it stands on, poured flush with its back
@@ -355,7 +404,8 @@ function machineGeometry({pad=true}={}){
    // on the rail below: the push button with its lamp, and the sold-out lamp above it
    const ry=Y+b.rail;
    body.add(boxGeo(.066,.032,.012),{c:0xe8ecee,at:[x,ry+.024,face+.006],name:'Push button'});
-   lit.add(planeGeo(.058,.025),{cellRect:col.hot?LIT.lampHot:LIT.lampCold,at:[x,ry+.024,face+.0125]});
+   if(col.beer)for(const [b,cellRect] of [[beerOn,LIT.lampCold],[beerOff,LIT.lampStop]])b.add(planeGeo(.058,.025),{cellRect,at:[x,ry+.024,face+.0125],name:'Beer button lamp'});
+   else lit.add(planeGeo(.058,.025),{cellRect:col.hot?LIT.lampHot:LIT.lampCold,at:[x,ry+.024,face+.0125]});
    lit.add(planeGeo(.034,.012),{cellRect:col.soldOut?LIT.soldOn:LIT.soldOff,at:[x,ry+.051,face+.002],name:'Sold-out lamp'});
   }
   body.add(boxGeo(WW+.01,.065,.008),{c:GREYP,at:[0,Y+b.rail+.0325,F+.004],name:'Button rail'});
@@ -372,6 +422,8 @@ function machineGeometry({pad=true}={}){
  print.add(planeGeo(.62,.42),{cellRect:PRINT.poster,at:[-.13,Y+.71,face+.006],name:'Vending poster'});
  body.add(boxGeo(.632,.432,.006),{c:DARK,at:[-.13,Y+.71,face+.002]});
  print.add(planeGeo(.62,.034),{cellRect:PRINT.takeOut,at:[(P.x0+P.x1)/2,Y+.392,face+.001],name:'Take-out label'});
+ // the alcohol sticker on the cream face, between the poster's frame and the buttons of the bottom row
+ if(VENDING_COLUMNS.some(c=>c.beer))print.add(planeGeo(.53,.05),{cellRect:PRINT.notice,at:[-.13,Y+.966,face+.001],name:'Alcohol sticker'});
  print.add(planeGeo(.17,.074),{cellRect:PRINT.badge,at:[.34,Y+.2,face+.004],name:'Maker’s plate'});
  body.add(boxGeo(.176,.08,.004),{c:0x8a9094,at:[.34,Y+.2,face+.001]});
  // the money panel: stainless, with its slots, lit labels, lever housing and change cup
@@ -421,8 +473,8 @@ function machineGeometry({pad=true}={}){
   glow.setAttribute('position',new THREE.BufferAttribute(new Float32Array(pos),3));glow.setAttribute('color',new THREE.BufferAttribute(new Float32Array(col),4));
   glow.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(pos.length).map((_,i)=>i%3===1?1:0),3));
   glow.translate(0,.004,F+(pad?M.size.padFront:0)+.01);glow.computeBoundingSphere();}
- const names=[...body.names,...print.names,...lit.names,...clear.names,...flapB.names];
- const out={body:body.merge(),print:print.merge(),lit:lit.merge(),clear:clear.merge(),flap:flapB.merge(),hingeAt,lever,glow,names,Y,samples:Object.freeze(samples)};
+ const names=[...body.names,...print.names,...lit.names,...clear.names,...flapB.names,...beerOn.names];
+ const out={body:body.merge(),print:print.merge(),lit:lit.merge(),clear:clear.merge(),flap:flapB.merge(),beerOn:beerOn.merge(),beerOff:beerOff.merge(),hingeAt,lever,glow,names,Y,samples:Object.freeze(samples)};
  geometryCache.set(key,out);return out;
 }
 
@@ -444,6 +496,8 @@ function sharedMaterials(){
  * story dims them all at once (halloween.js); userData.night(k) lights its pool on the pavement after dark (0 … 1);
  * userData.setLever(k) pushes the coin-return lever down (0 … 1); userData.setFlap(k) swings the take-out flap (+ in, - out). userData.takeOut is where a dropped can lies (its
  * axis across the machine), userData.cordExit where its power cord leaves the back, userData.top its height.
+ * userData.beerOnSale(on) lights the beer's buttons or darkens them to 販売中止 (VENDING_BEER_HOURS: the street calls it
+ * with commerce/vending-catalogue.js beerOnSale(minutes), the Port Terminal with its hall's hours too).
  */
 export function createVendingMachine({shadows=false,pad=true}={}){
  const M=VENDING_MACHINE,G=machineGeometry({pad}),mats=sharedMaterials(),{depth:D}=M.size,F=D/2;
@@ -452,7 +506,10 @@ export function createVendingMachine({shadows=false,pad=true}={}){
  add(G.body,mats.body,'Vending machine body',true);
  add(G.print,mats.print,'Vending printed panels');
  // its own unlit materials (a story dims one machine, not every machine in town)
- add(G.lit,new THREE.MeshBasicMaterial({map:mats.lit,vertexColors:true,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-2}),'Vending lit panels');
+ const litMat=new THREE.MeshBasicMaterial({map:mats.lit,vertexColors:true,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-2});
+ add(G.lit,litMat,'Vending lit panels');
+ // the beer's buttons: the same lit panel (a story dims them with it), swapped whole between lit and 販売中止
+ const beer=add(G.beerOn,litMat,'Beer buttons');
  const clearMat=new THREE.MeshBasicMaterial({vertexColors:true,transparent:true,depthWrite:false});
  add(G.clear,clearMat,'Vending glass');
  const flap=add(G.flap,clearMat,'Take-out flap');flap.position.set(...G.hingeAt);
@@ -467,6 +524,7 @@ export function createVendingMachine({shadows=false,pad=true}={}){
  group.userData.setFlap=k=>{flap.rotation.x=THREE.MathUtils.clamp(k,-1,1)*M.flap.swing;};
  group.userData.setLever=k=>{lever.rotation.x=THREE.MathUtils.clamp(k,0,1)*M.lever.travel;};
  group.userData.night=k=>{if(!pool)return;poolMat.opacity=THREE.MathUtils.clamp(k,0,1);pool.visible=poolMat.opacity>.02;};
+ group.userData.beerOnSale=on=>{if(beer)beer.geometry=on?G.beerOn:G.beerOff;group.userData.beerSelling=!!on;};group.userData.beerSelling=true;
  const at=vendingPoints({pad});
  group.userData.takeOut=at.takeOut;group.userData.cordExit=at.cordExit;group.userData.top=at.top;
  return group;

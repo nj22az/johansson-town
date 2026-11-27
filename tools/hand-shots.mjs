@@ -8,7 +8,8 @@
 //   node tools/hand-shots.mjs --hold draft,can,bottle [--name Johansson] [out.png]     a drink in the hand, held and at the lips
 //   node tools/hand-shots.mjs --drive car,"kei truck" [--name Johansson] [out.png]      both hands on the steering wheel
 //   node tools/hand-shots.mjs --ride 0,.25 [--name Thuan] [out.png]                     on a bicycle, at those turns of the crank
-//   node tools/hand-shots.mjs --can 0,1,3.45 [--name Johansson] [--seated] [out.png]     a bought can opened and drunk (drink-can.js), at those seconds:
+//   node tools/hand-shots.mjs --can 0,1,3.45 [--name Johansson] [--seated] [--bought "Kame lager"] [out.png]     a bought can opened and drunk (drink-can.js), at those seconds
+//       (--bought: the can as the machine sells it, printed and sized as itself, commerce/bought-can.js; else the izakaya's can):
 //       front, three-quarter, side, a close view, and from where the game's own third-person camera stands (game.js
 //       placeThirdPerson: behind him and over his right shoulder, outdoors 3.2 m back and indoors 2.2 m)
 //   node tools/hand-shots.mjs --moves Walk,Talk,Nod,Wave,Eat,SitEat [--name Johansson] [out-dir]
@@ -23,22 +24,22 @@ import {resolve,dirname,extname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),site=resolve(root,'..');
 const args=process.argv.slice(2),flag=k=>{const i=args.indexOf(k);return i>=0?args[i+1]:null;};
-const MOVES=flag('--moves')||'',CAN=flag('--can')||'',SEATED=args.includes('--seated'),RIDE=flag('--ride')||'',DRIVE=flag('--drive')||'',HOLD=flag('--hold')||'',OUTFIT=flag('--outfit')||'clothes',NAME=flag('--name')||'Thao',PAIRS=flag('--pairs')||'',POSES=flag('--poses')||'',SIT=flag('--sit')||'',WHO=flag('--who')||'Thuan,Nils Johansson',GRIP=flag('--grip'),SHAPE=flag('--shape')||'close';
+const BOUGHT=flag('--bought')||'',MOVES=flag('--moves')||'',CAN=flag('--can')||'',SEATED=args.includes('--seated'),RIDE=flag('--ride')||'',DRIVE=flag('--drive')||'',HOLD=flag('--hold')||'',OUTFIT=flag('--outfit')||'clothes',NAME=flag('--name')||'Thao',PAIRS=flag('--pairs')||'',POSES=flag('--poses')||'',SIT=flag('--sit')||'',WHO=flag('--who')||'Thuan,Nils Johansson',GRIP=flag('--grip'),SHAPE=flag('--shape')||'close';
 const what=MOVES?'moves':PAIRS?'pairs':POSES?'poses':SIT?'sit':HOLD?'hold':DRIVE?'drive':RIDE?'ride':CAN?'can':'rest';
-const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--pairs','--poses','--sit','--who','--grip','--outfit','--hold','--drive','--ride','--shape','--can','--moves'].includes(args[i-1]))||resolve(root,MOVES?'output/hands-moves':`output/hands-${what}.png`));
+const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--pairs','--poses','--sit','--who','--grip','--outfit','--hold','--drive','--ride','--shape','--can','--moves','--bought'].includes(args[i-1]))||resolve(root,MOVES?'output/hands-moves':`output/hands-${what}.png`));
 await mkdir(MOVES?out:dirname(out),{recursive:true});
 const TYPES={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.glb':'model/gltf-binary'};
 // (the Town is this checkout, at /johansson-town/, wherever it is: a worktree's parent is not the Office site)
 const server=createServer(async(req,res)=>{try{const path=decodeURIComponent(new URL(req.url,'http://x').pathname),town=path.startsWith('/johansson-town/'),file=town?resolve(root,'.'+path.slice('/johansson-town'.length)):resolve(site,'.'+path);if(!file.startsWith(town?root:site))throw Error('outside');
- if(path==='/blank')return res.writeHead(200,{'content-type':'text/html'}).end('<!doctype html><title>hands</title>');
+ if(path==='/blank')return res.writeHead(200,{'content-type':'text/html'}).end('<!doctype html><base href="/johansson-town/"><title>hands</title>');
  const body=await readFile(file);res.writeHead(200,{'content-type':TYPES[extname(file)]||'application/octet-stream','cache-control':'no-store'});res.end(body);}catch{res.writeHead(404);res.end();}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
 const browser=await chromium.launch({executablePath:process.env.TOWN_CHROMIUM_PATH||'/opt/pw-browsers/chromium',args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--no-sandbox']});
 const errors=[];
 try{
- const page=await browser.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+ const page=await browser.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text()+(m.location()?.url?' ('+m.location().url+')':''));});
  await page.goto(`http://127.0.0.1:${server.address().port}/blank`);
- const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold,drive,ride,shape,can,seated,moves])=>{
+ const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold,drive,ride,shape,can,seated,moves,bought])=>{
   const base='/johansson-town/',T=await import(base+'vendor/three.module.js'),{buildAvatar}=await import(base+'src/avatars/build.js'),{recipeFor}=await import(base+'src/avatars/cast.js');
   const {createAvatarAnimator,GESTURES,STILL_AT,playPair}=await import(base+'src/avatars/animate.js'),{createInkPipeline}=await import(base+'src/render/ink-pipeline.js');
   const S=360,renderer=new T.WebGLRenderer({preserveDrawingBuffer:true,antialias:true});renderer.setSize(S,S);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.NoToneMapping;
@@ -125,7 +126,9 @@ try{
    // a bought can, sealed, opened and drunk as animated in Blender (actors.js drinkBought: the DrinkCan move)
    const {createDrinkProp}=await import(base+'src/people/izakaya-beer.js'),{CAN_PARTS}=await import(base+'src/avatars/drink-can.js');
    for(const at of can.split(',').map(Number)){
-    const sc=scene(),P=body(name,sc),prop=createDrinkProp('can',{held:true,sealed:true});P.a.bones.handR.add(prop);
+    let prop;if(bought){const {createBoughtCan}=await import(base+'src/commerce/bought-can.js'),{vendingArtLoaded}=await import(base+'src/world/vending.js');prop=createBoughtCan(bought);await vendingArtLoaded();}
+    else prop=createDrinkProp('can',{held:true,sealed:true});
+    const sc=scene(),P=body(name,sc);P.a.bones.handR.add(prop);
     const state={heldProp:prop,seated,seatHeight:.45};
     if(seated){const seat=new T.Mesh(new T.BoxGeometry(.5,.04,.42),new T.MeshStandardMaterial({color:0x8a6a4a}));seat.position.set(0,.43,-.06);sc.add(seat);}
     P.step(30,state);P.anim.play('DrinkCan');P.step(Math.round(at*60),state);
@@ -135,6 +138,8 @@ try{
     // (close: the can's top and the hands opening it; the mouth and the can at it, from his left, the side the arm is not)
     const opening=at<CAN_PARTS.drink[0],near=opening?prop.localToWorld(new T.Vector3(0,.1,0)):P.a.bones.head.localToWorld(new T.Vector3(0,(m.headCentre-m.headY)*.35,m.Rh*.8));
     shoot(sc,near,y+(opening?-.5:.9),opening?.35:.05,m.hand*(opening?6:11),`${at.toFixed(2)} s · close`);
+    // (a bought can: its print close up in his hand, from in front of it, and from the side away from the palm)
+    if(bought){const mid=prop.localToWorld(new T.Vector3(0,prop.userData.rimHeight*.5,0));for(const [turn,label] of [[0,'front'],[-.9,'his right']])shoot(sc,mid,y+turn,.12,m.hand*7,`${at.toFixed(2)} s · the can, ${label}`);}
     // (and from the game's camera (game.js placeThirdPerson): its pivot above his head and to his right (actors.js lens: eye,
     // side), the lens `back` metres behind it along his facing, tipped down by the game's pitch, -0.05; looking at his chest,
     // which turns the lens, not where it stands: what his body hides from it is the same)
@@ -185,7 +190,7 @@ try{
   const cols=Math.min(6,tiles.length),sheet=document.createElement('canvas');sheet.width=S*cols;sheet.height=S*Math.ceil(tiles.length/cols);const ctx=sheet.getContext('2d');
   tiles.forEach(({c,label},i)=>{ctx.drawImage(c,(i%cols)*S,Math.floor(i/cols)*S);ctx.fillStyle='#253b3d';ctx.font='15px sans-serif';ctx.fillText(label,(i%cols)*S+8,Math.floor(i/cols)*S+20);});
   return sheet.toDataURL('image/png');
- },[NAME,PAIRS,POSES,SIT,WHO,GRIP,OUTFIT,HOLD,DRIVE,RIDE,SHAPE,CAN,SEATED,MOVES]);
+ },[NAME,PAIRS,POSES,SIT,WHO,GRIP,OUTFIT,HOLD,DRIVE,RIDE,SHAPE,CAN,SEATED,MOVES,BOUGHT]);
  if(data.files)for(const [file,url] of data.files){const path=resolve(out,file);await writeFile(path,Buffer.from(url.split(',')[1],'base64'));console.log('wrote',path);}
  else{await writeFile(out,Buffer.from(data.split(',')[1],'base64'));console.log('wrote',out);}
 }catch(e){errors.push(String(e?.stack||e));}

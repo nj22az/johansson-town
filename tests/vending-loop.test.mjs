@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {VENDING_PRODUCTS,DRINKABLE,emptyFor,EMPTY_CAN,CAN_REFUND} from '../src/commerce/vending-catalogue.js';
+import {VENDING_PRODUCTS,RETIRED_VENDING,DRINKABLE,emptyFor,EMPTY_CAN,CAN_REFUND} from '../src/commerce/vending-catalogue.js';
 import {SAKURA_SPECIALS,SPECIAL_BY_NAME,specialsOpen} from '../src/commerce/sakura-specials.js';
 import {installDOM} from './fixtures.mjs';
 import {createVendingMachine} from '../src/world/vending.js';
@@ -8,10 +8,10 @@ import {createVendingMachine} from '../src/world/vending.js';
 test('the machine sells cold and hot cans, and every can is drinkable and leaves an empty',()=>{
  assert.ok(VENDING_PRODUCTS.length>=6);
  assert.ok(VENDING_PRODUCTS.some(p=>p.hot)&&VENDING_PRODUCTS.some(p=>!p.hot));
- // Saved games keep their first two drinks.
- for(const name of ['Green tea','Canned coffee'])assert.ok(VENDING_PRODUCTS.some(p=>p.inventoryName===name));
+ // Saved games keep their first two drinks: no longer sold since the beer (27 November 2026), still drunk from the bag.
+ for(const name of ['Green tea','Canned coffee'])assert.ok(RETIRED_VENDING.some(p=>p.inventoryName===name)&&DRINKABLE.has(name)&&emptyFor(name)===EMPTY_CAN);
  for(const p of VENDING_PRODUCTS){assert.ok(DRINKABLE.has(p.inventoryName));assert.equal(emptyFor(p.inventoryName),EMPTY_CAN);assert.ok(p.price>0);}
- assert.ok(CAN_REFUND>0&&CAN_REFUND<VENDING_PRODUCTS[0].price);
+ assert.ok(CAN_REFUND>0&&VENDING_PRODUCTS.every(p=>CAN_REFUND<p.price));
 });
 
 test('the specials board lists food and drinks with prices, served in shop hours',()=>{

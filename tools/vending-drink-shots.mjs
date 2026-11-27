@@ -4,7 +4,9 @@
 // gives it), then drunk as R drinks it (sip), as animated in Blender (avatars/drink-can.js): the tab pulled off and
 // pocketed, then the drink; shot at each moment from his right, his left, his front or close on the can (a few: each is
 // about a minute in software rendering), with where the can is against his hand and his lips in the report.
-//   node tools/vending-drink-shots.mjs [--source] [--drinks "Umineko lager,Canned coffee"] [out-dir]
+//   node tools/vending-drink-shots.mjs [--source] [--drinks "Umineko lager,Canned coffee"] [--machine] [out-dir]
+// --machine first photographs Sakura's drinks machine from the pavement by day, at nine in the evening and at half past
+// eleven at night (the beer's buttons dark, 販売中止: vending-catalogue.js VENDING_BEER_HOURS), close on its window too.
 // The built runtime by default (npm run build:runtime first); --source serves the source modules. Run it alone.
 import {chromium} from 'playwright';
 import {createServer} from 'node:http';
@@ -13,7 +15,7 @@ import {resolve,dirname,extname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),site=resolve(root,'..');
 const args=process.argv.slice(2),flag=k=>{const i=args.indexOf(k);return i>=0?args[i+1]:null;};
-const SOURCE=args.includes('--source'),DRINKS=(flag('--drinks')||'Umineko lager').split(',');
+const SOURCE=args.includes('--source'),MACHINE=args.includes('--machine'),DRINKS=(flag('--drinks')||'Umineko lager').split(',').filter(Boolean);
 const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--drinks'].includes(args[i-1]))||resolve(root,'output/vending-drink'));await mkdir(out,{recursive:true});
 const TYPES={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.glb':'model/gltf-binary','.svg':'image/svg+xml','.hdr':'application/octet-stream','.wasm':'application/wasm'};
 const sourcePage=html=>html.replace(/<link rel="modulepreload" data-town-runtime[^>]*>\n?/g,'')
@@ -21,8 +23,10 @@ const sourcePage=html=>html.replace(/<link rel="modulepreload" data-town-runtime
  .replace(/from ['"]\.\/runtime\/audio-[^'"]+['"]/g,"from './src/audio/town-audio.js?snappy=1'")
  .replace(/window\.JOHANSSON_FEED_MODULE="[^"]+"/,'window.JOHANSSON_FEED_MODULE="./src/feed/mount.js"')
  .replace(/window\.JOHANSSON_PORTRAIT_MODULE="[^"]+"/,'window.JOHANSSON_PORTRAIT_MODULE="./src/avatars/guide-portraits.js"');
-const server=createServer(async(req,res)=>{try{const path=decodeURIComponent(new URL(req.url,'http://x').pathname);
- const file=resolve(site,'.'+(path.endsWith('/')?path+'index.html':path));if(!file.startsWith(site))throw Error('outside');
+// (the Town is this checkout, at /johansson-town/, wherever it is: a worktree's parent is not the Office site, and its
+// johansson-town/ may be another checkout)
+const server=createServer(async(req,res)=>{try{const path=decodeURIComponent(new URL(req.url,'http://x').pathname),town=path.startsWith('/johansson-town/');
+ const rel=(town?path.slice('/johansson-town'.length):path),file=resolve(town?root:site,'.'+(rel.endsWith('/')?rel+'index.html':rel));if(!file.startsWith(town?root:site))throw Error('outside');
  let body=await readFile(file);if(SOURCE&&file===resolve(root,'index.html'))body=sourcePage(body.toString());
  res.writeHead(200,{'content-type':TYPES[extname(file)]||'application/octet-stream','cache-control':'no-store'});res.end(body);}catch{res.writeHead(404);res.end();}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
@@ -60,6 +64,19 @@ try{
  const shoot=async(label,cam)=>{if(!cam)return;await page.evaluate(c=>{const a=window.__JOHANSSON_AUDIT__;a.camera=c;a.render();},cam);
   await page.waitForTimeout(200);const png=await page.locator('#game').screenshot();tiles.push({label,png});};
  await page.evaluate(()=>window.__JOHANSSON_AUDIT__.hud.photo(true));
+ if(MACHINE){
+  // Sakura's machine (okinawa/old-town.js SAKURA_VENDING), its front toward +z turned by ry; him out of the way behind it
+  const at=await page.evaluate(async()=>{const {SAKURA_VENDING:V}=await import(new URL('src/world/okinawa/old-town.js',document.baseURI).href);return {...V};});
+  const fx=Math.sin(at.ry),fz=Math.cos(at.ry),P=(d,h,side=0)=>[at.x+fx*d-fz*side,(at.y||0)+h,at.z+fz*d+fx*side];
+  await page.evaluate(([x,z])=>window.__JOHANSSON_AUDIT__.teleport(x,z,0),[at.x-fx*3,at.z-fz*3]);
+  for(const [time,label] of [[12*60,'noon'],[21*60,'21:00, the beer lit'],[23*60+30,'23:30, 販売中止']]){
+   await page.evaluate(t=>window.__JOHANSSON_AUDIT__.setTime(t),time);await stepGame(50);
+   await shoot(`machine · ${label} · the pavement`,{pos:P(2.6,1.5,.5),at:P(0,1.15)});
+   await shoot(`machine · ${label} · the window`,{pos:P(.95,1.42,.12),at:P(0,1.28)});
+   step('machine at '+label);
+  }
+  await page.evaluate(()=>{window.__JOHANSSON_AUDIT__.camera=null;window.__JOHANSSON_AUDIT__.setTime(12*60+20);});
+ }
  for(const name of DRINKS){
   await page.evaluate(()=>{window.__JOHANSSON_AUDIT__.camera=null;});
   await page.evaluate(n=>window.__JOHANSSON_AUDIT__.buy(n),name);await stepGame(800);

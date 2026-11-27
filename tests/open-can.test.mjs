@@ -7,7 +7,8 @@ import {recipeFor} from '../src/avatars/cast.js';
 import {createBoughtCan} from '../src/commerce/bought-can.js';
 import {DRINK_CAN,CAN_PARTS,pocketMouth} from '../src/avatars/drink-can.js';
 import {HAND,handPoint} from '../src/avatars/build.js';
-import {VENDING_PRODUCTS} from '../src/commerce/vending-catalogue.js';
+import {VENDING_PRODUCTS,RETIRED_VENDING} from '../src/commerce/vending-catalogue.js';
+import {VENDING_COLUMNS,VENDING_MACHINE} from '../src/world/vending.js';
 installDOM();
 
 /**
@@ -18,15 +19,16 @@ installDOM();
  * animated in Blender (tools/blender/drink-can.py, src/avatars/drink-can.js). Standing and seated, for two bodies.
  */
 const at=name=>DRINK_CAN.events.find(e=>e.name===name).t;
-for(const [who,seated] of [['Nils Johansson',false],['Nils Johansson',true],['Thao',false]])test(`${who}${seated?', seated,':''} opens a bought can, tab off and pocketed, then drinks it`,()=>{
+// (the machines' beer, and a green tea bought before the beer came: a saved can drinks as it did)
+for(const [who,seated,name] of [['Nils Johansson',false,'Kame lager'],['Nils Johansson',true,'Green tea'],['Thao',false,'Tako black']])test(`${who}${seated?', seated,':''} opens a bought ${name}, tab off and pocketed, then drinks it`,()=>{
  const scene=new THREE.Scene(),actor=createAvatarJohansson({scene,recipe:recipeFor(who)});
  const state=seated?{visible:true,seated:true,seatHeight:.45,seatFront:.2}:{visible:true};
  for(let i=0;i<40;i++)actor.update(1/60,state);
- const can=createBoughtCan('Green tea'),S=can.userData.sealed;
+ const can=createBoughtCan(name),S=can.userData.sealed;
  assert.ok(S&&S.tab.parent!==null&&!S.opening.visible,'sold sealed: the tab on, the opening covered');
  actor.drinkBought(can,{seated});
  const a=actor.avatar,hand=a.bones.handL,hookAt=new THREE.Vector3(...handPoint(a.measure,'L',HAND.hookAt));
- assert.equal(can.parent,a.bones.handR,'the can in his right hand');assert.equal(can.userData.bought,'Green tea');
+ assert.equal(can.parent,a.bones.handR,'the can in his right hand');assert.equal(can.userData.bought,name);
  let t=0,onRing=0,ringFrames=0,offAt=null,hooked=1,pocket=null,inFingers=0,tabAtPocket=null;const off=at('tabOff'),pocketed=at('tabPocketed');
  const P=pocketMouth(a);
  for(let i=0;i<Math.round(pocketed*60)+6;i++){
@@ -73,8 +75,15 @@ test('every can the machines sell is printed as itself in his hand, at the size 
   const can=createBoughtCan(p.inventoryName),print=can.getObjectByName('Printed can · '+p.brand);
   assert.ok(print,`${p.inventoryName}: the machine's print`);assert.ok(!can.getObjectByName('Printed serving product label'),`${p.inventoryName}: not the izakaya's beer label`);
   assert.ok(can.userData.sealed,`${p.inventoryName}: sold sealed`);
+  // its column's can: the rim and the hold measured on it as drawn (the izakaya's 350 ml can is 6.6 by 12.2 cm, its rim at 12.4)
+  const C=VENDING_MACHINE.cans[VENDING_COLUMNS.find(c=>c.id===p.id).size];
+  assert.ok(Math.abs(can.userData.rimHeight-.124*C.height/.122)<1e-6&&Math.abs(can.userData.grip.radius-.033*C.diameter/.066)<1e-6,`${p.inventoryName}: at its column's size`);
  }
- const small=createBoughtCan('Canned coffee'),big=createBoughtCan('Green tea');
- assert.ok(small.userData.grip.radius<big.userData.grip.radius&&small.userData.rimHeight<big.userData.rimHeight,'the 190 g coffee is the smaller can, and held and drunk as one');
+ const small=createBoughtCan('Hot corn soup'),can=createBoughtCan('Kame lager'),long=createBoughtCan('Jugon big draft');
+ assert.ok(small.userData.grip.radius<can.userData.grip.radius&&small.userData.rimHeight<can.userData.rimHeight,'the 190 g corn soup is the smaller can, and held and drunk as one');
+ assert.ok(long.userData.rimHeight>can.userData.rimHeight+.04&&long.userData.grip.radius===can.userData.grip.radius,'the 500 ml long can is the taller one, as thick');
+ // the machines' teas and coffee of before (retired 27 November 2026, still in saved bags): printed as themselves, at their size
+ for(const p of RETIRED_VENDING)assert.ok(createBoughtCan(p.inventoryName).getObjectByName('Printed can · '+p.brand),p.inventoryName+': its own print still');
+ assert.ok(createBoughtCan('Canned coffee').userData.rimHeight<createBoughtCan('Green tea').userData.rimHeight,'the old coffee still the short 190 g can');
  const beer=createBoughtCan('Umineko lager');assert.ok(beer.getObjectByName('Printed can · UMINEKO'),'Sakura’s lager in its own label');
 });
