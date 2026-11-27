@@ -1662,3 +1662,16 @@ does and why is in `docs/ANIMATION-STANDARD.md` section 6, "Stage 4".
 2. Twins. 3. The 13 arcs entries from stage 1 and `ARCS_WITHOUT_DRAG` (Jump plays without the drag still; try it with).
 4. The settle's micro-overshoot. 5. The lift's velocity steps in Eat, Drink and the seated versions, and Vy's run knee.
 6. Stomp has no squash (its hips do not fall, so neither the animator nor the audit sees the stomp's impact).
+
+## Proved, last
+- **The full guard** (`node tools/ci-guard.mjs --test-concurrency=2`, at 4601fbd, 1680 s with other helpers' load at 9-11):
+  777 of 778. The one failure is the published runtime package ("published runtime matches the current source"), stale
+  on a branch until it is rebuilt. No file timed out.
+- **The 55 animator and avatar files outside the guard** (each alone, two at a time, 15 minutes each; fun-poses left out as it
+  runs past its hour), at the base 0118a61 and at the head 90ce252: every file fails exactly the same tests at both, test by
+  test, none newly failing and none newly passing; none timed out. 37 pass at both. The 18 that fail, fail what they did:
+  afterbath-outfit, avatar-floor-contact, avatar-wardrobe-sets, drink-grip (2), expressive-poses, ferry-engine-room-access,
+  fujitas-back-moves, looks-data (2), onsen-noren-heads, onsen-seats, owned-vehicles (2), pole-hug (2), port-shed,
+  story-gestures (2), wardrobe-batch2, wardrobe-batch3 (2), work-kit, izakaya-lived-in.
+- 90ce252's shared foot supports came after the guard's snapshot: the principles test and player-seating pass on it (11 of
+  11), and the 55 files above ran on it.
