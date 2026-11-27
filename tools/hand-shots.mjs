@@ -11,6 +11,10 @@
 //   node tools/hand-shots.mjs --can 0,1,3.45 [--name Johansson] [--seated] [out.png]     a bought can opened and drunk (drink-can.js), at those seconds:
 //       front, three-quarter, side, a close view, and from where the game's own third-person camera stands (game.js
 //       placeThirdPerson: behind him and over his right shoulder, outdoors 3.2 m back and indoors 2.2 m)
+//   node tools/hand-shots.mjs --moves Walk,Talk,Nod,Wave,Eat,SitEat [--name Johansson] [out-dir]
+//       each move as the game's animator plays it (the walk: a resident's walk coming to a stop): front and three-quarter at
+//       its key moments, and strips of 8 consecutive frames over where it leaves the stance (and comes back to it), so a pop
+//       shows. One sheet a move: <out-dir>/<move>-<name>.png (default out-dir: output/hands-moves).
 // Software Chromium (TOWN_CHROMIUM_PATH, or /opt/pw-browsers/chromium). Default out: output/hands-<what>.png
 import {chromium} from 'playwright';
 import {createServer} from 'node:http';
@@ -19,12 +23,13 @@ import {resolve,dirname,extname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),site=resolve(root,'..');
 const args=process.argv.slice(2),flag=k=>{const i=args.indexOf(k);return i>=0?args[i+1]:null;};
-const CAN=flag('--can')||'',SEATED=args.includes('--seated'),RIDE=flag('--ride')||'',DRIVE=flag('--drive')||'',HOLD=flag('--hold')||'',OUTFIT=flag('--outfit')||'clothes',NAME=flag('--name')||'Thao',PAIRS=flag('--pairs')||'',POSES=flag('--poses')||'',SIT=flag('--sit')||'',WHO=flag('--who')||'Thuan,Nils Johansson',GRIP=flag('--grip'),SHAPE=flag('--shape')||'close';
-const what=PAIRS?'pairs':POSES?'poses':SIT?'sit':HOLD?'hold':DRIVE?'drive':RIDE?'ride':CAN?'can':'rest';
-const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--pairs','--poses','--sit','--who','--grip','--outfit','--hold','--drive','--ride','--shape','--can'].includes(args[i-1]))||resolve(root,`output/hands-${what}.png`));
-await mkdir(dirname(out),{recursive:true});
+const MOVES=flag('--moves')||'',CAN=flag('--can')||'',SEATED=args.includes('--seated'),RIDE=flag('--ride')||'',DRIVE=flag('--drive')||'',HOLD=flag('--hold')||'',OUTFIT=flag('--outfit')||'clothes',NAME=flag('--name')||'Thao',PAIRS=flag('--pairs')||'',POSES=flag('--poses')||'',SIT=flag('--sit')||'',WHO=flag('--who')||'Thuan,Nils Johansson',GRIP=flag('--grip'),SHAPE=flag('--shape')||'close';
+const what=MOVES?'moves':PAIRS?'pairs':POSES?'poses':SIT?'sit':HOLD?'hold':DRIVE?'drive':RIDE?'ride':CAN?'can':'rest';
+const out=resolve(args.find((a,i)=>!a.startsWith('--')&&!['--name','--pairs','--poses','--sit','--who','--grip','--outfit','--hold','--drive','--ride','--shape','--can','--moves'].includes(args[i-1]))||resolve(root,MOVES?'output/hands-moves':`output/hands-${what}.png`));
+await mkdir(MOVES?out:dirname(out),{recursive:true});
 const TYPES={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.glb':'model/gltf-binary'};
-const server=createServer(async(req,res)=>{try{const path=decodeURIComponent(new URL(req.url,'http://x').pathname),file=resolve(site,'.'+path);if(!file.startsWith(site))throw Error('outside');
+// (the Town is this checkout, at /johansson-town/, wherever it is: a worktree's parent is not the Office site)
+const server=createServer(async(req,res)=>{try{const path=decodeURIComponent(new URL(req.url,'http://x').pathname),town=path.startsWith('/johansson-town/'),file=town?resolve(root,'.'+path.slice('/johansson-town'.length)):resolve(site,'.'+path);if(!file.startsWith(town?root:site))throw Error('outside');
  if(path==='/blank')return res.writeHead(200,{'content-type':'text/html'}).end('<!doctype html><title>hands</title>');
  const body=await readFile(file);res.writeHead(200,{'content-type':TYPES[extname(file)]||'application/octet-stream','cache-control':'no-store'});res.end(body);}catch{res.writeHead(404);res.end();}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
@@ -33,7 +38,7 @@ const errors=[];
 try{
  const page=await browser.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
  await page.goto(`http://127.0.0.1:${server.address().port}/blank`);
- const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold,drive,ride,shape,can,seated])=>{
+ const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold,drive,ride,shape,can,seated,moves])=>{
   const base='/johansson-town/',T=await import(base+'vendor/three.module.js'),{buildAvatar}=await import(base+'src/avatars/build.js'),{recipeFor}=await import(base+'src/avatars/cast.js');
   const {createAvatarAnimator,GESTURES,STILL_AT,playPair}=await import(base+'src/avatars/animate.js'),{createInkPipeline}=await import(base+'src/render/ink-pipeline.js');
   const S=360,renderer=new T.WebGLRenderer({preserveDrawingBuffer:true,antialias:true});renderer.setSize(S,S);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.NoToneMapping;
@@ -53,7 +58,43 @@ try{
   // the angle round the figure a camera looks from, in the world: yaw of the figure's front plus `turn`
   const frontYaw=a=>{const q=a.root.getWorldQuaternion(new T.Quaternion()),f=new T.Vector3(0,0,1).applyQuaternion(q);return Math.atan2(f.x,f.z);};
   const closeups=(sc,a,label,views=[[.5,.25],[-.5,.25]])=>{const m=a.measure;for(const side of ['L','R']){const h=handAt(a,side),y=frontYaw(a);for(const [turn,pitch] of views)shoot(sc,h,y+turn,pitch,m.hand*9,`${label} · ${side}`);}};
-  if(pairs){
+  if(moves){
+   // each move played as the audit plays it (tools/animation-audit.mjs): a seeded random, the idle's clock from 0, the props
+   // the game puts in the hands, seated where the move is a seated one; the walk a resident's 1.25 m/s, damped as actors.js
+   // damps it, for 3 s, then stopping
+   const izakaya=await import(base+'src/people/izakaya-beer.js'),files=[];
+   for(const move of moves.split(',')){
+    tiles.length=0;
+    const sc=scene(),a=buildAvatar(recipeFor(name),{shadows:false});a.wear?.(outfit);const holder=new T.Group();holder.add(a.root);sc.add(holder);
+    const anim=createAvatarAnimator(a,{random:(()=>{let s=7;return ()=>{s=(s*16807)%2147483647;return s/2147483647;};})(),initialTime:0});
+    const seated=move.startsWith('Sit'),walk=move==='Walk',base0=seated?{seated:true,seatHeight:.45,seatFront:.2}:{};
+    if(seated){const seat=new T.Mesh(new T.BoxGeometry(.5,.04,.42),new T.MeshStandardMaterial({color:0x8a6a4a}));seat.position.set(0,.43,-.06);sc.add(seat);}
+    if(/Eat$/.test(move)){const R=izakaya.createBiteProp('rice'),L=izakaya.createDishProp('rice');a.bones.handR.add(R);a.bones.handL.add(L);base0.heldProp=R;}
+    if(/Drink$/.test(move)){const R=izakaya.createDrinkProp('draft',{held:true});a.bones.handR.add(R);base0.heldProp=R;}
+    let speed=0;const state=f=>{if(!walk)return base0;speed=T.MathUtils.damp(speed,f>=0&&f<180?1.25:0,20,1/60);return speed>0?{...base0,speed}:base0;};
+    const tick=f=>{anim.update(1/60,state(f));holder.updateMatrixWorld(true);};
+    for(let f=-60;f<-1;f++)tick(f);
+    const d=walk?3:GESTURES[move],held=d===Infinity;
+    // the key moments (seconds from the move's start) and where the strips start (frames): the walk's stop is where the damped
+    // speed falls under 0.08 m/s, 3.14 s
+    const keys=walk?[2.5,3.1,3.2,3.6]:held?[0,.15,.5,1.6]:[0,.15,Math.min(d*.43,d-.3),d-.12,d+.3];
+    const strips=walk?[[186,'the stop']]:held?[[-1,'leaving the stance']]:[[-1,'leaving the stance'],[Math.round(d*60)-3,'coming back']];
+    const want=new Map();for(const k of keys)want.set(Math.round(k*60),'key');for(const [s0] of strips)for(let i=0;i<8;i++)if(!want.has(s0+i))want.set(s0+i,'strip');
+    const last=Math.max(...want.keys()),key=[],strip=new Map();
+    for(let f=-1;f<=last;f++){if(f===0&&!walk)anim.play(move);tick(f);if(!want.has(f))continue;
+     const c=a.bones.chest.getWorldPosition(new T.Vector3()),y=frontYaw(a),at=(f/60).toFixed(3)+' s';
+     if(keys.some(k=>Math.round(k*60)===f)){const whole=c.clone().add(new T.Vector3(0,.12*a.measure.k,0));for(const [turn,label] of [[0,'front'],[-.8,'three-quarter']]){shoot(sc,whole,y+turn,.1,3.6,`${move} ${at} · ${label}`);key.push({f,label,tile:tiles.pop()});}}
+     for(const [s0] of strips)if(f>=s0&&f<s0+8){shoot(sc,c.clone().add(new T.Vector3(0,-.12,0)),y-.8,.15,1.9,`frame ${f} · ${at}`);(strip.get(s0)||strip.set(s0,[]).get(s0)).push(tiles.pop());}
+    }
+    // rows: the key moments from the front, from three-quarters, then each strip of 8 frames
+    const rows=[key.filter(k=>k.label==='front').map(k=>k.tile),key.filter(k=>k.label!=='front').map(k=>k.tile),...strips.map(([s0])=>strip.get(s0)||[])];
+    const sheet=document.createElement('canvas');sheet.width=S*8;sheet.height=S*rows.length+28*strips.length;const ctx=sheet.getContext('2d');ctx.fillStyle='#f4f1ea';ctx.fillRect(0,0,sheet.width,sheet.height);
+    let yy=0;rows.forEach((row,r)=>{if(r>=2){ctx.fillStyle='#253b3d';ctx.font='bold 18px sans-serif';ctx.fillText(`${name} · ${move} · 8 consecutive frames, ${strips[r-2][1]}`,8,yy+20);yy+=28;}
+     row.forEach(({c,label},i)=>{ctx.drawImage(c,i*S,yy);ctx.fillStyle='#253b3d';ctx.font='15px sans-serif';ctx.fillText(label,i*S+8,yy+20);});yy+=S;});
+    files.push([`${move}-${name.replace(/\s+/g,'')}.png`,sheet.toDataURL('image/png')]);a.dispose();
+   }
+   return {files};
+  }else if(pairs){
    const [nameA,nameB]=who.split(',');
    for(const pair of pairs.split(',')){
     const sc=scene(),A=body(nameA,sc),B=body(nameB,sc);A.step(20);B.step(20);
@@ -144,8 +185,9 @@ try{
   const cols=Math.min(6,tiles.length),sheet=document.createElement('canvas');sheet.width=S*cols;sheet.height=S*Math.ceil(tiles.length/cols);const ctx=sheet.getContext('2d');
   tiles.forEach(({c,label},i)=>{ctx.drawImage(c,(i%cols)*S,Math.floor(i/cols)*S);ctx.fillStyle='#253b3d';ctx.font='15px sans-serif';ctx.fillText(label,(i%cols)*S+8,Math.floor(i/cols)*S+20);});
   return sheet.toDataURL('image/png');
- },[NAME,PAIRS,POSES,SIT,WHO,GRIP,OUTFIT,HOLD,DRIVE,RIDE,SHAPE,CAN,SEATED]);
- await writeFile(out,Buffer.from(data.split(',')[1],'base64'));console.log('wrote',out);
+ },[NAME,PAIRS,POSES,SIT,WHO,GRIP,OUTFIT,HOLD,DRIVE,RIDE,SHAPE,CAN,SEATED,MOVES]);
+ if(data.files)for(const [file,url] of data.files){const path=resolve(out,file);await writeFile(path,Buffer.from(url.split(',')[1],'base64'));console.log('wrote',path);}
+ else{await writeFile(out,Buffer.from(data.split(',')[1],'base64'));console.log('wrote',out);}
 }catch(e){errors.push(String(e?.stack||e));}
 finally{await browser.close();server.close();}
 if(errors.length){console.error(errors.join('\n'));process.exit(1);}

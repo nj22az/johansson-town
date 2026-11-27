@@ -46,7 +46,10 @@ const lighten=(hex,f)=>'#'+new THREE.Color(hex).lerp(new THREE.Color('#ffffff'),
  * half-width, height t up the torso]: by the neck, the leaf's point, the notch, the lapel's
  * corner, its foot by the first button, the centre; it closes back up along the open V.
  */
-export const CAMP_COLLAR=Object.freeze([[.6,1.0],[.9,.83],[.7,.84],[.85,.79],[.16,.725],[.035,.73]].map(Object.freeze));
+/** What is worn under an open top (recipe outfit.under): the white ribbed tank top, its scoop neck's lowest point (a
+ *  fraction of the torso's height) and how far out its straps' inner edges are (of the half-width). */
+export const UNDER=Object.freeze({tank:Object.freeze({colour:'#f2efe6',scoop:.84,strap:.53})});
+export const CAMP_COLLAR=Object.freeze([[.55,1.0],[.68,.87],[.55,.862],[.64,.818],[.17,.735],[.035,.74]].map(Object.freeze));
 const COLLARED=['contrastpolo','polo','blouse','kariyushi','jacket','smock','cardigan','shirt','vest','knitvest','baseball'];
 /**
  * Tops worn over a shirt (a vest, a knitted vest): the body is the top, and the shirt under it shows at the neck and is
@@ -224,6 +227,23 @@ export function paintGarment(ctx,recipe,m,radiusAt){
     for(const [f,t,turn] of [[0,.795,1],[-.085,.835,-1],[.085,.835,1],[-.17,.878,1],[0,.872,-1],[.17,.878,-1],[-.09,.915,-1],[.1,.918,1]]){
      const x=X(fx(f,t),t),y=Y(t),u=TW*.0105;ctx.beginPath();ctx.moveTo(x-u,y-u*.5);ctx.quadraticCurveTo(x,y+u*1.1*turn,x+u,y-u*.5*turn);ctx.stroke();}
     marks.push('chest hair');});
+   // A white ribbed tank top worn under it (outfit.under 'tank'; the owner, 27 November 2026, of Johansson: "He should be
+   // wearing a 'wife beater' tank top under his shirt"): in the V, its scoop neck between its straps, a little chest hair
+   // above it, the cloth ribbed down from it, a bound edge. Clipped to the V: the shirt covers the rest.
+   if(o.under==='tank')wrapped(false,()=>{
+    const T=UNDER.tank,white=T.colour,u=[];
+    for(let i=0;i<=28;i++){const f=-T.strap+2*T.strap*i/28,t=T.scoop+(1.035-T.scoop)*Math.pow(Math.abs(f)/T.strap,1.8);u.push([Math.sign(f)*fx(Math.abs(f),t),t]);}
+    const v=[pt(.62,1.01,-1),pt(.62,1.01,1),[0,.73]];
+    ctx.save();ctx.beginPath();v.forEach(([x,t],i)=>{const px=X(x,t),py=Y(t);i?ctx.lineTo(px,py):ctx.moveTo(px,py);});ctx.closePath();ctx.clip();
+    const outer=t=>fx(.75,t);
+    poly([...u,[outer(1.035),1.035],[outer(.66),.66],[-outer(.66),.66],[-outer(1.035),1.035]],white,{stroke:null});
+    // the ribs: fine lines down the cloth from its edge, a shade darker
+    for(let f=-.6;f<=.6001;f+=.045){const top=Math.min(1.035,T.scoop+(1.035-T.scoop)*Math.pow(Math.min(1,Math.abs(f)/T.strap),1.8))-.012;
+     path([[Math.sign(f)*fx(Math.abs(f),top),top],[Math.sign(f)*fx(Math.abs(f),.68),.68]],shade(white,.9),line*.45);}
+    // the bound neck: its edge, and the binding's stitch just below it
+    path(u.map(([x,t])=>[x,t-.008]),shade(white,.9),line*2.4);path(u,shade(white,.5),line*1.25);path(u.map(([x,t])=>[x,t-.017]),shade(white,.78),line*.55);
+    ctx.restore();marks.push('tank top under');
+   });
    // The top button, under the V, is a wooden one; the rest are shell.
    placket(.73,hem+.03,.02);buttons([.695],.011,'#9a6a42');buttons([.57,.45,.33],.0085,'#f8f6ef');
    pocket(W*.25,.62,W*.22,.17,top);hemRound();break;

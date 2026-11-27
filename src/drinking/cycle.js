@@ -7,6 +7,9 @@ export const DRINK_PHASES = Object.freeze([
   ['RECOVER', .60], ['SET_DOWN', .65], ['RELEASE', .30], ['RETURN', .65],
 ].map(([id, duration], i) => Object.freeze({id, duration, index: i + 1})));
 export const CYCLE_DURATION = DRINK_PHASES.reduce((s, p) => s + p.duration, 0);
+/** How high the vessel is lifted before it is brought to the mouth, and where it stops on the way down (of the way from the rest
+ *  to the lips): LIFT and SET_DOWN take it between the rest and here, APPROACH and RECOVER between here and the lips. */
+export const LIFT_STAGE = .2;
 export const SIP_FLOW_START = .42;
 export const SIP_FLOW_END = .90;
 export const clamp01 = x => Math.min(1, Math.max(0, x));
@@ -38,10 +41,10 @@ export function sampleCycle(elapsed, {active = true} = {}) {
   if (phase.id === 'GRASP') grip = s;
   if (phase.id === 'RELEASE') grip = 1-s;
   let lift = phase.index >= 6 && phase.index <= 8 ? 1 : 0;
-  if (phase.id === 'LIFT') lift = .2*s;
-  if (phase.id === 'APPROACH') lift = .2+.8*s;
-  if (phase.id === 'RECOVER') lift = 1-.8*s;
-  if (phase.id === 'SET_DOWN') lift = .2*(1-s);
+  if (phase.id === 'LIFT') lift = LIFT_STAGE*s;
+  if (phase.id === 'APPROACH') lift = LIFT_STAGE+(1-LIFT_STAGE)*s;
+  if (phase.id === 'RECOVER') lift = 1-(1-LIFT_STAGE)*s;
+  if (phase.id === 'SET_DOWN') lift = LIFT_STAGE*(1-s);
   const flowProgress = phase.id === 'SIP' ? ease((progress-SIP_FLOW_START)/(SIP_FLOW_END-SIP_FLOW_START)) : phase.index > 7 ? 1 : 0;
   return {...phase,progress,eased:s,elapsed:time,busy:true,done:false,grip,flowProgress,lift};
 }

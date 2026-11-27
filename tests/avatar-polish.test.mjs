@@ -3,10 +3,11 @@ import assert from 'node:assert/strict';
 import * as THREE from '../vendor/three.module.js';
 import {installDOM} from './fixtures.mjs';
 import {buildAvatar} from '../src/avatars/build.js';
-import {CAST_RECIPES} from '../src/avatars/cast.js';
+import {CAST_RECIPES,recipeFor} from '../src/avatars/cast.js';
 import {createAvatarAnimator} from '../src/avatars/animate.js';
 import {createAvatarActor,updateAvatarActor} from '../src/avatars/actors.js';
 import {faceLayout} from '../src/avatars/face.js';
+import {normalizeRecipe} from '../src/avatars/recipe.js';
 import {shapeHeadPoint} from '../src/avatars/head-profile.js';
 import {fitAvatarHeldProp,consumptionPhase,lowerLip} from '../src/avatars/consume.js';
 import {canRim} from '../src/avatars/drink-can.js';
@@ -35,6 +36,53 @@ test('the kariyushi collar is cloth: a stand round the neck, notched leaves and 
   assert.ok(a.garment.marks.includes('open neck'),'the V of skin is open');
   assert.ok(a.garment.marks.includes('collar shadow'),'the collar casts its toon shadow on the shirt');a.dispose();
  }
+});
+
+/**
+ * The owner, 27 November 2026: "Johansson's rigged Hawaii shirt needs to be improved too, the collar is way too big going
+ * under his arms when drinking". The collar's leaves reached 221 mm out of his 234 mm half-width, nearly to the shoulder
+ * seam, and the raised arms went over them: 29 mm into the sleeve drinking, 55 mm pointing, 47 mm clapping. The collar is
+ * a camp collar's size now (garment.js CAMP_COLLAR), and stays out of the sleeves in the moves that bring an arm across
+ * or up, on the smallest, Johansson's and the largest body.
+ */
+test('the kariyushi collar stays out from under the arms when they come up or across (drinking, pointing, clapping)',()=>{
+ for(const name of ['Vy','Johansson','Sverker']){
+  const base=recipeFor(name),kar=buildAvatar({...base,outfit:{...base.outfit,top:'kariyushi'}},{shadows:false}),tee=buildAvatar({...base,outfit:{...base.outfit,top:'tee'}},{shadows:false});
+  // the collar: what the kariyushi adds on the front of the chest, bound to the chest alone (a tee has the same torso)
+  const key=(P,i)=>[P.getX(i),P.getY(i),P.getZ(i)].map(v=>Math.round(v*1e4)).join(','),T=tee.body.geometry.attributes.position,plain=new Set();for(let i=0;i<T.count;i++)plain.add(key(T,i));
+  const g=kar.body.geometry,P=g.attributes.position,SI=g.attributes.skinIndex,SW=g.attributes.skinWeight,m=kar.measure,chest=kar.body.skeleton.bones.indexOf(kar.bones.chest),collar=[];
+  for(let i=0;i<P.count;i++)if(!plain.has(key(P,i))&&SI.getX(i)===chest&&SW.getX(i)>.99&&P.getZ(i)>0&&P.getY(i)>m.hipY+.6*m.torso&&P.getY(i)<m.neckY)collar.push(i);
+  assert.ok(collar.length>1000,name+': the collar found');
+  let reach=0;for(const i of collar)reach=Math.max(reach,Math.abs(P.getX(i)));
+  assert.ok(reach<m.width/2*.8,`${name}: the collar's leaves end well inside the shoulders (${(reach*1000).toFixed(0)} of ${(m.width/2*1000).toFixed(0)} mm)`);
+  const holder=new THREE.Group();holder.add(kar.root);let s=7;const animator=createAvatarAnimator(kar,{random:()=>{s=(s*16807)%2147483647;return s/2147483647;},initialTime:0});
+  const v=new THREE.Vector3(),seg=new THREE.Line3(),cl=new THREE.Vector3(),SH=['L','R'].map(side=>kar.body.skeleton.bones.indexOf(kar.bones['shoulder'+side]));
+  for(let i=0;i<30;i++)animator.update(1/60,{});kar.root.updateMatrixWorld(true);
+  // the sleeve's radius about the upper arm, from its own vertices half way down it
+  const radius=['L','R'].map((side,k)=>{seg.set(kar.bones['shoulder'+side].getWorldPosition(new THREE.Vector3()),kar.bones['elbow'+side].getWorldPosition(new THREE.Vector3()));let sum=0,n=0;
+   for(let i=0;i<P.count;i++){if(SI.getX(i)!==SH[k]||SW.getX(i)<.9)continue;v.fromBufferAttribute(P,i);kar.body.applyBoneTransform(i,v);v.applyMatrix4(kar.body.matrixWorld);const t=seg.closestPointToPointParameter(v,true);if(t<.35||t>.65)continue;seg.closestPointToPoint(v,true,cl);sum+=cl.distanceTo(v);n++;}
+   return sum/n;});
+  for(const move of ['Drink','Point','Clap','CollarTug']){
+   const prop=move==='Drink'?createDrinkProp('can',{held:true}):null;if(prop)kar.bones.handR.add(prop);const state=prop?{heldProp:prop}:{};
+   for(let i=0;i<20;i++)animator.update(1/60,state);animator.play(move);let deep=0;
+   for(let f=0;f<150;f+=2){animator.update(2/60,state);kar.root.updateMatrixWorld(true);
+    ['L','R'].forEach((side,k)=>{seg.set(kar.bones['shoulder'+side].getWorldPosition(new THREE.Vector3()),kar.bones['elbow'+side].getWorldPosition(new THREE.Vector3()));
+     for(const i of collar){v.fromBufferAttribute(P,i);kar.body.applyBoneTransform(i,v);v.applyMatrix4(kar.body.matrixWorld);if(seg.closestPointToPointParameter(v,true)<.12)continue;seg.closestPointToPoint(v,true,cl);deep=Math.max(deep,radius[k]-cl.distanceTo(v));}});}
+   if(prop)disposeServing(prop);
+   assert.ok(deep<=.001,`${name}, ${move}: the collar never under the sleeve (${(deep*1000).toFixed(1)} mm into it)`);
+  }
+  kar.dispose();tee.dispose();
+ }
+});
+
+/** The owner, 27 November 2026: "He should be wearing a 'wife beater' tank top under his shirt". */
+test('Johansson wears a white ribbed tank top under his open kariyushi, showing in its V; nobody else does unless dressed so',()=>{
+ assert.equal(recipeFor('Johansson').outfit.under,'tank');
+ assert.equal(normalizeRecipe({outfit:{under:'cape'}}).outfit.under,'none','only a known under layer is kept');
+ const a=buildAvatar(recipeFor('Johansson'),{shadows:false});
+ assert.ok(a.garment.marks.includes('tank top under'),'painted in the V');assert.ok(a.garment.marks.includes('chest hair'),'his chest hair above its scoop');a.dispose();
+ const t=buildAvatar({...recipeFor('Thuan'),outfit:{...recipeFor('Thuan').outfit,top:'kariyushi'}},{shadows:false});
+ assert.ok(!t.garment.marks.includes('tank top under'),'a kariyushi alone has the skin in its V');t.dispose();
 });
 
 test('shirt collars and buttons are painted on the +z front, with nothing stuck on',()=>{
