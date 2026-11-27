@@ -465,9 +465,16 @@ export function buildSafetyGlasses(avatar){
  // the notch: over the nose, and up over the bridge of his own glasses (the face's glasses arch their bridge out from the face)
  const noseHalf=13*L.noseS,nTop=L.glassY-r*.6,notch=(x,y)=>y>nTop&&Math.abs(x-128)<noseHalf*(.8+.7*(y-nTop)/(yBot-nTop));
  const NX=18,NY=7,grid=[];for(let j=0;j<=NY;j++)for(let i=0;i<=NX;i++)grid.push([x0+(x1-x0)*i/NX,yTop+(yBot-yTop)*j/NY]);
- const pts=headPoints(avatar),dirs=pts.map(p=>{const d=p.clone().sub(c);return {len:d.length(),d:d.normalize()};});
+ // (each point's place on the face's own layout, its direction from the head's centre taken back through faceObjectPoint's
+ // projection (exact on a sculpted head, which shapeHeadPoint carries out along its own direction): a point over the notch
+ // is in the open, not behind the shield, and may stand out through it. His own glasses' bridge does, arched over the nose
+ // Tetsuo was sculpted with in Blender (26 November 2026): its flanks, within the cone below of the shield's last points
+ // beside the notch, held the shield 49 mm off his face, at 0.2 head radii, where it had sat at 0.11.)
+ const layoutOf=d=>{const u=new THREE.Vector3(d.x/m.headSX,d.y/m.headSY,d.z/.98).normalize(),theta=Math.acos(THREE.MathUtils.clamp(u.y,-1,1)),phi=Math.atan2(u.z,-u.x);
+  return [(phi-Math.PI/2+.95)/1.9*256,(theta-Math.PI*.28)/(Math.PI*.58)*256];};
+ const pts=headPoints(avatar),dirs=pts.map(p=>{const d=p.clone().sub(c),len=d.length();d.normalize();return {len,d,open:notch(...layoutOf(d))};});
  const fits=lift=>grid.every(([x,y])=>{if(notch(x,y))return true;const v=faceObjectPoint(m,x,y,lift).sub(c),len=v.length();v.normalize();
-  return dirs.every(q=>q.d.dot(v)<.9985||q.len+S.clear<len);});
+  return dirs.every(q=>q.open||q.d.dot(v)<.9985||q.len+S.clear<len);});
  let lift=S.lift;while(!fits(lift)&&lift<.4)lift+=.01;
  const g=new THREE.Group();g.name='Safety glasses';g.userData.lift=lift;
  // The shield: the grid's cells, the nose notch left open.
@@ -484,7 +491,12 @@ export function buildSafetyGlasses(avatar){
   tube(Array.from({length:NY+1},(_,j)=>at(x,yTop+(yBot-yTop)*j/NY,lift+.004)),.0022,'Safety glasses rim');
   // the arm: back from the shield's outer top corner to the side of the head above the ear, outside the face's own glasses
   const o=at(x,(yTop+L.glassY)/2,lift+.01),s=Math.sign(o.x),back=new THREE.Vector3(s*m.Rh*m.headSX*1.06,o.y-.004,-m.Rh*.1);
-  tube([o,o.clone().add(new THREE.Vector3(s*m.Rh*.04,0,-m.Rh*.08)),back],.003,'Safety glasses arm');
+  // (along its way, each point of it out of whatever is drawn on the head there (the side of the head, the hair over the
+  // ear, his own glasses' temples), the arm's thickness and `clear` to spare: drawn straight to its end, it went 5 mm into
+  // Tetsuo's sculpted head, and 10 mm with the shield nearer his face)
+  const path=new THREE.CatmullRomCurve3([o,o.clone().add(new THREE.Vector3(s*m.Rh*.04,0,-m.Rh*.08)),back],false,'centripetal').getPoints(16).map(p=>{
+   const v=p.clone().sub(c),len=v.length();v.normalize();let need=len;for(const q of dirs)if(q.d.dot(v)>.9985&&q.len+S.clear+.003>need)need=q.len+S.clear+.003;return c.clone().addScaledVector(v,need);});
+  tube(path,.003,'Safety glasses arm');
  }
  return g;
 }
