@@ -6,11 +6,11 @@ import {installDOM} from './fixtures.mjs';
 import {buildAvatar} from '../src/avatars/build.js';
 import {recipeFor} from '../src/avatars/cast.js';
 import {createAvatarAnimator} from '../src/avatars/animate.js';
-import {createDrinkProp,setPropPortion,DRINKS,BEER_SERVES} from '../src/people/izakaya-beer.js';
+import {createDrinkProp,setPropPortion,DRINKS,BEER_SERVES,IZAKAYA_PLAYER_SEATS} from '../src/people/izakaya-beer.js';
 import {lowerLip} from '../src/avatars/consume.js';
 import {levelHeldDrink} from '../src/avatars/table-drink.js';
 import {requiredTilt} from '../src/drinking/liquid.js';
-import {BEER_MOTIONS,beerParts,createBeerTableDrink,beerStyleOf,beerWarp} from '../src/avatars/drink-beer.js';
+import {BEER_MOTIONS,beerParts,createBeerTableDrink,beerStyleOf,beerWarp,restTurn} from '../src/avatars/drink-beer.js';
 import {beerRim,beerSocket,vesselOf} from '../src/avatars/beer-hold.js';
 import {normalizeMotion} from '../src/avatars/motion.js';
 installDOM();
@@ -26,25 +26,27 @@ installDOM();
  */
 const PALM_WRIST=[[-.35,.5],[-.45,.45],[-1.1,1.25]];
 const JUMP=.06,UPPER=['spine','chest','neck','head','shoulderL','elbowL','handL','shoulderR','elbowR','handR'];
-// (seven bodies: Johansson and the residents who drink at Minato's counter, the largest (Sverker) among them; Vy, the smallest,
-// does not: the counter is 20 cm past her reach leaning in as far as the motion does, and she is not served beer)
-const BODIES=['Nils Johansson','Thao','Mr Fujita','Sverker','Thuan','Tetsuo','Masaru'];
-// (who takes a glass off the counter and sets it down again: Johansson, the player (game.js sipDrink). A resident's glass comes
-// to the hand at a venue (venue-service.js) and is drunk from the hand: heldDrink. The other bodies' arms, in their own
-// proportion, come 2-5 cm short of the place Thao sets a glass at (the handover).)
-const COUNTER_BODIES=['Nils Johansson'];
-const SPOT=new THREE.Vector3(-.15,.739,.58);   // (where Thao sets a glass down at a counter stool, in the seated body's frame: tools/drink-beer-kit.mjs)
+// (seven bodies: Johansson and the residents who drink at Minato's counter, the largest (Sverker) among them, and a sipper
+// (Christina) with the shortest arm of those served beer; Vy, the smallest, is not served beer: a child)
+const BODIES=['Nils Johansson','Thao','Mr Fujita','Sverker','Thuan','Tetsuo','Masaru','Christina'];
+// (who takes a glass off the counter and sets it down again: Johansson, the player (game.js sipDrink), and every resident at
+// the counter (venue-service.js), each in their own proportion)
+const COUNTER_BODIES=BODIES;
+const SEAT=IZAKAYA_PLAYER_SEATS.counter2;   // (a counter stool, and where Thao sets a glass down at it: the game's own)
 const runs=new Map();
 const seeded=()=>{let s=7;return ()=>{s=(s*16807)%2147483647;return s/2147483647;};};
 
 /** A fresh glass (or a later sip, `first` false) drunk off the counter by `who`, seated on a counter stool: every frame's facts. */
 function counterDrink(who,vessel,first=true){
  const key=[who,vessel,first].join('|');if(runs.has(key))return runs.get(key);
- const a=buildAvatar(recipeFor(who),{shadows:false}),room=new THREE.Group();room.add(a.root);
- const animator=createAvatarAnimator(a,{random:seeded()}),state={seated:true,seatHeight:.46,seatFront:.19};
+ // (seated as game.js seats a body on a stool: the holder at the seat, turned its way; the animator slides the body forward
+ // on the stool as far as its shins need. The glass where Thao sets it down, turned to the drinker as she turns it)
+ const a=buildAvatar(recipeFor(who),{shadows:false}),room=new THREE.Group(),holder=new THREE.Group();room.add(holder);holder.add(a.root);
+ holder.position.set(...SEAT.position);holder.rotation.set(0,SEAT.yaw,0);
+ const animator=createAvatarAnimator(a,{random:seeded()}),state={seated:true,seatHeight:SEAT.surfaceY,seatFront:SEAT.front};
  for(let i=0;i<90;i++)animator.update(1/60,state);room.updateMatrixWorld(true);
  const kind={mug:'draft',pint:'pint',glass:'bottle'}[vessel],prop=createDrinkProp(kind,{held:true});room.add(prop);
- prop.position.copy(a.root.localToWorld(SPOT.clone()));prop.quaternion.copy(a.root.getWorldQuaternion(new THREE.Quaternion())).multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,1,0),Math.PI));
+ prop.position.set(...SEAT.table);prop.quaternion.copy(restTurn(a.root));
  const start=first?1:.6,end=first?.6:.45;setPropPortion(prop,start,{immediate:true});
  let consumed=0;const lease={prop,kind,startFraction:start,endFraction:end,get consumedPortion(){return consumed;},
   consume(p){consumed=(start-end)*p;setPropPortion(prop,start-consumed,{immediate:true});},finish:()=>({left:1,consumedPortion:consumed}),cancel:()=>({left:1,consumedPortion:consumed})};

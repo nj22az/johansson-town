@@ -501,7 +501,9 @@ def chest_point(t, local):
     return world_of('chest', t) @ Vector(local)
 
 
-def wrist_excess(side):
+def wrist_excess(side, margin=0.0):
+    """How far the wrist is past what a wrist does (radians, its bend and its turn to the side added), or past `margin` short of
+    it: soft_wrist eases a wrist within 0.15 rad of an end, which moves what the hand holds (the rim off the lip)."""
     q = game_local('hand' + side)
     a = (Vector(K['bones']['hand' + side]) - Vector(K['bones']['elbow' + side])).normalized()
     p = a * Vector((q.x, q.y, q.z)).dot(a)
@@ -509,7 +511,10 @@ def wrist_excess(side):
     t.normalize()
     e = (t.inverted() @ q).to_euler('ZYX')
     z = e.z if side == 'R' else -e.z                                        # (the left's turns are the right's mirror: y and z)
-    return max(0, WRIST[0][0] - e.x, e.x - WRIST[0][1]) + max(0, WRIST[2][0] - z, z - WRIST[2][1])
+    return max(0, WRIST[0][0] + margin - e.x, e.x - WRIST[0][1] + margin) + max(0, WRIST[2][0] + margin - z, z - WRIST[2][1] + margin)
+
+
+POLE_EVEN = 5                                                               # (the poles found evened into one another five times over: an elbow swung round at a contact flicks the forearm)
 
 
 def settle_poles(side, times):
@@ -526,7 +531,7 @@ def settle_poles(side, times):
             p = S + Matrix.Rotation(math.radians(deg), 3, axis) @ (p0 - S)
             pole.matrix = rig.matrix_world.inverted() @ Matrix.Translation(p)
             bpy.context.view_layer.update()
-            tried.append((wrist_excess(side), deg, p, (rig.matrix_world @ P['elbow' + side].matrix).to_translation()))
+            tried.append((wrist_excess(side, .18), deg, p, (rig.matrix_world @ P['elbow' + side].matrix).to_translation()))
         # (of the turns that keep the wrist as well as any can, the one whose elbow is nearest where the last key's was: the
         # elbow goes on its way, it does not jump to the other side of the arm from one key to the next; the animator's own
         # pole where nothing was found before)
@@ -539,7 +544,7 @@ def settle_poles(side, times):
         found.append((t, pole.location.copy()))
     # (and the found poles eased into one another, twice over their neighbours: one key's elbow a way round from the next's
     # swung over in the frames between them; the wrist, a little past its ends where that leaves it, soft_wrist takes up)
-    for _ in range(2):
+    for _ in range(POLE_EVEN):
         found = [(t, (found[max(0, i - 1)][1] + 2 * p + found[min(len(found) - 1, i + 1)][1]) / 4) for i, (t, p) in enumerate(found)]
     for t, p in found:
         pole.location = p
@@ -683,8 +688,10 @@ def glass_pose(name, t):
         _, a, b, u = name
         return within_reach(between(glass_pose(a, t), glass_pose(b, t), u), t)
     if isinstance(name, tuple) and name[0] == 'lip':
+        # (deg: the tilt; None, the tilt the beer left needs and 3 degrees more; below zero, so many degrees short of that:
+        # the glass coming to the lip already nearly as far over as it will drink, so it does not turn over at the contact)
         _, deg, away = name
-        tilt = tilt_for(fill_at(t)) + math.radians(3) if deg is None else math.radians(deg)
+        tilt = tilt_for(fill_at(t)) + math.radians(3) + (math.radians(deg) if deg is not None and deg < 0 else 0) if deg is None or deg < 0 else math.radians(deg)
         return hand_for(at_lip(t, tilt, away=away))
     raise KeyError(name)
 
@@ -948,22 +955,38 @@ def evened(qs, spread=SPREAD):
 
 
 UPPER = ('spine', 'chest', 'neck', 'head', 'shoulderL', 'elbowL', 'handL', 'shoulderR', 'elbowR', 'handR')
-# (and less while the rim is at his lip, a frame each side, eased over twice EASE: there every joint from the spine up is close to where the IK put the
-# can on the lip as the head swallows; eased from the one to the other as the contact comes and goes)
-on = [max(c['lip'], c['wipe'], c['held']) for c in contacts]          # (and the back of the fingers on the lip, the glass on the counter)
-at_lip = [max(on[j] * ease3(1 - abs(i - j) / (2 * EASE)) for j in range(max(0, i - 2 * EASE), min(len(on), i + 2 * EASE + 1))) for i in range(len(on))]
+# (and not at all while the rim is at his lip, eased over twice EASE: there every joint from the spine up is where the IK put the
+# glass on the lip as the head swallows; eased from the one to the other as the contact comes and goes)
+on = [max(c['lip'], c['wipe']) for c in contacts]                    # (and the back of the fingers on the lip)
+held = [c['held'] for c in contacts]                                    # (the glass on the counter in the hand: eased over less, its
+# approach the IK's own pose only at the last, so the IK's turns on the way to it are evened)
+at_lip = [max(max(on[j] * ease3(1 - abs(i - j) / (2 * EASE)) for j in range(max(0, i - 2 * EASE), min(len(on), i + 2 * EASE + 1))),
+              max(held[j] * ease3(1 - abs(i - j) / (EASE / 2)) for j in range(max(0, i - EASE // 2), min(len(on), i + EASE // 2 + 1)))) for i in range(len(on))]
+# (at a contact the IK's own pose: the rim was put on the lip by the head and the body as keyed, and evening the trunk under
+# it, even over a frame each side, carried the rim 5-9 mm off the lip)
 for n in UPPER:
     raw = [p[n] for p in baked]
-    for pose, q, q1, w in zip(baked, evened(raw), evened(raw, (1, 2, 1)), at_lip):
-        pose[n] = q.slerp(q1, w)
-# (the hands' own turns once more, two frames each side, at the lip too: the IK's hand is turned key by key, and its turn at
-# the wrist is the least even of all)
+    for pose, q, q0, w in zip(baked, evened(raw), raw, at_lip):
+        pose[n] = q.slerp(q0, w)
+# (the hands' own turns once more, two frames each side: the IK's hand is turned key by key, and its turn at the wrist is the
+# least even of all; the right hand's not at a contact, where it holds the rim on the lip)
 for n in ('handR', 'handL'):
-    for pose, q in zip(baked, evened([p[n] for p in baked], (1, 4, 6, 4, 1))):
-        pose[n] = q
+    for pose, q, w in zip(baked, evened([p[n] for p in baked], (1, 4, 6, 4, 1)), at_lip):
+        pose[n] = pose[n].slerp(q, 1 - w) if n == 'handR' else q
 for side in 'RL':                                                           # (and the wrist still within what a wrist does)
     for pose in baked:
         pose['hand' + side] = soft_wrist(side, pose['hand' + side])
+# (the parts join on one pose, exactly, so the game plays them in any order: at each join the pose of the first, eased into over
+# the frames about it, which are all the held pose C there. With the IK's own pose at the glass on the counter, its elbow was
+# found from the key before, and the joins came out up to 0.04 rad apart)
+# (a join between two frames, as 1.75 s and 8.35 s are at 30 a second, held on both: the game samples between them)
+JOIN = [(math.floor(SEG[n] * FPS + 1e-6), math.ceil(SEG[n] * FPS - 1e-6)) for n in ('first', 'sip', 'let')]
+REF = {n: baked[JOIN[0][1]][n].copy() for n in UPPER}
+for a, b in JOIN:
+    for i in range(max(0, a - 8), min(len(baked), b + 9)):
+        w = 1.0 if a <= i <= b else ease3(1 - (a - i if i < a else i - b) / 9)
+        for n in UPPER:
+            baked[i][n] = baked[i][n].slerp(REF[n], w)
 for pb in P:
     for c in pb.constraints:
         if c.type in ('IK', 'COPY_ROTATION', 'DAMPED_TRACK'):

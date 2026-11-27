@@ -68,7 +68,15 @@ def counter_at(dz=0.0, tip=0.0, dx=0.0, lift=0.0):
 C_GLASS = lambda t: counter_at()
 # FK: spine, chest, neck, head (radians, game Euler XYZ: x pitches forward, y turns to his left, z leans)
 ZERO = ((0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0))
-CPOSE = ((.32, -.04, 0), (.26, -.06, 0), (-.04, 0, 0), (.06, -.06, 0))    # leaning in to it, looking at the glass (the counter is a long arm away)
+# leaning in to it a little, looking down at the glass. (The counter is 38 cm in front of him as the game seats him: the stool
+# 42 cm from its edge, the body forward on the stool by 10 cm. The kit had it 20 cm further, and the lean was 0.58 rad.)
+CPOSE = ((.085, -.03, 0), (.07, -.05, 0), (-.03, 0, 0), (.12, -.06, 0))
+
+
+def C(ds=0.0, dc=0.0, dn=0.0, dh=0.0):
+    """The pose C, its spine, chest, neck and head pitched on by so much (a breakdown about it)."""
+    return tuple((p[0] + d, p[1], p[2]) for p, d in zip(CPOSE, (ds, dc, dn, dh)))
+
 BODY, GLASS, LEFT, POLES_R, CUES = [], [], [], [], {c: [] for c in ('closeR', 'closeL', 'blink', 'breath', 'smile', 'look', 'kaa', 'foam', 'swallow',
                                                                     'shrug', 'lip', 'mouth', 'counter', 'hold', 'wipe', 'lean', 'fill')}
 
@@ -91,7 +99,7 @@ SEG = {'take': 0.0}
 body(0, *ZERO)
 body(.35, *ZERO)
 body(.62, (-.01, 0, 0), (-.02, 0, 0), (0, 0, 0), (.08, -.04, 0))           # the eyes went first; a small breath in, a glance down
-body(1.22, (.33, -.04, 0), (.27, -.06, 0), (-.04, 0, 0), (.065, -.06, 0))   # leaned in to it (a touch past C)
+body(1.22, *C(.01, .01, 0, .005))                                            # leaned in to it (a touch past C)
 body(1.42, *CPOSE)
 body(1.75, *CPOSE)
 REST_R = lambda t: SEATED['handR']
@@ -116,7 +124,7 @@ def drink(t0, first):
     end = s0 + 1.5
     body(u(0), *CPOSE)
     body(u(.2), *CPOSE)
-    body(u(.5), (.33, -.04, 0), (.24, -.06, 0), (-.03, 0, 0), (.05, -.06, 0))  # anticipation: a breath in (the chest up), a lean in
+    body(u(.5), *C(.01, -.02, .01, -.01))                                    # anticipation: a breath in (the chest up), a lean in
     body(u(1.25), (0, 0, 0), (-.03, 0, 0), (-.02, 0, 0), (-.03, 0, 0))       # sat up, the glass at the mouth
     body(u(1.4), (0, 0, 0), (-.03, 0, 0), (-.01, 0, 0), (.02, 0, 0))         # contact: the head comes to meet it
     body(u(g1 - .45), (-.03 * hb, 0, .01), (-.08 * hb, 0, 0), (-.12 * hb, 0, 0), (-.27 * hb, 0, 0))   # deep: the head back
@@ -131,14 +139,15 @@ def drink(t0, first):
         body(u(g1 + .55), (.008, 0, 0), (.015, 0, 0), (.01, 0, 0), (.05, 0, 0))   # a small breath out
     body(u(s0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (.05, -.04, 0))           # looks to the counter (the eyes first)
     body(u(s0 + .2), (-.01, 0, 0), (-.012, 0, 0), (0, 0, 0), (.06, -.05, 0))   # the set-down's anticipation: up a touch
-    body(u(s0 + .85), (.315, -.04, 0), (.255, -.06, 0), (-.04, 0, 0), (.06, -.06, 0))   # the tap
-    body(u(s0 + 1.0), (.325, -.04, 0), (.265, -.06, 0), (-.04, 0, 0), (.065, -.06, 0))  # past it, a little
+    body(u(s0 + .85), *C(-.005, -.005))                                       # the tap
+    body(u(s0 + 1.0), *C(.005, .005, 0, .005))                                # past it, a little
     body(u(s0 + 1.25), *CPOSE)
     body(u(end), *CPOSE)
     # the glass
-    GLASS.extend([(u(0), 'on'), (u(.2), 'on'), (u(.5), 'rock'), (u(.75), 'up'), (u(1.05), 'in'), (u(1.25), ('lip', 18, .025)), (u(1.4), ('lip', None, 0))])
+    GLASS.extend([(u(0), 'on'), (u(.2), 'on'), (u(.5), 'rock'), (u(.75), 'up'), (u(1.05), 'in'), (u(1.25), ('lip', -8, .025)), (u(1.4), ('lip', None, 0))])
     GLASS.append((u(1.4), ('pull', u(1.4), u(g1), fill0, fill1)))
-    GLASS.extend([(u(g1 + .3), ('lip', 20, .06)), (u(g1 + .55), 'chest' if first else 'chestlow')])
+    # (down from the lip to the chest unhurried: 0.35 s for the 25 cm, the glass at 1.2 m/s at the most)
+    GLASS.extend([(u(g1 + .3), ('lip', 20, .06)), (u(g1 + .65), 'chest' if first else 'chestlow')])
     if first:
         GLASS.extend([(u(g1 + .9), 'chestlow'), (u(s0), 'chestlow')])
     else:
@@ -151,7 +160,8 @@ def drink(t0, first):
     cue('hold', (u(0), 1), (u(end), 1))
     cue('counter', (u(0), 1), (u(.5), 1), (u(.56), 0), (u(s0 + .8), 0), (u(s0 + .85), 1), (u(end), 1))
     cue('lean', (u(0), 1), (u(.5), 1), (u(1.2), 0), (u(s0 + .2), 0), (u(s0 + .85), 1), (u(end), 1))
-    cue('lip', (u(0), 0), (u(1.3), 0), (u(1.4), 1), (u(g1), 1), (u(g1 + .12), 0), (u(end), 0))
+    # (on as the rim lands, a frame after its key: the hand eases into the key and is there a frame later)
+    cue('lip', (u(0), 0), (u(1.33), 0), (u(1.44), 1), (u(g1), 1), (u(g1 + .12), 0), (u(end), 0))
     cue('mouth', (u(0), 0), (u(.75), 0), (u(1.3), 1), (u(g1 + .3), 1), (u(g1 + .75), 0), (u(end), 0))
     cue('look', (u(0), 1), (u(.45), 1), (u(.8), 0), (u(s0 - .1), 0), (u(s0 + .05), 1), (u(end), 1))
     cue('blink', (u(0), 0), (u(1.45), 0), (u(1.6), 1 if first else .0), (u(g1 - .1), 1 if first else 0), (u(g1 + .1), 0), (u(end), 0))

@@ -30,12 +30,15 @@ export function normalizeMotion(value){
  }
  if(!Object.keys(joints).length)fail('The motion contains no supported body joints.');
  const name=typeof value.name==='string'?value.name.slice(0,60)||'Motion':'Motion';
- if(value.version===1)return {format:'johansson-motion',version:1,name,times:times.slice(),joints};
+ // (the frame rate the motion was made at, which the players count samples by: drink-can.js and drink-beer.js widen a contact
+ // over so many of them. Kept: without it every widened contact came out empty, 27 November 2026)
+ const fps=Number.isFinite(value.fps)&&value.fps>0&&value.fps<=240?value.fps:(times.length-1)/times.at(-1);
+ if(value.version===1)return {format:'johansson-motion',version:1,name,fps,times:times.slice(),joints};
  const end=times.at(-1),track=(label,data)=>{if(!Array.isArray(data)||data.length!==times.length||data.some(n=>!Number.isFinite(n)||n<-1e-6||n>1+1e-6))fail('Invalid '+label+' track.');return data.slice();};
  const group=(key,names)=>{const out={};for(const [n,data] of Object.entries(value[key]||{})){if(!names.includes(n))fail('Unknown '+key+' track: '+n);out[n]=track(n,data);}return out;};
  const events=(value.events||[]).map(e=>{if(!e||typeof e.name!=='string'||!Number.isFinite(e.t)||e.t<0||e.t>end)fail('Invalid motion event.');return {t:e.t,name:e.name};});
  const markers={};for(const [n,t] of Object.entries(value.markers||{})){if(!Number.isFinite(t)||t<0||t>end)fail('Invalid motion marker: '+n);markers[n]=t;}
- return {format:'johansson-motion',version:2,name,times:times.slice(),joints,shapes:group('shapes',['closeR','closeL','hookR','hookL']),face:group('face',['blink','breath','smile','look','kaa','foam','swallow','shrug']),prop:group('prop',['tab']),
+ return {format:'johansson-motion',version:2,name,fps,times:times.slice(),joints,shapes:group('shapes',['closeR','closeL','hookR','hookL']),face:group('face',['blink','breath','smile','look','kaa','foam','swallow','shrug']),prop:group('prop',['tab']),
   contact:group('contact',['lip','ring','mouth','pocket','counter','hold','wipe','lean']),fill:value.fill===undefined?null:track('fill',value.fill),events,markers,reach:reachPaths(value.reach,times.length),props:value.props&&typeof value.props==='object'?JSON.parse(JSON.stringify(value.props)):{}};
 }
 /** Where each wrist goes (`reach`: R and L, [x, y, z] a sample in the chest's frame, in the body's own size: the game's

@@ -115,9 +115,9 @@ function held(avatar){
  return ()=>{for(const [b,q] of was)b.quaternion.copy(q);avatar.root.updateMatrixWorld(true);};
 }
 /** The arm `side` moved so the point `at` of its hand (world, moving with the hand) goes to `goal`, by `w`; the hand's own
- *  turn in the world kept (what it holds is where it is to be), or (`keepWorld` false) its turn at the wrist. How far it was
- *  off (metres). */
-export function bring(avatar,side,pt,goal,w,keepWorld=true,firm=1,tag=side){
+ *  turn in the world kept (what it holds is where it is to be), or (`keepWorld` false) its turn at the wrist; `twist` of the
+ *  hand's twist then moved into the forearm (twistIntoForearm). How far it was off (metres). */
+export function bring(avatar,side,pt,goal,w,keepWorld=true,firm=1,tag=side,twist=1){
  const hand=avatar.bones['hand'+side],point=()=>pt?hand.localToWorld(pt.clone()):hand.getWorldPosition(new THREE.Vector3());
  const at=point(),off=_v.copy(goal).sub(at),d=off.length();if(w<=0)return d;   // (posed even when it is on its goal: the arm keeps the way it has, not another for a frame)
  const aim=at.clone().addScaledVector(off,w);
@@ -133,7 +133,7 @@ export function bring(avatar,side,pt,goal,w,keepWorld=true,firm=1,tag=side){
  const pose=(a,turn=true)=>{const p=pole.clone().applyAxisAngle(line,a*Math.min(1,w)).transformDirection(inv);const local=hand.quaternion.clone();reach(avatar,to,side,[p.x,p.y,p.z]);
   // (keepWorld: 1 the hand's turn in the world kept, 0 its turn at the wrist, or between)
   if(turn)hand.quaternion.copy(handLocal).slerp(hand.parent.getWorldQuaternion(_m).invert().multiply(keep),k);else hand.quaternion.copy(local);
-  twistIntoForearm(avatar,side);};
+  twistIntoForearm(avatar,side,twist);};
  // (where the hand's turn in the world is kept, the elbow is turned about the line from the shoulder as little as will do
  // to keep the wrist within what a wrist does: a body built narrower holds the same can with its elbow a little out)
  // (and where the turn need not be held exactly, `firm` less than 1, let go toward the wrist's own as far as that does)
@@ -160,9 +160,11 @@ export function bring(avatar,side,pt,goal,w,keepWorld=true,firm=1,tag=side){
 }
 /** The hand's turn about the forearm's line moved into the forearm (the elbow's own twist, as the game turns it, and as
  *  tools/blender/drink-can.py bakes it): the hand's turn in the world is the same, the wrist bends and does not wring. */
-export function twistIntoForearm(avatar,side){
+export function twistIntoForearm(avatar,side,much=1){
  const hand=avatar.bones['hand'+side],elbow=avatar.bones['elbow'+side],a=hand.position.clone().normalize(),q=hand.quaternion;
  const d=q.x*a.x+q.y*a.y+q.z*a.z,t=new THREE.Quaternion(a.x*d,a.y*d,a.z*d,q.w);if(t.lengthSq()<1e-12)return;t.normalize();
+ // (`much` of it: drink-beer.js takes it in as a contact comes on, not all in its first frame)
+ if(much<1)t.slerpQuaternions(new THREE.Quaternion(),t.clone(),Math.max(0,much));
  elbow.quaternion.multiply(t);hand.quaternion.premultiply(t.invert());elbow.updateWorldMatrix(false,true);
 }
 /** A wrist (the hand's turn at it) brought within what a wrist does, where it is past it. */
@@ -269,9 +271,16 @@ export function playCanDrink(avatar,prop,t,w=1,blend=null){
 /** Each wrist's goal put right for the parts of a contact that are not in this body's proportion (the motion's own pose on
  *  the bones): the can, held in this body's socket, at the lip and under the hooked finger, the hooked finger itself, and the
  *  pocket drawn on this body's shirt. The motion's body would have them at its own, scaled by k/k0; this body has its own. */
+const ringsHeld=new WeakMap();
 function sizeContacts(avatar,prop,t,mouth,goals){
- const m=avatar.measure,m0=made(),f=m.k/m0.k,S=prop.userData?.sealed,i=Math.min(T.length-1,Math.max(0,Math.round(t*M.fps)));
- const ring=S&&!S.off?RING_NEAR[i]:0,pocket=S?POCKET_NEAR[i]:0;if(mouth<=0&&ring<=0&&pocket<=0)return;
+ // (each contact's weight between the motion's samples, not the nearest one's: the game plays the motion at twice its rate,
+ // and a weight stepped every other frame shook the hand; motion.js kept no frame rate before 27 November 2026, and these never
+ // came on for another body)
+ const m=avatar.measure,m0=made(),f=m.k/m0.k,S=prop.userData?.sealed,x=Math.min(T.length-1,Math.max(0,t*M.fps)),i=Math.floor(x),j=Math.min(T.length-1,i+1),u=x-i;
+ const at=data=>data[i]+(data[j]-data[i])*u;
+ // (the hook on the ring eased off as its contact ends, past the moment the tab tears: the torn tab hangs from the finger, and
+ // the hand let go of this body's hook all at once jumped 19 mm in a frame on Vy)
+ const ring=S?at(RING_NEAR):0,pocket=S?at(POCKET_NEAR):0;if(mouth<=0&&ring<=0&&pocket<=0)return;
  const own=canSocket(m,prop,'R'),theirs=canSocket(m0,prop,'R'),handR=avatar.bones.handR.getWorldQuaternion(new THREE.Quaternion());
  // (a point of the can, from the wrist: in this body's socket, less the motion's body's in this body's size)
  const held=p=>p.clone().applyQuaternion(own.quaternion).add(own.position).sub(p.clone().applyQuaternion(theirs.quaternion).add(theirs.position).multiplyScalar(f)).applyQuaternion(handR);
@@ -279,7 +288,10 @@ function sizeContacts(avatar,prop,t,mouth,goals){
  if(ring>0||pocket>0){
   const handL=avatar.bones.handL.getWorldQuaternion(new THREE.Quaternion()),hook=hookLocal(avatar).sub(new THREE.Vector3(...handPoint(m0,'L',HAND.hookAt)).multiplyScalar(f)).applyQuaternion(handL);
   goals.L.addScaledVector(hook,-Math.max(ring,pocket));
-  if(ring>0)goals.L.addScaledVector(held(S.ring.clone().applyMatrix4(S.tab.matrix)),ring);
+  if(ring>0){
+   // (the ring's place on the can, in this body's socket against the motion's body's; from the tear, as it last was there)
+   const rings=ringsHeld.get(prop)||{};if(!S.off){rings.v=held(S.ring.clone().applyMatrix4(S.tab.matrix)).applyQuaternion(handR.clone().invert());ringsHeld.set(prop,rings);}
+   if(rings.v)goals.L.addScaledVector(rings.v.clone().applyQuaternion(handR),ring);}
   if(pocket>0){const chest=avatar.bones.chest.getWorldQuaternion(new THREE.Quaternion()),own=pockets.get(avatar)||pockets.set(avatar,pocketMouth(avatar)).get(avatar);
    madePocket??=pocketMouth({measure:m0,recipe:recipeFor(M.props?.can?.made?.name||'Nils Johansson')});
    goals.L.addScaledVector(own.clone().sub(madePocket.clone().multiplyScalar(f)).applyQuaternion(chest),pocket);}

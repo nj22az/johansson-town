@@ -307,9 +307,10 @@ export function createBeerService({room,getNao,blocked=()=>false,bounds=SHARED_D
    * A resident's drink or dish: `kind` a menu item (or resident rice), `table` where it goes, `onServed(prop)` with what she sets
    * down. False when she is not working the room. `tag` cancels it (they have gone).
    */
-  request({kind,table,tag=null,onServed}){
+  request({kind,table,tag=null,onServed,yaw}){
    const nao=getNao();if(!menuItem(kind)||DRINKS[kind]&&!bar||!nao)return false;
-   queue.push({kind,seat:serviceFor(table,!DRINKS[kind]),tag,onServed});if(!order)start(nao);return true;
+   // (`yaw`: the way the glass's drinking side is to face, the customer's own turn: turnHeld)
+   queue.push({kind,seat:{...serviceFor(table,!DRINKS[kind]),...(Number.isFinite(yaw)?{yaw}:{})},tag,onServed});if(!order)start(nao);return true;
   },
   cancel(tag){for(let i=queue.length-1;i>=0;i--)if(queue[i].tag===tag)queue.splice(i,1);if(order&&order.tag===tag)order.cancelled=true;},
   /** One sip. Returns what is left, or null with nothing on the table. */
@@ -349,6 +350,9 @@ export function createBeerService({room,getNao,blocked=()=>false,bounds=SHARED_D
    }else if(order.phase==='leaving'){
     if(stepTo(nao,seat.route.at(-1),dt)){order.path=[...seat.route.slice(0,-1).reverse(),station()].map(p=>[...p]);order.phase='returning';u.activity='back to the counter';}
    }else if(order.phase==='placing'){
+    // (the glass turned in her fingers as she sets it down, eased, there as she lets go: izakaya-bar.js turnHeld)
+    if(glass&&DRINKS[order.kind]&&order.round.turnHeld&&Number.isFinite(seat.yaw)){const ease=x=>{x=Math.min(1,Math.max(0,x));return x*x*(3-2*x);},e0=ease(1-order.timer/1.1),e1=ease(1-(order.timer-dt)/1.1);
+     if(e0<1)order.round.turnHeld(seat.yaw,(e1-e0)/(1-e0));}
     if((order.timer-=dt)<=0){
      const to=DRINKS[order.kind]?seat.table:(seat.dish||seat.table),prop=glass?order.round.letGo(to):null;
      if(glass)finishRound();

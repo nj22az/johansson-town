@@ -51,7 +51,11 @@ for(const [id,V] of Object.entries(VESSELS)){const prop=createDrinkProp(V.kind,{
  kind:V.kind,rimHeight:prop.userData.rimHeight,rim:arr(beerRim(prop)),grip:prop.userData.grip,hold:beerGrip(m,prop),socket:{position:arr(s.position),quaternion:s.quaternion.toArray().map(r)},fill:V.fill};}
 // seated on a counter stool, as the game seats a body (the animator, the stool's height), facing +z
 const animator=createAvatarAnimator(a,{random:()=>.5}),state={seated:true,seatHeight:MINATO_COMPACT.seatHeight,seatFront:.2};
-for(let k=0;k<180;k++)animator.update(1/60,state);a.root.updateMatrixWorld(true);
+for(let k=0;k<180;k++)animator.update(1/60,state);
+// (the animator slides a body forward on a seat that says where its front edge is, as `root.position.z = -slide`: forward for a
+// root turned half round as the game builds one (build.js), back for this one, turned to face +z. Put forward, as in the game:
+// otherwise Blender's counter is twice the slide (20 cm for Johansson) further than the game's, 27 November 2026)
+a.root.position.z=Math.abs(a.root.position.z);a.root.updateMatrixWorld(true);
 const seatedPose=Object.fromEntries(['hips','thighL','kneeL','footL','thighR','kneeR','footR','spine','chest','neck','head','shoulderL','elbowL','handL','shoulderR','elbowR','handR'].map(n=>[n,a.bones[n].quaternion.toArray().map(r)]));
 const seat=IZAKAYA_PLAYER_SEATS.counter2,plan=MINATO_COMPACT;
 // (the seat faces the counter: the glass's place from the stool, turned into the body's frame (+z ahead, +x his left))

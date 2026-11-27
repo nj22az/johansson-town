@@ -154,6 +154,16 @@ export function createBarRound({kind,bar,room,staff:g,walk,full=true,cancelled=(
   /** Set it down at `at` and let go of it: from then on it is the customer's. */
   placeAt(at){hands.R={place:at};},
   letGo(at){const d=held.R;if(d){release('R',d,at);}hands.R={rest:true};return d;},
+  /** The glass in her right hand turned about the upright, `share` of the way from where it is now to `yaw` (world): as she
+   *  sets it down, its drinking side to whoever it is for and a mug's handle to their right hand (the owner, 27 November 2026:
+   *  "how should it look when anyone drinks beer"; it was left as her hand had it, 46 degrees off, and the drinker's hand
+   *  turned the mug round in a frame as it took it). */
+  turnHeld(yaw,share){
+   const d=held.R;if(!d||!(share>0)||!Number.isFinite(yaw))return;d.updateWorldMatrix(true,false);
+   const q=d.getWorldQuaternion(new THREE.Quaternion()),e=new THREE.Euler().setFromQuaternion(q,'YXZ'),turn=Math.atan2(Math.sin(yaw-e.y),Math.cos(yaw-e.y))*Math.min(1,share);
+   const world=new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,1,0),turn).multiply(q);
+   d.quaternion.copy(d.parent.getWorldQuaternion(new THREE.Quaternion()).invert().multiply(world));d.updateMatrixWorld(true);
+  },
   /** Leaving the room: put back what she holds, at once (nobody is there to see). */
   dispose(){stopStream();stream?.removeFromParent();if(bottleOut)bar.bottle.home();if(jug)bar.shelve(jug);for(const side of ['R','L']){const o=held[side];if(o&&o!==bar.bottle.piece&&o!==jug)o.removeFromParent();}bar.doorOpen=0;bar.lever=0;delete u.workHands;delete u.workHeld;delete u.workAvoid;},
   finish(){delete u.workHands;delete u.workHeld;delete u.workAvoid;stopStream();stream?.removeFromParent();},
