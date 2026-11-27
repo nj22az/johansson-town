@@ -8,7 +8,6 @@ import {onSakuraShift,sakuraOpenAt} from '../commerce/sakura-rota.js';
 import {doctorAtClinic,clinicOpenAt} from './clinic-hours.js';
 import {townCalendarAt} from '../town-clock.js';
 import {izakayaJob} from './izakaya-hours.js';
-import {HARBOUR_PARK_SEATS} from '../world/harbour-park-plan.js';
 import {bookshopVisitPlan} from './bookshop-visits.js';
 import {marketVisitsForDay,RAMEN_VISITS,marketVisitPurpose} from './market-visits.js';
 export {marketVisitsForDay,RAMEN_VISITS} from './market-visits.js';
@@ -28,6 +27,7 @@ import {ONSEN,ONSEN_DOOR} from '../world/onsen-layout.js';
 import {PARK_BENCH} from '../world/park-layout.js';
 import {commuterPhase,shiftActive,shiftFor,departureFor,livesInYard,livesAtWork,livesInKitahama,SATO_SHIFT} from './commuter-schedule.js';
 import {SATO_LUNCH,SATO_RAMEN,satoRamenOpen} from '../world/sato-ramen-layout.js';
+import {boilerDutyAt} from './onsen-boiler.js';
 // The live array, not a copy: the izakaya does not stand in the same place in every
 // layout, and a copy taken at import time would point at the old plot forever.
 export {IZAKAYA_DOOR};
@@ -263,8 +263,6 @@ export function visitsRamen(profile,minutes){
  * walk home is to Kitahama's cross lane): to work for their shift, a Sakura errand or an evening stop when one is due,
  * and otherwise home — where they eat, read and, at night, sleep in their own beds for anybody who opens the door to see.
  */
-/** Tetsuo starts in the afternoon; on a dry morning he takes an hour on the park bench. */
-const MORNING_PARK=Object.freeze({Tetsuo:Object.freeze([750,810])});
 /** Lunch at Sato Ramen, next door to the shop, for those who have a slot (sato-ramen-layout.js). */
 function satoLunch(profile,minutes){
  const slot=SATO_LUNCH[profile.name];
@@ -283,9 +281,6 @@ function yardResidentPlan(profile,minutes,rain=false,state=null){
  const doctor=profile.name==='Nhung';
  if(doctor?doctorAtClinic(minutes):shiftActive(profile,minutes))return {place:'work',target:profile.work,activity:profile.role};
  if(visitsMarket(profile,minutes,state))return {place:'market',target:MARKET_THRESHOLD,activity:'a shopping errand at Sakura'};
- const morning=MORNING_PARK[profile.name];
- // Aimed beside the bench, not at its step: with somebody already on it, they wait off to one side.
- if(!rain&&morning&&inTimeRange(minutes,...morning))return {place:'park',target:[PARK_STAND[0]+1.4,PARK_STAND[1]+.9],activity:'sitting in the park'};
  // Their evening stops were timed against the last bus; living next door, they take
  // at most a couple of hours after work before heading home to bed.
  // Nhung's evening routine follows a surgery day; Saturday afternoon and Sunday evening are her own, at home.
@@ -476,6 +471,10 @@ export function residentPlan(profile,minutes,rain=false,state=null){
  // Today's happening, if it names them (happenings.js): the fish auction, the eisa. Read
  // after sleep and breakfast, so nobody is got out of bed for one.
  const happening=happeningPlan(profile,minutes,rain);
+ // Umi-no-yu's boiler, at the times the cast's day gives (onsen-boiler.js: Tetsuo lights it at six and keeps it from
+ // eight until the bath shuts): his work, on the lawn behind the bathhouse, never in the bath. A happening that names him
+ // (the eisa, 19:30-21:30) is where its news says he was, as for the bench below.
+ {const boiler=boilerDutyAt(profile?.name,minutes);if(boiler&&!happening)return boiler;}
  // Higa Liquor's bench and the coin laundry's washing day (shop-days.js), once they are up. The bench is an ordinary
  // evening's habit: on a night a happening names them (Tetsuo at the eisa, 19:30, inside his 18:30–20:00 bench) they go
  // to it, as its news says they did; the laundry and Kōji's round are kept to.
@@ -490,15 +489,10 @@ export function residentPlan(profile,minutes,rain=false,state=null){
   const target=place==='market'?MARKET_THRESHOLD:place==='izakaya'?IZAKAYA_DOOR:place==='ramen'?RAMEN_DOOR:profile.work;
   return {place,target,activity:'walking to work before opening'};
  }
- const plan=commuterPlan(profile,minutes,rain,state);
- // The two gardens have regular visitors; work and bad-weather routines stay intact.
- // Thuan is not among them: her afternoon break is its own walk (THUAN_WALK), Minato
- // Park's bench and the sea wall, ten minutes from the counter. Aoba Garden is 170 m
- // away, and redirecting her there left the plan and the walk in two places at once.
- if((!rain)&&profile.name==='Tetsuo'&&['park','stroll'].includes(plan.place)&&Math.hypot(plan.target[0]-PARK_STAND[0],plan.target[1]-PARK_STAND[1])<3){
-  return {...plan,place:'park',target:HARBOUR_PARK_SEATS[1].stand,activity:plan.activity+' at Harbour Park'};
- }
- return plan;
+ // (Tetsuo's hour on the park bench at 12:30, MORNING_PARK, and the turn that took any park stop of his to Harbour
+ // Park's pond bench were his old late shift's: since the 30 October Kissa Higa mornings his shift, 9:00-18:00, covers
+ // that hour and his evening stops end before the park, so neither could happen. Removed on 27 November 2026.)
+ return commuterPlan(profile,minutes,rain,state);
 }
 export const GOSSIP=[
  {id:'yuri-evening',a:'Thuan',b:'Thao',line:'Thuan: I told the assistant manager I would be on the last ferry.\nThao: The plant?\nThuan: He looked very disappointed. I watered him twice.',clue:'Thuan leaves Sakura for the Harbour Line after closing. Check the terminal timetable for her evening service.'},

@@ -9,7 +9,7 @@ import {createNavigation} from '../src/people/navmesh.js';
 import {KITAHAMA,plotGate} from '../src/world/kitahama-layout.js';
 import {gardenPoint,PARK_ACCESS,GARDEN_BENCHES_AUTHOR} from '../src/world/garden-layout.js';
 import {SHOPPING_LANE} from '../src/world/shopping-lane-plan.js';
-import {FORMER_FLORIST,NAKAMURA_DESSERTS,HARBOUR_PARK_SEATS} from '../src/world/harbour-park-plan.js';
+import {FORMER_FLORIST,NAKAMURA_DESSERTS,HARBOUR_PARK_SEATS,inHarbourPark} from '../src/world/harbour-park-plan.js';
 import {SAKURA_FLOWER_STAND} from '../src/world/okinawa/old-town.js';
 import {PARK_BENCH} from '../src/world/park-layout.js';
 import {feedPlace} from '../src/feed/places.js';
@@ -94,7 +94,11 @@ test('the retired lane stays open; the florist pavilion is gone, its lawn is ope
  assert.equal(world.landmarks.some(s=>s.id==='rainflower-lane'),false);assert.equal(world.landmarks.some(s=>s.id==='rainflower-florist'),false,'no pavilion landmark (phase 4, addendum 3)');assert.equal(world.landmarks.filter(s=>s.id==='nakamura').length,1);
  assert.equal(world.group.getObjectByName('Rainflower Florist'),undefined,'no pavilion meshes');assert.equal(world.colliders.some(c=>c.business==='rainflower-florist'),false,'no pavilion collider');
  const {NEIGHBOURS}=await import('../src/people/neighbours.js');
- assert.equal(NEIGHBOURS.find(n=>n.name==='Mrs Kinjō'),undefined,'no florist body');assert.deepEqual(NEIGHBOURS.find(n=>n.name==='Mrs Nakamura').at,NAKAMURA_DESSERTS.staffAt);
+ // Nobody keeps Nakamura's counter either: the owner retired the Nakamura family on 31 October 2026 ("remove the ice cream
+ // family now ... we need to build facilities before we populate them"); the facility stays (its one landmark, above),
+ // vacant and shut until a later decision staffs it.
+ assert.equal(NEIGHBOURS.find(n=>n.name==='Mrs Kinjō'),undefined,'no florist body');assert.equal(NEIGHBOURS.find(n=>n.name==='Mrs Nakamura'),undefined,'no dessert keeper');
+ assert.equal(NAKAMURA_DESSERTS.staffed,false);
  assert.equal(prompts.some(p=>/flowers|flower counter|Mrs Kinjō/.test(p.label)&&!/bouquet/.test(p.label)),false,'the pavilion’s prompts are gone');
  const B=FORMER_FLORIST.bounds;for(let x=B.minX;x<=B.maxX+.01;x+=.5)for(let z=B.minZ;z<=B.maxZ+.01;z+=.5)assert.equal(playerBlocked(x,z,.32),false,'the lawn where the pavilion stood is open at '+[x,z]);
  const buy=new THREE.Vector3();prompts.find(p=>p.label==='Buy a bouquet · ¥250').object.getWorldPosition(buy);assert.ok(Math.hypot(buy.x-SAKURA_FLOWER_STAND[0],buy.z-SAKURA_FLOWER_STAND[1])<.01,'the bouquets are at Sakura’s door');
@@ -106,7 +110,12 @@ test('dry-weather garden visits use the existing residents and respect rain rout
  const {sleepHours,homeRoutine}=await import('../src/people/home-life.js'),tetsuo=RESIDENTS.find(p=>p.name==='Tetsuo'),{wake}=sleepHours(tetsuo);
  assert.equal(homeRoutine(tetsuo,wake+16).id,'breakfast');assert.equal(residentPlan(tetsuo,wake+16,false,{}).place,'home','breakfast finishes before the garden trip');
  assert.equal(RESIDENTS.find(p=>p.name==='Reiko'),undefined,'Reiko is retired (phase 4): the morning bench is Tetsuo’s');
- for(const [name,minute] of [['Tetsuo',780]]){const profile=RESIDENTS.find(p=>p.name===name),plan=residentPlan(profile,minute,false,{});assert.equal(plan.place,'park');assert.ok(plan.activity.includes('Harbour Park'));assert.deepEqual(plan.target,HARBOUR_PARK_SEATS[1].stand);assert.notEqual(residentPlan(profile,minute,true,{}).place,'park');}
+ // Tetsuo's bench in the garden at one o'clock went with his old late shift: since the 30 October 2026 Kissa Higa
+ // mornings he keeps his cast.js day (AGENTS.md: "Tetsuo sleeps 23:00-07:00 and opens his radio bench at 09:00";
+ // commuter-schedule.js), the radio bench from nine, lunch at Sato Ramen, the workshop through the afternoon.
+ assert.equal(residentPlan(tetsuo,780,false,{}).place,'work','the radio bench, not the garden, at one');
+ // The dry-weather garden visits are the residents' own walks through Harbour Park, and the rain keeps each of them indoors.
+ for(const [name,minute] of [['Thao',815],['Thao',905],['Thuan',900]]){const profile=RESIDENTS.find(p=>p.name===name),plan=residentPlan(profile,minute,false,{});assert.equal(plan.place,'park',name+' at '+minute);assert.ok(inHarbourPark(...plan.target),name+' walks in Harbour Park');const wet=residentPlan(profile,minute,true,{});assert.ok(['izakaya','market'].includes(wet.place),name+' is indoors in the rain, not at '+wet.place);}
 });
 
 test('photo and feed destinations use the reachable park and Sakura’s flower stand, and Sakura directs ice cream customers to Nakamura',async()=>{

@@ -5,6 +5,7 @@ import {RESIDENTS} from '../src/people/residents.js';
 import {PROFILES} from '../src/people/profiles.js';
 import {recipeFor} from '../src/avatars/cast.js';
 import {NEIGHBOUR_TALK} from '../src/people/neighbours.js';
+import {BLUE_CORAL} from '../src/world/blue-coral-shop.js';
 import {migrateThuan} from '../src/save.js';
 
 const who=name=>RESIDENTS.find(p=>p.name===name);
@@ -55,7 +56,17 @@ test('after surgery: Thuan at the counter, supper at home, ice cream at the free
 test('Vy is an eleven-year-old in her own monochrome look with a school-day routine',()=>{
  const vy=recipeFor('Vy');assert.equal(vy.age,'child');assert.equal(vy.outfit.top,'stripedvest');assert.equal(vy.outfit.bottom,'skirt');
  assert.equal(vy.outfit.topColour,vy.outfit.bottomColour,'one colour, top and skirt');
- assert.ok(NEIGHBOUR_TALK.Vy.routine.some(r=>/ice cream/.test(r.role)));
+ // Her school day (neighbours.js): out of the door for school, the classroom, Harbour Park after school and her homework
+ // there, home for the evening, in that order. Her after-school ice cream went with Blue Coral's keepers: the owner
+ // retired the Nakamura family on 31 October 2026 ("we need to build facilities before we populate them") and the counter
+ // stands vacant and shut until it is staffed (harbour-park-plan.js NAKAMURA_DESSERTS), so her day sends her nowhere near it.
+ const routine=NEIGHBOUR_TALK.Vy.routine,roleAt=m=>routine.filter(r=>r.from<=m).at(-1);
+ assert.match(roleAt(480).role,/leaving for school/);assert.match(roleAt(720).role,/at school/);assert.equal(roleAt(720).away,true,'the classroom has her');
+ assert.match(roleAt(950).role,/Harbour Park after school/);assert.match(roleAt(1000).role,/homework/);assert.equal(roleAt(1000).away,undefined,'in the park, in the street');
+ assert.equal(roleAt(1200).home,true,'home for the evening');assert.equal(roleAt(60).home,true,'and the night');
+ assert.ok(routine.every((r,i)=>i===0||r.from>routine[i-1].from),'one stop after another');
+ assert.equal(routine.some(r=>/ice cream|Blue Coral|Nakamura|zenzai/i.test(r.role)),false,'no stop at the vacant dessert counter');
+ assert.equal(BLUE_CORAL.staffed,false,'Blue Coral has no keeper (31 October 2026)');
 });
 
 test('saves from before the renames keep their people',()=>{

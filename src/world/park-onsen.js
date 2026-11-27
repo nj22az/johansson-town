@@ -22,7 +22,7 @@ import {createLampGlow} from './light-pools.js';
  * wall. A lightweight shell, noren, signs, door glass and steam are visible from the
  * first frame, including when the detailed asset is unavailable.
  */
-import {ONSEN,ONSEN_DOOR,ONSEN_APPROACH,onsenPoint,onsenOpen} from './onsen-layout.js';
+import {ONSEN,ONSEN_DOOR,ONSEN_APPROACH,ONSEN_BOILER,onsenPoint,onsenOpen} from './onsen-layout.js';
 export {ONSEN,onsenPoint,onsenOpen};
 
 /** A rectangle in the model's frame; a quarter turn swaps its width and depth. */
@@ -192,6 +192,38 @@ function kakehi(group){
 }
 
 /**
+ * The bath's boiler at the back corner of the bathhouse, on the park side (onsen-layout.js ONSEN_BOILER: who keeps it and
+ * why it is there): the cream steel heater with its pipes into the wall and its flue up the wall to a rain cap, and the
+ * kerosene tank on a steel stand with its feed line to the burner, standing on the garden's ground (no slab of its own:
+ * the ground is the ground standard's). Two materials, two meshes. Every part stands a few millimetres off what it meets
+ * or into it, never on a shared face.
+ */
+function bathBoiler(group){
+ const B=ONSEN_BOILER,U=B.unit,T=B.tank,F=B.flue,WALL=-3.58;
+ const box=(x0,x1,y0,y1,z0,z1)=>new THREE.BoxGeometry(x1-x0,y1-y0,z1-z0).translate((x0+x1)/2,(y0+y1)/2,(z0+z1)/2);
+ const pipe=(r,len,x,y,z,axis)=>{const g=new THREE.CylinderGeometry(r,r,len,10);if(axis==='x')g.rotateZ(Math.PI/2);return g.translate(x,y,z);};
+ const steel=[
+  pipe(F.r,F.top-U.top+.01,F.x,(U.top-.01+F.top)/2,F.z),                         // the flue, from inside the heater's top
+  new THREE.CylinderGeometry(.11,.07,.08,12).translate(F.x,F.top+.03,F.z),      // its rain cap
+  // Two brackets and the flow and return pipes run 2 cm into the wall: the bathhouse model's face is at x -3.6 above its
+  // plinth (the collider and the stand-in's wall at -3.8), so the heater stands a hand off the plinth and its pipes cross.
+  box(F.x+F.r-.005,WALL,1.6,1.64,F.z-.02,F.z+.02),box(F.x+F.r-.005,WALL,2.2,2.24,F.z-.02,F.z+.02),
+  pipe(.022,WALL-U.x1-.01,(U.x1-.01+WALL)/2,.5,U.z0+.15,'x'),pipe(.022,WALL-U.x1-.01,(U.x1-.01+WALL)/2,.66,U.z1-.15,'x'),
+  ...[[T.x0+.04,T.z0+.04],[T.x1-.04,T.z0+.04],[T.x0+.04,T.z1-.04],[T.x1-.04,T.z1-.04]].map(([x,z])=>box(x-.02,x+.02,-.02,T.foot+.005,z-.02,z+.02)),   // the stand's legs, set into the ground
+  box(T.x0+.02,T.x1-.02,T.foot-.02,T.foot,T.z0+.02,T.z1-.02),                   // and its frame
+ ];
+ // The oil line: down from the tank's foot, along the pad and into the heater's side.
+ const line=new THREE.CylinderGeometry(.008,.008,T.z0-U.z1+.02,6).rotateX(Math.PI/2).translate((U.x0+U.x1)/2,.2,(U.z1+T.z0)/2);
+ const drop=new THREE.CylinderGeometry(.008,.008,T.foot-.2+.02,6).translate((U.x0+U.x1)/2,(T.foot+.2)/2,T.z0+.03);
+ steel.push(line,drop);
+ const cream=[box(U.x0,U.x1,U.foot,U.top,U.z0,U.z1),box(T.x0,T.x1,T.foot,T.top,T.z0,T.z1)];
+ const mesh=(list,colour,roughness,name,metalness=0)=>{const m=new THREE.Mesh(mergeGeometries(list.map(g=>g.index?g.toNonIndexed():g),false),
+  new THREE.MeshStandardMaterial({color:colour,roughness,metalness}));m.name=name;m.castShadow=m.receiveShadow=true;group.add(m);for(const g of list)g.dispose();return m;};
+ mesh(cream,0xe6e0cf,.55,'Umi-no-yu boiler and oil tank',.15);
+ mesh(steel,0x55595c,.5,'Umi-no-yu boiler flue and pipes',.4);
+}
+
+/**
  * @param {object} world the town world (group, colliders, details)
  * @param {object} options register / onAction as the other buildings take them
  */
@@ -206,6 +238,8 @@ export function buildParkOnsen(world,{register,onAction,enter,sites,shadows=fals
  // over the noren and a pool on the approach (light-pools.js). Shut, the frontage goes dark like any other shop.
  const entranceGlow=createLampGlow(group,[{head:{x:-1.4,y:2.42,z:4.6},ground:{x:-1.4,y:.08,z:5.5},radius:2.4,size:1.4}]);
  const spout=kakehi(group);world.colliders.push(rect(KAKEHI.x,KAKEHI.z,.14,.14,1.15));
+ // The boiler and its tank: one solid from the wall to the heater's front.
+ bathBoiler(group);{const U=ONSEN_BOILER.unit,T=ONSEN_BOILER.tank;world.colliders.push({...rect((U.x0-3.8)/2,(U.z0+T.z1)/2,-3.8-U.x0,T.z1-U.z0,1.2),id:'onsen-boiler'});}
  (world.hourly??=[]).push(minutes=>{const open=onsenOpen(minutes)?1:0;door.material.emissiveIntensity=windowGlow(minutes)*open*.9;entranceGlow.update(poolGlow(minutes)*open);
   spout.stream.visible=plumes[1].points.visible=!!open;spout.lantern.emissiveIntensity=lanternGlow(minutes)*open*1.4;});
  const anchor=(x,y,z,label,fn)=>{const o=new THREE.Object3D();o.position.set(x,y,z);group.add(o);register?.(o,label,fn);return o;};
@@ -216,6 +250,7 @@ export function buildParkOnsen(world,{register,onAction,enter,sites,shadows=fals
   entryFacing:ONSEN.yaw,opens:'10:00',directions:'From Sakura, use the marked crossing and follow the park path straight on to Umi-no-yu. The footbath, free for residents in the bath’s hours, is beside the entrance.'};
  sites?.push(site);
  anchor(-1.4,1.2,4.75,'Go into Umi-no-yu',()=>enter?enter(site):onAction?.('onsen'));
+ anchor(-4.5,1.0,.4,'Look at the bath’s boiler',()=>onAction?.('inspect','Umi-no-yu · the boiler',ONSEN_BOILER.why+' A cream steel heater, warm to the hand while the bath is open, its flue up the wall and its kerosene tank beside it on a stand.'));
  register?.(notice,'Read the onsen notice',()=>onAction?.('read','Umi-no-yu notice',
   'Harbour bath, heated sea water (shio-yu). Bath 10:00–22:00, adults ¥300, children ¥150. The footbath keeps the bath’s hours and is free for residents. Sea water from the harbour, heated to 42°C at the spout — good for cold hands and long shifts on the quay. Please wash before you bathe.'));
  // Sit on the footbath's rim with your feet in the water, looking across it.

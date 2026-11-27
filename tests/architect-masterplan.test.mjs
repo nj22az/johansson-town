@@ -4,7 +4,7 @@ import * as THREE from '../vendor/three.module.js';
 import {installDOM} from './fixtures.mjs';
 import {createIslandBusinesses} from '../src/world/businesses.js';
 import {standingHitsRect} from '../physics.js';
-import {TOWN_WALK_PLOTS,plotCircuit} from '../src/world/architecture-plan.js';
+import {TOWN_WALK_PLOTS,plotCircuit,plotSides,WALKING_STANDARD} from '../src/world/architecture-plan.js';
 import {SHED_CIRCUIT} from '../src/world/fujita-layout.js';
 import {COAST_WALK,COAST_ROAD} from '../src/world/island-plan.js';
 import {COASTLINE,COAST_BOUNDS} from '../src/world/island-coast.js';
@@ -22,7 +22,12 @@ test('every registered building has a clear complete circuit connected to Main S
  const bins=new Map(),key=(x,z)=>Math.floor(x/4)+','+Math.floor(z/4);
  for(const c of world.colliders){const r=Math.hypot(c.w||0,c.d||0)/2+1.3;for(let x=Math.floor((c.x-r)/4);x<=Math.floor((c.x+r)/4);x++)for(let z=Math.floor((c.z-r)/4);z<=Math.floor((c.z+r)/4);z++){const k=x+','+z;if(!bins.has(k))bins.set(k,[]);bins.get(k).push(c);}}
  const hits=(x,z,r)=>{const y=groundHeight(x,z);return (bins.get(key(x,z))||[]).filter(c=>standingHitsRect(x,z,r,y,c));};
- const loops=[...TOWN_WALK_PLOTS.map(p=>({id:p.id,points:plotCircuit(p),radius:.95,land:true})),{id:'Fujita timber circuit',points:SHED_CIRCUIT,radius:.32},{id:'coastal circuit',points:COAST_WALK,radius:1.2,land:true}];
+ // A building's circuit is clear at the standard's width (radius .95) all round, except where its plan records a narrow
+ // lane (architecture-plan.js `narrow`, the coordinator's ruling of 27 November 2026: a fitting placed for a reason
+ // keeps its place, and a lane narrower than the standard but walkable for a person counts at its real width): there it
+ // is checked at that lane's width, never under a person's (WALKING_STANDARD.personClear), and only where the standard's
+ // width really is blocked by the fittings the lane names, so no lane is excused that need not be.
+ const loops=[...TOWN_WALK_PLOTS.map(p=>({id:p.id,points:plotCircuit(p),sides:plotSides(p),radius:.95,land:true})),{id:'Fujita timber circuit',points:SHED_CIRCUIT,radius:.32},{id:'coastal circuit',points:COAST_WALK,radius:1.2,land:true}];
  try{
   assert.ok(world.colliders.some(c=>Math.abs(c.x+12.95)<.1&&Math.abs(c.z+27.3)<.1&&c.w>10),'Sakura exists in the test scene');
   assert.ok(world.colliders.some(c=>c.id?.startsWith('west-shop:frontrow')),'Front-Row exists in the test scene');
@@ -35,18 +40,31 @@ test('every registered building has a clear complete circuit connected to Main S
   world.group.traverse(o=>assert.equal(retired.test(o.name),false,'retired scenery: '+o.name));
   assert.equal(world.colliders.some(c=>retired.test(c.id||'')),false,'no phantom rural colliders');
   assert.equal(world.landmarks.some(l=>l.z>95&&l.x<80),false,'no retired map targets');
-  const targets=[],failures=[];
+  const targets=[],failures=[],lanes=new Map();
+  for(const p of TOWN_WALK_PLOTS)for(const [side,lane] of Object.entries(p.narrow||{})){
+   assert.ok(lane.radius*2>=WALKING_STANDARD.personClear,p.id+' '+side+': a lane a person can walk');assert.ok(lane.radius<.95,p.id+' '+side+' is narrower than the standard');
+   assert.ok(lane.between.length&&lane.between.every(id=>world.colliders.some(c=>c.id===id)),p.id+' '+side+' names the fittings that stand either side');
+   assert.ok(lane.why.length>40,p.id+' '+side+' says why they are there');lanes.set(lane,{id:p.id+' '+side,blocked:0,points:0});
+  }
   for(const loop of loops){
    assert.deepEqual(loop.points[0],loop.points.at(-1),loop.id+' closes');
    targets.push({id:loop.id,point:loop.points[0]});
    for(let i=1;i<loop.points.length;i++){
     const a=loop.points[i-1],b=loop.points[i],n=Math.ceil(Math.hypot(b[0]-a[0],b[1]-a[1])/.15);let prior=null;
+    const side=loop.sides?.[i-1];
     for(let j=0;j<=n;j++){
      const t=j/n,x=a[0]+(b[0]-a[0])*t,z=a[1]+(b[1]-a[1])*t,y=groundHeight(x,z),where=`${loop.id}: ${x.toFixed(2)},${z.toFixed(2)}`;
+     const lane=side?.narrowAt(x,z),radius=lane?lane.radius:loop.radius;
+     if(lane){
+      // The lane's fittings really stand in the standard's width here (or it is not a narrow lane, and must be removed).
+      const standard=hits(x,z,loop.radius);
+      if(standard.length&&!standard.every(c=>lane.between.includes(c.id)))failures.push(where+' narrow lane blocked by an unlisted '+standard.filter(c=>!lane.between.includes(c.id)).map(c=>c.id).join(','));
+      if(standard.length)lanes.get(lane).blocked++;lanes.get(lane).points++;
+     }
      if(!routeAt(x,z,.32))failures.push(where+' no ground');
-     const blocked=hits(x,z,loop.radius);if(blocked.length)failures.push(where+' blocked by '+blocked.map(c=>c.id||'street fixture').join(','));
+     const blocked=hits(x,z,radius);if(blocked.length)failures.push(where+' blocked by '+blocked.map(c=>c.id||'street fixture').join(',')+(lane?' (narrow lane, radius '+radius+')':''));
      if(prior!==null&&Math.abs(y-prior)>.24)failures.push(where+' floor step '+Math.abs(y-prior).toFixed(3));prior=y;
-     if(loop.land)for(let k=0;k<8;k++)if(!onIslandLand(x+Math.cos(k*Math.PI/4)*loop.radius,z+Math.sin(k*Math.PI/4)*loop.radius)){failures.push(where+' outside shoreline');break;}
+     if(loop.land)for(let k=0;k<8;k++)if(!onIslandLand(x+Math.cos(k*Math.PI/4)*radius,z+Math.sin(k*Math.PI/4)*radius)){failures.push(where+' outside shoreline');break;}
     }
    }
   }
@@ -60,6 +78,7 @@ test('every registered building has a clear complete circuit connected to Main S
    }
   }
   assert.deepEqual([...new Set(failures)].slice(0,35),[],'full circuits and their reserved clear width');
+  for(const {id,blocked,points} of lanes.values()){assert.ok(points>0,id+' is on its circuit');assert.ok(blocked>0,id+': the standard width is open here, so it is no narrow lane');}
   // Flood the actual scene at player-navigation resolution, testing midpoints too.
   // This verifies connectivity, rather than independently checking isolated loops.
   const cell=.5,minX=-64,minZ=-61,nx=451,nz=590,size=nx*nz,seen=new Uint8Array(size),known=new Uint8Array(size),heights=new Float32Array(size),queue=new Int32Array(size);

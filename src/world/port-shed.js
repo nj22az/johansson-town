@@ -161,9 +161,12 @@ export function buildPortShed({parent,colliders,register,onAction,shadows=false,
  box([.62,.12,.44],[cx,.34,cz+.07],chairMat,'Armchair seat');box([.62,.55,.14],[cx,.62,cz+.3],chairMat,'Armchair back');
  for(const s of [-1,1])box([.12,.3,.48],[cx+s*.31,.45,cz+.1],std(0x8f6a54,.95),'Armchair arm');
  // The short-legged cast needs a real support below this seat, not shoes dangling
- // through its upholstery. A low timber footstool belongs in his worn armchair corner.
- box([.48,.08,.30],[cx,.148,cz-.32],plank,'Armchair footrest');
- for(const side of [-1,1])box([.05,.108,.24],[cx+side*.19,.054,cz-.32],timber,'Footrest leg');
+ // through its upholstery. A low timber footstool belongs in his worn armchair corner. Its top is where his soles come
+ // to in the chair: 0.1825 m since the body kit's worn shoes (26 November 2026), whose soles lie 5.5 mm under the fused
+ // shoes' that the stool was first cut to (tests/port-shed.test.mjs measures them on it, within 2 mm).
+ const STOOL_TOP=.1825;
+ box([.48,.08,.30],[cx,STOOL_TOP-.04,cz-.32],plank,'Armchair footrest');
+ for(const side of [-1,1])box([.05,STOOL_TOP-.08,.24],[cx+side*.19,(STOOL_TOP-.08)/2,cz-.32],timber,'Footrest leg');
  // ---- Beer. One Umineko large bottle, built once; the crates, the bottle he is on and the empties are copies of it.
  // All of it moves or changes through the day, so none of it may be baked into the town's static batches (dynamicProp).
  const proto=buildBeerBottle(),parts=[];proto.updateMatrixWorld(true);

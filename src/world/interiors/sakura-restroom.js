@@ -1,5 +1,6 @@
 import * as THREE from '../../../vendor/three.module.js';
 import {GLTFLoader} from '../../../vendor/GLTFLoader.js';
+import {mergeGeometries} from '../../../vendor/BufferGeometryUtils.js';
 import {assetURL} from '../../assets.js';
 
 /**
@@ -93,6 +94,17 @@ const canvasTex=(w,h,draw,repeat)=>{const c=document.createElement('canvas');c.w
 const say=(ctx,s,x,y,size,colour,align='center',weight='bold')=>{ctx.fillStyle=colour;ctx.font=`${weight} ${size}px ${MARU}`;ctx.textAlign=align;ctx.textBaseline='middle';ctx.fillText(s,x,y);};
 const std=(color,extra={})=>new THREE.MeshStandardMaterial({color,roughness:.6,...extra});
 const hash=(i,s=0)=>{const n=Math.sin(i*127.1+s*311.7)*43758.5453;return n-Math.floor(n);};
+/**
+ * Small parts of one material that never move apart (a louvre's slats, a handle and its rose, a flower's petals) drawn as
+ * one mesh: each geometry baked where it stood (position, rotation, scale), so the picture is the same and the room costs
+ * one draw per kind rather than one per part (tests/owned-display-lod.test.mjs holds Sakura's draws).
+ */
+function merged(parts,material,label){
+ const list=parts.map(({geometry,position=[0,0,0],rotation=[0,0,0],scale=[1,1,1]})=>geometry.applyMatrix4(new THREE.Matrix4().compose(
+  new THREE.Vector3(...position),new THREE.Quaternion().setFromEuler(new THREE.Euler(...rotation)),new THREE.Vector3(...scale))));
+ const mesh=new THREE.Mesh(mergeGeometries(list,false),material);mesh.name=label;for(const g of list)g.dispose();
+ return mesh;
+}
 const TILE_TOP=1.35;
 
 function kit(parent){
@@ -271,14 +283,15 @@ function buildRestroomDoor(k){
  const W=D.width,H=D.height,T=D.thickness,mid=T/2;
  part(W,H,T,W/2,D.sill+H/2,mid,leafMat,'Sakura restroom door leaf');
  // Both faces: the louvre at the foot that lets the wall fan draw air through, a lever handle on its rose.
- const indicator=std(0x2f9a62,{roughness:.5});
+ const indicator=std(0x2f9a62,{roughness:.5}),frames=[],slats=[],handles=[];
  for(const s of [-1,1]){
   const face=mid+s*T/2;
-  part(.46,.26,.008,W/2,.33,face+s*.004,trim,'Restroom door louvre frame');
-  for(let i=0;i<4;i++)part(.4,.022,.01,W/2,.25+i*.054,face+s*.013,leafMat,'Restroom door louvre slat').rotation.x=s*.5;
-  part(.05,.15,.008,W-.07,1.0,face+s*.004,metal,'Restroom door handle plate');
-  part(.022,.022,.045,W-.07,1.03,face+s*.03,metal,'Restroom door handle');part(.12,.02,.02,W-.12,1.03,face+s*.055,metal,'Restroom door handle');
+  frames.push({geometry:new THREE.BoxGeometry(.46,.26,.008),position:[W/2,.33,face+s*.004]});
+  for(let i=0;i<4;i++)slats.push({geometry:new THREE.BoxGeometry(.4,.022,.01),position:[W/2,.25+i*.054,face+s*.013],rotation:[s*.5,0,0]});
+  handles.push({geometry:new THREE.BoxGeometry(.05,.15,.008),position:[W-.07,1.0,face+s*.004]},
+   {geometry:new THREE.BoxGeometry(.022,.022,.045),position:[W-.07,1.03,face+s*.03]},{geometry:new THREE.BoxGeometry(.12,.02,.02),position:[W-.12,1.03,face+s*.055]});
  }
+ pivot.add(merged(frames,trim,'Restroom door louvre frames'),merged(slats,leafMat,'Restroom door louvre slats'),merged(handles,metal,'Restroom door handles'));
  // The shop side: the plate that says what the door is, and the little window that shows green for free, red for in use.
  const face=T;
  const plate=canvasTex(160,160,(ctx,w,h)=>{ctx.fillStyle='#fbfaf4';ctx.fillRect(0,0,w,h);ctx.strokeStyle='#2f5fb8';ctx.lineWidth=8;ctx.strokeRect(8,8,w-16,h-16);say(ctx,'Toilet',w/2,h/2+2,40,'#1e3a8a');});
@@ -324,7 +337,8 @@ function basinFittings(k){
  const VASE=RESTROOM_DECOR.find(d=>d.id==='vase'),V=VASE.x,vz=VASE.z;
  k.mesh(new THREE.CylinderGeometry(.012,.022,.07,12),new THREE.MeshStandardMaterial({color:0xf7c9d6,roughness:.25}),V,VASE.y+.04,vz,'Bud vase');
  k.mesh(new THREE.CylinderGeometry(.003,.003,.07,6),std(0x4f8a4a),V,VASE.y+.105,vz,'Hibiscus stem');
- for(let i=0;i<5;i++){const a=i*Math.PI*2/5,pet=k.mesh(new THREE.SphereGeometry(.017,10,8),std(0xe8436a,{roughness:.7}),V+Math.cos(a)*.016,VASE.y+.145+Math.sin(a)*.016,vz+.012,'Hibiscus petal');pet.scale.set(1,1,.35);}
+ k.group.add(merged(Array.from({length:5},(_,i)=>{const a=i*Math.PI*2/5;return {geometry:new THREE.SphereGeometry(.017,10,8),position:[V+Math.cos(a)*.016,VASE.y+.145+Math.sin(a)*.016,vz+.012],scale:[1,1,.35]};}),
+  std(0xe8436a,{roughness:.7}),'Hibiscus petals'));
  k.mesh(new THREE.SphereGeometry(.007,8,6),std(0xf6d36b),V,VASE.y+.145,vz+.022,'Hibiscus heart');
  // The green soap globe on its wall bracket, right of the mirror.
  k.box(.02,.08,.04,-4.7,1.3,R.minZ+.012,chrome,'Soap globe bracket');

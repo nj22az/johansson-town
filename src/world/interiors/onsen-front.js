@@ -73,7 +73,9 @@ export const GENKAN_SPOTS=Object.freeze({
  Nhung:spot(-.92,3.82,Object.freeze([plain({dx:-.068,dz:-.01,yaw:TO_DOOR-.08}),plain({dx:.076,dz:.02,yaw:TO_DOOR+.12})]),
   'Next to her sisters. The eldest turns hers round with her foot, without bending down, so they come out a little crooked.',
   'Nhung’s, turned with a foot, a little crooked.'),
- Thao:spot(-1.29,3.84,Object.freeze([plain({dx:-.06,dz:-.02,yaw:TO_HOUSE+.35}),plain({dx:.13,dz:.17,yaw:TO_HOUSE-.7,side:true})]),
+ // (Her sneakers since her redrawing from her photograph, 26 November 2026, where she had worn sandals: the kicked one lies
+ // 1 cm nearer her other shoe than the sandal did, so its wider sole stays off Nhung's.)
+ Thao:spot(-1.29,3.84,Object.freeze([plain({dx:-.06,dz:-.02,yaw:TO_HOUSE+.35}),plain({dx:.12,dz:.17,yaw:TO_HOUSE-.7,side:true})]),
   'At the end of the sisters’ row, as she stepped out of them: toes to the house, one kicked onto its side. Stubborn: she says she can step into them backwards.',
   'Thao’s, kicked off toes-in, one on its side.'),
  'Mr Fujita':spot(.68,3.82,Object.freeze([plain({dx:-.053,dz:0,yaw:TO_DOOR}),plain({dx:.053,dz:0,yaw:TO_DOOR})]),

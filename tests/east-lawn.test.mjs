@@ -168,9 +168,9 @@ test('every open patch of the east side can be walked to from the road',async()=
    seen.add(key(nx,nz));queue.push([nx,nz]);
   }
  }
- // Staff aisles behind counters (Mrs Nakamura's, behind the zenzai counter) are reached
+ // Staff aisles behind counters (the zenzai counter's, when it is staffed) are reached
  // through passages narrower than the flood grid can step through: the passage beside
- // her stairwell leaves the walker a band under 0.2 m wide. So a cell the 0.4 m flood
+ // its stairwell leaves the walker a band under 0.2 m wide. So a cell the 0.4 m flood
  // missed gets a second look: a fine search, 0.1 m steps with the same body, colliders
  // and walk surface, from the nearest cell the flood did reach. A truly enclosed pocket
  // still has no way in and still fails.
@@ -193,16 +193,25 @@ test('every open patch of the east side can be walked to from the road',async()=
   }
   return false;
  };
- // Higa Liquor is shut for good (the owner, 22 October 2026; commerce/higa-liquor.js): its floor is behind the shutter
- // and the shut doors on purpose, a closed room and not stranded ground. Only the shop-house itself is set aside.
+ // Two shop floors are behind their shutters at this hour on purpose, closed rooms and not stranded ground; only the
+ // shop-houses themselves are set aside. The old Higa Liquor (shut for good on 22 October 2026) is Kissa Higa since
+ // 30 October 2026, its shutter up on weekday mornings only (commerce/kissa-higa.js), and the town is built at noon.
+ // Nakamura's dessert counter, where the flood once reached Mrs Nakamura's staff aisle, is vacant and shut since the owner
+ // retired the Nakamura family on 31 October 2026, until a later decision staffs it (harbour-park-plan.js NAKAMURA_DESSERTS).
  const {HIGA_FRAME}=await import('../src/world/okinawa/higa-liquor-dressing.js');
- const inShutShop=(x,z)=>{const lz=HIGA_FRAME.origin[0]-x,lx=z-HIGA_FRAME.origin[1];return Math.abs(lx)<HIGA_FRAME.W&&Math.abs(lz)<HIGA_FRAME.D-.15;};
- const stranded=[];let shutCells=0;
+ const {NAKAMURA_FRAME}=await import('../src/world/okinawa/nakamura-dressing.js');
+ const {NAKAMURA_PLAN}=await import('../src/world/nakamura-plan.js');
+ const {NAKAMURA_DESSERTS}=await import('../src/world/harbour-park-plan.js');
+ const behind=(x,z,[ox,oz],F)=>{const lz=ox-x,lx=z-oz;return Math.abs(lx)<F.W&&Math.abs(lz)<F.D-.15;};
+ const inShutShop=(x,z)=>behind(x,z,HIGA_FRAME.origin,HIGA_FRAME);
+ const inShutCounter=(x,z)=>!NAKAMURA_DESSERTS.staffed&&behind(x,z,[NAKAMURA_PLAN.x,NAKAMURA_PLAN.z],NAKAMURA_FRAME);
+ const stranded=[];let shutCells=0,counterCells=0;
  for(let x=EAST_LAWN.minX;x<=EAST_LAWN.maxX;x+=STEP)for(let z=EAST_LAWN.minZ;z<=EAST_LAWN.maxZ;z+=STEP){
   const gx=+x.toFixed(1),gz=+z.toFixed(1);
-  if(open(gx,gz)&&!seen.has(key(gx,gz))&&!fineReach(gx,gz)){if(inShutShop(gx,gz))shutCells++;else stranded.push(gx+','+gz);}
+  if(open(gx,gz)&&!seen.has(key(gx,gz))&&!fineReach(gx,gz)){if(inShutShop(gx,gz))shutCells++;else if(inShutCounter(gx,gz))counterCells++;else stranded.push(gx+','+gz);}
  }
  assert.ok(shutCells>0,'the shut shop’s floor is out of reach behind its shutter');
+ assert.ok(NAKAMURA_DESSERTS.staffed||counterCells>0,'the vacant counter’s aisle is out of reach behind its shutter');
  assert.deepEqual(stranded.slice(0,8),[],'East-side ground you can stand on but cannot reach');
  assert.ok(seen.size>15000,'The flood stopped early: '+seen.size+' cells');
 

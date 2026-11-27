@@ -223,6 +223,11 @@ test('the surplus dwellings, the housing project’s nine and phase 4’s eight,
  }
  // Every lot phase 4 cleared on Minato is recorded with its reason, and what stands on it now is its dressing and nothing
  // else: every solid at its centre is the dressing's (tests/lot-dressing.test.mjs checks each against its data).
+ // The town is looked at as the game shows it: the Minato Maru is built at the scene's origin and put on her timetable by
+ // the town's life, which the game runs before its first frame (game.js: the title's world.update, then every frame). Not
+ // run, she stood on Main Street with her gangway on the old post office's lot. Here she is alongside for the 08:30 call.
+ world.updateLife(1/60,0,1,515);world.group.updateMatrixWorld(true);
+ {const ferry=world.group.getObjectByName('Minato–Kitano-jima shared ferry');assert.ok(ferry.visible&&ferry.position.z<-60,'the ferry is alongside at the berth, not in the street');}
  for(const lot of CLEARED_LOTS.filter(l=>l.district!=='Kitano hamlet'&&!/-block$/.test(l.id))){
   assert.ok(lot.why.length>20&&lot.dressing&&lot.dressing!=='deferred',lot.id+' carries its reason and its dressing');
   const cx=(lot.rect.minX+lot.rect.maxX)/2,cz=(lot.rect.minZ+lot.rect.maxZ)/2,at=world.colliders.find(c=>standingHitsRect(cx,cz,.35,groundHeight(cx,cz),c));

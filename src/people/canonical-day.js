@@ -14,6 +14,7 @@ import {KITANO_PIER_STAND} from '../world/kitano-hamlet-layout.js';
 import {airportWorld} from '../world/airport-ground.js';
 import {standNow} from './stand-points.js';
 import {quayBreakPlan} from './quay-breaks.js';
+import {boilerDutyAt} from './onsen-boiler.js';
 import {shopDayPlan,LAUNDRY_STANDS} from './shop-days.js';
 import {kitahamaShopOnDuty,kitahamaShopOpen,DOOR_POINT as KITAHAMA_SHOP_DOOR} from '../world/okinawa/kitahama-shop.js';
 import {YUNTAKU} from '../commerce/higa-liquor.js';
@@ -72,6 +73,9 @@ export function canonicalDay(name,minutes,rain=false,{kissaClosingHeld=false}={}
  // (shop-days.js).
  const shop=shopDayPlan(name,minutes,{pointFor:place=>points[place]?[...points[place]]:null});
  if(shop){if(shop.home)return homePlan(shop.activity);return {...shop,target:shop.target||[...points[shop.place]],rain:!!rain};}
+ // Umi-no-yu's boiler, worked on the lawn behind the bathhouse at the rows of the day that name it (onsen-boiler.js),
+ // where the bath's own door would have taken him into the bath.
+ {const boiler=boilerDutyAt(name,minutes);if(boiler)return {...boiler,target:[...boiler.target],rain:!!rain};}
  const weekday=townCalendarAt(minutes).weekday,weekend=weekday===0||weekday===6;
  if(name==='Ms Uezu'&&rotaWeek(minutes)===1&&phase.place==='ferry')return homePlan('off watch at her shore home');
  if(weekend&&phase.place==='school'){

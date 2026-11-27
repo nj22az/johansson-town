@@ -2072,7 +2072,7 @@
    "type": "text",
    "x": 6.78,
    "y": 0.75,
-   "text": "Working prototype r8",
+   "text": "Working prototype r9",
    "size": 13,
    "fill": "#1c2433",
    "stroke": "#1c2433"
@@ -2094,15 +2094,15 @@
  "provenance": {
   "status": "working prototype",
   "plan": "art/izakaya/compact/plan.json",
-  "planRevision": 8,
-  "planSha256": "9e240c025dd0bd2ac5b1a73e57497765332ccbabb33fed27ad71548de437100b",
+  "planRevision": 9,
+  "planSha256": "42cc52f4145fd1d44701170c2693b5edff093f71d8de8733c4db679dee766b41",
   "asset": "assets/models/izakaya/minato-interior-compact.glb",
-  "assetSha256": "6a9aa12a6eabc20258304211d592f04ed137c04fad1b0df63f609b851f4f4fee",
+  "assetSha256": "a553f23a384f3ad21eae495497a40bd5b1250afe096907e0cd03db26b28dff4a",
   "colliders": "src/world/interiors/shared-dining-layout.js",
-  "collidersSha256": "9c1e746757dd7a844cabf0b07c744eebed2f5528f251bbc32576a01ab617292b",
+  "collidersSha256": "3b84240208a0363760c82f760a2b6b4c4466c0a18bbb1204d1d8fde5be2c9331",
   "blenderBuilder": "tools/blender/build-minato-compact.py",
-  "blenderBuilderSha256": "75c5de33a92a1e7d337e1fff877f252001a82b3326a4157d62fc1a9ec215ba9d",
+  "blenderBuilderSha256": "4a218895f92d867993e6cbfd3a39e8de2fe61faf84a8b4ec25b31b0f6a45fba5",
   "exportReport": "art/izakaya/compact/compact-report.json",
-  "exportReportSha256": "6ebad16105613b3e7a0b39cf4d79ae0a23801a8495240165d25e9f52762a31da"
+  "exportReportSha256": "b25fa779cbf844c721f139d6e60c1704d3ef8e0d4d9cf744ead64fc25b847ebc"
  }
 }
