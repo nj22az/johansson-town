@@ -110,7 +110,7 @@ export const TOPICS=Object.freeze([
    'I will sit near the door.'),
   close:T('Wear something sparkly, {b}!','Prepare yourself, {b}. Emotionally.','See you there, then.','That is very wise.')},
  {id:'radio',open:T(
-   'Did you hear Amuro Namie on the radio? I danced so hard I knocked the kettle over!',
+   'Did you hear the Chura Stars on the radio? I danced so hard I knocked the kettle over!',
    'They played my song on the radio this morning, {b}. My song! I had to sit down.',
    'Radio has been playing good stuff today.',
    'Somebody on this street plays the same radio song every morning at six.'),

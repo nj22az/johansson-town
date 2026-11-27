@@ -15,6 +15,9 @@ brands that fit into the Jansson world and if you can't make up a good one just 
   island lager, Jugon big draft and Tako black lager (the drinks machines, `commerce/vending-catalogue.js`), Sakura's
   Umineko lager, Ryukyu Cola and Blue Coral are the pattern. Where no good name comes, use the Johansson name
   (Johansson Brewery, Johansson Foods …): Johansson is this world's Acme.
+- **Real public figures are fictional too** (the owner, asked about a chat line naming a real pop singer: "Yes swap to a
+  fictional singer"): the radio plays the Chura Stars, the island's own pop group; Kayoko Shima is the enka singer who
+  sang at the harbour hall. Singers, presenters, athletes and actors in the World are the town's own.
 - **New content is checked for real brands before it is committed;** a test keeps a list of the real brands found once
   and refuses them: `tests/no-real-brands.test.mjs` (in the CI guard) reads every string the player or the storyteller
   can meet against `data/studio/brand-rules.json`. A word that is also a street, a place, a god or a surname here is
