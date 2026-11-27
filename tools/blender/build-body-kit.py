@@ -292,28 +292,44 @@ def build_feet():
 def build_hand():
     """The hand (tools/blender/hand_model.py), in the kit's frame: x through the hand (+x the back of it), y 1 (the wrist)
     .. -1 (the middle fingertip), z across it (+z the forefinger's side, where the thumb is); scaled the same on every axis
-    (its own proportions), so the game sizes it by one number. Two shapes of the same points: the hand at rest, and closed
-    round a handle (hand_model.GRIP), laid in the resting hand's frame (the same wrist, the same scale), so one can be
-    blended into the other on a worn hand."""
+    (its own proportions), so the game sizes it by one number. Four shapes of the same points: the hand at rest, closed
+    round a handle (hand_model.GRIP), round a can (WRAP) and with its forefinger hooked (HOOK), each laid in the resting
+    hand's frame (the same wrist, the same scale), so one can be blended into another on a worn hand; each checked to keep
+    its skin out of itself, and the wrap out of its can with the palm and every finger on it."""
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     import hand_model
-    shapes, tri = {}, None
-    for name, params, x in (('hand', hand_model.P, 6), ('grip', hand_model.GRIP, 6.2)):
-        obj = hand_model.build(params, levels=2)                           # (two levels: smooth at a phone's size, a quarter of the points)
+    shapes, tri, quads = {}, None, None
+    shapes_made = (('hand', hand_model.P, 6), ('grip', hand_model.GRIP, 6.2), ('wrap', hand_model.WRAP, 6.4), ('hook', hand_model.HOOK, 6.6))
+    for name, params, x in shapes_made:
+        obj = hand_model.build(params, levels=2, like=shapes.get('cage'))  # (two levels: smooth at a phone's size, a quarter of the points)
+        shapes.setdefault('cage', hand_model.build.cage)                    # (every other shape is the resting hand's cage, moved)
         obj.name = 'hand ' + name
         co = np.empty(len(obj.data.vertices) * 3)
         obj.data.vertices.foreach_get('co', co)
         shapes[name] = co.reshape(-1, 3)
-        obj.data.calc_loop_triangles()
-        t = np.empty(len(obj.data.loop_triangles) * 3, dtype=np.int32)
-        obj.data.loop_triangles.foreach_get('vertices', t)
-        assert tri is None or (t == tri).all(), 'the grip must be the resting hand\'s cage'
-        tri, shapes[name + '_obj'], shapes[name + '_x'] = t, obj, x
+        # (the same faces of the same points; the triangles are the resting hand's, each quad split the way it is split
+        # there, whatever way would be shorter in another shape)
+        faces = [tuple(sorted(p.vertices)) for p in obj.data.polygons]
+        assert quads is None or faces == quads, 'every shape must be the resting hand\'s cage'
+        if tri is None:
+            obj.data.calc_loop_triangles()
+            tri = np.empty(len(obj.data.loop_triangles) * 3, dtype=np.int32)
+            obj.data.loop_triangles.foreach_get('vertices', tri)
+        assert not self_intersecting(obj), 'the %s hand passes through itself' % name
+        quads, shapes[name + '_obj'], shapes[name + '_x'] = faces, obj, x
+    # (round the can: no point of the wrap inside it, and the palm and every finger on it, within a few hundredths of the
+    # cage's unit, a millimetre or so on the cast's hands)
+    co, can = shapes['wrap'], hand_model.CAN
+    clear = np.hypot(co[:, 0] - (hand_model.PALM_FACE - can['radius']), co[:, 1] - can['y']) - can['radius']
+    assert clear.min() > -.01, 'the wrap goes into the can: %.4f' % clear.min()
+    for z, *_ in hand_model.P['fingers']:
+        on = (co[:, 1] < -.12) & (np.abs(co[:, 2] - z) < .17) & (co[:, 2] < .75)
+        assert clear[on].min() < .03, 'a finger off the can: %.4f' % clear[on].min()
     rest = shapes['hand']
     lo, hi = rest[:, 1].min(), rest[:, 1].max()
     k, mid = 2 / (hi - lo), (rest[:, 0].min() + rest[:, 0].max()) / 2
     out = {}
-    for name in ('hand', 'grip'):
+    for name, *_ in shapes_made:
         co = shapes[name]
         unit = np.stack([(co[:, 0] - mid) * k, (co[:, 1] - lo) * k - 1, co[:, 2] * k], axis=-1)
         obj = shapes[name + '_obj']
@@ -322,7 +338,29 @@ def build_hand():
         obj.location = (shapes[name + '_x'], 0, 0)
         out[name] = unit.astype('<f4')
     knuckles = float((hand_model.KNUCKLES - lo) * k - 1)                    # (the knuckle line's y in the kit's frame)
-    return out['hand'], out['grip'], tri.astype('<u4'), knuckles
+    # the can the wrap is round, and the hooked ring's place, in the kit's frame
+    can = hand_model.CAN
+    can_at = {'axis': [round(float((hand_model.PALM_FACE - can['radius'] - mid) * k), 4), round(float((can['y'] - lo) * k - 1), 4)],
+              'radius': round(float(can['radius'] * k), 4)}
+    hx, hy, hz = hand_model.hook_point()
+    hook_at = [round(float((hx - mid) * k), 4), round(float((hy - lo) * k - 1), 4), round(float(hz * k), 4)]
+    return out, tri.astype('<u4'), knuckles, can_at, hook_at
+
+
+def self_intersecting(obj):
+    """Whether a mesh's skin passes through itself: any two of its triangles that cross and share no corner."""
+    import bmesh
+    from mathutils.bvhtree import BVHTree
+    bm = bmesh.new()
+    bm.from_mesh(obj.data)
+    bm.faces.ensure_lookup_table()
+    tree = BVHTree.FromBMesh(bm)
+    for a, b in tree.overlap(tree):
+        if a < b and not {v.index for v in bm.faces[a].verts} & {v.index for v in bm.faces[b].verts}:
+            bm.free()
+            return True
+    bm.free()
+    return False
 
 
 # ============================================================================ noses
@@ -384,7 +422,7 @@ def build_noses():
     return out
 
 
-limbs, torso, (feet, zones, index), noses, (hand, grip, hand_index, knuckles) = build_limbs(), build_torso(), build_feet(), build_noses(), build_hand()
+limbs, torso, (feet, zones, index), noses, (hands, hand_index, knuckles, can_at, hook_at) = build_limbs(), build_torso(), build_feet(), build_noses(), build_hand()
 bpy.ops.wm.save_as_mainfile(filepath=str(ART / 'body-kit.blend'), compress=True)
 
 b64 = lambda a: base64.b64encode(np.ascontiguousarray(a).tobytes()).decode()
@@ -398,8 +436,9 @@ js = ["// Generated by tools/blender/build-body-kit.py: the modular body kit, sc
       "export const FEET=Object.freeze({points:%d,index:'%s',\n shapes:Object.freeze({%s}),\n zones:Object.freeze({%s})});" % (
           len(next(iter(feet.values()))), b64(index),
           ','.join("%s:'%s'" % (k, b64(v)) for k, v in feet.items()), ','.join("%s:'%s'" % (k, b64(v)) for k, v in zones.items())),
-      "/** The hand: its points (Float32 x, y, z: +x the back of the hand, y 1 the wrist .. -1 the middle fingertip, +z the forefinger's side; the same scale on every axis) at rest (`hand`) and closed round a handle (`grip`, the same points), the knuckle line's y, and its triangles (Uint32). */",
-      "export const HANDS=Object.freeze({points:%d,knuckles:%.4f,index:'%s',hand:'%s',grip:'%s'});" % (len(hand), knuckles, b64(hand_index), b64(hand), b64(grip)),
+      "/** The hand: its points (Float32 x, y, z: +x the back of the hand, y 1 the wrist .. -1 the middle fingertip, +z the forefinger's side; the same scale on every axis) at rest (`hand`), closed round a handle (`grip`), round a can (`wrap`) and with the forefinger hooked (`hook`), the same points; the knuckle line's y; the can the wrap is round (`can`: its axis's [x, y], along z, and its radius) and where a hooked ring lies (`hookAt`), in the same frame; and its triangles (Uint32). */",
+      "export const HANDS=Object.freeze({points:%d,knuckles:%.4f,can:Object.freeze({axis:Object.freeze(%s),radius:%s}),hookAt:Object.freeze(%s),index:'%s',hand:'%s',grip:'%s',wrap:'%s',hook:'%s'});" % (
+          len(hands['hand']), knuckles, json.dumps(can_at['axis']), can_at['radius'], json.dumps(hook_at), b64(hand_index), b64(hands['hand']), b64(hands['grip']), b64(hands['wrap']), b64(hands['hook'])),
       "/** Noses: a height (0..1, Float32, rows from the top of the bridge to under the tip) over a patch, and each one's [width, length, depth]. */",
       "export const NOSES=Object.freeze({cols:%d,rows:%d,size:Object.freeze(%s),\n shapes:Object.freeze({%s})});" % (
           NU, NV, json.dumps(NOSE_SIZE, separators=(',', ':')), ','.join("%s:'%s'" % (k, b64(v)) for k, v in noses.items()))]

@@ -293,12 +293,13 @@ export const SHOE_SHAPES=Object.freeze({sneakers:'sneaker',shoes:'shoe',boots:'b
  * shoe on the stout one, as a shop would fit them (sculpts/body-kit.js FEET: court, broad).
  */
 export const shoeShapeFor=(wear,m)=>wear==='shoes'&&m?.soft?'court':wear==='shoes'&&m?.stout?'broad':SHOE_SHAPES[wear];
-/** The kit's hand, decoded once: its points as it rests (`pos`) and, when the kit has it, closed round a handle (`grip`). */
+/** The kit's hand, decoded once: its points as it rests (`pos`) and, when the kit has them, closed round a handle (`grip`),
+ *  round a can (`wrap`) and with the forefinger hooked (`hook`). */
 let kitHand=null;
 function handKit(){
  if(kitHand)return kitHand;
- const bytes=text=>Uint8Array.from(atob(text),c=>c.charCodeAt(0));
- return kitHand={points:HANDS.points,pos:new Float32Array(bytes(HANDS.hand).buffer),grip:HANDS.grip?new Float32Array(bytes(HANDS.grip).buffer):null,index:new Uint32Array(bytes(HANDS.index).buffer)};
+ const bytes=text=>Uint8Array.from(atob(text),c=>c.charCodeAt(0)),shape=text=>text?new Float32Array(bytes(text).buffer):null;
+ return kitHand={points:HANDS.points,pos:shape(HANDS.hand),grip:shape(HANDS.grip),wrap:shape(HANDS.wrap),hook:shape(HANDS.hook),index:new Uint32Array(bytes(HANDS.index).buffer)};
 }
 /** How the kit's hand is worn (kitHandGeometry), in hand lengths (m.hand): its top `wrist` above the hand bone, just inside the
  *  forearm's end, and `length` from there to the middle fingertip, the mitten's length. */
@@ -372,7 +373,15 @@ export const HAND=(()=>{
    if(round>20&&lo>(hold?.radius||0))hold={at:Object.freeze([r(cx),r(y),0]),radius:r(lo)};}}
  // (where a fingertip pushes: the middle finger's half-thickness up from its end, three quarters down it)
  const finger=rest.filter(p=>Math.abs(p[3]+.75)<.06&&Math.abs(p[2]-.19*S)<.2*S),end=open.tip+(Math.max(...finger.map(p=>p[0]))-Math.min(...finger.map(p=>p[0])))/2;
+ // The can the wrap is round (tools/blender/hand_model.py CAN, measured there on the wrap: no point of it inside, the palm
+ // and every finger on it): its axis across the hand, in the bone's frame, its radius, and the palm's face it lies against
+ // (x, toward the palm); and where the closure (avatar.grip) is the wrap, on its way from the resting hand to the fist: a
+ // thing as round as the can closes the hand that far (handHold `grip`: the fist's hollow's radius over the thing's).
+ const can=HANDS.can&&Object.freeze({at:Object.freeze([r(HANDS.can.axis[0]*S),r(top+(HANDS.can.axis[1]-1)*S),0]),radius:r(HANDS.can.radius*S),palm:r(-(HANDS.can.axis[0]+HANDS.can.radius)*S)});
+ // and where a ring the hooked forefinger lifts lies (HOOK)
+ const hookAt=HANDS.hookAt&&Object.freeze([r(HANDS.hookAt[0]*S),r(top+(HANDS.hookAt[1]-1)*S),r(HANDS.hookAt[2]*S)]);
  return Object.freeze({inset:0,gap:.003,top,knuckles:r(knuckles),...open,end:r(end),middle:Object.freeze([0,r(knuckles/2),0]),palm:Object.freeze([-1,0,0]),hold:hold&&Object.freeze(hold),
+  can,wrapAt:can&&hold?r(hold.radius/can.radius):null,hookAt,
   // the same, closed (the kit's grip): a fist, or a hand round a handle
   fist:K.grip?Object.freeze(measure(K.grip)):null});
 })();
@@ -399,8 +408,12 @@ export const handPalm=(H,side)=>H.palm?[(side==='R'?-1:1)*H.palm[0],H.palm[1],H.
 export function handHold(m,radius=0){
  const H=handShape(m);
  if(!H.hold)return {at:[0,-m.hand*.55,0],out:radius+m.hand*.7,grip:0};
- const R=H.hold.radius*m.hand;
- return {at:[0,H.hold.at[1]*m.hand,0],out:radius+H.lie*m.hand+.001*m.k,grip:radius<=R?1:THREE.MathUtils.clamp(R/radius,0,1)};
+ const R=H.hold.radius*m.hand,grip=radius<=R?1:THREE.MathUtils.clamp(R/radius,0,1);
+ if(!H.can)return {at:[0,H.hold.at[1]*m.hand,0],out:radius+H.lie*m.hand+.001*m.k,grip};
+ // (round as the can or rounder, against the palm where the wrap holds the can; thinner, on the way to the fist's hollow,
+ // as the hand closes: grip, past the wrap's, closes it from the wrap toward the fist)
+ const t=grip<=H.wrapAt?0:(grip-H.wrapAt)/(1-H.wrapAt);
+ return {at:[0,THREE.MathUtils.lerp(H.can.at[1],H.hold.at[1],t)*m.hand,0],out:radius+THREE.MathUtils.lerp(H.can.palm,H.lie,t)*m.hand+.001*m.k,grip};
 }
 /** Where the axis of a handle `radius` metres round lies in the hand `side` ('L' or 'R') closed on it (handHold: against
  *  the palm, in the closed hand's hollow), in the hand bone's frame (metres): an umbrella's crook, a torch, a tester. A
@@ -2275,11 +2288,17 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
  const pixarSkin=pixar?dressPixar(pixar,{root,bones,order:BONES,shadows,recipe}):null;
  // ---- The hands' grip: each hand's points in every body this avatar wears (clothes, swimwear, the bath's), and the kit's
  // resting and closed hands laid there, so a hand closes round what it holds by writing between them (grip).
- const handBodies=[{geometry,at:handsAt}],gripNow={L:0,R:0};
+ const handBodies=[{geometry,at:handsAt}],gripNow={L:0,R:0},gripShape={L:'close',R:'close'};
  const handShapes=pixar?null:Object.fromEntries(['L','R'].map(side=>{const sx=side==='L'?1:-1,hd=[sx*(m.shoulderX+.015),m.shoulderY-m.upper-m.fore+m.hand*HAND_WEAR.wrist,0];
   const lay=shape=>{const g=kitHandGeometry(hd,m.hand*HAND_WEAR.length,sx,shape).toNonIndexed(),out={position:g.attributes.position.array.slice(),normal:g.attributes.normal.array.slice()};g.dispose();return out;};
-  return [side,{rest:lay(handKit().pos),grip:handKit().grip?lay(handKit().grip):null}];}));
- const writeGrip=(side,t,list=handBodies)=>{const S=handShapes?.[side];if(!S?.grip)return;const A=S.rest,B=S.grip,n=A.position.length,P=new Float32Array(n),N=new Float32Array(n),v=new THREE.Vector3();
+  const K=handKit();return [side,{rest:lay(K.pos),grip:K.grip?lay(K.grip):null,wrap:K.wrap?lay(K.wrap):null,hook:K.hook?lay(K.hook):null}];}));
+ // (a closure `c` along the way the hand closes: from the resting hand (0) round a can (the wrap, at HAND.wrapAt) to the fist
+ // (1); or, `shape` 'hook', from the resting hand to the forefinger hooked)
+ const writeGrip=(side,c,list=handBodies,shape=gripShape[side])=>{const S=handShapes?.[side];if(!S?.grip)return;
+  let A=S.rest,B=S.grip,t=c;
+  if(shape==='hook'&&S.hook)B=S.hook;
+  else if(S.wrap&&HAND.wrapAt){if(c<=HAND.wrapAt){B=S.wrap;t=c/HAND.wrapAt;}else{A=S.wrap;t=(c-HAND.wrapAt)/(1-HAND.wrapAt);}}
+  const n=A.position.length,P=new Float32Array(n),N=new Float32Array(n),v=new THREE.Vector3();
   for(let i=0;i<n;i++)P[i]=A.position[i]+(B.position[i]-A.position[i])*t;
   for(let i=0;i<n;i+=3){v.set(A.normal[i]+(B.normal[i]-A.normal[i])*t,A.normal[i+1]+(B.normal[i+1]-A.normal[i+1])*t,A.normal[i+2]+(B.normal[i+2]-A.normal[i+2])*t).normalize();N[i]=v.x;N[i+1]=v.y;N[i+2]=v.z;}
   for(const {geometry:g,at} of list){const r=at[side];if(!r||r.n*3!==n)continue;g.attributes.position.array.set(P,r.at*3);g.attributes.normal.array.set(N,r.at*3);g.attributes.position.needsUpdate=g.attributes.normal.needsUpdate=true;}};
@@ -2385,13 +2404,16 @@ export function buildAvatar(input,{shadows=true,faceSize=256,eyes3d=eyes3dOn(),p
   setOpenHands(){},
   /**
    * Close a hand round what it holds: `side` 'L' or 'R', `amount` 0 the hand at rest (a little curled, as a hand rests) to 1
-   * closed round a handle (the kit's grip: the fingers curled round, the thumb across them). In between, a hand closed round
-   * something thicker. Written into the hand's points of every body the avatar wears, as a shoe is (in sixteenths, so a hand
-   * closing over a move is written a few times, not every frame).
+   * closed round a handle (the kit's grip: the fingers curled round, the thumb across them). On the way, at HAND.wrapAt, the
+   * hand round a can (the kit's wrap); between that and the fist, a hand round something thinner, and before it, round
+   * something rounder (build.js handHold `grip` says how far for a thing so round). `shape` 'hook': from the hand at rest to
+   * the forefinger hooked (the kit's hook), to lift a can's ring. Written into the hand's points of every body the avatar
+   * wears, as a shoe is (in sixty-fourths, so a hand closing over a move is written a few times, not every frame).
    */
-  grip(side,amount){const t=Math.round(THREE.MathUtils.clamp(+amount||0,0,1)*16)/16;if(!handShapes||t===gripNow[side])return;gripNow[side]=t;writeGrip(side,t);},
-  /** How far each hand is closed (grip). */
+  grip(side,amount,shape='close'){const t=Math.round(THREE.MathUtils.clamp(+amount||0,0,1)*64)/64;if(!handShapes||t===gripNow[side]&&shape===gripShape[side])return;gripNow[side]=t;gripShape[side]=shape;writeGrip(side,t);},
+  /** How far each hand is closed (grip), and which way ('close': round a can, then a fist; 'hook': the forefinger). */
   gripOf(side){return gripNow[side];},
+  gripShapeOf(side){return gripShape[side];},
   /** How far a performance that has something in a hand wants it closed (table-drink.js); the animator closes it. */
   handHeld:{L:0,R:0},
   /** Hat on or off. Off, it is somebody else's job to show where it went (buildHatProp). */
