@@ -38,7 +38,10 @@ function vendingPrint(product){
  const map=vendingCanTexture(product.id);if(!map)return [];
  const geometry=new THREE.CylinderGeometry(SERVING.radius,SERVING.radius,SERVING.label,32,1,true,-Math.PI,Math.PI*2);
  if(product.art){const uv=geometry.attributes.uv,lo=(1-ART_SHARE)/2;for(let i=0;i<uv.count;i++)uv.setY(i,lo+uv.getY(i)*ART_SHARE);}
- return [printed(geometry,new THREE.MeshStandardMaterial({map,roughness:.45,metalness:.15}),'Printed can · '+product.brand)];
+ // (its front out of the hand, away from his palm: held at his chest it faces forward, as a can is shown; the print's front
+ // is at +z of the cylinder, and the hand's socket holds the can with its -z to the front: hand-shots.mjs --bought)
+ const mesh=printed(geometry,new THREE.MeshStandardMaterial({map,roughness:.45,metalness:.15}),'Printed can · '+product.brand);mesh.rotation.y=Math.PI;
+ return [mesh];
 }
 
 /** Sakura's own can: the shelf's label from the packaging atlas round the front, the brand's paper round the back. */

@@ -31,13 +31,13 @@ await mkdir(MOVES?out:dirname(out),{recursive:true});
 const TYPES={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.css':'text/css','.webp':'image/webp','.png':'image/png','.glb':'model/gltf-binary'};
 // (the Town is this checkout, at /johansson-town/, wherever it is: a worktree's parent is not the Office site)
 const server=createServer(async(req,res)=>{try{const path=decodeURIComponent(new URL(req.url,'http://x').pathname),town=path.startsWith('/johansson-town/'),file=town?resolve(root,'.'+path.slice('/johansson-town'.length)):resolve(site,'.'+path);if(!file.startsWith(town?root:site))throw Error('outside');
- if(path==='/blank')return res.writeHead(200,{'content-type':'text/html'}).end('<!doctype html><title>hands</title>');
+ if(path==='/blank')return res.writeHead(200,{'content-type':'text/html'}).end('<!doctype html><base href="/johansson-town/"><title>hands</title>');
  const body=await readFile(file);res.writeHead(200,{'content-type':TYPES[extname(file)]||'application/octet-stream','cache-control':'no-store'});res.end(body);}catch{res.writeHead(404);res.end();}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
 const browser=await chromium.launch({executablePath:process.env.TOWN_CHROMIUM_PATH||'/opt/pw-browsers/chromium',args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--no-sandbox']});
 const errors=[];
 try{
- const page=await browser.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+ const page=await browser.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text()+(m.location()?.url?' ('+m.location().url+')':''));});
  await page.goto(`http://127.0.0.1:${server.address().port}/blank`);
  const data=await page.evaluate(async([name,pairs,poses,sit,who,grip,outfit,hold,drive,ride,shape,can,seated,moves,bought])=>{
   const base='/johansson-town/',T=await import(base+'vendor/three.module.js'),{buildAvatar}=await import(base+'src/avatars/build.js'),{recipeFor}=await import(base+'src/avatars/cast.js');

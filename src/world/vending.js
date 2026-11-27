@@ -2,7 +2,7 @@ import * as THREE from '../../vendor/three.module.js';
 import {GLTFLoader} from '../../vendor/GLTFLoader.js';
 import {mergeGeometries} from '../../vendor/BufferGeometryUtils.js';
 import {assetURL} from '../assets.js';
-import {VENDING_AD,VENDING_PRODUCTS,ALL_VENDING,VENDING_BEER_HOURS,VENDING_BEER_STOCK} from '../commerce/vending-catalogue.js';
+import {VENDING_AD,VENDING_PRODUCTS,ALL_VENDING,VENDING_BEER_HOURS} from '../commerce/vending-catalogue.js';
 import {paintJCoffeeLabel} from './halloween-props.js';
 
 let template,pending;
@@ -156,12 +156,12 @@ function withArt(file,fn){
  let a=ART.get(file);
  if(!a){a={img:new Image(),ready:false,waiting:[]};ART.set(file,a);a.img.decoding='async';
   a.img.onload=()=>{a.ready=true;for(const f of a.waiting.splice(0))f(a.img);};
-  a.img.onerror=()=>{a.waiting.length=0;console.warn('Vending print unavailable: '+file);};
+  a.img.onerror=()=>{a.failed=true;a.waiting.length=0;console.warn('Vending print unavailable: '+file);};
   a.img.src=assetURL(file);}
  if(a.ready)fn(a.img);else a.waiting.push(fn);
 }
 /** Resolves when every drawn print asked for so far is in (or failed): for the shot tools and the audit. */
-export const vendingArtLoaded=()=>Promise.all([...ART.values()].map(a=>a.ready?null:new Promise(r=>{a.waiting.push(()=>r());a.img.addEventListener('error',()=>r(),{once:true});})));
+export const vendingArtLoaded=()=>Promise.all([...ART.values()].map(a=>a.ready||a.failed?null:new Promise(r=>{a.waiting.push(()=>r());a.img.addEventListener('error',()=>r(),{once:true});})));
 function drawArt(ctx,img,[x,y,w,h]){ctx.save();ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(img,x,y,w,h);ctx.restore();}
 
 function cell(ctx,[x,y,w,h],paint){ctx.save();ctx.translate(x,y);ctx.beginPath();ctx.rect(0,0,w,h);ctx.clip();paint(ctx,w,h);ctx.restore();}
