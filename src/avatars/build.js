@@ -26,7 +26,7 @@ import {celFrom} from '../render/cel.js';
 import {createTowelFit} from './towel-fit.js';
 import {addPoliceCap,policeCapTuck,addPoliceJacket,addDutyBelt} from './police-uniform.js';
 import {addKerchief,kerchiefTuck} from './kerchief.js';
-import {GARMENT,PLAIN_UV,torsoUV,sleeveUV,paintGarment,SLEEVED_LONG,CAMP_COLLAR,SHIRT_SLEEVES,ACCENT_SLEEVES,UNDERSHIRT_ARMS,SLEEVE_END} from './garment.js';
+import {GARMENT,PLAIN_UV,torsoUV,sleeveUV,paintGarment,SLEEVED_LONG,campCollarOutline,COLLAR_STAND,SHIRT_SLEEVES,ACCENT_SLEEVES,UNDERSHIRT_ARMS,SLEEVE_END} from './garment.js';
 import {ASSET_HATS,isAssetHat,assetHatPieces,hatTuck,weaveTexture} from './hat-assets.js';
 
 /**
@@ -127,7 +127,7 @@ const tmpColour=new THREE.Color();
 function campCollar(list,m,prof,colour){
  const W=m.width,D=m.depth,mid=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2];
  for(const s of [-1,1]){
-  const outline=CAMP_COLLAR.map(([f,t])=>new THREE.Vector2(f,t));
+  const shape=campCollarOutline(m,t=>latheRadius(prof,t)),outline=shape.map(([f,t])=>new THREE.Vector2(f,t));
   let tris=THREE.ShapeUtils.triangulateShape(outline,[]).map(t=>t.map(i=>[outline[i].x,outline[i].y]));
   for(let k=0;k<3;k++)tris=tris.flatMap(([a,b,c])=>{const ab=mid(a,b),bc=mid(b,c),ca=mid(c,a);return [[a,ab,ca],[ab,b,bc],[ca,bc,c],[ab,bc,ca]];});
   // On the chest, lifted off it: out from the body's axis, and up a little where the chest
@@ -141,7 +141,7 @@ function campCollar(list,m,prof,colour){
    // The underside faces into the body.
    if(n.dot(A)>0)pos.push(A.x,A.y,A.z,C.x,C.y,C.z,B.x,B.y,B.z);else pos.push(A.x,A.y,A.z,B.x,B.y,B.z,C.x,C.y,C.z);}
   // The edge all round, in the same steps as the triangles' edges.
-  const ring=[];CAMP_COLLAR.forEach((p,i)=>{const q=CAMP_COLLAR[(i+1)%CAMP_COLLAR.length];for(let j=0;j<8;j++)ring.push([p[0]+(q[0]-p[0])*j/8,p[1]+(q[1]-p[1])*j/8]);});
+  const ring=[];shape.forEach((p,i)=>{const q=shape[(i+1)%shape.length];for(let j=0;j<8;j++)ring.push([p[0]+(q[0]-p[0])*j/8,p[1]+(q[1]-p[1])*j/8]);});
   const c2=at([.45,.85],top);
   ring.forEach((p,i)=>{const q=ring[(i+1)%ring.length],a=at(p,under),b=at(q,under),c=at(q,top),d=at(p,top),n=new THREE.Vector3().subVectors(b,a).cross(new THREE.Vector3().subVectors(d,a)),away=a.clone().add(c).multiplyScalar(.5).sub(c2);
    if(n.dot(away)>=0)pos.push(a.x,a.y,a.z,b.x,b.y,b.z,c.x,c.y,c.z,a.x,a.y,a.z,c.x,c.y,c.z,d.x,d.y,d.z);else pos.push(a.x,a.y,a.z,c.x,c.y,c.z,b.x,b.y,b.z,a.x,a.y,a.z,d.x,d.y,d.z,c.x,c.y,c.z);});
@@ -1281,6 +1281,14 @@ function addBody(list,recipe,m,swim=false){
  if(onePiece)addStraps(list,bodyVolume(recipe,m),m,{x:W/2*.4,from:SWIMSUIT.top-.04,hw:.014*m.k,th:.003*m.k,gap:.002*m.k,colour:bottom,skin:'chest'});
  // Neck.
  tube(list,[0,m.neckY-.02,0],[0,m.headY+.01,0],m.neckR,'neck',skin,m.sturdy?14:8);
+ // The neck flows into the chest with no line across it (the owner, 27 November 2026, of Johansson: "And no line on his
+ // neck like that"): the outline's shell (addOutline, scaled by `ink`) round the neck's foot stood out in front of the
+ // chest where the neck goes into it, a dark band across the bottom of the neck. Its ink fades out over the last few
+ // centimetres above where the neck meets the body (the narrower of the torso's two radii comes down to the neck's).
+ {const neck=list.at(-1),P=neck.attributes.position,ink=neck.attributes.ink,half=Math.min(W,D)/2;let t=1.04;
+  while(t>.6&&latheRadius(prof,t)*half<m.neckR)t-=.002;
+  const meet=m.hipY+t*m.torso,fade=.03*m.k;
+  for(let i=0;i<P.count;i++)ink.setX(i,ink.getX(i)*THREE.MathUtils.smoothstep(P.getY(i),meet,meet+fade));}
  // A kariyushi's open camp collar is modelled, not painted: a stand behind the neck that
  // rolls into the fall over the shoulders and folds back down the front to the V. It is
  // a real edge in silhouette and catches the light, so it reads as a collar, not a bib.
@@ -1288,7 +1296,8 @@ function addBody(list,recipe,m,swim=false){
  // neck, open at the front, rolling a little outward at the top, so the collar wraps the
  // neck from every side. Its leaves and lapels on the front are cloth too (campCollar).
  if(!swim&&o.top==='kariyushi'){
-  const ri=m.armR*1.08+.004*m.k,t=.007*m.k,h=.04*m.k,roll=.012*m.k,open=.68;
+  // (round the neck it is worn on: garment.js COLLAR_STAND)
+  const C=COLLAR_STAND,ri=m.neckR+C.gap*m.k,t=C.thick*m.k,h=C.height*m.k,roll=C.roll*m.k,open=C.open;
   const band=new THREE.LatheGeometry([[ri,0],[ri+t,0],[ri+t+roll,h],[ri+roll*.6,h]].map(([r,y])=>new THREE.Vector2(r,y)).concat([new THREE.Vector2(ri,0)]),24,open,Math.PI*2-open*2);
   // It runs down to nothing at the front, where it turns into the collar's leaves.
   const P=band.attributes.position;for(let i=0;i<P.count;i++){const a=Math.abs(Math.atan2(P.getX(i),P.getZ(i)));P.setY(i,P.getY(i)*THREE.MathUtils.smoothstep(a,open,open+1.1));}band.computeVertexNormals();

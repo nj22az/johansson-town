@@ -767,3 +767,26 @@ The owner: "He should be wearing a 'wife beater' tank top under his shirt".
     (`avatar-wardrobe-sets` test 4; not in the guard);
   - the opening's staging and the pocket (on `drink/can`);
   - stage 2 of the moves (on `anim/stage2`).
+
+# 27 November, morning: a real collar round Johansson's neck, the neck into the shirt, no line across it
+
+The owner, from the live game: "Johansson's shirt needs a real collar with a rounded neck"; "And no line on his neck like
+that"; "You see his shirt doesn't have a collar" (a screenshot from behind); "Johansson's neck needs to fit in the shirt
+he is wearing the shirt outside his body".
+
+## Found
+- **The collar's stand was sized from the arm** (`m.armR`), not the neck. On Johansson's 104 mm neck it was 69 mm, inside
+  the neck and never seen. From behind, his shirt simply stopped at the neck, which sat on it; on the others it barely
+  cleared the neck.
+- **The open V started out at the shoulders** (a fixed 62% of the half-width), not round the neck.
+- **The line across the neck was the outline's shell** round the neck's foot, standing out in front of the chest where
+  the neck goes into it.
+
+## Done
+- **The stand** (`garment.js COLLAR_STAND`): round the neck it is worn on, 6 mm clear of it, 44 mm tall and rolling out at
+  its top, open at the front. From behind and the sides the neck goes down into the collar; the shirt is outside it.
+- **The open neck starts where the stand comes round to the front** (`collarNeckF`, `campCollarOutline`): the leaves fold
+  down from there, the V's top is round the neck, and the tank top's straps and scoop are fitted to that opening.
+- **The neck's outline fades out over its last 3 cm** above where it meets the body; its sides keep theirs.
+- **Tests** (`avatar-polish`): the stand is chest cloth behind the neck and outside it (this fails on the old collar);
+  the neck's foot has no outline and its sides do.

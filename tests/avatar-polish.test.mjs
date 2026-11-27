@@ -30,8 +30,18 @@ test('the kariyushi collar is cloth: a stand round the neck, notched leaves and 
  for(const name of ['Johansson','Thuan']){
   const a=buildAvatar({...CAST_RECIPES[name],outfit:{...CAST_RECIPES[name].outfit,top:'kariyushi'}}),m=a.measure,P=a.body.geometry.attributes.position;
   let stand=0;
-  for(let i=0;i<P.count;i++)if(P.getY(i)>m.neckY+m.torso*.045&&Math.abs(P.getX(i))<.03*m.k&&P.getZ(i)<-m.armR*1.2)stand++;
-  assert.ok(stand>0,name+'\'s collar rises behind the neck, clear of it');
+  // (outside the neck it goes round, whatever its thickness: the stand had been sized from the arm, and sat inside
+  // Johansson's 104 mm neck, unseen; the owner: "his shirt needs a real collar with a rounded neck", "Johansson's neck
+  // needs to fit in the shirt he is wearing, the shirt outside his body")
+  const SI=a.body.geometry.attributes.skinIndex,chest=a.body.skeleton.bones.indexOf(a.bones.chest);
+  for(let i=0;i<P.count;i++)if(SI.getX(i)===chest&&P.getY(i)>m.neckY&&Math.abs(P.getX(i))<.03*m.k&&P.getZ(i)<-(m.neckR+.003*m.k))stand++;
+  assert.ok(stand>0,name+'\'s collar rises behind the neck, outside it');
+  // and no outline across the neck where it goes into the body (the owner: "And no line on his neck like that"): the
+  // neck's outline fades to nothing at its foot, and is whole up its sides
+  const ink=a.body.geometry.attributes.ink,neckBone=a.body.skeleton.bones.indexOf(a.bones.neck),foot=[],up=[];
+  for(let i=0;i<P.count;i++)if(SI.getX(i)===neckBone&&a.body.geometry.attributes.skinWeight.getX(i)>.99)(P.getY(i)<m.neckY-.01*m.k?foot:P.getY(i)>m.neckY+.05*m.k?up:[]).push(ink.getX(i));
+  assert.ok(foot.length&&Math.max(...foot)<.05,name+': no outline at the neck\'s foot ('+Math.max(...foot).toFixed(2)+')');
+  assert.ok(up.length&&Math.min(...up)>.95,name+': the neck outlined up its sides');
   assert.ok(a.garment.marks.includes('open neck'),'the V of skin is open');
   assert.ok(a.garment.marks.includes('collar shadow'),'the collar casts its toon shadow on the shirt');a.dispose();
  }
