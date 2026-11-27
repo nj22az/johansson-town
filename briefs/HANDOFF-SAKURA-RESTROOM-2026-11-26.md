@@ -727,3 +727,46 @@ sheets. The drink helper's can block in `animate.js` and its files were not touc
   still steps the elbow or the hand by 50–72% of its top speed (the reach folding, there before).
 - Look in motion at the walk's last step (section 6).
 - `claude/dreamy-ritchie-cxufpl` moved on (e8759bc, 08a73c4) while this was done; this branch is from 2d61531.
+
+# 27 November, last: stage 2 begun, wind-ups read from the move (branch `anim/stage2`)
+
+From the merge 8eeb14f. Not pushed. Stopped early on purpose, at a committed, passing state, with the rest written here: the
+session's context was near its end.
+
+## Done
+- Stage 1's fault in `tests/avatar-wardrobe-sets.test.mjs` test 4 (outside the guard; the coordinator found it): a move cut
+  off mid-way let go of its pose in a frame, and the drag moved that step into the frames the test counts. A cut now fades
+  over `FADE` (0.32 s). The test passes three runs in three (it is random: each body's animator draws its own time).
+- `animate.js` `WIND`, `windRead`, `windStep`: a move's action read from the move as it starts (its pose tried ten times
+  through its first half), a wind-up the other way before it (40% of the action, 0.08–0.3 s; 15% of the turn everyday, 35%
+  comedy), the move then a little quicker so it ends on time; the head leads unless it makes the move; never into the
+  body. On the 23 moves in `WIND_ON` only, where it passes and breaks nothing (section 6 lists them and why not the rest).
+- Baseline rewritten: 1181 entries to 1102 (57 anticipation, 22 overlap, 1 ease off; DeepThinker off altogether; one on,
+  ReachBack's overlap on Vy, explained in section 6). Anticipation 1 → 15 of 141, overlap 49 → 55, ease 121 → 122; every
+  check 5 → 6.
+- ReachBack (`fujitas-back-moves`, outside the guard): its mitten came a level late to the breaker's lever; the reaching arm
+  is pinned from the move's start, and a pin lets go eased.
+
+- Every test file that plays the animator or dresses bodies and is not in the guard (51), at the head and at e8759bc (before
+  stage 1): two had got worse and are mended (above, and `drink-grip` "Harbour visitor first frame rim reaches lips"); the
+  wind-up had put FingerStop's forearm into Miss Higa sat (`story-gestures`), mended by no wind-up while sat. Every other
+  file fails what it failed before (afterbath-outfit, avatar-floor-contact, avatar-polish, avatar-wardrobe-sets test 1,
+  drink-grip's hand and thumb vertices, izakaya-lived-in, onsen-noren-heads, onsen-seats, owned-vehicles, pole-hug,
+  story-gestures' KneelHug and mitten, underarm-coverage, wardrobe-batch2, work-kit; wardrobe-batch3 one fewer). 34 are
+  fully green; none of the files that got worse is, so none was added to the guard. Run again at the last commit
+  (8f289a3): every file fails exactly what it failed before stage 1, or less. `fun-poses` could not be compared: it ran
+  past 50 minutes without finishing, before stage 1 and at the head alike.
+
+## Remains (the coordinator's stage 2, in order)
+1. Anticipation for the rest, the most-seen first (Talk, Wave, Point, Shrug, Laugh, Bow, the habits, and the 13 that newly
+   need it). The joint-turn wind-up cannot do them: an arm raised from the side has no room to turn the other way, so
+   these want a dip of the shoulder or the chest that carries the hand back along the action's line (5% of its travel, for
+   30–50% of the action), and Bow's wants the root to move first so the levels stagger. Try them by adding a move to
+   `WIND_ON` and running the audit on every move: it must take entries off and add none.
+2. Squash on impacts (0 of 15): Jump's crouch to reach the hips first (they rise 6 mm and leave at 1.2 m/s in a frame),
+   then 2–5% everyday, 10–20% comedy, by bone scales whose product is 1, eased; check the clothes, the outline and the
+   feet.
+3. Twins: a lead hand. Beware the moves whose hands meet (Clap, CupHands): a lag on one arm parts them.
+4. The arcs the stance's blend bends (13 entries from stage 1) and `ARCS_WITHOUT_DRAG` (19 moves).
+5. The settle's micro-overshoot (under 5% of the travel, on the main effectors).
+6. The lift to the mouth's velocity steps (the reach folding, 50–72%) and Vy's run knee at its stop (57%).
