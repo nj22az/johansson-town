@@ -149,7 +149,11 @@ export const FUN_POSES=Object.freeze({
   use:'Shock at something unbelievable: both mittens on the cheeks, leaning back, the knees gone weak.',
   reach:{hair:true,head:[-.12,0,0],R:{cover:true,palm:'in',head:[-.82,-.38,.42,.035],seed:[-.55,.6,-1.58,-1.92,.6],hand:[0,0,0]}},
   play(P){const {w,t}=P;both(P,P.reach(),w);P.toward('chest',-.12,0,0,w);P.add('head',-.12*w+Math.sin(t*31)*.004*w);kneesIn(P,w,.24,.06);}}),
- Facepalm:Object.freeze({label:'Facepalm',face:'dry',d:2.6,ramp:.8,
+ // (it comes over 1.1 s: the kit's hand, laid on the eyes with its palm in (26 November 2026), takes the arm a longer way
+ // round on some bodies, 2.9 radians at a round grown-up's shoulder, and over 0.8 s it turned 0.18 radians a frame. It is
+ // held 3.3 s, not 2.6, so the still (STILL_AT of it) is taken as long after the hand has come as it was: at 1.1 s of 2.6
+ // the drag still had the hand 5 mm short of the face)
+ Facepalm:Object.freeze({label:'Facepalm',face:'dry',d:3.3,ramp:1.1,
   use:'Someone has done something silly (or you have): one mitten over the eyes, the head bowed into it, the other on the hip.',
   // (pose: the body as play() stands it, which a mitten laid `on` the body is solved against)
   reach:{pose:()=>({chest:[.1,0,0],thighL:[0,0,.12]}),hair:true,head:[.26,0,-.1],R:{cover:true,palm:'in',head:[-.12,.18,1,.035],seed:[-1.55,.72,-.72,-1.9,0],hand:[0,0,0]},
