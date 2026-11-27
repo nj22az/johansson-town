@@ -3,7 +3,7 @@ import {poseAvatarOnBicycle} from './bicycle-pose.js';
 import {bicycleRiderFit} from '../world/bicycle-fit.js';
 import {seeded} from './recipe.js';
 import {consumptionPhase,poseAvatarConsumption,drinkHeadTilt,heldGrip} from './consume.js';
-import {CAN_PARTS,playCanDrink,canEvents} from './drink-can.js';
+import {CAN_PARTS,playCanDrink,canEvents,levelWeights} from './drink-can.js';
 import {tearTab,pocketTab} from './open-can.js';
 import {bodyLanguage,CONVERSATION_BIG} from './body-language.js';
 import {createFootGrounder,createLieGrounder,createSoleFinder} from './foot-ground.js';
@@ -1250,9 +1250,11 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   // from where it hung to the can held at the waist, and goes back); the tab's moments as the motion has them.
   const canPart=avatar.pixar?null:gesture?.name==='DrinkCan'?CAN_PARTS.open:gesture?.name==='DrinkCanOpened'?CAN_PARTS.drink:null;
   if(canPart){
-   const t=canPart[0]+gesture.t,w=smooth(Math.min(1,gesture.t/.45))*smooth(Math.min(1,(gesture.d-gesture.t)/.45));
+   // (blended in level by level within the motion's still beat at its start, out level by level from the can settled at
+   // his waist: drink-can.js levelWeights; the face and the hands' cues by the hands' level)
+   const t=canPart[0]+gesture.t,blend={in:gesture.t,out:gesture.d-gesture.t},w=levelWeights(blend)[2];
    if(canLast<0)canLast=canPart[0]-1e-6;
-   const cue=playCanDrink(avatar,s.heldProp,t,w);
+   const cue=playCanDrink(avatar,s.heldProp,t,w,blend);
    canCue={...cue,w};
    // (the tab's moments once this frame's pose is made: torn off where the hooked finger holds the ring now)
    for(const e of canEvents(canLast,t)){if(e==='tabOff')tearTab(s.heldProp,bones.handL);else if(e==='tabPocketed')pocketTab(s.heldProp);}

@@ -389,14 +389,8 @@ A move passes a check when it passes it on every body it applies to. What makes 
 
 The audit also found faults that "No glitches" forbids, whatever the principles say:
 
-- **The can drink's motion has a pop.** In the exported motion (`motions/drink-can.js`), the right shoulder turns 0.35 rad
-  between two 30 fps keys (at 5.53 s of the motion; 3.08 s into DrinkCanOpened), after 0.03 and before 0.18 and 0.18: in the
-  game, 0.75 rad/s, then 10.6 rad/s for two frames, then 5.4. At 60 fps that is 0.18 rad a frame, under the 0.3 that
-  `tests/drink-can.test.mjs` allows, so that test does not see it.
-- **On Sverker, the drink flips his right elbow** about 0.6 rad and back within a frame, twice, as the rim comes to the lip
-  (0.80–0.88 s into DrinkCanOpened, where the arm is put right for his body; up to 37 rad/s). He is not one of the drink
-  test's seven bodies.
-- **Johansson's head hitches** at 0.3 s into DrinkCanOpened: 1.6 rad/s, 0.3, then 1.75.
+- **The can drink's pops are gone** (re-keyed on drink/can): no joint's speed changes by 0.06 rad a frame on the nine bodies of
+  `tests/drink-can.test.mjs`; Sverker's elbow flip and Johansson's head hitch with them.
 - **Jump's crouch never reaches the hips.** The root's 8 cm down is taken back by the feet held to the floor; the hips rise
   6 mm, then leave at 1.2 m/s in a frame.
 - **Eating and drinking jump the hand.** In Eat, Drink, SitEat, SitDrink and SitToast the right hand jumps 9–22 cm in the
@@ -417,8 +411,8 @@ The worst offenders, most seen in play first (the worst of the three bodies; fra
 | 6 | SitEat | ease, arcs, overlap | the hand jumps 10–21 cm in the first frame and 11–20 cm at the end; the same straight drop |
 | 7 | Drink | ease, arcs, overlap | as Eat: the jumps, and the drop 0.8–0.9% off a 27–47 cm chord |
 | 8 | SitDrink | ease, arcs, overlap | steps of 105–114% at 0 s and 2.43 s; straight strokes (0.8–0.9%); the secondary stops before the primary |
-| 9 | DrinkCanOpened | ease, anticipation, arcs, overlap | the pop at 3.08 s (the right wrist's turn steps by 160% of its top speed in a frame), Sverker's elbow flip, the head's hitch, the stance snap; no counter-movement before the 0.97 s lift (5–28 mm back, 2.3–3.7 cm needed); the release from the lip and the return to it straight (2.6–7.7% off 15–26 cm); the blend starts every level together |
-| 10 | DrinkCan | ease, anticipation, arcs, overlap | the same pop at 5.53 s; the opening's left hand starts at 71% of its top speed; no counter-movement before the lift; straight strokes (2.3–7.4%) |
+| 9 | DrinkCanOpened | ease (Vy, Sverker), overlap | re-keyed (drink/can): anticipation, arcs, twins and volume pass on the three bodies, ease on Johansson; the last steps 63-64% (Vy as the can comes off the lips, Sverker at the first pull's onset); overlap: since the general stance easing, both levels stop in the move's last frame |
+| 10 | DrinkCan | ease (Vy, Sverker), overlap | the same; the opening's anticipation 36-46% of the reach, the raise's 33-41%; Sverker's elbow steps 68% in the opening's dip |
 | 11 | SitDown | ease, anticipation, overlap, twins, squash | the arms snap out of the standing stance at 0 s, mirrored; the hips go back and down with no counter-movement; on Vy and Sverker the hips land at 0.6–0.8 m/s with no squash |
 | 12 | StandUp | ease, anticipation, overlap, twins | the head and shoulders step 100% at 0.48 s as the seat lets go; no counter-movement; mirrored |
 | 13 | ScratchHead (habit) | ease, anticipation, arcs, overlap | the stance snap; no counter-movement; the hand over the head loops 51–54% off its chord, past a half circle |

@@ -23,7 +23,9 @@ installDOM();
  */
 const VERIFY=JSON.parse(readFileSync(new URL('./drink-can.verify.json',import.meta.url),'utf8'));
 const PALM_WRIST=[[-.35,.5],[-.45,.45],[-1.1,1.25]];   // animate.js PALM.wrist (the right hand's terms; the left's y and z mirrored)
-const BODIES=['Nils Johansson','Thao','Thuan','Mr Fujita','Tetsuo','Nhung','Miss Higa'];
+// (Vy the smallest body by measure, Sverker the largest: the principles audit's bodies)
+const BODIES=['Nils Johansson','Vy','Sverker','Thao','Thuan','Mr Fujita','Tetsuo','Nhung','Miss Higa'];
+const JUMP=.06;   // rad a frame, from one frame to the next, at 60 fps (3.6 rad/s gained or lost in a sixtieth: a hitch)
 const runs=new Map(),UPPER=['spine','chest','neck','head','shoulderL','elbowL','handL','shoulderR','elbowR','handR'];
 
 /** The can drunk by `who` (sealed: opened first), every frame's facts. */
@@ -43,7 +45,7 @@ function drink(who,seated=false){
   const up=new THREE.Vector3(0,1,0).transformDirection(prop.matrixWorld);
   const wrist=s=>{const q=a.bones['hand'+s].quaternion,e=new THREE.Euler().setFromQuaternion(q,'XYZ');return [e.x,s==='R'?e.y:-e.y,s==='R'?e.z:-e.z];};
   frames.push({t,c,rimLip:rim.distanceTo(lip),tilt:Math.acos(THREE.MathUtils.clamp(up.dot(new THREE.Vector3(0,1,0)),-1,1)),wrist:{R:wrist('R'),L:wrist('L')},face:faces.at(-1),
-   canInFace:i%6===0?canInFace(a,prop):0,handOnCan:[30,207,288].includes(i)?handOnCan(a,prop):null,
+   canInFace:i%6===0?canInFace(a,prop):0,handOnCan:[51,273,354].includes(i)?handOnCan(a,prop):null,
    joints:UPPER.map(j=>a.bones[j].quaternion.clone()),can:prop.getWorldPosition(new THREE.Vector3())});
  }
  const run={a,prop,frames};runs.set(key,run);return run;
@@ -126,27 +128,31 @@ test('nothing pops: no joint turns over between two frames, the can is never sna
  // (found 27 November 2026: the left shoulder turned 3.1 rad in a frame as the motion blended in, the left IK's pole was half
  // a turn out so its elbow went into his chest, the upper arm rolled over between frames where the IK left its roll to
  // chance, and the can left the lip at 45 degrees in a tenth of a second; at 60 frames a second)
- for(const who of BODIES){const {frames}=drink(who);let turn=[0],can=[0];
+ // (and no joint's speed jumps from one frame to the next: a turn of 0.18 rad a frame between 0.05s is a pop all the same,
+ // the principles audit found one at 5.53 s; steps of speed, not only of angle)
+ for(const who of BODIES){const {frames}=drink(who);let turn=[0],can=[0],jump=[0];
   for(let i=1;i<frames.length;i++){
-   frames[i].joints.forEach((q,j)=>{const d=q.angleTo(frames[i-1].joints[j]);if(d>turn[0])turn=[d,UPPER[j],frames[i].t];});
+   frames[i].joints.forEach((q,j)=>{const d=q.angleTo(frames[i-1].joints[j]);if(d>turn[0])turn=[d,UPPER[j],frames[i].t];
+    if(i>1){const e=Math.abs(d-frames[i-1].joints[j].angleTo(frames[i-2].joints[j]));if(e>jump[0])jump=[e,UPPER[j],frames[i].t];}});
    const d=frames[i].can.distanceTo(frames[i-1].can);if(d>can[0])can=[d,frames[i].t];}
   assert.ok(turn[0]<.3,`${who}: ${turn[1]} turns ${turn[0].toFixed(2)} rad in a frame at ${turn[2]?.toFixed(2)} s`);
-  assert.ok(can[0]<.03,`${who}: the can moves ${(can[0]*1000).toFixed(0)} mm in a frame at ${can[1]?.toFixed(2)} s`);}
+  assert.ok(can[0]<.03,`${who}: the can moves ${(can[0]*1000).toFixed(0)} mm in a frame at ${can[1]?.toFixed(2)} s`);
+  assert.ok(jump[0]<JUMP,`${who}: ${jump[1]}'s turn a frame changes by ${jump[0].toFixed(3)} rad from one frame to the next at ${jump[2]?.toFixed(2)} s`);}
 });
 
 test('the can goes further over as it empties, and the eyes shut for the deep swallows, a breath out after',()=>{
  const {frames}=drink('Nils Johansson');
  const pull=(a,b)=>frames.filter(f=>f.t>a&&f.t<b&&f.c.lip>.99);
- for(const [a,b] of [[3.4,5.2],[5.8,7.5]]){const p=pull(a,b);
+ for(const [a,b] of [[4.5,6.3],[6.9,8.6]]){const p=pull(a,b);
   assert.ok(p.at(-1).tilt-p[0].tilt>THREE.MathUtils.degToRad(30),`tipped further through the pull from ${a} s (${THREE.MathUtils.radToDeg(p[0].tilt).toFixed(0)} to ${THREE.MathUtils.radToDeg(p.at(-1).tilt).toFixed(0)} degrees)`);
   // (and, while it empties, far enough for what is left to reach the opening: a can holds a fill f below the rim's edge
   // until it is tipped atan((1 - f) h / r))
   p.forEach((f,i)=>{if(!(p[i+1]&&p[i+1].c.fill<f.c.fill-1e-4))return;const need=Math.atan((1-f.c.fill)*.122/.033);assert.ok(f.tilt>Math.min(need,THREE.MathUtils.degToRad(85))-.05,`at ${f.t.toFixed(2)} s, drinking, tipped ${THREE.MathUtils.radToDeg(f.tilt).toFixed(0)}, ${THREE.MathUtils.radToDeg(need).toFixed(0)} needed`);});
  }
- assert.ok(frames.filter(f=>f.t>4&&f.t<4.8).every(f=>f.face.blink>.99),'the eyes shut for the deep swallows');
- assert.ok(frames.some(f=>f.t>5.2&&f.t<5.7&&f.face.talk>0),'a breath out between the pulls');
- assert.ok(frames.some(f=>f.t>7.9&&f.face.expression==='content'),'content after');
- assert.ok(frames.filter(f=>f.t>.4&&f.t<1.2).every(f=>f.face.look?.[1]>0),'the eyes on the can while it is opened');
+ assert.ok(frames.filter(f=>f.t>5.1&&f.t<5.9).every(f=>f.face.blink>.99),'the eyes shut for the deep swallows');
+ assert.ok(frames.some(f=>f.t>6.3&&f.t<6.8&&f.face.talk>0),'a breath out between the pulls');
+ assert.ok(frames.some(f=>f.t>9&&f.face.expression==='content'),'content after');
+ assert.ok(frames.filter(f=>f.t>.75&&f.t<1.55).every(f=>f.face.look?.[1]>0),'the eyes on the can while it is opened');
 });
 
 test('a resident drinking a can that is open sips it as animated: the rim on the lip, the eyes shut for the swallow',()=>{
