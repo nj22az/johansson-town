@@ -28,7 +28,7 @@ for(const [who,seated] of [['Nils Johansson',false],['Nils Johansson',true],['Th
  actor.drinkBought(can,{seated});
  const a=actor.avatar,hand=a.bones.handL,hookAt=new THREE.Vector3(...handPoint(a.measure,'L',HAND.hookAt));
  assert.equal(can.parent,a.bones.handR,'the can in his right hand');assert.equal(can.userData.bought,'Green tea');
- let t=0,onRing=0,ringFrames=0,offAt=null,hooked=1,pocket=null;const off=at('tabOff'),pocketed=at('tabPocketed');
+ let t=0,onRing=0,ringFrames=0,offAt=null,hooked=1,pocket=null,inFingers=0,tabAtPocket=null;const off=at('tabOff'),pocketed=at('tabPocketed');
  const P=pocketSpot(a).position;
  for(let i=0;i<Math.round(pocketed*60)+6;i++){
   actor.update(1/60,state);t+=1/60;a.root.updateWorldMatrix(true,true);
@@ -38,10 +38,16 @@ for(const [who,seated] of [['Nils Johansson',false],['Nils Johansson',true],['Th
   if(offAt===null&&S.tab.parent===hand)offAt=t;
   if(S.tab.parent===hand&&t<pocketed-.05){hooked=Math.min(hooked,a.gripShapeOf('L')==='hook'?a.gripOf('L'):0);
    pocket=hook.distanceTo(a.bones.chest.localToWorld(P.clone()));}
+  // the torn tab itself in his fingers all the way to the pocket (it hung half a metre off them once: torn off before the
+  // frame's pose was made), and in the pocket's mouth as it goes in
+  if(S.tab.parent===hand){const ring=S.tab.localToWorld(S.ring.clone());inFingers=Math.max(inFingers,ring.distanceTo(hook));
+   if(t<pocketed-.05)tabAtPocket=ring.distanceTo(a.bones.chest.localToWorld(P.clone()));}
  }
  assert.ok(ringFrames>10&&onRing<.003,`the hooked forefinger on the ring as it lifts it, ${ringFrames} frames (${(onRing*1000).toFixed(1)} mm off)`);
  assert.ok(offAt!==null&&Math.abs(offAt-off)<.04,`the tab comes off in the left hand at ${off} s (${offAt?.toFixed(2)})`);
  assert.ok(hooked>.9,`the forefinger hooked on the tab until the pocket (${hooked.toFixed(2)})`);
+ assert.ok(inFingers<.012,`the torn tab's ring in his hooked finger from the tear to the pocket (${(inFingers*1000).toFixed(1)} mm off at worst)`);
+ assert.ok(tabAtPocket!==null&&tabAtPocket<.05,`the tab itself at the pocket as it goes in (${tabAtPocket===null?'never':(tabAtPocket*1000).toFixed(0)+' mm'})`);
  assert.ok(pocket!==null&&pocket<.04,`the tab at his shirt pocket as it goes in (${pocket===null?'never':(pocket*1000).toFixed(0)+' mm'})`);
  assert.ok(S.done&&!S.tab.parent&&S.opening.visible,'the tab gone (in his pocket), the opening shown');
  assert.equal(actor.bought,'drink','then he drinks it');

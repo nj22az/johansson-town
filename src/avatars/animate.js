@@ -1104,10 +1104,11 @@ export function createAvatarAnimator(avatar,{lively=false,random=Math.random,bow
   if(canPart){
    const t=canPart[0]+gesture.t,w=smooth(Math.min(1,gesture.t/.45))*smooth(Math.min(1,(gesture.d-gesture.t)/.45));
    if(canLast<0)canLast=canPart[0]-1e-6;
-   for(const e of canEvents(canLast,t)){if(e==='tabOff')tearTab(s.heldProp,bones.handL);else if(e==='tabPocketed')pocketTab(s.heldProp);}
-   canLast=t;
    const cue=playCanDrink(avatar,s.heldProp,t,w);
    canCue={...cue,w};
+   // (the tab's moments once this frame's pose is made: torn off where the hooked finger holds the ring now)
+   for(const e of canEvents(canLast,t)){if(e==='tabOff')tearTab(s.heldProp,bones.handL);else if(e==='tabPocketed')pocketTab(s.heldProp);}
+   canLast=t;
   }else{canLast=-1;if(!consumption||s.heldProp?.userData?.drinkKind!=='can')canCue=null;}
   // A hand with fingers rests a little curled, as a hand does, never splayed flat (a judge of the counter frames: "the
   // free hand is a stiff starfish"); what it holds closes it further (consume.js, table-drink.js set the grip after this).

@@ -21,7 +21,8 @@ export function liftTab(prop,f){
 /** The tongue torn away: the tab into `hand` (the left hand's bone) where it is, the opening shown. */
 export function tearTab(prop,hand){
  const S=prop?.userData?.sealed;if(!S||S.off||S.done)return;
- prop.updateMatrixWorld(true);hand.updateMatrixWorld(true);hand.attach(S.tab);S.opening.visible=true;S.off=true;
+ // (the whole body's places as they are now: the can's and the hand's, from the root down)
+ prop.updateWorldMatrix(true,true);hand.updateWorldMatrix(true,false);hand.attach(S.tab);S.opening.visible=true;S.off=true;
 }
 /** The tab gone from the can for good: in the pocket, or (a move cut short) torn off and put away at once. */
 function putAway(S){S.tab.removeFromParent();S.tab.traverse(o=>{if(o.isMesh){o.geometry.dispose();o.material.dispose();}});S.opening.visible=true;S.off=true;S.done=true;}
