@@ -25,6 +25,12 @@ for(const accounts of Object.values(legacy.ACCOUNTS))for(const site of Object.ke
 // the snapshot's who stayed; linesFor follows for every live buyer.
 const {castMember}=await import('../src/people/cast.js');
 const live=n=>castMember(n)&&!castMember(n).supporting;
+// 26 November 2026 (the owner, AGENTS.md "Johansson is drawn from the owner"): Grandmother Higa is Christina and the
+// Harbour master is Sverker, one name each everywhere (src/people/roster.js keeps the old names in `was`). The snapshot
+// named its buyers as they were called then; they are read by today's names.
+const today=n=>castMember(n)?.name??n;
+const rename=o=>{if(Array.isArray(o)){o.forEach(rename);return;}if(!o||typeof o!=='object')return;if(Array.isArray(o.for))o.for=o.for.map(today);for(const v of Object.values(o))rename(v);};
+rename(legacy);legacy.linesFor=Object.fromEntries(Object.entries(legacy.linesFor).map(([name,lines])=>[today(name),lines]));
 const leave=(o,key)=>{if(Array.isArray(o)){o.forEach(x=>leave(x));return;}if(!o||typeof o!=='object')return;
  // (A supporting crew name, Jun, was the airport clerk's who left; the cook-steward of that name is a different person the snapshot never had.)
  if(Array.isArray(o.for)){o.for=o.for.filter(live);const id=o.id||key,want=now.MERCHANDISING[id]?.for;
@@ -39,8 +45,12 @@ delete legacy.SUPPLIERS['rainflower-florist'];delete legacy.ACCOUNTS['rainflower
 legacy.SUPPLIERS.sakura={...legacy.SUPPLIERS.sakura,goods:now.SUPPLIERS.sakura.goods,decor:now.SUPPLIERS.sakura.decor};
 // 21 October 2026 (briefs/town-hall-zone.md phase M): the mayor's office went, and its accounts with Sakura and Front-Row
 // are the Community Hall's (the community kitchen's): the hall orders what the office ordered, as well as its own.
-{const hall=now.ACCOUNTS.sakura['community-kitchen'],was=[legacy.ACCOUNTS.sakura['community-kitchen'],legacy.ACCOUNTS.sakura['mayor-office']];
- assert.deepEqual(hall.lines,was.flatMap(a=>a.lines),'the hall orders the kitchen\u2019s lines and the office\u2019s');
+// Then, 31 October 2026 (the owner, AGENTS.md "facilities before population"): Emi's community-kitchen programme is
+// paused while the hall and its register stay, so the hall no longer orders the kitchen's curry lines, only the office's
+// (kitchenClosed; tests/nakamura-retirement.test.mjs holds the account).
+{const hall=now.ACCOUNTS.sakura['community-kitchen'],office=legacy.ACCOUNTS.sakura['mayor-office'];
+ assert.equal(hall.kitchenClosed,true,'the kitchen programme is paused');
+ assert.deepEqual(hall.lines,office.lines,'the hall orders the office\u2019s lines, and the paused kitchen\u2019s no longer');
  assert.deepEqual(now.ACCOUNTS.sakura['community-kitchen'].stationery,legacy.ACCOUNTS.frontrow['mayor-office'].lines,'the hall\u2019s register takes the office\u2019s stationery');
  assert.equal(now.ACCOUNTS.sakura['mayor-office'],undefined);delete legacy.ACCOUNTS.sakura['mayor-office'];legacy.ACCOUNTS.sakura['community-kitchen']=now.ACCOUNTS.sakura['community-kitchen'];
  legacy.ACCOUNTS.frontrow['community-kitchen']=legacy.ACCOUNTS.frontrow['mayor-office'];delete legacy.ACCOUNTS.frontrow['mayor-office'];}
@@ -91,6 +101,25 @@ for(const [site,keys] of Object.entries({izakaya:['alcohol'],ramen:['alcohol','w
  legacy.SAKURA_SHELVES=Object.fromEntries(Object.entries(legacy.SAKURA_SHELVES).map(([id,s])=>fridge.includes(id)?[order[i],legacy.SAKURA_SHELVES[order[i++]]]:[id,s]));}
 for(const name of Object.keys(legacy.linesFor))if(!live(name))delete legacy.linesFor[name];
 for(const [name,want] of Object.entries(now.linesFor)){assert.ok(castMember(name),name+' buys at Sakura but is not in the cast');for(const line of legacy.linesFor[name]||[])assert.ok(want.includes(line),name+' keeps the '+line);legacy.linesFor[name]=want;}
+// 30 October 2026 (the owner, AGENTS.md "Kissa Higa in the shut Higa Liquor"): Christina's morning coffee shop is a new
+// Sakura account: bread and milk on its shelf lines, the beans, eggs and butter with Sakura Trading's order
+// (commerce/kissa-higa.js). No other account changes for it.
+{const kissa=now.ACCOUNTS.sakura['kissa-higa'];assert.equal(legacy.ACCOUNTS.sakura['kissa-higa'],undefined,'the snapshot had no coffee shop');
+ assert.equal(kissa.owner,'Christina');assert.deepEqual(kissa.lines,['bread','milk']);for(const line of kissa.lines)assert.ok(now.MERCHANDISING[line],line+' is a Sakura line');
+ assert.ok(kissa.goods.length,'the beans, eggs and butter come with the order');legacy.ACCOUNTS.sakura['kissa-higa']=kissa;}
+// 27 November 2026 (the owner, AGENTS.md "beer in the drinks machines"): Kame, Jugon and Tako took the machines' places of
+// Harbour Tea, Dockside and Sanpin, which stay drinkable from a saved bag (vending-catalogue.js RETIRED_VENDING, without
+// a button); J-Coffee, the shikuwasa soda, Ryukyu cola and the corn soup stay, each keeping every field it had (they gain
+// who they are for and why). Every drink of the snapshot still drinks, in the same colour, leaving the same empty; the
+// drinks are listed in the new line-up's order (the beer is the machines' top row), so that order is the decision's.
+{const {RETIRED_VENDING,canColour,emptyFor}=await import('../src/commerce/vending-catalogue.js');
+ for(const was of legacy.VENDING_PRODUCTS){const kept=now.VENDING_PRODUCTS.find(p=>p.id===was.id),retired=RETIRED_VENDING.find(p=>p.id===was.id);
+  assert.ok(kept||retired,was.id+' is on a machine or retired');
+  for(const [key,value] of Object.entries(was))if(kept||!['label','buttonLabel'].includes(key))assert.deepEqual((kept||retired)[key],value,was.id+' keeps its '+key);}
+ assert.deepEqual(now.VENDING_PRODUCTS.filter(p=>!legacy.VENDING_PRODUCTS.some(w=>w.id===p.id)).map(p=>p.id),['kame-lager','jugon-draft','tako-black'],'the three beers are the new cans');
+ for(const name of legacy.DRINKABLE)assert.ok(now.DRINKABLE.includes(name),name+' still drinks');
+ for(const name of Object.keys(legacy.canColour)){assert.equal(canColour(name),legacy.canColour[name],name+'’s colour');assert.equal(emptyFor(name),legacy.emptyFor[name],name+'’s empty');}
+ for(const key of ['VENDING_PRODUCTS','DRINKABLE','canColour','emptyFor'])legacy[key]=now[key];}
 
 test('every legacy export, shelf, atlas cell and flavour shift comes back from the data unchanged',()=>{
  assert.deepEqual(Object.keys(now).sort(),Object.keys(legacy).sort());

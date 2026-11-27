@@ -468,8 +468,12 @@ const PUBLISHED=/^johansson-town\/(data\/studio\/|src\/avatars\/looks-data\.js|s
 /** The publish_check report: every item {check, ok, detail}, and whether all of them pass. */
 async function publishCheck(ctx,{tests,signal}){
  const c=await load(),{execFile}=await import('node:child_process'),{promisify}=await import('node:util'),run=promisify(execFile);
- const {resolve}=await import('node:path'),{readFile,stat}=await import('node:fs/promises'),code=c.repo.CODE_ROOT,town=resolve(code,'johansson-town');
- const git=async(...args)=>(await run('git',args,{cwd:code,maxBuffer:4e6,signal})).stdout;
+ // Since 7 November 2026 the town is its own repository (nj22az/johansson-town), cloned as johansson-town/ inside the
+ // site's checkout, whose .gitignore leaves the town out: the town's branch, its main and its files are asked of the town's
+ // own repository (the checkout this tool is in), and only avatar-creator and .mcp.json of the site's.
+ const {resolve}=await import('node:path'),{fileURLToPath}=await import('node:url'),{readFile,stat}=await import('node:fs/promises');
+ const code=c.repo.CODE_ROOT,town=fileURLToPath(new URL('../../',import.meta.url));
+ const git=async(cwd,...args)=>(await run('git',args,{cwd,maxBuffer:4e6,signal})).stdout;
  const items=[],add=(check,ok,detail)=>items.push({check,ok,detail});
  const {check}=await import('./build-data.mjs'),fresh=await check(ctx.repo);
  add('generated modules',fresh.ok,fresh.ok?'looks-data.js, characters-data.js and products-data.js match their data.':`Out of date: ${fresh.stale.join(', ')}. Run node johansson-town/tools/studio/build-data.mjs.`);
@@ -496,13 +500,19 @@ async function publishCheck(ctx,{tests,signal}){
  const portraits=hash.digest('hex')===manifest.sha256;
  add('guide portraits',portraits,portraits?'The resident guide\'s portraits match the avatar source.':'The guide portraits are older than the avatar source or the looks: run node johansson-town/tools/render-resident-guide.mjs.');
  try{
-  const main=(await git('rev-parse','--verify','origin/main')).trim(),merged=await run('git',['merge-base','--is-ancestor',main,'HEAD'],{cwd:code,signal}).then(()=>true,()=>false);
-  const fetched=await stat(resolve(code,'.git/FETCH_HEAD')).then(s=>s.mtime.toISOString(),()=>'never');
+  const main=(await git(town,'rev-parse','--verify','origin/main')).trim(),merged=await run('git',['merge-base','--is-ancestor',main,'HEAD'],{cwd:town,signal}).then(()=>true,()=>false);
+  const fetched=await stat(resolve(town,(await git(town,'rev-parse','--git-common-dir')).trim(),'FETCH_HEAD')).then(s=>s.mtime.toISOString(),()=>'never');
   add('main merged',merged,merged?`origin/main (as last fetched, ${fetched}) is merged into this branch.`:`origin/main (as last fetched, ${fetched}) has commits this branch does not: git fetch origin main, then merge it before pushing.`);
  }catch(e){add('main merged',false,`Could not read origin/main: ${plain(e)}`);}
- const dirty=(await git('status','--porcelain','--untracked-files=all','--','johansson-town','avatar-creator','.mcp.json')).split('\n').filter(Boolean).map(l=>l.slice(3));
- const own=dirty.filter(p=>PUBLISHED.test(p));
- add('uncommitted',!own.length,own.length?`To commit with Studio's change: ${own.join(', ')}.`:'Studio\'s data and what is built from it are committed.');
- return {ready:items.every(i=>i.ok),items,otherUncommitted:dirty.filter(p=>!own.includes(p)),
+ const lines=out=>out.split('\n').filter(Boolean).map(l=>l.slice(3));
+ let other=[];
+ try{
+  const dirty=lines(await git(town,'status','--porcelain','--untracked-files=all')).map(p=>'johansson-town/'+p),own=dirty.filter(p=>PUBLISHED.test(p));
+  other=dirty.filter(p=>!own.includes(p));
+  add('uncommitted',!own.length,own.length?`To commit with Studio's change: ${own.join(', ')}.`:'Studio\'s data and what is built from it are committed.');
+ }catch(e){add('uncommitted',false,`Could not read the town's repository: ${plain(e)}`);}
+ // (A checkout of the town outside a site checkout has no site to ask: it lists none of the site's files.)
+ other.push(...await git(code,'status','--porcelain','--untracked-files=all','--','avatar-creator','.mcp.json').then(lines,()=>[]));
+ return {ready:items.every(i=>i.ok),items,otherUncommitted:other,
   next:'Only when the creator says "update World": (1) publish_draft, a dry run to show them, then dryRun:false; (2) if it wrote src/avatars/looks-data.js, node johansson-town/tools/render-resident-guide.mjs; (3) if it wrote src/commerce/products-data.js, walk to the shelf it changed (node johansson-town/tools/studio/cabinet-walk.mjs <label> --source for the cold cabinet) and look; (4) (cd johansson-town && npm run build:runtime); (5) publish_check again; (6) commit the files "uncommitted" lists (git add those paths only, never -A); (7) git fetch origin main and merge it into the branch; (8) push the branch and check the johansson-town-live.yml run (gh api repos/nj22az/nj22az.github.io/actions/workflows/johansson-town-live.yml/runs?per_page=3). It is live only after that run succeeds.'};
 }
