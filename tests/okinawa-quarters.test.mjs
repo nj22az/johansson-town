@@ -45,11 +45,15 @@ test('Main Street has buildings on both kerbs, and the shops do things',async()=
  // None of them stands on the pavements.
  for(const c of world.colliders.filter(c=>c.id==='shop-house'))
   assert.ok(c.x-c.w/2>=MAIN_ROAD.pavementEast-.01||c.x+c.w/2<=MAIN_ROAD.pavementWest+.01,'A shop-house is on the pavement at '+c.x);
- const zenzai=labels.find(l=>l.label==='Order at Nakamura · zenzai & ice cream');
- assert.ok(zenzai,'Nakamura’s sells no zenzai');
+ // Nakamura's counter is kept but vacant and shut since the owner retired the Nakamura family (31 October 2026: "remove
+ // the ice cream family now ... we need to build facilities before we populate them"): nothing is sold through an absent
+ // keeper, so it has no order prompt, only its notice, which says why (blue-coral-shop.js).
+ assert.equal(labels.some(l=>/^Order at Nakamura/.test(l.label)),false,'no order at the vacant dessert counter');
+ const zenzai=labels.find(l=>l.label==='Read the dessert counter notice');
+ assert.ok(zenzai,'Nakamura’s says why it sells nothing');
  zenzai.fn();
- assert.deepEqual(actions.at(-1).slice(0,1),['dessert-menu']);
- assert.equal(actions.at(-1)[2][0].item,'Zenzai');
+ assert.deepEqual(actions.at(-1).slice(0,2),['read','Nakamura is closed']);
+ assert.match(actions.at(-1)[2],/closed until it has a keeper/);
  const higa=homeNameplate('higa'),higaPlate=labels.find(l=>l.label===higa.address+' · '+higa.owners);
  assert.ok(higaPlate,'The Higa gate names its address and actual household');
  higaPlate.fn();
