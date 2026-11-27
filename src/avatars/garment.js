@@ -62,46 +62,146 @@ const lighten=(hex,f)=>'#'+new THREE.Color(hex).lerp(new THREE.Color('#ffffff'),
  *  fraction of the torso's height) and how far out its straps' inner edges are (a fraction of the open neck's top). */
 export const UNDER=Object.freeze({tank:Object.freeze({colour:'#f2efe6',scoop:.865,strap:.8})});
 /**
- * Johansson's aloha print (`outfit.pattern: 'aloha'`), laid out flower by flower, not tiled: the owner's brief of 27
- * November 2026, "Give the floral print a deliberate rhythm". One simple blossom, five rounded petals a little uneven
- * (`petals`: each [its turn off the even fifth, its reach, its width]), in warm cream with a golden-yellow eye on the sky
- * blue of the cloth (the recipe's topColour), drawn at different sizes and turns where it is wanted (`blooms`).
- * Each bloom: `on` the shirt's body (`a`, torsoUV's angle: 0 the front, the wearer's left a > 0, π the back; `t`, a share
- * of the torso's height above the hip joint) or on his right sleeve (`a` round the arm, 0 its front, π/2 its outside;
- * `along` from the shoulder, 0, to the hem, 1); `r` its radius in metres (a grown man's, k = 1), `turn` its rotation; and
- * why it is there. In the reference the bright flowers at both shoulders made a line under his face: here nothing is near
- * the shoulders or the collar (the collar is plain cloth), the weight is low, and broad blue lies between the groups.
+ * Johansson's aloha print (`outfit.pattern: 'aloha'`): a real aloha shirt's all-over print (the owner, 27 November 2026:
+ * "The shirt you may look like a dress make it look more like a real Hawaii shirt"; with eight flowers on broad blue it had
+ * read as a plain tunic). One simple blossom, five rounded petals a little uneven (`petals`: each [its turn off the even
+ * fifth, its reach, its width]), in warm cream with a golden-yellow eye, on the sky blue of the cloth (the recipe's
+ * topColour), with tonal leaves in a deeper blue (`leaf`, its `vein` a little paler) tucked behind each bloom and in the
+ * gaps, so the blue between the motifs is never a bare field; the cream on the blue is the strong contrast that reads
+ * across a room, the leaves are quiet.
+ * `blooms`, the heroes, are the print's largest flowers, placed by hand where the owner's brief of the same day put them
+ * ("Give the floral print a deliberate rhythm"): each `on` the shirt's body (`a`, torsoUV's angle: 0 the front, the
+ * wearer's left a > 0, π the back; `t`, a share of the torso's height above the hip joint) or on his right sleeve (`a`
+ * round the arm, 0 its front, π/2 its outside; `along` from the shoulder, 0, to the hem, 1); `r` its radius in metres (a
+ * grown man's, k = 1), `turn` its rotation; and why it is there.
+ * `fill`, the print round them (alohaPrint), tossed as a textile designer tosses a print, on a fixed sequence (no dice):
+ *  - `bloom` the radii of its blossoms, all smaller than the heroes; on the sleeves `sleeve`;
+ *  - `gap` the blue between two blossoms' edges, low and high: dense up to the chest, thinning out over `thin` (shares of
+ *    the torso), so the weight stays low (the rhythm is in the scale and the density, not in bare fields);
+ *  - `yoke`: no blossom higher on the body than this share of the torso, front or back, and none on a sleeve's top `cap`
+ *    (a share of its length): nothing bright in a row across his shoulders under his face, only leaves there (the first
+ *    toss, dense up to 0.7 and on the sleeves' tops, made that row, front and back; with none above 0.62 the cream
+ *    lay in a band round the bottom, a stripe of flowers); none under the arms
+ *    (`underarm`, from that share up, where the cloth stretches) or in the V under the collar;
+ *  - `leaves`: how many leaves each blossom has behind it, their length as a share of its radius and at most `longest`
+ *    (the large bloom's were dark masses 18 cm long); `spray` the free leaves' half-length in the gaps, `leafGap` how far
+ *    apart they are kept.
  * The design is Frank Thomas and Ollie Johnston's staging and appeal (The Illusion of Life): the face first, then the
  * shirt; the placement is Johansson World's own.
  */
 export const ALOHA=Object.freeze({
- petal:'#f7edd4',crease:'#e6d4ac',eye:'#ecb12e',
+ petal:'#f7edd4',crease:'#e6d4ac',eye:'#ecb12e',leaf:'#5a91bb',vein:'#6fa3cb',
  petals:Object.freeze([[0,1,1],[.035,.93,.95],[-.03,1.02,1.04],[.045,.95,.97],[-.02,.9,.93]].map(Object.freeze)),
  blooms:Object.freeze([
   {id:'large',on:'body',a:-.56,t:.275,r:.088,turn:.35,why:'the one larger flower, low on his right front: after his face the eye comes here, and the shirt\'s weight sits low'},
-  {id:'flank',on:'body',a:-1.15,t:.2,r:.048,turn:1.4,why:'its companion round his right flank: as he turns it narrows and goes round his side'},
+  {id:'flank',on:'body',a:-1.56,t:.21,r:.048,turn:1.4,why:'its companion round his right flank: as he turns it narrows and goes round his side'},
   {id:'small',on:'body',a:.52,t:.43,r:.056,turn:-.5,why:'the smaller one, diagonally opposite the large one, below his left pocket'},
   {id:'bud',on:'body',a:.95,t:.3,r:.032,turn:.9,why:'a bud beside it toward his side, so the two are a group and not a dot'},
   {id:'sleeve',on:'sleeveR',a:1.5,along:.74,r:.046,turn:.2,why:'a partial bloom on the outside of his right sleeve, cut by its hem and turning out of sight round the arm'},
   {id:'back',on:'body',a:2.69,t:.3,r:.064,turn:-.8,why:'the lower back, off-centre to his left and clear of his arm: the one the game\'s camera reads from behind him'},
-  {id:'back-low',on:'body',a:3.03,t:.18,r:.038,turn:.6,why:'lower and in toward the middle of his back'},
-  {id:'back-high',on:'body',a:2.96,t:.46,r:.03,turn:1.1,why:'higher and in again: with the other two a loose triangle off to his left, not a row, all between his arms'},
+  {id:'back-low',on:'body',a:3.1,t:.16,r:.038,turn:.6,why:'lower and in toward the middle of his back'},
+  {id:'back-high',on:'body',a:2.96,t:.48,r:.03,turn:1.1,why:'higher and in again: with the other two a loose triangle off to his left, not a row, all between his arms'},
  ].map(Object.freeze)),
+ fill:Object.freeze({bloom:Object.freeze([.024,.042]),sleeve:Object.freeze([.02,.03]),gap:Object.freeze([.02,.1]),thin:Object.freeze([.4,.72]),yoke:.68,
+  underarm:.45,cap:.4,leaves:Object.freeze([2,3]),leaf:Object.freeze([.85,1.15]),longest:.055,spray:.03,leafGap:.03}),
 });
+/** The cloth's own frame at texel (U,V) of a band (`at`, `out`, `up` as stamp's): the point, its right `e1`, up `e2` and
+ *  out `n`, and how a texel's step in u and in v lies along e1 and e2 ([a, b, c, d], metres). */
+function clothFrame(at,U,V,out,up){
+ const pu=at(U+.5,V).sub(at(U-.5,V)),pv=at(U,V+.5).sub(at(U,V-.5)),p=at(U,V);
+ const n=new THREE.Vector3().crossVectors(pu,pv).normalize();if(n.dot(out(p))<0)n.negate();
+ const u0=up(p),e2=u0.clone().addScaledVector(n,-n.dot(u0)).normalize(),e1=new THREE.Vector3().crossVectors(e2,n);
+ const a=pu.dot(e1),b=pv.dot(e1),c=pu.dot(e2),d=pv.dot(e2);return {p,e1,e2,n,a,b,c,d,det:a*d-b*c};
+}
 /**
- * Where each of ALOHA's blooms lies on a body, at rest (`m` the body's measure, `radiusAt` its torso lathe's radius, `top`
- * the top it is printed on): {id, on, r (metres), at (a THREE.Vector3 in the body's space), why}, and for the sleeve's,
- * how far along the sleeve it is (`along`, metres) and the sleeve's length to its hem (`length`).
+ * The bands Johansson's print is laid on, for a body and the top it is printed on: the body's (`body`) and each sleeve's
+ * (`sleeveL`, `sleeveR`): {at(U,V) the cloth's point at a texel, out(p), up(p), and the texels it may be drawn in, [U0, V0,
+ * U1, V1] `box`}. On a kariyushi the body is its own (shirtSurface) down to its hem; on another top, the chest's lathe down
+ * to its hem line `hemT` (a share of the torso). A short sleeve is shortSleeve's tube, a long one the arm.
+ */
+function printBands(m,radiusAt,top,hemT){
+ const TW=GARMENT.width,TH=GARMENT.height,{V0,T0,T1}=GARMENT,kar=top==='kariyushi',surf=shirtSurface(m,radiusAt,kar);
+ const Y=t=>(1-(V0+(1-V0)*(t-T0)/(T1-T0)))*TH,tOf=V=>T0+((1-V/TH)-V0)/(1-V0)*(T1-T0);
+ const bands={body:{at:(U,V)=>surf((U/TW-.5)*Math.PI*2,tOf(V)),out:p=>new THREE.Vector3(p.x,0,p.z),up:()=>new THREE.Vector3(0,1,0),box:[0,0,TW,kar?Y(T0):Y(hemT)],Y,tOf}};
+ const long=SLEEVED_LONG.includes(top);
+ for(const side of [1,-1]){
+  const S=sleeveBand(side),yTop=(1-S.v1)*TH,yBot=(1-S.v0)*TH,h=yBot-yTop,end=long&&SLEEVE_END[top]?yTop+h*SLEEVE_END[top]:yBot;
+  const sv=long?{a0:[side*m.shoulderX,m.shoulderY,0],a1:[side*(m.shoulderX+.015),m.shoulderY-m.upper-m.fore,0],r0:m.armR*1.04,r1:m.armR*.86}:shortSleeve(m,side,kar);
+  const A0=new THREE.Vector3(...sv.a0),dir=new THREE.Vector3(...sv.a1).sub(A0),len=dir.length();dir.normalize();
+  const ex=new THREE.Vector3(1,0,0).addScaledVector(dir,-dir.x).normalize(),ez=new THREE.Vector3(0,0,1).addScaledVector(dir,-dir.z).normalize();
+  const axis=f=>A0.clone().addScaledVector(dir,f*len);
+  // (to the hem's band, which is painted over it: not a sliver of the print below it)
+  const hemTop=end-Math.max(3,(long?.03:.018)*m.k*h/(long?m.upper+m.fore:m.upper*.6));
+  bands[side>0?'sleeveL':'sleeveR']={side,yTop,h,length:len,sv,
+   at:(U,V)=>{const phi=(U/TW-.5)*Math.PI*2,f=(S.v1-(1-V/TH))/(S.v1-S.v0),R=THREE.MathUtils.lerp(sv.r0,sv.r1,f);return axis(f).addScaledVector(ex,side*R*Math.sin(phi)).addScaledVector(ez,R*Math.cos(phi));},
+   out:p=>{const f=THREE.MathUtils.clamp(p.clone().sub(A0).dot(dir)/len,0,1);return p.clone().sub(axis(f));},up:()=>dir.clone().negate(),box:[0,yTop,TW,hemTop]};
+ }
+ return bands;
+}
+const PRINTS=new Map();
+/**
+ * Johansson's print laid out on a body (ALOHA): its heroes where they were placed and the all-over print tossed round them,
+ * every motif {kind 'bloom' or 'leaf', band ('body', 'sleeveL', 'sleeveR'), U, V (its texel), r (metres: a blossom's
+ * radius, a leaf's half-length), turn, at (where it lies on the body at rest, a THREE.Vector3), and a hero's id and why}.
+ * The toss runs down a fixed low-discrepancy sequence (the plastic number's, R2), so the print is the same every time and
+ * evenly spread with no grid and no rows; a candidate blossom is kept only where the blue round it is as wide as `gap`
+ * asks at its height, so the print thins out going up. Each blossom has leaves behind it, turning round it, and free
+ * leaves fill what blue is left.
+ */
+export function alohaPrint(m,radiusAt,top='kariyushi',hemT=null){
+ const key=[top,hemT,m.width,m.depth,m.torso,m.hipY,m.k,m.armR,m.upper,m.shoulderX,m.shoulderY,...Array.from({length:23},(_,i)=>radiusAt(-.1+i*.05))].map(v=>typeof v==='number'?v.toFixed(5):String(v)).join();
+ if(PRINTS.has(key))return PRINTS.get(key);
+ if(PRINTS.size>32)PRINTS.clear();
+ const A=ALOHA,F=A.fill,k=m.k,TW=GARMENT.width,TAU=Math.PI*2,S=THREE.MathUtils.smoothstep,lerp=THREE.MathUtils.lerp;
+ const ht=hemT??(top==='kariyushi'?(kariyushiHemY(m)-m.hipY)/m.torso:.15),bands=printBands(m,radiusAt,top,ht),B=bands.body;
+ const frac=x=>x-Math.floor(x),g=1.32471795724474602596,R2=n=>[frac(.5+n/g),frac(.5+n/(g*g))];
+ const motif=(kind,band,U,V,r,turn,extra={})=>{const b=bands[band],W=((U%TW)+TW)%TW,Vc=THREE.MathUtils.clamp(V,b.box[1],b.box[3]);return {kind,band,U:W,V,r,turn,at:b.at(W,Vc),...extra};};
+ const blooms=[],leaves=[];
+ // the heroes
+ for(const h of A.blooms){
+  if(h.on==='body')blooms.push(motif('bloom','body',(.5+h.a/TAU)*TW,B.Y(h.t),h.r*k,h.turn,{id:h.id,hero:true,why:h.why}));
+  else{const b=bands[h.on];blooms.push(motif('bloom',h.on,(.5+h.a/TAU)*TW,b.yTop+b.h*h.along,h.r*k,h.turn,{id:h.id,hero:true,why:h.why,along:h.along*b.length,length:b.length}));}
+ }
+ const share=p=>(p.y-m.hipY)/m.torso,clear=(c,gap)=>blooms.every(q=>q.band!==c.band||c.at.distanceTo(q.at)>=c.r+q.r+gap);
+ // the body's blossoms: from just above the hem to the yoke, all round; sparser and a little smaller going up
+ for(let n=1;n<=900;n++){
+  const [x,y]=R2(n),t=lerp(ht+.03,F.yoke,y),a=(x*2-1)*Math.PI,up=S(t,.15,F.yoke),thin=S(t,F.thin[0],F.thin[1]);
+  if(t>.84&&Math.abs(a)<.8)continue;                     // in the V and under the collar's points
+  const c=motif('bloom','body',(.5+a/TAU)*TW,B.Y(t),lerp(F.bloom[0],F.bloom[1],frac(n*.6180339887))*lerp(1,.72,up)*k,frac(n*.7548776662)*TAU);
+  if(t>F.underarm&&Math.abs(Math.atan2(Math.abs(c.at.x),c.at.z)-Math.PI/2)<.5)continue;   // under the arms
+  if(clear(c,lerp(F.gap[0],F.gap[1],thin)*k))blooms.push(c);
+ }
+ // each sleeve's: small, on its outside and front and back, none on the inside against the body
+ for(const band of ['sleeveL','sleeveR']){const b=bands[band];
+  for(let n=1;n<=300;n++){const [x,y]=R2(n+1000),a=(x*2-1)*Math.PI;if(Math.sin(a)<-.35)continue;
+   const c=motif('bloom',band,(.5+a/TAU)*TW,lerp(b.yTop+b.h*F.cap,b.box[3],y),lerp(F.sleeve[0],F.sleeve[1],frac(n*.6180339887))*k,frac(n*.7548776662)*TAU);
+   if(clear(c,F.gap[0]*k))blooms.push(c);}
+ }
+ // where a point lies `d` metres from (U,V) of a band along the cloth, toward ψ (0 its right, π/2 up)
+ const along=(band,U,V,psi,d)=>{const b=bands[band],f=clothFrame(b.at,U,V,b.out,b.up),dx=Math.cos(psi)*d,dy=Math.sin(psi)*d;return [U+(f.d*dx-f.b*dy)/f.det,V+(-f.c*dx+f.a*dy)/f.det];};
+ // leaves behind every blossom, their bases under it, turning out round it
+ blooms.forEach((b,i)=>{
+  const count=F.leaves[0]+(i%(F.leaves[1]-F.leaves[0]+1)),psi0=b.turn*1.3+frac(i*.381966)*TAU;
+  for(let j=0;j<count;j++){const psi=psi0+j*TAU/count+(frac(i*.618+j*.29)-.5)*.6,L=Math.min(F.longest*k,b.r*lerp(F.leaf[0],F.leaf[1],frac(i*.414+j*.732)));
+   const [U,V]=along(b.band,b.U,b.V,psi,b.r*.4+L);leaves.push(motif('leaf',b.band,U,V,L,psi-Math.PI/2));}
+ });
+ // and free leaves in pairs where the blue is still wide: never over a blossom, never crowding each other
+ const roomy=(c,r)=>blooms.every(q=>q.band!==c.band||c.at.distanceTo(q.at)>=q.r+r*.7+F.leafGap*k*.5)&&leaves.every(q=>q.band!==c.band||c.at.distanceTo(q.at)>=(q.r+r)*.75);
+ const spray=(band,U,V,n)=>{const r=F.spray*k*lerp(.85,1.15,frac(n*.618)),psi=frac(n*.7548776662)*TAU,c=motif('leaf',band,U,V,r,0);if(!roomy(c,r*1.6))return;
+  for(const s of [-.45,.45]){const [u,v]=along(band,U,V,psi+s,r*.95);leaves.push(motif('leaf',band,u,v,r,psi+s-Math.PI/2));}};
+ for(let n=1;n<=700;n++){const [x,y]=R2(n+2000);spray('body',x*TW,lerp(B.Y(.95),B.Y(ht+.02),y),n);}
+ for(const band of ['sleeveL','sleeveR']){const b=bands[band];for(let n=1;n<=160;n++){const [x,y]=R2(n+3000);spray(band,x*TW,lerp(b.yTop+b.h*.08,b.box[3],y),n);}}
+ const print={blooms,leaves,bands};PRINTS.set(key,print);return print;
+}
+/**
+ * Where each of the print's blossoms lies on a body, at rest (`m` the body's measure, `radiusAt` its torso lathe's radius,
+ * `top` the top it is printed on): {id (a hero's), on ('body', 'sleeveL', 'sleeveR'), r (metres), at (a THREE.Vector3 in
+ * the body's space), hero, why}, and for the sleeve's hero, how far along the sleeve it is (`along`, metres) and the
+ * sleeve's length to its hem (`length`). `leaves`: the leaves, as {on, r (half-length), at}.
  */
 export function alohaLayout(m,radiusAt,top='kariyushi'){
- const surf=shirtSurface(m,radiusAt,top==='kariyushi');
- return ALOHA.blooms.map(b=>{
-  const r=b.r*m.k;
-  if(b.on==='body')return {id:b.id,on:b.on,r,at:surf(b.a,b.t),why:b.why};
-  const side=b.on==='sleeveL'?1:-1,sv=shortSleeve(m,side,top==='kariyushi'),A=new THREE.Vector3(...sv.a0),dir=new THREE.Vector3(...sv.a1).sub(A),length=dir.length();dir.normalize();
-  const R=THREE.MathUtils.lerp(sv.r0,sv.r1,b.along),at=A.clone().addScaledVector(dir,b.along*length).add(new THREE.Vector3(side*R*Math.sin(b.a),0,R*Math.cos(b.a)));
-  return {id:b.id,on:b.on,r,at,along:b.along*length,length,why:b.why};
- });
+ const {blooms,leaves}=alohaPrint(m,radiusAt,top),out=blooms.map(b=>({id:b.id,on:b.band,r:b.r,at:b.at,hero:!!b.hero,why:b.why,along:b.along,length:b.length}));
+ out.leaves=leaves.map(l=>({on:l.band,r:l.r,at:l.at}));return out;
 }
 /** Draws ALOHA's blossom of radius 1 in the context's current frame (its y up the cloth). */
 function blossom(ctx){
@@ -115,22 +215,33 @@ function blossom(ctx){
  for(let i=0;i<5;i++){ctx.save();petal(i+1);ctx.clip();petal(i);ctx.stroke();ctx.restore();}
  ctx.beginPath();ctx.arc(0,0,.23,0,Math.PI*2);ctx.fillStyle=A.eye;ctx.fill();
 }
+/** Draws ALOHA's leaf, half-length 1, from its base at (0, −1) to its tip at (0, 1), in the context's current frame: a
+ *  pointed blade a little fuller below the middle, its midrib a quiet line. */
+function leaf(ctx){
+ const A=ALOHA,w=.36;
+ ctx.beginPath();ctx.moveTo(0,-1);ctx.bezierCurveTo(w*1.45,-.62,w*1.25,.4,0,1);ctx.bezierCurveTo(-w*1.25,.4,-w*1.45,-.62,0,-1);ctx.closePath();
+ ctx.fillStyle=A.leaf;ctx.fill();
+ ctx.beginPath();ctx.moveTo(0,-.92);ctx.quadraticCurveTo(.06,.05,0,.82);ctx.strokeStyle=A.vein;ctx.lineWidth=.07;ctx.lineCap='round';ctx.stroke();
+}
 /**
  * Paints `draw` (a picture of radius 1, its y up the cloth) on the garment texture at texel (U,V), `r` metres across and
  * turned `turn`, as it lies on the cloth there: `at(U,V)` is the point of the cloth a texel is drawn on, `out(p)` a way out
  * of the cloth at p and `up(p)` the way up it. The texels round (U,V) are measured on the cloth (a texel's step in u and in
- * v, in metres along the cloth's own right and up), and the picture is drawn through the inverse, so on the body it is the
- * shape it was drawn, wherever the cloth is wider or narrower than the texture. `clip` [x,y,w,h] keeps it to its band;
- * `wrap` draws it again a turn either side, over the back's seam.
+ * v, in metres along the cloth's own right and up: clothFrame), and the picture is drawn through the inverse, so on the
+ * body it is the shape it was drawn, wherever the cloth is wider or narrower than the texture. `clip` [x,y,w,h] keeps it
+ * to its band; `wrap` draws it again a turn either side, over the back's seam.
  */
 function stamp(ctx,at,U,V,r,turn,{out,up,clip,wrap=false,draw=blossom}){
- const pu=at(U+.5,V).sub(at(U-.5,V)),pv=at(U,V+.5).sub(at(U,V-.5)),p=at(U,V);
- const n=new THREE.Vector3().crossVectors(pu,pv).normalize();if(n.dot(out(p))<0)n.negate();
- const u0=up(p),e2=u0.clone().addScaledVector(n,-n.dot(u0)).normalize(),e1=new THREE.Vector3().crossVectors(e2,n);
- const a=pu.dot(e1),b=pv.dot(e1),c=pu.dot(e2),d=pv.dot(e2),det=a*d-b*c,TW=GARMENT.width;
+ const {a,b,c,d,det}=clothFrame(at,U,V,out,up),TW=GARMENT.width;
+ if(!(Math.abs(det)>1e-12))return;   // (no cloth there to lay it on)
  ctx.save();ctx.beginPath();ctx.rect(...clip);ctx.clip();
  for(const off of wrap?[0,-TW,TW]:[0]){ctx.save();ctx.transform(d/det,-c/det,-b/det,a/det,U+off,V);ctx.scale(r,r);ctx.rotate(turn);draw(ctx);ctx.restore();}
  ctx.restore();
+}
+/** Paints the print's motifs of one band (alohaPrint): its leaves, then its blossoms over them. */
+function paintPrint(ctx,print,band){
+ const b=print.bands[band],[x0,y0,x1,y1]=b.box,clip=[x0,y0,x1-x0,y1-y0];
+ for(const [list,draw] of [[print.leaves,leaf],[print.blooms,blossom]])for(const q of list)if(q.band===band)stamp(ctx,b.at,q.U,q.V,q.r,q.turn,{out:b.out,up:b.up,clip,wrap:true,draw});
 }
 /**
  * The island shirt (the kariyushi, an aloha shirt), shaped as a garment before anything is printed on it (the owner's
@@ -400,16 +511,12 @@ export function paintGarment(ctx,recipe,m,radiusAt){
   }
   marks.push(o.pattern);
  }
- // Johansson's aloha print (ALOHA): each flower where it was placed, lying on the cloth as it is worn (shirtSurface: on a
- // kariyushi its body below the chest stands clear of the waist, and a flower there is drawn for that cloth). On a
- // kariyushi the print runs to the hem, which ends the cloth and cuts what it crosses; on any other top it stops at its
- // hem line. The sleeve's bloom is drawn with the sleeves, below.
- if(o.pattern==='aloha'&&!['tank','overalls','sundress'].includes(o.top)){
-  const surf=shirtSurface(m,radiusAt,o.top==='kariyushi'),at=(U,V)=>surf((U/TW-.5)*Math.PI*2,T0+((1-V/TH)-V0)/(1-V0)*(T1-T0));
-  const floor=o.top==='kariyushi'?Y(T0):Y(hem),round=p=>new THREE.Vector3(p.x,0,p.z),up=()=>new THREE.Vector3(0,1,0);
-  for(const b of ALOHA.blooms)if(b.on==='body')stamp(ctx,at,(.5+b.a/(Math.PI*2))*TW,Y(b.t),b.r*k,b.turn,{out:round,up,clip:[0,0,TW,floor],wrap:true});
-  marks.push('aloha');
- }
+ // Johansson's aloha print (ALOHA, alohaPrint): its heroes where they were placed and the all-over print round them, each
+ // motif lying on the cloth as it is worn (shirtSurface: on a kariyushi its body below the chest hangs clear of the waist,
+ // and a flower there is drawn for that cloth). On a kariyushi the print runs to the hem, which ends the cloth and cuts
+ // what it crosses; on any other top it stops at its hem line. The sleeves' are drawn with the sleeves, below.
+ const aloha=o.pattern==='aloha'&&!['tank','overalls','sundress'].includes(o.top)?alohaPrint(m,radiusAt,o.top,o.top==='kariyushi'?null:hem):null;
+ if(aloha){paintPrint(ctx,aloha,'body');marks.push('aloha');}
 
  // The neckline: a rib round a crew neck, the opening of a shirt.
  const rib=(colour=shade(top,.86))=>{ctx.fillStyle=colour;ctx.fillRect(0,Y(1.03),TW,Y(.985)-Y(1.03));ctx.strokeStyle=ink;ctx.lineWidth=line*.8;ctx.beginPath();ctx.moveTo(0,Y(.985));ctx.lineTo(TW,Y(.985));ctx.stroke();marks.push('neckline');};
@@ -492,9 +599,15 @@ export function paintGarment(ctx,recipe,m,radiusAt){
    // a line of buttons down the front.
    const seam=shade(top,.72),seamW=line*.65,quiet={stroke:seam,width:seamW};
    placket(vBottom,hem+.03,.02,quiet);buttons([vBottom-.03],.0095,'#8c6a50',{stroke:shade('#8c6a50',.8),width:line*.5});
-   const shell=[];for(let t=vBottom-.165;t>hem+.06;t-=.135)shell.push(t);buttons(shell,.0078,lighten(top,.45),{stroke:shade(top,.82),width:line*.5});
+   // Under an all-over aloha print they are coconut, as a real aloha shirt's are, a soft brown that reads on the blue and
+   // on a cream petal alike (a pale shell button vanished on the petals), small and with no ink.
+   const shell=[];for(let t=vBottom-.165;t>hem+.06;t-=.135)shell.push(t);
+   if(aloha)buttons(shell,.0072,'#a07d5c',{stroke:shade('#a07d5c',.82),width:line*.45});else buttons(shell,.0078,lighten(top,.45),{stroke:shade(top,.82),width:line*.5});
    // The small patch pocket on the wearer's left chest (+x: the viewer's right from the front), below the collar's point.
-   pocket(W*.24,.665,W*.18,.13,top,{...quiet,mouth:shade(top,.82),mouthW:line*.5});hemRound({stroke:shade(top,.82),width:line*.55});break;
+   // Under the aloha print it is pattern-matched, as a good aloha shirt's is: cut so the print runs on across it, only its
+   // stitching drawn (a plain patch of blue broke the print there).
+   pocket(W*.24,.665,W*.18,.13,aloha?null:top,{...quiet,mouth:shade(top,.82),mouthW:line*.5});if(aloha)marks.push('pattern-matched pocket');
+   hemRound({stroke:shade(top,.82),width:line*.55});break;
   }
   case 'jacket':{
    // Notched lapels over a white shirt, two buttons, flap pockets.
@@ -676,7 +789,7 @@ export function paintGarment(ctx,recipe,m,radiusAt){
  }
 
  // The sleeves' bands, one for each: the print carried on round the arm, and a hem or a cuff. Both alike but for a print
- // laid out on the shirt (Johansson's aloha print), which puts something on one sleeve only.
+ // laid out on the shirt (Johansson's aloha print), whose hero bloom is on one sleeve only.
  for(const side of [1,-1]){const S=sleeveBand(side),yTop=(1-S.v1)*TH,yBot=(1-S.v0)*TH,h=yBot-yTop,col=o.top,long=SLEEVED_LONG.includes(col),once=side>0;
   const sleeveCirc=Math.PI*2*m.armR*(long?1.04:1.2),sleeveLen=long?m.upper+m.fore:m.upper*.6;
   const pxU=TW/sleeveCirc,pxV=h/sleeveLen;
@@ -706,22 +819,9 @@ export function paintGarment(ctx,recipe,m,radiusAt){
      ctx.restore();}
    }
   }
-  // The aloha print's sleeve bloom (ALOHA, on 'sleeveR'), on the sleeve as it is drawn (shortSleeve, or the arm for a long
-  // sleeve), cut by the hem painted over it below.
-  if(o.pattern==='aloha'&&!shirtSleeve&&!['tank','sundress','running','overalls'].includes(col))for(const b of ALOHA.blooms){
-   if(b.on!=='sleeve'+(side>0?'L':'R'))continue;
-   const sv=long?{a0:[side*m.shoulderX,m.shoulderY,0],a1:[side*(m.shoulderX+.015),m.shoulderY-m.upper-m.fore,0],r0:m.armR*1.04,r1:m.armR*.86}:shortSleeve(m,side,col==='kariyushi');
-   const A0=new THREE.Vector3(...sv.a0),dir=new THREE.Vector3(...sv.a1).sub(A0),len=dir.length();dir.normalize();
-   const ex=new THREE.Vector3(1,0,0).addScaledVector(dir,-dir.x).normalize(),ez=new THREE.Vector3(0,0,1).addScaledVector(dir,-dir.z).normalize();
-   const axis=f=>A0.clone().addScaledVector(dir,f*len);
-   const at=(U,V)=>{const phi=(U/TW-.5)*Math.PI*2,f=(S.v1-(1-V/TH))/(S.v1-S.v0),R=THREE.MathUtils.lerp(sv.r0,sv.r1,f);
-    return axis(f).addScaledVector(ex,side*R*Math.sin(phi)).addScaledVector(ez,R*Math.cos(phi));};
-   const ref=p=>{const f=THREE.MathUtils.clamp(p.clone().sub(A0).dot(dir)/len,0,1);return p.clone().sub(axis(f));};
-   // (to the hem's band, which is painted over it: not a sliver of it below)
-   const hemTop=end-Math.max(3,(long?.03:.018)*m.k*pxV);
-   stamp(ctx,at,(.5+b.a/(Math.PI*2))*TW,yTop+h*b.along,b.r*m.k,b.turn,{out:ref,up:()=>dir.clone().negate(),clip:[0,yTop,TW,hemTop-yTop],wrap:true});
-   if(!marks.includes('aloha sleeve'))marks.push('aloha sleeve');
-  }
+  // The aloha print on each sleeve (alohaPrint: the hero's partial bloom on the right one), cut by the hem painted over it
+  // below.
+  if(aloha&&!shirtSleeve&&!['tank','sundress','running','overalls'].includes(col)){paintPrint(ctx,aloha,side>0?'sleeveL':'sleeveR');if(!marks.includes('aloha sleeve'))marks.push('aloha sleeve');}
   ctx.restore();
   // The hem of a short sleeve, or the cuff of a long one: a band and a line above it. A PE shirt's and a jersey's are
   // in the accent colour (the class colour, the piping).
