@@ -2,7 +2,7 @@
 // Studio or with the johansson-studio tools (avatar-creator/docs/STUDIO-MCP.md). CI refuses a copy that does not match the data.
 const freeze=value=>{if(value&&typeof value==='object'){for(const v of Object.values(value))freeze(v);Object.freeze(value);}return value;};
 /** The sha256 of the products, prints and retired lines (their canonical JSON). */
-export const FINGERPRINT='5d63789e46f47a0f469ba646c9dfa1c95f11746366f857284eef9cb478f8e0fc';
+export const FINGERPRINT='045a058822b1bc62a639830b5ac4d5c84dfdc055f05a0a77bb2e8c82bb69994f';
 /** Sakura Shōten's products, in the order Thuan walks the floor (data/studio/products.json says what every field is). */
 export const PRODUCTS=freeze([
  {
