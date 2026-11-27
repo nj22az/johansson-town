@@ -6,8 +6,16 @@ const MIXAMO={hips:'Hips',spine:'Spine',chest:'Spine2',neck:'Neck',head:'Head',s
 const short=name=>name.replace(/^mixamorig\d*[:_]?/i,'');
 const fail=message=>{throw new Error(message);};
 
+/**
+ * A motion file, checked: `johansson-motion` version 1 (the joints' turns over time), or version 2, which adds what a
+ * performance made in Blender carries (tools/blender/drink-can.py): `shapes` (how far each hand is closed, build.js grip:
+ * closeR/closeL, and hooked: hookR/hookL), `face` (blink, breath, smile, and look: the eyes on what is in the hands; cues the
+ * face painter takes), `prop` (tab: how far a can's ring is lifted, of the way it goes before it tears), `contact` (how far
+ * a contact the game keeps is on: lip, ring), `fill` (what is left in what is drunk), each a number 0..1 a sample;
+ * `events` ({t, name}) and `markers` (name: time); `reach`, each wrist's path (reachPaths). Every track has a value a sample.
+ */
 export function normalizeMotion(value){
- if(!value||value.format!=='johansson-motion'||value.version!==1)fail('Choose a Johansson motion file.');
+ if(!value||value.format!=='johansson-motion'||(value.version!==1&&value.version!==2))fail('Choose a Johansson motion file.');
  const times=value.times;
  if(!Array.isArray(times)||times.length<2||times.length>901||times[0]!==0||times.at(-1)<=0||times.at(-1)>30)fail('Motion must last at most 30 seconds, with 2–901 samples starting at zero.');
  if(times.some((t,i)=>!Number.isFinite(t)||i>0&&t<=times[i-1]))fail('Motion sample times must increase.');
@@ -19,7 +27,28 @@ export function normalizeMotion(value){
   for(let i=0;i<data.length;i+=4){const length=Math.hypot(...data.slice(i,i+4));if(length<.1||length>2)fail('Invalid joint rotation: '+name);for(let j=0;j<4;j++)joints[name][i+j]/=length;}
  }
  if(!Object.keys(joints).length)fail('The motion contains no supported body joints.');
- return {format:'johansson-motion',version:1,name:typeof value.name==='string'?value.name.slice(0,60)||'Motion':'Motion',times:times.slice(),joints};
+ const name=typeof value.name==='string'?value.name.slice(0,60)||'Motion':'Motion';
+ if(value.version===1)return {format:'johansson-motion',version:1,name,times:times.slice(),joints};
+ const end=times.at(-1),track=(label,data)=>{if(!Array.isArray(data)||data.length!==times.length||data.some(n=>!Number.isFinite(n)||n<-1e-6||n>1+1e-6))fail('Invalid '+label+' track.');return data.slice();};
+ const group=(key,names)=>{const out={};for(const [n,data] of Object.entries(value[key]||{})){if(!names.includes(n))fail('Unknown '+key+' track: '+n);out[n]=track(n,data);}return out;};
+ const events=(value.events||[]).map(e=>{if(!e||typeof e.name!=='string'||!Number.isFinite(e.t)||e.t<0||e.t>end)fail('Invalid motion event.');return {t:e.t,name:e.name};});
+ const markers={};for(const [n,t] of Object.entries(value.markers||{})){if(!Number.isFinite(t)||t<0||t>end)fail('Invalid motion marker: '+n);markers[n]=t;}
+ return {format:'johansson-motion',version:2,name,times:times.slice(),joints,shapes:group('shapes',['closeR','closeL','hookR','hookL']),face:group('face',['blink','breath','smile','look']),prop:group('prop',['tab']),
+  contact:group('contact',['lip','ring','mouth','pocket']),fill:value.fill===undefined?null:track('fill',value.fill),events,markers,reach:reachPaths(value.reach,times.length),props:value.props&&typeof value.props==='object'?JSON.parse(JSON.stringify(value.props)):{}};
+}
+/** Where each wrist goes (`reach`: R and L, [x, y, z] a sample in the chest's frame, in the body's own size: the game's
+ *  metres over its k), so a body built otherwise puts its hands where the animated body did, for its size; `mouth`, the
+ *  right wrist from the lower lip in the head's frame, which it goes by as far as `contact.mouth` says. */
+function reachPaths(value,n){
+ if(value===undefined)return null;const out={};
+ for(const [side,data] of Object.entries(value||{})){if(!['R','L','mouth'].includes(side)||!Array.isArray(data)||data.length!==n*3||data.some(v=>!Number.isFinite(v)||Math.abs(v)>2))fail('Invalid reach path: '+side);out[side]=data.slice();}
+ return out;
+}
+/** A track's value at time t (a 0..1 track sampled with the motion's times): eased between samples as the joints are. */
+export function sampleTrack(motion,data,t){
+ const T=motion.times;if(!data)return 0;if(t<=T[0])return data[0];if(t>=T.at(-1))return data.at(-1);
+ let lo=0,hi=T.length-1;while(hi-lo>1){const mid=(lo+hi)>>1;if(T[mid]<=t)lo=mid;else hi=mid;}
+ return data[lo]+(data[hi]-data[lo])*(t-T[lo])/(T[hi]-T[lo]);
 }
 
 export function motionClip(value){
