@@ -32,6 +32,8 @@ __pycache__/
 /output/rigged-cast/
 # (the drink's rig, its .blend and its renders: tools/blender/drink-can.py makes them again; its sheets are kept in art/)
 /output/drink-can/
+# The principles audit's report (tools/animation-audit.mjs rewrites it in about 95 s; the baseline in tests/ is what is kept)
+/output/animation-audit/
 
 # Scratch renders and logs made while working (tools write review images to output/ by default): only what is
 # already tracked under output/ stays; new loose files at its top level are not kept.
