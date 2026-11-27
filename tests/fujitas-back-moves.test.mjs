@@ -244,9 +244,15 @@ test('carried like a plank (CarriedPlank): level and rigid on the three women’
  // every carrier's mittens under him: the top of each at his drawn underside (within a few mm either way: cloth gives), and
  // nobody's body in anybody's
  const his=surface(him.avatar),hisCore=core(him.avatar);
+ // (his points filed in 12 mm squares across the floor, so each point of a mitten's top reads only the nine squares round
+ // it, every one of the points within 12 mm of it across: the same gap as reading all of his, every point of the kit's hand
+ // against every point of him, which took this test most of a minute)
+ const cell=.012,key=(x,z)=>Math.floor(x/cell)+':'+Math.floor(z/cell),under=new Map();
+ for(const q of his){const k=key(q.p.x,q.p.z);if(!under.has(k))under.set(k,[]);under.get(k).push(q);}
+ const nearby=p=>{const i=Math.floor(p.x/cell),j=Math.floor(p.z/cell),out=[];for(let di=-1;di<=1;di++)for(let dj=-1;dj<=1;dj++){const list=under.get((i+di)+':'+(j+dj));if(list)out.push(...list);}return out;};
  for(const w of carriers){const hers=surface(w.avatar),herCore=core(w.avatar),name=w.avatar.recipe.name||'a carrier';
   for(const hand of ['handL','handR']){const pts=hers.filter(q=>q.bone===hand),top=Math.max(...pts.map(q=>q.p.y));let gap=Infinity;
-   for(const a of pts)if(a.p.y>top-.012)for(const q of his)if(Math.hypot(q.p.x-a.p.x,q.p.z-a.p.z)<.012&&q.p.y>a.p.y-.06)gap=Math.min(gap,q.p.y-a.p.y);
+   for(const a of pts)if(a.p.y>top-.012)for(const q of nearby(a.p))if(Math.hypot(q.p.x-a.p.x,q.p.z-a.p.z)<.012&&q.p.y>a.p.y-.06)gap=Math.min(gap,q.p.y-a.p.y);
    assert.ok(gap>-.008&&gap<.012,`${name}'s ${hand} under him: ${(gap*1000).toFixed(1)} mm from his underside`);}
   const into=coreIntrusion(hers,hisCore),back=coreIntrusion(his,herCore);
   assert.ok(into.depth<.005,`${name} ${(into.depth*1000).toFixed(1)} mm into him (${into.bone})`);assert.ok(back.depth<.005,`he is ${(back.depth*1000).toFixed(1)} mm into ${name} (${back.bone})`);
