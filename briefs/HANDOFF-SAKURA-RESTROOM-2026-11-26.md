@@ -1722,7 +1722,7 @@ worktree, removed afterwards.
   (`world.updateLife`), which the game runs before its first frame; the test never ran it, so her gangway stood on the
   old post office's lot. It runs it once with her alongside at 08:35.
 
-## Not fixed, and why
+## Not fixed at first, and why (both resolved below, on the coordinator's decisions)
 
 - **`architect-masterplan`** (old, 412 failing points; the log showed the first 35): every plot's circuit is a 1.9 m clear
   band (radius 0.95) at `WALKING_STANDARD.offset` or its `walkBounds`, and later, mostly owner-decided, fittings stand in
@@ -1746,11 +1746,11 @@ worktree, removed afterwards.
 
 ## Found, not fixed
 
-- Tetsuo's walking body never goes to the bath's boiler: his cast.js day (18:00 and 20:00-22:30 at the onsen, the
+- (Resolved below.) Tetsuo's walking body never goes to the bath's boiler: his cast.js day (18:00 and 20:00-22:30 at the onsen, the
   yuntaku bench's own reason "goes back up to the boiler at eight") and the street planner (18:00 Minato or a Sakura
   errand, home at 20:00, `social.js AFTER_WORK`, `yardResidentPlan`) disagree. The planner has no boiler-room place: the
   place `onsen` is the bath, entered in swimwear (`indoor-residents.js`). Needs a boiler room or a stand at the back door.
-- `social.js MORNING_PARK` (Tetsuo, 12:30-13:30) can no longer fire: his shift covers it since 30 October.
+- (Resolved below.) `social.js MORNING_PARK` (Tetsuo, 12:30-13:30) can no longer fire: his shift covers it since 30 October.
 - For the ferry's helper: the shared ferry is built visible at the origin (Main Street) and placed only by her first
   `update`; harmless in the game (the title's world.update runs first), but any static look at a fresh town sees her
   there.
@@ -1765,3 +1765,59 @@ worktree, removed afterwards.
 - The 13 are added to `tests/ci-guard.txt` and were run together as the guard runs them (two at a time, 239 s): 92 pass,
   1 todo, 1 skipped, none failing.
 - Still failing, unchanged: `architect-masterplan` (1 of 1) and `izakaya-lived-in` (1 of 3), above.
+
+## Then: the coordinator's three decisions (same branch)
+
+**1. architect-masterplan: every circuit walkable, no side closed.** The ruling: keep every owner-placed fitting; move
+a circuit onto clear footway where that works; count a narrower lane a person can walk at its real width; close a side
+only where nothing can be walked, with the fitting and its decision, and keep the building reachable. In
+`architecture-plan.js`:
+- Onto clear footway (`walkBounds`): the police station (1.9 m out on Main Street past Mori's hibiscus and the hanabuku,
+  1.8 m on the service walk past the gas hutch), Kitahama Heights (east 2.1 m, north 1.6 m, past the drinks corner),
+  Kissa Higa (2.9 m out on the 5.7 m footway, past the yuntaku bench, the crates and the bicycle), the town hall bike
+  shed (a metre out on its west, clear of the power compound's fence).
+- The power house's public circuit is outside its fenced compound, as the standard says of a closed garden.
+- Narrow lanes (`narrow`: radius, span, the fittings either side, why; never under `WALKING_STANDARD.personClear`,
+  0.8 m): the auction's north (1.63 m, shed to the east lawn's south return wall), the lane between the auction and the
+  ice plant (1.62 m at the drinks machine the owner had moved there on 21 October, checked 1.1 m along one line), the
+  ice plant's north (1.43 m to the return wall), the power house's west (0.96 m, fence to the line's pole), north
+  (1.15 m, flagpole and pole to the town hall's colonnade) and the last 0.4 m of its east side, Nakamura's south
+  (1.37 m, its planter to its dessert bench's table, kept with the vacant counter on 31 October).
+- No side needed closing, so there is no closed-sides list: each blocked side had a lane a person can walk. The test
+  checks each lane at its width, refuses one under a person's width, and fails a lane whose standard width is open (no
+  lane excused that need not be) or that a fitting it does not name blocks. Every circuit still connects to Main Street
+  (the flood from the street, as before).
+
+**2. izakaya-lived-in: retired.** A grep of the whole repository (tools/, scripts/ and the feed included) found only
+tests importing it. `izakaya-lived-in.js` and its test are removed; izakaya-exploration's guestbook test keeps the old
+lounge table's numbers itself. None of its 25 props carried a recorded purpose (who, why); they were the evening's
+leftovers on the old room's tables: half-drunk lager, warm tea and a soy dish, napkins and chopstick sleeves on the
+west and east tables, the koagari and the lounge; a used saucer and a folded cloth on the counter; a tea service (pot,
+saucers, tray, cloth) on the prep bench; stitched repairs on the lounge and booth seats. The compact room has none of
+them; not ported.
+
+**3. Tetsuo works Umi-no-yu's boiler.** `onsen-layout.js ONSEN_BOILER` (who keeps it, who owns it, why it is there) and
+`park-onsen.js bathBoiler`: an oil-fired heater and its kerosene tank on a stand at the back corner of the bathhouse
+on the park side, where it meets the bath's fence, the flue up the wall to a rain cap, the pipes into the model's wall
+(its face is at x -3.6 above the plinth, found by raycasting the GLB), on the garden's ground (a concrete pad was
+refused by the ground standard as a slab of the module's own and is gone); one collider; "Look at the bath's boiler".
+`people/onsen-boiler.js` reads the hours from his cast.js day (each onsen row naming the boiler, to the next row:
+18:00-18:30 and 20:00-22:30); `residentPlan` and the canonical day send him to the place `onsen-boiler`, a stand on the
+lawn a step in front of the heater, facing it, pose Interact; never the bath, never in swimwear; a happening that names
+him (the eisa) still wins, as over the bench. `social.js MORNING_PARK` and the turn of his park stops to Harbour Park's
+pond bench are removed: neither could fire since 30 October (a 14-day sweep of every street resident's plan, dry and
+wet, every 5 minutes, is unchanged by the removal). `tests/onsen-boiler.test.mjs` holds the hours, the plan, the
+fitting and a real walk to it from the bench and from his workshop.
+- Not looked at in a render: no GPU here. The boiler's placement against the bathhouse model was measured, not seen.
+- On days the Sakura errand shuffle gives Tetsuo its last window (it starts 17:10-17:33), the part after six is now the
+  boiler; before, he spent it at Sakura. Left as is.
+
+## Proved, last
+- `architect-masterplan`, `izakaya-exploration`, `onsen-boiler` and `resident-journeys` together (two at a time): 29 of
+  29. The tests that read Tetsuo's day (resident-after-work, happenings, kissa-higa, higa-liquor-laundry,
+  kitano-residents, continuous-life, island-businesses, shop-days, onsen-front, edition): 74 of 74. The walk plots'
+  readers (police-station, lane-edges, housing-consolidation, ground-standard): all pass after the pad came off.
+- **The full guard** at eb77dee (`node tools/ci-guard.mjs --test-concurrency=2`, 158 files with architect-masterplan
+  and onsen-boiler added, 1692 s): 873 pass, 1 skipped (east-lawn's gateball court), 1 todo (sisters' play day), 1 fails:
+  the published runtime package, stale on a branch until it is rebuilt. Nothing timed out or was cancelled.
+- Of the fifteen files given at the start, every one passes or, for izakaya-lived-in, is retired with its module.
