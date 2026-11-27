@@ -64,8 +64,8 @@ session ended; otherwise run it.)*
    - the can's audit leftovers;
    - the 41 mm sip after a can.
 
-   A Claude helper was on these on local branch `drink/beer` when the session ended. Whatever it finished is merged and
-   listed in section 5; anything not listed there was lost with the container.
+   Booths, standing and later sips are half done on the branch `wip/beer-booth`: section 5 says what is there and what
+   fails.
 3. **The animation standard** (the owner, 27 Nov: strict adherence to dylantarre/animation-principles):
    `docs/ANIMATION-STANDARD.md`, `.claude/skills/animation-standard/SKILL.md`, `tools/animation-audit.mjs` with
    `tests/animation-principles.test.mjs` and its baseline. The baseline is a ratchet: it only ever shrinks.
@@ -100,7 +100,41 @@ session ended; otherwise run it.)*
 
 ## 5. Merged at the very end
 
-*(Claude adds the beer helper's last commits here if they came in before the session ended.)*
+**The beer drink's unfinished work is on the branch `wip/beer-booth`** (`147baae`; pushed on the owner's word, 27 Nov:
+"Push wip/beer-booth"). It is two WIP commits on top of `4b180a5` and is **not** merged into the work branch, because its
+new tests fail. Its own notes are in that branch's `briefs/HANDOFF-SAKURA-RESTROOM-2026-11-26.md`, "27 November, late
+night".
+
+**What it has:**
+- Blender bakes for any table: `drink-beer.py --table counter|booth|held`, `drink-beer-kit.mjs --seat …|--standing`, the
+  new `drink-beer-held-keys.py`. Each bake needs its own `--out`.
+- The last of the glass: the LAST part, blended into a later sip by how much is left (`beerLastBlend`).
+- Booth keys, and a glass on the left at half the booth seats, drunk with the left hand (`mirrorMotion`, `BASIS_L`,
+  `glassYawAt`).
+- The held drink for 'Drink' and 'DrinkStanding'.
+- The drink after a can starts from where the can left the arm (`animate.js` `ownArmLast`, `handoffFrom`; rim 16.2 mm off
+  the lips → 0.0).
+
+**Its tests at `66c3082`:**
+- Passing: drink-beer 11 of 11, izakaya-beer and izakaya-bar 15 of 15.
+- `drink-beer-sips` fails 3 of 3: on the 60% to 45% sip, Johansson's mug goes 24.2 mm into his face, not diagnosed; and a
+  hand is 12–20 mm inside the table at the counter.
+- `drink-beer-tables` passes 1 of 14:
+  - Every booth run fails only the hand-in-table check, by 24–25 mm. Its own guess: the resting hand on the thigh is under
+    the booth table's top, or the check's box is wrong.
+  - Test 1 compares samples half a frame apart: fix the check to compare at equal times.
+- `drink-grip` fails 3 of 4, as expected until the beer glasses leave `SIPPED`.
+
+**To continue:**
+1. Merge `claude/dreamy-ritchie-cxufpl` into it. It touches `animate.js` and `drink-grip`.
+2. Make the tests pass without loosening them.
+3. Render and look at the game sheets (`tools/hand-shots.mjs --beer …`).
+4. Then merge it into the work branch.
+
+Seen there and not fixed: a resident's can sip has no blend in or out; the ordinary drink from the hand (tea, coffee) jumps
+the hand 80 mm in one frame at 1.7 s.
+
+Not started: the mug's handle hand, the small glass from the bottle, kanpai, the can's audit leftovers.
 
 ## 6. Working here
 
