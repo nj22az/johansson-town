@@ -1989,8 +1989,14 @@ animate.js and tests/drink-grip.test.mjs: merge before going on).
   the new hand-through-the-table check (`tests/drink-beer-fixtures.mjs handInTable`, HAND.touch and the fist's) finds 12-20 mm
   on the pint and the small glass at the counter: decide whether that is the fingers really in the counter at the grab (look at
   a sheet) or the fist's envelope being the wrong one for a wrap; do not loosen it without looking.
-- New `tests/drink-beer-tables.test.mjs` (booth both sides, a later sip, held standing/seated, the blend's shape): was still
-  running at hand-over; result in the report.
+- New `tests/drink-beer-tables.test.mjs` (booth both sides, a later sip, held standing/seated, the blend's shape): **1 of 14
+  pass** (the seats' glass yaw). Every booth run fails only the new hand-through-the-table check (24-25 mm on Johansson, mug,
+  pint and glass alike, both sides): look first at whether the resting hand on the thigh is under the booth's 5 cm top (its
+  xz inside the table, its y between 0.67 and 0.72 m) and so a real clip of the seated body with the booth (there before this
+  work), or the check's box. Test 1 fails on 'lip the same in SIP and LAST': the test compares samples half a frame apart
+  (8.35 s and 12.6 s are not on 30 fps frames); compare with sampleTrack at equal times instead (the game's sampler does).
+  The held and blend tests' failures were not read before hand-over: run them alone (`node --test --test-name-pattern held
+  tests/drink-beer-tables.test.mjs`).
 - `tests/drink-grip.test.mjs` (as on this branch, before the merge): **fails 3 of 4** (grips throughout sips, Fujita's first frame, creator proportions), as expected: draft and bottle in 'Drink' now play the held motion, so its check of the
   rim at the lips at consumeElapsed 1.2 (the old sip's timing) and `fitAvatarHeldProp` no longer apply to beer glasses. After
   merging 9f7a4e9 (whose SIPPED already leaves the can out for the same reason), leave the beer glasses out of SIPPED the same
