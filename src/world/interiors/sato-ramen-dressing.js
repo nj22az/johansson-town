@@ -37,8 +37,9 @@ function sheet(){
  const at=(name,draw)=>{const [x,y,w,h]=CELLS[name];ctx.save();ctx.translate(x,y);ctx.beginPath();ctx.rect(0,0,w,h);ctx.clip();draw(ctx,w,h);ctx.restore();};
  const write=(c,s,x,y,size,colour,font=GOTHIC,weight=900,max=280)=>{c.fillStyle=colour;c.font=`${weight} ${size}px ${font}`;c.textAlign='center';c.textBaseline='middle';c.fillText(s,x,y,max);};
  const fade=(c,w,h)=>{c.fillStyle='rgba(255,248,230,.12)';c.fillRect(0,0,w,h);};
- at('beer',(c,w,h)=>{c.fillStyle='#c8102e';c.fillRect(0,0,w,h);c.fillStyle='#f4f1e6';c.fillRect(100,110,100,200);c.fillStyle='#c8102e';c.fillRect(100,150,100,46);c.fillStyle='#8a9aa3';c.fillRect(100,104,100,10);
-  write(c,'UMINEKO',150,173,24,'#ffffff');write(c,"乾杯！",w/2,52,46,'#ffffff',MINCHO);write(c,'UMINEKO BEER · ICE COLD',w/2,350,19,'#ffffff',GOTHIC,800);write(c,'Drinking is for adults',w/2,392,14,'#ffd8d8',GOTHIC,700);fade(c,w,h);});
+ // Umineko's poster in its own colours (accent, paper and ink: commerce/products-data.js, beer).
+ at('beer',(c,w,h)=>{c.fillStyle='#9f5433';c.fillRect(0,0,w,h);c.fillStyle='#eddda0';c.fillRect(100,110,100,200);c.fillStyle='#38523d';c.fillRect(100,150,100,46);c.fillStyle='#8a9aa3';c.fillRect(100,104,100,10);
+  write(c,'UMINEKO',150,173,24,'#ffffff',GOTHIC,900,90);write(c,"乾杯！",w/2,52,46,'#ffffff',MINCHO);write(c,'UMINEKO BEER · ICE COLD',w/2,350,19,'#ffffff',GOTHIC,800);write(c,'Drinking is for adults',w/2,392,14,'#ffd8d8',GOTHIC,700);fade(c,w,h);});
  at('hari',(c,w,h)=>{c.fillStyle='#1d5a8a';c.fillRect(0,0,w,h);c.fillStyle='#4fa3d9';c.fillRect(0,250,w,180);
   // A dragon boat with its rowers.
   c.fillStyle='#c8102e';c.beginPath();c.moveTo(30,250);c.lineTo(270,250);c.lineTo(250,285);c.lineTo(50,285);c.closePath();c.fill();c.fillStyle='#ffd23f';c.beginPath();c.arc(262,238,16,0,Math.PI*2);c.fill();
@@ -49,7 +50,7 @@ function sheet(){
   write(c,"島袋製麺所",w/2,118,26,'#5a3b22',MINCHO);write(c,'OCTOBER 1997',w/2,168,22,'#5a3b22');
   ['S','M','T','W','T','F','S'].forEach((d,i)=>write(c,d,26+i*41,198,15,i===0?'#c8102e':'#555',GOTHIC,800));
   for(let d=1;d<=31;d++){const k=d+2,col=k%7,row=Math.floor(k/7);write(c,String(d),26+col*41,226+row*34,16,col===0?'#c8102e':col===3?'#8a8a8a':'#2a2a2a',GOTHIC,700);}fade(c,w,h);});
- [['A. Kinjō','Okinawa TV'],['The Seagulls','1996 squad'],['K. Shima','enka']].forEach(([who,what],i)=>at('shikishi'+i,(c,w,h)=>{
+ [['A. Kinjō','Shima TV'],['The Seagulls','1996 squad'],['K. Shima','enka']].forEach(([who,what],i)=>at('shikishi'+i,(c,w,h)=>{
   c.fillStyle='#c9a24a';c.fillRect(0,0,w,h);c.fillStyle='#fbf6e8';c.fillRect(10,10,w-20,h-20);
   // A big loopy signature in brush, and the dedication.
   c.strokeStyle='#1a1a1a';c.lineWidth=7;c.lineCap='round';c.beginPath();for(let k=0;k<5;k++){const x0=40+k*36;c.moveTo(x0,120);c.bezierCurveTo(x0+30,40,x0+10,190,x0+40,110);}c.stroke();
@@ -105,7 +106,7 @@ export function buildSatoRamenDressing(room,{anchor,action,collider,layout={}}={
  if(layout.closed!==false)for(const yaw of [0,Math.PI]){const card=new THREE.Mesh(printed('closed',.5,.25),new THREE.MeshStandardMaterial({map:texture,roughness:.9}));card.position.set(9.75,2.25,3.55+(yaw?.004:-.004));card.rotation.y=yaw;closed.add(card);}
  if(anchor&&action){
   const a=layout.approaches||{};
-  anchor(a.autographs||[7.2,1.8,1.15],'Read the autograph boards',()=>action('inspect','Autograph boards','Three shikishi signed to Mrs Sato: a TV presenter from Okinawa TV who came for the Hārī, the 1996 Seagulls squad, and Kayoko Shima, who sang at the harbour hall and had two bowls. Mrs Sato says the singer left a tip in the shape of a crane.'));
+  anchor(a.autographs||[7.2,1.8,1.15],'Read the autograph boards',()=>action('inspect','Autograph boards','Three shikishi signed to Mrs Sato: a TV presenter from Shima TV who came for the Hārī, the 1996 Seagulls squad, and Kayoko Shima, who sang at the harbour hall and had two bowls. Mrs Sato says the singer left a tip in the shape of a crane.'));
   anchor(a.hari||[10.9,1.8,-.9],'Read the Hārī poster',()=>action('inspect','Harbour Hārī boat race','Sunday the 12th. Each street puts a boat in. Sato Ramen feeds the crews afterwards, which Mrs Sato says is how she always wins.'));
   anchor(a.calendar||[10.9,1.8,1.2],'Read the noodle maker’s calendar',()=>action('inspect','Shimabukuro Noodle Works calendar','October 1997. Every Wednesday is crossed through in pencil: she shuts on Wednesdays to make the week’s stock.'));
   anchor(a.beer||[7.1,1.6,-.75],'Read the Umineko poster',()=>action('inspect','Umineko Beer · Kanpai!','A bottle of beer with lunch is ¥400. Mrs Sato serves one per customer before one o’clock and pretends not to count after.'));

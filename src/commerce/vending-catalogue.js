@@ -9,7 +9,8 @@ import {LAGER_ALCOHOL,wantsAnother} from '../people/drunk.js';
 // and you need to use Disney art style and draw them in Python"): the three beers below took the places of Harbour Tea,
 // Dockside and Sanpin (RETIRED_VENDING keeps those drinkable). Their cans' prints are drawn by tools/draw-vending-cans.py
 // (`art`: the wrap-around print, the front at its middle), each with a mascot of its own; the soft drinks keep the prints
-// vending.js paints. The brewer is a Johansson company (Johansson is this universe's Acme): Johansson Brewery, Nago.
+// vending.js paints. The brewer is a Johansson company (Johansson is this universe's Acme): Johansson Brewery, Nago, which
+// also brews the town's lager, Umineko, on Sakura's shelf and on Minato's tap (people/izakaya-beer.js MINATO_BEER).
 //
 // `abv` is the can's strength (%); `alcohol` what it adds on the town's one drunkenness scale (people/drunk.js): a 350 ml
 // can of lager is LAGER_ALCOHOL, as Sakura's Umineko and Minato's can are, and the rest in proportion to their beer.

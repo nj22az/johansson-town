@@ -182,7 +182,7 @@ export function buildObake({h=.42,flat=false,can=false}={}){
 }
 
 /**
- * Kuro, the Tamashiros' black dog (a shiba-type with tan points, "who barks at the postman’s Super Cub and nothing
+ * Kuro, the Tamashiros' black dog (a shiba-type with tan points, "who barks at the postman’s red motorbike and nothing
  * else"): built of rounded shapes. pose 'sit' (head up), 'eat' (standing, head down to the ground), 'stand'. Origin
  * on the ground under its chest; faces +z.
  */

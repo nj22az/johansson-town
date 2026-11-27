@@ -50,7 +50,7 @@ const ENTRIES=[
  {id:'kuro-dog',name:'Kuro, the Tamashiros’ dog',kind:'prop',size:[.272,.534,.484],
   source:'world/halloween-props.js buildDog',load:()=>import('../world/halloween-props.js'),build:m=>m.buildDog({pose:'sit'}),
   purpose:{for:'The Tamashiro family, whose black dog he is, and the stories that need a dog on the street.',
-   why:'He barks at the postman’s Super Cub and nothing else; a dog makes a street lived in.',
+   why:'He barks at the postman’s red motorbike and nothing else; a dog makes a street lived in.',
    where:'On Sakura Street with the Tamashiros on the Halloween evening (halloween.js, stage dog).'},
   action:{kind:'look',label:'Look at Kuro'},tags:['dog','Tamashiro','Sakura Street']},
  {id:'cord-reel',name:'Cord reel',kind:'prop',size:[.222,.392,.32],

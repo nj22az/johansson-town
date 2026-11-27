@@ -20,7 +20,7 @@ function stepsFor(kind){
  if(kind==='ramen')return [['boiler',3.2,'dropping noodles into the boiler'],['pots',2.4,'ladling soup from the stock pots'],['toppings',2.2,'laying chashu and spring onion on the bowl']];
  if(kind==='gyoza')return [['boiler',3.6,'frying gyoza on the hot plate']];
  if(kind==='rice')return [['prep',1.6,'filling a bowl of rice']];
- if(kind==='beer')return [['drinks',1.4,'opening a bottle of Orion']];
+ if(kind==='beer')return [['drinks',1.4,'opening a bottle of Umineko']];
  return [['drinks',1.8,kind==='coffee'?'pouring a hot coffee':kind==='mugicha'?'pouring a cold barley tea':'pouring an oolong tea']];
 }
 const IDLE=[['pots',7,'stirring the stock pots'],['prep',6,'chopping spring onion'],['toppings',5,'laying out the toppings'],['pass',4,'wiping down the counter'],['boiler',5,'checking the noodle boiler']];

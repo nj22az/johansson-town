@@ -75,7 +75,7 @@ export const FEED_PLACES=Object.freeze([
   // (from inside the consulting room's door (the high view steps back, still this side of the partition): the couch behind its curtain, the eye chart, the lightbox, the stool and the desk)
   shot:{room:'clinic',camera:{pos:[1.9,1.6,.1],at:[-1.4,1,-2.3]}}},
  {id:'police-station',name:'Minato Police Station',short:'the police station',kind:'civic',regulars:['Officer Mori'],captured:false,
-  things:['the counter bell','the incident log','the lost-property shelf','the lobby notice board','the long waiting bench','the town map on the wall','the holding-room door','the duty roster','the desk telephone','the thermos of barley tea','the typhoon cupboard'],
+  things:['the counter bell','the incident log','the lost-property shelf','the lobby notice board','the long waiting bench','the town map on the wall','the holding-room door','the duty roster','the desk telephone','the flask of barley tea','the typhoon cupboard'],
   doing:['ringing the bell at the counter','reading the lobby notice board','looking through the lost property','waiting on the long bench','studying the town map','asking the way to the harbour','handing in a blue umbrella','reading the duty roster'],
   activity:{hold:['coffee'],chance:.35,sit:.4},
   shot:{room:'koban',time:1020}},

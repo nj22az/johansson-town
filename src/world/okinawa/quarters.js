@@ -590,7 +590,7 @@ function buildYardLife(kit,solid,{inspect}){
  for(let i=0;i<34;i++)kit.sphere(.35+r.next()*.25,G.minX+.3+r.next()*(G.maxX-G.minX-.6),2.18,G.minZ+.3+r.next()*(G.maxZ-G.minZ-.6),r.pick([0x4f8a3e,0x3f7a36,0x5c9446]),{sy:.35,detail:0});
  for(let i=0;i<16;i++){const x=G.minX+.5+r.next()*(G.maxX-G.minX-1),z=G.minZ+.5+r.next()*(G.maxZ-G.minZ-1);kit.sphere(.08,x,1.78,z,0x6fa84a,{sy:2.6,detail:1});}
  inspect((G.minX+G.maxX)/2,1,G.maxZ+.8,'Look at the goya trellis','Goya trellis',
-  "Bitter melon, Goya, grown up a net until it roofs the whole bed: in summer it is the coolest place in the yard. The warty green gourds hanging through are for chanpurū, fried with tofu, egg and a little spam. Whoever planted it has written Don't take it on a card — please don’t pick.");
+  "Bitter melon, Goya, grown up a net until it roofs the whole bed: in summer it is the coolest place in the yard. The warty green gourds hanging through are for chanpurū, fried with tofu, egg and a little luncheon meat. Whoever planted it has written Don't take it on a card — please don’t pick.");
  // The bicycle shed at the top of the yard, and what gathers round a working yard.
  const bx0=-24,bx1=-19.4,bz0=15.8,bz1=19.6;
  kit.block(bx0,bx1,2.15,2.25,bz0,bz1,0x8c9ea3);

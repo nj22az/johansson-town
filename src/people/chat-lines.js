@@ -16,7 +16,9 @@ import {personalityOf,PERSONALITIES} from '../avatars/personality.js';
  * the first speaker come back four ways (`close`). Every reply must work after any of
  * that topic's openers, and every comeback after any reply, so any two people make a
  * conversation that sounds like the two of them. `{b}` is the other person's name.
- * October 1997, an Okinawan harbour town.
+ * October 1997, an Okinawan harbour town. Anything with a maker's name is the island's own (the owner, 27 November
+ * 2026: no real brands): root beer in the frosted mug at the Shisa Drive-In in Naha, the egg-shaped Pocket Piyo on a
+ * key ring (the same imaginary hand-helds as the Pocket Camera, photo/pocket-models.js), a tin of luncheon meat.
  */
 export const TEMPERAMENTS=Object.freeze(['sunny','dramatic','easy','dry']);
 
@@ -74,11 +76,11 @@ export const TOPICS=Object.freeze([
    'That is the best kind of fishing. No cleaning.',
    'The fish here are very well informed.'),
   close:T('Tomorrow I will bring a bigger bucket!','I will have my revenge on Sunday.','Same time tomorrow, then.','I shall change bait. And hat.')},
- {id:'tamagotchi',open:T(
-   'My niece gave me her Tamagotchi to mind and it is beeping at me!',
-   'I was minding my niece’s Tamagotchi and it died. I feel terrible.',
-   'My niece left me her Tamagotchi. It keeps wanting dinner.',
-   'I am minding a Tamagotchi. It is more demanding than my landlord.'),
+ {id:'pocket-pet',open:T(
+   'My niece gave me her Pocket Piyo to mind and it is beeping at me!',
+   'I was minding my niece’s Pocket Piyo and it died. I feel terrible.',
+   'My niece left me her Pocket Piyo. It keeps wanting dinner.',
+   'I am minding a Pocket Piyo. It is more demanding than my landlord.'),
   reply:T(
    'Feed it! Play with it! Give it a little hat!',
    'Those things know when you are not looking.',
@@ -161,7 +163,7 @@ export const TOPICS=Object.freeze([
    'Goya is a test of character, {b}.',
    'More egg. Always more egg.',
    'Goya does not want to be eaten. One must respect that.'),
-  close:T('Next time I will add a whole tin of Spam!','I will try again. I must.','Good advice. Egg fixes things.','I will negotiate with it tomorrow.')},
+  close:T('Next time I will add a whole tin of luncheon meat!','I will try again. I must.','Good advice. Egg fixes things.','I will negotiate with it tomorrow.')},
  {id:'habu',open:T(
    'Somebody saw a habu near the cane field! A real one! Ooh!',
    'There is a habu near the cane field. Huge. Maybe two metres.',
@@ -174,9 +176,9 @@ export const TOPICS=Object.freeze([
    'I have seen that stick. It is a stick.'),
   close:T('Bring binoculars, {b}!','Stay safe, {b}. I mean it.','Long way round has better views anyway.','Then I shall call it Mr Stick.')},
  {id:'rootbeer',open:T(
-   'A&W root beer in the frosted mug! I had two! My brain froze!',
-   'I had an A&W root beer and remembered being nine years old. I nearly cried.',
-   'Had a root beer at A&W yesterday. Nice and cold.',
+   'Shisa Drive-In root beer in the frosted mug! I had two! My brain froze!',
+   'I had a root beer at the Shisa Drive-In and remembered being nine years old. I nearly cried.',
+   'Had a root beer at the Shisa Drive-In yesterday. Nice and cold.',
    'Root beer tastes like toothpaste and I cannot stop drinking it.'),
   reply:T(
    'And the curly fries! Do not forget the curly fries!',

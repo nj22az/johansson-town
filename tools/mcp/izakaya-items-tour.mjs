@@ -74,7 +74,7 @@ try{
    const orderAction=tour.state.ui.activity?.actions.find(a=>a.label==='Order a drink…');
    if(orderAction){
     await tour.call('choose_action',{label:orderAction.label});
-    const draft=tour.state.ui.activity.actions.find(a=>a.label==='Orion draught, medium mug · ¥450');
+    const draft=tour.state.ui.activity.actions.find(a=>a.label==='Umineko draught, medium mug · ¥450');
     if(draft){
      await tour.call('choose_action',{label:draft.label});report.table.ordered=draft.label;
      for(let attempt=0;attempt<6;attempt++){

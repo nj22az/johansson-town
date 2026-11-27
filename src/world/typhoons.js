@@ -65,12 +65,12 @@ const MONTHS=['January','February','March','April','May','June','July','August',
 const dateWords=at=>`${Number(at.slice(3,5))} ${MONTHS[Number(at.slice(0,2))-1]}`;
 
 /**
- * What NHK Okinawa shows during the day while a warning is in force (the Minato Evening
+ * What JHK Okinawa (the public broadcaster: Johansson Hōsō Kyōkai, Johansson being this world's Acme) shows during the day while a warning is in force (the Minato Evening
  * News has it from six). Before the closest approach it is expected; after, it has passed.
  */
 export function typhoonBulletin(t,minutes){
  const now=stamp(keyOf(minutes),minuteOf(minutes)),coming=now<t.closest.at;
- return {title:'NHK Okinawa · Typhoon information',text:[
+ return {title:'JHK Okinawa · Typhoon information',text:[
   `Typhoon No. ${t.number} is near Okinawa. A storm warning is in force.`,
   coming?`It is expected to come closest at ${whenWords(t.closest.at)}, about ${t.closest.km} kilometres from Naha, with a central pressure of ${t.closest.hPa} hectopascals.`
    :`It came closest at ${whenWords(t.closest.at)}, about ${t.closest.km} kilometres from Naha, and is moving away. The warning stays in force until it has passed.`,

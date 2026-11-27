@@ -129,7 +129,7 @@ function labelTexture(){
  const c=document.createElement('canvas');c.width=1024;c.height=256;const ctx=c.getContext('2d');
  for(let i=0;i<4;i++){
   const x=i*256;ctx.fillStyle=i===2?'#dfd4aa':'#eee8d3';ctx.fillRect(x,0,256,256);ctx.fillStyle=i===2?'#746347':'#3d625b';ctx.fillRect(x,66,256,74);
-  ctx.fillStyle='#eee8d3';ctx.font='bold 34px Georgia,serif';ctx.textAlign='center';ctx.fillText(i===2?'MINATO':i===3?'WARM SAKE':'ORION',x+128,110,238);
+  ctx.fillStyle='#eee8d3';ctx.font='bold 34px Georgia,serif';ctx.textAlign='center';ctx.fillText(i===2?'MINATO':i===3?'WARM SAKE':'UMINEKO',x+128,110,238);
   ctx.fillStyle='#764d3a';ctx.font='bold 19px sans-serif';ctx.fillText(i===2?'AGED AWAMORI':i===3?'HOUSE TOKKURI':i===1?'DRAUGHT LAGER':'LARGE BOTTLE',x+128,173,240);ctx.font='15px sans-serif';ctx.fillText('Minato · served with care',x+128,218,236);
   ctx.fillStyle='#b35b42';ctx.fillRect(x,42,256,6);ctx.fillRect(x,231,256,4);
  }

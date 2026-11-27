@@ -21,15 +21,24 @@ import {mergeGeometries} from '../../../vendor/BufferGeometryUtils.js';
 const MINCHO='"Hiragino Mincho ProN","Yu Mincho","Noto Serif CJK JP",serif';
 const GOTHIC='"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP",sans-serif';
 
-/** The regulars who keep a bottle (and so whose names are on the shelf). */
+/**
+ * The regulars who keep a bottle (and so whose names are on the shelf). The awamori is the island's own, Shimakaze,
+ * which Sakura Trading brings Minato for the bottle keep (commerce/merchandising.js; its poster and cases are in
+ * interiors/sakura-trade-posters.js); Mr Higa keeps its aged kūsu. Two of the tags named real distilleries until the
+ * owner's ruling of 27 November 2026 (fictional brands only): RENAMED_KEEP turns a saved bottle's old name into its new one.
+ */
 export const BOTTLE_KEEP=Object.freeze([
- {name:'Chin',drink:'Zuisen awamori',colour:0x5a3b22},{name:'Mr Higa',drink:'Kumesen awamori',colour:0x2c4a33},
+ {name:'Chin',drink:'Shimakaze awamori',colour:0x5a3b22},{name:'Mr Higa',drink:'Shimakaze kūsu',colour:0x2c4a33},
  {name:'Officer Mori',drink:'Shochu, barley',colour:0xd8dccf},{name:'Hiroshi',drink:'Awamori, 10 years',colour:0x5a3b22},
  {name:'Tetsuo',drink:'Shochu, sweet potato',colour:0x34465a},{name:'Sverker',drink:'Awamori, 5 years',colour:0x2c4a33},
  {name:'Mr Fujita',drink:'Shochu, rice',colour:0xd8dccf},{name:'Masaru',drink:'Awamori',colour:0x5a3b22},
  {name:'Ms Uezu',drink:'Plum wine',colour:0x7a2b2b},{name:'Mr Tanabe',drink:'Awamori, 3 years',colour:0x34465a},
  {name:'Nhung',drink:'Plum wine',colour:0x7a2b2b},{name:'Daichi',drink:'Shochu, barley',colour:0xd8dccf},
 ]);
+/** A kept bottle's drink as saved before 27 November 2026, and what it is called now (people/izakaya-play.js). */
+export const RENAMED_KEEP=Object.freeze({'Zuisen awamori':'Shimakaze awamori','Kumesen awamori':'Shimakaze kūsu'});
+/** The bottle the player keeps: the island's awamori, as Chin's. */
+export const KEEP_DRINK='Shimakaze awamori';
 /** The shelf, on the west wall beside the counter's end. */
 export const KEEP_SHELF=Object.freeze({x:-6.29,z:-2.9,width:1.15,levels:Object.freeze([1.45,1.86]),depth:.2});
 /** Posters: [cell, x, y, z, yaw, width, height]. */
@@ -65,10 +74,11 @@ function sheet(){
  const fade=(c,w,h)=>{const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,'rgba(255,248,230,.22)');g.addColorStop(.5,'rgba(255,248,230,.06)');g.addColorStop(1,'rgba(255,248,230,0)');c.fillStyle=g;c.fillRect(0,0,w,h);};
  at('beer',(c,w,h)=>{
   const sky=c.createLinearGradient(0,0,0,h);sky.addColorStop(0,'#2a8fcc');sky.addColorStop(.62,'#8fd3f0');sky.addColorStop(.63,'#f2d8a0');sky.addColorStop(1,'#e9c27a');c.fillStyle=sky;c.fillRect(0,0,w,h);
-  c.fillStyle='#ffffff';c.beginPath();c.arc(230,70,36,0,Math.PI*2);c.fill();
-  // The can, cold and sweating, on the sand.
-  c.fillStyle='#f4f1e6';c.fillRect(110,170,80,150);c.fillStyle='#c8102e';c.fillRect(110,205,80,40);c.fillStyle='#8a9aa3';c.fillRect(110,166,80,8);
-  write(c,'UMINEKO',150,225,22,'#ffffff');
+  // (the sun under the title, never over its last characters)
+  c.fillStyle='#ffffff';c.beginPath();c.arc(236,122,34,0,Math.PI*2);c.fill();
+  // The can, cold and sweating, on the sand, in Umineko's own colours (its paper and ink: commerce/products-data.js, beer).
+  c.fillStyle='#eddda0';c.fillRect(110,170,80,150);c.fillStyle='#38523d';c.fillRect(110,205,80,40);c.fillStyle='#8a9aa3';c.fillRect(110,166,80,8);
+  write(c,'UMINEKO',150,225,22,'#ffffff',GOTHIC,900,72);   // (within the can's 80 px)
   write(c,"夏だ！ウミネコ",w/2,48,36,'#ffffff',MINCHO);write(c,'UMINEKO BEER · SUMMER 1997',w/2,372,19,'#7a2b14',GOTHIC,800);write(c,'Drinking is for adults',w/2,404,14,'#7a2b14',GOTHIC,700);
   fade(c,w,h);
  });

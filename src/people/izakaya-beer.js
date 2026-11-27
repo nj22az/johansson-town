@@ -11,14 +11,27 @@ import {BUDGET} from '../edition.js';
  * Beer at Minato: order it at your table, Thao pours it and brings it over, you drink it
  * a sip at a time.
  *
- * Okinawa in 1997 drinks Orion. Minato keeps it three ways -- on draught in a frosted
- * mug, in the big brown 633 ml bottle with a small glass to pour into, and in the can --
- * and oolong tea for anyone who is not drinking.
+ * Minato pours the town's own lager, Umineko (MINATO_BEER says whose and why), three ways -- on
+ * draught in a frosted mug, in the big brown 633 ml bottle with a small glass to pour into, and
+ * in the can -- and oolong tea for anyone who is not drinking.
  */
+/**
+ * Whose beer it is (the owner, 27 November 2026: "no real brand only fictional brands that fit into the Jansson world").
+ * It was a real Okinawan brewer's until that day. It is Umineko because the town already said so everywhere but here:
+ * Sakura Trading supplies Minato its kegs and bottles (commerce/merchandising.js ACCOUNTS.sakura.izakaya, "Umineko
+ * lager, kegs and bottles"), the economy prices Minato's mug and large bottle from the Umineko keg and bottle
+ * (economy/goods.js beer-keg, beer-bottle), Thao's own wall has Umineko's summer poster (izakaya-dressing.js), and the
+ * same crates go to Sato Ramen, the Coral Bay Bar and Mr Fujita's shed. A Kame draught (the machines' can) would have
+ * left all of that pointing at a beer Minato no longer poured. Umineko and the machines' Kame, Jugon and Tako are one
+ * brewer's, Johansson Brewery of Nago (commerce/vending-catalogue.js), so the town's beer is one company and one story.
+ */
+export const MINATO_BEER=Object.freeze({brand:'Umineko',brewer:'Johansson Brewery, Nago',from:'Sakura Trading (Sakura Shōten’s depot)',
+ who:'Thao, who orders it; the counter’s regulars and the crews off the boats',
+ why:'The town’s lager: the kegs and large bottles Sakura’s round brings on Tuesdays and Fridays, the can Sakura sells at ¥220.'});
 export const DRINKS=Object.freeze({
- draft:Object.freeze({id:'draft',jp:"Orion draught, medium mug",en:'Orion draught, a frosted mug',price:450,sips:6,alcohol:1,pour:4.2,line:"One Orion draught! Cold from the tap."}),
- bottle:Object.freeze({id:'bottle',jp:"Orion Large bottle",en:'Orion large bottle and a small glass',price:600,sips:8,alcohol:1.4,pour:2,line:"It's a big bottle. Pour for yourself -- or I pour the first one."}),
- can:Object.freeze({id:'can',jp:"Orion Can",en:'Orion can, 350 ml',price:300,sips:4,alcohol:.8,pour:1.2,line:"Still in the can? Straight from the can, then."}),
+ draft:Object.freeze({id:'draft',jp:"Umineko draught, medium mug",en:'Umineko draught, a frosted mug',price:450,sips:6,alcohol:1,pour:4.2,line:"One Umineko draught! Cold from the tap."}),
+ bottle:Object.freeze({id:'bottle',jp:"Umineko large bottle",en:'Umineko large bottle and a small glass',price:600,sips:8,alcohol:1.4,pour:2,line:"It's a big bottle. Pour for yourself -- or I pour the first one."}),
+ can:Object.freeze({id:'can',jp:"Umineko can",en:'Umineko can, 350 ml',price:300,sips:4,alcohol:.8,pour:1.2,line:"Still in the can? Straight from the can, then."}),
  awamori:Object.freeze({id:'awamori',jp:"Awamori on the rocks",en:'awamori on the rocks',price:250,sips:5,alcohol:1.6,pour:1.8,line:"Awamori. Slowly -- it is older than you think."}),
  sake:Object.freeze({id:'sake',jp:"Warm sake, one flask",en:'a flask of warm sake',price:220,sips:5,alcohol:1.3,pour:2.4,line:"Hot sake. Careful, the tokkuri is hot."}),
  oolong:Object.freeze({id:'oolong',jp:"Oolong tea",en:'Oolong tea over ice',price:150,sips:4,alcohol:0,pour:1.6,line:"Oolong tea. Plenty of ice."})
