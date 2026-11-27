@@ -18,7 +18,10 @@ const SETS=[...ISLAND_OUTFITS,...ISLAND_COSTUMES],set=id=>SETS.find(s=>s.id===id
 /** An adult (Thuan), a child and an elder, feminine and masculine, slim and broad. */
 const BODIES={
  Thuan:CAST_RECIPES.Thuan,
- child:normalizeRecipe({...CAST_RECIPES.Johansson,name:'Child',age:'child',body:{...CAST_RECIPES.Johansson.body,build:.35}}),
+ // (A child has no beard: Johansson's recipe carries the grown man's five-o'clock shadow since the owner's redrawing of
+ // 26 November 2026 (AGENTS.md: "a five-o'clock shadow in grey"), painted on a shell of its own, a third draw that is his
+ // face's and not the clothes'. The child is his build, not his stubble.)
+ child:normalizeRecipe({...CAST_RECIPES.Johansson,name:'Child',age:'child',body:{...CAST_RECIPES.Johansson.body,build:.35},facial:{...CAST_RECIPES.Johansson.facial,paint:'none'}}),
  elder:normalizeRecipe({...CAST_RECIPES['Mrs Sato'],age:'elder',body:{...CAST_RECIPES['Mrs Sato'].body,build:.76}}),
 };
 const dressed=(body,outfit)=>normalizeRecipe({...body,outfit:{...body.outfit,...outfit}});
