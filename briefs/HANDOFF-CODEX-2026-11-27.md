@@ -9,8 +9,8 @@ do next.
 
 | | Commit | State |
 |---|---|---|
-| `main` (live at nj22az.github.io/johansson-town/) | this file's commit | published 27 Nov, night, after the guard (section 2); before it `00e0c0c` |
-| `claude/dreamy-ritchie-cxufpl` (the work branch) | the same | pushed |
+| `main` (live at nj22az.github.io/johansson-town/) | `f429ab8` | Tama published on the owner's "Push it" after a green guard (1,041 of 1,044); before it `0643dfc`, `00e0c0c` |
+| `claude/dreamy-ritchie-cxufpl` (the work branch) | its head | the gulls (`5daf24f`, runtime `8d86c51`): guard green at `8d86c51` (1,043 of 1,046, none failing); **not on `main`**, waiting for the owner's word |
 | `wip/beer-booth` | `147baae` | the beer drink's unfinished work (section 5); not merged |
 
 **The owner said "Yes" to publishing the branch to `main`** once the full guard passes (27 Nov, night, to "Do you want this
