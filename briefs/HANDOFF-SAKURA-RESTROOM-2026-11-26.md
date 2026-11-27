@@ -1675,3 +1675,144 @@ does and why is in `docs/ANIMATION-STANDARD.md` section 6, "Stage 4".
   story-gestures (2), wardrobe-batch2, wardrobe-batch3 (2), work-kit, izakaya-lived-in.
 - 90ce252's shared foot supports came after the guard's snapshot: the principles test and player-seating pass on it (11 of
   11), and the 55 files above ran on it.
+
+# 27 November, evening: the residents' bodies, poses and clothes, the failing files put right (branch `fix/bodies`)
+
+The owner: "Fix all outstanding errors". This branch took one group of the files outside the guard: the residents' bodies,
+poses and clothes. From `claude/dreamy-ritchie-cxufpl` at 1dfc816 (stage 4 merged). Not pushed. Each failure was looked at
+for its cause and called one of three: the code wrong (put right), a test out of date against a later recorded owner
+decision (updated, the decision and its date written in the test), or the environment. Old or new: `git log -S` and the
+check run at older commits in temporary worktrees (removed after).
+
+## Per file
+- **afterbath-outfit** (code; new since Johansson's redrawing, 1f675a0/bec637b, 26 November). The tenugui was laid round
+  every neck at an arm's 1.08, and Johansson's sturdy neck is 1.72 of one (`m.neckR`, 104 mm): it sat 3 mm inside his neck
+  and up it like a neck brace. The vest's straps at the vest's own place lay up the sides of his neck, 1 mm off it. Now the
+  tenugui is laid round `m.neckR` (`tenuguiShape`), and the straps keep their own lift off the neck as built
+  (`runningShirt`: Johansson's 19 mm out; the other men's, whose inner edges stood a few millimetres from their necks, 0.2-8 mm).
+- **wardrobe-batch3 test 7, the hair clip** (code; new since `softwave`, 9ca68be, 26 November). The test saw the clip 1%
+  inside the head's ellipsoid on the softwave; the real fault was that the straight bar from the full hair behind ran
+  through Christina's swept-back hair to a front end at the hairline: 17 mm under the hair's surface (and 3-6 mm on the
+  soft bob, the tied-back, the crop and others; 29 mm in the afro). `build.js`: `hairEdge` (hairReach's own field, factored
+  out); the slide moves back along its line, at most half its length, until its front end is `CLIP_IN` under the hair,
+  where the front is at the hairline (`CLIP_EDGE`); and the bar is curved to the hair under it, along and across. It lies
+  0.5-1 mm over the hair on every style but those below.
+- **wardrobe-batch2 test 7, wardrobe-batch3 test 8, avatar-wardrobe-sets test 1** (test out of date). The tests' child is
+  Johansson's recipe at child age; since the owner's redrawing of him (26 November, "a five-o'clock shadow in grey",
+  1f2f923/1f675a0) it carried his painted shadow, a third draw that is his face's, not the clothes'. The child now has no
+  facial hair; the clothes' budget is checked as before.
+- **work-kit test 2, the safety glasses** (code; new since Tetsuo was sculpted in Blender, 32dfacb, 26 November). The shield
+  rose until nothing on the head came through it: his own glasses' bridge, arched over his sculpted nose, stood within the
+  fit's 3° cone of the shield's last points beside the nose's notch, and held it 49 mm off his face (0.2 head radii; it
+  sat at 0.11). Points of the head over the notch are in the open now (`layoutOf`, faceObjectPoint taken back, exact on a
+  sculpted head): 0.13. The arms, drawn straight to the side of the head, went 5 mm into it (10 at the nearer shield): each
+  point of them now clears what is on the head.
+- **onsen-noren-heads** (code, data; new since Sverker was drawn, 9ca68be): his measured head top is 1.628, the noren had
+  the 1.68 of before he was drawn. `ONSEN_NOREN.tops.Sverker` 1.63.
+- **pole-hug** (code; old, failing at fc7281f, 7 November). Miss Higa's long skirt, fitted over the raised knees
+  (towel-fit), came up across her lap between the knees into the pole (13 mm). `poleAhead` now also keeps the pole ahead
+  of the lap's cloth in the hug's leg pose (`POLE_HUG_LAP`, 6 mm): her pole stands 34 cm ahead, not 26; nobody in trousers
+  moves.
+- **story-gestures test 4 and avatar-floor-contact (swim KneelHug)** (code; new with the body kit's bare feet, a0e9ed7). The
+  knees hold the body up and the bare toes were left 6.3 mm (Fujita) and 0.7-3.9 mm (Thuan in her swimsuit) over the floor.
+  The kneel's foot is keyed per body as dressed (`kneelTuck`): the ankle turned, toes down, until the feet are level with
+  the knees, at most `TUCK` (0.35), eased in with the kneel. (A correction made frame by frame popped the feet on Vy: the
+  audit's ease caught it; the keyed turn passes it.)
+- **story-gestures test 10, HoldOn** (code; new with the kit's hand, 147a73e). The fists sit by the jaw clutching the
+  tenugui; the standing idle's head wander (a roll of 0.04) brought Fujita's jaw down onto one, the kit's fingers 8 mm in.
+  The head is held where the reach laid the fists (`toward('head')`), and the reach keeps the hand's envelope 3 mm off the
+  head (`headClear`): 1.8 mm into the jaw's underside as held (the test allows 4). 6 mm kept it at 0 but turned Sverker's
+  hand's arc past the audit's 50%.
+- **drink-grip** (test out of date, and one left to the drink's owner). The thumb was found by a box made to the mitten
+  (26 November, the kit's hand replaced it): now by the kit's own rule (what stands forward past the fingers' width, on the
+  resting hand, known by its place in the hand's points, as the hand closes by writing them). "The thumb wraps towards the
+  vessel" kept its sense for the kit's thinner hand (a tenth of a hand for the mitten's 0.9 either side, 0.33 for the kit's).
+  The can's rim at the lips: since the owner's word of 27 November the can is drunk as animated in Blender (59e05bc), and
+  drink-can.test.mjs holds its rim on the lower lip; the old sip's check now leaves the can out. **Still failing:** after the
+  can, the next vessel's first sip has not reached the lips (41 mm, coffee): the can's sip sets the old sip's weight
+  (`consumeW`) to nothing, and the next eases in from there. For the drink's owner (animate.js's drink blocks): hand the
+  weight over, or the test gives each vessel its own ramp.
+- **fujitas-back-moves** (speed, and the plank carry: code, old since 26 November). The carriers' mittens under Fujita: one
+  went 9 mm into his side (the test allows 8); it passed on 7 November and failed after the cast's bodies were redrawn.
+  `CARRY.flank` (how far over his lowest line his underside is at the mittens) measured again: 14.9 mm on average, 6 mm more
+  one side than the other; 15.5 mm (15 made CarryLegs' arms, solved from CarryFurniture's, mirrored on Vy).
+- **fun-poses** (speed: below; and two failures it had been hiding behind its timeout, both new with the kit's hand,
+  71daaa5/0fc7bea, 26 November). Facepalm on a round grown-up: the palm turned in takes the arm 2.9 radians round, and over
+  the 0.8 s ramp the shoulder turned 0.18 radians a frame (the test allows 0.15): code, the ramp 1.1 s (0.14 a frame), and the
+  move held 3.3 s, not 2.6, so its still (STILL_AT) comes as long after the hand as it did (at 2.6 the drag had the hand
+  still 5 mm short of four faces); the audit fails what its baseline lists, no more. **HideFace on Fujita: not fixed**,
+  below.
+- **onsen-seats test 2** (environment: Studio). Studio's keepClear for the massage chair was measured on 14 October; since
+  Sverker was drawn and the body kit came (26 November) his body leaves it by up to 38 mm (feet), 34 (hips), 29 (elbows). It
+  goes into none of the chair's own geometry (checked, every third point). The test says what to do: measure the chair again
+  in Studio (`modeller/tools/keep-clear.mjs`) and publish it again. Studio is not in this checkout.
+
+## Speed: fun-poses and fujitas-back-moves
+Profiled (`--cpu-prof`). The body kit's hand put 28 000 points on the hands and forearms, where the mitten had a few
+thousand, and three loops took each of them against everything:
+- **fun-poses** (over an hour; 84% in one line): each hand point's ray from the head's middle against every triangle of the
+  head, 10-20 s a pose. The triangles are filed by the cells of a cube of directions their cones can meet, a cell filled
+  when a ray first reads it (`rayFrom`; the same hit, checked on 14 000 rays against the old). The nearest-hair search
+  allocates nothing a point. Each body's poses run in a worker thread, three at a time, the answers in the bodies' order
+  (`shared`); the hands' test reads the contacts the poses' test found; a move's second play (the same every time) makes
+  only the body it compares. Nothing is tested less. 303 s at the end (527-532 s at a load of 10, when the threads had one
+  core's worth of the machine): the reach
+  solver and building the bodies are most of what is left (the game's own work, a solve a move a body).
+- **fujitas-back-moves** (584 s at a load of 13): the plank carry's gap read every point of him for every point of a
+  mitten's top (his points filed in 12 mm squares: 35-49 s to 7); each cast put a towel on a head with 5 rays a point
+  against every triangle of the head and the hair (build.js `addHeadTowel`: the triangles filed by the floor plan, the same
+  highest hit; 0.8 s at every change into the bath's clothes, in the game too). 353 s at a load of 10-12, its test of
+  every move played twice 136 s (it was 313).
+
+## Shots (looked at)
+Before (1dfc816) above and after below, in the game's own shader (tools/hand-shots.mjs's server, renderer and ink pipeline,
+in a scratch variant for these five scenes): `output/bodies-fix/<what>-before-after.webp`.
+- The vest: before, the tenugui rode up Johansson's neck like a collar and the straps climbed its sides; after, it lies round
+  the back of the neck on the shoulders and down the chest, the straps under it.
+- The hair clip: before, on Christina's hair (and Thuan's in the softwave) only the heart showed, at the hairline, the bar
+  in the hair; after, the bar lies on the hair behind it, the heart at its front.
+- The safety glasses: before, the shield stood well off Tetsuo's face (0.2), its arms into the side of his head; after,
+  close over his own glasses (0.13), the arms outside to the ear.
+- The pole hug: before, the pole came up through Miss Higa's skirt between her knees; after, it stands ahead of the
+  skirt's front, her arms longer to it.
+- HoldOn: before, the fingers went up into the jaw's underside, the head wandering; after, the head still, the fists
+  under the jaw.
+
+## Proved
+- Each file of the list alone, two at a time at most, at the final code: afterbath-outfit, avatar-floor-contact,
+  avatar-wardrobe-sets, wardrobe-batch2, wardrobe-batch3, onsen-noren-heads, pole-hug, story-gestures (its one todo as it
+  was), work-kit pass; at the last commit, with pair-poses, stance-release and resident-guide, in one run two at a time:
+  61 tests, 60 pass, the one todo (359 s). onsen-noren passes (not added: the places' helper's). fun-poses fails only HideFace
+  on Fujita (303 s); fujitas-back-moves only the plank carry (353 s); drink-grip only the vessel after a can; onsen-seats
+  only Studio's keepClear.
+- The principles audit test: 8 of 8 (every changed move fails exactly what its baseline entry lists; `--moves` runs of
+  KneelHug, PoleHug, PoleHugR, HoldOn, CarryFurniture, CarryLegs and Facepalm checked one by one against it).
+- **The guard** (`node tools/ci-guard.mjs --test-concurrency=2`, 143 files, at 1324a44 with Facepalm's first ramp, 1307 s at a
+  load of 9-13): 776 of 778. The runtime package (stale on a branch until rebuilt) and resident-guide's portrait manifest:
+  build.js is one of the portraits' sources. `TOWN_CHROMIUM_PATH=/opt/pw-browsers/chromium node
+  tools/render-resident-guide.mjs` (the Playwright version here looks for a Chromium that is not installed) rendered the 23
+  portraits byte for byte as they were; only `guide/portraits.json`'s hash changed. The nine files added to the guard are
+  the ones above.
+- The temporary worktrees at older commits are removed.
+- Commits: 0dbeda6 (clothes: the tenugui, the straps, the hair clip, the head towel), 9221cf1 (moves: the kneel's toes, HoldOn,
+  the carry's flank, the pole hug), 44cc31b (the safety glasses, the noren), 28501b2 (tests to the owner's decisions), 1324a44
+  (the speed), 9b59545 (Facepalm), a17f168 (the portraits' manifest), then the guard's list, the shots and this handover.
+
+## Not done, and why
+- **onsen-seats test 2**: Studio's chair needs measuring again (above). Not here.
+- **drink-grip**: the vessel after a can (above), for the drink's owner.
+- **fujitas-back-moves, the plank carry**: with the flank right, the next check fails: Thuan at his knees (CarryLegs) holds her
+  forearms level at her hands' height, and the forearm's round (an arm's 0.9) is thicker than the kit's flat hand, so his
+  thigh lies 34 mm into her right forearm's round and her left elbow 7 mm into his legs. Old (since 26 November). The
+  carry needs the load to rest on the forearms, or the forearms sloping up to the hands: a choreography decision.
+- **fun-poses, HideFace on Fujita**: his right hand stays 52 mm off his face (the test asks 50). The arm reaches as far as
+  it can; the mitten's bulk filled 2.7 cm of that gap, the kit's flat hand does not (26 mm with the mitten). Bowing his
+  head further (0.24) brings it to 49; the pose's `use` says "the shoulders up", which it does not do yet. A pose decision.
+- HoldOn's fists still pass through the jaw on the way in (12.7 mm at 0.5 s, it was 15.4) and out (6.1): the arm's path
+  (armTo) goes under the jaw; the test looks only at the hold.
+- Vy's KneelHug: her toes are 16.6 mm over the floor at the most the ankle turns (TUCK); they were 34.
+- The hair clip on the perm (22 mm into its curls) and the swept ponytail (8 mm into it): their drawn hair is not what
+  hairReach describes (curls, an asset); a bald head or a horseshoe has the clip 9 mm over the scalp (it was 6.5).
+- The other things laid round an arm's 1.08 as if it were the neck: the necklace (`neckwear: pendant` on Johansson: its
+  chain 4 mm inside his neck), the tee's neck rib, the contrast polo's collar band. And the one-piece swimsuit's straps sit
+  0.5 mm from Thuan's neck.
