@@ -189,7 +189,7 @@ its office, the izakaya, the ramen shop and the ferry's indoor floors had it. `?
 - **Clutter in the distance.** Far buildings and power lines get busy with lines; thin it further with distance if the
   owner finds it too much.
 
-Not on `main` until the owner says so.
+**Published to `main` at `056584e`** on the owner's "Proceed", after a green guard (1,043 of 1,046, none failing).
 
 ## 4. Seen and not fixed (smaller)
 
