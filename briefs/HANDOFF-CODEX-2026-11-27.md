@@ -219,7 +219,7 @@ its office, the izakaya, the ramen shop and the ferry's indoor floors had it. `?
   - **To do:** apply `c419467` again, then re-bake the can drink and re-pose Fight and BackToBack for his new height. Shrink
     the animation baseline, run the guard, show the owner, publish on the owner's word.
 
-The Look viewer is published (see section 1); the neck is not.
+The Look viewer is **published to `main` at `298b027`** on the owner's "Push", after a green guard (1,046 of 1,049, none failing); the neck is not.
 
 ## 4. Seen and not fixed (smaller)
 
