@@ -156,7 +156,8 @@ export function drawWithoutHulls(renderer,draw){
  try{return draw(renderer);}finally{renderer.render=render;}
 }
 
-/** Where Kikkou is on: `?kikkou=1` everywhere, `?kikkou=0` nowhere, otherwise in the rooms it has reached (Sakura first). */
+/** Where Kikkou is on: everywhere (the owner, 28 November 2026: "I want it on the whole world"); `?kikkou=0` turns it off,
+ *  to compare. It reached the rooms first, in this order (the sets below are kept as that record). */
 // (Sakura Shōten's room is 'market': world/businesses.js)
 // Sakura first (25 November 2026), then the two dining rooms on Main Street the same day: Minato Izakaya and Sato Ramen.
 // (and Sakura's upper floor, its office: the owner, 25 November 2026, "the upper floor need kikkou style too")
@@ -176,5 +177,6 @@ export function kikkouWanted(roomId,search=globalThis.location?.search||'',shipF
  if(q==='1')return true;
  // (`?kikkou=ids` shows the IDs themselves instead of the picture, to see what the ink is drawn from)
  if(q==='ids'||q==='edge')return q;
- return KIKKOU_ROOMS.has(roomId)||KIKKOU_SHIP_FLOORS.has(shipFloor);
+ // (the whole World: the street, the islands, every room, the ferry's decks; once only the rooms in the sets above)
+ return true;
 }

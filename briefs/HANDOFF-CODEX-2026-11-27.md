@@ -174,6 +174,23 @@ order:
 
 Ask the owner before starting, and confirm the rule above.
 
+## 3e. The Kikkou line on the whole World (the owner, 28 Nov: "I want it one the whole world")
+
+Done by Claude on the work branch: `kikkouWanted` (`src/render/kikkou-ids.js`) is now on everywhere. Before, only Sakura,
+its office, the izakaya, the ramen shop and the ferry's indoor floors had it. `?kikkou=0` turns it off to compare.
+`tests/kikkou-ink.test.mjs` was updated to the ruling, and the runtime rebuilt. Off and on, from the same lenses:
+`docs/qa/kikkou-world/off-on-2026-11-28.jpg`.
+
+**Check before or right after publishing:**
+- **The frame rate on the owner's iPad outdoors.** The ID pass draws the whole town once more each frame. If it is slow,
+  draw the ID target at a lower resolution outdoors, or leave the far scenery out of the IDs.
+- **Flicker where two faces share a plane outdoors.** Run `tools/near-coplanar.mjs` over the street, as was done for the
+  rooms.
+- **Clutter in the distance.** Far buildings and power lines get busy with lines; thin it further with distance if the
+  owner finds it too much.
+
+Not on `main` until the owner says so.
+
 ## 4. Seen and not fixed (smaller)
 
 - Clothes still laid on the generic neck radius:

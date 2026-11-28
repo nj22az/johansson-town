@@ -4,6 +4,14 @@
 
 Read the repository's [AGENTS.md](../AGENTS.md) and [CLAUDE.md](../CLAUDE.md). Their working discipline applies here.
 
+## Owner's decision — 28 November 2026: the Kikkou line on the whole World
+
+The owner: "How about the blahaj kikkou outlines you made in Sakura I want it one the whole world, it's in the izikaya too".
+The Kikkou ink (`src/render/kikkou-ids.js`, `ink-pipeline.js`: every object's own ID, a bold even line wherever it changes)
+is on everywhere: the street, the islands, every room, the ferry's decks (`kikkouWanted` returns true; `?kikkou=0` turns it
+off to compare). `tests/kikkou-ink.test.mjs` holds it. To watch: its cost on the owner's iPad outdoors (an ID pass of the
+whole town each frame), and flicker where two faces share a plane (`tools/near-coplanar.mjs` cleared the first rooms).
+
 ## Owner's decision — 27 November 2026: one skin colour, face and body, in every light
 
 The owner, on Johansson at Kitano-jima airport at 19:00 in rain: "Johansson's face and body needs to have same color". The

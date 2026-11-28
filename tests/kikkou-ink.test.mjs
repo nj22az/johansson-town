@@ -6,11 +6,13 @@ import {kikkouWanted,idSkips,KIKKOU_ROOMS,KIKKOU_SHIP_FLOORS} from '../src/rende
 // Kikkou ink (the owner, 25 November 2026: "Start kikkou make the konbini first"): src/render/kikkou-ids.js and the
 // composite in src/render/ink-pipeline.js.
 
-test('Kikkou is on in Sakura (room "market") and the two dining rooms, and nowhere else yet, unless the address asks', () => {
+// The owner, 28 November 2026: "How about the blahaj kikkou outlines you made in Sakura I want it one the whole world".
+test('Kikkou is on everywhere: the rooms it reached first, the street, every other room, unless the address turns it off', () => {
  for(const room of ['market','sakura-office','izakaya','ramen'])assert.ok(KIKKOU_ROOMS.has(room),room);
  assert.equal(kikkouWanted('market',''),true);
- assert.equal(kikkouWanted(null,''),false);
- assert.equal(kikkouWanted('onsen',''),false);
+ assert.equal(kikkouWanted(null,''),true,'the street');
+ assert.equal(kikkouWanted('onsen',''),true,'a room it had not reached');
+ assert.equal(kikkouWanted(null,'?kikkou=0'),false);
  assert.equal(kikkouWanted(null,'?kikkou=1'),true);
  assert.equal(kikkouWanted('market','?kikkou=0'),false);
  assert.equal(kikkouWanted('market','?kikkou=ids'),'ids');
@@ -38,13 +40,13 @@ test('the composite draws the ID line without the depth gate, at its own strengt
  assert.match(src,/drawWithoutHulls/,'the cartoon hulls are hidden while Kikkou draws the line');
 });
 
-test('aboard the Minato Maru, Kikkou is on indoors (her rooms, the engine room) and off on her open decks', async () => {
+test('aboard the Minato Maru, Kikkou is on indoors (her rooms, the engine room) and on her open decks, as on the street', async () => {
  globalThis.location??=new URL('https://example.test/');
  const {FERRY_INTERIOR}=await import('../src/world/ferry-interior.js');
  const ids=new Set(FERRY_INTERIOR.floors.map(f=>f.id));
  for(const f of KIKKOU_SHIP_FLOORS)assert.ok(ids.has(f),'a floor she has: '+f);
  for(const f of ['saloon','wheelhouse','engine-room','control-booth'])assert.equal(kikkouWanted(null,'',f),true,f);
- for(const f of ['open-deck','walkway-p','wing-s',null])assert.equal(kikkouWanted(null,'',f),false,String(f));
+ for(const f of ['open-deck','walkway-p','wing-s',null])assert.equal(kikkouWanted(null,'',f),true,String(f));
 });
 
 test('the town\u2019s Sakura storefront slab lies under the shop\u2019s own floor, not in its plane (z-fighting from the street)', () => {
