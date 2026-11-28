@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from '../vendor/three.module.js';
 import {lookTargetsNear} from '../src/ui/look-viewer.js';
+import {mergeGeometries} from '../vendor/BufferGeometryUtils.js';
 import {createActivities} from '../activities.js';
 import {installDOM} from './fixtures.mjs';
 
@@ -30,4 +31,17 @@ test('a Look goes to the viewer when it can show the thing, and to the words alo
  assert.equal(a.paused,false,'no text card over the viewer');
  show=false;a.action('inspect','A blank wall','Nothing to hold up.');
  assert.equal(seen.length,2);assert.equal(a.paused,true,'the words, when there is nothing to show');
+});
+
+// The workshop's wall is merged after it is built (chin-wall.js bake): its poster is a few triangles in one big mesh of
+// prints. A Look cuts out the part at the prompt.
+test('in a merged wall, a Look cuts out the poster\'s own triangles, not the far board in the same mesh',()=>{
+ const room=new THREE.Group(),map=new THREE.Texture(),mat=new THREE.MeshBasicMaterial({map});
+ const poster=new THREE.PlaneGeometry(.6,.85).translate(.5,1.6,0),board=new THREE.PlaneGeometry(1.2,.8).translate(3,1.5,0);
+ const merged=new THREE.Mesh(mergeGeometries([poster,board],false),mat);merged.name='Wall, merged prints';room.add(merged);
+ const anchor=new THREE.Object3D();anchor.position.set(.5,1.6,.05);room.add(anchor);
+ const found=lookTargetsNear(room,anchor.getWorldPosition(new THREE.Vector3()),{anchor});
+ assert.equal(found.length,1);assert.equal(found[0].userData.cutOut,true);
+ const box=new THREE.Box3().setFromBufferAttribute(found[0].geometry.attributes.position);
+ assert.ok(Math.abs(box.min.x-.2)<1e-6&&Math.abs(box.max.x-.8)<1e-6,'only the poster: '+box.min.x+'..'+box.max.x);
 });
