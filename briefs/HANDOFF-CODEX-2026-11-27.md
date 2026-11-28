@@ -155,6 +155,25 @@ The World already took this look: AGENTS.md, "25 November 2026: cartoon cast onl
   - their call;
   - the owner has not seen them in the game.
 
+## 3d. Next creatures in the same look (the owner, 28 Nov: "Is there anything else that would look good in this style? Maybe fish?", then "Hand over to codex")
+
+**The rule** (proposed by Claude, not yet ruled by the owner): animals are pixel sprites (`src/render/pixel-sprite.js`);
+people, buildings and props stay in the town's cartoon style, so the fish on the auction's ice stay as they are.
+
+For a crowd (a shoal, the crabs), draw a few poses into one shared picture rather than one picture per animal, so it costs
+little on a phone. Each animal needs its reason in its data, a test and software-render sheets shown to the owner. In this
+order:
+1. **Koi in the Harbour Park pond.** Their keeper and why are already data: `HARBOUR_POND_KEEPER` in
+   `src/world/harbour-park-garden.js`. Christina feeds them fu at 10:00, on her way to open the bath, and leaves the tin out
+   for the children. They crowd to her side and break the surface. Seen from above, through the water: white with red, and
+   orange with black.
+2. **A shoal of small fish off the pier**, where residents fish and someone feeds a gull (`src/feed/places.js` line 115).
+   It scatters when a line goes in; a gull from `src/world/gulls.js` can dive at it.
+3. **Hermit crabs (yadokari) on the beach**, between their shells at low tide.
+4. **Geckos (yamori) on the walls by the lamps at night**, waiting for moths.
+
+Ask the owner before starting, and confirm the rule above.
+
 ## 4. Seen and not fixed (smaller)
 
 - Clothes still laid on the generic neck radius:
