@@ -91,7 +91,11 @@ export function createLookViewer({onClose=()=>{}}={}){
  let renderer=null,frame=0,open=false,stage=null,yaw=0,pitch=.15,distance=1,base=1,centre=new THREE.Vector3(),drag=null;const touches=new Map();let pinch=null;
  const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,1,.01,100);
  scene.add(new THREE.HemisphereLight(0xfff6e6,0x5b6470,1.9));const key=new THREE.DirectionalLight(0xffffff,1.6);key.position.set(2,3,2.5);scene.add(key);
- const resize=()=>{if(!renderer)return;const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();};
+ // The thing is framed in the space above the card, not behind it: the view is the lower part of a taller one whose
+ // centre sits half way down that space.
+ let fit=1;
+ const resize=()=>{if(!renderer)return;const w=innerWidth,h=innerHeight,below=Math.min(h*.6,card.offsetHeight+24);fit=(h+below)/Math.max(1,h-below);renderer.setSize(w,h,false);
+  camera.aspect=w/(h+below);camera.setViewOffset(w,h+below,0,below,w,h);camera.updateProjectionMatrix();};
  function draw(){if(!open)return;frame=requestAnimationFrame(draw);
   const c=Math.cos(pitch);camera.position.set(centre.x+Math.sin(yaw)*c*distance,centre.y+Math.sin(pitch)*distance,centre.z+Math.cos(yaw)*c*distance);camera.lookAt(centre);
   key.position.copy(camera.position).add(new THREE.Vector3(1,2,0));renderer.render(scene,camera);}
@@ -115,8 +119,10 @@ export function createLookViewer({onClose=()=>{}}={}){
    stage=new THREE.Group();
    for(const m of meshes){const copy=new THREE.Mesh(m.geometry,m.material);copy.userData.cutOut=!!m.userData.cutOut;copy.matrixAutoUpdate=false;copy.matrix.copy(m.matrixWorld);copy.layers.set(0);copy.name=m.name;stage.add(copy);}
    scene.add(stage);stage.updateMatrixWorld(true);
+   name.textContent=title||'';text.textContent=detail||'';text.hidden=!detail;root.hidden=false;resize();
    const box=new THREE.Box3().setFromObject(stage),sphere=box.getBoundingSphere(new THREE.Sphere());centre.copy(sphere.center);
-   base=distance=Math.max(.2,sphere.radius)/Math.sin(THREE.MathUtils.degToRad(camera.fov/2))*1.08;
+   // (whole, with a margin, in the space above the card)
+   base=distance=Math.max(.2,sphere.radius)/Math.sin(THREE.MathUtils.degToRad(camera.fov/2))*1.08*fit;
    // The first view is from where the looker stands, level with the thing.
    const toward=from?new THREE.Vector3().subVectors(from,centre):new THREE.Vector3(0,0,1);yaw=Math.atan2(toward.x,toward.z);pitch=.08;
    name.textContent=title||'';text.textContent=detail||'';text.hidden=!detail;

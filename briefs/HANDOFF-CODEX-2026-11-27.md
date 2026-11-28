@@ -191,6 +191,25 @@ its office, the izakaya, the ramen shop and the ferry's indoor floors had it. `?
 
 **Published to `main` at `056584e`** on the owner's "Proceed", after a green guard (1,043 of 1,046, none failing).
 
+## 3f. Look shows the thing itself, and Johansson's shorter neck (28 Nov)
+
+- **The Look viewer** (`src/ui/look-viewer.js`). The owner: "When looking at something it should show an enlarged view like
+  the item viewer in Sakura ... I want to be able to enjoy the graphics".
+  - **What it does:** every "Look at …" that has something to show opens it big, on its own stage, framed above its words.
+    Drag to turn it; pinch or scroll to come closer.
+  - **How it finds the thing:** the meshes at the prompt and the rest of their thing-sized group. In a room merged after it
+    is built (the workshop's wall), it cuts out the part at the prompt (`nearPart`).
+  - **Tested:** `tests/look-viewer.test.mjs`. Seen in the game on the workshop's Jonsson poster:
+    `docs/qa/look-viewer/workshop-poster-2026-11-28.jpg`.
+  - **Not yet looked at, one by one:** every other Look in the town and the rooms. Some may show too much or too little
+    (tune `LOOK_PICK`, or give a prompt its thing explicitly), and the drawing pins on a merged wall are not cut out with
+    the print.
+- **Johansson's neck** (the owner, with two pictures: "Johansson's neck is too long"): the sturdy frame's neck from 1.9 to 1.2
+  times standard; 28 mm shows between collar and jaw. `avatar-polish`'s collar test is updated to the ruling.
+  `docs/qa/johansson-neck/`.
+
+Both are on the work branch, not on `main`, until the owner says.
+
 ## 4. Seen and not fixed (smaller)
 
 - Clothes still laid on the generic neck radius:

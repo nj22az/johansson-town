@@ -196,7 +196,7 @@
     ]
   },
   "src/boot.js": {
-    "file": "boot-DUmbPvbC.js",
+    "file": "boot-DyCNK3a2.js",
     "name": "boot",
     "src": "src/boot.js",
     "isEntry": true,
@@ -233,7 +233,7 @@
     ]
   },
   "src/game.js?snappy=1": {
-    "file": "game-kBTol7tE.js",
+    "file": "game-Cv_TsMyA.js",
     "name": "game",
     "src": "src/game.js?snappy=1",
     "isDynamicEntry": true,
