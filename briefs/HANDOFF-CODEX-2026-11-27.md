@@ -204,11 +204,22 @@ its office, the izakaya, the ramen shop and the ferry's indoor floors had it. `?
   - **Not yet looked at, one by one:** every other Look in the town and the rooms. Some may show too much or too little
     (tune `LOOK_PICK`, or give a prompt its thing explicitly), and the drawing pins on a merged wall are not cut out with
     the print.
-- **Johansson's neck** (the owner, with two pictures: "Johansson's neck is too long"): the sturdy frame's neck from 1.9 to 1.2
-  times standard; 28 mm shows between collar and jaw. `avatar-polish`'s collar test is updated to the ruling.
-  `docs/qa/johansson-neck/`.
+- **Johansson's neck: NOT DONE, reverted.** The owner, with two pictures: "Johansson's neck is too long can you make him
+  look more as the second picture". In the second picture his head sits down on the shirt's collar.
+  - **What was tried** (commit `c419467`): `src/avatars/build.js`, the sturdy frame's neck from 1.9 to 1.2 times standard,
+    with 28 mm of neck between collar and jaw. The guard then failed in four places, and it was reverted to publish the
+    Look viewer:
+    - `tests/animation-principles.test.mjs`. New failures: DrinkCan and DrinkCanOpened ease on Johansson (the Blender-baked
+      can drink, `tools/blender/drink-can.py`, needs re-baking for the new proportions), Huff arcs and CarriedPlank twins.
+      New passes, to take off the baseline: HideFace twins, Salute overlap.
+    - `tests/pair-poses.test.mjs`: Fight, his chest 7 mm into Thuan; BackToBack, the backs 42 mm apart.
+    - `tests/rugged-head.test.mjs`: "a neck". It enforces the 26 Nov ruling "he should have a neck"; update it to the new
+      ruling (a short neck, about 15 to 45 mm showing).
+    - `tests/avatar-polish.test.mjs`: the collar test's "at least 60 mm" becomes 15 to 45 mm (as in `c419467`).
+  - **To do:** apply `c419467` again, then re-bake the can drink and re-pose Fight and BackToBack for his new height. Shrink
+    the animation baseline, run the guard, show the owner, publish on the owner's word.
 
-Both are on the work branch, not on `main`, until the owner says.
+The Look viewer is published (see section 1); the neck is not.
 
 ## 4. Seen and not fixed (smaller)
 

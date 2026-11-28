@@ -69,10 +69,8 @@ export function measure(recipe){
  const H=stage.base+r.body.height*stage.span,k=H/1.6,build=r.body.build;
  const profile=headProfile(r.head),Rh=(.19+r.head.size*.055)*k*stage.head*(studio?.82:1)*(r.body.proportion==='rounded'?1.30:1)*(r.head.scale??1),headSX=profile.width,headSY=profile.height;
  const rounded=r.body.proportion==='rounded';
- // (A sturdy frame has a neck that shows: the owner, 26 November 2026, of Johansson: "he should have a neck"; then, 28
- // November, "Johansson's neck is too long", the head to sit down on the collar as in the owner's second picture: a short
- // strong neck, the chin just over the shirt's collar.)
- const neck=.055*k*(r.body.frame==='sturdy'?1.2:1),body=H-Rh*2*headSY-neck;
+ // (A sturdy frame has a neck that shows: the owner, 26 November 2026, of Johansson: "he should have a neck".)
+ const neck=.055*k*(r.body.frame==='sturdy'?1.9:1),body=H-Rh*2*headSY-neck;
  // (A graceful frame is a little longer in the leg.)
  const leg=body*(studio?.60:rounded?.37:r.body.frame==='graceful'?.5:.47),torso=body-leg;
  const foot=.07*k,thigh=(leg-foot)*.5,shin=thigh;
