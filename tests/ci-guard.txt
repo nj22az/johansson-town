@@ -253,3 +253,5 @@ work-kit.test.mjs
 tama.test.mjs
 # The harbour's gulls (umineko) in the Blåhaj look: their own picture layers, a flight that flaps and glides with nothing jumping a frame (about 2 s).
 gulls.test.mjs
+# A Look holds the thing itself up big: the meshes at the prompt and the rest of their group, not the room (about 1 s).
+look-viewer.test.mjs
